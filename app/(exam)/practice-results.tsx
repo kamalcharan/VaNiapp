@@ -22,12 +22,13 @@ const SUBJECTS: NeetSubjectId[] = ['physics', 'chemistry', 'botany', 'zoology'];
 export default function PracticeResultsScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const { score, correct, wrong, unanswered, timeUsedMs: timeParam } = useLocalSearchParams<{
+  const { score, correct, wrong, unanswered, timeUsedMs: timeParam, focusSwitches: focusParam } = useLocalSearchParams<{
     score: string;
     correct: string;
     wrong: string;
     unanswered: string;
     timeUsedMs: string;
+    focusSwitches: string;
   }>();
 
   const [activeTab, setActiveTab] = useState<'summary' | 'analytics'>('summary');
@@ -42,6 +43,7 @@ export default function PracticeResultsScreen() {
   const wrongNum = parseInt(wrong ?? '0', 10);
   const unansweredNum = parseInt(unanswered ?? '0', 10);
   const timeUsedMs = parseInt(timeParam ?? '0', 10);
+  const focusSwitches = parseInt(focusParam ?? '0', 10);
   const percentage = Math.round((scoreNum / NEET_SCORING.maxMarks) * 100);
 
   const getGrade = () => {
@@ -213,6 +215,31 @@ export default function PracticeResultsScreen() {
                 </View>
               </JournalCard>
 
+              {/* Focus Stats */}
+              <JournalCard delay={150}>
+                <View style={styles.focusRow}>
+                  <Text style={styles.focusEmoji}>
+                    {focusSwitches === 0 ? '\uD83C\uDFC6' : focusSwitches <= 3 ? '\uD83D\uDE0C' : '\uD83D\uDCF1'}
+                  </Text>
+                  <View style={styles.focusInfo}>
+                    <Text style={[Typography.h3, { color: focusSwitches === 0 ? '#22C55E' : focusSwitches <= 3 ? colors.primary : '#F59E0B' }]}>
+                      {focusSwitches === 0
+                        ? 'Focus Champion!'
+                        : focusSwitches <= 3
+                          ? 'Good Focus'
+                          : `Switched away ${focusSwitches} times`}
+                    </Text>
+                    <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 2 }]}>
+                      {focusSwitches === 0
+                        ? 'You stayed focused the entire exam!'
+                        : focusSwitches <= 3
+                          ? `Only ${focusSwitches} app switch${focusSwitches === 1 ? '' : 'es'} during the exam`
+                          : 'Try minimizing distractions next time'}
+                    </Text>
+                  </View>
+                </View>
+              </JournalCard>
+
               {/* Per-Subject Breakdown */}
               {lastExam?.subjectScores && (
                 <JournalCard delay={200}>
@@ -289,6 +316,30 @@ export default function PracticeResultsScreen() {
                   </View>
                 </JournalCard>
               )}
+
+              {/* Focus Analysis */}
+              <JournalCard delay={150}>
+                <Text style={[Typography.label, { color: colors.textTertiary, marginBottom: Spacing.md }]}>
+                  FOCUS ANALYSIS
+                </Text>
+                <View style={styles.focusAnalytics}>
+                  <View style={styles.focusAnalyticsItem}>
+                    <Text style={[styles.focusAnalyticsValue, { color: focusSwitches === 0 ? '#22C55E' : focusSwitches <= 3 ? colors.primary : '#F59E0B' }]}>
+                      {focusSwitches}
+                    </Text>
+                    <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>App Switches</Text>
+                  </View>
+                  <View style={[styles.timeDivider, { backgroundColor: colors.surfaceBorder }]} />
+                  <View style={styles.focusAnalyticsItem}>
+                    <Text style={styles.focusBadgeEmoji}>
+                      {focusSwitches === 0 ? '\uD83C\uDFC6' : focusSwitches <= 3 ? '\u2B50' : '\uD83D\uDCAA'}
+                    </Text>
+                    <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                      {focusSwitches === 0 ? 'Champion' : focusSwitches <= 3 ? 'Focused' : 'Improve'}
+                    </Text>
+                  </View>
+                </View>
+              </JournalCard>
 
               {/* Difficulty Breakdown */}
               {analytics && (
@@ -540,6 +591,33 @@ const styles = StyleSheet.create({
   weakStrongRow: {
     flexDirection: 'row',
     gap: Spacing.md,
+  },
+  focusRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+  },
+  focusEmoji: {
+    fontSize: 36,
+  },
+  focusInfo: {
+    flex: 1,
+  },
+  focusAnalytics: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  focusAnalyticsItem: {
+    alignItems: 'center',
+    gap: 4,
+  },
+  focusAnalyticsValue: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 28,
+  },
+  focusBadgeEmoji: {
+    fontSize: 28,
   },
   actions: {
     gap: Spacing.md,
