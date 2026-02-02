@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   Pressable,
+  Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -19,6 +20,7 @@ import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
 import { buildQuickPractice } from '../../src/data/questions';
 import { SUBJECT_META } from '../../src/constants/subjects';
+import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { NeetSubjectId, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 
@@ -41,6 +43,8 @@ export default function QuickQuestionScreen() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showElimination, setShowElimination] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [answerStreak, setAnswerStreak] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
   const startTimeRef = useRef(Date.now());
 
@@ -83,6 +87,14 @@ export default function QuickQuestionScreen() {
     );
 
     setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
+
+    if (correct) {
+      setAnswerStreak((s) => s + 1);
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 1500);
+    } else {
+      setAnswerStreak(0);
+    }
 
     dispatch(
       updateAnswer({
@@ -152,6 +164,7 @@ export default function QuickQuestionScreen() {
 
   return (
     <DotGridBackground>
+      <ConfettiBurst trigger={showConfetti} />
       <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
         {/* Top Bar */}
         <View style={[styles.topBar, { borderBottomColor: colors.surfaceBorder }]}>
@@ -247,6 +260,11 @@ export default function QuickQuestionScreen() {
                 <Text style={[Typography.h3, { color: isCorrect ? '#16A34A' : '#DC2626' }]}>
                   {isCorrect ? 'Correct!' : 'Incorrect'}
                 </Text>
+                {isCorrect && answerStreak >= 2 && (
+                  <Text style={styles.streakText}>
+                    {'\uD83D\uDD25'} {answerStreak} in a row!
+                  </Text>
+                )}
                 {!isCorrect && (
                   <Text style={[Typography.bodySm, { color: '#DC2626', marginTop: 2 }]}>
                     Correct answer:{' '}
@@ -441,5 +459,11 @@ const styles = StyleSheet.create({
   nextBtnText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 15,
+  },
+  streakText: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 14,
+    color: '#F59E0B',
+    marginTop: 4,
   },
 });

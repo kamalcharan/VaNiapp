@@ -7,6 +7,9 @@ import { useRouter } from 'expo-router';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { AnimatedPressable } from '../../src/components/ui/AnimatedPressable';
+import { StreakBadge } from '../../src/components/ui/StreakBadge';
+import { CountUpText } from '../../src/components/ui/CountUpText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
@@ -61,6 +64,9 @@ export default function DashboardScreen() {
             </Pressable>
           </View>
 
+          {/* Streak */}
+          <StreakBadge streak={totalTests} label={totalTests === 1 ? 'Test Taken' : 'Tests Taken'} />
+
           {/* Exam Mode Cards */}
           <View style={styles.modeSection}>
             <HandwrittenText variant="hand" rotation={-1}>
@@ -68,7 +74,7 @@ export default function DashboardScreen() {
             </HandwrittenText>
             <View style={styles.modeCards}>
               {/* Chapter Exam */}
-              <Pressable
+              <AnimatedPressable
                 style={styles.modeCardWrap}
                 onPress={() => router.push('/(exam)/subject-select')}
               >
@@ -86,10 +92,10 @@ export default function DashboardScreen() {
                     25 Qs per chapter{'\n'}Instant feedback
                   </Text>
                 </JournalCard>
-              </Pressable>
+              </AnimatedPressable>
 
               {/* Practice Exam */}
-              <Pressable
+              <AnimatedPressable
                 style={styles.modeCardWrap}
                 onPress={() => router.push('/(exam)/practice-start')}
               >
@@ -107,11 +113,11 @@ export default function DashboardScreen() {
                     200 Qs, 3h 20m{'\n'}NEET format
                   </Text>
                 </JournalCard>
-              </Pressable>
+              </AnimatedPressable>
             </View>
 
             {/* Quick Practice */}
-            <Pressable
+            <AnimatedPressable
               onPress={() => router.push('/(exam)/quick-start')}
             >
               <JournalCard delay={300} rotation={0.3}>
@@ -128,7 +134,7 @@ export default function DashboardScreen() {
                   <Text style={[styles.quickArrow, { color: colors.textTertiary }]}>{'>'}</Text>
                 </View>
               </JournalCard>
-            </Pressable>
+            </AnimatedPressable>
           </View>
 
           {/* Subject Grid — quick jump to chapter-select */}
@@ -140,7 +146,7 @@ export default function DashboardScreen() {
 
           <View style={styles.subjectGrid}>
             {displaySubjects.map((subject, idx) => (
-              <Pressable
+              <AnimatedPressable
                 key={subject.id}
                 style={styles.subjectWrap}
                 onPress={() =>
@@ -164,7 +170,7 @@ export default function DashboardScreen() {
                     {subject.name}
                   </Text>
                 </JournalCard>
-              </Pressable>
+              </AnimatedPressable>
             ))}
           </View>
 
@@ -177,21 +183,21 @@ export default function DashboardScreen() {
             </Text>
             <View style={styles.statsRow}>
               <View style={styles.statItem}>
-                <Text style={[Typography.h1, { color: colors.primary }]}>{totalTests}</Text>
+                <CountUpText value={totalTests} style={[Typography.h1, { color: colors.primary }]} />
                 <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Tests</Text>
               </View>
               <View style={[styles.statDivider, { backgroundColor: colors.surfaceBorder }]} />
               <View style={styles.statItem}>
-                <Text style={[Typography.h1, { color: colors.correct }]}>
-                  {avgScore !== null ? `${avgScore}%` : '--%'}
-                </Text>
+                {avgScore !== null ? (
+                  <CountUpText value={avgScore} suffix="%" style={[Typography.h1, { color: colors.correct }]} />
+                ) : (
+                  <Text style={[Typography.h1, { color: colors.correct }]}>--%</Text>
+                )}
                 <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Avg Score</Text>
               </View>
               <View style={[styles.statDivider, { backgroundColor: colors.surfaceBorder }]} />
               <View style={styles.statItem}>
-                <Text style={[Typography.h1, { color: colors.warning }]}>
-                  {chapterHistory.length}
-                </Text>
+                <CountUpText value={chapterHistory.length} style={[Typography.h1, { color: colors.warning }]} />
                 <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Chapters</Text>
               </View>
             </View>

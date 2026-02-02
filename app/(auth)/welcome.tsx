@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { View, Text, Image, StyleSheet, Animated } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
@@ -16,6 +16,27 @@ export default function WelcomeScreen() {
   const { colors } = useTheme();
   const router = useRouter();
 
+  // Animated logo: entrance + continuous float
+  const floatAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(0.7)).current;
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, { toValue: 1, duration: 600, useNativeDriver: true }),
+      Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true, damping: 12, stiffness: 100 }),
+    ]).start();
+
+    const float = Animated.loop(
+      Animated.sequence([
+        Animated.timing(floatAnim, { toValue: -8, duration: 2000, useNativeDriver: true }),
+        Animated.timing(floatAnim, { toValue: 0, duration: 2000, useNativeDriver: true }),
+      ])
+    );
+    float.start();
+    return () => float.stop();
+  }, []);
+
   return (
     <DotGridBackground>
       <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
@@ -25,7 +46,11 @@ export default function WelcomeScreen() {
         </View>
 
         <View style={styles.hero}>
-          <Image source={logo} style={styles.logoImage} resizeMode="contain" />
+          <Animated.View
+            style={{ opacity: fadeAnim, transform: [{ scale: scaleAnim }, { translateY: floatAnim }] }}
+          >
+            <Image source={logo} style={styles.logoImage} resizeMode="contain" />
+          </Animated.View>
           <Text style={[Typography.display, { color: colors.text }]}>
             VaNi
           </Text>
@@ -71,6 +96,11 @@ export default function WelcomeScreen() {
             title="Let's Go"
             icon={'\u270D\uFE0F'}
             onPress={() => router.push('/(auth)/onboarding')}
+          />
+          <PuffyButton
+            title="I already have an account"
+            variant="ghost"
+            onPress={() => router.push('/(auth)/sign-in')}
           />
           <HandwrittenText variant="handSm" color={colors.textTertiary}>
             3-day free trial. No cap.

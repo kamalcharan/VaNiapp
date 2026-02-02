@@ -69,7 +69,7 @@ export default function OnboardingScreen() {
     if (currentIndex < slides.length - 1) {
       flatListRef.current?.scrollToIndex({ index: currentIndex + 1, animated: true });
     } else {
-      router.push('/(auth)/sign-up');
+      router.push('/(auth)/sign-in');
     }
   };
 
@@ -100,7 +100,7 @@ export default function OnboardingScreen() {
           <PuffyButton
             title="Skip"
             variant="ghost"
-            onPress={() => router.push('/(auth)/sign-up')}
+            onPress={() => router.push('/(auth)/sign-in')}
             style={styles.skipBtn}
           />
         </View>

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   Pressable,
+  Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -20,6 +21,7 @@ import { RootState } from '../../src/store';
 import { getQuestionsByChapter } from '../../src/data/questions';
 import { getChapterById } from '../../src/data/chapters';
 import { SUBJECT_META } from '../../src/constants/subjects';
+import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { NeetSubjectId, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 
@@ -41,6 +43,9 @@ export default function ChapterQuestionScreen() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showElimination, setShowElimination] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [answerStreak, setAnswerStreak] = useState(0);
+  const streakScaleAnim = useRef(new Animated.Value(0)).current;
   const scrollRef = useRef<ScrollView>(null);
   const startTimeRef = useRef(Date.now());
 
@@ -83,6 +88,20 @@ export default function ChapterQuestionScreen() {
     );
 
     setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
+
+    // Celebration on correct
+    if (correct) {
+      setAnswerStreak((s) => s + 1);
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 1500);
+      // Animate streak badge
+      if (answerStreak >= 1) {
+        streakScaleAnim.setValue(0);
+        Animated.spring(streakScaleAnim, { toValue: 1, useNativeDriver: true, damping: 8, stiffness: 200 }).start();
+      }
+    } else {
+      setAnswerStreak(0);
+    }
 
     dispatch(
       updateAnswer({
@@ -149,6 +168,7 @@ export default function ChapterQuestionScreen() {
 
   return (
     <DotGridBackground>
+      <ConfettiBurst trigger={showConfetti} />
       <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
         {/* Top Bar */}
         <View style={[styles.topBar, { borderBottomColor: colors.surfaceBorder }]}>
@@ -245,6 +265,13 @@ export default function ChapterQuestionScreen() {
                 <Text style={[Typography.h3, { color: isCorrect ? '#16A34A' : '#DC2626' }]}>
                   {isCorrect ? 'Correct!' : 'Incorrect'}
                 </Text>
+                {isCorrect && answerStreak >= 2 && (
+                  <Animated.View style={{ transform: [{ scale: Animated.add(streakScaleAnim, new Animated.Value(0)).interpolate({ inputRange: [0, 1], outputRange: [0.5, 1] }) }] }}>
+                    <Text style={styles.streakText}>
+                      {'\uD83D\uDD25'} {answerStreak} in a row!
+                    </Text>
+                  </Animated.View>
+                )}
                 {!isCorrect && (
                   <Text style={[Typography.bodySm, { color: '#DC2626', marginTop: 2 }]}>
                     Correct answer:{' '}
@@ -417,6 +444,12 @@ const styles = StyleSheet.create({
     padding: Spacing.lg,
     borderRadius: BorderRadius.lg,
     alignItems: 'center',
+  },
+  streakText: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 14,
+    color: '#F59E0B',
+    marginTop: 4,
   },
   elimBtn: {
     alignSelf: 'center',
