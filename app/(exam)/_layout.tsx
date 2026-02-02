@@ -20,6 +20,8 @@ export default function ExamLayout() {
       <Stack.Screen name="practice-question" options={{ gestureEnabled: false }} />
       <Stack.Screen name="practice-results" />
       <Stack.Screen name="answer-review" />
+      <Stack.Screen name="quick-start" />
+      <Stack.Screen name="quick-question" />
     </Stack>
   );
 }

@@ -72,6 +72,7 @@ export default function PracticeQuestionScreen() {
   // Answers map: questionId -> selectedOptionId
   const [answers, setAnswers] = useState<Record<string, string | null>>({});
   const [marked, setMarked] = useState<Record<string, boolean>>({});
+  const [eliminated, setEliminated] = useState<Record<string, string[]>>({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeSubject, setActiveSubject] = useState<NeetSubjectId>('physics');
   const [activeSection, setActiveSection] = useState<'A' | 'B'>('A');
@@ -168,16 +169,47 @@ export default function PracticeQuestionScreen() {
       const newAnswers = { ...answers, [question.id]: optionId };
       setAnswers(newAnswers);
 
+      // Un-eliminate if selecting an eliminated option
+      const currentElim = eliminated[question.id] ?? [];
+      const updatedElim = currentElim.filter((id) => id !== optionId);
+      if (updatedElim.length !== currentElim.length) {
+        setEliminated((prev) => ({ ...prev, [question.id]: updatedElim }));
+      }
+
       const answer: UserAnswer = {
         questionId: question.id,
         selectedOptionId: optionId,
         isMarked: marked[question.id] ?? false,
-        eliminatedOptionIds: [],
+        eliminatedOptionIds: updatedElim,
         timeSpentMs: 0,
       };
       dispatch(updateAnswer(answer));
     },
-    [question, answers, marked, dispatch]
+    [question, answers, marked, eliminated, dispatch]
+  );
+
+  const handleToggleEliminate = useCallback(
+    (optionId: string) => {
+      if (!question) return;
+      // Don't eliminate the selected answer
+      if (answers[question.id] === optionId) return;
+
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      const current = eliminated[question.id] ?? [];
+      const isEliminated = current.includes(optionId);
+      const updated = isEliminated ? current.filter((id) => id !== optionId) : [...current, optionId];
+      setEliminated((prev) => ({ ...prev, [question.id]: updated }));
+
+      const answer: UserAnswer = {
+        questionId: question.id,
+        selectedOptionId: answers[question.id] ?? null,
+        isMarked: marked[question.id] ?? false,
+        eliminatedOptionIds: updated,
+        timeSpentMs: 0,
+      };
+      dispatch(updateAnswer(answer));
+    },
+    [question, answers, marked, eliminated, dispatch]
   );
 
   const handleClearAnswer = useCallback(() => {
@@ -190,11 +222,11 @@ export default function PracticeQuestionScreen() {
       questionId: question.id,
       selectedOptionId: null,
       isMarked: marked[question.id] ?? false,
-      eliminatedOptionIds: [],
+      eliminatedOptionIds: eliminated[question.id] ?? [],
       timeSpentMs: 0,
     };
     dispatch(updateAnswer(answer));
-  }, [question, answers, marked, dispatch]);
+  }, [question, answers, marked, eliminated, dispatch]);
 
   const handleToggleMark = useCallback(() => {
     if (!question) return;
@@ -246,7 +278,7 @@ export default function PracticeQuestionScreen() {
               questionId: q.id,
               selectedOptionId: answers[q.id] ?? null,
               isMarked: false,
-              eliminatedOptionIds: [],
+              eliminatedOptionIds: eliminated[q.id] ?? [],
               timeSpentMs: 0,
             });
           });
@@ -264,7 +296,7 @@ export default function PracticeQuestionScreen() {
               questionId: q.id,
               selectedOptionId: answers[q.id] ?? null,
               isMarked: false,
-              eliminatedOptionIds: [],
+              eliminatedOptionIds: eliminated[q.id] ?? [],
               timeSpentMs: 0,
             });
           });
@@ -485,21 +517,32 @@ export default function PracticeQuestionScreen() {
             </Text>
           </View>
 
-          {/* Options */}
+          {/* Options — long-press to eliminate */}
           <View style={styles.optionsList}>
             {question.options.map((opt, idx) => {
               const label = String.fromCharCode(65 + idx);
               const isSelected = answers[question.id] === opt.id;
+              const isEliminated = (eliminated[question.id] ?? []).includes(opt.id);
               return (
                 <Pressable
                   key={opt.id}
                   onPress={() => handleSelectOption(opt.id)}
+                  onLongPress={() => handleToggleEliminate(opt.id)}
                   style={[
                     styles.optionRow,
                     {
-                      backgroundColor: isSelected ? colors.primary + '12' : colors.surface,
-                      borderColor: isSelected ? colors.primary : colors.surfaceBorder,
-                      borderWidth: isSelected ? 2 : 1,
+                      backgroundColor: isEliminated
+                        ? colors.surfaceBorder + '30'
+                        : isSelected
+                          ? colors.primary + '12'
+                          : colors.surface,
+                      borderColor: isEliminated
+                        ? colors.surfaceBorder
+                        : isSelected
+                          ? colors.primary
+                          : colors.surfaceBorder,
+                      borderWidth: isSelected && !isEliminated ? 2 : 1,
+                      opacity: isEliminated ? 0.5 : 1,
                     },
                   ]}
                 >
@@ -507,26 +550,50 @@ export default function PracticeQuestionScreen() {
                     style={[
                       styles.optionLabel,
                       {
-                        backgroundColor: isSelected ? colors.primary : colors.surfaceBorder + '80',
+                        backgroundColor: isEliminated
+                          ? colors.surfaceBorder
+                          : isSelected
+                            ? colors.primary
+                            : colors.surfaceBorder + '80',
                       },
                     ]}
                   >
                     <Text
                       style={[
                         styles.optionLabelText,
-                        { color: isSelected ? '#FFF' : colors.textSecondary },
+                        {
+                          color: isSelected && !isEliminated ? '#FFF' : colors.textSecondary,
+                          textDecorationLine: isEliminated ? 'line-through' : 'none',
+                        },
                       ]}
                     >
                       {label}
                     </Text>
                   </View>
-                  <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>
+                  <Text
+                    style={[
+                      Typography.body,
+                      {
+                        color: isEliminated ? colors.textTertiary : colors.text,
+                        flex: 1,
+                        textDecorationLine: isEliminated ? 'line-through' : 'none',
+                      },
+                    ]}
+                  >
                     {language === 'te' ? opt.textTe : opt.text}
                   </Text>
+                  {isEliminated && (
+                    <Text style={[styles.elimBadge, { color: colors.textTertiary }]}>X</Text>
+                  )}
                 </Pressable>
               );
             })}
           </View>
+
+          {/* Elimination hint */}
+          <Text style={[styles.elimHint, { color: colors.textTertiary }]}>
+            Long-press an option to cross it out
+          </Text>
 
           {/* Action Buttons */}
           <View style={styles.actionRow}>
@@ -709,6 +776,16 @@ const styles = StyleSheet.create({
   optionLabelText: {
     fontFamily: 'PlusJakartaSans_800ExtraBold',
     fontSize: 13,
+  },
+  elimBadge: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 14,
+  },
+  elimHint: {
+    fontFamily: 'PlusJakartaSans_400Regular',
+    fontSize: 11,
+    textAlign: 'center',
+    marginTop: Spacing.sm,
   },
   actionRow: {
     flexDirection: 'row',

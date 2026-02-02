@@ -15,6 +15,7 @@ import { SUBJECT_META } from '../../src/constants/subjects';
 import { getChapterById } from '../../src/data/chapters';
 import { getQuestionsByChapter } from '../../src/data/questions';
 import { RootState } from '../../src/store';
+import { NeetSubjectId } from '../../src/types';
 
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
@@ -27,9 +28,13 @@ export default function ChapterResultsScreen() {
   }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
 
-  const chapter = chapterId ? getChapterById(chapterId) : null;
-  const subjectMeta = chapter ? SUBJECT_META[chapter.subjectId] : null;
-  const questions = useMemo(() => (chapterId ? getQuestionsByChapter(chapterId) : []), [chapterId]);
+  const isQuickMode = chapterId?.startsWith('quick-') ?? false;
+  const quickSubjectId = isQuickMode ? chapterId!.replace('quick-', '') as NeetSubjectId : null;
+  const chapter = chapterId && !isQuickMode ? getChapterById(chapterId) : null;
+  const subjectMeta = isQuickMode
+    ? (quickSubjectId ? SUBJECT_META[quickSubjectId] : null)
+    : (chapter ? SUBJECT_META[chapter.subjectId] : null);
+  const questions = useMemo(() => (chapterId && !isQuickMode ? getQuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
 
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
@@ -73,7 +78,11 @@ export default function ChapterResultsScreen() {
   const grade = getGrade();
 
   const handleRetry = () => {
-    router.replace({ pathname: '/(exam)/chapter-question', params: { chapterId: chapterId! } });
+    if (isQuickMode && quickSubjectId) {
+      router.replace({ pathname: '/(exam)/quick-question', params: { subjectId: quickSubjectId } });
+    } else {
+      router.replace({ pathname: '/(exam)/chapter-question', params: { chapterId: chapterId! } });
+    }
   };
 
   const handleBackToSubjects = () => {
@@ -90,7 +99,8 @@ export default function ChapterResultsScreen() {
     }
   };
 
-  if (!chapter || !subjectMeta) return null;
+  if (!subjectMeta) return null;
+  if (!isQuickMode && !chapter) return null;
 
   return (
     <DotGridBackground>
@@ -101,7 +111,7 @@ export default function ChapterResultsScreen() {
             <Text style={styles.gradeEmoji}>{grade.emoji}</Text>
             <HandwrittenText variant="hand">{grade.label}</HandwrittenText>
             <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 4 }]}>
-              {subjectMeta.emoji} {language === 'te' ? chapter.nameTe : chapter.name}
+              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : (language === 'te' && chapter ? chapter.nameTe : chapter?.name)}
             </Text>
           </View>
 
@@ -179,8 +189,8 @@ export default function ChapterResultsScreen() {
           {/* Actions */}
           <View style={styles.actions}>
             <PuffyButton title="Review Answers" onPress={handleReview} variant="secondary" />
-            <PuffyButton title="Retry Chapter" onPress={handleRetry} variant="ghost" />
-            <PuffyButton title="Pick Another Subject" onPress={handleBackToSubjects} variant="ghost" />
+            <PuffyButton title={isQuickMode ? 'Try Again' : 'Retry Chapter'} onPress={handleRetry} variant="ghost" />
+            {!isQuickMode && <PuffyButton title="Pick Another Subject" onPress={handleBackToSubjects} variant="ghost" />}
             <PuffyButton title="Back to Dashboard" onPress={handleGoHome} variant="ghost" />
           </View>
         </ScrollView>

@@ -109,6 +109,26 @@ export default function DashboardScreen() {
                 </JournalCard>
               </Pressable>
             </View>
+
+            {/* Quick Practice */}
+            <Pressable
+              onPress={() => router.push('/(exam)/quick-start')}
+            >
+              <JournalCard delay={300} rotation={0.3}>
+                <View style={styles.quickRow}>
+                  <Text style={styles.quickIcon}>{'\u26A1'}</Text>
+                  <View style={{ flex: 1 }}>
+                    <Text style={[Typography.h3, { color: colors.text }]}>
+                      Quick Practice
+                    </Text>
+                    <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 2 }]}>
+                      20 questions. No timer. Pure focus.
+                    </Text>
+                  </View>
+                  <Text style={[styles.quickArrow, { color: colors.textTertiary }]}>{'>'}</Text>
+                </View>
+              </JournalCard>
+            </Pressable>
           </View>
 
           {/* Subject Grid — quick jump to chapter-select */}
@@ -256,5 +276,17 @@ const styles = StyleSheet.create({
   statDivider: {
     width: 1,
     height: 40,
+  },
+  quickRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+  },
+  quickIcon: {
+    fontSize: 32,
+  },
+  quickArrow: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 20,
   },
 });

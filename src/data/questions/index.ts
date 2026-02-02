@@ -67,6 +67,15 @@ export function buildPracticeExam(): Record<
   return exam;
 }
 
+/**
+ * Build a 20-question Quick Practice set for a single subject.
+ * Picks 20 random questions from the subject pool (across all chapters).
+ */
+export function buildQuickPractice(subjectId: NeetSubjectId): Question[] {
+  const pool = getQuestionsBySubject(subjectId);
+  return shuffle([...pool]).slice(0, 20);
+}
+
 /** Fisher-Yates shuffle */
 function shuffle<T>(array: T[]): T[] {
   const arr = [...array];
