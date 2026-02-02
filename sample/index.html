@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ExamPrep Pro | My Study Journal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Caveat:wght@700&family=Indie+Flower&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+              hand: ['Caveat', 'cursive'],
+              doodle: ['Indie Flower', 'cursive'],
+            },
+          }
+        }
+      }
+    </script>
+    <style>
+        :root {
+            --paper-light: #fdfcf0;
+            --paper-dark: #121212;
+            --ink-blue: #2563eb;
+            --highlighter-yellow: #fef08a;
+            --highlighter-pink: #fbcfe8;
+            --highlighter-teal: #99f6e4;
+        }
+
+        body {
+            transition: background-color 0.5s ease, color 0.5s ease;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Paper Textures */
+        .paper-bg {
+            background-color: var(--paper-light);
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .dark .paper-bg {
+            background-color: var(--paper-dark);
+            background-image: radial-gradient(#262626 1px, transparent 1px);
+        }
+
+        /* Notebook Spiral Effect */
+        .spiral-edge {
+            background-image: linear-gradient(to right, #d1d5db 1px, transparent 1px);
+            background-size: 10px 100%;
+        }
+
+        /* Handwritten Accent */
+        .handwritten {
+            font-family: 'Caveat', cursive;
+            transform: rotate(-2deg);
+            display: inline-block;
+        }
+
+        /* Aesthetic "Puffy" Shadow */
+        .puffy-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+        .dark .puffy-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Sticky Note Look */
+        .sticky-note {
+            background-color: var(--highlighter-yellow);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+            transform: rotate(1deg);
+        }
+
+        /* Washi Tape Effect */
+        .washi-tape {
+            background: rgba(251, 207, 232, 0.6);
+            backdrop-filter: blur(2px);
+            height: 15px;
+            width: 80px;
+            position: absolute;
+            top: -7px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .btn-aesthetic {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-aesthetic:active {
+            transform: scale(0.95);
+        }
+
+        /* Custom Scrollbar for Aesthetic */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="paper-bg text-slate-900 dark:text-slate-100 min-h-screen">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
