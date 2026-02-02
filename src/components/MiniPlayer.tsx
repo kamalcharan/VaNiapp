@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { useTheme } from '../hooks/useTheme';
-import { Typography, Spacing, BorderRadius } from '../constants/theme';
+import { Spacing, BorderRadius } from '../constants/theme';
 import { Track } from '../constants/tracks';
 
 interface MiniPlayerProps {
@@ -10,13 +10,49 @@ interface MiniPlayerProps {
   onTogglePlay: () => void;
   onSkipNext: () => void;
   onOpenDrawer: () => void;
+  /** When true, renders as a compact pill at top-right (for exam screens). */
+  compact?: boolean;
 }
 
-export function MiniPlayer({ track, isPlaying, onTogglePlay, onSkipNext, onOpenDrawer }: MiniPlayerProps) {
+export function MiniPlayer({
+  track,
+  isPlaying,
+  onTogglePlay,
+  onSkipNext,
+  onOpenDrawer,
+  compact = false,
+}: MiniPlayerProps) {
   const { colors } = useTheme();
 
+  /* ── Compact mode (exam screens) ─────────────────────────── */
+  if (compact) {
+    return (
+      <View style={styles.compactWrap}>
+        <Pressable
+          onPress={onOpenDrawer}
+          style={[
+            styles.compactPill,
+            {
+              backgroundColor: colors.surface,
+              borderColor: colors.surfaceBorder,
+            },
+          ]}
+        >
+          <Text style={styles.compactEmoji}>{track ? track.emoji : '\uD83C\uDFB5'}</Text>
+          {track && (
+            <Pressable onPress={onTogglePlay} hitSlop={10}>
+              <Text style={[styles.compactControl, { color: colors.primary }]}>
+                {isPlaying ? '\u23F8\uFE0F' : '\u25B6\uFE0F'}
+              </Text>
+            </Pressable>
+          )}
+        </Pressable>
+      </View>
+    );
+  }
+
+  /* ── Full mode (non-exam screens) ────────────────────────── */
   if (!track) {
-    // No track selected — show floating music FAB
     return (
       <Pressable
         onPress={onOpenDrawer}
@@ -58,6 +94,35 @@ export function MiniPlayer({ track, isPlaying, onTogglePlay, onSkipNext, onOpenD
 }
 
 const styles = StyleSheet.create({
+  /* ── Compact (exam screens) ── */
+  compactWrap: {
+    position: 'absolute',
+    top: 58,
+    left: Spacing.lg,
+    zIndex: 999,
+  },
+  compactPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 20,
+    borderWidth: 1,
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.12,
+    shadowRadius: 4,
+  },
+  compactEmoji: {
+    fontSize: 16,
+  },
+  compactControl: {
+    fontSize: 16,
+  },
+
+  /* ── Full FAB (non-exam, no track) ── */
   fab: {
     position: 'absolute',
     right: Spacing.lg,
@@ -77,6 +142,8 @@ const styles = StyleSheet.create({
   fabIcon: {
     fontSize: 22,
   },
+
+  /* ── Full bar (non-exam, playing) ── */
   container: {
     position: 'absolute',
     left: Spacing.md,
