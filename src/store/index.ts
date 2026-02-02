@@ -1,48 +1,53 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
+import { configureStore } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import authReducer from './slices/authSlice';
 import practiceReducer from './slices/practiceSlice';
 import musicReducer from './slices/musicSlice';
 import focusReducer from './slices/focusSlice';
 
-const persistConfig = {
-  key: 'vani-root',
-  storage: AsyncStorage,
-  whitelist: ['auth', 'practice'], // persist user profile + exam history
-};
-
-const rootReducer = combineReducers({
-  auth: authReducer,
-  practice: practiceReducer,
-  music: musicReducer,
-  focus: focusReducer,
-});
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const PERSIST_KEY = 'vani-persist';
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    auth: authReducer,
+    practice: practiceReducer,
+    music: musicReducer,
+    focus: focusReducer,
+  },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+    getDefaultMiddleware({ serializableCheck: false }),
 });
-
-// persistStore activates rehydration automatically — no PersistGate needed
-// because our splash screen already covers the brief loading window.
-persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+// ── Lightweight persistence (auth + practice only) ──────────────
+// Saves to AsyncStorage on every state change, rehydrates on app start.
+
+let saveTimeout: ReturnType<typeof setTimeout> | null = null;
+
+store.subscribe(() => {
+  if (saveTimeout) clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => {
+    const { auth, practice } = store.getState();
+    AsyncStorage.setItem(PERSIST_KEY, JSON.stringify({ auth, practice })).catch(
+      () => {}
+    );
+  }, 500); // debounce 500ms
+});
+
+export async function rehydrateStore(): Promise<void> {
+  try {
+    const raw = await AsyncStorage.getItem(PERSIST_KEY);
+    if (!raw) return;
+    const saved = JSON.parse(raw) as Partial<RootState>;
+    if (saved.auth) {
+      store.dispatch({ type: 'auth/rehydrate', payload: saved.auth });
+    }
+    if (saved.practice) {
+      store.dispatch({ type: 'practice/rehydrate', payload: saved.practice });
+    }
+  } catch {
+    // storage read failed — start fresh
+  }
+}

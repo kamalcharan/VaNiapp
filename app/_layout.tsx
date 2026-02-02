@@ -15,7 +15,7 @@ import { IndieFlower_400Regular } from '@expo-google-fonts/indie-flower';
 import * as NativeSplashScreen from 'expo-splash-screen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { store } from '../src/store';
+import { store, rehydrateStore } from '../src/store';
 import { Colors } from '../src/constants/theme';
 import { ThemeContext, ThemeContextValue } from '../src/hooks/useTheme';
 import { ThemeMode } from '../src/types';
@@ -44,6 +44,11 @@ export default function RootLayout() {
       NativeSplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
+
+  // Rehydrate persisted state from AsyncStorage while splash is showing
+  useEffect(() => {
+    rehydrateStore();
+  }, []);
 
   const toggleTheme = useCallback(() => {
     setThemeMode((prev) => (prev === 'light' ? 'dark' : 'light'));

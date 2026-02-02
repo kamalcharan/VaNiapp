@@ -80,6 +80,10 @@ const practiceSlice = createSlice({
     clearCurrentSession: (state) => {
       state.currentSession = null;
     },
+    rehydrate: (_state, action: PayloadAction<ExamState>) => ({
+      ...action.payload,
+      currentSession: null, // never restore mid-session state
+    }),
   },
 });
 

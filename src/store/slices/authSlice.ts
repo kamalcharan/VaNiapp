@@ -36,6 +36,7 @@ const authSlice = createSlice({
       if (state.user) state.user.selectedSubjects = action.payload;
     },
     logout: () => initialState,
+    rehydrate: (_state, action: PayloadAction<AuthState>) => action.payload,
   },
 });
 
