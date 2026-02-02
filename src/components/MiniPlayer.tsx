@@ -16,14 +16,13 @@ export function MiniPlayer({ track, isPlaying, onTogglePlay, onSkipNext, onOpenD
   const { colors } = useTheme();
 
   if (!track) {
-    // No track selected — show compact start button
+    // No track selected — show floating music FAB
     return (
       <Pressable
         onPress={onOpenDrawer}
-        style={[styles.startBtn, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}
+        style={[styles.fab, { backgroundColor: colors.primary }]}
       >
-        <Text style={styles.musicIcon}>{'\uD83C\uDFB5'}</Text>
-        <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Music</Text>
+        <Text style={styles.fabIcon}>{'\uD83C\uDFB5'}</Text>
       </Pressable>
     );
   }
@@ -59,40 +58,42 @@ export function MiniPlayer({ track, isPlaying, onTogglePlay, onSkipNext, onOpenD
 }
 
 const styles = StyleSheet.create({
-  startBtn: {
+  fab: {
     position: 'absolute',
+    right: Spacing.lg,
+    bottom: 110,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 6,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    zIndex: 999,
+  },
+  fabIcon: {
+    fontSize: 22,
+  },
+  container: {
+    position: 'absolute',
+    left: Spacing.md,
     right: Spacing.md,
-    bottom: Spacing.md,
+    bottom: 110,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-    paddingHorizontal: 14,
+    paddingHorizontal: Spacing.md,
     paddingVertical: 10,
     borderRadius: BorderRadius.xl,
     borderWidth: 1,
-    elevation: 4,
+    elevation: 6,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  musicIcon: {
-    fontSize: 16,
-  },
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: Spacing.md,
-    marginBottom: Spacing.sm,
-    paddingHorizontal: Spacing.md,
-    paddingVertical: 8,
-    borderRadius: BorderRadius.xl,
-    borderWidth: 1,
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    zIndex: 999,
   },
   trackInfo: {
     flex: 1,

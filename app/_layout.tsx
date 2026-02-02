@@ -20,6 +20,7 @@ import { Colors } from '../src/constants/theme';
 import { ThemeContext, ThemeContextValue } from '../src/hooks/useTheme';
 import { ThemeMode } from '../src/types';
 import { SplashScreen } from '../src/components/SplashScreen';
+import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
 
 NativeSplashScreen.preventAutoHideAsync();
 
@@ -80,25 +81,28 @@ export default function RootLayout() {
         <Provider store={store}>
           <ThemeContext.Provider value={themeValue}>
             <StatusBar style={themeMode === 'dark' ? 'light' : 'dark'} />
-            <Stack
-              screenOptions={{
-                headerShown: false,
-                contentStyle: { backgroundColor: colors.background },
-                animation: 'fade',
-              }}
-            >
-              <Stack.Screen name="index" />
-              <Stack.Screen name="(auth)" />
-              <Stack.Screen name="(tabs)" />
-              <Stack.Screen name="(exam)" options={{ animation: 'slide_from_right' }} />
-              <Stack.Screen
-                name="edit-profile"
-                options={{
-                  presentation: 'modal',
-                  animation: 'slide_from_bottom',
+            <View style={{ flex: 1 }}>
+              <Stack
+                screenOptions={{
+                  headerShown: false,
+                  contentStyle: { backgroundColor: colors.background },
+                  animation: 'fade',
                 }}
-              />
-            </Stack>
+              >
+                <Stack.Screen name="index" />
+                <Stack.Screen name="(auth)" />
+                <Stack.Screen name="(tabs)" />
+                <Stack.Screen name="(exam)" options={{ animation: 'slide_from_right' }} />
+                <Stack.Screen
+                  name="edit-profile"
+                  options={{
+                    presentation: 'modal',
+                    animation: 'slide_from_bottom',
+                  }}
+                />
+              </Stack>
+              <GlobalMusicOverlay />
+            </View>
           </ThemeContext.Provider>
         </Provider>
       </SafeAreaProvider>

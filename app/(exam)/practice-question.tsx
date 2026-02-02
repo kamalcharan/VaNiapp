@@ -13,16 +13,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as Haptics from 'expo-haptics';
 
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
-import { MiniPlayer } from '../../src/components/MiniPlayer';
-import { MusicDrawer } from '../../src/components/MusicDrawer';
 import { useTheme } from '../../src/hooks/useTheme';
-import { useAudioPlayer } from '../../src/hooks/useAudioPlayer';
 import { useFocusTracker } from '../../src/hooks/useFocusTracker';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
 import { buildPracticeExam } from '../../src/data/questions';
 import { SUBJECT_META } from '../../src/constants/subjects';
-import { openDrawer, closeDrawer } from '../../src/store/slices/musicSlice';
 import {
   NeetSubjectId,
   NEET_SCORING,
@@ -55,11 +51,7 @@ export default function PracticeQuestionScreen() {
   const router = useRouter();
   const dispatch = useDispatch();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
-  const drawerOpen = useSelector((state: RootState) => state.music.drawerOpen);
-  const currentTrackIndex = useSelector((state: RootState) => state.music.currentTrackIndex);
-
-  // Music + Focus
-  const audio = useAudioPlayer();
+  // Focus tracking (exam-specific)
   const focus = useFocusTracker();
   const scrollRef = useRef<ScrollView>(null);
 
@@ -290,9 +282,6 @@ export default function PracticeQuestionScreen() {
             timeUsedMs,
           })
         );
-
-        // Stop music on submit
-        audio.stop();
 
         router.replace({
           pathname: '/(exam)/practice-results',
@@ -565,15 +554,6 @@ export default function PracticeQuestionScreen() {
           </View>
         </ScrollView>
 
-        {/* Mini Player */}
-        <MiniPlayer
-          track={audio.currentTrack}
-          isPlaying={audio.isPlaying}
-          onTogglePlay={audio.togglePlay}
-          onSkipNext={audio.skipNext}
-          onOpenDrawer={() => dispatch(openDrawer())}
-        />
-
         {/* Bottom Nav */}
         <View style={[styles.bottomNav, { borderTopColor: colors.surfaceBorder, backgroundColor: colors.background }]}>
           <Pressable
@@ -598,16 +578,6 @@ export default function PracticeQuestionScreen() {
         </View>
       </SafeAreaView>
 
-      {/* Music Selection Drawer */}
-      <MusicDrawer
-        visible={drawerOpen}
-        currentTrackIndex={currentTrackIndex}
-        isPlaying={audio.isPlaying}
-        onSelectTrack={audio.selectTrack}
-        onTogglePlay={audio.togglePlay}
-        onClose={() => dispatch(closeDrawer())}
-        onStop={audio.stop}
-      />
     </DotGridBackground>
   );
 }
