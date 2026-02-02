@@ -15,8 +15,7 @@ import { IndieFlower_400Regular } from '@expo-google-fonts/indie-flower';
 import * as NativeSplashScreen from 'expo-splash-screen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { store, persistor } from '../src/store';
-import { PersistGate } from 'redux-persist/integration/react';
+import { store } from '../src/store';
 import { Colors } from '../src/constants/theme';
 import { ThemeContext, ThemeContextValue } from '../src/hooks/useTheme';
 import { ThemeMode } from '../src/types';
@@ -81,35 +80,33 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.background }}>
       <SafeAreaProvider>
         <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <ThemeContext.Provider value={themeValue}>
-              <ToastProvider>
-                <StatusBar style={themeMode === 'dark' ? 'light' : 'dark'} />
-                <View style={{ flex: 1 }}>
-                  <Stack
-                    screenOptions={{
-                      headerShown: false,
-                      contentStyle: { backgroundColor: colors.background },
-                      animation: 'fade',
+          <ThemeContext.Provider value={themeValue}>
+            <ToastProvider>
+              <StatusBar style={themeMode === 'dark' ? 'light' : 'dark'} />
+              <View style={{ flex: 1 }}>
+                <Stack
+                  screenOptions={{
+                    headerShown: false,
+                    contentStyle: { backgroundColor: colors.background },
+                    animation: 'fade',
+                  }}
+                >
+                  <Stack.Screen name="index" />
+                  <Stack.Screen name="(auth)" />
+                  <Stack.Screen name="(tabs)" />
+                  <Stack.Screen name="(exam)" options={{ animation: 'slide_from_right' }} />
+                  <Stack.Screen
+                    name="edit-profile"
+                    options={{
+                      presentation: 'modal',
+                      animation: 'slide_from_bottom',
                     }}
-                  >
-                    <Stack.Screen name="index" />
-                    <Stack.Screen name="(auth)" />
-                    <Stack.Screen name="(tabs)" />
-                    <Stack.Screen name="(exam)" options={{ animation: 'slide_from_right' }} />
-                    <Stack.Screen
-                      name="edit-profile"
-                      options={{
-                        presentation: 'modal',
-                        animation: 'slide_from_bottom',
-                      }}
-                    />
-                  </Stack>
-                  <GlobalMusicOverlay />
-                </View>
-              </ToastProvider>
-            </ThemeContext.Provider>
-          </PersistGate>
+                  />
+                </Stack>
+                <GlobalMusicOverlay />
+              </View>
+            </ToastProvider>
+          </ThemeContext.Provider>
         </Provider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

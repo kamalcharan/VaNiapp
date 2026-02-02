@@ -40,7 +40,9 @@ export const store = configureStore({
     }),
 });
 
-export const persistor = persistStore(store);
+// persistStore activates rehydration automatically — no PersistGate needed
+// because our splash screen already covers the brief loading window.
+persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
