@@ -93,7 +93,7 @@ export default function EditProfileScreen() {
     (!needsSubjectPicker || cuetSubjects.length >= 1);
 
   const handleSave = () => {
-    if (!canSave || !user) return;
+    if (!canSave) return;
 
     let finalSubjects: SubjectId[];
     if (exam === 'NEET') {
@@ -107,7 +107,8 @@ export default function EditProfileScreen() {
 
     dispatch(
       setUser({
-        ...user,
+        id: user?.id ?? '',
+        email: user?.email ?? '',
         name: name.trim(),
         exam,
         language,

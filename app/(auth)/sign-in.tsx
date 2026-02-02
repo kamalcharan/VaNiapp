@@ -18,8 +18,10 @@ import { useToast } from '../../src/components/ui/Toast';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { supabase } from '../../src/lib/supabase';
-import { useDispatch } from 'react-redux';
-import { setAuthenticated, setOnboardingComplete } from '../../src/store/slices/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../src/store';
+import { setAuthenticated, setOnboardingComplete, setUser } from '../../src/store/slices/authSlice';
+import { NEET_SUBJECT_IDS } from '../../src/types';
 
 export default function SignInScreen() {
   const { colors } = useTheme();
@@ -27,6 +29,7 @@ export default function SignInScreen() {
   const dispatch = useDispatch();
 
   const toast = useToast();
+  const existingUser = useSelector((state: RootState) => state.auth.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -54,6 +57,21 @@ export default function SignInScreen() {
 
     dispatch(setAuthenticated(true));
     dispatch(setOnboardingComplete());
+
+    // Ensure a user profile exists (may already be restored from storage)
+    if (!existingUser) {
+      dispatch(
+        setUser({
+          id: '',
+          name: email.trim().split('@')[0],
+          email: email.trim(),
+          exam: 'NEET',
+          language: 'en',
+          selectedSubjects: [...NEET_SUBJECT_IDS],
+        })
+      );
+    }
+
     setLoading(false);
     router.replace('/(tabs)');
   };
