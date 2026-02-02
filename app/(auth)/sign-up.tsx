@@ -7,7 +7,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -15,6 +14,7 @@ import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { PuffyButton } from '../../src/components/ui/PuffyButton';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { useToast } from '../../src/components/ui/Toast';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { supabase } from '../../src/lib/supabase';
@@ -26,6 +26,7 @@ export default function SignUpScreen() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const toast = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -33,17 +34,17 @@ export default function SignUpScreen() {
 
   const handleSignUp = async () => {
     if (!email.trim() || !password.trim()) {
-      Alert.alert('Oops', 'Please fill in all fields');
+      toast.show('error', 'Please fill in all fields');
       return;
     }
 
     if (password !== confirmPassword) {
-      Alert.alert('Oops', 'Passwords don\'t match');
+      toast.show('error', 'Passwords don\'t match');
       return;
     }
 
     if (password.length < 6) {
-      Alert.alert('Oops', 'Password must be at least 6 characters');
+      toast.show('error', 'Password must be at least 6 characters');
       return;
     }
 
@@ -53,7 +54,7 @@ export default function SignUpScreen() {
       const { error } = await supabase.auth.signUp({ email: email.trim(), password });
 
       if (error) {
-        Alert.alert('Sign Up Failed', error.message);
+        toast.show('error', 'Sign Up Failed', error.message);
         setLoading(false);
         return;
       }

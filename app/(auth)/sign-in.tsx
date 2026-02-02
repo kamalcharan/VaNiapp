@@ -7,7 +7,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -15,6 +14,7 @@ import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { PuffyButton } from '../../src/components/ui/PuffyButton';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { useToast } from '../../src/components/ui/Toast';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { supabase } from '../../src/lib/supabase';
@@ -26,13 +26,14 @@ export default function SignInScreen() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const toast = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSignIn = async () => {
     if (!email.trim() || !password.trim()) {
-      Alert.alert('Oops', 'Please fill in all fields');
+      toast.show('error', 'Please fill in all fields');
       return;
     }
 
@@ -45,7 +46,7 @@ export default function SignInScreen() {
       });
 
       if (error) {
-        Alert.alert('Sign In Failed', error.message);
+        toast.show('error', 'Sign In Failed', error.message);
         setLoading(false);
         return;
       }

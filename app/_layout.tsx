@@ -15,12 +15,14 @@ import { IndieFlower_400Regular } from '@expo-google-fonts/indie-flower';
 import * as NativeSplashScreen from 'expo-splash-screen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { store } from '../src/store';
+import { store, persistor } from '../src/store';
+import { PersistGate } from 'redux-persist/integration/react';
 import { Colors } from '../src/constants/theme';
 import { ThemeContext, ThemeContextValue } from '../src/hooks/useTheme';
 import { ThemeMode } from '../src/types';
 import { SplashScreen } from '../src/components/SplashScreen';
 import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
+import { ToastProvider } from '../src/components/ui/Toast';
 
 NativeSplashScreen.preventAutoHideAsync();
 
@@ -79,31 +81,35 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.background }}>
       <SafeAreaProvider>
         <Provider store={store}>
-          <ThemeContext.Provider value={themeValue}>
-            <StatusBar style={themeMode === 'dark' ? 'light' : 'dark'} />
-            <View style={{ flex: 1 }}>
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                  contentStyle: { backgroundColor: colors.background },
-                  animation: 'fade',
-                }}
-              >
-                <Stack.Screen name="index" />
-                <Stack.Screen name="(auth)" />
-                <Stack.Screen name="(tabs)" />
-                <Stack.Screen name="(exam)" options={{ animation: 'slide_from_right' }} />
-                <Stack.Screen
-                  name="edit-profile"
-                  options={{
-                    presentation: 'modal',
-                    animation: 'slide_from_bottom',
-                  }}
-                />
-              </Stack>
-              <GlobalMusicOverlay />
-            </View>
-          </ThemeContext.Provider>
+          <PersistGate loading={null} persistor={persistor}>
+            <ThemeContext.Provider value={themeValue}>
+              <ToastProvider>
+                <StatusBar style={themeMode === 'dark' ? 'light' : 'dark'} />
+                <View style={{ flex: 1 }}>
+                  <Stack
+                    screenOptions={{
+                      headerShown: false,
+                      contentStyle: { backgroundColor: colors.background },
+                      animation: 'fade',
+                    }}
+                  >
+                    <Stack.Screen name="index" />
+                    <Stack.Screen name="(auth)" />
+                    <Stack.Screen name="(tabs)" />
+                    <Stack.Screen name="(exam)" options={{ animation: 'slide_from_right' }} />
+                    <Stack.Screen
+                      name="edit-profile"
+                      options={{
+                        presentation: 'modal',
+                        animation: 'slide_from_bottom',
+                      }}
+                    />
+                  </Stack>
+                  <GlobalMusicOverlay />
+                </View>
+              </ToastProvider>
+            </ThemeContext.Provider>
+          </PersistGate>
         </Provider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

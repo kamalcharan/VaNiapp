@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Pressable,
   ScrollView,
-  Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -16,6 +15,7 @@ import { JournalCard } from '../src/components/ui/JournalCard';
 import { StickyNote } from '../src/components/ui/StickyNote';
 import { PuffyButton } from '../src/components/ui/PuffyButton';
 import { HandwrittenText } from '../src/components/ui/HandwrittenText';
+import { useToast } from '../src/components/ui/Toast';
 import { useTheme } from '../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { RootState } from '../src/store';
@@ -56,6 +56,7 @@ export default function EditProfileScreen() {
   const { colors, mode } = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
+  const toast = useToast();
   const user = useSelector((state: RootState) => state.auth.user);
 
   const [name, setName] = useState(user?.name ?? '');
@@ -114,6 +115,7 @@ export default function EditProfileScreen() {
       })
     );
 
+    toast.show('success', 'Profile saved!');
     router.back();
   };
 
