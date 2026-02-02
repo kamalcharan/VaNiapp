@@ -200,3 +200,43 @@ export type AppScreen =
   | 'paywall'
   | 'profile'
   | 'history';
+
+// ── Squad / Study Gang ──────────────────────────────────────
+
+export type PlanType = 'solo' | 'squad';
+
+export interface SquadMember {
+  userId: string;
+  name: string;
+  role: 'leader' | 'member';
+  joinedAt: string;
+}
+
+export interface Squad {
+  id: string;
+  name: string;
+  emoji: string;
+  inviteCode: string;
+  createdBy: string;
+  members: SquadMember[];
+  maxMembers: number;
+  createdAt: string;
+}
+
+export const SQUAD_PRICING = [
+  { size: 1, label: 'Solo', pricePerUser: 200, discount: 0 },
+  { size: 2, label: 'Duo', pricePerUser: 185, discount: 7.5 },
+  { size: 3, label: 'Trio', pricePerUser: 170, discount: 15 },
+  { size: 4, label: 'Squad', pricePerUser: 160, discount: 20 },
+] as const;
+
+export const GANG_NAME_SUGGESTIONS = [
+  'Brain Squad',
+  'Neuro Gang',
+  'NEET Ninjas',
+  'Study Mafias',
+  'Topper Tribe',
+  'Exam Avengers',
+  'Med Mavericks',
+  'Score Squad',
+] as const;

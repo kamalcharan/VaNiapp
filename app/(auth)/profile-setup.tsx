@@ -45,33 +45,19 @@ export default function ProfileSetupScreen() {
   const handleContinue = () => {
     if (!canContinue || !exam) return;
 
-    if (exam === 'NEET') {
-      // NEET has fixed subjects — save and go to trial
-      dispatch(
-        setUser({
-          id: '',
-          name: name.trim(),
-          email: '',
-          exam,
-          language,
-          selectedSubjects: [...NEET_SUBJECT_IDS],
-        })
-      );
-      router.replace('/(auth)/trial-welcome');
-    } else {
-      // CUET or Both — need subject picker, save partial profile first
-      dispatch(
-        setUser({
-          id: '',
-          name: name.trim(),
-          email: '',
-          exam,
-          language,
-          selectedSubjects: exam === 'BOTH' ? [...NEET_SUBJECT_IDS] : [],
-        })
-      );
-      router.push('/(auth)/subject-picker');
-    }
+    // Save profile, then route to Squad pitch (Solo vs Gang choice)
+    dispatch(
+      setUser({
+        id: '',
+        name: name.trim(),
+        email: '',
+        exam,
+        language,
+        selectedSubjects:
+          exam === 'NEET' || exam === 'BOTH' ? [...NEET_SUBJECT_IDS] : [],
+      })
+    );
+    router.push('/(auth)/squad-pitch');
   };
 
   const selectedColor = (active: boolean) => ({
