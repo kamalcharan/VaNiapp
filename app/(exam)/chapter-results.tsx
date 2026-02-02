@@ -19,10 +19,11 @@ import { RootState } from '../../src/store';
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const { chapterId, correct, total } = useLocalSearchParams<{
+  const { chapterId, correct, total, timeUsedMs: timeParam } = useLocalSearchParams<{
     chapterId: string;
     correct: string;
     total: string;
+    timeUsedMs: string;
   }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
 
@@ -34,6 +35,14 @@ export default function ChapterResultsScreen() {
   const totalNum = parseInt(total ?? '0', 10);
   const wrongNum = totalNum - correctNum;
   const percentage = totalNum > 0 ? Math.round((correctNum / totalNum) * 100) : 0;
+  const timeUsedMs = parseInt(timeParam ?? '0', 10);
+
+  const formatTime = (ms: number) => {
+    const totalSec = Math.floor(ms / 1000);
+    const m = Math.floor(totalSec / 60);
+    const s = totalSec % 60;
+    return `${m}m ${s}s`;
+  };
 
   // Difficulty breakdown from the last session answers in Redux
   const lastSession = useSelector((state: RootState) => {
@@ -75,6 +84,12 @@ export default function ChapterResultsScreen() {
     router.replace('/(tabs)');
   };
 
+  const handleReview = () => {
+    if (lastSession) {
+      router.push({ pathname: '/(exam)/answer-review', params: { sessionId: lastSession.id } });
+    }
+  };
+
   if (!chapter || !subjectMeta) return null;
 
   return (
@@ -109,6 +124,12 @@ export default function ChapterResultsScreen() {
                   <View style={[styles.dot, { backgroundColor: '#64748B' }]} />
                   <Text style={[Typography.body, { color: colors.text }]}>{totalNum} Total</Text>
                 </View>
+                {timeUsedMs > 0 && (
+                  <View style={styles.scoreItem}>
+                    <View style={[styles.dot, { backgroundColor: colors.primary }]} />
+                    <Text style={[Typography.body, { color: colors.text }]}>{formatTime(timeUsedMs)}</Text>
+                  </View>
+                )}
               </View>
             </View>
           </JournalCard>
@@ -157,7 +178,8 @@ export default function ChapterResultsScreen() {
 
           {/* Actions */}
           <View style={styles.actions}>
-            <PuffyButton title="Retry Chapter" onPress={handleRetry} variant="secondary" />
+            <PuffyButton title="Review Answers" onPress={handleReview} variant="secondary" />
+            <PuffyButton title="Retry Chapter" onPress={handleRetry} variant="ghost" />
             <PuffyButton title="Pick Another Subject" onPress={handleBackToSubjects} variant="ghost" />
             <PuffyButton title="Back to Dashboard" onPress={handleGoHome} variant="ghost" />
           </View>

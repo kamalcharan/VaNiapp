@@ -42,6 +42,7 @@ export default function ChapterQuestionScreen() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showElimination, setShowElimination] = useState(false);
   const scrollRef = useRef<ScrollView>(null);
+  const startTimeRef = useRef(Date.now());
 
   const question = questions[currentIndex];
   const isCorrect = selectedOptionId === question?.correctOptionId;
@@ -66,6 +67,7 @@ export default function ChapterQuestionScreen() {
       answers: [],
       totalQuestions: questions.length,
       correctCount: null,
+      timeUsedMs: null,
     };
     dispatch(startChapterExam(session));
   }, [chapter?.id]);
@@ -104,16 +106,18 @@ export default function ChapterQuestionScreen() {
         return q && optId === q.correctOptionId;
       }).length;
 
+      const timeUsedMs = Date.now() - startTimeRef.current;
       dispatch(
         completeChapterExam({
           correctCount: finalCorrect,
           completedAt: new Date().toISOString(),
+          timeUsedMs,
         })
       );
 
       router.replace({
         pathname: '/(exam)/chapter-results',
-        params: { chapterId: chapterId!, correct: String(finalCorrect), total: String(questions.length) },
+        params: { chapterId: chapterId!, correct: String(finalCorrect), total: String(questions.length), timeUsedMs: String(timeUsedMs) },
       });
       return;
     }

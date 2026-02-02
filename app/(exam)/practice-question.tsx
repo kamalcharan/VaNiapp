@@ -88,6 +88,7 @@ export default function PracticeQuestionScreen() {
       score: null,
       maxMarks: NEET_SCORING.maxMarks,
       subjectScores: null,
+      timeUsedMs: null,
     };
     dispatch(startPracticeExam(session));
 
@@ -268,12 +269,14 @@ export default function PracticeQuestionScreen() {
 
         const totalResult = calculateNeetScore(scoredAnswers, correctAnswerMap);
         const subjectScores = calculateSubjectScores(scoredAnswers, correctAnswerMap, questionSubjectMap);
+        const timeUsedMs = NEET_SCORING.timeLimitMs - timeLeftMs;
 
         dispatch(
           completePracticeExam({
             score: totalResult.score,
             subjectScores,
             completedAt: new Date().toISOString(),
+            timeUsedMs,
           })
         );
 
@@ -284,6 +287,7 @@ export default function PracticeQuestionScreen() {
             correct: String(totalResult.correct),
             wrong: String(totalResult.wrong),
             unanswered: String(totalResult.unanswered),
+            timeUsedMs: String(timeUsedMs),
           },
         });
       };

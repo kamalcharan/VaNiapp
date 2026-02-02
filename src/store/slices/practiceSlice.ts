@@ -46,11 +46,12 @@ const practiceSlice = createSlice({
 
     completeChapterExam: (
       state,
-      action: PayloadAction<{ correctCount: number; completedAt: string }>
+      action: PayloadAction<{ correctCount: number; completedAt: string; timeUsedMs: number }>
     ) => {
       if (!state.currentSession || state.currentSession.mode !== 'chapter') return;
       state.currentSession.correctCount = action.payload.correctCount;
       state.currentSession.completedAt = action.payload.completedAt;
+      state.currentSession.timeUsedMs = action.payload.timeUsedMs;
       state.chapterHistory.unshift(state.currentSession);
       state.currentSession = null;
     },
@@ -64,12 +65,14 @@ const practiceSlice = createSlice({
           { correct: number; wrong: number; unanswered: number; score: number }
         >;
         completedAt: string;
+        timeUsedMs: number;
       }>
     ) => {
       if (!state.currentSession || state.currentSession.mode !== 'practice') return;
       state.currentSession.score = action.payload.score;
       state.currentSession.subjectScores = action.payload.subjectScores;
       state.currentSession.completedAt = action.payload.completedAt;
+      state.currentSession.timeUsedMs = action.payload.timeUsedMs;
       state.practiceHistory.unshift(state.currentSession);
       state.currentSession = null;
     },

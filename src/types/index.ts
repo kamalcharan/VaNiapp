@@ -158,6 +158,7 @@ export interface ChapterExamSession {
   answers: UserAnswer[];
   totalQuestions: number;
   correctCount: number | null;
+  timeUsedMs: number | null;
 }
 
 export interface PracticeExamSession {
@@ -171,6 +172,7 @@ export interface PracticeExamSession {
   score: number | null;
   maxMarks: number;
   subjectScores: Record<NeetSubjectId, { correct: number; wrong: number; unanswered: number; score: number }> | null;
+  timeUsedMs: number | null;
 }
 
 export type ExamSession = ChapterExamSession | PracticeExamSession;
