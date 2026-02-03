@@ -5,6 +5,9 @@ import { TrueFalseQuestion } from './TrueFalseQuestion';
 import { AssertionReasoningQuestion } from './AssertionReasoningQuestion';
 import { MatchTheFollowingQuestion } from './MatchTheFollowingQuestion';
 import { FillInBlanksQuestion } from './FillInBlanksQuestion';
+import { ScenarioBasedQuestion } from './ScenarioBasedQuestion';
+import { DiagramBasedQuestion } from './DiagramBasedQuestion';
+import { LogicalSequenceQuestion } from './LogicalSequenceQuestion';
 
 export interface QuestionRendererProps {
   question: QuestionV2;
@@ -29,19 +32,12 @@ export function QuestionRenderer(props: QuestionRendererProps) {
       return <MatchTheFollowingQuestion {...props} payload={question.payload} />;
     case 'fill-in-blanks':
       return <FillInBlanksQuestion {...props} payload={question.payload} />;
-    // Future types — render as MCQ fallback for now
     case 'scenario-based':
+      return <ScenarioBasedQuestion {...props} payload={question.payload} />;
     case 'diagram-based':
+      return <DiagramBasedQuestion {...props} payload={question.payload} />;
     case 'logical-sequence':
-      if ('options' in question.payload && 'correctOptionId' in question.payload) {
-        return (
-          <McqQuestion
-            {...props}
-            payload={{ type: 'mcq', options: question.payload.options, correctOptionId: question.payload.correctOptionId }}
-          />
-        );
-      }
-      return null;
+      return <LogicalSequenceQuestion {...props} payload={question.payload} />;
     default:
       return null;
   }
