@@ -2,6 +2,9 @@ import React from 'react';
 import { QuestionV2 } from '../../types';
 import { McqQuestion } from './McqQuestion';
 import { TrueFalseQuestion } from './TrueFalseQuestion';
+import { AssertionReasoningQuestion } from './AssertionReasoningQuestion';
+import { MatchTheFollowingQuestion } from './MatchTheFollowingQuestion';
+import { FillInBlanksQuestion } from './FillInBlanksQuestion';
 
 export interface QuestionRendererProps {
   question: QuestionV2;
@@ -20,10 +23,13 @@ export function QuestionRenderer(props: QuestionRendererProps) {
       return <McqQuestion {...props} payload={question.payload} />;
     case 'true-false':
       return <TrueFalseQuestion {...props} payload={question.payload} />;
-    // Future types — render as MCQ fallback for now
     case 'assertion-reasoning':
+      return <AssertionReasoningQuestion {...props} payload={question.payload} />;
     case 'match-the-following':
+      return <MatchTheFollowingQuestion {...props} payload={question.payload} />;
     case 'fill-in-blanks':
+      return <FillInBlanksQuestion {...props} payload={question.payload} />;
+    // Future types — render as MCQ fallback for now
     case 'scenario-based':
     case 'diagram-based':
     case 'logical-sequence':
