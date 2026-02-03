@@ -27,6 +27,7 @@ import { AskVaniSheet } from '../../src/components/AskVaniSheet';
 import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
+import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
 
 const DIFF_COLORS = { easy: '#22C55E', medium: '#F59E0B', hard: '#EF4444' };
 
@@ -36,6 +37,7 @@ export default function QuickQuestionScreen() {
   const dispatch = useDispatch();
   const { subjectId } = useLocalSearchParams<{ subjectId: string }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
+  const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
 
   const subject = subjectId as NeetSubjectId;
   const subjectMeta = SUBJECT_META[subject];
@@ -72,6 +74,7 @@ export default function QuickQuestionScreen() {
   const startTimeRef = useRef(Date.now());
 
   const question = questions[currentIndex];
+  const isBookmarked = question ? bookmarkedIds.includes(question.id) : false;
   const correctId = question ? getCorrectId(question) : '';
   const isCorrect = selectedOptionId === correctId;
 
@@ -261,6 +264,26 @@ export default function QuickQuestionScreen() {
                   ]}
                 >
                   {'\u2702\uFE0F'} Eliminate
+                </Text>
+              </Pressable>
+              <Pressable
+                onPress={() => { dispatch(toggleBookmark(question.id)); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); }}
+                hitSlop={6}
+                style={[
+                  styles.actionBadge,
+                  {
+                    backgroundColor: isBookmarked ? '#F59E0B20' : '#64748B15',
+                    borderColor: isBookmarked ? '#F59E0B' : '#64748B40',
+                  },
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.actionBadgeText,
+                    { color: isBookmarked ? '#F59E0B' : '#64748B' },
+                  ]}
+                >
+                  {isBookmarked ? '\uD83D\uDD16 Saved' : '\uD83D\uDCCC Save'}
                 </Text>
               </Pressable>
               {showFeedback && !isCorrect && (

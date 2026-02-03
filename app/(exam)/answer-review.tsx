@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import * as Haptics from 'expo-haptics';
 
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
@@ -23,6 +24,7 @@ import { getChapterById } from '../../src/data/chapters';
 import { getCorrectId, legacyBatchToV2 } from '../../src/lib/questionAdapter';
 import { getAllQuestions } from '../../src/data/questions';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
+import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
 import { QuestionV2, UserAnswer, SubjectId } from '../../src/types';
 
 type Filter = 'all' | 'wrong' | 'correct' | 'skipped';
@@ -30,8 +32,10 @@ type Filter = 'all' | 'wrong' | 'correct' | 'skipped';
 export default function AnswerReviewScreen() {
   const { colors, mode } = useTheme();
   const router = useRouter();
+  const dispatch = useDispatch();
   const { sessionId } = useLocalSearchParams<{ sessionId: string }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
+  const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
 
   const session = useSelector((state: RootState) => {
     const pe = state.practice.practiceHistory.find((s) => s.id === sessionId);
@@ -259,6 +263,26 @@ export default function AnswerReviewScreen() {
                   ]}
                 >
                   {'\u2702\uFE0F'} Eliminate
+                </Text>
+              </Pressable>
+              <Pressable
+                onPress={() => { dispatch(toggleBookmark(question.id)); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); }}
+                hitSlop={6}
+                style={[
+                  styles.metaActionBadge,
+                  {
+                    backgroundColor: bookmarkedIds.includes(question.id) ? '#F59E0B20' : '#64748B15',
+                    borderColor: bookmarkedIds.includes(question.id) ? '#F59E0B' : '#64748B40',
+                  },
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.metaActionText,
+                    { color: bookmarkedIds.includes(question.id) ? '#F59E0B' : '#64748B' },
+                  ]}
+                >
+                  {bookmarkedIds.includes(question.id) ? '\uD83D\uDD16 Saved' : '\uD83D\uDCCC Save'}
                 </Text>
               </Pressable>
               {status === 'wrong' && (
