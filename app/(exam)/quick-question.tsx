@@ -25,6 +25,7 @@ import { SUBJECT_META } from '../../src/constants/subjects';
 import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
+import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
 import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
@@ -69,6 +70,8 @@ export default function QuickQuestionScreen() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showElimination, setShowElimination] = useState(false);
   const [showVaniSheet, setShowVaniSheet] = useState(false);
+  const [showConceptSheet, setShowConceptSheet] = useState(false);
+  const [selectedConceptTag, setSelectedConceptTag] = useState('');
   const [showConfetti, setShowConfetti] = useState(false);
   const [answerStreak, setAnswerStreak] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
@@ -191,6 +194,7 @@ export default function QuickQuestionScreen() {
     setShowFeedback(false);
     setShowElimination(false);
     setShowVaniSheet(false);
+    setShowConceptSheet(false);
     scrollRef.current?.scrollTo({ y: 0, animated: true });
   };
 
@@ -358,6 +362,7 @@ export default function QuickQuestionScreen() {
                   questionText={language === 'te' ? question.textTe : question.text}
                   subjectId={question.subjectId as SubjectId}
                   language={language}
+                  onConceptPress={(tag) => { setSelectedConceptTag(tag); setShowConceptSheet(true); }}
                 />
               )}
 
@@ -419,6 +424,16 @@ export default function QuickQuestionScreen() {
         questionText={language === 'te' ? question.textTe : question.text}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
+      />
+
+      {/* Concept Explainer Bottom Sheet (R10) */}
+      <ConceptExplainerSheet
+        visible={showConceptSheet}
+        onClose={() => setShowConceptSheet(false)}
+        conceptTag={selectedConceptTag}
+        subjectId={question.subjectId as SubjectId}
+        chapterId={question.chapterId}
+        language={language}
       />
     </DotGridBackground>
   );
