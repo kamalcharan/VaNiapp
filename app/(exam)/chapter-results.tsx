@@ -13,7 +13,8 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { getChapterById } from '../../src/data/chapters';
-import { getQuestionsByChapter } from '../../src/data/questions';
+import { getV2QuestionsByChapter } from '../../src/data/questions';
+import { getCorrectId } from '../../src/lib/questionAdapter';
 import { RootState } from '../../src/store';
 import { NeetSubjectId } from '../../src/types';
 
@@ -34,7 +35,7 @@ export default function ChapterResultsScreen() {
   const subjectMeta = isQuickMode
     ? (quickSubjectId ? SUBJECT_META[quickSubjectId] : null)
     : (chapter ? SUBJECT_META[chapter.subjectId] : null);
-  const questions = useMemo(() => (chapterId && !isQuickMode ? getQuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
+  const questions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
 
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
@@ -61,11 +62,29 @@ export default function ChapterResultsScreen() {
     for (const q of questions) {
       stats[q.difficulty].total++;
       const ans = lastSession.answers.find((a) => a.questionId === q.id);
-      if (ans?.selectedOptionId === q.correctOptionId) {
+      if (ans?.selectedOptionId === getCorrectId(q)) {
         stats[q.difficulty].correct++;
       }
     }
     return stats;
+  }, [lastSession, questions]);
+
+  // Question type breakdown
+  const typeStats = useMemo(() => {
+    if (!lastSession || !questions.length) return null;
+    const stats: Record<string, { correct: number; total: number; label: string }> = {};
+    for (const q of questions) {
+      if (!stats[q.type]) {
+        const label = q.type.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        stats[q.type] = { correct: 0, total: 0, label };
+      }
+      stats[q.type].total++;
+      const ans = lastSession.answers.find((a) => a.questionId === q.id);
+      if (ans?.selectedOptionId === getCorrectId(q)) {
+        stats[q.type].correct++;
+      }
+    }
+    return Object.entries(stats).filter(([, v]) => v.total > 0);
   }, [lastSession, questions]);
 
   const getGrade = () => {
@@ -177,6 +196,33 @@ export default function ChapterResultsScreen() {
             </JournalCard>
           )}
 
+          {/* Question Type Breakdown */}
+          {typeStats && typeStats.length > 1 && (
+            <JournalCard delay={250}>
+              <Text style={[Typography.label, { color: colors.textTertiary, marginBottom: Spacing.md }]}>
+                QUESTION TYPES
+              </Text>
+              {typeStats.map(([type, stat]) => {
+                const pct = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
+                return (
+                  <View key={type} style={styles.diffRow}>
+                    <View style={[styles.typeLabel, { backgroundColor: colors.primary + '15' }]}>
+                      <Text style={[styles.typeLabelText, { color: colors.primary }]} numberOfLines={1}>
+                        {stat.label}
+                      </Text>
+                    </View>
+                    <View style={styles.diffBarBg}>
+                      <View style={[styles.diffBarFill, { width: `${pct}%`, backgroundColor: colors.primary }]} />
+                    </View>
+                    <Text style={[Typography.bodySm, { color: colors.textSecondary, width: 60, textAlign: 'right' }]}>
+                      {stat.correct}/{stat.total}
+                    </Text>
+                  </View>
+                );
+              })}
+            </JournalCard>
+          )}
+
           {/* Motivational Note */}
           <StickyNote color="yellow" rotation={1} delay={300}>
             <Text style={[Typography.bodySm, { color: colors.text }]}>
@@ -278,6 +324,18 @@ const styles = StyleSheet.create({
   diffBarFill: {
     height: 8,
     borderRadius: 4,
+  },
+  typeLabel: {
+    width: 100,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: BorderRadius.sm,
+    alignItems: 'center',
+  },
+  typeLabelText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 10,
+    letterSpacing: 0.3,
   },
   actions: {
     gap: Spacing.md,

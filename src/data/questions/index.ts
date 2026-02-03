@@ -115,6 +115,15 @@ export function buildV2QuickPractice(
   return shuffle(merged).slice(0, 20);
 }
 
+/** Look up V2 questions by their IDs (for bookmarks, weak-topic drill, etc.) */
+export function getV2QuestionsByIds(ids: string[]): QuestionV2[] {
+  if (ids.length === 0) return [];
+  const idSet = new Set(ids);
+  const allLegacy = legacyBatchToV2(Object.values(questionsByChapter).flat());
+  const all = [...allLegacy, ...sampleV2Questions];
+  return all.filter((q) => idSet.has(q.id));
+}
+
 // Re-export individual chapter arrays for direct access
 export {
   physicsLawsOfMotionQuestions,

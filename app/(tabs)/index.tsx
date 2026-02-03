@@ -15,13 +15,23 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
 import { SUBJECT_META } from '../../src/constants/subjects';
+import { NEET_CHAPTERS } from '../../src/data/chapters';
 
 export default function DashboardScreen() {
   const { colors, mode, toggle } = useTheme();
   const user = useSelector((state: RootState) => state.auth.user);
   const chapterHistory = useSelector((state: RootState) => state.practice.chapterHistory);
   const practiceHistory = useSelector((state: RootState) => state.practice.practiceHistory);
+  const bookmarkCount = useSelector((state: RootState) => state.bookmark.ids.length);
+  const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
   const router = useRouter();
+
+  const weakChapters = useMemo(() => {
+    return Object.values(strengthChapters)
+      .filter((c) => c.strengthLevel === 'needs-focus' || (c.totalAnswered >= 5 && c.accuracy < 50))
+      .sort((a, b) => a.accuracy - b.accuracy)
+      .slice(0, 3);
+  }, [strengthChapters]);
 
   const displaySubjects = useMemo(() => {
     const ids = user?.selectedSubjects ?? ['physics', 'chemistry', 'botany', 'zoology'];
@@ -185,6 +195,60 @@ export default function DashboardScreen() {
             </View>
           </JournalCard>
 
+          {/* Saved Questions */}
+          {bookmarkCount > 0 && (
+            <JournalCard rotation={0.2} delay={560}>
+              <View style={styles.savedRow}>
+                <Text style={styles.savedIcon}>{'\uD83D\uDD16'}</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={[Typography.h3, { color: colors.text }]}>Saved Questions</Text>
+                  <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 2 }]}>
+                    {bookmarkCount} {bookmarkCount === 1 ? 'question' : 'questions'} bookmarked
+                  </Text>
+                </View>
+              </View>
+            </JournalCard>
+          )}
+
+          {/* Focus Areas */}
+          {weakChapters.length > 0 && (
+            <JournalCard rotation={-0.4} delay={570}>
+              <HandwrittenText variant="hand" rotation={-1}>
+                Focus areas
+              </HandwrittenText>
+              <View style={{ marginTop: Spacing.md, gap: Spacing.sm }}>
+                {weakChapters.map((ch) => {
+                  const chapterInfo = NEET_CHAPTERS.find((c) => c.id === ch.chapterId);
+                  const subMeta = chapterInfo ? SUBJECT_META[chapterInfo.subjectId] : null;
+                  return (
+                    <AnimatedPressable
+                      key={ch.chapterId}
+                      onPress={() =>
+                        router.push({
+                          pathname: '/(exam)/chapter-question',
+                          params: { chapterId: ch.chapterId },
+                        })
+                      }
+                    >
+                      <View style={styles.focusRow}>
+                        <Text style={styles.focusEmoji}>{subMeta?.emoji ?? '\uD83D\uDCDA'}</Text>
+                        <View style={{ flex: 1 }}>
+                          <Text style={[Typography.bodySm, { color: colors.text }]} numberOfLines={1}>
+                            {chapterInfo?.name ?? ch.chapterId}
+                          </Text>
+                          <Text style={[styles.focusAccuracy, { color: '#EF4444' }]}>
+                            {Math.round(ch.accuracy)}% accuracy
+                          </Text>
+                        </View>
+                        <Text style={[styles.quickArrow, { color: colors.textTertiary }]}>{'>'}</Text>
+                      </View>
+                    </AnimatedPressable>
+                  );
+                })}
+              </View>
+            </JournalCard>
+          )}
+
           {/* Quick Stats */}
           <JournalCard rotation={0.5} delay={650}>
             <Text
@@ -305,5 +369,29 @@ const styles = StyleSheet.create({
   quickArrow: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 20,
+  },
+  savedRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+  },
+  savedIcon: {
+    fontSize: 32,
+  },
+  focusRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    paddingVertical: 6,
+  },
+  focusEmoji: {
+    fontSize: 20,
+    width: 28,
+    textAlign: 'center',
+  },
+  focusAccuracy: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 11,
+    marginTop: 1,
   },
 });
