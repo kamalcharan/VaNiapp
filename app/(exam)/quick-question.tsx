@@ -21,7 +21,8 @@ import { RootState } from '../../src/store';
 import { buildQuickPractice } from '../../src/data/questions';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
-import { NeetSubjectId, ChapterExamSession, UserAnswer } from '../../src/types';
+import { AskVaniSheet } from '../../src/components/AskVaniSheet';
+import { NeetSubjectId, SubjectId, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 
@@ -44,6 +45,7 @@ export default function QuickQuestionScreen() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showElimination, setShowElimination] = useState(false);
+  const [showVaniSheet, setShowVaniSheet] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [answerStreak, setAnswerStreak] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
@@ -163,6 +165,7 @@ export default function QuickQuestionScreen() {
     setSelectedOptionId(null);
     setShowFeedback(false);
     setShowElimination(false);
+    setShowVaniSheet(false);
     scrollRef.current?.scrollTo({ y: 0, animated: true });
   };
 
@@ -224,11 +227,52 @@ export default function QuickQuestionScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          {/* Difficulty */}
-          <View style={[styles.diffBadge, { backgroundColor: DIFF_COLORS[question.difficulty] + '20' }]}>
-            <Text style={[styles.diffText, { color: DIFF_COLORS[question.difficulty] }]}>
-              {question.difficulty.toUpperCase()}
-            </Text>
+          {/* Question Header: Difficulty + Actions */}
+          <View style={styles.questionHeader}>
+            <View style={[styles.diffBadge, { backgroundColor: DIFF_COLORS[question.difficulty] + '20' }]}>
+              <Text style={[styles.diffText, { color: DIFF_COLORS[question.difficulty] }]}>
+                {question.difficulty.toUpperCase()}
+              </Text>
+            </View>
+            <View style={styles.headerActions}>
+              <Pressable
+                onPress={() => setShowElimination((p) => !p)}
+                hitSlop={6}
+                style={[
+                  styles.actionBadge,
+                  {
+                    backgroundColor: showElimination ? '#8B5CF620' : '#64748B15',
+                    borderColor: showElimination ? '#8B5CF6' : '#64748B40',
+                  },
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.actionBadgeText,
+                    { color: showElimination ? '#8B5CF6' : '#64748B' },
+                  ]}
+                >
+                  {'\u2702\uFE0F'} Eliminate
+                </Text>
+              </Pressable>
+              {showFeedback && !isCorrect && (
+                <Pressable
+                  onPress={() => setShowVaniSheet(true)}
+                  hitSlop={6}
+                  style={[
+                    styles.actionBadge,
+                    {
+                      backgroundColor: colors.primary + '15',
+                      borderColor: colors.primary + '50',
+                    },
+                  ]}
+                >
+                  <Text style={[styles.actionBadgeText, { color: colors.primary }]}>
+                    {'\u2728'} VaNi
+                  </Text>
+                </Pressable>
+              )}
+            </View>
           </View>
 
           {/* Question Text */}
@@ -301,15 +345,7 @@ export default function QuickQuestionScreen() {
                 </Text>
               </JournalCard>
 
-              <Pressable
-                onPress={() => setShowElimination((p) => !p)}
-                style={[styles.elimBtn, { borderColor: colors.surfaceBorder }]}
-              >
-                <Text style={[Typography.bodySm, { color: colors.primary }]}>
-                  {showElimination ? 'Hide' : 'Show'} Elimination Technique
-                </Text>
-              </Pressable>
-
+              {/* Elimination Technique (toggled via header badge) */}
               {showElimination && (
                 <JournalCard delay={0}>
                   <HandwrittenText variant="handSm">Elimination Technique</HandwrittenText>
@@ -352,6 +388,15 @@ export default function QuickQuestionScreen() {
           )}
         </View>
       </SafeAreaView>
+
+      {/* Ask VaNi Bottom Sheet */}
+      <AskVaniSheet
+        visible={showVaniSheet}
+        onClose={() => setShowVaniSheet(false)}
+        questionText={language === 'te' ? question.textTe : question.text}
+        subjectId={question.subjectId as SubjectId}
+        questionId={question.id}
+      />
     </DotGridBackground>
   );
 }
@@ -409,12 +454,31 @@ const styles = StyleSheet.create({
     padding: Spacing.lg,
     paddingBottom: 30,
   },
+  questionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: Spacing.md,
+  },
+  headerActions: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  actionBadge: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: BorderRadius.sm,
+    borderWidth: 1,
+  },
+  actionBadgeText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 11,
+  },
   diffBadge: {
     alignSelf: 'flex-start',
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: BorderRadius.sm,
-    marginBottom: Spacing.md,
   },
   diffText: {
     fontFamily: 'PlusJakartaSans_800ExtraBold',
@@ -456,13 +520,6 @@ const styles = StyleSheet.create({
     padding: Spacing.lg,
     borderRadius: BorderRadius.lg,
     alignItems: 'center',
-  },
-  elimBtn: {
-    alignSelf: 'center',
-    paddingVertical: Spacing.sm,
-    paddingHorizontal: Spacing.lg,
-    borderWidth: 1,
-    borderRadius: BorderRadius.md,
   },
   bottomBar: {
     flexDirection: 'row',
