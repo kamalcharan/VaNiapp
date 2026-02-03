@@ -433,3 +433,43 @@ export type QuestionPayload =
   | LogicalSequencePayload
   | FillInBlanksPayload
   | ScenarioBasedPayload;
+
+// ── R10: Wrong-Answer Analysis ────────────────────────────────
+
+/** Pre-generated analysis for a specific (question × wrong option) pair */
+export interface WrongAnswerEntry {
+  questionId: string;
+  selectedOptionId: string;       // the wrong option the student picked
+  misconception: string;          // what the student likely confused
+  correctReasoning: string;       // step-by-step correct approach
+  tip: string;                    // one-line exam tip
+  conceptTag: string;             // weak concept identified (links to ConceptEntry)
+}
+
+/** Per-chapter collection of wrong-answer explanations */
+export interface ChapterExplanations {
+  chapterId: string;
+  subjectId: SubjectId;
+  entries: WrongAnswerEntry[];
+}
+
+// ── R10: Concept Explainer ────────────────────────────────────
+
+/** Deep-dive explanation for a concept */
+export interface ConceptEntry {
+  conceptTag: string;             // e.g. 'newtons-first-law', 'ionic-bonding'
+  subjectId: SubjectId;
+  chapterId: string;
+  title: string;
+  explanation: string;            // markdown, 200-400 words
+  analogy: string;                // relatable analogy for Gen-Z Indian students
+  examRelevance: string;          // e.g. "Asked 3 times in last 5 years in NEET"
+  commonMistakes: string[];       // 2-3 common mistakes
+  quickRecap: string;             // 2-line summary for revision
+}
+
+/** Per-subject collection of concept explanations */
+export interface SubjectConcepts {
+  subjectId: SubjectId;
+  concepts: ConceptEntry[];
+}
