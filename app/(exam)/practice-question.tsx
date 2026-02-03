@@ -24,7 +24,8 @@ import {
   NEET_SCORING,
   PracticeExamSession,
   UserAnswer,
-  Question,
+  QuestionV2,
+  Option,
 } from '../../src/types';
 import {
   startPracticeExam,
@@ -33,6 +34,7 @@ import {
   clearCurrentSession,
 } from '../../src/store/slices/practiceSlice';
 import { calculateNeetScore, calculateSubjectScores } from '../../src/store/slices/practiceSlice';
+import { legacyBatchToV2, getCorrectId } from '../../src/lib/questionAdapter';
 
 const SUBJECTS: { id: NeetSubjectId; emoji: string; short: string }[] = [
   { id: 'physics', emoji: '\u269B\uFE0F', short: 'PHY' },
@@ -41,7 +43,7 @@ const SUBJECTS: { id: NeetSubjectId; emoji: string; short: string }[] = [
   { id: 'zoology', emoji: '\uD83E\uDD8B', short: 'ZOO' },
 ];
 
-interface ExamQuestion extends Question {
+interface ExamQuestion extends QuestionV2 {
   section: 'A' | 'B';
   indexInSection: number;
 }
@@ -63,8 +65,8 @@ export default function PracticeQuestionScreen() {
     const qs: ExamQuestion[] = [];
     for (const subjectId of ['physics', 'chemistry', 'botany', 'zoology'] as NeetSubjectId[]) {
       const { sectionA, sectionB } = exam[subjectId];
-      sectionA.forEach((q, i) => qs.push({ ...q, section: 'A', indexInSection: i }));
-      sectionB.forEach((q, i) => qs.push({ ...q, section: 'B', indexInSection: i }));
+      legacyBatchToV2(sectionA).forEach((q, i) => qs.push({ ...q, section: 'A', indexInSection: i }));
+      legacyBatchToV2(sectionB).forEach((q, i) => qs.push({ ...q, section: 'B', indexInSection: i }));
     }
     return qs;
   }, [exam]);
@@ -128,6 +130,11 @@ export default function PracticeQuestionScreen() {
   }, [allQuestions, activeSubject, activeSection]);
 
   const question = allQuestions[currentIndex];
+
+  // Practice exam questions are MCQ (converted from legacy) — extract options from payload
+  const questionOptions: Option[] = question && 'options' in question.payload
+    ? (question.payload as { options: Option[] }).options
+    : [];
 
   // Navigate to a specific question in subject/section
   const navigateToQuestion = useCallback(
@@ -238,7 +245,7 @@ export default function PracticeQuestionScreen() {
     if (currentIndex > 0) {
       const prev = allQuestions[currentIndex - 1];
       setCurrentIndex(currentIndex - 1);
-      setActiveSubject(prev.subjectId);
+      setActiveSubject(prev.subjectId as NeetSubjectId);
       setActiveSection(prev.section);
       scrollRef.current?.scrollTo({ y: 0, animated: false });
     }
@@ -248,7 +255,7 @@ export default function PracticeQuestionScreen() {
     if (currentIndex < allQuestions.length - 1) {
       const next = allQuestions[currentIndex + 1];
       setCurrentIndex(currentIndex + 1);
-      setActiveSubject(next.subjectId);
+      setActiveSubject(next.subjectId as NeetSubjectId);
       setActiveSection(next.section);
       scrollRef.current?.scrollTo({ y: 0, animated: false });
     }
@@ -263,8 +270,8 @@ export default function PracticeQuestionScreen() {
         const correctAnswerMap: Record<string, string> = {};
         const questionSubjectMap: Record<string, NeetSubjectId> = {};
         allQuestions.forEach((q) => {
-          correctAnswerMap[q.id] = q.correctOptionId;
-          questionSubjectMap[q.id] = q.subjectId;
+          correctAnswerMap[q.id] = getCorrectId(q);
+          questionSubjectMap[q.id] = q.subjectId as NeetSubjectId;
         });
 
         // Build UserAnswer array for all questions (scored ones only)
@@ -456,7 +463,7 @@ export default function PracticeQuestionScreen() {
               return (
                 <Pressable
                   key={q.id}
-                  onPress={() => navigateToQuestion(q.subjectId, q.section, q.indexInSection)}
+                  onPress={() => navigateToQuestion(q.subjectId as NeetSubjectId, q.section, q.indexInSection)}
                   style={[styles.gridDot, { backgroundColor: bg }]}
                 >
                   <Text style={[styles.gridDotText, { color: textColor }]}>{q.indexInSection + 1}</Text>
@@ -519,7 +526,7 @@ export default function PracticeQuestionScreen() {
 
           {/* Options — long-press to eliminate */}
           <View style={styles.optionsList}>
-            {question.options.map((opt, idx) => {
+            {questionOptions.map((opt, idx) => {
               const label = String.fromCharCode(65 + idx);
               const isSelected = answers[question.id] === opt.id;
               const isEliminated = (eliminated[question.id] ?? []).includes(opt.id);
