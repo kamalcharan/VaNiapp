@@ -15,14 +15,16 @@ import * as Haptics from 'expo-haptics';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { QuestionRenderer } from '../../src/components/exam/QuestionRenderer';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
-import { buildQuickPractice } from '../../src/data/questions';
+import { buildV2QuickPractice } from '../../src/data/questions';
+import { getCorrectId } from '../../src/lib/questionAdapter';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
-import { NeetSubjectId, SubjectId, ChapterExamSession, UserAnswer } from '../../src/types';
+import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 
@@ -38,7 +40,25 @@ export default function QuickQuestionScreen() {
   const subject = subjectId as NeetSubjectId;
   const subjectMeta = SUBJECT_META[subject];
 
-  const questions = useMemo(() => buildQuickPractice(subject), [subject]);
+  // Quick practice spans multiple chapters — use the broadest unlock across subject
+  const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
+  const unlockedTypes = useMemo(() => {
+    const subjectChapters = Object.values(strengthChapters).filter((c) => c.subjectId === subject);
+    if (subjectChapters.length === 0) {
+      return STRENGTH_LEVELS[0].unlockedTypes; // just-started default
+    }
+    // Use the broadest unlock across all chapters for this subject
+    let best = STRENGTH_LEVELS[0];
+    for (const ch of subjectChapters) {
+      const cfg = STRENGTH_LEVELS.find((l) => l.id === ch.strengthLevel);
+      if (cfg && cfg.unlockedTypes.length > best.unlockedTypes.length) {
+        best = cfg;
+      }
+    }
+    return best.unlockedTypes;
+  }, [strengthChapters, subject]);
+
+  const questions = useMemo(() => buildV2QuickPractice(subject, unlockedTypes), [subject, unlockedTypes]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
@@ -52,12 +72,13 @@ export default function QuickQuestionScreen() {
   const startTimeRef = useRef(Date.now());
 
   const question = questions[currentIndex];
-  const isCorrect = selectedOptionId === question?.correctOptionId;
+  const correctId = question ? getCorrectId(question) : '';
+  const isCorrect = selectedOptionId === correctId;
 
   const correctCount = useMemo(() => {
     return Object.entries(answers).filter(([qId, optId]) => {
       const q = questions.find((qq) => qq.id === qId);
-      return q && optId === q.correctOptionId;
+      return q ? optId === getCorrectId(q) : false;
     }).length;
   }, [answers, questions]);
 
@@ -84,7 +105,7 @@ export default function QuickQuestionScreen() {
     setSelectedOptionId(optionId);
     setShowFeedback(true);
 
-    const correct = optionId === question.correctOptionId;
+    const correct = optionId === correctId;
     Haptics.impactAsync(
       correct ? Haptics.ImpactFeedbackStyle.Light : Haptics.ImpactFeedbackStyle.Heavy
     );
@@ -117,7 +138,7 @@ export default function QuickQuestionScreen() {
       const allAnswers = { ...answers, [question.id]: selectedOptionId! };
       const finalCorrect = Object.entries(allAnswers).filter(([qId, optId]) => {
         const q = questions.find((qq) => qq.id === qId);
-        return q && optId === q.correctOptionId;
+        return q ? optId === getCorrectId(q) : false;
       }).length;
 
       const timeUsedMs = Date.now() - startTimeRef.current;
@@ -136,7 +157,7 @@ export default function QuickQuestionScreen() {
         const q = questions.find((qq) => qq.id === qId);
         if (!q) continue;
         if (!byChapter[q.chapterId]) byChapter[q.chapterId] = [];
-        byChapter[q.chapterId].push({ questionId: qId, correct: optId === q.correctOptionId });
+        byChapter[q.chapterId].push({ questionId: qId, correct: optId === getCorrectId(q) });
       }
       for (const [chapId, answered] of Object.entries(byChapter)) {
         dispatch(
@@ -170,19 +191,6 @@ export default function QuickQuestionScreen() {
   };
 
   if (!question || !subjectMeta) return null;
-
-  const getOptionStyle = (optId: string) => {
-    if (!showFeedback) {
-      return { bg: colors.surface, border: colors.surfaceBorder, text: colors.text };
-    }
-    if (optId === question.correctOptionId) {
-      return { bg: '#22C55E18', border: '#22C55E', text: '#16A34A' };
-    }
-    if (optId === selectedOptionId && !isCorrect) {
-      return { bg: '#EF444418', border: '#EF4444', text: '#DC2626' };
-    }
-    return { bg: colors.surface, border: colors.surfaceBorder, text: colors.textTertiary };
-  };
 
   const isLast = currentIndex >= questions.length - 1;
 
@@ -282,41 +290,15 @@ export default function QuickQuestionScreen() {
             </Text>
           </View>
 
-          {/* Options */}
-          <View style={styles.optionsList}>
-            {question.options.map((opt, idx) => {
-              const os = getOptionStyle(opt.id);
-              const label = String.fromCharCode(65 + idx);
-              return (
-                <Pressable
-                  key={opt.id}
-                  onPress={() => handleSelectOption(opt.id)}
-                  disabled={showFeedback}
-                  style={[
-                    styles.optionRow,
-                    {
-                      backgroundColor: os.bg,
-                      borderColor: os.border,
-                      borderWidth: showFeedback && (opt.id === question.correctOptionId || opt.id === selectedOptionId) ? 2 : 1,
-                    },
-                  ]}
-                >
-                  <View style={[styles.optLabel, { backgroundColor: os.border + '30' }]}>
-                    <Text style={[styles.optLabelText, { color: os.text }]}>{label}</Text>
-                  </View>
-                  <Text style={[Typography.body, { color: os.text, flex: 1 }]}>
-                    {language === 'te' ? opt.textTe : opt.text}
-                  </Text>
-                  {showFeedback && opt.id === question.correctOptionId && (
-                    <Text style={{ fontSize: 18, color: '#16A34A' }}>{'\u2713'}</Text>
-                  )}
-                  {showFeedback && opt.id === selectedOptionId && !isCorrect && (
-                    <Text style={{ fontSize: 18, color: '#DC2626' }}>{'\u2717'}</Text>
-                  )}
-                </Pressable>
-              );
-            })}
-          </View>
+          {/* Type-specific content + Options via QuestionRenderer */}
+          <QuestionRenderer
+            question={question}
+            language={language}
+            selectedOptionId={selectedOptionId}
+            showFeedback={showFeedback}
+            onSelect={handleSelectOption}
+            colors={colors}
+          />
 
           {/* Feedback Section */}
           {showFeedback && (
@@ -330,10 +312,15 @@ export default function QuickQuestionScreen() {
                     {'\uD83D\uDD25'} {answerStreak} in a row!
                   </Text>
                 )}
-                {!isCorrect && (
+                {!isCorrect && 'options' in question.payload && (
                   <Text style={[Typography.bodySm, { color: '#DC2626', marginTop: 2 }]}>
                     Correct answer:{' '}
-                    {String.fromCharCode(65 + question.options.findIndex((o) => o.id === question.correctOptionId))}
+                    {String.fromCharCode(65 + (question.payload as { options: { id: string }[]; correctOptionId: string }).options.findIndex((o) => o.id === (question.payload as { correctOptionId: string }).correctOptionId))}
+                  </Text>
+                )}
+                {!isCorrect && question.payload.type === 'true-false' && (
+                  <Text style={[Typography.bodySm, { color: '#DC2626', marginTop: 2 }]}>
+                    Correct answer: {question.payload.correctAnswer ? 'True' : 'False'}
                   </Text>
                 )}
               </View>
@@ -490,27 +477,6 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.lg,
     borderWidth: 1,
     marginBottom: Spacing.lg,
-  },
-  optionsList: {
-    gap: Spacing.md,
-  },
-  optionRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: Spacing.lg,
-    borderRadius: BorderRadius.lg,
-    gap: Spacing.md,
-  },
-  optLabel: {
-    width: 32,
-    height: 32,
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  optLabelText: {
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 14,
   },
   feedbackArea: {
     marginTop: Spacing.xl,

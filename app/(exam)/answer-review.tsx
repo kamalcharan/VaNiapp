@@ -13,14 +13,17 @@ import { useSelector } from 'react-redux';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { QuestionRenderer } from '../../src/components/exam/QuestionRenderer';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { RootState } from '../../src/store';
-import { getAllQuestions, getQuestionsByChapter } from '../../src/data/questions';
+import { getV2QuestionsByChapter } from '../../src/data/questions';
 import { getChapterById } from '../../src/data/chapters';
+import { getCorrectId, legacyBatchToV2 } from '../../src/lib/questionAdapter';
+import { getAllQuestions } from '../../src/data/questions';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
-import { Question, UserAnswer, SubjectId } from '../../src/types';
+import { QuestionV2, UserAnswer, SubjectId } from '../../src/types';
 
 type Filter = 'all' | 'wrong' | 'correct' | 'skipped';
 
@@ -44,13 +47,13 @@ export default function AnswerReviewScreen() {
 
   // Build question list + answer map
   const { questions, answerMap } = useMemo(() => {
-    if (!session) return { questions: [] as Question[], answerMap: {} as Record<string, UserAnswer> };
+    if (!session) return { questions: [] as QuestionV2[], answerMap: {} as Record<string, UserAnswer> };
 
-    let qs: Question[];
+    let qs: QuestionV2[];
     if (session.mode === 'chapter') {
-      qs = getQuestionsByChapter(session.chapterId);
+      qs = getV2QuestionsByChapter(session.chapterId);
     } else {
-      qs = getAllQuestions();
+      qs = legacyBatchToV2(getAllQuestions());
     }
 
     const aMap: Record<string, UserAnswer> = {};
@@ -69,7 +72,7 @@ export default function AnswerReviewScreen() {
       let status: 'correct' | 'wrong' | 'skipped';
       if (!selected) {
         status = 'skipped';
-      } else if (selected === q.correctOptionId) {
+      } else if (selected === getCorrectId(q)) {
         status = 'correct';
       } else {
         status = 'wrong';
@@ -314,64 +317,15 @@ export default function AnswerReviewScreen() {
             </Text>
           </View>
 
-          {/* Options */}
-          <View style={styles.optionsList}>
-            {question.options.map((opt, idx) => {
-              const label = String.fromCharCode(65 + idx);
-              const isCorrectOption = opt.id === question.correctOptionId;
-              const isSelectedOption = opt.id === selected;
-              const isWrongSelection = isSelectedOption && !isCorrectOption;
-
-              let bg: string = colors.surface;
-              let border: string = colors.surfaceBorder;
-              let textColor: string = colors.text;
-              let borderWidth = 1;
-
-              if (isCorrectOption) {
-                bg = '#22C55E18';
-                border = '#22C55E';
-                textColor = '#16A34A';
-                borderWidth = 2;
-              } else if (isWrongSelection) {
-                bg = '#EF444418';
-                border = '#EF4444';
-                textColor = '#DC2626';
-                borderWidth = 2;
-              }
-
-              return (
-                <View
-                  key={opt.id}
-                  style={[styles.optionRow, { backgroundColor: bg, borderColor: border, borderWidth }]}
-                >
-                  <View style={[styles.optLabel, { backgroundColor: border + '30' }]}>
-                    <Text style={[styles.optLabelText, { color: textColor }]}>{label}</Text>
-                  </View>
-                  <Text style={[Typography.body, { color: textColor, flex: 1 }]}>
-                    {language === 'te' ? opt.textTe : opt.text}
-                  </Text>
-                  {isCorrectOption && (
-                    <Text style={{ fontSize: 16, color: '#16A34A' }}>{'\u2713'}</Text>
-                  )}
-                  {isWrongSelection && (
-                    <Text style={{ fontSize: 16, color: '#DC2626' }}>{'\u2717'}</Text>
-                  )}
-                </View>
-              );
-            })}
-          </View>
-
-          {/* Your Answer / Correct Answer summary */}
-          {status === 'wrong' && (
-            <View style={styles.answerSummary}>
-              <Text style={[Typography.bodySm, { color: '#EF4444' }]}>
-                Your answer: {String.fromCharCode(65 + question.options.findIndex((o) => o.id === selected))}
-              </Text>
-              <Text style={[Typography.bodySm, { color: '#22C55E' }]}>
-                Correct: {String.fromCharCode(65 + question.options.findIndex((o) => o.id === question.correctOptionId))}
-              </Text>
-            </View>
-          )}
+          {/* Type-specific content + Options via QuestionRenderer */}
+          <QuestionRenderer
+            question={question}
+            language={language}
+            selectedOptionId={selected}
+            showFeedback={true}
+            onSelect={() => {}}
+            colors={colors}
+          />
 
           {/* Explanation */}
           <JournalCard delay={0}>
@@ -542,32 +496,6 @@ const styles = StyleSheet.create({
     padding: Spacing.lg,
     borderRadius: BorderRadius.lg,
     borderWidth: 1,
-  },
-  optionsList: {
-    gap: Spacing.sm,
-  },
-  optionRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: Spacing.md,
-    borderRadius: BorderRadius.lg,
-    gap: Spacing.md,
-  },
-  optLabel: {
-    width: 30,
-    height: 30,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  optLabelText: {
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 13,
-  },
-  answerSummary: {
-    flexDirection: 'row',
-    gap: Spacing.lg,
-    justifyContent: 'center',
   },
   bottomNav: {
     flexDirection: 'row',
