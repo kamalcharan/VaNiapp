@@ -19,7 +19,6 @@ import { SUBJECT_META } from '../../src/constants/subjects';
 import { RootState } from '../../src/store';
 import { getAllQuestions, getQuestionsByChapter } from '../../src/data/questions';
 import { getChapterById } from '../../src/data/chapters';
-import { AnimatedPressable } from '../../src/components/ui/AnimatedPressable';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
 import { Question, UserAnswer, SubjectId } from '../../src/types';
 
@@ -201,39 +200,72 @@ export default function AnswerReviewScreen() {
         >
           {/* Question Meta */}
           <View style={styles.qMeta}>
-            <View style={[styles.subjectBadge, { backgroundColor: subjectMeta?.color + '20' }]}>
-              <Text style={[styles.subjectBadgeText, { color: subjectMeta?.color }]}>
-                {subjectMeta?.emoji} {subjectMeta?.name}
-              </Text>
-            </View>
-            <View
-              style={[
-                styles.diffBadge,
-                {
-                  backgroundColor:
-                    question.difficulty === 'easy'
-                      ? '#22C55E20'
-                      : question.difficulty === 'medium'
-                        ? '#F59E0B20'
-                        : '#EF444420',
-                },
-              ]}
-            >
-              <Text
+            <View style={styles.qMetaLeft}>
+              <View style={[styles.subjectBadge, { backgroundColor: subjectMeta?.color + '20' }]}>
+                <Text style={[styles.subjectBadgeText, { color: subjectMeta?.color }]}>
+                  {subjectMeta?.emoji} {subjectMeta?.name}
+                </Text>
+              </View>
+              <View
                 style={[
-                  styles.diffText,
+                  styles.diffBadge,
                   {
-                    color:
+                    backgroundColor:
                       question.difficulty === 'easy'
-                        ? '#22C55E'
+                        ? '#22C55E20'
                         : question.difficulty === 'medium'
-                          ? '#F59E0B'
-                          : '#EF4444',
+                          ? '#F59E0B20'
+                          : '#EF444420',
                   },
                 ]}
               >
-                {question.difficulty.toUpperCase()}
-              </Text>
+                <Text
+                  style={[
+                    styles.diffText,
+                    {
+                      color:
+                        question.difficulty === 'easy'
+                          ? '#22C55E'
+                          : question.difficulty === 'medium'
+                            ? '#F59E0B'
+                            : '#EF4444',
+                    },
+                  ]}
+                >
+                  {question.difficulty.toUpperCase()}
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.qMetaRight}>
+              <Pressable
+                onPress={() => setShowElimination((p) => !p)}
+                hitSlop={6}
+                style={[
+                  styles.metaIconBtn,
+                  {
+                    backgroundColor: showElimination ? colors.primary + '18' : colors.surface,
+                    borderColor: showElimination ? colors.primary : colors.surfaceBorder,
+                  },
+                ]}
+              >
+                <Text style={styles.metaIconText}>{'\u2702\uFE0F'}</Text>
+              </Pressable>
+              {status === 'wrong' && (
+                <Pressable
+                  onPress={() => setShowVaniSheet(true)}
+                  hitSlop={6}
+                  style={[
+                    styles.metaIconBtn,
+                    {
+                      backgroundColor: colors.primary + '12',
+                      borderColor: colors.primary + '40',
+                    },
+                  ]}
+                >
+                  <Text style={styles.metaIconText}>{'\u2728'}</Text>
+                </Pressable>
+              )}
             </View>
           </View>
 
@@ -340,16 +372,7 @@ export default function AnswerReviewScreen() {
             </Text>
           </JournalCard>
 
-          {/* Elimination Technique */}
-          <Pressable
-            onPress={() => setShowElimination((p) => !p)}
-            style={[styles.elimBtn, { borderColor: colors.surfaceBorder }]}
-          >
-            <Text style={[Typography.bodySm, { color: colors.primary }]}>
-              {showElimination ? 'Hide' : 'Show'} Elimination Technique
-            </Text>
-          </Pressable>
-
+          {/* Elimination Technique (toggled via icon in qMeta) */}
           {showElimination && (
             <JournalCard delay={0}>
               <HandwrittenText variant="handSm">Elimination Technique</HandwrittenText>
@@ -357,25 +380,6 @@ export default function AnswerReviewScreen() {
                 {language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique}
               </Text>
             </JournalCard>
-          )}
-
-          {/* Ask VaNi CTA */}
-          {status === 'wrong' && (
-            <AnimatedPressable
-              onPress={() => setShowVaniSheet(true)}
-              style={[styles.askVaniBtn, { backgroundColor: colors.primaryLight, borderColor: colors.primary }]}
-            >
-              <Text style={styles.askVaniEmoji}>{'\u2728'}</Text>
-              <View style={{ flex: 1 }}>
-                <Text style={[Typography.h3, { color: colors.primary, fontSize: 15 }]}>
-                  Still confused? Ask VaNi
-                </Text>
-                <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 2 }]}>
-                  Get an AI-powered explanation
-                </Text>
-              </View>
-              <Text style={{ color: colors.primary, fontSize: 16 }}>{'>'}</Text>
-            </AnimatedPressable>
           )}
         </ScrollView>
 
@@ -478,7 +482,28 @@ const styles = StyleSheet.create({
   },
   qMeta: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  qMetaLeft: {
+    flexDirection: 'row',
     gap: Spacing.sm,
+    flexShrink: 1,
+  },
+  qMetaRight: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  metaIconBtn: {
+    width: 34,
+    height: 34,
+    borderRadius: 10,
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  metaIconText: {
+    fontSize: 16,
   },
   subjectBadge: {
     paddingHorizontal: 10,
@@ -536,13 +561,6 @@ const styles = StyleSheet.create({
     gap: Spacing.lg,
     justifyContent: 'center',
   },
-  elimBtn: {
-    alignSelf: 'center',
-    paddingVertical: Spacing.sm,
-    paddingHorizontal: Spacing.lg,
-    borderWidth: 1,
-    borderRadius: BorderRadius.md,
-  },
   bottomNav: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -560,17 +578,5 @@ const styles = StyleSheet.create({
   navBtnText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 15,
-  },
-  askVaniBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: Spacing.md,
-    borderRadius: BorderRadius.lg,
-    borderWidth: 1,
-    gap: Spacing.md,
-    borderStyle: 'dashed',
-  },
-  askVaniEmoji: {
-    fontSize: 28,
   },
 });
