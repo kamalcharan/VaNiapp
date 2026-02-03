@@ -1,24 +1,32 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable, Alert, Share } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'expo-router';
+import * as Haptics from 'expo-haptics';
+import * as Clipboard from 'expo-clipboard';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
 import { PuffyButton } from '../../src/components/ui/PuffyButton';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { AnimatedPressable } from '../../src/components/ui/AnimatedPressable';
+import { useToast } from '../../src/components/ui/Toast';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { logout } from '../../src/store/slices/authSlice';
+import { SQUAD_PRICING } from '../../src/types';
 
 export default function ProfileScreen() {
   const { colors, mode, toggle } = useTheme();
   const user = useSelector((state: RootState) => state.auth.user);
+  const squad = useSelector((state: RootState) => state.squad.squad);
+  const planType = useSelector((state: RootState) => state.squad.planType);
   const dispatch = useDispatch();
   const router = useRouter();
+  const toast = useToast();
 
   const examLabel =
     user?.exam === 'BOTH' ? 'NEET + CUET' : user?.exam ?? 'NEET';
@@ -192,6 +200,98 @@ export default function ProfileScreen() {
             </JournalCard>
           )}
 
+          {/* Study Gang */}
+          {squad ? (
+            <JournalCard rotation={0.5} delay={450}>
+              <View style={styles.cardHeader}>
+                <Text style={[Typography.label, { color: colors.textTertiary }]}>
+                  STUDY GANG
+                </Text>
+              </View>
+
+              <View style={styles.squadHeader}>
+                <Text style={{ fontSize: 32 }}>{squad.emoji}</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={[Typography.h3, { color: colors.text }]}>{squad.name}</Text>
+                  <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                    {squad.members.length}/{squad.maxMembers} members
+                  </Text>
+                </View>
+              </View>
+
+              {/* Members */}
+              {squad.members.map((m, i) => (
+                <View key={i} style={styles.memberRow}>
+                  <View style={[styles.memberDot, { backgroundColor: colors.primary }]}>
+                    <Text style={styles.memberInitial}>{m.name[0]?.toUpperCase()}</Text>
+                  </View>
+                  <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>{m.name}</Text>
+                  <Text style={[styles.roleTag, { color: m.role === 'leader' ? '#F59E0B' : colors.textTertiary }]}>
+                    {m.role === 'leader' ? '\uD83D\uDC51 Leader' : 'Member'}
+                  </Text>
+                </View>
+              ))}
+
+              {/* Empty slots */}
+              {Array.from({ length: squad.maxMembers - squad.members.length }).map((_, i) => (
+                <View key={`e-${i}`} style={styles.memberRow}>
+                  <View style={[styles.memberDot, { backgroundColor: colors.surfaceBorder, borderStyle: 'dashed', borderWidth: 1, borderColor: colors.textTertiary }]}>
+                    <Text style={[styles.memberInitial, { color: colors.textTertiary }]}>?</Text>
+                  </View>
+                  <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>Invite a friend</Text>
+                </View>
+              ))}
+
+              {/* Invite code + share */}
+              <View style={[styles.inviteBar, { backgroundColor: colors.primary + '10', borderColor: colors.primary + '30' }]}>
+                <View>
+                  <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Invite Code</Text>
+                  <Text style={[styles.inviteCode, { color: colors.primary }]}>{squad.inviteCode}</Text>
+                </View>
+                <View style={styles.inviteActions}>
+                  <AnimatedPressable
+                    onPress={async () => {
+                      await Clipboard.setStringAsync(squad.inviteCode);
+                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                      toast.show('success', 'Code copied!');
+                    }}
+                    style={[styles.inviteBtn, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}
+                  >
+                    <Text style={[Typography.bodySm, { color: colors.text }]}>Copy</Text>
+                  </AnimatedPressable>
+                  <AnimatedPressable
+                    onPress={async () => {
+                      try {
+                        await Share.share({
+                          message: `Join my Study Gang "${squad.name}" ${squad.emoji} on VaNi!\n\nCode: ${squad.inviteCode}\n\nLet's crack NEET together!`,
+                        });
+                      } catch {}
+                    }}
+                    style={[styles.inviteBtn, { backgroundColor: colors.primary }]}
+                  >
+                    <Text style={[Typography.bodySm, { color: mode === 'dark' ? '#0F172A' : '#FFF', fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Share</Text>
+                  </AnimatedPressable>
+                </View>
+              </View>
+            </JournalCard>
+          ) : (
+            <StickyNote color="pink" rotation={0.5} delay={450}>
+              <AnimatedPressable
+                onPress={() => router.push('/(auth)/squad-pitch')}
+                style={styles.squadCTA}
+              >
+                <Text style={{ fontSize: 32 }}>{'\uD83D\uDC7E'}</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={[Typography.h3, { color: colors.text }]}>Start a Study Gang</Text>
+                  <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                    Invite friends, compete together, save up to {SQUAD_PRICING[3].discount}%
+                  </Text>
+                </View>
+                <Text style={{ fontSize: 18, color: colors.textTertiary }}>{'\u203A'}</Text>
+              </AnimatedPressable>
+            </StickyNote>
+          )}
+
           {/* App Info */}
           <StickyNote color="yellow" rotation={-0.5} delay={500}>
             <View style={styles.appInfo}>
@@ -297,6 +397,65 @@ const styles = StyleSheet.create({
   },
   chipEmoji: {
     fontSize: 16,
+  },
+  squadHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+    marginBottom: Spacing.md,
+  },
+  memberRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+    paddingVertical: Spacing.sm,
+  },
+  memberDot: {
+    width: 32,
+    height: 32,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  memberInitial: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 14,
+    color: '#FFFFFF',
+  },
+  roleTag: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 11,
+  },
+  inviteBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: Spacing.md,
+    padding: Spacing.md,
+    borderRadius: BorderRadius.lg,
+    borderWidth: 1,
+  },
+  inviteCode: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 20,
+    letterSpacing: 3,
+  },
+  inviteActions: {
+    flexDirection: 'row',
+    gap: Spacing.sm,
+  },
+  inviteBtn: {
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.sm,
+    borderRadius: BorderRadius.md,
+    borderWidth: 1,
+    borderColor: 'transparent',
+  },
+  squadCTA: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+    paddingVertical: Spacing.sm,
   },
   appInfo: {
     alignItems: 'center',
