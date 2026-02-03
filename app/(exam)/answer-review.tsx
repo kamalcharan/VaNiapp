@@ -19,6 +19,7 @@ import { SUBJECT_META } from '../../src/constants/subjects';
 import { RootState } from '../../src/store';
 import { getAllQuestions, getQuestionsByChapter } from '../../src/data/questions';
 import { getChapterById } from '../../src/data/chapters';
+import { AnimatedPressable } from '../../src/components/ui/AnimatedPressable';
 import { Question, UserAnswer } from '../../src/types';
 
 type Filter = 'all' | 'wrong' | 'correct' | 'skipped';
@@ -352,6 +353,25 @@ export default function AnswerReviewScreen() {
               </Text>
             </JournalCard>
           )}
+
+          {/* Ask VaNi CTA */}
+          {status === 'wrong' && (
+            <AnimatedPressable
+              onPress={() => router.push('/(tabs)/ask-vani' as any)}
+              style={[styles.askVaniBtn, { backgroundColor: colors.primaryLight, borderColor: colors.primary }]}
+            >
+              <Text style={styles.askVaniEmoji}>{'\u2728'}</Text>
+              <View style={{ flex: 1 }}>
+                <Text style={[Typography.h3, { color: colors.primary, fontSize: 15 }]}>
+                  Still confused? Ask VaNi
+                </Text>
+                <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 2 }]}>
+                  Get an AI-powered explanation
+                </Text>
+              </View>
+              <Text style={{ color: colors.primary, fontSize: 16 }}>{'>'}</Text>
+            </AnimatedPressable>
+          )}
         </ScrollView>
 
         {/* Bottom Nav */}
@@ -526,5 +546,17 @@ const styles = StyleSheet.create({
   navBtnText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 15,
+  },
+  askVaniBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: Spacing.md,
+    borderRadius: BorderRadius.lg,
+    borderWidth: 1,
+    gap: Spacing.md,
+    borderStyle: 'dashed',
+  },
+  askVaniEmoji: {
+    fontSize: 28,
   },
 });

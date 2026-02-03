@@ -45,6 +45,15 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
+        name="ask-vani"
+        options={{
+          title: 'Ask VaNi',
+          tabBarIcon: ({ focused, color }) => (
+            <TabIcon emoji={'\u2728'} focused={focused} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="history"
         options={{
           title: 'Journal',
