@@ -24,6 +24,7 @@ import { getChapterById } from '../../src/data/chapters';
 import { getCorrectId, legacyBatchToV2 } from '../../src/lib/questionAdapter';
 import { getAllQuestions } from '../../src/data/questions';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
+import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
 import { QuestionV2, UserAnswer, SubjectId } from '../../src/types';
 
@@ -358,6 +359,18 @@ export default function AnswerReviewScreen() {
               {language === 'te' ? question.explanationTe : question.explanation}
             </Text>
           </JournalCard>
+
+          {/* Wrong-Answer Analysis (R10) */}
+          {status === 'wrong' && selected && (
+            <WrongAnswerCard
+              questionId={question.id}
+              selectedOptionId={selected}
+              correctOptionId={getCorrectId(question)}
+              questionText={language === 'te' ? question.textTe : question.text}
+              subjectId={question.subjectId as SubjectId}
+              language={language}
+            />
+          )}
 
           {/* Elimination Technique (toggled via icon in qMeta) */}
           {showElimination && (

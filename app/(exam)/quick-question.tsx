@@ -24,6 +24,7 @@ import { getCorrectId } from '../../src/lib/questionAdapter';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
+import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
@@ -347,6 +348,18 @@ export default function QuickQuestionScreen() {
                   </Text>
                 )}
               </View>
+
+              {/* Wrong-Answer Analysis (R10) */}
+              {!isCorrect && selectedOptionId && (
+                <WrongAnswerCard
+                  questionId={question.id}
+                  selectedOptionId={selectedOptionId}
+                  correctOptionId={correctId}
+                  questionText={language === 'te' ? question.textTe : question.text}
+                  subjectId={question.subjectId as SubjectId}
+                  language={language}
+                />
+              )}
 
               <JournalCard delay={0}>
                 <HandwrittenText variant="handSm">Explanation</HandwrittenText>
