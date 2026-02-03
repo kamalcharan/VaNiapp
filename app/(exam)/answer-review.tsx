@@ -24,6 +24,8 @@ import { getChapterById } from '../../src/data/chapters';
 import { getCorrectId, legacyBatchToV2 } from '../../src/lib/questionAdapter';
 import { getAllQuestions } from '../../src/data/questions';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
+import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
+import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
 import { QuestionV2, UserAnswer, SubjectId } from '../../src/types';
 
@@ -48,6 +50,8 @@ export default function AnswerReviewScreen() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showElimination, setShowElimination] = useState(false);
   const [showVaniSheet, setShowVaniSheet] = useState(false);
+  const [showConceptSheet, setShowConceptSheet] = useState(false);
+  const [selectedConceptTag, setSelectedConceptTag] = useState('');
 
   // Build question list + answer map
   const { questions, answerMap } = useMemo(() => {
@@ -105,6 +109,7 @@ export default function AnswerReviewScreen() {
     setCurrentIndex(0);
     setShowElimination(false);
     setShowVaniSheet(false);
+    setShowConceptSheet(false);
   };
 
   const handlePrev = () => {
@@ -112,6 +117,7 @@ export default function AnswerReviewScreen() {
       setCurrentIndex(currentIndex - 1);
       setShowElimination(false);
       setShowVaniSheet(false);
+      setShowConceptSheet(false);
     }
   };
 
@@ -120,6 +126,7 @@ export default function AnswerReviewScreen() {
       setCurrentIndex(currentIndex + 1);
       setShowElimination(false);
       setShowVaniSheet(false);
+      setShowConceptSheet(false);
     }
   };
 
@@ -359,6 +366,19 @@ export default function AnswerReviewScreen() {
             </Text>
           </JournalCard>
 
+          {/* Wrong-Answer Analysis (R10) */}
+          {status === 'wrong' && selected && (
+            <WrongAnswerCard
+              questionId={question.id}
+              selectedOptionId={selected}
+              correctOptionId={getCorrectId(question)}
+              questionText={language === 'te' ? question.textTe : question.text}
+              subjectId={question.subjectId as SubjectId}
+              language={language}
+              onConceptPress={(tag) => { setSelectedConceptTag(tag); setShowConceptSheet(true); }}
+            />
+          )}
+
           {/* Elimination Technique (toggled via icon in qMeta) */}
           {showElimination && (
             <JournalCard delay={0}>
@@ -404,6 +424,16 @@ export default function AnswerReviewScreen() {
         questionText={language === 'te' ? question.textTe : question.text}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
+      />
+
+      {/* Concept Explainer Bottom Sheet (R10) */}
+      <ConceptExplainerSheet
+        visible={showConceptSheet}
+        onClose={() => setShowConceptSheet(false)}
+        conceptTag={selectedConceptTag}
+        subjectId={question.subjectId as SubjectId}
+        chapterId={question.chapterId}
+        language={language}
       />
     </DotGridBackground>
   );
