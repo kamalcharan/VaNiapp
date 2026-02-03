@@ -24,6 +24,7 @@ import { SUBJECT_META } from '../../src/constants/subjects';
 import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { NeetSubjectId, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
+import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 
 const DIFF_COLORS = { easy: '#22C55E', medium: '#F59E0B', hard: '#EF4444' };
 
@@ -131,6 +132,19 @@ export default function ChapterQuestionScreen() {
           correctCount: finalCorrect,
           completedAt: new Date().toISOString(),
           timeUsedMs,
+        })
+      );
+
+      // Record strength tracking
+      dispatch(
+        recordChapterAttempt({
+          chapterId: chapterId!,
+          subjectId: chapter!.subjectId,
+          totalInBank: questions.length,
+          answeredQuestions: Object.entries(allAnswers).map(([qId, optId]) => {
+            const q = questions.find((qq) => qq.id === qId);
+            return { questionId: qId, correct: q ? optId === q.correctOptionId : false };
+          }),
         })
       );
 

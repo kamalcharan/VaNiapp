@@ -20,7 +20,8 @@ import { RootState } from '../../src/store';
 import { getAllQuestions, getQuestionsByChapter } from '../../src/data/questions';
 import { getChapterById } from '../../src/data/chapters';
 import { AnimatedPressable } from '../../src/components/ui/AnimatedPressable';
-import { Question, UserAnswer } from '../../src/types';
+import { AskVaniSheet } from '../../src/components/AskVaniSheet';
+import { Question, UserAnswer, SubjectId } from '../../src/types';
 
 type Filter = 'all' | 'wrong' | 'correct' | 'skipped';
 
@@ -40,6 +41,7 @@ export default function AnswerReviewScreen() {
   const [activeFilter, setActiveFilter] = useState<Filter>('all');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showElimination, setShowElimination] = useState(false);
+  const [showVaniSheet, setShowVaniSheet] = useState(false);
 
   // Build question list + answer map
   const { questions, answerMap } = useMemo(() => {
@@ -96,12 +98,14 @@ export default function AnswerReviewScreen() {
     setActiveFilter(filter);
     setCurrentIndex(0);
     setShowElimination(false);
+    setShowVaniSheet(false);
   };
 
   const handlePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
       setShowElimination(false);
+      setShowVaniSheet(false);
     }
   };
 
@@ -109,6 +113,7 @@ export default function AnswerReviewScreen() {
     if (currentIndex < filtered.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setShowElimination(false);
+      setShowVaniSheet(false);
     }
   };
 
@@ -357,7 +362,7 @@ export default function AnswerReviewScreen() {
           {/* Ask VaNi CTA */}
           {status === 'wrong' && (
             <AnimatedPressable
-              onPress={() => router.push('/(tabs)/ask-vani' as any)}
+              onPress={() => setShowVaniSheet(true)}
               style={[styles.askVaniBtn, { backgroundColor: colors.primaryLight, borderColor: colors.primary }]}
             >
               <Text style={styles.askVaniEmoji}>{'\u2728'}</Text>
@@ -400,6 +405,15 @@ export default function AnswerReviewScreen() {
           </Pressable>
         </View>
       </SafeAreaView>
+
+      {/* Ask VaNi Bottom Sheet */}
+      <AskVaniSheet
+        visible={showVaniSheet}
+        onClose={() => setShowVaniSheet(false)}
+        questionText={language === 'te' ? question.textTe : question.text}
+        subjectId={question.subjectId as SubjectId}
+        questionId={question.id}
+      />
     </DotGridBackground>
   );
 }

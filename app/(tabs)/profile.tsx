@@ -18,6 +18,7 @@ import { RootState } from '../../src/store';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { logout } from '../../src/store/slices/authSlice';
 import { SQUAD_PRICING } from '../../src/types';
+import { StrengthMap } from '../../src/components/StrengthMap';
 
 export default function ProfileScreen() {
   const { colors, mode, toggle } = useTheme();
@@ -292,8 +293,18 @@ export default function ProfileScreen() {
             </StickyNote>
           )}
 
+          {/* Chapter Strength */}
+          <JournalCard rotation={-0.3} delay={480}>
+            <View style={styles.cardHeader}>
+              <Text style={[Typography.label, { color: colors.textTertiary }]}>
+                CHAPTER STRENGTH
+              </Text>
+            </View>
+            <StrengthMap />
+          </JournalCard>
+
           {/* App Info */}
-          <StickyNote color="yellow" rotation={-0.5} delay={500}>
+          <StickyNote color="yellow" rotation={-0.5} delay={550}>
             <View style={styles.appInfo}>
               <HandwrittenText variant="handSm">VaNi v1.0.0</HandwrittenText>
               <HandwrittenText variant="handSm">My Exam. My Way.</HandwrittenText>

@@ -10,6 +10,7 @@ import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { AnimatedPressable } from '../../src/components/ui/AnimatedPressable';
 import { StreakBadge } from '../../src/components/ui/StreakBadge';
 import { CountUpText } from '../../src/components/ui/CountUpText';
+import { StrengthMap } from '../../src/components/StrengthMap';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
@@ -174,8 +175,18 @@ export default function DashboardScreen() {
             ))}
           </View>
 
+          {/* Strength Map */}
+          <JournalCard rotation={-0.3} delay={550}>
+            <HandwrittenText variant="hand" rotation={-1}>
+              Your strength
+            </HandwrittenText>
+            <View style={{ marginTop: Spacing.md }}>
+              <StrengthMap compact />
+            </View>
+          </JournalCard>
+
           {/* Quick Stats */}
-          <JournalCard rotation={0.5} delay={600}>
+          <JournalCard rotation={0.5} delay={650}>
             <Text
               style={[Typography.label, { color: colors.textTertiary, marginBottom: Spacing.md }]}
             >

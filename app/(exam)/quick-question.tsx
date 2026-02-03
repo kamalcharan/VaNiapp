@@ -23,6 +23,7 @@ import { SUBJECT_META } from '../../src/constants/subjects';
 import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { NeetSubjectId, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
+import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 
 const DIFF_COLORS = { easy: '#22C55E', medium: '#F59E0B', hard: '#EF4444' };
 
@@ -125,6 +126,26 @@ export default function QuickQuestionScreen() {
           timeUsedMs,
         })
       );
+
+      // Record strength tracking — quick practice maps questions across chapters
+      // Group by chapterId for accurate per-chapter tracking
+      const byChapter: Record<string, { questionId: string; correct: boolean }[]> = {};
+      for (const [qId, optId] of Object.entries(allAnswers)) {
+        const q = questions.find((qq) => qq.id === qId);
+        if (!q) continue;
+        if (!byChapter[q.chapterId]) byChapter[q.chapterId] = [];
+        byChapter[q.chapterId].push({ questionId: qId, correct: optId === q.correctOptionId });
+      }
+      for (const [chapId, answered] of Object.entries(byChapter)) {
+        dispatch(
+          recordChapterAttempt({
+            chapterId: chapId,
+            subjectId: subject,
+            totalInBank: 25, // each chapter has 25 questions
+            answeredQuestions: answered,
+          })
+        );
+      }
 
       router.replace({
         pathname: '/(exam)/chapter-results',

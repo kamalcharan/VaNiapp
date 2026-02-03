@@ -240,3 +240,196 @@ export const GANG_NAME_SUGGESTIONS = [
   'Med Mavericks',
   'Score Squad',
 ] as const;
+
+// ── Chapter Strength System ─────────────────────────────────
+
+export type StrengthLevel =
+  | 'just-started'
+  | 'getting-there'
+  | 'on-track'
+  | 'strong'
+  | 'needs-focus';
+
+export interface StrengthConfig {
+  id: StrengthLevel;
+  label: string;
+  color: string;
+  minCoverage: number;     // % of question bank attempted
+  minAccuracy: number;     // % correct
+  difficultyMix: { easy: number; medium: number; hard: number };
+  unlockedTypes: QuestionType[];
+}
+
+export const STRENGTH_LEVELS: StrengthConfig[] = [
+  {
+    id: 'just-started',
+    label: 'Just Started',
+    color: '#94A3B8',
+    minCoverage: 0,
+    minAccuracy: 0,
+    difficultyMix: { easy: 70, medium: 25, hard: 5 },
+    unlockedTypes: ['mcq', 'true-false'],
+  },
+  {
+    id: 'getting-there',
+    label: 'Getting There',
+    color: '#3B82F6',
+    minCoverage: 20,
+    minAccuracy: 40,
+    difficultyMix: { easy: 40, medium: 45, hard: 15 },
+    unlockedTypes: ['mcq', 'true-false', 'assertion-reasoning', 'match-the-following', 'fill-in-blanks'],
+  },
+  {
+    id: 'on-track',
+    label: 'On Track',
+    color: '#F59E0B',
+    minCoverage: 40,
+    minAccuracy: 55,
+    difficultyMix: { easy: 20, medium: 50, hard: 30 },
+    unlockedTypes: ['mcq', 'true-false', 'assertion-reasoning', 'match-the-following', 'fill-in-blanks', 'scenario-based', 'diagram-based'],
+  },
+  {
+    id: 'strong',
+    label: 'Strong',
+    color: '#22C55E',
+    minCoverage: 60,
+    minAccuracy: 70,
+    difficultyMix: { easy: 10, medium: 40, hard: 50 },
+    unlockedTypes: ['mcq', 'true-false', 'assertion-reasoning', 'match-the-following', 'fill-in-blanks', 'scenario-based', 'diagram-based', 'logical-sequence'],
+  },
+];
+
+// "Needs Focus" is a separate flag, not a stage in the progression
+export const NEEDS_FOCUS_CONFIG: StrengthConfig = {
+  id: 'needs-focus',
+  label: 'Needs Focus',
+  color: '#EF4444',
+  minCoverage: 20,       // only flagged after ≥20% coverage
+  minAccuracy: 0,        // triggered when accuracy < 40%
+  difficultyMix: { easy: 50, medium: 35, hard: 15 },
+  unlockedTypes: ['mcq', 'true-false', 'assertion-reasoning', 'match-the-following', 'fill-in-blanks', 'scenario-based', 'diagram-based', 'logical-sequence'],
+};
+
+export const NEEDS_FOCUS_ACCURACY_THRESHOLD = 40; // below this → "Needs Focus"
+
+/** Per-chapter tracking data stored in Redux */
+export interface ChapterStrength {
+  chapterId: string;
+  subjectId: SubjectId;
+  totalInBank: number;           // total questions available in question bank
+  uniqueAttempted: Set<string> extends never ? number : number; // count of unique question IDs attempted
+  attemptedIds: string[];        // list of unique question IDs attempted
+  totalAnswered: number;         // total attempts (can re-attempt same question)
+  correctCount: number;          // total correct across all attempts
+  coverage: number;              // uniqueAttempted / totalInBank * 100
+  accuracy: number;              // correctCount / totalAnswered * 100 (0 if none)
+  strengthLevel: StrengthLevel;
+  lastPracticedAt: string | null;
+}
+
+// ── QuestionV2 Type System ──────────────────────────────────
+
+export type QuestionType =
+  | 'mcq'
+  | 'assertion-reasoning'
+  | 'match-the-following'
+  | 'true-false'
+  | 'diagram-based'
+  | 'logical-sequence'
+  | 'fill-in-blanks'
+  | 'scenario-based';
+
+export interface QuestionV2 {
+  id: string;
+  type: QuestionType;
+  chapterId: string;
+  subjectId: SubjectId;
+  difficulty: Difficulty;
+
+  // Common fields (bilingual)
+  text: string;
+  textTe: string;
+  explanation: string;
+  explanationTe: string;
+  eliminationTechnique: string;
+  eliminationTechniqueTe: string;
+
+  // Type-specific payload
+  payload: QuestionPayload;
+}
+
+// ── Type-specific payloads ──
+
+interface McqPayload {
+  type: 'mcq';
+  options: Option[];
+  correctOptionId: string;
+}
+
+interface AssertionReasoningPayload {
+  type: 'assertion-reasoning';
+  assertion: string;
+  assertionTe: string;
+  reason: string;
+  reasonTe: string;
+  options: Option[];
+  correctOptionId: string;
+}
+
+interface MatchTheFollowingPayload {
+  type: 'match-the-following';
+  columnA: { id: string; text: string; textTe: string }[];
+  columnB: { id: string; text: string; textTe: string }[];
+  correctMapping: Record<string, string>;
+  options: Option[];
+  correctOptionId: string;
+}
+
+interface TrueFalsePayload {
+  type: 'true-false';
+  statement: string;
+  statementTe: string;
+  correctAnswer: boolean;
+}
+
+interface DiagramBasedPayload {
+  type: 'diagram-based';
+  imageUri: string;
+  imageAlt: string;
+  options: Option[];
+  correctOptionId: string;
+}
+
+interface LogicalSequencePayload {
+  type: 'logical-sequence';
+  items: { id: string; text: string; textTe: string }[];
+  correctOrder: string[];
+  options: Option[];
+  correctOptionId: string;
+}
+
+interface FillInBlanksPayload {
+  type: 'fill-in-blanks';
+  textWithBlanks: string;
+  textWithBlanksTe: string;
+  options: Option[];
+  correctOptionId: string;
+}
+
+interface ScenarioBasedPayload {
+  type: 'scenario-based';
+  scenario: string;
+  scenarioTe: string;
+  options: Option[];
+  correctOptionId: string;
+}
+
+export type QuestionPayload =
+  | McqPayload
+  | AssertionReasoningPayload
+  | MatchTheFollowingPayload
+  | TrueFalsePayload
+  | DiagramBasedPayload
+  | LogicalSequencePayload
+  | FillInBlanksPayload
+  | ScenarioBasedPayload;
