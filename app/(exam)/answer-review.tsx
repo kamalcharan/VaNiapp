@@ -242,28 +242,37 @@ export default function AnswerReviewScreen() {
                 onPress={() => setShowElimination((p) => !p)}
                 hitSlop={6}
                 style={[
-                  styles.metaIconBtn,
+                  styles.metaActionBadge,
                   {
-                    backgroundColor: showElimination ? colors.primary + '18' : colors.surface,
-                    borderColor: showElimination ? colors.primary : colors.surfaceBorder,
+                    backgroundColor: showElimination ? '#8B5CF620' : '#64748B15',
+                    borderColor: showElimination ? '#8B5CF6' : '#64748B40',
                   },
                 ]}
               >
-                <Text style={styles.metaIconText}>{'\u2702\uFE0F'}</Text>
+                <Text
+                  style={[
+                    styles.metaActionText,
+                    { color: showElimination ? '#8B5CF6' : '#64748B' },
+                  ]}
+                >
+                  {'\u2702\uFE0F'} Eliminate
+                </Text>
               </Pressable>
               {status === 'wrong' && (
                 <Pressable
                   onPress={() => setShowVaniSheet(true)}
                   hitSlop={6}
                   style={[
-                    styles.metaIconBtn,
+                    styles.metaActionBadge,
                     {
-                      backgroundColor: colors.primary + '12',
-                      borderColor: colors.primary + '40',
+                      backgroundColor: colors.primary + '15',
+                      borderColor: colors.primary + '50',
                     },
                   ]}
                 >
-                  <Text style={styles.metaIconText}>{'\u2728'}</Text>
+                  <Text style={[styles.metaActionText, { color: colors.primary }]}>
+                    {'\u2728'} VaNi
+                  </Text>
                 </Pressable>
               )}
             </View>
@@ -494,16 +503,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
-  metaIconBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 10,
+  metaActionBadge: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: BorderRadius.sm,
     borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  metaIconText: {
-    fontSize: 16,
+  metaActionText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 11,
   },
   subjectBadge: {
     paddingHorizontal: 10,
