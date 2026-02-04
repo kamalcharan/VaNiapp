@@ -78,21 +78,40 @@ export default function RootLayout() {
   useEffect(() => {
     const Linking = require('expo-linking');
 
-    const handleUrl = (event: { url: string }) => {
-      if (authExchanged.current) return;
+    const extractCode = (url: string): string | null => {
       try {
-        const parsed = Linking.parse(event.url);
-        if (parsed.path === 'auth/callback' || parsed.path === '--/auth/callback') {
-          const code = parsed.queryParams?.code;
-          if (code && typeof code === 'string') {
-            authExchanged.current = true;
-            exchangeAuthCode(code).catch(() => {
-              authExchanged.current = false;
-            });
+        const parsed = Linking.parse(url);
+        const isCallback =
+          parsed.path === 'auth/callback' ||
+          parsed.path === '--/auth/callback';
+        if (!isCallback) return null;
+
+        // Check query params (?code=xxx)
+        if (parsed.queryParams?.code) {
+          return String(parsed.queryParams.code);
+        }
+
+        // Check hash fragment (#code=xxx) — Supabase may use this
+        const hashIdx = url.indexOf('#');
+        if (hashIdx !== -1) {
+          const hash = url.substring(hashIdx + 1);
+          for (const part of hash.split('&')) {
+            const [key, ...rest] = part.split('=');
+            if (key === 'code') return decodeURIComponent(rest.join('='));
           }
         }
-      } catch {
-        // ignore parse failures
+      } catch {}
+      return null;
+    };
+
+    const handleUrl = (event: { url: string }) => {
+      if (authExchanged.current) return;
+      const code = extractCode(event.url);
+      if (code) {
+        authExchanged.current = true;
+        exchangeAuthCode(code).catch(() => {
+          authExchanged.current = false;
+        });
       }
     };
 

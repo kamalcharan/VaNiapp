@@ -15,126 +15,100 @@ export const supabase = isSupabaseConfigured
         autoRefreshToken: true,
         persistSession: true,
         detectSessionInUrl: false,
+        flowType: 'pkce',
       },
     })
   : null;
 
 export const isSupabaseReady = () => isSupabaseConfigured && supabase !== null;
 
-// PKCE helpers using expo-crypto (lazy-loaded to avoid startup init)
-const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-const AUTH_VERIFIER_KEY = 'supabase_pkce_verifier';
-
-function generateVerifier(size = 128): string {
-  const ExpoCrypto = require('expo-crypto');
-  const randomValues = ExpoCrypto.getRandomValues(new Uint8Array(size));
-  return Array.from(randomValues)
-    .map((b: number) => CHARSET[b % CHARSET.length])
-    .join('');
-}
-
-async function generateChallenge(verifier: string): Promise<string> {
-  const ExpoCrypto = require('expo-crypto');
-  const hash = await ExpoCrypto.digestStringAsync(
-    ExpoCrypto.CryptoDigestAlgorithm.SHA256,
-    verifier,
-    { encoding: ExpoCrypto.CryptoEncoding.BASE64 }
-  );
-  return hash.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
-}
-
 /**
  * Exchange an auth code for a Supabase session.
- * Reads the stored PKCE verifier from AsyncStorage.
- * Safe to call from both signInWithGoogle and the callback screen —
- * whichever runs first consumes the verifier, the second is a no-op.
+ * The Supabase client stores the PKCE verifier internally
+ * (when flowType is 'pkce'), so we only pass the code.
  */
 export async function exchangeAuthCode(code: string): Promise<void> {
   if (!supabase) throw new Error('Supabase is not configured.');
 
-  const codeVerifier = await AsyncStorage.getItem(AUTH_VERIFIER_KEY);
-  if (!codeVerifier) return; // Already consumed by the other path
-
-  await AsyncStorage.removeItem(AUTH_VERIFIER_KEY);
-
-  const { error } = await supabase.auth.exchangeCodeForSession(code, codeVerifier);
+  const { error } = await supabase.auth.exchangeCodeForSession(code);
   if (error) throw error;
 }
 
 /**
  * Sign in with Google via Supabase OAuth.
- * Uses expo-web-browser + expo-linking directly (no expo-auth-session).
- * The PKCE verifier is stored in AsyncStorage so both this function
- * and app/auth/callback.tsx can exchange the code (whichever fires first).
+ *
+ * With flowType: 'pkce', signInWithOAuth automatically:
+ *   - generates the PKCE code verifier + challenge
+ *   - stores the verifier in AsyncStorage
+ *   - adds the challenge to the OAuth URL
+ *
+ * We just open the URL in a browser. When the redirect fires,
+ * the root layout's deep link listener calls exchangeAuthCode(code).
  */
 export async function signInWithGoogle() {
   if (!supabase) {
     throw new Error('Supabase is not configured. Check your .env file.');
   }
 
-  // PKCE: generate verifier and challenge
-  const codeVerifier = generateVerifier();
-  const codeChallenge = await generateChallenge(codeVerifier);
-
-  // Persist verifier so the callback screen can also exchange the code
-  await AsyncStorage.setItem(AUTH_VERIFIER_KEY, codeVerifier);
-
-  // Build redirect URI using expo-linking (already installed via expo-router)
   const Linking = require('expo-linking');
   const redirectUri = Linking.createURL('auth/callback');
 
-  // Get the OAuth URL from Supabase
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
       redirectTo: redirectUri,
-      queryParams: {
-        code_challenge: codeChallenge,
-        code_challenge_method: 'S256',
-      },
       skipBrowserRedirect: true,
     },
   });
 
   if (error || !data.url) {
-    await AsyncStorage.removeItem(AUTH_VERIFIER_KEY);
     throw new Error(error?.message || 'Failed to get Google auth URL');
   }
 
-  // Open the browser for Google sign-in
   const WebBrowser = require('expo-web-browser');
   const result = await WebBrowser.openAuthSessionAsync(data.url, redirectUri);
 
   if (result.type === 'success' && result.url) {
-    // Browser returned the URL — try to exchange here.
-    // Parse manually since new URL() doesn't handle exp:// schemes.
-    const code = extractQueryParam(result.url, 'code');
+    // Browser returned the URL directly — try to exchange here
+    const code = extractParam(result.url, 'code');
     if (code) {
       await exchangeAuthCode(code);
     }
     return { cancelled: false };
   }
 
-  // User cancelled — DON'T clean up verifier here.
-  // On Android the deep link may still fire via callback screen,
-  // and it needs the verifier. It gets overwritten on next attempt.
-  return { cancelled: true };
+  return { cancelled: result.type === 'cancel' || result.type === 'dismiss' };
 }
 
 /**
- * Extract a query parameter from a URL string.
- * Works with any scheme (exp://, https://, etc.) unlike new URL().
+ * Extract a param from a URL's query string OR hash fragment.
+ * Works with any scheme (exp://, https://) unlike new URL().
  */
-function extractQueryParam(url: string, param: string): string | null {
-  const queryStart = url.indexOf('?');
-  if (queryStart === -1) return null;
-  const queryString = url.substring(queryStart + 1).split('#')[0]; // strip fragment
-  for (const part of queryString.split('&')) {
-    const [key, ...rest] = part.split('=');
-    if (decodeURIComponent(key) === param) {
-      return decodeURIComponent(rest.join('='));
+function extractParam(url: string, param: string): string | null {
+  // Check query string first (?code=xxx)
+  const qIdx = url.indexOf('?');
+  if (qIdx !== -1) {
+    const qs = url.substring(qIdx + 1).split('#')[0];
+    for (const part of qs.split('&')) {
+      const [key, ...rest] = part.split('=');
+      if (decodeURIComponent(key) === param) {
+        return decodeURIComponent(rest.join('='));
+      }
     }
   }
+
+  // Check hash fragment (#code=xxx)
+  const hIdx = url.indexOf('#');
+  if (hIdx !== -1) {
+    const hash = url.substring(hIdx + 1);
+    for (const part of hash.split('&')) {
+      const [key, ...rest] = part.split('=');
+      if (decodeURIComponent(key) === param) {
+        return decodeURIComponent(rest.join('='));
+      }
+    }
+  }
+
   return null;
 }
 
