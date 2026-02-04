@@ -73,13 +73,14 @@ export default function RootLayout() {
     if (authState.status === 'loading' || showSplash) return;
 
     const inAuthGroup = segments[0] === '(auth)';
+    const inAuthCallback = segments[0] === 'auth';
+    const inOnboarding = segments[0] === '(onboarding)';
 
-    if (authState.status === 'authenticated' && inAuthGroup) {
-      // User is signed in but still on auth screens → go to main app
-      // For now, just stay — post-auth onboarding comes next
-      // router.replace('/(tabs)');
-    } else if (authState.status === 'unauthenticated' && !inAuthGroup) {
-      // User is not signed in but on a protected screen → go to auth
+    if (authState.status === 'authenticated' && (inAuthGroup || inAuthCallback)) {
+      // Signed in but on pre-auth screens → go to post-auth onboarding
+      router.replace('/(onboarding)/welcome');
+    } else if (authState.status === 'unauthenticated' && !inAuthGroup && !inAuthCallback) {
+      // Not signed in and not on auth screens → go to pre-auth
       router.replace('/(auth)/onboarding');
     }
   }, [authState.status, segments, showSplash]);

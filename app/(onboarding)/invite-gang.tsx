@@ -1,0 +1,279 @@
+import { useState, useEffect, useRef } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Pressable,
+  Share,
+  Animated,
+  Easing,
+} from 'react-native';
+import { useRouter } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import * as Haptics from 'expo-haptics';
+import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
+import { JournalCard } from '../../src/components/ui/JournalCard';
+import { StickyNote } from '../../src/components/ui/StickyNote';
+import { PuffyButton } from '../../src/components/ui/PuffyButton';
+import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { useTheme } from '../../src/hooks/useTheme';
+import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
+import { useOnboarding } from './_layout';
+
+// ── Perks ────────────────────────────────────────────────────
+
+const PERKS = [
+  { emoji: '\uD83D\uDCB0', text: 'Up to 20% off when you study together' },
+  { emoji: '\uD83D\uDCCA', text: 'Compare scores & track each other' },
+  { emoji: '\u26A1', text: 'Challenge your gang to daily quizzes' },
+  { emoji: '\uD83D\uDE80', text: 'Stay motivated with group streaks' },
+];
+
+export default function InviteGangScreen() {
+  const { colors } = useTheme();
+  const router = useRouter();
+  const { data, setStep } = useOnboarding();
+
+  const [inviteCode, setInviteCode] = useState('');
+
+  useEffect(() => {
+    setStep(6);
+  }, []);
+
+  const handleShare = async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    try {
+      const examLabel =
+        data.exam === 'BOTH'
+          ? 'NEET & CUET'
+          : data.exam || 'exams';
+      await Share.share({
+        message: `Hey! I'm prepping for ${examLabel} on VaNi. Let's study together!\n\nDownload VaNi and join me.`,
+      });
+    } catch {
+      // share dismissed
+    }
+  };
+
+  const handleJoinGang = () => {
+    if (inviteCode.trim().length < 4) return;
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    // TODO: integrate with backend
+    handleFinish();
+  };
+
+  const handleFinish = () => {
+    // TODO: when main app screens are ready, navigate there
+    // router.replace('/(tabs)');
+    // For now, stay on this screen — the user can see the full flow works
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  };
+
+  // Entrance animation
+  const fadeIn = useRef(new Animated.Value(0)).current;
+  const slideUp = useRef(new Animated.Value(25)).current;
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeIn, {
+        toValue: 1,
+        duration: 450,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }),
+      Animated.timing(slideUp, {
+        toValue: 0,
+        duration: 450,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
+
+  return (
+    <DotGridBackground>
+      <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
+        <Animated.ScrollView
+          contentContainerStyle={styles.scroll}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          style={{
+            opacity: fadeIn,
+            transform: [{ translateY: slideUp }],
+          }}
+        >
+          {/* Header */}
+          <View style={styles.header}>
+            <Text style={styles.headerEmoji}>{'\uD83D\uDC7E'}</Text>
+            <Text style={[Typography.h1, { color: colors.text }]}>
+              Invite your gang
+            </Text>
+            <HandwrittenText variant="hand" rotation={-1}>
+              study better together...
+            </HandwrittenText>
+          </View>
+
+          {/* Perks */}
+          <JournalCard rotation={-0.3} delay={100}>
+            <View style={styles.section}>
+              <Text style={[Typography.h3, { color: colors.text }]}>
+                Why study with a gang?
+              </Text>
+              {PERKS.map((perk, i) => (
+                <View key={i} style={styles.perkRow}>
+                  <Text style={styles.perkEmoji}>{perk.emoji}</Text>
+                  <Text
+                    style={[
+                      Typography.bodySm,
+                      { color: colors.textSecondary, flex: 1 },
+                    ]}
+                  >
+                    {perk.text}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          </JournalCard>
+
+          {/* Share Invite */}
+          <StickyNote color="pink" rotation={0.5} delay={200}>
+            <Pressable onPress={handleShare} style={styles.shareBtn}>
+              <Text style={{ fontSize: 28 }}>{'\uD83D\uDCE8'}</Text>
+              <View style={{ flex: 1 }}>
+                <Text
+                  style={[
+                    Typography.body,
+                    {
+                      color: colors.text,
+                      fontFamily: 'PlusJakartaSans_600SemiBold',
+                    },
+                  ]}
+                >
+                  Share with your crew
+                </Text>
+                <Text
+                  style={[Typography.bodySm, { color: colors.textSecondary }]}
+                >
+                  WhatsApp, Instagram, anywhere
+                </Text>
+              </View>
+              <Text style={{ fontSize: 20 }}>{'\u27A1\uFE0F'}</Text>
+            </Pressable>
+          </StickyNote>
+
+          {/* Join Existing Gang */}
+          <JournalCard rotation={0.3} delay={300}>
+            <View style={styles.section}>
+              <Text style={[Typography.h3, { color: colors.text }]}>
+                Got an invite code?
+              </Text>
+              <View style={styles.codeRow}>
+                <TextInput
+                  style={[
+                    styles.codeInput,
+                    {
+                      color: colors.text,
+                      backgroundColor: colors.surface,
+                      borderColor: colors.surfaceBorder,
+                    },
+                  ]}
+                  placeholder="Enter code"
+                  placeholderTextColor={colors.textTertiary}
+                  value={inviteCode}
+                  onChangeText={(t) =>
+                    setInviteCode(t.toUpperCase().slice(0, 8))
+                  }
+                  autoCapitalize="characters"
+                  maxLength={8}
+                />
+                <PuffyButton
+                  title="Join"
+                  variant="secondary"
+                  onPress={handleJoinGang}
+                  disabled={inviteCode.trim().length < 4}
+                />
+              </View>
+            </View>
+          </JournalCard>
+
+          {/* Actions */}
+          <View style={styles.actions}>
+            <PuffyButton
+              title="Finish Setup"
+              icon={'\uD83C\uDF89'}
+              onPress={handleFinish}
+            />
+            <Pressable onPress={handleFinish}>
+              <Text style={[styles.skipText, { color: colors.textTertiary }]}>
+                Skip for now
+              </Text>
+            </Pressable>
+          </View>
+        </Animated.ScrollView>
+      </SafeAreaView>
+    </DotGridBackground>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scroll: {
+    padding: Spacing.xl,
+    gap: Spacing.xl,
+    paddingBottom: Spacing.xxxl,
+  },
+  header: {
+    alignItems: 'center',
+    gap: Spacing.md,
+    marginTop: Spacing.lg,
+  },
+  headerEmoji: {
+    fontSize: 48,
+  },
+  section: {
+    gap: Spacing.md,
+  },
+  perkRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+  },
+  perkEmoji: {
+    fontSize: 22,
+  },
+  shareBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+    paddingVertical: Spacing.sm,
+  },
+  codeRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+  },
+  codeInput: {
+    flex: 1,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 18,
+    borderWidth: 1,
+    borderRadius: BorderRadius.md,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md + 4,
+    textAlign: 'center',
+    letterSpacing: 3,
+  },
+  actions: {
+    alignItems: 'center',
+    gap: Spacing.md,
+    marginTop: Spacing.md,
+  },
+  skipText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 14,
+    textDecorationLine: 'underline',
+  },
+});
