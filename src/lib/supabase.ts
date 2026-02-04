@@ -1,12 +1,9 @@
 import 'react-native-url-polyfill/auto';
 import { createClient } from '@supabase/supabase-js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as AuthSession from 'expo-auth-session';
-import * as Crypto from 'expo-crypto';
 
 const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
 const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
-const GOOGLE_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID || '';
 
 const isSupabaseConfigured =
   SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY.length > 0;
@@ -26,17 +23,16 @@ export const isSupabaseReady = () => isSupabaseConfigured && supabase !== null;
 
 /**
  * Sign in with Google via Supabase OAuth + expo-auth-session.
- *
- * Flow:
- * 1. Generate PKCE code verifier/challenge
- * 2. Build Supabase OAuth URL with the challenge
- * 3. Open browser via AuthSession (works in Expo Go)
- * 4. Exchange the returned code for a Supabase session
+ * Dependencies are lazy-loaded to avoid native module init at startup.
  */
 export async function signInWithGoogle() {
   if (!supabase) {
     throw new Error('Supabase is not configured. Check your .env file.');
   }
+
+  // Lazy-load to avoid native module initialization at app startup
+  const AuthSession = require('expo-auth-session');
+  const Crypto = require('expo-crypto');
 
   // PKCE flow: generate verifier and challenge
   const codeVerifier = AuthSession.generateCodeVerifier();
