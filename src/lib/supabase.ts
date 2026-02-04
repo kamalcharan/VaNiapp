@@ -23,6 +23,7 @@ export const isSupabaseReady = () => isSupabaseConfigured && supabase !== null;
 
 // PKCE helpers using expo-crypto (lazy-loaded to avoid startup init)
 const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const AUTH_VERIFIER_KEY = 'supabase_pkce_verifier';
 
 function generateVerifier(size = 128): string {
   const ExpoCrypto = require('expo-crypto');
@@ -43,8 +44,28 @@ async function generateChallenge(verifier: string): Promise<string> {
 }
 
 /**
+ * Exchange an auth code for a Supabase session.
+ * Reads the stored PKCE verifier from AsyncStorage.
+ * Safe to call from both signInWithGoogle and the callback screen —
+ * whichever runs first consumes the verifier, the second is a no-op.
+ */
+export async function exchangeAuthCode(code: string): Promise<void> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+
+  const codeVerifier = await AsyncStorage.getItem(AUTH_VERIFIER_KEY);
+  if (!codeVerifier) return; // Already consumed by the other path
+
+  await AsyncStorage.removeItem(AUTH_VERIFIER_KEY);
+
+  const { error } = await supabase.auth.exchangeCodeForSession(code, codeVerifier);
+  if (error) throw error;
+}
+
+/**
  * Sign in with Google via Supabase OAuth.
  * Uses expo-web-browser + expo-linking directly (no expo-auth-session).
+ * The PKCE verifier is stored in AsyncStorage so both this function
+ * and app/auth/callback.tsx can exchange the code (whichever fires first).
  */
 export async function signInWithGoogle() {
   if (!supabase) {
@@ -54,6 +75,9 @@ export async function signInWithGoogle() {
   // PKCE: generate verifier and challenge
   const codeVerifier = generateVerifier();
   const codeChallenge = await generateChallenge(codeVerifier);
+
+  // Persist verifier so the callback screen can also exchange the code
+  await AsyncStorage.setItem(AUTH_VERIFIER_KEY, codeVerifier);
 
   // Build redirect URI using expo-linking (already installed via expo-router)
   const Linking = require('expo-linking');
@@ -73,34 +97,27 @@ export async function signInWithGoogle() {
   });
 
   if (error || !data.url) {
+    await AsyncStorage.removeItem(AUTH_VERIFIER_KEY);
     throw new Error(error?.message || 'Failed to get Google auth URL');
   }
 
-  // Open the browser for Google sign-in using expo-web-browser
+  // Open the browser for Google sign-in
   const WebBrowser = require('expo-web-browser');
   const result = await WebBrowser.openAuthSessionAsync(data.url, redirectUri);
 
-  if (result.type !== 'success' || !result.url) {
-    return { session: null, cancelled: result.type === 'cancel' || result.type === 'dismiss' };
+  if (result.type === 'success' && result.url) {
+    // Browser returned the URL — try to exchange here
+    const url = new URL(result.url);
+    const code = url.searchParams.get('code');
+    if (code) {
+      await exchangeAuthCode(code);
+    }
+    return { cancelled: false };
   }
 
-  // Extract the auth code from the callback URL
-  const url = new URL(result.url);
-  const code = url.searchParams.get('code');
-
-  if (!code) {
-    throw new Error('No authorization code returned from Google');
-  }
-
-  // Exchange the code for a session using the PKCE verifier
-  const { data: sessionData, error: sessionError } =
-    await supabase.auth.exchangeCodeForSession(code, codeVerifier);
-
-  if (sessionError) {
-    throw new Error(sessionError.message);
-  }
-
-  return { session: sessionData.session, cancelled: false };
+  // User cancelled — clean up
+  await AsyncStorage.removeItem(AUTH_VERIFIER_KEY);
+  return { cancelled: true };
 }
 
 /**
