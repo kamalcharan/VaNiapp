@@ -27,6 +27,8 @@ import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
+import { EliminationSheet } from '../../src/components/exam/EliminationSheet';
+import { useToast } from '../../src/components/ui/Toast';
 import { NeetSubjectId, SubjectId, QuestionType, STRENGTH_LEVELS, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
@@ -38,6 +40,7 @@ export default function ChapterQuestionScreen() {
   const { colors, mode } = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
+  const toast = useToast();
   const { chapterId } = useLocalSearchParams<{ chapterId: string }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
   const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
@@ -261,7 +264,7 @@ export default function ChapterQuestionScreen() {
                 </Text>
               </Pressable>
               <Pressable
-                onPress={() => { dispatch(toggleBookmark(question.id)); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); }}
+                onPress={() => { dispatch(toggleBookmark(question.id)); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); toast.show('success', isBookmarked ? 'Bookmark removed' : 'Question bookmarked'); }}
                 hitSlop={6}
                 style={[
                   styles.actionBadge,
@@ -366,15 +369,7 @@ export default function ChapterQuestionScreen() {
                 </Text>
               </JournalCard>
 
-              {/* Elimination Technique (toggled via header badge) */}
-              {showElimination && (
-                <JournalCard delay={0}>
-                  <HandwrittenText variant="handSm">Elimination Technique</HandwrittenText>
-                  <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.sm, lineHeight: 22 }]}>
-                    {language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique}
-                  </Text>
-                </JournalCard>
-              )}
+              {/* Elimination Technique inline removed — now shown as bottom sheet */}
             </View>
           )}
         </ScrollView>
@@ -427,6 +422,13 @@ export default function ChapterQuestionScreen() {
         subjectId={question.subjectId as SubjectId}
         chapterId={question.chapterId}
         language={language}
+      />
+
+      {/* Elimination Technique Bottom Sheet */}
+      <EliminationSheet
+        visible={showElimination}
+        onClose={() => setShowElimination(false)}
+        eliminationText={language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique}
       />
     </DotGridBackground>
   );
