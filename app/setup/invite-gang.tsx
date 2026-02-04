@@ -8,6 +8,7 @@ import {
   Share,
   Animated,
   Easing,
+  Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -20,6 +21,8 @@ import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
+import { completeOnboarding, joinWithReferralCode } from '../../src/lib/database';
+import type { ExamType } from '../../src/types';
 
 // ── Perks ────────────────────────────────────────────────────
 
@@ -36,6 +39,7 @@ export default function InviteGangScreen() {
   const { data, setStep } = useOnboarding();
 
   const [inviteCode, setInviteCode] = useState('');
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     setStep(6);
@@ -56,18 +60,36 @@ export default function InviteGangScreen() {
     }
   };
 
-  const handleJoinGang = () => {
+  const handleJoinGang = async () => {
     if (inviteCode.trim().length < 4) return;
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    // TODO: integrate with backend
-    handleFinish();
+    const ok = await joinWithReferralCode(inviteCode.trim());
+    if (ok) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    }
+    await handleFinish();
   };
 
-  const handleFinish = () => {
-    // TODO: when main app screens are ready, navigate there
-    // router.replace('/(tabs)');
-    // For now, stay on this screen — the user can see the full flow works
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  const handleFinish = async () => {
+    if (saving) return;
+    setSaving(true);
+    try {
+      await completeOnboarding({
+        phone: data.phone,
+        countryCode: data.countryCode,
+        college: data.college,
+        city: data.city,
+        exam: data.exam as ExamType,
+        subjects: data.subjects,
+        language: data.language,
+      });
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      // Route protection in root layout will redirect to main app
+      // once it sees onboarding_completed = true
+      router.replace('/');
+    } catch (err: any) {
+      setSaving(false);
+      Alert.alert('Oops', err?.message || 'Could not save. Please try again.');
+    }
   };
 
   // Entrance animation
@@ -200,11 +222,12 @@ export default function InviteGangScreen() {
           {/* Actions */}
           <View style={styles.actions}>
             <PuffyButton
-              title="Finish Setup"
-              icon={'\uD83C\uDF89'}
+              title={saving ? 'Saving...' : 'Finish Setup'}
+              icon={saving ? undefined : '\uD83C\uDF89'}
               onPress={handleFinish}
+              disabled={saving}
             />
-            <Pressable onPress={handleFinish}>
+            <Pressable onPress={handleFinish} disabled={saving}>
               <Text style={[styles.skipText, { color: colors.textTertiary }]}>
                 Skip for now
               </Text>

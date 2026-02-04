@@ -22,6 +22,7 @@ import {
   getInitialAuthState,
   onAuthStateChange,
 } from '../src/lib/auth';
+import { getProfile } from '../src/lib/database';
 
 NativeSplashScreen.preventAutoHideAsync();
 
@@ -33,6 +34,7 @@ export default function RootLayout() {
   const [themeMode, setThemeMode] = useState<ThemeMode>('light');
   const [showSplash, setShowSplash] = useState(true);
   const [authState, setAuthState] = useState<AuthState>(initialAuthState);
+  const [onboardingDone, setOnboardingDone] = useState<boolean | null>(null);
 
   const router = useRouter();
   const segments = useSegments();
@@ -68,6 +70,23 @@ export default function RootLayout() {
 
     return () => unsubscribe?.();
   }, []);
+
+  // Check onboarding status when auth state changes to authenticated
+  useEffect(() => {
+    if (authState.status !== 'authenticated') {
+      setOnboardingDone(null);
+      return;
+    }
+
+    (async () => {
+      try {
+        const profile = await getProfile();
+        setOnboardingDone(profile?.onboarding_completed ?? false);
+      } catch {
+        setOnboardingDone(false);
+      }
+    })();
+  }, [authState.status]);
 
   // ── Deep link handler for auth callback ──
   // The root layout is already mounted when the deep link fires,
@@ -119,7 +138,7 @@ export default function RootLayout() {
     return () => subscription?.remove?.();
   }, []);
 
-  // Route protection: redirect based on auth status
+  // Route protection: redirect based on auth + onboarding status
   useEffect(() => {
     if (authState.status === 'loading' || showSplash) return;
 
@@ -127,14 +146,22 @@ export default function RootLayout() {
     const inAuthCallback = segments[0] === 'auth';
     const inSetup = segments[0] === 'setup';
 
-    if (authState.status === 'authenticated' && (inAuthGroup || inAuthCallback)) {
-      // Signed in but on pre-auth screens → go to post-auth onboarding
-      router.replace('/setup/welcome');
+    if (authState.status === 'authenticated') {
+      // Still loading profile — wait
+      if (onboardingDone === null && !inAuthGroup && !inAuthCallback) return;
+
+      if (inAuthGroup || inAuthCallback) {
+        // Just signed in — go to setup (profile check will run soon)
+        router.replace('/setup/welcome');
+      } else if (onboardingDone === true && inSetup) {
+        // Onboarding done but on setup screens → go to main app
+        // TODO: replace '/' with '/(tabs)' when main app screens are ready
+        router.replace('/');
+      }
     } else if (authState.status === 'unauthenticated' && !inAuthGroup && !inAuthCallback) {
-      // Not signed in and not on auth screens → go to pre-auth
       router.replace('/(auth)/onboarding');
     }
-  }, [authState.status, segments, showSplash]);
+  }, [authState.status, segments, showSplash, onboardingDone]);
 
   // Theme
   const toggleTheme = useCallback(() => {
