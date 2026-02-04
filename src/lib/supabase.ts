@@ -106,18 +106,36 @@ export async function signInWithGoogle() {
   const result = await WebBrowser.openAuthSessionAsync(data.url, redirectUri);
 
   if (result.type === 'success' && result.url) {
-    // Browser returned the URL — try to exchange here
-    const url = new URL(result.url);
-    const code = url.searchParams.get('code');
+    // Browser returned the URL — try to exchange here.
+    // Parse manually since new URL() doesn't handle exp:// schemes.
+    const code = extractQueryParam(result.url, 'code');
     if (code) {
       await exchangeAuthCode(code);
     }
     return { cancelled: false };
   }
 
-  // User cancelled — clean up
-  await AsyncStorage.removeItem(AUTH_VERIFIER_KEY);
+  // User cancelled — DON'T clean up verifier here.
+  // On Android the deep link may still fire via callback screen,
+  // and it needs the verifier. It gets overwritten on next attempt.
   return { cancelled: true };
+}
+
+/**
+ * Extract a query parameter from a URL string.
+ * Works with any scheme (exp://, https://, etc.) unlike new URL().
+ */
+function extractQueryParam(url: string, param: string): string | null {
+  const queryStart = url.indexOf('?');
+  if (queryStart === -1) return null;
+  const queryString = url.substring(queryStart + 1).split('#')[0]; // strip fragment
+  for (const part of queryString.split('&')) {
+    const [key, ...rest] = part.split('=');
+    if (decodeURIComponent(key) === param) {
+      return decodeURIComponent(rest.join('='));
+    }
+  }
+  return null;
 }
 
 /**
