@@ -26,6 +26,8 @@ import { getAllQuestions } from '../../src/data/questions';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
+import { EliminationSheet } from '../../src/components/exam/EliminationSheet';
+import { useToast } from '../../src/components/ui/Toast';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
 import { QuestionV2, UserAnswer, SubjectId } from '../../src/types';
 
@@ -35,6 +37,7 @@ export default function AnswerReviewScreen() {
   const { colors, mode } = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
+  const toast = useToast();
   const { sessionId } = useLocalSearchParams<{ sessionId: string }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
   const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
@@ -273,7 +276,7 @@ export default function AnswerReviewScreen() {
                 </Text>
               </Pressable>
               <Pressable
-                onPress={() => { dispatch(toggleBookmark(question.id)); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); }}
+                onPress={() => { dispatch(toggleBookmark(question.id)); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); toast.show('success', bookmarkedIds.includes(question.id) ? 'Bookmark removed' : 'Question bookmarked'); }}
                 hitSlop={6}
                 style={[
                   styles.metaActionBadge,
@@ -379,15 +382,7 @@ export default function AnswerReviewScreen() {
             />
           )}
 
-          {/* Elimination Technique (toggled via icon in qMeta) */}
-          {showElimination && (
-            <JournalCard delay={0}>
-              <HandwrittenText variant="handSm">Elimination Technique</HandwrittenText>
-              <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.sm, lineHeight: 22 }]}>
-                {language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique}
-              </Text>
-            </JournalCard>
-          )}
+          {/* Elimination Technique inline removed — now shown as bottom sheet */}
         </ScrollView>
 
         {/* Bottom Nav */}
@@ -434,6 +429,13 @@ export default function AnswerReviewScreen() {
         subjectId={question.subjectId as SubjectId}
         chapterId={question.chapterId}
         language={language}
+      />
+
+      {/* Elimination Technique Bottom Sheet */}
+      <EliminationSheet
+        visible={showElimination}
+        onClose={() => setShowElimination(false)}
+        eliminationText={language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique}
       />
     </DotGridBackground>
   );
