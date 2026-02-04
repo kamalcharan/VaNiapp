@@ -10,14 +10,7 @@ import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
-
-// Try to get name from auth context (may not be available during UI-only testing)
-let useAuth: () => { user: any };
-try {
-  useAuth = require('../_layout').useAuth;
-} catch {
-  useAuth = () => ({ user: null });
-}
+import { useAuth } from '../_layout';
 
 const logo = require('../../assets/logo.png');
 
@@ -26,8 +19,7 @@ export default function WelcomeScreen() {
   const router = useRouter();
   const { setStep } = useOnboarding();
 
-  const auth = useAuth();
-  const user = auth?.user;
+  const { user } = useAuth();
 
   const firstName =
     user?.user_metadata?.full_name?.split(' ')[0] ||
