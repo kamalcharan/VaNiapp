@@ -21,25 +21,25 @@ export const supabase = isSupabaseConfigured
 
 export const isSupabaseReady = () => isSupabaseConfigured && supabase !== null;
 
-// PKCE helpers — inline to avoid dependency on internal expo-auth-session modules
+// PKCE helpers using expo-crypto (lazy-loaded to avoid startup init)
 const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 function generateVerifier(size = 128): string {
-  const randomValues = new Uint8Array(size);
-  // crypto.getRandomValues is available in React Native via hermes
-  crypto.getRandomValues(randomValues);
+  const ExpoCrypto = require('expo-crypto');
+  const randomValues = ExpoCrypto.getRandomValues(new Uint8Array(size));
   return Array.from(randomValues)
-    .map((b) => CHARSET[b % CHARSET.length])
+    .map((b: number) => CHARSET[b % CHARSET.length])
     .join('');
 }
 
 async function generateChallenge(verifier: string): Promise<string> {
-  // Use SubtleCrypto (available in Hermes with RN 0.81+)
-  const encoder = new TextEncoder();
-  const data = encoder.encode(verifier);
-  const digest = await crypto.subtle.digest('SHA-256', data);
-  const base64 = btoa(String.fromCharCode(...new Uint8Array(digest)));
-  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+  const ExpoCrypto = require('expo-crypto');
+  const hash = await ExpoCrypto.digestStringAsync(
+    ExpoCrypto.CryptoDigestAlgorithm.SHA256,
+    verifier,
+    { encoding: ExpoCrypto.CryptoEncoding.BASE64 }
+  );
+  return hash.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 }
 
 /**
