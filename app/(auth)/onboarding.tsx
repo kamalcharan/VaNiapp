@@ -195,7 +195,7 @@ export default function OnboardingScreen() {
           <JournalCard rotation={-0.5} delay={100}>
             <Animated.View style={stagger(0)}>
               <HandwrittenText variant="handLg" color={colors.text}>
-                Your NEET journal
+                Your exam journal
               </HandwrittenText>
             </Animated.View>
 
@@ -208,7 +208,7 @@ export default function OnboardingScreen() {
                   ]}
                 />
                 <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>
-                  Physics, Chemistry, Botany, Zoology — all covered
+                  NEET & CUET — pick your exam, we've got it
                 </Text>
               </Animated.View>
 
