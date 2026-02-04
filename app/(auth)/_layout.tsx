@@ -1,19 +1,5 @@
-import { Stack } from 'expo-router';
-import { useTheme } from '../../src/hooks/useTheme';
+import { Slot } from 'expo-router';
 
 export default function AuthLayout() {
-  const { colors } = useTheme();
-
-  return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        contentStyle: { backgroundColor: colors.background },
-        animation: 'fade',
-      }}
-    >
-      <Stack.Screen name="onboarding" />
-      <Stack.Screen name="sign-in" />
-    </Stack>
-  );
+  return <Slot />;
 }
