@@ -83,7 +83,7 @@ export const WrongAnswerCard: React.FC<Props> = ({
       <Pressable
         onPress={() => setExpanded((p) => !p)}
         style={styles.header}
-        hitSlop={4}
+        hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
       >
         <HandwrittenText variant="handSm">Why was I wrong?</HandwrittenText>
         <Text style={[styles.chevron, { color: colors.textSecondary }]}>
@@ -136,7 +136,7 @@ export const WrongAnswerCard: React.FC<Props> = ({
             <Pressable
               onPress={() => onConceptPress?.(entry.conceptTag)}
               style={[styles.conceptChip, { backgroundColor: colors.primary + '15', borderColor: colors.primary + '40' }]}
-              hitSlop={6}
+              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
             >
               <Text style={[styles.conceptChipText, { color: colors.primary }]}>
                 {entry.conceptTag.replace(/-/g, ' ')}

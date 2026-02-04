@@ -257,7 +257,7 @@ export default function AnswerReviewScreen() {
             <View style={styles.qMetaRight}>
               <Pressable
                 onPress={() => setShowElimination((p) => !p)}
-                hitSlop={6}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                 style={[
                   styles.metaActionBadge,
                   {
@@ -277,7 +277,7 @@ export default function AnswerReviewScreen() {
               </Pressable>
               <Pressable
                 onPress={() => { dispatch(toggleBookmark(question.id)); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); toast.show('success', bookmarkedIds.includes(question.id) ? 'Bookmark removed' : 'Question bookmarked'); }}
-                hitSlop={6}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                 style={[
                   styles.metaActionBadge,
                   {
@@ -298,7 +298,7 @@ export default function AnswerReviewScreen() {
               {status === 'wrong' && (
                 <Pressable
                   onPress={() => setShowVaniSheet(true)}
-                  hitSlop={6}
+                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                   style={[
                     styles.metaActionBadge,
                     {
