@@ -11,8 +11,9 @@ import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
-import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { StickyNote } from '../../src/components/ui/StickyNote';
 import { PuffyButton } from '../../src/components/ui/PuffyButton';
+import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import {
   Typography,
@@ -21,77 +22,52 @@ import {
   Shadows,
 } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
-import { ExamType, NEET_SUBJECT_IDS } from '../../src/types';
+import { Language } from '../../src/types';
 
-// ── Exam options ─────────────────────────────────────────────
+// ── Language options ─────────────────────────────────────────
 
-const EXAMS: {
-  id: ExamType;
+const LANGUAGES: {
+  id: Language;
+  label: string;
+  native: string;
   emoji: string;
-  title: string;
-  subtitle: string;
   desc: string;
-  color: string;
 }[] = [
   {
-    id: 'NEET',
-    emoji: '\uD83E\uDE7A',
-    title: 'NEET',
-    subtitle: 'Medical Entrance',
-    desc: '4 subjects \u2014 Physics, Chemistry, Botany, Zoology',
-    color: '#3B82F6',
+    id: 'en',
+    label: 'English',
+    native: 'English',
+    emoji: '\uD83C\uDDEC\uD83C\uDDE7',
+    desc: 'Questions, explanations & UI in English',
   },
   {
-    id: 'CUET',
-    emoji: '\uD83C\uDF93',
-    title: 'CUET',
-    subtitle: 'University Entrance',
-    desc: 'Pick up to 6 domain subjects + General Test',
-    color: '#8B5CF6',
-  },
-  {
-    id: 'BOTH',
-    emoji: '\uD83D\uDCAA',
-    title: 'Both',
-    subtitle: 'NEET + CUET',
-    desc: 'NEET 4 auto-included + pick CUET subjects',
-    color: '#F59E0B',
+    id: 'te',
+    label: 'Telugu',
+    native: '\u0C24\u0C46\u0C32\u0C41\u0C17\u0C41',
+    emoji: '\uD83C\uDDEE\uD83C\uDDF3',
+    desc: 'Questions & explanations in Telugu, UI in English',
   },
 ];
 
-export default function ExamPickerScreen() {
+export default function LanguageScreen() {
   const { colors, mode } = useTheme();
   const router = useRouter();
   const { data, update, setStep } = useOnboarding();
 
-  const [selected, setSelected] = useState<ExamType | null>(data.exam);
+  const [selected, setSelected] = useState<Language>(data.language || 'en');
 
   useEffect(() => {
-    setStep(3);
+    setStep(5);
   }, []);
 
-  const handleSelect = (id: ExamType) => {
+  const handleSelect = (id: Language) => {
     setSelected(id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
 
   const handleContinue = () => {
-    if (!selected) return;
-
-    // Auto-add NEET subjects when applicable
-    const autoSubjects =
-      selected === 'NEET' || selected === 'BOTH'
-        ? [...NEET_SUBJECT_IDS]
-        : [];
-
-    update({ exam: selected, subjects: autoSubjects });
-
-    if (selected === 'NEET') {
-      // NEET has fixed subjects — skip subject picker, go to language
-      router.push('/(onboarding)/language');
-    } else {
-      router.push('/(onboarding)/subject-picker');
-    }
+    update({ language: selected });
+    router.push('/setup/invite-gang');
   };
 
   // Entrance animation
@@ -115,12 +91,12 @@ export default function ExamPickerScreen() {
     ]).start();
   }, []);
 
-  // Per-card stagger animations
-  const cardAnims = useRef(EXAMS.map(() => new Animated.Value(0))).current;
+  // Card stagger
+  const cardAnims = useRef(LANGUAGES.map(() => new Animated.Value(0))).current;
 
   useEffect(() => {
     Animated.stagger(
-      120,
+      140,
       cardAnims.map((anim) =>
         Animated.spring(anim, {
           toValue: 1,
@@ -144,19 +120,19 @@ export default function ExamPickerScreen() {
         >
           {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.headerEmoji}>{'\uD83D\uDCDA'}</Text>
+            <Text style={styles.headerEmoji}>{'\uD83C\uDF10'}</Text>
             <Text style={[Typography.h1, { color: colors.text }]}>
-              What are you{'\n'}preparing for?
+              Your language
             </Text>
-            <HandwrittenText variant="hand" rotation={-1}>
-              pick your exam...
+            <HandwrittenText variant="hand" rotation={1}>
+              you can switch anytime!
             </HandwrittenText>
           </View>
 
-          {/* Exam Cards */}
+          {/* Language Cards */}
           <View style={styles.cards}>
-            {EXAMS.map((exam, index) => {
-              const isActive = selected === exam.id;
+            {LANGUAGES.map((lang, index) => {
+              const isActive = selected === lang.id;
               const cardScale = cardAnims[index].interpolate({
                 inputRange: [0, 1],
                 outputRange: [0.85, 1],
@@ -164,53 +140,51 @@ export default function ExamPickerScreen() {
 
               return (
                 <Animated.View
-                  key={exam.id}
+                  key={lang.id}
                   style={{
                     opacity: cardAnims[index],
                     transform: [{ scale: cardScale }],
                   }}
                 >
                   <Pressable
-                    onPress={() => handleSelect(exam.id)}
+                    onPress={() => handleSelect(lang.id)}
                     style={[
-                      styles.examCard,
+                      styles.langCard,
                       {
                         backgroundColor: isActive
-                          ? exam.color + '12'
+                          ? colors.primary + '12'
                           : colors.surface,
                         borderColor: isActive
-                          ? exam.color
+                          ? colors.primary
                           : colors.surfaceBorder,
                         borderWidth: isActive ? 2 : 1,
                         ...(isActive ? Shadows.puffy : {}),
                       },
                     ]}
                   >
-                    <Text style={styles.cardEmoji}>{exam.emoji}</Text>
+                    <Text style={styles.langEmoji}>{lang.emoji}</Text>
 
-                    <View style={styles.cardText}>
-                      <View style={styles.cardTitleRow}>
+                    <View style={styles.langText}>
+                      <View style={styles.langTitleRow}>
                         <Text
                           style={[
                             Typography.h2,
                             {
-                              color: isActive ? exam.color : colors.text,
+                              color: isActive ? colors.primary : colors.text,
                               fontSize: 22,
                             },
                           ]}
                         >
-                          {exam.title}
+                          {lang.native}
                         </Text>
                         {isActive && (
                           <View
                             style={[
                               styles.checkBadge,
-                              { backgroundColor: exam.color },
+                              { backgroundColor: colors.primary },
                             ]}
                           >
-                            <Text style={styles.checkMark}>
-                              {'\u2713'}
-                            </Text>
+                            <Text style={styles.checkMark}>{'\u2713'}</Text>
                           </View>
                         )}
                       </View>
@@ -218,24 +192,10 @@ export default function ExamPickerScreen() {
                       <Text
                         style={[
                           Typography.bodySm,
-                          {
-                            color: isActive
-                              ? exam.color + 'CC'
-                              : colors.textSecondary,
-                            fontFamily: 'PlusJakartaSans_600SemiBold',
-                          },
+                          { color: colors.textTertiary },
                         ]}
                       >
-                        {exam.subtitle}
-                      </Text>
-
-                      <Text
-                        style={[
-                          Typography.bodySm,
-                          { color: colors.textTertiary, marginTop: 2 },
-                        ]}
-                      >
-                        {exam.desc}
+                        {lang.desc}
                       </Text>
                     </View>
                   </Pressable>
@@ -244,19 +204,21 @@ export default function ExamPickerScreen() {
             })}
           </View>
 
+          {/* Note */}
+          <View style={styles.noteWrap}>
+            <StickyNote color="teal" rotation={-0.8} delay={200}>
+              <HandwrittenText variant="handSm" color={colors.textSecondary}>
+                More languages coming soon! Hindi, Tamil, Kannada...
+              </HandwrittenText>
+            </StickyNote>
+          </View>
+
           {/* CTA */}
           <View style={styles.actions}>
             <PuffyButton
-              title={
-                selected === 'NEET'
-                  ? 'Continue'
-                  : selected
-                    ? 'Pick Subjects'
-                    : 'Select an exam'
-              }
-              icon={selected ? '\u2728' : undefined}
+              title="Continue"
+              icon={'\u2728'}
               onPress={handleContinue}
-              disabled={!selected}
             />
           </View>
         </Animated.View>
@@ -274,17 +236,16 @@ const styles = StyleSheet.create({
     gap: Spacing.md,
     paddingHorizontal: Spacing.xl,
     paddingTop: Spacing.xxl,
-    paddingBottom: Spacing.lg,
+    paddingBottom: Spacing.xl,
   },
   headerEmoji: {
     fontSize: 48,
   },
   cards: {
-    flex: 1,
     paddingHorizontal: Spacing.xl,
     gap: Spacing.lg,
   },
-  examCard: {
+  langCard: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.lg,
@@ -292,14 +253,14 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.xl,
     borderRadius: BorderRadius.xl,
   },
-  cardEmoji: {
-    fontSize: 40,
+  langEmoji: {
+    fontSize: 36,
   },
-  cardText: {
+  langText: {
     flex: 1,
-    gap: 2,
+    gap: 4,
   },
-  cardTitleRow: {
+  langTitleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -316,7 +277,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
   },
+  noteWrap: {
+    paddingHorizontal: Spacing.xl,
+    marginTop: Spacing.xl,
+  },
   actions: {
+    flex: 1,
+    justifyContent: 'flex-end',
     alignItems: 'center',
     paddingHorizontal: Spacing.xl,
     paddingVertical: Spacing.xl,

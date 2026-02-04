@@ -76,7 +76,7 @@ export default function SubjectPickerScreen() {
     }
 
     update({ subjects: finalSubjects as any });
-    router.push('/(onboarding)/language');
+    router.push('/setup/language');
   };
 
   // Entrance animation

@@ -74,11 +74,11 @@ export default function RootLayout() {
 
     const inAuthGroup = segments[0] === '(auth)';
     const inAuthCallback = segments[0] === 'auth';
-    const inOnboarding = segments[0] === '(onboarding)';
+    const inSetup = segments[0] === 'setup';
 
     if (authState.status === 'authenticated' && (inAuthGroup || inAuthCallback)) {
       // Signed in but on pre-auth screens → go to post-auth onboarding
-      router.replace('/(onboarding)/welcome');
+      router.replace('/setup/welcome');
     } else if (authState.status === 'unauthenticated' && !inAuthGroup && !inAuthCallback) {
       // Not signed in and not on auth screens → go to pre-auth
       router.replace('/(auth)/onboarding');

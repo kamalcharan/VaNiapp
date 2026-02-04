@@ -70,7 +70,7 @@ export default function ProfileDetailsScreen() {
       college: college.trim(),
       city: city.trim(),
     });
-    router.push('/(onboarding)/exam-picker');
+    router.push('/setup/exam-picker');
   };
 
   // Entrance animations

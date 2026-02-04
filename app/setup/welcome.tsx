@@ -151,7 +151,7 @@ export default function WelcomeScreen() {
             <PuffyButton
               title="Let's Go"
               icon={'\u2728'}
-              onPress={() => router.push('/(onboarding)/profile-details')}
+              onPress={() => router.push('/setup/profile-details')}
             />
           </Animated.View>
         </View>
