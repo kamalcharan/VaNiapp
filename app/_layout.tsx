@@ -1,7 +1,6 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { View, ActivityIndicator, useColorScheme } from 'react-native';
+import { Slot } from 'expo-router';
+import { View, ActivityIndicator } from 'react-native';
 import {
   useFonts,
   PlusJakartaSans_300Light,
@@ -12,8 +11,6 @@ import {
 import { Caveat_700Bold } from '@expo-google-fonts/caveat';
 import { IndieFlower_400Regular } from '@expo-google-fonts/indie-flower';
 import * as NativeSplashScreen from 'expo-splash-screen';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Colors } from '../src/constants/theme';
 import { ThemeContext, ThemeContextValue } from '../src/hooks/useTheme';
 import { ThemeMode } from '../src/types';
@@ -22,8 +19,7 @@ import { SplashScreen } from '../src/components/SplashScreen';
 NativeSplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const systemScheme = useColorScheme();
-  const [themeMode, setThemeMode] = useState<ThemeMode>(systemScheme === 'dark' ? 'dark' : 'light');
+  const [themeMode, setThemeMode] = useState<ThemeMode>('light');
   const [showSplash, setShowSplash] = useState(true);
 
   const [fontsLoaded, fontError] = useFonts({
@@ -56,8 +52,8 @@ export default function RootLayout() {
 
   if (!fontsLoaded && !fontError) {
     return (
-      <View style={{ flex: 1, backgroundColor: Colors.light.background, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color={Colors.light.primary} />
+      <View style={{ flex: 1, backgroundColor: '#fdfcf0', justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#2563EB" />
       </View>
     );
   }
@@ -70,25 +66,9 @@ export default function RootLayout() {
     );
   }
 
-  const colors = themeValue.colors;
-
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.background }}>
-      <SafeAreaProvider>
-        <ThemeContext.Provider value={themeValue}>
-          <StatusBar style={themeMode === 'dark' ? 'light' : 'dark'} />
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              contentStyle: { backgroundColor: colors.background },
-              animation: 'fade',
-            }}
-          >
-            <Stack.Screen name="index" />
-            <Stack.Screen name="(auth)" />
-          </Stack>
-        </ThemeContext.Provider>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <ThemeContext.Provider value={themeValue}>
+      <Slot />
+    </ThemeContext.Provider>
   );
 }
