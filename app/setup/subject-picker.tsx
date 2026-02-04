@@ -18,6 +18,7 @@ import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
+import { useToast } from '../../src/components/ui/Toast';
 import {
   CuetSubjectId,
   SubjectCategory,
@@ -38,6 +39,7 @@ export default function SubjectPickerScreen() {
   const { colors, mode } = useTheme();
   const router = useRouter();
   const { data, update, setStep } = useOnboarding();
+  const toast = useToast();
 
   const isBoth = data.exam === 'BOTH';
   const [selected, setSelected] = useState<CuetSubjectId[]>([]);
@@ -76,6 +78,7 @@ export default function SubjectPickerScreen() {
     }
 
     update({ subjects: finalSubjects as any });
+    toast.show('success', `${selected.length} subjects picked`);
     router.push('/setup/language');
   };
 

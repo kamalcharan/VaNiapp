@@ -8,7 +8,7 @@ import {
   Share,
   Animated,
   Easing,
-  Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,9 +18,11 @@ import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
 import { PuffyButton } from '../../src/components/ui/PuffyButton';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { ThemedDialog } from '../../src/components/ui/ThemedDialog';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
+import { useToast } from '../../src/components/ui/Toast';
 import { completeOnboarding, joinWithReferralCode } from '../../src/lib/database';
 import type { ExamType } from '../../src/types';
 
@@ -40,6 +42,8 @@ export default function InviteGangScreen() {
 
   const [inviteCode, setInviteCode] = useState('');
   const [saving, setSaving] = useState(false);
+  const [errorDialog, setErrorDialog] = useState({ visible: false, message: '' });
+  const toast = useToast();
 
   useEffect(() => {
     setStep(6);
@@ -64,7 +68,9 @@ export default function InviteGangScreen() {
     if (inviteCode.trim().length < 4) return;
     const ok = await joinWithReferralCode(inviteCode.trim());
     if (ok) {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      toast.show('success', 'Joined!', 'Welcome to the gang');
+    } else {
+      toast.show('error', 'Invalid code', 'Check the code and try again');
     }
     await handleFinish();
   };
@@ -83,12 +89,14 @@ export default function InviteGangScreen() {
         language: data.language,
       });
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      // Route protection in root layout will redirect to main app
-      // once it sees onboarding_completed = true
+      toast.show('success', 'All set!', "Let's go");
       router.replace('/');
     } catch (err: any) {
       setSaving(false);
-      Alert.alert('Oops', err?.message || 'Could not save. Please try again.');
+      setErrorDialog({
+        visible: true,
+        message: err?.message || 'Something went wrong. Please try again.',
+      });
     }
   };
 
@@ -235,6 +243,28 @@ export default function InviteGangScreen() {
           </View>
         </Animated.ScrollView>
       </SafeAreaView>
+
+      {/* Loading overlay */}
+      {saving && (
+        <View style={styles.loadingOverlay}>
+          <View style={[styles.loadingCard, { backgroundColor: colors.surface }]}>
+            <ActivityIndicator size="large" color={colors.primary} />
+            <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.md }]}>
+              Setting things up...
+            </Text>
+          </View>
+        </View>
+      )}
+
+      {/* Error dialog */}
+      <ThemedDialog
+        visible={errorDialog.visible}
+        title="Oops!"
+        emoji={'\uD83D\uDE15'}
+        message={errorDialog.message}
+        confirmLabel="Try again"
+        onConfirm={() => setErrorDialog({ visible: false, message: '' })}
+      />
     </DotGridBackground>
   );
 }
@@ -298,5 +328,23 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 14,
     textDecorationLine: 'underline',
+  },
+  loadingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 100,
+  },
+  loadingCard: {
+    paddingHorizontal: Spacing.xxl,
+    paddingVertical: Spacing.xl,
+    borderRadius: BorderRadius.xl,
+    alignItems: 'center',
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
   },
 });

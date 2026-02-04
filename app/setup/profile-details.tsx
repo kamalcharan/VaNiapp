@@ -20,6 +20,7 @@ import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
+import { useToast } from '../../src/components/ui/Toast';
 
 // ── Country codes ────────────────────────────────────────────
 
@@ -43,6 +44,7 @@ export default function ProfileDetailsScreen() {
   const { colors, mode } = useTheme();
   const router = useRouter();
   const { data, update, setStep } = useOnboarding();
+  const toast = useToast();
 
   const [phone, setPhone] = useState(data.phone);
   const [countryCode, setCountryCode] = useState(data.countryCode || '+91');
@@ -70,6 +72,7 @@ export default function ProfileDetailsScreen() {
       college: college.trim(),
       city: city.trim(),
     });
+    toast.show('success', 'Details saved', 'Now pick your exam!');
     router.push('/setup/exam-picker');
   };
 

@@ -52,8 +52,8 @@ interface OnboardingPayload {
 
 /**
  * Save all onboarding data in one go:
- *  1. Update med_profiles with phone, college, city, exam, language
- *  2. Upsert med_user_subjects
+ *  1. Upsert med_profiles with phone, college, city, exam, language
+ *  2. Replace med_user_subjects
  *  3. Mark onboarding_completed = true
  */
 export async function completeOnboarding(payload: OnboardingPayload): Promise<void> {
@@ -62,10 +62,14 @@ export async function completeOnboarding(payload: OnboardingPayload): Promise<vo
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error('Not authenticated.');
 
-  // 1. Update profile
+  // 1. Upsert profile (handles users who signed up before migration)
   const { error: profileErr } = await supabase
     .from('med_profiles')
-    .update({
+    .upsert({
+      id: user.id,
+      display_name: user.user_metadata?.full_name || user.user_metadata?.name || '',
+      avatar_url: user.user_metadata?.avatar_url || user.user_metadata?.picture || '',
+      email: user.email || '',
       phone: payload.phone,
       country_code: payload.countryCode,
       college: payload.college,
@@ -73,8 +77,7 @@ export async function completeOnboarding(payload: OnboardingPayload): Promise<vo
       exam: payload.exam,
       language: payload.language,
       onboarding_completed: true,
-    })
-    .eq('id', user.id);
+    }, { onConflict: 'id' });
 
   if (profileErr) throw profileErr;
 

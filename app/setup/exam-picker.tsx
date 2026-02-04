@@ -21,6 +21,7 @@ import {
   Shadows,
 } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
+import { useToast } from '../../src/components/ui/Toast';
 import { ExamType, NEET_SUBJECT_IDS } from '../../src/types';
 
 // ── Exam options ─────────────────────────────────────────────
@@ -67,6 +68,7 @@ export default function ExamPickerScreen() {
   const { colors, mode } = useTheme();
   const router = useRouter();
   const { data, update, setStep } = useOnboarding();
+  const toast = useToast();
 
   const [selected, setSelected] = useState<ExamType | null>(data.exam);
 
@@ -90,10 +92,12 @@ export default function ExamPickerScreen() {
 
     update({ exam: selected, subjects: autoSubjects });
 
+    const label = selected === 'BOTH' ? 'NEET + CUET' : selected;
     if (selected === 'NEET') {
-      // NEET has fixed subjects — skip subject picker, go to language
+      toast.show('success', `${label} it is!`, 'Subjects auto-picked');
       router.push('/setup/language');
     } else {
+      toast.show('success', `${label} it is!`, 'Now pick your subjects');
       router.push('/setup/subject-picker');
     }
   };

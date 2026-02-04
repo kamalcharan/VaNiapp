@@ -5,6 +5,7 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { ExamType, Language, SubjectId } from '../../src/types';
 import { getProfile } from '../../src/lib/database';
 import { supabase } from '../../src/lib/supabase';
+import { ToastProvider } from '../../src/components/ui/Toast';
 
 // ── Shared onboarding state ──────────────────────────────────
 
@@ -113,18 +114,20 @@ export default function OnboardingLayout() {
 
   return (
     <OnboardingContext.Provider value={{ data, update, step, setStep }}>
-      <View style={styles.root}>
-        {/* Progress bar */}
-        <View style={[styles.trackBar, { backgroundColor: colors.surfaceBorder }]}>
-          <Animated.View
-            style={[
-              styles.progressBar,
-              { width: progressWidth, backgroundColor: colors.primary },
-            ]}
-          />
+      <ToastProvider>
+        <View style={styles.root}>
+          {/* Progress bar */}
+          <View style={[styles.trackBar, { backgroundColor: colors.surfaceBorder }]}>
+            <Animated.View
+              style={[
+                styles.progressBar,
+                { width: progressWidth, backgroundColor: colors.primary },
+              ]}
+            />
+          </View>
+          <Slot />
         </View>
-        <Slot />
-      </View>
+      </ToastProvider>
     </OnboardingContext.Provider>
   );
 }

@@ -22,6 +22,7 @@ import {
   Shadows,
 } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
+import { useToast } from '../../src/components/ui/Toast';
 import { Language } from '../../src/types';
 
 // ── Language options ─────────────────────────────────────────
@@ -55,6 +56,7 @@ export default function LanguageScreen() {
   const { colors, mode } = useTheme();
   const router = useRouter();
   const { data, update, setStep } = useOnboarding();
+  const toast = useToast();
 
   const [selected, setSelected] = useState<Language>(data.language || 'en');
 
@@ -69,6 +71,8 @@ export default function LanguageScreen() {
 
   const handleContinue = () => {
     update({ language: selected });
+    const langName = LANGUAGES.find((l) => l.id === selected)?.label || selected;
+    toast.show('success', `${langName} selected`, 'Almost done!');
     router.push('/setup/invite-gang');
   };
 
