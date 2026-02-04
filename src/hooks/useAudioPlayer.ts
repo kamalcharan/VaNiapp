@@ -1,75 +1,79 @@
 import { useEffect, useRef, useCallback } from 'react';
-import { createAudioPlayer, setAudioModeAsync, AudioPlayer } from 'expo-audio';
+import { Audio } from 'expo-av';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
 import { TRACKS } from '../constants/tracks';
 import { pause, play, setTrack, skipNext, skipPrev, stopMusic } from '../store/slices/musicSlice';
 
 /**
- * Hook that manages expo-audio AudioPlayer playback based on Redux music state.
+ * Hook that manages expo-av Audio.Sound playback based on Redux music state.
  * Call this once in a screen that needs music playback (e.g. practice-question).
+ *
+ * TODO: Migrate to expo-audio (createAudioPlayer) on next native build.
+ * expo-av is deprecated in SDK 54 but the current APK still has its native module.
  */
 export function useAudioPlayer() {
   const dispatch = useDispatch();
   const { currentTrackIndex, isPlaying } = useSelector((state: RootState) => state.music);
-  const playerRef = useRef<AudioPlayer | null>(null);
+  const soundRef = useRef<Audio.Sound | null>(null);
   const loadedTrackIndex = useRef<number | null>(null);
 
   // Configure audio session once
   useEffect(() => {
-    setAudioModeAsync({
-      playsInSilentMode: true,
-      shouldPlayInBackground: true,
-      interruptionMode: 'duckOthers',
+    Audio.setAudioModeAsync({
+      playsInSilentModeIOS: true,
+      staysActiveInBackground: true,
+      shouldDuckAndroid: true,
     });
 
     return () => {
       // Cleanup on unmount
-      if (playerRef.current) {
-        playerRef.current.remove();
-        playerRef.current = null;
+      if (soundRef.current) {
+        soundRef.current.unloadAsync();
+        soundRef.current = null;
       }
     };
   }, []);
 
   // Load / unload track when index changes
   useEffect(() => {
-    // Remove previous player
-    if (playerRef.current) {
-      playerRef.current.remove();
-      playerRef.current = null;
-      loadedTrackIndex.current = null;
-    }
-
-    if (currentTrackIndex === null) return;
-
-    const track = TRACKS[currentTrackIndex];
-    if (!track) return;
-
-    try {
-      const player = createAudioPlayer({ uri: track.uri });
-      player.loop = true;
-      player.volume = 0.5;
-      playerRef.current = player;
-      loadedTrackIndex.current = currentTrackIndex;
-
-      if (isPlaying) {
-        player.play();
+    const loadTrack = async () => {
+      // Unload previous
+      if (soundRef.current) {
+        await soundRef.current.unloadAsync();
+        soundRef.current = null;
+        loadedTrackIndex.current = null;
       }
-    } catch {
-      // Track failed to load — silently ignore for POC
-      console.warn(`Failed to load track: ${track.title}`);
-    }
+
+      if (currentTrackIndex === null) return;
+
+      const track = TRACKS[currentTrackIndex];
+      if (!track) return;
+
+      try {
+        const { sound } = await Audio.Sound.createAsync(
+          { uri: track.uri },
+          { shouldPlay: isPlaying, isLooping: true, volume: 0.5 }
+        );
+        soundRef.current = sound;
+        loadedTrackIndex.current = currentTrackIndex;
+      } catch {
+        // Track failed to load — silently ignore for POC
+        console.warn(`Failed to load track: ${track.title}`);
+      }
+    };
+
+    loadTrack();
   }, [currentTrackIndex]);
 
   // Play / pause when isPlaying changes (but track stays the same)
   useEffect(() => {
-    if (!playerRef.current || loadedTrackIndex.current !== currentTrackIndex) return;
+    if (!soundRef.current || loadedTrackIndex.current !== currentTrackIndex) return;
 
     if (isPlaying) {
-      playerRef.current.play();
+      soundRef.current.playAsync().catch(() => {});
     } else {
-      playerRef.current.pause();
+      soundRef.current.pauseAsync().catch(() => {});
     }
   }, [isPlaying, currentTrackIndex]);
 
