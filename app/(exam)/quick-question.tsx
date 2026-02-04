@@ -256,7 +256,7 @@ export default function QuickQuestionScreen() {
             <View style={styles.headerActions}>
               <Pressable
                 onPress={() => setShowElimination((p) => !p)}
-                hitSlop={6}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                 style={[
                   styles.actionBadge,
                   {
@@ -276,7 +276,7 @@ export default function QuickQuestionScreen() {
               </Pressable>
               <Pressable
                 onPress={() => { dispatch(toggleBookmark(question.id)); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); toast.show('success', isBookmarked ? 'Bookmark removed' : 'Question bookmarked'); }}
-                hitSlop={6}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                 style={[
                   styles.actionBadge,
                   {
@@ -297,7 +297,7 @@ export default function QuickQuestionScreen() {
               {showFeedback && !isCorrect && (
                 <Pressable
                   onPress={() => setShowVaniSheet(true)}
-                  hitSlop={6}
+                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                   style={[
                     styles.actionBadge,
                     {
