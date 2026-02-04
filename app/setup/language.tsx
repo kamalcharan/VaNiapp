@@ -26,6 +26,8 @@ import { Language } from '../../src/types';
 
 // ── Language options ─────────────────────────────────────────
 
+const ACTIVE_LIGHT_BG = '#E8F0FE';
+
 const LANGUAGES: {
   id: Language;
   label: string;
@@ -152,7 +154,7 @@ export default function LanguageScreen() {
                       styles.langCard,
                       {
                         backgroundColor: isActive
-                          ? colors.primary + '12'
+                          ? ACTIVE_LIGHT_BG
                           : colors.surface,
                         borderColor: isActive
                           ? colors.primary

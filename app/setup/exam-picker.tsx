@@ -32,6 +32,7 @@ const EXAMS: {
   subtitle: string;
   desc: string;
   color: string;
+  lightBg: string;
 }[] = [
   {
     id: 'NEET',
@@ -40,6 +41,7 @@ const EXAMS: {
     subtitle: 'Medical Entrance',
     desc: '4 subjects \u2014 Physics, Chemistry, Botany, Zoology',
     color: '#3B82F6',
+    lightBg: '#E8F0FE',
   },
   {
     id: 'CUET',
@@ -48,6 +50,7 @@ const EXAMS: {
     subtitle: 'University Entrance',
     desc: 'Pick up to 6 domain subjects + General Test',
     color: '#8B5CF6',
+    lightBg: '#EDEBFE',
   },
   {
     id: 'BOTH',
@@ -56,6 +59,7 @@ const EXAMS: {
     subtitle: 'NEET + CUET',
     desc: 'NEET 4 auto-included + pick CUET subjects',
     color: '#F59E0B',
+    lightBg: '#FEF3E0',
   },
 ];
 
@@ -176,7 +180,7 @@ export default function ExamPickerScreen() {
                       styles.examCard,
                       {
                         backgroundColor: isActive
-                          ? exam.color + '12'
+                          ? exam.lightBg
                           : colors.surface,
                         borderColor: isActive
                           ? exam.color
@@ -220,7 +224,7 @@ export default function ExamPickerScreen() {
                           Typography.bodySm,
                           {
                             color: isActive
-                              ? exam.color + 'CC'
+                              ? exam.color
                               : colors.textSecondary,
                             fontFamily: 'PlusJakartaSans_600SemiBold',
                           },
