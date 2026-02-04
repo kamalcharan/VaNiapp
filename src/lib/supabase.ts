@@ -21,25 +21,42 @@ export const supabase = isSupabaseConfigured
 
 export const isSupabaseReady = () => isSupabaseConfigured && supabase !== null;
 
+// PKCE helpers — inline to avoid dependency on internal expo-auth-session modules
+const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+function generateVerifier(size = 128): string {
+  const randomValues = new Uint8Array(size);
+  // crypto.getRandomValues is available in React Native via hermes
+  crypto.getRandomValues(randomValues);
+  return Array.from(randomValues)
+    .map((b) => CHARSET[b % CHARSET.length])
+    .join('');
+}
+
+async function generateChallenge(verifier: string): Promise<string> {
+  // Use SubtleCrypto (available in Hermes with RN 0.81+)
+  const encoder = new TextEncoder();
+  const data = encoder.encode(verifier);
+  const digest = await crypto.subtle.digest('SHA-256', data);
+  const base64 = btoa(String.fromCharCode(...new Uint8Array(digest)));
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+}
+
 /**
  * Sign in with Google via Supabase OAuth + expo-auth-session.
- * Dependencies are lazy-loaded to avoid native module init at startup.
+ * expo-auth-session is lazy-loaded to avoid native module init at startup.
  */
 export async function signInWithGoogle() {
   if (!supabase) {
     throw new Error('Supabase is not configured. Check your .env file.');
   }
 
-  // Lazy-load to avoid native module initialization at app startup
+  // PKCE: generate verifier and challenge
+  const codeVerifier = generateVerifier();
+  const codeChallenge = await generateChallenge(codeVerifier);
+
+  // Lazy-load expo-auth-session (only needed for browser + redirect)
   const AuthSession = require('expo-auth-session');
-  const PKCE = require('expo-auth-session/build/PKCE');
-
-  // PKCE flow: generate verifier and challenge in one call
-  const { codeVerifier, codeChallenge } = await PKCE.buildCodeAsync();
-
-  // Build the redirect URI that Expo Go can handle
-  // In Expo Go: exp://192.168.x.x:port/--/auth/callback
-  // In standalone: vani://auth/callback
   const redirectUri = AuthSession.makeRedirectUri({ path: 'auth/callback' });
 
   // Get the OAuth URL from Supabase
