@@ -2,7 +2,6 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View, ActivityIndicator, useColorScheme } from 'react-native';
-import { Provider } from 'react-redux';
 import {
   useFonts,
   PlusJakartaSans_300Light,
@@ -15,13 +14,10 @@ import { IndieFlower_400Regular } from '@expo-google-fonts/indie-flower';
 import * as NativeSplashScreen from 'expo-splash-screen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { store, rehydrateStore } from '../src/store';
 import { Colors } from '../src/constants/theme';
 import { ThemeContext, ThemeContextValue } from '../src/hooks/useTheme';
 import { ThemeMode } from '../src/types';
 import { SplashScreen } from '../src/components/SplashScreen';
-import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
-import { ToastProvider } from '../src/components/ui/Toast';
 
 NativeSplashScreen.preventAutoHideAsync();
 
@@ -44,11 +40,6 @@ export default function RootLayout() {
       NativeSplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
-
-  // Rehydrate persisted state from AsyncStorage while splash is showing
-  useEffect(() => {
-    rehydrateStore();
-  }, []);
 
   const toggleTheme = useCallback(() => {
     setThemeMode((prev) => (prev === 'light' ? 'dark' : 'light'));
@@ -84,33 +75,19 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.background }}>
       <SafeAreaProvider>
-        <Provider store={store}>
-          <ThemeContext.Provider value={themeValue}>
-              <StatusBar style={themeMode === 'dark' ? 'light' : 'dark'} />
-              <View style={{ flex: 1 }}>
-                <Stack
-                  screenOptions={{
-                    headerShown: false,
-                    contentStyle: { backgroundColor: colors.background },
-                    animation: 'fade',
-                  }}
-                >
-                  <Stack.Screen name="index" />
-                  <Stack.Screen name="(auth)" />
-                  <Stack.Screen name="(tabs)" />
-                  <Stack.Screen name="(exam)" options={{ animation: 'slide_from_right' }} />
-                  <Stack.Screen
-                    name="edit-profile"
-                    options={{
-                      presentation: 'modal',
-                      animation: 'slide_from_bottom',
-                    }}
-                  />
-                </Stack>
-                <GlobalMusicOverlay />
-              </View>
-          </ThemeContext.Provider>
-        </Provider>
+        <ThemeContext.Provider value={themeValue}>
+          <StatusBar style={themeMode === 'dark' ? 'light' : 'dark'} />
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: { backgroundColor: colors.background },
+              animation: 'fade',
+            }}
+          >
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(auth)" />
+          </Stack>
+        </ThemeContext.Provider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

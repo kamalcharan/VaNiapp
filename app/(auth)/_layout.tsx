@@ -9,17 +9,9 @@ export default function AuthLayout() {
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: colors.background },
-        animation: 'slide_from_right',
       }}
     >
       <Stack.Screen name="onboarding" options={{ animation: 'fade' }} />
-      <Stack.Screen name="sign-up" />
-      <Stack.Screen name="sign-in" />
-      <Stack.Screen name="profile-setup" />
-      <Stack.Screen name="squad-pitch" />
-      <Stack.Screen name="squad-setup" />
-      <Stack.Screen name="subject-picker" />
-      <Stack.Screen name="trial-welcome" options={{ animation: 'fade' }} />
     </Stack>
   );
 }

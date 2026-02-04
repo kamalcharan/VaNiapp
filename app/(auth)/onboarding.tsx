@@ -10,7 +10,6 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
@@ -25,7 +24,6 @@ const logo = require('../../assets/logo.png');
 
 export default function OnboardingScreen() {
   const { colors } = useTheme();
-  const router = useRouter();
   const flatListRef = useRef<FlatList>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -121,7 +119,7 @@ export default function OnboardingScreen() {
   };
 
   const handleGetStarted = () => {
-    router.push('/(auth)/sign-in');
+    // TODO: wire to Google Auth when ready
   };
 
   // ─── Page 1: The Cover ───────────────────────────────────
