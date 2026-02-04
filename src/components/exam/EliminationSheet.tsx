@@ -23,9 +23,11 @@ interface Props {
 export function EliminationSheet({ visible, onClose, eliminationText }: Props) {
   const { colors } = useTheme();
   const slideAnim = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
+  const isVisible = visible === true;
+  const safeText = typeof eliminationText === 'string' ? eliminationText : '';
 
   useEffect(() => {
-    if (visible) {
+    if (isVisible) {
       Animated.spring(slideAnim, {
         toValue: 0,
         useNativeDriver: true,
@@ -39,12 +41,12 @@ export function EliminationSheet({ visible, onClose, eliminationText }: Props) {
         useNativeDriver: true,
       }).start();
     }
-  }, [visible]);
+  }, [isVisible]);
 
-  if (!visible) return null;
+  if (!isVisible) return null;
 
   return (
-    <Modal transparent visible={visible} animationType="none" onRequestClose={onClose}>
+    <Modal transparent={true} visible={isVisible} animationType="none" onRequestClose={onClose}>
       <Pressable style={styles.overlay} onPress={onClose}>
         <Animated.View
           style={[
@@ -67,7 +69,7 @@ export function EliminationSheet({ visible, onClose, eliminationText }: Props) {
                 <Text style={[styles.headerIcon, { color: '#8B5CF6' }]}>{'\u2702\uFE0F'}</Text>
                 <Text style={[Typography.h3, { color: colors.text }]}>Elimination Technique</Text>
               </View>
-              <Pressable onPress={onClose} hitSlop={12}>
+              <Pressable onPress={onClose} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
                 <Text style={[styles.closeBtn, { color: colors.textSecondary }]}>Done</Text>
               </Pressable>
             </View>
@@ -79,7 +81,7 @@ export function EliminationSheet({ visible, onClose, eliminationText }: Props) {
               showsVerticalScrollIndicator={false}
             >
               <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-                {eliminationText}
+                {safeText}
               </Text>
             </ScrollView>
           </Pressable>

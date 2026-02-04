@@ -42,10 +42,12 @@ export function ConceptExplainerSheet({
   const [result, setResult] = useState<ConceptLookupResult | null>(null);
   const [loading, setLoading] = useState(false);
   const slideAnim = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
+  const isVisible = visible === true;
+  const safeTag = typeof conceptTag === 'string' ? conceptTag : '';
 
   // Animate open/close
   useEffect(() => {
-    if (visible) {
+    if (isVisible) {
       Animated.spring(slideAnim, {
         toValue: 0,
         useNativeDriver: true,
@@ -59,14 +61,14 @@ export function ConceptExplainerSheet({
         useNativeDriver: true,
       }).start();
     }
-  }, [visible]);
+  }, [isVisible]);
 
   // Fetch concept data when tag changes
   useEffect(() => {
-    if (!visible || !conceptTag) return;
+    if (!isVisible || !safeTag) return;
 
     // Try sync first
-    const syncResult = lookupConceptSync(conceptTag);
+    const syncResult = lookupConceptSync(safeTag);
     if (syncResult) {
       setResult(syncResult);
       setLoading(false);
@@ -77,7 +79,7 @@ export function ConceptExplainerSheet({
     let cancelled = false;
     setResult(null);
     setLoading(true);
-    lookupConcept(conceptTag, subjectId, chapterId, language)
+    lookupConcept(safeTag, subjectId, chapterId, language)
       .then((asyncResult) => {
         if (!cancelled) {
           setResult(asyncResult);
@@ -89,22 +91,22 @@ export function ConceptExplainerSheet({
       });
 
     return () => { cancelled = true; };
-  }, [visible, conceptTag]);
+  }, [isVisible, safeTag]);
 
   // Reset when closing
   useEffect(() => {
-    if (!visible) {
+    if (!isVisible) {
       setResult(null);
       setLoading(false);
     }
-  }, [visible]);
+  }, [isVisible]);
 
-  if (!visible) return null;
+  if (!isVisible) return null;
 
   const entry: ConceptEntry | null = result?.entry ?? null;
 
   return (
-    <Modal transparent visible={visible} animationType="none" onRequestClose={onClose}>
+    <Modal transparent={true} visible={isVisible} animationType="none" onRequestClose={onClose}>
       <Pressable style={styles.overlay} onPress={onClose}>
         <Animated.View
           style={[
@@ -125,7 +127,7 @@ export function ConceptExplainerSheet({
             <View style={styles.header}>
               <View style={{ flex: 1 }}>
                 <Text style={[Typography.h3, { color: colors.text }]}>
-                  {entry?.title ?? conceptTag.replace(/-/g, ' ')}
+                  {entry?.title ?? safeTag.replace(/-/g, ' ')}
                 </Text>
                 {result && result.source !== 'bundled' && (
                   <Text style={[styles.sourceTag, { color: colors.textTertiary }]}>
@@ -133,7 +135,7 @@ export function ConceptExplainerSheet({
                   </Text>
                 )}
               </View>
-              <Pressable onPress={onClose} hitSlop={12}>
+              <Pressable onPress={onClose} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
                 <Text style={[styles.closeBtn, { color: colors.textSecondary }]}>Done</Text>
               </Pressable>
             </View>

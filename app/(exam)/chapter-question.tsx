@@ -428,7 +428,7 @@ export default function ChapterQuestionScreen() {
       <EliminationSheet
         visible={showElimination}
         onClose={() => setShowElimination(false)}
-        eliminationText={language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique}
+        eliminationText={String((language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique) || '')}
       />
     </DotGridBackground>
   );
