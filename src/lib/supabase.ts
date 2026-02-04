@@ -32,21 +32,10 @@ export async function signInWithGoogle() {
 
   // Lazy-load to avoid native module initialization at app startup
   const AuthSession = require('expo-auth-session');
-  const Crypto = require('expo-crypto');
+  const PKCE = require('expo-auth-session/build/PKCE');
 
-  // PKCE flow: generate verifier and challenge
-  const codeVerifier = AuthSession.generateCodeVerifier();
-  const codeChallenge = await Crypto.digestStringAsync(
-    Crypto.CryptoDigestAlgorithm.SHA256,
-    codeVerifier,
-    { encoding: Crypto.CryptoEncoding.BASE64 }
-  );
-
-  // Make the challenge URL-safe base64
-  const codeChallengeUrlSafe = codeChallenge
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/, '');
+  // PKCE flow: generate verifier and challenge in one call
+  const { codeVerifier, codeChallenge } = await PKCE.buildCodeAsync();
 
   // Build the redirect URI that Expo Go can handle
   // In Expo Go: exp://192.168.x.x:port/--/auth/callback
@@ -59,7 +48,7 @@ export async function signInWithGoogle() {
     options: {
       redirectTo: redirectUri,
       queryParams: {
-        code_challenge: codeChallengeUrlSafe,
+        code_challenge: codeChallenge,
         code_challenge_method: 'S256',
       },
       skipBrowserRedirect: true,
