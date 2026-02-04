@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback, createContext, useContext } from 'react';
+import { useEffect, useState, useMemo, useCallback, useRef, createContext, useContext } from 'react';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import { View, ActivityIndicator } from 'react-native';
 import {
@@ -15,6 +15,7 @@ import { Colors } from '../src/constants/theme';
 import { ThemeContext, ThemeContextValue } from '../src/hooks/useTheme';
 import { ThemeMode } from '../src/types';
 import { SplashScreen } from '../src/components/SplashScreen';
+import { exchangeAuthCode } from '../src/lib/supabase';
 import {
   AuthState,
   initialAuthState,
@@ -66,6 +67,37 @@ export default function RootLayout() {
     })();
 
     return () => unsubscribe?.();
+  }, []);
+
+  // ── Deep link handler for auth callback ──
+  // The root layout is already mounted when the deep link fires,
+  // so it reliably receives the URL (unlike the callback screen
+  // which mounts AFTER the URL event has already been processed).
+  const authExchanged = useRef(false);
+
+  useEffect(() => {
+    const Linking = require('expo-linking');
+
+    const handleUrl = (event: { url: string }) => {
+      if (authExchanged.current) return;
+      try {
+        const parsed = Linking.parse(event.url);
+        if (parsed.path === 'auth/callback' || parsed.path === '--/auth/callback') {
+          const code = parsed.queryParams?.code;
+          if (code && typeof code === 'string') {
+            authExchanged.current = true;
+            exchangeAuthCode(code).catch(() => {
+              authExchanged.current = false;
+            });
+          }
+        }
+      } catch {
+        // ignore parse failures
+      }
+    };
+
+    const subscription = Linking.addEventListener('url', handleUrl);
+    return () => subscription?.remove?.();
   }, []);
 
   // Route protection: redirect based on auth status
