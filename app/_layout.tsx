@@ -86,7 +86,6 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <Provider store={store}>
           <ThemeContext.Provider value={themeValue}>
-            <ToastProvider>
               <StatusBar style={themeMode === 'dark' ? 'light' : 'dark'} />
               <View style={{ flex: 1 }}>
                 <Stack
@@ -110,7 +109,6 @@ export default function RootLayout() {
                 </Stack>
                 <GlobalMusicOverlay />
               </View>
-            </ToastProvider>
           </ThemeContext.Provider>
         </Provider>
       </SafeAreaProvider>
