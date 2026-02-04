@@ -43,8 +43,8 @@ async function generateChallenge(verifier: string): Promise<string> {
 }
 
 /**
- * Sign in with Google via Supabase OAuth + expo-auth-session.
- * expo-auth-session is lazy-loaded to avoid native module init at startup.
+ * Sign in with Google via Supabase OAuth.
+ * Uses expo-web-browser + expo-linking directly (no expo-auth-session).
  */
 export async function signInWithGoogle() {
   if (!supabase) {
@@ -55,9 +55,9 @@ export async function signInWithGoogle() {
   const codeVerifier = generateVerifier();
   const codeChallenge = await generateChallenge(codeVerifier);
 
-  // Lazy-load expo-auth-session (only needed for browser + redirect)
-  const AuthSession = require('expo-auth-session');
-  const redirectUri = AuthSession.makeRedirectUri({ path: 'auth/callback' });
+  // Build redirect URI using expo-linking (already installed via expo-router)
+  const Linking = require('expo-linking');
+  const redirectUri = Linking.createURL('auth/callback');
 
   // Get the OAuth URL from Supabase
   const { data, error } = await supabase.auth.signInWithOAuth({
@@ -76,8 +76,9 @@ export async function signInWithGoogle() {
     throw new Error(error?.message || 'Failed to get Google auth URL');
   }
 
-  // Open the browser for Google sign-in
-  const result = await AuthSession.openAuthSessionAsync(data.url, redirectUri);
+  // Open the browser for Google sign-in using expo-web-browser
+  const WebBrowser = require('expo-web-browser');
+  const result = await WebBrowser.openAuthSessionAsync(data.url, redirectUri);
 
   if (result.type !== 'success' || !result.url) {
     return { session: null, cancelled: result.type === 'cancel' || result.type === 'dismiss' };
