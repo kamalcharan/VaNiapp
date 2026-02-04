@@ -1,5 +1,5 @@
-import { useEffect, useState, useMemo, useCallback } from 'react';
-import { Slot } from 'expo-router';
+import { useEffect, useState, useMemo, useCallback, createContext, useContext } from 'react';
+import { Slot, useRouter, useSegments } from 'expo-router';
 import { View, ActivityIndicator } from 'react-native';
 import {
   useFonts,
@@ -15,12 +15,26 @@ import { Colors } from '../src/constants/theme';
 import { ThemeContext, ThemeContextValue } from '../src/hooks/useTheme';
 import { ThemeMode } from '../src/types';
 import { SplashScreen } from '../src/components/SplashScreen';
+import {
+  AuthState,
+  initialAuthState,
+  getInitialAuthState,
+  onAuthStateChange,
+} from '../src/lib/auth';
 
 NativeSplashScreen.preventAutoHideAsync();
+
+// Auth context so any screen can read auth state
+export const AuthContext = createContext<AuthState>(initialAuthState);
+export const useAuth = () => useContext(AuthContext);
 
 export default function RootLayout() {
   const [themeMode, setThemeMode] = useState<ThemeMode>('light');
   const [showSplash, setShowSplash] = useState(true);
+  const [authState, setAuthState] = useState<AuthState>(initialAuthState);
+
+  const router = useRouter();
+  const segments = useSegments();
 
   const [fontsLoaded, fontError] = useFonts({
     PlusJakartaSans_300Light,
@@ -31,12 +45,46 @@ export default function RootLayout() {
     IndieFlower_400Regular,
   });
 
+  // Load fonts → hide native splash
   useEffect(() => {
     if (fontsLoaded || fontError) {
       NativeSplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
 
+  // Initialize auth state + subscribe to changes
+  useEffect(() => {
+    let unsubscribe: () => void;
+
+    (async () => {
+      const initial = await getInitialAuthState();
+      setAuthState(initial);
+
+      unsubscribe = onAuthStateChange((newState) => {
+        setAuthState(newState);
+      });
+    })();
+
+    return () => unsubscribe?.();
+  }, []);
+
+  // Route protection: redirect based on auth status
+  useEffect(() => {
+    if (authState.status === 'loading' || showSplash) return;
+
+    const inAuthGroup = segments[0] === '(auth)';
+
+    if (authState.status === 'authenticated' && inAuthGroup) {
+      // User is signed in but still on auth screens → go to main app
+      // For now, just stay — post-auth onboarding comes next
+      // router.replace('/(tabs)');
+    } else if (authState.status === 'unauthenticated' && !inAuthGroup) {
+      // User is not signed in but on a protected screen → go to auth
+      router.replace('/(auth)/onboarding');
+    }
+  }, [authState.status, segments, showSplash]);
+
+  // Theme
   const toggleTheme = useCallback(() => {
     setThemeMode((prev) => (prev === 'light' ? 'dark' : 'light'));
   }, []);
@@ -50,6 +98,7 @@ export default function RootLayout() {
     [themeMode, toggleTheme]
   );
 
+  // Loading state while fonts load
   if (!fontsLoaded && !fontError) {
     return (
       <View style={{ flex: 1, backgroundColor: '#fdfcf0', justifyContent: 'center', alignItems: 'center' }}>
@@ -58,6 +107,7 @@ export default function RootLayout() {
     );
   }
 
+  // Animated splash
   if (showSplash) {
     return (
       <ThemeContext.Provider value={themeValue}>
@@ -67,8 +117,10 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeContext.Provider value={themeValue}>
-      <Slot />
-    </ThemeContext.Provider>
+    <AuthContext.Provider value={authState}>
+      <ThemeContext.Provider value={themeValue}>
+        <Slot />
+      </ThemeContext.Provider>
+    </AuthContext.Provider>
   );
 }
