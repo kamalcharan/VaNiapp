@@ -12,8 +12,7 @@ export default function AuthLayout() {
         animation: 'slide_from_right',
       }}
     >
-      <Stack.Screen name="welcome" />
-      <Stack.Screen name="onboarding" />
+      <Stack.Screen name="onboarding" options={{ animation: 'fade' }} />
       <Stack.Screen name="sign-up" />
       <Stack.Screen name="sign-in" />
       <Stack.Screen name="profile-setup" />
