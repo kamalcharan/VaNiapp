@@ -103,6 +103,51 @@ export async function completeOnboarding(payload: OnboardingPayload): Promise<vo
   }
 }
 
+// ── User subjects ───────────────────────────────────────────
+
+/** Get the current user's selected subject IDs. */
+export async function getUserSubjectIds(): Promise<string[]> {
+  if (!supabase) return [];
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return [];
+
+  const { data, error } = await supabase
+    .from('med_user_subjects')
+    .select('subject_id')
+    .eq('user_id', user.id);
+
+  if (error || !data) return [];
+  return data.map((row: any) => row.subject_id);
+}
+
+// ── Update profile ──────────────────────────────────────────
+
+/** Update specific profile fields. */
+export async function updateProfile(
+  fields: Partial<Pick<MedProfile, 'phone' | 'country_code' | 'college' | 'city' | 'exam' | 'language'>>
+): Promise<void> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Not authenticated.');
+
+  const { error } = await supabase
+    .from('med_profiles')
+    .update(fields)
+    .eq('id', user.id);
+
+  if (error) throw error;
+}
+
+// ── Sign out ────────────────────────────────────────────────
+
+/** Sign out the current user. */
+export async function signOut(): Promise<void> {
+  if (!supabase) return;
+  await supabase.auth.signOut();
+}
+
 // ── Referral codes ───────────────────────────────────────────
 
 /** Generate a 6-char referral code for the current user. */

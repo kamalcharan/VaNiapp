@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import {
   View,
   Text,
@@ -22,47 +22,8 @@ import {
 } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
 import { useToast } from '../../src/components/ui/Toast';
-import { ExamType, NEET_SUBJECT_IDS } from '../../src/types';
-
-// ── Exam options ─────────────────────────────────────────────
-
-const EXAMS: {
-  id: ExamType;
-  emoji: string;
-  title: string;
-  subtitle: string;
-  desc: string;
-  color: string;
-  lightBg: string;
-}[] = [
-  {
-    id: 'NEET',
-    emoji: '\uD83E\uDE7A',
-    title: 'NEET',
-    subtitle: 'Medical Entrance',
-    desc: '4 subjects \u2014 Physics, Chemistry, Botany, Zoology',
-    color: '#3B82F6',
-    lightBg: '#E8F0FE',
-  },
-  {
-    id: 'CUET',
-    emoji: '\uD83C\uDF93',
-    title: 'CUET',
-    subtitle: 'University Entrance',
-    desc: 'Pick up to 6 domain subjects + General Test',
-    color: '#8B5CF6',
-    lightBg: '#EDEBFE',
-  },
-  {
-    id: 'BOTH',
-    emoji: '\uD83D\uDCAA',
-    title: 'Both',
-    subtitle: 'NEET + CUET',
-    desc: 'NEET 4 auto-included + pick CUET subjects',
-    color: '#F59E0B',
-    lightBg: '#FEF3E0',
-  },
-];
+import { ExamType } from '../../src/types';
+import { getExams, getNeetSubjectIds, CatalogExam } from '../../src/lib/catalog';
 
 export default function ExamPickerScreen() {
   const { colors, mode } = useTheme();
@@ -71,9 +32,19 @@ export default function ExamPickerScreen() {
   const toast = useToast();
 
   const [selected, setSelected] = useState<ExamType | null>(data.exam);
+  const [exams, setExams] = useState<CatalogExam[]>([]);
+  const [neetSubjectIds, setNeetSubjectIds] = useState<string[]>([]);
 
   useEffect(() => {
     setStep(3);
+    (async () => {
+      const [examData, neetIds] = await Promise.all([
+        getExams(),
+        getNeetSubjectIds(),
+      ]);
+      setExams(examData);
+      setNeetSubjectIds(neetIds);
+    })();
   }, []);
 
   const handleSelect = (id: ExamType) => {
@@ -87,10 +58,10 @@ export default function ExamPickerScreen() {
     // Auto-add NEET subjects when applicable
     const autoSubjects =
       selected === 'NEET' || selected === 'BOTH'
-        ? [...NEET_SUBJECT_IDS]
+        ? [...neetSubjectIds]
         : [];
 
-    update({ exam: selected, subjects: autoSubjects });
+    update({ exam: selected, subjects: autoSubjects as any });
 
     const label = selected === 'BOTH' ? 'NEET + CUET' : selected;
     if (selected === 'NEET') {
@@ -123,10 +94,14 @@ export default function ExamPickerScreen() {
     ]).start();
   }, []);
 
-  // Per-card stagger animations
-  const cardAnims = useRef(EXAMS.map(() => new Animated.Value(0))).current;
+  // Per-card stagger animations (driven by catalog)
+  const cardAnims = useMemo(
+    () => exams.map(() => new Animated.Value(0)),
+    [exams]
+  );
 
   useEffect(() => {
+    if (cardAnims.length === 0) return;
     Animated.stagger(
       120,
       cardAnims.map((anim) =>
@@ -138,7 +113,7 @@ export default function ExamPickerScreen() {
         })
       )
     ).start();
-  }, []);
+  }, [cardAnims]);
 
   return (
     <DotGridBackground>
@@ -163,7 +138,7 @@ export default function ExamPickerScreen() {
 
           {/* Exam Cards */}
           <View style={styles.cards}>
-            {EXAMS.map((exam, index) => {
+            {exams.map((exam, index) => {
               const isActive = selected === exam.id;
               const cardScale = cardAnims[index].interpolate({
                 inputRange: [0, 1],
@@ -179,12 +154,12 @@ export default function ExamPickerScreen() {
                   }}
                 >
                   <Pressable
-                    onPress={() => handleSelect(exam.id)}
+                    onPress={() => handleSelect(exam.id as ExamType)}
                     style={[
                       styles.examCard,
                       {
                         backgroundColor: isActive
-                          ? exam.lightBg
+                          ? exam.light_bg
                           : colors.surface,
                         borderColor: isActive
                           ? exam.color
@@ -243,7 +218,7 @@ export default function ExamPickerScreen() {
                           { color: colors.textTertiary, marginTop: 2 },
                         ]}
                       >
-                        {exam.desc}
+                        {exam.description}
                       </Text>
                     </View>
                   </Pressable>

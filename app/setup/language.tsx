@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import {
   View,
   Text,
@@ -24,33 +24,9 @@ import {
 import { useOnboarding } from './_layout';
 import { useToast } from '../../src/components/ui/Toast';
 import { Language } from '../../src/types';
-
-// ── Language options ─────────────────────────────────────────
+import { getLanguages, CatalogLanguage } from '../../src/lib/catalog';
 
 const ACTIVE_LIGHT_BG = '#E8F0FE';
-
-const LANGUAGES: {
-  id: Language;
-  label: string;
-  native: string;
-  emoji: string;
-  desc: string;
-}[] = [
-  {
-    id: 'en',
-    label: 'English',
-    native: 'English',
-    emoji: '\uD83C\uDDEC\uD83C\uDDE7',
-    desc: 'Questions, explanations & UI in English',
-  },
-  {
-    id: 'te',
-    label: 'Telugu',
-    native: '\u0C24\u0C46\u0C32\u0C41\u0C17\u0C41',
-    emoji: '\uD83C\uDDEE\uD83C\uDDF3',
-    desc: 'Questions & explanations in Telugu, UI in English',
-  },
-];
 
 export default function LanguageScreen() {
   const { colors, mode } = useTheme();
@@ -59,9 +35,14 @@ export default function LanguageScreen() {
   const toast = useToast();
 
   const [selected, setSelected] = useState<Language>(data.language || 'en');
+  const [languages, setLanguages] = useState<CatalogLanguage[]>([]);
 
   useEffect(() => {
     setStep(5);
+    (async () => {
+      const langData = await getLanguages();
+      setLanguages(langData);
+    })();
   }, []);
 
   const handleSelect = (id: Language) => {
@@ -71,7 +52,7 @@ export default function LanguageScreen() {
 
   const handleContinue = () => {
     update({ language: selected });
-    const langName = LANGUAGES.find((l) => l.id === selected)?.label || selected;
+    const langName = languages.find((l) => l.id === selected)?.label || selected;
     toast.show('success', `${langName} selected`, 'Almost done!');
     router.push('/setup/invite-gang');
   };
@@ -97,10 +78,14 @@ export default function LanguageScreen() {
     ]).start();
   }, []);
 
-  // Card stagger
-  const cardAnims = useRef(LANGUAGES.map(() => new Animated.Value(0))).current;
+  // Card stagger (driven by catalog)
+  const cardAnims = useMemo(
+    () => languages.map(() => new Animated.Value(0)),
+    [languages]
+  );
 
   useEffect(() => {
+    if (cardAnims.length === 0) return;
     Animated.stagger(
       140,
       cardAnims.map((anim) =>
@@ -112,7 +97,7 @@ export default function LanguageScreen() {
         })
       )
     ).start();
-  }, []);
+  }, [cardAnims]);
 
   return (
     <DotGridBackground>
@@ -137,7 +122,7 @@ export default function LanguageScreen() {
 
           {/* Language Cards */}
           <View style={styles.cards}>
-            {LANGUAGES.map((lang, index) => {
+            {languages.map((lang, index) => {
               const isActive = selected === lang.id;
               const cardScale = cardAnims[index].interpolate({
                 inputRange: [0, 1],
@@ -153,7 +138,7 @@ export default function LanguageScreen() {
                   }}
                 >
                   <Pressable
-                    onPress={() => handleSelect(lang.id)}
+                    onPress={() => handleSelect(lang.id as Language)}
                     style={[
                       styles.langCard,
                       {
@@ -201,7 +186,7 @@ export default function LanguageScreen() {
                           { color: colors.textTertiary },
                         ]}
                       >
-                        {lang.desc}
+                        {lang.description}
                       </Text>
                     </View>
                   </Pressable>

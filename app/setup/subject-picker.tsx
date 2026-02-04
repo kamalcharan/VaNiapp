@@ -19,21 +19,8 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
 import { useToast } from '../../src/components/ui/Toast';
-import {
-  CuetSubjectId,
-  SubjectCategory,
-  CUET_SUBJECTS,
-  CUET_MAX_SUBJECTS,
-  NEET_SUBJECT_IDS,
-} from '../../src/types';
-
-const CATEGORY_ORDER: SubjectCategory[] = [
-  'Science',
-  'Commerce',
-  'Arts / Humanities',
-  'Other',
-  'General Test',
-];
+import { CUET_MAX_SUBJECTS } from '../../src/types';
+import { getSubjects, getNeetSubjectIds, CatalogSubject } from '../../src/lib/catalog';
 
 export default function SubjectPickerScreen() {
   const { colors, mode } = useTheme();
@@ -42,22 +29,45 @@ export default function SubjectPickerScreen() {
   const toast = useToast();
 
   const isBoth = data.exam === 'BOTH';
-  const [selected, setSelected] = useState<CuetSubjectId[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
+  const [subjects, setSubjects] = useState<CatalogSubject[]>([]);
+  const [neetSubjectIds, setNeetSubjectIds] = useState<string[]>([]);
 
   useEffect(() => {
     setStep(4);
+    (async () => {
+      const [cuetData, neetIds] = await Promise.all([
+        getSubjects('CUET'),
+        getNeetSubjectIds(),
+      ]);
+      setSubjects(cuetData);
+      setNeetSubjectIds(neetIds);
+    })();
   }, []);
 
+  // Derive unique categories from fetched subjects (ordered by sort_order)
+  const categories = useMemo(() => {
+    const seen = new Set<string>();
+    const result: string[] = [];
+    for (const s of subjects) {
+      if (!seen.has(s.category)) {
+        seen.add(s.category);
+        result.push(s.category);
+      }
+    }
+    return result;
+  }, [subjects]);
+
   const groupedSubjects = useMemo(() => {
-    const groups: Record<string, typeof CUET_SUBJECTS> = {};
-    for (const cat of CATEGORY_ORDER) {
-      const items = CUET_SUBJECTS.filter((s) => s.category === cat);
+    const groups: Record<string, CatalogSubject[]> = {};
+    for (const cat of categories) {
+      const items = subjects.filter((s) => s.category === cat);
       if (items.length > 0) groups[cat] = items;
     }
     return groups;
-  }, []);
+  }, [subjects, categories]);
 
-  const toggleSubject = (id: CuetSubjectId) => {
+  const toggleSubject = (id: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setSelected((prev) => {
       if (prev.includes(id)) return prev.filter((s) => s !== id);
@@ -71,7 +81,7 @@ export default function SubjectPickerScreen() {
 
     let finalSubjects: string[];
     if (isBoth) {
-      const combined = new Set([...NEET_SUBJECT_IDS, ...selected]);
+      const combined = new Set([...neetSubjectIds, ...selected]);
       finalSubjects = Array.from(combined);
     } else {
       finalSubjects = selected;
@@ -167,7 +177,7 @@ export default function SubjectPickerScreen() {
               </StickyNote>
             )}
 
-            {CATEGORY_ORDER.map((category) => {
+            {categories.map((category) => {
               const items = groupedSubjects[category];
               if (!items) return null;
               return (

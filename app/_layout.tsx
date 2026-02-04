@@ -155,8 +155,10 @@ export default function RootLayout() {
         router.replace('/setup/welcome');
       } else if (onboardingDone === true && inSetup) {
         // Onboarding done but on setup screens → go to main app
-        // TODO: replace '/' with '/(tabs)' when main app screens are ready
-        router.replace('/');
+        router.replace('/(main)');
+      } else if (onboardingDone === false && !inSetup) {
+        // Not onboarded yet — go to setup
+        router.replace('/setup/welcome');
       }
     } else if (authState.status === 'unauthenticated' && !inAuthGroup && !inAuthCallback) {
       router.replace('/(auth)/onboarding');
