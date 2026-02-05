@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini API Test - Qbank Admin</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .test-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 24px;
+    }
+    .test-section {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+    }
+    .test-section h2 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .status-indicator.pending { background: #f3f4f6; color: #6b7280; }
+    .status-indicator.testing { background: #fef3c7; color: #92400e; }
+    .status-indicator.success { background: #d1fae5; color: #065f46; }
+    .status-indicator.error { background: #fee2e2; color: #991b1b; }
+
+    .config-display {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 13px;
+      overflow-x: auto;
+    }
+    .config-display .key { color: #89b4fa; }
+    .config-display .value { color: #a6e3a1; }
+    .config-display .masked { color: #f38ba8; }
+
+    .prompt-preview {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+      max-height: 400px;
+      overflow-y: auto;
+      line-height: 1.5;
+    }
+
+    .response-preview {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .test-controls {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .model-select {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      min-width: 200px;
+    }
+
+    .valid-models {
+      margin-top: 12px;
+      padding: 12px;
+      background: #eff6ff;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+    .valid-models code {
+      background: #dbeafe;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin: 0 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>🧪 Gemini API Test</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 32px;">
+      Test your Gemini API connection and preview prompts before generating questions.
+    </p>
+
+    <!-- Step 1: Config Check -->
+    <div class="test-section">
+      <h2>
+        <span>1. Configuration Check</span>
+        <span id="configStatus" class="status-indicator pending">Checking...</span>
+      </h2>
+      <div id="configDisplay" class="config-display">Loading configuration...</div>
+
+      <div class="valid-models">
+        <strong>Valid Gemini models:</strong>
+        <code>gemini-1.5-pro</code>
+        <code>gemini-1.5-flash</code>
+        <code>gemini-2.0-flash-exp</code>
+        <code>gemini-pro</code>
+      </div>
+    </div>
+
+    <!-- Step 2: Connection Test -->
+    <div class="test-section">
+      <h2>
+        <span>2. API Connection Test</span>
+        <span id="connectionStatus" class="status-indicator pending">Not tested</span>
+      </h2>
+      <p style="color: var(--text-secondary); margin-bottom: 16px;">
+        Send a simple "Hello" to verify API connectivity.
+      </p>
+
+      <div class="test-controls">
+        <select id="modelSelect" class="model-select">
+          <option value="gemini-1.5-flash">gemini-1.5-flash (Fast & Cheap)</option>
+          <option value="gemini-1.5-pro">gemini-1.5-pro (Better Quality)</option>
+          <option value="gemini-2.0-flash-exp">gemini-2.0-flash-exp (Latest)</option>
+        </select>
+        <button id="testConnectionBtn" class="btn btn-primary" onclick="testConnection()">
+          Test Connection
+        </button>
+      </div>
+
+      <div id="connectionResponse" class="response-preview" style="display: none; margin-top: 16px;"></div>
+    </div>
+
+    <!-- Step 3: Prompt Preview -->
+    <div class="test-section">
+      <h2>
+        <span>3. Question Generation Prompt</span>
+      </h2>
+      <p style="color: var(--text-secondary); margin-bottom: 16px;">
+        This is the prompt that will be sent to generate questions.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px;">
+        <div>
+          <label class="form-label">Subject</label>
+          <select id="previewSubject" class="model-select" style="width: 100%;">
+            <option value="Physics">Physics</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Botany">Botany</option>
+            <option value="Zoology">Zoology</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Exam</label>
+          <select id="previewExam" class="model-select" style="width: 100%;">
+            <option value="NEET">NEET</option>
+            <option value="CUET">CUET</option>
+            <option value="BOTH">Both</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Difficulty</label>
+          <select id="previewDifficulty" class="model-select" style="width: 100%;">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Count</label>
+          <select id="previewCount" class="model-select" style="width: 100%;">
+            <option value="1">1 (Test)</option>
+            <option value="3">3</option>
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary" onclick="previewPrompt()">Preview Prompt</button>
+
+      <div id="promptPreview" class="prompt-preview" style="display: none; margin-top: 16px;"></div>
+    </div>
+
+    <!-- Step 4: Test Generation -->
+    <div class="test-section">
+      <h2>
+        <span>4. Test Question Generation</span>
+        <span id="generationStatus" class="status-indicator pending">Not tested</span>
+      </h2>
+      <p style="color: var(--text-secondary); margin-bottom: 16px;">
+        Generate 1 test question to verify the full flow works.
+      </p>
+
+      <button id="testGenerateBtn" class="btn btn-primary" onclick="testGeneration()">
+        Generate 1 Test Question
+      </button>
+
+      <div id="generationResponse" class="response-preview" style="display: none; margin-top: 16px;"></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 32px;">
+      <a href="./index.html" class="btn btn-secondary">← Back to Dashboard</a>
+      <a href="./generate.html" class="btn btn-primary" style="margin-left: 12px;">Go to Generate →</a>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    let CONFIG = null;
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', async () => {
+      await checkConfig();
+    });
+
+    // Step 1: Check config
+    async function checkConfig() {
+      const statusEl = document.getElementById('configStatus');
+      const displayEl = document.getElementById('configDisplay');
+
+      try {
+        const response = await fetch('./config.json');
+        if (!response.ok) throw new Error('Config file not found');
+
+        CONFIG = await response.json();
+
+        // Validate config
+        const issues = [];
+
+        if (!CONFIG.gemini?.apiKey || CONFIG.gemini.apiKey === 'YOUR_GEMINI_API_KEY_HERE') {
+          issues.push('Gemini API key not set');
+        }
+
+        const validModels = ['gemini-1.5-pro', 'gemini-1.5-flash', 'gemini-2.0-flash-exp', 'gemini-pro'];
+        if (CONFIG.gemini?.model && !validModels.includes(CONFIG.gemini.model)) {
+          issues.push(`Invalid model: "${CONFIG.gemini.model}" - use one of: ${validModels.join(', ')}`);
+        }
+
+        if (!CONFIG.supabase?.url || CONFIG.supabase.url === 'YOUR_SUPABASE_URL_HERE') {
+          issues.push('Supabase URL not set');
+        }
+
+        // Display config (masked)
+        const maskedKey = CONFIG.gemini?.apiKey
+          ? (CONFIG.gemini.apiKey.startsWith('YOUR_') ? '❌ NOT SET' : CONFIG.gemini.apiKey.slice(0, 10) + '...' + CONFIG.gemini.apiKey.slice(-4))
+          : '❌ NOT SET';
+
+        displayEl.innerHTML = `{
+  <span class="key">"gemini"</span>: {
+    <span class="key">"apiKey"</span>: <span class="${CONFIG.gemini?.apiKey?.startsWith('YOUR_') ? 'masked' : 'value'}">"${maskedKey}"</span>,
+    <span class="key">"model"</span>: <span class="${validModels.includes(CONFIG.gemini?.model) ? 'value' : 'masked'}">"${CONFIG.gemini?.model || 'NOT SET'}"</span>
+  },
+  <span class="key">"supabase"</span>: {
+    <span class="key">"url"</span>: <span class="value">"${CONFIG.supabase?.url?.replace(/^https?:\/\//, '').slice(0, 30) || 'NOT SET'}..."</span>
+  }
+}`;
+
+        if (issues.length > 0) {
+          statusEl.className = 'status-indicator error';
+          statusEl.textContent = '⚠️ Issues Found';
+          displayEl.innerHTML += `\n\n<span class="masked">Issues:\n${issues.map(i => '• ' + i).join('\n')}</span>`;
+        } else {
+          statusEl.className = 'status-indicator success';
+          statusEl.textContent = '✓ Config OK';
+        }
+
+        // Set model select to match config
+        if (CONFIG.gemini?.model) {
+          document.getElementById('modelSelect').value = CONFIG.gemini.model;
+        }
+
+      } catch (error) {
+        statusEl.className = 'status-indicator error';
+        statusEl.textContent = '✕ Error';
+        displayEl.innerHTML = `<span class="masked">Error: ${error.message}\n\nMake sure config.json exists and is valid JSON.</span>`;
+      }
+    }
+
+    // Step 2: Test connection
+    async function testConnection() {
+      const statusEl = document.getElementById('connectionStatus');
+      const responseEl = document.getElementById('connectionResponse');
+      const btn = document.getElementById('testConnectionBtn');
+      const model = document.getElementById('modelSelect').value;
+
+      statusEl.className = 'status-indicator testing';
+      statusEl.textContent = '⏳ Testing...';
+      btn.disabled = true;
+      responseEl.style.display = 'block';
+      responseEl.textContent = 'Sending request to Gemini API...';
+
+      try {
+        const startTime = Date.now();
+
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${CONFIG.gemini.apiKey}`;
+
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: 'Say "Hello! Gemini API is working!" and nothing else.' }] }],
+            generationConfig: {
+              temperature: 0.1,
+              maxOutputTokens: 50,
+            }
+          })
+        });
+
+        const elapsed = Date.now() - startTime;
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error?.message || `HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        statusEl.className = 'status-indicator success';
+        statusEl.textContent = '✓ Connected';
+        responseEl.innerHTML = `<strong>✓ Success!</strong> (${elapsed}ms using ${model})\n\nResponse: ${text}\n\nFull response:\n${JSON.stringify(data, null, 2)}`;
+
+      } catch (error) {
+        statusEl.className = 'status-indicator error';
+        statusEl.textContent = '✕ Failed';
+        responseEl.innerHTML = `<strong style="color: #dc2626;">✕ Error:</strong> ${error.message}\n\nTroubleshooting:\n• Check your API key is valid\n• Make sure the model name is correct\n• Verify your API key has access to the selected model`;
+      }
+
+      btn.disabled = false;
+    }
+
+    // Step 3: Preview prompt
+    function previewPrompt() {
+      const previewEl = document.getElementById('promptPreview');
+
+      const params = {
+        exam: document.getElementById('previewExam').value,
+        examIds: [document.getElementById('previewExam').value],
+        subject: document.getElementById('previewSubject').value,
+        chapter: {
+          name: 'Sample Chapter - Laws of Motion',
+          class_level: 11,
+          weightage: 6.0
+        },
+        topics: [
+          { name: 'Newton Laws of Motion' },
+          { name: 'Friction' }
+        ],
+        questionTypes: ['mcq', 'assertion-reasoning'],
+        count: parseInt(document.getElementById('previewCount').value),
+        difficulty: document.getElementById('previewDifficulty').value,
+        includeHints: true
+      };
+
+      const prompt = Qbank.buildQuestionGenerationPrompt(params);
+
+      previewEl.style.display = 'block';
+      previewEl.textContent = prompt;
+    }
+
+    // Step 4: Test generation
+    async function testGeneration() {
+      const statusEl = document.getElementById('generationStatus');
+      const responseEl = document.getElementById('generationResponse');
+      const btn = document.getElementById('testGenerateBtn');
+      const model = document.getElementById('modelSelect').value;
+
+      statusEl.className = 'status-indicator testing';
+      statusEl.textContent = '⏳ Generating...';
+      btn.disabled = true;
+      responseEl.style.display = 'block';
+      responseEl.textContent = 'Generating 1 test question...\n\nThis may take 10-30 seconds.';
+
+      try {
+        const startTime = Date.now();
+
+        const params = {
+          exam: document.getElementById('previewExam').value,
+          examIds: [document.getElementById('previewExam').value],
+          subject: document.getElementById('previewSubject').value,
+          chapter: {
+            name: 'Sample Chapter - Laws of Motion',
+            class_level: 11,
+            weightage: 6.0
+          },
+          topics: [{ name: 'Newton Laws of Motion' }],
+          questionTypes: ['mcq'],
+          count: 1,
+          difficulty: document.getElementById('previewDifficulty').value,
+          includeHints: true
+        };
+
+        const prompt = Qbank.buildQuestionGenerationPrompt(params);
+
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${CONFIG.gemini.apiKey}`;
+
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: {
+              temperature: 0.7,
+              maxOutputTokens: 4096,
+            }
+          })
+        });
+
+        const elapsed = Date.now() - startTime;
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error?.message || `HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        // Try to parse as JSON
+        let parsed = null;
+        try {
+          parsed = Qbank.parseJsonResponse(text);
+        } catch (e) {
+          // Not valid JSON, that's ok for display
+        }
+
+        statusEl.className = 'status-indicator success';
+        statusEl.textContent = '✓ Generated';
+
+        responseEl.innerHTML = `<strong>✓ Success!</strong> (${(elapsed/1000).toFixed(1)}s using ${model})\n\n`;
+
+        if (parsed && Array.isArray(parsed) && parsed.length > 0) {
+          const q = parsed[0];
+          responseEl.innerHTML += `<strong>Generated Question:</strong>\n\n`;
+          responseEl.innerHTML += `Type: ${q.question_type}\n`;
+          responseEl.innerHTML += `Difficulty: ${q.difficulty}\n`;
+          responseEl.innerHTML += `Topic: ${q.topic}\n\n`;
+          responseEl.innerHTML += `Q: ${q.question_text}\n\n`;
+          if (q.options) {
+            responseEl.innerHTML += `Options:\n`;
+            q.options.forEach(o => {
+              responseEl.innerHTML += `  ${o.key}. ${o.text} ${o.is_correct ? '✓' : ''}\n`;
+            });
+          }
+          responseEl.innerHTML += `\nCorrect Answer: ${q.correct_answer}\n`;
+          responseEl.innerHTML += `\nExplanation: ${q.explanation}\n`;
+
+          if (q.elimination_hints) {
+            responseEl.innerHTML += `\nElimination Hints:\n`;
+            q.elimination_hints.forEach(h => {
+              responseEl.innerHTML += `  ${h.option_key}: ${h.hint}\n`;
+            });
+          }
+
+          responseEl.innerHTML += `\n\n--- Raw JSON ---\n${JSON.stringify(parsed, null, 2)}`;
+        } else {
+          responseEl.innerHTML += `Raw Response:\n${text}`;
+        }
+
+      } catch (error) {
+        statusEl.className = 'status-indicator error';
+        statusEl.textContent = '✕ Failed';
+        responseEl.innerHTML = `<strong style="color: #dc2626;">✕ Error:</strong> ${error.message}`;
+      }
+
+      btn.disabled = false;
+    }
+  </script>
+</body>
+</html>
