@@ -370,9 +370,16 @@ function getTokenUsage() {
 function buildQuestionGenerationPrompt(params) {
   const { exam, examIds, subject, chapter, topics, questionTypes, count, difficulty, includeHints } = params;
 
-  const topicList = topics.length > 0
-    ? topics.map(t => `- ${t.name}`).join('\n')
-    : 'All topics in the chapter';
+  // Build topic list - always explicit
+  let topicList;
+  if (topics.length > 0) {
+    topicList = topics.map(t => `- ${t.name}`).join('\n');
+  } else {
+    // No topics defined - use chapter's important_topics if available
+    topicList = chapter.important_topics && chapter.important_topics.length > 0
+      ? chapter.important_topics.map(t => `- ${t}`).join('\n')
+      : `- General concepts from ${chapter.name}`;
+  }
 
   const typeInstructions = {
     'mcq': 'Multiple Choice Question with 4 options (A, B, C, D)',
@@ -401,11 +408,17 @@ TARGET EXAM: ${examContext}
 
 TASK: Generate ${count} high-quality questions for ${examName} preparation.
 
+═══════════════════════════════════════════════════════════════════════════════
+IMPORTANT: Generate questions ONLY from the specific chapter and topics below.
+DO NOT generate questions from other chapters or topics.
+═══════════════════════════════════════════════════════════════════════════════
+
+SUBJECT: ${subject}
 CHAPTER: ${chapter.name}
 CLASS: ${chapter.class_level || 'Not specified'}
-WEIGHTAGE: ${chapter.weightage || 'Not specified'}%
+WEIGHTAGE IN EXAM: ${chapter.weightage || 'Not specified'}%
 
-TOPICS TO COVER:
+TOPICS TO COVER (generate questions ONLY from these topics):
 ${topicList}
 
 QUESTION TYPES TO GENERATE:
@@ -453,16 +466,17 @@ TAGGING REQUIREMENTS:
 - "bloom_level": Cognitive level - remember (recall), understand (explain), apply (use), analyze (compare/contrast)
 
 IMPORTANT GUIDELINES:
-1. Questions must be ${examName}-level, appropriate for Indian competitive exams
-2. Each question should test a specific concept
-3. Distractors (wrong options) should be plausible, not obviously wrong
-4. Explanations should be educational, helping students learn
-5. Cover different topics from the list provided
-6. For assertion-reasoning: use standard format with options about A and R relationship
-7. For match-the-following: provide clear matching pairs
-8. Match the difficulty and style expected in ${examName} exams
+1. CRITICAL: Generate questions ONLY from "${chapter.name}" chapter - NO questions from other chapters
+2. Questions must be ${examName}-level, appropriate for Indian competitive exams
+3. Each question should test a specific concept from the topics listed above
+4. Distractors (wrong options) should be plausible, not obviously wrong
+5. Explanations should be educational, helping students learn
+6. Cover different topics from the list provided
+7. For assertion-reasoning: use standard format with options about A and R relationship
+8. For match-the-following: provide clear matching pairs
+9. Match the difficulty and style expected in ${examName} exams
 
-Generate exactly ${count} questions. Output ONLY the JSON array, no additional text.`;
+Generate exactly ${count} questions from "${chapter.name}" ONLY. Output ONLY the JSON array, no additional text.`;
 
   return prompt;
 }
