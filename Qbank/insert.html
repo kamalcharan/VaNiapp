@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insert Questions - Qbank Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .insert-job-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      margin-bottom: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .insert-job-icon {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      font-size: 1.8rem;
+    }
+
+    .insert-job-info {
+      flex: 1;
+    }
+
+    .insert-job-info h4 {
+      margin: 0 0 4px;
+    }
+
+    .insert-job-stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .insert-stat {
+      font-size: 0.85rem;
+    }
+
+    .insert-stat strong {
+      color: var(--gray-900);
+    }
+
+    .insert-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .insert-progress {
+      margin-top: 24px;
+      padding: 24px;
+      background: var(--gray-50);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+
+    .insert-log {
+      max-height: 300px;
+      overflow-y: auto;
+      background: var(--gray-800);
+      color: #10b981;
+      padding: 16px;
+      border-radius: var(--radius);
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.85rem;
+      text-align: left;
+      margin-top: 16px;
+    }
+
+    .insert-log .error {
+      color: #ef4444;
+    }
+
+    .insert-log .success {
+      color: #10b981;
+    }
+
+    .insert-log .info {
+      color: #60a5fa;
+    }
+  </style>
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-icon">💾</span>
+          Insert to Database
+        </h1>
+        <p class="page-subtitle">Push approved questions to the production question bank</p>
+      </div>
+
+      <!-- Summary Card -->
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-body">
+          <div class="stats-grid" style="margin-bottom: 0;">
+            <div class="stat-card">
+              <div class="stat-icon pending">📝</div>
+              <div class="stat-content">
+                <div class="stat-value" id="reviewedJobs">0</div>
+                <div class="stat-label">Jobs Ready</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon total">✓</div>
+              <div class="stat-content">
+                <div class="stat-value" id="approvedQuestions">0</div>
+                <div class="stat-label">Approved Questions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jobs List -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Reviewed Jobs Ready for Insert</h3>
+          <button class="btn btn-success" id="insertAllBtn" onclick="insertAllApproved()" disabled>
+            🚀 Insert All Approved Questions
+          </button>
+        </div>
+        <div class="card-body" id="jobsContainer">
+          <div class="qbank-loader">
+            <div class="loader-spinner"></div>
+            <p class="loader-message">Loading reviewed jobs...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Insert Progress -->
+      <div id="insertProgress" style="display: none;">
+        <div class="insert-progress">
+          <h3 id="insertStatusTitle">Inserting Questions...</h3>
+          <div class="progress-bar" style="max-width: 500px; margin: 16px auto;">
+            <div class="progress-fill" id="insertProgressBar" style="width: 0%;"></div>
+          </div>
+          <p id="insertStatusMessage" style="color: var(--gray-500);">Preparing...</p>
+
+          <div class="insert-log" id="insertLog"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    let jobs = [];
+    let totalApproved = 0;
+
+    async function init() {
+      const user = await Qbank.requireAuth(['admin']);
+      if (!user) return;
+
+      Qbank.renderNavHeader();
+      await loadReviewedJobs();
+    }
+
+    async function loadReviewedJobs() {
+      const container = document.getElementById('jobsContainer');
+      Qbank.showLoader(container, 'Loading reviewed jobs...');
+
+      try {
+        const allJobs = await Qbank.fetchGenerationJobs('reviewed');
+        jobs = allJobs;
+
+        // Count approved questions
+        totalApproved = 0;
+        jobs.forEach(job => {
+          const approved = job.output_json?.questions?.filter(q => q._approved) || [];
+          totalApproved += approved.length;
+        });
+
+        // Update summary
+        document.getElementById('reviewedJobs').textContent = jobs.length;
+        document.getElementById('approvedQuestions').textContent = totalApproved;
+        document.getElementById('insertAllBtn').disabled = totalApproved === 0;
+
+        if (jobs.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">📭</div>
+              <p class="empty-title">No reviewed jobs</p>
+              <p class="empty-message">Review and approve questions first, then come back here to insert them.</p>
+              <a href="./review.html" class="btn btn-primary">Go to Review</a>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = jobs.map(job => renderInsertJobCard(job)).join('');
+
+      } catch (error) {
+        console.error('Error loading jobs:', error);
+        container.innerHTML = '<p class="empty-message">Failed to load reviewed jobs</p>';
+      }
+    }
+
+    function renderInsertJobCard(job) {
+      const questions = job.output_json?.questions || [];
+      const approved = questions.filter(q => q._approved);
+      const rejected = questions.filter(q => q._rejected);
+      const subjectColor = Qbank.getSubjectColor(job.subject_id);
+
+      return `
+        <div class="insert-job-card">
+          <div class="insert-job-icon" style="background: ${subjectColor}15; color: ${subjectColor};">
+            ${Qbank.getSubjectEmoji(job.subject_id)}
+          </div>
+          <div class="insert-job-info">
+            <h4>${job.subject_id} - ${job.chapter_id || 'Unknown'}</h4>
+            <div style="font-size: 0.9rem; color: var(--gray-500);">
+              Generated ${Qbank.formatDate(job.created_at)}
+            </div>
+            <div class="insert-job-stats">
+              <span class="insert-stat">
+                <strong style="color: var(--success);">${approved.length}</strong> approved
+              </span>
+              <span class="insert-stat">
+                <strong style="color: var(--error);">${rejected.length}</strong> rejected
+              </span>
+              <span class="insert-stat">
+                <strong>${questions.length - approved.length - rejected.length}</strong> pending
+              </span>
+            </div>
+          </div>
+          <div class="insert-actions">
+            <button class="btn btn-primary btn-sm" onclick="insertJob('${job.id}')" ${approved.length === 0 ? 'disabled' : ''}>
+              Insert ${approved.length} Questions
+            </button>
+            <a href="./review.html" class="btn btn-ghost btn-sm">Review Again</a>
+          </div>
+        </div>
+      `;
+    }
+
+    async function insertJob(jobId) {
+      const job = jobs.find(j => j.id === jobId);
+      if (!job) return;
+
+      const approved = job.output_json.questions.filter(q => q._approved);
+      if (approved.length === 0) {
+        Qbank.showToast('No approved questions to insert', 'warning');
+        return;
+      }
+
+      if (!confirm(`Insert ${approved.length} questions from this job into the database?`)) {
+        return;
+      }
+
+      await insertQuestions([job]);
+    }
+
+    async function insertAllApproved() {
+      if (totalApproved === 0) {
+        Qbank.showToast('No approved questions to insert', 'warning');
+        return;
+      }
+
+      if (!confirm(`Insert ${totalApproved} approved questions from ${jobs.length} jobs into the database?`)) {
+        return;
+      }
+
+      await insertQuestions(jobs);
+    }
+
+    async function insertQuestions(jobsToProcess) {
+      const progressDiv = document.getElementById('insertProgress');
+      const progressBar = document.getElementById('insertProgressBar');
+      const statusTitle = document.getElementById('insertStatusTitle');
+      const statusMessage = document.getElementById('insertStatusMessage');
+      const log = document.getElementById('insertLog');
+
+      progressDiv.style.display = 'block';
+      log.innerHTML = '';
+
+      let totalToInsert = 0;
+      let inserted = 0;
+      let errors = 0;
+
+      // Count total
+      jobsToProcess.forEach(job => {
+        const approved = job.output_json?.questions?.filter(q => q._approved) || [];
+        totalToInsert += approved.length;
+      });
+
+      logMessage(`Starting insert of ${totalToInsert} questions from ${jobsToProcess.length} jobs...`, 'info');
+
+      for (const job of jobsToProcess) {
+        const approved = job.output_json?.questions?.filter(q => q._approved) || [];
+
+        if (approved.length === 0) continue;
+
+        logMessage(`Processing job: ${job.subject_id} - ${job.chapter_id}`, 'info');
+
+        for (const question of approved) {
+          try {
+            // Prepare question data
+            const questionData = {
+              subject_id: job.subject_id,
+              chapter_id: job.chapter_id,
+              topic_id: null, // TODO: map topic name to ID
+              exam_ids: ['NEET'],
+              question_type: question.question_type,
+              difficulty: question.difficulty || 'medium',
+              strength_required: 'just-started',
+              question_text: question.question_text,
+              explanation: question.explanation,
+              payload: {},
+              correct_answer: question.correct_answer,
+              source: 'gemini',
+              concept_tags: question.concept_tags || [],
+              status: 'active'
+            };
+
+            // Insert question
+            const { success, data, error } = await Qbank.insertQuestions([questionData]);
+
+            if (!success || !data || data.length === 0) {
+              throw new Error(error?.message || 'Insert failed');
+            }
+
+            const questionId = data[0].id;
+
+            // Insert options if MCQ
+            if (question.options && question.options.length > 0) {
+              const optionsData = question.options.map((opt, i) => ({
+                question_id: questionId,
+                option_key: opt.key,
+                option_text: opt.text,
+                is_correct: opt.is_correct || false,
+                sort_order: i
+              }));
+
+              const optResult = await Qbank.insertQuestionOptions(optionsData);
+              if (!optResult.success) {
+                logMessage(`  Warning: Options insert failed for Q`, 'error');
+              }
+            }
+
+            // Insert elimination hints if present
+            if (question.elimination_hints && question.elimination_hints.length > 0) {
+              const hintsData = question.elimination_hints.map(h => ({
+                question_id: questionId,
+                option_key: h.option_key,
+                hint_text: h.hint
+              }));
+
+              const hintResult = await Qbank.insertEliminationHints(hintsData);
+              if (!hintResult.success) {
+                logMessage(`  Warning: Hints insert failed for Q`, 'error');
+              }
+            }
+
+            inserted++;
+            logMessage(`  ✓ Inserted: ${question.question_text.substring(0, 50)}...`, 'success');
+
+          } catch (err) {
+            errors++;
+            logMessage(`  ✕ Error: ${err.message}`, 'error');
+          }
+
+          // Update progress
+          const progress = ((inserted + errors) / totalToInsert * 100).toFixed(0);
+          progressBar.style.width = `${progress}%`;
+          statusMessage.textContent = `${inserted} inserted, ${errors} errors, ${totalToInsert - inserted - errors} remaining`;
+        }
+
+        // Mark job as inserted if all approved questions were processed
+        if (errors === 0) {
+          await Qbank.updateGenerationJob(job.id, { status: 'inserted' });
+          logMessage(`Job ${job.id} marked as inserted`, 'info');
+        }
+      }
+
+      // Complete
+      progressBar.style.width = '100%';
+      progressBar.classList.add('success');
+      statusTitle.textContent = 'Insert Complete!';
+      statusMessage.textContent = `Successfully inserted ${inserted} questions with ${errors} errors`;
+
+      logMessage(`\nComplete! ${inserted} questions inserted, ${errors} errors.`, 'info');
+
+      if (inserted > 0) {
+        Qbank.showToast(`Successfully inserted ${inserted} questions!`, 'success');
+      }
+
+      // Reload after a delay
+      setTimeout(() => {
+        loadReviewedJobs();
+        progressDiv.style.display = 'none';
+        progressBar.classList.remove('success');
+      }, 3000);
+    }
+
+    function logMessage(message, type = 'info') {
+      const log = document.getElementById('insertLog');
+      const line = document.createElement('div');
+      line.className = type;
+      line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      log.appendChild(line);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    // Initialize
+    init();
+  </script>
+</body>
+</html>
