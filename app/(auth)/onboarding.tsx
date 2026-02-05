@@ -158,16 +158,16 @@ export default function OnboardingScreen() {
           <JournalCard rotation={-0.5}>
             <View style={styles.cardInner}>
               <HandwrittenText variant="handLg" color={colors.text}>
-                NEET prep is overwhelming
+                NEET & CUET prep is hard
               </HandwrittenText>
 
               <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center', marginTop: Spacing.md }]}>
-                2000+ chapters. Lakhs of questions.{'\n'}Where do you even start?
+                Months of effort. Endless syllabus.{'\n'}Where do you even start?
               </Text>
 
               <View style={[styles.highlightBox, { backgroundColor: colors.highlighterYellow + '40' }]}>
                 <HandwrittenText variant="handSm" color={colors.textSecondary}>
-                  Most students feel lost in the first month itself...
+                  Most students feel lost without the right guidance...
                 </HandwrittenText>
               </View>
             </View>
@@ -218,16 +218,16 @@ export default function OnboardingScreen() {
                 Meet VaNi
               </HandwrittenText>
               <Text style={[Typography.bodyLg, { color: colors.primary, textAlign: 'center' }]}>
-                Your AI study companion
+                Your AI companion
               </Text>
 
               <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center', marginTop: Spacing.md }]}>
-                She knows exactly where you're weak and guides you step by step.
+                She's here to guide and elevate you{'\n'}to your goal, step-by-step.
               </Text>
 
               <View style={[styles.highlightBox, { backgroundColor: colors.highlighterTeal + '40' }]}>
                 <HandwrittenText variant="handSm" color={colors.textSecondary}>
-                  No more random studying. VaNi has a plan for you!
+                  No random studying. VaNi has a plan for you!
                 </HandwrittenText>
               </View>
             </View>
@@ -304,7 +304,7 @@ export default function OnboardingScreen() {
 
                 <Animated.View style={[styles.stageItem, stagger(300)]}>
                   <View style={[styles.stageDot, { backgroundColor: colors.primary }]} />
-                  <Text style={[Typography.body, { color: colors.text, fontWeight: '600' }]}>Become NEET Ready!</Text>
+                  <Text style={[Typography.body, { color: colors.text, fontWeight: '600' }]}>Ready to capture the world!</Text>
                 </Animated.View>
               </View>
             </View>
