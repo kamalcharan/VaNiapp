@@ -335,7 +335,7 @@ async function callGemini(prompt, options = {}) {
 // PROMPT BUILDERS
 // ============================================================================
 function buildQuestionGenerationPrompt(params) {
-  const { subject, chapter, topics, questionTypes, count, difficulty, includeHints } = params;
+  const { exam, examIds, subject, chapter, topics, questionTypes, count, difficulty, includeHints } = params;
 
   const topicList = topics.length > 0
     ? topics.map(t => `- ${t.name}`).join('\n')
@@ -354,9 +354,19 @@ function buildQuestionGenerationPrompt(params) {
 
   const selectedTypes = questionTypes.map(t => `- ${typeInstructions[t] || t}`).join('\n');
 
-  let prompt = `You are an expert NEET exam question creator for ${subject}.
+  // Exam context
+  const examName = exam === 'BOTH' ? 'NEET and CUET' : exam;
+  const examContext = exam === 'NEET'
+    ? 'NEET (National Eligibility cum Entrance Test) for medical admissions in India'
+    : exam === 'CUET'
+    ? 'CUET (Common University Entrance Test) for university admissions in India'
+    : 'Both NEET (medical) and CUET (university) entrance exams in India';
 
-TASK: Generate ${count} high-quality questions for NEET preparation.
+  let prompt = `You are an expert ${examName} exam question creator for ${subject}.
+
+TARGET EXAM: ${examContext}
+
+TASK: Generate ${count} high-quality questions for ${examName} preparation.
 
 CHAPTER: ${chapter.name}
 CLASS: ${chapter.class_level || 'Not specified'}
@@ -400,13 +410,14 @@ OUTPUT FORMAT (JSON array):
 \`\`\`
 
 IMPORTANT GUIDELINES:
-1. Questions must be NEET-level, not too easy or obscure
+1. Questions must be ${examName}-level, appropriate for Indian competitive exams
 2. Each question should test a specific concept
 3. Distractors (wrong options) should be plausible, not obviously wrong
 4. Explanations should be educational, helping students learn
 5. Cover different topics from the list provided
-6. For assertion-reasoning: use standard NEET format with options about A and R relationship
+6. For assertion-reasoning: use standard format with options about A and R relationship
 7. For match-the-following: provide clear matching pairs
+8. Match the difficulty and style expected in ${examName} exams
 
 Generate exactly ${count} questions. Output ONLY the JSON array, no additional text.`;
 
