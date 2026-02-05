@@ -448,16 +448,30 @@
       const job = jobs.find(j => j.id === jobId);
       if (!job) return;
 
-      const approvedCount = job.output_json.questions.filter(q => q._approved).length;
+      const approvedQuestions = job.output_json.questions.filter(q => q._approved);
+      const approvedCount = approvedQuestions.length;
 
       if (approvedCount === 0) {
         Qbank.showToast('Please approve at least one question first', 'warning');
         return;
       }
 
-      await Qbank.updateGenerationJob(jobId, { status: 'reviewed' });
-      Qbank.showToast(`Job marked as reviewed with ${approvedCount} approved questions`, 'success');
-      loadJobs();
+      // Confirm before inserting
+      if (!confirm(`Insert ${approvedCount} approved questions to database?\n\n(${job.output_json.questions.length - approvedCount} rejected questions will be discarded)`)) {
+        return;
+      }
+
+      Qbank.showToast('Inserting approved questions to database...', 'info');
+
+      // Insert only approved questions to DB
+      const result = await Qbank.insertApprovedQuestionsToDb(job, approvedQuestions);
+
+      if (result.success) {
+        Qbank.showToast(`✅ Inserted ${result.insertedCount} questions to database`, 'success');
+        loadJobs();
+      } else {
+        Qbank.showToast(`Error: ${result.error}`, 'error');
+      }
     }
 
     // ========================================================================

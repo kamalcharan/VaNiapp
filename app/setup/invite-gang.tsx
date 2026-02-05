@@ -90,7 +90,7 @@ export default function InviteGangScreen() {
       });
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       toast.show('success', 'All set!', "Let's go");
-      router.replace('/(main)');
+      router.replace('/setup/getting-started');
     } catch (err: any) {
       setSaving(false);
       setErrorDialog({

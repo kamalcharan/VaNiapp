@@ -47,7 +47,7 @@ export const useOnboarding = () => useContext(OnboardingContext);
 
 // ── Layout ───────────────────────────────────────────────────
 
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 7;
 
 export default function OnboardingLayout() {
   const { colors } = useTheme();

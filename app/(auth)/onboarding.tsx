@@ -29,8 +29,9 @@ export default function OnboardingScreen() {
   const flatListRef = useRef<FlatList>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Per-page entrance animations (triggered once when page first becomes visible)
+  // Per-page entrance animations
   const pageAnims = useRef([
+    new Animated.Value(0),
     new Animated.Value(0),
     new Animated.Value(0),
     new Animated.Value(0),
@@ -43,6 +44,7 @@ export default function OnboardingScreen() {
   // Dot width animations
   const dotWidths = useRef([
     new Animated.Value(24),
+    new Animated.Value(8),
     new Animated.Value(8),
     new Animated.Value(8),
   ]).current;
@@ -112,7 +114,7 @@ export default function OnboardingScreen() {
   }).current;
 
   const handleNext = () => {
-    if (currentIndex < 2) {
+    if (currentIndex < 3) {
       flatListRef.current?.scrollToIndex({
         index: currentIndex + 1,
         animated: true,
@@ -124,14 +126,65 @@ export default function OnboardingScreen() {
     router.push('/(auth)/sign-in');
   };
 
-  // ─── Page 1: The Cover ───────────────────────────────────
-  const renderCover = () => {
+  // ─── Page 1: The Pain Point ─────────────────────────────────
+  const renderPainPoint = () => {
     const anim = pageAnims[0];
     return (
       <View style={[styles.page, { width }]}>
         <Animated.View
           style={[
-            styles.coverContent,
+            styles.pageContent,
+            {
+              opacity: anim,
+              transform: [
+                {
+                  translateY: anim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [30, 0],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          <View style={styles.emojiRow}>
+            <Text style={styles.emoji}>😰</Text>
+            <Text style={styles.emojiArrow}>→</Text>
+            <Text style={styles.emoji}>📚</Text>
+            <Text style={styles.emojiArrow}>→</Text>
+            <Text style={styles.emoji}>😫</Text>
+          </View>
+
+          <JournalCard rotation={-0.5}>
+            <View style={styles.cardInner}>
+              <HandwrittenText variant="handLg" color={colors.text}>
+                NEET prep is overwhelming
+              </HandwrittenText>
+
+              <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center', marginTop: Spacing.md }]}>
+                2000+ chapters. Lakhs of questions.{'\n'}Where do you even start?
+              </Text>
+
+              <View style={[styles.highlightBox, { backgroundColor: colors.highlighterYellow + '40' }]}>
+                <HandwrittenText variant="handSm" color={colors.textSecondary}>
+                  Most students feel lost in the first month itself...
+                </HandwrittenText>
+              </View>
+            </View>
+          </JournalCard>
+        </Animated.View>
+      </View>
+    );
+  };
+
+  // ─── Page 2: Meet VaNi ──────────────────────────────────────
+  const renderMeetVani = () => {
+    const anim = pageAnims[1];
+    return (
+      <View style={[styles.page, { width }]}>
+        <Animated.View
+          style={[
+            styles.pageContent,
             {
               opacity: anim,
               transform: [
@@ -156,36 +209,44 @@ export default function OnboardingScreen() {
               { transform: [{ translateY: floatAnim }] },
             ]}
           >
-            <Image source={logo} style={styles.coverLogo} resizeMode="contain" />
+            <Image source={logo} style={styles.vaniLogo} resizeMode="contain" />
           </Animated.View>
 
-          <Text
-            style={[
-              Typography.display,
-              { color: colors.text, textAlign: 'center' },
-            ]}
-          >
-            VaNi
-          </Text>
+          <JournalCard rotation={0.5}>
+            <View style={styles.cardInner}>
+              <HandwrittenText variant="handLg" color={colors.text}>
+                Meet VaNi
+              </HandwrittenText>
+              <Text style={[Typography.bodyLg, { color: colors.primary, textAlign: 'center' }]}>
+                Your AI study companion
+              </Text>
 
-          <HandwrittenText variant="hand" rotation={-2}>
-            writing my own future...
-          </HandwrittenText>
+              <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center', marginTop: Spacing.md }]}>
+                She knows exactly where you're weak and guides you step by step.
+              </Text>
+
+              <View style={[styles.highlightBox, { backgroundColor: colors.highlighterTeal + '40' }]}>
+                <HandwrittenText variant="handSm" color={colors.textSecondary}>
+                  No more random studying. VaNi has a plan for you!
+                </HandwrittenText>
+              </View>
+            </View>
+          </JournalCard>
         </Animated.View>
       </View>
     );
   };
 
-  // ─── Page 2: The Promise ─────────────────────────────────
-  const renderPromise = () => {
-    const anim = pageAnims[1];
+  // ─── Page 3: The Journey/Stages ─────────────────────────────
+  const renderStages = () => {
+    const anim = pageAnims[2];
     const stagger = (delay: number) => ({
       opacity: anim,
       transform: [
         {
-          translateY: anim.interpolate({
+          translateX: anim.interpolate({
             inputRange: [0, 1],
-            outputRange: [15 + delay * 0.05, 0],
+            outputRange: [-20, 0],
           }),
         },
       ],
@@ -193,71 +254,9 @@ export default function OnboardingScreen() {
 
     return (
       <View style={[styles.page, { width }]}>
-        <View style={styles.promiseContent}>
-          <JournalCard rotation={-0.5} delay={100}>
-            <Animated.View style={stagger(0)}>
-              <HandwrittenText variant="handLg" color={colors.text}>
-                Your exam journal
-              </HandwrittenText>
-            </Animated.View>
-
-            <View style={styles.promiseList}>
-              <Animated.View style={[styles.promiseItem, stagger(100)]}>
-                <View
-                  style={[
-                    styles.marker,
-                    { backgroundColor: colors.highlighterYellow },
-                  ]}
-                />
-                <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>
-                  NEET & CUET — pick your exam, we've got it
-                </Text>
-              </Animated.View>
-
-              <Animated.View style={[styles.promiseItem, stagger(200)]}>
-                <View
-                  style={[
-                    styles.marker,
-                    { backgroundColor: colors.highlighterTeal },
-                  ]}
-                />
-                <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>
-                  Tracks your strengths, targets your weak spots
-                </Text>
-              </Animated.View>
-
-              <Animated.View style={[styles.promiseItem, stagger(300)]}>
-                <View
-                  style={[
-                    styles.marker,
-                    { backgroundColor: colors.highlighterPink },
-                  ]}
-                />
-                <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>
-                  English + Telugu — think in your language
-                </Text>
-              </Animated.View>
-            </View>
-
-            <Animated.View style={[{ marginTop: Spacing.lg }, stagger(400)]}>
-              <HandwrittenText variant="handSm" rotation={1} color={colors.textTertiary}>
-                8 question types that actually prepare you
-              </HandwrittenText>
-            </Animated.View>
-          </JournalCard>
-        </View>
-      </View>
-    );
-  };
-
-  // ─── Page 3: Get Started ─────────────────────────────────
-  const renderStart = () => {
-    const anim = pageAnims[2];
-    return (
-      <View style={[styles.page, { width }]}>
         <Animated.View
           style={[
-            styles.startContent,
+            styles.pageContent,
             {
               opacity: anim,
               transform: [
@@ -271,26 +270,120 @@ export default function OnboardingScreen() {
             },
           ]}
         >
-          <HandwrittenText variant="handLg" color={colors.text}>
-            Ready to begin?
-          </HandwrittenText>
+          <View style={styles.stagesHeader}>
+            <Text style={styles.stagesEmoji}>🌱</Text>
+            <Text style={styles.stagesArrow}>→</Text>
+            <Text style={styles.stagesEmoji}>🌿</Text>
+            <Text style={styles.stagesArrow}>→</Text>
+            <Text style={styles.stagesEmoji}>🌳</Text>
+            <Text style={styles.stagesArrow}>→</Text>
+            <Text style={styles.stagesEmoji}>🏆</Text>
+          </View>
 
-          <Text
-            style={[
-              Typography.body,
-              {
-                color: colors.textSecondary,
-                textAlign: 'center',
-                paddingHorizontal: Spacing.xl,
-              },
-            ]}
-          >
-            Join thousands of students writing their own success story.
-          </Text>
+          <JournalCard rotation={-0.3}>
+            <View style={styles.cardInner}>
+              <HandwrittenText variant="handLg" color={colors.text}>
+                Grow at your own pace
+              </HandwrittenText>
 
-          <View style={styles.startCta}>
+              <View style={styles.stagesList}>
+                <Animated.View style={[styles.stageItem, stagger(0)]}>
+                  <View style={[styles.stageDot, { backgroundColor: colors.highlighterYellow }]} />
+                  <Text style={[Typography.body, { color: colors.text }]}>Start easy, build confidence</Text>
+                </Animated.View>
+
+                <Animated.View style={[styles.stageItem, stagger(100)]}>
+                  <View style={[styles.stageDot, { backgroundColor: colors.highlighterTeal }]} />
+                  <Text style={[Typography.body, { color: colors.text }]}>Unlock harder questions as you improve</Text>
+                </Animated.View>
+
+                <Animated.View style={[styles.stageItem, stagger(200)]}>
+                  <View style={[styles.stageDot, { backgroundColor: colors.highlighterPink }]} />
+                  <Text style={[Typography.body, { color: colors.text }]}>Track progress across all chapters</Text>
+                </Animated.View>
+
+                <Animated.View style={[styles.stageItem, stagger(300)]}>
+                  <View style={[styles.stageDot, { backgroundColor: colors.primary }]} />
+                  <Text style={[Typography.body, { color: colors.text, fontWeight: '600' }]}>Become NEET Ready!</Text>
+                </Animated.View>
+              </View>
+            </View>
+          </JournalCard>
+        </Animated.View>
+      </View>
+    );
+  };
+
+  // ─── Page 4: Elimination Technique + CTA ────────────────────
+  const renderElimination = () => {
+    const anim = pageAnims[3];
+    return (
+      <View style={[styles.page, { width }]}>
+        <Animated.View
+          style={[
+            styles.pageContent,
+            {
+              opacity: anim,
+              transform: [
+                {
+                  translateY: anim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [30, 0],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          <View style={styles.eliminationHeader}>
+            <Text style={styles.emoji}>❌</Text>
+            <Text style={styles.emojiArrow}>→</Text>
+            <Text style={styles.emoji}>💡</Text>
+            <Text style={styles.emojiArrow}>→</Text>
+            <Text style={styles.emoji}>✅</Text>
+          </View>
+
+          <JournalCard rotation={0.3}>
+            <View style={styles.cardInner}>
+              <HandwrittenText variant="handLg" color={colors.text}>
+                Learn to eliminate
+              </HandwrittenText>
+
+              <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center', marginTop: Spacing.sm }]}>
+                Don't know the answer? No problem!
+              </Text>
+
+              {/* Mock question preview */}
+              <View style={styles.mockQuestion}>
+                <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Which organelle...?</Text>
+                <View style={styles.mockOptions}>
+                  <View style={styles.mockOption}>
+                    <Text style={[Typography.bodySm, { color: colors.text }]}>A) Mitochondria</Text>
+                  </View>
+                  <View style={[styles.mockOption, styles.mockOptionEliminated]}>
+                    <Text style={[Typography.bodySm, { color: colors.textTertiary, textDecorationLine: 'line-through' }]}>B) Ribosome</Text>
+                    <Text style={styles.wrongBadge}>✗</Text>
+                  </View>
+                  <View style={[styles.mockOption, styles.mockOptionEliminated]}>
+                    <Text style={[Typography.bodySm, { color: colors.textTertiary, textDecorationLine: 'line-through' }]}>C) Golgi body</Text>
+                    <Text style={styles.wrongBadge}>✗</Text>
+                  </View>
+                  <View style={styles.mockOption}>
+                    <Text style={[Typography.bodySm, { color: colors.text }]}>D) Lysosome</Text>
+                  </View>
+                </View>
+              </View>
+
+              <View style={[styles.highlightBox, { backgroundColor: colors.highlighterPink + '40' }]}>
+                <HandwrittenText variant="handSm" color={colors.textSecondary}>
+                  VaNi teaches you to eliminate like toppers do!
+                </HandwrittenText>
+              </View>
+            </View>
+          </JournalCard>
+
+          <View style={styles.ctaSection}>
             <PuffyButton title="Get Started" onPress={handleGetStarted} />
-
             <HandwrittenText variant="handSm" color={colors.textTertiary}>
               3-day free trial. No strings.
             </HandwrittenText>
@@ -302,9 +395,10 @@ export default function OnboardingScreen() {
 
   // ─── Render ──────────────────────────────────────────────
   const pages = [
-    { id: 'cover', render: renderCover },
-    { id: 'promise', render: renderPromise },
-    { id: 'start', render: renderStart },
+    { id: 'pain', render: renderPainPoint },
+    { id: 'vani', render: renderMeetVani },
+    { id: 'stages', render: renderStages },
+    { id: 'elimination', render: renderElimination },
   ];
 
   return (
@@ -341,7 +435,7 @@ export default function OnboardingScreen() {
             ))}
           </View>
 
-          {currentIndex < 2 && (
+          {currentIndex < 3 && (
             <PuffyButton title="Next" onPress={handleNext} />
           )}
         </View>
@@ -363,55 +457,121 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: Spacing.xl,
+    paddingHorizontal: Spacing.lg,
   },
-
-  // Page 1 — Cover
-  coverContent: {
+  pageContent: {
     alignItems: 'center',
+    width: '100%',
     gap: Spacing.lg,
   },
+
+  // Emoji rows
+  emojiRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    marginBottom: Spacing.md,
+  },
+  emoji: {
+    fontSize: 40,
+  },
+  emojiArrow: {
+    fontSize: 24,
+    color: '#999',
+  },
+
+  // Card inner
+  cardInner: {
+    alignItems: 'center',
+    paddingVertical: Spacing.sm,
+  },
+  highlightBox: {
+    marginTop: Spacing.lg,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    borderRadius: BorderRadius.md,
+  },
+
+  // Meet VaNi
   tapeRow: {
     flexDirection: 'row',
     gap: 20,
-    marginBottom: Spacing.md,
   },
   logoWrap: {
     alignItems: 'center',
   },
-  coverLogo: {
-    width: 220,
-    height: 220,
+  vaniLogo: {
+    width: 120,
+    height: 120,
   },
 
-  // Page 2 — Promise
-  promiseContent: {
-    width: '100%',
-  },
-  promiseList: {
-    gap: Spacing.xl,
-    marginTop: Spacing.xl,
-  },
-  promiseItem: {
+  // Stages
+  stagesHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.lg,
+    gap: Spacing.xs,
+    marginBottom: Spacing.md,
   },
-  marker: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
+  stagesEmoji: {
+    fontSize: 28,
+  },
+  stagesArrow: {
+    fontSize: 18,
+    color: '#999',
+  },
+  stagesList: {
+    marginTop: Spacing.lg,
+    gap: Spacing.md,
+    width: '100%',
+  },
+  stageItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+  },
+  stageDot: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
   },
 
-  // Page 3 — Start
-  startContent: {
+  // Elimination
+  eliminationHeader: {
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.xl,
+    gap: Spacing.sm,
+    marginBottom: Spacing.md,
   },
-  startCta: {
+  mockQuestion: {
+    marginTop: Spacing.lg,
+    width: '100%',
+    backgroundColor: '#f8f8f8',
+    borderRadius: BorderRadius.md,
+    padding: Spacing.md,
+  },
+  mockOptions: {
+    marginTop: Spacing.sm,
+    gap: Spacing.xs,
+  },
+  mockOption: {
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.lg,
-    marginTop: Spacing.xl,
+    justifyContent: 'space-between',
+    paddingVertical: Spacing.xs,
+    paddingHorizontal: Spacing.sm,
+    borderRadius: BorderRadius.sm,
+  },
+  mockOptionEliminated: {
+    backgroundColor: '#fee2e2',
+  },
+  wrongBadge: {
+    color: '#ef4444',
+    fontWeight: '600',
+  },
+  ctaSection: {
+    alignItems: 'center',
+    gap: Spacing.md,
+    marginTop: Spacing.md,
   },
 
   // Footer
