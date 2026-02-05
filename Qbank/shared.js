@@ -295,13 +295,20 @@ async function getQuestionStats() {
 // ============================================================================
 // GEMINI CLIENT
 // ============================================================================
+// Track token usage for the session
+let SESSION_TOKEN_USAGE = {
+  totalInputTokens: 0,
+  totalOutputTokens: 0,
+  calls: []
+};
+
 async function callGemini(prompt, options = {}) {
   const config = await loadConfig();
   if (!config?.gemini?.apiKey) {
     throw new Error('Gemini API key not configured');
   }
 
-  const model = options.model || config.gemini.model || 'gemini-1.5-pro';
+  const model = options.model || config.gemini.model || 'gemini-2.5-flash';
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${config.gemini.apiKey}`;
 
   const response = await fetch(endpoint, {
@@ -328,7 +335,33 @@ async function callGemini(prompt, options = {}) {
     throw new Error('No response from Gemini');
   }
 
+  // Track token usage
+  const usage = data.usageMetadata || {};
+  const inputTokens = usage.promptTokenCount || 0;
+  const outputTokens = usage.candidatesTokenCount || 0;
+
+  SESSION_TOKEN_USAGE.totalInputTokens += inputTokens;
+  SESSION_TOKEN_USAGE.totalOutputTokens += outputTokens;
+  SESSION_TOKEN_USAGE.calls.push({
+    timestamp: new Date().toISOString(),
+    model,
+    inputTokens,
+    outputTokens
+  });
+
+  // Log token usage to console
+  console.log(`📊 Token Usage: ${inputTokens} in / ${outputTokens} out (Total session: ${SESSION_TOKEN_USAGE.totalInputTokens} in / ${SESSION_TOKEN_USAGE.totalOutputTokens} out)`);
+
+  // Return text by default, or full response if requested
+  if (options.returnFullResponse) {
+    return { text, usage: { inputTokens, outputTokens }, raw: data };
+  }
+
   return text;
+}
+
+function getTokenUsage() {
+  return SESSION_TOKEN_USAGE;
 }
 
 // ============================================================================
@@ -398,16 +431,26 @@ OUTPUT FORMAT (JSON array):
     "correct_answer": "B",
     "explanation": "Detailed explanation of why B is correct and others are wrong",
     "difficulty": "${difficulty}",
-    "topic": "Specific topic this covers",
-    "concept_tags": ["tag1", "tag2"]${includeHints ? `,
+    "exam_suitability": ["NEET", "CUET"],
+    "topic": "Exact topic name from the list provided",
+    "subtopic": "Specific subtopic/concept within the topic",
+    "concept_tags": ["specific-concept-1", "specific-concept-2"],
+    "bloom_level": "remember|understand|apply|analyze"${includeHints ? `,
     "elimination_hints": [
-      { "option_key": "A", "hint": "Why A can be eliminated" },
-      { "option_key": "C", "hint": "Why C can be eliminated" },
-      { "option_key": "D", "hint": "Why D can be eliminated" }
+      { "option_key": "A", "hint": "Why A can be eliminated", "misconception": "Common mistake students make" },
+      { "option_key": "C", "hint": "Why C can be eliminated", "misconception": "Common mistake students make" },
+      { "option_key": "D", "hint": "Why D can be eliminated", "misconception": "Common mistake students make" }
     ]` : ''}
   }
 ]
 \`\`\`
+
+TAGGING REQUIREMENTS:
+- "exam_suitability": Which exams this question is suitable for (${examIds.join(', ')})
+- "topic": Must match exactly one of the topics provided above
+- "subtopic": A specific concept within that topic (e.g., "Newton's Third Law" within "Newton Laws of Motion")
+- "concept_tags": 2-4 specific concepts tested (for student weakness tracking)
+- "bloom_level": Cognitive level - remember (recall), understand (explain), apply (use), analyze (compare/contrast)
 
 IMPORTANT GUIDELINES:
 1. Questions must be ${examName}-level, appropriate for Indian competitive exams
@@ -684,6 +727,7 @@ window.Qbank = {
 
   // Gemini
   callGemini,
+  getTokenUsage,
   buildQuestionGenerationPrompt,
   buildTeluguTranslationPrompt,
   parseJsonResponse,
