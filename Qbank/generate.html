@@ -44,15 +44,41 @@
 
       <div class="card">
         <div class="card-body">
-          <!-- Step 1: Subject Selection -->
+          <!-- Step 1: Exam & Subject Selection -->
           <div class="wizard-content" id="step1Content">
-            <h3>Select Subject</h3>
-            <p style="color: var(--gray-500); margin-bottom: 24px;">Choose the subject for question generation</p>
+            <h3>Select Exam & Subject</h3>
+            <p style="color: var(--gray-500); margin-bottom: 24px;">Choose target exam and subject for question generation</p>
 
-            <div class="selection-grid" id="subjectGrid">
-              <div class="qbank-loader">
-                <div class="loader-spinner"></div>
-                <p class="loader-message">Loading subjects...</p>
+            <!-- Exam Selection -->
+            <div class="form-group" style="margin-bottom: 24px;">
+              <label class="form-label">Target Exam</label>
+              <div style="display: flex; gap: 16px; margin-top: 8px;">
+                <label class="selection-item" style="flex: 1; max-width: 200px; cursor: pointer;" data-exam="NEET" onclick="selectExam('NEET')">
+                  <div class="icon">🩺</div>
+                  <div class="label">NEET</div>
+                  <div class="meta">Medical Entrance</div>
+                </label>
+                <label class="selection-item" style="flex: 1; max-width: 200px; cursor: pointer;" data-exam="CUET" onclick="selectExam('CUET')">
+                  <div class="icon">🎓</div>
+                  <div class="label">CUET</div>
+                  <div class="meta">University Entrance</div>
+                </label>
+                <label class="selection-item" style="flex: 1; max-width: 200px; cursor: pointer;" data-exam="BOTH" onclick="selectExam('BOTH')">
+                  <div class="icon">📚</div>
+                  <div class="label">Both</div>
+                  <div class="meta">NEET + CUET</div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Subject Selection -->
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <div class="selection-grid" id="subjectGrid">
+                <div class="qbank-loader">
+                  <div class="loader-spinner"></div>
+                  <p class="loader-message">Loading subjects...</p>
+                </div>
               </div>
             </div>
           </div>
@@ -71,7 +97,7 @@
           <div class="wizard-content" id="step3Content" style="display: none;">
             <h3>Configure Generation</h3>
             <p style="color: var(--gray-500); margin-bottom: 24px;">
-              Generating for: <strong id="configChapterName"></strong>
+              Generating for: <strong id="configExamName"></strong> → <strong id="configChapterName"></strong>
             </p>
 
             <div class="form-row">
@@ -184,6 +210,7 @@
   <script>
     // State
     let currentStep = 1;
+    let selectedExam = null;  // 'NEET', 'CUET', or 'BOTH'
     let selectedSubject = null;
     let selectedChapter = null;
     let selectedTopics = [];
@@ -202,8 +229,19 @@
     }
 
     // ========================================================================
-    // STEP 1: Subject Selection
+    // STEP 1: Exam & Subject Selection
     // ========================================================================
+    function selectExam(exam) {
+      selectedExam = exam;
+
+      // Update UI
+      document.querySelectorAll('[data-exam]').forEach(item => {
+        item.classList.toggle('selected', item.dataset.exam === exam);
+      });
+
+      updateNavigation();
+    }
+
     async function loadSubjects() {
       const grid = document.getElementById('subjectGrid');
 
@@ -283,6 +321,7 @@
     // STEP 3: Configuration
     // ========================================================================
     async function loadConfiguration() {
+      document.getElementById('configExamName').textContent = selectedExam === 'BOTH' ? 'NEET + CUET' : selectedExam;
       document.getElementById('configChapterName').textContent =
         `${selectedSubject.name} → ${selectedChapter.name}`;
 
@@ -321,7 +360,12 @@
         ? topics.filter(t => selectedTopicIds.includes(t.id))
         : topics;
 
+      // Determine exam_ids based on selection
+      const examIds = selectedExam === 'BOTH' ? ['NEET', 'CUET'] : [selectedExam];
+
       return {
+        exam: selectedExam,
+        examIds: examIds,
         subject: selectedSubject,
         chapter: selectedChapter,
         topics: selectedTopicObjects,
@@ -356,7 +400,10 @@
         const job = await Qbank.createGenerationJob({
           subject_id: config.subject.id,
           chapter_id: config.chapter.id,
+          exam_ids: config.examIds,
           config: {
+            exam: config.exam,
+            examIds: config.examIds,
             topics: config.topics.map(t => t.id),
             questionTypes: config.questionTypes,
             count: config.count,
@@ -375,6 +422,8 @@
         progressBar.style.width = '30%';
 
         const prompt = Qbank.buildQuestionGenerationPrompt({
+          exam: config.exam,
+          examIds: config.examIds,
           subject: config.subject.name,
           chapter: config.chapter,
           topics: config.topics,
@@ -492,6 +541,7 @@
 
     function resetWizard() {
       currentStep = 1;
+      selectedExam = null;
       selectedSubject = null;
       selectedChapter = null;
       selectedTopics = [];
@@ -499,6 +549,7 @@
 
       // Reset UI
       document.querySelectorAll('.selection-item').forEach(el => el.classList.remove('selected'));
+      document.querySelectorAll('[data-exam]').forEach(el => el.classList.remove('selected'));
       document.querySelectorAll('.chapter-item').forEach(el => el.classList.remove('selected'));
       document.getElementById('generationStatus').style.display = 'block';
       document.getElementById('generationResult').style.display = 'none';
@@ -523,7 +574,7 @@
 
       switch (currentStep) {
         case 1:
-          canProceed = selectedSubject !== null;
+          canProceed = selectedExam !== null && selectedSubject !== null;
           break;
         case 2:
           canProceed = selectedChapter !== null;
