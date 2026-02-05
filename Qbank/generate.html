@@ -486,26 +486,56 @@
       statusDiv.style.display = 'none';
       resultDiv.style.display = 'block';
 
+      // Get token usage
+      const tokenUsage = Qbank.getTokenUsage();
+      const lastCall = tokenUsage.calls[tokenUsage.calls.length - 1] || {};
+
       resultDiv.innerHTML = `
         <div style="text-align: center; margin-bottom: 32px;">
           <div style="font-size: 4rem; margin-bottom: 16px;">🎉</div>
           <h3>Successfully Generated ${questions.length} Questions!</h3>
           <p style="color: var(--gray-500);">Questions saved to review queue. Job ID: ${jobId}</p>
+
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; margin: 16px auto; max-width: 400px;">
+            <div style="font-size: 13px; color: #166534;">
+              📊 <strong>Token Usage:</strong> ${lastCall.inputTokens || 0} in / ${lastCall.outputTokens || 0} out
+              <br>
+              📈 <strong>Session Total:</strong> ${tokenUsage.totalInputTokens} in / ${tokenUsage.totalOutputTokens} out
+            </div>
+          </div>
+
           <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px;">
             <a href="./review.html" class="btn btn-primary">👁️ Review Questions</a>
             <button class="btn btn-secondary" onclick="resetWizard()">🔄 Generate More</button>
           </div>
         </div>
 
-        <h4 style="margin-bottom: 16px;">Preview (first 3 questions)</h4>
-        ${questions.slice(0, 3).map((q, i) => renderQuestionPreview(q, i + 1)).join('')}
-
-        ${questions.length > 3 ? `
-          <p style="text-align: center; color: var(--gray-500); margin-top: 16px;">
-            ... and ${questions.length - 3} more questions
-          </p>
-        ` : ''}
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h4 style="margin: 0;">Generated Questions</h4>
+          <button class="btn btn-sm btn-secondary" onclick="toggleAllQuestions()">
+            <span id="toggleText">Show All ${questions.length}</span>
+          </button>
+        </div>
+        <div id="questionsPreview">
+          ${questions.slice(0, 3).map((q, i) => renderQuestionPreview(q, i + 1)).join('')}
+          ${questions.length > 3 ? `
+            <p style="text-align: center; color: var(--gray-500); margin-top: 16px;" id="moreText">
+              ... and ${questions.length - 3} more questions
+            </p>
+          ` : ''}
+        </div>
+        <div id="allQuestions" style="display: none;">
+          ${questions.map((q, i) => renderQuestionPreview(q, i + 1)).join('')}
+        </div>
       `;
+    }
+
+    let showingAll = false;
+    function toggleAllQuestions() {
+      showingAll = !showingAll;
+      document.getElementById('questionsPreview').style.display = showingAll ? 'none' : 'block';
+      document.getElementById('allQuestions').style.display = showingAll ? 'block' : 'none';
+      document.getElementById('toggleText').textContent = showingAll ? 'Show Less' : `Show All ${generatedQuestions.length}`;
     }
 
     function renderQuestionPreview(question, num) {
