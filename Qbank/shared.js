@@ -280,6 +280,148 @@ async function insertEliminationHints(hints) {
   return { success: true, data };
 }
 
+// Insert questions from a generation job to DB
+async function insertJobQuestionsToDb(job) {
+  if (!job.output_json?.questions || job.output_json.questions.length === 0) {
+    return { success: false, error: 'No questions in job' };
+  }
+
+  const questions = job.output_json.questions;
+  let insertedCount = 0;
+  let errorCount = 0;
+
+  for (const q of questions) {
+    try {
+      // Prepare question record
+      const questionRecord = {
+        subject_id: job.subject_id,
+        chapter_id: job.chapter_id,
+        topic_id: null, // Will be matched later if needed
+        exam_ids: q.exam_suitability || job.exam_ids || ['NEET'],
+        question_type: q.question_type,
+        difficulty: q.difficulty || 'medium',
+        strength_required: 'just-started',
+        question_text: q.question_text,
+        explanation: q.explanation,
+        payload: {
+          subtopic: q.subtopic,
+          bloom_level: q.bloom_level,
+          topic_name: q.topic
+        },
+        correct_answer: q.correct_answer,
+        source: 'gemini',
+        generation_job_id: job.id,
+        concept_tags: q.concept_tags || [],
+        status: 'draft' // Will be reviewed later
+      };
+
+      // Insert question
+      const { data: insertedQ, error: qError } = await SUPABASE
+        .from('med_questions')
+        .insert(questionRecord)
+        .select()
+        .single();
+
+      if (qError) {
+        console.error('Error inserting question:', qError);
+        errorCount++;
+        continue;
+      }
+
+      // Insert options
+      if (q.options && q.options.length > 0) {
+        const optionRecords = q.options.map((opt, idx) => ({
+          question_id: insertedQ.id,
+          option_key: opt.key,
+          option_text: opt.text,
+          is_correct: opt.is_correct || opt.key === q.correct_answer,
+          sort_order: idx
+        }));
+
+        const { error: optError } = await SUPABASE
+          .from('med_question_options')
+          .insert(optionRecords);
+
+        if (optError) {
+          console.error('Error inserting options:', optError);
+        }
+      }
+
+      // Insert elimination hints
+      if (q.elimination_hints && q.elimination_hints.length > 0) {
+        const hintRecords = q.elimination_hints.map(hint => ({
+          question_id: insertedQ.id,
+          option_key: hint.option_key,
+          hint_text: hint.hint,
+          misconception: hint.misconception
+        }));
+
+        const { error: hintError } = await SUPABASE
+          .from('med_elimination_hints')
+          .insert(hintRecords);
+
+        if (hintError) {
+          console.error('Error inserting hints:', hintError);
+        }
+      }
+
+      insertedCount++;
+    } catch (err) {
+      console.error('Error processing question:', err);
+      errorCount++;
+    }
+  }
+
+  // Update job status
+  await updateGenerationJob(job.id, {
+    status: 'inserted',
+    questions_count: insertedCount
+  });
+
+  return {
+    success: true,
+    insertedCount,
+    errorCount,
+    total: questions.length
+  };
+}
+
+// Check for old jobs (>12 hours) and auto-insert
+async function autoInsertOldJobs() {
+  const twelveHoursAgo = new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString();
+
+  // Get jobs that are pending and older than 12 hours
+  const { data: oldJobs, error } = await SUPABASE
+    .from('med_generation_jobs')
+    .select('*')
+    .in('status', ['pending', 'generating'])
+    .lt('created_at', twelveHoursAgo);
+
+  if (error) {
+    console.error('Error fetching old jobs:', error);
+    return { processed: 0 };
+  }
+
+  let processed = 0;
+  for (const job of oldJobs || []) {
+    console.log(`Auto-inserting old job ${job.id} (created ${job.created_at})`);
+    const result = await insertJobQuestionsToDb(job);
+    if (result.success) {
+      processed++;
+    }
+  }
+
+  return { processed, total: oldJobs?.length || 0 };
+}
+
+// Get time remaining before auto-insert (in ms)
+function getAutoInsertTimeRemaining(jobCreatedAt) {
+  const created = new Date(jobCreatedAt).getTime();
+  const deadline = created + 12 * 60 * 60 * 1000; // 12 hours
+  const remaining = deadline - Date.now();
+  return Math.max(0, remaining);
+}
+
 async function getQuestionStats() {
   const { data, error } = await SUPABASE
     .from('med_questions')
@@ -826,6 +968,9 @@ window.Qbank = {
   insertQuestions,
   insertQuestionOptions,
   insertEliminationHints,
+  insertJobQuestionsToDb,
+  autoInsertOldJobs,
+  getAutoInsertTimeRemaining,
   getQuestionStats,
 
   // Gemini

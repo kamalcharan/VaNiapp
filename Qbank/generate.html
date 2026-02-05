@@ -247,37 +247,49 @@
       await loadSubjects();
       await loadStats();
       updateNavigation();
+
+      // Auto-insert old jobs (>12 hours)
+      const autoResult = await Qbank.autoInsertOldJobs();
+      if (autoResult.processed > 0) {
+        Qbank.showToast(`Auto-inserted ${autoResult.processed} old jobs to DB`, 'info');
+        await loadStats(); // Refresh stats after auto-insert
+      }
     }
 
     async function loadStats() {
       try {
-        // Fetch all generation jobs
+        // Fetch from jobs table (for pending/generating)
         const jobs = await Qbank.fetchGenerationJobs();
 
-        // Count by status
-        let total = 0;
-        let pending = 0;
-        let approved = 0;
-        let inserted = 0;
+        // Fetch from med_questions table (for actual DB counts)
+        const questionStats = await Qbank.getQuestionStats() || [];
 
+        // Count pending from jobs
+        let pendingCount = 0;
         jobs.forEach(job => {
-          const count = job.questions_count || 0;
-          total += count;
-
           if (job.status === 'pending' || job.status === 'generating') {
-            pending += count;
-          } else if (job.status === 'approved' || job.status === 'reviewed') {
-            approved += count;
-          } else if (job.status === 'inserted') {
-            inserted += count;
+            pendingCount += job.questions_count || 0;
+          }
+        });
+
+        // Count from actual questions in DB by status
+        let draftCount = 0;
+        let activeCount = 0;
+        let totalInDb = questionStats.length;
+
+        questionStats.forEach(q => {
+          if (q.status === 'draft' || q.status === 'pending_review') {
+            draftCount++;
+          } else if (q.status === 'active') {
+            activeCount++;
           }
         });
 
         // Update UI
-        document.getElementById('statTotal').textContent = total;
-        document.getElementById('statPending').textContent = pending;
-        document.getElementById('statApproved').textContent = approved;
-        document.getElementById('statInserted').textContent = inserted;
+        document.getElementById('statTotal').textContent = pendingCount + totalInDb;
+        document.getElementById('statPending').textContent = pendingCount;
+        document.getElementById('statApproved').textContent = draftCount;
+        document.getElementById('statInserted').textContent = activeCount;
 
       } catch (error) {
         console.error('Error loading stats:', error);
@@ -520,7 +532,7 @@
         progressBar.style.width = '100%';
         generatedQuestions = questions;
 
-        showGenerationResult(questions, job.id);
+        showGenerationResult(questions, job);
 
         // Refresh stats
         await loadStats();
@@ -538,12 +550,16 @@
       }
     }
 
-    function showGenerationResult(questions, jobId) {
+    let currentJobId = null;
+    let timerInterval = null;
+
+    function showGenerationResult(questions, job) {
       const statusDiv = document.getElementById('generationStatus');
       const resultDiv = document.getElementById('generationResult');
 
       statusDiv.style.display = 'none';
       resultDiv.style.display = 'block';
+      currentJobId = job.id;
 
       // Get token usage
       const tokenUsage = Qbank.getTokenUsage();
@@ -553,7 +569,16 @@
         <div style="text-align: center; margin-bottom: 32px;">
           <div style="font-size: 4rem; margin-bottom: 16px;">🎉</div>
           <h3>Successfully Generated ${questions.length} Questions!</h3>
-          <p style="color: var(--gray-500);">Questions saved to review queue. Job ID: ${jobId}</p>
+          <p style="color: var(--gray-500);">Job ID: ${job.id}</p>
+
+          <!-- Timer Box -->
+          <div style="background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 12px 16px; margin: 16px auto; max-width: 450px;">
+            <div style="font-size: 13px; color: #92400e;">
+              ⏱️ <strong>Auto-insert to DB in:</strong> <span id="autoInsertTimer">12:00:00</span>
+              <br>
+              <span style="font-size: 12px; opacity: 0.8;">Questions will be auto-inserted if not reviewed within 12 hours</span>
+            </div>
+          </div>
 
           <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; margin: 16px auto; max-width: 400px;">
             <div style="font-size: 13px; color: #166534;">
@@ -563,7 +588,10 @@
             </div>
           </div>
 
-          <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px;">
+          <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px; flex-wrap: wrap;">
+            <button class="btn btn-success" onclick="insertToDbNow()" id="insertBtn">
+              💾 Insert to DB Now
+            </button>
             <a href="./review.html" class="btn btn-primary">👁️ Review Questions</a>
             <button class="btn btn-secondary" onclick="resetWizard()">🔄 Generate More</button>
           </div>
@@ -587,6 +615,89 @@
           ${questions.map((q, i) => renderQuestionPreview(q, i + 1)).join('')}
         </div>
       `;
+
+      // Start the countdown timer using actual job creation time
+      startAutoInsertTimer(job.created_at);
+    }
+
+    function startAutoInsertTimer(createdAt) {
+      if (timerInterval) clearInterval(timerInterval);
+
+      function updateTimer() {
+        const remaining = Qbank.getAutoInsertTimeRemaining(createdAt);
+        const timerEl = document.getElementById('autoInsertTimer');
+        if (!timerEl) return;
+
+        if (remaining <= 0) {
+          timerEl.textContent = 'Auto-inserting...';
+          clearInterval(timerInterval);
+          insertToDbNow();
+          return;
+        }
+
+        const hours = Math.floor(remaining / (1000 * 60 * 60));
+        const mins = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((remaining % (1000 * 60)) / 1000);
+        timerEl.textContent = `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      updateTimer();
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    async function insertToDbNow() {
+      if (!currentJobId) {
+        Qbank.showToast('No job to insert', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('insertBtn');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = '⏳ Inserting...';
+      }
+
+      try {
+        // Get the job
+        const jobs = await Qbank.fetchGenerationJobs();
+        const job = jobs.find(j => j.id === currentJobId);
+
+        if (!job) {
+          throw new Error('Job not found');
+        }
+
+        const result = await Qbank.insertJobQuestionsToDb(job);
+
+        if (result.success) {
+          Qbank.showToast(`✅ Inserted ${result.insertedCount}/${result.total} questions to DB`, 'success');
+          if (timerInterval) clearInterval(timerInterval);
+
+          // Update timer display
+          const timerEl = document.getElementById('autoInsertTimer');
+          if (timerEl) {
+            timerEl.parentElement.innerHTML = `✅ <strong>Inserted to DB!</strong> ${result.insertedCount} questions added`;
+            timerEl.parentElement.parentElement.style.background = '#d1fae5';
+            timerEl.parentElement.parentElement.style.borderColor = '#6ee7b7';
+          }
+
+          if (btn) {
+            btn.textContent = '✅ Inserted';
+            btn.disabled = true;
+          }
+
+          // Refresh stats
+          await loadStats();
+        } else {
+          throw new Error(result.error || 'Insert failed');
+        }
+      } catch (error) {
+        console.error('Insert error:', error);
+        Qbank.showToast(`Error: ${error.message}`, 'error');
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = '💾 Insert to DB Now';
+        }
+      }
     }
 
     let showingAll = false;
