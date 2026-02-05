@@ -685,15 +685,46 @@ function renderNavHeader() {
 // JSON PARSER (handles markdown code blocks)
 // ============================================================================
 function parseJsonResponse(text) {
-  // Try to extract JSON from markdown code blocks
-  const jsonMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/);
-  const jsonStr = jsonMatch ? jsonMatch[1].trim() : text.trim();
+  let jsonStr = text.trim();
+
+  // Try multiple patterns to extract JSON from markdown code blocks
+  // Pattern 1: ```json ... ```
+  let match = jsonStr.match(/```json\s*([\s\S]*?)```/);
+  if (match) {
+    jsonStr = match[1].trim();
+  } else {
+    // Pattern 2: ``` ... ``` (without json label)
+    match = jsonStr.match(/```\s*([\s\S]*?)```/);
+    if (match) {
+      jsonStr = match[1].trim();
+    }
+  }
+
+  // Pattern 3: If still starts with [ or {, use as-is
+  // Pattern 4: Find first [ or { and last ] or }
+  if (!jsonStr.startsWith('[') && !jsonStr.startsWith('{')) {
+    const startBracket = jsonStr.indexOf('[');
+    const startBrace = jsonStr.indexOf('{');
+    const start = startBracket === -1 ? startBrace :
+                  startBrace === -1 ? startBracket :
+                  Math.min(startBracket, startBrace);
+
+    if (start !== -1) {
+      const isArray = jsonStr[start] === '[';
+      const endChar = isArray ? ']' : '}';
+      const end = jsonStr.lastIndexOf(endChar);
+      if (end > start) {
+        jsonStr = jsonStr.substring(start, end + 1);
+      }
+    }
+  }
 
   try {
     return JSON.parse(jsonStr);
   } catch (error) {
     console.error('JSON parse error:', error);
-    console.log('Raw text:', text);
+    console.log('Raw text (first 500 chars):', text.substring(0, 500));
+    console.log('Attempted to parse:', jsonStr.substring(0, 500));
     throw new Error('Failed to parse Gemini response as JSON');
   }
 }
