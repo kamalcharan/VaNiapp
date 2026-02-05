@@ -87,11 +87,18 @@ export default function GettingStartedScreen() {
   const { colors } = useTheme();
   const router = useRouter();
   const { user } = useAuth();
-  const { setStep } = useOnboarding();
+  const onboarding = useOnboarding();
   const [currentScreen, setCurrentScreen] = useState(0);
 
+  // Only set step if we're in onboarding flow (not from profile "About VaNi")
   useEffect(() => {
-    setStep(7);
+    if (onboarding?.setStep) {
+      try {
+        onboarding.setStep(7);
+      } catch {
+        // Accessed from outside onboarding flow - ignore
+      }
+    }
   }, []);
 
   const firstName =
@@ -181,7 +188,12 @@ export default function GettingStartedScreen() {
 
   const handleFinish = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    router.replace('/(main)');
+    // If we can go back (came from profile), go back; otherwise go to main
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace('/(main)');
+    }
   };
 
   const screen = VANI_SCREENS[currentScreen];
