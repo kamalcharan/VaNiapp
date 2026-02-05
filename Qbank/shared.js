@@ -386,6 +386,111 @@ async function insertJobQuestionsToDb(job) {
   };
 }
 
+// Insert only approved questions from a job to DB
+async function insertApprovedQuestionsToDb(job, approvedQuestions) {
+  if (!approvedQuestions || approvedQuestions.length === 0) {
+    return { success: false, error: 'No approved questions to insert' };
+  }
+
+  let insertedCount = 0;
+  let errorCount = 0;
+
+  for (const q of approvedQuestions) {
+    try {
+      // Prepare question record
+      const questionRecord = {
+        subject_id: job.subject_id,
+        chapter_id: job.chapter_id,
+        topic_id: null,
+        exam_ids: q.exam_suitability || job.exam_ids || ['NEET'],
+        question_type: q.question_type,
+        difficulty: q.difficulty || 'medium',
+        strength_required: 'just-started',
+        question_text: q.question_text,
+        explanation: q.explanation,
+        payload: {
+          subtopic: q.subtopic,
+          bloom_level: q.bloom_level,
+          topic_name: q.topic
+        },
+        correct_answer: q.correct_answer,
+        source: 'gemini',
+        generation_job_id: job.id,
+        concept_tags: q.concept_tags || [],
+        status: 'active' // Approved questions go directly to active
+      };
+
+      // Insert question
+      const { data: insertedQ, error: qError } = await SUPABASE
+        .from('med_questions')
+        .insert(questionRecord)
+        .select()
+        .single();
+
+      if (qError) {
+        console.error('Error inserting question:', qError);
+        errorCount++;
+        continue;
+      }
+
+      // Insert options
+      if (q.options && q.options.length > 0) {
+        const optionRecords = q.options.map((opt, idx) => ({
+          question_id: insertedQ.id,
+          option_key: opt.key,
+          option_text: opt.text,
+          is_correct: opt.is_correct || opt.key === q.correct_answer,
+          sort_order: idx
+        }));
+
+        const { error: optError } = await SUPABASE
+          .from('med_question_options')
+          .insert(optionRecords);
+
+        if (optError) {
+          console.error('Error inserting options:', optError);
+        }
+      }
+
+      // Insert elimination hints
+      if (q.elimination_hints && q.elimination_hints.length > 0) {
+        const hintRecords = q.elimination_hints.map(hint => ({
+          question_id: insertedQ.id,
+          option_key: hint.option_key,
+          hint_text: hint.hint,
+          misconception: hint.misconception
+        }));
+
+        const { error: hintError } = await SUPABASE
+          .from('med_elimination_hints')
+          .insert(hintRecords);
+
+        if (hintError) {
+          console.error('Error inserting hints:', hintError);
+        }
+      }
+
+      insertedCount++;
+    } catch (err) {
+      console.error('Error processing question:', err);
+      errorCount++;
+    }
+  }
+
+  // Update job status to 'inserted'
+  await updateGenerationJob(job.id, {
+    status: 'inserted',
+    questions_count: insertedCount
+  });
+
+  return {
+    success: true,
+    insertedCount,
+    errorCount,
+    total: approvedQuestions.length
+  };
+}
+
 // Check for old jobs (>12 hours) and auto-insert
 async function autoInsertOldJobs() {
   const twelveHoursAgo = new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString();
@@ -969,6 +1074,7 @@ window.Qbank = {
   insertQuestionOptions,
   insertEliminationHints,
   insertJobQuestionsToDb,
+  insertApprovedQuestionsToDb,
   autoInsertOldJobs,
   getAutoInsertTimeRemaining,
   getQuestionStats,
