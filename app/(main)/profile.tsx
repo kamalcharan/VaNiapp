@@ -9,6 +9,7 @@ import {
   Easing,
   ActivityIndicator,
 } from 'react-native';
+import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
@@ -32,6 +33,7 @@ import { getSubjects, getLanguages, CatalogSubject } from '../../src/lib/catalog
 export default function ProfileScreen() {
   const { colors, mode, toggle } = useTheme();
   const toast = useToast();
+  const router = useRouter();
 
   const [profile, setProfile] = useState<MedProfile | null>(null);
   const [subjects, setSubjects] = useState<CatalogSubject[]>([]);
@@ -425,6 +427,16 @@ export default function ProfileScreen() {
               onPress={() => setLogoutDialog(true)}
             />
           </View>
+
+          {/* About VaNi */}
+          <Pressable
+            style={styles.aboutLink}
+            onPress={() => router.push('/setup/getting-started')}
+          >
+            <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
+              About VaNi
+            </Text>
+          </Pressable>
         </Animated.ScrollView>
       </SafeAreaView>
 
@@ -557,5 +569,9 @@ const styles = StyleSheet.create({
   logoutSection: {
     alignItems: 'center',
     paddingTop: Spacing.md,
+  },
+  aboutLink: {
+    alignItems: 'center',
+    paddingVertical: Spacing.md,
   },
 });
