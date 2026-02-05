@@ -117,16 +117,18 @@ create index if not exists idx_questions_tags on med_questions using gin(concept
 -- └─────────────────────────────────────────────────────────────────────────────┘
 
 create table if not exists med_question_options (
-  id                text not null,
+  id                uuid primary key default gen_random_uuid(),
   question_id       uuid not null references med_questions(id) on delete cascade,
 
+  option_key        text not null,            -- A, B, C, D
   option_text       text not null,
   option_text_te    text,
+  is_correct        boolean default false,
 
-  sort_order        int default 0,
-
-  primary key (question_id, id)
+  sort_order        int default 0
 );
+
+create index if not exists idx_options_question on med_question_options(question_id);
 
 
 -- ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -136,7 +138,7 @@ create table if not exists med_question_options (
 create table if not exists med_elimination_hints (
   id                uuid primary key default gen_random_uuid(),
   question_id       uuid not null references med_questions(id) on delete cascade,
-  option_id         text not null,
+  option_key        text not null,            -- A, B, C, D (the wrong option)
 
   hint_text         text not null,
   hint_text_te      text,
@@ -144,8 +146,10 @@ create table if not exists med_elimination_hints (
   misconception     text,
   misconception_te  text,
 
-  unique (question_id, option_id)
+  unique (question_id, option_key)
 );
+
+create index if not exists idx_hints_question on med_elimination_hints(question_id);
 
 
 -- ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -156,26 +160,23 @@ create table if not exists med_generation_jobs (
   id                uuid primary key default gen_random_uuid(),
 
   subject_id        text not null,
-  chapter_id        text not null,
+  chapter_id        text,
   topic_id          text,
-  question_type     text not null,
-  difficulty        text default 'medium',
-  count             int not null default 10,
-  include_telugu    boolean default true,
+  exam_ids          text[] default '{"NEET"}',
 
-  trigger_reason    text not null,
-  trigger_data      jsonb default '{}',
+  config            jsonb default '{}',       -- generation config (types, count, difficulty, etc.)
+  output_json       jsonb,                    -- generated questions before insert
 
-  priority          text default 'normal' check (priority in ('low', 'normal', 'high', 'urgent')),
-  status            text default 'pending' check (status in ('pending', 'processing', 'completed', 'failed', 'cancelled')),
-
-  generated_output  jsonb,
-  questions_created int default 0,
+  questions_count   int default 0,
   error_message     text,
 
+  status            text default 'pending' check (status in (
+    'pending', 'generating', 'reviewed', 'approved', 'inserted', 'failed', 'cancelled'
+  )),
+
+  created_by        uuid,
   created_at        timestamptz default now(),
-  started_at        timestamptz,
-  completed_at      timestamptz
+  updated_at        timestamptz default now()
 );
 
 create index if not exists idx_jobs_status on med_generation_jobs(status);
@@ -196,18 +197,27 @@ create policy "Public read topics" on med_topics for select using (true);
 
 alter table med_questions enable row level security;
 drop policy if exists "Public read active questions" on med_questions;
-create policy "Public read active questions" on med_questions for select using (status = 'active');
+create policy "Public read active questions" on med_questions for select using (true);
+drop policy if exists "Public insert questions" on med_questions;
+create policy "Public insert questions" on med_questions for insert with check (true);
+drop policy if exists "Public update questions" on med_questions;
+create policy "Public update questions" on med_questions for update using (true) with check (true);
 
 alter table med_question_options enable row level security;
 drop policy if exists "Public read options" on med_question_options;
 create policy "Public read options" on med_question_options for select using (true);
+drop policy if exists "Public insert options" on med_question_options;
+create policy "Public insert options" on med_question_options for insert with check (true);
 
 alter table med_elimination_hints enable row level security;
 drop policy if exists "Public read hints" on med_elimination_hints;
 create policy "Public read hints" on med_elimination_hints for select using (true);
+drop policy if exists "Public insert hints" on med_elimination_hints;
+create policy "Public insert hints" on med_elimination_hints for insert with check (true);
 
 alter table med_generation_jobs enable row level security;
--- No public policy for generation jobs (admin only)
+drop policy if exists "Public access generation jobs" on med_generation_jobs;
+create policy "Public access generation jobs" on med_generation_jobs for all using (true) with check (true);
 
 
 -- ┌─────────────────────────────────────────────────────────────────────────────┐
