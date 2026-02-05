@@ -431,7 +431,7 @@ export default function ProfileScreen() {
           {/* About VaNi */}
           <Pressable
             style={styles.aboutLink}
-            onPress={() => router.push('/setup/getting-started')}
+            onPress={() => router.push('/about-vani')}
           >
             <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
               About VaNi
