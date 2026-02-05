@@ -370,9 +370,16 @@ function getTokenUsage() {
 function buildQuestionGenerationPrompt(params) {
   const { exam, examIds, subject, chapter, topics, questionTypes, count, difficulty, includeHints } = params;
 
-  const topicList = topics.length > 0
-    ? topics.map(t => `- ${t.name}`).join('\n')
-    : 'All topics in the chapter';
+  // Build topic list - always explicit
+  let topicList;
+  if (topics.length > 0) {
+    topicList = topics.map(t => `- ${t.name}`).join('\n');
+  } else {
+    // No topics defined - use chapter's important_topics if available
+    topicList = chapter.important_topics && chapter.important_topics.length > 0
+      ? chapter.important_topics.map(t => `- ${t}`).join('\n')
+      : `- General concepts from ${chapter.name}`;
+  }
 
   const typeInstructions = {
     'mcq': 'Multiple Choice Question with 4 options (A, B, C, D)',
@@ -401,11 +408,17 @@ TARGET EXAM: ${examContext}
 
 TASK: Generate ${count} high-quality questions for ${examName} preparation.
 
+═══════════════════════════════════════════════════════════════════════════════
+IMPORTANT: Generate questions ONLY from the specific chapter and topics below.
+DO NOT generate questions from other chapters or topics.
+═══════════════════════════════════════════════════════════════════════════════
+
+SUBJECT: ${subject}
 CHAPTER: ${chapter.name}
 CLASS: ${chapter.class_level || 'Not specified'}
-WEIGHTAGE: ${chapter.weightage || 'Not specified'}%
+WEIGHTAGE IN EXAM: ${chapter.weightage || 'Not specified'}%
 
-TOPICS TO COVER:
+TOPICS TO COVER (generate questions ONLY from these topics):
 ${topicList}
 
 QUESTION TYPES TO GENERATE:
@@ -453,16 +466,17 @@ TAGGING REQUIREMENTS:
 - "bloom_level": Cognitive level - remember (recall), understand (explain), apply (use), analyze (compare/contrast)
 
 IMPORTANT GUIDELINES:
-1. Questions must be ${examName}-level, appropriate for Indian competitive exams
-2. Each question should test a specific concept
-3. Distractors (wrong options) should be plausible, not obviously wrong
-4. Explanations should be educational, helping students learn
-5. Cover different topics from the list provided
-6. For assertion-reasoning: use standard format with options about A and R relationship
-7. For match-the-following: provide clear matching pairs
-8. Match the difficulty and style expected in ${examName} exams
+1. CRITICAL: Generate questions ONLY from "${chapter.name}" chapter - NO questions from other chapters
+2. Questions must be ${examName}-level, appropriate for Indian competitive exams
+3. Each question should test a specific concept from the topics listed above
+4. Distractors (wrong options) should be plausible, not obviously wrong
+5. Explanations should be educational, helping students learn
+6. Cover different topics from the list provided
+7. For assertion-reasoning: use standard format with options about A and R relationship
+8. For match-the-following: provide clear matching pairs
+9. Match the difficulty and style expected in ${examName} exams
 
-Generate exactly ${count} questions. Output ONLY the JSON array, no additional text.`;
+Generate exactly ${count} questions from "${chapter.name}" ONLY. Output ONLY the JSON array, no additional text.`;
 
   return prompt;
 }
@@ -682,7 +696,7 @@ function renderNavHeader() {
 }
 
 // ============================================================================
-// JSON PARSER (handles markdown code blocks)
+// JSON PARSER (handles markdown code blocks and common issues)
 // ============================================================================
 function parseJsonResponse(text) {
   let jsonStr = text.trim();
@@ -719,13 +733,71 @@ function parseJsonResponse(text) {
     }
   }
 
+  // Try to fix common JSON issues
+  function tryFixJson(str) {
+    // Remove trailing commas before } or ]
+    str = str.replace(/,(\s*[}\]])/g, '$1');
+
+    // Fix unescaped newlines in strings (common LLM issue)
+    // This is tricky - we need to be careful not to break valid JSON
+
+    return str;
+  }
+
+  // First attempt: parse as-is
   try {
     return JSON.parse(jsonStr);
-  } catch (error) {
-    console.error('JSON parse error:', error);
-    console.log('Raw text (first 500 chars):', text.substring(0, 500));
-    console.log('Attempted to parse:', jsonStr.substring(0, 500));
-    throw new Error('Failed to parse Gemini response as JSON');
+  } catch (firstError) {
+    console.warn('First JSON parse attempt failed, trying fixes...');
+
+    // Second attempt: try with fixes
+    try {
+      const fixedJson = tryFixJson(jsonStr);
+      return JSON.parse(fixedJson);
+    } catch (secondError) {
+      // Third attempt: try to extract individual question objects
+      console.warn('Fixed JSON parse failed, trying to extract objects...');
+
+      try {
+        // Find all complete JSON objects in the array
+        const objects = [];
+        let depth = 0;
+        let start = -1;
+
+        for (let i = 0; i < jsonStr.length; i++) {
+          const char = jsonStr[i];
+          if (char === '{') {
+            if (depth === 0) start = i;
+            depth++;
+          } else if (char === '}') {
+            depth--;
+            if (depth === 0 && start !== -1) {
+              const objStr = jsonStr.substring(start, i + 1);
+              try {
+                const obj = JSON.parse(tryFixJson(objStr));
+                objects.push(obj);
+              } catch (e) {
+                // Skip malformed object
+                console.warn('Skipping malformed object');
+              }
+              start = -1;
+            }
+          }
+        }
+
+        if (objects.length > 0) {
+          console.log(`Recovered ${objects.length} questions from malformed JSON`);
+          return objects;
+        }
+      } catch (thirdError) {
+        // All attempts failed
+      }
+
+      console.error('JSON parse error:', firstError);
+      console.log('Raw text (first 1000 chars):', text.substring(0, 1000));
+      console.log('Attempted to parse (first 1000 chars):', jsonStr.substring(0, 1000));
+      throw new Error('Failed to parse Gemini response as JSON. The AI response may be malformed.');
+    }
   }
 }
 
