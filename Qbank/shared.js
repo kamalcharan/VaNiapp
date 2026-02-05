@@ -696,7 +696,7 @@ function renderNavHeader() {
 }
 
 // ============================================================================
-// JSON PARSER (handles markdown code blocks)
+// JSON PARSER (handles markdown code blocks and common issues)
 // ============================================================================
 function parseJsonResponse(text) {
   let jsonStr = text.trim();
@@ -733,13 +733,71 @@ function parseJsonResponse(text) {
     }
   }
 
+  // Try to fix common JSON issues
+  function tryFixJson(str) {
+    // Remove trailing commas before } or ]
+    str = str.replace(/,(\s*[}\]])/g, '$1');
+
+    // Fix unescaped newlines in strings (common LLM issue)
+    // This is tricky - we need to be careful not to break valid JSON
+
+    return str;
+  }
+
+  // First attempt: parse as-is
   try {
     return JSON.parse(jsonStr);
-  } catch (error) {
-    console.error('JSON parse error:', error);
-    console.log('Raw text (first 500 chars):', text.substring(0, 500));
-    console.log('Attempted to parse:', jsonStr.substring(0, 500));
-    throw new Error('Failed to parse Gemini response as JSON');
+  } catch (firstError) {
+    console.warn('First JSON parse attempt failed, trying fixes...');
+
+    // Second attempt: try with fixes
+    try {
+      const fixedJson = tryFixJson(jsonStr);
+      return JSON.parse(fixedJson);
+    } catch (secondError) {
+      // Third attempt: try to extract individual question objects
+      console.warn('Fixed JSON parse failed, trying to extract objects...');
+
+      try {
+        // Find all complete JSON objects in the array
+        const objects = [];
+        let depth = 0;
+        let start = -1;
+
+        for (let i = 0; i < jsonStr.length; i++) {
+          const char = jsonStr[i];
+          if (char === '{') {
+            if (depth === 0) start = i;
+            depth++;
+          } else if (char === '}') {
+            depth--;
+            if (depth === 0 && start !== -1) {
+              const objStr = jsonStr.substring(start, i + 1);
+              try {
+                const obj = JSON.parse(tryFixJson(objStr));
+                objects.push(obj);
+              } catch (e) {
+                // Skip malformed object
+                console.warn('Skipping malformed object');
+              }
+              start = -1;
+            }
+          }
+        }
+
+        if (objects.length > 0) {
+          console.log(`Recovered ${objects.length} questions from malformed JSON`);
+          return objects;
+        }
+      } catch (thirdError) {
+        // All attempts failed
+      }
+
+      console.error('JSON parse error:', firstError);
+      console.log('Raw text (first 1000 chars):', text.substring(0, 1000));
+      console.log('Attempted to parse (first 1000 chars):', jsonStr.substring(0, 1000));
+      throw new Error('Failed to parse Gemini response as JSON. The AI response may be malformed.');
+    }
   }
 }
 
