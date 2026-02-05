@@ -19,6 +19,26 @@
         <p class="page-subtitle">Use Gemini AI to generate NEET-quality questions</p>
       </div>
 
+      <!-- Stats Cards -->
+      <div class="stats-row" id="statsRow" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+        <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px; border-radius: 12px;">
+          <div style="font-size: 24px; font-weight: bold;" id="statTotal">-</div>
+          <div style="font-size: 13px; opacity: 0.9;">Total Generated</div>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 16px; border-radius: 12px;">
+          <div style="font-size: 24px; font-weight: bold;" id="statPending">-</div>
+          <div style="font-size: 13px; opacity: 0.9;">Pending Review</div>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 16px; border-radius: 12px;">
+          <div style="font-size: 24px; font-weight: bold;" id="statApproved">-</div>
+          <div style="font-size: 13px; opacity: 0.9;">Approved</div>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 16px; border-radius: 12px;">
+          <div style="font-size: 24px; font-weight: bold;" id="statInserted">-</div>
+          <div style="font-size: 13px; opacity: 0.9;">In Database</div>
+        </div>
+      </div>
+
       <!-- Wizard Steps -->
       <div class="wizard-steps">
         <div class="wizard-step active" id="step1Indicator">
@@ -225,7 +245,43 @@
 
       Qbank.renderNavHeader();
       await loadSubjects();
+      await loadStats();
       updateNavigation();
+    }
+
+    async function loadStats() {
+      try {
+        // Fetch all generation jobs
+        const jobs = await Qbank.fetchGenerationJobs();
+
+        // Count by status
+        let total = 0;
+        let pending = 0;
+        let approved = 0;
+        let inserted = 0;
+
+        jobs.forEach(job => {
+          const count = job.questions_count || 0;
+          total += count;
+
+          if (job.status === 'pending' || job.status === 'generating') {
+            pending += count;
+          } else if (job.status === 'approved' || job.status === 'reviewed') {
+            approved += count;
+          } else if (job.status === 'inserted') {
+            inserted += count;
+          }
+        });
+
+        // Update UI
+        document.getElementById('statTotal').textContent = total;
+        document.getElementById('statPending').textContent = pending;
+        document.getElementById('statApproved').textContent = approved;
+        document.getElementById('statInserted').textContent = inserted;
+
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
     }
 
     // ========================================================================
@@ -465,6 +521,9 @@
         generatedQuestions = questions;
 
         showGenerationResult(questions, job.id);
+
+        // Refresh stats
+        await loadStats();
 
       } catch (error) {
         console.error('Generation error:', error);
