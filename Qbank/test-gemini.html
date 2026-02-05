@@ -122,11 +122,11 @@
       <div id="configDisplay" class="config-display">Loading configuration...</div>
 
       <div class="valid-models">
-        <strong>Valid Gemini models:</strong>
-        <code>gemini-1.5-pro</code>
-        <code>gemini-1.5-flash</code>
-        <code>gemini-2.0-flash-exp</code>
-        <code>gemini-pro</code>
+        <strong>Recommended models:</strong>
+        <code>gemini-2.5-flash</code> (fast)
+        <code>gemini-2.5-pro</code> (quality)
+        <code>gemini-3-flash-preview</code>
+        <code>gemini-3-pro-preview</code>
       </div>
     </div>
 
@@ -142,9 +142,10 @@
 
       <div class="test-controls">
         <select id="modelSelect" class="model-select">
-          <option value="gemini-1.5-flash">gemini-1.5-flash (Fast & Cheap)</option>
-          <option value="gemini-1.5-pro">gemini-1.5-pro (Better Quality)</option>
-          <option value="gemini-2.0-flash-exp">gemini-2.0-flash-exp (Latest)</option>
+          <option value="gemini-2.5-flash">gemini-2.5-flash (Fast & Stable)</option>
+          <option value="gemini-2.5-pro">gemini-2.5-pro (Best Quality)</option>
+          <option value="gemini-3-flash-preview">gemini-3-flash-preview (Latest Fast)</option>
+          <option value="gemini-3-pro-preview">gemini-3-pro-preview (Latest Pro)</option>
         </select>
         <button id="testConnectionBtn" class="btn btn-primary" onclick="testConnection()">
           Test Connection
@@ -230,7 +231,7 @@
 
   <script src="shared.js"></script>
   <script>
-    let CONFIG = null;
+    let TEST_CONFIG = null;
 
     // Initialize on load
     document.addEventListener('DOMContentLoaded', async () => {
@@ -246,36 +247,36 @@
         const response = await fetch('./config.json');
         if (!response.ok) throw new Error('Config file not found');
 
-        CONFIG = await response.json();
+        TEST_CONFIG = await response.json();
 
         // Validate config
         const issues = [];
 
-        if (!CONFIG.gemini?.apiKey || CONFIG.gemini.apiKey === 'YOUR_GEMINI_API_KEY_HERE') {
+        if (!TEST_CONFIG.gemini?.apiKey || TEST_CONFIG.gemini.apiKey === 'YOUR_GEMINI_API_KEY_HERE') {
           issues.push('Gemini API key not set');
         }
 
-        const validModels = ['gemini-1.5-pro', 'gemini-1.5-flash', 'gemini-2.0-flash-exp', 'gemini-pro'];
-        if (CONFIG.gemini?.model && !validModels.includes(CONFIG.gemini.model)) {
-          issues.push(`Invalid model: "${CONFIG.gemini.model}" - use one of: ${validModels.join(', ')}`);
+        const validModels = ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-3-flash-preview', 'gemini-3-pro-preview', 'gemini-2.0-flash'];
+        if (TEST_CONFIG.gemini?.model && !validModels.includes(TEST_CONFIG.gemini.model)) {
+          issues.push(`Model "${TEST_CONFIG.gemini.model}" may not work - recommended: ${validModels.slice(0,4).join(', ')}`);
         }
 
-        if (!CONFIG.supabase?.url || CONFIG.supabase.url === 'YOUR_SUPABASE_URL_HERE') {
+        if (!TEST_CONFIG.supabase?.url || TEST_CONFIG.supabase.url === 'YOUR_SUPABASE_URL_HERE') {
           issues.push('Supabase URL not set');
         }
 
         // Display config (masked)
-        const maskedKey = CONFIG.gemini?.apiKey
-          ? (CONFIG.gemini.apiKey.startsWith('YOUR_') ? '❌ NOT SET' : CONFIG.gemini.apiKey.slice(0, 10) + '...' + CONFIG.gemini.apiKey.slice(-4))
+        const maskedKey = TEST_CONFIG.gemini?.apiKey
+          ? (TEST_CONFIG.gemini.apiKey.startsWith('YOUR_') ? '❌ NOT SET' : TEST_CONFIG.gemini.apiKey.slice(0, 10) + '...' + TEST_CONFIG.gemini.apiKey.slice(-4))
           : '❌ NOT SET';
 
         displayEl.innerHTML = `{
   <span class="key">"gemini"</span>: {
-    <span class="key">"apiKey"</span>: <span class="${CONFIG.gemini?.apiKey?.startsWith('YOUR_') ? 'masked' : 'value'}">"${maskedKey}"</span>,
-    <span class="key">"model"</span>: <span class="${validModels.includes(CONFIG.gemini?.model) ? 'value' : 'masked'}">"${CONFIG.gemini?.model || 'NOT SET'}"</span>
+    <span class="key">"apiKey"</span>: <span class="${TEST_CONFIG.gemini?.apiKey?.startsWith('YOUR_') ? 'masked' : 'value'}">"${maskedKey}"</span>,
+    <span class="key">"model"</span>: <span class="${validModels.includes(TEST_CONFIG.gemini?.model) ? 'value' : 'masked'}">"${TEST_CONFIG.gemini?.model || 'NOT SET'}"</span>
   },
   <span class="key">"supabase"</span>: {
-    <span class="key">"url"</span>: <span class="value">"${CONFIG.supabase?.url?.replace(/^https?:\/\//, '').slice(0, 30) || 'NOT SET'}..."</span>
+    <span class="key">"url"</span>: <span class="value">"${TEST_CONFIG.supabase?.url?.replace(/^https?:\/\//, '').slice(0, 30) || 'NOT SET'}..."</span>
   }
 }`;
 
@@ -289,8 +290,8 @@
         }
 
         // Set model select to match config
-        if (CONFIG.gemini?.model) {
-          document.getElementById('modelSelect').value = CONFIG.gemini.model;
+        if (TEST_CONFIG.gemini?.model) {
+          document.getElementById('modelSelect').value = TEST_CONFIG.gemini.model;
         }
 
       } catch (error) {
@@ -316,7 +317,7 @@
       try {
         const startTime = Date.now();
 
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${CONFIG.gemini.apiKey}`;
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${TEST_CONFIG.gemini.apiKey}`;
 
         const response = await fetch(endpoint, {
           method: 'POST',
@@ -416,7 +417,7 @@
 
         const prompt = Qbank.buildQuestionGenerationPrompt(params);
 
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${CONFIG.gemini.apiKey}`;
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${TEST_CONFIG.gemini.apiKey}`;
 
         const response = await fetch(endpoint, {
           method: 'POST',
