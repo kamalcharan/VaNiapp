@@ -344,9 +344,12 @@ function buildQuestionGenerationPrompt(params) {
   const typeInstructions = {
     'mcq': 'Multiple Choice Question with 4 options (A, B, C, D)',
     'true-false': 'True/False statement',
-    'assertion-reasoning': 'Assertion-Reasoning format with Assertion (A) and Reason (R)',
-    'match-the-following': 'Match the Following with Column A and Column B items',
-    'fill-in-blanks': 'Fill in the Blanks with one or more blanks'
+    'assertion-reasoning': 'Assertion-Reasoning format with Assertion (A) and Reason (R) - use standard NEET options',
+    'match-the-following': 'Match the Following with Column A and Column B items (4-5 items each)',
+    'fill-in-blanks': 'Fill in the Blanks with one or more blanks (provide answer in correct_answer)',
+    'diagram-based': 'Diagram-based question - describe the diagram/figure clearly, then ask question about it',
+    'logical-sequence': 'Logical Sequence - arrange steps/events/processes in correct order',
+    'scenario-based': 'Scenario/Case-based question - present a situation/case study, then ask analytical questions'
   };
 
   const selectedTypes = questionTypes.map(t => `- ${typeInstructions[t] || t}`).join('\n');
@@ -575,7 +578,10 @@ function getQuestionTypeBadge(type) {
     'true-false': 'T/F',
     'assertion-reasoning': 'A-R',
     'match-the-following': 'Match',
-    'fill-in-blanks': 'Fill'
+    'fill-in-blanks': 'Fill',
+    'diagram-based': 'Diagram',
+    'logical-sequence': 'Sequence',
+    'scenario-based': 'Scenario'
   };
   return `<span class="badge badge-type">${labels[type] || type}</span>`;
 }
