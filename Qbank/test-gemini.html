@@ -122,11 +122,11 @@
       <div id="configDisplay" class="config-display">Loading configuration...</div>
 
       <div class="valid-models">
-        <strong>Valid Gemini models:</strong>
-        <code>gemini-1.5-pro</code>
-        <code>gemini-1.5-flash</code>
-        <code>gemini-2.0-flash-exp</code>
-        <code>gemini-pro</code>
+        <strong>Recommended models:</strong>
+        <code>gemini-2.5-flash</code> (fast)
+        <code>gemini-2.5-pro</code> (quality)
+        <code>gemini-3-flash-preview</code>
+        <code>gemini-3-pro-preview</code>
       </div>
     </div>
 
@@ -142,9 +142,10 @@
 
       <div class="test-controls">
         <select id="modelSelect" class="model-select">
-          <option value="gemini-1.5-flash">gemini-1.5-flash (Fast & Cheap)</option>
-          <option value="gemini-1.5-pro">gemini-1.5-pro (Better Quality)</option>
-          <option value="gemini-2.0-flash-exp">gemini-2.0-flash-exp (Latest)</option>
+          <option value="gemini-2.5-flash">gemini-2.5-flash (Fast & Stable)</option>
+          <option value="gemini-2.5-pro">gemini-2.5-pro (Best Quality)</option>
+          <option value="gemini-3-flash-preview">gemini-3-flash-preview (Latest Fast)</option>
+          <option value="gemini-3-pro-preview">gemini-3-pro-preview (Latest Pro)</option>
         </select>
         <button id="testConnectionBtn" class="btn btn-primary" onclick="testConnection()">
           Test Connection
@@ -255,9 +256,9 @@
           issues.push('Gemini API key not set');
         }
 
-        const validModels = ['gemini-1.5-pro', 'gemini-1.5-flash', 'gemini-2.0-flash-exp', 'gemini-pro'];
+        const validModels = ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-3-flash-preview', 'gemini-3-pro-preview', 'gemini-2.0-flash'];
         if (CONFIG.gemini?.model && !validModels.includes(CONFIG.gemini.model)) {
-          issues.push(`Invalid model: "${CONFIG.gemini.model}" - use one of: ${validModels.join(', ')}`);
+          issues.push(`Model "${CONFIG.gemini.model}" may not work - recommended: ${validModels.slice(0,4).join(', ')}`);
         }
 
         if (!CONFIG.supabase?.url || CONFIG.supabase.url === 'YOUR_SUPABASE_URL_HERE') {
