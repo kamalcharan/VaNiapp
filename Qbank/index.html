@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Qbank Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-icon">📊</span>
+          Dashboard
+        </h1>
+        <p class="page-subtitle" id="welcomeMessage">Loading...</p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <div class="stat-icon total">📚</div>
+          <div class="stat-content">
+            <div class="stat-value" id="totalQuestions">--</div>
+            <div class="stat-label">Total Questions</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon pending">⏳</div>
+          <div class="stat-content">
+            <div class="stat-value" id="pendingReview">--</div>
+            <div class="stat-label">Pending Review</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon physics">⚡</div>
+          <div class="stat-content">
+            <div class="stat-value" id="physicsCount">--</div>
+            <div class="stat-label">Physics</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon chemistry">🧪</div>
+          <div class="stat-content">
+            <div class="stat-value" id="chemistryCount">--</div>
+            <div class="stat-label">Chemistry</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon botany">🌿</div>
+          <div class="stat-content">
+            <div class="stat-value" id="botanyCount">--</div>
+            <div class="stat-label">Botany</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon zoology">🦁</div>
+          <div class="stat-content">
+            <div class="stat-value" id="zoologyCount">--</div>
+            <div class="stat-label">Zoology</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions (Admin Only) -->
+      <div class="card" id="quickActionsCard" style="margin-bottom: 24px;">
+        <div class="card-header">
+          <h3 class="card-title">Quick Actions</h3>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="./generate.html" class="btn btn-primary">
+              🤖 Generate Questions
+            </a>
+            <a href="./review.html" class="btn btn-secondary">
+              👁️ Review Queue
+            </a>
+            <a href="./insert.html" class="btn btn-success">
+              💾 Insert Approved
+            </a>
+            <a href="./translate.html" class="btn btn-secondary">
+              🌐 Add Telugu
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Generation Jobs -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Recent Generation Jobs</h3>
+          <a href="./review.html" class="btn btn-sm btn-secondary">View All</a>
+        </div>
+        <div class="card-body" id="recentJobsContainer">
+          <div class="qbank-loader">
+            <div class="loader-spinner"></div>
+            <p class="loader-message">Loading recent jobs...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject Coverage -->
+      <div class="card" style="margin-top: 24px;">
+        <div class="card-header">
+          <h3 class="card-title">Chapter Coverage</h3>
+        </div>
+        <div class="card-body" id="coverageContainer">
+          <div class="qbank-loader">
+            <div class="loader-spinner"></div>
+            <p class="loader-message">Loading coverage data...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    let user = null;
+
+    async function init() {
+      user = await Qbank.requireAuth();
+      if (!user) return;
+
+      Qbank.renderNavHeader();
+
+      // Welcome message
+      const greeting = getGreeting();
+      document.getElementById('welcomeMessage').textContent =
+        `${greeting}, ${user.name}! ${user.role === 'admin' ? 'Full access enabled.' : `Reviewing: ${user.subjects.join(', ')}`}`;
+
+      // Hide admin-only sections for reviewers
+      if (user.role !== 'admin') {
+        document.getElementById('quickActionsCard').style.display = 'none';
+      }
+
+      // Load data
+      await Promise.all([
+        loadStats(),
+        loadRecentJobs(),
+        loadCoverage()
+      ]);
+    }
+
+    function getGreeting() {
+      const hour = new Date().getHours();
+      if (hour < 12) return 'Good morning';
+      if (hour < 17) return 'Good afternoon';
+      return 'Good evening';
+    }
+
+    async function loadStats() {
+      try {
+        const stats = await Qbank.getQuestionStats();
+        const jobs = await Qbank.fetchGenerationJobs();
+
+        if (!stats) {
+          document.getElementById('totalQuestions').textContent = '0';
+          return;
+        }
+
+        // Count by subject
+        const counts = {
+          total: stats.length,
+          PHYSICS: 0,
+          CHEMISTRY: 0,
+          BOTANY: 0,
+          ZOOLOGY: 0
+        };
+
+        stats.forEach(q => {
+          if (counts[q.subject_id] !== undefined) {
+            counts[q.subject_id]++;
+          }
+        });
+
+        // Count pending reviews from jobs
+        const pendingJobs = jobs.filter(j => j.status === 'pending' || j.status === 'reviewed');
+        let pendingCount = 0;
+        pendingJobs.forEach(job => {
+          if (job.output_json?.questions) {
+            pendingCount += job.output_json.questions.length;
+          }
+        });
+
+        // Update UI
+        document.getElementById('totalQuestions').textContent = counts.total.toLocaleString();
+        document.getElementById('pendingReview').textContent = pendingCount.toLocaleString();
+        document.getElementById('physicsCount').textContent = counts.PHYSICS.toLocaleString();
+        document.getElementById('chemistryCount').textContent = counts.CHEMISTRY.toLocaleString();
+        document.getElementById('botanyCount').textContent = counts.BOTANY.toLocaleString();
+        document.getElementById('zoologyCount').textContent = counts.ZOOLOGY.toLocaleString();
+
+      } catch (error) {
+        console.error('Error loading stats:', error);
+        Qbank.showToast('Failed to load statistics', 'error');
+      }
+    }
+
+    async function loadRecentJobs() {
+      const container = document.getElementById('recentJobsContainer');
+
+      try {
+        const jobs = await Qbank.fetchGenerationJobs();
+        const recentJobs = jobs.slice(0, 5);
+
+        if (recentJobs.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">📭</div>
+              <p class="empty-title">No generation jobs yet</p>
+              <p class="empty-message">Start by generating some questions!</p>
+              ${user.role === 'admin' ? '<a href="./generate.html" class="btn btn-primary">Generate Questions</a>' : ''}
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = `
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Chapter</th>
+                  <th>Questions</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${recentJobs.map(job => `
+                  <tr>
+                    <td>
+                      <span style="color: ${Qbank.getSubjectColor(job.subject_id)}">
+                        ${Qbank.getSubjectEmoji(job.subject_id)} ${job.subject_id}
+                      </span>
+                    </td>
+                    <td>${job.chapter_id || '-'}</td>
+                    <td>${job.output_json?.questions?.length || job.config?.count || '-'}</td>
+                    <td>${Qbank.getStatusBadge(job.status)}</td>
+                    <td>${Qbank.formatDate(job.created_at)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+
+      } catch (error) {
+        console.error('Error loading jobs:', error);
+        container.innerHTML = '<p class="empty-message">Failed to load recent jobs</p>';
+      }
+    }
+
+    async function loadCoverage() {
+      const container = document.getElementById('coverageContainer');
+
+      try {
+        const chapters = await Qbank.fetchChapters();
+        const stats = await Qbank.getQuestionStats();
+
+        if (!chapters.length) {
+          container.innerHTML = '<p class="empty-message">No chapters found. Run the database migration first.</p>';
+          return;
+        }
+
+        // Count questions per chapter
+        const chapterCounts = {};
+        if (stats) {
+          stats.forEach(q => {
+            chapterCounts[q.chapter_id] = (chapterCounts[q.chapter_id] || 0) + 1;
+          });
+        }
+
+        // Group chapters by subject
+        const subjects = {};
+        chapters.forEach(ch => {
+          if (!subjects[ch.subject_id]) {
+            subjects[ch.subject_id] = [];
+          }
+          subjects[ch.subject_id].push({
+            ...ch,
+            questionCount: chapterCounts[ch.id] || 0
+          });
+        });
+
+        // Filter by user's subjects
+        const visibleSubjects = user.role === 'admin'
+          ? Object.keys(subjects)
+          : user.subjects.filter(s => subjects[s]);
+
+        container.innerHTML = visibleSubjects.map(subjectId => {
+          const subjectChapters = subjects[subjectId] || [];
+          const totalQuestions = subjectChapters.reduce((sum, ch) => sum + ch.questionCount, 0);
+          const coveredChapters = subjectChapters.filter(ch => ch.questionCount > 0).length;
+
+          return `
+            <div style="margin-bottom: 24px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <h4 style="margin: 0; display: flex; align-items: center; gap: 8px;">
+                  <span style="color: ${Qbank.getSubjectColor(subjectId)}">${Qbank.getSubjectEmoji(subjectId)}</span>
+                  ${subjectId}
+                </h4>
+                <span style="font-size: 0.9rem; color: var(--gray-500);">
+                  ${coveredChapters}/${subjectChapters.length} chapters covered | ${totalQuestions} questions
+                </span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill ${coveredChapters === subjectChapters.length ? 'success' : ''}"
+                     style="width: ${(coveredChapters / subjectChapters.length * 100).toFixed(1)}%"></div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+      } catch (error) {
+        console.error('Error loading coverage:', error);
+        container.innerHTML = '<p class="empty-message">Failed to load coverage data</p>';
+      }
+    }
+
+    // Initialize
+    init();
+  </script>
+</body>
+</html>

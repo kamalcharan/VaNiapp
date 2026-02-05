@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telugu Translation - Qbank Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .translation-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .translation-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .translation-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .translation-column {
+      padding: 20px;
+    }
+
+    .translation-column:first-child {
+      border-right: 1px solid var(--gray-200);
+    }
+
+    .lang-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .translation-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--gray-800);
+    }
+
+    .translation-text.telugu {
+      font-family: 'Noto Sans Telugu', sans-serif;
+    }
+
+    .translation-input {
+      width: 100%;
+      min-height: 100px;
+      padding: 12px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      font-family: 'Noto Sans Telugu', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      resize: vertical;
+    }
+
+    .translation-actions {
+      padding: 12px 20px;
+      background: var(--gray-50);
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .batch-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px;
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-200);
+      margin-bottom: 24px;
+    }
+
+    .questions-needing-translation {
+      color: var(--warning);
+      font-weight: 600;
+    }
+  </style>
+  <!-- Load Telugu font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-icon">🌐</span>
+          Telugu Translation
+        </h1>
+        <p class="page-subtitle">Add Telugu translations to English questions using Gemini AI</p>
+      </div>
+
+      <!-- Summary Stats -->
+      <div class="stats-grid" style="margin-bottom: 24px;">
+        <div class="stat-card">
+          <div class="stat-icon total">📚</div>
+          <div class="stat-content">
+            <div class="stat-value" id="totalQuestions">--</div>
+            <div class="stat-label">Total Questions</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon pending">🌐</div>
+          <div class="stat-content">
+            <div class="stat-value" id="needsTranslation">--</div>
+            <div class="stat-label">Need Telugu</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #d1fae5;">✓</div>
+          <div class="stat-content">
+            <div class="stat-value" id="hasTranslation">--</div>
+            <div class="stat-label">Already Translated</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Batch Controls -->
+      <div class="batch-controls">
+        <div class="form-group" style="margin: 0; flex: 1;">
+          <label class="form-label">Select Subject</label>
+          <select id="subjectFilter" class="form-select">
+            <option value="">All Subjects</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin: 0; flex: 1;">
+          <label class="form-label">Select Chapter</label>
+          <select id="chapterFilter" class="form-select" disabled>
+            <option value="">Select subject first</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin: 0;">
+          <label class="form-label">Batch Size</label>
+          <select id="batchSize" class="form-select">
+            <option value="5">5 questions</option>
+            <option value="10" selected>10 questions</option>
+            <option value="20">20 questions</option>
+          </select>
+        </div>
+        <div style="align-self: flex-end;">
+          <button class="btn btn-primary" id="translateBatchBtn" onclick="translateBatch()" disabled>
+            🤖 Translate Batch with Gemini
+          </button>
+        </div>
+      </div>
+
+      <!-- Questions List -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Questions Needing Translation</h3>
+          <button class="btn btn-sm btn-secondary" onclick="loadQuestions()">🔄 Refresh</button>
+        </div>
+        <div class="card-body" id="questionsContainer">
+          <div class="qbank-loader">
+            <div class="loader-spinner"></div>
+            <p class="loader-message">Loading questions...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Translation Progress -->
+      <div id="translationProgress" style="display: none; margin-top: 24px;">
+        <div class="card">
+          <div class="card-body" style="text-align: center; padding: 40px;">
+            <div class="loader-spinner" style="margin: 0 auto 16px;"></div>
+            <h3 id="translationStatusTitle">Translating with Gemini...</h3>
+            <p id="translationStatusMessage" style="color: var(--gray-500);">
+              This may take a minute. Please wait.
+            </p>
+            <div class="progress-bar" style="max-width: 400px; margin: 16px auto;">
+              <div class="progress-fill" id="translationProgressBar" style="width: 20%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    let questions = [];
+    let subjects = [];
+    let chapters = [];
+
+    async function init() {
+      const user = await Qbank.requireAuth(['admin']);
+      if (!user) return;
+
+      Qbank.renderNavHeader();
+
+      // Load subjects
+      subjects = await Qbank.fetchSubjects();
+      const subjectSelect = document.getElementById('subjectFilter');
+      subjects.forEach(s => {
+        const option = document.createElement('option');
+        option.value = s.id;
+        option.textContent = `${Qbank.getSubjectEmoji(s.id)} ${s.name}`;
+        subjectSelect.appendChild(option);
+      });
+
+      // Event listeners
+      document.getElementById('subjectFilter').addEventListener('change', onSubjectChange);
+      document.getElementById('chapterFilter').addEventListener('change', loadQuestions);
+
+      await loadStats();
+      await loadQuestions();
+    }
+
+    async function loadStats() {
+      try {
+        const { data, error } = await Qbank.supabase
+          .from('med_questions')
+          .select('id, question_text_te');
+
+        if (error) throw error;
+
+        const total = data.length;
+        const translated = data.filter(q => q.question_text_te).length;
+        const needsTranslation = total - translated;
+
+        document.getElementById('totalQuestions').textContent = total;
+        document.getElementById('needsTranslation').textContent = needsTranslation;
+        document.getElementById('hasTranslation').textContent = translated;
+
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+
+    async function onSubjectChange() {
+      const subjectId = document.getElementById('subjectFilter').value;
+      const chapterSelect = document.getElementById('chapterFilter');
+
+      if (!subjectId) {
+        chapterSelect.innerHTML = '<option value="">Select subject first</option>';
+        chapterSelect.disabled = true;
+        loadQuestions();
+        return;
+      }
+
+      // Load chapters for this subject
+      chapters = await Qbank.fetchChapters(subjectId);
+
+      chapterSelect.innerHTML = '<option value="">All Chapters</option>';
+      chapters.forEach(ch => {
+        const option = document.createElement('option');
+        option.value = ch.id;
+        option.textContent = `${ch.chapter_number || '-'}. ${ch.name}`;
+        chapterSelect.appendChild(option);
+      });
+      chapterSelect.disabled = false;
+
+      loadQuestions();
+    }
+
+    async function loadQuestions() {
+      const container = document.getElementById('questionsContainer');
+      const translateBtn = document.getElementById('translateBatchBtn');
+      Qbank.showLoader(container, 'Loading questions...');
+
+      try {
+        const subjectId = document.getElementById('subjectFilter').value;
+        const chapterId = document.getElementById('chapterFilter').value;
+        const batchSize = parseInt(document.getElementById('batchSize').value);
+
+        let query = Qbank.supabase
+          .from('med_questions')
+          .select('*')
+          .is('question_text_te', null)
+          .limit(batchSize);
+
+        if (subjectId) {
+          query = query.eq('subject_id', subjectId);
+        }
+        if (chapterId) {
+          query = query.eq('chapter_id', chapterId);
+        }
+
+        const { data, error } = await query;
+
+        if (error) throw error;
+
+        questions = data || [];
+
+        translateBtn.disabled = questions.length === 0;
+
+        if (questions.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">🎉</div>
+              <p class="empty-title">All caught up!</p>
+              <p class="empty-message">No questions need Telugu translation in this selection.</p>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = questions.map((q, i) => renderTranslationCard(q, i)).join('');
+
+      } catch (error) {
+        console.error('Error loading questions:', error);
+        container.innerHTML = '<p class="empty-message">Failed to load questions</p>';
+      }
+    }
+
+    function renderTranslationCard(question, index) {
+      return `
+        <div class="translation-card" id="trans-${question.id}">
+          <div class="translation-header">
+            <div class="question-meta">
+              <span class="question-number">Q${index + 1}</span>
+              ${Qbank.getQuestionTypeBadge(question.question_type)}
+              ${Qbank.getDifficultyBadge(question.difficulty)}
+              <span class="badge badge-type">${question.chapter_id}</span>
+            </div>
+          </div>
+          <div class="translation-body">
+            <div class="translation-column">
+              <div class="lang-label">🇬🇧 English</div>
+              <p class="translation-text">${question.question_text}</p>
+              ${question.explanation ? `
+                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--gray-200);">
+                  <div class="lang-label">Explanation</div>
+                  <p class="translation-text" style="font-size: 0.9rem; color: var(--gray-600);">${question.explanation}</p>
+                </div>
+              ` : ''}
+            </div>
+            <div class="translation-column">
+              <div class="lang-label">🇮🇳 Telugu</div>
+              <textarea
+                class="translation-input"
+                id="telugu-${question.id}"
+                placeholder="Telugu translation will appear here..."
+              >${question.question_text_te || ''}</textarea>
+              ${question.explanation ? `
+                <div style="margin-top: 12px;">
+                  <div class="lang-label">Explanation (Telugu)</div>
+                  <textarea
+                    class="translation-input"
+                    id="telugu-exp-${question.id}"
+                    placeholder="Telugu explanation..."
+                    style="min-height: 60px;"
+                  >${question.explanation_te || ''}</textarea>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+          <div class="translation-actions">
+            <button class="btn btn-sm btn-secondary" onclick="clearTranslation('${question.id}')">
+              Clear
+            </button>
+            <button class="btn btn-sm btn-success" onclick="saveTranslation('${question.id}')">
+              ✓ Save Translation
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    async function translateBatch() {
+      if (questions.length === 0) {
+        Qbank.showToast('No questions to translate', 'warning');
+        return;
+      }
+
+      const progressDiv = document.getElementById('translationProgress');
+      const progressBar = document.getElementById('translationProgressBar');
+      const statusTitle = document.getElementById('translationStatusTitle');
+      const statusMessage = document.getElementById('translationStatusMessage');
+
+      progressDiv.style.display = 'block';
+      progressBar.style.width = '20%';
+
+      try {
+        statusTitle.textContent = 'Building translation prompt...';
+        progressBar.style.width = '30%';
+
+        const prompt = Qbank.buildTeluguTranslationPrompt(questions);
+
+        statusTitle.textContent = 'Calling Gemini for Telugu translations...';
+        statusMessage.textContent = `Translating ${questions.length} questions. This may take a minute.`;
+        progressBar.style.width = '50%';
+
+        const response = await Qbank.callGemini(prompt, { temperature: 0.3 });
+
+        statusTitle.textContent = 'Parsing translations...';
+        progressBar.style.width = '80%';
+
+        const translations = Qbank.parseJsonResponse(response);
+
+        if (!Array.isArray(translations)) {
+          throw new Error('Invalid translation response format');
+        }
+
+        statusTitle.textContent = 'Applying translations...';
+        progressBar.style.width = '90%';
+
+        // Apply translations to UI
+        translations.forEach(t => {
+          const question = questions[t.index];
+          if (!question) return;
+
+          const textInput = document.getElementById(`telugu-${question.id}`);
+          const expInput = document.getElementById(`telugu-exp-${question.id}`);
+
+          if (textInput && t.question_text_te) {
+            textInput.value = t.question_text_te;
+          }
+          if (expInput && t.explanation_te) {
+            expInput.value = t.explanation_te;
+          }
+        });
+
+        progressBar.style.width = '100%';
+        statusTitle.textContent = 'Translations ready!';
+        statusMessage.textContent = 'Review the translations and save each one.';
+
+        Qbank.showToast(`${translations.length} translations generated! Review and save.`, 'success');
+
+        setTimeout(() => {
+          progressDiv.style.display = 'none';
+        }, 2000);
+
+      } catch (error) {
+        console.error('Translation error:', error);
+        statusTitle.textContent = 'Translation Failed';
+        statusMessage.textContent = error.message;
+        progressBar.style.width = '100%';
+        progressBar.style.background = 'var(--error)';
+
+        Qbank.showToast('Translation failed: ' + error.message, 'error');
+
+        setTimeout(() => {
+          progressDiv.style.display = 'none';
+          progressBar.style.background = '';
+        }, 3000);
+      }
+    }
+
+    async function saveTranslation(questionId) {
+      const textInput = document.getElementById(`telugu-${questionId}`);
+      const expInput = document.getElementById(`telugu-exp-${questionId}`);
+
+      const updates = {};
+
+      if (textInput && textInput.value.trim()) {
+        updates.question_text_te = textInput.value.trim();
+      }
+      if (expInput && expInput.value.trim()) {
+        updates.explanation_te = expInput.value.trim();
+      }
+
+      if (Object.keys(updates).length === 0) {
+        Qbank.showToast('No translation to save', 'warning');
+        return;
+      }
+
+      try {
+        const { error } = await Qbank.supabase
+          .from('med_questions')
+          .update(updates)
+          .eq('id', questionId);
+
+        if (error) throw error;
+
+        Qbank.showToast('Translation saved!', 'success');
+
+        // Remove card from list
+        const card = document.getElementById(`trans-${questionId}`);
+        if (card) {
+          card.style.opacity = '0.5';
+          card.style.pointerEvents = 'none';
+        }
+
+        // Update stats
+        loadStats();
+
+      } catch (error) {
+        console.error('Save error:', error);
+        Qbank.showToast('Failed to save: ' + error.message, 'error');
+      }
+    }
+
+    function clearTranslation(questionId) {
+      const textInput = document.getElementById(`telugu-${questionId}`);
+      const expInput = document.getElementById(`telugu-exp-${questionId}`);
+
+      if (textInput) textInput.value = '';
+      if (expInput) expInput.value = '';
+    }
+
+    // Initialize
+    init();
+  </script>
+</body>
+</html>

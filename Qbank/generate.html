@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Questions - Qbank Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-icon">🤖</span>
+          Generate Questions
+        </h1>
+        <p class="page-subtitle">Use Gemini AI to generate NEET-quality questions</p>
+      </div>
+
+      <!-- Wizard Steps -->
+      <div class="wizard-steps">
+        <div class="wizard-step active" id="step1Indicator">
+          <span class="step-number">1</span>
+          <span class="step-label">Select Subject</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="wizard-step" id="step2Indicator">
+          <span class="step-number">2</span>
+          <span class="step-label">Choose Chapter</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="wizard-step" id="step3Indicator">
+          <span class="step-number">3</span>
+          <span class="step-label">Configure</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="wizard-step" id="step4Indicator">
+          <span class="step-number">4</span>
+          <span class="step-label">Generate</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <!-- Step 1: Subject Selection -->
+          <div class="wizard-content" id="step1Content">
+            <h3>Select Subject</h3>
+            <p style="color: var(--gray-500); margin-bottom: 24px;">Choose the subject for question generation</p>
+
+            <div class="selection-grid" id="subjectGrid">
+              <div class="qbank-loader">
+                <div class="loader-spinner"></div>
+                <p class="loader-message">Loading subjects...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Chapter Selection -->
+          <div class="wizard-content" id="step2Content" style="display: none;">
+            <h3>Choose Chapter</h3>
+            <p style="color: var(--gray-500); margin-bottom: 24px;">Select a chapter from <span id="selectedSubjectName"></span></p>
+
+            <div class="chapter-list" id="chapterList">
+              <!-- Chapters loaded dynamically -->
+            </div>
+          </div>
+
+          <!-- Step 3: Configuration -->
+          <div class="wizard-content" id="step3Content" style="display: none;">
+            <h3>Configure Generation</h3>
+            <p style="color: var(--gray-500); margin-bottom: 24px;">
+              Generating for: <strong id="configChapterName"></strong>
+            </p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Number of Questions</label>
+                <input type="number" id="questionCount" class="form-input" value="10" min="1" max="25">
+                <p class="form-hint">Recommended: 5-15 per batch</p>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Difficulty</label>
+                <select id="difficulty" class="form-select">
+                  <option value="mixed">Mixed (Easy, Medium, Hard)</option>
+                  <option value="easy">Easy Only</option>
+                  <option value="medium">Medium Only</option>
+                  <option value="hard">Hard Only</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Question Types</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px;">
+                <label class="form-check">
+                  <input type="checkbox" value="mcq" checked class="question-type-check">
+                  MCQ (4 options)
+                </label>
+                <label class="form-check">
+                  <input type="checkbox" value="true-false" class="question-type-check">
+                  True/False
+                </label>
+                <label class="form-check">
+                  <input type="checkbox" value="assertion-reasoning" class="question-type-check">
+                  Assertion-Reasoning
+                </label>
+                <label class="form-check">
+                  <input type="checkbox" value="match-the-following" class="question-type-check">
+                  Match the Following
+                </label>
+                <label class="form-check">
+                  <input type="checkbox" value="fill-in-blanks" class="question-type-check">
+                  Fill in Blanks
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Topics to Cover (Optional)</label>
+              <div id="topicsList" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+                <!-- Topics loaded dynamically -->
+              </div>
+              <p class="form-hint">Leave all unchecked to cover all topics in the chapter</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-check">
+                <input type="checkbox" id="includeHints" checked>
+                Include elimination hints for wrong options
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 4: Generation -->
+          <div class="wizard-content" id="step4Content" style="display: none;">
+            <div id="generationStatus">
+              <div style="text-align: center; padding: 40px 20px;">
+                <div class="loader-spinner" style="margin: 0 auto 24px;"></div>
+                <h3 id="generationStatusTitle">Generating Questions...</h3>
+                <p id="generationStatusMessage" style="color: var(--gray-500);">
+                  Calling Gemini API. This may take 30-60 seconds.
+                </p>
+                <div class="progress-bar" style="max-width: 400px; margin: 24px auto;">
+                  <div class="progress-fill" id="generationProgress" style="width: 10%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="generationResult" style="display: none;">
+              <!-- Results shown here -->
+            </div>
+          </div>
+
+          <!-- Wizard Actions -->
+          <div class="wizard-actions">
+            <button class="btn btn-secondary" id="prevBtn" style="visibility: hidden;">
+              ← Previous
+            </button>
+            <button class="btn btn-primary" id="nextBtn" disabled>
+              Next →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    // State
+    let currentStep = 1;
+    let selectedSubject = null;
+    let selectedChapter = null;
+    let selectedTopics = [];
+    let generatedQuestions = [];
+    let subjects = [];
+    let chapters = [];
+    let topics = [];
+
+    async function init() {
+      const user = await Qbank.requireAuth(['admin']);
+      if (!user) return;
+
+      Qbank.renderNavHeader();
+      await loadSubjects();
+      updateNavigation();
+    }
+
+    // ========================================================================
+    // STEP 1: Subject Selection
+    // ========================================================================
+    async function loadSubjects() {
+      const grid = document.getElementById('subjectGrid');
+
+      try {
+        subjects = await Qbank.fetchSubjects();
+
+        grid.innerHTML = subjects.map(subject => `
+          <div class="selection-item" data-subject-id="${subject.id}" onclick="selectSubject('${subject.id}')">
+            <div class="icon">${Qbank.getSubjectEmoji(subject.id)}</div>
+            <div class="label">${subject.name}</div>
+            <div class="meta">${subject.id}</div>
+          </div>
+        `).join('');
+
+      } catch (error) {
+        console.error('Error loading subjects:', error);
+        grid.innerHTML = '<p class="empty-message">Failed to load subjects</p>';
+      }
+    }
+
+    function selectSubject(subjectId) {
+      selectedSubject = subjects.find(s => s.id === subjectId);
+
+      // Update UI
+      document.querySelectorAll('#subjectGrid .selection-item').forEach(item => {
+        item.classList.toggle('selected', item.dataset.subjectId === subjectId);
+      });
+
+      updateNavigation();
+    }
+
+    // ========================================================================
+    // STEP 2: Chapter Selection
+    // ========================================================================
+    async function loadChapters() {
+      const list = document.getElementById('chapterList');
+      document.getElementById('selectedSubjectName').textContent = selectedSubject.name;
+
+      Qbank.showLoader(list, 'Loading chapters...');
+
+      try {
+        chapters = await Qbank.fetchChapters(selectedSubject.id);
+
+        list.innerHTML = chapters.map(chapter => `
+          <div class="chapter-item" data-chapter-id="${chapter.id}" onclick="selectChapter('${chapter.id}')">
+            <div class="chapter-number">${chapter.chapter_number || '-'}</div>
+            <div class="chapter-info">
+              <div class="chapter-name">${chapter.name}</div>
+              <div class="chapter-meta">
+                Class ${chapter.class_level || '?'}
+                ${chapter.branch ? `• ${chapter.branch}` : ''}
+                ${chapter.avg_questions ? `• ~${chapter.avg_questions} Qs in NEET` : ''}
+              </div>
+            </div>
+            <div class="chapter-weight">${chapter.weightage || 0}%</div>
+          </div>
+        `).join('');
+
+      } catch (error) {
+        console.error('Error loading chapters:', error);
+        list.innerHTML = '<p class="empty-message">Failed to load chapters</p>';
+      }
+    }
+
+    function selectChapter(chapterId) {
+      selectedChapter = chapters.find(c => c.id === chapterId);
+
+      // Update UI
+      document.querySelectorAll('#chapterList .chapter-item').forEach(item => {
+        item.classList.toggle('selected', item.dataset.chapterId === chapterId);
+      });
+
+      updateNavigation();
+    }
+
+    // ========================================================================
+    // STEP 3: Configuration
+    // ========================================================================
+    async function loadConfiguration() {
+      document.getElementById('configChapterName').textContent =
+        `${selectedSubject.name} → ${selectedChapter.name}`;
+
+      // Load topics
+      const topicsList = document.getElementById('topicsList');
+      topicsList.innerHTML = '<span style="color: var(--gray-400);">Loading topics...</span>';
+
+      try {
+        topics = await Qbank.fetchTopics(selectedChapter.id);
+
+        if (topics.length === 0) {
+          topicsList.innerHTML = '<span style="color: var(--gray-400);">No specific topics defined for this chapter</span>';
+        } else {
+          topicsList.innerHTML = topics.map(topic => `
+            <label class="form-check" style="background: var(--gray-50); padding: 8px 12px; border-radius: var(--radius);">
+              <input type="checkbox" value="${topic.id}" class="topic-check">
+              ${topic.name} ${topic.is_important ? '⭐' : ''}
+            </label>
+          `).join('');
+        }
+
+      } catch (error) {
+        console.error('Error loading topics:', error);
+        topicsList.innerHTML = '<span style="color: var(--gray-400);">Failed to load topics</span>';
+      }
+    }
+
+    function getConfiguration() {
+      const questionTypes = Array.from(document.querySelectorAll('.question-type-check:checked'))
+        .map(cb => cb.value);
+
+      const selectedTopicIds = Array.from(document.querySelectorAll('.topic-check:checked'))
+        .map(cb => cb.value);
+
+      const selectedTopicObjects = selectedTopicIds.length > 0
+        ? topics.filter(t => selectedTopicIds.includes(t.id))
+        : topics;
+
+      return {
+        subject: selectedSubject,
+        chapter: selectedChapter,
+        topics: selectedTopicObjects,
+        questionTypes: questionTypes.length > 0 ? questionTypes : ['mcq'],
+        count: parseInt(document.getElementById('questionCount').value) || 10,
+        difficulty: document.getElementById('difficulty').value,
+        includeHints: document.getElementById('includeHints').checked
+      };
+    }
+
+    // ========================================================================
+    // STEP 4: Generation
+    // ========================================================================
+    async function startGeneration() {
+      const config = getConfiguration();
+      const statusTitle = document.getElementById('generationStatusTitle');
+      const statusMessage = document.getElementById('generationStatusMessage');
+      const progressBar = document.getElementById('generationProgress');
+      const resultDiv = document.getElementById('generationResult');
+      const statusDiv = document.getElementById('generationStatus');
+
+      // Reset UI
+      statusDiv.style.display = 'block';
+      resultDiv.style.display = 'none';
+      progressBar.style.width = '10%';
+
+      try {
+        // Step 1: Create job record
+        statusTitle.textContent = 'Creating generation job...';
+        progressBar.style.width = '20%';
+
+        const job = await Qbank.createGenerationJob({
+          subject_id: config.subject.id,
+          chapter_id: config.chapter.id,
+          config: {
+            topics: config.topics.map(t => t.id),
+            questionTypes: config.questionTypes,
+            count: config.count,
+            difficulty: config.difficulty,
+            includeHints: config.includeHints
+          },
+          status: 'generating'
+        });
+
+        if (!job) {
+          throw new Error('Failed to create generation job');
+        }
+
+        // Step 2: Build prompt
+        statusTitle.textContent = 'Building prompt...';
+        progressBar.style.width = '30%';
+
+        const prompt = Qbank.buildQuestionGenerationPrompt({
+          subject: config.subject.name,
+          chapter: config.chapter,
+          topics: config.topics,
+          questionTypes: config.questionTypes,
+          count: config.count,
+          difficulty: config.difficulty === 'mixed' ? 'mixed (distribute across easy, medium, hard)' : config.difficulty,
+          includeHints: config.includeHints
+        });
+
+        // Step 3: Call Gemini
+        statusTitle.textContent = 'Calling Gemini AI...';
+        statusMessage.textContent = 'This may take 30-60 seconds. Please wait.';
+        progressBar.style.width = '50%';
+
+        const response = await Qbank.callGemini(prompt, { temperature: 0.7 });
+
+        // Step 4: Parse response
+        statusTitle.textContent = 'Parsing response...';
+        progressBar.style.width = '80%';
+
+        const questions = Qbank.parseJsonResponse(response);
+
+        if (!Array.isArray(questions) || questions.length === 0) {
+          throw new Error('Invalid response format from Gemini');
+        }
+
+        // Step 5: Save to job
+        statusTitle.textContent = 'Saving questions...';
+        progressBar.style.width = '90%';
+
+        await Qbank.updateGenerationJob(job.id, {
+          status: 'pending',
+          output_json: { questions },
+          questions_count: questions.length
+        });
+
+        // Step 6: Show results
+        progressBar.style.width = '100%';
+        generatedQuestions = questions;
+
+        showGenerationResult(questions, job.id);
+
+      } catch (error) {
+        console.error('Generation error:', error);
+        statusDiv.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px;">
+            <div style="font-size: 4rem; margin-bottom: 16px;">❌</div>
+            <h3>Generation Failed</h3>
+            <p style="color: var(--gray-500); margin-bottom: 24px;">${error.message}</p>
+            <button class="btn btn-primary" onclick="goToStep(3)">← Try Again</button>
+          </div>
+        `;
+      }
+    }
+
+    function showGenerationResult(questions, jobId) {
+      const statusDiv = document.getElementById('generationStatus');
+      const resultDiv = document.getElementById('generationResult');
+
+      statusDiv.style.display = 'none';
+      resultDiv.style.display = 'block';
+
+      resultDiv.innerHTML = `
+        <div style="text-align: center; margin-bottom: 32px;">
+          <div style="font-size: 4rem; margin-bottom: 16px;">🎉</div>
+          <h3>Successfully Generated ${questions.length} Questions!</h3>
+          <p style="color: var(--gray-500);">Questions saved to review queue. Job ID: ${jobId}</p>
+          <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px;">
+            <a href="./review.html" class="btn btn-primary">👁️ Review Questions</a>
+            <button class="btn btn-secondary" onclick="resetWizard()">🔄 Generate More</button>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom: 16px;">Preview (first 3 questions)</h4>
+        ${questions.slice(0, 3).map((q, i) => renderQuestionPreview(q, i + 1)).join('')}
+
+        ${questions.length > 3 ? `
+          <p style="text-align: center; color: var(--gray-500); margin-top: 16px;">
+            ... and ${questions.length - 3} more questions
+          </p>
+        ` : ''}
+      `;
+    }
+
+    function renderQuestionPreview(question, num) {
+      const options = question.options ? question.options.map(opt => `
+        <div class="option-item ${opt.is_correct ? 'correct' : ''}">
+          <span class="option-key">${opt.key}</span>
+          <span class="option-text">${opt.text}</span>
+        </div>
+      `).join('') : '';
+
+      return `
+        <div class="question-card">
+          <div class="question-header">
+            <div class="question-meta">
+              <span class="question-number">Q${num}</span>
+              ${Qbank.getQuestionTypeBadge(question.question_type)}
+              ${Qbank.getDifficultyBadge(question.difficulty)}
+            </div>
+          </div>
+          <div class="question-body">
+            <p class="question-text">${question.question_text}</p>
+            ${options ? `<div class="question-options">${options}</div>` : ''}
+            ${question.explanation ? `
+              <div class="question-explanation">
+                <div class="explanation-title">Explanation</div>
+                <p style="margin: 0;">${question.explanation}</p>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    function resetWizard() {
+      currentStep = 1;
+      selectedSubject = null;
+      selectedChapter = null;
+      selectedTopics = [];
+      generatedQuestions = [];
+
+      // Reset UI
+      document.querySelectorAll('.selection-item').forEach(el => el.classList.remove('selected'));
+      document.querySelectorAll('.chapter-item').forEach(el => el.classList.remove('selected'));
+      document.getElementById('generationStatus').style.display = 'block';
+      document.getElementById('generationResult').style.display = 'none';
+
+      showStep(1);
+      updateNavigation();
+    }
+
+    // ========================================================================
+    // NAVIGATION
+    // ========================================================================
+    function updateNavigation() {
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      // Previous button
+      prevBtn.style.visibility = currentStep > 1 ? 'visible' : 'hidden';
+
+      // Next button state and text
+      let canProceed = false;
+      let nextText = 'Next →';
+
+      switch (currentStep) {
+        case 1:
+          canProceed = selectedSubject !== null;
+          break;
+        case 2:
+          canProceed = selectedChapter !== null;
+          break;
+        case 3:
+          const types = document.querySelectorAll('.question-type-check:checked');
+          canProceed = types.length > 0;
+          nextText = '🤖 Generate Questions';
+          break;
+        case 4:
+          canProceed = false; // No next from step 4
+          break;
+      }
+
+      nextBtn.disabled = !canProceed;
+      nextBtn.textContent = nextText;
+
+      // Update step indicators
+      for (let i = 1; i <= 4; i++) {
+        const indicator = document.getElementById(`step${i}Indicator`);
+        indicator.classList.remove('active', 'completed');
+
+        if (i < currentStep) {
+          indicator.classList.add('completed');
+        } else if (i === currentStep) {
+          indicator.classList.add('active');
+        }
+      }
+    }
+
+    function showStep(step) {
+      currentStep = step;
+
+      // Hide all steps
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById(`step${i}Content`).style.display = 'none';
+      }
+
+      // Show current step
+      document.getElementById(`step${step}Content`).style.display = 'block';
+
+      updateNavigation();
+    }
+
+    function goToStep(step) {
+      showStep(step);
+    }
+
+    async function nextStep() {
+      if (currentStep === 3) {
+        // Start generation
+        showStep(4);
+        await startGeneration();
+        return;
+      }
+
+      const newStep = currentStep + 1;
+
+      // Load data for next step
+      if (newStep === 2) {
+        await loadChapters();
+      } else if (newStep === 3) {
+        await loadConfiguration();
+      }
+
+      showStep(newStep);
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        showStep(currentStep - 1);
+      }
+    }
+
+    // Event listeners
+    document.getElementById('nextBtn').addEventListener('click', nextStep);
+    document.getElementById('prevBtn').addEventListener('click', prevStep);
+
+    // Initialize
+    init();
+  </script>
+</body>
+</html>

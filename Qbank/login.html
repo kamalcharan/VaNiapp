@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qbank Admin - Login</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="login-page">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="icon">🎯</div>
+      <h1>Qbank Admin</h1>
+      <p>NEET Question Bank Management</p>
+    </div>
+
+    <form class="login-form" id="loginForm">
+      <div class="form-group">
+        <label class="form-label" for="accessCode">Access Code</label>
+        <input
+          type="password"
+          id="accessCode"
+          class="form-input"
+          placeholder="Enter your access code"
+          autocomplete="off"
+          autofocus
+        >
+        <p class="form-hint">Contact admin for access credentials</p>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg" id="loginBtn">
+        <span id="loginText">Login</span>
+        <span id="loginSpinner" style="display: none;">Authenticating...</span>
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <p>VaNiapp Question Bank System</p>
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    // Check if already logged in
+    const session = Qbank.getSession();
+    if (session) {
+      window.location.href = './index.html';
+    }
+
+    // Handle login
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const code = document.getElementById('accessCode').value.trim();
+      if (!code) {
+        Qbank.showToast('Please enter your access code', 'warning');
+        return;
+      }
+
+      const loginBtn = document.getElementById('loginBtn');
+      const loginText = document.getElementById('loginText');
+      const loginSpinner = document.getElementById('loginSpinner');
+
+      loginBtn.disabled = true;
+      loginText.style.display = 'none';
+      loginSpinner.style.display = 'inline';
+
+      try {
+        const result = await Qbank.authenticate(code);
+
+        if (result.success) {
+          Qbank.showToast(`Welcome, ${result.user.name}!`, 'success');
+          setTimeout(() => {
+            window.location.href = './index.html';
+          }, 500);
+        } else {
+          Qbank.showToast(result.error || 'Invalid access code', 'error');
+          loginBtn.disabled = false;
+          loginText.style.display = 'inline';
+          loginSpinner.style.display = 'none';
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        Qbank.showToast('Login failed. Please try again.', 'error');
+        loginBtn.disabled = false;
+        loginText.style.display = 'inline';
+        loginSpinner.style.display = 'none';
+      }
+    });
+
+    // Allow Enter key to submit
+    document.getElementById('accessCode').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+      }
+    });
+  </script>
+</body>
+</html>

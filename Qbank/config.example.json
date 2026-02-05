@@ -1,0 +1,39 @@
+{
+  "supabase": {
+    "url": "https://your-project.supabase.co",
+    "anonKey": "your-anon-key-here"
+  },
+  "gemini": {
+    "apiKey": "your-gemini-api-key-here",
+    "model": "gemini-1.5-pro"
+  },
+  "users": {
+    "admin@neet2025": {
+      "name": "Admin Name",
+      "role": "admin",
+      "subjects": ["PHYSICS", "CHEMISTRY", "BOTANY", "ZOOLOGY"]
+    },
+    "physics+rev": {
+      "name": "Physics Reviewer",
+      "role": "reviewer",
+      "subjects": ["PHYSICS"]
+    },
+    "chemistry+rev": {
+      "name": "Chemistry Reviewer",
+      "role": "reviewer",
+      "subjects": ["CHEMISTRY"]
+    },
+    "bio+rev": {
+      "name": "Biology Reviewer",
+      "role": "reviewer",
+      "subjects": ["BOTANY", "ZOOLOGY"]
+    }
+  },
+  "settings": {
+    "defaultQuestionsPerBatch": 10,
+    "maxQuestionsPerBatch": 25,
+    "questionTypes": ["mcq", "true-false", "assertion-reasoning", "match-the-following", "fill-in-blanks"],
+    "difficulties": ["easy", "medium", "hard"],
+    "strengthLevels": ["just-started", "getting-there", "on-track", "strong"]
+  }
+}
