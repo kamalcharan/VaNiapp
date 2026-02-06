@@ -173,25 +173,39 @@ export async function getLanguages(): Promise<CatalogLanguage[]> {
   return cachedLanguages;
 }
 
-/** Fetch chapters for a subject from the database. */
-export async function getChapters(subjectId: string): Promise<CatalogChapter[]> {
+/**
+ * Fetch chapters for a subject from the database.
+ * @param subjectId - The subject ID to fetch chapters for
+ * @param examId - Optional exam ID to filter chapters (e.g., 'NEET', 'CUET')
+ *                 If provided, only returns chapters that include this exam in their exam_ids array
+ */
+export async function getChapters(subjectId: string, examId?: string): Promise<CatalogChapter[]> {
+  // Create cache key that includes exam filter
+  const cacheKey = examId ? `${subjectId}:${examId}` : subjectId;
+
   // Check cache first
-  if (cachedChapters.has(subjectId)) {
-    return cachedChapters.get(subjectId)!;
+  if (cachedChapters.has(cacheKey)) {
+    return cachedChapters.get(cacheKey)!;
   }
 
   if (supabase) {
     try {
-      const { data, error } = await supabase
+      let query = supabase
         .from('med_chapters')
         .select('id, subject_id, exam_ids, branch, name, name_te, chapter_number, class_level, weightage, avg_questions, important_topics')
         .eq('subject_id', subjectId)
-        .eq('is_active', true)
-        .order('chapter_number');
+        .eq('is_active', true);
+
+      // Filter by exam_ids if provided (uses PostgreSQL array contains operator)
+      if (examId) {
+        query = query.contains('exam_ids', [examId]);
+      }
+
+      const { data, error } = await query.order('chapter_number');
 
       if (!error && data && data.length > 0) {
         const chapters = data as CatalogChapter[];
-        cachedChapters.set(subjectId, chapters);
+        cachedChapters.set(cacheKey, chapters);
         return chapters;
       }
     } catch {}
