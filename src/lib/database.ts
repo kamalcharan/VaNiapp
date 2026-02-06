@@ -154,6 +154,36 @@ export async function getUserSubjectIds(): Promise<string[]> {
   return data.map((row: any) => row.subject_id);
 }
 
+/** Update the current user's selected subjects (replaces all). */
+export async function updateUserSubjects(subjectIds: string[]): Promise<void> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Not authenticated.');
+
+  // Delete existing subjects
+  const { error: delErr } = await supabase
+    .from('med_user_subjects')
+    .delete()
+    .eq('user_id', user.id);
+
+  if (delErr) throw delErr;
+
+  // Insert new subjects
+  if (subjectIds.length > 0) {
+    const rows = subjectIds.map((sid) => ({
+      user_id: user.id,
+      subject_id: sid,
+    }));
+
+    const { error: insertErr } = await supabase
+      .from('med_user_subjects')
+      .insert(rows);
+
+    if (insertErr) throw insertErr;
+  }
+}
+
 // ── Update profile ──────────────────────────────────────────
 
 /** Update specific profile fields. */
