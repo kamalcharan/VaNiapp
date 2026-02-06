@@ -29,6 +29,7 @@ import {
   MedProfile,
 } from '../../src/lib/database';
 import { getSubjects, getLanguages, CatalogSubject } from '../../src/lib/catalog';
+import { ExamType } from '../../src/types';
 
 export default function ProfileScreen() {
   const { colors, mode, toggle } = useTheme();
@@ -45,8 +46,15 @@ export default function ProfileScreen() {
   const [editPhone, setEditPhone] = useState('');
   const [editCollege, setEditCollege] = useState('');
   const [editCity, setEditCity] = useState('');
+  const [editExam, setEditExam] = useState<ExamType>('NEET');
   const [saving, setSaving] = useState(false);
   const [logoutDialog, setLogoutDialog] = useState(false);
+
+  const EXAM_OPTIONS: { id: ExamType; label: string; emoji: string }[] = [
+    { id: 'NEET', label: 'NEET', emoji: '\uD83E\uDE7A' },
+    { id: 'CUET', label: 'CUET', emoji: '\uD83C\uDFDB\uFE0F' },
+    { id: 'BOTH', label: 'Both', emoji: '\uD83C\uDFAF' },
+  ];
 
   useEffect(() => {
     loadProfile();
@@ -78,6 +86,7 @@ export default function ProfileScreen() {
       setEditPhone(prof.phone || '');
       setEditCollege(prof.college || '');
       setEditCity(prof.city || '');
+      setEditExam(prof.exam || 'NEET');
     }
 
     setLoading(false);
@@ -95,6 +104,7 @@ export default function ProfileScreen() {
         phone: editPhone.trim(),
         college: editCollege.trim(),
         city: editCity.trim(),
+        exam: editExam,
       });
       const prof = await getProfile();
       setProfile(prof);
@@ -114,6 +124,7 @@ export default function ProfileScreen() {
       setEditPhone(profile.phone || '');
       setEditCollege(profile.college || '');
       setEditCity(profile.city || '');
+      setEditExam(profile.exam || 'NEET');
     }
   };
 
@@ -355,17 +366,56 @@ export default function ProfileScreen() {
             </View>
             <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
 
-            {/* Exam (read-only) */}
-            <View style={styles.infoRow}>
+            {/* Exam */}
+            <View style={editing ? styles.infoRowVertical : styles.infoRow}>
               <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Exam</Text>
-              <Text
-                style={[
-                  Typography.body,
-                  { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' },
-                ]}
-              >
-                {examLabel}
-              </Text>
+              {editing ? (
+                <View style={styles.examOptions}>
+                  {EXAM_OPTIONS.map((opt) => (
+                    <Pressable
+                      key={opt.id}
+                      style={[
+                        styles.examOption,
+                        {
+                          backgroundColor:
+                            editExam === opt.id ? colors.primaryLight : colors.surface,
+                          borderColor:
+                            editExam === opt.id ? colors.primary : colors.surfaceBorder,
+                        },
+                      ]}
+                      onPress={() => {
+                        setEditExam(opt.id);
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                      }}
+                    >
+                      <Text style={{ fontSize: 16 }}>{opt.emoji}</Text>
+                      <Text
+                        style={[
+                          Typography.bodySm,
+                          {
+                            color: editExam === opt.id ? colors.primary : colors.text,
+                            fontFamily:
+                              editExam === opt.id
+                                ? 'PlusJakartaSans_600SemiBold'
+                                : 'PlusJakartaSans_400Regular',
+                          },
+                        ]}
+                      >
+                        {opt.label}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+              ) : (
+                <Text
+                  style={[
+                    Typography.body,
+                    { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' },
+                  ]}
+                >
+                  {examLabel}
+                </Text>
+              )}
             </View>
             <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
 
@@ -533,8 +583,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: Spacing.md,
   },
+  infoRowVertical: {
+    paddingVertical: Spacing.md,
+    gap: Spacing.sm,
+  },
   divider: {
     height: 1,
+  },
+  examOptions: {
+    flexDirection: 'row',
+    gap: Spacing.sm,
+    marginTop: Spacing.xs,
+  },
+  examOption: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    paddingVertical: Spacing.sm,
+    paddingHorizontal: Spacing.md,
+    borderRadius: BorderRadius.lg,
+    borderWidth: 1.5,
   },
   editInput: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
