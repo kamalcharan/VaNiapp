@@ -23,38 +23,23 @@ import {
   NEEDS_FOCUS_CONFIG,
 } from '../../src/types';
 
-// VaNi coaching messages for subject journey
-const VANI_SUBJECT_MESSAGES: Record<StrengthLevel, string[]> = {
-  'just-started': [
-    "Every expert was once a beginner. Let's start your journey here!",
-    "This is the beginning of something great. I'll guide you every step.",
-    "Small steps lead to big achievements. Ready to begin?",
-  ],
-  'getting-there': [
-    "You're making real progress! I can see you putting in the work.",
-    "Your foundation is getting stronger. Keep this momentum!",
-    "You're on the right path. Let's keep building together!",
-  ],
-  'on-track': [
-    "Amazing progress! Your hard work is really paying off.",
-    "You're doing wonderfully! Let's keep pushing forward.",
-    "Your dedication shows. You're becoming stronger every day!",
-  ],
-  'strong': [
-    "You've mastered so much here! I'm proud of your journey.",
-    "This is your strong suit! Let's keep sharpening these skills.",
-    "Excellent command! You're ready for any challenge here.",
-  ],
-  'needs-focus': [
-    "This needs a bit more attention, and that's okay. I'm here to help!",
-    "Let's work together to strengthen this area. You've got this!",
-    "Every challenge is an opportunity. Let's tackle this together!",
-  ],
-};
+// Mock chapters data - will come from DB/catalog later
+const PHYSICS_CHAPTERS = [
+  { id: 'units-measurements', name: 'Units and Measurements', order: 1 },
+  { id: 'motion-straight-line', name: 'Motion in a Straight Line', order: 2 },
+  { id: 'motion-plane', name: 'Motion in a Plane', order: 3 },
+  { id: 'laws-of-motion', name: 'Laws of Motion', order: 4 },
+  { id: 'work-energy-power', name: 'Work, Energy and Power', order: 5 },
+  { id: 'rotational-motion', name: 'Rotational Motion', order: 6 },
+  { id: 'gravitation', name: 'Gravitation', order: 7 },
+  { id: 'mechanical-properties', name: 'Mechanical Properties of Solids', order: 8 },
+];
 
-function getVaniSubjectMessage(level: StrengthLevel): string {
-  const messages = VANI_SUBJECT_MESSAGES[level];
-  return messages[Math.floor(Math.random() * messages.length)];
+interface ChapterProgress {
+  chapterId: string;
+  coverage: number;
+  accuracy: number;
+  lastPracticed: string | null;
 }
 
 function getStrengthConfig(level: StrengthLevel) {
@@ -62,24 +47,15 @@ function getStrengthConfig(level: StrengthLevel) {
   return STRENGTH_LEVELS.find((s) => s.id === level) || STRENGTH_LEVELS[0];
 }
 
-// Journey stage descriptions for VaNi's coaching
-const JOURNEY_DESCRIPTIONS: Record<StrengthLevel, string> = {
-  'just-started': 'Beginning your journey',
-  'getting-there': 'Building strong foundations',
-  'on-track': 'Making excellent progress',
-  'strong': 'Mastering the subject',
-  'needs-focus': 'Needs a little extra attention',
-};
-
 export default function SubjectDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const { colors } = useTheme();
 
   const [subject, setSubject] = useState<CatalogSubject | null>(null);
-  const [strengthLevel, setStrengthLevel] = useState<StrengthLevel>('just-started');
-  const [chaptersCompleted, setChaptersCompleted] = useState(0);
-  const [totalChapters, setTotalChapters] = useState(10);
+  const [hasProgress, setHasProgress] = useState(false);
+  const [chapterProgress, setChapterProgress] = useState<ChapterProgress[]>([]);
+  const [showChapterPicker, setShowChapterPicker] = useState(false);
 
   // Animation
   const fadeIn = useRef(new Animated.Value(0)).current;
@@ -94,10 +70,9 @@ export default function SubjectDetailScreen() {
       }
 
       // TODO: Fetch actual progress from DB
-      // For now, using placeholder data
-      setStrengthLevel('just-started');
-      setChaptersCompleted(0);
-      setTotalChapters(10);
+      // For now, simulating no progress (first time user)
+      setHasProgress(false);
+      setChapterProgress([]);
     })();
 
     Animated.parallel([
@@ -116,6 +91,12 @@ export default function SubjectDetailScreen() {
     ]).start();
   }, [id]);
 
+  const handleStartChapter = (chapterId: string) => {
+    // TODO: Navigate to chapter evaluation
+    // router.push(`/chapter/${chapterId}/evaluate`);
+    console.log('Start chapter:', chapterId);
+  };
+
   if (!subject) {
     return (
       <DotGridBackground>
@@ -128,8 +109,8 @@ export default function SubjectDetailScreen() {
     );
   }
 
-  const config = getStrengthConfig(strengthLevel);
-  const vaniMessage = getVaniSubjectMessage(strengthLevel);
+  // Get recommended chapter (first one for new users, or based on progress)
+  const recommendedChapter = PHYSICS_CHAPTERS[0];
 
   return (
     <DotGridBackground>
@@ -159,160 +140,187 @@ export default function SubjectDetailScreen() {
             <Text style={[Typography.h1, { color: colors.text, marginTop: Spacing.md }]}>
               {subject.name}
             </Text>
-            <View style={[styles.statusBadge, { backgroundColor: config.color + '20' }]}>
-              <View style={[styles.statusDot, { backgroundColor: config.color }]} />
-              <Text style={[Typography.bodySm, { color: config.color, fontWeight: '600' }]}>
-                {config.label}
-              </Text>
-            </View>
           </View>
 
-          {/* VaNi Coaching Message */}
-          <StickyNote color="yellow" rotation={-0.5} delay={100}>
-            <HandwrittenText variant="handSm">
-              {vaniMessage}
-            </HandwrittenText>
-          </StickyNote>
+          {/* FIRST TIME USER FLOW */}
+          {!hasProgress && !showChapterPicker && (
+            <>
+              {/* VaNi Welcome Message */}
+              <StickyNote color="yellow" rotation={-0.5} delay={100}>
+                <HandwrittenText variant="handSm">
+                  Welcome to {subject.name}! I'm excited to guide you through this journey.
+                </HandwrittenText>
+              </StickyNote>
 
-          {/* Journey Progress Card */}
-          <JournalCard delay={200}>
-            <View style={styles.progressCard}>
-              <HandwrittenText variant="hand">
-                Your Journey
-              </HandwrittenText>
+              {/* VaNi's Recommendation */}
+              <JournalCard delay={200}>
+                <View style={styles.recommendationCard}>
+                  <HandwrittenText variant="hand">
+                    Let's get started!
+                  </HandwrittenText>
 
-              <View style={styles.progressInfo}>
-                <Text style={[Typography.h2, { color: config.color }]}>
-                  {JOURNEY_DESCRIPTIONS[strengthLevel]}
-                </Text>
+                  <Text style={[Typography.body, { color: colors.textSecondary, marginTop: Spacing.sm }]}>
+                    I recommend starting with the first chapter - it builds the foundation for everything else.
+                  </Text>
 
-                <View style={styles.progressBar}>
-                  <View
-                    style={[
-                      styles.progressFill,
-                      {
-                        backgroundColor: config.color,
-                        width: `${Math.min((chaptersCompleted / totalChapters) * 100, 100)}%`,
-                      },
-                    ]}
-                  />
+                  {/* Primary CTA */}
+                  <Pressable
+                    style={[styles.primaryButton, { backgroundColor: subject.color }]}
+                    onPress={() => handleStartChapter(recommendedChapter.id)}
+                  >
+                    <Text style={styles.primaryButtonText}>
+                      Start with "{recommendedChapter.name}"
+                    </Text>
+                  </Pressable>
+
+                  {/* Secondary Option */}
+                  <Pressable
+                    style={styles.secondaryButton}
+                    onPress={() => setShowChapterPicker(true)}
+                  >
+                    <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                      Or pick a different chapter
+                    </Text>
+                  </Pressable>
                 </View>
+              </JournalCard>
 
-                <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
-                  {chaptersCompleted} of {totalChapters} chapters explored
-                </Text>
+              {/* VaNi Tip */}
+              <StickyNote color="teal" rotation={0.5} delay={300}>
+                <HandwrittenText variant="handSm">
+                  Tip: Complete chapter evaluations to track your progress and unlock harder question types!
+                </HandwrittenText>
+              </StickyNote>
+            </>
+          )}
+
+          {/* CHAPTER PICKER */}
+          {!hasProgress && showChapterPicker && (
+            <>
+              <StickyNote color="yellow" rotation={-0.5} delay={100}>
+                <HandwrittenText variant="handSm">
+                  Which chapter are you currently studying? Pick one and let's begin!
+                </HandwrittenText>
+              </StickyNote>
+
+              <View style={styles.chapterList}>
+                <HandwrittenText variant="hand">
+                  Pick a chapter
+                </HandwrittenText>
+
+                {PHYSICS_CHAPTERS.map((chapter, idx) => (
+                  <JournalCard key={chapter.id} delay={150 + idx * 50}>
+                    <Pressable
+                      style={styles.chapterItem}
+                      onPress={() => handleStartChapter(chapter.id)}
+                    >
+                      <View style={[styles.chapterNumber, { backgroundColor: subject.color + '20' }]}>
+                        <Text style={[Typography.bodySm, { color: subject.color, fontWeight: '700' }]}>
+                          {chapter.order}
+                        </Text>
+                      </View>
+                      <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>
+                        {chapter.name}
+                      </Text>
+                      <Text style={{ color: colors.textTertiary }}>{'\u203A'}</Text>
+                    </Pressable>
+                  </JournalCard>
+                ))}
+
+                {/* Back to recommendation */}
+                <Pressable
+                  style={styles.backToRecommendation}
+                  onPress={() => setShowChapterPicker(false)}
+                >
+                  <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                    {'\u2190'} Back to VaNi's recommendation
+                  </Text>
+                </Pressable>
               </View>
+            </>
+          )}
 
-              {/* What's unlocked */}
-              <View style={styles.unlockedSection}>
-                <Text style={[Typography.bodySm, { color: colors.textTertiary, marginBottom: Spacing.xs }]}>
-                  Question types available to you:
-                </Text>
-                <View style={styles.typeChips}>
-                  {config.unlockedTypes.map((type) => (
-                    <View key={type} style={[styles.typeChip, { backgroundColor: colors.surface }]}>
-                      <Text style={[Typography.bodySm, { color: colors.textSecondary, fontSize: 11 }]}>
-                        {formatQuestionType(type)}
+          {/* RETURNING USER FLOW (has progress) */}
+          {hasProgress && (
+            <>
+              {/* Progress Summary */}
+              <JournalCard delay={100}>
+                <View style={styles.progressSummary}>
+                  <HandwrittenText variant="hand">
+                    Your Progress
+                  </HandwrittenText>
+
+                  {/* TODO: Show actual progress stats */}
+                  <View style={styles.progressStats}>
+                    <View style={styles.statItem}>
+                      <Text style={[Typography.h2, { color: subject.color }]}>3</Text>
+                      <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                        Chapters{'\n'}Started
                       </Text>
                     </View>
-                  ))}
+                    <View style={styles.statItem}>
+                      <Text style={[Typography.h2, { color: subject.color }]}>68%</Text>
+                      <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                        Average{'\n'}Accuracy
+                      </Text>
+                    </View>
+                    <View style={styles.statItem}>
+                      <Text style={[Typography.h2, { color: subject.color }]}>1</Text>
+                      <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                        Chapter{'\n'}Strong
+                      </Text>
+                    </View>
+                  </View>
                 </View>
-              </View>
-            </View>
-          </JournalCard>
+              </JournalCard>
 
-          {/* Actions */}
-          <View style={styles.actionsSection}>
-            <HandwrittenText variant="hand" rotation={0.5}>
-              What would you like to do?
-            </HandwrittenText>
+              {/* VaNi's Suggestion */}
+              <StickyNote color="yellow" rotation={-0.5} delay={200}>
+                <HandwrittenText variant="handSm">
+                  You're doing great! I suggest continuing with "Motion in a Plane" - you're almost there!
+                </HandwrittenText>
+              </StickyNote>
 
-            <JournalCard delay={300} rotation={0.3}>
-              <Pressable
-                style={styles.actionRow}
-                onPress={() => {
-                  // TODO: Navigate to chapter evaluation
-                  // router.push(`/subject/${id}/chapters`);
-                }}
-              >
-                <Text style={styles.actionIcon}>{'\uD83D\uDCD6'}</Text>
-                <View style={{ flex: 1 }}>
-                  <Text style={[Typography.h3, { color: colors.text }]}>
-                    Chapter Evaluation
+              {/* Primary CTA */}
+              <JournalCard delay={300}>
+                <Pressable
+                  style={[styles.continueButton, { backgroundColor: subject.color }]}
+                  onPress={() => handleStartChapter('motion-plane')}
+                >
+                  <Text style={styles.primaryButtonText}>
+                    Continue "Motion in a Plane"
                   </Text>
-                  <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 2 }]}>
-                    Practice specific chapters to build mastery
-                  </Text>
-                </View>
-              </Pressable>
-            </JournalCard>
+                </Pressable>
+              </JournalCard>
 
-            <JournalCard delay={400} rotation={-0.2}>
-              <Pressable
-                style={styles.actionRow}
-                onPress={() => {
-                  // TODO: Navigate to quick practice
-                  // router.push(`/subject/${id}/quick-practice`);
-                }}
-              >
-                <Text style={styles.actionIcon}>{'\u26A1'}</Text>
-                <View style={{ flex: 1 }}>
-                  <Text style={[Typography.h3, { color: colors.text }]}>
+              {/* Secondary Options */}
+              <View style={styles.secondaryOptions}>
+                <Pressable
+                  style={[styles.optionButton, { borderColor: colors.border }]}
+                  onPress={() => setShowChapterPicker(true)}
+                >
+                  <Text style={[Typography.bodySm, { color: colors.text }]}>
+                    View All Chapters
+                  </Text>
+                </Pressable>
+
+                <Pressable
+                  style={[styles.optionButton, { borderColor: colors.border }]}
+                  onPress={() => {
+                    // TODO: Quick practice for this subject
+                  }}
+                >
+                  <Text style={[Typography.bodySm, { color: colors.text }]}>
                     Quick Practice
                   </Text>
-                  <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 2 }]}>
-                    20 questions from this subject. VaNi picks the mix!
-                  </Text>
-                </View>
-              </Pressable>
-            </JournalCard>
-
-            <JournalCard delay={500} rotation={0.1}>
-              <Pressable
-                style={styles.actionRow}
-                onPress={() => {
-                  // TODO: View chapter list
-                  // router.push(`/subject/${id}/chapters`);
-                }}
-              >
-                <Text style={styles.actionIcon}>{'\uD83D\uDDC2\uFE0F'}</Text>
-                <View style={{ flex: 1 }}>
-                  <Text style={[Typography.h3, { color: colors.text }]}>
-                    View Chapters
-                  </Text>
-                  <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 2 }]}>
-                    See all chapters and your progress in each
-                  </Text>
-                </View>
-              </Pressable>
-            </JournalCard>
-          </View>
-
-          {/* VaNi Tip */}
-          <StickyNote color="teal" rotation={0.5} delay={600}>
-            <HandwrittenText variant="handSm">
-              Tip: Complete chapter evaluations to unlock more question types and harder difficulties!
-            </HandwrittenText>
-          </StickyNote>
+                </Pressable>
+              </View>
+            </>
+          )}
         </Animated.ScrollView>
       </SafeAreaView>
     </DotGridBackground>
   );
-}
-
-// Helper to format question type for display
-function formatQuestionType(type: string): string {
-  const formats: Record<string, string> = {
-    'mcq': 'MCQ',
-    'true-false': 'True/False',
-    'assertion-reasoning': 'A&R',
-    'match-the-following': 'Match',
-    'fill-in-blanks': 'Fill Blanks',
-    'scenario-based': 'Scenario',
-    'diagram-based': 'Diagram',
-    'logical-sequence': 'Sequence',
-  };
-  return formats[type] || type;
 }
 
 const styles = StyleSheet.create({
@@ -342,58 +350,76 @@ const styles = StyleSheet.create({
   subjectEmoji: {
     fontSize: 40,
   },
-  statusBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: 4,
-    borderRadius: 12,
-    marginTop: Spacing.xs,
-    gap: 4,
-  },
-  statusDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-  },
-  progressCard: {
+  // Recommendation Card
+  recommendationCard: {
     gap: Spacing.md,
+    alignItems: 'center',
   },
-  progressInfo: {
+  primaryButton: {
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.xl,
+    borderRadius: 16,
+    marginTop: Spacing.sm,
+    width: '100%',
+    alignItems: 'center',
+  },
+  primaryButtonText: {
+    color: '#FFFFFF',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 16,
+  },
+  secondaryButton: {
+    paddingVertical: Spacing.sm,
+  },
+  // Chapter List
+  chapterList: {
     gap: Spacing.sm,
   },
-  progressBar: {
-    height: 8,
-    backgroundColor: '#E2E8F0',
-    borderRadius: 4,
-    overflow: 'hidden',
-  },
-  progressFill: {
-    height: '100%',
-    borderRadius: 4,
-  },
-  unlockedSection: {
-    marginTop: Spacing.sm,
-  },
-  typeChips: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 6,
-  },
-  typeChip: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-  },
-  actionsSection: {
-    gap: Spacing.md,
-  },
-  actionRow: {
+  chapterItem: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.md,
+    paddingVertical: Spacing.xs,
   },
-  actionIcon: {
-    fontSize: 32,
+  chapterNumber: {
+    width: 32,
+    height: 32,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backToRecommendation: {
+    alignSelf: 'center',
+    paddingVertical: Spacing.md,
+  },
+  // Progress Summary
+  progressSummary: {
+    gap: Spacing.md,
+  },
+  progressStats: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: Spacing.sm,
+  },
+  statItem: {
+    alignItems: 'center',
+    gap: 4,
+  },
+  continueButton: {
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.xl,
+    borderRadius: 16,
+    alignItems: 'center',
+  },
+  secondaryOptions: {
+    flexDirection: 'row',
+    gap: Spacing.md,
+  },
+  optionButton: {
+    flex: 1,
+    paddingVertical: Spacing.md,
+    borderRadius: 12,
+    borderWidth: 1,
+    alignItems: 'center',
   },
 });
