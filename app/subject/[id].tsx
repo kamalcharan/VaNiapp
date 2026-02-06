@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useSelector } from 'react-redux';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
@@ -17,6 +18,7 @@ import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing } from '../../src/constants/theme';
 import { getSubjects, getChapters, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
+import { RootState } from '../../src/store';
 import {
   StrengthLevel,
   STRENGTH_LEVELS,
@@ -40,6 +42,9 @@ export default function SubjectDetailScreen() {
   const router = useRouter();
   const { colors } = useTheme();
 
+  // Get user's exam type from Redux store
+  const userExam = useSelector((state: RootState) => state.auth.user?.exam);
+
   const [subject, setSubject] = useState<CatalogSubject | null>(null);
   const [chapters, setChapters] = useState<CatalogChapter[]>([]);
   const [hasProgress, setHasProgress] = useState(false);
@@ -61,8 +66,13 @@ export default function SubjectDetailScreen() {
       if (found) {
         setSubject(found);
 
-        // Fetch chapters for this subject
-        const subjectChapters = await getChapters(id!);
+        // Determine exam filter based on user's exam type
+        // For BOTH users, don't filter (show all chapters tagged for NEET or CUET)
+        // For NEET/CUET users, filter to their specific exam
+        const examFilter = userExam === 'BOTH' ? undefined : userExam;
+
+        // Fetch chapters for this subject with exam filter
+        const subjectChapters = await getChapters(id!, examFilter);
         setChapters(subjectChapters);
       }
 
@@ -87,7 +97,7 @@ export default function SubjectDetailScreen() {
         useNativeDriver: true,
       }),
     ]).start();
-  }, [id]);
+  }, [id, userExam]);
 
   const handleStartChapter = (chapterId: string) => {
     // TODO: Navigate to chapter evaluation
