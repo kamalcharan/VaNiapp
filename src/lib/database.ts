@@ -15,9 +15,42 @@ export interface MedProfile {
   exam: ExamType | null;
   language: Language;
   onboarding_completed: boolean;
+  vani_override: boolean; // Secret admin setting: overrides VaNi AI decisions
   created_at: string;
   updated_at: string;
 }
+
+// Question mix configuration for practice exams
+export interface QuestionMixConfig {
+  // Difficulty percentages (sum to 100)
+  easy_pct: number;
+  medium_pct: number;
+  hard_pct: number;
+  // Question type percentages (sum to 100)
+  mcq_pct: number;
+  assertion_reasoning_pct: number;
+  match_following_pct: number;
+  true_false_pct: number;
+  diagram_based_pct: number;
+  logical_sequence_pct: number;
+  fill_blanks_pct: number;
+  scenario_based_pct: number;
+}
+
+// Default mix for when no override exists
+const DEFAULT_QUESTION_MIX: QuestionMixConfig = {
+  easy_pct: 30,
+  medium_pct: 50,
+  hard_pct: 20,
+  mcq_pct: 60,
+  assertion_reasoning_pct: 10,
+  match_following_pct: 10,
+  true_false_pct: 5,
+  diagram_based_pct: 5,
+  logical_sequence_pct: 3,
+  fill_blanks_pct: 4,
+  scenario_based_pct: 3,
+};
 
 // ── Profile ──────────────────────────────────────────────────
 
@@ -198,4 +231,78 @@ export async function joinWithReferralCode(code: string): Promise<boolean> {
     .single();
 
   return !error && !!data;
+}
+
+// ── Question Mix Configuration ───────────────────────────────
+
+/**
+ * Get the question mix config for the current user.
+ * If vani_override is true and user has custom mix, use that.
+ * Otherwise, use the default global mix.
+ */
+export async function getQuestionMixConfig(): Promise<QuestionMixConfig> {
+  if (!supabase) return DEFAULT_QUESTION_MIX;
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return DEFAULT_QUESTION_MIX;
+
+  // Check if user has override enabled
+  const profile = await getProfile();
+  if (!profile?.vani_override) {
+    return DEFAULT_QUESTION_MIX;
+  }
+
+  // Fetch user's custom mix if override is enabled
+  const { data, error } = await supabase
+    .from('med_user_question_mix')
+    .select('*')
+    .eq('user_id', user.id)
+    .single();
+
+  if (error || !data) return DEFAULT_QUESTION_MIX;
+
+  return {
+    easy_pct: data.easy_pct,
+    medium_pct: data.medium_pct,
+    hard_pct: data.hard_pct,
+    mcq_pct: data.mcq_pct,
+    assertion_reasoning_pct: data.assertion_reasoning_pct,
+    match_following_pct: data.match_following_pct,
+    true_false_pct: data.true_false_pct,
+    diagram_based_pct: data.diagram_based_pct,
+    logical_sequence_pct: data.logical_sequence_pct,
+    fill_blanks_pct: data.fill_blanks_pct,
+    scenario_based_pct: data.scenario_based_pct,
+  };
+}
+
+/**
+ * Get the default question mix by type (trial or paid).
+ */
+export async function getDefaultQuestionMix(
+  type: 'trial_default' | 'paid_default' = 'trial_default'
+): Promise<QuestionMixConfig> {
+  if (!supabase) return DEFAULT_QUESTION_MIX;
+
+  const { data, error } = await supabase
+    .from('med_question_mix_defaults')
+    .select('*')
+    .eq('name', type)
+    .single();
+
+  if (error || !data) return DEFAULT_QUESTION_MIX;
+
+  return {
+    easy_pct: data.easy_pct,
+    medium_pct: data.medium_pct,
+    hard_pct: data.hard_pct,
+    mcq_pct: data.mcq_pct,
+    assertion_reasoning_pct: data.assertion_reasoning_pct,
+    match_following_pct: data.match_following_pct,
+    true_false_pct: data.true_false_pct,
+    diagram_based_pct: data.diagram_based_pct,
+    logical_sequence_pct: data.logical_sequence_pct,
+    fill_blanks_pct: data.fill_blanks_pct,
+    scenario_based_pct: data.scenario_based_pct,
+  };
 }
