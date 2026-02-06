@@ -49,6 +49,8 @@ export default function ProfileScreen() {
   const [editExam, setEditExam] = useState<ExamType>('NEET');
   const [saving, setSaving] = useState(false);
   const [logoutDialog, setLogoutDialog] = useState(false);
+  const [subjectDialog, setSubjectDialog] = useState(false);
+  const [pendingExamChange, setPendingExamChange] = useState<ExamType | null>(null);
 
   const EXAM_OPTIONS: { id: ExamType; label: string; emoji: string }[] = [
     { id: 'NEET', label: 'NEET', emoji: '\uD83E\uDE7A' },
@@ -100,22 +102,50 @@ export default function ProfileScreen() {
   const handleSaveEdit = async () => {
     setSaving(true);
     try {
+      const examChanged = profile?.exam !== editExam;
+      const needsSubjectPicker = examChanged && (editExam === 'CUET' || editExam === 'BOTH');
+
       await updateProfile({
         phone: editPhone.trim(),
         college: editCollege.trim(),
         city: editCity.trim(),
         exam: editExam,
       });
+
       const prof = await getProfile();
       setProfile(prof);
       setEditing(false);
-      toast.show('success', 'Profile updated');
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
+      if (needsSubjectPicker) {
+        // Show dialog to prompt subject selection
+        setPendingExamChange(editExam);
+        setSubjectDialog(true);
+      } else if (examChanged && editExam === 'NEET') {
+        // Switching to NEET - navigate directly to set NEET subjects
+        router.push(`/edit-subjects?newExam=NEET`);
+      } else {
+        toast.show('success', 'Profile updated');
+      }
     } catch (err: any) {
       toast.show('error', 'Update failed', err?.message || 'Please try again');
     } finally {
       setSaving(false);
     }
+  };
+
+  const handleSubjectDialogConfirm = () => {
+    setSubjectDialog(false);
+    if (pendingExamChange) {
+      router.push(`/edit-subjects?newExam=${pendingExamChange}`);
+    }
+    setPendingExamChange(null);
+  };
+
+  const handleSubjectDialogCancel = () => {
+    setSubjectDialog(false);
+    setPendingExamChange(null);
+    toast.show('info', 'Remember to update your subjects later!');
   };
 
   const handleCancelEdit = () => {
@@ -500,6 +530,22 @@ export default function ProfileScreen() {
         cancelLabel="Cancel"
         onConfirm={handleSignOut}
         onCancel={() => setLogoutDialog(false)}
+      />
+
+      {/* Subject Selection Prompt (after exam change) */}
+      <ThemedDialog
+        visible={subjectDialog}
+        title="Update Subjects"
+        emoji={'\uD83D\uDCDA'}
+        message={
+          pendingExamChange === 'BOTH'
+            ? "You've switched to NEET + CUET! Let's pick your CUET subjects now."
+            : "You've switched to CUET! Let's pick your subjects now."
+        }
+        confirmLabel="Pick Subjects"
+        cancelLabel="Later"
+        onConfirm={handleSubjectDialogConfirm}
+        onCancel={handleSubjectDialogCancel}
       />
     </DotGridBackground>
   );
