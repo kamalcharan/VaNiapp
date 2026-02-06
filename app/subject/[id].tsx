@@ -38,7 +38,7 @@ function getStrengthConfig(level: StrengthLevel) {
 }
 
 export default function SubjectDetailScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, focus } = useLocalSearchParams<{ id: string; focus?: string }>();
   const router = useRouter();
   const { colors } = useTheme();
 
@@ -48,6 +48,7 @@ export default function SubjectDetailScreen() {
   const [chapterProgress, setChapterProgress] = useState<ChapterProgress[]>([]);
   const [showChapterPicker, setShowChapterPicker] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [examFilter, setExamFilter] = useState<string | undefined>(undefined);
 
   // Animation
   const fadeIn = useRef(new Animated.Value(0)).current;
@@ -67,13 +68,22 @@ export default function SubjectDetailScreen() {
       if (found) {
         setSubject(found);
 
-        // Determine exam filter based on user's exam type
-        // For BOTH users, don't filter (show all chapters tagged for NEET or CUET)
-        // For NEET/CUET users, filter to their specific exam
-        const examFilter = userExam === 'BOTH' ? undefined : userExam ?? undefined;
+        // Determine exam filter:
+        // 1. If focus param is passed (from dashboard for BOTH users), use that
+        // 2. For BOTH users without focus, show all chapters
+        // 3. For NEET/CUET users, filter to their specific exam
+        let filter: string | undefined;
+        if (focus && (focus === 'NEET' || focus === 'CUET')) {
+          filter = focus;
+        } else if (userExam === 'BOTH') {
+          filter = undefined; // Show all
+        } else {
+          filter = userExam ?? undefined;
+        }
+        setExamFilter(filter);
 
         // Fetch chapters for this subject with exam filter
-        const subjectChapters = await getChapters(id!, examFilter);
+        const subjectChapters = await getChapters(id!, filter);
         setChapters(subjectChapters);
       }
 
@@ -98,7 +108,7 @@ export default function SubjectDetailScreen() {
         useNativeDriver: true,
       }),
     ]).start();
-  }, [id]);
+  }, [id, focus]);
 
   const handleStartChapter = (chapterId: string) => {
     // TODO: Navigate to chapter evaluation
@@ -149,6 +159,13 @@ export default function SubjectDetailScreen() {
             <Text style={[Typography.h1, { color: colors.text, marginTop: Spacing.md }]}>
               {subject.name}
             </Text>
+            {examFilter && (
+              <View style={[styles.examBadge, { backgroundColor: colors.primaryLight }]}>
+                <Text style={[Typography.bodySm, { color: colors.primary, fontWeight: '600' }]}>
+                  {examFilter === 'NEET' ? '\uD83E\uDE7A' : '\uD83C\uDF93'} {examFilter} Focus
+                </Text>
+              </View>
+            )}
           </View>
 
           {/* FIRST TIME USER FLOW */}
@@ -380,6 +397,12 @@ const styles = StyleSheet.create({
   },
   subjectEmoji: {
     fontSize: 40,
+  },
+  examBadge: {
+    paddingHorizontal: Spacing.md,
+    paddingVertical: 6,
+    borderRadius: 16,
+    marginTop: Spacing.xs,
   },
   // Recommendation Card
   recommendationCard: {

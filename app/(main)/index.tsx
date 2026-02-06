@@ -17,7 +17,11 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing } from '../../src/constants/theme';
 import { getProfile, getUserSubjectIds, MedProfile } from '../../src/lib/database';
 import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
-import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG } from '../../src/types';
+import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
+import * as Haptics from 'expo-haptics';
+
+// Exam focus for BOTH users - which exam to focus on
+type ExamFocus = 'ALL' | 'NEET' | 'CUET';
 
 // Journey status with VaNi coaching language
 interface SubjectJourney {
@@ -72,19 +76,22 @@ export default function DashboardScreen() {
   const router = useRouter();
   const [profile, setProfile] = useState<MedProfile | null>(null);
   const [subjectJourneys, setSubjectJourneys] = useState<SubjectJourney[]>([]);
+  const [allSubjects, setAllSubjects] = useState<CatalogSubject[]>([]);
+  const [examFocus, setExamFocus] = useState<ExamFocus>('ALL');
 
   useEffect(() => {
     (async () => {
-      const [prof, subjectIds, allSubjects] = await Promise.all([
+      const [prof, subjectIds, subjects] = await Promise.all([
         getProfile(),
         getUserSubjectIds(),
         getSubjects(),
       ]);
       setProfile(prof);
+      setAllSubjects(subjects);
 
-      if (subjectIds.length > 0 && allSubjects.length > 0) {
+      if (subjectIds.length > 0 && subjects.length > 0) {
         const matched = subjectIds
-          .map((id) => allSubjects.find((s) => s.id === id))
+          .map((id) => subjects.find((s) => s.id === id))
           .filter(Boolean) as CatalogSubject[];
 
         // Create journey data for each subject
@@ -101,6 +108,16 @@ export default function DashboardScreen() {
       }
     })();
   }, []);
+
+  // Filter journeys based on exam focus (for BOTH users)
+  const filteredJourneys = profile?.exam === 'BOTH' && examFocus !== 'ALL'
+    ? subjectJourneys.filter(j => j.subject.exam_id === examFocus)
+    : subjectJourneys;
+
+  const handleExamFocusChange = (focus: ExamFocus) => {
+    setExamFocus(focus);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  };
 
   // Entrance animation
   const fadeIn = useRef(new Animated.Value(0)).current;
@@ -127,10 +144,12 @@ export default function DashboardScreen() {
     ? `Hey, ${profile.display_name.split(' ')[0]}`
     : 'Study Board';
 
-  const examLabel =
-    profile?.exam === 'BOTH'
-      ? 'NEET + CUET'
-      : profile?.exam ?? 'NEET';
+  // For BOTH users, show the focused exam or combined label
+  const examLabel = profile?.exam === 'BOTH'
+    ? (examFocus === 'ALL' ? 'NEET + CUET' : examFocus)
+    : profile?.exam ?? 'NEET';
+
+  const isBothUser = profile?.exam === 'BOTH';
 
   return (
     <DotGridBackground>
@@ -157,6 +176,48 @@ export default function DashboardScreen() {
             </Pressable>
           </View>
 
+          {/* Exam Focus Toggle (for BOTH users) */}
+          {isBothUser && (
+            <View style={styles.examToggleContainer}>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary, marginBottom: Spacing.xs }]}>
+                Focus on:
+              </Text>
+              <View style={styles.examToggle}>
+                {(['ALL', 'NEET', 'CUET'] as ExamFocus[]).map((focus) => {
+                  const isActive = examFocus === focus;
+                  const label = focus === 'ALL' ? 'All' : focus;
+                  const emoji = focus === 'NEET' ? '\uD83E\uDE7A' : focus === 'CUET' ? '\uD83C\uDF93' : '\uD83C\uDFAF';
+                  return (
+                    <Pressable
+                      key={focus}
+                      onPress={() => handleExamFocusChange(focus)}
+                      style={[
+                        styles.examToggleBtn,
+                        {
+                          backgroundColor: isActive ? colors.primary : colors.surface,
+                          borderColor: isActive ? colors.primary : colors.surfaceBorder,
+                        },
+                      ]}
+                    >
+                      <Text style={{ fontSize: 14 }}>{emoji}</Text>
+                      <Text
+                        style={[
+                          Typography.bodySm,
+                          {
+                            color: isActive ? '#FFFFFF' : colors.text,
+                            fontFamily: isActive ? 'PlusJakartaSans_600SemiBold' : 'PlusJakartaSans_400Regular',
+                          },
+                        ]}
+                      >
+                        {label}
+                      </Text>
+                    </Pressable>
+                  );
+                })}
+              </View>
+            </View>
+          )}
+
           {/* VaNi Greeting */}
           <StickyNote color="yellow" rotation={-0.5} delay={100}>
             <HandwrittenText variant="handSm">
@@ -167,21 +228,23 @@ export default function DashboardScreen() {
           </StickyNote>
 
           {/* Subject Journey Cards */}
-          {subjectJourneys.length > 0 && (
+          {filteredJourneys.length > 0 && (
             <View style={styles.journeySection}>
               <HandwrittenText variant="hand" rotation={-1}>
-                Your Journey
+                {isBothUser && examFocus !== 'ALL' ? `${examFocus} Journey` : 'Your Journey'}
               </HandwrittenText>
 
               <View style={styles.journeyGrid}>
-                {subjectJourneys.map((journey, idx) => {
+                {filteredJourneys.map((journey, idx) => {
                   const config = getStrengthConfig(journey.strengthLevel);
                   return (
                     <Pressable
                       key={journey.subject.id}
                       style={styles.journeyCardWrap}
                       onPress={() => {
-                        router.push(`/subject/${journey.subject.id}`);
+                        // Pass exam focus for BOTH users so subject detail can filter chapters
+                        const focusParam = isBothUser && examFocus !== 'ALL' ? `?focus=${examFocus}` : '';
+                        router.push(`/subject/${journey.subject.id}${focusParam}`);
                       }}
                     >
                       <JournalCard delay={200 + idx * 100}>
@@ -338,6 +401,23 @@ const styles = StyleSheet.create({
   },
   themeEmoji: {
     fontSize: 24,
+  },
+  // Exam Focus Toggle
+  examToggleContainer: {
+    marginTop: -Spacing.sm,
+  },
+  examToggle: {
+    flexDirection: 'row',
+    gap: Spacing.sm,
+  },
+  examToggleBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    borderRadius: 20,
+    borderWidth: 1,
   },
   // Journey Section
   journeySection: {
