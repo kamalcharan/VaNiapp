@@ -181,8 +181,7 @@ export default function DashboardScreen() {
                       key={journey.subject.id}
                       style={styles.journeyCardWrap}
                       onPress={() => {
-                        // TODO: Navigate to subject detail
-                        // router.push(`/subject/${journey.subject.id}`);
+                        router.push(`/subject/${journey.subject.id}`);
                       }}
                     >
                       <JournalCard delay={200 + idx * 100}>
