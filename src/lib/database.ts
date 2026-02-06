@@ -15,6 +15,7 @@ export interface MedProfile {
   exam: ExamType | null;
   language: Language;
   onboarding_completed: boolean;
+  vani_override: boolean; // Secret admin setting: overrides VaNi AI decisions
   created_at: string;
   updated_at: string;
 }
