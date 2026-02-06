@@ -32,6 +32,20 @@ export interface CatalogLanguage {
   sort_order: number;
 }
 
+export interface CatalogChapter {
+  id: string;
+  subject_id: string;
+  exam_ids: string[];
+  branch: string | null;
+  name: string;
+  name_te: string | null;
+  chapter_number: number | null;
+  class_level: number | null;
+  weightage: number;
+  avg_questions: number;
+  important_topics: string[];
+}
+
 // ── Local fallbacks (used offline or if DB fetch fails) ──────
 
 const FALLBACK_EXAMS: CatalogExam[] = [
@@ -84,6 +98,7 @@ const FALLBACK_LANGUAGES: CatalogLanguage[] = [
 let cachedExams: CatalogExam[] | null = null;
 let cachedSubjects: CatalogSubject[] | null = null;
 let cachedLanguages: CatalogLanguage[] | null = null;
+let cachedChapters: Map<string, CatalogChapter[]> = new Map();
 
 // ── Fetch functions ──────────────────────────────────────────
 
@@ -158,6 +173,34 @@ export async function getLanguages(): Promise<CatalogLanguage[]> {
   return cachedLanguages;
 }
 
+/** Fetch chapters for a subject from the database. */
+export async function getChapters(subjectId: string): Promise<CatalogChapter[]> {
+  // Check cache first
+  if (cachedChapters.has(subjectId)) {
+    return cachedChapters.get(subjectId)!;
+  }
+
+  if (supabase) {
+    try {
+      const { data, error } = await supabase
+        .from('med_chapters')
+        .select('id, subject_id, exam_ids, branch, name, name_te, chapter_number, class_level, weightage, avg_questions, important_topics')
+        .eq('subject_id', subjectId)
+        .eq('is_active', true)
+        .order('chapter_number');
+
+      if (!error && data && data.length > 0) {
+        const chapters = data as CatalogChapter[];
+        cachedChapters.set(subjectId, chapters);
+        return chapters;
+      }
+    } catch {}
+  }
+
+  // Return empty array if no chapters found (no fallback for chapters)
+  return [];
+}
+
 /** Get NEET subject IDs from catalog. */
 export async function getNeetSubjectIds(): Promise<string[]> {
   const neetSubjects = await getSubjects('NEET');
@@ -169,4 +212,5 @@ export function clearCatalogCache(): void {
   cachedExams = null;
   cachedSubjects = null;
   cachedLanguages = null;
+  cachedChapters.clear();
 }
