@@ -16,24 +16,12 @@ import { StickyNote } from '../../src/components/ui/StickyNote';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing } from '../../src/constants/theme';
-import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
+import { getSubjects, getChapters, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
 import {
   StrengthLevel,
   STRENGTH_LEVELS,
   NEEDS_FOCUS_CONFIG,
 } from '../../src/types';
-
-// Mock chapters data - will come from DB/catalog later
-const PHYSICS_CHAPTERS = [
-  { id: 'units-measurements', name: 'Units and Measurements', order: 1 },
-  { id: 'motion-straight-line', name: 'Motion in a Straight Line', order: 2 },
-  { id: 'motion-plane', name: 'Motion in a Plane', order: 3 },
-  { id: 'laws-of-motion', name: 'Laws of Motion', order: 4 },
-  { id: 'work-energy-power', name: 'Work, Energy and Power', order: 5 },
-  { id: 'rotational-motion', name: 'Rotational Motion', order: 6 },
-  { id: 'gravitation', name: 'Gravitation', order: 7 },
-  { id: 'mechanical-properties', name: 'Mechanical Properties of Solids', order: 8 },
-];
 
 interface ChapterProgress {
   chapterId: string;
@@ -53,9 +41,11 @@ export default function SubjectDetailScreen() {
   const { colors } = useTheme();
 
   const [subject, setSubject] = useState<CatalogSubject | null>(null);
+  const [chapters, setChapters] = useState<CatalogChapter[]>([]);
   const [hasProgress, setHasProgress] = useState(false);
   const [chapterProgress, setChapterProgress] = useState<ChapterProgress[]>([]);
   const [showChapterPicker, setShowChapterPicker] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Animation
   const fadeIn = useRef(new Animated.Value(0)).current;
@@ -63,16 +53,24 @@ export default function SubjectDetailScreen() {
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
+
+      // Fetch subject info
       const allSubjects = await getSubjects();
       const found = allSubjects.find((s) => s.id === id);
       if (found) {
         setSubject(found);
+
+        // Fetch chapters for this subject
+        const subjectChapters = await getChapters(id!);
+        setChapters(subjectChapters);
       }
 
       // TODO: Fetch actual progress from DB
       // For now, simulating no progress (first time user)
       setHasProgress(false);
       setChapterProgress([]);
+      setIsLoading(false);
     })();
 
     Animated.parallel([
@@ -97,7 +95,7 @@ export default function SubjectDetailScreen() {
     console.log('Start chapter:', chapterId);
   };
 
-  if (!subject) {
+  if (!subject || isLoading) {
     return (
       <DotGridBackground>
         <SafeAreaView style={styles.container}>
@@ -110,7 +108,7 @@ export default function SubjectDetailScreen() {
   }
 
   // Get recommended chapter (first one for new users, or based on progress)
-  const recommendedChapter = PHYSICS_CHAPTERS[0];
+  const recommendedChapter = chapters.length > 0 ? chapters[0] : null;
 
   return (
     <DotGridBackground>
@@ -148,7 +146,9 @@ export default function SubjectDetailScreen() {
               {/* VaNi Welcome Message */}
               <StickyNote color="yellow" rotation={-0.5} delay={100}>
                 <HandwrittenText variant="handSm">
-                  Welcome to {subject.name}! I'm excited to guide you through this journey.
+                  Welcome to {subject.name}! {chapters.length > 0
+                    ? `I'm excited to guide you through ${chapters.length} chapters.`
+                    : "I'm excited to guide you through this journey."}
                 </HandwrittenText>
               </StickyNote>
 
@@ -164,24 +164,32 @@ export default function SubjectDetailScreen() {
                   </Text>
 
                   {/* Primary CTA */}
-                  <Pressable
-                    style={[styles.primaryButton, { backgroundColor: subject.color }]}
-                    onPress={() => handleStartChapter(recommendedChapter.id)}
-                  >
-                    <Text style={styles.primaryButtonText}>
-                      Start with "{recommendedChapter.name}"
+                  {recommendedChapter ? (
+                    <Pressable
+                      style={[styles.primaryButton, { backgroundColor: subject.color }]}
+                      onPress={() => handleStartChapter(recommendedChapter.id)}
+                    >
+                      <Text style={styles.primaryButtonText}>
+                        Start with "{recommendedChapter.name}"
+                      </Text>
+                    </Pressable>
+                  ) : (
+                    <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center' }]}>
+                      Chapters coming soon! We're preparing content for {subject.name}.
                     </Text>
-                  </Pressable>
+                  )}
 
                   {/* Secondary Option */}
-                  <Pressable
-                    style={styles.secondaryButton}
-                    onPress={() => setShowChapterPicker(true)}
-                  >
-                    <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
-                      Or pick a different chapter
-                    </Text>
-                  </Pressable>
+                  {chapters.length > 1 && (
+                    <Pressable
+                      style={styles.secondaryButton}
+                      onPress={() => setShowChapterPicker(true)}
+                    >
+                      <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                        Or pick from {chapters.length} chapters
+                      </Text>
+                    </Pressable>
+                  )}
                 </View>
               </JournalCard>
 
@@ -208,7 +216,7 @@ export default function SubjectDetailScreen() {
                   Pick a chapter
                 </HandwrittenText>
 
-                {PHYSICS_CHAPTERS.map((chapter, idx) => (
+                {chapters.map((chapter, idx) => (
                   <JournalCard key={chapter.id} delay={150 + idx * 50}>
                     <Pressable
                       style={styles.chapterItem}
@@ -216,12 +224,24 @@ export default function SubjectDetailScreen() {
                     >
                       <View style={[styles.chapterNumber, { backgroundColor: subject.color + '20' }]}>
                         <Text style={[Typography.bodySm, { color: subject.color, fontWeight: '700' }]}>
-                          {chapter.order}
+                          {chapter.chapter_number || idx + 1}
                         </Text>
                       </View>
-                      <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>
-                        {chapter.name}
-                      </Text>
+                      <View style={styles.chapterInfo}>
+                        <Text style={[Typography.body, { color: colors.text }]}>
+                          {chapter.name}
+                        </Text>
+                        {chapter.branch && (
+                          <Text style={[styles.chapterMeta, { color: colors.textTertiary }]}>
+                            {chapter.branch} {chapter.class_level ? `• Class ${chapter.class_level}` : ''}
+                          </Text>
+                        )}
+                        {chapter.weightage > 0 && (
+                          <Text style={[styles.chapterMeta, { color: subject.color }]}>
+                            {chapter.weightage}% weightage • ~{chapter.avg_questions} questions
+                          </Text>
+                        )}
+                      </View>
                       <Text style={{ color: colors.textTertiary }}>{'\u203A'}</Text>
                     </Pressable>
                   </JournalCard>
@@ -379,14 +399,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.md,
-    paddingVertical: Spacing.xs,
+    paddingVertical: Spacing.sm,
   },
   chapterNumber: {
-    width: 32,
-    height: 32,
+    width: 36,
+    height: 36,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  chapterInfo: {
+    flex: 1,
+    gap: 2,
+  },
+  chapterMeta: {
+    fontFamily: 'PlusJakartaSans_400Regular',
+    fontSize: 12,
+    lineHeight: 16,
   },
   backToRecommendation: {
     alignSelf: 'center',
