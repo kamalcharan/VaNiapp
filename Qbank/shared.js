@@ -540,6 +540,88 @@ async function getQuestionStats() {
 }
 
 // ============================================================================
+// CHAPTER TARGETS & ANALYTICS
+// ============================================================================
+const CHAPTER_TARGETS = {
+  totalPerChapter: 600,
+  difficultyMix: { easy: 0.30, medium: 0.45, hard: 0.25 },
+  typeMix: {
+    NEET: {
+      'mcq': 0.60, 'assertion-reasoning': 0.15, 'match-the-following': 0.10,
+      'true-false': 0.05, 'diagram-based': 0.05, 'scenario-based': 0.03,
+      'fill-in-blanks': 0.02
+    },
+    CUET: {
+      'mcq': 0.70, 'assertion-reasoning': 0.10, 'match-the-following': 0.05,
+      'true-false': 0.05, 'fill-in-blanks': 0.05, 'scenario-based': 0.05
+    }
+  }
+};
+
+function getTargetsForChapter(exam = 'NEET') {
+  const total = CHAPTER_TARGETS.totalPerChapter;
+  const diff = CHAPTER_TARGETS.difficultyMix;
+  const types = CHAPTER_TARGETS.typeMix[exam] || CHAPTER_TARGETS.typeMix.NEET;
+
+  return {
+    total,
+    byDifficulty: {
+      easy: Math.round(total * diff.easy),
+      medium: Math.round(total * diff.medium),
+      hard: Math.round(total * diff.hard)
+    },
+    byType: Object.fromEntries(
+      Object.entries(types).map(([t, pct]) => [t, Math.round(total * pct)])
+    )
+  };
+}
+
+async function fetchSubjectQuestionStats(subjectId) {
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .select('chapter_id, question_type, difficulty, status, exam_ids')
+    .eq('subject_id', subjectId);
+
+  if (error) {
+    console.error('Error fetching subject stats:', error);
+    return [];
+  }
+  return data || [];
+}
+
+function computeChapterHealth(chapterRows, exam = 'NEET') {
+  const targets = getTargetsForChapter(exam);
+  const total = chapterRows.length;
+
+  // Count by type
+  const byType = {};
+  const byDifficulty = { easy: 0, medium: 0, hard: 0 };
+  const byStatus = { active: 0, draft: 0 };
+  const byExam = { NEET: 0, CUET: 0, BOTH: 0 };
+
+  chapterRows.forEach(q => {
+    // Type
+    byType[q.question_type] = (byType[q.question_type] || 0) + 1;
+    // Difficulty
+    if (byDifficulty[q.difficulty] !== undefined) byDifficulty[q.difficulty]++;
+    // Status
+    if (q.status === 'active') byStatus.active++;
+    else byStatus.draft++;
+    // Exam tags
+    const exams = q.exam_ids || [];
+    if (exams.includes('NEET') && exams.includes('CUET')) byExam.BOTH++;
+    else if (exams.includes('NEET')) byExam.NEET++;
+    else if (exams.includes('CUET')) byExam.CUET++;
+  });
+
+  // Health: green >= 80%, yellow >= 40%, red < 40%
+  const pct = targets.total > 0 ? (total / targets.total) * 100 : 0;
+  const health = pct >= 80 ? 'green' : pct >= 40 ? 'yellow' : 'red';
+
+  return { total, targets, byType, byDifficulty, byStatus, byExam, health, pct };
+}
+
+// ============================================================================
 // GEMINI CLIENT
 // ============================================================================
 // Track token usage for the session
@@ -1078,6 +1160,10 @@ window.Qbank = {
   autoInsertOldJobs,
   getAutoInsertTimeRemaining,
   getQuestionStats,
+  fetchSubjectQuestionStats,
+  computeChapterHealth,
+  getTargetsForChapter,
+  CHAPTER_TARGETS,
 
   // Gemini
   callGemini,

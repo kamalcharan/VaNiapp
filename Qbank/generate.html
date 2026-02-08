@@ -5,6 +5,351 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Generate Questions - Qbank Admin</title>
   <link rel="stylesheet" href="./styles.css">
+  <style>
+    /* ── Exam & Subject Selector ── */
+    .selector-bar {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .selector-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .selector-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .selector-pills {
+      display: flex;
+      gap: 4px;
+      background: var(--gray-100);
+      padding: 3px;
+      border-radius: 10px;
+    }
+    .selector-pill {
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--gray-600);
+      white-space: nowrap;
+    }
+    .selector-pill:hover { background: var(--gray-200); }
+    .selector-pill.active {
+      background: white;
+      color: var(--gray-900);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      font-weight: 600;
+    }
+
+    /* ── Subject Summary Bar ── */
+    .subject-summary {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+    .subject-summary-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .subject-summary-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .subject-summary-stats {
+      font-size: 14px;
+      color: var(--gray-500);
+    }
+    .subject-progress {
+      height: 8px;
+      background: var(--gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .subject-progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    .subject-progress-fill.health-red { background: #ef4444; }
+    .subject-progress-fill.health-yellow { background: #f59e0b; }
+    .subject-progress-fill.health-green { background: #22c55e; }
+
+    /* ── Chapter Cards ── */
+    .chapter-card {
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .chapter-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .chapter-card-header {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      cursor: pointer;
+      gap: 16px;
+      user-select: none;
+    }
+    .chapter-card-header:hover { background: var(--gray-50); }
+    .chapter-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--gray-600);
+      flex-shrink: 0;
+    }
+    .chapter-name {
+      flex: 1;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .chapter-count {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-500);
+      min-width: 80px;
+      text-align: right;
+    }
+    .chapter-count strong { color: var(--gray-900); }
+    .health-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .health-dot.red { background: #ef4444; }
+    .health-dot.yellow { background: #f59e0b; }
+    .health-dot.green { background: #22c55e; }
+    .chapter-expand-icon {
+      font-size: 12px;
+      color: var(--gray-400);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .chapter-card.expanded .chapter-expand-icon { transform: rotate(180deg); }
+
+    /* ── Chapter Expanded Body ── */
+    .chapter-card-body {
+      display: none;
+      padding: 0 20px 20px;
+      border-top: 1px solid var(--gray-100);
+    }
+    .chapter-card.expanded .chapter-card-body { display: block; }
+    .stats-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 16px;
+    }
+    @media (max-width: 900px) {
+      .stats-grid-3 { grid-template-columns: 1fr; }
+    }
+    .stats-section h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray-500);
+      margin: 0 0 10px 0;
+    }
+
+    /* ── Mini stat rows ── */
+    .mini-stat-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+    .mini-stat-label {
+      width: 100px;
+      color: var(--gray-600);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .mini-stat-bar {
+      flex: 1;
+      height: 6px;
+      background: var(--gray-150, #e8e8e8);
+      border-radius: 3px;
+      overflow: hidden;
+      min-width: 60px;
+    }
+    .mini-stat-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+    .mini-stat-bar-fill.low { background: #ef4444; }
+    .mini-stat-bar-fill.mid { background: #f59e0b; }
+    .mini-stat-bar-fill.high { background: #22c55e; }
+    .mini-stat-nums {
+      font-size: 12px;
+      color: var(--gray-500);
+      min-width: 60px;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .mini-stat-nums strong {
+      color: var(--gray-800);
+    }
+
+    /* ── Compact stat pills ── */
+    .stat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .stat-pill {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--gray-100);
+      color: var(--gray-700);
+      font-weight: 500;
+    }
+    .stat-pill strong { font-weight: 700; }
+
+    /* ── Chapter Actions ── */
+    .chapter-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--gray-100);
+    }
+
+    /* ── Inline Generation Panel ── */
+    .gen-panel {
+      margin-top: 16px;
+      background: #f8fafc;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .gen-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .gen-panel-header h4 { margin: 0; font-size: 15px; }
+    .gen-config-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 700px) {
+      .gen-config-grid { grid-template-columns: 1fr; }
+    }
+    .gen-config-grid .form-group { margin-bottom: 0; }
+    .gen-config-grid .form-label { font-size: 13px; margin-bottom: 4px; }
+    .gen-config-grid .form-input,
+    .gen-config-grid .form-select { padding: 8px 10px; font-size: 13px; }
+
+    .gen-types-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .gen-type-chip {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--gray-300);
+      background: white;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .gen-type-chip:hover { border-color: var(--primary); }
+    .gen-type-chip.selected {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .gen-progress {
+      margin-top: 16px;
+      text-align: center;
+      padding: 24px;
+    }
+    .gen-progress .loader-spinner { margin: 0 auto 12px; }
+
+    .gen-result {
+      margin-top: 16px;
+    }
+    .gen-result-summary {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .gen-result-summary.error {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    /* ── Empty state ── */
+    .empty-subject {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--gray-500);
+    }
+    .empty-subject .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+
+    /* ── Question preview in results ── */
+    .gen-question-preview {
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      background: white;
+      font-size: 13px;
+    }
+    .gen-question-preview .q-header {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .gen-question-preview .q-text {
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
   <header id="nav-header"></header>
@@ -14,213 +359,47 @@
       <div class="page-header">
         <h1 class="page-title">
           <span class="page-title-icon">🤖</span>
-          Generate Questions
+          Question Bank Operations
         </h1>
-        <p class="page-subtitle">Use Gemini AI to generate NEET-quality questions</p>
+        <p class="page-subtitle">Generate, track, and manage questions per chapter</p>
       </div>
 
-      <!-- Stats Cards -->
-      <div class="stats-row" id="statsRow" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
-        <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px; border-radius: 12px;">
-          <div style="font-size: 24px; font-weight: bold;" id="statTotal">-</div>
-          <div style="font-size: 13px; opacity: 0.9;">Total Generated</div>
+      <!-- Exam & Subject Selector -->
+      <div class="selector-bar">
+        <div class="selector-group">
+          <span class="selector-label">Exam</span>
+          <div class="selector-pills" id="examPills">
+            <button class="selector-pill active" data-exam="NEET" onclick="selectExam('NEET')">🩺 NEET</button>
+            <button class="selector-pill" data-exam="CUET" onclick="selectExam('CUET')">🎓 CUET</button>
+          </div>
         </div>
-        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 16px; border-radius: 12px;">
-          <div style="font-size: 24px; font-weight: bold;" id="statPending">-</div>
-          <div style="font-size: 13px; opacity: 0.9;">Pending Review</div>
-        </div>
-        <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 16px; border-radius: 12px;">
-          <div style="font-size: 24px; font-weight: bold;" id="statApproved">-</div>
-          <div style="font-size: 13px; opacity: 0.9;">Approved</div>
-        </div>
-        <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 16px; border-radius: 12px;">
-          <div style="font-size: 24px; font-weight: bold;" id="statInserted">-</div>
-          <div style="font-size: 13px; opacity: 0.9;">In Database</div>
+        <div class="selector-group">
+          <span class="selector-label">Subject</span>
+          <div class="selector-pills" id="subjectPills">
+            <!-- Loaded dynamically -->
+          </div>
         </div>
       </div>
 
-      <!-- Wizard Steps -->
-      <div class="wizard-steps">
-        <div class="wizard-step active" id="step1Indicator">
-          <span class="step-number">1</span>
-          <span class="step-label">Select Subject</span>
+      <!-- Subject Summary -->
+      <div class="subject-summary" id="subjectSummary" style="display:none;">
+        <div class="subject-summary-top">
+          <div class="subject-summary-title">
+            <span id="summaryIcon"></span>
+            <span id="summaryName"></span>
+          </div>
+          <div class="subject-summary-stats" id="summaryStats"></div>
         </div>
-        <div class="step-connector"></div>
-        <div class="wizard-step" id="step2Indicator">
-          <span class="step-number">2</span>
-          <span class="step-label">Choose Chapter</span>
-        </div>
-        <div class="step-connector"></div>
-        <div class="wizard-step" id="step3Indicator">
-          <span class="step-number">3</span>
-          <span class="step-label">Configure</span>
-        </div>
-        <div class="step-connector"></div>
-        <div class="wizard-step" id="step4Indicator">
-          <span class="step-number">4</span>
-          <span class="step-label">Generate</span>
+        <div class="subject-progress">
+          <div class="subject-progress-fill" id="summaryProgress"></div>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-body">
-          <!-- Step 1: Exam & Subject Selection -->
-          <div class="wizard-content" id="step1Content">
-            <h3>Select Exam & Subject</h3>
-            <p style="color: var(--gray-500); margin-bottom: 24px;">Choose target exam and subject for question generation</p>
-
-            <!-- Exam Selection -->
-            <div class="form-group" style="margin-bottom: 24px;">
-              <label class="form-label">Target Exam</label>
-              <div style="display: flex; gap: 16px; margin-top: 8px;">
-                <label class="selection-item" style="flex: 1; max-width: 200px; cursor: pointer;" data-exam="NEET" onclick="selectExam('NEET')">
-                  <div class="icon">🩺</div>
-                  <div class="label">NEET</div>
-                  <div class="meta">Medical Entrance</div>
-                </label>
-                <label class="selection-item" style="flex: 1; max-width: 200px; cursor: pointer;" data-exam="CUET" onclick="selectExam('CUET')">
-                  <div class="icon">🎓</div>
-                  <div class="label">CUET</div>
-                  <div class="meta">University Entrance</div>
-                </label>
-                <label class="selection-item" style="flex: 1; max-width: 200px; cursor: pointer;" data-exam="BOTH" onclick="selectExam('BOTH')">
-                  <div class="icon">📚</div>
-                  <div class="label">Both</div>
-                  <div class="meta">NEET + CUET</div>
-                </label>
-              </div>
-            </div>
-
-            <!-- Subject Selection -->
-            <div class="form-group">
-              <label class="form-label">Subject</label>
-              <div class="selection-grid" id="subjectGrid">
-                <div class="qbank-loader">
-                  <div class="loader-spinner"></div>
-                  <p class="loader-message">Loading subjects...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 2: Chapter Selection -->
-          <div class="wizard-content" id="step2Content" style="display: none;">
-            <h3>Choose Chapter</h3>
-            <p style="color: var(--gray-500); margin-bottom: 24px;">Select a chapter from <span id="selectedSubjectName"></span></p>
-
-            <div class="chapter-list" id="chapterList">
-              <!-- Chapters loaded dynamically -->
-            </div>
-          </div>
-
-          <!-- Step 3: Configuration -->
-          <div class="wizard-content" id="step3Content" style="display: none;">
-            <h3>Configure Generation</h3>
-            <p style="color: var(--gray-500); margin-bottom: 24px;">
-              Generating for: <strong id="configExamName"></strong> → <strong id="configChapterName"></strong>
-            </p>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Number of Questions</label>
-                <input type="number" id="questionCount" class="form-input" value="10" min="1" max="25">
-                <p class="form-hint">Recommended: 5-15 per batch</p>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Difficulty</label>
-                <select id="difficulty" class="form-select">
-                  <option value="mixed">Mixed (Easy, Medium, Hard)</option>
-                  <option value="easy">Easy Only</option>
-                  <option value="medium">Medium Only</option>
-                  <option value="hard">Hard Only</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Question Types</label>
-              <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 8px;">
-                <label class="form-check" style="background: var(--gray-50); padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--gray-200);">
-                  <input type="checkbox" value="mcq" checked class="question-type-check">
-                  MCQ (4 options)
-                </label>
-                <label class="form-check" style="background: var(--gray-50); padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--gray-200);">
-                  <input type="checkbox" value="assertion-reasoning" class="question-type-check">
-                  Assertion-Reasoning
-                </label>
-                <label class="form-check" style="background: var(--gray-50); padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--gray-200);">
-                  <input type="checkbox" value="match-the-following" class="question-type-check">
-                  Match the Following
-                </label>
-                <label class="form-check" style="background: var(--gray-50); padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--gray-200);">
-                  <input type="checkbox" value="true-false" class="question-type-check">
-                  True / False
-                </label>
-                <label class="form-check" style="background: var(--gray-50); padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--gray-200);">
-                  <input type="checkbox" value="diagram-based" class="question-type-check">
-                  Diagram Based
-                </label>
-                <label class="form-check" style="background: var(--gray-50); padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--gray-200);">
-                  <input type="checkbox" value="logical-sequence" class="question-type-check">
-                  Logical Sequence
-                </label>
-                <label class="form-check" style="background: var(--gray-50); padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--gray-200);">
-                  <input type="checkbox" value="scenario-based" class="question-type-check">
-                  Scenario Based
-                </label>
-                <label class="form-check" style="background: var(--gray-50); padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--gray-200);">
-                  <input type="checkbox" value="fill-in-blanks" class="question-type-check">
-                  Fill in Blanks
-                </label>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Topics to Cover (Optional)</label>
-              <div id="topicsList" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
-                <!-- Topics loaded dynamically -->
-              </div>
-              <p class="form-hint">Leave all unchecked to cover all topics in the chapter</p>
-            </div>
-
-            <div class="form-group">
-              <label class="form-check">
-                <input type="checkbox" id="includeHints" checked>
-                Include elimination hints for wrong options
-              </label>
-            </div>
-          </div>
-
-          <!-- Step 4: Generation -->
-          <div class="wizard-content" id="step4Content" style="display: none;">
-            <div id="generationStatus">
-              <div style="text-align: center; padding: 40px 20px;">
-                <div class="loader-spinner" style="margin: 0 auto 24px;"></div>
-                <h3 id="generationStatusTitle">Generating Questions...</h3>
-                <p id="generationStatusMessage" style="color: var(--gray-500);">
-                  Calling Gemini API. This may take 30-60 seconds.
-                </p>
-                <div class="progress-bar" style="max-width: 400px; margin: 24px auto;">
-                  <div class="progress-fill" id="generationProgress" style="width: 10%;"></div>
-                </div>
-              </div>
-            </div>
-
-            <div id="generationResult" style="display: none;">
-              <!-- Results shown here -->
-            </div>
-          </div>
-
-          <!-- Wizard Actions -->
-          <div class="wizard-actions">
-            <button class="btn btn-secondary" id="prevBtn" style="visibility: hidden;">
-              ← Previous
-            </button>
-            <button class="btn btn-primary" id="nextBtn" disabled>
-              Next →
-            </button>
-          </div>
+      <!-- Chapter Cards -->
+      <div id="chapterContainer">
+        <div class="empty-subject" id="emptyState">
+          <div class="empty-icon">👆</div>
+          <p>Select a subject above to see chapter coverage</p>
         </div>
       </div>
     </div>
@@ -228,299 +407,497 @@
 
   <script src="./shared.js"></script>
   <script>
-    // State
-    let currentStep = 1;
-    let selectedExam = null;  // 'NEET', 'CUET', or 'BOTH'
-    let selectedSubject = null;
-    let selectedChapter = null;
-    let selectedTopics = [];
-    let generatedQuestions = [];
+    // ========================================================================
+    // STATE
+    // ========================================================================
+    let selectedExam = 'NEET';
+    let selectedSubjectId = null;
     let subjects = [];
     let chapters = [];
-    let topics = [];
+    let questionStats = [];
+    let chapterHealthMap = {};  // chapterId → health data
 
+    // ========================================================================
+    // INIT
+    // ========================================================================
     async function init() {
       const user = await Qbank.requireAuth(['admin']);
       if (!user) return;
-
       Qbank.renderNavHeader();
       await loadSubjects();
-      await loadStats();
-      updateNavigation();
-
-      // Auto-insert old jobs (>12 hours)
-      const autoResult = await Qbank.autoInsertOldJobs();
-      if (autoResult.processed > 0) {
-        Qbank.showToast(`Auto-inserted ${autoResult.processed} old jobs to DB`, 'info');
-        await loadStats(); // Refresh stats after auto-insert
-      }
-    }
-
-    async function loadStats() {
-      try {
-        // Fetch from jobs table (for pending/generating)
-        const jobs = await Qbank.fetchGenerationJobs();
-
-        // Fetch from med_questions table (for actual DB counts)
-        const questionStats = await Qbank.getQuestionStats() || [];
-
-        // Count pending from jobs
-        let pendingCount = 0;
-        jobs.forEach(job => {
-          if (job.status === 'pending' || job.status === 'generating') {
-            pendingCount += job.questions_count || 0;
-          }
-        });
-
-        // Count from actual questions in DB by status
-        let draftCount = 0;
-        let activeCount = 0;
-        let totalInDb = questionStats.length;
-
-        questionStats.forEach(q => {
-          if (q.status === 'draft' || q.status === 'pending_review') {
-            draftCount++;
-          } else if (q.status === 'active') {
-            activeCount++;
-          }
-        });
-
-        // Update UI
-        document.getElementById('statTotal').textContent = pendingCount + totalInDb;
-        document.getElementById('statPending').textContent = pendingCount;
-        document.getElementById('statApproved').textContent = draftCount;
-        document.getElementById('statInserted').textContent = activeCount;
-
-      } catch (error) {
-        console.error('Error loading stats:', error);
-      }
     }
 
     // ========================================================================
-    // STEP 1: Exam & Subject Selection
+    // EXAM SELECTION
     // ========================================================================
     function selectExam(exam) {
       selectedExam = exam;
-
-      // Update UI
-      document.querySelectorAll('[data-exam]').forEach(item => {
-        item.classList.toggle('selected', item.dataset.exam === exam);
-      });
-
-      updateNavigation();
+      document.querySelectorAll('#examPills .selector-pill').forEach(p =>
+        p.classList.toggle('active', p.dataset.exam === exam)
+      );
+      // Reload if subject is already selected
+      if (selectedSubjectId) loadOperationalView();
     }
 
+    // ========================================================================
+    // SUBJECT LOADING & SELECTION
+    // ========================================================================
     async function loadSubjects() {
-      const grid = document.getElementById('subjectGrid');
-
-      try {
-        subjects = await Qbank.fetchSubjects();
-
-        grid.innerHTML = subjects.map(subject => `
-          <div class="selection-item" data-subject-id="${subject.id}" onclick="selectSubject('${subject.id}')">
-            <div class="icon">${Qbank.getSubjectEmoji(subject.id)}</div>
-            <div class="label">${subject.name}</div>
-            <div class="meta">${subject.id}</div>
-          </div>
-        `).join('');
-
-      } catch (error) {
-        console.error('Error loading subjects:', error);
-        grid.innerHTML = '<p class="empty-message">Failed to load subjects</p>';
-      }
+      subjects = await Qbank.fetchSubjects();
+      const pills = document.getElementById('subjectPills');
+      pills.innerHTML = subjects.map(s => `
+        <button class="selector-pill" data-subject="${s.id}" onclick="selectSubject('${s.id}')">
+          ${Qbank.getSubjectEmoji(s.id)} ${s.name}
+        </button>
+      `).join('');
     }
 
-    function selectSubject(subjectId) {
-      selectedSubject = subjects.find(s => s.id === subjectId);
+    async function selectSubject(subjectId) {
+      selectedSubjectId = subjectId;
+      document.querySelectorAll('#subjectPills .selector-pill').forEach(p =>
+        p.classList.toggle('active', p.dataset.subject === subjectId)
+      );
+      await loadOperationalView();
+    }
 
-      // Update UI
-      document.querySelectorAll('#subjectGrid .selection-item').forEach(item => {
-        item.classList.toggle('selected', item.dataset.subjectId === subjectId);
+    // ========================================================================
+    // OPERATIONAL VIEW — main data load
+    // ========================================================================
+    async function loadOperationalView() {
+      const container = document.getElementById('chapterContainer');
+      const summary = document.getElementById('subjectSummary');
+      const empty = document.getElementById('emptyState');
+
+      container.innerHTML = '<div style="text-align:center;padding:40px;"><div class="loader-spinner" style="margin:0 auto 12px;"></div><p style="color:var(--gray-500);">Loading chapters...</p></div>';
+      summary.style.display = 'none';
+      if (empty) empty.style.display = 'none';
+
+      // Fetch chapters + question stats in parallel
+      const [chaptersData, statsData] = await Promise.all([
+        Qbank.fetchChapters(selectedSubjectId),
+        Qbank.fetchSubjectQuestionStats(selectedSubjectId)
+      ]);
+
+      chapters = chaptersData;
+      questionStats = statsData;
+
+      // Group stats by chapter
+      const statsByChapter = {};
+      questionStats.forEach(q => {
+        if (!statsByChapter[q.chapter_id]) statsByChapter[q.chapter_id] = [];
+        statsByChapter[q.chapter_id].push(q);
       });
 
-      updateNavigation();
+      // Compute health per chapter
+      chapterHealthMap = {};
+      let totalHave = 0;
+      let totalTarget = 0;
+
+      chapters.forEach(ch => {
+        const rows = statsByChapter[ch.id] || [];
+        chapterHealthMap[ch.id] = Qbank.computeChapterHealth(rows, selectedExam);
+        totalHave += chapterHealthMap[ch.id].total;
+        totalTarget += chapterHealthMap[ch.id].targets.total;
+      });
+
+      // Render subject summary
+      const subj = subjects.find(s => s.id === selectedSubjectId);
+      const overallPct = totalTarget > 0 ? ((totalHave / totalTarget) * 100) : 0;
+      const overallHealth = overallPct >= 80 ? 'green' : overallPct >= 40 ? 'yellow' : 'red';
+
+      document.getElementById('summaryIcon').textContent = Qbank.getSubjectEmoji(selectedSubjectId);
+      document.getElementById('summaryName').textContent = subj?.name || selectedSubjectId;
+      document.getElementById('summaryStats').textContent =
+        `${totalHave.toLocaleString()} / ${totalTarget.toLocaleString()} questions (${chapters.length} chapters)`;
+      const progressEl = document.getElementById('summaryProgress');
+      progressEl.style.width = Math.min(overallPct, 100).toFixed(1) + '%';
+      progressEl.className = `subject-progress-fill health-${overallHealth}`;
+      summary.style.display = 'block';
+
+      // Render chapter cards
+      if (chapters.length === 0) {
+        container.innerHTML = '<div class="empty-subject"><div class="empty-icon">📭</div><p>No chapters found for this subject</p></div>';
+        return;
+      }
+
+      container.innerHTML = chapters.map(ch => renderChapterCard(ch)).join('');
     }
 
     // ========================================================================
-    // STEP 2: Chapter Selection
+    // CHAPTER CARD RENDERING
     // ========================================================================
-    async function loadChapters() {
-      const list = document.getElementById('chapterList');
-      document.getElementById('selectedSubjectName').textContent = selectedSubject.name;
+    function renderChapterCard(chapter) {
+      const h = chapterHealthMap[chapter.id] || { total: 0, targets: { total: 600 }, health: 'red', pct: 0 };
 
-      Qbank.showLoader(list, 'Loading chapters...');
-
-      try {
-        chapters = await Qbank.fetchChapters(selectedSubject.id);
-
-        list.innerHTML = chapters.map(chapter => `
-          <div class="chapter-item" data-chapter-id="${chapter.id}" onclick="selectChapter('${chapter.id}')">
-            <div class="chapter-number">${chapter.chapter_number || '-'}</div>
-            <div class="chapter-info">
-              <div class="chapter-name">${chapter.name}</div>
-              <div class="chapter-meta">
-                Class ${chapter.class_level || '?'}
-                ${chapter.branch ? `• ${chapter.branch}` : ''}
-                ${chapter.avg_questions ? `• ~${chapter.avg_questions} Qs in NEET` : ''}
-              </div>
+      return `
+        <div class="chapter-card" id="card-${chapter.id}">
+          <div class="chapter-card-header" onclick="toggleChapter('${chapter.id}')">
+            <div class="chapter-num">${chapter.chapter_number || '—'}</div>
+            <div class="chapter-name">${chapter.name}</div>
+            <div class="chapter-count">
+              <strong>${h.total}</strong> / ${h.targets.total}
             </div>
-            <div class="chapter-weight">${chapter.weightage || 0}%</div>
+            <div class="health-dot ${h.health}"></div>
+            <div class="chapter-expand-icon">▼</div>
           </div>
-        `).join('');
-
-      } catch (error) {
-        console.error('Error loading chapters:', error);
-        list.innerHTML = '<p class="empty-message">Failed to load chapters</p>';
-      }
+          <div class="chapter-card-body" id="body-${chapter.id}">
+            ${renderChapterStats(chapter.id, h)}
+            <div class="chapter-actions">
+              <button class="btn btn-primary btn-sm" onclick="openAutoGenerate('${chapter.id}')">
+                🤖 Auto-Generate
+              </button>
+              <button class="btn btn-secondary btn-sm" onclick="openCustomGenerate('${chapter.id}')">
+                ⚙️ Custom Generate
+              </button>
+            </div>
+            <div id="gen-panel-${chapter.id}"></div>
+          </div>
+        </div>
+      `;
     }
 
-    function selectChapter(chapterId) {
-      selectedChapter = chapters.find(c => c.id === chapterId);
+    function renderChapterStats(chapterId, h) {
+      const targets = h.targets;
 
-      // Update UI
-      document.querySelectorAll('#chapterList .chapter-item').forEach(item => {
-        item.classList.toggle('selected', item.dataset.chapterId === chapterId);
+      // Type mix rows
+      const allTypes = ['mcq','assertion-reasoning','match-the-following','true-false',
+                        'diagram-based','scenario-based','fill-in-blanks','logical-sequence'];
+      const typeLabels = {
+        'mcq':'MCQ', 'assertion-reasoning':'Assert-R', 'match-the-following':'Match',
+        'true-false':'True/False', 'diagram-based':'Diagram', 'scenario-based':'Scenario',
+        'fill-in-blanks':'Fill-Blank', 'logical-sequence':'Sequence'
+      };
+
+      const typeRows = allTypes.map(type => {
+        const have = h.byType[type] || 0;
+        const target = targets.byType[type] || 0;
+        if (target === 0 && have === 0) return '';
+        const pct = target > 0 ? Math.min((have / target) * 100, 100) : 100;
+        const barClass = pct >= 80 ? 'high' : pct >= 40 ? 'mid' : 'low';
+        return `
+          <div class="mini-stat-row">
+            <div class="mini-stat-label">${typeLabels[type] || type}</div>
+            <div class="mini-stat-bar"><div class="mini-stat-bar-fill ${barClass}" style="width:${pct.toFixed(0)}%"></div></div>
+            <div class="mini-stat-nums"><strong>${have}</strong>/${target}</div>
+          </div>
+        `;
+      }).filter(Boolean).join('');
+
+      // Difficulty rows
+      const diffRows = ['easy','medium','hard'].map(diff => {
+        const have = h.byDifficulty[diff] || 0;
+        const target = targets.byDifficulty[diff] || 0;
+        const pct = target > 0 ? Math.min((have / target) * 100, 100) : 100;
+        const barClass = pct >= 80 ? 'high' : pct >= 40 ? 'mid' : 'low';
+        const label = diff.charAt(0).toUpperCase() + diff.slice(1);
+        return `
+          <div class="mini-stat-row">
+            <div class="mini-stat-label">${label}</div>
+            <div class="mini-stat-bar"><div class="mini-stat-bar-fill ${barClass}" style="width:${pct.toFixed(0)}%"></div></div>
+            <div class="mini-stat-nums"><strong>${have}</strong>/${target}</div>
+          </div>
+        `;
+      }).join('');
+
+      // Status + exam pills
+      const statusPills = `
+        <div class="stat-pill">Active: <strong>${h.byStatus.active}</strong></div>
+        <div class="stat-pill">Draft: <strong>${h.byStatus.draft}</strong></div>
+      `;
+      const examPills = `
+        <div class="stat-pill">NEET: <strong>${h.byExam.NEET}</strong></div>
+        <div class="stat-pill">CUET: <strong>${h.byExam.CUET}</strong></div>
+        <div class="stat-pill">Both: <strong>${h.byExam.BOTH}</strong></div>
+      `;
+
+      return `
+        <div class="stats-grid-3">
+          <div class="stats-section">
+            <h4>Type Mix</h4>
+            ${typeRows || '<div style="font-size:13px;color:var(--gray-400);">No questions yet</div>'}
+          </div>
+          <div class="stats-section">
+            <h4>Difficulty Mix</h4>
+            ${diffRows}
+          </div>
+          <div class="stats-section">
+            <h4>Status</h4>
+            <div class="stat-pills" style="margin-bottom:12px;">${statusPills}</div>
+            <h4>Exam Tags</h4>
+            <div class="stat-pills">${examPills}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function toggleChapter(chapterId) {
+      const card = document.getElementById(`card-${chapterId}`);
+      card.classList.toggle('expanded');
+    }
+
+    // ========================================================================
+    // AUTO-GENERATE — agent decides what's needed
+    // ========================================================================
+    function openAutoGenerate(chapterId) {
+      const h = chapterHealthMap[chapterId];
+      const targets = h.targets;
+      const chapter = chapters.find(c => c.id === chapterId);
+      const panel = document.getElementById(`gen-panel-${chapterId}`);
+
+      // Find biggest gaps — prioritize types with lowest fill %
+      const gaps = [];
+      const allTypes = Object.keys(targets.byType);
+      allTypes.forEach(type => {
+        const have = h.byType[type] || 0;
+        const target = targets.byType[type] || 0;
+        const need = target - have;
+        if (need > 0) {
+          gaps.push({ type, have, target, need, pct: target > 0 ? (have / target) * 100 : 100 });
+        }
       });
 
-      updateNavigation();
-    }
+      // Sort by lowest coverage first
+      gaps.sort((a, b) => a.pct - b.pct);
 
-    // ========================================================================
-    // STEP 3: Configuration
-    // ========================================================================
-    async function loadConfiguration() {
-      document.getElementById('configExamName').textContent = selectedExam === 'BOTH' ? 'NEET + CUET' : selectedExam;
-      document.getElementById('configChapterName').textContent =
-        `${selectedSubject.name} → ${selectedChapter.name}`;
-
-      // Load topics
-      const topicsList = document.getElementById('topicsList');
-      topicsList.innerHTML = '<span style="color: var(--gray-400);">Loading topics...</span>';
-
-      try {
-        topics = await Qbank.fetchTopics(selectedChapter.id);
-
-        if (topics.length === 0) {
-          topicsList.innerHTML = '<span style="color: var(--gray-400);">No specific topics defined for this chapter</span>';
-        } else {
-          topicsList.innerHTML = topics.map(topic => `
-            <label class="form-check" style="background: var(--gray-50); padding: 8px 12px; border-radius: var(--radius);">
-              <input type="checkbox" value="${topic.id}" class="topic-check">
-              ${topic.name} ${topic.is_important ? '⭐' : ''}
-            </label>
-          `).join('');
-        }
-
-      } catch (error) {
-        console.error('Error loading topics:', error);
-        topicsList.innerHTML = '<span style="color: var(--gray-400);">Failed to load topics</span>';
+      // Pick top gaps, max 25 questions per generation batch
+      let remaining = 25;
+      const batch = [];
+      for (const gap of gaps) {
+        if (remaining <= 0) break;
+        const count = Math.min(gap.need, remaining, 15); // max 15 per type in one call
+        batch.push({ type: gap.type, count });
+        remaining -= count;
       }
-    }
 
-    function getConfiguration() {
-      const questionTypes = Array.from(document.querySelectorAll('.question-type-check:checked'))
-        .map(cb => cb.value);
+      if (batch.length === 0) {
+        panel.innerHTML = `
+          <div class="gen-panel">
+            <div style="text-align:center;padding:16px;color:var(--gray-500);">
+              ✅ This chapter has reached its targets. Use Custom Generate to add more.
+            </div>
+          </div>
+        `;
+        return;
+      }
 
-      const selectedTopicIds = Array.from(document.querySelectorAll('.topic-check:checked'))
-        .map(cb => cb.value);
+      // Determine difficulty — fill the most depleted
+      const diffGaps = ['easy','medium','hard'].map(d => ({
+        diff: d,
+        have: h.byDifficulty[d] || 0,
+        target: targets.byDifficulty[d] || 0,
+        pct: targets.byDifficulty[d] > 0 ? ((h.byDifficulty[d] || 0) / targets.byDifficulty[d]) * 100 : 100
+      }));
+      diffGaps.sort((a, b) => a.pct - b.pct);
+      const suggestedDifficulty = diffGaps[0].pct < 50 ? diffGaps[0].diff : 'mixed';
 
-      const selectedTopicObjects = selectedTopicIds.length > 0
-        ? topics.filter(t => selectedTopicIds.includes(t.id))
-        : topics;
-
-      // Determine exam_ids based on selection
-      const examIds = selectedExam === 'BOTH' ? ['NEET', 'CUET'] : [selectedExam];
-
-      return {
-        exam: selectedExam,
-        examIds: examIds,
-        subject: selectedSubject,
-        chapter: selectedChapter,
-        topics: selectedTopicObjects,
-        questionTypes: questionTypes.length > 0 ? questionTypes : ['mcq'],
-        count: parseInt(document.getElementById('questionCount').value) || 10,
-        difficulty: document.getElementById('difficulty').value,
-        includeHints: document.getElementById('includeHints').checked
+      const totalCount = batch.reduce((s, b) => s + b.count, 0);
+      const typeLabels = {
+        'mcq':'MCQ', 'assertion-reasoning':'Assert-R', 'match-the-following':'Match',
+        'true-false':'True/False', 'diagram-based':'Diagram', 'scenario-based':'Scenario',
+        'fill-in-blanks':'Fill-Blank', 'logical-sequence':'Sequence'
       };
+
+      const batchSummary = batch.map(b =>
+        `<span class="stat-pill"><strong>${b.count}</strong> ${typeLabels[b.type]}</span>`
+      ).join(' ');
+
+      panel.innerHTML = `
+        <div class="gen-panel">
+          <div class="gen-panel-header">
+            <h4>🤖 Agent Suggestion for ${chapter.name}</h4>
+            <button class="btn btn-sm btn-ghost" onclick="closeGenPanel('${chapterId}')">✕</button>
+          </div>
+          <p style="font-size:13px;color:var(--gray-600);margin:0 0 12px;">
+            Based on gap analysis — filling biggest deficits first (${totalCount} questions):
+          </p>
+          <div style="margin-bottom:12px;">${batchSummary}</div>
+          <div style="font-size:13px;color:var(--gray-500);margin-bottom:16px;">
+            Difficulty: <strong>${suggestedDifficulty === 'mixed' ? 'Mixed' : suggestedDifficulty.charAt(0).toUpperCase() + suggestedDifficulty.slice(1)}</strong>
+            &nbsp;|&nbsp; Exam: <strong>${selectedExam}</strong>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-primary" onclick="executeGeneration('${chapterId}', 'auto')">
+              🤖 Generate ${totalCount} Questions
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="closeGenPanel('${chapterId}')">Cancel</button>
+          </div>
+          <div id="gen-progress-${chapterId}"></div>
+        </div>
+      `;
+
+      // Store batch config for execution
+      panel._autoBatch = { batch, difficulty: suggestedDifficulty, totalCount };
     }
 
     // ========================================================================
-    // STEP 4: Generation
+    // CUSTOM GENERATE — manual config
     // ========================================================================
-    async function startGeneration() {
-      const config = getConfiguration();
-      const statusTitle = document.getElementById('generationStatusTitle');
-      const statusMessage = document.getElementById('generationStatusMessage');
-      const progressBar = document.getElementById('generationProgress');
-      const resultDiv = document.getElementById('generationResult');
-      const statusDiv = document.getElementById('generationStatus');
+    function openCustomGenerate(chapterId) {
+      const chapter = chapters.find(c => c.id === chapterId);
+      const panel = document.getElementById(`gen-panel-${chapterId}`);
 
-      // Reset UI
-      statusDiv.style.display = 'block';
-      resultDiv.style.display = 'none';
-      progressBar.style.width = '10%';
+      const typeLabels = {
+        'mcq':'MCQ', 'assertion-reasoning':'Assert-R', 'match-the-following':'Match',
+        'true-false':'True/False', 'diagram-based':'Diagram', 'scenario-based':'Scenario',
+        'fill-in-blanks':'Fill-Blank', 'logical-sequence':'Sequence'
+      };
+      const allTypes = Object.keys(typeLabels);
+
+      const typeChips = allTypes.map(t => `
+        <div class="gen-type-chip selected" data-type="${t}" onclick="toggleTypeChip(this)">
+          ${typeLabels[t]}
+        </div>
+      `).join('');
+
+      panel.innerHTML = `
+        <div class="gen-panel">
+          <div class="gen-panel-header">
+            <h4>⚙️ Custom Generate for ${chapter.name}</h4>
+            <button class="btn btn-sm btn-ghost" onclick="closeGenPanel('${chapterId}')">✕</button>
+          </div>
+          <div class="gen-config-grid">
+            <div class="form-group">
+              <label class="form-label">Count</label>
+              <input type="number" class="form-input" id="custom-count-${chapterId}" value="10" min="1" max="25">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Difficulty</label>
+              <select class="form-select" id="custom-diff-${chapterId}">
+                <option value="mixed">Mixed</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom:16px;">
+            <label class="form-label" style="font-size:13px;margin-bottom:6px;">Question Types</label>
+            <div class="gen-types-grid" id="custom-types-${chapterId}">${typeChips}</div>
+          </div>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600);margin-bottom:16px;">
+            <input type="checkbox" id="custom-hints-${chapterId}" checked>
+            Include elimination hints
+          </label>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-primary" onclick="executeGeneration('${chapterId}', 'custom')">
+              🤖 Generate
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="closeGenPanel('${chapterId}')">Cancel</button>
+          </div>
+          <div id="gen-progress-${chapterId}"></div>
+        </div>
+      `;
+    }
+
+    function toggleTypeChip(el) {
+      el.classList.toggle('selected');
+    }
+
+    function closeGenPanel(chapterId) {
+      document.getElementById(`gen-panel-${chapterId}`).innerHTML = '';
+    }
+
+    // ========================================================================
+    // EXECUTE GENERATION
+    // ========================================================================
+    async function executeGeneration(chapterId, mode) {
+      const chapter = chapters.find(c => c.id === chapterId);
+      const progressDiv = document.getElementById(`gen-progress-${chapterId}`);
+      const panel = document.getElementById(`gen-panel-${chapterId}`);
+
+      let questionTypes, count, difficulty, includeHints;
+
+      if (mode === 'auto') {
+        const autoBatch = panel._autoBatch;
+        questionTypes = autoBatch.batch.map(b => b.type);
+        count = autoBatch.totalCount;
+        difficulty = autoBatch.difficulty;
+        includeHints = true;
+      } else {
+        const typeChips = document.querySelectorAll(`#custom-types-${chapterId} .gen-type-chip.selected`);
+        questionTypes = Array.from(typeChips).map(c => c.dataset.type);
+        count = parseInt(document.getElementById(`custom-count-${chapterId}`).value) || 10;
+        difficulty = document.getElementById(`custom-diff-${chapterId}`).value;
+        includeHints = document.getElementById(`custom-hints-${chapterId}`).checked;
+
+        if (questionTypes.length === 0) {
+          Qbank.showToast('Select at least one question type', 'warning');
+          return;
+        }
+      }
+
+      // Disable buttons
+      panel.querySelectorAll('button').forEach(b => b.disabled = true);
+
+      // Show progress
+      progressDiv.innerHTML = `
+        <div class="gen-progress">
+          <div class="loader-spinner"></div>
+          <p style="font-size:14px;font-weight:500;" id="gen-status-${chapterId}">Creating generation job...</p>
+          <div class="progress-bar" style="max-width:350px;margin:12px auto 0;">
+            <div class="progress-fill" id="gen-bar-${chapterId}" style="width:10%"></div>
+          </div>
+        </div>
+      `;
+
+      const statusEl = () => document.getElementById(`gen-status-${chapterId}`);
+      const barEl = () => document.getElementById(`gen-bar-${chapterId}`);
 
       try {
-        // Step 1: Create job record
-        statusTitle.textContent = 'Creating generation job...';
-        progressBar.style.width = '20%';
+        const examIds = selectedExam === 'BOTH' ? ['NEET','CUET'] : [selectedExam];
+
+        // 1. Fetch topics
+        const topics = await Qbank.fetchTopics(chapterId);
+
+        // 2. Create job
+        statusEl().textContent = 'Creating job...';
+        barEl().style.width = '20%';
 
         const job = await Qbank.createGenerationJob({
-          subject_id: config.subject.id,
-          chapter_id: config.chapter.id,
-          exam_ids: config.examIds,
-          config: {
-            exam: config.exam,
-            examIds: config.examIds,
-            topics: config.topics.map(t => t.id),
-            questionTypes: config.questionTypes,
-            count: config.count,
-            difficulty: config.difficulty,
-            includeHints: config.includeHints
-          },
+          subject_id: selectedSubjectId,
+          chapter_id: chapterId,
+          exam_ids: examIds,
+          config: { exam: selectedExam, examIds, topics: topics.map(t => t.id), questionTypes, count, difficulty, includeHints },
           status: 'generating'
         });
 
-        if (!job) {
-          throw new Error('Failed to create generation job');
-        }
+        if (!job) throw new Error('Failed to create job');
 
-        // Step 2: Build prompt
-        statusTitle.textContent = 'Building prompt...';
-        progressBar.style.width = '30%';
+        // 3. Build prompt
+        statusEl().textContent = 'Building prompt...';
+        barEl().style.width = '30%';
 
+        const subj = subjects.find(s => s.id === selectedSubjectId);
         const prompt = Qbank.buildQuestionGenerationPrompt({
-          exam: config.exam,
-          examIds: config.examIds,
-          subject: config.subject.name,
-          chapter: config.chapter,
-          topics: config.topics,
-          questionTypes: config.questionTypes,
-          count: config.count,
-          difficulty: config.difficulty === 'mixed' ? 'mixed (distribute across easy, medium, hard)' : config.difficulty,
-          includeHints: config.includeHints
+          exam: selectedExam,
+          examIds,
+          subject: subj?.name || selectedSubjectId,
+          chapter,
+          topics,
+          questionTypes,
+          count,
+          difficulty: difficulty === 'mixed' ? 'mixed (distribute across easy, medium, hard)' : difficulty,
+          includeHints
         });
 
-        // Step 3: Call Gemini
-        statusTitle.textContent = 'Calling Gemini AI...';
-        statusMessage.textContent = 'This may take 30-60 seconds. Please wait.';
-        progressBar.style.width = '50%';
+        // 4. Call Gemini
+        statusEl().textContent = `Calling Gemini AI (${count} questions)...`;
+        barEl().style.width = '50%';
 
         const response = await Qbank.callGemini(prompt, { temperature: 0.7 });
 
-        // Step 4: Parse response
-        statusTitle.textContent = 'Parsing response...';
-        progressBar.style.width = '80%';
+        // 5. Parse
+        statusEl().textContent = 'Parsing response...';
+        barEl().style.width = '80%';
 
         const questions = Qbank.parseJsonResponse(response);
-
         if (!Array.isArray(questions) || questions.length === 0) {
-          throw new Error('Invalid response format from Gemini');
+          throw new Error('Invalid response from Gemini');
         }
 
-        // Step 5: Save to job
-        statusTitle.textContent = 'Saving questions...';
-        progressBar.style.width = '90%';
+        // 6. Save to job
+        statusEl().textContent = 'Saving...';
+        barEl().style.width = '90%';
 
         await Qbank.updateGenerationJob(job.id, {
           status: 'pending',
@@ -528,332 +905,101 @@
           questions_count: questions.length
         });
 
-        // Step 6: Show results
-        progressBar.style.width = '100%';
-        generatedQuestions = questions;
+        barEl().style.width = '100%';
 
-        showGenerationResult(questions, job);
+        // 7. Show result
+        const tokenUsage = Qbank.getTokenUsage();
+        const lastCall = tokenUsage.calls[tokenUsage.calls.length - 1] || {};
 
-        // Refresh stats
-        await loadStats();
+        progressDiv.innerHTML = `
+          <div class="gen-result">
+            <div class="gen-result-summary">
+              <div>
+                <strong>✅ Generated ${questions.length} questions</strong>
+                <span style="font-size:12px;color:var(--gray-500);margin-left:8px;">
+                  Job: ${job.id.slice(0, 8)}... | Tokens: ${lastCall.inputTokens || 0} in / ${lastCall.outputTokens || 0} out
+                </span>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <button class="btn btn-success btn-sm" onclick="insertJobDirect('${job.id}', '${chapterId}')">💾 Insert to DB</button>
+                <a href="./review.html" class="btn btn-secondary btn-sm">👁️ Review</a>
+              </div>
+            </div>
+            <div id="gen-questions-${chapterId}">
+              ${questions.slice(0, 3).map((q, i) => renderMiniQuestion(q, i + 1)).join('')}
+              ${questions.length > 3 ? `
+                <button class="btn btn-sm btn-ghost" style="width:100%;margin-top:4px;" onclick="showAllGenQuestions('${chapterId}', '${job.id}')">
+                  Show all ${questions.length} questions
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+
+        // Store for show-all
+        progressDiv._questions = questions;
+
+        // Re-enable other chapter buttons
+        panel.querySelectorAll('.chapter-actions button').forEach(b => b.disabled = false);
 
       } catch (error) {
         console.error('Generation error:', error);
-        statusDiv.innerHTML = `
-          <div style="text-align: center; padding: 40px 20px;">
-            <div style="font-size: 4rem; margin-bottom: 16px;">❌</div>
-            <h3>Generation Failed</h3>
-            <p style="color: var(--gray-500); margin-bottom: 24px;">${error.message}</p>
-            <button class="btn btn-primary" onclick="goToStep(3)">← Try Again</button>
+        progressDiv.innerHTML = `
+          <div class="gen-result">
+            <div class="gen-result-summary error">
+              <div><strong>❌ Generation failed:</strong> ${error.message}</div>
+              <button class="btn btn-secondary btn-sm" onclick="closeGenPanel('${chapterId}')">Dismiss</button>
+            </div>
           </div>
         `;
+        panel.querySelectorAll('.chapter-actions button').forEach(b => b.disabled = false);
       }
     }
 
-    let currentJobId = null;
-    let timerInterval = null;
-
-    function showGenerationResult(questions, job) {
-      const statusDiv = document.getElementById('generationStatus');
-      const resultDiv = document.getElementById('generationResult');
-
-      statusDiv.style.display = 'none';
-      resultDiv.style.display = 'block';
-      currentJobId = job.id;
-
-      // Get token usage
-      const tokenUsage = Qbank.getTokenUsage();
-      const lastCall = tokenUsage.calls[tokenUsage.calls.length - 1] || {};
-
-      resultDiv.innerHTML = `
-        <div style="text-align: center; margin-bottom: 32px;">
-          <div style="font-size: 4rem; margin-bottom: 16px;">🎉</div>
-          <h3>Successfully Generated ${questions.length} Questions!</h3>
-          <p style="color: var(--gray-500);">Job ID: ${job.id}</p>
-
-          <!-- Timer Box -->
-          <div style="background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 12px 16px; margin: 16px auto; max-width: 450px;">
-            <div style="font-size: 13px; color: #92400e;">
-              ⏱️ <strong>Auto-insert to DB in:</strong> <span id="autoInsertTimer">12:00:00</span>
-              <br>
-              <span style="font-size: 12px; opacity: 0.8;">Questions will be auto-inserted if not reviewed within 12 hours</span>
-            </div>
+    function renderMiniQuestion(q, num) {
+      return `
+        <div class="gen-question-preview">
+          <div class="q-header">
+            <span style="font-weight:600;color:var(--gray-500);">Q${num}</span>
+            ${Qbank.getQuestionTypeBadge(q.question_type)}
+            ${Qbank.getDifficultyBadge(q.difficulty)}
           </div>
-
-          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; margin: 16px auto; max-width: 400px;">
-            <div style="font-size: 13px; color: #166534;">
-              📊 <strong>Token Usage:</strong> ${lastCall.inputTokens || 0} in / ${lastCall.outputTokens || 0} out
-              <br>
-              📈 <strong>Session Total:</strong> ${tokenUsage.totalInputTokens} in / ${tokenUsage.totalOutputTokens} out
-            </div>
-          </div>
-
-          <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px; flex-wrap: wrap;">
-            <button class="btn btn-success" onclick="insertToDbNow()" id="insertBtn">
-              💾 Insert to DB Now
-            </button>
-            <a href="./review.html" class="btn btn-primary">👁️ Review Questions</a>
-            <button class="btn btn-secondary" onclick="resetWizard()">🔄 Generate More</button>
-          </div>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-          <h4 style="margin: 0;">Generated Questions</h4>
-          <button class="btn btn-sm btn-secondary" onclick="toggleAllQuestions()">
-            <span id="toggleText">Show All ${questions.length}</span>
-          </button>
-        </div>
-        <div id="questionsPreview">
-          ${questions.slice(0, 3).map((q, i) => renderQuestionPreview(q, i + 1)).join('')}
-          ${questions.length > 3 ? `
-            <p style="text-align: center; color: var(--gray-500); margin-top: 16px;" id="moreText">
-              ... and ${questions.length - 3} more questions
-            </p>
-          ` : ''}
-        </div>
-        <div id="allQuestions" style="display: none;">
-          ${questions.map((q, i) => renderQuestionPreview(q, i + 1)).join('')}
+          <div class="q-text">${q.question_text}</div>
         </div>
       `;
-
-      // Start the countdown timer using actual job creation time
-      startAutoInsertTimer(job.created_at);
     }
 
-    function startAutoInsertTimer(createdAt) {
-      if (timerInterval) clearInterval(timerInterval);
+    function showAllGenQuestions(chapterId, jobId) {
+      const container = document.getElementById(`gen-questions-${chapterId}`);
+      const progressDiv = document.getElementById(`gen-progress-${chapterId}`);
+      const questions = progressDiv._questions;
+      if (!questions) return;
 
-      function updateTimer() {
-        const remaining = Qbank.getAutoInsertTimeRemaining(createdAt);
-        const timerEl = document.getElementById('autoInsertTimer');
-        if (!timerEl) return;
-
-        if (remaining <= 0) {
-          timerEl.textContent = 'Auto-inserting...';
-          clearInterval(timerInterval);
-          insertToDbNow();
-          return;
-        }
-
-        const hours = Math.floor(remaining / (1000 * 60 * 60));
-        const mins = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-        const secs = Math.floor((remaining % (1000 * 60)) / 1000);
-        timerEl.textContent = `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-      }
-
-      updateTimer();
-      timerInterval = setInterval(updateTimer, 1000);
+      container.innerHTML = questions.map((q, i) => renderMiniQuestion(q, i + 1)).join('');
     }
 
-    async function insertToDbNow() {
-      if (!currentJobId) {
-        Qbank.showToast('No job to insert', 'error');
-        return;
-      }
-
-      const btn = document.getElementById('insertBtn');
-      if (btn) {
-        btn.disabled = true;
-        btn.textContent = '⏳ Inserting...';
-      }
-
+    async function insertJobDirect(jobId, chapterId) {
       try {
-        // Get the job
         const jobs = await Qbank.fetchGenerationJobs();
-        const job = jobs.find(j => j.id === currentJobId);
-
-        if (!job) {
-          throw new Error('Job not found');
-        }
+        const job = jobs.find(j => j.id === jobId);
+        if (!job) throw new Error('Job not found');
 
         const result = await Qbank.insertJobQuestionsToDb(job);
-
         if (result.success) {
-          Qbank.showToast(`✅ Inserted ${result.insertedCount}/${result.total} questions to DB`, 'success');
-          if (timerInterval) clearInterval(timerInterval);
-
-          // Update timer display
-          const timerEl = document.getElementById('autoInsertTimer');
-          if (timerEl) {
-            timerEl.parentElement.innerHTML = `✅ <strong>Inserted to DB!</strong> ${result.insertedCount} questions added`;
-            timerEl.parentElement.parentElement.style.background = '#d1fae5';
-            timerEl.parentElement.parentElement.style.borderColor = '#6ee7b7';
-          }
-
-          if (btn) {
-            btn.textContent = '✅ Inserted';
-            btn.disabled = true;
-          }
-
-          // Refresh stats
-          await loadStats();
+          Qbank.showToast(`Inserted ${result.insertedCount}/${result.total} questions`, 'success');
+          // Refresh the chapter stats
+          await loadOperationalView();
         } else {
           throw new Error(result.error || 'Insert failed');
         }
       } catch (error) {
-        console.error('Insert error:', error);
         Qbank.showToast(`Error: ${error.message}`, 'error');
-        if (btn) {
-          btn.disabled = false;
-          btn.textContent = '💾 Insert to DB Now';
-        }
       }
-    }
-
-    let showingAll = false;
-    function toggleAllQuestions() {
-      showingAll = !showingAll;
-      document.getElementById('questionsPreview').style.display = showingAll ? 'none' : 'block';
-      document.getElementById('allQuestions').style.display = showingAll ? 'block' : 'none';
-      document.getElementById('toggleText').textContent = showingAll ? 'Show Less' : `Show All ${generatedQuestions.length}`;
-    }
-
-    function renderQuestionPreview(question, num) {
-      const options = question.options ? question.options.map(opt => `
-        <div class="option-item ${opt.is_correct ? 'correct' : ''}">
-          <span class="option-key">${opt.key}</span>
-          <span class="option-text">${opt.text}</span>
-        </div>
-      `).join('') : '';
-
-      return `
-        <div class="question-card">
-          <div class="question-header">
-            <div class="question-meta">
-              <span class="question-number">Q${num}</span>
-              ${Qbank.getQuestionTypeBadge(question.question_type)}
-              ${Qbank.getDifficultyBadge(question.difficulty)}
-            </div>
-          </div>
-          <div class="question-body">
-            <p class="question-text">${question.question_text}</p>
-            ${options ? `<div class="question-options">${options}</div>` : ''}
-            ${question.explanation ? `
-              <div class="question-explanation">
-                <div class="explanation-title">Explanation</div>
-                <p style="margin: 0;">${question.explanation}</p>
-              </div>
-            ` : ''}
-          </div>
-        </div>
-      `;
-    }
-
-    function resetWizard() {
-      currentStep = 1;
-      selectedExam = null;
-      selectedSubject = null;
-      selectedChapter = null;
-      selectedTopics = [];
-      generatedQuestions = [];
-
-      // Reset UI
-      document.querySelectorAll('.selection-item').forEach(el => el.classList.remove('selected'));
-      document.querySelectorAll('[data-exam]').forEach(el => el.classList.remove('selected'));
-      document.querySelectorAll('.chapter-item').forEach(el => el.classList.remove('selected'));
-      document.getElementById('generationStatus').style.display = 'block';
-      document.getElementById('generationResult').style.display = 'none';
-
-      showStep(1);
-      updateNavigation();
     }
 
     // ========================================================================
-    // NAVIGATION
+    // INIT
     // ========================================================================
-    function updateNavigation() {
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-
-      // Previous button
-      prevBtn.style.visibility = currentStep > 1 ? 'visible' : 'hidden';
-
-      // Next button state and text
-      let canProceed = false;
-      let nextText = 'Next →';
-
-      switch (currentStep) {
-        case 1:
-          canProceed = selectedExam !== null && selectedSubject !== null;
-          break;
-        case 2:
-          canProceed = selectedChapter !== null;
-          break;
-        case 3:
-          const types = document.querySelectorAll('.question-type-check:checked');
-          canProceed = types.length > 0;
-          nextText = '🤖 Generate Questions';
-          break;
-        case 4:
-          canProceed = false; // No next from step 4
-          break;
-      }
-
-      nextBtn.disabled = !canProceed;
-      nextBtn.textContent = nextText;
-
-      // Update step indicators
-      for (let i = 1; i <= 4; i++) {
-        const indicator = document.getElementById(`step${i}Indicator`);
-        indicator.classList.remove('active', 'completed');
-
-        if (i < currentStep) {
-          indicator.classList.add('completed');
-        } else if (i === currentStep) {
-          indicator.classList.add('active');
-        }
-      }
-    }
-
-    function showStep(step) {
-      currentStep = step;
-
-      // Hide all steps
-      for (let i = 1; i <= 4; i++) {
-        document.getElementById(`step${i}Content`).style.display = 'none';
-      }
-
-      // Show current step
-      document.getElementById(`step${step}Content`).style.display = 'block';
-
-      updateNavigation();
-    }
-
-    function goToStep(step) {
-      showStep(step);
-    }
-
-    async function nextStep() {
-      if (currentStep === 3) {
-        // Start generation
-        showStep(4);
-        await startGeneration();
-        return;
-      }
-
-      const newStep = currentStep + 1;
-
-      // Load data for next step
-      if (newStep === 2) {
-        await loadChapters();
-      } else if (newStep === 3) {
-        await loadConfiguration();
-      }
-
-      showStep(newStep);
-    }
-
-    function prevStep() {
-      if (currentStep > 1) {
-        showStep(currentStep - 1);
-      }
-    }
-
-    // Event listeners
-    document.getElementById('nextBtn').addEventListener('click', nextStep);
-    document.getElementById('prevBtn').addEventListener('click', prevStep);
-
-    // Initialize
     init();
   </script>
 </body>
