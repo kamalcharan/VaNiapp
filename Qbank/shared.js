@@ -286,17 +286,23 @@ async function insertJobQuestionsToDb(job) {
     return { success: false, error: 'No questions in job' };
   }
 
+  // Fetch topics for this chapter to match topic_id
+  const chapterTopics = await fetchTopics(job.chapter_id);
+
   const questions = job.output_json.questions;
   let insertedCount = 0;
   let errorCount = 0;
 
   for (const q of questions) {
     try {
+      // Match topic name to topic_id
+      const resolvedTopicId = matchTopicId(q.topic, chapterTopics);
+
       // Prepare question record
       const questionRecord = {
         subject_id: job.subject_id,
         chapter_id: job.chapter_id,
-        topic_id: null, // Will be matched later if needed
+        topic_id: resolvedTopicId,
         exam_ids: q.exam_suitability || job.exam_ids || ['NEET'],
         question_type: q.question_type,
         difficulty: q.difficulty || 'medium',
@@ -392,16 +398,22 @@ async function insertApprovedQuestionsToDb(job, approvedQuestions) {
     return { success: false, error: 'No approved questions to insert' };
   }
 
+  // Fetch topics for this chapter to match topic_id
+  const chapterTopics = await fetchTopics(job.chapter_id);
+
   let insertedCount = 0;
   let errorCount = 0;
 
   for (const q of approvedQuestions) {
     try {
+      // Match topic name to topic_id
+      const resolvedTopicId = matchTopicId(q.topic, chapterTopics);
+
       // Prepare question record
       const questionRecord = {
         subject_id: job.subject_id,
         chapter_id: job.chapter_id,
-        topic_id: null,
+        topic_id: resolvedTopicId,
         exam_ids: q.exam_suitability || job.exam_ids || ['NEET'],
         question_type: q.question_type,
         difficulty: q.difficulty || 'medium',
@@ -579,7 +591,7 @@ function getTargetsForChapter(exam = 'NEET') {
 async function fetchSubjectQuestionStats(subjectId) {
   const { data, error } = await SUPABASE
     .from('med_questions')
-    .select('chapter_id, question_type, difficulty, status, exam_ids')
+    .select('chapter_id, topic_id, question_type, difficulty, status, exam_ids, payload')
     .eq('subject_id', subjectId);
 
   if (error) {
@@ -587,6 +599,23 @@ async function fetchSubjectQuestionStats(subjectId) {
     return [];
   }
   return data || [];
+}
+
+// Match a topic name from Gemini output to a med_topics row
+function matchTopicId(topicName, topicsList) {
+  if (!topicName || !topicsList || topicsList.length === 0) return null;
+  const lower = topicName.toLowerCase().trim();
+
+  // Exact match first
+  const exact = topicsList.find(t => t.name.toLowerCase().trim() === lower);
+  if (exact) return exact.id;
+
+  // Partial match — topic name contains or is contained by
+  const partial = topicsList.find(t =>
+    lower.includes(t.name.toLowerCase().trim()) ||
+    t.name.toLowerCase().trim().includes(lower)
+  );
+  return partial ? partial.id : null;
 }
 
 function computeChapterHealth(chapterRows, exam = 'NEET') {
@@ -598,6 +627,7 @@ function computeChapterHealth(chapterRows, exam = 'NEET') {
   const byDifficulty = { easy: 0, medium: 0, hard: 0 };
   const byStatus = { active: 0, draft: 0 };
   const byExam = { NEET: 0, CUET: 0, BOTH: 0 };
+  const byTopic = {};  // topic_id or topic_name → count
 
   chapterRows.forEach(q => {
     // Type
@@ -612,13 +642,16 @@ function computeChapterHealth(chapterRows, exam = 'NEET') {
     if (exams.includes('NEET') && exams.includes('CUET')) byExam.BOTH++;
     else if (exams.includes('NEET')) byExam.NEET++;
     else if (exams.includes('CUET')) byExam.CUET++;
+    // Topic — use topic_id if available, fall back to payload.topic_name
+    const topicKey = q.topic_id || q.payload?.topic_name || 'Untagged';
+    byTopic[topicKey] = (byTopic[topicKey] || 0) + 1;
   });
 
   // Health: green >= 80%, yellow >= 40%, red < 40%
   const pct = targets.total > 0 ? (total / targets.total) * 100 : 0;
   const health = pct >= 80 ? 'green' : pct >= 40 ? 'yellow' : 'red';
 
-  return { total, targets, byType, byDifficulty, byStatus, byExam, health, pct };
+  return { total, targets, byType, byDifficulty, byStatus, byExam, byTopic, health, pct };
 }
 
 // ============================================================================
@@ -1163,6 +1196,7 @@ window.Qbank = {
   fetchSubjectQuestionStats,
   computeChapterHealth,
   getTargetsForChapter,
+  matchTopicId,
   CHAPTER_TARGETS,
 
   // Gemini

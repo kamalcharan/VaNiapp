@@ -416,6 +416,7 @@
     let chapters = [];
     let questionStats = [];
     let chapterHealthMap = {};  // chapterId → health data
+    let chapterTopicsMap = {}; // chapterId → [topic objects]
 
     // ========================================================================
     // INIT
@@ -480,6 +481,15 @@
 
       chapters = chaptersData;
       questionStats = statsData;
+
+      // Fetch topics for all chapters in parallel
+      const topicsResults = await Promise.all(
+        chapters.map(ch => Qbank.fetchTopics(ch.id))
+      );
+      chapterTopicsMap = {};
+      chapters.forEach((ch, i) => {
+        chapterTopicsMap[ch.id] = topicsResults[i] || [];
+      });
 
       // Group stats by chapter
       const statsByChapter = {};
@@ -610,6 +620,36 @@
         <div class="stat-pill">Both: <strong>${h.byExam.BOTH}</strong></div>
       `;
 
+      // Topic coverage
+      const topics = chapterTopicsMap[chapterId] || [];
+      const maxTopicCount = Math.max(...Object.values(h.byTopic || {}), 1);
+      let topicRows = '';
+
+      if (topics.length > 0) {
+        topicRows = topics.map(t => {
+          // Match by topic_id first, fall back to name match in byTopic
+          let count = h.byTopic[t.id] || 0;
+          if (count === 0) {
+            // Check if any byTopic key matches by name
+            Object.entries(h.byTopic).forEach(([key, val]) => {
+              if (key.toLowerCase() === t.name.toLowerCase()) count = val;
+            });
+          }
+          const pct = maxTopicCount > 0 ? Math.min((count / maxTopicCount) * 100, 100) : 0;
+          const barClass = count === 0 ? 'low' : count < 5 ? 'mid' : 'high';
+          return `
+            <div class="mini-stat-row">
+              <div class="mini-stat-label" title="${t.name}">${t.name}</div>
+              <div class="mini-stat-bar"><div class="mini-stat-bar-fill ${barClass}" style="width:${pct.toFixed(0)}%"></div></div>
+              <div class="mini-stat-nums"><strong>${count}</strong></div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Check for untagged questions (topic_id = null and no topic_name)
+      const untagged = h.byTopic['Untagged'] || 0;
+
       return `
         <div class="stats-grid-3">
           <div class="stats-section">
@@ -619,12 +659,19 @@
           <div class="stats-section">
             <h4>Difficulty Mix</h4>
             ${diffRows}
+            <h4 style="margin-top:14px;">Status</h4>
+            <div class="stat-pills" style="margin-bottom:8px;">${statusPills}</div>
+            <h4 style="margin-top:10px;">Exam Tags</h4>
+            <div class="stat-pills">${examPills}</div>
           </div>
           <div class="stats-section">
-            <h4>Status</h4>
-            <div class="stat-pills" style="margin-bottom:12px;">${statusPills}</div>
-            <h4>Exam Tags</h4>
-            <div class="stat-pills">${examPills}</div>
+            <h4>Topic Coverage${topics.length > 0 ? ` (${topics.length} topics)` : ''}</h4>
+            ${topicRows || '<div style="font-size:13px;color:var(--gray-400);">No topics defined</div>'}
+            ${untagged > 0 ? `<div class="mini-stat-row" style="margin-top:4px;opacity:0.6;">
+              <div class="mini-stat-label" style="font-style:italic;">Untagged</div>
+              <div class="mini-stat-bar"><div class="mini-stat-bar-fill low" style="width:${Math.min((untagged / maxTopicCount) * 100, 100).toFixed(0)}%"></div></div>
+              <div class="mini-stat-nums"><strong>${untagged}</strong></div>
+            </div>` : ''}
           </div>
         </div>
       `;
