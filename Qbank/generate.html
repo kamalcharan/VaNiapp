@@ -349,6 +349,58 @@
       color: var(--gray-700);
       line-height: 1.5;
     }
+
+    /* ── Topic row generate button ── */
+    .topic-row-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .topic-row-wrap .mini-stat-row {
+      flex: 1;
+      margin-bottom: 0;
+    }
+    .topic-gen-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+    .topic-row-wrap:hover .topic-gen-btn {
+      opacity: 1;
+      border-color: var(--gray-300);
+      background: var(--gray-50);
+    }
+    .topic-gen-btn:hover {
+      opacity: 1 !important;
+      background: var(--primary) !important;
+      color: white !important;
+      border-color: var(--primary) !important;
+    }
+
+    /* Topic with zero questions — subtle attention */
+    .topic-row-wrap.empty-topic {
+      background: #fef2f2;
+      border-radius: 6px;
+      padding: 2px 6px;
+      margin-left: -6px;
+      margin-right: -6px;
+    }
+    .topic-row-wrap.empty-topic .topic-gen-btn {
+      opacity: 0.7;
+      border-color: var(--gray-300);
+      background: var(--gray-50);
+    }
   </style>
 </head>
 <body>
@@ -637,11 +689,16 @@
           }
           const pct = maxTopicCount > 0 ? Math.min((count / maxTopicCount) * 100, 100) : 0;
           const barClass = count === 0 ? 'low' : count < 5 ? 'mid' : 'high';
+          const emptyClass = count === 0 ? 'empty-topic' : '';
+          const escapedName = t.name.replace(/'/g, "\\'");
           return `
-            <div class="mini-stat-row">
-              <div class="mini-stat-label" title="${t.name}">${t.name}</div>
-              <div class="mini-stat-bar"><div class="mini-stat-bar-fill ${barClass}" style="width:${pct.toFixed(0)}%"></div></div>
-              <div class="mini-stat-nums"><strong>${count}</strong></div>
+            <div class="topic-row-wrap ${emptyClass}">
+              <div class="mini-stat-row">
+                <div class="mini-stat-label" title="${t.name}">${t.name}</div>
+                <div class="mini-stat-bar"><div class="mini-stat-bar-fill ${barClass}" style="width:${pct.toFixed(0)}%"></div></div>
+                <div class="mini-stat-nums"><strong>${count}</strong></div>
+              </div>
+              <button class="topic-gen-btn" title="Generate for ${t.name}" onclick="event.stopPropagation(); openCustomGenerateForTopic('${chapterId}', '${t.id}', '${escapedName}')">+</button>
             </div>
           `;
         }).join('');
@@ -779,9 +836,10 @@
     // ========================================================================
     // CUSTOM GENERATE — manual config
     // ========================================================================
-    function openCustomGenerate(chapterId) {
+    function openCustomGenerate(chapterId, preselectedTopicId = null, preselectedTopicName = null) {
       const chapter = chapters.find(c => c.id === chapterId);
       const panel = document.getElementById(`gen-panel-${chapterId}`);
+      const topics = chapterTopicsMap[chapterId] || [];
 
       const typeLabels = {
         'mcq':'MCQ', 'assertion-reasoning':'Assert-R', 'match-the-following':'Match',
@@ -796,16 +854,33 @@
         </div>
       `).join('');
 
+      // Topic selector
+      const topicOptions = topics.map(t => {
+        const selected = preselectedTopicId === t.id ? 'selected' : '';
+        return `<option value="${t.id}" ${selected}>${t.name}</option>`;
+      }).join('');
+
+      const headerText = preselectedTopicName
+        ? `⚙️ Generate for: ${preselectedTopicName}`
+        : `⚙️ Custom Generate for ${chapter.name}`;
+
       panel.innerHTML = `
         <div class="gen-panel">
           <div class="gen-panel-header">
-            <h4>⚙️ Custom Generate for ${chapter.name}</h4>
+            <h4>${headerText}</h4>
             <button class="btn btn-sm btn-ghost" onclick="closeGenPanel('${chapterId}')">✕</button>
           </div>
           <div class="gen-config-grid">
             <div class="form-group">
+              <label class="form-label">Topic</label>
+              <select class="form-select" id="custom-topic-${chapterId}">
+                <option value="">All topics</option>
+                ${topicOptions}
+              </select>
+            </div>
+            <div class="form-group">
               <label class="form-label">Count</label>
-              <input type="number" class="form-input" id="custom-count-${chapterId}" value="10" min="1" max="25">
+              <input type="number" class="form-input" id="custom-count-${chapterId}" value="${preselectedTopicId ? 5 : 10}" min="1" max="25">
             </div>
             <div class="form-group">
               <label class="form-label">Difficulty</label>
@@ -836,6 +911,20 @@
       `;
     }
 
+    // Shortcut — triggered from topic row "+" button
+    function openCustomGenerateForTopic(chapterId, topicId, topicName) {
+      // Expand the chapter card if not already expanded
+      const card = document.getElementById(`card-${chapterId}`);
+      if (!card.classList.contains('expanded')) {
+        card.classList.add('expanded');
+      }
+      openCustomGenerate(chapterId, topicId, topicName);
+      // Scroll the panel into view
+      setTimeout(() => {
+        document.getElementById(`gen-panel-${chapterId}`).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+
     function toggleTypeChip(el) {
       el.classList.toggle('selected');
     }
@@ -854,6 +943,8 @@
 
       let questionTypes, count, difficulty, includeHints;
 
+      let selectedTopicId = null;
+
       if (mode === 'auto') {
         const autoBatch = panel._autoBatch;
         questionTypes = autoBatch.batch.map(b => b.type);
@@ -866,6 +957,7 @@
         count = parseInt(document.getElementById(`custom-count-${chapterId}`).value) || 10;
         difficulty = document.getElementById(`custom-diff-${chapterId}`).value;
         includeHints = document.getElementById(`custom-hints-${chapterId}`).checked;
+        selectedTopicId = document.getElementById(`custom-topic-${chapterId}`)?.value || null;
 
         if (questionTypes.length === 0) {
           Qbank.showToast('Select at least one question type', 'warning');
@@ -893,8 +985,17 @@
       try {
         const examIds = selectedExam === 'BOTH' ? ['NEET','CUET'] : [selectedExam];
 
-        // 1. Fetch topics
-        const topics = await Qbank.fetchTopics(chapterId);
+        // 1. Fetch topics (use cached or fetch fresh)
+        let topics = chapterTopicsMap[chapterId] || await Qbank.fetchTopics(chapterId);
+
+        // If a specific topic is selected, filter down
+        let focusTopic = null;
+        if (selectedTopicId) {
+          focusTopic = topics.find(t => t.id === selectedTopicId);
+          if (focusTopic) {
+            topics = [focusTopic]; // only this topic goes into the prompt
+          }
+        }
 
         // 2. Create job
         statusEl().textContent = 'Creating job...';
@@ -904,7 +1005,11 @@
           subject_id: selectedSubjectId,
           chapter_id: chapterId,
           exam_ids: examIds,
-          config: { exam: selectedExam, examIds, topics: topics.map(t => t.id), questionTypes, count, difficulty, includeHints },
+          config: {
+            exam: selectedExam, examIds, topics: topics.map(t => t.id), questionTypes, count, difficulty, includeHints,
+            focusTopicId: focusTopic?.id || null,
+            focusTopicName: focusTopic?.name || null
+          },
           status: 'generating'
         });
 
@@ -924,7 +1029,8 @@
           questionTypes,
           count,
           difficulty: difficulty === 'mixed' ? 'mixed (distribute across easy, medium, hard)' : difficulty,
-          includeHints
+          includeHints,
+          focusTopic: focusTopic?.name || null
         });
 
         // 4. Call Gemini

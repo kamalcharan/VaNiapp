@@ -730,7 +730,7 @@ function getTokenUsage() {
 // PROMPT BUILDERS
 // ============================================================================
 function buildQuestionGenerationPrompt(params) {
-  const { exam, examIds, subject, chapter, topics, questionTypes, count, difficulty, includeHints } = params;
+  const { exam, examIds, subject, chapter, topics, questionTypes, count, difficulty, includeHints, focusTopic } = params;
 
   // Build topic list - always explicit
   let topicList;
@@ -742,6 +742,11 @@ function buildQuestionGenerationPrompt(params) {
       ? chapter.important_topics.map(t => `- ${t}`).join('\n')
       : `- General concepts from ${chapter.name}`;
   }
+
+  // If focusing on a specific topic, add emphasis
+  const focusInstruction = focusTopic
+    ? `\n\n═══════════════════════════════════════════════════════════════════════════════\nFOCUS TOPIC: "${focusTopic}"\nALL ${count} questions MUST be specifically about "${focusTopic}". Cover different subtopics/concepts within this topic. Do NOT generate questions about other topics.\n═══════════════════════════════════════════════════════════════════════════════`
+    : '';
 
   const typeInstructions = {
     'mcq': 'Multiple Choice Question with 4 options (A, B, C, D)',
@@ -782,6 +787,7 @@ WEIGHTAGE IN EXAM: ${chapter.weightage || 'Not specified'}%
 
 TOPICS TO COVER (generate questions ONLY from these topics):
 ${topicList}
+${focusInstruction}
 
 QUESTION TYPES TO GENERATE:
 ${selectedTypes}
