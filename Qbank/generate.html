@@ -985,8 +985,12 @@
       try {
         const examIds = selectedExam === 'BOTH' ? ['NEET','CUET'] : [selectedExam];
 
-        // 1. Fetch topics (use cached or fetch fresh)
+        // 1. Fetch topics + existing stems in parallel (for dedup)
+        statusEl().textContent = 'Loading context...';
+        barEl().style.width = '15%';
+
         let topics = chapterTopicsMap[chapterId] || await Qbank.fetchTopics(chapterId);
+        const existingStems = await Qbank.fetchExistingStems(chapterId, 50);
 
         // If a specific topic is selected, filter down
         let focusTopic = null;
@@ -1030,7 +1034,8 @@
           count,
           difficulty: difficulty === 'mixed' ? 'mixed (distribute across easy, medium, hard)' : difficulty,
           includeHints,
-          focusTopic: focusTopic?.name || null
+          focusTopic: focusTopic?.name || null,
+          existingStems
         });
 
         // 4. Call Gemini

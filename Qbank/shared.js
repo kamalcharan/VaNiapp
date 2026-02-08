@@ -601,6 +601,22 @@ async function fetchSubjectQuestionStats(subjectId) {
   return data || [];
 }
 
+// Fetch existing question stems for a chapter (for deduplication)
+async function fetchExistingStems(chapterId, limit = 50) {
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .select('question_text, question_type')
+    .eq('chapter_id', chapterId)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error('Error fetching existing stems:', error);
+    return [];
+  }
+  return (data || []).map(q => q.question_text);
+}
+
 // Match a topic name from Gemini output to a med_topics row
 function matchTopicId(topicName, topicsList) {
   if (!topicName || !topicsList || topicsList.length === 0) return null;
@@ -730,54 +746,106 @@ function getTokenUsage() {
 // PROMPT BUILDERS
 // ============================================================================
 function buildQuestionGenerationPrompt(params) {
-  const { exam, examIds, subject, chapter, topics, questionTypes, count, difficulty, includeHints, focusTopic } = params;
+  const {
+    exam, examIds, subject, chapter, topics, questionTypes,
+    count, difficulty, includeHints, focusTopic, existingStems = []
+  } = params;
 
-  // Build topic list - always explicit
+  // ── Exam context ──
+  const examName = exam === 'BOTH' ? 'NEET and CUET' : exam;
+  const examContext = exam === 'NEET'
+    ? 'NEET (National Eligibility cum Entrance Test) for medical admissions in India. NEET has negative marking (-1 for wrong answers), so questions must test genuine understanding — not trick students.'
+    : exam === 'CUET'
+    ? 'CUET (Common University Entrance Test) for university admissions in India. Questions should match CUET-UG NTA style.'
+    : 'Both NEET (medical) and CUET (university) entrance exams in India.';
+
+  // ── Topic list ──
   let topicList;
   if (topics.length > 0) {
     topicList = topics.map(t => `- ${t.name}`).join('\n');
   } else {
-    // No topics defined - use chapter's important_topics if available
     topicList = chapter.important_topics && chapter.important_topics.length > 0
       ? chapter.important_topics.map(t => `- ${t}`).join('\n')
       : `- General concepts from ${chapter.name}`;
   }
 
-  // If focusing on a specific topic, add emphasis
+  // ── Focus topic instruction ──
   const focusInstruction = focusTopic
-    ? `\n\n═══════════════════════════════════════════════════════════════════════════════\nFOCUS TOPIC: "${focusTopic}"\nALL ${count} questions MUST be specifically about "${focusTopic}". Cover different subtopics/concepts within this topic. Do NOT generate questions about other topics.\n═══════════════════════════════════════════════════════════════════════════════`
+    ? `\n\n═══════════════════════════════════════════════════════════════════════════════\nFOCUS TOPIC: "${focusTopic}"\nALL ${count} questions MUST be specifically about "${focusTopic}". Cover different subtopics and angles within this topic. Do NOT generate questions about other topics.\n═══════════════════════════════════════════════════════════════════════════════`
     : '';
 
-  const typeInstructions = {
-    'mcq': 'Multiple Choice Question with 4 options (A, B, C, D)',
-    'true-false': 'True/False statement',
-    'assertion-reasoning': 'Assertion-Reasoning format with Assertion (A) and Reason (R) - use standard NEET options',
-    'match-the-following': 'Match the Following with Column A and Column B items (4-5 items each)',
-    'fill-in-blanks': 'Fill in the Blanks with one or more blanks (provide answer in correct_answer)',
-    'diagram-based': 'Diagram-based question - describe the diagram/figure clearly, then ask question about it',
-    'logical-sequence': 'Logical Sequence - arrange steps/events/processes in correct order',
-    'scenario-based': 'Scenario/Case-based question - present a situation/case study, then ask analytical questions'
-  };
+  // ── Difficulty calibration with Bloom's mapping ──
+  let difficultySection;
+  if (difficulty === 'mixed (distribute across easy, medium, hard)') {
+    const easyCount = Math.round(count * 0.30);
+    const hardCount = Math.round(count * 0.25);
+    const mediumCount = count - easyCount - hardCount;
+    difficultySection = `DIFFICULTY: Mixed — distribute as follows:
+- ${easyCount} EASY questions (Bloom: Remember/Understand) — direct recall, single concept, single-step. Expected student accuracy: 75-85%.
+- ${mediumCount} MEDIUM questions (Bloom: Understand/Apply) — application of 1-2 concepts, 2-step reasoning, compare/contrast. Expected accuracy: 55-70%.
+- ${hardCount} HARD questions (Bloom: Apply/Analyze) — multi-concept integration, edge cases, analytical thinking, common misconceptions as distractors. Expected accuracy: 35-50%.
 
-  const selectedTypes = questionTypes.map(t => `- ${typeInstructions[t] || t}`).join('\n');
+Set "bloom_level" consistent with difficulty: easy→remember/understand, medium→understand/apply, hard→apply/analyze.`;
+  } else {
+    const bloomMap = { easy: 'remember or understand', medium: 'understand or apply', hard: 'apply or analyze' };
+    const accuracyMap = { easy: '75-85%', medium: '55-70%', hard: '35-50%' };
+    difficultySection = `DIFFICULTY: ${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+Bloom's level: ${bloomMap[difficulty] || 'understand'}
+Expected student accuracy: ${accuracyMap[difficulty] || '60%'}
+All ${count} questions must be ${difficulty} difficulty.`;
+  }
 
-  // Exam context
-  const examName = exam === 'BOTH' ? 'NEET and CUET' : exam;
-  const examContext = exam === 'NEET'
-    ? 'NEET (National Eligibility cum Entrance Test) for medical admissions in India'
-    : exam === 'CUET'
-    ? 'CUET (Common University Entrance Test) for university admissions in India'
-    : 'Both NEET (medical) and CUET (university) entrance exams in India';
+  // ── Subject-specific difficulty guidance ──
+  const subjectLower = subject.toLowerCase();
+  let subjectDifficultyGuide = '';
+  if (subjectLower.includes('physics')) {
+    subjectDifficultyGuide = `
+PHYSICS DIFFICULTY CALIBRATION:
+- Easy: Direct formula application, single-step calculation, recall of units/constants
+- Medium: 2-step problems, unit conversion required, basic conceptual reasoning
+- Hard: Multi-concept problems (e.g., mechanics + energy), edge cases, tricky sign conventions`;
+  } else if (subjectLower.includes('chemistry')) {
+    subjectDifficultyGuide = `
+CHEMISTRY DIFFICULTY CALIBRATION:
+- Easy: Identify compound/element, name reaction type, recall periodic trends
+- Medium: Predict products, balance equations, apply gas laws with calculation
+- Hard: Mechanism steps, compare reaction rates/stability, multi-step stoichiometry`;
+  } else if (subjectLower.includes('bio') || subjectLower.includes('botany') || subjectLower.includes('zoology')) {
+    subjectDifficultyGuide = `
+BIOLOGY DIFFICULTY CALIBRATION:
+- Easy: Name structure/process, recall definition, identify from description
+- Medium: Compare structures/functions, explain mechanism steps, cause-effect
+- Hard: Disease mechanism reasoning, evolutionary logic, multi-system integration`;
+  }
 
-  let prompt = `You are an expert ${examName} exam question creator for ${subject}.
+  // ── Per-type instructions with examples ──
+  const typeBlocks = [];
+  for (const type of questionTypes) {
+    typeBlocks.push(getTypeInstruction(type));
+  }
+
+  // ── Deduplication section ──
+  let dedupSection = '';
+  if (existingStems.length > 0) {
+    const stemList = existingStems.slice(0, 40).map((s, i) => `  ${i + 1}. ${s.slice(0, 120)}`).join('\n');
+    dedupSection = `
+═══════════════════════════════════════════════════════════════════════════════
+DO NOT DUPLICATE — The following ${existingStems.length} questions already exist for this chapter.
+Generate DIFFERENT questions testing different angles/subtopics/concepts.
+═══════════════════════════════════════════════════════════════════════════════
+${stemList}
+`;
+  }
+
+  // ── Build full prompt ──
+  const prompt = `You are an expert ${examName} exam question writer for ${subject}, specializing in creating high-quality practice questions that match the style of actual ${examName} papers.
 
 TARGET EXAM: ${examContext}
 
-TASK: Generate ${count} high-quality questions for ${examName} preparation.
+TASK: Generate exactly ${count} questions for ${examName} preparation.
 
 ═══════════════════════════════════════════════════════════════════════════════
-IMPORTANT: Generate questions ONLY from the specific chapter and topics below.
-DO NOT generate questions from other chapters or topics.
+SCOPE — Generate questions ONLY from the chapter and topics below.
 ═══════════════════════════════════════════════════════════════════════════════
 
 SUBJECT: ${subject}
@@ -785,68 +853,250 @@ CHAPTER: ${chapter.name}
 CLASS: ${chapter.class_level || 'Not specified'}
 WEIGHTAGE IN EXAM: ${chapter.weightage || 'Not specified'}%
 
-TOPICS TO COVER (generate questions ONLY from these topics):
+TOPICS TO COVER:
 ${topicList}
 ${focusInstruction}
 
-QUESTION TYPES TO GENERATE:
-${selectedTypes}
+───────────────────────────────────────────────────────────────────────────────
+${difficultySection}
+${subjectDifficultyGuide}
+───────────────────────────────────────────────────────────────────────────────
 
-DIFFICULTY: ${difficulty}
-- easy: Direct recall, basic concepts
-- medium: Application of concepts, moderate complexity
-- hard: Multi-concept integration, analytical thinking
+QUESTION TYPE INSTRUCTIONS:
+${typeBlocks.join('\n\n')}
 
-OUTPUT FORMAT (JSON array):
+───────────────────────────────────────────────────────────────────────────────
+QUALITY RULES — FOLLOW STRICTLY
+───────────────────────────────────────────────────────────────────────────────
+
+1. STEM VARIETY: Do NOT start every question with "Which of the following". Vary stems:
+   - "Consider the process of...", "A student observes that...", "If X were to increase..."
+   - "Statement: ... Identify the error", "What happens when...", "The correct order of..."
+   - "In the context of...", "During the process of...", "Identify the correct statement about..."
+
+2. DISTRACTOR DESIGN: Wrong options must be plausible. Build distractors from:
+   - Common student misconceptions (e.g., confusing mitosis/meiosis stages)
+   - Partial calculations or incomplete reasoning
+   - Sign/unit errors (Physics), adjacent elements/compounds (Chemistry), similar structures (Biology)
+   - Reversals (e.g., swapping reactant and product)
+   Do NOT use absurd or obviously wrong options.
+
+3. OPTION BALANCE:
+   - All 4 options should be roughly equal in length (no "obviously long" correct answer)
+   - Never use "All of the above" or "None of the above"
+   - Distribute correct answers across A/B/C/D (don't make all answers "B")
+
+4. EXPLANATIONS:
+   - Must be educational, explaining WHY the correct answer is right
+   - Must address why each wrong option is wrong (common mistakes)
+   - Should help students learn, not just state the answer
+
+5. PYQ STYLE: Match the language, complexity, and format of actual ${examName} previous year papers.
+   - Use standard exam phrasing and conventions
+   - For NEET: consider negative marking — questions should test real understanding, not trick
+
+6. FACTUAL ACCURACY:
+   - Every fact must be scientifically accurate and up-to-date
+   - Use NCERT-aligned content (Class 11-12 level)
+   - One unambiguous correct answer per question — never ambiguous
+${dedupSection}
+───────────────────────────────────────────────────────────────────────────────
+OUTPUT FORMAT — JSON array, nothing else
+───────────────────────────────────────────────────────────────────────────────
+
 \`\`\`json
 [
   {
     "question_type": "mcq",
-    "question_text": "The question stem here",
+    "question_text": "The question stem",
     "options": [
-      { "key": "A", "text": "First option", "is_correct": false },
-      { "key": "B", "text": "Second option", "is_correct": true },
-      { "key": "C", "text": "Third option", "is_correct": false },
-      { "key": "D", "text": "Fourth option", "is_correct": false }
+      { "key": "A", "text": "Option A text", "is_correct": false },
+      { "key": "B", "text": "Option B text", "is_correct": true },
+      { "key": "C", "text": "Option C text", "is_correct": false },
+      { "key": "D", "text": "Option D text", "is_correct": false }
     ],
     "correct_answer": "B",
-    "explanation": "Detailed explanation of why B is correct and others are wrong",
-    "difficulty": "${difficulty}",
-    "exam_suitability": ["NEET", "CUET"],
-    "topic": "Exact topic name from the list provided",
-    "subtopic": "Specific subtopic/concept within the topic",
-    "concept_tags": ["specific-concept-1", "specific-concept-2"],
+    "explanation": "Detailed explanation of why B is correct AND why A, C, D are wrong",
+    "difficulty": "easy|medium|hard",
+    "exam_suitability": ${JSON.stringify(examIds)},
+    "topic": "Exact topic name from the list above",
+    "subtopic": "Specific subtopic within the topic",
+    "concept_tags": ["concept-1", "concept-2"],
     "bloom_level": "remember|understand|apply|analyze"${includeHints ? `,
     "elimination_hints": [
-      { "option_key": "A", "hint": "Why A can be eliminated", "misconception": "Common mistake students make" },
-      { "option_key": "C", "hint": "Why C can be eliminated", "misconception": "Common mistake students make" },
-      { "option_key": "D", "hint": "Why D can be eliminated", "misconception": "Common mistake students make" }
+      { "option_key": "A", "hint": "Why A can be eliminated", "misconception": "Student mistake that leads to picking A" },
+      { "option_key": "C", "hint": "Why C can be eliminated", "misconception": "Student mistake that leads to picking C" },
+      { "option_key": "D", "hint": "Why D can be eliminated", "misconception": "Student mistake that leads to picking D" }
     ]` : ''}
   }
 ]
 \`\`\`
 
-TAGGING REQUIREMENTS:
-- "exam_suitability": Which exams this question is suitable for (${examIds.join(', ')})
-- "topic": Must match exactly one of the topics provided above
-- "subtopic": A specific concept within that topic (e.g., "Newton's Third Law" within "Newton Laws of Motion")
-- "concept_tags": 2-4 specific concepts tested (for student weakness tracking)
-- "bloom_level": Cognitive level - remember (recall), understand (explain), apply (use), analyze (compare/contrast)
+TAGGING:
+- "topic": Must match EXACTLY one topic from the list above
+- "subtopic": A narrower concept within that topic (e.g., "Sliding friction" within "Laws of Motion")
+- "concept_tags": 2-4 specific concepts tested (used for student weakness tracking)
+- "bloom_level": Match to difficulty — easy→remember/understand, medium→apply, hard→analyze
+- "exam_suitability": ${JSON.stringify(examIds)}
 
-IMPORTANT GUIDELINES:
-1. CRITICAL: Generate questions ONLY from "${chapter.name}" chapter - NO questions from other chapters
-2. Questions must be ${examName}-level, appropriate for Indian competitive exams
-3. Each question should test a specific concept from the topics listed above
-4. Distractors (wrong options) should be plausible, not obviously wrong
-5. Explanations should be educational, helping students learn
-6. Cover different topics from the list provided
-7. For assertion-reasoning: use standard format with options about A and R relationship
-8. For match-the-following: provide clear matching pairs
-9. Match the difficulty and style expected in ${examName} exams
-
-Generate exactly ${count} questions from "${chapter.name}" ONLY. Output ONLY the JSON array, no additional text.`;
+Generate exactly ${count} questions. Output ONLY the JSON array — no markdown, no explanation, no extra text.`;
 
   return prompt;
+}
+
+// ── Per-type instruction blocks with examples ──
+function getTypeInstruction(type) {
+  const instructions = {
+    'mcq': `▸ MCQ (Multiple Choice Question)
+  - 4 options labeled A, B, C, D
+  - One unambiguous correct answer
+  - Distractors from common misconceptions
+  Example output:
+  {
+    "question_type": "mcq",
+    "question_text": "The SI unit of force is:",
+    "options": [
+      {"key":"A","text":"Joule","is_correct":false},
+      {"key":"B","text":"Newton","is_correct":true},
+      {"key":"C","text":"Watt","is_correct":false},
+      {"key":"D","text":"Pascal","is_correct":false}
+    ],
+    "correct_answer": "B",
+    "difficulty": "easy", "bloom_level": "remember"
+  }`,
+
+    'assertion-reasoning': `▸ ASSERTION-REASONING
+  Format: Assertion (A) is a statement. Reason (R) is a statement.
+  MANDATORY — Use these exact 4 standard NEET options:
+    A) Both A and R are correct and R is the correct explanation of A
+    B) Both A and R are correct but R is NOT the correct explanation of A
+    C) A is correct but R is incorrect
+    D) A is incorrect but R is correct
+
+  IMPORTANT: Distribute answers across all 4 options. Don't make all answers option A.
+  Include cases where both true but unrelated (option B), and cases with one false (C or D).
+  Example output:
+  {
+    "question_type": "assertion-reasoning",
+    "question_text": "Assertion (A): Mitochondria are called the powerhouse of the cell.\\nReason (R): Mitochondria produce ATP through oxidative phosphorylation.",
+    "options": [
+      {"key":"A","text":"Both A and R are correct and R is the correct explanation of A","is_correct":true},
+      {"key":"B","text":"Both A and R are correct but R is NOT the correct explanation of A","is_correct":false},
+      {"key":"C","text":"A is correct but R is incorrect","is_correct":false},
+      {"key":"D","text":"A is incorrect but R is correct","is_correct":false}
+    ],
+    "correct_answer": "A",
+    "difficulty": "medium", "bloom_level": "analyze"
+  }`,
+
+    'match-the-following': `▸ MATCH THE FOLLOWING
+  Column A (4-5 items): Terms, processes, structures, scientists
+  Column B (4-5 items): Definitions, functions, discoveries, years
+  Then provide 4 coded combination options in NEET style:
+
+  question_text should contain the two columns formatted clearly.
+  Options are combination codes like: "A-3, B-1, C-4, D-2"
+
+  RULES:
+  - All items in both columns must be used
+  - Include at least one close/confusing pair
+  - Options should represent plausible alternative matchings
+  Example output:
+  {
+    "question_type": "match-the-following",
+    "question_text": "Match Column A with Column B:\\n\\nColumn A | Column B\\nA. Golgi apparatus | 1. Protein synthesis\\nB. Ribosome | 2. Packaging & secretion\\nC. Lysosome | 3. ATP production\\nD. Mitochondria | 4. Intracellular digestion",
+    "options": [
+      {"key":"A","text":"A-2, B-1, C-4, D-3","is_correct":true},
+      {"key":"B","text":"A-1, B-2, C-4, D-3","is_correct":false},
+      {"key":"C","text":"A-2, B-1, C-3, D-4","is_correct":false},
+      {"key":"D","text":"A-3, B-1, C-4, D-2","is_correct":false}
+    ],
+    "correct_answer": "A",
+    "difficulty": "medium", "bloom_level": "understand"
+  }`,
+
+    'true-false': `▸ TRUE/FALSE
+  A clear statement that is unambiguously true or false.
+  Format as MCQ with options: A) True, B) False
+  For false statements, include what the correct fact is in the explanation.
+
+  RULES:
+  - Mix roughly 50-50 true and false
+  - False statements should contain a specific factual error (not vague)
+  - For hard difficulty, the error should be subtle
+  Example output:
+  {
+    "question_type": "true-false",
+    "question_text": "Statement: The process of glycolysis occurs in the mitochondrial matrix.",
+    "options": [
+      {"key":"A","text":"True","is_correct":false},
+      {"key":"B","text":"False","is_correct":true}
+    ],
+    "correct_answer": "B",
+    "explanation": "False. Glycolysis occurs in the cytoplasm, not mitochondrial matrix. The Krebs cycle occurs in the mitochondrial matrix.",
+    "difficulty": "easy", "bloom_level": "remember"
+  }`,
+
+    'diagram-based': `▸ DIAGRAM-BASED
+  Describe the diagram/figure clearly in text (we'll add images later).
+  The question_text should include a description of what the diagram shows.
+  Then ask a question that requires understanding the diagram.
+
+  Example: "In a diagram of the human heart, parts A, B, C, D are labeled pointing to the left atrium, right ventricle, aorta, and pulmonary artery respectively. Which labeled part carries deoxygenated blood away from the heart?"`,
+
+    'logical-sequence': `▸ LOGICAL SEQUENCE
+  Given items (P, Q, R, S) that need to be arranged in correct order.
+  4 MCQ options showing different orderings.
+
+  Types: Process steps, timeline, increasing/decreasing order, cause-effect chain.
+  Example output:
+  {
+    "question_type": "logical-sequence",
+    "question_text": "Arrange the following stages of mitosis in correct order:\\nP. Metaphase  Q. Anaphase  R. Prophase  S. Telophase",
+    "options": [
+      {"key":"A","text":"R → P → Q → S","is_correct":true},
+      {"key":"B","text":"P → R → Q → S","is_correct":false},
+      {"key":"C","text":"R → Q → P → S","is_correct":false},
+      {"key":"D","text":"P → Q → R → S","is_correct":false}
+    ],
+    "correct_answer": "A",
+    "difficulty": "medium", "bloom_level": "understand"
+  }`,
+
+    'scenario-based': `▸ SCENARIO-BASED / CASE STUDY
+  Present a real-world scenario (2-4 sentences): clinical case, lab experiment, environmental situation, daily life.
+  Then ask a question requiring application of chapter concepts.
+
+  RULES:
+  - Scenario must be realistic and relevant
+  - Answer must be derivable from scenario + chapter knowledge
+  - Should test application, not just recall
+  Example: "A farmer notices crop yield decreased despite adequate water. Soil pH test shows 4.2. The crop is wheat (optimal pH 6-7). What is the most likely cause and solution?"`,
+
+    'fill-in-blanks': `▸ FILL IN THE BLANKS
+  Statement with _____ for blank. 4 options to fill the blank.
+  Format as MCQ with the blank clearly marked.
+
+  RULES:
+  - Blank should test a key term/concept/value
+  - All options must be grammatically valid in the blank
+  - Distractors from same category (all organ names, all numbers, all process names)
+  Example output:
+  {
+    "question_type": "fill-in-blanks",
+    "question_text": "The process of _____ is responsible for oxygen production in plants.",
+    "options": [
+      {"key":"A","text":"Photosynthesis","is_correct":true},
+      {"key":"B","text":"Respiration","is_correct":false},
+      {"key":"C","text":"Fermentation","is_correct":false},
+      {"key":"D","text":"Transpiration","is_correct":false}
+    ],
+    "correct_answer": "A",
+    "difficulty": "easy", "bloom_level": "remember"
+  }`
+  };
+
+  return instructions[type] || `▸ ${type.toUpperCase()}\n  Generate questions of type "${type}" with 4 options (A-D).`;
 }
 
 function buildTeluguTranslationPrompt(questions) {
@@ -1200,6 +1450,7 @@ window.Qbank = {
   getAutoInsertTimeRemaining,
   getQuestionStats,
   fetchSubjectQuestionStats,
+  fetchExistingStems,
   computeChapterHealth,
   getTargetsForChapter,
   matchTopicId,
