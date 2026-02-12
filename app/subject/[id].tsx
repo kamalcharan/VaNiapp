@@ -192,35 +192,36 @@ export default function SubjectDetailScreen() {
                     I recommend starting with the first chapter - it builds the foundation for everything else.
                   </Text>
 
-                  {/* Primary CTA */}
-                  {recommendedChapter ? (
-                    <Pressable
-                      style={[styles.primaryButton, { backgroundColor: subject.color }]}
-                      onPress={() => handleStartChapter(recommendedChapter.id)}
-                    >
-                      <Text style={styles.primaryButtonText}>
-                        Start with "{recommendedChapter.name}"
-                      </Text>
-                    </Pressable>
-                  ) : (
+                  {!recommendedChapter && (
                     <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center' }]}>
                       Chapters coming soon! We're preparing content for {subject.name}.
                     </Text>
                   )}
-
-                  {/* Secondary Option */}
-                  {chapters.length > 1 && (
-                    <Pressable
-                      style={styles.secondaryButton}
-                      onPress={() => setShowChapterPicker(true)}
-                    >
-                      <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
-                        Or pick from {chapters.length} chapters
-                      </Text>
-                    </Pressable>
-                  )}
                 </View>
               </JournalCard>
+
+              {/* Buttons outside JournalCard — nested Animated.View blocks touches on Android */}
+              {recommendedChapter && (
+                <Pressable
+                  style={[styles.primaryButton, { backgroundColor: subject.color }]}
+                  onPress={() => handleStartChapter(recommendedChapter.id)}
+                >
+                  <Text style={styles.primaryButtonText}>
+                    Start with "{recommendedChapter.name}"
+                  </Text>
+                </Pressable>
+              )}
+
+              {chapters.length > 1 && (
+                <Pressable
+                  style={[styles.secondaryButton, { alignSelf: 'center' }]}
+                  onPress={() => setShowChapterPicker(true)}
+                >
+                  <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                    Or pick from {chapters.length} chapters
+                  </Text>
+                </Pressable>
+              )}
 
               {/* VaNi Tip */}
               <StickyNote color="teal" rotation={0.5} delay={300}>
@@ -246,34 +247,36 @@ export default function SubjectDetailScreen() {
                 </HandwrittenText>
 
                 {chapters.map((chapter, idx) => (
-                  <JournalCard key={chapter.id} delay={150 + idx * 50}>
-                    <Pressable
-                      style={styles.chapterItem}
-                      onPress={() => handleStartChapter(chapter.id)}
-                    >
-                      <View style={[styles.chapterNumber, { backgroundColor: subject.color + '20' }]}>
-                        <Text style={[Typography.bodySm, { color: subject.color, fontWeight: '700' }]}>
-                          {chapter.chapter_number || idx + 1}
-                        </Text>
-                      </View>
-                      <View style={styles.chapterInfo}>
-                        <Text style={[Typography.body, { color: colors.text }]}>
-                          {chapter.name}
-                        </Text>
-                        {chapter.branch && (
-                          <Text style={[styles.chapterMeta, { color: colors.textTertiary }]}>
-                            {chapter.branch} {chapter.class_level ? `• Class ${chapter.class_level}` : ''}
+                  <Pressable
+                    key={chapter.id}
+                    onPress={() => handleStartChapter(chapter.id)}
+                  >
+                    <JournalCard delay={150 + idx * 50}>
+                      <View style={styles.chapterItem}>
+                        <View style={[styles.chapterNumber, { backgroundColor: subject.color + '20' }]}>
+                          <Text style={[Typography.bodySm, { color: subject.color, fontWeight: '700' }]}>
+                            {chapter.chapter_number || idx + 1}
                           </Text>
-                        )}
-                        {chapter.weightage > 0 && (
-                          <Text style={[styles.chapterMeta, { color: subject.color }]}>
-                            {chapter.weightage}% weightage • ~{chapter.avg_questions} questions
+                        </View>
+                        <View style={styles.chapterInfo}>
+                          <Text style={[Typography.body, { color: colors.text }]}>
+                            {chapter.name}
                           </Text>
-                        )}
+                          {chapter.branch && (
+                            <Text style={[styles.chapterMeta, { color: colors.textTertiary }]}>
+                              {chapter.branch} {chapter.class_level ? `• Class ${chapter.class_level}` : ''}
+                            </Text>
+                          )}
+                          {chapter.weightage > 0 && (
+                            <Text style={[styles.chapterMeta, { color: subject.color }]}>
+                              {chapter.weightage}% weightage • ~{chapter.avg_questions} questions
+                            </Text>
+                          )}
+                        </View>
+                        <Text style={{ color: colors.textTertiary }}>{'\u203A'}</Text>
                       </View>
-                      <Text style={{ color: colors.textTertiary }}>{'\u203A'}</Text>
-                    </Pressable>
-                  </JournalCard>
+                    </JournalCard>
+                  </Pressable>
                 ))}
 
                 {/* Back to recommendation */}
