@@ -11,6 +11,8 @@ import {
 import { Caveat_700Bold } from '@expo-google-fonts/caveat';
 import { IndieFlower_400Regular } from '@expo-google-fonts/indie-flower';
 import * as NativeSplashScreen from 'expo-splash-screen';
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from '../src/store';
 import { Colors } from '../src/constants/theme';
 import { ThemeContext, ThemeContextValue } from '../src/hooks/useTheme';
 import { ThemeMode } from '../src/types';
@@ -198,10 +200,12 @@ export default function RootLayout() {
   }
 
   return (
-    <AuthContext.Provider value={authState}>
-      <ThemeContext.Provider value={themeValue}>
-        <Slot />
-      </ThemeContext.Provider>
-    </AuthContext.Provider>
+    <ReduxProvider store={store}>
+      <AuthContext.Provider value={authState}>
+        <ThemeContext.Provider value={themeValue}>
+          <Slot />
+        </ThemeContext.Provider>
+      </AuthContext.Provider>
+    </ReduxProvider>
   );
 }

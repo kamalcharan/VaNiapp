@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   ScrollView,
   Pressable,
   Animated,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -19,8 +20,7 @@ import { QuestionRenderer } from '../../src/components/exam/QuestionRenderer';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
-import { getV2QuestionsByChapter } from '../../src/data/questions';
-import { getChapterById } from '../../src/data/chapters';
+import { fetchChapterQuestions } from '../../src/lib/questionService';
 import { getCorrectId } from '../../src/lib/questionAdapter';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
@@ -29,7 +29,7 @@ import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
 import { EliminationSheet } from '../../src/components/exam/EliminationSheet';
 import { useToast } from '../../src/components/ui/Toast';
-import { NeetSubjectId, SubjectId, QuestionType, STRENGTH_LEVELS, ChapterExamSession, UserAnswer } from '../../src/types';
+import { NeetSubjectId, SubjectId, QuestionType, QuestionV2, STRENGTH_LEVELS, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
@@ -49,16 +49,15 @@ export default function ChapterQuestionScreen() {
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
   const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
 
-  // Try local chapter data first; fall back to route params from catalog
-  const localChapter = chapterId ? getChapterById(chapterId) : null;
-  const chapter = localChapter ?? (chapterId && chapterName && subjectId ? {
+  // Chapter info from route params (catalog data)
+  const chapter = chapterId && chapterName && subjectId ? {
     id: chapterId,
     name: chapterName,
     nameTe: chapterName,
     subjectId: subjectId as NeetSubjectId,
     questionCount: 0,
     timeMinutes: 30,
-  } : null);
+  } : null;
 
   const strengthLevel = useSelector((state: RootState) =>
     chapterId ? state.strength.chapters[chapterId]?.strengthLevel ?? 'just-started' : 'just-started'
@@ -67,10 +66,24 @@ export default function ChapterQuestionScreen() {
     () => STRENGTH_LEVELS.find((l) => l.id === strengthLevel)?.unlockedTypes ?? (['mcq', 'true-false'] as QuestionType[]),
     [strengthLevel],
   );
-  const questions = useMemo(
-    () => (chapterId ? getV2QuestionsByChapter(chapterId, unlockedTypes) : []),
-    [chapterId, unlockedTypes],
-  );
+
+  // Fetch questions from DB
+  const [questions, setQuestions] = useState<QuestionV2[]>([]);
+  const [isLoadingQuestions, setIsLoadingQuestions] = useState(true);
+
+  useEffect(() => {
+    if (!chapterId) return;
+    let cancelled = false;
+    setIsLoadingQuestions(true);
+    fetchChapterQuestions(chapterId, unlockedTypes).then((qs) => {
+      if (!cancelled) {
+        setQuestions(qs);
+        setIsLoadingQuestions(false);
+      }
+    });
+    return () => { cancelled = true; };
+  }, [chapterId, unlockedTypes]);
+
   const subjectMeta = chapter ? SUBJECT_META[chapter.subjectId] : null;
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -99,9 +112,11 @@ export default function ChapterQuestionScreen() {
     }).length;
   }, [answers, questions]);
 
-  // Initialize session on first render
-  useMemo(() => {
-    if (!chapter || questions.length === 0) return;
+  // Initialize session when questions are loaded
+  const sessionStarted = useRef(false);
+  useEffect(() => {
+    if (!chapter || questions.length === 0 || sessionStarted.current) return;
+    sessionStarted.current = true;
     const session: ChapterExamSession = {
       id: `ch-${Date.now()}`,
       mode: 'chapter',
@@ -115,7 +130,7 @@ export default function ChapterQuestionScreen() {
       timeUsedMs: null,
     };
     dispatch(startChapterExam(session));
-  }, [chapter?.id]);
+  }, [chapter?.id, questions.length]);
 
   const handleSelectOption = (optionId: string) => {
     if (showFeedback || !question) return;
@@ -204,8 +219,35 @@ export default function ChapterQuestionScreen() {
     scrollRef.current?.scrollTo({ y: 0, animated: true });
   };
 
-  // Chapter exists but no questions available yet (catalog chapter without local question data)
-  if (chapter && subjectMeta && questions.length === 0) {
+  // Loading state while fetching questions from DB
+  if (isLoadingQuestions && chapter && subjectMeta) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+          <View style={[styles.topBar, { borderBottomColor: colors.surfaceBorder }]}>
+            <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backBtn}>
+              <Text style={[styles.backArrow, { color: colors.text }]}>{'<'}</Text>
+            </Pressable>
+            <View style={styles.topCenter}>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]} numberOfLines={1}>
+                {subjectMeta.emoji} {chapter.name}
+              </Text>
+            </View>
+            <View style={{ width: 40 }} />
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: Spacing.xl }}>
+            <ActivityIndicator size="large" color={subjectMeta.color} />
+            <Text style={[Typography.body, { color: colors.textSecondary, marginTop: Spacing.md }]}>
+              Loading questions...
+            </Text>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  // No questions found for this chapter
+  if (!isLoadingQuestions && chapter && subjectMeta && questions.length === 0) {
     return (
       <DotGridBackground>
         <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
@@ -223,10 +265,10 @@ export default function ChapterQuestionScreen() {
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: Spacing.xl }}>
             <Text style={{ fontSize: 48, marginBottom: Spacing.md }}>{'📝'}</Text>
             <Text style={[Typography.h2, { color: colors.text, textAlign: 'center', marginBottom: Spacing.sm }]}>
-              Questions Coming Soon!
+              No Questions Yet
             </Text>
             <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center', marginBottom: Spacing.xl }]}>
-              We're preparing questions for "{chapter.name}". Check back soon!
+              Questions for "{chapter.name}" are being prepared. Check back soon!
             </Text>
             <Pressable
               onPress={() => router.back()}
