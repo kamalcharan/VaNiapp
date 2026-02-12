@@ -41,11 +41,25 @@ export default function ChapterQuestionScreen() {
   const router = useRouter();
   const dispatch = useDispatch();
   const toast = useToast();
-  const { chapterId } = useLocalSearchParams<{ chapterId: string }>();
+  const { chapterId, chapterName, subjectId } = useLocalSearchParams<{
+    chapterId: string;
+    chapterName?: string;
+    subjectId?: string;
+  }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
   const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
 
-  const chapter = chapterId ? getChapterById(chapterId) : null;
+  // Try local chapter data first; fall back to route params from catalog
+  const localChapter = chapterId ? getChapterById(chapterId) : null;
+  const chapter = localChapter ?? (chapterId && chapterName && subjectId ? {
+    id: chapterId,
+    name: chapterName,
+    nameTe: chapterName,
+    subjectId: subjectId as NeetSubjectId,
+    questionCount: 0,
+    timeMinutes: 30,
+  } : null);
+
   const strengthLevel = useSelector((state: RootState) =>
     chapterId ? state.strength.chapters[chapterId]?.strengthLevel ?? 'just-started' : 'just-started'
   );
@@ -189,6 +203,42 @@ export default function ChapterQuestionScreen() {
     setShowConceptSheet(false);
     scrollRef.current?.scrollTo({ y: 0, animated: true });
   };
+
+  // Chapter exists but no questions available yet (catalog chapter without local question data)
+  if (chapter && subjectMeta && questions.length === 0) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+          <View style={[styles.topBar, { borderBottomColor: colors.surfaceBorder }]}>
+            <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backBtn}>
+              <Text style={[styles.backArrow, { color: colors.text }]}>{'<'}</Text>
+            </Pressable>
+            <View style={styles.topCenter}>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]} numberOfLines={1}>
+                {subjectMeta.emoji} {chapter.name}
+              </Text>
+            </View>
+            <View style={{ width: 40 }} />
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: Spacing.xl }}>
+            <Text style={{ fontSize: 48, marginBottom: Spacing.md }}>{'📝'}</Text>
+            <Text style={[Typography.h2, { color: colors.text, textAlign: 'center', marginBottom: Spacing.sm }]}>
+              Questions Coming Soon!
+            </Text>
+            <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center', marginBottom: Spacing.xl }]}>
+              We're preparing questions for "{chapter.name}". Check back soon!
+            </Text>
+            <Pressable
+              onPress={() => router.back()}
+              style={[styles.nextBtn, { backgroundColor: subjectMeta.color }]}
+            >
+              <Text style={[styles.nextBtnText, { color: '#FFF' }]}>Go Back</Text>
+            </Pressable>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
 
   if (!question || !chapter || !subjectMeta) return null;
 

@@ -110,11 +110,10 @@ export default function SubjectDetailScreen() {
     ]).start();
   }, [id, focus]);
 
-  const handleStartChapter = (chapterId: string) => {
-    router.push({
-      pathname: '/(exam)/chapter-question',
-      params: { chapterId },
-    });
+  const handleStartChapter = (chapter: CatalogChapter) => {
+    router.push(
+      `/(exam)/chapter-question?chapterId=${encodeURIComponent(chapter.id)}&chapterName=${encodeURIComponent(chapter.name)}&subjectId=${encodeURIComponent(id!)}`
+    );
   };
 
   if (!subject || isLoading) {
@@ -204,7 +203,7 @@ export default function SubjectDetailScreen() {
               {recommendedChapter && (
                 <Pressable
                   style={[styles.primaryButton, { backgroundColor: subject.color }]}
-                  onPress={() => handleStartChapter(recommendedChapter.id)}
+                  onPress={() => handleStartChapter(recommendedChapter)}
                 >
                   <Text style={styles.primaryButtonText}>
                     Start with "{recommendedChapter.name}"
@@ -249,7 +248,7 @@ export default function SubjectDetailScreen() {
                 {chapters.map((chapter, idx) => (
                   <Pressable
                     key={chapter.id}
-                    onPress={() => handleStartChapter(chapter.id)}
+                    onPress={() => handleStartChapter(chapter)}
                   >
                     <JournalCard delay={150 + idx * 50}>
                       <View style={styles.chapterItem}>
@@ -337,7 +336,7 @@ export default function SubjectDetailScreen() {
               <JournalCard delay={300}>
                 <Pressable
                   style={[styles.continueButton, { backgroundColor: subject.color }]}
-                  onPress={() => handleStartChapter('motion-plane')}
+                  onPress={() => recommendedChapter && handleStartChapter(recommendedChapter)}
                 >
                   <Text style={styles.primaryButtonText}>
                     Continue "Motion in a Plane"
