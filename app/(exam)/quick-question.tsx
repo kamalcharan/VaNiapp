@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   ScrollView,
   Pressable,
   Animated,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -19,7 +20,7 @@ import { QuestionRenderer } from '../../src/components/exam/QuestionRenderer';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
-import { buildV2QuickPractice } from '../../src/data/questions';
+import { fetchQuickPracticeQuestions } from '../../src/lib/questionService';
 import { getCorrectId } from '../../src/lib/questionAdapter';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
@@ -28,7 +29,7 @@ import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
 import { EliminationSheet } from '../../src/components/exam/EliminationSheet';
 import { useToast } from '../../src/components/ui/Toast';
-import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession, UserAnswer } from '../../src/types';
+import { NeetSubjectId, SubjectId, QuestionType, QuestionV2, STRENGTH_LEVELS, ChapterExamSession, UserAnswer } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
@@ -65,7 +66,22 @@ export default function QuickQuestionScreen() {
     return best.unlockedTypes;
   }, [strengthChapters, subject]);
 
-  const questions = useMemo(() => buildV2QuickPractice(subject, unlockedTypes), [subject, unlockedTypes]);
+  // Fetch questions from DB
+  const [questions, setQuestions] = useState<QuestionV2[]>([]);
+  const [isLoadingQuestions, setIsLoadingQuestions] = useState(true);
+
+  useEffect(() => {
+    if (!subjectId) return;
+    let cancelled = false;
+    setIsLoadingQuestions(true);
+    fetchQuickPracticeQuestions(subjectId, unlockedTypes, 20).then((qs) => {
+      if (!cancelled) {
+        setQuestions(qs);
+        setIsLoadingQuestions(false);
+      }
+    });
+    return () => { cancelled = true; };
+  }, [subjectId, unlockedTypes]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
@@ -92,9 +108,11 @@ export default function QuickQuestionScreen() {
     }).length;
   }, [answers, questions]);
 
-  // Initialize session
-  useMemo(() => {
-    if (!subjectId || questions.length === 0) return;
+  // Initialize session when questions are loaded
+  const sessionStarted = useRef(false);
+  useEffect(() => {
+    if (!subjectId || questions.length === 0 || sessionStarted.current) return;
+    sessionStarted.current = true;
     const session: ChapterExamSession = {
       id: `qp-${Date.now()}`,
       mode: 'chapter',
@@ -108,7 +126,7 @@ export default function QuickQuestionScreen() {
       timeUsedMs: null,
     };
     dispatch(startChapterExam(session));
-  }, [subjectId]);
+  }, [subjectId, questions.length]);
 
   const handleSelectOption = (optionId: string) => {
     if (showFeedback || !question) return;
@@ -200,6 +218,63 @@ export default function QuickQuestionScreen() {
     setShowConceptSheet(false);
     scrollRef.current?.scrollTo({ y: 0, animated: true });
   };
+
+  // Loading state
+  if (isLoadingQuestions && subjectMeta) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+          <View style={[styles.topBar, { borderBottomColor: colors.surfaceBorder }]}>
+            <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backBtn}>
+              <Text style={[styles.backArrow, { color: colors.text }]}>{'<'}</Text>
+            </Pressable>
+            <View style={styles.topCenter}>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                {subjectMeta.emoji} Quick Practice
+              </Text>
+            </View>
+            <View style={{ width: 40 }} />
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <ActivityIndicator size="large" color={subjectMeta.color} />
+            <Text style={[Typography.body, { color: colors.textSecondary, marginTop: Spacing.md }]}>
+              Loading questions...
+            </Text>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  // Empty state
+  if (!isLoadingQuestions && subjectMeta && questions.length === 0) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+          <View style={[styles.topBar, { borderBottomColor: colors.surfaceBorder }]}>
+            <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backBtn}>
+              <Text style={[styles.backArrow, { color: colors.text }]}>{'<'}</Text>
+            </Pressable>
+            <View style={styles.topCenter}>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                {subjectMeta.emoji} Quick Practice
+              </Text>
+            </View>
+            <View style={{ width: 40 }} />
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: Spacing.xl }}>
+            <Text style={{ fontSize: 48, marginBottom: Spacing.md }}>{'📝'}</Text>
+            <Text style={[Typography.h2, { color: colors.text, textAlign: 'center', marginBottom: Spacing.sm }]}>
+              No Questions Yet
+            </Text>
+            <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center' }]}>
+              Questions for {subjectMeta.name} are being prepared.
+            </Text>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
 
   if (!question || !subjectMeta) return null;
 

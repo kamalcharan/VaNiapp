@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -12,17 +12,23 @@ import { PuffyButton } from '../../src/components/ui/PuffyButton';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { SUBJECT_META } from '../../src/constants/subjects';
-import { getChapterById } from '../../src/data/chapters';
-import { getV2QuestionsByChapter } from '../../src/data/questions';
-import { getCorrectId } from '../../src/lib/questionAdapter';
 import { RootState } from '../../src/store';
 import { NeetSubjectId } from '../../src/types';
 
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const { chapterId, correct, total, timeUsedMs: timeParam } = useLocalSearchParams<{
+  const {
+    chapterId,
+    chapterName: chapterNameParam,
+    subjectId: subjectIdParam,
+    correct,
+    total,
+    timeUsedMs: timeParam,
+  } = useLocalSearchParams<{
     chapterId: string;
+    chapterName?: string;
+    subjectId?: string;
     correct: string;
     total: string;
     timeUsedMs: string;
@@ -31,11 +37,9 @@ export default function ChapterResultsScreen() {
 
   const isQuickMode = chapterId?.startsWith('quick-') ?? false;
   const quickSubjectId = isQuickMode ? chapterId!.replace('quick-', '') as NeetSubjectId : null;
-  const chapter = chapterId && !isQuickMode ? getChapterById(chapterId) : null;
-  const subjectMeta = isQuickMode
-    ? (quickSubjectId ? SUBJECT_META[quickSubjectId] : null)
-    : (chapter ? SUBJECT_META[chapter.subjectId] : null);
-  const questions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
+  const resolvedSubjectId = isQuickMode ? quickSubjectId : (subjectIdParam as NeetSubjectId || null);
+  const chapterName = chapterNameParam || 'Chapter';
+  const subjectMeta = resolvedSubjectId ? SUBJECT_META[resolvedSubjectId] : null;
 
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
@@ -56,36 +60,10 @@ export default function ChapterResultsScreen() {
     return h.length > 0 ? h[0] : null;
   });
 
-  const difficultyStats = useMemo(() => {
-    if (!lastSession || !questions.length) return null;
-    const stats = { easy: { correct: 0, total: 0 }, medium: { correct: 0, total: 0 }, hard: { correct: 0, total: 0 } };
-    for (const q of questions) {
-      stats[q.difficulty].total++;
-      const ans = lastSession.answers.find((a) => a.questionId === q.id);
-      if (ans?.selectedOptionId === getCorrectId(q)) {
-        stats[q.difficulty].correct++;
-      }
-    }
-    return stats;
-  }, [lastSession, questions]);
-
-  // Question type breakdown
-  const typeStats = useMemo(() => {
-    if (!lastSession || !questions.length) return null;
-    const stats: Record<string, { correct: number; total: number; label: string }> = {};
-    for (const q of questions) {
-      if (!stats[q.type]) {
-        const label = q.type.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-        stats[q.type] = { correct: 0, total: 0, label };
-      }
-      stats[q.type].total++;
-      const ans = lastSession.answers.find((a) => a.questionId === q.id);
-      if (ans?.selectedOptionId === getCorrectId(q)) {
-        stats[q.type].correct++;
-      }
-    }
-    return Object.entries(stats).filter(([, v]) => v.total > 0);
-  }, [lastSession, questions]);
+  // Note: Detailed difficulty/type breakdown requires re-fetching questions from DB.
+  // For now, we rely on the summary stats (correct/total/time) from route params.
+  const difficultyStats = null;
+  const typeStats = null;
 
   const getGrade = () => {
     if (percentage >= 90) return { label: 'Excellent!', emoji: '🌟', color: '#22C55E' };
@@ -100,7 +78,7 @@ export default function ChapterResultsScreen() {
     if (isQuickMode && quickSubjectId) {
       router.replace({ pathname: '/(exam)/quick-question', params: { subjectId: quickSubjectId } });
     } else {
-      router.replace({ pathname: '/(exam)/chapter-question', params: { chapterId: chapterId! } });
+      router.replace(`/(exam)/chapter-question?chapterId=${encodeURIComponent(chapterId!)}&chapterName=${encodeURIComponent(chapterName)}&subjectId=${encodeURIComponent(resolvedSubjectId || '')}`);
     }
   };
 
@@ -119,7 +97,6 @@ export default function ChapterResultsScreen() {
   };
 
   if (!subjectMeta) return null;
-  if (!isQuickMode && !chapter) return null;
 
   return (
     <DotGridBackground>
@@ -130,7 +107,7 @@ export default function ChapterResultsScreen() {
             <Text style={styles.gradeEmoji}>{grade.emoji}</Text>
             <HandwrittenText variant="hand">{grade.label}</HandwrittenText>
             <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 4 }]}>
-              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : (language === 'te' && chapter ? chapter.nameTe : chapter?.name)}
+              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : chapterName}
             </Text>
           </View>
 

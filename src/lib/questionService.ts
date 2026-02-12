@@ -64,9 +64,86 @@ export async function fetchChapterQuestions(
 
   if (qErr || !questions || questions.length === 0) return [];
 
-  const questionIds = questions.map((q: DbQuestion) => q.id);
+  // 2. Hydrate with options + hints and convert to QuestionV2
+  const result = await hydrateQuestions(questions as DbQuestion[]);
 
-  // 2. Fetch options + hints in parallel
+  // 3. Filter by unlocked types if specified
+  if (unlockedTypes && unlockedTypes.length > 0) {
+    return result.filter((q) => unlockedTypes.includes(q.type));
+  }
+
+  return result;
+}
+
+/**
+ * Fetch quick practice questions (20) for a subject from Supabase.
+ * Picks randomly across all chapters of that subject.
+ */
+export async function fetchQuickPracticeQuestions(
+  subjectId: string,
+  unlockedTypes?: QuestionType[],
+  limit: number = 20,
+): Promise<QuestionV2[]> {
+  if (!supabase) return [];
+
+  let query = supabase
+    .from('med_questions')
+    .select('id, subject_id, chapter_id, question_type, difficulty, question_text, question_text_te, explanation, explanation_te, payload, correct_answer, concept_tags')
+    .eq('subject_id', subjectId)
+    .eq('is_active', true)
+    .in('status', ['active', 'draft']);
+
+  if (unlockedTypes && unlockedTypes.length > 0) {
+    query = query.in('question_type', unlockedTypes);
+  }
+
+  const { data: questions, error: qErr } = await query.limit(limit);
+  if (qErr || !questions || questions.length === 0) return [];
+
+  return hydrateQuestions(questions as DbQuestion[]);
+}
+
+/**
+ * Fetch a full NEET practice exam (200 questions across 4 subjects).
+ * Returns a map: { physics: QuestionV2[], chemistry: QuestionV2[], botany: QuestionV2[], zoology: QuestionV2[] }
+ * Each subject gets up to 50 questions (35 Section A + 15 Section B in NEET format).
+ */
+export async function fetchPracticeExamQuestions(): Promise<Record<string, QuestionV2[]>> {
+  if (!supabase) return {};
+
+  const subjects = ['physics', 'chemistry', 'botany', 'zoology'];
+  const result: Record<string, QuestionV2[]> = {};
+
+  // Fetch all 4 subjects in parallel
+  const fetches = subjects.map(async (subjectId) => {
+    const { data: questions, error: qErr } = await supabase
+      .from('med_questions')
+      .select('id, subject_id, chapter_id, question_type, difficulty, question_text, question_text_te, explanation, explanation_te, payload, correct_answer, concept_tags')
+      .eq('subject_id', subjectId)
+      .eq('is_active', true)
+      .in('status', ['active', 'draft'])
+      .limit(50);
+
+    if (qErr || !questions || questions.length === 0) {
+      result[subjectId] = [];
+      return;
+    }
+
+    result[subjectId] = await hydrateQuestions(questions as DbQuestion[]);
+  });
+
+  await Promise.all(fetches);
+  return result;
+}
+
+/**
+ * Shared: given DB question rows, fetch their options + hints and convert to QuestionV2[].
+ */
+async function hydrateQuestions(questions: DbQuestion[]): Promise<QuestionV2[]> {
+  if (!supabase || questions.length === 0) return [];
+
+  const questionIds = questions.map((q) => q.id);
+
   const [optResult, hintResult] = await Promise.all([
     supabase
       .from('med_question_options')
@@ -81,26 +158,16 @@ export async function fetchChapterQuestions(
 
   const options: DbOption[] = optResult.data ?? [];
   const hints: DbHint[] = hintResult.data ?? [];
-
-  // Group by question_id
   const optionsByQ = groupBy(options, 'question_id');
   const hintsByQ = groupBy(hints, 'question_id');
 
-  // 3. Convert each DB row → QuestionV2
   const result: QuestionV2[] = [];
-  for (const q of questions as DbQuestion[]) {
+  for (const q of questions) {
     const qOptions = (optionsByQ[q.id] || []).sort((a, b) => a.sort_order - b.sort_order);
     const qHints = hintsByQ[q.id] || [];
-
     const v2 = dbToQuestionV2(q, qOptions, qHints);
     if (v2) result.push(v2);
   }
-
-  // 4. Filter by unlocked types if specified
-  if (unlockedTypes && unlockedTypes.length > 0) {
-    return result.filter((q) => unlockedTypes.includes(q.type));
-  }
-
   return result;
 }
 

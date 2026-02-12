@@ -204,7 +204,7 @@ export default function ChapterQuestionScreen() {
 
       router.replace({
         pathname: '/(exam)/chapter-results',
-        params: { chapterId: chapterId!, correct: String(finalCorrect), total: String(questions.length), timeUsedMs: String(timeUsedMs) },
+        params: { chapterId: chapterId!, chapterName: chapterName || '', subjectId: subjectId || '', correct: String(finalCorrect), total: String(questions.length), timeUsedMs: String(timeUsedMs) },
       });
       return;
     }
