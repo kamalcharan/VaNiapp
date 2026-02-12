@@ -111,9 +111,10 @@ export default function SubjectDetailScreen() {
   }, [id, focus]);
 
   const handleStartChapter = (chapterId: string) => {
-    // TODO: Navigate to chapter evaluation
-    // router.push(`/chapter/${chapterId}/evaluate`);
-    console.log('Start chapter:', chapterId);
+    router.push({
+      pathname: '/(exam)/chapter-question',
+      params: { chapterId },
+    });
   };
 
   if (!subject || isLoading) {
@@ -355,7 +356,10 @@ export default function SubjectDetailScreen() {
                 <Pressable
                   style={[styles.optionButton, { borderColor: colors.border }]}
                   onPress={() => {
-                    // TODO: Quick practice for this subject
+                    router.push({
+                      pathname: '/(exam)/quick-question',
+                      params: { subjectId: id },
+                    });
                   }}
                 >
                   <Text style={[Typography.bodySm, { color: colors.text }]}>

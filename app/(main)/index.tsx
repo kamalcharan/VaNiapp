@@ -322,10 +322,7 @@ export default function DashboardScreen() {
             <JournalCard delay={400} rotation={0.3}>
               <Pressable
                 style={styles.actionRow}
-                onPress={() => {
-                  // TODO: Navigate to practice exam
-                  // router.push('/practice-exam');
-                }}
+                onPress={() => router.push('/(exam)/practice-start')}
               >
                 <Text style={styles.actionIcon}>{'\uD83C\uDFAF'}</Text>
                 <View style={{ flex: 1 }}>
@@ -338,7 +335,7 @@ export default function DashboardScreen() {
                       { color: colors.textSecondary, marginTop: 2 },
                     ]}
                   >
-                    VaNi picks questions based on your progress
+                    Full NEET format mock test (200 Qs, 3h 20m)
                   </Text>
                 </View>
               </Pressable>
@@ -347,10 +344,7 @@ export default function DashboardScreen() {
             <JournalCard delay={500} rotation={-0.2}>
               <Pressable
                 style={styles.actionRow}
-                onPress={() => {
-                  // TODO: Navigate to quick practice
-                  // router.push('/quick-practice');
-                }}
+                onPress={() => router.push('/(exam)/quick-start')}
               >
                 <Text style={styles.actionIcon}>{'\u26A1'}</Text>
                 <View style={{ flex: 1 }}>
