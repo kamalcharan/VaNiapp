@@ -204,3 +204,19 @@ diagram questions will need `image_url` updated to real URLs.
 
 **Timeline estimate**: Not estimated (depends on generation speed + review throughput).
 Each iteration is independently valuable — app is usable after Iteration 1.
+
+---
+
+## R10 Feature Dependency (Active)
+
+R10 Batches 1-3 are now built. The following app features depend on QBank data quality:
+
+| Feature | QBank Field Required | Impact if Missing |
+|---------|---------------------|-------------------|
+| "WHY WAS I WRONG?" in AskVani widget | `med_elimination_hints` (per-option) | Misconception card won't appear |
+| Concept tag pills in AskVani widget | `med_questions.concept_tags` | No concept pills shown |
+| Concept Explainer bottom sheet | `concept_tags` (used as lookup key) | Sheet opens but may show generic content |
+| Saved Questions concept display | `concept_tags` | No concept pills in expanded view |
+
+**Action**: QBank Iteration 1 must generate elimination hints + concept_tags for all questions.
+The app code is ready — it just needs data.
