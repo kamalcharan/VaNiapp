@@ -32,7 +32,7 @@ R8 ─── New Question Type UIs                     ✅ DONE
  │
 R9 ─── AI Doubt Solver + Bookmarks + DB Wire     ✅ DONE
  │
-R10 ── Wrong-Answer Analysis + Concept Explainer  🔧 IN PROGRESS
+R10 ── Wrong-Answer Analysis + Concept Explainer  ✅ DONE
  │
 R11 ── AI Study Plan + Mock Analysis              ⬜ PENDING
  │
@@ -119,8 +119,8 @@ R12 ── Paywall + Tier Gating                      ⬜ PENDING
 
 ### Known Gaps from R9
 
-- `practice-results.tsx` analytics tab (difficulty + chapter breakdown) is nulled out — needs question metadata stored in session *(R10.5 pending)*
-- Answer review screen not yet wired to DB *(R10.6 pending — currently uses local JSON data)*
+- ~~`practice-results.tsx` analytics tab nulled out~~ ✅ Fixed (10.5: fetches questions from DB, computes difficulty + chapter breakdown)
+- ~~Answer review screen not wired to DB~~ ✅ Fixed (10.6: replaced local JSON with fetchQuestionsByIds + catalog chapter names)
 - ~~"Ask VaNi" entry points on exam screens not fully integrated~~ ✅ Fixed (Batch 1-2: misconception + concept tags wired into AskVaniSheet across all 3 exam screens)
 - **Diagram-based images on hold**: `DiagramBasedQuestion.tsx` shows placeholder only (no `<Image>` rendering). Gemini generates text descriptions of diagrams. Actual image generation/hosting deferred for future review — text-description approach sufficient for NEET prep.
 
@@ -144,14 +144,14 @@ app and verify questions load — no more empty states.
 
 ---
 
-## R10 — Learn From Mistakes 🔧 IN PROGRESS
+## R10 — Learn From Mistakes ✅ DONE
 
 **Goal**: Turn every wrong answer into a learning moment. Show *why* the student
 was wrong, let them explore concepts, retry their mistakes, and review saved questions.
 
 > **Depends on**: QBank Iteration 1 (elimination hints + concept tags populated)
 >
-> **Progress**: Batches 1-3 complete (data layer, AskVani integration, exam screen wiring, Saved Questions + Mistakes screens, dashboard cards). Remaining: analytics restoration (10.5), answer-review DB wiring (10.6).
+> **All batches complete**: Data layer, AskVani misconception + concept tags, exam screen wiring, Saved Questions + Mistakes screens, dashboard cards, analytics restoration, answer-review DB migration.
 
 ### What the Student Sees (UX Verification)
 
@@ -225,9 +225,9 @@ was wrong, let them explore concepts, retry their mistakes, and review saved que
 5. See: weakest and strongest chapter highlighted
 
 **How to verify**:
-- [ ] Complete practice exam → Analytics tab shows data (not blank)
-- [ ] Difficulty bars match actual performance
-- [ ] Chapter list sorted by accuracy (weakest first)
+- [x] Complete practice exam → Analytics tab shows data (not blank) *(fetches questions from DB, computes diffStats + chapterPerf)*
+- [x] Difficulty bars match actual performance *(computed from actual question.difficulty + getCorrectId)*
+- [x] Chapter list sorted by accuracy (weakest first) *(sorted ascending, weakest/strongest in sticky notes)*
 - [ ] Weakest/strongest sticky notes show correct chapters
 
 #### 10.6 Answer Review Wired to DB
@@ -240,9 +240,11 @@ was wrong, let them explore concepts, retry their mistakes, and review saved que
 5. Concept tags visible, tappable → opens Concept Explainer
 
 **How to verify**:
-- [ ] Complete exam → tap "Review Answers" → questions load
-- [ ] Filter tabs filter correctly
-- [ ] Explanations display properly
+- [x] Complete exam → tap "Review Answers" → questions load *(fetchQuestionsByIds replaces local JSON)*
+- [x] Filter tabs filter correctly *(same classification logic, now with DB questions)*
+- [x] Explanations display properly *(explanation/explanationTe from DB)*
+- [x] Loading state shows while fetching *(ActivityIndicator)*
+- [x] Chapter names display from catalog *(getChapters + chapterNameMap)*
 - [ ] Concept tags open the explainer bottom sheet
 
 ### Files
@@ -261,8 +263,8 @@ was wrong, let them explore concepts, retry their mistakes, and review saved que
 | Modify | `app/(exam)/answer-review.tsx` — wire AskVani R10 props | ✅ Done (Batch 2) |
 | Modify | `app/(main)/index.tsx` — Saved Questions + Practice My Mistakes dashboard cards | ✅ Done (Batch 3) |
 | Modify | `src/store/slices/practiceSlice.ts` — mistakeIds tracking + recordMistake/removeMistake | ✅ Done (Batch 3) |
-| Modify | `app/(exam)/practice-results.tsx` — restore analytics with session metadata | ⬜ Pending (10.5) |
-| Modify | `app/(exam)/answer-review.tsx` — wire to DB (currently uses local data) | ⬜ Pending (10.6) |
+| Modify | `app/(exam)/practice-results.tsx` — restore analytics with DB question data | ✅ Done (10.5) |
+| Modify | `app/(exam)/answer-review.tsx` — wire to DB via fetchQuestionsByIds + catalog | ✅ Done (10.6) |
 
 ---
 
