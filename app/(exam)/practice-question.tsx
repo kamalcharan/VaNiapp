@@ -6,6 +6,7 @@ import {
   ScrollView,
   Pressable,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -17,7 +18,7 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { useFocusTracker } from '../../src/hooks/useFocusTracker';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
-import { buildPracticeExam } from '../../src/data/questions';
+import { fetchPracticeExamQuestions } from '../../src/lib/questionService';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import {
   NeetSubjectId,
@@ -34,7 +35,7 @@ import {
   clearCurrentSession,
 } from '../../src/store/slices/practiceSlice';
 import { calculateNeetScore, calculateSubjectScores } from '../../src/store/slices/practiceSlice';
-import { legacyBatchToV2, getCorrectId } from '../../src/lib/questionAdapter';
+import { getCorrectId } from '../../src/lib/questionAdapter';
 
 const SUBJECTS: { id: NeetSubjectId; emoji: string; short: string }[] = [
   { id: 'physics', emoji: '\u269B\uFE0F', short: 'PHY' },
@@ -57,19 +58,31 @@ export default function PracticeQuestionScreen() {
   const focus = useFocusTracker();
   const scrollRef = useRef<ScrollView>(null);
 
-  // Build exam once
-  const exam = useMemo(() => buildPracticeExam(), []);
+  // Fetch exam questions from DB
+  const [allQuestions, setAllQuestions] = useState<ExamQuestion[]>([]);
+  const [isLoadingQuestions, setIsLoadingQuestions] = useState(true);
 
-  // Flatten into structured question list
-  const allQuestions = useMemo(() => {
-    const qs: ExamQuestion[] = [];
-    for (const subjectId of ['physics', 'chemistry', 'botany', 'zoology'] as NeetSubjectId[]) {
-      const { sectionA, sectionB } = exam[subjectId];
-      legacyBatchToV2(sectionA).forEach((q, i) => qs.push({ ...q, section: 'A', indexInSection: i }));
-      legacyBatchToV2(sectionB).forEach((q, i) => qs.push({ ...q, section: 'B', indexInSection: i }));
-    }
-    return qs;
-  }, [exam]);
+  useEffect(() => {
+    let cancelled = false;
+    setIsLoadingQuestions(true);
+
+    fetchPracticeExamQuestions().then((examData) => {
+      if (cancelled) return;
+      const qs: ExamQuestion[] = [];
+      for (const subjectId of ['physics', 'chemistry', 'botany', 'zoology'] as NeetSubjectId[]) {
+        const subjectQs = examData[subjectId] || [];
+        // Split: first 35 → Section A, remaining → Section B (NEET format)
+        const sectionA = subjectQs.slice(0, NEET_SCORING.sectionA);
+        const sectionB = subjectQs.slice(NEET_SCORING.sectionA, NEET_SCORING.sectionA + NEET_SCORING.sectionB);
+        sectionA.forEach((q, i) => qs.push({ ...q, section: 'A', indexInSection: i }));
+        sectionB.forEach((q, i) => qs.push({ ...q, section: 'B', indexInSection: i }));
+      }
+      setAllQuestions(qs);
+      setIsLoadingQuestions(false);
+    });
+
+    return () => { cancelled = true; };
+  }, []);
 
   // Answers map: questionId -> selectedOptionId
   const [answers, setAnswers] = useState<Record<string, string | null>>({});
@@ -81,8 +94,12 @@ export default function PracticeQuestionScreen() {
   const [timeLeftMs, setTimeLeftMs] = useState(NEET_SCORING.timeLimitMs);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Initialize session
+  // Initialize session — only after questions are loaded
+  const sessionStarted = useRef(false);
   useEffect(() => {
+    if (isLoadingQuestions || allQuestions.length === 0 || sessionStarted.current) return;
+    sessionStarted.current = true;
+
     const session: PracticeExamSession = {
       id: `pe-${Date.now()}`,
       mode: 'practice',
@@ -113,7 +130,7 @@ export default function PracticeQuestionScreen() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, []);
+  }, [isLoadingQuestions, allQuestions]);
 
   // Auto-submit when timer reaches 0
   useEffect(() => {
@@ -364,6 +381,44 @@ export default function PracticeQuestionScreen() {
 
   const timerColor = timeLeftMs < 600000 ? '#EF4444' : timeLeftMs < 1800000 ? '#F59E0B' : colors.text;
   const answeredCount = Object.keys(answers).length;
+
+  // Loading state
+  if (isLoadingQuestions) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <ActivityIndicator size="large" color={colors.primary} />
+            <Text style={[Typography.body, { color: colors.textSecondary, marginTop: Spacing.md }]}>
+              Loading exam questions...
+            </Text>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  // Empty state
+  if (allQuestions.length === 0) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: Spacing.xl }}>
+            <Text style={{ fontSize: 48, marginBottom: Spacing.md }}>{'📋'}</Text>
+            <Text style={[Typography.h3, { color: colors.text, textAlign: 'center' }]}>
+              No Questions Available
+            </Text>
+            <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center', marginTop: Spacing.sm }]}>
+              Practice exam questions haven't been added yet.
+            </Text>
+            <Pressable onPress={() => router.back()} style={{ marginTop: Spacing.xl }}>
+              <Text style={[Typography.body, { color: colors.primary }]}>Go Back</Text>
+            </Pressable>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
 
   if (!question) return null;
 

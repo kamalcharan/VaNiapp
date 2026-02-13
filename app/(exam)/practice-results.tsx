@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -14,8 +14,6 @@ import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { RootState } from '../../src/store';
 import { NeetSubjectId, NEET_SCORING } from '../../src/types';
-import { getAllQuestions } from '../../src/data/questions';
-import { NEET_CHAPTERS } from '../../src/data/chapters';
 
 const SUBJECTS: NeetSubjectId[] = ['physics', 'chemistry', 'botany', 'zoology'];
 
@@ -65,63 +63,11 @@ export default function PracticeResultsScreen() {
     return `${m}m ${s}s`;
   };
 
-  // Analytics data
-  const analytics = useMemo(() => {
-    if (!lastExam) return null;
-
-    const allQuestions = getAllQuestions();
-    const answeredMap: Record<string, string | null> = {};
-    lastExam.answers.forEach((a) => {
-      answeredMap[a.questionId] = a.selectedOptionId;
-    });
-
-    // Difficulty breakdown
-    const diffStats = {
-      easy: { correct: 0, wrong: 0, total: 0 },
-      medium: { correct: 0, wrong: 0, total: 0 },
-      hard: { correct: 0, wrong: 0, total: 0 },
-    };
-
-    // Chapter breakdown
-    const chapterMap: Record<string, { name: string; subjectId: string; correct: number; wrong: number; total: number }> = {};
-
-    for (const q of allQuestions) {
-      const selectedOpt = answeredMap[q.id] ?? null;
-      const isCorrect = selectedOpt === q.correctOptionId;
-      const isWrong = selectedOpt !== null && !isCorrect;
-
-      diffStats[q.difficulty].total++;
-      if (isCorrect) diffStats[q.difficulty].correct++;
-      if (isWrong) diffStats[q.difficulty].wrong++;
-
-      if (!chapterMap[q.chapterId]) {
-        const ch = NEET_CHAPTERS.find((c) => c.id === q.chapterId);
-        chapterMap[q.chapterId] = {
-          name: ch?.name ?? q.chapterId,
-          subjectId: q.subjectId,
-          correct: 0,
-          wrong: 0,
-          total: 0,
-        };
-      }
-      chapterMap[q.chapterId].total++;
-      if (isCorrect) chapterMap[q.chapterId].correct++;
-      if (isWrong) chapterMap[q.chapterId].wrong++;
-    }
-
-    const chapters = Object.entries(chapterMap)
-      .map(([id, stats]) => ({
-        id,
-        ...stats,
-        accuracy: stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0,
-      }))
-      .sort((a, b) => a.accuracy - b.accuracy);
-
-    return { diffStats, chapters, weakest: chapters[0], strongest: chapters[chapters.length - 1] };
-  }, [lastExam]);
+  // Analytics: difficulty + chapter breakdown (requires question metadata — pending future release)
+  const analytics = null;
 
   const handleRetry = () => router.replace('/(exam)/practice-start');
-  const handleGoHome = () => router.replace('/(tabs)');
+  const handleGoHome = () => router.replace('/(main)');
   const handleReview = () => {
     if (lastExam) {
       router.push({ pathname: '/(exam)/answer-review', params: { sessionId: lastExam.id } });
