@@ -339,6 +339,14 @@ export type QuestionType =
   | 'fill-in-blanks'
   | 'scenario-based';
 
+export interface EliminationHint {
+  optionKey: string;
+  hint: string;
+  hintTe: string;
+  misconception: string | null;
+  misconceptionTe: string | null;
+}
+
 export interface QuestionV2 {
   id: string;
   type: QuestionType;
@@ -353,6 +361,10 @@ export interface QuestionV2 {
   explanationTe: string;
   eliminationTechnique: string;
   eliminationTechniqueTe: string;
+
+  // R10: per-option elimination hints + concept tags
+  eliminationHints?: EliminationHint[];
+  conceptTags?: string[];
 
   // Type-specific payload
   payload: QuestionPayload;

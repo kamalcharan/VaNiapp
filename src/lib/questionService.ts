@@ -3,7 +3,7 @@
  * Replaces the local-data approach for chapter-based practice.
  */
 import { supabase } from './supabase';
-import { QuestionV2, QuestionPayload, QuestionType, Difficulty, SubjectId } from '../types';
+import { QuestionV2, QuestionPayload, QuestionType, Difficulty, SubjectId, EliminationHint } from '../types';
 
 // ── DB row types ────────────────────────────────────────────
 
@@ -137,6 +137,24 @@ export async function fetchPracticeExamQuestions(): Promise<Record<string, Quest
 }
 
 /**
+ * Fetch specific questions by their IDs.
+ * Used for Practice My Mistakes (wrong answer IDs) and Saved Questions (bookmarked IDs).
+ */
+export async function fetchQuestionsByIds(ids: string[]): Promise<QuestionV2[]> {
+  if (!supabase || ids.length === 0) return [];
+
+  const { data: questions, error: qErr } = await supabase
+    .from('med_questions')
+    .select('id, subject_id, chapter_id, question_type, difficulty, question_text, question_text_te, explanation, explanation_te, payload, correct_answer, concept_tags')
+    .in('id', ids)
+    .eq('is_active', true);
+
+  if (qErr || !questions || questions.length === 0) return [];
+
+  return hydrateQuestions(questions as DbQuestion[]);
+}
+
+/**
  * Shared: given DB question rows, fetch their options + hints and convert to QuestionV2[].
  */
 async function hydrateQuestions(questions: DbQuestion[]): Promise<QuestionV2[]> {
@@ -186,6 +204,15 @@ function dbToQuestionV2(
   const elimEn = hints.map((h) => h.hint_text).filter(Boolean).join(' ');
   const elimTe = hints.map((h) => h.hint_text_te || h.hint_text).filter(Boolean).join(' ');
 
+  // Preserve per-option hints for R10 misconception display
+  const eliminationHints: EliminationHint[] = hints.map((h) => ({
+    optionKey: h.option_key,
+    hint: h.hint_text,
+    hintTe: h.hint_text_te || h.hint_text,
+    misconception: h.misconception || null,
+    misconceptionTe: h.misconception_te || null,
+  }));
+
   return {
     id: q.id,
     type,
@@ -198,6 +225,8 @@ function dbToQuestionV2(
     explanationTe: q.explanation_te || q.explanation || '',
     eliminationTechnique: elimEn,
     eliminationTechniqueTe: elimTe,
+    eliminationHints: eliminationHints.length > 0 ? eliminationHints : undefined,
+    conceptTags: q.concept_tags && q.concept_tags.length > 0 ? q.concept_tags : undefined,
     payload,
   };
 }

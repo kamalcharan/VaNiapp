@@ -20,7 +20,7 @@ import { useToast } from './ui/Toast';
 import { RootState } from '../store';
 import { askDoubt, checkRateLimit } from '../lib/aiClient';
 import { DoubtEntry } from '../store/slices/aiSlice';
-import { SubjectId } from '../types';
+import { SubjectId, EliminationHint } from '../types';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
@@ -30,6 +30,14 @@ interface AskVaniSheetProps {
   questionText: string;
   subjectId: SubjectId;
   questionId?: string;
+  /** The option key the student selected (e.g. 'B') — enables misconception display */
+  selectedOptionKey?: string;
+  /** Per-option elimination hints from the question */
+  eliminationHints?: EliminationHint[];
+  /** Concept tags from the question — shown as tappable pills */
+  conceptTags?: string[];
+  /** Called when user taps a concept tag pill */
+  onConceptPress?: (conceptTag: string) => void;
 }
 
 export function AskVaniSheet({
@@ -37,6 +45,10 @@ export function AskVaniSheet({
   onClose,
   questionText,
   subjectId,
+  selectedOptionKey,
+  eliminationHints,
+  conceptTags,
+  onConceptPress,
 }: AskVaniSheetProps) {
   const { colors } = useTheme();
   const toast = useToast();
@@ -141,6 +153,45 @@ export function AskVaniSheet({
                   {questionText}
                 </Text>
               </View>
+
+              {/* Misconception card (R10) — shows when student picked a wrong option with hint data */}
+              {selectedOptionKey && eliminationHints && eliminationHints.length > 0 && (() => {
+                const hint = eliminationHints.find(h => h.optionKey === selectedOptionKey);
+                if (!hint) return null;
+                return (
+                  <View style={[styles.misconceptionBox, { backgroundColor: '#FEF2F2', borderColor: '#FECACA' }]}>
+                    <Text style={[styles.misconceptionLabel, { color: '#DC2626' }]}>WHY WAS I WRONG?</Text>
+                    {hint.misconception ? (
+                      <Text style={[Typography.bodySm, { color: '#991B1B', lineHeight: 20, marginTop: 4 }]}>
+                        {hint.misconception}
+                      </Text>
+                    ) : null}
+                    <Text style={[Typography.bodySm, { color: '#7F1D1D', lineHeight: 20, marginTop: hint.misconception ? 8 : 4 }]}>
+                      {hint.hint}
+                    </Text>
+                  </View>
+                );
+              })()}
+
+              {/* Concept tags (R10) — tappable pills that open ConceptExplainerSheet */}
+              {conceptTags && conceptTags.length > 0 && (
+                <View style={styles.conceptTagsRow}>
+                  <Text style={[styles.conceptTagsLabel, { color: colors.textTertiary }]}>RELATED CONCEPTS</Text>
+                  <View style={styles.conceptTagsList}>
+                    {conceptTags.map((tag, i) => (
+                      <Pressable
+                        key={i}
+                        onPress={() => onConceptPress?.(tag)}
+                        style={[styles.conceptTagPill, { backgroundColor: colors.primaryLight, borderColor: colors.primary + '30' }]}
+                      >
+                        <Text style={[styles.conceptTagText, { color: colors.primary }]}>
+                          {tag.replace(/-/g, ' ')}
+                        </Text>
+                      </Pressable>
+                    ))}
+                  </View>
+                </View>
+              )}
 
               {/* Response area */}
               <ScrollView
@@ -345,6 +396,44 @@ const styles = StyleSheet.create({
   conceptText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 11,
+  },
+  misconceptionBox: {
+    marginHorizontal: Spacing.lg,
+    marginTop: Spacing.sm,
+    padding: Spacing.md,
+    borderRadius: BorderRadius.md,
+    borderWidth: 1,
+  },
+  misconceptionLabel: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 10,
+    letterSpacing: 0.5,
+  },
+  conceptTagsRow: {
+    marginHorizontal: Spacing.lg,
+    marginTop: Spacing.sm,
+  },
+  conceptTagsLabel: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 10,
+    letterSpacing: 0.5,
+    marginBottom: 6,
+  },
+  conceptTagsList: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+  },
+  conceptTagPill: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: BorderRadius.round,
+    borderWidth: 1,
+  },
+  conceptTagText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 11,
+    textTransform: 'capitalize',
   },
   inputBar: {
     flexDirection: 'row',
