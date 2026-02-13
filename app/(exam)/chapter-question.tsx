@@ -30,7 +30,7 @@ import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplaine
 import { EliminationSheet } from '../../src/components/exam/EliminationSheet';
 import { useToast } from '../../src/components/ui/Toast';
 import { NeetSubjectId, SubjectId, QuestionType, QuestionV2, STRENGTH_LEVELS, ChapterExamSession, UserAnswer } from '../../src/types';
-import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
+import { startChapterExam, updateAnswer, completeChapterExam, recordMistake } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
 
@@ -156,6 +156,7 @@ export default function ChapterQuestionScreen() {
       }
     } else {
       setAnswerStreak(0);
+      dispatch(recordMistake(question.id));
     }
 
     dispatch(

@@ -9,12 +9,14 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { useSelector } from 'react-redux';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing } from '../../src/constants/theme';
+import { RootState } from '../../src/store';
 import { getProfile, getUserSubjectIds, MedProfile } from '../../src/lib/database';
 import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
@@ -78,6 +80,8 @@ export default function DashboardScreen() {
   const [subjectJourneys, setSubjectJourneys] = useState<SubjectJourney[]>([]);
   const [allSubjects, setAllSubjects] = useState<CatalogSubject[]>([]);
   const [examFocus, setExamFocus] = useState<ExamFocus>('ALL');
+  const savedCount = useSelector((state: RootState) => state.bookmark.ids.length);
+  const mistakeCount = useSelector((state: RootState) => state.practice.mistakeIds?.length ?? 0);
 
   useEffect(() => {
     (async () => {
@@ -362,14 +366,51 @@ export default function DashboardScreen() {
                 </View>
               </Pressable>
             </JournalCard>
-          </View>
 
-          {/* Coming Soon */}
-          <StickyNote color="teal" rotation={0.5} delay={500}>
-            <HandwrittenText variant="handSm">
-              Questions, analytics, and study gang features coming soon!
-            </HandwrittenText>
-          </StickyNote>
+            <JournalCard delay={600} rotation={0.3}>
+              <Pressable
+                style={styles.actionRow}
+                onPress={() => router.push('/(main)/saved-questions?tab=saved')}
+              >
+                <Text style={styles.actionIcon}>{'\uD83D\uDD16'}</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={[Typography.h3, { color: colors.text }]}>
+                    Saved Questions
+                  </Text>
+                  <Text
+                    style={[
+                      Typography.bodySm,
+                      { color: colors.textSecondary, marginTop: 2 },
+                    ]}
+                  >
+                    {savedCount > 0 ? `${savedCount} questions bookmarked` : 'Bookmark questions for later'}
+                  </Text>
+                </View>
+              </Pressable>
+            </JournalCard>
+
+            <JournalCard delay={700} rotation={-0.3}>
+              <Pressable
+                style={styles.actionRow}
+                onPress={() => router.push('/(main)/saved-questions?tab=mistakes')}
+              >
+                <Text style={styles.actionIcon}>{'\uD83D\uDD04'}</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={[Typography.h3, { color: colors.text }]}>
+                    Practice My Mistakes
+                  </Text>
+                  <Text
+                    style={[
+                      Typography.bodySm,
+                      { color: colors.textSecondary, marginTop: 2 },
+                    ]}
+                  >
+                    {mistakeCount > 0 ? `${mistakeCount} questions to revisit` : 'Learn from wrong answers'}
+                  </Text>
+                </View>
+              </Pressable>
+            </JournalCard>
+          </View>
         </Animated.ScrollView>
       </SafeAreaView>
     </DotGridBackground>

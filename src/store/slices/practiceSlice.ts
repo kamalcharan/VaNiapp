@@ -12,12 +12,14 @@ interface ExamState {
   currentSession: ExamSession | null;
   chapterHistory: ChapterExamSession[];
   practiceHistory: PracticeExamSession[];
+  mistakeIds: string[];
 }
 
 const initialState: ExamState = {
   currentSession: null,
   chapterHistory: [],
   practiceHistory: [],
+  mistakeIds: [],
 };
 
 const practiceSlice = createSlice({
@@ -77,12 +79,27 @@ const practiceSlice = createSlice({
       state.currentSession = null;
     },
 
+    recordMistake: (state, action: PayloadAction<string>) => {
+      if (!state.mistakeIds.includes(action.payload)) {
+        state.mistakeIds.push(action.payload);
+      }
+    },
+
+    removeMistake: (state, action: PayloadAction<string>) => {
+      state.mistakeIds = state.mistakeIds.filter((id) => id !== action.payload);
+    },
+
+    clearMistakes: (state) => {
+      state.mistakeIds = [];
+    },
+
     clearCurrentSession: (state) => {
       state.currentSession = null;
     },
     rehydrate: (_state, action: PayloadAction<ExamState>) => ({
       ...action.payload,
       currentSession: null, // never restore mid-session state
+      mistakeIds: action.payload.mistakeIds ?? [],
     }),
   },
 });
@@ -93,6 +110,9 @@ export const {
   updateAnswer,
   completeChapterExam,
   completePracticeExam,
+  recordMistake,
+  removeMistake,
+  clearMistakes,
   clearCurrentSession,
 } = practiceSlice.actions;
 
