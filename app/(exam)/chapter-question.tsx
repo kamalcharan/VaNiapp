@@ -504,6 +504,10 @@ export default function ChapterQuestionScreen() {
         questionText={language === 'te' ? question.textTe : question.text}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
+        selectedOptionKey={selectedOptionId ?? undefined}
+        eliminationHints={question.eliminationHints}
+        conceptTags={question.conceptTags}
+        onConceptPress={(tag) => { setSelectedConceptTag(tag); setShowConceptSheet(true); }}
       />
 
       {/* Concept Explainer Bottom Sheet (R10) */}
