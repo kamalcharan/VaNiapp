@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
   Pressable,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -19,10 +20,9 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { RootState } from '../../src/store';
-import { getV2QuestionsByChapter } from '../../src/data/questions';
-import { getChapterById } from '../../src/data/chapters';
-import { getCorrectId, legacyBatchToV2 } from '../../src/lib/questionAdapter';
-import { getAllQuestions } from '../../src/data/questions';
+import { getCorrectId } from '../../src/lib/questionAdapter';
+import { fetchQuestionsByIds } from '../../src/lib/questionService';
+import { getChapters } from '../../src/lib/catalog';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
@@ -56,23 +56,43 @@ export default function AnswerReviewScreen() {
   const [showConceptSheet, setShowConceptSheet] = useState(false);
   const [selectedConceptTag, setSelectedConceptTag] = useState('');
 
-  // Build question list + answer map
-  const { questions, answerMap } = useMemo(() => {
-    if (!session) return { questions: [] as QuestionV2[], answerMap: {} as Record<string, UserAnswer> };
+  // Fetch questions from DB + build chapter name map
+  const [questions, setQuestions] = useState<QuestionV2[]>([]);
+  const [chapterNameMap, setChapterNameMap] = useState<Record<string, { name: string; nameTe: string }>>({});
+  const [isLoading, setIsLoading] = useState(true);
 
-    let qs: QuestionV2[];
-    if (session.mode === 'chapter') {
-      qs = getV2QuestionsByChapter(session.chapterId);
-    } else {
-      qs = legacyBatchToV2(getAllQuestions());
-    }
-
+  const answerMap = useMemo(() => {
+    if (!session) return {} as Record<string, UserAnswer>;
     const aMap: Record<string, UserAnswer> = {};
-    session.answers.forEach((a) => {
-      aMap[a.questionId] = a;
+    session.answers.forEach((a) => { aMap[a.questionId] = a; });
+    return aMap;
+  }, [session]);
+
+  useEffect(() => {
+    if (!session) { setIsLoading(false); return; }
+    const questionIds = session.answers.map((a) => a.questionId);
+    if (questionIds.length === 0) { setIsLoading(false); return; }
+
+    let cancelled = false;
+    fetchQuestionsByIds(questionIds).then(async (qs) => {
+      if (cancelled) return;
+      setQuestions(qs);
+
+      // Fetch chapter names from catalog
+      const subjectIds = [...new Set(qs.map((q) => q.subjectId))];
+      const chapterResults = await Promise.all(subjectIds.map((sid) => getChapters(sid)));
+      const cMap: Record<string, { name: string; nameTe: string }> = {};
+      chapterResults.flat().forEach((ch) => {
+        cMap[ch.id] = { name: ch.name, nameTe: ch.name_te || ch.name };
+      });
+
+      if (!cancelled) {
+        setChapterNameMap(cMap);
+        setIsLoading(false);
+      }
     });
 
-    return { questions: qs, answerMap: aMap };
+    return () => { cancelled = true; };
   }, [session]);
 
   // Classify each question
@@ -133,6 +153,30 @@ export default function AnswerReviewScreen() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.container} edges={['top']}>
+          <View style={[styles.header, { borderBottomColor: colors.surfaceBorder }]}>
+            <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backBtn}>
+              <Text style={[styles.backArrow, { color: colors.text }]}>{'<'}</Text>
+            </Pressable>
+            <View style={styles.headerCenter}>
+              <Text style={[Typography.h3, { color: colors.text }]}>Answer Review</Text>
+            </View>
+            <View style={{ width: 36 }} />
+          </View>
+          <View style={styles.emptyState}>
+            <ActivityIndicator size="large" color={colors.primary} />
+            <Text style={[Typography.body, { color: colors.textSecondary, marginTop: Spacing.md }]}>
+              Loading questions...
+            </Text>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
   if (!session || !current) {
     return (
       <DotGridBackground>
@@ -147,7 +191,7 @@ export default function AnswerReviewScreen() {
 
   const { question, selected, status } = current;
   const subjectMeta = SUBJECT_META[question.subjectId];
-  const chapter = getChapterById(question.chapterId);
+  const chapter = chapterNameMap[question.chapterId] ?? null;
 
   const FILTERS: { key: Filter; label: string; count: number }[] = [
     { key: 'all', label: 'All', count: counts.all },

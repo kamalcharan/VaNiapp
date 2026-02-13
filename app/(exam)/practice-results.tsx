@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -14,8 +14,33 @@ import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { RootState } from '../../src/store';
 import { NeetSubjectId, NEET_SCORING } from '../../src/types';
+import { fetchQuestionsByIds } from '../../src/lib/questionService';
+import { getCorrectId } from '../../src/lib/questionAdapter';
+import { getChapters } from '../../src/lib/catalog';
 
 const SUBJECTS: NeetSubjectId[] = ['physics', 'chemistry', 'botany', 'zoology'];
+
+interface DiffStat {
+  total: number;
+  correct: number;
+}
+
+interface ChapterPerf {
+  id: string;
+  name: string;
+  subjectId: string;
+  accuracy: number;
+  correct: number;
+  wrong: number;
+  total: number;
+}
+
+interface Analytics {
+  diffStats: Record<'easy' | 'medium' | 'hard', DiffStat>;
+  chapters: ChapterPerf[];
+  weakest: { name: string; accuracy: number } | null;
+  strongest: { name: string; accuracy: number } | null;
+}
 
 export default function PracticeResultsScreen() {
   const { colors } = useTheme();
@@ -63,8 +88,76 @@ export default function PracticeResultsScreen() {
     return `${m}m ${s}s`;
   };
 
-  // Analytics: difficulty + chapter breakdown (requires question metadata — pending future release)
-  const analytics = null;
+  // Analytics: difficulty + chapter breakdown (fetched from DB)
+  const [analytics, setAnalytics] = useState<Analytics | null>(null);
+
+  useEffect(() => {
+    if (!lastExam) return;
+    const questionIds = lastExam.answers.map((a) => a.questionId);
+    if (questionIds.length === 0) return;
+
+    let cancelled = false;
+    fetchQuestionsByIds(questionIds).then(async (questions) => {
+      if (cancelled) return;
+
+      const answerMap: Record<string, string | null> = {};
+      lastExam.answers.forEach((a) => { answerMap[a.questionId] = a.selectedOptionId; });
+
+      // Difficulty stats
+      const diffStats: Record<'easy' | 'medium' | 'hard', DiffStat> = {
+        easy: { total: 0, correct: 0 },
+        medium: { total: 0, correct: 0 },
+        hard: { total: 0, correct: 0 },
+      };
+
+      // Chapter stats
+      const chapterStats: Record<string, { correct: number; wrong: number; total: number; subjectId: string }> = {};
+
+      for (const q of questions) {
+        const selected = answerMap[q.id];
+        const isCorrect = selected === getCorrectId(q);
+        const isAnswered = !!selected;
+
+        diffStats[q.difficulty].total++;
+        if (isCorrect) diffStats[q.difficulty].correct++;
+
+        if (!chapterStats[q.chapterId]) {
+          chapterStats[q.chapterId] = { correct: 0, wrong: 0, total: 0, subjectId: q.subjectId };
+        }
+        chapterStats[q.chapterId].total++;
+        if (isCorrect) chapterStats[q.chapterId].correct++;
+        else if (isAnswered) chapterStats[q.chapterId].wrong++;
+      }
+
+      // Fetch chapter names from catalog
+      const subjectIds = [...new Set(questions.map((q) => q.subjectId))];
+      const chapterResults = await Promise.all(subjectIds.map((sid) => getChapters(sid)));
+      const chapterNameMap: Record<string, string> = {};
+      chapterResults.flat().forEach((ch) => { chapterNameMap[ch.id] = ch.name; });
+
+      // Build chapters array sorted by accuracy (worst first)
+      const chapters: ChapterPerf[] = Object.entries(chapterStats)
+        .map(([id, stats]) => ({
+          id,
+          name: chapterNameMap[id] || id,
+          subjectId: stats.subjectId,
+          accuracy: stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0,
+          correct: stats.correct,
+          wrong: stats.wrong,
+          total: stats.total,
+        }))
+        .sort((a, b) => a.accuracy - b.accuracy);
+
+      const weakest = chapters.length > 0 ? { name: chapters[0].name, accuracy: chapters[0].accuracy } : null;
+      const strongest = chapters.length > 0 ? { name: chapters[chapters.length - 1].name, accuracy: chapters[chapters.length - 1].accuracy } : null;
+
+      if (!cancelled) {
+        setAnalytics({ diffStats, chapters, weakest, strongest });
+      }
+    });
+
+    return () => { cancelled = true; };
+  }, [lastExam]);
 
   const handleRetry = () => router.replace('/(exam)/practice-start');
   const handleGoHome = () => router.replace('/(main)');
