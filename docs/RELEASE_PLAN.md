@@ -1,355 +1,207 @@
-# VaNi Release Plan — AI Features (No DB)
+# VaNi Release Plan — AI Features
 
-> All features leverage the current stack: Expo 54, Redux Toolkit,
-> AsyncStorage, local JSON data, and Supabase Edge Functions for
-> Claude API proxying. No PostgreSQL, no Redis, no backend server.
+> Stack: Expo 54, Redux Toolkit, AsyncStorage, Supabase (Auth + Postgres + Edge Functions).
+> Questions now served from Supabase DB (`med_questions`, `med_question_options`, `med_elimination_hints`).
+> AI features use Supabase Edge Functions for Claude API proxying.
 
 ---
 
-## Current State (R1–R6 complete)
+## Current State (R1–R9 complete + DB migration)
 
 | Layer | What Exists |
 |-------|------------|
-| State | Redux: auth, practice, music, focus, squad — persisted via AsyncStorage |
-| Data | Local JSON: 8 chapter question files in `src/data/questions/`, chapters in `src/data/chapters.ts` |
+| State | Redux: auth, practice, music, focus, squad, ai, strength, bookmark — persisted via AsyncStorage |
+| Data | **Supabase DB**: `med_questions`, `med_question_options`, `med_elimination_hints` tables. Local JSON files still exist but no longer used by exam screens. |
 | Auth | Supabase Auth (email/OTP) |
-| UI | Journal aesthetic, StickyNote, JournalCard, ConfettiBurst, StreakBadge, Toast |
-| Exam | 3 modes — Chapter (25Q), Practice (200Q), Quick (20Q) — all MCQ only |
-| Question model | `Question` type with 4 options, explanation, elimination technique, bilingual |
+| UI | Journal aesthetic, StickyNote, JournalCard, ConfettiBurst, StreakBadge, Toast, HandwrittenText, PuffyButton |
+| Exam | 3 modes — Chapter, Practice (200Q NEET format), Quick (20Q) — all 8 question types |
+| Question model | `QuestionV2` type with discriminated union payload (8 types). Legacy `Question` type still exists but unused. |
+| Routing | expo-router v6 with groups: `(auth)`, `(main)`, `setup/`, `subject/`, `(exam)` |
+| AI | AI Doubt Solver via Supabase Edge Function (Claude Haiku/Sonnet), aiSlice with history + rate limiting |
+| Bookmarks | Bookmark system with Redux slice, works across all exam modes |
+| Strength | Chapter strength tracker with 4 levels (just-started, getting-there, on-track, strong) |
 
 ---
 
 ## Release Map
 
 ```
-R7 ─── Stage System + QuestionV2 Types
+R7 ─── Stage System + QuestionV2 Types           ✅ DONE
  │
-R8 ─── New Question Type UIs
+R8 ─── New Question Type UIs                     ✅ DONE
  │
-R9 ─── AI Doubt Solver (flagship)
+R9 ─── AI Doubt Solver + Bookmarks + DB Wire     ✅ DONE
  │
-R10 ── Wrong-Answer Analysis + Concept Explainer
+R10 ── Wrong-Answer Analysis + Concept Explainer  ⬜ NEXT
  │
-R11 ── AI Study Plan + Mock Analysis
+R11 ── AI Study Plan + Mock Analysis              ⬜ PENDING
  │
-R12 ── Paywall + Tier Gating
+R12 ── Paywall + Tier Gating                      ⬜ PENDING
 ```
 
 ---
 
-## R7 — Stage Progression + QuestionV2 Type System
+## R7 — Stage Progression + QuestionV2 Type System ✅ DONE
 
-**Goal**: Introduce the stage ladder and extend the question model to support
-all 8 question types. No UI for new types yet — this is the data foundation.
+**Status**: Complete. Implemented as `strengthSlice` instead of `stageSlice`.
 
-### What Gets Built
+### What Was Built
 
-1. **Stage system in Redux**
-   - New `stageSlice.ts` tracking: `stage`, `totalAttempted`, `subjectAccuracy`, `lastEvaluatedAt`
-   - Evaluate stage every 50 questions (in `completeChapterExam` / quick-question flow)
-   - Stages: Rookie → Learner → Achiever → Pro → NEET Ready
-   - No demotion — once earned, permanent
+1. **Strength system in Redux** (`src/store/slices/strengthSlice.ts`)
+   - Chapter-level strength tracking with 4 levels: just-started → getting-there → on-track → strong
+   - Strength-based question type gating (unlocks harder types as student improves)
+   - Persisted via AsyncStorage
 
-2. **QuestionV2 type definition**
-   - Extend `src/types/index.ts` with `QuestionV2`, `QuestionType`, `QuestionPayload` union
-   - Backward-compatible: existing `Question` maps to `QuestionV2` with `type: 'mcq'`
-   - Add adapter function `legacyToV2(q: Question): QuestionV2`
+2. **QuestionV2 type system** (`src/types/index.ts`)
+   - `QuestionV2` with discriminated union `QuestionPayload` for 8 types
+   - `QuestionType`: mcq, assertion-reasoning, match-the-following, true-false, diagram-based, logical-sequence, fill-in-blanks, scenario-based
+   - `getCorrectId(q)` helper extracts correct answer from any payload type
 
-3. **Stage badge on dashboard + profile**
-   - Show current stage emoji + name next to greeting
-   - Stage progress bar (questions until next stage)
+3. **Question adapter** (`src/lib/questionAdapter.ts`)
+   - `legacyToV2()`, `legacyBatchToV2()` converters (no longer needed after DB migration)
+   - `getCorrectId()` still used for scoring
 
-4. **Stage gate for question selection**
-   - Question loader filters by `stage` field — Rookie only sees easy MCQ + T/F
-   - As student progresses, harder types unlock (shown with lock icon until available)
-
-### Files
-
-| Action | File |
-|--------|------|
-| Create | `src/store/slices/stageSlice.ts` |
-| Modify | `src/types/index.ts` — add QuestionV2, QuestionType, Stage, StageConfig |
-| Modify | `src/store/index.ts` — register stageSlice, persist it |
-| Create | `src/lib/stageEvaluator.ts` — pure function: given stats → returns Stage |
-| Create | `src/lib/questionAdapter.ts` — legacyToV2 converter |
-| Modify | `app/(tabs)/index.tsx` — show stage badge |
-| Modify | `app/(tabs)/profile.tsx` — show stage + progress |
-| Modify | `app/(exam)/quick-question.tsx` — call stage evaluator after answer |
-
-### How It Works Without DB
-
-- Stage state lives in `stageSlice` → auto-persisted to AsyncStorage via existing `store.subscribe`
-- Accuracy / attempt counts computed from `practiceSlice.chapterHistory` + local counter in stageSlice
-- All local, zero network calls
+4. **Strength badges on dashboard + profile**
 
 ---
 
-## R8 — New Question Type UIs
+## R8 — New Question Type UIs ✅ DONE
 
-**Goal**: Build the exam screens for all 8 question types. Students start seeing
-variety based on their stage.
+**Status**: Complete. All 8 question type components built with QuestionRenderer.
 
-### What Gets Built
+### What Was Built
 
-1. **Question type renderer (switch component)**
-   - `QuestionRenderer.tsx` — takes `QuestionV2`, renders correct UI by `type`
-   - Each type gets its own sub-component
+1. **QuestionRenderer** (`src/components/exam/QuestionRenderer.tsx`)
+   - Switch component that renders correct UI by `QuestionV2.type`
 
-2. **Question type UI components**
+2. **8 question type components** (all in `src/components/exam/`)
+   - `McqQuestion.tsx`, `TrueFalseQuestion.tsx`, `AssertionReasoningQuestion.tsx`
+   - `MatchQuestion.tsx`, `FillBlanksQuestion.tsx`, `DiagramQuestion.tsx`
+   - `SequenceQuestion.tsx`, `ScenarioQuestion.tsx`
 
-   | Type | Component | UX |
-   |------|-----------|-----|
-   | `mcq` | `McqQuestion.tsx` | Existing behavior (4 radio options) |
-   | `true-false` | `TrueFalseQuestion.tsx` | Two large True/False cards, swipe-able |
-   | `assertion-reasoning` | `AssertionReasoningQuestion.tsx` | Assertion card + Reason card stacked, then 4 evaluation options below |
-   | `match-the-following` | `MatchQuestion.tsx` | Two columns with drag lines or MCQ combo options |
-   | `fill-in-blanks` | `FillBlanksQuestion.tsx` | Sentence with highlighted blank, 4 word options below |
-   | `diagram-based` | `DiagramQuestion.tsx` | Zoomable image + 4 options below |
-   | `logical-sequence` | `SequenceQuestion.tsx` | Draggable item cards OR MCQ combo options |
-   | `scenario-based` | `ScenarioQuestion.tsx` | Scrollable passage card + 4 options below |
+3. **32 sample V2 questions** in `src/data/questions/` (4 per type)
 
-3. **Sample questions for each type**
-   - Add 5-10 sample questions per new type in `src/data/questions/`
-   - Initially for Physics + Biology (highest NEET weight)
-
-4. **Wire into exam flows**
-   - `chapter-question.tsx`, `quick-question.tsx`, `practice-question.tsx` all use `QuestionRenderer`
-   - Elimination technique works for MCQ-style types (MCQ, assertion-reasoning, fill-blanks, scenario, diagram, match, sequence)
-   - True/False has no elimination (binary choice)
-
-### Files
-
-| Action | File |
-|--------|------|
-| Create | `src/components/exam/QuestionRenderer.tsx` |
-| Create | `src/components/exam/McqQuestion.tsx` |
-| Create | `src/components/exam/TrueFalseQuestion.tsx` |
-| Create | `src/components/exam/AssertionReasoningQuestion.tsx` |
-| Create | `src/components/exam/MatchQuestion.tsx` |
-| Create | `src/components/exam/FillBlanksQuestion.tsx` |
-| Create | `src/components/exam/DiagramQuestion.tsx` |
-| Create | `src/components/exam/SequenceQuestion.tsx` |
-| Create | `src/components/exam/ScenarioQuestion.tsx` |
-| Create | `src/data/questions/sample-assertion-reasoning.ts` |
-| Create | `src/data/questions/sample-match.ts` |
-| Create | `src/data/questions/sample-truefalse.ts` |
-| Create | `src/data/questions/sample-scenario.ts` |
-| Modify | `src/data/questions/index.ts` — export new sample sets |
-| Modify | `app/(exam)/chapter-question.tsx` — use QuestionRenderer |
-| Modify | `app/(exam)/quick-question.tsx` — use QuestionRenderer |
-| Modify | `app/(exam)/practice-question.tsx` — use QuestionRenderer |
-
-### How It Works Without DB
-
-- All sample questions are static JSON files bundled in the app
-- Question type filtering uses the `stage` field + student's current stage from Redux
-- Zero network dependency — works fully offline
+4. **Wired into exam flows** — chapter-question, quick-question use QuestionRenderer
 
 ---
 
-## R9 — AI Doubt Solver
+## R9 — AI Doubt Solver + Bookmarks + DB Migration ✅ DONE
 
-**Goal**: The flagship AI feature. Student taps "Ask VaNi", types a question,
-gets an AI-powered explanation. This is the primary reason to upgrade to AI tier.
+**Status**: Complete. AI doubt solver, bookmark system, and full DB migration done.
 
-### Architecture (No DB)
+### What Was Built
 
-```
-┌──────────────┐     HTTPS POST      ┌──────────────────┐     Claude API
-│  Mobile App  │ ──────────────────► │ Supabase Edge Fn │ ──────────────►
-│  (AI Screen) │ ◄────────────────── │ /ai/doubt-solver │ ◄──────────────
-└──────────────┘     JSON response   └──────────────────┘
-                                       │
-                                       ├─ Validates JWT (Supabase Auth)
-                                       ├─ Checks rate limit (in-memory map)
-                                       └─ Calls Claude API (Haiku/Sonnet)
-```
+1. **AI Doubt Solver**
+   - `src/store/slices/aiSlice.ts` — Redux slice with doubt history, daily usage, rate limiting
+   - `src/lib/aiClient.ts` — client-side cache check → Edge Function call → store response
+   - Supabase Edge Function for Claude API proxying (Haiku/Sonnet)
+   - Client-side caching via doubtHistory in aiSlice
 
-- **No Redis**: Rate limiting via in-memory Map in Edge Function + client-side Redux counter
-- **No DB for logs**: Usage tracked client-side in `aiSlice`. Server logs to Supabase Edge Function logs (free tier)
-- **API key stays server-side**: Claude API key lives in Supabase secrets, never on device
+2. **Bookmark System**
+   - `src/store/slices/bookmarkSlice.ts` — toggle bookmark, list bookmarked questions
+   - Works across all exam modes (chapter, quick, practice)
 
-### What Gets Built
+3. **DB Migration — All Exam Screens Wired to Supabase** (done mid-R9)
+   - `src/lib/questionService.ts` — fetches from `med_questions` + `med_question_options` + `med_elimination_hints`
+   - `fetchChapterQuestions()` — chapter exam mode
+   - `fetchQuickPracticeQuestions()` — quick practice mode
+   - `fetchPracticeExamQuestions()` — full NEET practice exam (200Q, 4 subjects)
+   - All screens have loading spinners + empty states
+   - `hydrateQuestions()` shared helper: fetch options + hints → convert to QuestionV2
+   - `dbToQuestionV2()` + `buildPayload()` — converts DB rows to QuestionV2 with all 8 type payloads
 
-1. **Supabase Edge Function**: `supabase/functions/ai-doubt-solver/index.ts`
-   - Accepts: `{ query, subjectId, chapterId?, exam, language }`
-   - Validates Supabase JWT from Authorization header
-   - Builds system prompt with exam + subject context
-   - Calls Claude Haiku (default) or Sonnet (if query contains comparison/multi-step keywords)
-   - Returns: `{ answer, relatedConcepts, source: 'generated' }`
-   - Prompt caching header enabled for system prompt
+4. **Exam screens updated**:
+   - `app/(exam)/chapter-question.tsx` — uses `fetchChapterQuestions()` from DB
+   - `app/(exam)/quick-question.tsx` — uses `fetchQuickPracticeQuestions()` from DB
+   - `app/(exam)/practice-question.tsx` — uses `fetchPracticeExamQuestions()` from DB
+   - `app/(exam)/chapter-results.tsx` — uses route params (chapterName, subjectId)
+   - `app/(exam)/practice-results.tsx` — uses route params + Redux subjectScores
 
-2. **AI Slice**: `src/store/slices/aiSlice.ts`
-   - `dailyUsage` counter (resets at midnight)
-   - `doubtHistory` (last 20 queries — serves as on-device semantic cache)
-   - `tier: 'free' | 'pro' | 'ai'` (manually set for now, paywall in R12)
-   - `stage` reference for contextual prompting
+### Known Gaps from R9
 
-3. **Doubt Solver Screen**: `app/(tabs)/ask-vani.tsx`
-   - New tab in bottom nav (replace or add alongside existing 3)
-   - Chat-bubble interface in a scrollable view
-   - Input bar at bottom with subject selector chip
-   - Typing indicator while waiting for AI response
-   - Responses rendered as markdown (bold, bullets, code for formulas)
-   - "Was this helpful?" thumbs up/down (stored locally for now)
-
-4. **"Ask VaNi" entry points**
-   - Floating button on question review screens (`answer-review.tsx`, post-answer feedback)
-   - Button in chapter-results when accuracy < 50% ("Struggling? Ask VaNi")
-   - Dashboard card for AI tier users
-
-5. **Client-side caching**
-   - Before calling Edge Function, check `doubtHistory` for similar query (exact match on `subjectId + normalized query`)
-   - If hit → return cached response instantly, no network call
-   - AsyncStorage persists doubt history across app restarts
-
-### Files
-
-| Action | File |
-|--------|------|
-| Create | `supabase/functions/ai-doubt-solver/index.ts` |
-| Create | `src/store/slices/aiSlice.ts` |
-| Create | `src/lib/aiClient.ts` — wrapper: check cache → call Edge Fn → store response |
-| Create | `app/(tabs)/ask-vani.tsx` — doubt solver chat screen |
-| Modify | `app/(tabs)/_layout.tsx` — add Ask VaNi tab |
-| Modify | `src/store/index.ts` — register aiSlice, persist it |
-| Modify | `app/(exam)/answer-review.tsx` — "Ask VaNi" button |
-| Modify | `app/(exam)/chapter-results.tsx` — struggling CTA |
-| Modify | `app/(tabs)/index.tsx` — AI card for AI-tier users |
-
-### Rate Limiting (No DB)
-
-```typescript
-// Client-side (aiSlice.ts)
-dailyUsage: {
-  date: '2026-02-03',       // resets when date changes
-  doubtSolver: 0,           // incremented per query
-  limit: 50,
-}
-
-// Server-side (Edge Function — in-memory, resets on cold start)
-const usageMap = new Map<string, { count: number; resetAt: number }>();
-// Per userId: allow 50/day, 15/hour
-// Cold starts reset the map — acceptable for POC, not exploitable at scale
-```
-
-### Estimated Cost per Edge Function Call
-
-| Model | Input | Output | Cost/Call |
-|-------|-------|--------|-----------|
-| Haiku | ~800 tokens | ~500 tokens | ~₹0.05 |
-| Sonnet | ~800 tokens | ~500 tokens | ~₹0.80 |
-
-With 80/20 Haiku/Sonnet split and client cache: **~₹40-60/user/month**
+- `practice-results.tsx` analytics tab (difficulty + chapter breakdown) is nulled out — needs question metadata stored in session
+- Answer review screen not yet wired to DB
+- "Ask VaNi" entry points on exam screens not fully integrated
 
 ---
 
-## R10 — Wrong-Answer Analysis + Concept Explainer
+## R10 — Wrong-Answer Analysis + Concept Explainer ⬜ NEXT
 
 **Goal**: After getting a question wrong, show AI-powered analysis of the
 misconception. Plus, tap any concept tag to get a deep explanation.
 
-### Architecture (No DB)
+### Architecture (DB-backed)
 
-**Wrong-Answer Analysis** — mostly pre-generated, bundled locally:
-
-```
-┌────────────────────────────┐
-│  src/data/explanations/    │   ← Pre-generated JSON files
-│    physics-laws-of-motion  │      per (question × wrong option)
-│    chemistry-bonding       │
-│    botany-cell-biology     │
-│    ...                     │
-└────────────────────────────┘
-         │
-         ▼
-   Student answers wrong
-         │
-   Lookup by questionId + selectedOptionId
-         │
-   ┌─ HIT ──► Show pre-generated analysis (zero cost)
-   │
-   └─ MISS ─► Call Supabase Edge Function (Haiku) ─► Cache response locally
-```
-
-**Concept Explainer** — same pattern but keyed by `conceptTag`:
+**Wrong-Answer Analysis** — uses `med_elimination_hints` already in DB:
 
 ```
-src/data/concepts/
-  physics/
-    newtons-laws.json
-    thermodynamics.json
-  chemistry/
-    chemical-bonding.json
-  ...
+Student answers wrong
+    │
+    ├─ Look up hint from med_elimination_hints (already fetched with question)
+    │   → Each wrong option has: hint_text, misconception, hint_text_te, misconception_te
+    │
+    ├─ HIT ──► Show DB-stored analysis (zero API cost)
+    │
+    └─ MISS ─► Call Supabase Edge Function (Haiku) ─► Cache response in aiSlice
+```
+
+**Concept Explainer** — keyed by `concept_tags` on `med_questions`:
+
+```
+Student taps concept tag
+    │
+    ├─ Check local concept cache (aiSlice)
+    │
+    ├─ HIT ──► Show cached explanation
+    │
+    └─ MISS ─► Call Supabase Edge Function (Sonnet) ─► Cache locally
 ```
 
 ### What Gets Built
 
-1. **Pre-generated content files**
-   - `src/data/explanations/` — one JSON file per chapter
-   - Each file: array of `{ questionId, selectedOptionId, misconception, correctReasoning, tip, conceptTag }`
-   - Start with existing 8 chapters (all current questions) — ~200 questions × 3 wrong options = 600 entries
-   - Generated offline using a script (Claude Haiku batch)
-
-2. **Content generation script**
-   - `scripts/generate-explanations.ts` — reads all questions from `src/data/questions/`, calls Claude API, writes JSON
-   - Run once locally, output committed to repo
-   - Can be re-run when new questions are added
-
-3. **Pre-generated concept files**
-   - `src/data/concepts/` — one JSON per subject, containing concept explanations
-   - Each entry: `{ conceptTag, title, explanation, analogy, examRelevance, commonMistakes, quickRecap }`
-   - Start with ~50 concepts covering existing chapters
-
-4. **Supabase Edge Function for cache misses**
-   - `supabase/functions/ai-wrong-answer/index.ts` — fallback when pre-gen misses
-   - `supabase/functions/ai-concept-explain/index.ts` — fallback for concepts not in bundle
-
-5. **Wrong-Answer UI**
-   - After wrong answer in any exam mode: show expandable "Why was I wrong?" card
-   - Card shows: misconception, correct reasoning, tip
+1. **Wrong-Answer UI** — after wrong answer in any exam mode:
+   - Show expandable "Why was I wrong?" card using elimination hints from DB
+   - Card shows: misconception, hint text (bilingual)
    - Concept tag is tappable → opens concept explainer bottom sheet
 
-6. **Concept Explainer Bottom Sheet**
+2. **Concept Explainer Bottom Sheet**
    - `src/components/ConceptExplainerSheet.tsx`
-   - Triggered from: wrong-answer analysis tag, chapter screen concept list, doubt solver related concepts
-   - Shows: title, explanation (markdown), analogy in a StickyNote, exam relevance, common mistakes
+   - Shows: title, explanation (markdown), analogy, exam relevance, common mistakes
+   - First call: Edge Function (Sonnet) → response cached in aiSlice
+
+3. **Edge Functions for concept explainer**
+   - `supabase/functions/ai-concept-explain/index.ts`
+   - No `ai-wrong-answer` Edge Function needed (hints already in DB)
+
+4. **Practice results analytics re-enablement**
+   - Store question metadata (difficulty, chapterId, subjectId) in practice session
+   - Re-enable difficulty breakdown + chapter performance in `practice-results.tsx`
+
+5. **"Practice My Mistakes" mode**
+   - Wire wrong answer tracking → allow retry of missed questions
 
 ### Files
 
 | Action | File |
 |--------|------|
-| Create | `scripts/generate-explanations.ts` |
-| Create | `scripts/generate-concepts.ts` |
-| Create | `src/data/explanations/*.json` (per chapter, generated) |
-| Create | `src/data/concepts/*.json` (per subject, generated) |
-| Create | `src/lib/explanationLookup.ts` — local lookup + Edge Function fallback |
-| Create | `src/lib/conceptLookup.ts` — local lookup + Edge Function fallback |
 | Create | `src/components/ConceptExplainerSheet.tsx` |
-| Create | `supabase/functions/ai-wrong-answer/index.ts` |
 | Create | `supabase/functions/ai-concept-explain/index.ts` |
-| Modify | `app/(exam)/chapter-question.tsx` — wrong-answer card in feedback |
-| Modify | `app/(exam)/quick-question.tsx` — wrong-answer card in feedback |
+| Modify | `app/(exam)/chapter-question.tsx` — wrong-answer card in post-answer feedback |
+| Modify | `app/(exam)/quick-question.tsx` — wrong-answer card in post-answer feedback |
+| Modify | `app/(exam)/practice-results.tsx` — re-enable analytics with stored metadata |
 | Modify | `app/(exam)/answer-review.tsx` — concept tags + explainer sheet |
-| Modify | `src/store/slices/aiSlice.ts` — track wrong-answer + concept usage |
-
-### How It Works Without DB
-
-- All pre-generated content ships **inside the app bundle** as JSON imports
-- Lookup is a synchronous `Map.get()` — instant, offline, zero cost
-- Edge Function only called for questions/concepts not in the bundle (~5-10% of cases)
-- Fallback responses cached in AsyncStorage for next time
+| Modify | `src/store/slices/aiSlice.ts` — concept cache, wrong-answer usage tracking |
+| Modify | `src/store/slices/practiceSlice.ts` — store question metadata in session |
 
 ### Cost Impact
 
-- 90%+ of wrong-answer analysis: **₹0** (pre-generated)
-- Concept explainer: **₹0** for bundled concepts, ~₹0.80/call for Sonnet fallback
-- Net impact on per-user cost: **₹5-15/month** (mostly from rare concept fallbacks)
+- Wrong-answer analysis: **₹0** (uses DB elimination hints, already fetched)
+- Concept explainer: ~₹0.80/call for Sonnet, cached after first call
+- Net impact: **₹5-15/month** per user (mostly concept explainer cache misses)
 
 ---
 
-## R11 — AI Study Plan + Mock Analysis
+## R11 — AI Study Plan + Mock Analysis ⬜ PENDING
 
 **Goal**: Weekly study plan generation and post-mock deep analysis.
 Both are low-frequency, high-value features.
@@ -430,7 +282,7 @@ Mock Analysis:
 
 ---
 
-## R12 — Paywall + Tier Gating
+## R12 — Paywall + Tier Gating ⬜ PENDING
 
 **Goal**: Gate AI features behind the VaNi AI tier. Show paywall, handle
 upgrade flow, and enforce tier checks throughout the app.
@@ -508,21 +360,20 @@ Payment: Razorpay (India-standard) via WebView
 ## Release Dependencies
 
 ```
-R7 (Stage + QuestionV2)
+R7 (Strength + QuestionV2)       ✅ DONE
  │
- ├──► R8 (Question Type UIs)     ← needs QuestionV2 types + stage gating
+ ├──► R8 (Question Type UIs)     ✅ DONE
  │
- └──► R9 (Doubt Solver)          ← needs aiSlice, can start parallel with R8
+ └──► R9 (AI + Bookmarks + DB)   ✅ DONE
        │
-       ├──► R10 (Wrong-Answer + Concepts) ← needs Edge Function pattern from R9
+       ├──► R10 (Wrong-Answer + Concepts) ← NEXT: needs elimination hints UI + concept explainer
        │
        └──► R11 (Study Plan + Mock)       ← needs performanceCollector + aiSlice
               │
               └──► R12 (Paywall)          ← needs all AI features built to gate them
 ```
 
-R8 and R9 can run **in parallel** after R7 is done.
-R10 and R11 can run **in parallel** after R9 is done.
+R10 and R11 can run **in parallel**.
 R12 is the final gate — only after all AI features exist.
 
 ---
@@ -553,29 +404,30 @@ Cost at that scale: ~₹500/month for Edge Function compute. Negligible.
 | Data | Storage | Backup |
 |------|---------|--------|
 | User profile + tier | Supabase Auth user_metadata | Supabase handles it |
-| Stage, accuracy, streaks | Redux → AsyncStorage | Device-only (acceptable for POC) |
+| Questions (all types) | **Supabase DB** (`med_questions` + `med_question_options` + `med_elimination_hints`) | Supabase handles it |
+| Subject/chapter catalog | **Supabase DB** (`med_subjects`, `med_chapters`) | Supabase handles it |
+| Strength levels | Redux → AsyncStorage | Device-only (acceptable for POC) |
+| Bookmarks | Redux → AsyncStorage | Device-only |
 | Doubt history (last 20) | Redux → AsyncStorage | Device-only |
-| Study plan | Redux → AsyncStorage | Device-only |
-| Mock analyses | Redux → AsyncStorage | Device-only |
+| Practice history | Redux → AsyncStorage | Device-only |
+| Study plan (R11) | Redux → AsyncStorage | Device-only |
+| Mock analyses (R11) | Redux → AsyncStorage | Device-only |
 | Daily AI usage counts | Redux → AsyncStorage | Device-only |
-| Pre-generated explanations | Bundled JSON in app | In git repo |
-| Pre-generated concepts | Bundled JSON in app | In git repo |
-| Questions (all types) | Bundled JSON in app | In git repo |
 | Squad data | Redux → AsyncStorage | Device-only |
+| Legacy local JSON questions | `src/data/questions/` (still in codebase but **unused by exam screens**) | In git repo |
 
 **POC trade-off**: If student switches devices, they lose local history. Acceptable
-for POC. Post-POC: sync critical data (stage, history) to Supabase tables.
+for POC. Post-POC: sync critical data (strength, history, bookmarks) to Supabase tables.
 
 ---
 
 ## Migration Path (Post-POC)
 
-When ready to add a proper DB:
+DB is already in use for questions. Remaining post-POC work:
 
-1. **Supabase Postgres tables**: users, questions, sessions, ai_responses, subscriptions
-2. **Move pre-generated content**: from bundled JSON → Supabase Storage (downloadable content packs per subject)
-3. **Add Redis (Upstash)**: for semantic cache layer between device and Claude API
-4. **Sync engine**: on app launch, sync local AsyncStorage state to server (conflict resolution: server wins for tier/subscription, device wins for in-progress sessions)
-5. **Usage analytics**: Edge Functions log to Postgres instead of just console
+1. **Sync local state to server**: strength levels, bookmarks, practice history → Supabase tables (conflict resolution: server wins for tier/subscription, device wins for in-progress sessions)
+2. **Add Redis (Upstash)**: for semantic cache layer between device and Claude API (concept explainer, doubt solver)
+3. **Usage analytics**: Edge Functions log to Postgres instead of just console
+4. **Remove legacy local data**: clean out `src/data/questions/`, `src/data/chapters.ts` once DB is fully validated
 
 None of the R7-R12 code needs to be thrown away — it gains a sync layer on top.
