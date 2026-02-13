@@ -108,7 +108,7 @@ ORDER BY c.subject_id, c.chapter_number;
 | 6 | Backfill types: Fill-in-Blanks | `generate.html` | 10-15 per chapter |
 | 7 | Backfill types: Scenario-Based | `generate.html` | 10-15 per chapter |
 | 8 | Backfill types: Logical-Sequence | `generate.html` | 10-15 per chapter |
-| 9 | Backfill types: Diagram-Based | `generate.html` | 10 per chapter (text-described for now) |
+| 9 | Backfill types: Diagram-Based | `generate.html` | 10 per chapter (text-described only — see note below) |
 | 10 | Review + insert all type backfills | `review.html` → `insert.html` | |
 | 11 | Telugu translations batch | `translate.html` | All questions in DB get Telugu |
 | 12 | **Full NEET verification** | Mobile + SQL | All 72 chapters, all types, Telugu toggle |
@@ -125,6 +125,15 @@ ORDER BY c.subject_id, c.chapter_number;
 - [ ] Practice Exam (200Q) loads successfully with questions from all 4 subjects
 - [ ] Practice Exam Section A has 35 questions, Section B has 15 per subject
 - [ ] Quick Practice shows different question types (not all MCQ)
+
+### Note on Diagram-Based Questions
+
+Diagram-based questions use **text descriptions only** (no actual images). The QBank
+generate prompt instructs Gemini to describe the diagram in `question_text` and `imageAlt`.
+The `imageUri` field stores a placeholder string. **Actual image generation/hosting is on
+hold for future review** — the text-description approach works for exam prep since many
+NEET coaching materials use the same format. If image support is added later, existing
+diagram questions will need `image_url` updated to real URLs.
 
 ### Definition of Done
 

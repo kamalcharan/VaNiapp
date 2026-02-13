@@ -14,7 +14,7 @@
 | Data | **Supabase DB**: `med_questions`, `med_question_options`, `med_elimination_hints` tables. Local JSON files still exist but no longer used by exam screens. |
 | Auth | Supabase Auth (email/OTP) |
 | UI | Journal aesthetic, StickyNote, JournalCard, ConfettiBurst, StreakBadge, Toast, HandwrittenText, PuffyButton |
-| Exam | 3 modes — Chapter, Practice (200Q NEET format), Quick (20Q) — all 8 question types |
+| Exam | 3 modes — Chapter, Practice (200Q NEET format), Quick (20Q) — all 8 question types (diagram-based uses text descriptions; image support on hold for future review) |
 | Question model | `QuestionV2` type with discriminated union payload (8 types). Legacy `Question` type still exists but unused. |
 | Routing | expo-router v6 with groups: `(auth)`, `(main)`, `setup/`, `subject/`, `(exam)` |
 | AI | AI Doubt Solver via Supabase Edge Function (Claude Haiku/Sonnet), aiSlice with history + rate limiting |
@@ -79,7 +79,7 @@ R12 ── Paywall + Tier Gating                      ⬜ PENDING
    - `MatchQuestion.tsx`, `FillBlanksQuestion.tsx`, `DiagramQuestion.tsx`
    - `SequenceQuestion.tsx`, `ScenarioQuestion.tsx`
 
-3. **32 sample V2 questions** in `src/data/questions/` (4 per type)
+3. **32 sample V2 questions** in `src/data/questions/` (4 per type; diagram-based uses text descriptions + placeholder imageUri — image rendering on hold)
 
 4. **Wired into exam flows** — chapter-question, quick-question use QuestionRenderer
 
@@ -122,6 +122,7 @@ R12 ── Paywall + Tier Gating                      ⬜ PENDING
 - `practice-results.tsx` analytics tab (difficulty + chapter breakdown) is nulled out — needs question metadata stored in session
 - Answer review screen not yet wired to DB
 - "Ask VaNi" entry points on exam screens not fully integrated
+- **Diagram-based images on hold**: `DiagramBasedQuestion.tsx` shows placeholder only (no `<Image>` rendering). Gemini generates text descriptions of diagrams. Actual image generation/hosting deferred for future review — text-description approach sufficient for NEET prep.
 
 ---
 
