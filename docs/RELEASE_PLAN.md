@@ -125,277 +125,417 @@ R12 ── Paywall + Tier Gating                      ⬜ PENDING
 
 ---
 
-## R10 — Wrong-Answer Analysis + Concept Explainer ⬜ NEXT
+## QBank — Question Bank Completion (prerequisite for R10+)
 
-**Goal**: After getting a question wrong, show AI-powered analysis of the
-misconception. Plus, tap any concept tag to get a deep explanation.
+**See [QBANK_PLAN.md](./QBANK_PLAN.md) for full 3-iteration plan.**
 
-### Architecture (DB-backed)
+QBank must run **in parallel** with R10-R12 development. Every feature below
+depends on having enough questions with elimination hints + concept tags in the DB.
 
-**Wrong-Answer Analysis** — uses `med_elimination_hints` already in DB:
+| Iteration | Scope | Target |
+|-----------|-------|--------|
+| 1 | NEET Physics + Chemistry (40 chapters) | 4,000 Qs, MCQ-heavy |
+| 2 | All NEET (72 chapters) + all 8 types + Telugu | 14,400 Qs |
+| 3 | CUET (100+ chapters) + polish to 600/chapter | 50,000+ Qs |
 
-```
-Student answers wrong
-    │
-    ├─ Look up hint from med_elimination_hints (already fetched with question)
-    │   → Each wrong option has: hint_text, misconception, hint_text_te, misconception_te
-    │
-    ├─ HIT ──► Show DB-stored analysis (zero API cost)
-    │
-    └─ MISS ─► Call Supabase Edge Function (Haiku) ─► Cache response in aiSlice
-```
-
-**Concept Explainer** — keyed by `concept_tags` on `med_questions`:
-
-```
-Student taps concept tag
-    │
-    ├─ Check local concept cache (aiSlice)
-    │
-    ├─ HIT ──► Show cached explanation
-    │
-    └─ MISS ─► Call Supabase Edge Function (Sonnet) ─► Cache locally
-```
-
-### What Gets Built
-
-1. **Wrong-Answer UI** — after wrong answer in any exam mode:
-   - Show expandable "Why was I wrong?" card using elimination hints from DB
-   - Card shows: misconception, hint text (bilingual)
-   - Concept tag is tappable → opens concept explainer bottom sheet
-
-2. **Concept Explainer Bottom Sheet**
-   - `src/components/ConceptExplainerSheet.tsx`
-   - Shows: title, explanation (markdown), analogy, exam relevance, common mistakes
-   - First call: Edge Function (Sonnet) → response cached in aiSlice
-
-3. **Edge Functions for concept explainer**
-   - `supabase/functions/ai-concept-explain/index.ts`
-   - No `ai-wrong-answer` Edge Function needed (hints already in DB)
-
-4. **Practice results analytics re-enablement**
-   - Store question metadata (difficulty, chapterId, subjectId) in practice session
-   - Re-enable difficulty breakdown + chapter performance in `practice-results.tsx`
-
-5. **"Practice My Mistakes" mode**
-   - Wire wrong answer tracking → allow retry of missed questions
-
-### Files
-
-| Action | File |
-|--------|------|
-| Create | `src/components/ConceptExplainerSheet.tsx` |
-| Create | `supabase/functions/ai-concept-explain/index.ts` |
-| Modify | `app/(exam)/chapter-question.tsx` — wrong-answer card in post-answer feedback |
-| Modify | `app/(exam)/quick-question.tsx` — wrong-answer card in post-answer feedback |
-| Modify | `app/(exam)/practice-results.tsx` — re-enable analytics with stored metadata |
-| Modify | `app/(exam)/answer-review.tsx` — concept tags + explainer sheet |
-| Modify | `src/store/slices/aiSlice.ts` — concept cache, wrong-answer usage tracking |
-| Modify | `src/store/slices/practiceSlice.ts` — store question metadata in session |
-
-### Cost Impact
-
-- Wrong-answer analysis: **₹0** (uses DB elimination hints, already fetched)
-- Concept explainer: ~₹0.80/call for Sonnet, cached after first call
-- Net impact: **₹5-15/month** per user (mostly concept explainer cache misses)
+**UX gate**: After QBank Iteration 1, open any Physics/Chemistry chapter in the
+app and verify questions load — no more empty states.
 
 ---
 
-## R11 — AI Study Plan + Mock Analysis ⬜ PENDING
+## R10 — Learn From Mistakes ⬜ NEXT
 
-**Goal**: Weekly study plan generation and post-mock deep analysis.
-Both are low-frequency, high-value features.
+**Goal**: Turn every wrong answer into a learning moment. Show *why* the student
+was wrong, let them explore concepts, retry their mistakes, and review saved questions.
 
-### Architecture (No DB)
+> **Depends on**: QBank Iteration 1 (elimination hints + concept tags populated)
 
-Both features call Sonnet via Edge Functions. Responses stored in Redux + AsyncStorage.
+### What the Student Sees (UX Verification)
 
-```
-Weekly Plan:
-  Student taps "Generate Plan" or auto on Monday
-    → Collect performance data from practiceSlice + stageSlice
-    → POST to Edge Function with full context
-    → Sonnet generates 7-day plan
-    → Stored in aiSlice.currentPlan
-    → Displayed as journal-style weekly spread
+#### 10.1 "Why Was I Wrong?" Card
+**Where**: After answering wrong in Chapter Exam or Quick Practice
+**What happens**:
+1. Student taps wrong option → answer feedback shows as usual
+2. Below the explanation, a new **"Why was I wrong?"** expandable card appears
+3. Card shows: the misconception text for the specific wrong option they chose
+4. If Telugu mode → shows misconception in Telugu
+5. Concept tags shown as tappable pills below the card
 
-Mock Analysis:
-  Student completes Practice Exam (200Q)
-    → Collect session data + last 5 mock scores
-    → POST to Edge Function
-    → Sonnet generates analysis
-    → Stored in aiSlice.mockAnalyses[sessionId]
-    → Displayed on practice-results screen
-```
+**How to verify**:
+- [ ] Answer a question wrong → see "Why was I wrong?" card
+- [ ] Card text matches the specific wrong option (not generic)
+- [ ] Toggle Telugu → card shows Telugu misconception text
+- [ ] If no elimination hint exists for that option → card says "Ask VaNi for help" with button
 
-### What Gets Built
+#### 10.2 Concept Explainer
+**Where**: Tap any concept tag pill (on wrong-answer card or answer review screen)
+**What happens**:
+1. Bottom sheet slides up with concept title
+2. Loading spinner while AI generates explanation (~3 seconds first time)
+3. Shows: explanation, analogy, exam relevance, common mistakes
+4. Second tap on same concept → instant (cached in aiSlice)
 
-1. **Supabase Edge Functions**
-   - `supabase/functions/ai-study-plan/index.ts`
-   - `supabase/functions/ai-mock-analysis/index.ts`
-   - Both call Sonnet with structured prompts
-   - Study plan prompt includes: subject accuracy map, weak chapters, streak, daily average
-   - Mock analysis prompt includes: current score, subject breakdown, time management, historical trend
+**How to verify**:
+- [ ] Tap concept tag → bottom sheet opens
+- [ ] First time → loading spinner, then content appears
+- [ ] Close and tap same tag → instant load (cached)
+- [ ] Content is relevant to the specific concept
 
-2. **Study Plan Screen**: `app/(tabs)/study-plan.tsx`
-   - Weekly spread view — each day is a JournalCard with subject, chapters, target questions
-   - Current day highlighted
-   - Progress checkmarks (student manually ticks off daily goals → tracked in aiSlice)
-   - "Refresh Plan" button (max 2/day)
-   - Empty state: "Complete 5 chapter tests to unlock your first AI study plan"
+#### 10.3 Practice My Mistakes
+**Where**: Dashboard card "Practice My Mistakes" or button on results screens
+**What happens**:
+1. Student taps "Practice My Mistakes"
+2. App collects all wrongly-answered question IDs from recent sessions
+3. Fetches those questions from DB → starts a retry session
+4. Only questions they got wrong appear
+5. After completing → shows improvement score ("You fixed 7 out of 10!")
 
-3. **Mock Analysis on Results**
-   - Extend `app/(exam)/practice-results.tsx`
-   - After score summary: "AI Analysis" expandable section
-   - Shows: verdict per subject (strong/improving/needs-work/critical), time management insight, compared-to-previous trend, top 3 priority actions
-   - Loading state while Sonnet generates (~3-5 seconds)
+**How to verify**:
+- [ ] Complete a chapter exam, get some wrong
+- [ ] Go to dashboard → "Practice My Mistakes" card shows count
+- [ ] Tap → session starts with only previously-wrong questions
+- [ ] Complete → see improvement summary
 
-4. **Performance data collector**
-   - `src/lib/performanceCollector.ts` — aggregates data from `practiceSlice` history
-   - Computes: per-subject accuracy, weak/strong chapters, trends over last N sessions
-   - Used by both study plan and mock analysis Edge Functions
+#### 10.4 Saved Questions Screen
+**Where**: Dashboard card "Saved Questions" (already shows bookmark count)
+**What happens**:
+1. Tap → opens full-screen list of all bookmarked questions
+2. Grouped by subject, then chapter
+3. Each question shows: stem preview, type badge, difficulty badge
+4. Tap a question → expands to show full question + explanation
+5. Swipe or tap "Remove" to unbookmark
+
+**How to verify**:
+- [ ] Bookmark 3+ questions during exams
+- [ ] Dashboard shows "Saved Questions (3)"
+- [ ] Tap → see all 3 questions listed
+- [ ] Tap one → full question + explanation visible
+- [ ] Remove one → count updates to 2
+
+#### 10.5 Practice Results Analytics (restored)
+**Where**: Analytics tab on practice-results screen (currently shows empty)
+**What happens**:
+1. Complete a Practice Exam (200Q)
+2. Go to results → tap "Analytics" tab
+3. See: difficulty breakdown (easy/medium/hard accuracy bars)
+4. See: chapter performance (sorted weakest to strongest)
+5. See: weakest and strongest chapter highlighted
+
+**How to verify**:
+- [ ] Complete practice exam → Analytics tab shows data (not blank)
+- [ ] Difficulty bars match actual performance
+- [ ] Chapter list sorted by accuracy (weakest first)
+- [ ] Weakest/strongest sticky notes show correct chapters
+
+#### 10.6 Answer Review Wired to DB
+**Where**: "Review Answers" button on any results screen
+**What happens**:
+1. Tap "Review Answers" → opens answer review screen
+2. Questions load from DB (not local data)
+3. Filter tabs work: All / Correct / Wrong / Skipped
+4. Each question shows: what student picked, correct answer, explanation
+5. Concept tags visible, tappable → opens Concept Explainer
+
+**How to verify**:
+- [ ] Complete exam → tap "Review Answers" → questions load
+- [ ] Filter tabs filter correctly
+- [ ] Explanations display properly
+- [ ] Concept tags open the explainer bottom sheet
 
 ### Files
 
 | Action | File |
 |--------|------|
+| Create | `src/components/WrongAnswerCard.tsx` — misconception card using elimination hints |
+| Create | `src/components/ConceptExplainerSheet.tsx` — bottom sheet with AI concept explanation |
+| Create | `app/(main)/saved-questions.tsx` — bookmarked questions viewer |
+| Create | `supabase/functions/ai-concept-explain/index.ts` — Edge Function for concept explainer |
+| Modify | `app/(exam)/chapter-question.tsx` — show WrongAnswerCard after wrong answer |
+| Modify | `app/(exam)/quick-question.tsx` — show WrongAnswerCard after wrong answer |
+| Modify | `app/(exam)/practice-results.tsx` — restore analytics with session metadata |
+| Modify | `app/(exam)/answer-review.tsx` — wire to DB, add concept tag pills |
+| Modify | `app/(main)/index.tsx` — "Practice My Mistakes" card, link to saved-questions |
+| Modify | `src/store/slices/practiceSlice.ts` — store wrong answer IDs, question metadata |
+| Modify | `src/store/slices/aiSlice.ts` — concept cache |
+| Modify | `src/lib/questionService.ts` — add `fetchQuestionsByIds()` for mistakes/bookmarks |
+
+---
+
+## R11 — VaNi Coach + Smart Planning ⬜ PENDING
+
+**Goal**: VaNi becomes a coach, not just a Q&A bot. She greets you, encourages you,
+tells you what to study, and analyzes your mock exams.
+
+> **Depends on**: R10 (performance data infrastructure) + QBank Iteration 2 (enough data for meaningful analytics)
+
+### What the Student Sees (UX Verification)
+
+#### 11.1 VaNi Coaching Messages
+**Where**: Key moments throughout the app
+**What happens**:
+1. **Session start**: Dashboard shows VaNi greeting card
+   - First visit: "Welcome to {chapter}! Let's start with the basics."
+   - Returning: "Welcome back! You were working on {chapter}. Ready to continue?"
+   - After break: "I missed you! It's been {N} days. Let's ease back in."
+2. **After wrong answer**: Below explanation, VaNi says context-aware message
+   - "This trips up a lot of students. The key thing to remember is..."
+   - "Not quite — but now you know. This concept will show up in the exam."
+3. **After streak**: Celebration overlay
+   - 3 correct: "You're getting the hang of this!"
+   - 5 correct: "5 in a row! You're on fire!"
+   - 10 correct: "10 streak! You're absolutely nailing this chapter!"
+4. **Session end**: Summary card with VaNi message
+   - Good: "Great session! {N} questions, {acc}% accuracy. See you tomorrow!"
+   - Tough: "Tough one today, but that's how we grow."
+
+**How to verify**:
+- [ ] Open app after 2+ days → see "missed you" greeting on dashboard
+- [ ] Start a chapter exam → see VaNi welcome message
+- [ ] Get 5 correct in a row → see streak celebration
+- [ ] Answer wrong → see VaNi encouragement below explanation
+- [ ] Finish session → see VaNi summary card
+
+#### 11.2 Dashboard Recommendation
+**Where**: Dashboard, below greeting
+**What happens**:
+1. VaNi card shows: "Today's recommendation" with specific action
+2. Based on: weak chapters, days since last practice, streak status
+3. Tappable → navigates to recommended chapter/mode
+4. Examples:
+   - "You haven't practiced Thermodynamics in 5 days. Let's do a quick 20!"
+   - "Your Chemical Bonding accuracy is 42%. Focus here today."
+   - "You're on a 3-day streak! Keep it going with some Zoology."
+
+**How to verify**:
+- [ ] Dashboard shows a recommendation card with specific chapter/subject
+- [ ] Tap the card → navigates to that chapter/mode
+- [ ] Recommendation changes based on activity (not always the same)
+
+#### 11.3 Weak Topic Detection
+**Where**: Dashboard "Focus Areas" section + Profile screen
+**What happens**:
+1. Dashboard shows top 3 weak topics with accuracy % and trend arrow
+2. Profile shows full weak topic list per subject
+3. Each topic is tappable → goes to chapter exam for that topic
+4. Topics auto-update after each session
+
+**How to verify**:
+- [ ] Complete exams with low accuracy in specific chapters
+- [ ] Dashboard "Focus Areas" shows those chapters as weak
+- [ ] Accuracy % and trend arrows visible
+- [ ] Tap a weak topic → navigates to chapter exam
+
+#### 11.4 Weekly Study Plan
+**Where**: New screen accessible from dashboard or profile
+**What happens**:
+1. Student taps "My Study Plan" → study plan screen opens
+2. If first time: "Complete 5 chapter tests to unlock your AI study plan"
+3. After qualifying: tap "Generate Plan" → loading (3-5 sec) → 7-day plan appears
+4. Each day: JournalCard with subject, chapters, target question count
+5. Today's card highlighted
+6. Student taps checkmarks as they complete daily goals
+7. "Refresh Plan" button (max 2 refreshes per day)
+
+**How to verify**:
+- [ ] New user → sees "complete 5 tests" requirement
+- [ ] After 5+ tests → "Generate Plan" button active
+- [ ] Tap → loading spinner → 7-day plan appears
+- [ ] Today highlighted, other days dimmed
+- [ ] Tap checkmark → goal marked complete
+- [ ] Tap "Refresh Plan" → new plan generates
+
+#### 11.5 Post-Mock AI Analysis
+**Where**: Practice Results screen, after completing 200Q practice exam
+**What happens**:
+1. Complete practice exam → results screen shows summary as usual
+2. New section: "VaNi's Analysis" with loading spinner (3-5 sec)
+3. Shows: verdict per subject (strong/improving/needs-work/critical)
+4. Time management insight ("You spent too long on Physics Section B")
+5. Trend vs previous mocks ("Score improved +45 from last attempt")
+6. Top 3 priority actions ("Focus on Organic Chemistry mechanisms")
+
+**How to verify**:
+- [ ] Complete practice exam → see "VaNi's Analysis" section loading
+- [ ] Analysis appears with subject-by-subject verdict
+- [ ] Time insight mentions specific subjects
+- [ ] If 2+ mocks done → trend comparison shows
+- [ ] Priority actions are specific and actionable
+
+### Files
+
+| Action | File |
+|--------|------|
+| Create | `src/lib/vaniCoach.ts` — message generation logic (templates + AI hybrid) |
+| Create | `src/lib/performanceCollector.ts` — aggregate performance data from Redux |
+| Create | `src/components/VaNiMessageCard.tsx` — coaching message UI component |
+| Create | `app/(main)/study-plan.tsx` — weekly study plan screen |
 | Create | `supabase/functions/ai-study-plan/index.ts` |
 | Create | `supabase/functions/ai-mock-analysis/index.ts` |
-| Create | `src/lib/performanceCollector.ts` |
-| Create | `app/(tabs)/study-plan.tsx` |
-| Modify | `app/(tabs)/_layout.tsx` — add Study Plan tab (or move to sub-screen) |
-| Modify | `app/(exam)/practice-results.tsx` — AI analysis section |
-| Modify | `src/store/slices/aiSlice.ts` — currentPlan, mockAnalyses, dailyGoalChecks |
-
-### How It Works Without DB
-
-- Performance data: computed from `practiceSlice.chapterHistory` + `practiceSlice.practiceHistory` (already persisted in AsyncStorage)
-- Study plan: stored in `aiSlice.currentPlan` → AsyncStorage
-- Mock analysis: stored in `aiSlice.mockAnalyses` keyed by session ID → AsyncStorage
-- Historical data limited to what's on device (sufficient for POC — student's own device has their own history)
+| Modify | `app/(main)/index.tsx` — VaNi greeting, recommendation card, weak topics |
+| Modify | `app/(main)/profile.tsx` — full weak topic list, study plan link |
+| Modify | `app/(exam)/chapter-question.tsx` — VaNi messages on wrong/streak |
+| Modify | `app/(exam)/quick-question.tsx` — VaNi messages on wrong/streak |
+| Modify | `app/(exam)/practice-results.tsx` — AI mock analysis section |
+| Modify | `src/store/slices/aiSlice.ts` — currentPlan, mockAnalyses, coachingMessages |
 
 ### Cost Impact
 
-- Study plan: 1 Sonnet call/week = ~₹4-5/month per user
-- Mock analysis: 2-4 Sonnet calls/month = ~₹5-10/month per user
-- Total: **~₹10-15/month per user** (low frequency, high perceived value)
+- VaNi coaching messages: mostly **templates (₹0)**, occasional AI-generated (₹0.05 Haiku)
+- Study plan: 1 Sonnet call/week = **~₹4-5/month** per user
+- Mock analysis: 2-4 Sonnet calls/month = **~₹5-10/month** per user
 
 ---
 
-## R12 — Paywall + Tier Gating ⬜ PENDING
+## R12 — Adaptive Intelligence + Paywall ⬜ PENDING
 
-**Goal**: Gate AI features behind the VaNi AI tier. Show paywall, handle
-upgrade flow, and enforce tier checks throughout the app.
+**Goal**: Questions adapt to student level in real-time. Exam readiness prediction.
+Gate all AI features behind paid tier with free trial.
 
-### Architecture (No DB)
+> **Depends on**: R11 (all AI features built to gate) + QBank Iteration 2 (enough Qs for difficulty variety)
 
-```
-Tier Source of Truth: Supabase Auth user metadata
-  → user.user_metadata.tier = 'free' | 'pro' | 'ai'
-  → Synced to Redux authSlice on app launch
-  → Edge Functions validate tier from JWT before processing AI calls
+### What the Student Sees (UX Verification)
 
-Payment: Razorpay (India-standard) via WebView
-  → On success, Razorpay webhook calls Supabase Edge Function
-  → Edge Function updates user_metadata.tier via Supabase Admin API
-  → App polls or listens for metadata change
-```
+#### 12.1 Adaptive Difficulty
+**Where**: Chapter Exam and Quick Practice modes
+**What happens**:
+1. Student starts chapter exam → first 3 questions are calibrated to their strength level
+2. If getting 85%+ correct → next questions shift to harder difficulty
+3. If getting < 50% correct → next questions shift to easier
+4. Difficulty badge on each question shows the adaptation happening
+5. End of session summary shows: "Difficulty adapted 3 times during this session"
 
-### What Gets Built
+**How to verify**:
+- [ ] Start chapter exam as new student → mostly easy questions
+- [ ] Answer 5 easy correct → see medium questions appearing
+- [ ] Answer 5 medium correct → see hard questions
+- [ ] Struggle with hard → see it dial back to medium
+- [ ] Results show "Difficulty adapted" note
 
-1. **Paywall Screen**: `app/paywall.tsx`
-   - Two cards: VaNi Pro vs VaNi AI side-by-side
-   - Feature comparison checklist (Pro features with checks, AI features with lock/check)
-   - Squad pricing toggle: "With your squad: ₹400/mo each"
-   - "Start 7-day free trial" CTA for AI tier
-   - Razorpay integration via `react-native-razorpay` or WebView fallback
+#### 12.2 Exam Readiness Score
+**Where**: Profile screen + Dashboard widget
+**What happens**:
+1. Profile shows: "NEET Readiness: 67%" with breakdown per subject
+2. Dashboard widget: circular progress showing overall readiness
+3. Breakdown: subject scores, coverage gaps (chapters not practiced), predicted NEET score range
+4. Updates after each session
+5. If exam date set → shows "Estimated days to 80% ready"
 
-2. **Tier state management**
-   - Extend `authSlice.ts`: add `tier` field to UserProfile
-   - On sign-in: read `user_metadata.tier` from Supabase session
-   - `useAIGate()` hook: checks tier, returns `{ canUseAI, showPaywall }`
+**How to verify**:
+- [ ] Profile shows readiness percentage with per-subject bars
+- [ ] Dashboard widget shows circular readiness indicator
+- [ ] Complete more exams → readiness % increases
+- [ ] Coverage gaps list chapters never practiced
+- [ ] Set exam date → see estimated preparation timeline
 
-3. **Tier enforcement**
-   - Every AI entry point wrapped with `useAIGate()`
-   - Non-AI-tier user tapping "Ask VaNi" → smooth redirect to paywall
-   - Wrong-answer analysis shows teaser ("Upgrade to see why you got this wrong") with blurred content
-   - Study plan shows sample plan with "Unlock with VaNi AI" overlay
+#### 12.3 Risk Alerts
+**Where**: Dashboard notification card
+**What happens**:
+1. If inactive 3+ days → "VaNi misses you! Your streak is at risk."
+2. If accuracy declining → "Your {subject} accuracy dropped 15% this week. Let's fix that."
+3. If stuck on chapter → "You've attempted {chapter} 5 times below 40%. Try reviewing the concepts first."
+4. Each alert has a CTA button → navigates to relevant action
 
-4. **Supabase Edge Function**: `supabase/functions/payment-webhook/index.ts`
-   - Receives Razorpay payment confirmation
-   - Validates signature
-   - Updates user metadata: `supabase.auth.admin.updateUserById(userId, { user_metadata: { tier: 'ai' } })`
+**How to verify**:
+- [ ] Don't use app for 3 days → see inactivity alert on dashboard
+- [ ] Perform poorly in a subject → see declining accuracy alert
+- [ ] Attempt same chapter repeatedly with low scores → see "stuck" alert
 
-5. **Trial management**
-   - 7-day free trial tracked in `aiSlice.trialStartDate`
-   - After 7 days: AI features locked, paywall shown
-   - Trial status persisted in AsyncStorage + user_metadata
+#### 12.4 Paywall Screen
+**Where**: Triggered when free user taps any AI feature
+**What happens**:
+1. Free user taps "Ask VaNi" or "Generate Study Plan" → paywall screen appears
+2. Two cards side-by-side: VaNi Pro (₹299/mo) vs VaNi AI (₹499/mo)
+3. Feature checklist showing what each tier unlocks
+4. Squad pricing toggle: "With your squad: ₹400/mo each"
+5. "Start 7-day free trial" CTA → starts trial immediately
+6. During trial → full AI access with "Trial: 5 days left" banner
+
+**How to verify**:
+- [ ] Free user taps "Ask VaNi" → paywall screen shown (not crash)
+- [ ] Two tier cards with pricing visible
+- [ ] Feature checklist accurately shows locked/unlocked features
+- [ ] "Start free trial" → trial activates, AI features unlock
+- [ ] Banner shows remaining trial days
+- [ ] After 7 days → AI features lock again, paywall returns
+
+#### 12.5 Tier Enforcement Across App
+**Where**: Every AI touchpoint
+**What happens**:
+1. Free tier: Wrong-answer card shows blurred teaser + "Upgrade to unlock"
+2. Free tier: Concept explainer shows first 2 lines + blur + upgrade CTA
+3. Free tier: Study plan shows sample plan with overlay + upgrade CTA
+4. Free tier: Mock analysis shows "VaNi AI members get detailed analysis"
+5. Pro tier: Access to doubt solver (limited), no study plan/mock analysis
+6. AI tier: Full access to everything
+
+**How to verify**:
+- [ ] As free user → AI features show teasers, not full content
+- [ ] As trial user → everything works
+- [ ] Trial expires → features re-lock with paywall
+- [ ] Upgrade to AI tier → all features unlock permanently
 
 ### Files
 
 | Action | File |
 |--------|------|
-| Create | `app/paywall.tsx` |
-| Create | `src/hooks/useAIGate.ts` |
-| Create | `supabase/functions/payment-webhook/index.ts` |
-| Modify | `src/types/index.ts` — add `Tier` type, extend `UserProfile` |
+| Create | `src/lib/adaptiveDifficulty.ts` — real-time difficulty calibration |
+| Create | `src/lib/readinessCalculator.ts` — exam readiness prediction |
+| Create | `src/lib/riskDetector.ts` — pattern detection for risk alerts |
+| Create | `app/paywall.tsx` — tier comparison + payment screen |
+| Create | `src/hooks/useAIGate.ts` — tier check hook |
+| Create | `supabase/functions/payment-webhook/index.ts` — Razorpay webhook |
+| Modify | `app/(main)/index.tsx` — readiness widget, risk alerts |
+| Modify | `app/(main)/profile.tsx` — readiness breakdown, exam date setting |
+| Modify | `app/(exam)/chapter-question.tsx` — adaptive difficulty selection |
+| Modify | `app/(exam)/quick-question.tsx` — adaptive difficulty selection |
 | Modify | `src/store/slices/authSlice.ts` — tier field, trial tracking |
 | Modify | `src/store/slices/aiSlice.ts` — trialStartDate, trialExpired |
-| Modify | `app/(tabs)/ask-vani.tsx` — gate with useAIGate |
-| Modify | `app/(tabs)/study-plan.tsx` — gate with useAIGate |
-| Modify | `app/(exam)/quick-question.tsx` — wrong-answer teaser for non-AI |
-| Modify | `app/(exam)/practice-results.tsx` — mock analysis teaser for non-AI |
-| Modify | `app/_layout.tsx` — register paywall screen |
+| Modify | `src/lib/questionService.ts` — difficulty-aware question fetching |
+| Modify | All AI entry points — wrap with `useAIGate()` |
 
-### How It Works Without DB
+### Cost Impact
 
-- Tier truth stored in **Supabase Auth user_metadata** (already have Supabase Auth)
-- No separate DB table needed — `user_metadata` is a JSON field on the auth user
-- Payment webhook uses Supabase Admin API to update metadata
-- Client reads tier from Supabase session JWT on every app launch
-- Offline: Redux `tier` value from last sync used (cached in AsyncStorage)
+- Adaptive difficulty: **₹0** (local calculation, no API calls)
+- Readiness prediction: **₹0** (local calculation from practice history)
+- Risk detection: **₹0** (local pattern matching)
+- Razorpay integration: standard payment gateway fees
 
 ---
 
-## Release Dependencies
+## Release Dependencies (Updated)
 
 ```
-R7 (Strength + QuestionV2)       ✅ DONE
+QBank Iter 1 ─────────────────────── Questions in DB for Physics + Chemistry
  │
- ├──► R8 (Question Type UIs)     ✅ DONE
+ ├──► R10 (Learn from Mistakes)      Can start after QBank Iter 1
+ │     │
+QBank Iter 2 ─────────────────────── All NEET chapters populated
+ │     │
+ │     ├──► R11 (VaNi Coach + Plan)  Needs enough data for meaningful coaching
+ │     │
+QBank Iter 3 ─────────────────────── CUET + 600/chapter targets
+ │     │
+ │     └──► R12 (Intelligence + Pay) Needs all AI features to gate them
  │
- └──► R9 (AI + Bookmarks + DB)   ✅ DONE
-       │
-       ├──► R10 (Wrong-Answer + Concepts) ← NEXT: needs elimination hints UI + concept explainer
-       │
-       └──► R11 (Study Plan + Mock)       ← needs performanceCollector + aiSlice
-              │
-              └──► R12 (Paywall)          ← needs all AI features built to gate them
+ └──► CUET support live
 ```
 
-R10 and R11 can run **in parallel**.
-R12 is the final gate — only after all AI features exist.
+**Key rule**: QBank runs continuously alongside R10-R12. Each QBank iteration
+unlocks the next release's full potential.
 
 ---
 
 ## Supabase Edge Functions Summary
 
-All AI features go through Edge Functions (keeps API key server-side):
+| Function | Model | Frequency | Cost/Call | Release |
+|----------|-------|-----------|-----------|---------|
+| `ai-doubt-solver` | Haiku/Sonnet | 20-50/user/day | ₹0.05-0.80 | R9 ✅ |
+| `ai-concept-explain` | Sonnet | 3-5/user/day | ₹0.80 | R10 |
+| `ai-study-plan` | Sonnet | 1/user/week | ₹1.10 | R11 |
+| `ai-mock-analysis` | Sonnet | 2-4/user/month | ₹1.60 | R11 |
+| `payment-webhook` | N/A | On payment | ₹0 | R12 |
 
-| Function | Model | Frequency | Cost/Call |
-|----------|-------|-----------|-----------|
-| `ai-doubt-solver` | Haiku (80%) / Sonnet (20%) | 20-50/user/day | ₹0.05-0.80 |
-| `ai-wrong-answer` | Haiku | 5-10/user/day (cache misses only) | ₹0.05 |
-| `ai-concept-explain` | Sonnet | 3-5/user/day (cache misses only) | ₹0.80 |
-| `ai-study-plan` | Sonnet | 1/user/week | ₹1.10 |
-| `ai-mock-analysis` | Sonnet | 2-4/user/month | ₹1.60 |
-| `payment-webhook` | N/A | On payment | ₹0 |
-
-**Total Edge Functions**: 6 (5 AI + 1 payment)
-
-Supabase Edge Functions are free for up to 500K invocations/month on Pro plan (₹2,000/mo).
-At 1,000 AI-tier users averaging 30 AI calls/day = 900K calls/month — just above free tier.
-Cost at that scale: ~₹500/month for Edge Function compute. Negligible.
+**Total**: 5 Edge Functions (4 AI + 1 payment)
 
 ---
 
@@ -410,11 +550,14 @@ Cost at that scale: ~₹500/month for Edge Function compute. Negligible.
 | Bookmarks | Redux → AsyncStorage | Device-only |
 | Doubt history (last 20) | Redux → AsyncStorage | Device-only |
 | Practice history | Redux → AsyncStorage | Device-only |
+| Wrong answer IDs (R10) | Redux → AsyncStorage | Device-only |
+| Concept cache (R10) | Redux → AsyncStorage | Device-only |
 | Study plan (R11) | Redux → AsyncStorage | Device-only |
 | Mock analyses (R11) | Redux → AsyncStorage | Device-only |
+| VaNi coaching messages (R11) | Templates + aiSlice | Device-only |
 | Daily AI usage counts | Redux → AsyncStorage | Device-only |
 | Squad data | Redux → AsyncStorage | Device-only |
-| Legacy local JSON questions | `src/data/questions/` (still in codebase but **unused by exam screens**) | In git repo |
+| Legacy local JSON questions | `src/data/questions/` (unused) | In git repo |
 
 **POC trade-off**: If student switches devices, they lose local history. Acceptable
 for POC. Post-POC: sync critical data (strength, history, bookmarks) to Supabase tables.
