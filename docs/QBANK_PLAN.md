@@ -207,9 +207,9 @@ Each iteration is independently valuable — app is usable after Iteration 1.
 
 ---
 
-## R10 Feature Dependency (Active)
+## R10 Feature Dependency (All Code Complete)
 
-R10 Batches 1-3 are now built. The following app features depend on QBank data quality:
+R10 is fully built (Batches 1-3 + 10.5 analytics + 10.6 answer-review DB wiring). The following app features depend on QBank data quality:
 
 | Feature | QBank Field Required | Impact if Missing |
 |---------|---------------------|-------------------|
@@ -217,6 +217,8 @@ R10 Batches 1-3 are now built. The following app features depend on QBank data q
 | Concept tag pills in AskVani widget | `med_questions.concept_tags` | No concept pills shown |
 | Concept Explainer bottom sheet | `concept_tags` (used as lookup key) | Sheet opens but may show generic content |
 | Saved Questions concept display | `concept_tags` | No concept pills in expanded view |
+| Practice Results analytics | `difficulty` + `chapter_id` | Difficulty/chapter breakdown shows empty |
+| Answer Review screen | All `med_questions` fields | Review screen shows "No review data" |
 
 **Action**: QBank Iteration 1 must generate elimination hints + concept_tags for all questions.
-The app code is ready — it just needs data.
+All R10 app code is complete — it just needs data in the DB.

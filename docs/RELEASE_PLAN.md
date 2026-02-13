@@ -6,20 +6,21 @@
 
 ---
 
-## Current State (R1–R9 complete + DB migration)
+## Current State (R1–R10 complete + DB migration)
 
 | Layer | What Exists |
 |-------|------------|
-| State | Redux: auth, practice, music, focus, squad, ai, strength, bookmark — persisted via AsyncStorage |
-| Data | **Supabase DB**: `med_questions`, `med_question_options`, `med_elimination_hints` tables. Local JSON files still exist but no longer used by exam screens. |
+| State | Redux: auth, practice (+ mistakeIds), music, focus, squad, ai, strength, bookmark — persisted via AsyncStorage |
+| Data | **Supabase DB**: `med_questions`, `med_question_options`, `med_elimination_hints` tables. All exam + review screens read from DB. Local JSON files still exist but unused. |
 | Auth | Supabase Auth (email/OTP) |
 | UI | Journal aesthetic, StickyNote, JournalCard, ConfettiBurst, StreakBadge, Toast, HandwrittenText, PuffyButton |
 | Exam | 3 modes — Chapter, Practice (200Q NEET format), Quick (20Q) — all 8 question types (diagram-based uses text descriptions; image support on hold for future review) |
-| Question model | `QuestionV2` type with discriminated union payload (8 types). Legacy `Question` type still exists but unused. |
+| Question model | `QuestionV2` type with discriminated union payload (8 types) + `eliminationHints[]` + `conceptTags[]`. Legacy `Question` type still exists but unused. |
 | Routing | expo-router v6 with groups: `(auth)`, `(main)`, `setup/`, `subject/`, `(exam)` |
 | AI | AI Doubt Solver via Supabase Edge Function (Claude Haiku/Sonnet), aiSlice with history + rate limiting |
-| Bookmarks | Bookmark system with Redux slice, works across all exam modes |
+| Bookmarks | Bookmark system with Redux slice, works across all exam modes. Saved Questions viewer screen. |
 | Strength | Chapter strength tracker with 4 levels (just-started, getting-there, on-track, strong) |
+| R10 | Misconception card + concept tags in AskVani widget, Saved Questions + Mistakes two-tab screen, dashboard cards with live counts, practice-results analytics (difficulty + chapter breakdown), answer-review fully wired to DB |
 
 ---
 
@@ -514,11 +515,11 @@ Gate all AI features behind paid tier with free trial.
 ```
 QBank Iter 1 ─────────────────────── Questions in DB for Physics + Chemistry
  │
- ├──► R10 (Learn from Mistakes)      Can start after QBank Iter 1
+ ├──► R10 (Learn from Mistakes)      ✅ DONE (code ready, needs QBank data)
  │     │
 QBank Iter 2 ─────────────────────── All NEET chapters populated
  │     │
- │     ├──► R11 (VaNi Coach + Plan)  Needs enough data for meaningful coaching
+ │     ├──► R11 (VaNi Coach + Plan)  NEXT — needs enough data for meaningful coaching
  │     │
 QBank Iter 3 ─────────────────────── CUET + 600/chapter targets
  │     │
@@ -527,8 +528,9 @@ QBank Iter 3 ──────────────────────�
  └──► CUET support live
 ```
 
-**Key rule**: QBank runs continuously alongside R10-R12. Each QBank iteration
-unlocks the next release's full potential.
+**Key rule**: QBank runs continuously alongside R11-R12. Each QBank iteration
+unlocks the next release's full potential. R10 code is complete — it just
+needs populated `elimination_hints` + `concept_tags` from QBank Iter 1.
 
 ---
 
@@ -573,11 +575,11 @@ for POC. Post-POC: sync critical data (strength, history, bookmarks) to Supabase
 
 ## Migration Path (Post-POC)
 
-DB is already in use for questions. Remaining post-POC work:
+DB is used for all question fetching + answer review. Remaining post-POC work:
 
-1. **Sync local state to server**: strength levels, bookmarks, practice history → Supabase tables (conflict resolution: server wins for tier/subscription, device wins for in-progress sessions)
+1. **Sync local state to server**: strength levels, bookmarks, mistakeIds, practice history → Supabase tables (conflict resolution: server wins for tier/subscription, device wins for in-progress sessions)
 2. **Add Redis (Upstash)**: for semantic cache layer between device and Claude API (concept explainer, doubt solver)
 3. **Usage analytics**: Edge Functions log to Postgres instead of just console
-4. **Remove legacy local data**: clean out `src/data/questions/`, `src/data/chapters.ts` once DB is fully validated
+4. **Remove legacy local data**: clean out `src/data/questions/`, `src/data/chapters.ts` — no longer used by any screen (all wired to DB as of R10)
 
 None of the R7-R12 code needs to be thrown away — it gains a sync layer on top.
