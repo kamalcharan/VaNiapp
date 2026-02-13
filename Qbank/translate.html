@@ -200,6 +200,8 @@
   <script src="./shared.js"></script>
   <script>
     let questions = [];
+    let questionOptions = {};  // { questionId: [options] }
+    let questionHints = {};    // { questionId: [hints] }
     let subjects = [];
     let chapters = [];
 
@@ -303,6 +305,33 @@
 
         questions = data || [];
 
+        // Fetch options and hints for these questions
+        if (questions.length > 0) {
+          const qIds = questions.map(q => q.id);
+
+          const [optRes, hintRes] = await Promise.all([
+            Qbank.supabase.from('med_question_options')
+              .select('id, question_id, option_key, option_text, option_text_te, sort_order')
+              .in('question_id', qIds)
+              .order('sort_order'),
+            Qbank.supabase.from('med_elimination_hints')
+              .select('id, question_id, option_key, hint_text, hint_text_te, misconception, misconception_te')
+              .in('question_id', qIds)
+          ]);
+
+          questionOptions = {};
+          (optRes.data || []).forEach(o => {
+            if (!questionOptions[o.question_id]) questionOptions[o.question_id] = [];
+            questionOptions[o.question_id].push(o);
+          });
+
+          questionHints = {};
+          (hintRes.data || []).forEach(h => {
+            if (!questionHints[h.question_id]) questionHints[h.question_id] = [];
+            questionHints[h.question_id].push(h);
+          });
+        }
+
         translateBtn.disabled = questions.length === 0;
 
         if (questions.length === 0) {
@@ -325,6 +354,72 @@
     }
 
     function renderTranslationCard(question, index) {
+      const opts = questionOptions[question.id] || [];
+      const hints = questionHints[question.id] || [];
+
+      const optionsEnHtml = opts.length > 0 ? `
+        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--gray-200);">
+          <div class="lang-label">Options</div>
+          ${opts.map(o => `<p class="translation-text" style="font-size: 0.9rem;">${o.option_key}. ${o.option_text}</p>`).join('')}
+        </div>
+      ` : '';
+
+      const optionsTeHtml = opts.length > 0 ? `
+        <div style="margin-top: 12px;">
+          <div class="lang-label">Options (Telugu)</div>
+          ${opts.map(o => `
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span style="font-weight: 600; min-width: 20px;">${o.option_key}.</span>
+              <input type="text"
+                class="translation-input"
+                id="telugu-opt-${o.id}"
+                placeholder="Telugu option ${o.option_key}..."
+                value="${(o.option_text_te || '').replace(/"/g, '&quot;')}"
+                style="min-height: auto; padding: 8px;"
+              />
+            </div>
+          `).join('')}
+        </div>
+      ` : '';
+
+      const hintsEnHtml = hints.length > 0 ? `
+        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--gray-200);">
+          <div class="lang-label">Elimination Hints</div>
+          ${hints.map(h => `<p class="translation-text" style="font-size: 0.85rem;">${h.option_key}: ${h.hint_text}${h.misconception ? ' | Misconception: ' + h.misconception : ''}</p>`).join('')}
+        </div>
+      ` : '';
+
+      const hintsTeHtml = hints.length > 0 ? `
+        <div style="margin-top: 12px;">
+          <div class="lang-label">Elimination Hints (Telugu)</div>
+          ${hints.map(h => `
+            <div style="margin-bottom: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span style="font-weight: 600; min-width: 20px;">${h.option_key}.</span>
+                <input type="text"
+                  class="translation-input"
+                  id="telugu-hint-${h.id}"
+                  placeholder="Telugu hint for ${h.option_key}..."
+                  value="${(h.hint_text_te || '').replace(/"/g, '&quot;')}"
+                  style="min-height: auto; padding: 8px;"
+                />
+              </div>
+              ${h.misconception ? `
+                <div style="display: flex; align-items: center; gap: 8px; margin-left: 28px;">
+                  <input type="text"
+                    class="translation-input"
+                    id="telugu-misc-${h.id}"
+                    placeholder="Telugu misconception..."
+                    value="${(h.misconception_te || '').replace(/"/g, '&quot;')}"
+                    style="min-height: auto; padding: 8px; font-size: 0.85rem;"
+                  />
+                </div>
+              ` : ''}
+            </div>
+          `).join('')}
+        </div>
+      ` : '';
+
       return `
         <div class="translation-card" id="trans-${question.id}">
           <div class="translation-header">
@@ -345,6 +440,8 @@
                   <p class="translation-text" style="font-size: 0.9rem; color: var(--gray-600);">${question.explanation}</p>
                 </div>
               ` : ''}
+              ${optionsEnHtml}
+              ${hintsEnHtml}
             </div>
             <div class="translation-column">
               <div class="lang-label">🇮🇳 Telugu</div>
@@ -364,6 +461,8 @@
                   >${question.explanation_te || ''}</textarea>
                 </div>
               ` : ''}
+              ${optionsTeHtml}
+              ${hintsTeHtml}
             </div>
           </div>
           <div class="translation-actions">
@@ -396,7 +495,7 @@
         statusTitle.textContent = 'Building translation prompt...';
         progressBar.style.width = '30%';
 
-        const prompt = Qbank.buildTeluguTranslationPrompt(questions);
+        const prompt = Qbank.buildTeluguTranslationPrompt(questions, questionOptions, questionHints);
 
         statusTitle.textContent = 'Calling Gemini for Telugu translations...';
         statusMessage.textContent = `Translating ${questions.length} questions. This may take a minute.`;
@@ -429,6 +528,32 @@
           }
           if (expInput && t.explanation_te) {
             expInput.value = t.explanation_te;
+          }
+
+          // Apply option translations
+          if (t.options_te && Array.isArray(t.options_te)) {
+            const opts = questionOptions[question.id] || [];
+            t.options_te.forEach(ot => {
+              const matchOpt = opts.find(o => o.option_key === ot.key);
+              if (matchOpt) {
+                const optInput = document.getElementById(`telugu-opt-${matchOpt.id}`);
+                if (optInput && ot.text_te) optInput.value = ot.text_te;
+              }
+            });
+          }
+
+          // Apply hint translations
+          if (t.hints_te && Array.isArray(t.hints_te)) {
+            const hints = questionHints[question.id] || [];
+            t.hints_te.forEach(ht => {
+              const matchHint = hints.find(h => h.option_key === ht.option_key);
+              if (matchHint) {
+                const hintInput = document.getElementById(`telugu-hint-${matchHint.id}`);
+                if (hintInput && ht.hint_text_te) hintInput.value = ht.hint_text_te;
+                const miscInput = document.getElementById(`telugu-misc-${matchHint.id}`);
+                if (miscInput && ht.misconception_te) miscInput.value = ht.misconception_te;
+              }
+            });
           }
         });
 
@@ -471,20 +596,73 @@
         updates.explanation_te = expInput.value.trim();
       }
 
-      if (Object.keys(updates).length === 0) {
+      // Collect option translations
+      const opts = questionOptions[questionId] || [];
+      const optUpdates = [];
+      opts.forEach(o => {
+        const optInput = document.getElementById(`telugu-opt-${o.id}`);
+        if (optInput && optInput.value.trim()) {
+          optUpdates.push({ id: o.id, option_text_te: optInput.value.trim() });
+        }
+      });
+
+      // Collect hint translations
+      const hints = questionHints[questionId] || [];
+      const hintUpdates = [];
+      hints.forEach(h => {
+        const hintInput = document.getElementById(`telugu-hint-${h.id}`);
+        const miscInput = document.getElementById(`telugu-misc-${h.id}`);
+        const hintUpdate = { id: h.id };
+        let hasUpdate = false;
+        if (hintInput && hintInput.value.trim()) {
+          hintUpdate.hint_text_te = hintInput.value.trim();
+          hasUpdate = true;
+        }
+        if (miscInput && miscInput.value.trim()) {
+          hintUpdate.misconception_te = miscInput.value.trim();
+          hasUpdate = true;
+        }
+        if (hasUpdate) hintUpdates.push(hintUpdate);
+      });
+
+      if (Object.keys(updates).length === 0 && optUpdates.length === 0 && hintUpdates.length === 0) {
         Qbank.showToast('No translation to save', 'warning');
         return;
       }
 
       try {
-        const { error } = await Qbank.supabase
-          .from('med_questions')
-          .update(updates)
-          .eq('id', questionId);
+        // Save question text translations
+        if (Object.keys(updates).length > 0) {
+          const { error } = await Qbank.supabase
+            .from('med_questions')
+            .update(updates)
+            .eq('id', questionId);
+          if (error) throw error;
+        }
 
-        if (error) throw error;
+        // Save option translations
+        for (const optUp of optUpdates) {
+          const { error } = await Qbank.supabase
+            .from('med_question_options')
+            .update({ option_text_te: optUp.option_text_te })
+            .eq('id', optUp.id);
+          if (error) console.error('Option save error:', error);
+        }
 
-        Qbank.showToast('Translation saved!', 'success');
+        // Save hint translations
+        for (const hintUp of hintUpdates) {
+          const upd = {};
+          if (hintUp.hint_text_te) upd.hint_text_te = hintUp.hint_text_te;
+          if (hintUp.misconception_te) upd.misconception_te = hintUp.misconception_te;
+          const { error } = await Qbank.supabase
+            .from('med_elimination_hints')
+            .update(upd)
+            .eq('id', hintUp.id);
+          if (error) console.error('Hint save error:', error);
+        }
+
+        const savedCount = (Object.keys(updates).length > 0 ? 1 : 0) + optUpdates.length + hintUpdates.length;
+        Qbank.showToast(`Translation saved! (${savedCount} items)`, 'success');
 
         // Remove card from list
         const card = document.getElementById(`trans-${questionId}`);
@@ -508,6 +686,20 @@
 
       if (textInput) textInput.value = '';
       if (expInput) expInput.value = '';
+
+      // Clear option fields
+      (questionOptions[questionId] || []).forEach(o => {
+        const optInput = document.getElementById(`telugu-opt-${o.id}`);
+        if (optInput) optInput.value = '';
+      });
+
+      // Clear hint fields
+      (questionHints[questionId] || []).forEach(h => {
+        const hintInput = document.getElementById(`telugu-hint-${h.id}`);
+        const miscInput = document.getElementById(`telugu-misc-${h.id}`);
+        if (hintInput) hintInput.value = '';
+        if (miscInput) miscInput.value = '';
+      });
     }
 
     // Initialize

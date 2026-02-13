@@ -313,7 +313,7 @@
               subject_id: job.subject_id,
               chapter_id: job.chapter_id,
               topic_id: null, // TODO: map topic name to ID
-              exam_ids: ['NEET'],
+              exam_ids: job.exam_ids || ['NEET'],
               question_type: question.question_type,
               difficulty: question.difficulty || 'medium',
               strength_required: 'just-started',
@@ -356,7 +356,8 @@
               const hintsData = question.elimination_hints.map(h => ({
                 question_id: questionId,
                 option_key: h.option_key,
-                hint_text: h.hint
+                hint_text: h.hint,
+                misconception: h.misconception || null
               }));
 
               const hintResult = await Qbank.insertEliminationHints(hintsData);

@@ -1099,13 +1099,28 @@ function getTypeInstruction(type) {
   return instructions[type] || `▸ ${type.toUpperCase()}\n  Generate questions of type "${type}" with 4 options (A-D).`;
 }
 
-function buildTeluguTranslationPrompt(questions) {
-  const questionTexts = questions.map((q, i) => `
+function buildTeluguTranslationPrompt(questions, optionsMap, hintsMap) {
+  const questionTexts = questions.map((q, i) => {
+    const opts = (optionsMap && optionsMap[q.id]) || q.options || [];
+    const hints = (hintsMap && hintsMap[q.id]) || [];
+
+    let text = `
 Question ${i + 1}:
 Text: ${q.question_text}
-Explanation: ${q.explanation || 'N/A'}
-Options: ${q.options ? q.options.map(o => `${o.key}. ${o.text}`).join(' | ') : 'N/A'}
-`).join('\n---\n');
+Explanation: ${q.explanation || 'N/A'}`;
+
+    if (opts.length > 0) {
+      const optStr = opts.map(o => `${o.option_key || o.key}. ${o.option_text || o.text}`).join(' | ');
+      text += `\nOptions: ${optStr}`;
+    }
+
+    if (hints.length > 0) {
+      const hintStr = hints.map(h => `${h.option_key}: ${h.hint_text}${h.misconception ? ' | Misconception: ' + h.misconception : ''}`).join('\n  ');
+      text += `\nElimination Hints:\n  ${hintStr}`;
+    }
+
+    return text;
+  }).join('\n---\n');
 
   return `You are an expert translator for educational content from English to Telugu.
 
@@ -1132,12 +1147,18 @@ OUTPUT FORMAT (JSON array):
       { "key": "B", "text_te": "Telugu option B" },
       { "key": "C", "text_te": "Telugu option C" },
       { "key": "D", "text_te": "Telugu option D" }
+    ],
+    "hints_te": [
+      { "option_key": "A", "hint_text_te": "Telugu hint", "misconception_te": "Telugu misconception" }
     ]
   }
 ]
 \`\`\`
 
-Output ONLY the JSON array, no additional text.`;
+NOTES:
+- Include "options_te" only if the question has options.
+- Include "hints_te" only if the question has elimination hints.
+- Output ONLY the JSON array, no additional text.`;
 }
 
 // ============================================================================
