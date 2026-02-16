@@ -344,7 +344,7 @@ export default function SubjectDetailScreen() {
               {/* Secondary Options */}
               <View style={styles.secondaryOptions}>
                 <Pressable
-                  style={[styles.optionButton, { borderColor: colors.border }]}
+                  style={[styles.optionButton, { borderColor: colors.surfaceBorder }]}
                   onPress={() => setShowChapterPicker(true)}
                 >
                   <Text style={[Typography.bodySm, { color: colors.text }]}>
@@ -353,7 +353,7 @@ export default function SubjectDetailScreen() {
                 </Pressable>
 
                 <Pressable
-                  style={[styles.optionButton, { borderColor: colors.border }]}
+                  style={[styles.optionButton, { borderColor: colors.surfaceBorder }]}
                   onPress={() => {
                     // TODO: Quick practice for this subject
                   }}

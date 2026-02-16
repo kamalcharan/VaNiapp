@@ -20,7 +20,7 @@ export default function MainLayout() {
   // segments for (main)/index → ['(main)']  or ['(main)', 'index']
   // segments for (main)/profile → ['(main)', 'profile']
   const activeKey =
-    segments.length > 1 && segments[1] === 'profile' ? 'profile' : 'index';
+    segments.length > 1 && (segments as string[])[1] === 'profile' ? 'profile' : 'index';
 
   return (
     <ToastProvider>
