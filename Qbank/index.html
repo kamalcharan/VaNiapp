@@ -186,8 +186,9 @@
         };
 
         stats.forEach(q => {
-          if (counts[q.subject_id] !== undefined) {
-            counts[q.subject_id]++;
+          const key = (q.subject_id || '').toUpperCase();
+          if (counts[key] !== undefined) {
+            counts[key]++;
           }
         });
 

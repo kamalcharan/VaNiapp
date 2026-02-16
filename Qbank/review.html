@@ -274,6 +274,10 @@
     function renderJobCard(job, jobIndex) {
       const questions = job.output_json?.questions || [];
       const subjectColor = Qbank.getSubjectColor(job.subject_id);
+      const approvedCount = questions.filter(q => q._approved).length;
+      const rejectedCount = questions.filter(q => q._rejected).length;
+      const pendingCount = questions.length - approvedCount - rejectedCount;
+      const allReviewed = pendingCount === 0 && questions.length > 0;
 
       return `
         <div class="job-card" id="job-${job.id}">
@@ -286,6 +290,7 @@
                 <h4>${job.subject_id} - ${job.chapter_id || 'Unknown Chapter'}</h4>
                 <div class="job-meta">
                   ${questions.length} questions • Generated ${Qbank.formatDate(job.created_at)}
+                  ${approvedCount > 0 || rejectedCount > 0 ? ` • <span style="color: var(--success);">${approvedCount} approved</span>${rejectedCount > 0 ? `, <span style="color: var(--error);">${rejectedCount} rejected</span>` : ''}${pendingCount > 0 ? `, ${pendingCount} pending` : ''}` : ''}
                 </div>
               </div>
             </div>
@@ -297,7 +302,7 @@
 
           <div class="job-content" id="job-content-${job.id}">
             ${questions.length > 0 ? `
-              <div class="bulk-actions">
+              <div class="bulk-actions" id="bulk-actions-${job.id}">
                 <div class="select-all-wrapper">
                   <input type="checkbox" id="selectAll-${job.id}" onchange="toggleSelectAll('${job.id}')">
                   <label for="selectAll-${job.id}">Select All</label>
@@ -309,14 +314,16 @@
                 <button class="btn btn-sm btn-danger" onclick="rejectSelected('${job.id}')">
                   ✕ Reject Selected
                 </button>
-                ${user.role === 'admin' ? `
-                  <button class="btn btn-sm btn-primary" onclick="markAsReviewed('${job.id}')">
-                    📝 Mark Job as Reviewed
+                ${job.status === 'pending' ? `
+                  <span style="color: var(--gray-400);">|</span>
+                  <button class="btn btn-sm btn-primary" id="doneBtn-${job.id}" onclick="markAsReviewed('${job.id}')"
+                    ${!allReviewed ? 'disabled title="Approve or reject all questions first"' : ''}>
+                    ✅ Done Reviewing
                   </button>
                 ` : ''}
               </div>
 
-              <div class="questions-list">
+              <div class="questions-list" id="questions-list-${job.id}">
                 ${questions.map((q, qIndex) => renderQuestionReview(job, q, qIndex)).join('')}
               </div>
             ` : '<p class="empty-message" style="padding: 20px;">No questions in this job</p>'}
@@ -421,7 +428,7 @@
 
       await Qbank.updateGenerationJob(jobId, { output_json: job.output_json });
       Qbank.showToast(`${indices.length} questions approved`, 'success');
-      loadJobs();
+      refreshJobInPlace(job);
     }
 
     async function rejectSelected(jobId) {
@@ -441,36 +448,71 @@
 
       await Qbank.updateGenerationJob(jobId, { output_json: job.output_json });
       Qbank.showToast(`${indices.length} questions rejected`, 'success');
-      loadJobs();
+      refreshJobInPlace(job);
+    }
+
+    // Update a single job's UI without collapsing or reloading everything
+    function refreshJobInPlace(job) {
+      const questions = job.output_json?.questions || [];
+      const approvedCount = questions.filter(q => q._approved).length;
+      const rejectedCount = questions.filter(q => q._rejected).length;
+      const pendingCount = questions.length - approvedCount - rejectedCount;
+      const allReviewed = pendingCount === 0 && questions.length > 0;
+
+      // Update the questions list
+      const questionsList = document.getElementById(`questions-list-${job.id}`);
+      if (questionsList) {
+        questionsList.innerHTML = questions.map((q, qIndex) => renderQuestionReview(job, q, qIndex)).join('');
+      }
+
+      // Update the job header meta (approved/rejected counts)
+      const jobCard = document.getElementById(`job-${job.id}`);
+      if (jobCard) {
+        const metaEl = jobCard.querySelector('.job-meta');
+        if (metaEl) {
+          metaEl.innerHTML = `
+            ${questions.length} questions • Generated ${Qbank.formatDate(job.created_at)}
+            ${approvedCount > 0 || rejectedCount > 0 ? ` • <span style="color: var(--success);">${approvedCount} approved</span>${rejectedCount > 0 ? `, <span style="color: var(--error);">${rejectedCount} rejected</span>` : ''}${pendingCount > 0 ? `, ${pendingCount} pending` : ''}` : ''}
+          `;
+        }
+      }
+
+      // Enable/disable "Done Reviewing" button
+      const doneBtn = document.getElementById(`doneBtn-${job.id}`);
+      if (doneBtn) {
+        doneBtn.disabled = !allReviewed;
+        doneBtn.title = allReviewed ? '' : 'Approve or reject all questions first';
+      }
+
+      // Uncheck "Select All"
+      const selectAll = document.getElementById(`selectAll-${job.id}`);
+      if (selectAll) selectAll.checked = false;
     }
 
     async function markAsReviewed(jobId) {
       const job = jobs.find(j => j.id === jobId);
       if (!job) return;
 
-      const approvedQuestions = job.output_json.questions.filter(q => q._approved);
-      const approvedCount = approvedQuestions.length;
+      const questions = job.output_json?.questions || [];
+      const approvedCount = questions.filter(q => q._approved).length;
+      const rejectedCount = questions.filter(q => q._rejected).length;
 
       if (approvedCount === 0) {
         Qbank.showToast('Please approve at least one question first', 'warning');
         return;
       }
 
-      // Confirm before inserting
-      if (!confirm(`Insert ${approvedCount} approved questions to database?\n\n(${job.output_json.questions.length - approvedCount} rejected questions will be discarded)`)) {
+      if (!confirm(`Mark this job as reviewed?\n\n${approvedCount} approved, ${rejectedCount} rejected.\n\nApproved questions will be ready for insertion from the Insert page.`)) {
         return;
       }
 
-      Qbank.showToast('Inserting approved questions to database...', 'info');
-
-      // Insert only approved questions to DB
-      const result = await Qbank.insertApprovedQuestionsToDb(job, approvedQuestions);
-
-      if (result.success) {
-        Qbank.showToast(`✅ Inserted ${result.insertedCount} questions to database`, 'success');
+      try {
+        await Qbank.updateGenerationJob(jobId, { status: 'reviewed' });
+        Qbank.showToast(`✅ Job marked as reviewed — ${approvedCount} questions ready for insertion`, 'success');
         loadJobs();
-      } else {
-        Qbank.showToast(`Error: ${result.error}`, 'error');
+      } catch (error) {
+        console.error('Error marking job as reviewed:', error);
+        Qbank.showToast('Failed to update job status', 'error');
       }
     }
 

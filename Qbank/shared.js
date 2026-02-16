@@ -854,7 +854,8 @@ function getSubjectColor(subjectId) {
     'BOTANY': '#22c55e',
     'ZOOLOGY': '#f59e0b'
   };
-  return colors[subjectId] || '#6b7280';
+  const key = (subjectId || '').toUpperCase();
+  return colors[key] || '#6b7280';
 }
 
 function getSubjectEmoji(subjectId) {
@@ -864,7 +865,8 @@ function getSubjectEmoji(subjectId) {
     'BOTANY': '🌿',
     'ZOOLOGY': '🦁'
   };
-  return emojis[subjectId] || '📚';
+  const key = (subjectId || '').toUpperCase();
+  return emojis[key] || '📚';
 }
 
 function getDifficultyBadge(difficulty) {
