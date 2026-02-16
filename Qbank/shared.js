@@ -11,6 +11,51 @@ let SUPABASE = null;
 let CURRENT_USER = null;
 
 // ============================================================================
+// EXAM-SUBJECT MAPPING
+// ============================================================================
+const EXAM_CONFIG = {
+  NEET: {
+    name: 'NEET',
+    fullName: 'National Eligibility cum Entrance Test',
+    icon: '🩺',
+    description: 'Medical Entrance',
+    subjects: ['PHYSICS', 'CHEMISTRY', 'BOTANY', 'ZOOLOGY']
+  },
+  CUET: {
+    name: 'CUET',
+    fullName: 'Common University Entrance Test',
+    icon: '🎓',
+    description: 'University Entrance',
+    subjects: ['MATHEMATICS', 'BIOLOGY', 'PHYSICS', 'CHEMISTRY', 'ACCOUNTANCY', 'BUSINESS-STUDIES', 'ECONOMICS']
+  }
+};
+
+const SUBJECT_META = {
+  'PHYSICS':          { name: 'Physics',          emoji: '⚡', color: '#3b82f6', bg: '#dbeafe' },
+  'CHEMISTRY':        { name: 'Chemistry',        emoji: '🧪', color: '#10b981', bg: '#d1fae5' },
+  'BOTANY':           { name: 'Botany',           emoji: '🌿', color: '#22c55e', bg: '#dcfce7' },
+  'ZOOLOGY':          { name: 'Zoology',          emoji: '🦁', color: '#f59e0b', bg: '#fef3c7' },
+  'MATHEMATICS':      { name: 'Mathematics',      emoji: '📐', color: '#ef4444', bg: '#fee2e2' },
+  'BIOLOGY':          { name: 'Biology',          emoji: '🧬', color: '#8b5cf6', bg: '#ede9fe' },
+  'ACCOUNTANCY':      { name: 'Accountancy',      emoji: '📊', color: '#14b8a6', bg: '#ccfbf1' },
+  'BUSINESS-STUDIES': { name: 'Business Studies', emoji: '💼', color: '#6366f1', bg: '#e0e7ff' },
+  'ECONOMICS':        { name: 'Economics',        emoji: '💰', color: '#f97316', bg: '#ffedd5' }
+};
+
+function getExamConfig(examId) {
+  return EXAM_CONFIG[examId] || null;
+}
+
+function getExamSubjects(examId) {
+  return EXAM_CONFIG[examId]?.subjects || [];
+}
+
+function getSubjectMeta(subjectId) {
+  const key = (subjectId || '').toUpperCase();
+  return SUBJECT_META[key] || { name: subjectId, emoji: '📚', color: '#6b7280', bg: '#f3f4f6' };
+}
+
+// ============================================================================
 // CONFIG LOADER
 // ============================================================================
 async function loadConfig() {
@@ -848,25 +893,11 @@ function formatDate(dateString) {
 }
 
 function getSubjectColor(subjectId) {
-  const colors = {
-    'PHYSICS': '#3b82f6',
-    'CHEMISTRY': '#10b981',
-    'BOTANY': '#22c55e',
-    'ZOOLOGY': '#f59e0b'
-  };
-  const key = (subjectId || '').toUpperCase();
-  return colors[key] || '#6b7280';
+  return getSubjectMeta(subjectId).color;
 }
 
 function getSubjectEmoji(subjectId) {
-  const emojis = {
-    'PHYSICS': '⚡',
-    'CHEMISTRY': '🧪',
-    'BOTANY': '🌿',
-    'ZOOLOGY': '🦁'
-  };
-  const key = (subjectId || '').toUpperCase();
-  return emojis[key] || '📚';
+  return getSubjectMeta(subjectId).emoji;
 }
 
 function getDifficultyBadge(difficulty) {
@@ -1063,6 +1094,13 @@ window.Qbank = {
   isAdmin,
   logout,
   getSession,
+
+  // Exam & Subject mapping
+  EXAM_CONFIG,
+  SUBJECT_META,
+  getExamConfig,
+  getExamSubjects,
+  getSubjectMeta,
 
   // Supabase
   initSupabase,
