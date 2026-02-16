@@ -254,6 +254,44 @@
         Qbank.showToast(`Auto-inserted ${autoResult.processed} old jobs to DB`, 'info');
         await loadStats(); // Refresh stats after auto-insert
       }
+
+      // Read URL params and auto-select
+      await applyUrlParams();
+    }
+
+    async function applyUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      const urlExam = params.get('exam');
+      const urlSubject = params.get('subject');
+      const urlChapter = params.get('chapter');
+
+      if (urlExam) {
+        selectExam(urlExam.toUpperCase());
+      }
+
+      if (urlSubject) {
+        const subId = urlSubject.toUpperCase();
+        const found = subjects.find(s => (s.id || '').toUpperCase() === subId);
+        if (found) {
+          selectSubject(found.id);
+
+          // Auto-advance to step 2
+          if (urlExam) {
+            await loadChapters();
+            showStep(2);
+
+            // If chapter also provided, auto-advance to step 3
+            if (urlChapter) {
+              const foundCh = chapters.find(c => c.id === urlChapter);
+              if (foundCh) {
+                selectChapter(foundCh.id);
+                await loadConfiguration();
+                showStep(3);
+              }
+            }
+          }
+        }
+      }
     }
 
     async function loadStats() {

@@ -584,6 +584,71 @@ async function getQuestionStats() {
   return data;
 }
 
+async function fetchQuestionsByChapter(chapterId, options = {}) {
+  let query = SUPABASE
+    .from('med_questions')
+    .select('id, subject_id, chapter_id, question_type, difficulty, status, question_text, correct_answer, created_at')
+    .eq('chapter_id', chapterId)
+    .order('created_at', { ascending: false });
+
+  if (options.status) {
+    query = query.eq('status', options.status);
+  }
+
+  const pageSize = options.pageSize || 10;
+  const page = options.page || 1;
+  const from = (page - 1) * pageSize;
+  const to = from + pageSize - 1;
+  query = query.range(from, to);
+
+  const { data, error, count } = await query;
+  if (error) {
+    console.error('Error fetching questions:', error);
+    return { data: [], total: 0 };
+  }
+  return { data: data || [], total: count };
+}
+
+async function fetchQuestionsCountByChapter(subjectId) {
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .select('chapter_id, status')
+    .eq('subject_id', subjectId);
+
+  if (error) {
+    console.error('Error fetching question counts:', error);
+    return {};
+  }
+
+  // Group by chapter_id and status
+  const counts = {};
+  (data || []).forEach(q => {
+    if (!counts[q.chapter_id]) {
+      counts[q.chapter_id] = { total: 0, active: 0, draft: 0, pending: 0 };
+    }
+    counts[q.chapter_id].total++;
+    if (q.status === 'active') counts[q.chapter_id].active++;
+    else if (q.status === 'draft') counts[q.chapter_id].draft++;
+    else counts[q.chapter_id].pending++;
+  });
+  return counts;
+}
+
+async function updateQuestionStatus(questionId, newStatus) {
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .update({ status: newStatus })
+    .eq('id', questionId)
+    .select()
+    .single();
+
+  if (error) {
+    console.error('Error updating question status:', error);
+    return null;
+  }
+  return data;
+}
+
 // ============================================================================
 // GEMINI CLIENT
 // ============================================================================
@@ -1118,6 +1183,9 @@ window.Qbank = {
   autoInsertOldJobs,
   getAutoInsertTimeRemaining,
   getQuestionStats,
+  fetchQuestionsByChapter,
+  fetchQuestionsCountByChapter,
+  updateQuestionStatus,
 
   // Gemini
   callGemini,

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subject Detail - Qbank Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .subject-hero {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .subject-hero-icon {
+      font-size: 2.5rem;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+    }
+    .subject-hero-info h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .subject-hero-info .breadcrumb {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      margin-top: 4px;
+    }
+    .subject-hero-info .breadcrumb a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .subject-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .subject-stat-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
+    .subject-stat-card .value {
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+    .subject-stat-card .label {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      margin-top: 4px;
+    }
+
+    .chapter-row {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .chapter-row:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .chapter-row-header {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      cursor: pointer;
+      gap: 12px;
+      user-select: none;
+    }
+    .chapter-row-header:hover {
+      background: var(--gray-50);
+    }
+    .chapter-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .chapter-name {
+      font-weight: 600;
+      flex: 1;
+    }
+    .chapter-name .meta {
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+    .chapter-counts {
+      display: flex;
+      gap: 16px;
+      font-size: 0.85rem;
+    }
+    .chapter-counts span {
+      white-space: nowrap;
+    }
+    .chapter-counts .c-total { font-weight: 600; }
+    .chapter-counts .c-active { color: var(--success); }
+    .chapter-counts .c-draft { color: var(--warning, #f59e0b); }
+    .chapter-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .chapter-expand-icon {
+      transition: transform 0.2s;
+      font-size: 0.8rem;
+      color: var(--gray-400);
+    }
+    .chapter-row.expanded .chapter-expand-icon {
+      transform: rotate(180deg);
+    }
+
+    .chapter-body {
+      display: none;
+      border-top: 1px solid var(--gray-200);
+      padding: 16px;
+      background: var(--gray-50);
+    }
+    .chapter-row.expanded .chapter-body {
+      display: block;
+    }
+
+    .q-filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .q-filter-btn {
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--gray-300);
+      background: var(--white);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .q-filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .q-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+    }
+    .q-list-item .q-num {
+      font-weight: 600;
+      color: var(--gray-400);
+      flex-shrink: 0;
+      min-width: 28px;
+    }
+    .q-list-item .q-text {
+      flex: 1;
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .q-list-item .q-meta {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .status-toggle {
+      padding: 3px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--gray-300);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .status-toggle:hover {
+      opacity: 0.8;
+    }
+    .status-toggle.to-active {
+      background: #d1fae5;
+      color: #065f46;
+      border-color: #6ee7b7;
+    }
+    .status-toggle.to-draft {
+      background: #fef3c7;
+      color: #92400e;
+      border-color: #fcd34d;
+    }
+
+    .q-pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+    .q-pagination button {
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--gray-300);
+      background: var(--white);
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .q-pagination button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .empty-chapter {
+      text-align: center;
+      padding: 24px;
+      color: var(--gray-400);
+    }
+
+    @media (max-width: 768px) {
+      .subject-stats { grid-template-columns: repeat(2, 1fr); }
+      .chapter-counts { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+
+      <!-- Hero -->
+      <div class="subject-hero" id="subjectHero">
+        <div class="subject-hero-icon" id="heroIcon"></div>
+        <div class="subject-hero-info">
+          <h1 id="heroTitle">Loading...</h1>
+          <div class="breadcrumb">
+            <a href="./index.html">Dashboard</a> &gt;
+            <span id="heroBreadcrumb"></span>
+          </div>
+        </div>
+        <div style="margin-left: auto;">
+          <a id="generateBtn" href="#" class="btn btn-primary">+ Generate Questions</a>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="subject-stats" id="subjectStats">
+        <div class="subject-stat-card">
+          <div class="value" id="statTotal">--</div>
+          <div class="label">Total Questions</div>
+        </div>
+        <div class="subject-stat-card">
+          <div class="value" id="statActive" style="color: var(--success);">--</div>
+          <div class="label">Active</div>
+        </div>
+        <div class="subject-stat-card">
+          <div class="value" id="statDraft" style="color: #f59e0b;">--</div>
+          <div class="label">Draft</div>
+        </div>
+        <div class="subject-stat-card">
+          <div class="value" id="statPending" style="color: var(--primary);">--</div>
+          <div class="label">Pending Jobs</div>
+        </div>
+      </div>
+
+      <!-- Chapters -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title" id="chaptersTitle">Chapters</h3>
+        </div>
+        <div class="card-body" id="chaptersContainer">
+          <div class="qbank-loader">
+            <div class="loader-spinner"></div>
+            <p class="loader-message">Loading chapters...</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    // Read URL params
+    const params = new URLSearchParams(window.location.search);
+    const examId = (params.get('exam') || 'NEET').toUpperCase();
+    const subjectId = (params.get('subject') || '').toUpperCase();
+
+    let chapters = [];
+    let chapterQuestionCounts = {};
+    let pendingByChapter = {};
+
+    // Per-chapter state for expanded questions
+    const chapterState = {};
+
+    async function init() {
+      const user = await Qbank.requireAuth();
+      if (!user) return;
+      Qbank.renderNavHeader();
+
+      if (!subjectId) {
+        document.getElementById('chaptersContainer').innerHTML =
+          '<p class="empty-message">No subject specified. <a href="./index.html">Go to Dashboard</a></p>';
+        return;
+      }
+
+      const meta = Qbank.getSubjectMeta(subjectId);
+      const examConfig = Qbank.getExamConfig(examId);
+
+      // Hero
+      document.getElementById('heroIcon').style.background = meta.bg;
+      document.getElementById('heroIcon').textContent = meta.emoji;
+      document.getElementById('heroTitle').textContent = meta.name;
+      document.getElementById('heroBreadcrumb').textContent = `${examConfig?.name || examId} > ${meta.name}`;
+      document.title = `${meta.name} - Qbank Admin`;
+
+      // Generate button
+      document.getElementById('generateBtn').href = `./generate.html?exam=${examId}&subject=${subjectId}`;
+
+      // Load data in parallel
+      const [chaptersData, qCounts, jobs] = await Promise.all([
+        Qbank.fetchChapters(subjectId),
+        Qbank.fetchQuestionsCountByChapter(subjectId),
+        Qbank.fetchGenerationJobs()
+      ]);
+
+      chapters = chaptersData;
+      chapterQuestionCounts = qCounts;
+
+      // Count pending from jobs per chapter
+      jobs.filter(j =>
+        (j.subject_id || '').toUpperCase() === subjectId &&
+        (j.status === 'pending' || j.status === 'generating')
+      ).forEach(job => {
+        const chId = job.chapter_id;
+        if (!pendingByChapter[chId]) pendingByChapter[chId] = 0;
+        pendingByChapter[chId] += job.questions_count || 0;
+      });
+
+      renderStats();
+      renderChapters();
+    }
+
+    function renderStats() {
+      let total = 0, active = 0, draft = 0, pending = 0;
+
+      Object.values(chapterQuestionCounts).forEach(c => {
+        total += c.total;
+        active += c.active;
+        draft += c.draft;
+        pending += c.pending;
+      });
+
+      // Add pending from jobs
+      let jobPending = 0;
+      Object.values(pendingByChapter).forEach(v => jobPending += v);
+
+      document.getElementById('statTotal').textContent = total;
+      document.getElementById('statActive').textContent = active;
+      document.getElementById('statDraft').textContent = draft;
+      document.getElementById('statPending').textContent = jobPending;
+    }
+
+    function renderChapters() {
+      const container = document.getElementById('chaptersContainer');
+      const meta = Qbank.getSubjectMeta(subjectId);
+
+      if (chapters.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <p class="empty-title">No chapters found for ${meta.name}</p>
+            <p class="empty-message">Chapters need to be added to the database first.</p>
+          </div>`;
+        return;
+      }
+
+      document.getElementById('chaptersTitle').textContent = `Chapters (${chapters.length})`;
+
+      container.innerHTML = chapters.map((ch, idx) => {
+        const counts = chapterQuestionCounts[ch.id] || { total: 0, active: 0, draft: 0, pending: 0 };
+        const pendingJobs = pendingByChapter[ch.id] || 0;
+        const activePct = counts.total > 0 ? ((counts.active / counts.total) * 100).toFixed(0) : 0;
+
+        return `
+          <div class="chapter-row" id="chapter-${ch.id}">
+            <div class="chapter-row-header" onclick="toggleChapter('${ch.id}')">
+              <div class="chapter-num" style="background: ${meta.bg}; color: ${meta.color};">
+                ${ch.chapter_number || idx + 1}
+              </div>
+              <div class="chapter-name">
+                ${ch.name}
+                <div class="meta">
+                  Class ${ch.class_level || '?'}
+                  ${ch.weightage ? ' &middot; ' + ch.weightage + '% weightage' : ''}
+                </div>
+              </div>
+              <div class="chapter-counts">
+                <span class="c-total">${counts.total} total</span>
+                <span class="c-active">${counts.active} active</span>
+                <span class="c-draft">${counts.draft} draft</span>
+                ${pendingJobs > 0 ? `<span style="color: var(--primary);">${pendingJobs} pending</span>` : ''}
+              </div>
+              <div class="chapter-actions">
+                <a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${ch.id}"
+                   class="btn btn-sm btn-primary" onclick="event.stopPropagation();">
+                  ${counts.total === 0 ? 'Generate First' : 'Generate More'}
+                </a>
+              </div>
+              <span class="chapter-expand-icon">▼</span>
+            </div>
+            <div class="chapter-body" id="chapter-body-${ch.id}">
+              <div class="qbank-loader">
+                <div class="loader-spinner"></div>
+                <p class="loader-message">Loading questions...</p>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ========================================================================
+    // EXPAND CHAPTER — LOAD QUESTIONS
+    // ========================================================================
+    async function toggleChapter(chapterId) {
+      const row = document.getElementById(`chapter-${chapterId}`);
+      const isExpanded = row.classList.contains('expanded');
+
+      if (isExpanded) {
+        row.classList.remove('expanded');
+        return;
+      }
+
+      row.classList.add('expanded');
+
+      // Initialize state if first time
+      if (!chapterState[chapterId]) {
+        chapterState[chapterId] = { page: 1, filter: null, data: [], total: 0 };
+      }
+
+      await loadChapterQuestions(chapterId);
+    }
+
+    async function loadChapterQuestions(chapterId) {
+      const body = document.getElementById(`chapter-body-${chapterId}`);
+      const state = chapterState[chapterId];
+
+      body.innerHTML = `
+        <div class="qbank-loader" style="padding: 16px;">
+          <div class="loader-spinner"></div>
+          <p class="loader-message">Loading questions...</p>
+        </div>`;
+
+      const result = await Qbank.fetchQuestionsByChapter(chapterId, {
+        page: state.page,
+        pageSize: 10,
+        status: state.filter
+      });
+
+      state.data = result.data;
+      // Estimate total from our cached counts
+      const counts = chapterQuestionCounts[chapterId] || { total: 0, active: 0, draft: 0, pending: 0 };
+      let filteredTotal;
+      if (!state.filter) filteredTotal = counts.total;
+      else if (state.filter === 'active') filteredTotal = counts.active;
+      else if (state.filter === 'draft') filteredTotal = counts.draft;
+      else filteredTotal = counts.pending;
+      state.total = filteredTotal;
+
+      renderChapterQuestions(chapterId);
+    }
+
+    function renderChapterQuestions(chapterId) {
+      const body = document.getElementById(`chapter-body-${chapterId}`);
+      const state = chapterState[chapterId];
+      const counts = chapterQuestionCounts[chapterId] || { total: 0, active: 0, draft: 0, pending: 0 };
+      const pageSize = 10;
+      const totalPages = Math.max(1, Math.ceil(state.total / pageSize));
+
+      const filterHtml = `
+        <div class="q-filters">
+          <button class="q-filter-btn ${!state.filter ? 'active' : ''}"
+                  onclick="setFilter('${chapterId}', null)">All (${counts.total})</button>
+          <button class="q-filter-btn ${state.filter === 'active' ? 'active' : ''}"
+                  onclick="setFilter('${chapterId}', 'active')">Active (${counts.active})</button>
+          <button class="q-filter-btn ${state.filter === 'draft' ? 'active' : ''}"
+                  onclick="setFilter('${chapterId}', 'draft')">Draft (${counts.draft})</button>
+        </div>`;
+
+      if (state.data.length === 0) {
+        body.innerHTML = `
+          ${filterHtml}
+          <div class="empty-chapter">
+            No ${state.filter || ''} questions yet.
+            <a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${chapterId}">Generate some!</a>
+          </div>`;
+        return;
+      }
+
+      const startNum = (state.page - 1) * pageSize;
+
+      const questionsHtml = state.data.map((q, i) => {
+        const isActive = q.status === 'active';
+        const toggleClass = isActive ? 'to-draft' : 'to-active';
+        const toggleLabel = isActive ? '→ Draft' : '→ Active';
+        const newStatus = isActive ? 'draft' : 'active';
+
+        return `
+          <div class="q-list-item" id="q-${q.id}">
+            <span class="q-num">#${startNum + i + 1}</span>
+            <span class="q-text">${q.question_text}</span>
+            <span class="q-meta">
+              ${Qbank.getQuestionTypeBadge(q.question_type)}
+              ${Qbank.getDifficultyBadge(q.difficulty)}
+              ${Qbank.getStatusBadge(q.status)}
+              <button class="status-toggle ${toggleClass}"
+                      onclick="toggleStatus('${q.id}', '${newStatus}', '${chapterId}')">
+                ${toggleLabel}
+              </button>
+            </span>
+          </div>
+        `;
+      }).join('');
+
+      const paginationHtml = `
+        <div class="q-pagination">
+          <span>Page ${state.page} of ${totalPages} (${state.total} questions)</span>
+          <div style="display: flex; gap: 8px;">
+            <button ${state.page <= 1 ? 'disabled' : ''} onclick="changePage('${chapterId}', -1)">← Prev</button>
+            <button ${state.page >= totalPages ? 'disabled' : ''} onclick="changePage('${chapterId}', 1)">Next →</button>
+          </div>
+        </div>`;
+
+      body.innerHTML = filterHtml + questionsHtml + paginationHtml;
+    }
+
+    // ========================================================================
+    // FILTER & PAGINATION
+    // ========================================================================
+    async function setFilter(chapterId, filter) {
+      chapterState[chapterId].filter = filter;
+      chapterState[chapterId].page = 1;
+      await loadChapterQuestions(chapterId);
+    }
+
+    async function changePage(chapterId, direction) {
+      chapterState[chapterId].page += direction;
+      await loadChapterQuestions(chapterId);
+    }
+
+    // ========================================================================
+    // STATUS TOGGLE
+    // ========================================================================
+    async function toggleStatus(questionId, newStatus, chapterId) {
+      const btn = document.querySelector(`#q-${questionId} .status-toggle`);
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = '...';
+      }
+
+      const result = await Qbank.updateQuestionStatus(questionId, newStatus);
+
+      if (result) {
+        Qbank.showToast(`Question ${newStatus === 'active' ? 'activated' : 'set to draft'}`, 'success');
+
+        // Update local counts
+        const counts = chapterQuestionCounts[chapterId];
+        if (counts) {
+          if (newStatus === 'active') {
+            counts.active++;
+            counts.draft = Math.max(0, counts.draft - 1);
+          } else {
+            counts.draft++;
+            counts.active = Math.max(0, counts.active - 1);
+          }
+        }
+
+        renderStats();
+        await loadChapterQuestions(chapterId);
+      } else {
+        Qbank.showToast('Failed to update status', 'error');
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = newStatus === 'active' ? '→ Active' : '→ Draft';
+        }
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
