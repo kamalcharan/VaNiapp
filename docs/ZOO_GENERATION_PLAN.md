@@ -34,7 +34,7 @@
 | B03 | `zoo-kingdom-cnidaria` | Phylum Cnidaria | 20 | DONE |
 | B04 | `zoo-kingdom-platyhelminthes` | Phylum Platyhelminthes | 20 | DONE |
 | B05 | `zoo-kingdom-annelida` | Phylum Annelida | 20 | DONE |
-| B06 | `zoo-kingdom-arthropoda` | Phylum Arthropoda | 20 | PENDING |
+| B06 | `zoo-kingdom-arthropoda` | Phylum Arthropoda | 20 | DONE |
 | B07 | `zoo-kingdom-mollusca` | Phylum Mollusca | 20 | PENDING |
 | B08 | `zoo-kingdom-chordata` | Phylum Chordata | 20 | PENDING |
 | | | **Chapter 1 Total** | **160** | |
@@ -341,7 +341,7 @@ Commit and push.
 
 | Chapter | Topics | Qs Target | Qs Done | % |
 |---------|--------|-----------|---------|---|
-| Ch1 Animal Kingdom | 8 | 160 | 100 | 63% |
+| Ch1 Animal Kingdom | 8 | 160 | 120 | 75% |
 | Ch2 Structural Org | 5 | 100 | 0 | 0% |
 | Ch3 Biomolecules | 5 | 100 | 0 | 0% |
 | Ch4 Breathing | 4 | 80 | 0 | 0% |
@@ -356,4 +356,4 @@ Commit and push.
 | Ch13 Human Health | 5 | 100 | 0 | 0% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **100** | **7.7%** |
+| **TOTAL** | **65** | **1,300** | **120** | **9.2%** |
