@@ -100,6 +100,11 @@ export const Typography = {
     fontSize: 16,
     lineHeight: 24,
   },
+  bodyLg: {
+    fontFamily: 'PlusJakartaSans_400Regular',
+    fontSize: 18,
+    lineHeight: 26,
+  },
   bodySm: {
     fontFamily: 'PlusJakartaSans_400Regular',
     fontSize: 14,

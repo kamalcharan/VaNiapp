@@ -176,10 +176,11 @@ export default function AboutVaniScreen() {
     if (!screen.highlight) return null;
 
     switch (screen.highlight.type) {
-      case 'stages':
+      case 'stages': {
+        const stages = screen.highlight.stages!;
         return (
           <View style={styles.stagesContainer}>
-            {screen.highlight.stages.map((stage: any, i: number) => (
+            {stages.map((stage: any, i: number) => (
               <View key={i} style={styles.stageRow}>
                 <View
                   style={[
@@ -223,7 +224,7 @@ export default function AboutVaniScreen() {
                     </View>
                   )}
                 </View>
-                {i < screen.highlight.stages.length - 1 && (
+                {i < stages.length - 1 && (
                   <View
                     style={[
                       styles.stageLine,
@@ -235,11 +236,13 @@ export default function AboutVaniScreen() {
             ))}
           </View>
         );
+      }
 
-      case 'features':
+      case 'features': {
+        const items = screen.highlight.items!;
         return (
           <View style={styles.featuresContainer}>
-            {screen.highlight.items.map((item: any, i: number) => (
+            {items.map((item: any, i: number) => (
               <View key={i} style={styles.featureRow}>
                 <Text style={styles.featureEmoji}>{item.emoji}</Text>
                 <Text style={[Typography.body, { color: colors.text }]}>
@@ -249,6 +252,7 @@ export default function AboutVaniScreen() {
             ))}
           </View>
         );
+      }
 
       case 'demo':
         return (

@@ -16,11 +16,11 @@
           <span class="page-title-icon">🤖</span>
           Generate Questions
         </h1>
-        <p class="page-subtitle">Use Gemini AI to generate NEET-quality questions</p>
+        <p class="page-subtitle" id="pageSubtitle">Use Gemini AI to generate exam-quality questions</p>
       </div>
 
       <!-- Stats Cards -->
-      <div class="stats-row" id="statsRow" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+      <div class="stats-row" id="statsRow" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; margin-bottom: 24px;">
         <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px; border-radius: 12px;">
           <div style="font-size: 24px; font-weight: bold;" id="statTotal">-</div>
           <div style="font-size: 13px; opacity: 0.9;">Total Generated</div>
@@ -31,7 +31,7 @@
         </div>
         <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 16px; border-radius: 12px;">
           <div style="font-size: 24px; font-weight: bold;" id="statApproved">-</div>
-          <div style="font-size: 13px; opacity: 0.9;">Approved</div>
+          <div style="font-size: 13px; opacity: 0.9;">Drafts in DB</div>
         </div>
         <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 16px; border-radius: 12px;">
           <div style="font-size: 24px; font-weight: bold;" id="statInserted">-</div>
@@ -254,6 +254,44 @@
         Qbank.showToast(`Auto-inserted ${autoResult.processed} old jobs to DB`, 'info');
         await loadStats(); // Refresh stats after auto-insert
       }
+
+      // Read URL params and auto-select
+      await applyUrlParams();
+    }
+
+    async function applyUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      const urlExam = params.get('exam');
+      const urlSubject = params.get('subject');
+      const urlChapter = params.get('chapter');
+
+      if (urlExam) {
+        selectExam(urlExam.toUpperCase());
+      }
+
+      if (urlSubject) {
+        const subId = urlSubject.toUpperCase();
+        const found = subjects.find(s => (s.id || '').toUpperCase() === subId);
+        if (found) {
+          selectSubject(found.id);
+
+          // Auto-advance to step 2
+          if (urlExam) {
+            await loadChapters();
+            showStep(2);
+
+            // If chapter also provided, auto-advance to step 3
+            if (urlChapter) {
+              const foundCh = chapters.find(c => c.id === urlChapter);
+              if (foundCh) {
+                selectChapter(foundCh.id);
+                await loadConfiguration();
+                showStep(3);
+              }
+            }
+          }
+        }
+      }
     }
 
     async function loadStats() {
@@ -264,11 +302,11 @@
         // Fetch from med_questions table (for actual DB counts)
         const questionStats = await Qbank.getQuestionStats() || [];
 
-        // Count pending from jobs
+        // Count pending from jobs (match dashboard: pending + reviewed)
         let pendingCount = 0;
         jobs.forEach(job => {
-          if (job.status === 'pending' || job.status === 'generating') {
-            pendingCount += job.questions_count || 0;
+          if (job.status === 'pending' || job.status === 'reviewed') {
+            pendingCount += job.output_json?.questions?.length || 0;
           }
         });
 
@@ -485,9 +523,19 @@
           throw new Error('Failed to create generation job');
         }
 
-        // Step 2: Build prompt
-        statusTitle.textContent = 'Building prompt...';
+        // Step 2: Analyze existing questions for intelligent generation
+        statusTitle.textContent = 'Analyzing existing questions...';
+        statusMessage.textContent = 'Checking database coverage to avoid duplicates.';
         progressBar.style.width = '30%';
+
+        const coverage = await Qbank.fetchChapterCoverage(config.chapter.id);
+        if (coverage) {
+          console.log(`📊 Chapter coverage: ${coverage.total} existing questions`, coverage);
+        }
+
+        // Step 3: Build intelligent prompt
+        statusTitle.textContent = 'Building intelligent prompt...';
+        progressBar.style.width = '40%';
 
         const prompt = Qbank.buildQuestionGenerationPrompt({
           exam: config.exam,
@@ -498,17 +546,18 @@
           questionTypes: config.questionTypes,
           count: config.count,
           difficulty: config.difficulty === 'mixed' ? 'mixed (distribute across easy, medium, hard)' : config.difficulty,
-          includeHints: config.includeHints
+          includeHints: config.includeHints,
+          coverage
         });
 
-        // Step 3: Call Gemini
+        // Step 4: Call Gemini
         statusTitle.textContent = 'Calling Gemini AI...';
-        statusMessage.textContent = 'This may take 30-60 seconds. Please wait.';
-        progressBar.style.width = '50%';
+        statusMessage.textContent = `Generating ${config.count} questions${coverage ? ` (${coverage.total} existing in DB)` : ''}. Please wait 30-60s.`;
+        progressBar.style.width = '55%';
 
         const response = await Qbank.callGemini(prompt, { temperature: 0.7 });
 
-        // Step 4: Parse response
+        // Step 5: Parse response
         statusTitle.textContent = 'Parsing response...';
         progressBar.style.width = '80%';
 
@@ -518,7 +567,7 @@
           throw new Error('Invalid response format from Gemini');
         }
 
-        // Step 5: Save to job
+        // Step 6: Save to job
         statusTitle.textContent = 'Saving questions...';
         progressBar.style.width = '90%';
 
@@ -592,7 +641,7 @@
             <button class="btn btn-success" onclick="insertToDbNow()" id="insertBtn">
               💾 Insert to DB Now
             </button>
-            <a href="./review.html" class="btn btn-primary">👁️ Review Questions</a>
+            <a href="./review.html?job=${job.id}" class="btn btn-primary">👁️ Review Questions</a>
             <button class="btn btn-secondary" onclick="resetWizard()">🔄 Generate More</button>
           </div>
         </div>
@@ -675,9 +724,15 @@
           // Update timer display
           const timerEl = document.getElementById('autoInsertTimer');
           if (timerEl) {
-            timerEl.parentElement.innerHTML = `✅ <strong>Inserted to DB!</strong> ${result.insertedCount} questions added`;
-            timerEl.parentElement.parentElement.style.background = '#d1fae5';
-            timerEl.parentElement.parentElement.style.borderColor = '#6ee7b7';
+            const timerTextEl = timerEl.parentElement;
+            const timerBoxEl = timerTextEl ? timerTextEl.parentElement : null;
+            if (timerTextEl) {
+              timerTextEl.innerHTML = `✅ <strong>Inserted to DB!</strong> ${result.insertedCount} questions added`;
+            }
+            if (timerBoxEl) {
+              timerBoxEl.style.background = '#d1fae5';
+              timerBoxEl.style.borderColor = '#6ee7b7';
+            }
           }
 
           if (btn) {
@@ -726,7 +781,7 @@
             </div>
           </div>
           <div class="question-body">
-            <p class="question-text">${question.question_text}</p>
+            <p class="question-text">${Qbank.escapeHtml(question.question_text)}</p>
             ${options ? `<div class="question-options">${options}</div>` : ''}
             ${question.explanation ? `
               <div class="question-explanation">

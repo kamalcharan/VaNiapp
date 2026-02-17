@@ -86,7 +86,7 @@ export default function SignInScreen() {
 
               <Text
                 style={[
-                  Typography.bodySmall,
+                  Typography.bodySm,
                   { color: colors.textSecondary, textAlign: 'center' },
                 ]}
               >
@@ -98,7 +98,7 @@ export default function SignInScreen() {
                 <View style={styles.loadingWrap}>
                   <ActivityIndicator size="small" color={colors.primary} />
                   <Text
-                    style={[Typography.bodySmall, { color: colors.textTertiary }]}
+                    style={[Typography.bodySm, { color: colors.textTertiary }]}
                   >
                     Opening Google Sign-In...
                   </Text>
@@ -113,7 +113,7 @@ export default function SignInScreen() {
               {error && (
                 <Text
                   style={[
-                    Typography.bodySmall,
+                    Typography.bodySm,
                     { color: colors.incorrect, textAlign: 'center' },
                   ]}
                 >

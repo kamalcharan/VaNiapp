@@ -6,7 +6,7 @@ import { Typography } from '../../constants/theme';
 type Variant = 'hand' | 'handLg' | 'handSm' | 'doodle';
 
 interface Props {
-  children: string;
+  children: React.ReactNode;
   variant?: Variant;
   color?: string;
   rotation?: number;

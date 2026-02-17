@@ -6,6 +6,141 @@
 
 ---
 
+## SESSION PROGRESS LOG
+
+> Last updated: 2026-02-17
+
+### COMPLETED (across all sessions)
+
+#### R7 — Stage/Strength System + QuestionV2 Types — DONE
+- [x] `QuestionV2` type system with all 8 question types (src/types/index.ts)
+- [x] All payload interfaces: McqPayload, AssertionReasoningPayload, MatchPayload, etc.
+- [x] Bilingual support (text/textTe, explanation/explanationTe)
+- [x] Strength system (renamed from "Stage"): StrengthLevel, ChapterStrength types
+- [x] `strengthEvaluator.ts` — evaluateStrength(), evaluateSubjectStrength()
+- [x] `strengthSlice.ts` — Redux slice with recordChapterAttempt, no-demotion logic
+- [x] `questionAdapter.ts` — legacyToV2(), legacyBatchToV2(), filterByUnlockedTypes()
+- [x] `StrengthMap.tsx` — visual strength badges on dashboard
+- [x] 5 levels: just-started → getting-there → on-track → strong → needs-focus
+
+#### R8 — New Question Type UIs — DONE
+- [x] `QuestionRenderer.tsx` — main router dispatching to type components
+- [x] `McqQuestion.tsx` — standard 4-option MCQ
+- [x] `TrueFalseQuestion.tsx` — binary True/False
+- [x] `AssertionReasoningQuestion.tsx` — Assertion + Reason evaluation
+- [x] `MatchTheFollowingQuestion.tsx` — Column A ↔ Column B
+- [x] `FillInBlanksQuestion.tsx` — sentence blanks with options
+- [x] `DiagramBasedQuestion.tsx` — image-based questions
+- [x] `LogicalSequenceQuestion.tsx` — ordering/sequence
+- [x] `ScenarioBasedQuestion.tsx` — passage + MCQ
+- [x] Helper: `WrongAnswerCard.tsx`, `EliminationSheet.tsx`, `ConceptExplainerSheet.tsx`
+
+#### Database Schema — DONE
+- [x] 8 Supabase migrations (1,814 lines total)
+- [x] `med_chapters`, `med_topics`, `med_questions`, `med_question_options`
+- [x] `med_elimination_hints`, `med_generation_jobs`
+- [x] `med_chapter_progress` with coverage/accuracy tracking
+- [x] Question mix config (difficulty/type distribution)
+- [x] CUET support — 46 subjects added (Science, Commerce, Arts, General Test)
+- [x] RLS policies, triggers, indexes
+
+#### Admin QBank Tools (Qbank/) — DONE
+- [x] `import.html` — JSON question import with validation & preview
+- [x] `generate.html` — AI-powered generation via Gemini + DB analytics
+- [x] `insert.html` — bulk DB insert
+- [x] `review.html` — review pending questions, toggle status, bulk actions
+- [x] `subject.html` — subject/chapter browser with stats
+- [x] `translate.html` — bilingual translation tool
+- [x] `shared.js` — centralized utilities, auth, Supabase client
+- [x] `styles.css` — admin UI styling
+- [x] `config.json` — configuration
+
+#### Multi-Exam Support — DONE
+- [x] NEET + CUET exam toggle on dashboard
+- [x] `edit-subjects.tsx` — exam subject picker
+- [x] Subject detail screen (`/app/subject/[id].tsx`)
+- [x] Dynamic chapter loading based on exam selection
+
+#### Bug Fixes & Polish — DONE
+- [x] 18 TypeScript compilation errors fixed
+- [x] Case-insensitive subject matching
+- [x] 25+ UX improvements (pending counts, XSS prevention, navigation, mobile)
+- [x] Undo/reset for reviewed questions
+- [x] Bulk select in QBank
+
+### IN PROGRESS — Question Content Creation
+
+#### Zoology Questions (50 total across 15 chapters, proportional to NEET weightage)
+
+| # | Chapter | Slug | Wtg% | Qs | Status |
+|---|---------|------|------|----|--------|
+| 1 | Animal Kingdom | zoo-animal-kingdom | 13% | 7 | GENERATED (JSON ready, not yet imported) |
+| 2 | Structural Organisation in Animals | zoo-structural-organization | 8% | 4 | PENDING |
+| 3 | Biomolecules | zoo-biomolecules | 10% | 5 | PENDING |
+| 4 | Breathing & Exchange of Gases | zoo-breathing | 4% | 2 | PENDING |
+| 5 | Body Fluids & Circulation | zoo-body-fluids | 5% | 3 | PENDING |
+| 6 | Excretory Products & Elimination | zoo-excretion | 5% | 3 | PENDING |
+| 7 | Locomotion & Movement | zoo-locomotion | 6% | 3 | PENDING |
+| 8 | Neural Control & Coordination | zoo-neural-control | 2% | 1 | PENDING |
+| 9 | Chemical Coordination & Integration | zoo-chemical-coordination | 4% | 2 | PENDING |
+| 10 | Human Reproduction | zoo-human-reproduction | 6% | 3 | PENDING |
+| 11 | Reproductive Health | zoo-reproductive-health | 8% | 4 | PENDING |
+| 12 | Evolution | zoo-evolution | 6% | 3 | PENDING |
+| 13 | Human Health & Disease | zoo-human-health | 6% | 3 | PENDING |
+| 14 | Biotechnology: Principles & Processes | zoo-biotechnology-principles | 12% | 6 | PENDING |
+| 15 | Biotechnology & Its Applications | zoo-biotechnology-applications | 7% | 4 | PENDING |
+
+**Question Type Mix**: MCQ (60%), Assertion-Reasoning (15%), Match-the-Following (10%), True/False (5%), Scenario/Fill/Diagram/Sequence (10%)
+**Difficulty Mix**: Easy 30%, Medium 50%, Hard 20%
+**Format**: JSON with elimination_hints, concept_tags, bloom_level, exam_suitability
+
+#### Physics Questions — NOT STARTED (next subject after Zoology)
+#### Chemistry Questions — NOT STARTED
+#### Botany Questions — NOT STARTED
+
+### NOT STARTED
+
+#### R9 — AI Doubt Solver
+- [ ] Supabase Edge Function: `ai-doubt-solver/index.ts`
+- [ ] `aiSlice.ts` — Redux slice for AI state
+- [ ] `aiClient.ts` — cache-check + Edge Function wrapper
+- [ ] `ask-vani.tsx` — chat-bubble doubt solver screen
+- [ ] Entry points: answer-review button, struggling CTA, dashboard card
+
+#### R10 — Wrong-Answer Analysis + Concept Explainer
+- [ ] Pre-generated explanation JSON files per chapter
+- [ ] Pre-generated concept files per subject
+- [ ] `scripts/generate-explanations.ts` (batch generation)
+- [ ] Edge Function fallbacks for cache misses
+- [ ] Wrong-answer UI card + Concept explainer bottom sheet
+
+#### R11 — AI Study Plan + Mock Analysis
+- [ ] `ai-study-plan/index.ts` Edge Function
+- [ ] `ai-mock-analysis/index.ts` Edge Function
+- [ ] `performanceCollector.ts` — aggregate performance data
+- [ ] Study plan weekly spread screen
+- [ ] Mock analysis on practice-results
+
+#### R12 — Paywall + Tier Gating
+- [ ] `paywall.tsx` — tier comparison + Razorpay
+- [ ] `useAIGate.ts` hook
+- [ ] `payment-webhook/index.ts` Edge Function
+- [ ] Tier enforcement across all AI entry points
+- [ ] Trial management (7-day)
+
+---
+
+## NEXT SESSION PRIORITIES
+
+1. **Generate all Zoology questions** (Chapters 2-15, ~43 remaining)
+   - Each chapter: generate JSON → validate structure → note for import
+   - Cover all topics from `med_topics` seed data
+   - Use question type mix: MCQ + assertion-reasoning + match + others
+2. **After Zoology**: Move to Physics (20 chapters), then Chemistry, then Botany
+3. **Import all questions** via Qbank/import.html once generated
+
+---
+
 ## Current State (R1–R6 complete)
 
 | Layer | What Exists |

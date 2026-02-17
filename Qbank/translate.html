@@ -88,6 +88,11 @@
       border-radius: var(--radius-lg);
       border: 1px solid var(--gray-200);
       margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 768px) {
+      .translation-body { grid-template-columns: 1fr !important; }
+      .translation-column:first-child { border-right: none; border-bottom: 1px solid var(--gray-200); }
     }
 
     .questions-needing-translation {
@@ -169,7 +174,12 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Questions Needing Translation</h3>
-          <button class="btn btn-sm btn-secondary" onclick="loadQuestions()">🔄 Refresh</button>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-success" id="saveAllBtn" onclick="saveAllTranslations()" style="display: none;">
+              Save All Translations
+            </button>
+            <button class="btn btn-sm btn-secondary" onclick="loadQuestions()">Refresh</button>
+          </div>
         </div>
         <div class="card-body" id="questionsContainer">
           <div class="qbank-loader">
@@ -228,6 +238,7 @@
     }
 
     async function loadStats() {
+      if (!Qbank.supabase) return;
       try {
         const { data, error } = await Qbank.supabase
           .from('med_questions')
@@ -291,7 +302,7 @@
           .limit(batchSize);
 
         if (subjectId) {
-          query = query.eq('subject_id', subjectId);
+          query = query.ilike('subject_id', subjectId);
         }
         if (chapterId) {
           query = query.eq('chapter_id', chapterId);
@@ -338,7 +349,7 @@
           <div class="translation-body">
             <div class="translation-column">
               <div class="lang-label">🇬🇧 English</div>
-              <p class="translation-text">${question.question_text}</p>
+              <p class="translation-text">${Qbank.escapeHtml(question.question_text)}</p>
               ${question.explanation ? `
                 <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--gray-200);">
                   <div class="lang-label">Explanation</div>
@@ -438,6 +449,10 @@
 
         Qbank.showToast(`${translations.length} translations generated! Review and save.`, 'success');
 
+        // Show "Save All" button
+        const saveAllBtn = document.getElementById('saveAllBtn');
+        if (saveAllBtn) saveAllBtn.style.display = 'inline-flex';
+
         setTimeout(() => {
           progressDiv.style.display = 'none';
         }, 2000);
@@ -500,6 +515,40 @@
         console.error('Save error:', error);
         Qbank.showToast('Failed to save: ' + error.message, 'error');
       }
+    }
+
+    async function saveAllTranslations() {
+      const btn = document.getElementById('saveAllBtn');
+      if (btn) { btn.disabled = true; btn.textContent = 'Saving...'; }
+
+      let saved = 0, errors = 0;
+      for (const q of questions) {
+        const card = document.getElementById(`trans-${q.id}`);
+        if (!card || card.style.pointerEvents === 'none') continue; // already saved
+
+        const textInput = document.getElementById(`telugu-${q.id}`);
+        const expInput = document.getElementById(`telugu-exp-${q.id}`);
+
+        const updates = {};
+        if (textInput && textInput.value.trim()) updates.question_text_te = textInput.value.trim();
+        if (expInput && expInput.value.trim()) updates.explanation_te = expInput.value.trim();
+
+        if (Object.keys(updates).length === 0) continue;
+
+        try {
+          const { error } = await Qbank.supabase.from('med_questions').update(updates).eq('id', q.id);
+          if (error) throw error;
+          saved++;
+          if (card) { card.style.opacity = '0.5'; card.style.pointerEvents = 'none'; }
+        } catch (err) {
+          errors++;
+          console.error('Save error for', q.id, err);
+        }
+      }
+
+      Qbank.showToast(`Saved ${saved} translations${errors > 0 ? `, ${errors} errors` : ''}`, saved > 0 ? 'success' : 'error');
+      loadStats();
+      if (btn) { btn.disabled = false; btn.textContent = 'Save All Translations'; }
     }
 
     function clearTranslation(questionId) {

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Import Questions - Qbank Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .import-textarea {
+      width: 100%;
+      min-height: 300px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      padding: 16px;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      background: var(--gray-50);
+      resize: vertical;
+      line-height: 1.5;
+    }
+    .import-textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      background: white;
+    }
+    .preview-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .preview-card .q-num {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 24px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    .preview-card .q-text {
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .preview-card .q-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 12px;
+    }
+    .import-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .import-stat {
+      text-align: center;
+      padding: 12px;
+      background: var(--gray-50);
+      border-radius: var(--radius);
+    }
+    .import-stat .value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .import-stat .label {
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+    .format-help {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin: 16px 0;
+    }
+    .format-help pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 16px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-icon">📥</span>
+          Import Questions
+        </h1>
+        <p class="page-subtitle">Paste JSON questions from Claude Code or any source to import into the question bank</p>
+      </div>
+
+      <!-- Step 1: Select Subject & Chapter -->
+      <div class="card" id="step1Card">
+        <div class="card-header">
+          <h3 class="card-title">1. Select Subject & Chapter</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <select id="subjectSelect" class="form-select" onchange="loadChaptersForImport()">
+                <option value="">-- Select Subject --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Chapter</label>
+              <select id="chapterSelect" class="form-select">
+                <option value="">-- Select Chapter --</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Paste JSON -->
+      <div class="card" id="step2Card">
+        <div class="card-header">
+          <h3 class="card-title">2. Paste Questions JSON</h3>
+          <button class="btn btn-sm btn-ghost" onclick="toggleFormatHelp()">Format Help</button>
+        </div>
+        <div class="card-body">
+          <div class="format-help" id="formatHelp" style="display: none;">
+            <p style="margin-bottom: 12px;"><strong>Expected JSON format:</strong> An array of question objects. Paste the output from Claude Code directly.</p>
+            <pre>[
+  {
+    "question_type": "mcq",
+    "question_text": "Which organelle is the powerhouse of the cell?",
+    "options": [
+      { "key": "A", "text": "Nucleus", "is_correct": false },
+      { "key": "B", "text": "Mitochondria", "is_correct": true },
+      { "key": "C", "text": "Ribosome", "is_correct": false },
+      { "key": "D", "text": "Golgi apparatus", "is_correct": false }
+    ],
+    "correct_answer": "B",
+    "explanation": "Mitochondria generate ATP through oxidative phosphorylation...",
+    "difficulty": "easy",
+    "topic": "Cell Biology",
+    "subtopic": "Mitochondria",
+    "concept_tags": ["ATP", "oxidative-phosphorylation"],
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"]
+  }
+]</pre>
+            <p style="margin-top: 12px; font-size: 13px; color: var(--gray-600);">
+              <strong>Supported types:</strong> mcq, assertion-reasoning, match-the-following, true-false, diagram-based, logical-sequence, scenario-based, fill-in-blanks
+            </p>
+          </div>
+
+          <textarea id="jsonInput" class="import-textarea"
+            placeholder='Paste your JSON array of questions here...
+
+[
+  {
+    "question_type": "mcq",
+    "question_text": "...",
+    "options": [...],
+    "correct_answer": "B",
+    "explanation": "...",
+    "difficulty": "medium",
+    "topic": "...",
+    ...
+  }
+]'></textarea>
+
+          <div style="display: flex; gap: 12px; margin-top: 16px;">
+            <button class="btn btn-primary" onclick="validateAndPreview()">Validate & Preview</button>
+            <button class="btn btn-ghost" onclick="clearInput()">Clear</button>
+            <label class="btn btn-ghost" style="cursor: pointer;">
+              Upload .json file
+              <input type="file" accept=".json" style="display: none;" onchange="loadJsonFile(event)">
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Preview & Import -->
+      <div class="card" id="previewCard" style="display: none;">
+        <div class="card-header">
+          <h3 class="card-title">3. Preview & Import</h3>
+        </div>
+        <div class="card-body">
+          <div class="import-stats" id="importStats"></div>
+          <div id="previewContainer"></div>
+          <div style="display: flex; gap: 12px; margin-top: 24px; justify-content: center;">
+            <button class="btn btn-primary btn-lg" onclick="importQuestions()" id="importBtn">
+              Import as Generation Job (Review Later)
+            </button>
+            <button class="btn btn-success btn-lg" onclick="importDirectToDB()" id="directInsertBtn">
+              Insert Directly to DB
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Import Log -->
+      <div class="card" id="importLogCard" style="display: none;">
+        <div class="card-header">
+          <h3 class="card-title">Import Log</h3>
+        </div>
+        <div class="card-body">
+          <div id="importLog" style="font-family: monospace; font-size: 13px; background: #1e293b; color: #e2e8f0; padding: 16px; border-radius: var(--radius); max-height: 400px; overflow-y: auto;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    let subjects = [];
+    let chapters = [];
+    let parsedQuestions = [];
+
+    // ========================================================================
+    // INIT
+    // ========================================================================
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Qbank.requireAuth('admin');
+      if (!user) return;
+      Qbank.renderNavHeader();
+      await loadSubjectsForImport();
+    });
+
+    async function loadSubjectsForImport() {
+      subjects = await Qbank.fetchSubjects();
+      const select = document.getElementById('subjectSelect');
+      subjects.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = `${Qbank.getSubjectEmoji(s.id)} ${s.name}`;
+        select.appendChild(opt);
+      });
+    }
+
+    async function loadChaptersForImport() {
+      const subjectId = document.getElementById('subjectSelect').value;
+      const select = document.getElementById('chapterSelect');
+      select.innerHTML = '<option value="">-- Select Chapter --</option>';
+
+      if (!subjectId) return;
+
+      chapters = await Qbank.fetchChapters(subjectId);
+      chapters.forEach(ch => {
+        const opt = document.createElement('option');
+        opt.value = ch.id;
+        opt.textContent = `${ch.chapter_number || '-'}. ${ch.name}`;
+        select.appendChild(opt);
+      });
+    }
+
+    // ========================================================================
+    // JSON INPUT
+    // ========================================================================
+    function toggleFormatHelp() {
+      const el = document.getElementById('formatHelp');
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function clearInput() {
+      document.getElementById('jsonInput').value = '';
+      document.getElementById('previewCard').style.display = 'none';
+      parsedQuestions = [];
+    }
+
+    function loadJsonFile(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        document.getElementById('jsonInput').value = e.target.result;
+        Qbank.showToast(`Loaded ${file.name}`, 'success');
+      };
+      reader.readAsText(file);
+    }
+
+    // ========================================================================
+    // VALIDATE & PREVIEW
+    // ========================================================================
+    function validateAndPreview() {
+      const subjectId = document.getElementById('subjectSelect').value;
+      const chapterId = document.getElementById('chapterSelect').value;
+
+      if (!subjectId || !chapterId) {
+        Qbank.showToast('Please select a subject and chapter first', 'error');
+        return;
+      }
+
+      const raw = document.getElementById('jsonInput').value.trim();
+      if (!raw) {
+        Qbank.showToast('Please paste JSON questions', 'error');
+        return;
+      }
+
+      try {
+        parsedQuestions = Qbank.parseJsonResponse(raw);
+      } catch (e) {
+        Qbank.showToast(`Invalid JSON: ${e.message}`, 'error');
+        return;
+      }
+
+      if (!Array.isArray(parsedQuestions) || parsedQuestions.length === 0) {
+        Qbank.showToast('JSON must be a non-empty array of questions', 'error');
+        return;
+      }
+
+      // Validate each question
+      const issues = [];
+      parsedQuestions.forEach((q, i) => {
+        if (!q.question_text) issues.push(`Q${i + 1}: missing question_text`);
+        if (!q.question_type) q.question_type = 'mcq'; // default
+        if (!q.difficulty) q.difficulty = 'medium';
+        if (!q.correct_answer && q.question_type === 'mcq') issues.push(`Q${i + 1}: missing correct_answer`);
+        if (q.question_type === 'mcq' && (!q.options || q.options.length < 2)) issues.push(`Q${i + 1}: MCQ needs at least 2 options`);
+      });
+
+      if (issues.length > 0) {
+        Qbank.showToast(`Validation issues:\n${issues.join('\n')}`, 'warning', 5000);
+      }
+
+      // Show stats
+      const stats = {
+        total: parsedQuestions.length,
+        easy: parsedQuestions.filter(q => q.difficulty === 'easy').length,
+        medium: parsedQuestions.filter(q => q.difficulty === 'medium').length,
+        hard: parsedQuestions.filter(q => q.difficulty === 'hard').length,
+        types: {}
+      };
+      parsedQuestions.forEach(q => {
+        stats.types[q.question_type] = (stats.types[q.question_type] || 0) + 1;
+      });
+
+      document.getElementById('importStats').innerHTML = `
+        <div class="import-stat">
+          <div class="value">${stats.total}</div>
+          <div class="label">Total</div>
+        </div>
+        <div class="import-stat">
+          <div class="value" style="color: #22c55e;">${stats.easy}</div>
+          <div class="label">Easy</div>
+        </div>
+        <div class="import-stat">
+          <div class="value" style="color: #f59e0b;">${stats.medium}</div>
+          <div class="label">Medium</div>
+        </div>
+        <div class="import-stat">
+          <div class="value" style="color: #ef4444;">${stats.hard}</div>
+          <div class="label">Hard</div>
+        </div>
+        ${Object.entries(stats.types).map(([type, count]) => `
+          <div class="import-stat">
+            <div class="value">${count}</div>
+            <div class="label">${type}</div>
+          </div>
+        `).join('')}
+      `;
+
+      // Show preview of first 5
+      const preview = parsedQuestions.slice(0, 5);
+      document.getElementById('previewContainer').innerHTML = `
+        <p style="color: var(--gray-500); margin-bottom: 12px;">Showing ${preview.length} of ${parsedQuestions.length} questions:</p>
+        ${preview.map((q, i) => `
+          <div class="preview-card">
+            <div class="q-text">
+              <span class="q-num">${i + 1}</span>
+              ${Qbank.escapeHtml(q.question_text)}
+            </div>
+            <div class="q-meta">
+              ${Qbank.getDifficultyBadge(q.difficulty)}
+              ${Qbank.getQuestionTypeBadge(q.question_type)}
+              ${q.topic ? `<span class="badge" style="background: #eff6ff; color: #1d4ed8;">${Qbank.escapeHtml(q.topic)}</span>` : ''}
+              <span class="badge">Answer: ${Qbank.escapeHtml(q.correct_answer || '?')}</span>
+            </div>
+          </div>
+        `).join('')}
+        ${parsedQuestions.length > 5 ? `<p style="text-align: center; color: var(--gray-400);">...and ${parsedQuestions.length - 5} more</p>` : ''}
+      `;
+
+      document.getElementById('previewCard').style.display = 'block';
+      document.getElementById('previewCard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ========================================================================
+    // IMPORT AS GENERATION JOB (goes to review flow)
+    // ========================================================================
+    async function importQuestions() {
+      const subjectId = document.getElementById('subjectSelect').value;
+      const chapterId = document.getElementById('chapterSelect').value;
+
+      if (parsedQuestions.length === 0) {
+        Qbank.showToast('No questions to import', 'error');
+        return;
+      }
+
+      document.getElementById('importBtn').disabled = true;
+      document.getElementById('importBtn').textContent = 'Importing...';
+
+      try {
+        // Mark all questions as approved by default (imported = trusted)
+        const questions = parsedQuestions.map(q => ({ ...q, _approved: true }));
+
+        const job = await Qbank.createGenerationJob({
+          subject_id: subjectId,
+          chapter_id: chapterId,
+          exam_ids: parsedQuestions[0]?.exam_suitability || ['NEET'],
+          config: {
+            source: 'manual_import',
+            importedAt: new Date().toISOString(),
+            count: questions.length
+          },
+          status: 'reviewed', // Skip review — already trusted
+          output_json: { questions },
+          questions_count: questions.length
+        });
+
+        if (!job) throw new Error('Failed to create generation job');
+
+        Qbank.showToast(`Imported ${questions.length} questions as job ${job.id}. Ready to insert!`, 'success');
+
+        // Show log
+        showLog(`Imported ${questions.length} questions as generation job.
+Job ID: ${job.id}
+Status: reviewed (ready to insert)
+Subject: ${subjectId}
+Chapter: ${chapterId}
+
+Go to the Insert page to add these to the database.`);
+
+      } catch (error) {
+        console.error('Import error:', error);
+        Qbank.showToast(`Import failed: ${error.message}`, 'error');
+      } finally {
+        document.getElementById('importBtn').disabled = false;
+        document.getElementById('importBtn').textContent = 'Import as Generation Job (Review Later)';
+      }
+    }
+
+    // ========================================================================
+    // DIRECT INSERT TO DB (skips job/review entirely)
+    // ========================================================================
+    async function importDirectToDB() {
+      const subjectId = document.getElementById('subjectSelect').value;
+      const chapterId = document.getElementById('chapterSelect').value;
+
+      if (parsedQuestions.length === 0) {
+        Qbank.showToast('No questions to import', 'error');
+        return;
+      }
+
+      if (!confirm(`Insert ${parsedQuestions.length} questions directly into the database as ACTIVE questions?\n\nThis skips the review process.`)) {
+        return;
+      }
+
+      document.getElementById('directInsertBtn').disabled = true;
+      document.getElementById('directInsertBtn').textContent = 'Inserting...';
+
+      const logEl = showLog('Starting direct insert...\n');
+      let inserted = 0;
+      let errors = 0;
+
+      try {
+        for (let i = 0; i < parsedQuestions.length; i++) {
+          const q = parsedQuestions[i];
+          try {
+            // Insert question
+            const { data: insertedQ, error: qError } = await Qbank.supabase
+              .from('med_questions')
+              .insert({
+                subject_id: subjectId,
+                chapter_id: chapterId,
+                question_type: q.question_type || 'mcq',
+                difficulty: q.difficulty || 'medium',
+                question_text: q.question_text,
+                correct_answer: q.correct_answer,
+                explanation: q.explanation || '',
+                status: 'active',
+                concept_tags: q.concept_tags || [],
+                payload: {
+                  topic: q.topic,
+                  subtopic: q.subtopic,
+                  bloom_level: q.bloom_level,
+                  exam_suitability: q.exam_suitability,
+                  source: 'manual_import'
+                }
+              })
+              .select()
+              .single();
+
+            if (qError) throw qError;
+
+            // Insert options
+            if (q.options && q.options.length > 0) {
+              const options = q.options.map((opt, idx) => ({
+                question_id: insertedQ.id,
+                option_key: opt.key || String.fromCharCode(65 + idx),
+                option_text: opt.text,
+                is_correct: opt.is_correct || (opt.key === q.correct_answer),
+                sort_order: idx
+              }));
+
+              await Qbank.supabase.from('med_question_options').insert(options);
+            }
+
+            // Insert hints if present
+            if (q.elimination_hints && q.elimination_hints.length > 0) {
+              const hints = q.elimination_hints.map(h => ({
+                question_id: insertedQ.id,
+                option_key: h.option_key,
+                hint_text: h.hint,
+                misconception: h.misconception || ''
+              }));
+
+              await Qbank.supabase.from('med_elimination_hints').insert(hints);
+            }
+
+            inserted++;
+            appendLog(logEl, `[${i + 1}/${parsedQuestions.length}] Inserted: ${q.question_text.substring(0, 60)}...`, 'success');
+          } catch (err) {
+            errors++;
+            appendLog(logEl, `[${i + 1}/${parsedQuestions.length}] FAILED: ${err.message}`, 'error');
+          }
+        }
+
+        appendLog(logEl, `\nComplete! ${inserted} inserted, ${errors} errors.`, 'info');
+        Qbank.showToast(`Inserted ${inserted} questions (${errors} errors)`, inserted > 0 ? 'success' : 'error');
+
+      } catch (error) {
+        appendLog(logEl, `\nFatal error: ${error.message}`, 'error');
+        Qbank.showToast(`Insert failed: ${error.message}`, 'error');
+      } finally {
+        document.getElementById('directInsertBtn').disabled = false;
+        document.getElementById('directInsertBtn').textContent = 'Insert Directly to DB';
+      }
+    }
+
+    // ========================================================================
+    // LOG HELPERS
+    // ========================================================================
+    function showLog(initialMessage) {
+      const card = document.getElementById('importLogCard');
+      const logEl = document.getElementById('importLog');
+      card.style.display = 'block';
+      logEl.innerHTML = `<div>${Qbank.escapeHtml(initialMessage)}</div>`;
+      card.scrollIntoView({ behavior: 'smooth' });
+      return logEl;
+    }
+
+    function appendLog(logEl, message, type = '') {
+      const color = type === 'success' ? '#4ade80' : type === 'error' ? '#f87171' : type === 'info' ? '#60a5fa' : '#e2e8f0';
+      logEl.innerHTML += `<div style="color: ${color};">${Qbank.escapeHtml(message)}</div>`;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+  </script>
+</body>
+</html>

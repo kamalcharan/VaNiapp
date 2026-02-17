@@ -11,6 +11,60 @@ let SUPABASE = null;
 let CURRENT_USER = null;
 
 // ============================================================================
+// EXAM-SUBJECT MAPPING
+// ============================================================================
+const EXAM_CONFIG = {
+  NEET: {
+    name: 'NEET',
+    fullName: 'National Eligibility cum Entrance Test',
+    icon: '🩺',
+    description: 'Medical Entrance',
+    subjects: ['PHYSICS', 'CHEMISTRY', 'BOTANY', 'ZOOLOGY']
+  },
+  CUET: {
+    name: 'CUET',
+    fullName: 'Common University Entrance Test',
+    icon: '🎓',
+    description: 'University Entrance',
+    subjects: ['MATHEMATICS', 'BIOLOGY', 'PHYSICS', 'CHEMISTRY', 'ACCOUNTANCY', 'BUSINESS-STUDIES', 'ECONOMICS']
+  }
+};
+
+const SUBJECT_META = {
+  'PHYSICS':          { name: 'Physics',          emoji: '⚡', color: '#3b82f6', bg: '#dbeafe' },
+  'CHEMISTRY':        { name: 'Chemistry',        emoji: '🧪', color: '#10b981', bg: '#d1fae5' },
+  'BOTANY':           { name: 'Botany',           emoji: '🌿', color: '#22c55e', bg: '#dcfce7' },
+  'ZOOLOGY':          { name: 'Zoology',          emoji: '🦁', color: '#f59e0b', bg: '#fef3c7' },
+  'MATHEMATICS':      { name: 'Mathematics',      emoji: '📐', color: '#ef4444', bg: '#fee2e2' },
+  'BIOLOGY':          { name: 'Biology',          emoji: '🧬', color: '#8b5cf6', bg: '#ede9fe' },
+  'ACCOUNTANCY':      { name: 'Accountancy',      emoji: '📊', color: '#14b8a6', bg: '#ccfbf1' },
+  'BUSINESS-STUDIES': { name: 'Business Studies', emoji: '💼', color: '#6366f1', bg: '#e0e7ff' },
+  'ECONOMICS':        { name: 'Economics',        emoji: '💰', color: '#f97316', bg: '#ffedd5' }
+};
+
+function getExamConfig(examId) {
+  return EXAM_CONFIG[examId] || null;
+}
+
+function getExamSubjects(examId) {
+  return EXAM_CONFIG[examId]?.subjects || [];
+}
+
+function getSubjectMeta(subjectId) {
+  const key = (subjectId || '').toUpperCase();
+  return SUBJECT_META[key] || { name: subjectId, emoji: '📚', color: '#6b7280', bg: '#f3f4f6' };
+}
+
+// Normalize IDs to lowercase for case-insensitive DB matching
+function normalizeId(id) {
+  return (id || '').toLowerCase();
+}
+
+function normalizeIds(ids) {
+  return (ids || []).map(id => id.toLowerCase());
+}
+
+// ============================================================================
 // CONFIG LOADER
 // ============================================================================
 async function loadConfig() {
@@ -88,7 +142,12 @@ async function requireAuth(allowedRoles = ['admin', 'reviewer']) {
     return null;
   }
 
-  await loadConfig();
+  const config = await loadConfig();
+  if (!config) {
+    showToast('Config file missing. Create Qbank/config.json from config.example.json', 'error', 8000);
+    return CURRENT_USER; // Still return user so page partially renders
+  }
+
   await initSupabase();
 
   return CURRENT_USER;
@@ -115,9 +174,22 @@ async function initSupabase() {
     return null;
   }
 
+  // Check for placeholder credentials
+  if (config.supabase.url.includes('your-project') || config.supabase.anonKey.includes('your-')) {
+    console.warn('Supabase credentials are placeholders. Update config.json with real credentials.');
+    showToast('Supabase not configured. Update config.json with your Supabase URL and key.', 'warning', 5000);
+    return null;
+  }
+
   // Load Supabase from CDN if not already loaded
   if (!window.supabase) {
-    await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js');
+    try {
+      await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js');
+    } catch (err) {
+      console.error('Failed to load Supabase SDK:', err);
+      showToast('Failed to load Supabase SDK. Check your internet connection.', 'error');
+      return null;
+    }
   }
 
   SUPABASE = window.supabase.createClient(config.supabase.url, config.supabase.anonKey);
@@ -138,6 +210,7 @@ function loadScript(src) {
 // SUPABASE DATA HELPERS
 // ============================================================================
 async function fetchSubjects() {
+  if (!SUPABASE) return [];
   const { data, error } = await SUPABASE
     .from('med_subjects')
     .select('*')
@@ -148,24 +221,28 @@ async function fetchSubjects() {
     return [];
   }
 
-  // Filter by user's allowed subjects
+  // Filter by user's allowed subjects (case-insensitive)
   if (CURRENT_USER && CURRENT_USER.role === 'reviewer') {
-    return data.filter(s => CURRENT_USER.subjects.includes(s.id));
+    const allowed = normalizeIds(CURRENT_USER.subjects);
+    return data.filter(s => allowed.includes(normalizeId(s.id)));
   }
 
   return data;
 }
 
 async function fetchChapters(subjectId = null) {
+  if (!SUPABASE) return [];
   let query = SUPABASE
     .from('med_chapters')
     .select('*')
     .order('chapter_number');
 
   if (subjectId) {
-    query = query.eq('subject_id', subjectId);
+    query = query.ilike('subject_id', subjectId);
   } else if (CURRENT_USER?.role === 'reviewer') {
-    query = query.in('subject_id', CURRENT_USER.subjects);
+    // Use OR filter for case-insensitive in() equivalent
+    const subjects = CURRENT_USER.subjects;
+    query = query.or(subjects.map(s => `subject_id.ilike.${s}`).join(','));
   }
 
   const { data, error } = await query;
@@ -177,6 +254,7 @@ async function fetchChapters(subjectId = null) {
 }
 
 async function fetchTopics(chapterId) {
+  if (!SUPABASE) return [];
   const { data, error } = await SUPABASE
     .from('med_topics')
     .select('*')
@@ -191,6 +269,7 @@ async function fetchTopics(chapterId) {
 }
 
 async function fetchGenerationJobs(status = null) {
+  if (!SUPABASE) return [];
   let query = SUPABASE
     .from('med_generation_jobs')
     .select('*')
@@ -201,7 +280,8 @@ async function fetchGenerationJobs(status = null) {
   }
 
   if (CURRENT_USER?.role === 'reviewer') {
-    query = query.in('subject_id', CURRENT_USER.subjects);
+    const subjects = CURRENT_USER.subjects;
+    query = query.or(subjects.map(s => `subject_id.ilike.${s}`).join(','));
   }
 
   const { data, error } = await query;
@@ -213,6 +293,7 @@ async function fetchGenerationJobs(status = null) {
 }
 
 async function createGenerationJob(jobData) {
+  if (!SUPABASE) return null;
   const { data, error } = await SUPABASE
     .from('med_generation_jobs')
     .insert(jobData)
@@ -227,6 +308,7 @@ async function createGenerationJob(jobData) {
 }
 
 async function updateGenerationJob(jobId, updates) {
+  if (!SUPABASE) return null;
   const { data, error } = await SUPABASE
     .from('med_generation_jobs')
     .update(updates)
@@ -242,6 +324,7 @@ async function updateGenerationJob(jobId, updates) {
 }
 
 async function insertQuestions(questions) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   const { data, error } = await SUPABASE
     .from('med_questions')
     .insert(questions)
@@ -255,6 +338,7 @@ async function insertQuestions(questions) {
 }
 
 async function insertQuestionOptions(options) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   const { data, error } = await SUPABASE
     .from('med_question_options')
     .insert(options)
@@ -268,6 +352,7 @@ async function insertQuestionOptions(options) {
 }
 
 async function insertEliminationHints(hints) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   const { data, error } = await SUPABASE
     .from('med_elimination_hints')
     .insert(hints)
@@ -282,6 +367,7 @@ async function insertEliminationHints(hints) {
 
 // Insert questions from a generation job to DB
 async function insertJobQuestionsToDb(job) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   if (!job.output_json?.questions || job.output_json.questions.length === 0) {
     return { success: false, error: 'No questions in job' };
   }
@@ -388,6 +474,7 @@ async function insertJobQuestionsToDb(job) {
 
 // Insert only approved questions from a job to DB
 async function insertApprovedQuestionsToDb(job, approvedQuestions) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   if (!approvedQuestions || approvedQuestions.length === 0) {
     return { success: false, error: 'No approved questions to insert' };
   }
@@ -493,6 +580,7 @@ async function insertApprovedQuestionsToDb(job, approvedQuestions) {
 
 // Check for old jobs (>12 hours) and auto-insert
 async function autoInsertOldJobs() {
+  if (!SUPABASE) return { processed: 0 };
   const twelveHoursAgo = new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString();
 
   // Get jobs that are pending and older than 12 hours
@@ -528,12 +616,111 @@ function getAutoInsertTimeRemaining(jobCreatedAt) {
 }
 
 async function getQuestionStats() {
+  if (!SUPABASE) return [];
   const { data, error } = await SUPABASE
     .from('med_questions')
     .select('subject_id, question_type, difficulty, status');
 
   if (error) {
     console.error('Error fetching stats:', error);
+    return null;
+  }
+  return data;
+}
+
+async function fetchQuestionsByChapter(chapterId, options = {}) {
+  if (!SUPABASE) return { data: [], total: 0 };
+  let query = SUPABASE
+    .from('med_questions')
+    .select('id, subject_id, chapter_id, question_type, difficulty, status, question_text, correct_answer, explanation, payload, concept_tags, created_at')
+    .eq('chapter_id', chapterId)
+    .order('created_at', { ascending: false });
+
+  if (options.status) {
+    query = query.eq('status', options.status);
+  }
+
+  const pageSize = options.pageSize || 10;
+  const page = options.page || 1;
+  const from = (page - 1) * pageSize;
+  const to = from + pageSize - 1;
+  query = query.range(from, to);
+
+  const { data, error, count } = await query;
+  if (error) {
+    console.error('Error fetching questions:', error);
+    return { data: [], total: 0 };
+  }
+  return { data: data || [], total: count };
+}
+
+async function fetchQuestionDetails(questionId) {
+  if (!SUPABASE) return null;
+
+  // Fetch options and hints in parallel
+  const [optRes, hintRes] = await Promise.all([
+    SUPABASE.from('med_question_options').select('*').eq('question_id', questionId).order('sort_order'),
+    SUPABASE.from('med_elimination_hints').select('*').eq('question_id', questionId)
+  ]);
+
+  return {
+    options: optRes.data || [],
+    hints: hintRes.data || []
+  };
+}
+
+async function bulkUpdateQuestionStatus(questionIds, newStatus) {
+  if (!SUPABASE || questionIds.length === 0) return null;
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .update({ status: newStatus })
+    .in('id', questionIds)
+    .select();
+
+  if (error) {
+    console.error('Error bulk updating status:', error);
+    return null;
+  }
+  return data;
+}
+
+async function fetchQuestionsCountByChapter(subjectId) {
+  if (!SUPABASE) return {};
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .select('chapter_id, status')
+    .ilike('subject_id', subjectId);
+
+  if (error) {
+    console.error('Error fetching question counts:', error);
+    return {};
+  }
+
+  // Group by chapter_id and status
+  const counts = {};
+  (data || []).forEach(q => {
+    if (!counts[q.chapter_id]) {
+      counts[q.chapter_id] = { total: 0, active: 0, draft: 0, pending: 0 };
+    }
+    counts[q.chapter_id].total++;
+    if (q.status === 'active') counts[q.chapter_id].active++;
+    else if (q.status === 'draft') counts[q.chapter_id].draft++;
+    else counts[q.chapter_id].pending++;
+  });
+  return counts;
+}
+
+async function updateQuestionStatus(questionId, newStatus) {
+  if (!SUPABASE) return null;
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .update({ status: newStatus })
+    .eq('id', questionId)
+    .select()
+    .single();
+
+  if (error) {
+    console.error('Error updating question status:', error);
     return null;
   }
   return data;
@@ -612,10 +799,149 @@ function getTokenUsage() {
 }
 
 // ============================================================================
+// INTELLIGENT PROMPT: DB ANALYSIS
+// ============================================================================
+async function fetchChapterCoverage(chapterId) {
+  if (!SUPABASE) return null;
+
+  // Fetch all existing questions for this chapter (lightweight: just key fields)
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .select('question_type, difficulty, question_text, concept_tags, payload')
+    .eq('chapter_id', chapterId);
+
+  if (error) {
+    console.error('Error fetching chapter coverage:', error);
+    return null;
+  }
+
+  // Also fetch pending/reviewed jobs for this chapter (not yet in DB)
+  const { data: jobs } = await SUPABASE
+    .from('med_generation_jobs')
+    .select('output_json, status')
+    .eq('chapter_id', chapterId)
+    .in('status', ['pending', 'reviewed']);
+
+  // Collect questions from pending jobs too
+  const jobQuestions = [];
+  (jobs || []).forEach(job => {
+    (job.output_json?.questions || []).forEach(q => {
+      jobQuestions.push({
+        question_type: q.question_type,
+        difficulty: q.difficulty,
+        question_text: q.question_text,
+        topic: q.topic,
+        subtopic: q.subtopic
+      });
+    });
+  });
+
+  const allQuestions = [...(data || []), ...jobQuestions];
+
+  // Analyze coverage
+  const coverage = {
+    total: allQuestions.length,
+    byDifficulty: { easy: 0, medium: 0, hard: 0 },
+    byType: {},
+    byTopic: {},
+    existingStems: []
+  };
+
+  allQuestions.forEach(q => {
+    // Difficulty counts
+    const diff = (q.difficulty || 'medium').toLowerCase();
+    if (coverage.byDifficulty[diff] !== undefined) coverage.byDifficulty[diff]++;
+
+    // Type counts
+    const type = q.question_type || 'mcq';
+    coverage.byType[type] = (coverage.byType[type] || 0) + 1;
+
+    // Topic counts (from payload or direct field)
+    const topic = q.topic || q.payload?.topic || 'Unknown';
+    const subtopic = q.subtopic || q.payload?.subtopic || '';
+    if (!coverage.byTopic[topic]) coverage.byTopic[topic] = { count: 0, subtopics: {} };
+    coverage.byTopic[topic].count++;
+    if (subtopic) {
+      coverage.byTopic[topic].subtopics[subtopic] = (coverage.byTopic[topic].subtopics[subtopic] || 0) + 1;
+    }
+
+    // Collect stems for dedup (first 80 chars to keep prompt size manageable)
+    if (q.question_text) {
+      coverage.existingStems.push(q.question_text.substring(0, 80));
+    }
+  });
+
+  return coverage;
+}
+
+function buildCoverageContext(coverage, topics) {
+  if (!coverage || coverage.total === 0) {
+    return `\nDATABASE STATUS: No questions exist yet for this chapter. This is a fresh start — generate a well-rounded set.\n`;
+  }
+
+  let ctx = `\n═══════════════════════════════════════════════════════════════════════════════
+DATABASE ANALYSIS — EXISTING QUESTIONS FOR THIS CHAPTER: ${coverage.total} total
+═══════════════════════════════════════════════════════════════════════════════
+
+DIFFICULTY DISTRIBUTION:
+- Easy: ${coverage.byDifficulty.easy} questions
+- Medium: ${coverage.byDifficulty.medium} questions
+- Hard: ${coverage.byDifficulty.hard} questions
+
+QUESTION TYPE DISTRIBUTION:
+${Object.entries(coverage.byType).map(([t, c]) => `- ${t}: ${c} questions`).join('\n')}
+
+TOPIC COVERAGE:
+`;
+
+  // Show which topics have how many questions, and highlight gaps
+  const topicNames = topics.map(t => t.name);
+  const coveredTopics = [];
+  const gapTopics = [];
+
+  topicNames.forEach(tName => {
+    const match = Object.entries(coverage.byTopic).find(
+      ([k]) => k.toLowerCase().trim() === tName.toLowerCase().trim()
+    );
+    if (match) {
+      const [, data] = match;
+      coveredTopics.push(`- ${tName}: ${data.count} questions (subtopics: ${Object.keys(data.subtopics).join(', ') || 'various'})`);
+    } else {
+      gapTopics.push(tName);
+    }
+  });
+
+  ctx += coveredTopics.join('\n');
+
+  if (gapTopics.length > 0) {
+    ctx += `\n\n⚠️ UNCOVERED TOPICS (PRIORITY — generate questions for these):
+${gapTopics.map(t => `- ${t}: 0 questions — NEEDS COVERAGE`).join('\n')}`;
+  }
+
+  // Add dedup context (limit to 30 stems to avoid huge prompts)
+  const stems = coverage.existingStems.slice(0, 30);
+  if (stems.length > 0) {
+    ctx += `\n\nEXISTING QUESTION STEMS (DO NOT duplicate these):
+${stems.map((s, i) => `${i + 1}. "${s}..."`).join('\n')}`;
+  }
+
+  ctx += `\n
+GENERATION STRATEGY:
+1. PRIORITIZE uncovered topics listed above
+2. For covered topics, focus on DIFFERENT subtopics and concepts
+3. Balance difficulty distribution — generate more of what's missing
+4. DO NOT create questions that test the same concept as existing ones
+5. Each question should add NEW coverage to the question bank
+═══════════════════════════════════════════════════════════════════════════════\n`;
+
+  return ctx;
+}
+
+// ============================================================================
 // PROMPT BUILDERS
 // ============================================================================
 function buildQuestionGenerationPrompt(params) {
-  const { exam, examIds, subject, chapter, topics, questionTypes, count, difficulty, includeHints } = params;
+  const { exam, examIds, subject, chapter, topics, questionTypes, count, difficulty, includeHints, coverage } = params;
 
   // Build topic list - always explicit
   let topicList;
@@ -675,7 +1001,7 @@ DIFFICULTY: ${difficulty}
 - easy: Direct recall, basic concepts
 - medium: Application of concepts, moderate complexity
 - hard: Multi-concept integration, analytical thinking
-
+${coverage ? buildCoverageContext(coverage, topics) : ''}
 OUTPUT FORMAT (JSON array):
 \`\`\`json
 [
@@ -848,23 +1174,11 @@ function formatDate(dateString) {
 }
 
 function getSubjectColor(subjectId) {
-  const colors = {
-    'PHYSICS': '#3b82f6',
-    'CHEMISTRY': '#10b981',
-    'BOTANY': '#22c55e',
-    'ZOOLOGY': '#f59e0b'
-  };
-  return colors[subjectId] || '#6b7280';
+  return getSubjectMeta(subjectId).color;
 }
 
 function getSubjectEmoji(subjectId) {
-  const emojis = {
-    'PHYSICS': '⚡',
-    'CHEMISTRY': '🧪',
-    'BOTANY': '🌿',
-    'ZOOLOGY': '🦁'
-  };
-  return emojis[subjectId] || '📚';
+  return getSubjectMeta(subjectId).emoji;
 }
 
 function getDifficultyBadge(difficulty) {
@@ -902,6 +1216,16 @@ function getQuestionTypeBadge(type) {
 }
 
 // ============================================================================
+// HTML ESCAPING (XSS prevention)
+// ============================================================================
+const _escapeEl = document.createElement('div');
+function escapeHtml(str) {
+  if (!str) return '';
+  _escapeEl.textContent = str;
+  return _escapeEl.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// ============================================================================
 // NAVIGATION HEADER
 // ============================================================================
 function renderNavHeader() {
@@ -916,6 +1240,7 @@ function renderNavHeader() {
     { id: 'generate', label: 'Generate', icon: '🤖', adminOnly: true },
     { id: 'review', label: 'Review', icon: '👁️', adminOnly: false },
     { id: 'insert', label: 'Insert', icon: '💾', adminOnly: true },
+    { id: 'import', label: 'Import', icon: '📥', adminOnly: true },
     { id: 'translate', label: 'Translate', icon: '🌐', adminOnly: true }
   ];
 
@@ -1062,6 +1387,15 @@ window.Qbank = {
   logout,
   getSession,
 
+  // Exam & Subject mapping
+  EXAM_CONFIG,
+  SUBJECT_META,
+  getExamConfig,
+  getExamSubjects,
+  getSubjectMeta,
+  normalizeId,
+  normalizeIds,
+
   // Supabase
   initSupabase,
   fetchSubjects,
@@ -1078,15 +1412,23 @@ window.Qbank = {
   autoInsertOldJobs,
   getAutoInsertTimeRemaining,
   getQuestionStats,
+  fetchQuestionsByChapter,
+  fetchQuestionDetails,
+  fetchQuestionsCountByChapter,
+  updateQuestionStatus,
+  bulkUpdateQuestionStatus,
 
-  // Gemini
+  // AI Generation
   callGemini,
   getTokenUsage,
   buildQuestionGenerationPrompt,
   buildTeluguTranslationPrompt,
   parseJsonResponse,
+  fetchChapterCoverage,
+  buildCoverageContext,
 
   // UI
+  escapeHtml,
   showToast,
   showLoader,
   hideLoader,
