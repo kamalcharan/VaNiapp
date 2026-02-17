@@ -291,7 +291,7 @@
           .limit(batchSize);
 
         if (subjectId) {
-          query = query.eq('subject_id', subjectId);
+          query = query.eq('subject_id', Qbank.normalizeId(subjectId));
         }
         if (chapterId) {
           query = query.eq('chapter_id', chapterId);

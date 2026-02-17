@@ -244,9 +244,9 @@
           allJobs = allJobs.filter(j => j.status === statusFilter);
         }
 
-        // Filter by subject
+        // Filter by subject (case-insensitive)
         if (subjectFilter !== 'all') {
-          allJobs = allJobs.filter(j => j.subject_id === subjectFilter);
+          allJobs = allJobs.filter(j => Qbank.normalizeId(j.subject_id) === Qbank.normalizeId(subjectFilter));
         }
 
         jobs = allJobs;

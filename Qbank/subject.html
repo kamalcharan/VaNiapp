@@ -351,7 +351,7 @@
 
       // Count pending from jobs per chapter
       jobs.filter(j =>
-        (j.subject_id || '').toUpperCase() === subjectId &&
+        Qbank.normalizeId(j.subject_id) === Qbank.normalizeId(subjectId) &&
         (j.status === 'pending' || j.status === 'generating')
       ).forEach(job => {
         const chId = job.chapter_id;

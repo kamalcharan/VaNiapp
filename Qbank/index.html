@@ -196,24 +196,21 @@
     // RENDER DASHBOARD (called on exam switch)
     // ========================================================================
     function renderDashboard() {
-      const examSubjects = Qbank.getExamSubjects(currentExam);
+      const examSubjects = Qbank.normalizeIds(Qbank.getExamSubjects(currentExam));
 
       // Filter stats to only this exam's subjects
       const examStats = allStats.filter(q => {
-        const key = (q.subject_id || '').toUpperCase();
-        return examSubjects.includes(key);
+        return examSubjects.includes(Qbank.normalizeId(q.subject_id));
       });
 
       // Filter jobs to this exam's subjects
       const examJobs = allJobs.filter(j => {
-        const key = (j.subject_id || '').toUpperCase();
-        return examSubjects.includes(key);
+        return examSubjects.includes(Qbank.normalizeId(j.subject_id));
       });
 
       // Filter chapters to this exam's subjects
       const examChapters = allChapters.filter(ch => {
-        const key = (ch.subject_id || '').toUpperCase();
-        return examSubjects.includes(key);
+        return examSubjects.includes(Qbank.normalizeId(ch.subject_id));
       });
 
       renderSummaryStats(examStats, examJobs);
@@ -252,17 +249,17 @@
     function renderSubjectCards(examSubjects, stats, jobs, chapters) {
       const grid = document.getElementById('subjectCardsGrid');
 
-      // Count questions per subject
+      // Count questions per subject (normalize keys for case-insensitive matching)
       const subjectQCounts = {};
       stats.forEach(q => {
-        const key = (q.subject_id || '').toUpperCase();
+        const key = Qbank.normalizeId(q.subject_id);
         subjectQCounts[key] = (subjectQCounts[key] || 0) + 1;
       });
 
       // Count pending per subject (from generation jobs)
       const subjectPending = {};
       jobs.filter(j => j.status === 'pending' || j.status === 'reviewed').forEach(job => {
-        const key = (job.subject_id || '').toUpperCase();
+        const key = Qbank.normalizeId(job.subject_id);
         const count = job.output_json?.questions?.length || 0;
         subjectPending[key] = (subjectPending[key] || 0) + count;
       });
@@ -270,7 +267,7 @@
       // Count chapters per subject
       const subjectChapters = {};
       chapters.forEach(ch => {
-        const key = (ch.subject_id || '').toUpperCase();
+        const key = Qbank.normalizeId(ch.subject_id);
         if (!subjectChapters[key]) subjectChapters[key] = { total: 0, covered: 0 };
         subjectChapters[key].total++;
       });
@@ -281,7 +278,7 @@
         if (q.chapter_id) chapterQCounts[q.chapter_id] = true;
       });
       chapters.forEach(ch => {
-        const key = (ch.subject_id || '').toUpperCase();
+        const key = Qbank.normalizeId(ch.subject_id);
         if (subjectChapters[key] && chapterQCounts[ch.id]) {
           subjectChapters[key].covered++;
         }
@@ -289,9 +286,10 @@
 
       grid.innerHTML = examSubjects.map(subjectId => {
         const meta = Qbank.getSubjectMeta(subjectId);
-        const qCount = subjectQCounts[subjectId] || 0;
-        const pending = subjectPending[subjectId] || 0;
-        const chapData = subjectChapters[subjectId] || { total: 0, covered: 0 };
+        const nId = Qbank.normalizeId(subjectId);
+        const qCount = subjectQCounts[nId] || 0;
+        const pending = subjectPending[nId] || 0;
+        const chapData = subjectChapters[nId] || { total: 0, covered: 0 };
         const coveragePct = chapData.total > 0 ? ((chapData.covered / chapData.total) * 100).toFixed(0) : 0;
 
         return `
@@ -453,10 +451,10 @@
         chapterCounts[q.chapter_id] = (chapterCounts[q.chapter_id] || 0) + 1;
       });
 
-      // Group chapters by subject
+      // Group chapters by subject (normalize keys)
       const subjects = {};
       chapters.forEach(ch => {
-        const key = (ch.subject_id || '').toUpperCase();
+        const key = Qbank.normalizeId(ch.subject_id);
         if (!subjects[key]) subjects[key] = [];
         subjects[key].push({
           ...ch,
@@ -465,7 +463,7 @@
       });
 
       container.innerHTML = examSubjects.map(subjectId => {
-        const subjectChapters = subjects[subjectId] || [];
+        const subjectChapters = subjects[Qbank.normalizeId(subjectId)] || [];
         if (subjectChapters.length === 0) return '';
 
         const totalQuestions = subjectChapters.reduce((sum, ch) => sum + ch.questionCount, 0);

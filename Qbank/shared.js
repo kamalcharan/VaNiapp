@@ -55,6 +55,15 @@ function getSubjectMeta(subjectId) {
   return SUBJECT_META[key] || { name: subjectId, emoji: '📚', color: '#6b7280', bg: '#f3f4f6' };
 }
 
+// Normalize IDs to lowercase for case-insensitive DB matching
+function normalizeId(id) {
+  return (id || '').toLowerCase();
+}
+
+function normalizeIds(ids) {
+  return (ids || []).map(id => id.toLowerCase());
+}
+
 // ============================================================================
 // CONFIG LOADER
 // ============================================================================
@@ -212,9 +221,10 @@ async function fetchSubjects() {
     return [];
   }
 
-  // Filter by user's allowed subjects
+  // Filter by user's allowed subjects (case-insensitive)
   if (CURRENT_USER && CURRENT_USER.role === 'reviewer') {
-    return data.filter(s => CURRENT_USER.subjects.includes(s.id));
+    const allowed = normalizeIds(CURRENT_USER.subjects);
+    return data.filter(s => allowed.includes(normalizeId(s.id)));
   }
 
   return data;
@@ -228,9 +238,9 @@ async function fetchChapters(subjectId = null) {
     .order('chapter_number');
 
   if (subjectId) {
-    query = query.eq('subject_id', subjectId);
+    query = query.eq('subject_id', normalizeId(subjectId));
   } else if (CURRENT_USER?.role === 'reviewer') {
-    query = query.in('subject_id', CURRENT_USER.subjects);
+    query = query.in('subject_id', normalizeIds(CURRENT_USER.subjects));
   }
 
   const { data, error } = await query;
@@ -268,7 +278,7 @@ async function fetchGenerationJobs(status = null) {
   }
 
   if (CURRENT_USER?.role === 'reviewer') {
-    query = query.in('subject_id', CURRENT_USER.subjects);
+    query = query.in('subject_id', normalizeIds(CURRENT_USER.subjects));
   }
 
   const { data, error } = await query;
@@ -646,7 +656,7 @@ async function fetchQuestionsCountByChapter(subjectId) {
   const { data, error } = await SUPABASE
     .from('med_questions')
     .select('chapter_id, status')
-    .eq('subject_id', subjectId);
+    .eq('subject_id', normalizeId(subjectId));
 
   if (error) {
     console.error('Error fetching question counts:', error);
@@ -1200,6 +1210,8 @@ window.Qbank = {
   getExamConfig,
   getExamSubjects,
   getSubjectMeta,
+  normalizeId,
+  normalizeIds,
 
   // Supabase
   initSupabase,
