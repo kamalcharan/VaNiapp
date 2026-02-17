@@ -523,9 +523,19 @@
           throw new Error('Failed to create generation job');
         }
 
-        // Step 2: Build prompt
-        statusTitle.textContent = 'Building prompt...';
+        // Step 2: Analyze existing questions for intelligent generation
+        statusTitle.textContent = 'Analyzing existing questions...';
+        statusMessage.textContent = 'Checking database coverage to avoid duplicates.';
         progressBar.style.width = '30%';
+
+        const coverage = await Qbank.fetchChapterCoverage(config.chapter.id);
+        if (coverage) {
+          console.log(`📊 Chapter coverage: ${coverage.total} existing questions`, coverage);
+        }
+
+        // Step 3: Build intelligent prompt
+        statusTitle.textContent = 'Building intelligent prompt...';
+        progressBar.style.width = '40%';
 
         const prompt = Qbank.buildQuestionGenerationPrompt({
           exam: config.exam,
@@ -536,17 +546,18 @@
           questionTypes: config.questionTypes,
           count: config.count,
           difficulty: config.difficulty === 'mixed' ? 'mixed (distribute across easy, medium, hard)' : config.difficulty,
-          includeHints: config.includeHints
+          includeHints: config.includeHints,
+          coverage
         });
 
-        // Step 3: Call Gemini
+        // Step 4: Call Gemini
         statusTitle.textContent = 'Calling Gemini AI...';
-        statusMessage.textContent = 'This may take 30-60 seconds. Please wait.';
-        progressBar.style.width = '50%';
+        statusMessage.textContent = `Generating ${config.count} questions${coverage ? ` (${coverage.total} existing in DB)` : ''}. Please wait 30-60s.`;
+        progressBar.style.width = '55%';
 
         const response = await Qbank.callGemini(prompt, { temperature: 0.7 });
 
-        // Step 4: Parse response
+        // Step 5: Parse response
         statusTitle.textContent = 'Parsing response...';
         progressBar.style.width = '80%';
 
@@ -556,7 +567,7 @@
           throw new Error('Invalid response format from Gemini');
         }
 
-        // Step 5: Save to job
+        // Step 6: Save to job
         statusTitle.textContent = 'Saving questions...';
         progressBar.style.width = '90%';
 

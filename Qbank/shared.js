@@ -799,10 +799,149 @@ function getTokenUsage() {
 }
 
 // ============================================================================
+// INTELLIGENT PROMPT: DB ANALYSIS
+// ============================================================================
+async function fetchChapterCoverage(chapterId) {
+  if (!SUPABASE) return null;
+
+  // Fetch all existing questions for this chapter (lightweight: just key fields)
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .select('question_type, difficulty, question_text, concept_tags, payload')
+    .eq('chapter_id', chapterId);
+
+  if (error) {
+    console.error('Error fetching chapter coverage:', error);
+    return null;
+  }
+
+  // Also fetch pending/reviewed jobs for this chapter (not yet in DB)
+  const { data: jobs } = await SUPABASE
+    .from('med_generation_jobs')
+    .select('output_json, status')
+    .eq('chapter_id', chapterId)
+    .in('status', ['pending', 'reviewed']);
+
+  // Collect questions from pending jobs too
+  const jobQuestions = [];
+  (jobs || []).forEach(job => {
+    (job.output_json?.questions || []).forEach(q => {
+      jobQuestions.push({
+        question_type: q.question_type,
+        difficulty: q.difficulty,
+        question_text: q.question_text,
+        topic: q.topic,
+        subtopic: q.subtopic
+      });
+    });
+  });
+
+  const allQuestions = [...(data || []), ...jobQuestions];
+
+  // Analyze coverage
+  const coverage = {
+    total: allQuestions.length,
+    byDifficulty: { easy: 0, medium: 0, hard: 0 },
+    byType: {},
+    byTopic: {},
+    existingStems: []
+  };
+
+  allQuestions.forEach(q => {
+    // Difficulty counts
+    const diff = (q.difficulty || 'medium').toLowerCase();
+    if (coverage.byDifficulty[diff] !== undefined) coverage.byDifficulty[diff]++;
+
+    // Type counts
+    const type = q.question_type || 'mcq';
+    coverage.byType[type] = (coverage.byType[type] || 0) + 1;
+
+    // Topic counts (from payload or direct field)
+    const topic = q.topic || q.payload?.topic || 'Unknown';
+    const subtopic = q.subtopic || q.payload?.subtopic || '';
+    if (!coverage.byTopic[topic]) coverage.byTopic[topic] = { count: 0, subtopics: {} };
+    coverage.byTopic[topic].count++;
+    if (subtopic) {
+      coverage.byTopic[topic].subtopics[subtopic] = (coverage.byTopic[topic].subtopics[subtopic] || 0) + 1;
+    }
+
+    // Collect stems for dedup (first 80 chars to keep prompt size manageable)
+    if (q.question_text) {
+      coverage.existingStems.push(q.question_text.substring(0, 80));
+    }
+  });
+
+  return coverage;
+}
+
+function buildCoverageContext(coverage, topics) {
+  if (!coverage || coverage.total === 0) {
+    return `\nDATABASE STATUS: No questions exist yet for this chapter. This is a fresh start — generate a well-rounded set.\n`;
+  }
+
+  let ctx = `\n═══════════════════════════════════════════════════════════════════════════════
+DATABASE ANALYSIS — EXISTING QUESTIONS FOR THIS CHAPTER: ${coverage.total} total
+═══════════════════════════════════════════════════════════════════════════════
+
+DIFFICULTY DISTRIBUTION:
+- Easy: ${coverage.byDifficulty.easy} questions
+- Medium: ${coverage.byDifficulty.medium} questions
+- Hard: ${coverage.byDifficulty.hard} questions
+
+QUESTION TYPE DISTRIBUTION:
+${Object.entries(coverage.byType).map(([t, c]) => `- ${t}: ${c} questions`).join('\n')}
+
+TOPIC COVERAGE:
+`;
+
+  // Show which topics have how many questions, and highlight gaps
+  const topicNames = topics.map(t => t.name);
+  const coveredTopics = [];
+  const gapTopics = [];
+
+  topicNames.forEach(tName => {
+    const match = Object.entries(coverage.byTopic).find(
+      ([k]) => k.toLowerCase().trim() === tName.toLowerCase().trim()
+    );
+    if (match) {
+      const [, data] = match;
+      coveredTopics.push(`- ${tName}: ${data.count} questions (subtopics: ${Object.keys(data.subtopics).join(', ') || 'various'})`);
+    } else {
+      gapTopics.push(tName);
+    }
+  });
+
+  ctx += coveredTopics.join('\n');
+
+  if (gapTopics.length > 0) {
+    ctx += `\n\n⚠️ UNCOVERED TOPICS (PRIORITY — generate questions for these):
+${gapTopics.map(t => `- ${t}: 0 questions — NEEDS COVERAGE`).join('\n')}`;
+  }
+
+  // Add dedup context (limit to 30 stems to avoid huge prompts)
+  const stems = coverage.existingStems.slice(0, 30);
+  if (stems.length > 0) {
+    ctx += `\n\nEXISTING QUESTION STEMS (DO NOT duplicate these):
+${stems.map((s, i) => `${i + 1}. "${s}..."`).join('\n')}`;
+  }
+
+  ctx += `\n
+GENERATION STRATEGY:
+1. PRIORITIZE uncovered topics listed above
+2. For covered topics, focus on DIFFERENT subtopics and concepts
+3. Balance difficulty distribution — generate more of what's missing
+4. DO NOT create questions that test the same concept as existing ones
+5. Each question should add NEW coverage to the question bank
+═══════════════════════════════════════════════════════════════════════════════\n`;
+
+  return ctx;
+}
+
+// ============================================================================
 // PROMPT BUILDERS
 // ============================================================================
 function buildQuestionGenerationPrompt(params) {
-  const { exam, examIds, subject, chapter, topics, questionTypes, count, difficulty, includeHints } = params;
+  const { exam, examIds, subject, chapter, topics, questionTypes, count, difficulty, includeHints, coverage } = params;
 
   // Build topic list - always explicit
   let topicList;
@@ -862,7 +1001,7 @@ DIFFICULTY: ${difficulty}
 - easy: Direct recall, basic concepts
 - medium: Application of concepts, moderate complexity
 - hard: Multi-concept integration, analytical thinking
-
+${coverage ? buildCoverageContext(coverage, topics) : ''}
 OUTPUT FORMAT (JSON array):
 \`\`\`json
 [
@@ -1101,6 +1240,7 @@ function renderNavHeader() {
     { id: 'generate', label: 'Generate', icon: '🤖', adminOnly: true },
     { id: 'review', label: 'Review', icon: '👁️', adminOnly: false },
     { id: 'insert', label: 'Insert', icon: '💾', adminOnly: true },
+    { id: 'import', label: 'Import', icon: '📥', adminOnly: true },
     { id: 'translate', label: 'Translate', icon: '🌐', adminOnly: true }
   ];
 
@@ -1278,12 +1418,14 @@ window.Qbank = {
   updateQuestionStatus,
   bulkUpdateQuestionStatus,
 
-  // Gemini
+  // AI Generation
   callGemini,
   getTokenUsage,
   buildQuestionGenerationPrompt,
   buildTeluguTranslationPrompt,
   parseJsonResponse,
+  fetchChapterCoverage,
+  buildCoverageContext,
 
   // UI
   escapeHtml,
