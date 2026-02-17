@@ -50,6 +50,13 @@
           </div>
         </div>
         <div class="stat-card">
+          <div class="stat-icon" style="background: #d1fae5;">📋</div>
+          <div class="stat-content">
+            <div class="stat-value" id="readyToInsert">--</div>
+            <div class="stat-label">Ready to Insert</div>
+          </div>
+        </div>
+        <div class="stat-card">
           <div class="stat-icon" style="background: var(--success-light);">✅</div>
           <div class="stat-content">
             <div class="stat-value" id="insertedCount">--</div>
@@ -230,13 +237,17 @@
     function renderSummaryStats(stats, jobs) {
       const totalQuestions = stats.length;
 
-      // Pending = questions in jobs with status pending/reviewed
-      const pendingJobs = jobs.filter(j => j.status === 'pending' || j.status === 'reviewed');
+      // Pending = jobs still needing review (status === 'pending')
       let pendingCount = 0;
-      pendingJobs.forEach(job => {
-        if (job.output_json?.questions) {
-          pendingCount += job.output_json.questions.length;
-        }
+      jobs.filter(j => j.status === 'pending').forEach(job => {
+        pendingCount += job.output_json?.questions?.length || 0;
+      });
+
+      // Ready to insert = reviewed but not yet in DB (status === 'reviewed')
+      let readyCount = 0;
+      jobs.filter(j => j.status === 'reviewed').forEach(job => {
+        const approved = (job.output_json?.questions || []).filter(q => q._approved).length;
+        readyCount += approved;
       });
 
       // Inserted = questions already in DB (all stats records)
@@ -244,6 +255,7 @@
 
       document.getElementById('totalQuestions').textContent = totalQuestions.toLocaleString();
       document.getElementById('pendingReview').textContent = pendingCount.toLocaleString();
+      document.getElementById('readyToInsert').textContent = readyCount.toLocaleString();
       document.getElementById('insertedCount').textContent = insertedCount.toLocaleString();
     }
 
@@ -260,12 +272,18 @@
         subjectQCounts[key] = (subjectQCounts[key] || 0) + 1;
       });
 
-      // Count pending per subject (from generation jobs)
+      // Count pending review per subject (only status === 'pending')
       const subjectPending = {};
-      jobs.filter(j => j.status === 'pending' || j.status === 'reviewed').forEach(job => {
+      const subjectReady = {};
+      jobs.forEach(job => {
         const key = Qbank.normalizeId(job.subject_id);
-        const count = job.output_json?.questions?.length || 0;
-        subjectPending[key] = (subjectPending[key] || 0) + count;
+        if (job.status === 'pending') {
+          const count = job.output_json?.questions?.length || 0;
+          subjectPending[key] = (subjectPending[key] || 0) + count;
+        } else if (job.status === 'reviewed') {
+          const approved = (job.output_json?.questions || []).filter(q => q._approved).length;
+          subjectReady[key] = (subjectReady[key] || 0) + approved;
+        }
       });
 
       // Count chapters per subject
@@ -293,6 +311,7 @@
         const nId = Qbank.normalizeId(subjectId);
         const qCount = subjectQCounts[nId] || 0;
         const pending = subjectPending[nId] || 0;
+        const ready = subjectReady[nId] || 0;
         const chapData = subjectChapters[nId] || { total: 0, covered: 0 };
         const coveragePct = chapData.total > 0 ? ((chapData.covered / chapData.total) * 100).toFixed(0) : 0;
 
@@ -313,10 +332,14 @@
                 <span class="subject-stat-value">${qCount}</span>
                 <span class="subject-stat-label">In DB</span>
               </div>
-              <div class="subject-stat">
-                <span class="subject-stat-value">${pending}</span>
-                <span class="subject-stat-label">Pending</span>
-              </div>
+              ${pending > 0 ? `<div class="subject-stat">
+                <span class="subject-stat-value" style="color: #f59e0b;">${pending}</span>
+                <span class="subject-stat-label">Needs Review</span>
+              </div>` : ''}
+              ${ready > 0 ? `<div class="subject-stat">
+                <span class="subject-stat-value" style="color: var(--success);">${ready}</span>
+                <span class="subject-stat-label">Ready</span>
+              </div>` : ''}
             </div>
             <div class="subject-card-progress">
               <div class="subject-card-progress-info">

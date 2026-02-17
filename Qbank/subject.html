@@ -428,8 +428,12 @@
           <div class="label">Draft</div>
         </div>
         <div class="subject-stat-card" id="pendingStatCard" style="cursor: pointer;" title="Click to review pending jobs">
-          <div class="value" id="statPending" style="color: var(--primary);">--</div>
-          <div class="label">Pending Review</div>
+          <div class="value" id="statPending" style="color: #f59e0b;">--</div>
+          <div class="label">Needs Review</div>
+        </div>
+        <div class="subject-stat-card" id="readyStatCard" style="cursor: pointer;" title="Click to insert reviewed questions">
+          <div class="value" id="statReady" style="color: var(--success);">--</div>
+          <div class="label">Ready to Insert</div>
         </div>
       </div>
 
@@ -459,6 +463,7 @@
     let chapters = [];
     let chapterQuestionCounts = {};
     let pendingByChapter = {};
+    let readyByChapter = {};
     let pendingJobsByChapter = {};
 
     // Per-chapter state for expanded questions
@@ -498,18 +503,24 @@
       chapters = chaptersData;
       chapterQuestionCounts = qCounts;
 
-      // Count pending from jobs per chapter
-      // Match dashboard logic: pending/reviewed = jobs with generated questions not yet inserted
+      // Count jobs per chapter, split by actual status
       pendingJobsByChapter = {};
+      readyByChapter = {};
       jobs.filter(j =>
         Qbank.normalizeId(j.subject_id) === Qbank.normalizeId(subjectId) &&
         (j.status === 'pending' || j.status === 'reviewed')
       ).forEach(job => {
         const chId = job.chapter_id;
-        const count = job.output_json?.questions?.length || 0;
-        if (!pendingByChapter[chId]) pendingByChapter[chId] = 0;
-        pendingByChapter[chId] += count;
-        // Also store the actual jobs for displaying questions
+        if (job.status === 'pending') {
+          const count = job.output_json?.questions?.length || 0;
+          if (!pendingByChapter[chId]) pendingByChapter[chId] = 0;
+          pendingByChapter[chId] += count;
+        } else if (job.status === 'reviewed') {
+          const approved = (job.output_json?.questions || []).filter(q => q._approved).length;
+          if (!readyByChapter[chId]) readyByChapter[chId] = 0;
+          readyByChapter[chId] += approved;
+        }
+        // Store all non-inserted jobs for displaying questions
         if (!pendingJobsByChapter[chId]) pendingJobsByChapter[chId] = [];
         pendingJobsByChapter[chId].push(job);
       });
@@ -537,10 +548,20 @@
       document.getElementById('statDraft').textContent = draft;
       document.getElementById('statPending').textContent = jobPending;
 
-      // Make pending stat clickable — navigates to review page
+      // Ready to insert count
+      let jobReady = 0;
+      Object.values(readyByChapter).forEach(v => jobReady += v);
+      document.getElementById('statReady').textContent = jobReady;
+
+      // Make stat cards clickable
       document.getElementById('pendingStatCard').onclick = () => {
         if (jobPending > 0) {
-          window.location.href = `./review.html?exam=${examId}&subject=${subjectId}`;
+          window.location.href = `./review.html?exam=${examId}&subject=${subjectId}&status=pending`;
+        }
+      };
+      document.getElementById('readyStatCard').onclick = () => {
+        if (jobReady > 0) {
+          window.location.href = `./insert.html?exam=${examId}&subject=${subjectId}`;
         }
       };
     }
@@ -563,7 +584,8 @@
 
       container.innerHTML = chapters.map((ch, idx) => {
         const counts = chapterQuestionCounts[ch.id] || { total: 0, active: 0, draft: 0, pending: 0 };
-        const pendingJobs = pendingByChapter[ch.id] || 0;
+        const chPending = pendingByChapter[ch.id] || 0;
+        const chReady = readyByChapter[ch.id] || 0;
         const activePct = counts.total > 0 ? ((counts.active / counts.total) * 100).toFixed(0) : 0;
 
         return `
@@ -583,7 +605,8 @@
                 <span class="c-total">${counts.total} total</span>
                 <span class="c-active">${counts.active} active</span>
                 <span class="c-draft">${counts.draft} draft</span>
-                ${pendingJobs > 0 ? `<span style="color: var(--primary);">${pendingJobs} pending</span>` : ''}
+                ${chPending > 0 ? `<span style="color: #f59e0b;">${chPending} needs review</span>` : ''}
+                ${chReady > 0 ? `<span style="color: var(--success);">${chReady} ready</span>` : ''}
               </div>
               <div class="chapter-actions">
                 <a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${ch.id}"
@@ -662,7 +685,9 @@
       const pageSize = 10;
       const totalPages = Math.max(1, Math.ceil(state.total / pageSize));
 
-      const pendingCount = pendingByChapter[chapterId] || 0;
+      const chPending = pendingByChapter[chapterId] || 0;
+      const chReady = readyByChapter[chapterId] || 0;
+      const jobQCount = chPending + chReady;
 
       const filterHtml = `
         <div class="q-filters">
@@ -672,10 +697,10 @@
                   onclick="setFilter('${chapterId}', 'active')">Active (${counts.active})</button>
           <button class="q-filter-btn ${state.filter === 'draft' ? 'active' : ''}"
                   onclick="setFilter('${chapterId}', 'draft')">Draft (${counts.draft})</button>
-          ${pendingCount > 0 ? `
+          ${jobQCount > 0 ? `
             <button class="q-filter-btn ${state.filter === 'pending_review' ? 'active' : ''}"
                     onclick="setFilter('${chapterId}', 'pending_review')" style="border-color: var(--primary);">
-              Pending Review (${pendingCount})
+              From Jobs (${chPending > 0 ? chPending + ' review' : ''}${chPending > 0 && chReady > 0 ? ', ' : ''}${chReady > 0 ? chReady + ' ready' : ''})
             </button>
           ` : ''}
         </div>`;
@@ -691,8 +716,9 @@
           ${filterHtml}
           <div class="empty-chapter">
             No ${state.filter || ''} questions yet.
-            ${pendingCount > 0 ? `<br><strong>${pendingCount} questions pending review</strong> — click "Pending Review" above to see them, or <a href="./review.html?exam=${examId}&subject=${subjectId}">go to Review page</a>.` : ''}
-            <br><a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${chapterId}">Generate some!</a>
+            ${chPending > 0 ? `<br><strong>${chPending} questions need review</strong> — <a href="./review.html?exam=${examId}&subject=${subjectId}&status=pending">Review them</a>.` : ''}
+            ${chReady > 0 ? `<br><strong>${chReady} questions ready to insert</strong> — <a href="./insert.html?exam=${examId}&subject=${subjectId}">Insert them</a>.` : ''}
+            ${jobQCount === 0 ? `<br><a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${chapterId}">Generate some!</a>` : ''}
           </div>`;
         return;
       }
