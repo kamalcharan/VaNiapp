@@ -227,42 +227,39 @@ Using the prompt templates from QBANK_AGENT.md, generate exactly 20 questions:
 Write to: Qbank/generated/zoo/{topic_id}.json
 ```
 
-JSON format must match the `med_questions` + `med_question_options` + `med_elimination_hints` schema:
+JSON format must be a **plain array** compatible with `Qbank/import.html`:
 
 ```json
-{
-  "metadata": {
-    "batch_id": "B01",
-    "topic_id": "zoo-kingdom-classification",
-    "chapter_id": "zoo-animal-kingdom",
-    "subject_id": "zoology",
-    "generated_at": "2026-02-17T...",
-    "question_count": 20
-  },
-  "questions": [
-    {
-      "question_type": "mcq",
-      "difficulty": "easy",
-      "strength_required": "just-started",
-      "question_text": "Which of the following is NOT a level of classification?",
-      "explanation": "The levels of classification are...",
-      "correct_answer": "B",
-      "concept_tags": ["classification", "taxonomy"],
-      "options": [
-        { "option_key": "A", "option_text": "Phylum", "is_correct": false },
-        { "option_key": "B", "option_text": "Biome", "is_correct": true },
-        { "option_key": "C", "option_text": "Class", "is_correct": false },
-        { "option_key": "D", "option_text": "Order", "is_correct": false }
-      ],
-      "elimination_hints": [
-        { "option_key": "A", "hint_text": "Phylum IS a valid level of classification.", "misconception": "Confusing phylum with non-taxonomic terms" },
-        { "option_key": "C", "hint_text": "Class IS a valid level of classification.", "misconception": null },
-        { "option_key": "D", "hint_text": "Order IS a valid level of classification.", "misconception": null }
-      ]
-    }
-  ]
-}
+[
+  {
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following is NOT a level of classification?",
+    "explanation": "The levels of classification are...",
+    "correct_answer": "B",
+    "concept_tags": ["classification", "taxonomy"],
+    "topic": "Basis of Classification",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Phylum", "is_correct": false },
+      { "key": "B", "text": "Biome", "is_correct": true },
+      { "key": "C", "text": "Class", "is_correct": false },
+      { "key": "D", "text": "Order", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Phylum IS a valid level of classification.", "misconception": "Confusing phylum with non-taxonomic terms" },
+      { "option_key": "C", "hint": "Class IS a valid level of classification.", "misconception": null },
+      { "option_key": "D", "hint": "Order IS a valid level of classification.", "misconception": null }
+    ]
+  }
+]
 ```
+
+**IMPORTANT field names (must match import.html):**
+- Options: `key`, `text`, `is_correct` (NOT option_key/option_text)
+- Hints: `option_key`, `hint`, `misconception` (NOT hint_text)
+- Top-level: plain array `[...]` (NO metadata wrapper)
 
 ### Step 4: Update Plan Status
 Update this file: change batch status from `PENDING` → `DONE`
