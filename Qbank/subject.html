@@ -427,9 +427,9 @@
           <div class="value" id="statDraft" style="color: #f59e0b;">--</div>
           <div class="label">Draft</div>
         </div>
-        <div class="subject-stat-card">
+        <div class="subject-stat-card" id="pendingStatCard" style="cursor: pointer;" title="Click to review pending jobs">
           <div class="value" id="statPending" style="color: var(--primary);">--</div>
-          <div class="label">Pending Jobs</div>
+          <div class="label">Pending Review</div>
         </div>
       </div>
 
@@ -536,6 +536,13 @@
       document.getElementById('statActive').textContent = active;
       document.getElementById('statDraft').textContent = draft;
       document.getElementById('statPending').textContent = jobPending;
+
+      // Make pending stat clickable — navigates to review page
+      document.getElementById('pendingStatCard').onclick = () => {
+        if (jobPending > 0) {
+          window.location.href = `./review.html?exam=${examId}&subject=${subjectId}`;
+        }
+      };
     }
 
     function renderChapters() {

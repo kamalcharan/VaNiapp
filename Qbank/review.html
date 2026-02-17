@@ -226,9 +226,20 @@
       const params = new URLSearchParams(window.location.search);
       if (params.get('status')) {
         document.getElementById('statusFilter').value = params.get('status');
+      } else if (params.get('subject') || params.get('job')) {
+        // Coming from subject page or direct job link — show all statuses by default
+        document.getElementById('statusFilter').value = 'all';
       }
       if (params.get('subject')) {
-        document.getElementById('subjectFilter').value = params.get('subject').toUpperCase();
+        // Case-insensitive match: find the option whose value matches ignoring case
+        const target = params.get('subject').toLowerCase();
+        const opts = document.getElementById('subjectFilter').options;
+        for (let i = 0; i < opts.length; i++) {
+          if (opts[i].value.toLowerCase() === target) {
+            document.getElementById('subjectFilter').value = opts[i].value;
+            break;
+          }
+        }
       }
 
       // Add filter event listeners
