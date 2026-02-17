@@ -346,6 +346,12 @@
                 <button class="btn btn-sm btn-danger" onclick="rejectSelected('${job.id}')">
                   ✕ Reject Selected
                 </button>
+                ${approvedCount + rejectedCount > 0 ? `
+                  <span style="color: var(--gray-400);">|</span>
+                  <button class="btn btn-sm btn-ghost" onclick="resetAllQuestions('${job.id}')" style="font-size: 0.8rem;">
+                    ↩ Reset All
+                  </button>
+                ` : ''}
                 ${job.status === 'pending' ? `
                   <span style="color: var(--gray-400);">|</span>
                   <button class="btn btn-sm btn-primary" id="doneBtn-${job.id}" onclick="markAsReviewed('${job.id}')"
@@ -405,6 +411,7 @@
               ${question.topic ? `<span class="badge badge-type">${question.topic}</span>` : ''}
               ${isApproved ? '<span class="badge badge-approved">Approved</span>' : ''}
               ${isRejected ? '<span class="badge badge-rejected">Rejected</span>' : ''}
+              ${isApproved || isRejected ? `<button class="btn btn-sm btn-ghost" style="font-size: 0.75rem; padding: 2px 8px;" onclick="event.stopPropagation(); resetQuestion('${job.id}', ${index})">Undo</button>` : ''}
             </div>
             <div class="question-actions">
               <button class="btn btn-sm btn-ghost question-edit-btn" onclick="editQuestion('${job.id}', ${index})">
@@ -481,6 +488,46 @@
       await Qbank.updateGenerationJob(jobId, { output_json: job.output_json });
       Qbank.showToast(`${indices.length} questions rejected`, 'success');
       refreshJobInPlace(job);
+    }
+
+    async function resetQuestion(jobId, index) {
+      const job = jobs.find(j => j.id === jobId);
+      if (!job) return;
+
+      delete job.output_json.questions[index]._approved;
+      delete job.output_json.questions[index]._rejected;
+
+      await Qbank.updateGenerationJob(jobId, { output_json: job.output_json });
+      Qbank.showToast('Question reset — you can re-select it', 'info');
+      refreshJobInPlace(job);
+    }
+
+    async function resetAllQuestions(jobId) {
+      const job = jobs.find(j => j.id === jobId);
+      if (!job) return;
+
+      const questions = job.output_json?.questions || [];
+      const reviewedCount = questions.filter(q => q._approved || q._rejected).length;
+      if (reviewedCount === 0) return;
+
+      if (!confirm(`Reset all ${reviewedCount} reviewed questions? They will become selectable again.`)) return;
+
+      questions.forEach(q => {
+        delete q._approved;
+        delete q._rejected;
+      });
+
+      // Also reset job status back to pending if it was reviewed
+      const updates = { output_json: job.output_json };
+      if (job.status === 'reviewed') {
+        updates.status = 'pending';
+        job.status = 'pending';
+      }
+
+      await Qbank.updateGenerationJob(jobId, updates);
+      Qbank.showToast(`${reviewedCount} questions reset`, 'info');
+      // Full reload needed since job status may have changed (affects "Done Reviewing" button)
+      loadJobs();
     }
 
     // Update a single job's UI without collapsing or reloading everything
