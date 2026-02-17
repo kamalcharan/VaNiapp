@@ -29,7 +29,7 @@
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B01 | `zoo-kingdom-classification` | Basis of Classification | 20 | PENDING |
+| B01 | `zoo-kingdom-classification` | Basis of Classification | 20 | DONE |
 | B02 | `zoo-kingdom-porifera` | Phylum Porifera | 20 | PENDING |
 | B03 | `zoo-kingdom-cnidaria` | Phylum Cnidaria | 20 | PENDING |
 | B04 | `zoo-kingdom-platyhelminthes` | Phylum Platyhelminthes | 20 | PENDING |
@@ -344,7 +344,7 @@ Commit and push.
 
 | Chapter | Topics | Qs Target | Qs Done | % |
 |---------|--------|-----------|---------|---|
-| Ch1 Animal Kingdom | 8 | 160 | 0 | 0% |
+| Ch1 Animal Kingdom | 8 | 160 | 20 | 12.5% |
 | Ch2 Structural Org | 5 | 100 | 0 | 0% |
 | Ch3 Biomolecules | 5 | 100 | 0 | 0% |
 | Ch4 Breathing | 4 | 80 | 0 | 0% |
@@ -359,4 +359,4 @@ Commit and push.
 | Ch13 Human Health | 5 | 100 | 0 | 0% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **0** | **0%** |
+| **TOTAL** | **65** | **1,300** | **20** | **1.5%** |
