@@ -94,6 +94,8 @@
     .chapter-name {
       font-weight: 600;
       flex: 1;
+      min-width: 0;
+      overflow: hidden;
     }
     .chapter-name .meta {
       font-weight: 400;
@@ -316,6 +318,47 @@
     .bulk-bar .bulk-count { font-weight: 600; color: #1d4ed8; }
     .bulk-bar .btn { font-size: 0.8rem; padding: 4px 12px; }
 
+    /* Pending review items */
+    .pending-job-card {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+    }
+    .pending-job-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .pending-job-header .badge { font-size: 0.72rem; padding: 2px 8px; }
+    .pending-q-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 10px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .pending-q-item:hover { background: var(--gray-50); }
+    .pending-q-item .pq-num { font-weight: 600; color: var(--gray-400); min-width: 24px; flex-shrink: 0; }
+    .pending-q-item .pq-text { flex: 1; line-height: 1.4; }
+    .pending-q-detail {
+      display: none;
+      border-top: 1px solid var(--gray-200);
+      padding: 10px 12px 10px 36px;
+      background: var(--gray-50);
+      border-radius: 0 0 6px 6px;
+      margin-top: -4px;
+      margin-bottom: 4px;
+    }
+    .pending-q-item.expanded + .pending-q-detail { display: block; }
+
     .q-pagination {
       display: flex;
       justify-content: space-between;
@@ -361,7 +404,7 @@
         <div class="subject-hero-info">
           <h1 id="heroTitle">Loading...</h1>
           <div class="breadcrumb">
-            <a href="./index.html">Dashboard</a> &gt;
+            <a href="./index.html" id="breadcrumbDashboard">Dashboard</a> &gt;
             <span id="heroBreadcrumb"></span>
           </div>
         </div>
@@ -416,6 +459,7 @@
     let chapters = [];
     let chapterQuestionCounts = {};
     let pendingByChapter = {};
+    let pendingJobsByChapter = {};
 
     // Per-chapter state for expanded questions
     const chapterState = {};
@@ -455,13 +499,19 @@
       chapterQuestionCounts = qCounts;
 
       // Count pending from jobs per chapter
+      // Match dashboard logic: pending/reviewed = jobs with generated questions not yet inserted
+      pendingJobsByChapter = {};
       jobs.filter(j =>
         Qbank.normalizeId(j.subject_id) === Qbank.normalizeId(subjectId) &&
-        (j.status === 'pending' || j.status === 'generating')
+        (j.status === 'pending' || j.status === 'reviewed')
       ).forEach(job => {
         const chId = job.chapter_id;
+        const count = job.output_json?.questions?.length || 0;
         if (!pendingByChapter[chId]) pendingByChapter[chId] = 0;
-        pendingByChapter[chId] += job.questions_count || 0;
+        pendingByChapter[chId] += count;
+        // Also store the actual jobs for displaying questions
+        if (!pendingJobsByChapter[chId]) pendingJobsByChapter[chId] = [];
+        pendingJobsByChapter[chId].push(job);
       });
 
       renderStats();
@@ -605,6 +655,8 @@
       const pageSize = 10;
       const totalPages = Math.max(1, Math.ceil(state.total / pageSize));
 
+      const pendingCount = pendingByChapter[chapterId] || 0;
+
       const filterHtml = `
         <div class="q-filters">
           <button class="q-filter-btn ${!state.filter ? 'active' : ''}"
@@ -613,14 +665,27 @@
                   onclick="setFilter('${chapterId}', 'active')">Active (${counts.active})</button>
           <button class="q-filter-btn ${state.filter === 'draft' ? 'active' : ''}"
                   onclick="setFilter('${chapterId}', 'draft')">Draft (${counts.draft})</button>
+          ${pendingCount > 0 ? `
+            <button class="q-filter-btn ${state.filter === 'pending_review' ? 'active' : ''}"
+                    onclick="setFilter('${chapterId}', 'pending_review')" style="border-color: var(--primary);">
+              Pending Review (${pendingCount})
+            </button>
+          ` : ''}
         </div>`;
+
+      // If viewing pending_review, show questions from generation jobs
+      if (state.filter === 'pending_review') {
+        body.innerHTML = filterHtml + renderPendingJobQuestions(chapterId);
+        return;
+      }
 
       if (state.data.length === 0) {
         body.innerHTML = `
           ${filterHtml}
           <div class="empty-chapter">
             No ${state.filter || ''} questions yet.
-            <a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${chapterId}">Generate some!</a>
+            ${pendingCount > 0 ? `<br><strong>${pendingCount} questions pending review</strong> — click "Pending Review" above to see them, or <a href="./review.html?exam=${examId}&subject=${subjectId}">go to Review page</a>.` : ''}
+            <br><a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${chapterId}">Generate some!</a>
           </div>`;
         return;
       }
@@ -656,7 +721,7 @@
               <input type="checkbox" class="q-check" data-chapter="${chapterId}" data-qid="${q.id}"
                      onclick="event.stopPropagation(); updateBulkBar('${chapterId}')" />
               <span class="q-num">#${startNum + i + 1}</span>
-              <span class="q-text">${q.question_text}</span>
+              <span class="q-text">${Qbank.escapeHtml(q.question_text)}</span>
               <span class="q-meta">
                 ${Qbank.getQuestionTypeBadge(q.question_type)}
                 ${Qbank.getDifficultyBadge(q.difficulty)}
@@ -699,6 +764,75 @@
     async function changePage(chapterId, direction) {
       chapterState[chapterId].page += direction;
       await loadChapterQuestions(chapterId);
+    }
+
+    // ========================================================================
+    // PENDING REVIEW QUESTIONS (from generation jobs)
+    // ========================================================================
+    function renderPendingJobQuestions(chapterId) {
+      const jobs = pendingJobsByChapter[chapterId] || [];
+      if (jobs.length === 0) {
+        return `<div class="empty-chapter">No pending review questions for this chapter.</div>`;
+      }
+
+      return jobs.map(job => {
+        const questions = job.output_json?.questions || [];
+        const createdAt = new Date(job.created_at).toLocaleDateString();
+
+        return `
+          <div class="pending-job-card">
+            <div class="pending-job-header">
+              <div>
+                <strong>Job:</strong> ${questions.length} questions
+                <span style="color: var(--gray-500); font-size: 0.8rem;">&middot; Generated ${createdAt}</span>
+                <span class="badge" style="background: ${job.status === 'reviewed' ? '#d1fae5' : '#fef3c7'}; color: ${job.status === 'reviewed' ? '#065f46' : '#92400e'};">
+                  ${job.status}
+                </span>
+              </div>
+              <a href="./review.html?exam=${examId}&subject=${subjectId}&job=${job.id}"
+                 class="btn btn-sm btn-primary" style="font-size: 0.8rem;">
+                Review & Insert
+              </a>
+            </div>
+            ${questions.map((q, i) => {
+              const qId = `pq-${job.id}-${i}`;
+              return `
+                <div class="pending-q-item" id="${qId}" onclick="togglePendingQ('${qId}')">
+                  <span class="pq-num">#${i + 1}</span>
+                  <span class="pq-text">${q.question_text || q.question}</span>
+                  <span style="font-size: 0.7rem; color: var(--gray-400);">▼</span>
+                </div>
+                <div class="pending-q-detail" id="${qId}-detail">
+                  ${(q.options || []).map(opt => `
+                    <div class="q-option ${opt.is_correct || opt.key === q.correct_answer ? 'correct' : ''}">
+                      <span class="q-option-key">${opt.key}.</span>
+                      <span class="q-option-text">${opt.text}</span>
+                      ${opt.is_correct || opt.key === q.correct_answer ? '<span class="q-option-correct-tag">Correct</span>' : ''}
+                    </div>
+                  `).join('')}
+                  ${q.explanation ? `<div class="q-explanation" style="margin-top: 8px;">${q.explanation}</div>` : ''}
+                  ${(q.elimination_hints || []).length > 0 ? `
+                    <div style="margin-top: 8px;">
+                      <div class="q-detail-label">Elimination Hints</div>
+                      ${q.elimination_hints.map(h => `
+                        <div class="q-hint">
+                          <span class="q-hint-key">Option ${h.option_key}:</span> ${h.hint}
+                          ${h.misconception ? `<div class="q-hint-misconception">Misconception: ${h.misconception}</div>` : ''}
+                        </div>
+                      `).join('')}
+                    </div>
+                  ` : ''}
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function togglePendingQ(qId) {
+      const item = document.getElementById(qId);
+      if (item) item.classList.toggle('expanded');
     }
 
     // ========================================================================
@@ -747,7 +881,7 @@
           ${details.options.map(opt => `
             <div class="q-option ${opt.is_correct ? 'correct' : ''}">
               <span class="q-option-key">${opt.option_key}.</span>
-              <span class="q-option-text">${opt.option_text}</span>
+              <span class="q-option-text">${Qbank.escapeHtml(opt.option_text)}</span>
               ${opt.is_correct ? '<span class="q-option-correct-tag">Correct</span>' : ''}
             </div>
           `).join('')}
@@ -763,7 +897,7 @@
       if (q?.explanation) {
         html += `<div class="q-detail-section">
           <div class="q-detail-label">Explanation</div>
-          <div class="q-explanation">${q.explanation}</div>
+          <div class="q-explanation">${Qbank.escapeHtml(q.explanation)}</div>
         </div>`;
       }
 

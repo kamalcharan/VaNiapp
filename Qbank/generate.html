@@ -16,11 +16,11 @@
           <span class="page-title-icon">🤖</span>
           Generate Questions
         </h1>
-        <p class="page-subtitle">Use Gemini AI to generate NEET-quality questions</p>
+        <p class="page-subtitle" id="pageSubtitle">Use Gemini AI to generate exam-quality questions</p>
       </div>
 
       <!-- Stats Cards -->
-      <div class="stats-row" id="statsRow" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+      <div class="stats-row" id="statsRow" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; margin-bottom: 24px;">
         <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px; border-radius: 12px;">
           <div style="font-size: 24px; font-weight: bold;" id="statTotal">-</div>
           <div style="font-size: 13px; opacity: 0.9;">Total Generated</div>
@@ -31,7 +31,7 @@
         </div>
         <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 16px; border-radius: 12px;">
           <div style="font-size: 24px; font-weight: bold;" id="statApproved">-</div>
-          <div style="font-size: 13px; opacity: 0.9;">Approved</div>
+          <div style="font-size: 13px; opacity: 0.9;">Drafts in DB</div>
         </div>
         <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 16px; border-radius: 12px;">
           <div style="font-size: 24px; font-weight: bold;" id="statInserted">-</div>
@@ -302,11 +302,11 @@
         // Fetch from med_questions table (for actual DB counts)
         const questionStats = await Qbank.getQuestionStats() || [];
 
-        // Count pending from jobs
+        // Count pending from jobs (match dashboard: pending + reviewed)
         let pendingCount = 0;
         jobs.forEach(job => {
-          if (job.status === 'pending' || job.status === 'generating') {
-            pendingCount += job.questions_count || 0;
+          if (job.status === 'pending' || job.status === 'reviewed') {
+            pendingCount += job.output_json?.questions?.length || 0;
           }
         });
 
@@ -630,7 +630,7 @@
             <button class="btn btn-success" onclick="insertToDbNow()" id="insertBtn">
               💾 Insert to DB Now
             </button>
-            <a href="./review.html" class="btn btn-primary">👁️ Review Questions</a>
+            <a href="./review.html?job=${job.id}" class="btn btn-primary">👁️ Review Questions</a>
             <button class="btn btn-secondary" onclick="resetWizard()">🔄 Generate More</button>
           </div>
         </div>
@@ -770,7 +770,7 @@
             </div>
           </div>
           <div class="question-body">
-            <p class="question-text">${question.question_text}</p>
+            <p class="question-text">${Qbank.escapeHtml(question.question_text)}</p>
             ${options ? `<div class="question-options">${options}</div>` : ''}
             ${question.explanation ? `
               <div class="question-explanation">

@@ -1077,6 +1077,16 @@ function getQuestionTypeBadge(type) {
 }
 
 // ============================================================================
+// HTML ESCAPING (XSS prevention)
+// ============================================================================
+const _escapeEl = document.createElement('div');
+function escapeHtml(str) {
+  if (!str) return '';
+  _escapeEl.textContent = str;
+  return _escapeEl.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// ============================================================================
 // NAVIGATION HEADER
 // ============================================================================
 function renderNavHeader() {
@@ -1276,6 +1286,7 @@ window.Qbank = {
   parseJsonResponse,
 
   // UI
+  escapeHtml,
   showToast,
   showLoader,
   hideLoader,

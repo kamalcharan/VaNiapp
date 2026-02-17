@@ -11,7 +11,7 @@
     <div class="login-logo">
       <div class="icon">🎯</div>
       <h1>Qbank Admin</h1>
-      <p>NEET Question Bank Management</p>
+      <p>Question Bank Management</p>
     </div>
 
     <form class="login-form" id="loginForm">
@@ -88,12 +88,7 @@
       }
     });
 
-    // Allow Enter key to submit
-    document.getElementById('accessCode').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        document.getElementById('loginForm').dispatchEvent(new Event('submit'));
-      }
-    });
+    // Enter key already submits form natively (input is inside <form>)
   </script>
 </body>
 </html>

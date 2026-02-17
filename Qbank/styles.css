@@ -361,6 +361,9 @@ a:hover {
   background: var(--warning);
   color: white;
 }
+.btn-warning:hover:not(:disabled) {
+  background: #d97706;
+}
 
 .btn-danger {
   background: var(--error);
@@ -897,6 +900,8 @@ a:hover {
   opacity: 0;
   transition: var(--transition-slow);
   z-index: 1000;
+  max-width: calc(100vw - 48px);
+  word-wrap: break-word;
 }
 
 .qbank-toast.show {

@@ -183,7 +183,7 @@
   </div>
 
   <!-- Edit Modal Template -->
-  <div id="editModal" class="qbank-modal-overlay" style="display: none;">
+  <div id="editModal" class="qbank-modal-overlay" style="display: none;" onclick="if(event.target===this)closeEditModal()">
     <div class="qbank-modal" style="max-width: 800px;">
       <div class="modal-header">
         <h3>Edit Question</h3>
@@ -222,11 +222,32 @@
         subjectFilter.appendChild(option);
       });
 
+      // Read URL params to pre-select filters
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('status')) {
+        document.getElementById('statusFilter').value = params.get('status');
+      }
+      if (params.get('subject')) {
+        document.getElementById('subjectFilter').value = params.get('subject').toUpperCase();
+      }
+
       // Add filter event listeners
       document.getElementById('statusFilter').addEventListener('change', loadJobs);
       document.getElementById('subjectFilter').addEventListener('change', loadJobs);
 
+      // Close modal on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeEditModal();
+      });
+
       await loadJobs();
+
+      // Auto-expand specific job if passed in URL
+      const jobId = params.get('job');
+      if (jobId) {
+        const content = document.getElementById(`job-content-${jobId}`);
+        if (content) content.classList.add('expanded');
+      }
     }
 
     async function loadJobs() {
@@ -381,7 +402,7 @@
             </div>
           </div>
           <div class="question-body">
-            <p class="question-text">${question.question_text}</p>
+            <p class="question-text">${escapeHtml(question.question_text)}</p>
             ${options ? `<div class="question-options">${options}</div>` : ''}
             ${question.explanation ? `
               <div class="question-explanation">
@@ -614,7 +635,7 @@
         });
         Qbank.showToast('Question updated successfully', 'success');
         closeEditModal();
-        loadJobs();
+        refreshJobInPlace(currentEditJob);
       } catch (error) {
         console.error('Error saving question:', error);
         Qbank.showToast('Failed to save changes', 'error');
@@ -625,7 +646,7 @@
       if (!text) return '';
       const div = document.createElement('div');
       div.textContent = text;
-      return div.innerHTML;
+      return div.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
     // Initialize

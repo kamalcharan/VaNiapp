@@ -90,7 +90,7 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Recent Generation Jobs</h3>
-          <a href="./review.html" class="btn btn-sm btn-secondary">View All</a>
+          <a href="./review.html" class="btn btn-sm btn-secondary" id="viewAllLink">View All</a>
         </div>
         <div class="card-body" id="recentJobsContainer">
           <div class="qbank-loader">
@@ -212,6 +212,10 @@
       const examChapters = allChapters.filter(ch => {
         return examSubjects.includes(Qbank.normalizeId(ch.subject_id));
       });
+
+      // Update "View All" link with exam context
+      const viewAllLink = document.getElementById('viewAllLink');
+      if (viewAllLink) viewAllLink.href = `./review.html`;
 
       renderSummaryStats(examStats, examJobs);
       renderSubjectCards(examSubjects, examStats, examJobs, examChapters);

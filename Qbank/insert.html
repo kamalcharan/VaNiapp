@@ -15,6 +15,7 @@
       display: flex;
       align-items: center;
       gap: 20px;
+      flex-wrap: wrap;
     }
 
     .insert-job-icon {
@@ -241,7 +242,7 @@
             <button class="btn btn-primary btn-sm" onclick="insertJob('${job.id}')" ${approved.length === 0 ? 'disabled' : ''}>
               Insert ${approved.length} Questions
             </button>
-            <a href="./review.html" class="btn btn-ghost btn-sm">Review Again</a>
+            <a href="./review.html?status=reviewed&job=${job.id}" class="btn btn-ghost btn-sm">Review Again</a>
           </div>
         </div>
       `;
@@ -313,7 +314,7 @@
               subject_id: job.subject_id,
               chapter_id: job.chapter_id,
               topic_id: null, // TODO: map topic name to ID
-              exam_ids: ['NEET'],
+              exam_ids: job.config?.examIds || job.exam_ids || ['NEET'],
               question_type: question.question_type,
               difficulty: question.difficulty || 'medium',
               strength_required: 'just-started',
