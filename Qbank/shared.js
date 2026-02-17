@@ -632,7 +632,7 @@ async function fetchQuestionsByChapter(chapterId, options = {}) {
   if (!SUPABASE) return { data: [], total: 0 };
   let query = SUPABASE
     .from('med_questions')
-    .select('id, subject_id, chapter_id, question_type, difficulty, status, question_text, correct_answer, created_at')
+    .select('id, subject_id, chapter_id, question_type, difficulty, status, question_text, correct_answer, explanation, payload, concept_tags, created_at')
     .eq('chapter_id', chapterId)
     .order('created_at', { ascending: false });
 
@@ -652,6 +652,36 @@ async function fetchQuestionsByChapter(chapterId, options = {}) {
     return { data: [], total: 0 };
   }
   return { data: data || [], total: count };
+}
+
+async function fetchQuestionDetails(questionId) {
+  if (!SUPABASE) return null;
+
+  // Fetch options and hints in parallel
+  const [optRes, hintRes] = await Promise.all([
+    SUPABASE.from('med_question_options').select('*').eq('question_id', questionId).order('sort_order'),
+    SUPABASE.from('med_elimination_hints').select('*').eq('question_id', questionId)
+  ]);
+
+  return {
+    options: optRes.data || [],
+    hints: hintRes.data || []
+  };
+}
+
+async function bulkUpdateQuestionStatus(questionIds, newStatus) {
+  if (!SUPABASE || questionIds.length === 0) return null;
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .update({ status: newStatus })
+    .in('id', questionIds)
+    .select();
+
+  if (error) {
+    console.error('Error bulk updating status:', error);
+    return null;
+  }
+  return data;
 }
 
 async function fetchQuestionsCountByChapter(subjectId) {
@@ -1233,8 +1263,10 @@ window.Qbank = {
   getAutoInsertTimeRemaining,
   getQuestionStats,
   fetchQuestionsByChapter,
+  fetchQuestionDetails,
   fetchQuestionsCountByChapter,
   updateQuestionStatus,
+  bulkUpdateQuestionStatus,
 
   // Gemini
   callGemini,
