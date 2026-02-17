@@ -713,9 +713,15 @@
           // Update timer display
           const timerEl = document.getElementById('autoInsertTimer');
           if (timerEl) {
-            timerEl.parentElement.innerHTML = `✅ <strong>Inserted to DB!</strong> ${result.insertedCount} questions added`;
-            timerEl.parentElement.parentElement.style.background = '#d1fae5';
-            timerEl.parentElement.parentElement.style.borderColor = '#6ee7b7';
+            const timerTextEl = timerEl.parentElement;
+            const timerBoxEl = timerTextEl ? timerTextEl.parentElement : null;
+            if (timerTextEl) {
+              timerTextEl.innerHTML = `✅ <strong>Inserted to DB!</strong> ${result.insertedCount} questions added`;
+            }
+            if (timerBoxEl) {
+              timerBoxEl.style.background = '#d1fae5';
+              timerBoxEl.style.borderColor = '#6ee7b7';
+            }
           }
 
           if (btn) {
