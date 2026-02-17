@@ -36,7 +36,7 @@
 | B05 | `zoo-kingdom-annelida` | Phylum Annelida | 20 | DONE |
 | B06 | `zoo-kingdom-arthropoda` | Phylum Arthropoda | 20 | DONE |
 | B07 | `zoo-kingdom-mollusca` | Phylum Mollusca | 20 | DONE |
-| B08 | `zoo-kingdom-chordata` | Phylum Chordata | 20 | PENDING |
+| B08 | `zoo-kingdom-chordata` | Phylum Chordata | 20 | DONE |
 | | | **Chapter 1 Total** | **160** | |
 
 ### Chapter 2: Structural Organisation in Animals (`zoo-structural-organization`) — 5 batches
@@ -341,7 +341,7 @@ Commit and push.
 
 | Chapter | Topics | Qs Target | Qs Done | % |
 |---------|--------|-----------|---------|---|
-| Ch1 Animal Kingdom | 8 | 160 | 140 | 88% |
+| Ch1 Animal Kingdom | 8 | 160 | 160 | 100% |
 | Ch2 Structural Org | 5 | 100 | 0 | 0% |
 | Ch3 Biomolecules | 5 | 100 | 0 | 0% |
 | Ch4 Breathing | 4 | 80 | 0 | 0% |
@@ -356,4 +356,4 @@ Commit and push.
 | Ch13 Human Health | 5 | 100 | 0 | 0% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **140** | **10.8%** |
+| **TOTAL** | **65** | **1,300** | **160** | **12.3%** |
