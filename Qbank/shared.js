@@ -133,7 +133,12 @@ async function requireAuth(allowedRoles = ['admin', 'reviewer']) {
     return null;
   }
 
-  await loadConfig();
+  const config = await loadConfig();
+  if (!config) {
+    showToast('Config file missing. Create Qbank/config.json from config.example.json', 'error', 8000);
+    return CURRENT_USER; // Still return user so page partially renders
+  }
+
   await initSupabase();
 
   return CURRENT_USER;
@@ -160,9 +165,22 @@ async function initSupabase() {
     return null;
   }
 
+  // Check for placeholder credentials
+  if (config.supabase.url.includes('your-project') || config.supabase.anonKey.includes('your-')) {
+    console.warn('Supabase credentials are placeholders. Update config.json with real credentials.');
+    showToast('Supabase not configured. Update config.json with your Supabase URL and key.', 'warning', 5000);
+    return null;
+  }
+
   // Load Supabase from CDN if not already loaded
   if (!window.supabase) {
-    await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js');
+    try {
+      await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js');
+    } catch (err) {
+      console.error('Failed to load Supabase SDK:', err);
+      showToast('Failed to load Supabase SDK. Check your internet connection.', 'error');
+      return null;
+    }
   }
 
   SUPABASE = window.supabase.createClient(config.supabase.url, config.supabase.anonKey);
@@ -183,6 +201,7 @@ function loadScript(src) {
 // SUPABASE DATA HELPERS
 // ============================================================================
 async function fetchSubjects() {
+  if (!SUPABASE) return [];
   const { data, error } = await SUPABASE
     .from('med_subjects')
     .select('*')
@@ -202,6 +221,7 @@ async function fetchSubjects() {
 }
 
 async function fetchChapters(subjectId = null) {
+  if (!SUPABASE) return [];
   let query = SUPABASE
     .from('med_chapters')
     .select('*')
@@ -222,6 +242,7 @@ async function fetchChapters(subjectId = null) {
 }
 
 async function fetchTopics(chapterId) {
+  if (!SUPABASE) return [];
   const { data, error } = await SUPABASE
     .from('med_topics')
     .select('*')
@@ -236,6 +257,7 @@ async function fetchTopics(chapterId) {
 }
 
 async function fetchGenerationJobs(status = null) {
+  if (!SUPABASE) return [];
   let query = SUPABASE
     .from('med_generation_jobs')
     .select('*')
@@ -258,6 +280,7 @@ async function fetchGenerationJobs(status = null) {
 }
 
 async function createGenerationJob(jobData) {
+  if (!SUPABASE) return null;
   const { data, error } = await SUPABASE
     .from('med_generation_jobs')
     .insert(jobData)
@@ -272,6 +295,7 @@ async function createGenerationJob(jobData) {
 }
 
 async function updateGenerationJob(jobId, updates) {
+  if (!SUPABASE) return null;
   const { data, error } = await SUPABASE
     .from('med_generation_jobs')
     .update(updates)
@@ -287,6 +311,7 @@ async function updateGenerationJob(jobId, updates) {
 }
 
 async function insertQuestions(questions) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   const { data, error } = await SUPABASE
     .from('med_questions')
     .insert(questions)
@@ -300,6 +325,7 @@ async function insertQuestions(questions) {
 }
 
 async function insertQuestionOptions(options) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   const { data, error } = await SUPABASE
     .from('med_question_options')
     .insert(options)
@@ -313,6 +339,7 @@ async function insertQuestionOptions(options) {
 }
 
 async function insertEliminationHints(hints) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   const { data, error } = await SUPABASE
     .from('med_elimination_hints')
     .insert(hints)
@@ -327,6 +354,7 @@ async function insertEliminationHints(hints) {
 
 // Insert questions from a generation job to DB
 async function insertJobQuestionsToDb(job) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   if (!job.output_json?.questions || job.output_json.questions.length === 0) {
     return { success: false, error: 'No questions in job' };
   }
@@ -433,6 +461,7 @@ async function insertJobQuestionsToDb(job) {
 
 // Insert only approved questions from a job to DB
 async function insertApprovedQuestionsToDb(job, approvedQuestions) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   if (!approvedQuestions || approvedQuestions.length === 0) {
     return { success: false, error: 'No approved questions to insert' };
   }
@@ -538,6 +567,7 @@ async function insertApprovedQuestionsToDb(job, approvedQuestions) {
 
 // Check for old jobs (>12 hours) and auto-insert
 async function autoInsertOldJobs() {
+  if (!SUPABASE) return { processed: 0 };
   const twelveHoursAgo = new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString();
 
   // Get jobs that are pending and older than 12 hours
@@ -573,6 +603,7 @@ function getAutoInsertTimeRemaining(jobCreatedAt) {
 }
 
 async function getQuestionStats() {
+  if (!SUPABASE) return [];
   const { data, error } = await SUPABASE
     .from('med_questions')
     .select('subject_id, question_type, difficulty, status');
@@ -585,6 +616,7 @@ async function getQuestionStats() {
 }
 
 async function fetchQuestionsByChapter(chapterId, options = {}) {
+  if (!SUPABASE) return { data: [], total: 0 };
   let query = SUPABASE
     .from('med_questions')
     .select('id, subject_id, chapter_id, question_type, difficulty, status, question_text, correct_answer, created_at')
@@ -610,6 +642,7 @@ async function fetchQuestionsByChapter(chapterId, options = {}) {
 }
 
 async function fetchQuestionsCountByChapter(subjectId) {
+  if (!SUPABASE) return {};
   const { data, error } = await SUPABASE
     .from('med_questions')
     .select('chapter_id, status')
@@ -635,6 +668,7 @@ async function fetchQuestionsCountByChapter(subjectId) {
 }
 
 async function updateQuestionStatus(questionId, newStatus) {
+  if (!SUPABASE) return null;
   const { data, error } = await SUPABASE
     .from('med_questions')
     .update({ status: newStatus })
