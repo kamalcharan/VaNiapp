@@ -238,9 +238,11 @@ async function fetchChapters(subjectId = null) {
     .order('chapter_number');
 
   if (subjectId) {
-    query = query.eq('subject_id', normalizeId(subjectId));
+    query = query.ilike('subject_id', subjectId);
   } else if (CURRENT_USER?.role === 'reviewer') {
-    query = query.in('subject_id', normalizeIds(CURRENT_USER.subjects));
+    // Use OR filter for case-insensitive in() equivalent
+    const subjects = CURRENT_USER.subjects;
+    query = query.or(subjects.map(s => `subject_id.ilike.${s}`).join(','));
   }
 
   const { data, error } = await query;
@@ -278,7 +280,8 @@ async function fetchGenerationJobs(status = null) {
   }
 
   if (CURRENT_USER?.role === 'reviewer') {
-    query = query.in('subject_id', normalizeIds(CURRENT_USER.subjects));
+    const subjects = CURRENT_USER.subjects;
+    query = query.or(subjects.map(s => `subject_id.ilike.${s}`).join(','));
   }
 
   const { data, error } = await query;
@@ -656,7 +659,7 @@ async function fetchQuestionsCountByChapter(subjectId) {
   const { data, error } = await SUPABASE
     .from('med_questions')
     .select('chapter_id, status')
-    .eq('subject_id', normalizeId(subjectId));
+    .ilike('subject_id', subjectId);
 
   if (error) {
     console.error('Error fetching question counts:', error);
