@@ -139,15 +139,15 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | B24 | `zoo-blood-groups` | Blood Groups | 20 | DONE |
 | B25 | `zoo-blood-heart` | Human Heart | 20 | DONE |
 | B26 | `zoo-blood-cardiac` | Cardiac Cycle | 20 | DONE |
-| B27 | `zoo-blood-ecg` | ECG | 20 | PENDING |
+| B27 | `zoo-blood-ecg` | ECG | 20 | DONE |
 | | | **Chapter 5 Total** | **100** | |
 
 ### Chapter 6: Excretory Products and Elimination (`zoo-excretion`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B28 | `zoo-excr-nephron` | Nephron Structure | 20 | PENDING |
-| B29 | `zoo-excr-urine` | Urine Formation | 20 | PENDING |
+| B28 | `zoo-excr-nephron` | Nephron Structure | 20 | DONE |
+| B29 | `zoo-excr-urine` | Urine Formation | 20 | DONE |
 | B30 | `zoo-excr-osmoregulation` | Osmoregulation | 20 | PENDING |
 | B31 | `zoo-excr-disorders` | Kidney Disorders | 20 | PENDING |
 | | | **Chapter 6 Total** | **80** | |
