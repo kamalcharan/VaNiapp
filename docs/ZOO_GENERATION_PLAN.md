@@ -10,7 +10,7 @@
 
 - **1 batch = 1 topic = 20 questions** (fits comfortably in one context window)
 - **10+10 split allowed**: If context is tight, a topic can be split into two sub-batches (10 questions each, saved as `{topic_id}_part1.json` and `{topic_id}_part2.json`)
-- Each batch outputs a single JSON file saved to `Qbank/generated/zoo/`
+- Each batch outputs a single JSON file saved to `Qbank/generated/zoo/{chapter}/`
 - After generation, import via `Qbank/import.html` or direct Supabase insert
 - Question type mix per 20-question batch:
   - 12 MCQ (60%)
@@ -20,6 +20,49 @@
   - 1 Fill-in-Blanks
   - 1 Scenario-Based
 - Difficulty mix: 6 Easy (30%), 10 Medium (50%), 4 Hard (20%)
+
+### Folder Structure
+
+Files are organized by chapter under `Qbank/generated/zoo/`:
+
+```
+Qbank/generated/zoo/
+├── animal-kingdom/           ← Ch1 (B01-B08)
+├── structural-organization/  ← Ch2 (B09-B13)
+├── biomolecules/             ← Ch3 (B14-B18)
+├── breathing/                ← Ch4 (B19-B22)
+├── body-fluids/              ← Ch5 (B23-B27)
+├── excretion/                ← Ch6 (B28-B31)
+├── locomotion/               ← Ch7 (B32-B35)
+├── neural-control/           ← Ch8 (B36-B39)
+├── chemical-coordination/    ← Ch9 (B40-B42)
+├── human-reproduction/       ← Ch10 (B43-B47)
+├── reproductive-health/      ← Ch11 (B48-B51)
+├── evolution/                ← Ch12 (B52-B55)
+├── human-health/             ← Ch13 (B56-B60)
+├── biotechnology-principles/ ← Ch14 (B61-B65)
+└── biotechnology-applications/ ← Ch15 (B66-B69)
+```
+
+**Chapter folder mapping (use this for file paths):**
+
+| Chapter | Folder Name |
+|---------|-------------|
+| Ch1 Animal Kingdom | `animal-kingdom` |
+| Ch2 Structural Organisation | `structural-organization` |
+| Ch3 Biomolecules | `biomolecules` |
+| Ch4 Breathing | `breathing` |
+| Ch5 Body Fluids | `body-fluids` |
+| Ch6 Excretion | `excretion` |
+| Ch7 Locomotion | `locomotion` |
+| Ch8 Neural Control | `neural-control` |
+| Ch9 Chemical Coordination | `chemical-coordination` |
+| Ch10 Human Reproduction | `human-reproduction` |
+| Ch11 Reproductive Health | `reproductive-health` |
+| Ch12 Evolution | `evolution` |
+| Ch13 Human Health | `human-health` |
+| Ch14 Biotech Principles | `biotechnology-principles` |
+| Ch15 Biotech Applications | `biotechnology-applications` |
 
 ---
 
@@ -41,7 +84,7 @@ Example: zoo-bio-carbs-01, zoo-bio-carbs-02, ... zoo-bio-carbs-20
 
 **Duplicate prevention (3 layers):**
 1. **Plan status** — skip any batch already marked `DONE` in this file
-2. **File existence** — skip if `Qbank/generated/zoo/{topic_id}.json` already exists on disk
+2. **File existence** — skip if `Qbank/generated/zoo/{chapter}/{topic_id}.json` already exists on disk
 3. **Supabase upsert** — `import.html` should upsert on `id`, not blind insert
 
 ---
@@ -100,11 +143,11 @@ EXECUTION:
 - Process ONE batch at a time, sequentially (no parallel generation)
 - Max 2-3 subagents at a time for file I/O only
 - Each question must have a unique "id": {topic_id}-{nn} (e.g. zoo-bio-carbs-01)
-- Skip any batch whose JSON file already exists in Qbank/generated/zoo/
+- Skip any batch whose JSON file already exists in Qbank/generated/zoo/{chapter}/
 
 AFTER EACH BATCH:
 - Validate the JSON (20 questions, correct schema, unique IDs)
-- Save to Qbank/generated/zoo/{topic_id}.json
+- Save to Qbank/generated/zoo/{chapter}/{topic_id}.json
 - Mark batch DONE in ZOO_GENERATION_PLAN.md
 
 COMMIT CADENCE:
@@ -152,31 +195,31 @@ ON FAILURE:
 
 | Batch | Topic ID | Topic Name | Qs | Status | Notes |
 |-------|----------|------------|-----|--------|-------|
-| B14 | `zoo-bio-carbs` | Carbohydrates | 20 | PENDING | |
-| B15 | `zoo-bio-proteins` | Proteins | 20 | PENDING | |
-| B16 | `zoo-bio-lipids` | Lipids | 20 | PENDING | |
-| B17 | `zoo-bio-nucleic` | Nucleic Acids | 20 | PENDING | |
-| B18 | `zoo-bio-enzymes` | Enzymes | 20 | PENDING | |
+| B14 | `zoo-bio-carbs` | Carbohydrates | 20 | DONE | |
+| B15 | `zoo-bio-proteins` | Proteins | 20 | DONE | |
+| B16 | `zoo-bio-lipids` | Lipids | 20 | DONE | |
+| B17 | `zoo-bio-nucleic` | Nucleic Acids | 20 | DONE | |
+| B18 | `zoo-bio-enzymes` | Enzymes | 20 | DONE | |
 | | | **Chapter 3 Total** | **100** | | |
 
 ### Chapter 4: Breathing and Exchange of Gases (`zoo-breathing`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status | Notes |
 |-------|----------|------------|-----|--------|-------|
-| B19 | `zoo-breath-system` | Respiratory System | 20 | PENDING | |
-| B20 | `zoo-breath-mechanism` | Mechanism of Breathing | 20 | PENDING | |
-| B21 | `zoo-breath-exchange` | Gas Exchange | 20 | PENDING | |
-| B22 | `zoo-breath-transport` | Transport of Gases | 20 | PENDING | |
+| B19 | `zoo-breath-system` | Respiratory System | 20 | DONE | |
+| B20 | `zoo-breath-mechanism` | Mechanism of Breathing | 20 | DONE | |
+| B21 | `zoo-breath-exchange` | Gas Exchange | 20 | DONE | |
+| B22 | `zoo-breath-transport` | Transport of Gases | 20 | DONE | |
 | | | **Chapter 4 Total** | **80** | | |
 
 ### Chapter 5: Body Fluids and Circulation (`zoo-body-fluids`) — 5 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status | Notes |
 |-------|----------|------------|-----|--------|-------|
-| B23 | `zoo-blood-composition` | Blood Composition | 20 | PENDING | |
-| B24 | `zoo-blood-groups` | Blood Groups | 20 | PENDING | |
-| B25 | `zoo-blood-heart` | Human Heart | 20 | PENDING | |
-| B26 | `zoo-blood-cardiac` | Cardiac Cycle | 20 | PENDING | |
+| B23 | `zoo-blood-composition` | Blood Composition | 20 | DONE | |
+| B24 | `zoo-blood-groups` | Blood Groups | 20 | DONE | |
+| B25 | `zoo-blood-heart` | Human Heart | 20 | DONE | |
+| B26 | `zoo-blood-cardiac` | Cardiac Cycle | 20 | DONE | |
 | B27 | `zoo-blood-ecg` | ECG | 20 | PENDING | |
 | | | **Chapter 5 Total** | **100** | | |
 
@@ -322,10 +365,11 @@ Using the prompt templates from QBANK_AGENT.md, generate exactly 20 questions:
 
 ### Step 3: Save JSON to File
 ```
-Write to: Qbank/generated/zoo/{topic_id}.json
+Write to: Qbank/generated/zoo/{chapter}/{topic_id}.json
+(Look up {chapter} folder name from the Folder Structure table above)
 ```
 
-**Pre-check:** If this file already exists, SKIP this batch (it's already done).
+**Pre-check:** If this file already exists in the chapter subfolder, SKIP this batch (it's already done).
 
 JSON format must be a **plain array** compatible with `Qbank/import.html`:
 
@@ -375,7 +419,7 @@ Commit every 3 completed batches (or immediately on failure):
 
 ```bash
 # Normal commit (every 3 batches):
-git add Qbank/generated/zoo/*.json docs/ZOO_GENERATION_PLAN.md
+git add Qbank/generated/zoo/**/*.json docs/ZOO_GENERATION_PLAN.md
 git commit -m "Zoo Q-gen B{XX}-B{YY}: {chapter_name} ({N} batches, {N*20} questions)"
 git push
 
@@ -433,11 +477,11 @@ EXECUTION:
 - Process ONE batch at a time, sequentially (no parallel generation)
 - Max 2-3 subagents at a time for file I/O only
 - Each question must have a unique "id": {topic_id}-{nn} (e.g. zoo-bio-carbs-01)
-- Skip any batch whose JSON file already exists in Qbank/generated/zoo/
+- Skip any batch whose JSON file already exists in Qbank/generated/zoo/{chapter}/
 
 AFTER EACH BATCH:
 - Validate the JSON (20 questions, correct schema, unique IDs)
-- Save to Qbank/generated/zoo/{topic_id}.json
+- Save to Qbank/generated/zoo/{chapter}/{topic_id}.json
 - Mark batch DONE in ZOO_GENERATION_PLAN.md
 
 COMMIT CADENCE:
@@ -472,7 +516,7 @@ Generate exactly 20 NEET-style questions with unique IDs ({topic_id}-01 through 
 - 1 Fill-in-Blanks (medium)
 - 1 Scenario-Based (medium)
 
-Save JSON to: Qbank/generated/zoo/{topic_id}.json
+Save JSON to: Qbank/generated/zoo/{chapter}/{topic_id}.json
 Update status in ZOO_GENERATION_PLAN.md (DONE or FAILED with reason).
 Commit and push.
 If FAILED — STOP and report error. Do not continue.
@@ -486,9 +530,9 @@ If FAILED — STOP and report error. Do not continue.
 |---------|--------|-----------|---------|---|
 | Ch1 Animal Kingdom | 8 | 160 | 160 | 100% |
 | Ch2 Structural Org | 5 | 100 | 100 | 100% |
-| Ch3 Biomolecules | 5 | 100 | 0 | 0% |
-| Ch4 Breathing | 4 | 80 | 0 | 0% |
-| Ch5 Body Fluids | 5 | 100 | 0 | 0% |
+| Ch3 Biomolecules | 5 | 100 | 100 | 100% |
+| Ch4 Breathing | 4 | 80 | 80 | 100% |
+| Ch5 Body Fluids | 5 | 100 | 80 | 80% |
 | Ch6 Excretion | 4 | 80 | 0 | 0% |
 | Ch7 Locomotion | 4 | 80 | 0 | 0% |
 | Ch8 Neural Control | 4 | 80 | 0 | 0% |
@@ -499,4 +543,4 @@ If FAILED — STOP and report error. Do not continue.
 | Ch13 Human Health | 5 | 100 | 0 | 0% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **260** | **20.0%** |
+| **TOTAL** | **65** | **1,300** | **520** | **40.0%** |
