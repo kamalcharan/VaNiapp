@@ -116,29 +116,29 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 |-------|----------|------------|-----|--------|
 | B14 | `zoo-bio-carbs` | Carbohydrates | 20 | DONE |
 | B15 | `zoo-bio-proteins` | Proteins | 20 | DONE |
-| B16 | `zoo-bio-lipids` | Lipids | 20 | PENDING |
-| B17 | `zoo-bio-nucleic` | Nucleic Acids | 20 | PENDING |
-| B18 | `zoo-bio-enzymes` | Enzymes | 20 | PENDING |
+| B16 | `zoo-bio-lipids` | Lipids | 20 | DONE |
+| B17 | `zoo-bio-nucleic` | Nucleic Acids | 20 | DONE |
+| B18 | `zoo-bio-enzymes` | Enzymes | 20 | DONE |
 | | | **Chapter 3 Total** | **100** | |
 
 ### Chapter 4: Breathing and Exchange of Gases (`zoo-breathing`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B19 | `zoo-breath-system` | Respiratory System | 20 | PENDING |
-| B20 | `zoo-breath-mechanism` | Mechanism of Breathing | 20 | PENDING |
-| B21 | `zoo-breath-exchange` | Gas Exchange | 20 | PENDING |
-| B22 | `zoo-breath-transport` | Transport of Gases | 20 | PENDING |
+| B19 | `zoo-breath-system` | Respiratory System | 20 | DONE |
+| B20 | `zoo-breath-mechanism` | Mechanism of Breathing | 20 | DONE |
+| B21 | `zoo-breath-exchange` | Gas Exchange | 20 | DONE |
+| B22 | `zoo-breath-transport` | Transport of Gases | 20 | DONE |
 | | | **Chapter 4 Total** | **80** | |
 
 ### Chapter 5: Body Fluids and Circulation (`zoo-body-fluids`) — 5 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B23 | `zoo-blood-composition` | Blood Composition | 20 | PENDING |
-| B24 | `zoo-blood-groups` | Blood Groups | 20 | PENDING |
-| B25 | `zoo-blood-heart` | Human Heart | 20 | PENDING |
-| B26 | `zoo-blood-cardiac` | Cardiac Cycle | 20 | PENDING |
+| B23 | `zoo-blood-composition` | Blood Composition | 20 | DONE |
+| B24 | `zoo-blood-groups` | Blood Groups | 20 | DONE |
+| B25 | `zoo-blood-heart` | Human Heart | 20 | DONE |
+| B26 | `zoo-blood-cardiac` | Cardiac Cycle | 20 | DONE |
 | B27 | `zoo-blood-ecg` | ECG | 20 | PENDING |
 | | | **Chapter 5 Total** | **100** | |
 
@@ -419,9 +419,9 @@ Commit and push.
 |---------|--------|-----------|---------|---|
 | Ch1 Animal Kingdom | 8 | 160 | 160 | 100% |
 | Ch2 Structural Org | 5 | 100 | 100 | 100% |
-| Ch3 Biomolecules | 5 | 100 | 0 | 0% |
-| Ch4 Breathing | 4 | 80 | 0 | 0% |
-| Ch5 Body Fluids | 5 | 100 | 0 | 0% |
+| Ch3 Biomolecules | 5 | 100 | 100 | 100% |
+| Ch4 Breathing | 4 | 80 | 80 | 100% |
+| Ch5 Body Fluids | 5 | 100 | 80 | 80% |
 | Ch6 Excretion | 4 | 80 | 0 | 0% |
 | Ch7 Locomotion | 4 | 80 | 0 | 0% |
 | Ch8 Neural Control | 4 | 80 | 0 | 0% |
@@ -432,4 +432,4 @@ Commit and push.
 | Ch13 Human Health | 5 | 100 | 0 | 0% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **260** | **20.0%** |
+| **TOTAL** | **65** | **1,300** | **520** | **40.0%** |
