@@ -157,9 +157,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B32 | `zoo-loco-muscle` | Muscle Contraction | 20 | DONE |
-| B33 | `zoo-loco-skeletal` | Skeletal System | 20 | PENDING |
-| B34 | `zoo-loco-joints` | Joints | 20 | PENDING |
-| B35 | `zoo-loco-disorders` | Muscular Disorders | 20 | PENDING |
+| B33 | `zoo-loco-skeletal` | Skeletal System | 20 | DONE |
+| B34 | `zoo-loco-joints` | Joints | 20 | DONE |
+| B35 | `zoo-loco-disorders` | Muscular Disorders | 20 | DONE |
 | | | **Chapter 7 Total** | **80** | |
 
 ### Chapter 8: Neural Control and Coordination (`zoo-neural-control`) — 4 batches
