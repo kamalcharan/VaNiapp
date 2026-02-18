@@ -46,7 +46,7 @@
 | B09 | `zoo-struct-tissues` | Animal Tissues | 20 | DONE |
 | B10 | `zoo-struct-epithelium` | Epithelial Tissue | 20 | DONE |
 | B11 | `zoo-struct-connective` | Connective Tissue | 20 | DONE |
-| B12 | `zoo-struct-cockroach` | Cockroach Anatomy | 20 | PENDING |
+| B12 | `zoo-struct-cockroach` | Cockroach Anatomy | 20 | DONE |
 | B13 | `zoo-struct-frog` | Frog Anatomy | 20 | PENDING |
 | | | **Chapter 2 Total** | **100** | |
 
@@ -342,7 +342,7 @@ Commit and push.
 | Chapter | Topics | Qs Target | Qs Done | % |
 |---------|--------|-----------|---------|---|
 | Ch1 Animal Kingdom | 8 | 160 | 160 | 100% |
-| Ch2 Structural Org | 5 | 100 | 60 | 60% |
+| Ch2 Structural Org | 5 | 100 | 80 | 80% |
 | Ch3 Biomolecules | 5 | 100 | 0 | 0% |
 | Ch4 Breathing | 4 | 80 | 0 | 0% |
 | Ch5 Body Fluids | 5 | 100 | 0 | 0% |
@@ -356,4 +356,4 @@ Commit and push.
 | Ch13 Human Health | 5 | 100 | 0 | 0% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **220** | **16.9%** |
+| **TOTAL** | **65** | **1,300** | **240** | **18.5%** |
