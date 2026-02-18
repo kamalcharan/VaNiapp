@@ -148,15 +148,15 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 |-------|----------|------------|-----|--------|
 | B28 | `zoo-excr-nephron` | Nephron Structure | 20 | DONE |
 | B29 | `zoo-excr-urine` | Urine Formation | 20 | DONE |
-| B30 | `zoo-excr-osmoregulation` | Osmoregulation | 20 | PENDING |
-| B31 | `zoo-excr-disorders` | Kidney Disorders | 20 | PENDING |
+| B30 | `zoo-excr-osmoregulation` | Osmoregulation | 20 | DONE |
+| B31 | `zoo-excr-disorders` | Kidney Disorders | 20 | DONE |
 | | | **Chapter 6 Total** | **80** | |
 
 ### Chapter 7: Locomotion and Movement (`zoo-locomotion`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B32 | `zoo-loco-muscle` | Muscle Contraction | 20 | PENDING |
+| B32 | `zoo-loco-muscle` | Muscle Contraction | 20 | DONE |
 | B33 | `zoo-loco-skeletal` | Skeletal System | 20 | PENDING |
 | B34 | `zoo-loco-joints` | Joints | 20 | PENDING |
 | B35 | `zoo-loco-disorders` | Muscular Disorders | 20 | PENDING |
