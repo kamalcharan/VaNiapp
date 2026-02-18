@@ -23,6 +23,66 @@
 
 ---
 
+## Unique Question IDs
+
+Every question **must** have a deterministic `id` field in the JSON:
+
+```
+Format:  {topic_id}-{nn}
+Example: zoo-bio-carbs-01, zoo-bio-carbs-02, ... zoo-bio-carbs-20
+```
+
+**Rules:**
+- `topic_id` = the batch's Topic ID from the registry below (already unique per topic)
+- `nn` = zero-padded question number within the batch (01–20)
+- **Deterministic** — running the same batch twice produces the same IDs (no random UUIDs)
+- **No duplicates** — topic_id is unique across the entire Qbank, so every question ID is globally unique
+- The `id` field goes at the **top level** of each question object alongside `question_type`, `difficulty`, etc.
+
+**Duplicate prevention (3 layers):**
+1. **Plan status** — skip any batch already marked `DONE` in this file
+2. **File existence** — skip if `Qbank/generated/zoo/{topic_id}.json` already exists on disk
+3. **Supabase upsert** — `import.html` should upsert on `id`, not blind insert
+
+---
+
+## Multi-Session Orchestration
+
+The full Qbank (~1,300 questions, 65 batches) requires multiple Claude Code sessions.
+Each session can handle ~13 batches (~260 questions) before hitting context limits.
+
+**How it works — the plan file IS the state machine:**
+
+```
+Session N starts
+  → reads this file (ZOO_GENERATION_PLAN.md)
+  → scans Batch Registry for first PENDING batch
+  → generates batches sequentially until ~13 done or context limit
+  → marks each batch DONE in this file after saving JSON
+  → commits & pushes (plan + JSONs)
+  → session ends
+
+Session N+1 starts
+  → reads this file again
+  → skips all DONE batches
+  → picks up from first PENDING
+  → repeats
+```
+
+**Session kickoff prompt (same every time):**
+
+```
+Read docs/ZOO_GENERATION_PLAN.md and docs/QBANK_AGENT.md.
+Find the next PENDING batches in the Batch Registry.
+Generate up to 13 batches (260 questions), following the Per-Batch Execution Protocol.
+Each question must have a unique "id" field: {topic_id}-{nn} (e.g. zoo-bio-carbs-01).
+Mark each batch DONE after saving. Commit and push after all batches are complete.
+```
+
+**Estimated sessions needed:** ~5 sessions (65 batches ÷ 13 per session)
+
+---
+
 ## Batch Registry
 
 ### Chapter 1: Animal Kingdom (`zoo-animal-kingdom`) — 8 batches
@@ -227,11 +287,14 @@ Using the prompt templates from QBANK_AGENT.md, generate exactly 20 questions:
 Write to: Qbank/generated/zoo/{topic_id}.json
 ```
 
+**Pre-check:** If this file already exists, SKIP this batch (it's already done).
+
 JSON format must be a **plain array** compatible with `Qbank/import.html`:
 
 ```json
 [
   {
+    "id": "zoo-kingdom-classification-01",
     "question_type": "mcq",
     "difficulty": "easy",
     "question_text": "Which of the following is NOT a level of classification?",
@@ -255,6 +318,8 @@ JSON format must be a **plain array** compatible with `Qbank/import.html`:
   }
 ]
 ```
+
+**ID format:** `{topic_id}-{nn}` — e.g., first question is `{topic_id}-01`, last is `{topic_id}-20`.
 
 **IMPORTANT field names (must match import.html):**
 - Options: `key`, `text`, `is_correct` (NOT option_key/option_text)
@@ -308,7 +373,18 @@ Ch8  Neural Control          (2% wt,  4 topics) → B36-B39
 
 ## Session Kickoff Template
 
-When starting a new session, use this prompt:
+**For automated multi-batch sessions (recommended):**
+
+```
+Read docs/ZOO_GENERATION_PLAN.md and docs/QBANK_AGENT.md.
+Find the next PENDING batches in the Batch Registry.
+Generate up to 13 batches (260 questions), following the Per-Batch Execution Protocol.
+Each question must have a unique "id" field: {topic_id}-{nn} (e.g. zoo-bio-carbs-01).
+Skip any batch whose JSON file already exists in Qbank/generated/zoo/.
+Mark each batch DONE after saving. Commit and push after all batches are complete.
+```
+
+**For single-batch sessions (manual):**
 
 ```
 Generate Zoology questions for VaNi app.
@@ -322,7 +398,7 @@ Read these files first:
 - docs/QBANK_AGENT.md
 - src/types/index.ts
 
-Generate exactly 20 NEET-style questions:
+Generate exactly 20 NEET-style questions with unique IDs ({topic_id}-01 through {topic_id}-20):
 - 12 MCQ (4 easy, 6 medium, 2 hard)
 - 3 Assertion-Reasoning (1 easy, 1 medium, 1 hard)
 - 2 Match-the-Following (1 medium, 1 hard)
