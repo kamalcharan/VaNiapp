@@ -51,32 +51,70 @@ Example: zoo-bio-carbs-01, zoo-bio-carbs-02, ... zoo-bio-carbs-20
 The full Qbank (~1,300 questions, 65 batches) requires multiple Claude Code sessions.
 Each session can handle ~13 batches (~260 questions) before hitting context limits.
 
-**How it works — the plan file IS the state machine:**
+### Execution Rules
+
+1. **Sequential processing** — generate ONE batch at a time (do NOT spawn parallel agents)
+2. **Max 2-3 subagents** — if using Task agents for file I/O, never run more than 2-3 concurrently
+3. **Commit after every 3 batches** — don't wait until the end; commit in groups of 3 for safety
+4. **Stop on failure** — if any batch fails (bad JSON, validation error, write error), immediately:
+   - Mark the batch as `FAILED` in the registry with the reason in the Notes column
+   - Commit the plan file so the failure is recorded
+   - **STOP** and report the error to the user — do NOT continue to the next batch
+   - Wait for user instructions before resuming
+
+### Batch Statuses
+
+| Status | Meaning |
+|--------|---------|
+| `PENDING` | Not yet started |
+| `DONE` | Successfully generated, saved, and verified |
+| `FAILED` | Generation attempted but failed — see Notes column for reason |
+
+### How it works — the plan file IS the state machine:
 
 ```
 Session N starts
   → reads this file (ZOO_GENERATION_PLAN.md)
-  → scans Batch Registry for first PENDING batch
-  → generates batches sequentially until ~13 done or context limit
-  → marks each batch DONE in this file after saving JSON
-  → commits & pushes (plan + JSONs)
-  → session ends
+  → scans Batch Registry for first PENDING batch (skip DONE and FAILED)
+  → generates ONE batch at a time, sequentially
+  → after each batch: validate JSON → save file → mark DONE → continue
+  → commits every 3 batches (plan + JSONs)
+  → if a batch FAILS: mark FAILED with reason, commit, STOP, report to user
+  → session ends after ~13 batches or context limit
 
 Session N+1 starts
   → reads this file again
-  → skips all DONE batches
+  → skips DONE and FAILED batches
   → picks up from first PENDING
   → repeats
 ```
 
-**Session kickoff prompt (same every time):**
+### Session kickoff prompt (same every time):
 
 ```
 Read docs/ZOO_GENERATION_PLAN.md and docs/QBANK_AGENT.md.
-Find the next PENDING batches in the Batch Registry.
-Generate up to 13 batches (260 questions), following the Per-Batch Execution Protocol.
-Each question must have a unique "id" field: {topic_id}-{nn} (e.g. zoo-bio-carbs-01).
-Mark each batch DONE after saving. Commit and push after all batches are complete.
+Find the next PENDING batches in the Batch Registry (skip DONE and FAILED).
+Generate up to 13 batches (260 questions), following these rules:
+
+EXECUTION:
+- Process ONE batch at a time, sequentially (no parallel generation)
+- Max 2-3 subagents at a time for file I/O only
+- Each question must have a unique "id": {topic_id}-{nn} (e.g. zoo-bio-carbs-01)
+- Skip any batch whose JSON file already exists in Qbank/generated/zoo/
+
+AFTER EACH BATCH:
+- Validate the JSON (20 questions, correct schema, unique IDs)
+- Save to Qbank/generated/zoo/{topic_id}.json
+- Mark batch DONE in ZOO_GENERATION_PLAN.md
+
+COMMIT CADENCE:
+- Commit and push every 3 completed batches
+
+ON FAILURE:
+- Mark the batch FAILED with error reason in the Notes column
+- Commit the updated plan file immediately
+- STOP execution and report the error — do NOT continue
+- Wait for user instructions before resuming
 ```
 
 **Estimated sessions needed:** ~5 sessions (65 batches ÷ 13 per session)
@@ -87,162 +125,162 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 ### Chapter 1: Animal Kingdom (`zoo-animal-kingdom`) — 8 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B01 | `zoo-kingdom-classification` | Basis of Classification | 20 | DONE |
-| B02 | `zoo-kingdom-porifera` | Phylum Porifera | 20 | DONE |
-| B03 | `zoo-kingdom-cnidaria` | Phylum Cnidaria | 20 | DONE |
-| B04 | `zoo-kingdom-platyhelminthes` | Phylum Platyhelminthes | 20 | DONE |
-| B05 | `zoo-kingdom-annelida` | Phylum Annelida | 20 | DONE |
-| B06 | `zoo-kingdom-arthropoda` | Phylum Arthropoda | 20 | DONE |
-| B07 | `zoo-kingdom-mollusca` | Phylum Mollusca | 20 | DONE |
-| B08 | `zoo-kingdom-chordata` | Phylum Chordata | 20 | DONE |
-| | | **Chapter 1 Total** | **160** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B01 | `zoo-kingdom-classification` | Basis of Classification | 20 | DONE | |
+| B02 | `zoo-kingdom-porifera` | Phylum Porifera | 20 | DONE | |
+| B03 | `zoo-kingdom-cnidaria` | Phylum Cnidaria | 20 | DONE | |
+| B04 | `zoo-kingdom-platyhelminthes` | Phylum Platyhelminthes | 20 | DONE | |
+| B05 | `zoo-kingdom-annelida` | Phylum Annelida | 20 | DONE | |
+| B06 | `zoo-kingdom-arthropoda` | Phylum Arthropoda | 20 | DONE | |
+| B07 | `zoo-kingdom-mollusca` | Phylum Mollusca | 20 | DONE | |
+| B08 | `zoo-kingdom-chordata` | Phylum Chordata | 20 | DONE | |
+| | | **Chapter 1 Total** | **160** | | |
 
 ### Chapter 2: Structural Organisation in Animals (`zoo-structural-organization`) — 5 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B09 | `zoo-struct-tissues` | Animal Tissues | 20 | DONE |
-| B10 | `zoo-struct-epithelium` | Epithelial Tissue | 20 | DONE |
-| B11 | `zoo-struct-connective` | Connective Tissue | 20 | DONE |
-| B12 | `zoo-struct-cockroach` | Cockroach Anatomy | 20 | DONE |
-| B13 | `zoo-struct-frog` | Frog Anatomy | 20 | DONE |
-| | | **Chapter 2 Total** | **100** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B09 | `zoo-struct-tissues` | Animal Tissues | 20 | DONE | |
+| B10 | `zoo-struct-epithelium` | Epithelial Tissue | 20 | DONE | |
+| B11 | `zoo-struct-connective` | Connective Tissue | 20 | DONE | |
+| B12 | `zoo-struct-cockroach` | Cockroach Anatomy | 20 | DONE | |
+| B13 | `zoo-struct-frog` | Frog Anatomy | 20 | DONE | |
+| | | **Chapter 2 Total** | **100** | | |
 
 ### Chapter 3: Biomolecules (`zoo-biomolecules`) — 5 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B14 | `zoo-bio-carbs` | Carbohydrates | 20 | PENDING |
-| B15 | `zoo-bio-proteins` | Proteins | 20 | PENDING |
-| B16 | `zoo-bio-lipids` | Lipids | 20 | PENDING |
-| B17 | `zoo-bio-nucleic` | Nucleic Acids | 20 | PENDING |
-| B18 | `zoo-bio-enzymes` | Enzymes | 20 | PENDING |
-| | | **Chapter 3 Total** | **100** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B14 | `zoo-bio-carbs` | Carbohydrates | 20 | PENDING | |
+| B15 | `zoo-bio-proteins` | Proteins | 20 | PENDING | |
+| B16 | `zoo-bio-lipids` | Lipids | 20 | PENDING | |
+| B17 | `zoo-bio-nucleic` | Nucleic Acids | 20 | PENDING | |
+| B18 | `zoo-bio-enzymes` | Enzymes | 20 | PENDING | |
+| | | **Chapter 3 Total** | **100** | | |
 
 ### Chapter 4: Breathing and Exchange of Gases (`zoo-breathing`) — 4 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B19 | `zoo-breath-system` | Respiratory System | 20 | PENDING |
-| B20 | `zoo-breath-mechanism` | Mechanism of Breathing | 20 | PENDING |
-| B21 | `zoo-breath-exchange` | Gas Exchange | 20 | PENDING |
-| B22 | `zoo-breath-transport` | Transport of Gases | 20 | PENDING |
-| | | **Chapter 4 Total** | **80** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B19 | `zoo-breath-system` | Respiratory System | 20 | PENDING | |
+| B20 | `zoo-breath-mechanism` | Mechanism of Breathing | 20 | PENDING | |
+| B21 | `zoo-breath-exchange` | Gas Exchange | 20 | PENDING | |
+| B22 | `zoo-breath-transport` | Transport of Gases | 20 | PENDING | |
+| | | **Chapter 4 Total** | **80** | | |
 
 ### Chapter 5: Body Fluids and Circulation (`zoo-body-fluids`) — 5 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B23 | `zoo-blood-composition` | Blood Composition | 20 | PENDING |
-| B24 | `zoo-blood-groups` | Blood Groups | 20 | PENDING |
-| B25 | `zoo-blood-heart` | Human Heart | 20 | PENDING |
-| B26 | `zoo-blood-cardiac` | Cardiac Cycle | 20 | PENDING |
-| B27 | `zoo-blood-ecg` | ECG | 20 | PENDING |
-| | | **Chapter 5 Total** | **100** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B23 | `zoo-blood-composition` | Blood Composition | 20 | PENDING | |
+| B24 | `zoo-blood-groups` | Blood Groups | 20 | PENDING | |
+| B25 | `zoo-blood-heart` | Human Heart | 20 | PENDING | |
+| B26 | `zoo-blood-cardiac` | Cardiac Cycle | 20 | PENDING | |
+| B27 | `zoo-blood-ecg` | ECG | 20 | PENDING | |
+| | | **Chapter 5 Total** | **100** | | |
 
 ### Chapter 6: Excretory Products and Elimination (`zoo-excretion`) — 4 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B28 | `zoo-excr-nephron` | Nephron Structure | 20 | PENDING |
-| B29 | `zoo-excr-urine` | Urine Formation | 20 | PENDING |
-| B30 | `zoo-excr-osmoregulation` | Osmoregulation | 20 | PENDING |
-| B31 | `zoo-excr-disorders` | Kidney Disorders | 20 | PENDING |
-| | | **Chapter 6 Total** | **80** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B28 | `zoo-excr-nephron` | Nephron Structure | 20 | PENDING | |
+| B29 | `zoo-excr-urine` | Urine Formation | 20 | PENDING | |
+| B30 | `zoo-excr-osmoregulation` | Osmoregulation | 20 | PENDING | |
+| B31 | `zoo-excr-disorders` | Kidney Disorders | 20 | PENDING | |
+| | | **Chapter 6 Total** | **80** | | |
 
 ### Chapter 7: Locomotion and Movement (`zoo-locomotion`) — 4 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B32 | `zoo-loco-muscle` | Muscle Contraction | 20 | PENDING |
-| B33 | `zoo-loco-skeletal` | Skeletal System | 20 | PENDING |
-| B34 | `zoo-loco-joints` | Joints | 20 | PENDING |
-| B35 | `zoo-loco-disorders` | Muscular Disorders | 20 | PENDING |
-| | | **Chapter 7 Total** | **80** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B32 | `zoo-loco-muscle` | Muscle Contraction | 20 | PENDING | |
+| B33 | `zoo-loco-skeletal` | Skeletal System | 20 | PENDING | |
+| B34 | `zoo-loco-joints` | Joints | 20 | PENDING | |
+| B35 | `zoo-loco-disorders` | Muscular Disorders | 20 | PENDING | |
+| | | **Chapter 7 Total** | **80** | | |
 
 ### Chapter 8: Neural Control and Coordination (`zoo-neural-control`) — 4 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B36 | `zoo-neural-neuron` | Neuron Structure | 20 | PENDING |
-| B37 | `zoo-neural-impulse` | Nerve Impulse | 20 | PENDING |
-| B38 | `zoo-neural-brain` | Human Brain | 20 | PENDING |
-| B39 | `zoo-neural-reflex` | Reflex Arc | 20 | PENDING |
-| | | **Chapter 8 Total** | **80** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B36 | `zoo-neural-neuron` | Neuron Structure | 20 | PENDING | |
+| B37 | `zoo-neural-impulse` | Nerve Impulse | 20 | PENDING | |
+| B38 | `zoo-neural-brain` | Human Brain | 20 | PENDING | |
+| B39 | `zoo-neural-reflex` | Reflex Arc | 20 | PENDING | |
+| | | **Chapter 8 Total** | **80** | | |
 
 ### Chapter 9: Chemical Coordination and Integration (`zoo-chemical-coordination`) — 3 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B40 | `zoo-chem-endocrine` | Endocrine Glands | 20 | PENDING |
-| B41 | `zoo-chem-hormones` | Hormones | 20 | PENDING |
-| B42 | `zoo-chem-feedback` | Feedback Mechanism | 20 | PENDING |
-| | | **Chapter 9 Total** | **60** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B40 | `zoo-chem-endocrine` | Endocrine Glands | 20 | PENDING | |
+| B41 | `zoo-chem-hormones` | Hormones | 20 | PENDING | |
+| B42 | `zoo-chem-feedback` | Feedback Mechanism | 20 | PENDING | |
+| | | **Chapter 9 Total** | **60** | | |
 
 ### Chapter 10: Human Reproduction (`zoo-human-reproduction`) — 5 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B43 | `zoo-repro-male` | Male Reproductive System | 20 | PENDING |
-| B44 | `zoo-repro-female` | Female Reproductive System | 20 | PENDING |
-| B45 | `zoo-repro-gametogenesis` | Gametogenesis | 20 | PENDING |
-| B46 | `zoo-repro-menstrual` | Menstrual Cycle | 20 | PENDING |
-| B47 | `zoo-repro-fertilization` | Fertilization | 20 | PENDING |
-| | | **Chapter 10 Total** | **100** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B43 | `zoo-repro-male` | Male Reproductive System | 20 | PENDING | |
+| B44 | `zoo-repro-female` | Female Reproductive System | 20 | PENDING | |
+| B45 | `zoo-repro-gametogenesis` | Gametogenesis | 20 | PENDING | |
+| B46 | `zoo-repro-menstrual` | Menstrual Cycle | 20 | PENDING | |
+| B47 | `zoo-repro-fertilization` | Fertilization | 20 | PENDING | |
+| | | **Chapter 10 Total** | **100** | | |
 
 ### Chapter 11: Reproductive Health (`zoo-reproductive-health`) — 4 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B48 | `zoo-rh-contraception` | Contraception Methods | 20 | PENDING |
-| B49 | `zoo-rh-stds` | STDs | 20 | PENDING |
-| B50 | `zoo-rh-infertility` | Infertility | 20 | PENDING |
-| B51 | `zoo-rh-art` | Assisted Reproductive Technologies | 20 | PENDING |
-| | | **Chapter 11 Total** | **80** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B48 | `zoo-rh-contraception` | Contraception Methods | 20 | PENDING | |
+| B49 | `zoo-rh-stds` | STDs | 20 | PENDING | |
+| B50 | `zoo-rh-infertility` | Infertility | 20 | PENDING | |
+| B51 | `zoo-rh-art` | Assisted Reproductive Technologies | 20 | PENDING | |
+| | | **Chapter 11 Total** | **80** | | |
 
 ### Chapter 12: Evolution (`zoo-evolution`) — 4 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B52 | `zoo-evo-origin` | Origin of Life | 20 | PENDING |
-| B53 | `zoo-evo-evidence` | Evidence of Evolution | 20 | PENDING |
-| B54 | `zoo-evo-natural` | Natural Selection | 20 | PENDING |
-| B55 | `zoo-evo-human` | Human Evolution | 20 | PENDING |
-| | | **Chapter 12 Total** | **80** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B52 | `zoo-evo-origin` | Origin of Life | 20 | PENDING | |
+| B53 | `zoo-evo-evidence` | Evidence of Evolution | 20 | PENDING | |
+| B54 | `zoo-evo-natural` | Natural Selection | 20 | PENDING | |
+| B55 | `zoo-evo-human` | Human Evolution | 20 | PENDING | |
+| | | **Chapter 12 Total** | **80** | | |
 
 ### Chapter 13: Human Health and Diseases (`zoo-human-health`) — 5 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B56 | `zoo-health-diseases` | Common Diseases | 20 | PENDING |
-| B57 | `zoo-health-immunity` | Immunity | 20 | PENDING |
-| B58 | `zoo-health-aids` | AIDS | 20 | PENDING |
-| B59 | `zoo-health-cancer` | Cancer | 20 | PENDING |
-| B60 | `zoo-health-drugs` | Drug Abuse | 20 | PENDING |
-| | | **Chapter 13 Total** | **100** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B56 | `zoo-health-diseases` | Common Diseases | 20 | PENDING | |
+| B57 | `zoo-health-immunity` | Immunity | 20 | PENDING | |
+| B58 | `zoo-health-aids` | AIDS | 20 | PENDING | |
+| B59 | `zoo-health-cancer` | Cancer | 20 | PENDING | |
+| B60 | `zoo-health-drugs` | Drug Abuse | 20 | PENDING | |
+| | | **Chapter 13 Total** | **100** | | |
 
 ### Chapter 14: Biotechnology: Principles and Processes (`zoo-biotechnology-principles`) — 5 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B61 | `zoo-biotech-rdna` | rDNA Technology | 20 | PENDING |
-| B62 | `zoo-biotech-pcr` | PCR | 20 | PENDING |
-| B63 | `zoo-biotech-gel` | Gel Electrophoresis | 20 | PENDING |
-| B64 | `zoo-biotech-vectors` | Vectors | 20 | PENDING |
-| B65 | `zoo-biotech-cloning` | Cloning | 20 | PENDING |
-| | | **Chapter 14 Total** | **100** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B61 | `zoo-biotech-rdna` | rDNA Technology | 20 | PENDING | |
+| B62 | `zoo-biotech-pcr` | PCR | 20 | PENDING | |
+| B63 | `zoo-biotech-gel` | Gel Electrophoresis | 20 | PENDING | |
+| B64 | `zoo-biotech-vectors` | Vectors | 20 | PENDING | |
+| B65 | `zoo-biotech-cloning` | Cloning | 20 | PENDING | |
+| | | **Chapter 14 Total** | **100** | | |
 
 ### Chapter 15: Biotechnology and its Applications (`zoo-biotechnology-applications`) — 4 batches
 
-| Batch | Topic ID | Topic Name | Qs | Status |
-|-------|----------|------------|-----|--------|
-| B66 | `zoo-bioapp-gmo` | GMO | 20 | PENDING |
-| B67 | `zoo-bioapp-bt` | Bt Crops | 20 | PENDING |
-| B68 | `zoo-bioapp-gene-therapy` | Gene Therapy | 20 | PENDING |
-| B69 | `zoo-bioapp-transgenic` | Transgenic Animals | 20 | PENDING |
-| | | **Chapter 15 Total** | **80** | |
+| Batch | Topic ID | Topic Name | Qs | Status | Notes |
+|-------|----------|------------|-----|--------|-------|
+| B66 | `zoo-bioapp-gmo` | GMO | 20 | PENDING | |
+| B67 | `zoo-bioapp-bt` | Bt Crops | 20 | PENDING | |
+| B68 | `zoo-bioapp-gene-therapy` | Gene Therapy | 20 | PENDING | |
+| B69 | `zoo-bioapp-transgenic` | Transgenic Animals | 20 | PENDING | |
+| | | **Chapter 15 Total** | **80** | | |
 
 ---
 
@@ -327,12 +365,23 @@ JSON format must be a **plain array** compatible with `Qbank/import.html`:
 - Top-level: plain array `[...]` (NO metadata wrapper)
 
 ### Step 4: Update Plan Status
-Update this file: change batch status from `PENDING` → `DONE`
+
+**On success:** Change batch status from `PENDING` → `DONE`
+**On failure:** Change batch status from `PENDING` → `FAILED` and add error reason in the Notes column. Then STOP — do not continue to the next batch.
 
 ### Step 5: Commit & Push
+
+Commit every 3 completed batches (or immediately on failure):
+
 ```bash
-git add Qbank/generated/zoo/{topic_id}.json docs/ZOO_GENERATION_PLAN.md
-git commit -m "Zoo Q-gen B{XX}: {topic_name} (20 questions)"
+# Normal commit (every 3 batches):
+git add Qbank/generated/zoo/*.json docs/ZOO_GENERATION_PLAN.md
+git commit -m "Zoo Q-gen B{XX}-B{YY}: {chapter_name} ({N} batches, {N*20} questions)"
+git push
+
+# Failure commit (immediate):
+git add docs/ZOO_GENERATION_PLAN.md
+git commit -m "Zoo Q-gen B{XX}: FAILED — {reason}"
 git push
 ```
 
@@ -373,15 +422,32 @@ Ch8  Neural Control          (2% wt,  4 topics) → B36-B39
 
 ## Session Kickoff Template
 
-**For automated multi-batch sessions (recommended):**
+**For automated multi-batch sessions (recommended — copy-paste this into a new Claude Code session):**
 
 ```
 Read docs/ZOO_GENERATION_PLAN.md and docs/QBANK_AGENT.md.
-Find the next PENDING batches in the Batch Registry.
-Generate up to 13 batches (260 questions), following the Per-Batch Execution Protocol.
-Each question must have a unique "id" field: {topic_id}-{nn} (e.g. zoo-bio-carbs-01).
-Skip any batch whose JSON file already exists in Qbank/generated/zoo/.
-Mark each batch DONE after saving. Commit and push after all batches are complete.
+Find the next PENDING batches in the Batch Registry (skip DONE and FAILED).
+Generate up to 13 batches (260 questions), following these rules:
+
+EXECUTION:
+- Process ONE batch at a time, sequentially (no parallel generation)
+- Max 2-3 subagents at a time for file I/O only
+- Each question must have a unique "id": {topic_id}-{nn} (e.g. zoo-bio-carbs-01)
+- Skip any batch whose JSON file already exists in Qbank/generated/zoo/
+
+AFTER EACH BATCH:
+- Validate the JSON (20 questions, correct schema, unique IDs)
+- Save to Qbank/generated/zoo/{topic_id}.json
+- Mark batch DONE in ZOO_GENERATION_PLAN.md
+
+COMMIT CADENCE:
+- Commit and push every 3 completed batches
+
+ON FAILURE:
+- Mark the batch FAILED with error reason in the Notes column
+- Commit the updated plan file immediately
+- STOP execution and report the error — do NOT continue
+- Wait for user instructions before resuming
 ```
 
 **For single-batch sessions (manual):**
@@ -407,8 +473,9 @@ Generate exactly 20 NEET-style questions with unique IDs ({topic_id}-01 through 
 - 1 Scenario-Based (medium)
 
 Save JSON to: Qbank/generated/zoo/{topic_id}.json
-Update status in ZOO_GENERATION_PLAN.md
+Update status in ZOO_GENERATION_PLAN.md (DONE or FAILED with reason).
 Commit and push.
+If FAILED — STOP and report error. Do not continue.
 ```
 
 ---
