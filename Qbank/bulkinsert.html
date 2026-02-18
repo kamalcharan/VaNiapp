@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk Insert - Qbank Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .drop-zone {
+      border: 3px dashed var(--gray-300);
+      border-radius: var(--radius-lg);
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--gray-50);
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+    .drop-zone .icon { font-size: 3rem; margin-bottom: 12px; }
+    .drop-zone .hint { color: var(--gray-500); font-size: 13px; margin-top: 8px; }
+
+    .file-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .file-table th, .file-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--gray-200); font-size: 14px; }
+    .file-table th { background: var(--gray-50); font-weight: 600; font-size: 12px; text-transform: uppercase; color: var(--gray-500); }
+    .file-table tr:hover { background: var(--gray-50); }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .stat-box { text-align: center; padding: 16px; background: var(--gray-50); border-radius: var(--radius); }
+    .stat-box .value { font-size: 1.8rem; font-weight: 700; }
+    .stat-box .label { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+
+    .log-panel {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 16px;
+      border-radius: var(--radius);
+      max-height: 500px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+    .log-ok { color: #4ade80; }
+    .log-skip { color: #fbbf24; }
+    .log-fail { color: #f87171; }
+    .log-info { color: #60a5fa; }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+    .progress-bar .fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+
+    .id-check-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .id-new { background: #dcfce7; color: #166534; }
+    .id-dup { background: #fef3c7; color: #92400e; }
+    .id-err { background: #fee2e2; color: #991b1b; }
+  </style>
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-icon">📦</span>
+          Bulk Insert
+        </h1>
+        <p class="page-subtitle">Select generated JSON files from any subject/chapter folder — validates IDs, checks for duplicates, inserts to DB</p>
+      </div>
+
+      <!-- Step 1: Select Files -->
+      <div class="card" id="step1Card">
+        <div class="card-header">
+          <h3 class="card-title">1. Select JSON Files</h3>
+        </div>
+        <div class="card-body">
+          <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+            <div class="icon">📁</div>
+            <div><strong>Click to select files</strong> or drag & drop</div>
+            <div class="hint">Select multiple .json files from Qbank/generated/{subject}/{chapter}/</div>
+            <input type="file" id="fileInput" accept=".json" multiple style="display: none;" onchange="handleFiles(event.target.files)">
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Scan Results -->
+      <div class="card" id="step2Card" style="display: none;">
+        <div class="card-header">
+          <h3 class="card-title">2. Scan Results</h3>
+          <button class="btn btn-sm btn-ghost" onclick="resetAll()">Clear & Start Over</button>
+        </div>
+        <div class="card-body">
+          <div class="stat-grid" id="statGrid"></div>
+          <table class="file-table">
+            <thead>
+              <tr>
+                <th>File</th>
+                <th>Questions</th>
+                <th>Types</th>
+                <th>Difficulty</th>
+                <th>IDs Valid</th>
+              </tr>
+            </thead>
+            <tbody id="fileTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Step 3: DB Check & Insert -->
+      <div class="card" id="step3Card" style="display: none;">
+        <div class="card-header">
+          <h3 class="card-title">3. Database Check</h3>
+        </div>
+        <div class="card-body">
+          <div id="dbCheckResult"></div>
+          <div class="progress-bar" id="progressBar" style="display: none;">
+            <div class="fill" id="progressFill" style="width: 0%"></div>
+          </div>
+          <div style="display: flex; gap: 12px; margin-top: 16px; justify-content: center;">
+            <button class="btn btn-primary btn-lg" id="checkDbBtn" onclick="checkDatabase()">
+              Check for Duplicates in DB
+            </button>
+            <button class="btn btn-success btn-lg" id="insertBtn" onclick="insertAll()" style="display: none;">
+              Insert New Questions to DB
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Insert Log -->
+      <div class="card" id="step4Card" style="display: none;">
+        <div class="card-header">
+          <h3 class="card-title">4. Insert Log</h3>
+        </div>
+        <div class="card-body">
+          <div class="log-panel" id="logPanel"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    // ========================================================================
+    // STATE
+    // ========================================================================
+    let loadedFiles = [];       // { name, questions[] }
+    let allQuestions = [];       // flattened
+    let newQuestions = [];       // after DB dedup
+    let existingIds = new Set();
+
+    // ========================================================================
+    // INIT
+    // ========================================================================
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Qbank.requireAuth('admin');
+      if (!user) return;
+      Qbank.renderNavHeader();
+      setupDragDrop();
+    });
+
+    function setupDragDrop() {
+      const zone = document.getElementById('dropZone');
+      zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('drag-over'); });
+      zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        handleFiles(e.dataTransfer.files);
+      });
+    }
+
+    // ========================================================================
+    // FILE HANDLING
+    // ========================================================================
+    async function handleFiles(fileList) {
+      loadedFiles = [];
+      allQuestions = [];
+      newQuestions = [];
+      existingIds = new Set();
+
+      const files = Array.from(fileList).filter(f => f.name.endsWith('.json'));
+      if (files.length === 0) {
+        Qbank.showToast('No .json files selected', 'error');
+        return;
+      }
+
+      for (const file of files) {
+        try {
+          const text = await file.text();
+          const questions = JSON.parse(text);
+
+          if (!Array.isArray(questions)) {
+            loadedFiles.push({ name: file.name, questions: [], error: 'Not a JSON array' });
+            continue;
+          }
+
+          // Validate each question
+          const validated = questions.map((q, i) => {
+            const errors = [];
+            if (!q.id) errors.push('missing id');
+            if (!q.question_text) errors.push('missing question_text');
+            if (!q.question_type) q.question_type = 'mcq';
+            if (!q.difficulty) q.difficulty = 'medium';
+            if (q.question_type === 'mcq' && (!q.options || q.options.length < 4)) errors.push('MCQ needs 4 options');
+            if (q.question_type === 'mcq' && !q.correct_answer) errors.push('missing correct_answer');
+            q._errors = errors;
+            q._file = file.name;
+            return q;
+          });
+
+          loadedFiles.push({ name: file.name, questions: validated, error: null });
+          allQuestions.push(...validated);
+        } catch (err) {
+          loadedFiles.push({ name: file.name, questions: [], error: err.message });
+        }
+      }
+
+      // Check for local duplicate IDs
+      const idMap = {};
+      allQuestions.forEach(q => {
+        if (q.id) idMap[q.id] = (idMap[q.id] || 0) + 1;
+      });
+      const localDupes = Object.entries(idMap).filter(([, c]) => c > 1);
+
+      renderScanResults(localDupes);
+    }
+
+    // ========================================================================
+    // RENDER SCAN RESULTS
+    // ========================================================================
+    function renderScanResults(localDupes) {
+      // Stats
+      const totalQs = allQuestions.length;
+      const validQs = allQuestions.filter(q => q._errors.length === 0).length;
+      const types = {};
+      const diffs = { easy: 0, medium: 0, hard: 0 };
+      allQuestions.forEach(q => {
+        types[q.question_type] = (types[q.question_type] || 0) + 1;
+        diffs[q.difficulty] = (diffs[q.difficulty] || 0) + 1;
+      });
+
+      document.getElementById('statGrid').innerHTML = `
+        <div class="stat-box"><div class="value">${loadedFiles.length}</div><div class="label">Files</div></div>
+        <div class="stat-box"><div class="value">${totalQs}</div><div class="label">Questions</div></div>
+        <div class="stat-box"><div class="value" style="color: #22c55e">${validQs}</div><div class="label">Valid</div></div>
+        <div class="stat-box"><div class="value" style="color: ${totalQs - validQs > 0 ? '#ef4444' : '#22c55e'}">${totalQs - validQs}</div><div class="label">With Issues</div></div>
+        <div class="stat-box"><div class="value" style="color: #22c55e">${diffs.easy}</div><div class="label">Easy</div></div>
+        <div class="stat-box"><div class="value" style="color: #f59e0b">${diffs.medium}</div><div class="label">Medium</div></div>
+        <div class="stat-box"><div class="value" style="color: #ef4444">${diffs.hard}</div><div class="label">Hard</div></div>
+      `;
+
+      // File table
+      const tbody = document.getElementById('fileTableBody');
+      tbody.innerHTML = loadedFiles.map(f => {
+        if (f.error) {
+          return `<tr>
+            <td><strong>${esc(f.name)}</strong></td>
+            <td colspan="4"><span class="id-check-badge id-err">${esc(f.error)}</span></td>
+          </tr>`;
+        }
+        const fTypes = {};
+        const fDiffs = { easy: 0, medium: 0, hard: 0 };
+        let idsOk = 0;
+        f.questions.forEach(q => {
+          fTypes[q.question_type] = (fTypes[q.question_type] || 0) + 1;
+          fDiffs[q.difficulty] = (fDiffs[q.difficulty] || 0) + 1;
+          if (q.id && q._errors.length === 0) idsOk++;
+        });
+        const typeStr = Object.entries(fTypes).map(([t, c]) => `${c} ${t}`).join(', ');
+        const diffStr = `${fDiffs.easy}E / ${fDiffs.medium}M / ${fDiffs.hard}H`;
+        const idBadge = idsOk === f.questions.length
+          ? `<span class="id-check-badge id-new">${idsOk}/${f.questions.length} OK</span>`
+          : `<span class="id-check-badge id-err">${idsOk}/${f.questions.length} OK</span>`;
+        return `<tr>
+          <td><strong>${esc(f.name)}</strong></td>
+          <td>${f.questions.length}</td>
+          <td>${esc(typeStr)}</td>
+          <td>${diffStr}</td>
+          <td>${idBadge}</td>
+        </tr>`;
+      }).join('');
+
+      // Local dupes warning
+      if (localDupes.length > 0) {
+        const dupeHtml = localDupes.map(([id, c]) => `<li><code>${esc(id)}</code> appears ${c} times</li>`).join('');
+        tbody.innerHTML += `<tr><td colspan="5" style="background: #fef3c7; color: #92400e;">
+          <strong>Duplicate IDs found within selected files:</strong><ul style="margin: 4px 0 0 16px;">${dupeHtml}</ul>
+          <em>Fix these before inserting.</em>
+        </td></tr>`;
+      }
+
+      document.getElementById('step2Card').style.display = 'block';
+      document.getElementById('step3Card').style.display = 'block';
+      document.getElementById('insertBtn').style.display = 'none';
+      document.getElementById('step2Card').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ========================================================================
+    // DATABASE DUPLICATE CHECK
+    // ========================================================================
+    async function checkDatabase() {
+      const btn = document.getElementById('checkDbBtn');
+      btn.disabled = true;
+      btn.textContent = 'Checking...';
+
+      const resultDiv = document.getElementById('dbCheckResult');
+      resultDiv.innerHTML = '<p>Querying database for existing question IDs...</p>';
+
+      try {
+        existingIds = new Set();
+        const allIds = allQuestions.map(q => q.id).filter(Boolean);
+
+        // Query in batches of 200
+        for (let i = 0; i < allIds.length; i += 200) {
+          const batch = allIds.slice(i, i + 200);
+          // Check payload->>question_id for our custom IDs
+          const { data, error } = await Qbank.supabase
+            .from('med_questions')
+            .select('payload')
+            .filter('payload->>question_id', 'in', `(${batch.join(',')})`);
+
+          if (!error && data) {
+            data.forEach(row => {
+              if (row.payload?.question_id) existingIds.add(row.payload.question_id);
+            });
+          }
+        }
+
+        newQuestions = allQuestions.filter(q => q.id && !existingIds.has(q.id) && q._errors.length === 0);
+        const dupCount = allQuestions.filter(q => existingIds.has(q.id)).length;
+        const errCount = allQuestions.filter(q => q._errors.length > 0).length;
+
+        resultDiv.innerHTML = `
+          <div class="stat-grid">
+            <div class="stat-box"><div class="value">${allQuestions.length}</div><div class="label">Total Loaded</div></div>
+            <div class="stat-box"><div class="value" style="color: #22c55e">${newQuestions.length}</div><div class="label">New (will insert)</div></div>
+            <div class="stat-box"><div class="value" style="color: #f59e0b">${dupCount}</div><div class="label">Already in DB (skip)</div></div>
+            <div class="stat-box"><div class="value" style="color: #ef4444">${errCount}</div><div class="label">Invalid (skip)</div></div>
+          </div>
+        `;
+
+        if (newQuestions.length > 0) {
+          document.getElementById('insertBtn').style.display = 'inline-flex';
+          document.getElementById('insertBtn').textContent = `Insert ${newQuestions.length} New Questions to DB`;
+        } else {
+          resultDiv.innerHTML += '<p style="text-align:center; color: var(--gray-500); margin-top: 12px;">Nothing new to insert — all questions already exist in the database.</p>';
+        }
+      } catch (err) {
+        resultDiv.innerHTML = `<p style="color: #ef4444;">Error checking database: ${esc(err.message)}</p>`;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Check for Duplicates in DB';
+      }
+    }
+
+    // ========================================================================
+    // BULK INSERT
+    // ========================================================================
+    async function insertAll() {
+      if (newQuestions.length === 0) {
+        Qbank.showToast('No new questions to insert', 'error');
+        return;
+      }
+
+      if (!confirm(`Insert ${newQuestions.length} questions into the database as ACTIVE questions?\n\nDuplicates have been filtered out.`)) {
+        return;
+      }
+
+      const btn = document.getElementById('insertBtn');
+      btn.disabled = true;
+      btn.textContent = 'Inserting...';
+
+      document.getElementById('step4Card').style.display = 'block';
+      const logEl = document.getElementById('logPanel');
+      logEl.innerHTML = '';
+      const progressBar = document.getElementById('progressBar');
+      const progressFill = document.getElementById('progressFill');
+      progressBar.style.display = 'block';
+
+      let inserted = 0;
+      let errors = 0;
+
+      for (let i = 0; i < newQuestions.length; i++) {
+        const q = newQuestions[i];
+        const pct = Math.round(((i + 1) / newQuestions.length) * 100);
+        progressFill.style.width = pct + '%';
+
+        try {
+          // Resolve subject and chapter from the question ID prefix
+          const subjectId = resolveSubjectId(q.id);
+          const chapterId = resolveChapterId(q);
+
+          // Insert main question
+          const { data: insertedQ, error: qError } = await Qbank.supabase
+            .from('med_questions')
+            .insert({
+              subject_id: subjectId,
+              chapter_id: chapterId,
+              question_type: q.question_type || 'mcq',
+              difficulty: q.difficulty || 'medium',
+              question_text: q.question_text,
+              correct_answer: q.correct_answer,
+              explanation: q.explanation || '',
+              status: 'active',
+              concept_tags: q.concept_tags || [],
+              exam_ids: q.exam_suitability || ['NEET'],
+              payload: {
+                question_id: q.id,
+                topic: q.topic,
+                subtopic: q.subtopic,
+                bloom_level: q.bloom_level,
+                source: 'bulk-insert'
+              }
+            })
+            .select()
+            .single();
+
+          if (qError) throw qError;
+
+          // Insert options
+          if (q.options && q.options.length > 0) {
+            const options = q.options.map((opt, idx) => ({
+              question_id: insertedQ.id,
+              option_key: opt.key || String.fromCharCode(65 + idx),
+              option_text: opt.text,
+              is_correct: opt.is_correct || (opt.key === q.correct_answer),
+              sort_order: idx
+            }));
+            const { error: optErr } = await Qbank.supabase.from('med_question_options').insert(options);
+            if (optErr) appendLogLine(logEl, `  Options warning for ${q.id}: ${optErr.message}`, 'skip');
+          }
+
+          // Insert elimination hints
+          if (q.elimination_hints && q.elimination_hints.length > 0) {
+            const hints = q.elimination_hints.map(h => ({
+              question_id: insertedQ.id,
+              option_key: h.option_key,
+              hint_text: h.hint,
+              misconception: h.misconception || ''
+            }));
+            const { error: hintErr } = await Qbank.supabase.from('med_elimination_hints').insert(hints);
+            if (hintErr) appendLogLine(logEl, `  Hints warning for ${q.id}: ${hintErr.message}`, 'skip');
+          }
+
+          inserted++;
+          if (inserted % 10 === 0 || i === newQuestions.length - 1) {
+            appendLogLine(logEl, `[${i + 1}/${newQuestions.length}] ${q.id} — inserted`, 'ok');
+          }
+        } catch (err) {
+          errors++;
+          appendLogLine(logEl, `[${i + 1}/${newQuestions.length}] ${q.id} — FAILED: ${err.message}`, 'fail');
+        }
+      }
+
+      // Final summary
+      appendLogLine(logEl, '', 'info');
+      appendLogLine(logEl, '========================================', 'info');
+      appendLogLine(logEl, `  DONE: ${inserted} inserted, ${errors} failed`, inserted > 0 ? 'ok' : 'fail');
+      appendLogLine(logEl, '========================================', 'info');
+
+      progressFill.style.width = '100%';
+      Qbank.showToast(`Inserted ${inserted} questions (${errors} errors)`, inserted > 0 ? 'success' : 'error');
+
+      btn.disabled = false;
+      btn.textContent = `Insert ${newQuestions.length} New Questions to DB`;
+      document.getElementById('step4Card').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ========================================================================
+    // ID / CHAPTER RESOLVERS
+    // ========================================================================
+    function resolveSubjectId(questionId) {
+      if (!questionId) return 'unknown';
+      if (questionId.startsWith('zoo-')) return 'zoology';
+      if (questionId.startsWith('bot-')) return 'botany';
+      if (questionId.startsWith('phy-')) return 'physics';
+      if (questionId.startsWith('chem-')) return 'chemistry';
+      return 'unknown';
+    }
+
+    // Map question to chapter_id using the topic_id from its ID
+    // e.g. zoo-kingdom-classification-01 → topic = zoo-kingdom-classification → chapter = zoo-animal-kingdom
+    // We use the file name to infer the chapter, or fall back to topic prefix
+    function resolveChapterId(q) {
+      // Topic prefix mapping to chapter IDs
+      const TOPIC_TO_CHAPTER = {
+        'zoo-kingdom':  'zoo-animal-kingdom',
+        'zoo-struct':   'zoo-structural-organization',
+        'zoo-bio':      'zoo-biomolecules',
+        'zoo-breath':   'zoo-breathing',
+        'zoo-blood':    'zoo-body-fluids',
+        'zoo-excr':     'zoo-excretion',
+        'zoo-loco':     'zoo-locomotion',
+        'zoo-neural':   'zoo-neural-control',
+        'zoo-chem':     'zoo-chemical-coordination',
+        'zoo-repro':    'zoo-human-reproduction',
+        'zoo-rh':       'zoo-reproductive-health',
+        'zoo-evo':      'zoo-evolution',
+        'zoo-health':   'zoo-human-health',
+        'zoo-biotech':  'zoo-biotechnology-principles',
+        'zoo-bioapp':   'zoo-biotechnology-applications',
+      };
+
+      if (!q.id) return 'unknown';
+
+      // Try to match topic prefix
+      for (const [prefix, chapterId] of Object.entries(TOPIC_TO_CHAPTER)) {
+        if (q.id.startsWith(prefix)) return chapterId;
+      }
+
+      return 'unknown';
+    }
+
+    // ========================================================================
+    // HELPERS
+    // ========================================================================
+    function esc(str) { return Qbank.escapeHtml(str); }
+
+    function appendLogLine(el, msg, type) {
+      const cls = type === 'ok' ? 'log-ok' : type === 'fail' ? 'log-fail' : type === 'skip' ? 'log-skip' : 'log-info';
+      el.innerHTML += `<div class="${cls}">${esc(msg)}</div>`;
+      el.scrollTop = el.scrollHeight;
+    }
+
+    function resetAll() {
+      loadedFiles = [];
+      allQuestions = [];
+      newQuestions = [];
+      existingIds = new Set();
+      document.getElementById('fileInput').value = '';
+      document.getElementById('step2Card').style.display = 'none';
+      document.getElementById('step3Card').style.display = 'none';
+      document.getElementById('step4Card').style.display = 'none';
+      document.getElementById('progressBar').style.display = 'none';
+      document.getElementById('dbCheckResult').innerHTML = '';
+      document.getElementById('insertBtn').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

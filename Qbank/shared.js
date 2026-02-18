@@ -1241,6 +1241,7 @@ function renderNavHeader() {
     { id: 'review', label: 'Review', icon: '👁️', adminOnly: false },
     { id: 'insert', label: 'Insert', icon: '💾', adminOnly: true },
     { id: 'import', label: 'Import', icon: '📥', adminOnly: true },
+    { id: 'bulkinsert', label: 'Bulk Insert', icon: '📦', adminOnly: true },
     { id: 'translate', label: 'Translate', icon: '🌐', adminOnly: true }
   ];
 
