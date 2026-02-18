@@ -114,8 +114,8 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B14 | `zoo-bio-carbs` | Carbohydrates | 20 | PENDING |
-| B15 | `zoo-bio-proteins` | Proteins | 20 | PENDING |
+| B14 | `zoo-bio-carbs` | Carbohydrates | 20 | DONE |
+| B15 | `zoo-bio-proteins` | Proteins | 20 | DONE |
 | B16 | `zoo-bio-lipids` | Lipids | 20 | PENDING |
 | B17 | `zoo-bio-nucleic` | Nucleic Acids | 20 | PENDING |
 | B18 | `zoo-bio-enzymes` | Enzymes | 20 | PENDING |
