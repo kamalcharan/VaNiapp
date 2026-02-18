@@ -166,10 +166,10 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B36 | `zoo-neural-neuron` | Neuron Structure | 20 | PENDING |
-| B37 | `zoo-neural-impulse` | Nerve Impulse | 20 | PENDING |
-| B38 | `zoo-neural-brain` | Human Brain | 20 | PENDING |
-| B39 | `zoo-neural-reflex` | Reflex Arc | 20 | PENDING |
+| B36 | `zoo-neural-neuron` | Neuron Structure | 20 | DONE |
+| B37 | `zoo-neural-impulse` | Nerve Impulse | 20 | DONE |
+| B38 | `zoo-neural-brain` | Human Brain | 20 | DONE |
+| B39 | `zoo-neural-reflex` | Reflex Arc | 20 | DONE |
 | | | **Chapter 8 Total** | **80** | |
 
 ### Chapter 9: Chemical Coordination and Integration (`zoo-chemical-coordination`) — 3 batches
