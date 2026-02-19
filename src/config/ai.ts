@@ -7,8 +7,8 @@ export const AI_CONFIG = {
 
   // Model routing
   models: {
-    fast: 'gemini-2.0-flash',       // cheap, fast — used for 80% of queries
-    smart: 'gemini-2.5-pro-preview-06-05',  // capable — used for complex multi-step queries
+    fast: 'gemini-2.5-flash',       // cheap, fast — used for 80% of queries
+    smart: 'gemini-2.5-pro',        // capable — used for complex multi-step queries
   },
 
   // Rate limits (client-side, per day)
