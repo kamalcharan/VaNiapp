@@ -22,6 +22,7 @@ import { ThemedDialog } from '../../src/components/ui/ThemedDialog';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
+import { useOnboardingGate } from '../_layout';
 import { useToast } from '../../src/components/ui/Toast';
 import { completeOnboarding, joinWithReferralCode } from '../../src/lib/database';
 import type { ExamType } from '../../src/types';
@@ -40,6 +41,7 @@ export default function InviteGangScreen() {
   const router = useRouter();
   const { data, setStep } = useOnboarding();
 
+  const { markDone } = useOnboardingGate();
   const [inviteCode, setInviteCode] = useState('');
   const [saving, setSaving] = useState(false);
   const [errorDialog, setErrorDialog] = useState({ visible: false, message: '' });
@@ -88,6 +90,8 @@ export default function InviteGangScreen() {
         subjects: data.subjects,
         language: data.language,
       });
+      // Signal root layout that onboarding is done (prevents redirect loop)
+      markDone();
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       toast.show('success', 'All set!', "Let's go");
       router.replace('/setup/getting-started');

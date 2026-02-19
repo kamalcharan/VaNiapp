@@ -29,6 +29,13 @@ NativeSplashScreen.preventAutoHideAsync();
 export const AuthContext = createContext<AuthState>(initialAuthState);
 export const useAuth = () => useContext(AuthContext);
 
+// Onboarding gate — lets setup screens signal completion to root layout
+interface OnboardingGate {
+  markDone: () => void;
+}
+const OnboardingGateContext = createContext<OnboardingGate>({ markDone: () => {} });
+export const useOnboardingGate = () => useContext(OnboardingGateContext);
+
 export default function RootLayout() {
   const [themeMode, setThemeMode] = useState<ThemeMode>('light');
   const [showSplash, setShowSplash] = useState(true);
@@ -114,6 +121,13 @@ export default function RootLayout() {
     }
   }, [authState.status, segments, showSplash, onboardingDone]);
 
+  // Onboarding gate: called by setup screens after completeOnboarding() succeeds
+  const markDone = useCallback(() => {
+    setOnboardingDone(true);
+  }, []);
+
+  const gateValue = useMemo<OnboardingGate>(() => ({ markDone }), [markDone]);
+
   // Theme
   const toggleTheme = useCallback(() => {
     setThemeMode((prev) => (prev === 'light' ? 'dark' : 'light'));
@@ -148,9 +162,11 @@ export default function RootLayout() {
 
   return (
     <AuthContext.Provider value={authState}>
-      <ThemeContext.Provider value={themeValue}>
-        <Slot />
-      </ThemeContext.Provider>
+      <OnboardingGateContext.Provider value={gateValue}>
+        <ThemeContext.Provider value={themeValue}>
+          <Slot />
+        </ThemeContext.Provider>
+      </OnboardingGateContext.Provider>
     </AuthContext.Provider>
   );
 }
