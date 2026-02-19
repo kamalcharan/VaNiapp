@@ -1,9 +1,11 @@
+import './crypto-polyfill';
 import 'react-native-url-polyfill/auto';
 import { createClient } from '@supabase/supabase-js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
 const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
+const GOOGLE_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID || '';
 
 const isSupabaseConfigured =
   SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY.length > 0;
@@ -37,21 +39,23 @@ export async function exchangeAuthCode(code: string): Promise<void> {
 /**
  * Sign in with Google via Supabase OAuth.
  *
- * With flowType: 'pkce', signInWithOAuth automatically:
- *   - generates the PKCE code verifier + challenge
- *   - stores the verifier in AsyncStorage
- *   - adds the challenge to the OAuth URL
- *
- * We just open the URL in a browser. When the redirect fires,
- * the root layout's deep link listener calls exchangeAuthCode(code).
+ * Uses openAuthSessionAsync to capture the redirect URL directly
+ * inside Chrome Custom Tab — this prevents the redirect from
+ * becoming a deep link (which triggers the ngrok/dev-server crash
+ * in Expo Go).
  */
-export async function signInWithGoogle() {
+export async function signInWithGoogle(): Promise<{ cancelled: boolean }> {
   if (!supabase) {
     throw new Error('Supabase is not configured. Check your .env file.');
   }
 
-  const Linking = require('expo-linking');
-  const redirectUri = Linking.createURL('auth/callback');
+  const WebBrowser = require('expo-web-browser');
+
+  // Use the custom 'vani://' scheme instead of 'exp://'.
+  // In Expo Go, 'exp://' redirects conflict with Expo Go's main activity
+  // (causing the ngrok/dev-server crash). 'vani://' has no such conflict,
+  // so openAuthSessionAsync's WebBrowserRedirectActivity can capture it cleanly.
+  const redirectUri = 'vani://auth/callback';
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
@@ -65,19 +69,30 @@ export async function signInWithGoogle() {
     throw new Error(error?.message || 'Failed to get Google auth URL');
   }
 
-  const WebBrowser = require('expo-web-browser');
-  const result = await WebBrowser.openAuthSessionAsync(data.url, redirectUri);
+  // openAuthSessionAsync opens Chrome Custom Tab and waits for the
+  // redirect URL. When Chrome Custom Tab navigates to a URL matching
+  // the redirectUri scheme, it captures the URL and returns it
+  // WITHOUT triggering a deep link to the dev server.
+  const result = await WebBrowser.openAuthSessionAsync(
+    data.url,
+    redirectUri,
+    { showInRecents: false }
+  );
 
   if (result.type === 'success' && result.url) {
-    // Browser returned the URL directly — try to exchange here
     const code = extractParam(result.url, 'code');
     if (code) {
       await exchangeAuthCode(code);
+      return { cancelled: false };
     }
-    return { cancelled: false };
+    throw new Error('No auth code in redirect URL');
   }
 
-  return { cancelled: result.type === 'cancel' || result.type === 'dismiss' };
+  if (result.type === 'cancel' || result.type === 'dismiss') {
+    return { cancelled: true };
+  }
+
+  throw new Error(`Auth session ended with type: ${result.type}`);
 }
 
 /**
@@ -110,6 +125,43 @@ function extractParam(url: string, param: string): string | null {
   }
 
   return null;
+}
+
+/**
+ * Sign in with email + password.
+ * No browser redirect needed — works in Expo Go.
+ */
+export async function signInWithEmail(
+  email: string,
+  password: string
+): Promise<void> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) throw error;
+}
+
+/**
+ * Sign up with email + password.
+ * Supabase sends a confirmation email by default — user must click
+ * the link before they can sign in.
+ */
+export async function signUpWithEmail(
+  email: string,
+  password: string
+): Promise<{ needsConfirmation: boolean }> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+  const { data, error } = await supabase.auth.signUp({ email, password });
+  if (error) throw error;
+  return { needsConfirmation: !data.session };
+}
+
+/**
+ * Send a password reset email.
+ */
+export async function resetPassword(email: string): Promise<void> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+  const { error } = await supabase.auth.resetPasswordForEmail(email);
+  if (error) throw error;
 }
 
 /**

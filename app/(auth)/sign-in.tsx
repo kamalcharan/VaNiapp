@@ -7,6 +7,11 @@ import {
   Animated,
   Easing,
   ActivityIndicator,
+  TextInput,
+  Pressable,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
@@ -14,17 +19,30 @@ import { JournalCard } from '../../src/components/ui/JournalCard';
 import { PuffyButton } from '../../src/components/ui/PuffyButton';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
-import { signInWithGoogle } from '../../src/lib/supabase';
-import { Typography, Spacing } from '../../src/constants/theme';
+import {
+  signInWithGoogle,
+  signInWithEmail,
+  signUpWithEmail,
+  resetPassword,
+} from '../../src/lib/supabase';
+import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 
 const logo = require('../../assets/logo.png');
 
+type Mode = 'signin' | 'signup';
+
 export default function SignInScreen() {
   const { colors } = useTheme();
+  const [mode, setMode] = useState<Mode>('signin');
+  const [showEmailForm, setShowEmailForm] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  const [pendingEmail, setPendingEmail] = useState<string | null>(null);
 
-  // Entrance animation
   const contentAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -36,97 +54,518 @@ export default function SignInScreen() {
     }).start();
   }, []);
 
+  // ── Google Sign-In ─────────────────────────────────────────────
   const handleGoogleSignIn = async () => {
     setError(null);
+    setSuccessMsg(null);
     setLoading(true);
-
     try {
-      const result = await signInWithGoogle();
-
-      if (result.cancelled) {
-        // User dismissed the browser — not an error
+      const { cancelled } = await signInWithGoogle();
+      if (cancelled) {
+        // User dismissed the browser — do nothing
         setLoading(false);
+      }
+      // If not cancelled, auth listener handles navigation automatically
+    } catch (err: any) {
+      setLoading(false);
+      const msg = err?.message || String(err);
+      if (msg.includes('not configured')) {
+        setError('Google sign-in is not configured yet. Use email sign-in below.');
+        setShowEmailForm(true);
+      } else {
+        setError(msg);
+      }
+    }
+  };
+
+  // ── Email Sign-In / Sign-Up ────────────────────────────────────
+  const handleEmailSubmit = async () => {
+    setError(null);
+    setSuccessMsg(null);
+
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !password) {
+      setError('Please enter your email and password.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
+    if (mode === 'signup') {
+      if (password.length < 6) {
+        setError('Password must be at least 6 characters.');
         return;
       }
+      if (password !== confirmPassword) {
+        setError('Passwords do not match.');
+        return;
+      }
+    }
 
-      // Session is now stored by Supabase client.
-      // The auth state listener in _layout.tsx will handle navigation.
+    setLoading(true);
+    try {
+      if (mode === 'signin') {
+        await signInWithEmail(trimmedEmail, password);
+      } else {
+        const { needsConfirmation } = await signUpWithEmail(trimmedEmail, password);
+        if (needsConfirmation) {
+          setPendingEmail(trimmedEmail);
+          setPassword('');
+          setConfirmPassword('');
+        }
+      }
     } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.');
+      const msg = err?.message || String(err);
+      if (
+        msg.includes('Email not confirmed') ||
+        msg.includes('email not confirmed') ||
+        msg.includes('not been confirmed')
+      ) {
+        setPendingEmail(trimmedEmail);
+      } else if (msg.includes('Invalid login credentials')) {
+        setError('Incorrect email or password. Please try again.');
+      } else if (msg.includes('User already registered')) {
+        setError('An account with this email already exists. Try signing in instead.');
+      } else {
+        setError(msg);
+      }
+    } finally {
       setLoading(false);
     }
   };
 
+  const handleForgotPassword = async () => {
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) {
+      setError('Enter your email above, then tap Forgot Password.');
+      return;
+    }
+    setError(null);
+    setLoading(true);
+    try {
+      await resetPassword(trimmedEmail);
+      setSuccessMsg(
+        'Password reset link sent to ' +
+          trimmedEmail +
+          '. Check your inbox (and spam folder).'
+      );
+    } catch (err: any) {
+      setError(err?.message || 'Failed to send reset email.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleMode = () => {
+    setError(null);
+    setSuccessMsg(null);
+    setPassword('');
+    setConfirmPassword('');
+    setMode((prev) => (prev === 'signin' ? 'signup' : 'signin'));
+  };
+
+  // ── Full-screen "Check Your Email" view ──────────────────────────
+  if (pendingEmail) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
+          <ScrollView
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+          >
+            <Animated.View
+              style={[
+                styles.content,
+                { opacity: contentAnim, transform: [{ translateY: 0 }] },
+              ]}
+            >
+              <Image source={logo} style={styles.logo} resizeMode="contain" />
+
+              <JournalCard rotation={-0.5} delay={100}>
+                <View style={styles.cardContent}>
+                  <View
+                    style={[
+                      styles.mailIcon,
+                      { backgroundColor: colors.correctBg },
+                    ]}
+                  >
+                    <Text style={{ fontSize: 40 }}>{'✉️'}</Text>
+                  </View>
+
+                  <HandwrittenText variant="handLg" color={colors.text}>
+                    Check your email
+                  </HandwrittenText>
+
+                  <View
+                    style={[
+                      styles.confirmationBox,
+                      { backgroundColor: colors.correctBg, borderColor: colors.correct },
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        Typography.body,
+                        {
+                          color: colors.text,
+                          textAlign: 'center',
+                          fontFamily: 'PlusJakartaSans_600SemiBold',
+                        },
+                      ]}
+                    >
+                      We sent a confirmation link to:
+                    </Text>
+                    <Text
+                      selectable
+                      style={[
+                        Typography.body,
+                        {
+                          color: colors.primary,
+                          textAlign: 'center',
+                          fontFamily: 'PlusJakartaSans_600SemiBold',
+                        },
+                      ]}
+                    >
+                      {pendingEmail}
+                    </Text>
+                    <Text
+                      style={[
+                        Typography.bodySm,
+                        { color: colors.textSecondary, textAlign: 'center', marginTop: Spacing.sm },
+                      ]}
+                    >
+                      Open your email, tap the confirmation link, then come back here and sign in.
+                    </Text>
+                    <Text
+                      style={[
+                        Typography.bodySm,
+                        { color: colors.textTertiary, textAlign: 'center', fontSize: 12 },
+                      ]}
+                    >
+                      (Check your spam folder too!)
+                    </Text>
+                  </View>
+
+                  <PuffyButton
+                    title="I've confirmed — Sign In"
+                    onPress={() => {
+                      setPendingEmail(null);
+                      setMode('signin');
+                      setShowEmailForm(true);
+                      setEmail(pendingEmail || '');
+                      setPassword('');
+                      setError(null);
+                      setSuccessMsg(null);
+                    }}
+                  />
+
+                  <Pressable
+                    onPress={() => {
+                      setPendingEmail(null);
+                      setMode('signin');
+                      setEmail(pendingEmail || '');
+                      setPassword('');
+                      setError(null);
+                      setSuccessMsg(null);
+                    }}
+                  >
+                    <Text
+                      style={[
+                        Typography.bodySm,
+                        { color: colors.textSecondary, textAlign: 'center' },
+                      ]}
+                    >
+                      Back to Sign In
+                    </Text>
+                  </Pressable>
+                </View>
+              </JournalCard>
+            </Animated.View>
+          </ScrollView>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  // ── Main sign-in screen ──────────────────────────────────────────
   return (
     <DotGridBackground>
       <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-        <Animated.View
-          style={[
-            styles.content,
-            {
-              opacity: contentAnim,
-              transform: [
-                {
-                  translateY: contentAnim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [30, 0],
-                  }),
-                },
-              ],
-            },
-          ]}
+        <KeyboardAvoidingView
+          style={styles.flex}
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
-          <Image source={logo} style={styles.logo} resizeMode="contain" />
+          <ScrollView
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+          >
+            <Animated.View
+              style={[
+                styles.content,
+                {
+                  opacity: contentAnim,
+                  transform: [
+                    {
+                      translateY: contentAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [30, 0],
+                      }),
+                    },
+                  ],
+                },
+              ]}
+            >
+              <Image source={logo} style={styles.logo} resizeMode="contain" />
 
-          <JournalCard rotation={-0.5} delay={100}>
-            <View style={styles.cardContent}>
-              <HandwrittenText variant="handLg" color={colors.text}>
-                Let's get you in
-              </HandwrittenText>
+              <JournalCard rotation={-0.5} delay={100}>
+                <View style={styles.cardContent}>
+                  <HandwrittenText variant="handLg" color={colors.text}>
+                    {showEmailForm
+                      ? mode === 'signin'
+                        ? "Let's get you in"
+                        : 'Create your account'
+                      : 'Welcome to VaNi'}
+                  </HandwrittenText>
 
-              <Text
-                style={[
-                  Typography.bodySm,
-                  { color: colors.textSecondary, textAlign: 'center' },
-                ]}
-              >
-                Sign in to save your progress, track your strengths, and pick up
-                right where you left off.
-              </Text>
-
-              {loading ? (
-                <View style={styles.loadingWrap}>
-                  <ActivityIndicator size="small" color={colors.primary} />
                   <Text
-                    style={[Typography.bodySm, { color: colors.textTertiary }]}
+                    style={[
+                      Typography.bodySm,
+                      { color: colors.textSecondary, textAlign: 'center' },
+                    ]}
                   >
-                    Opening Google Sign-In...
+                    {showEmailForm
+                      ? mode === 'signin'
+                        ? 'Sign in to save your progress, track your strengths, and pick up right where you left off.'
+                        : 'Create an account to start your learning journey.'
+                      : 'Sign in to save your progress, track your strengths, and pick up right where you left off.'}
                   </Text>
+
+                  {/* Success banner */}
+                  {successMsg && (
+                    <View
+                      style={[
+                        styles.successBanner,
+                        { backgroundColor: colors.correctBg, borderColor: colors.correct },
+                      ]}
+                    >
+                      <Text
+                        style={[
+                          Typography.bodySm,
+                          { color: colors.correct, textAlign: 'center', fontFamily: 'PlusJakartaSans_600SemiBold' },
+                        ]}
+                      >
+                        {successMsg}
+                      </Text>
+                    </View>
+                  )}
+
+                  {/* Error banner */}
+                  {error && (
+                    <View
+                      style={[
+                        styles.errorBanner,
+                        { backgroundColor: colors.incorrectBg, borderColor: colors.incorrect },
+                      ]}
+                    >
+                      <Text
+                        selectable
+                        style={[
+                          Typography.bodySm,
+                          { color: colors.incorrect, textAlign: 'center', fontSize: 12 },
+                        ]}
+                      >
+                        {error}
+                      </Text>
+                    </View>
+                  )}
+
+                  {/* ── Google Sign-In (primary) ── */}
+                  {!showEmailForm && (
+                    <>
+                      {loading ? (
+                        <View style={styles.loadingWrap}>
+                          <ActivityIndicator size="small" color={colors.primary} />
+                          <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
+                            Signing in with Google...
+                          </Text>
+                        </View>
+                      ) : (
+                        <PuffyButton
+                          title="Sign in with Google"
+                          onPress={handleGoogleSignIn}
+                        />
+                      )}
+
+                      {/* Divider */}
+                      <View style={styles.dividerRow}>
+                        <View style={[styles.dividerLine, { backgroundColor: colors.surfaceBorder }]} />
+                        <Text style={[Typography.bodySm, { color: colors.textTertiary, paddingHorizontal: Spacing.md }]}>
+                          or
+                        </Text>
+                        <View style={[styles.dividerLine, { backgroundColor: colors.surfaceBorder }]} />
+                      </View>
+
+                      <Pressable onPress={() => setShowEmailForm(true)} disabled={loading}>
+                        <Text
+                          style={[
+                            Typography.bodySm,
+                            { color: colors.primary, textAlign: 'center' },
+                          ]}
+                        >
+                          Sign in with Email
+                        </Text>
+                      </Pressable>
+                    </>
+                  )}
+
+                  {/* ── Email / Password form (secondary) ── */}
+                  {showEmailForm && (
+                    <>
+                      <View style={styles.form}>
+                        <TextInput
+                          style={[
+                            styles.input,
+                            {
+                              backgroundColor: colors.surface,
+                              borderColor: colors.surfaceBorder,
+                              color: colors.text,
+                              fontFamily: 'PlusJakartaSans_400Regular',
+                            },
+                          ]}
+                          placeholder="Email"
+                          placeholderTextColor={colors.textTertiary}
+                          value={email}
+                          onChangeText={setEmail}
+                          autoCapitalize="none"
+                          keyboardType="email-address"
+                          textContentType="emailAddress"
+                          autoComplete="email"
+                          editable={!loading}
+                        />
+                        <TextInput
+                          style={[
+                            styles.input,
+                            {
+                              backgroundColor: colors.surface,
+                              borderColor: colors.surfaceBorder,
+                              color: colors.text,
+                              fontFamily: 'PlusJakartaSans_400Regular',
+                            },
+                          ]}
+                          placeholder="Password"
+                          placeholderTextColor={colors.textTertiary}
+                          value={password}
+                          onChangeText={setPassword}
+                          secureTextEntry
+                          textContentType={mode === 'signup' ? 'newPassword' : 'password'}
+                          autoComplete={mode === 'signup' ? 'new-password' : 'password'}
+                          editable={!loading}
+                        />
+                        {mode === 'signup' && (
+                          <TextInput
+                            style={[
+                              styles.input,
+                              {
+                                backgroundColor: colors.surface,
+                                borderColor:
+                                  confirmPassword && confirmPassword !== password
+                                    ? colors.incorrect
+                                    : colors.surfaceBorder,
+                                color: colors.text,
+                                fontFamily: 'PlusJakartaSans_400Regular',
+                              },
+                            ]}
+                            placeholder="Confirm Password"
+                            placeholderTextColor={colors.textTertiary}
+                            value={confirmPassword}
+                            onChangeText={setConfirmPassword}
+                            secureTextEntry
+                            textContentType="newPassword"
+                            autoComplete="new-password"
+                            editable={!loading}
+                          />
+                        )}
+                        {mode === 'signup' && password.length > 0 && password.length < 6 && (
+                          <Text style={[Typography.bodySm, { color: colors.warning, fontSize: 12 }]}>
+                            Password must be at least 6 characters
+                          </Text>
+                        )}
+                      </View>
+
+                      {loading ? (
+                        <View style={styles.loadingWrap}>
+                          <ActivityIndicator size="small" color={colors.primary} />
+                          <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
+                            {mode === 'signin' ? 'Signing in...' : 'Creating account...'}
+                          </Text>
+                        </View>
+                      ) : (
+                        <PuffyButton
+                          title={mode === 'signin' ? 'Sign In' : 'Create Account'}
+                          onPress={handleEmailSubmit}
+                        />
+                      )}
+
+                      {/* Forgot Password — sign-in mode only */}
+                      {mode === 'signin' && !loading && (
+                        <Pressable onPress={handleForgotPassword}>
+                          <Text
+                            style={[
+                              Typography.bodySm,
+                              { color: colors.textSecondary, textAlign: 'center', fontSize: 13 },
+                            ]}
+                          >
+                            Forgot Password?
+                          </Text>
+                        </Pressable>
+                      )}
+
+                      {/* Toggle signin/signup */}
+                      <Pressable onPress={toggleMode} disabled={loading}>
+                        <Text
+                          style={[
+                            Typography.bodySm,
+                            { color: colors.primary, textAlign: 'center' },
+                          ]}
+                        >
+                          {mode === 'signin'
+                            ? "Don't have an account? Sign Up"
+                            : 'Already have an account? Sign In'}
+                        </Text>
+                      </Pressable>
+
+                      {/* Back to Google option */}
+                      <Pressable
+                        onPress={() => {
+                          setShowEmailForm(false);
+                          setError(null);
+                          setSuccessMsg(null);
+                        }}
+                        disabled={loading}
+                      >
+                        <Text
+                          style={[
+                            Typography.bodySm,
+                            { color: colors.textTertiary, textAlign: 'center', fontSize: 12 },
+                          ]}
+                        >
+                          Back to Google Sign-In
+                        </Text>
+                      </Pressable>
+                    </>
+                  )}
                 </View>
-              ) : (
-                <PuffyButton
-                  title="Continue with Google"
-                  onPress={handleGoogleSignIn}
-                />
-              )}
+              </JournalCard>
 
-              {error && (
-                <Text
-                  style={[
-                    Typography.bodySm,
-                    { color: colors.incorrect, textAlign: 'center' },
-                  ]}
-                >
-                  {error}
-                </Text>
-              )}
-            </View>
-          </JournalCard>
-
-          <HandwrittenText variant="handSm" color={colors.textTertiary}>
-            Your data stays yours. Always.
-          </HandwrittenText>
-        </Animated.View>
+              <HandwrittenText variant="handSm" color={colors.textTertiary}>
+                Your data stays yours. Always.
+              </HandwrittenText>
+            </Animated.View>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </DotGridBackground>
   );
@@ -135,6 +574,12 @@ export default function SignInScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  flex: {
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
     justifyContent: 'center',
   },
   content: {
@@ -148,11 +593,61 @@ const styles = StyleSheet.create({
   },
   cardContent: {
     alignItems: 'center',
-    gap: Spacing.xl,
+    gap: Spacing.lg,
+  },
+  form: {
+    width: '100%',
+    gap: Spacing.md,
+  },
+  input: {
+    width: '100%',
+    height: 48,
+    borderWidth: 1,
+    borderRadius: BorderRadius.sm,
+    paddingHorizontal: Spacing.lg,
+    fontSize: 15,
   },
   loadingWrap: {
     alignItems: 'center',
     gap: Spacing.md,
     paddingVertical: Spacing.md,
+  },
+  successBanner: {
+    width: '100%',
+    borderWidth: 1,
+    borderRadius: BorderRadius.sm,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md,
+  },
+  errorBanner: {
+    width: '100%',
+    borderWidth: 1,
+    borderRadius: BorderRadius.sm,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.sm,
+  },
+  mailIcon: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  confirmationBox: {
+    width: '100%',
+    borderWidth: 1,
+    borderRadius: BorderRadius.sm,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.lg,
+    gap: Spacing.xs,
+  },
+  dividerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+  },
+  dividerLine: {
+    flex: 1,
+    height: 1,
   },
 });
