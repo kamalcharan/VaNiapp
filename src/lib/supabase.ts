@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
 const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
+const GOOGLE_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID || '';
 
 const isSupabaseConfigured =
   SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY.length > 0;
@@ -38,20 +39,19 @@ export async function exchangeAuthCode(code: string): Promise<void> {
 /**
  * Sign in with Google via Supabase OAuth.
  *
- * With flowType: 'pkce', signInWithOAuth automatically:
- *   - generates the PKCE code verifier + challenge
- *   - stores the verifier in AsyncStorage
- *   - adds the challenge to the OAuth URL
- *
- * We just open the URL in a browser. When the redirect fires,
- * the root layout's deep link listener calls exchangeAuthCode(code).
+ * Uses openAuthSessionAsync to capture the redirect URL directly
+ * inside Chrome Custom Tab — this prevents the redirect from
+ * becoming a deep link (which triggers the ngrok/dev-server crash
+ * in Expo Go).
  */
-export async function signInWithGoogle() {
+export async function signInWithGoogle(): Promise<{ cancelled: boolean }> {
   if (!supabase) {
     throw new Error('Supabase is not configured. Check your .env file.');
   }
 
   const Linking = require('expo-linking');
+  const WebBrowser = require('expo-web-browser');
+
   const redirectUri = Linking.createURL('auth/callback');
 
   const { data, error } = await supabase.auth.signInWithOAuth({
@@ -66,12 +66,30 @@ export async function signInWithGoogle() {
     throw new Error(error?.message || 'Failed to get Google auth URL');
   }
 
-  // Open in the system browser instead of WebBrowser.openAuthSessionAsync.
-  // The deep link handler in _layout.tsx catches the redirect and exchanges
-  // the auth code. This avoids expo-web-browser entirely.
-  await Linking.openURL(data.url);
+  // openAuthSessionAsync opens Chrome Custom Tab and waits for the
+  // redirect URL. When Chrome Custom Tab navigates to a URL matching
+  // the redirectUri scheme, it captures the URL and returns it
+  // WITHOUT triggering a deep link to the dev server.
+  const result = await WebBrowser.openAuthSessionAsync(
+    data.url,
+    redirectUri,
+    { showInRecents: false }
+  );
 
-  return { cancelled: false };
+  if (result.type === 'success' && result.url) {
+    const code = extractParam(result.url, 'code');
+    if (code) {
+      await exchangeAuthCode(code);
+      return { cancelled: false };
+    }
+    throw new Error('No auth code in redirect URL');
+  }
+
+  if (result.type === 'cancel' || result.type === 'dismiss') {
+    return { cancelled: true };
+  }
+
+  throw new Error(`Auth session ended with type: ${result.type}`);
 }
 
 /**

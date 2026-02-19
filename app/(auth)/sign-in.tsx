@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Animated,
   Easing,
-  AppState,
   ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -37,28 +36,21 @@ export default function SignInScreen() {
     }).start();
   }, []);
 
-  // Reset loading when app returns from browser
-  useEffect(() => {
-    const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active' && loading) {
-        setLoading(false);
-      }
-    });
-    return () => sub.remove();
-  }, [loading]);
-
   const handleGoogleSignIn = async () => {
     setError(null);
     setLoading(true);
 
     try {
-      await signInWithGoogle();
-      // Browser is now open. The deep link handler in _layout.tsx
-      // will catch the redirect and exchange the auth code.
+      const result = await signInWithGoogle();
+      if (result.cancelled) {
+        // User dismissed the browser — just reset
+        setLoading(false);
+      }
+      // If not cancelled, the auth state change will navigate away
     } catch (err: any) {
       console.error('[Auth] Sign-in error:', err);
       const msg = err?.message || String(err);
-      setError(`[DEBUG] ${msg}`);
+      setError(msg);
       setLoading(false);
     }
   };
@@ -106,7 +98,7 @@ export default function SignInScreen() {
                   <Text
                     style={[Typography.bodySm, { color: colors.textTertiary }]}
                   >
-                    Opening Google Sign-In...
+                    Signing in...
                   </Text>
                 </View>
               ) : (
