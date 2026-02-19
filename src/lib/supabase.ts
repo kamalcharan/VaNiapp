@@ -49,10 +49,13 @@ export async function signInWithGoogle(): Promise<{ cancelled: boolean }> {
     throw new Error('Supabase is not configured. Check your .env file.');
   }
 
-  const Linking = require('expo-linking');
   const WebBrowser = require('expo-web-browser');
 
-  const redirectUri = Linking.createURL('auth/callback');
+  // Use the custom 'vani://' scheme instead of 'exp://'.
+  // In Expo Go, 'exp://' redirects conflict with Expo Go's main activity
+  // (causing the ngrok/dev-server crash). 'vani://' has no such conflict,
+  // so openAuthSessionAsync's WebBrowserRedirectActivity can capture it cleanly.
+  const redirectUri = 'vani://auth/callback';
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
