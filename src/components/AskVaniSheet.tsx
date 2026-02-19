@@ -296,7 +296,7 @@ export function AskVaniSheet({
                       <View style={styles.responseHeader}>
                         <Text style={[styles.vaniLabel, { color: colors.primary }]}>VANI</Text>
                         <Text style={[styles.modelTag, { color: colors.textTertiary }]}>
-                          {response.model === 'smart' ? 'GPT-4o' : '4o-mini'}
+                          {response.model === 'smart' ? 'Gemini Pro' : 'Gemini Flash'}
                         </Text>
                       </View>
                       <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>

@@ -70,40 +70,46 @@ Format your response as:
 - concept 3`;
 }
 
-// ── OpenAI API Call ──
+// ── Gemini API Call ──
 
-async function callOpenAI(
+async function callGemini(
   systemPrompt: string,
   userQuery: string,
   modelTier: 'fast' | 'smart'
 ): Promise<{ content: string }> {
   const model = modelTier === 'smart' ? AI_CONFIG.models.smart : AI_CONFIG.models.fast;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${AI_CONFIG.apiKey}`;
 
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${AI_CONFIG.apiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model,
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userQuery },
+      systemInstruction: {
+        parts: [{ text: systemPrompt }],
+      },
+      contents: [
+        {
+          role: 'user',
+          parts: [{ text: userQuery }],
+        },
       ],
-      temperature: AI_CONFIG.temperature,
-      max_tokens: AI_CONFIG.maxTokens,
+      generationConfig: {
+        temperature: AI_CONFIG.temperature,
+        maxOutputTokens: AI_CONFIG.maxTokens,
+      },
     }),
   });
 
   if (!response.ok) {
     const errorBody = await response.text().catch(() => 'Unknown error');
-    throw new Error(`OpenAI API error (${response.status}): ${errorBody}`);
+    throw new Error(`Gemini API error (${response.status}): ${errorBody}`);
   }
 
   const data = await response.json();
-  const content = data.choices?.[0]?.message?.content;
-  if (!content) throw new Error('Empty response from OpenAI');
+  const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!content) throw new Error('Empty response from Gemini');
   return { content };
 }
 
@@ -186,10 +192,10 @@ export async function askDoubt(request: DoubtRequest): Promise<DoubtResponse> {
     userMessage = `Context question: "${request.questionContext}"\n\nStudent's doubt: ${request.query}`;
   }
 
-  // 5. Call OpenAI
+  // 5. Call Gemini
   store.dispatch(setLoading(true));
   try {
-    const { content } = await callOpenAI(systemPrompt, userMessage, modelTier);
+    const { content } = await callGemini(systemPrompt, userMessage, modelTier);
     const parsed = parseResponse(content);
 
     // 6. Store in Redux (acts as cache + history)

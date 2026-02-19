@@ -1,14 +1,14 @@
-// ── OpenAI Configuration ──────────────────────────────────
-// API key loaded from .env (EXPO_PUBLIC_OPENAI_API_KEY).
+// ── Gemini Configuration ──────────────────────────────────
+// API key loaded from .env (EXPO_PUBLIC_GEMINI_API_KEY).
 // For production, move to Supabase Edge Function.
 
 export const AI_CONFIG = {
-  apiKey: process.env.EXPO_PUBLIC_OPENAI_API_KEY || '',
+  apiKey: process.env.EXPO_PUBLIC_GEMINI_API_KEY || '',
 
   // Model routing
   models: {
-    fast: 'gpt-4o-mini',   // cheap, fast — used for 80% of queries
-    smart: 'gpt-4o',       // capable — used for complex multi-step queries
+    fast: 'gemini-2.0-flash',       // cheap, fast — used for 80% of queries
+    smart: 'gemini-2.5-pro-preview-06-05',  // capable — used for complex multi-step queries
   },
 
   // Rate limits (client-side, per day)
