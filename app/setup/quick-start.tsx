@@ -101,6 +101,7 @@ export default function QuickStartScreen() {
         exam,
         subjects: subjects as NeetSubjectId[],
         language,
+        targetYear: 2026,
       });
 
       // Signal root layout that onboarding is done (prevents redirect loop)

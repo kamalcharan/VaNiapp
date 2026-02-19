@@ -28,8 +28,13 @@ import {
   signOut,
   MedProfile,
 } from '../../src/lib/database';
-import { getSubjects, getLanguages, CatalogSubject } from '../../src/lib/catalog';
-import { ExamType } from '../../src/types';
+import { getSubjects, getLanguages, CatalogSubject, CatalogLanguage } from '../../src/lib/catalog';
+import { ExamType, Language } from '../../src/types';
+
+const TARGET_YEAR_OPTIONS = [
+  { year: 2026, label: '2026', emoji: '\u26A1' },
+  { year: 2027, label: '2027', emoji: '\uD83C\uDF31' },
+];
 
 export default function ProfileScreen() {
   const { colors, mode, toggle } = useTheme();
@@ -38,6 +43,7 @@ export default function ProfileScreen() {
 
   const [profile, setProfile] = useState<MedProfile | null>(null);
   const [subjects, setSubjects] = useState<CatalogSubject[]>([]);
+  const [languages, setLanguages] = useState<CatalogLanguage[]>([]);
   const [langLabel, setLangLabel] = useState('English');
   const [loading, setLoading] = useState(true);
 
@@ -47,6 +53,8 @@ export default function ProfileScreen() {
   const [editCollege, setEditCollege] = useState('');
   const [editCity, setEditCity] = useState('');
   const [editExam, setEditExam] = useState<ExamType>('NEET');
+  const [editLanguage, setEditLanguage] = useState<Language>('en');
+  const [editTargetYear, setEditTargetYear] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
   const [logoutDialog, setLogoutDialog] = useState(false);
   const [subjectDialog, setSubjectDialog] = useState(false);
@@ -63,7 +71,7 @@ export default function ProfileScreen() {
   }, []);
 
   const loadProfile = async () => {
-    const [prof, subjectIds, allSubjects, languages] = await Promise.all([
+    const [prof, subjectIds, allSubjects, langs] = await Promise.all([
       getProfile(),
       getUserSubjectIds(),
       getSubjects(),
@@ -71,6 +79,7 @@ export default function ProfileScreen() {
     ]);
 
     setProfile(prof);
+    setLanguages(langs);
 
     if (subjectIds.length > 0 && allSubjects.length > 0) {
       const matched = subjectIds
@@ -79,8 +88,8 @@ export default function ProfileScreen() {
       setSubjects(matched);
     }
 
-    if (prof?.language && languages.length > 0) {
-      const lang = languages.find((l) => l.id === prof.language);
+    if (prof?.language && langs.length > 0) {
+      const lang = langs.find((l) => l.id === prof.language);
       if (lang) setLangLabel(lang.label);
     }
 
@@ -89,6 +98,8 @@ export default function ProfileScreen() {
       setEditCollege(prof.college || '');
       setEditCity(prof.city || '');
       setEditExam(prof.exam || 'NEET');
+      setEditLanguage(prof.language || 'en');
+      setEditTargetYear(prof.target_year ?? null);
     }
 
     setLoading(false);
@@ -110,19 +121,26 @@ export default function ProfileScreen() {
         college: editCollege.trim(),
         city: editCity.trim(),
         exam: editExam,
+        language: editLanguage,
+        target_year: editTargetYear,
       });
 
       const prof = await getProfile();
       setProfile(prof);
       setEditing(false);
+
+      // Update language label
+      if (prof?.language && languages.length > 0) {
+        const lang = languages.find((l) => l.id === prof.language);
+        if (lang) setLangLabel(lang.label);
+      }
+
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
       if (needsSubjectPicker) {
-        // Show dialog to prompt subject selection
         setPendingExamChange(editExam);
         setSubjectDialog(true);
       } else if (examChanged && editExam === 'NEET') {
-        // Switching to NEET - navigate directly to set NEET subjects
         router.push(`/edit-subjects?newExam=NEET`);
       } else {
         toast.show('success', 'Profile updated');
@@ -155,6 +173,8 @@ export default function ProfileScreen() {
       setEditCollege(profile.college || '');
       setEditCity(profile.city || '');
       setEditExam(profile.exam || 'NEET');
+      setEditLanguage(profile.language || 'en');
+      setEditTargetYear(profile.target_year ?? null);
     }
   };
 
@@ -167,6 +187,10 @@ export default function ProfileScreen() {
     profile?.exam === 'BOTH'
       ? 'NEET + CUET'
       : profile?.exam ?? 'NEET';
+
+  const targetYearLabel = profile?.target_year
+    ? `${profile.target_year}`
+    : 'Not set';
 
   // Entrance animation
   const fadeIn = useRef(new Animated.Value(0)).current;
@@ -237,7 +261,7 @@ export default function ProfileScreen() {
               ) : null}
               <View style={[styles.examBadge, { backgroundColor: colors.primaryLight }]}>
                 <Text style={[Typography.label, { color: colors.primary }]}>
-                  {examLabel} ASPIRANT
+                  {examLabel} {profile?.target_year || ''} ASPIRANT
                 </Text>
               </View>
             </View>
@@ -449,17 +473,109 @@ export default function ProfileScreen() {
             </View>
             <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
 
-            {/* Language (read-only) */}
-            <View style={styles.infoRow}>
+            {/* Target Year */}
+            <View style={editing ? styles.infoRowVertical : styles.infoRow}>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Target Year</Text>
+              {editing ? (
+                <View style={styles.examOptions}>
+                  {TARGET_YEAR_OPTIONS.map((opt) => (
+                    <Pressable
+                      key={opt.year}
+                      style={[
+                        styles.examOption,
+                        {
+                          backgroundColor:
+                            editTargetYear === opt.year ? colors.primaryLight : colors.surface,
+                          borderColor:
+                            editTargetYear === opt.year ? colors.primary : colors.surfaceBorder,
+                        },
+                      ]}
+                      onPress={() => {
+                        setEditTargetYear(opt.year);
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                      }}
+                    >
+                      <Text style={{ fontSize: 16 }}>{opt.emoji}</Text>
+                      <Text
+                        style={[
+                          Typography.bodySm,
+                          {
+                            color: editTargetYear === opt.year ? colors.primary : colors.text,
+                            fontFamily:
+                              editTargetYear === opt.year
+                                ? 'PlusJakartaSans_600SemiBold'
+                                : 'PlusJakartaSans_400Regular',
+                          },
+                        ]}
+                      >
+                        {opt.label}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+              ) : (
+                <Text
+                  style={[
+                    Typography.body,
+                    { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' },
+                  ]}
+                >
+                  {targetYearLabel}
+                </Text>
+              )}
+            </View>
+            <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
+
+            {/* Language */}
+            <View style={editing ? styles.infoRowVertical : styles.infoRow}>
               <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Language</Text>
-              <Text
-                style={[
-                  Typography.body,
-                  { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' },
-                ]}
-              >
-                {langLabel}
-              </Text>
+              {editing ? (
+                <View style={styles.examOptions}>
+                  {languages.map((lang) => (
+                    <Pressable
+                      key={lang.id}
+                      style={[
+                        styles.examOption,
+                        {
+                          backgroundColor:
+                            editLanguage === lang.id ? colors.primaryLight : colors.surface,
+                          borderColor:
+                            editLanguage === lang.id ? colors.primary : colors.surfaceBorder,
+                        },
+                      ]}
+                      onPress={() => {
+                        setEditLanguage(lang.id as Language);
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                      }}
+                    >
+                      <Text style={{ fontSize: 16 }}>{lang.emoji}</Text>
+                      <Text
+                        style={[
+                          Typography.bodySm,
+                          {
+                            color: editLanguage === lang.id ? colors.primary : colors.text,
+                            fontFamily:
+                              editLanguage === lang.id
+                                ? 'PlusJakartaSans_600SemiBold'
+                                : 'PlusJakartaSans_400Regular',
+                          },
+                        ]}
+                      >
+                        {lang.native}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+              ) : (
+                <Text
+                  style={[
+                    Typography.body,
+                    { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' },
+                  ]}
+                >
+                  {langLabel}
+                </Text>
+              )}
             </View>
           </JournalCard>
 

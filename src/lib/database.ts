@@ -14,6 +14,7 @@ export interface MedProfile {
   city: string;
   exam: ExamType | null;
   language: Language;
+  target_year: number | null;
   onboarding_completed: boolean;
   vani_override: boolean; // Secret admin setting: overrides VaNi AI decisions
   created_at: string;
@@ -81,6 +82,7 @@ interface OnboardingPayload {
   exam: ExamType;
   subjects: SubjectId[];
   language: Language;
+  targetYear?: number;
 }
 
 /**
@@ -109,6 +111,7 @@ export async function completeOnboarding(payload: OnboardingPayload): Promise<vo
       city: payload.city,
       exam: payload.exam,
       language: payload.language,
+      target_year: payload.targetYear ?? null,
       onboarding_completed: true,
     }, { onConflict: 'id' });
 
@@ -188,7 +191,7 @@ export async function updateUserSubjects(subjectIds: string[]): Promise<void> {
 
 /** Update specific profile fields. */
 export async function updateProfile(
-  fields: Partial<Pick<MedProfile, 'phone' | 'country_code' | 'college' | 'city' | 'exam' | 'language'>>
+  fields: Partial<Pick<MedProfile, 'phone' | 'country_code' | 'college' | 'city' | 'exam' | 'language' | 'target_year'>>
 ): Promise<void> {
   if (!supabase) throw new Error('Supabase is not configured.');
 
