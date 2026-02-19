@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import type { QuestionV2, QuestionType, Difficulty, Option } from '../types';
+import type { QuestionV2, QuestionType, Difficulty, Option, EliminationHint } from '../types';
 
 // ── Types for DB rows ────────────────────────────────────────
 
@@ -8,6 +8,14 @@ interface DbOption {
   option_text: string;
   is_correct: boolean;
   sort_order: number;
+}
+
+interface DbEliminationHint {
+  option_key: string;
+  hint_text: string;
+  hint_text_te: string | null;
+  misconception: string | null;
+  misconception_te: string | null;
 }
 
 interface DbQuestion {
@@ -21,6 +29,7 @@ interface DbQuestion {
   correct_answer: string;
   payload: Record<string, unknown> | null;
   med_question_options: DbOption[];
+  med_elimination_hints: DbEliminationHint[];
 }
 
 // ── In-memory cache ──────────────────────────────────────────
@@ -46,7 +55,8 @@ export async function fetchQuestionsByChapter(
     .select(
       `id, subject_id, chapter_id, question_type, difficulty,
        question_text, explanation, correct_answer, payload,
-       med_question_options (option_key, option_text, is_correct, sort_order)`,
+       med_question_options (option_key, option_text, is_correct, sort_order),
+       med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`,
     )
     .eq('chapter_id', chapterId)
     .eq('is_active', true)
@@ -84,6 +94,20 @@ function dbToV2(row: DbQuestion): QuestionV2 {
   const questionId =
     (row.payload as Record<string, unknown>)?.question_id as string || row.id;
 
+  // Map elimination hints from DB
+  const eliminationHints: EliminationHint[] = (row.med_elimination_hints || []).map((h) => ({
+    optionKey: h.option_key,
+    hint: h.hint_text || '',
+    hintTe: h.hint_text_te || '',
+    misconception: h.misconception || '',
+    misconceptionTe: h.misconception_te || '',
+  }));
+
+  // Build a combined elimination technique string from hints
+  const eliminationText = eliminationHints
+    .map((h) => `Option ${h.optionKey}: ${h.hint}`)
+    .join('\n');
+
   return {
     id: questionId,
     type: row.question_type as QuestionType,
@@ -94,8 +118,9 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     textTe: '',
     explanation: row.explanation || '',
     explanationTe: '',
-    eliminationTechnique: '',
+    eliminationTechnique: eliminationText,
     eliminationTechniqueTe: '',
+    eliminationHints,
     // Map all DB questions as MCQ payload since all types have A/B/C/D options
     payload: {
       type: 'mcq',

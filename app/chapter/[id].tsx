@@ -25,7 +25,7 @@ import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
-import { EliminationSheet } from '../../src/components/exam/EliminationSheet';
+// EliminationSheet removed — elimination hints now live inside AskVaniSheet
 import { useToast } from '../../src/components/ui/Toast';
 import {
   NeetSubjectId,
@@ -42,8 +42,10 @@ import {
 } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
+import { incrementStreak, resetStreak, recordDailyPractice } from '../../src/store/slices/streakSlice';
 import { fetchQuestionsByChapter } from '../../src/lib/questions';
 import { getCorrectId } from '../../src/lib/questionAdapter';
+import { syncChapterProgress } from '../../src/lib/progressSync';
 
 const DIFF_COLORS = { easy: '#22C55E', medium: '#F59E0B', hard: '#EF4444' };
 
@@ -57,17 +59,33 @@ export default function ChapterQuizScreen() {
     (state: RootState) => state.auth.user?.language ?? 'en',
   );
   const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
+  const answerStreak = useSelector((state: RootState) => state.streak.currentStreak);
+  const chapterStrength = useSelector(
+    (state: RootState) => chapterId ? state.strength.chapters[chapterId] : undefined,
+  );
 
-  // Fetch questions from Supabase
+  // Fetch questions from Supabase, shuffle, and filter out already-correct ones
   const [questions, setQuestions] = useState<QuestionV2[]>([]);
+  const [totalInBank, setTotalInBank] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [sessionStarted, setSessionStarted] = useState(false);
 
   useEffect(() => {
     if (!chapterId) return;
     setIsLoading(true);
-    fetchQuestionsByChapter(chapterId).then((qs) => {
-      setQuestions(qs);
+    fetchQuestionsByChapter(chapterId).then((allQs) => {
+      setTotalInBank(allQs.length);
+
+      // Shuffle using Fisher-Yates
+      const shuffled = [...allQs];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+
+      // Limit to 20 questions per session
+      const batch = shuffled.slice(0, 20);
+      setQuestions(batch);
       setIsLoading(false);
     });
   }, [chapterId]);
@@ -88,12 +106,10 @@ export default function ChapterQuizScreen() {
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [showElimination, setShowElimination] = useState(false);
   const [showVaniSheet, setShowVaniSheet] = useState(false);
   const [showConceptSheet, setShowConceptSheet] = useState(false);
   const [selectedConceptTag, setSelectedConceptTag] = useState('');
   const [showConfetti, setShowConfetti] = useState(false);
-  const [answerStreak, setAnswerStreak] = useState(0);
   const streakScaleAnim = useRef(new Animated.Value(0)).current;
   const scrollRef = useRef<ScrollView>(null);
   const startTimeRef = useRef(Date.now());
@@ -145,7 +161,7 @@ export default function ChapterQuizScreen() {
     setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
 
     if (correct) {
-      setAnswerStreak((s) => s + 1);
+      dispatch(incrementStreak());
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 1500);
       if (answerStreak >= 1) {
@@ -158,7 +174,7 @@ export default function ChapterQuizScreen() {
         }).start();
       }
     } else {
-      setAnswerStreak(0);
+      dispatch(resetStreak());
     }
 
     dispatch(
@@ -196,7 +212,7 @@ export default function ChapterQuizScreen() {
         recordChapterAttempt({
           chapterId: chapterId!,
           subjectId,
-          totalInBank: questions.length,
+          totalInBank,
           answeredQuestions: Object.entries(allAnswers).map(([qId, optId]) => {
             const q = questions.find((qq) => qq.id === qId);
             return {
@@ -207,6 +223,12 @@ export default function ChapterQuizScreen() {
         }),
       );
 
+      // Record daily practice streak
+      dispatch(recordDailyPractice());
+
+      // Sync progress to Supabase in background
+      syncChapterProgress(chapterId!).catch(() => {});
+
       // Navigate back with results (or show inline)
       router.back();
       return;
@@ -215,7 +237,6 @@ export default function ChapterQuizScreen() {
     setCurrentIndex((prev) => prev + 1);
     setSelectedOptionId(null);
     setShowFeedback(false);
-    setShowElimination(false);
     setShowVaniSheet(false);
     setShowConceptSheet(false);
     scrollRef.current?.scrollTo({ y: 0, animated: true });
@@ -367,28 +388,6 @@ export default function ChapterQuizScreen() {
             </View>
             <View style={styles.headerActions}>
               <Pressable
-                onPress={() => setShowElimination((p) => !p)}
-                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                style={[
-                  styles.actionBadge,
-                  {
-                    backgroundColor: showElimination
-                      ? '#8B5CF620'
-                      : '#64748B15',
-                    borderColor: showElimination ? '#8B5CF6' : '#64748B40',
-                  },
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.actionBadgeText,
-                    { color: showElimination ? '#8B5CF6' : '#64748B' },
-                  ]}
-                >
-                  {'\u2702\uFE0F'} Eliminate
-                </Text>
-              </Pressable>
-              <Pressable
                 onPress={() => {
                   dispatch(toggleBookmark(question.id));
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -415,7 +414,7 @@ export default function ChapterQuizScreen() {
                   {isBookmarked ? '\uD83D\uDD16 Saved' : '\uD83D\uDCCC Save'}
                 </Text>
               </Pressable>
-              {showFeedback && !isCorrect && (
+              {showFeedback && (
                 <Pressable
                   onPress={() => setShowVaniSheet(true)}
                   hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
@@ -612,13 +611,16 @@ export default function ChapterQuizScreen() {
         </View>
       </SafeAreaView>
 
-      {/* Ask VaNi Bottom Sheet */}
+      {/* Ask VaNi Bottom Sheet (includes elimination hints) */}
       <AskVaniSheet
         visible={showVaniSheet}
         onClose={() => setShowVaniSheet(false)}
         questionText={language === 'te' ? question.textTe : question.text}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
+        eliminationHints={question.eliminationHints}
+        selectedOptionId={selectedOptionId}
+        language={language}
       />
 
       {/* Concept Explainer Bottom Sheet */}
@@ -629,17 +631,6 @@ export default function ChapterQuizScreen() {
         subjectId={question.subjectId as SubjectId}
         chapterId={question.chapterId}
         language={language}
-      />
-
-      {/* Elimination Technique Bottom Sheet */}
-      <EliminationSheet
-        visible={showElimination}
-        onClose={() => setShowElimination(false)}
-        eliminationText={String(
-          (language === 'te'
-            ? question.eliminationTechniqueTe
-            : question.eliminationTechnique) || '',
-        )}
       />
     </DotGridBackground>
   );

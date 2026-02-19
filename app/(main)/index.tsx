@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { useSelector } from 'react-redux';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
@@ -18,6 +19,7 @@ import { Typography, Spacing } from '../../src/constants/theme';
 import { getProfile, getUserSubjectIds, MedProfile } from '../../src/lib/database';
 import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
+import { RootState } from '../../src/store';
 import * as Haptics from 'expo-haptics';
 
 // Exam focus for BOTH users - which exam to focus on
@@ -78,6 +80,7 @@ export default function DashboardScreen() {
   const [subjectJourneys, setSubjectJourneys] = useState<SubjectJourney[]>([]);
   const [allSubjects, setAllSubjects] = useState<CatalogSubject[]>([]);
   const [examFocus, setExamFocus] = useState<ExamFocus>('ALL');
+  const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
 
   useEffect(() => {
     (async () => {
@@ -94,15 +97,40 @@ export default function DashboardScreen() {
           .map((id) => subjects.find((s) => s.id === id))
           .filter(Boolean) as CatalogSubject[];
 
-        // Create journey data for each subject
-        // TODO: Fetch actual progress from DB once available
-        const journeys: SubjectJourney[] = matched.map((subject) => ({
-          subject,
-          strengthLevel: 'just-started' as StrengthLevel, // Default for new users
-          chaptersCompleted: 0,
-          totalChapters: 10, // Placeholder, will come from curriculum
-          vaniMessage: getVaniMessage('just-started'),
-        }));
+        // Create journey data from actual strength data in Redux
+        const journeys: SubjectJourney[] = matched.map((subject) => {
+          // Find all chapters for this subject in strength data
+          const subjectChapters = Object.values(strengthChapters).filter(
+            (ch) => ch.subjectId === subject.id,
+          );
+          const chaptersCompleted = subjectChapters.filter(
+            (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
+          ).length;
+
+          // Calculate subject-level strength (weighted average)
+          let level: StrengthLevel = 'just-started';
+          if (subjectChapters.length > 0) {
+            const totalQ = subjectChapters.reduce((s, c) => s + c.totalInBank, 0);
+            const totalCorrect = subjectChapters.reduce((s, c) => s + c.correctCount, 0);
+            const totalAnswered = subjectChapters.reduce((s, c) => s + c.totalAnswered, 0);
+            const totalAttempted = subjectChapters.reduce((s, c) => s + c.attemptedIds.length, 0);
+            const coverage = totalQ > 0 ? (totalAttempted / totalQ) * 100 : 0;
+            const accuracy = totalAnswered > 0 ? (totalCorrect / totalAnswered) * 100 : 0;
+
+            if (coverage >= 60 && accuracy >= 70) level = 'strong';
+            else if (coverage >= 40 && accuracy >= 55) level = 'on-track';
+            else if (coverage >= 20 && accuracy >= 40) level = 'getting-there';
+            else if (coverage >= 20 && accuracy < 40) level = 'needs-focus';
+          }
+
+          return {
+            subject,
+            strengthLevel: level,
+            chaptersCompleted,
+            totalChapters: 10,
+            vaniMessage: getVaniMessage(level),
+          };
+        });
 
         setSubjectJourneys(journeys);
       }
@@ -364,6 +392,28 @@ export default function DashboardScreen() {
                     ]}
                   >
                     20 questions. No timer. Pure focus.
+                  </Text>
+                </View>
+              </Pressable>
+            </JournalCard>
+
+            <JournalCard delay={600} rotation={0.4}>
+              <Pressable
+                style={styles.actionRow}
+                onPress={() => router.push('/bookmarks')}
+              >
+                <Text style={styles.actionIcon}>{'\uD83D\uDD16'}</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={[Typography.h3, { color: colors.text }]}>
+                    Bookmarked Questions
+                  </Text>
+                  <Text
+                    style={[
+                      Typography.bodySm,
+                      { color: colors.textSecondary, marginTop: 2 },
+                    ]}
+                  >
+                    Review your saved questions
                   </Text>
                 </View>
               </Pressable>

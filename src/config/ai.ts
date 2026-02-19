@@ -1,10 +1,9 @@
 // ── OpenAI Configuration ──────────────────────────────────
-// POC: API key is stored here. For production, move to Supabase Edge Function.
-// The key is used directly from the device during POC phase only.
+// API key loaded from .env (EXPO_PUBLIC_OPENAI_API_KEY).
+// For production, move to Supabase Edge Function.
 
 export const AI_CONFIG = {
-  // Paste your OpenAI API key below
-  apiKey: 'YOUR_OPENAI_API_KEY_HERE',
+  apiKey: process.env.EXPO_PUBLIC_OPENAI_API_KEY || '',
 
   // Model routing
   models: {
