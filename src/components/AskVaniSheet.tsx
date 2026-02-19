@@ -106,6 +106,8 @@ export function AskVaniSheet({
     ? eliminationHints.find((h) => h.optionKey === selectedOptionId)
     : null;
 
+  const ELIM_SUGGESTION = 'How to eliminate wrong options?';
+
   // Quick suggestions — include elimination-related ones when hints exist
   const suggestions: string[] = [];
   if (selectedHint) {
@@ -116,7 +118,7 @@ export function AskVaniSheet({
     'Explain this concept simply',
   );
   if (eliminationHints.length > 0) {
-    suggestions.push('How to eliminate wrong options?');
+    suggestions.push(ELIM_SUGGESTION);
   }
 
   if (!visible) return null;
@@ -274,10 +276,18 @@ export function AskVaniSheet({
                       {suggestions.map((s, i) => (
                         <AnimatedPressable
                           key={i}
-                          onPress={() => setQuery(s)}
+                          onPress={() => {
+                            if (s === ELIM_SUGGESTION) {
+                              setShowElimination(true);
+                            } else {
+                              setQuery(s);
+                            }
+                          }}
                           style={[styles.suggestionChip, { borderColor: colors.surfaceBorder }]}
                         >
-                          <Text style={[Typography.bodySm, { color: colors.primary }]}>{s}</Text>
+                          <Text style={[Typography.bodySm, { color: colors.primary }]}>
+                            {s === ELIM_SUGGESTION ? `\u2702\uFE0F ${s}` : s}
+                          </Text>
                         </AnimatedPressable>
                       ))}
                     </View>
