@@ -37,7 +37,6 @@ const ELIM_INTENT = 'eliminate';
 interface Intent {
   id: string;
   label: string;
-  emoji: string;
 }
 
 export function AskVaniSheet({
@@ -85,12 +84,12 @@ export function AskVaniSheet({
 
   const intents: Intent[] = [];
   if (selectedHint) {
-    intents.push({ id: 'why-wrong', label: 'Why is my answer wrong?', emoji: '\u274C' });
+    intents.push({ id: 'why-wrong', label: 'Why is my answer wrong?' });
   }
-  intents.push({ id: 'why-correct', label: 'Why is this the correct answer?', emoji: '\u2705' });
-  intents.push({ id: 'explain-simple', label: 'Explain this concept simply', emoji: '\uD83D\uDCA1' });
+  intents.push({ id: 'why-correct', label: 'Why is this the correct answer?' });
+  intents.push({ id: 'explain-simple', label: 'Explain this concept simply' });
   if (eliminationHints.length > 0) {
-    intents.push({ id: ELIM_INTENT, label: 'How to eliminate wrong options?', emoji: '\u2702\uFE0F' });
+    intents.push({ id: ELIM_INTENT, label: 'How to eliminate wrong options?' });
   }
 
   const fireIntent = useCallback(async (intent: Intent) => {
@@ -197,7 +196,6 @@ export function AskVaniSheet({
                       },
                     ]}
                   >
-                    <Text style={styles.intentEmoji}>{intent.emoji}</Text>
                     <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>
                       {intent.label}
                     </Text>
@@ -398,9 +396,6 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.md,
     borderWidth: 1,
     gap: Spacing.sm,
-  },
-  intentEmoji: {
-    fontSize: 18,
   },
   intentArrow: {
     fontSize: 22,
