@@ -156,6 +156,15 @@ export async function signUpWithEmail(
 }
 
 /**
+ * Send a password reset email.
+ */
+export async function resetPassword(email: string): Promise<void> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+  const { error } = await supabase.auth.resetPasswordForEmail(email);
+  if (error) throw error;
+}
+
+/**
  * Sign out the current user.
  */
 export async function signOut() {
