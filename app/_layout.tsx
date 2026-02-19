@@ -21,6 +21,9 @@ import {
   getInitialAuthState,
   onAuthStateChange,
 } from '../src/lib/auth';
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from '../src/store';
+import { ToastProvider } from '../src/components/ui/Toast';
 import { getProfile } from '../src/lib/database';
 
 NativeSplashScreen.preventAutoHideAsync();
@@ -161,12 +164,16 @@ export default function RootLayout() {
   }
 
   return (
-    <AuthContext.Provider value={authState}>
-      <OnboardingGateContext.Provider value={gateValue}>
-        <ThemeContext.Provider value={themeValue}>
-          <Slot />
-        </ThemeContext.Provider>
-      </OnboardingGateContext.Provider>
-    </AuthContext.Provider>
+    <ReduxProvider store={store}>
+      <AuthContext.Provider value={authState}>
+        <OnboardingGateContext.Provider value={gateValue}>
+          <ThemeContext.Provider value={themeValue}>
+            <ToastProvider>
+              <Slot />
+            </ToastProvider>
+          </ThemeContext.Provider>
+        </OnboardingGateContext.Provider>
+      </AuthContext.Provider>
+    </ReduxProvider>
   );
 }
