@@ -111,7 +111,7 @@ export default function SignInScreen() {
                 </View>
               ) : (
                 <PuffyButton
-                  title="Continue with Google"
+                  title="Sign in with Google"
                   onPress={handleGoogleSignIn}
                 />
               )}
