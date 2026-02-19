@@ -195,10 +195,26 @@ export function AskVaniSheet({
                       },
                     ]}
                   >
-                    <Text style={[styles.intentLabel, { color: colors.primary }]}>
-                      {intent.label}
+                    <View style={styles.intentTextWrap}>
+                      <Text
+                        style={{
+                          fontFamily: 'PlusJakartaSans_600SemiBold',
+                          fontSize: 15,
+                          color: colors.primary,
+                        }}
+                      >
+                        {intent.label}
+                      </Text>
+                    </View>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        color: colors.primary,
+                        fontFamily: 'PlusJakartaSans_600SemiBold',
+                      }}
+                    >
+                      {'\u203A'}
                     </Text>
-                    <Text style={[styles.intentArrow, { color: colors.primary }]}>{'\u203A'}</Text>
                   </AnimatedPressable>
                 ))}
               </View>
@@ -394,16 +410,9 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: Spacing.md,
     borderRadius: BorderRadius.lg,
-    gap: Spacing.sm,
   },
-  intentLabel: {
-    fontFamily: 'PlusJakartaSans_600SemiBold',
-    fontSize: 15,
+  intentTextWrap: {
     flex: 1,
-  },
-  intentArrow: {
-    fontSize: 20,
-    fontFamily: 'PlusJakartaSans_700Bold',
   },
   // Elimination hints section
   elimSection: {
