@@ -12,7 +12,6 @@ import {
 import { useSelector } from 'react-redux';
 import { useTheme } from '../hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../constants/theme';
-import { AnimatedPressable } from './ui/AnimatedPressable';
 import { useToast } from './ui/Toast';
 import { RootState } from '../store';
 import { askDoubt, checkRateLimit } from '../lib/aiClient';
@@ -95,7 +94,6 @@ export function AskVaniSheet({
   const fireIntent = useCallback(async (intent: Intent) => {
     if (isLoading) return;
 
-    // Elimination is local — no API call
     if (intent.id === ELIM_INTENT) {
       setActiveIntent(ELIM_INTENT);
       return;
@@ -182,8 +180,11 @@ export function AskVaniSheet({
             {/* === Intent buttons === */}
             {showingIntents && (
               <View style={styles.intentsArea}>
+                <Text style={[styles.intentsHeading, { color: colors.textSecondary }]}>
+                  What would you like to know?
+                </Text>
                 {intents.map((intent) => (
-                  <AnimatedPressable
+                  <Pressable
                     key={intent.id}
                     onPress={() => fireIntent(intent)}
                     disabled={isLoading}
@@ -195,27 +196,10 @@ export function AskVaniSheet({
                       },
                     ]}
                   >
-                    <View style={styles.intentTextWrap}>
-                      <Text
-                        style={{
-                          fontFamily: 'PlusJakartaSans_600SemiBold',
-                          fontSize: 15,
-                          color: colors.primary,
-                        }}
-                      >
-                        {intent.label}
-                      </Text>
-                    </View>
-                    <Text
-                      style={{
-                        fontSize: 18,
-                        color: colors.primary,
-                        fontFamily: 'PlusJakartaSans_600SemiBold',
-                      }}
-                    >
-                      {'\u203A'}
+                    <Text style={[styles.intentLabel, { color: colors.primary }]}>
+                      {intent.label}
                     </Text>
-                  </AnimatedPressable>
+                  </Pressable>
                 ))}
               </View>
             )}
@@ -225,7 +209,7 @@ export function AskVaniSheet({
               <View style={styles.elimSection}>
                 <View style={styles.elimHeader}>
                   <Text style={[styles.elimTitle, { color: '#8B5CF6' }]}>
-                    {'\u2702\uFE0F'} Elimination Technique
+                    Elimination Technique
                   </Text>
                 </View>
                 <ScrollView
@@ -401,18 +385,23 @@ const styles = StyleSheet.create({
   },
   // Intent buttons
   intentsArea: {
-    padding: Spacing.lg,
-    gap: Spacing.sm,
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.lg,
+    gap: 10,
+  },
+  intentsHeading: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 13,
+    marginBottom: 2,
   },
   intentBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
     paddingVertical: 14,
-    paddingHorizontal: Spacing.md,
+    paddingHorizontal: 16,
     borderRadius: BorderRadius.lg,
   },
-  intentTextWrap: {
-    flex: 1,
+  intentLabel: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 15,
   },
   // Elimination hints section
   elimSection: {
