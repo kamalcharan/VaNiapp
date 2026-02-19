@@ -111,9 +111,7 @@ export default function SubjectDetailScreen() {
   }, [id, focus]);
 
   const handleStartChapter = (chapterId: string) => {
-    // TODO: Navigate to chapter evaluation
-    // router.push(`/chapter/${chapterId}/evaluate`);
-    console.log('Start chapter:', chapterId);
+    router.push(`/chapter/${chapterId}`);
   };
 
   if (!subject || isLoading) {
