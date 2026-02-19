@@ -128,6 +128,34 @@ function extractParam(url: string, param: string): string | null {
 }
 
 /**
+ * Sign in with email + password.
+ * No browser redirect needed — works in Expo Go.
+ */
+export async function signInWithEmail(
+  email: string,
+  password: string
+): Promise<void> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) throw error;
+}
+
+/**
+ * Sign up with email + password.
+ * Supabase sends a confirmation email by default — user must click
+ * the link before they can sign in.
+ */
+export async function signUpWithEmail(
+  email: string,
+  password: string
+): Promise<{ needsConfirmation: boolean }> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+  const { data, error } = await supabase.auth.signUp({ email, password });
+  if (error) throw error;
+  return { needsConfirmation: !data.session };
+}
+
+/**
  * Sign out the current user.
  */
 export async function signOut() {

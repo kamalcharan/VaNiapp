@@ -7,6 +7,11 @@ import {
   Animated,
   Easing,
   ActivityIndicator,
+  TextInput,
+  Pressable,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
@@ -14,17 +19,22 @@ import { JournalCard } from '../../src/components/ui/JournalCard';
 import { PuffyButton } from '../../src/components/ui/PuffyButton';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
-import { signInWithGoogle } from '../../src/lib/supabase';
-import { Typography, Spacing } from '../../src/constants/theme';
+import { signInWithEmail, signUpWithEmail } from '../../src/lib/supabase';
+import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 
 const logo = require('../../assets/logo.png');
 
+type Mode = 'signin' | 'signup';
+
 export default function SignInScreen() {
   const { colors } = useTheme();
+  const [mode, setMode] = useState<Mode>('signin');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
-  // Entrance animation
   const contentAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -36,96 +46,191 @@ export default function SignInScreen() {
     }).start();
   }, []);
 
-  const handleGoogleSignIn = async () => {
+  const handleEmailSubmit = async () => {
     setError(null);
-    setLoading(true);
+    setSuccessMsg(null);
 
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !password) {
+      setError('Please enter your email and password.');
+      return;
+    }
+
+    setLoading(true);
     try {
-      const result = await signInWithGoogle();
-      if (result.cancelled) {
-        // User dismissed the browser — just reset
-        setLoading(false);
+      if (mode === 'signin') {
+        await signInWithEmail(trimmedEmail, password);
+      } else {
+        const { needsConfirmation } = await signUpWithEmail(trimmedEmail, password);
+        if (needsConfirmation) {
+          setSuccessMsg('Check your email for a confirmation link, then sign in.');
+          setMode('signin');
+          setPassword('');
+        }
       }
-      // If not cancelled, the auth state change will navigate away
     } catch (err: any) {
-      console.error('[Auth] Sign-in error:', err);
-      const msg = err?.message || String(err);
-      setError(msg);
+      console.error('[Auth] Error:', err);
+      setError(err?.message || String(err));
+    } finally {
       setLoading(false);
     }
+  };
+
+  const toggleMode = () => {
+    setError(null);
+    setSuccessMsg(null);
+    setMode((prev) => (prev === 'signin' ? 'signup' : 'signin'));
   };
 
   return (
     <DotGridBackground>
       <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-        <Animated.View
-          style={[
-            styles.content,
-            {
-              opacity: contentAnim,
-              transform: [
-                {
-                  translateY: contentAnim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [30, 0],
-                  }),
-                },
-              ],
-            },
-          ]}
+        <KeyboardAvoidingView
+          style={styles.flex}
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
-          <Image source={logo} style={styles.logo} resizeMode="contain" />
+          <ScrollView
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+          >
+            <Animated.View
+              style={[
+                styles.content,
+                {
+                  opacity: contentAnim,
+                  transform: [
+                    {
+                      translateY: contentAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [30, 0],
+                      }),
+                    },
+                  ],
+                },
+              ]}
+            >
+              <Image source={logo} style={styles.logo} resizeMode="contain" />
 
-          <JournalCard rotation={-0.5} delay={100}>
-            <View style={styles.cardContent}>
-              <HandwrittenText variant="handLg" color={colors.text}>
-                Let's get you in
-              </HandwrittenText>
+              <JournalCard rotation={-0.5} delay={100}>
+                <View style={styles.cardContent}>
+                  <HandwrittenText variant="handLg" color={colors.text}>
+                    {mode === 'signin' ? "Let's get you in" : 'Create your account'}
+                  </HandwrittenText>
 
-              <Text
-                style={[
-                  Typography.bodySm,
-                  { color: colors.textSecondary, textAlign: 'center' },
-                ]}
-              >
-                Sign in to save your progress, track your strengths, and pick up
-                right where you left off.
-              </Text>
-
-              {loading ? (
-                <View style={styles.loadingWrap}>
-                  <ActivityIndicator size="small" color={colors.primary} />
                   <Text
-                    style={[Typography.bodySm, { color: colors.textTertiary }]}
+                    style={[
+                      Typography.bodySm,
+                      { color: colors.textSecondary, textAlign: 'center' },
+                    ]}
                   >
-                    Signing in...
+                    {mode === 'signin'
+                      ? 'Sign in to save your progress, track your strengths, and pick up right where you left off.'
+                      : 'Create an account to start your learning journey.'}
                   </Text>
+
+                  {successMsg && (
+                    <Text
+                      style={[
+                        Typography.bodySm,
+                        { color: colors.correct, textAlign: 'center' },
+                      ]}
+                    >
+                      {successMsg}
+                    </Text>
+                  )}
+
+                  {/* Email / Password form */}
+                  <View style={styles.form}>
+                    <TextInput
+                      style={[
+                        styles.input,
+                        {
+                          backgroundColor: colors.surface,
+                          borderColor: colors.surfaceBorder,
+                          color: colors.text,
+                          fontFamily: 'PlusJakartaSans_400Regular',
+                        },
+                      ]}
+                      placeholder="Email"
+                      placeholderTextColor={colors.textTertiary}
+                      value={email}
+                      onChangeText={setEmail}
+                      autoCapitalize="none"
+                      keyboardType="email-address"
+                      textContentType="emailAddress"
+                      autoComplete="email"
+                      editable={!loading}
+                    />
+                    <TextInput
+                      style={[
+                        styles.input,
+                        {
+                          backgroundColor: colors.surface,
+                          borderColor: colors.surfaceBorder,
+                          color: colors.text,
+                          fontFamily: 'PlusJakartaSans_400Regular',
+                        },
+                      ]}
+                      placeholder="Password"
+                      placeholderTextColor={colors.textTertiary}
+                      value={password}
+                      onChangeText={setPassword}
+                      secureTextEntry
+                      textContentType={mode === 'signup' ? 'newPassword' : 'password'}
+                      autoComplete={mode === 'signup' ? 'new-password' : 'password'}
+                      editable={!loading}
+                    />
+                  </View>
+
+                  {loading ? (
+                    <View style={styles.loadingWrap}>
+                      <ActivityIndicator size="small" color={colors.primary} />
+                      <Text
+                        style={[Typography.bodySm, { color: colors.textTertiary }]}
+                      >
+                        {mode === 'signin' ? 'Signing in...' : 'Creating account...'}
+                      </Text>
+                    </View>
+                  ) : (
+                    <PuffyButton
+                      title={mode === 'signin' ? 'Sign In' : 'Create Account'}
+                      onPress={handleEmailSubmit}
+                    />
+                  )}
+
+                  {error && (
+                    <Text
+                      selectable
+                      style={[
+                        Typography.bodySm,
+                        { color: colors.incorrect, textAlign: 'center', fontSize: 11 },
+                      ]}
+                    >
+                      {error}
+                    </Text>
+                  )}
+
+                  <Pressable onPress={toggleMode} disabled={loading}>
+                    <Text
+                      style={[
+                        Typography.bodySm,
+                        { color: colors.primary, textAlign: 'center' },
+                      ]}
+                    >
+                      {mode === 'signin'
+                        ? "Don't have an account? Sign Up"
+                        : 'Already have an account? Sign In'}
+                    </Text>
+                  </Pressable>
                 </View>
-              ) : (
-                <PuffyButton
-                  title="Sign in with Google"
-                  onPress={handleGoogleSignIn}
-                />
-              )}
+              </JournalCard>
 
-              {error && (
-                <Text
-                  selectable
-                  style={[
-                    Typography.bodySm,
-                    { color: colors.incorrect, textAlign: 'center', fontSize: 11 },
-                  ]}
-                >
-                  {error}
-                </Text>
-              )}
-            </View>
-          </JournalCard>
-
-          <HandwrittenText variant="handSm" color={colors.textTertiary}>
-            Your data stays yours. Always.
-          </HandwrittenText>
-        </Animated.View>
+              <HandwrittenText variant="handSm" color={colors.textTertiary}>
+                Your data stays yours. Always.
+              </HandwrittenText>
+            </Animated.View>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </DotGridBackground>
   );
@@ -134,6 +239,12 @@ export default function SignInScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  flex: {
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
     justifyContent: 'center',
   },
   content: {
@@ -147,7 +258,19 @@ const styles = StyleSheet.create({
   },
   cardContent: {
     alignItems: 'center',
-    gap: Spacing.xl,
+    gap: Spacing.lg,
+  },
+  form: {
+    width: '100%',
+    gap: Spacing.md,
+  },
+  input: {
+    width: '100%',
+    height: 48,
+    borderWidth: 1,
+    borderRadius: BorderRadius.sm,
+    paddingHorizontal: Spacing.lg,
+    fontSize: 15,
   },
   loadingWrap: {
     alignItems: 'center',
