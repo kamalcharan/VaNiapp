@@ -86,13 +86,9 @@ async function callGemini(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      systemInstruction: {
-        parts: [{ text: systemPrompt }],
-      },
       contents: [
         {
-          role: 'user',
-          parts: [{ text: userQuery }],
+          parts: [{ text: `${systemPrompt}\n\n---\n\n${userQuery}` }],
         },
       ],
       generationConfig: {
