@@ -51,9 +51,13 @@ export async function signInWithGoogle() {
     throw new Error('Supabase is not configured. Check your .env file.');
   }
 
+  // Step 1: Build redirect URI
   const Linking = require('expo-linking');
   const redirectUri = Linking.createURL('auth/callback');
+  console.log('[Auth] Step 1 — redirectUri:', redirectUri);
 
+  // Step 2: Get OAuth URL from Supabase (PKCE verifier created here)
+  console.log('[Auth] Step 2 — calling signInWithOAuth...');
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
@@ -63,19 +67,36 @@ export async function signInWithGoogle() {
   });
 
   if (error || !data.url) {
+    console.error('[Auth] Step 2 FAILED:', error?.message);
     throw new Error(error?.message || 'Failed to get Google auth URL');
   }
+  console.log('[Auth] Step 2 OK — OAuth URL received');
 
+  // Step 3: Open browser for Google sign-in
+  console.log('[Auth] Step 3 — opening browser...');
   const WebBrowser = require('expo-web-browser');
   const result = await WebBrowser.openAuthSessionAsync(data.url, redirectUri);
+  console.log('[Auth] Step 3 — browser result type:', result.type);
 
   if (result.type === 'success' && result.url) {
-    // Browser returned the URL directly — try to exchange here
+    // Step 4: Browser returned URL — exchange auth code
+    console.log('[Auth] Step 4 — extracting code from URL...');
     const code = extractParam(result.url, 'code');
     if (code) {
+      console.log('[Auth] Step 4 — exchanging code for session...');
       await exchangeAuthCode(code);
+      console.log('[Auth] Step 4 OK — session established');
+    } else {
+      console.warn('[Auth] Step 4 — no code found in callback URL');
     }
     return { cancelled: false };
+  }
+
+  // On Android/Expo Go, browser often returns 'dismiss' because the
+  // deep link is caught by the OS. The root layout's deep link handler
+  // or the auth/callback screen will exchange the code instead.
+  if (result.type === 'dismiss') {
+    console.log('[Auth] Browser dismissed — waiting for deep link handler');
   }
 
   return { cancelled: result.type === 'cancel' || result.type === 'dismiss' };

@@ -52,7 +52,9 @@ export default function SignInScreen() {
       // Session is now stored by Supabase client.
       // The auth state listener in _layout.tsx will handle navigation.
     } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.');
+      console.error('[Auth] Sign-in error:', err);
+      const msg = err?.message || String(err);
+      setError(`[DEBUG] ${msg}`);
       setLoading(false);
     }
   };
@@ -112,9 +114,10 @@ export default function SignInScreen() {
 
               {error && (
                 <Text
+                  selectable
                   style={[
                     Typography.bodySm,
-                    { color: colors.incorrect, textAlign: 'center' },
+                    { color: colors.incorrect, textAlign: 'center', fontSize: 11 },
                   ]}
                 >
                   {error}
