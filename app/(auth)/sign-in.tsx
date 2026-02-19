@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Animated,
   Easing,
+  AppState,
   ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -36,21 +37,24 @@ export default function SignInScreen() {
     }).start();
   }, []);
 
+  // Reset loading when app returns from browser
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active' && loading) {
+        setLoading(false);
+      }
+    });
+    return () => sub.remove();
+  }, [loading]);
+
   const handleGoogleSignIn = async () => {
     setError(null);
     setLoading(true);
 
     try {
-      const result = await signInWithGoogle();
-
-      if (result.cancelled) {
-        // User dismissed the browser — not an error
-        setLoading(false);
-        return;
-      }
-
-      // Session is now stored by Supabase client.
-      // The auth state listener in _layout.tsx will handle navigation.
+      await signInWithGoogle();
+      // Browser is now open. The deep link handler in _layout.tsx
+      // will catch the redirect and exchange the auth code.
     } catch (err: any) {
       console.error('[Auth] Sign-in error:', err);
       const msg = err?.message || String(err);
