@@ -12,7 +12,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
@@ -36,6 +35,8 @@ export default function SignInScreen() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  // Full-screen state shown after signup or when email is unconfirmed
+  const [pendingEmail, setPendingEmail] = useState<string | null>(null);
 
   const contentAnim = useRef(new Animated.Value(0)).current;
 
@@ -80,29 +81,29 @@ export default function SignInScreen() {
     try {
       if (mode === 'signin') {
         await signInWithEmail(trimmedEmail, password);
+        // If we get here, sign-in succeeded — auth listener handles navigation
       } else {
         const { needsConfirmation } = await signUpWithEmail(trimmedEmail, password);
         if (needsConfirmation) {
-          setSuccessMsg(
-            'Account created! We sent a confirmation link to ' +
-              trimmedEmail +
-              '. Please check your inbox (and spam folder), tap the link, then come back here to sign in.'
-          );
-          setMode('signin');
+          // Show full-screen "check your email" view
+          setPendingEmail(trimmedEmail);
           setPassword('');
           setConfirmPassword('');
         }
       }
     } catch (err: any) {
-      console.error('[Auth] Error:', err);
       const msg = err?.message || String(err);
-      // Make common Supabase errors friendlier
-      if (msg.includes('Email not confirmed')) {
-        setError(
-          'Your email is not confirmed yet. Please check your inbox for the confirmation link.'
-        );
+      // Detect unconfirmed email — show the confirmation screen instead of a raw error
+      if (
+        msg.includes('Email not confirmed') ||
+        msg.includes('email not confirmed') ||
+        msg.includes('not been confirmed')
+      ) {
+        setPendingEmail(trimmedEmail);
       } else if (msg.includes('Invalid login credentials')) {
         setError('Incorrect email or password. Please try again.');
+      } else if (msg.includes('User already registered')) {
+        setError('An account with this email already exists. Try signing in instead.');
       } else {
         setError(msg);
       }
@@ -141,6 +142,129 @@ export default function SignInScreen() {
     setMode((prev) => (prev === 'signin' ? 'signup' : 'signin'));
   };
 
+  // ── Full-screen "Check Your Email" view ──────────────────────────
+  if (pendingEmail) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
+          <ScrollView
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+          >
+            <Animated.View
+              style={[
+                styles.content,
+                { opacity: contentAnim, transform: [{ translateY: 0 }] },
+              ]}
+            >
+              <Image source={logo} style={styles.logo} resizeMode="contain" />
+
+              <JournalCard rotation={-0.5} delay={100}>
+                <View style={styles.cardContent}>
+                  {/* Mail icon */}
+                  <View
+                    style={[
+                      styles.mailIcon,
+                      { backgroundColor: colors.correctBg },
+                    ]}
+                  >
+                    <Text style={{ fontSize: 40 }}>{'✉️'}</Text>
+                  </View>
+
+                  <HandwrittenText variant="handLg" color={colors.text}>
+                    Check your email
+                  </HandwrittenText>
+
+                  <View
+                    style={[
+                      styles.confirmationBox,
+                      { backgroundColor: colors.correctBg, borderColor: colors.correct },
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        Typography.body,
+                        {
+                          color: colors.text,
+                          textAlign: 'center',
+                          fontFamily: 'PlusJakartaSans_600SemiBold',
+                        },
+                      ]}
+                    >
+                      We sent a confirmation link to:
+                    </Text>
+                    <Text
+                      selectable
+                      style={[
+                        Typography.body,
+                        {
+                          color: colors.primary,
+                          textAlign: 'center',
+                          fontFamily: 'PlusJakartaSans_600SemiBold',
+                        },
+                      ]}
+                    >
+                      {pendingEmail}
+                    </Text>
+                    <Text
+                      style={[
+                        Typography.bodySm,
+                        { color: colors.textSecondary, textAlign: 'center', marginTop: Spacing.sm },
+                      ]}
+                    >
+                      Open your email, tap the confirmation link, then come back here and sign in.
+                    </Text>
+                    <Text
+                      style={[
+                        Typography.bodySm,
+                        { color: colors.textTertiary, textAlign: 'center', fontSize: 12 },
+                      ]}
+                    >
+                      (Check your spam folder too!)
+                    </Text>
+                  </View>
+
+                  <PuffyButton
+                    title="I've confirmed — Sign In"
+                    onPress={() => {
+                      setPendingEmail(null);
+                      setMode('signin');
+                      setEmail(pendingEmail || '');
+                      setPassword('');
+                      setError(null);
+                      setSuccessMsg(null);
+                    }}
+                  />
+
+                  <Pressable
+                    onPress={() => {
+                      setPendingEmail(null);
+                      setMode('signin');
+                      setEmail(pendingEmail || '');
+                      setPassword('');
+                      setError(null);
+                      setSuccessMsg(null);
+                    }}
+                  >
+                    <Text
+                      style={[
+                        Typography.bodySm,
+                        { color: colors.textSecondary, textAlign: 'center' },
+                      ]}
+                    >
+                      Back to Sign In
+                    </Text>
+                  </Pressable>
+                </View>
+              </JournalCard>
+            </Animated.View>
+          </ScrollView>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  // ── Normal sign-in / sign-up form ────────────────────────────────
   return (
     <DotGridBackground>
       <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
@@ -187,7 +311,7 @@ export default function SignInScreen() {
                       : 'Create an account to start your learning journey.'}
                   </Text>
 
-                  {/* Success banner — prominent green box */}
+                  {/* Success banner */}
                   {successMsg && (
                     <View
                       style={[
@@ -407,5 +531,20 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.sm,
     paddingHorizontal: Spacing.lg,
     paddingVertical: Spacing.sm,
+  },
+  mailIcon: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  confirmationBox: {
+    width: '100%',
+    borderWidth: 1,
+    borderRadius: BorderRadius.sm,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.lg,
+    gap: Spacing.xs,
   },
 });
