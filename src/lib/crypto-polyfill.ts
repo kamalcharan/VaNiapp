@@ -1,14 +1,13 @@
 /**
- * Polyfill globalThis.crypto.subtle.digest using expo-crypto.
+ * Polyfill globalThis.crypto for React Native.
  *
- * Supabase's PKCE flow requires crypto.subtle.digest('SHA-256', ...)
- * which isn't available in React Native. expo-crypto provides a
- * native digest() function that accepts ArrayBuffer, so we wire
- * it into the standard WebCrypto interface.
+ * Supabase needs:
+ *   - crypto.getRandomValues()  — for generating PKCE verifiers
+ *   - crypto.subtle.digest()    — for SHA-256 code challenges
  *
  * Import this file BEFORE @supabase/supabase-js.
  */
-import { digest, CryptoDigestAlgorithm } from 'expo-crypto';
+import { digest, CryptoDigestAlgorithm, getRandomValues } from 'expo-crypto';
 
 const algorithmMap: Record<string, CryptoDigestAlgorithm> = {
   'SHA-256': CryptoDigestAlgorithm.SHA256,
@@ -18,6 +17,10 @@ const algorithmMap: Record<string, CryptoDigestAlgorithm> = {
 
 if (typeof globalThis.crypto === 'undefined') {
   (globalThis as any).crypto = {};
+}
+
+if (!globalThis.crypto.getRandomValues) {
+  globalThis.crypto.getRandomValues = getRandomValues as typeof globalThis.crypto.getRandomValues;
 }
 
 if (!globalThis.crypto.subtle) {
