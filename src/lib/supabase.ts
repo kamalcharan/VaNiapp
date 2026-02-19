@@ -52,51 +52,55 @@ export async function signInWithGoogle() {
   }
 
   // Step 1: Build redirect URI
-  const Linking = require('expo-linking');
-  const redirectUri = Linking.createURL('auth/callback');
-  console.log('[Auth] Step 1 — redirectUri:', redirectUri);
+  let redirectUri: string;
+  try {
+    const Linking = require('expo-linking');
+    redirectUri = Linking.createURL('auth/callback');
+  } catch (e: any) {
+    throw new Error(`STEP1_REDIRECT_URI: ${e.message}`);
+  }
 
   // Step 2: Get OAuth URL from Supabase (PKCE verifier created here)
-  console.log('[Auth] Step 2 — calling signInWithOAuth...');
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: redirectUri,
-      skipBrowserRedirect: true,
-    },
-  });
+  let oauthUrl: string;
+  try {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: redirectUri,
+        skipBrowserRedirect: true,
+      },
+    });
 
-  if (error || !data.url) {
-    console.error('[Auth] Step 2 FAILED:', error?.message);
-    throw new Error(error?.message || 'Failed to get Google auth URL');
+    if (error || !data.url) {
+      throw new Error(error?.message || 'No OAuth URL returned');
+    }
+    oauthUrl = data.url;
+  } catch (e: any) {
+    throw new Error(`STEP2_OAUTH_URL: ${e.message}`);
   }
-  console.log('[Auth] Step 2 OK — OAuth URL received');
 
   // Step 3: Open browser for Google sign-in
-  console.log('[Auth] Step 3 — opening browser...');
-  const WebBrowser = require('expo-web-browser');
-  const result = await WebBrowser.openAuthSessionAsync(data.url, redirectUri);
-  console.log('[Auth] Step 3 — browser result type:', result.type);
-
-  if (result.type === 'success' && result.url) {
-    // Step 4: Browser returned URL — exchange auth code
-    console.log('[Auth] Step 4 — extracting code from URL...');
-    const code = extractParam(result.url, 'code');
-    if (code) {
-      console.log('[Auth] Step 4 — exchanging code for session...');
-      await exchangeAuthCode(code);
-      console.log('[Auth] Step 4 OK — session established');
-    } else {
-      console.warn('[Auth] Step 4 — no code found in callback URL');
-    }
-    return { cancelled: false };
+  let result: any;
+  try {
+    const WebBrowser = require('expo-web-browser');
+    result = await WebBrowser.openAuthSessionAsync(oauthUrl, redirectUri);
+  } catch (e: any) {
+    throw new Error(`STEP3_BROWSER: ${e.message}`);
   }
 
-  // On Android/Expo Go, browser often returns 'dismiss' because the
-  // deep link is caught by the OS. The root layout's deep link handler
-  // or the auth/callback screen will exchange the code instead.
-  if (result.type === 'dismiss') {
-    console.log('[Auth] Browser dismissed — waiting for deep link handler');
+  // Step 4: Handle browser result
+  try {
+    if (result.type === 'success' && result.url) {
+      const code = extractParam(result.url, 'code');
+      if (code) {
+        await exchangeAuthCode(code);
+      } else {
+        throw new Error('No code param in callback URL: ' + result.url);
+      }
+      return { cancelled: false };
+    }
+  } catch (e: any) {
+    throw new Error(`STEP4_EXCHANGE: ${e.message}`);
   }
 
   return { cancelled: result.type === 'cancel' || result.type === 'dismiss' };
