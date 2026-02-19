@@ -397,27 +397,6 @@ export default function DashboardScreen() {
               </Pressable>
             </JournalCard>
 
-            <JournalCard delay={600} rotation={0.4}>
-              <Pressable
-                style={styles.actionRow}
-                onPress={() => router.push('/bookmarks')}
-              >
-                <Text style={styles.actionIcon}>{'\uD83D\uDD16'}</Text>
-                <View style={{ flex: 1 }}>
-                  <Text style={[Typography.h3, { color: colors.text }]}>
-                    Bookmarked Questions
-                  </Text>
-                  <Text
-                    style={[
-                      Typography.bodySm,
-                      { color: colors.textSecondary, marginTop: 2 },
-                    ]}
-                  >
-                    Review your saved questions
-                  </Text>
-                </View>
-              </Pressable>
-            </JournalCard>
           </View>
 
           {/* Coming Soon */}

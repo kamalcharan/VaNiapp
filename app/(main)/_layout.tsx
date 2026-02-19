@@ -7,6 +7,7 @@ import { ToastProvider } from '../../src/components/ui/Toast';
 
 const TABS = [
   { key: 'index', route: '/(main)', label: 'Study Board', emoji: '\uD83D\uDCDA' },
+  { key: 'bookmarks', route: '/(main)/bookmarks', label: 'Saved', emoji: '\uD83D\uDD16' },
   { key: 'profile', route: '/(main)/profile', label: 'Me', emoji: '\u270D\uFE0F' },
 ] as const;
 
@@ -17,10 +18,9 @@ export default function MainLayout() {
   const insets = useSafeAreaInsets();
 
   // Determine active tab from URL segments
-  // segments for (main)/index → ['(main)']  or ['(main)', 'index']
-  // segments for (main)/profile → ['(main)', 'profile']
+  const seg1 = segments.length > 1 ? (segments as string[])[1] : '';
   const activeKey =
-    segments.length > 1 && (segments as string[])[1] === 'profile' ? 'profile' : 'index';
+    seg1 === 'profile' ? 'profile' : seg1 === 'bookmarks' ? 'bookmarks' : 'index';
 
   return (
     <ToastProvider>

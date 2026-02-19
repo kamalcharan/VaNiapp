@@ -3,13 +3,10 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput,
   ScrollView,
   Pressable,
   Animated,
   Dimensions,
-  KeyboardAvoidingView,
-  Platform,
   Modal,
 } from 'react-native';
 import { useSelector } from 'react-redux';
@@ -35,6 +32,14 @@ interface AskVaniSheetProps {
   language?: string;
 }
 
+const ELIM_INTENT = 'eliminate';
+
+interface Intent {
+  id: string;
+  label: string;
+  emoji: string;
+}
+
 export function AskVaniSheet({
   visible,
   onClose,
@@ -49,17 +54,15 @@ export function AskVaniSheet({
   const user = useSelector((state: RootState) => state.auth.user);
   const isLoading = useSelector((state: RootState) => state.ai.isLoading);
 
-  const [query, setQuery] = useState('');
+  const [activeIntent, setActiveIntent] = useState<string | null>(null);
   const [response, setResponse] = useState<DoubtEntry | null>(null);
-  const [showElimination, setShowElimination] = useState(false);
   const slideAnim = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
   const scrollRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     if (visible) {
-      setQuery('');
+      setActiveIntent(null);
       setResponse(null);
-      setShowElimination(false);
       Animated.spring(slideAnim, {
         toValue: 0,
         useNativeDriver: true,
@@ -75,20 +78,41 @@ export function AskVaniSheet({
     }
   }, [visible]);
 
-  const handleAsk = useCallback(async () => {
-    const q = query.trim();
-    if (!q || isLoading) return;
+  // Build intents based on context
+  const selectedHint = selectedOptionId
+    ? eliminationHints.find((h) => h.optionKey === selectedOptionId)
+    : null;
+
+  const intents: Intent[] = [];
+  if (selectedHint) {
+    intents.push({ id: 'why-wrong', label: 'Why is my answer wrong?', emoji: '\u274C' });
+  }
+  intents.push({ id: 'why-correct', label: 'Why is this the correct answer?', emoji: '\u2705' });
+  intents.push({ id: 'explain-simple', label: 'Explain this concept simply', emoji: '\uD83D\uDCA1' });
+  if (eliminationHints.length > 0) {
+    intents.push({ id: ELIM_INTENT, label: 'How to eliminate wrong options?', emoji: '\u2702\uFE0F' });
+  }
+
+  const fireIntent = useCallback(async (intent: Intent) => {
+    if (isLoading) return;
+
+    // Elimination is local — no API call
+    if (intent.id === ELIM_INTENT) {
+      setActiveIntent(ELIM_INTENT);
+      return;
+    }
+
+    setActiveIntent(intent.id);
 
     try {
       await askDoubt({
-        query: q,
+        query: intent.label,
         subjectId,
         exam: user?.exam ?? 'NEET',
         language: user?.language ?? 'en',
         questionContext: questionText,
       });
 
-      // Find the entry just added to history
       const state = (await import('../store')).store.getState();
       const latest = state.ai.doubtHistory[0];
       if (latest) setResponse(latest);
@@ -96,34 +120,23 @@ export function AskVaniSheet({
       setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 200);
     } catch (err: any) {
       toast.show('error', 'AI Error', err.message ?? 'Something went wrong');
+      setActiveIntent(null);
     }
-  }, [query, isLoading, subjectId, user, questionText, toast]);
+  }, [isLoading, subjectId, user, questionText, toast]);
+
+  const handleBack = () => {
+    setActiveIntent(null);
+    setResponse(null);
+  };
 
   const { remaining } = checkRateLimit();
-
-  // Find the hint for the user's selected (wrong) option
-  const selectedHint = selectedOptionId
-    ? eliminationHints.find((h) => h.optionKey === selectedOptionId)
-    : null;
-
-  const ELIM_SUGGESTION = 'How to eliminate wrong options?';
-
-  // Quick suggestions — include elimination-related ones when hints exist
-  const suggestions: string[] = [];
-  if (selectedHint) {
-    suggestions.push('Why is my answer wrong?');
-  }
-  suggestions.push(
-    'Why is this the correct answer?',
-    'Explain this concept simply',
-  );
-  if (eliminationHints.length > 0) {
-    suggestions.push(ELIM_SUGGESTION);
-  }
 
   if (!visible) return null;
 
   const isTelugu = language === 'te';
+  const showingResult = activeIntent && activeIntent !== ELIM_INTENT;
+  const showingElim = activeIntent === ELIM_INTENT;
+  const showingIntents = !activeIntent;
 
   return (
     <Modal transparent visible={visible} animationType="none" onRequestClose={onClose}>
@@ -138,231 +151,175 @@ export function AskVaniSheet({
           ]}
         >
           <Pressable onPress={() => {}}>
-            <KeyboardAvoidingView
-              behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-            >
-              {/* Handle bar */}
-              <View style={styles.handleRow}>
-                <View style={[styles.handle, { backgroundColor: colors.surfaceBorder }]} />
-              </View>
+            {/* Handle bar */}
+            <View style={styles.handleRow}>
+              <View style={[styles.handle, { backgroundColor: colors.surfaceBorder }]} />
+            </View>
 
-              {/* Header */}
-              <View style={styles.header}>
-                <Text style={[Typography.h3, { color: colors.text }]}>Ask VaNi</Text>
-                <Text style={[styles.remainingText, { color: colors.textTertiary }]}>
-                  {remaining} left today
-                </Text>
-                {eliminationHints.length > 0 && (
-                  <Pressable
-                    onPress={() => setShowElimination((p) => !p)}
-                    style={[
-                      styles.elimToggle,
-                      {
-                        backgroundColor: showElimination ? '#8B5CF620' : colors.surface,
-                        borderColor: showElimination ? '#8B5CF6' : colors.surfaceBorder,
-                      },
-                    ]}
-                  >
-                    <Text style={styles.elimToggleIcon}>{'\u2702\uFE0F'}</Text>
-                    <Text
-                      style={[
-                        styles.elimToggleText,
-                        { color: showElimination ? '#8B5CF6' : colors.textSecondary },
-                      ]}
-                    >
-                      Eliminate
-                    </Text>
-                  </Pressable>
-                )}
-                <Pressable onPress={onClose} hitSlop={12}>
-                  <Text style={[styles.closeBtn, { color: colors.textSecondary }]}>Done</Text>
+            {/* Header */}
+            <View style={styles.header}>
+              {(showingResult || showingElim) && (
+                <Pressable onPress={handleBack} hitSlop={12} style={styles.backBtn}>
+                  <Text style={[styles.backArrow, { color: colors.text }]}>{'\u2190'}</Text>
                 </Pressable>
-              </View>
-
-              {/* Question context */}
-              <View style={[styles.contextBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
-                <Text style={[styles.contextLabel, { color: colors.textTertiary }]}>ABOUT THIS QUESTION</Text>
-                <Text style={[Typography.bodySm, { color: colors.textSecondary }]} numberOfLines={3}>
-                  {questionText}
-                </Text>
-              </View>
-
-              {/* Elimination Hints Section */}
-              {showElimination && eliminationHints.length > 0 && (
-                <View style={styles.elimSection}>
-                  <View style={styles.elimHeader}>
-                    <Text style={[styles.elimTitle, { color: '#8B5CF6' }]}>
-                      {'\u2702\uFE0F'} Elimination Technique
-                    </Text>
-                  </View>
-                  <ScrollView
-                    style={styles.elimScroll}
-                    showsVerticalScrollIndicator={false}
-                  >
-                    {eliminationHints.map((hint) => (
-                      <View
-                        key={hint.optionKey}
-                        style={[
-                          styles.elimCard,
-                          {
-                            backgroundColor:
-                              hint.optionKey === selectedOptionId
-                                ? '#EF444410'
-                                : colors.surface,
-                            borderColor:
-                              hint.optionKey === selectedOptionId
-                                ? '#EF444440'
-                                : colors.surfaceBorder,
-                          },
-                        ]}
-                      >
-                        <View style={styles.elimCardHeader}>
-                          <View
-                            style={[
-                              styles.optionBadge,
-                              {
-                                backgroundColor:
-                                  hint.optionKey === selectedOptionId
-                                    ? '#EF444420'
-                                    : '#64748B15',
-                              },
-                            ]}
-                          >
-                            <Text
-                              style={[
-                                styles.optionBadgeText,
-                                {
-                                  color:
-                                    hint.optionKey === selectedOptionId
-                                      ? '#EF4444'
-                                      : '#64748B',
-                                },
-                              ]}
-                            >
-                              {hint.optionKey}
-                            </Text>
-                          </View>
-                          {hint.optionKey === selectedOptionId && (
-                            <Text style={styles.yourPickLabel}>Your pick</Text>
-                          )}
-                        </View>
-                        <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20, marginTop: 4 }]}>
-                          {isTelugu && hint.hintTe ? hint.hintTe : hint.hint}
-                        </Text>
-                        {hint.misconception ? (
-                          <Text style={[styles.misconceptionText, { color: colors.textTertiary }]}>
-                            Misconception: {isTelugu && hint.misconceptionTe ? hint.misconceptionTe : hint.misconception}
-                          </Text>
-                        ) : null}
-                      </View>
-                    ))}
-                  </ScrollView>
-                </View>
               )}
+              <Text style={[Typography.h3, { color: colors.text, flex: 1 }]}>Ask VaNi</Text>
+              <Text style={[styles.remainingText, { color: colors.textTertiary }]}>
+                {remaining} left today
+              </Text>
+              <Pressable onPress={onClose} hitSlop={12}>
+                <Text style={[styles.closeBtn, { color: colors.textSecondary }]}>Done</Text>
+              </Pressable>
+            </View>
 
-              {/* Response area */}
-              {!showElimination && (
-                <ScrollView
-                  ref={scrollRef}
-                  style={styles.responseArea}
-                  contentContainerStyle={styles.responseContent}
-                  showsVerticalScrollIndicator={false}
-                >
-                  {!response && !isLoading && (
-                    <View style={styles.suggestionsArea}>
-                      <Text style={[Typography.bodySm, { color: colors.textTertiary, marginBottom: Spacing.sm }]}>
-                        Quick questions:
-                      </Text>
-                      {suggestions.map((s, i) => (
-                        <AnimatedPressable
-                          key={i}
-                          onPress={() => {
-                            if (s === ELIM_SUGGESTION) {
-                              setShowElimination(true);
-                            } else {
-                              setQuery(s);
-                            }
-                          }}
-                          style={[styles.suggestionChip, { borderColor: colors.surfaceBorder }]}
-                        >
-                          <Text style={[Typography.bodySm, { color: colors.primary }]}>
-                            {s === ELIM_SUGGESTION ? `\u2702\uFE0F ${s}` : s}
-                          </Text>
-                        </AnimatedPressable>
-                      ))}
-                    </View>
-                  )}
+            {/* Question context */}
+            <View style={[styles.contextBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
+              <Text style={[styles.contextLabel, { color: colors.textTertiary }]}>ABOUT THIS QUESTION</Text>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]} numberOfLines={3}>
+                {questionText}
+              </Text>
+            </View>
 
-                  {isLoading && (
-                    <View style={[styles.loadingBox, { backgroundColor: colors.surface }]}>
-                      <Text style={[Typography.bodySm, { color: colors.primary }]}>
-                        VaNi is thinking...
-                      </Text>
-                    </View>
-                  )}
-
-                  {response && (
-                    <View style={[styles.responseBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
-                      <View style={styles.responseHeader}>
-                        <Text style={[styles.vaniLabel, { color: colors.primary }]}>VANI</Text>
-                        <Text style={[styles.modelTag, { color: colors.textTertiary }]}>
-                          {response.model === 'smart' ? 'Gemini Pro' : 'Gemini Flash'}
-                        </Text>
-                      </View>
-                      <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-                        {response.response}
-                      </Text>
-                      {response.relatedConcepts.length > 0 && (
-                        <View style={styles.conceptsRow}>
-                          {response.relatedConcepts.map((c, i) => (
-                            <View key={i} style={[styles.conceptChip, { backgroundColor: colors.primaryLight }]}>
-                              <Text style={[styles.conceptText, { color: colors.primary }]}>{c}</Text>
-                            </View>
-                          ))}
-                        </View>
-                      )}
-                    </View>
-                  )}
-                </ScrollView>
-              )}
-
-              {/* Input bar */}
-              {!showElimination && (
-                <View style={[styles.inputBar, { borderTopColor: colors.surfaceBorder }]}>
-                  <TextInput
+            {/* === Intent buttons === */}
+            {showingIntents && (
+              <View style={styles.intentsArea}>
+                {intents.map((intent) => (
+                  <AnimatedPressable
+                    key={intent.id}
+                    onPress={() => fireIntent(intent)}
+                    disabled={isLoading}
                     style={[
-                      styles.input,
+                      styles.intentBtn,
                       {
                         backgroundColor: colors.surface,
                         borderColor: colors.surfaceBorder,
-                        color: colors.text,
-                      },
-                    ]}
-                    placeholder="Ask about this question..."
-                    placeholderTextColor={colors.textTertiary}
-                    value={query}
-                    onChangeText={setQuery}
-                    onSubmitEditing={handleAsk}
-                    returnKeyType="send"
-                    maxLength={300}
-                    editable={!isLoading}
-                  />
-                  <AnimatedPressable
-                    onPress={handleAsk}
-                    disabled={!query.trim() || isLoading}
-                    style={[
-                      styles.sendBtn,
-                      {
-                        backgroundColor:
-                          query.trim() && !isLoading ? colors.primary : colors.surfaceBorder,
+                        opacity: isLoading ? 0.5 : 1,
                       },
                     ]}
                   >
-                    <Text style={styles.sendIcon}>{'>'}</Text>
+                    <Text style={styles.intentEmoji}>{intent.emoji}</Text>
+                    <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>
+                      {intent.label}
+                    </Text>
+                    <Text style={[styles.intentArrow, { color: colors.textTertiary }]}>{'\u203A'}</Text>
                   </AnimatedPressable>
+                ))}
+              </View>
+            )}
+
+            {/* === Elimination hints (from DB) === */}
+            {showingElim && (
+              <View style={styles.elimSection}>
+                <View style={styles.elimHeader}>
+                  <Text style={[styles.elimTitle, { color: '#8B5CF6' }]}>
+                    {'\u2702\uFE0F'} Elimination Technique
+                  </Text>
                 </View>
-              )}
-            </KeyboardAvoidingView>
+                <ScrollView
+                  style={styles.elimScroll}
+                  showsVerticalScrollIndicator={false}
+                >
+                  {eliminationHints.map((hint) => (
+                    <View
+                      key={hint.optionKey}
+                      style={[
+                        styles.elimCard,
+                        {
+                          backgroundColor:
+                            hint.optionKey === selectedOptionId
+                              ? '#EF444410'
+                              : colors.surface,
+                          borderColor:
+                            hint.optionKey === selectedOptionId
+                              ? '#EF444440'
+                              : colors.surfaceBorder,
+                        },
+                      ]}
+                    >
+                      <View style={styles.elimCardHeader}>
+                        <View
+                          style={[
+                            styles.optionBadge,
+                            {
+                              backgroundColor:
+                                hint.optionKey === selectedOptionId
+                                  ? '#EF444420'
+                                  : '#64748B15',
+                            },
+                          ]}
+                        >
+                          <Text
+                            style={[
+                              styles.optionBadgeText,
+                              {
+                                color:
+                                  hint.optionKey === selectedOptionId
+                                    ? '#EF4444'
+                                    : '#64748B',
+                              },
+                            ]}
+                          >
+                            {hint.optionKey}
+                          </Text>
+                        </View>
+                        {hint.optionKey === selectedOptionId && (
+                          <Text style={styles.yourPickLabel}>Your pick</Text>
+                        )}
+                      </View>
+                      <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20, marginTop: 4 }]}>
+                        {isTelugu && hint.hintTe ? hint.hintTe : hint.hint}
+                      </Text>
+                      {hint.misconception ? (
+                        <Text style={[styles.misconceptionText, { color: colors.textTertiary }]}>
+                          Misconception: {isTelugu && hint.misconceptionTe ? hint.misconceptionTe : hint.misconception}
+                        </Text>
+                      ) : null}
+                    </View>
+                  ))}
+                </ScrollView>
+              </View>
+            )}
+
+            {/* === AI Response === */}
+            {showingResult && (
+              <ScrollView
+                ref={scrollRef}
+                style={styles.responseArea}
+                contentContainerStyle={styles.responseContent}
+                showsVerticalScrollIndicator={false}
+              >
+                {isLoading && (
+                  <View style={[styles.loadingBox, { backgroundColor: colors.surface }]}>
+                    <Text style={[Typography.bodySm, { color: colors.primary }]}>
+                      VaNi is thinking...
+                    </Text>
+                  </View>
+                )}
+
+                {response && (
+                  <View style={[styles.responseBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
+                    <View style={styles.responseHeader}>
+                      <Text style={[styles.vaniLabel, { color: colors.primary }]}>VANI</Text>
+                      <Text style={[styles.modelTag, { color: colors.textTertiary }]}>
+                        {response.model === 'smart' ? 'Gemini Pro' : 'Gemini Flash'}
+                      </Text>
+                    </View>
+                    <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
+                      {response.response}
+                    </Text>
+                    {response.relatedConcepts.length > 0 && (
+                      <View style={styles.conceptsRow}>
+                        {response.relatedConcepts.map((c, i) => (
+                          <View key={i} style={[styles.conceptChip, { backgroundColor: colors.primaryLight }]}>
+                            <Text style={[styles.conceptText, { color: colors.primary }]}>{c}</Text>
+                          </View>
+                        ))}
+                      </View>
+                    )}
+                  </View>
+                )}
+              </ScrollView>
+            )}
           </Pressable>
         </Animated.View>
       </Pressable>
@@ -399,26 +356,19 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.sm,
     gap: Spacing.sm,
   },
+  backBtn: {
+    width: 32,
+    height: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backArrow: {
+    fontSize: 20,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+  },
   remainingText: {
     fontFamily: 'PlusJakartaSans_400Regular',
     fontSize: 12,
-    flex: 1,
-  },
-  elimToggle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: BorderRadius.sm,
-    borderWidth: 1,
-  },
-  elimToggleIcon: {
-    fontSize: 12,
-  },
-  elimToggleText: {
-    fontFamily: 'PlusJakartaSans_600SemiBold',
-    fontSize: 11,
   },
   closeBtn: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
@@ -435,6 +385,26 @@ const styles = StyleSheet.create({
     fontSize: 10,
     letterSpacing: 0.5,
     marginBottom: 4,
+  },
+  // Intent buttons
+  intentsArea: {
+    padding: Spacing.lg,
+    gap: Spacing.sm,
+  },
+  intentBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: Spacing.md,
+    borderRadius: BorderRadius.md,
+    borderWidth: 1,
+    gap: Spacing.sm,
+  },
+  intentEmoji: {
+    fontSize: 18,
+  },
+  intentArrow: {
+    fontSize: 22,
+    fontFamily: 'PlusJakartaSans_400Regular',
   },
   // Elimination hints section
   elimSection: {
@@ -489,20 +459,10 @@ const styles = StyleSheet.create({
   },
   // Response area
   responseArea: {
-    maxHeight: SCREEN_HEIGHT * 0.35,
+    maxHeight: SCREEN_HEIGHT * 0.4,
   },
   responseContent: {
     padding: Spacing.lg,
-  },
-  suggestionsArea: {
-    gap: Spacing.sm,
-  },
-  suggestionChip: {
-    paddingVertical: Spacing.sm,
-    paddingHorizontal: Spacing.md,
-    borderWidth: 1,
-    borderRadius: BorderRadius.md,
-    borderStyle: 'dashed',
   },
   loadingBox: {
     padding: Spacing.lg,
@@ -543,35 +503,5 @@ const styles = StyleSheet.create({
   conceptText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 11,
-  },
-  inputBar: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.sm,
-    borderTopWidth: 1,
-    gap: Spacing.sm,
-  },
-  input: {
-    flex: 1,
-    borderWidth: 1,
-    borderRadius: BorderRadius.lg,
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 14,
-    minHeight: 40,
-  },
-  sendBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  sendIcon: {
-    color: '#FFFFFF',
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 16,
   },
 });

@@ -14,15 +14,14 @@ import { useRouter } from 'expo-router';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Haptics from 'expo-haptics';
 
-import { DotGridBackground } from '../src/components/ui/DotGridBackground';
-import { JournalCard } from '../src/components/ui/JournalCard';
-import { HandwrittenText } from '../src/components/ui/HandwrittenText';
-import { useTheme } from '../src/hooks/useTheme';
-import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
-import { RootState } from '../src/store';
-import { removeBookmark } from '../src/store/slices/bookmarkSlice';
-// Toast not needed — this screen just removes bookmarks via Redux
-import { supabase } from '../src/lib/supabase';
+import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
+import { JournalCard } from '../../src/components/ui/JournalCard';
+import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { useTheme } from '../../src/hooks/useTheme';
+import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
+import { RootState } from '../../src/store';
+import { removeBookmark } from '../../src/store/slices/bookmarkSlice';
+import { supabase } from '../../src/lib/supabase';
 
 interface BookmarkedQuestion {
   id: string;
