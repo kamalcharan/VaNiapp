@@ -9,13 +9,8 @@ import {
   Dimensions,
   Modal,
 } from 'react-native';
-import { useSelector } from 'react-redux';
 import { useTheme } from '../hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../constants/theme';
-import { useToast } from './ui/Toast';
-import { RootState } from '../store';
-import { askDoubt, checkRateLimit } from '../lib/aiClient';
-import { DoubtEntry } from '../store/slices/aiSlice';
 import { SubjectId, EliminationHint } from '../types';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -32,6 +27,7 @@ interface AskVaniSheetProps {
 }
 
 const ELIM_INTENT = 'eliminate';
+const GEMINI_INTENTS = new Set(['why-wrong', 'why-correct', 'explain-simple']);
 
 interface Intent {
   id: string;
@@ -48,19 +44,13 @@ export function AskVaniSheet({
   language = 'en',
 }: AskVaniSheetProps) {
   const { colors } = useTheme();
-  const toast = useToast();
-  const user = useSelector((state: RootState) => state.auth.user);
-  const isLoading = useSelector((state: RootState) => state.ai.isLoading);
 
   const [activeIntent, setActiveIntent] = useState<string | null>(null);
-  const [response, setResponse] = useState<DoubtEntry | null>(null);
   const slideAnim = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
-  const scrollRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     if (visible) {
       setActiveIntent(null);
-      setResponse(null);
       Animated.spring(slideAnim, {
         toValue: 0,
         useNativeDriver: true,
@@ -91,47 +81,18 @@ export function AskVaniSheet({
     intents.push({ id: ELIM_INTENT, label: 'How to eliminate wrong options?' });
   }
 
-  const fireIntent = useCallback(async (intent: Intent) => {
-    if (isLoading) return;
-
-    if (intent.id === ELIM_INTENT) {
-      setActiveIntent(ELIM_INTENT);
-      return;
-    }
-
+  const fireIntent = useCallback((intent: Intent) => {
     setActiveIntent(intent.id);
-
-    try {
-      await askDoubt({
-        query: intent.label,
-        subjectId,
-        exam: user?.exam ?? 'NEET',
-        language: user?.language ?? 'en',
-        questionContext: questionText,
-      });
-
-      const state = (await import('../store')).store.getState();
-      const latest = state.ai.doubtHistory[0];
-      if (latest) setResponse(latest);
-
-      setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 200);
-    } catch (err: any) {
-      toast.show('error', 'AI Error', err.message ?? 'Something went wrong');
-      setActiveIntent(null);
-    }
-  }, [isLoading, subjectId, user, questionText, toast]);
+  }, []);
 
   const handleBack = () => {
     setActiveIntent(null);
-    setResponse(null);
   };
-
-  const { remaining } = checkRateLimit();
 
   if (!visible) return null;
 
   const isTelugu = language === 'te';
-  const showingResult = activeIntent && activeIntent !== ELIM_INTENT;
+  const showingComingSoon = activeIntent != null && GEMINI_INTENTS.has(activeIntent);
   const showingElim = activeIntent === ELIM_INTENT;
   const showingIntents = !activeIntent;
 
@@ -155,15 +116,12 @@ export function AskVaniSheet({
 
             {/* Header */}
             <View style={styles.header}>
-              {(showingResult || showingElim) && (
+              {(showingComingSoon || showingElim) && (
                 <Pressable onPress={handleBack} hitSlop={12} style={styles.backBtn}>
                   <Text style={[styles.backArrow, { color: colors.text }]}>{'\u2190'}</Text>
                 </Pressable>
               )}
               <Text style={[Typography.h3, { color: colors.text, flex: 1 }]}>Ask VaNi</Text>
-              <Text style={[styles.remainingText, { color: colors.textTertiary }]}>
-                {remaining} left today
-              </Text>
               <Pressable onPress={onClose} hitSlop={12}>
                 <Text style={[styles.closeBtn, { color: colors.textSecondary }]}>Done</Text>
               </Pressable>
@@ -187,13 +145,9 @@ export function AskVaniSheet({
                   <Pressable
                     key={intent.id}
                     onPress={() => fireIntent(intent)}
-                    disabled={isLoading}
                     style={[
                       styles.intentBtn,
-                      {
-                        backgroundColor: colors.primaryLight,
-                        opacity: isLoading ? 0.5 : 1,
-                      },
+                      { backgroundColor: colors.primaryLight },
                     ]}
                   >
                     <Text style={[styles.intentLabel, { color: colors.primary }]}>
@@ -277,45 +231,22 @@ export function AskVaniSheet({
               </View>
             )}
 
-            {/* === AI Response === */}
-            {showingResult && (
-              <ScrollView
-                ref={scrollRef}
-                style={styles.responseArea}
-                contentContainerStyle={styles.responseContent}
-                showsVerticalScrollIndicator={false}
-              >
-                {isLoading && (
-                  <View style={[styles.loadingBox, { backgroundColor: colors.surface }]}>
-                    <Text style={[Typography.bodySm, { color: colors.primary }]}>
-                      VaNi is thinking...
-                    </Text>
-                  </View>
-                )}
-
-                {response && (
-                  <View style={[styles.responseBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
-                    <View style={styles.responseHeader}>
-                      <Text style={[styles.vaniLabel, { color: colors.primary }]}>VANI</Text>
-                      <Text style={[styles.modelTag, { color: colors.textTertiary }]}>
-                        {response.model === 'smart' ? 'Gemini Pro' : 'Gemini Flash'}
-                      </Text>
-                    </View>
-                    <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-                      {response.response}
-                    </Text>
-                    {response.relatedConcepts.length > 0 && (
-                      <View style={styles.conceptsRow}>
-                        {response.relatedConcepts.map((c, i) => (
-                          <View key={i} style={[styles.conceptChip, { backgroundColor: colors.primaryLight }]}>
-                            <Text style={[styles.conceptText, { color: colors.primary }]}>{c}</Text>
-                          </View>
-                        ))}
-                      </View>
-                    )}
-                  </View>
-                )}
-              </ScrollView>
+            {/* === Coming Soon (Gemini intents) === */}
+            {showingComingSoon && (
+              <View style={styles.comingSoonArea}>
+                <Text style={styles.comingSoonEmoji}>{'\uD83D\uDE80'}</Text>
+                <Text style={[Typography.h3, { color: colors.text, textAlign: 'center' }]}>
+                  Coming Soon!
+                </Text>
+                <Text
+                  style={[
+                    Typography.bodySm,
+                    { color: colors.textSecondary, textAlign: 'center', lineHeight: 20, marginTop: 4 },
+                  ]}
+                >
+                  VaNi's AI explanations are being fine-tuned{'\n'}for the best experience. Stay tuned!
+                </Text>
+              </View>
             )}
           </Pressable>
         </Animated.View>
@@ -362,10 +293,6 @@ const styles = StyleSheet.create({
   backArrow: {
     fontSize: 20,
     fontFamily: 'PlusJakartaSans_600SemiBold',
-  },
-  remainingText: {
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 12,
   },
   closeBtn: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
@@ -454,51 +381,15 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     marginTop: 4,
   },
-  // Response area
-  responseArea: {
-    maxHeight: SCREEN_HEIGHT * 0.4,
-  },
-  responseContent: {
-    padding: Spacing.lg,
-  },
-  loadingBox: {
-    padding: Spacing.lg,
-    borderRadius: BorderRadius.lg,
+  // Coming Soon
+  comingSoonArea: {
     alignItems: 'center',
-  },
-  responseBox: {
-    padding: Spacing.md,
-    borderRadius: BorderRadius.lg,
-    borderWidth: 1,
-  },
-  responseHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: Spacing.xl,
+    paddingHorizontal: Spacing.lg,
     gap: Spacing.sm,
-    marginBottom: Spacing.sm,
   },
-  vaniLabel: {
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 11,
-    letterSpacing: 1,
-  },
-  modelTag: {
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 10,
-  },
-  conceptsRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: Spacing.sm,
-    marginTop: Spacing.md,
-  },
-  conceptChip: {
-    paddingHorizontal: 10,
-    paddingVertical: 3,
-    borderRadius: BorderRadius.round,
-  },
-  conceptText: {
-    fontFamily: 'PlusJakartaSans_600SemiBold',
-    fontSize: 11,
+  comingSoonEmoji: {
+    fontSize: 48,
   },
 });
