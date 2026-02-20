@@ -507,8 +507,32 @@
     // e.g. zoo-kingdom-classification-01 → topic = zoo-kingdom-classification → chapter = zoo-animal-kingdom
     // We use the file name to infer the chapter, or fall back to topic prefix
     function resolveChapterId(q) {
-      // Topic prefix mapping to chapter IDs
+      // Topic prefix mapping to chapter IDs (all 4 subjects)
+      // Longer/more-specific prefixes first to avoid false matches
       const TOPIC_TO_CHAPTER = {
+        // ── Botany (17 chapters) ──────────────────────────────
+        'bot-living':       'bot-living-world',
+        'bot-biological':   'bot-biological-classification',
+        'bot-plant-growth': 'bot-plant-growth',
+        'bot-plant':        'bot-plant-kingdom',
+        'bot-morph':        'bot-morphology-flowering',
+        'bot-anat':         'bot-anatomy-flowering',
+        'bot-cell-unit':    'bot-cell-unit',
+        'bot-cell-cycle':   'bot-cell-cycle',
+        'bot-cycle':        'bot-cell-cycle',
+        'bot-photo':        'bot-photosynthesis',
+        'bot-resp':         'bot-respiration',
+        'bot-growth':       'bot-plant-growth',
+        'bot-sexual':       'bot-sexual-reproduction',
+        'bot-repro':        'bot-sexual-reproduction',
+        'bot-mol':          'bot-molecular-inheritance',
+        'bot-inher':        'bot-inheritance',
+        'bot-microbes':     'bot-microbes-welfare',
+        'bot-organisms':    'bot-organisms-populations',
+        'bot-eco':          'bot-ecosystem',
+        'bot-biodiv':       'bot-biodiversity',
+
+        // ── Zoology (15 chapters) ─────────────────────────────
         'zoo-kingdom':  'zoo-animal-kingdom',
         'zoo-struct':   'zoo-structural-organization',
         'zoo-bio':      'zoo-biomolecules',
@@ -524,11 +548,61 @@
         'zoo-health':   'zoo-human-health',
         'zoo-biotech':  'zoo-biotechnology-principles',
         'zoo-bioapp':   'zoo-biotechnology-applications',
+
+        // ── Physics (20 chapters) ─────────────────────────────
+        'phy-units':    'phy-units-measurement',
+        'phy-kin':      'phy-kinematics',
+        'phy-laws':     'phy-laws-of-motion',
+        'phy-wep':      'phy-work-energy-power',
+        'phy-work':     'phy-work-energy-power',
+        'phy-rot':      'phy-rotational-motion',
+        'phy-grav':     'phy-gravitation',
+        'phy-prop':     'phy-properties-matter',
+        'phy-thermo':   'phy-thermodynamics',
+        'phy-kinetic':  'phy-kinetic-theory',
+        'phy-osc':      'phy-oscillations-waves',
+        'phy-wave':     'phy-oscillations-waves',
+        'phy-electrostatics': 'phy-electrostatics',
+        'phy-elec-semiconductor': 'phy-electronic-devices',
+        'phy-elec-diode':         'phy-electronic-devices',
+        'phy-elec-transistor':    'phy-electronic-devices',
+        'phy-elec-logic':         'phy-electronic-devices',
+        'phy-elec':     'phy-electrostatics',
+        'phy-curr':     'phy-current-electricity',
+        'phy-mag':      'phy-magnetic-effects',
+        'phy-emi':      'phy-em-induction',
+        'phy-emw':      'phy-em-waves',
+        'phy-opt':      'phy-optics',
+        'phy-dual':     'phy-dual-nature',
+        'phy-atom':     'phy-atoms-nuclei',
+        'phy-exp':      'phy-experimental',
+
+        // ── Chemistry (20 chapters) ───────────────────────────
+        'chem-basic':    'chem-basic-concepts',
+        'chem-atomic':   'chem-atomic-structure',
+        'chem-bond':     'chem-chemical-bonding',
+        'chem-thermo':   'chem-thermodynamics',
+        'chem-eq':       'chem-equilibrium',
+        'chem-redox':    'chem-redox',
+        'chem-sol':      'chem-solutions',
+        'chem-electro':  'chem-electrochemistry',
+        'chem-kin':      'chem-kinetics',
+        'chem-period':   'chem-periodicity',
+        'chem-p-block':  'chem-p-block',
+        'chem-d-f':      'chem-d-f-block',
+        'chem-coord':    'chem-coordination',
+        'chem-org':      'chem-organic-basics',
+        'chem-hc':       'chem-hydrocarbons',
+        'chem-halo':     'chem-haloalkanes',
+        'chem-alcohol':  'chem-alcohols-ethers',
+        'chem-ald':      'chem-aldehydes-ketones',
+        'chem-amine':    'chem-amines',
+        'chem-biomol':   'chem-biomolecules',
       };
 
       if (!q.id) return 'unknown';
 
-      // Try to match topic prefix
+      // Try to match topic prefix (longest match wins due to ordering)
       for (const [prefix, chapterId] of Object.entries(TOPIC_TO_CHAPTER)) {
         if (q.id.startsWith(prefix)) return chapterId;
       }

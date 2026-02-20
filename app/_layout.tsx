@@ -26,7 +26,7 @@ import { store, rehydrateStore, resetAllData } from '../src/store';
 import { setUser } from '../src/store/slices/authSlice';
 import { ToastProvider } from '../src/components/ui/Toast';
 import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
-import { getProfile, getUserSubjectIds, isOnboardingActuallyComplete } from '../src/lib/database';
+import { getProfile, getUserSubjectIds, isOnboardingActuallyComplete, reportAppVersion } from '../src/lib/database';
 import { pullRemoteProgress } from '../src/lib/progressSync';
 
 NativeSplashScreen.preventAutoHideAsync();
@@ -132,6 +132,9 @@ export default function RootLayout() {
 
           // Pull remote progress into Redux (merges with local, remote wins if ahead)
           pullRemoteProgress().catch(() => {});
+
+          // Report app version to DB for WhatsApp bot update notifications
+          reportAppVersion(profile).catch(() => {});
         }
       } catch {
         setOnboardingDone(false);
