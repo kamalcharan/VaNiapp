@@ -109,9 +109,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B08 | `bot-plant-algae` | Algae | 20 | PENDING |
-| B09 | `bot-plant-bryophytes` | Bryophytes | 20 | PENDING |
-| B10 | `bot-plant-pteridophytes` | Pteridophytes | 20 | PENDING |
+| B08 | `bot-plant-algae` | Algae | 20 | DONE |
+| B09 | `bot-plant-bryophytes` | Bryophytes | 20 | DONE |
+| B10 | `bot-plant-pteridophytes` | Pteridophytes | 20 | DONE |
 | B11 | `bot-plant-gymnosperms` | Gymnosperms | 20 | PENDING |
 | B12 | `bot-plant-angiosperms` | Angiosperms and Alternation of Generations | 20 | PENDING |
 | | | **Chapter 3 Total** | **100** | |
@@ -181,9 +181,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B37 | `bot-photo-pigments` | Site of Photosynthesis and Photosynthetic Pigments | 20 | DONE |
-| B38 | `bot-photo-light` | Light Reactions (Cyclic and Non-Cyclic Photophosphorylation) | 20 | PENDING |
-| B39 | `bot-photo-calvin` | Calvin Cycle (C3 Pathway) | 20 | PENDING |
-| B40 | `bot-photo-c4` | Photorespiration, C4 Pathway, and CAM | 20 | PENDING |
+| B38 | `bot-photo-light` | Light Reactions (Cyclic and Non-Cyclic Photophosphorylation) | 20 | DONE |
+| B39 | `bot-photo-calvin` | Calvin Cycle (C3 Pathway) | 20 | DONE |
+| B40 | `bot-photo-c4` | Photorespiration, C4 Pathway, and CAM | 20 | DONE |
 | | | **Chapter 10 Total** | **80** | |
 
 ### Chapter 11: Respiration in Plants (`bot-respiration`) — 3 batches
