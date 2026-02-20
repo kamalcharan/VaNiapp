@@ -6,6 +6,7 @@ import type { QuestionV2, QuestionType, Difficulty, Option, EliminationHint } fr
 interface DbOption {
   option_key: string;
   option_text: string;
+  option_text_te: string | null;
   is_correct: boolean;
   sort_order: number;
 }
@@ -25,7 +26,9 @@ interface DbQuestion {
   question_type: string;
   difficulty: string;
   question_text: string;
+  question_text_te: string | null;
   explanation: string | null;
+  explanation_te: string | null;
   correct_answer: string;
   payload: Record<string, unknown> | null;
   med_question_options: DbOption[];
@@ -41,6 +44,7 @@ const cache = new Map<string, QuestionV2[]>();
 /**
  * Fetch questions for a chapter from Supabase.
  * Returns QuestionV2[] ready for the quiz screen UI.
+ * Fetches both English and Telugu (_te) columns for bilingual display.
  */
 export async function fetchQuestionsByChapter(
   chapterId: string,
@@ -54,8 +58,9 @@ export async function fetchQuestionsByChapter(
     .from('med_questions')
     .select(
       `id, subject_id, chapter_id, question_type, difficulty,
-       question_text, explanation, correct_answer, payload,
-       med_question_options (option_key, option_text, is_correct, sort_order),
+       question_text, question_text_te, explanation, explanation_te,
+       correct_answer, payload,
+       med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
        med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`,
     )
     .eq('chapter_id', chapterId)
@@ -85,7 +90,7 @@ function dbToV2(row: DbQuestion): QuestionV2 {
   const options: Option[] = dbOptions.map((o) => ({
     id: o.option_key,
     text: o.option_text,
-    textTe: '',
+    textTe: o.option_text_te || '',
   }));
 
   const correctOption = dbOptions.find((o) => o.is_correct);
@@ -108,6 +113,11 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     .map((h) => `Option ${h.optionKey}: ${h.hint}`)
     .join('\n');
 
+  const eliminationTextTe = eliminationHints
+    .filter((h) => h.hintTe)
+    .map((h) => `Option ${h.optionKey}: ${h.hintTe}`)
+    .join('\n');
+
   return {
     id: questionId,
     type: row.question_type as QuestionType,
@@ -115,11 +125,11 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     subjectId: row.subject_id as QuestionV2['subjectId'],
     difficulty: row.difficulty as Difficulty,
     text: row.question_text,
-    textTe: '',
+    textTe: row.question_text_te || '',
     explanation: row.explanation || '',
-    explanationTe: '',
+    explanationTe: row.explanation_te || '',
     eliminationTechnique: eliminationText,
-    eliminationTechniqueTe: '',
+    eliminationTechniqueTe: eliminationTextTe,
     eliminationHints,
     // Map all DB questions as MCQ payload since all types have A/B/C/D options
     payload: {
