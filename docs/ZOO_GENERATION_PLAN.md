@@ -219,7 +219,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | B56 | `zoo-health-diseases` | Common Diseases | 20 | DONE |
 | B57 | `zoo-health-immunity` | Immunity | 20 | DONE |
 | B58 | `zoo-health-aids` | AIDS | 20 | DONE |
-| B59 | `zoo-health-cancer` | Cancer | 20 | PENDING |
+| B59 | `zoo-health-cancer` | Cancer | 20 | DONE |
 | B60 | `zoo-health-drugs` | Drug Abuse | 20 | DONE |
 | | | **Chapter 13 Total** | **100** | |
 
@@ -429,7 +429,7 @@ Commit and push.
 | Ch10 Human Repro | 5 | 100 | 100 | 100% |
 | Ch11 Repro Health | 4 | 80 | 80 | 100% |
 | Ch12 Evolution | 4 | 80 | 80 | 100% |
-| Ch13 Human Health | 5 | 100 | 80 | 80% |
+| Ch13 Human Health | 5 | 100 | 100 | 100% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **1,180** | **90.8%** |
+| **TOTAL** | **65** | **1,300** | **1,200** | **92.3%** |
