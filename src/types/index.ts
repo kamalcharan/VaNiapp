@@ -196,6 +196,7 @@ export interface UserProfile {
   exam: ExamType;
   language: Language;
   selectedSubjects: SubjectId[];
+  targetYear?: number; // 2026 = crunch mode, 2027 = levels/progression
 }
 
 export type AppScreen =

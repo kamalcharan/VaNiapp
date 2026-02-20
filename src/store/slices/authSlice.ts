@@ -35,8 +35,18 @@ const authSlice = createSlice({
     updateSubjects: (state, action: PayloadAction<SubjectId[]>) => {
       if (state.user) state.user.selectedSubjects = action.payload;
     },
+    updateTargetYear: (state, action: PayloadAction<number | undefined>) => {
+      if (state.user) state.user.targetYear = action.payload;
+    },
     logout: () => initialState,
-    rehydrate: (_state, action: PayloadAction<AuthState>) => action.payload,
+    rehydrate: (_state, action: PayloadAction<AuthState>) => {
+      const rehydrated = { ...action.payload };
+      // Ensure targetYear field exists on old persisted profiles
+      if (rehydrated.user && rehydrated.user.targetYear === undefined) {
+        rehydrated.user.targetYear = undefined;
+      }
+      return rehydrated;
+    },
   },
 });
 
@@ -47,6 +57,7 @@ export const {
   updateExam,
   updateLanguage,
   updateSubjects,
+  updateTargetYear,
   logout,
 } = authSlice.actions;
 

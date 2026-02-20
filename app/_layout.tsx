@@ -23,6 +23,7 @@ import {
 } from '../src/lib/auth';
 import { Provider as ReduxProvider } from 'react-redux';
 import { store } from '../src/store';
+import { updateTargetYear } from '../src/store/slices/authSlice';
 import { ToastProvider } from '../src/components/ui/Toast';
 import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
 import { getProfile } from '../src/lib/database';
@@ -92,6 +93,11 @@ export default function RootLayout() {
       try {
         const profile = await getProfile();
         setOnboardingDone(profile?.onboarding_completed ?? false);
+
+        // Sync target_year from DB into Redux (persona: 2026 crunch vs 2027 levels)
+        if (profile?.target_year != null) {
+          store.dispatch(updateTargetYear(profile.target_year));
+        }
       } catch {
         setOnboardingDone(false);
       }

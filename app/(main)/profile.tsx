@@ -30,6 +30,8 @@ import {
 } from '../../src/lib/database';
 import { getSubjects, getLanguages, CatalogSubject, CatalogLanguage } from '../../src/lib/catalog';
 import { ExamType, Language } from '../../src/types';
+import { store } from '../../src/store';
+import { updateTargetYear } from '../../src/store/slices/authSlice';
 
 const TARGET_YEAR_OPTIONS = [
   { year: 2026, label: '2026', emoji: '\u26A1' },
@@ -128,6 +130,9 @@ export default function ProfileScreen() {
       const prof = await getProfile();
       setProfile(prof);
       setEditing(false);
+
+      // Sync target_year into Redux so screens can read persona
+      store.dispatch(updateTargetYear(prof?.target_year ?? undefined));
 
       // Update language label
       if (prof?.language && languages.length > 0) {
