@@ -97,8 +97,8 @@ export function MusicDrawer({
                   style={[
                     styles.trackRow,
                     {
-                      backgroundColor: isCurrent ? colors.primary + '12' : 'transparent',
-                      borderColor: isCurrent ? colors.primary : colors.surfaceBorder,
+                      backgroundColor: isCurrent ? colors.warning + '12' : 'transparent',
+                      borderColor: isCurrent ? colors.warning : colors.surfaceBorder,
                     },
                   ]}
                 >
@@ -107,7 +107,7 @@ export function MusicDrawer({
                     <Text
                       style={[
                         styles.trackTitle,
-                        { color: isCurrent ? colors.primary : colors.text },
+                        { color: isCurrent ? colors.warning : colors.text },
                       ]}
                       numberOfLines={1}
                     >
@@ -118,7 +118,7 @@ export function MusicDrawer({
                     </Text>
                   </View>
                   {isCurrentPlaying && (
-                    <Text style={[styles.playingBadge, { color: colors.primary }]}>
+                    <Text style={[styles.playingBadge, { color: colors.warning }]}>
                       {'\u266A'} Playing
                     </Text>
                   )}

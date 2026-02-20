@@ -41,7 +41,7 @@ export function MiniPlayer({
           <Text style={styles.compactEmoji}>{track ? track.emoji : '\uD83C\uDFB5'}</Text>
           {track && (
             <Pressable onPress={onTogglePlay} hitSlop={10}>
-              <Text style={[styles.compactControl, { color: colors.primary }]}>
+              <Text style={[styles.compactControl, { color: colors.warning }]}>
                 {isPlaying ? '\u23F8\uFE0F' : '\u25B6\uFE0F'}
               </Text>
             </Pressable>
@@ -56,7 +56,7 @@ export function MiniPlayer({
     return (
       <Pressable
         onPress={onOpenDrawer}
-        style={[styles.fab, { backgroundColor: colors.primary }]}
+        style={[styles.fab, { backgroundColor: colors.warning }]}
       >
         <Text style={styles.fabIcon}>{'\uD83C\uDFB5'}</Text>
       </Pressable>
@@ -79,7 +79,7 @@ export function MiniPlayer({
 
       <View style={styles.controls}>
         <Pressable onPress={onTogglePlay} hitSlop={8} style={styles.controlBtn}>
-          <Text style={[styles.controlIcon, { color: colors.primary }]}>
+          <Text style={[styles.controlIcon, { color: colors.warning }]}>
             {isPlaying ? '\u23F8\uFE0F' : '\u25B6\uFE0F'}
           </Text>
         </Pressable>
