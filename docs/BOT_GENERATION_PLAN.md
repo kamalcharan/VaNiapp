@@ -209,31 +209,31 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B48 | `bot-repro-stamen` | Stamen, Microsporogenesis, and Pollen Grain | 20 | PENDING |
-| B49 | `bot-repro-pistil` | Pistil, Megasporogenesis, and Embryo Sac | 20 | PENDING |
-| B50 | `bot-repro-pollination` | Pollination (Types and Agents) | 20 | PENDING |
-| B51 | `bot-repro-fertilization` | Double Fertilization | 20 | PENDING |
-| B52 | `bot-repro-seed` | Embryo, Endosperm, Seed, and Fruit Development | 20 | PENDING |
+| B48 | `bot-repro-stamen` | Stamen, Microsporogenesis, and Pollen Grain | 20 | DONE |
+| B49 | `bot-repro-pistil` | Pistil, Megasporogenesis, and Embryo Sac | 20 | DONE |
+| B50 | `bot-repro-pollination` | Pollination (Types and Agents) | 20 | DONE |
+| B51 | `bot-repro-fertilization` | Double Fertilization | 20 | DONE |
+| B52 | `bot-repro-seed` | Embryo, Endosperm, Seed, and Fruit Development | 20 | DONE |
 | | | **Chapter 13 Total** | **100** | |
 
 ### Chapter 14: Principles of Inheritance and Variation (`bot-inheritance`) — 5 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B53 | `bot-inher-mendel` | Mendel's Laws and Monohybrid Cross | 20 | PENDING |
-| B54 | `bot-inher-dihybrid` | Dihybrid Cross and Law of Independent Assortment | 20 | PENDING |
-| B55 | `bot-inher-dominance` | Incomplete Dominance, Co-dominance, and Multiple Alleles | 20 | PENDING |
-| B56 | `bot-inher-sex` | Sex Determination and Sex-Linked Inheritance | 20 | PENDING |
-| B57 | `bot-inher-chromosomal` | Chromosomal Disorders, Linkage, and Recombination | 20 | PENDING |
+| B53 | `bot-inher-mendel` | Mendel's Laws and Monohybrid Cross | 20 | DONE |
+| B54 | `bot-inher-dihybrid` | Dihybrid Cross and Law of Independent Assortment | 20 | DONE |
+| B55 | `bot-inher-dominance` | Incomplete Dominance, Co-dominance, and Multiple Alleles | 20 | DONE |
+| B56 | `bot-inher-sex` | Sex Determination and Sex-Linked Inheritance | 20 | DONE |
+| B57 | `bot-inher-chromosomal` | Chromosomal Disorders, Linkage, and Recombination | 20 | DONE |
 | | | **Chapter 14 Total** | **100** | |
 
 ### Chapter 15: Molecular Basis of Inheritance (`bot-molecular`) — 5 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B58 | `bot-mol-dna` | DNA Structure (Watson-Crick Model) | 20 | PENDING |
-| B59 | `bot-mol-replication` | DNA Replication | 20 | PENDING |
-| B60 | `bot-mol-transcription` | Transcription | 20 | PENDING |
+| B58 | `bot-mol-dna` | DNA Structure (Watson-Crick Model) | 20 | DONE |
+| B59 | `bot-mol-replication` | DNA Replication | 20 | DONE |
+| B60 | `bot-mol-transcription` | Transcription | 20 | DONE |
 | B61 | `bot-mol-translation` | Genetic Code and Translation | 20 | PENDING |
 | B62 | `bot-mol-regulation` | Gene Regulation (Lac Operon) and Human Genome Project | 20 | PENDING |
 | | | **Chapter 15 Total** | **100** | |
@@ -477,11 +477,11 @@ Commit and push.
 | Ch10 Photosynthesis | 4 | 80 | 0 | 0% |
 | Ch11 Respiration | 3 | 60 | 0 | 0% |
 | Ch12 Plant Growth | 4 | 80 | 0 | 0% |
-| Ch13 Sexual Reproduction | 5 | 100 | 0 | 0% |
-| Ch14 Inheritance | 5 | 100 | 0 | 0% |
-| Ch15 Molecular Inheritance | 5 | 100 | 0 | 0% |
+| Ch13 Sexual Reproduction | 5 | 100 | 100 | 100% |
+| Ch14 Inheritance | 5 | 100 | 100 | 100% |
+| Ch15 Molecular Inheritance | 5 | 100 | 60 | 60% |
 | Ch16 Organisms & Populations | 3 | 60 | 0 | 0% |
 | Ch17 Ecosystem | 4 | 80 | 0 | 0% |
 | Ch18 Biodiversity | 3 | 60 | 0 | 0% |
 | Ch19 Environmental Issues | 3 | 60 | 0 | 0% |
-| **TOTAL** | **75** | **1,500** | **0** | **0%** |
+| **TOTAL** | **75** | **1,500** | **260** | **17%** |
