@@ -10,6 +10,7 @@ import { ToastProvider } from '../../src/components/ui/Toast';
 // ── Shared onboarding state ──────────────────────────────────
 
 export interface OnboardingData {
+  displayName: string;
   phone: string;
   countryCode: string;
   college: string;
@@ -29,6 +30,7 @@ interface OnboardingContextType {
 }
 
 const defaultData: OnboardingData = {
+  displayName: '',
   phone: '',
   countryCode: '+91',
   college: '',
@@ -85,6 +87,7 @@ export default function OnboardingLayout() {
         if (!profile) return;
 
         const seeded: Partial<OnboardingData> = {};
+        if (profile.display_name) seeded.displayName = profile.display_name;
         if (profile.phone) seeded.phone = profile.phone;
         if (profile.country_code) seeded.countryCode = profile.country_code;
         if (profile.college) seeded.college = profile.college;

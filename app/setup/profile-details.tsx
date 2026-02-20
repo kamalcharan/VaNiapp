@@ -46,6 +46,7 @@ export default function ProfileDetailsScreen() {
   const { data, update, setStep } = useOnboarding();
   const toast = useToast();
 
+  const [displayName, setDisplayName] = useState(data.displayName);
   const [phone, setPhone] = useState(data.phone);
   const [countryCode, setCountryCode] = useState(data.countryCode || '+91');
   const [college, setCollege] = useState(data.college);
@@ -60,6 +61,7 @@ export default function ProfileDetailsScreen() {
     COUNTRY_CODES.find((c) => c.code === countryCode) || COUNTRY_CODES[0];
 
   const canContinue =
+    displayName.trim().length >= 2 &&
     phone.trim().length >= selectedCountry.digits &&
     college.trim().length >= 2 &&
     city.trim().length >= 2;
@@ -67,6 +69,7 @@ export default function ProfileDetailsScreen() {
   const handleContinue = () => {
     if (!canContinue) return;
     update({
+      displayName: displayName.trim(),
       phone: phone.trim(),
       countryCode,
       college: college.trim(),
@@ -122,6 +125,31 @@ export default function ProfileDetailsScreen() {
                 quick stuff, promise...
               </HandwrittenText>
             </View>
+
+            {/* Name */}
+            <JournalCard rotation={0.2} delay={50}>
+              <View style={styles.section}>
+                <Text style={[Typography.h3, { color: colors.text }]}>
+                  Your name
+                </Text>
+                <TextInput
+                  style={[
+                    styles.input,
+                    {
+                      color: colors.text,
+                      backgroundColor: colors.surface,
+                      borderColor: colors.surfaceBorder,
+                    },
+                  ]}
+                  placeholder="e.g. Priya Sharma"
+                  placeholderTextColor={colors.textTertiary}
+                  value={displayName}
+                  onChangeText={setDisplayName}
+                  autoCapitalize="words"
+                  autoFocus
+                />
+              </View>
+            </JournalCard>
 
             {/* Phone Number */}
             <JournalCard rotation={-0.3} delay={100}>

@@ -75,6 +75,7 @@ export async function getProfile(): Promise<MedProfile | null> {
 // ── Complete onboarding (batch save) ─────────────────────────
 
 interface OnboardingPayload {
+  displayName?: string;
   phone: string;
   countryCode: string;
   college: string;
@@ -102,7 +103,7 @@ export async function completeOnboarding(payload: OnboardingPayload): Promise<vo
     .from('med_profiles')
     .upsert({
       id: user.id,
-      display_name: user.user_metadata?.full_name || user.user_metadata?.name || '',
+      display_name: payload.displayName || user.user_metadata?.full_name || user.user_metadata?.name || '',
       avatar_url: user.user_metadata?.avatar_url || user.user_metadata?.picture || '',
       email: user.email || '',
       phone: payload.phone,
@@ -191,7 +192,7 @@ export async function updateUserSubjects(subjectIds: string[]): Promise<void> {
 
 /** Update specific profile fields. */
 export async function updateProfile(
-  fields: Partial<Pick<MedProfile, 'phone' | 'country_code' | 'college' | 'city' | 'exam' | 'language' | 'target_year'>>
+  fields: Partial<Pick<MedProfile, 'display_name' | 'phone' | 'country_code' | 'college' | 'city' | 'exam' | 'language' | 'target_year'>>
 ): Promise<void> {
   if (!supabase) throw new Error('Supabase is not configured.');
 

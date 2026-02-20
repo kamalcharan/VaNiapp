@@ -82,6 +82,7 @@ export default function InviteGangScreen() {
     setSaving(true);
     try {
       await completeOnboarding({
+        displayName: data.displayName,
         phone: data.phone,
         countryCode: data.countryCode,
         college: data.college,

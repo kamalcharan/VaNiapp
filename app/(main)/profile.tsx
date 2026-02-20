@@ -51,6 +51,7 @@ export default function ProfileScreen() {
 
   // Edit mode
   const [editing, setEditing] = useState(false);
+  const [editName, setEditName] = useState('');
   const [editPhone, setEditPhone] = useState('');
   const [editCollege, setEditCollege] = useState('');
   const [editCity, setEditCity] = useState('');
@@ -96,6 +97,7 @@ export default function ProfileScreen() {
     }
 
     if (prof) {
+      setEditName(prof.display_name || '');
       setEditPhone(prof.phone || '');
       setEditCollege(prof.college || '');
       setEditCity(prof.city || '');
@@ -119,6 +121,7 @@ export default function ProfileScreen() {
       const needsSubjectPicker = examChanged && (editExam === 'CUET' || editExam === 'BOTH');
 
       await updateProfile({
+        display_name: editName.trim(),
         phone: editPhone.trim(),
         college: editCollege.trim(),
         city: editCity.trim(),
@@ -174,6 +177,7 @@ export default function ProfileScreen() {
   const handleCancelEdit = () => {
     setEditing(false);
     if (profile) {
+      setEditName(profile.display_name || '');
       setEditPhone(profile.phone || '');
       setEditCollege(profile.college || '');
       setEditCity(profile.city || '');
@@ -318,17 +322,35 @@ export default function ProfileScreen() {
               )}
             </View>
 
-            {/* Name (read-only) */}
+            {/* Name */}
             <View style={styles.infoRow}>
               <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Name</Text>
-              <Text
-                style={[
-                  Typography.body,
-                  { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' },
-                ]}
-              >
-                {profile?.display_name || '-'}
-              </Text>
+              {editing ? (
+                <TextInput
+                  style={[
+                    styles.editInput,
+                    {
+                      color: colors.text,
+                      borderColor: colors.primary,
+                      backgroundColor: colors.surface,
+                    },
+                  ]}
+                  value={editName}
+                  onChangeText={setEditName}
+                  autoCapitalize="words"
+                  placeholder="Your name"
+                  placeholderTextColor={colors.textTertiary}
+                />
+              ) : (
+                <Text
+                  style={[
+                    Typography.body,
+                    { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' },
+                  ]}
+                >
+                  {profile?.display_name || '-'}
+                </Text>
+              )}
             </View>
             <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
 
