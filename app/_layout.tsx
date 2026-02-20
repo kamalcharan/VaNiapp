@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback, createContext, useContext } from 'react';
+import { useEffect, useState, useMemo, useCallback, createContext, useContext, useRef } from 'react';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import { View, ActivityIndicator } from 'react-native';
 import {
@@ -22,11 +22,11 @@ import {
   onAuthStateChange,
 } from '../src/lib/auth';
 import { Provider as ReduxProvider } from 'react-redux';
-import { store } from '../src/store';
-import { setUser, updateTargetYear } from '../src/store/slices/authSlice';
+import { store, rehydrateStore, resetAllData } from '../src/store';
+import { setUser } from '../src/store/slices/authSlice';
 import { ToastProvider } from '../src/components/ui/Toast';
 import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
-import { getProfile, getUserSubjectIds } from '../src/lib/database';
+import { getProfile, getUserSubjectIds, isOnboardingActuallyComplete } from '../src/lib/database';
 import { pullRemoteProgress } from '../src/lib/progressSync';
 
 NativeSplashScreen.preventAutoHideAsync();
@@ -47,6 +47,9 @@ export default function RootLayout() {
   const [showSplash, setShowSplash] = useState(true);
   const [authState, setAuthState] = useState<AuthState>(initialAuthState);
   const [onboardingDone, setOnboardingDone] = useState<boolean | null>(null);
+
+  // Track previous user ID to detect user switches
+  const prevUserId = useRef<string | null>(null);
 
   const router = useRouter();
   const segments = useSegments();
@@ -83,20 +86,37 @@ export default function RootLayout() {
     return () => unsubscribe?.();
   }, []);
 
-  // Check onboarding status when auth state changes to authenticated
+  // When auth state changes: load profile, rehydrate per-user data, or reset
   useEffect(() => {
     if (authState.status !== 'authenticated') {
+      // User signed out or session expired — reset everything
+      if (prevUserId.current !== null) {
+        resetAllData();
+        prevUserId.current = null;
+      }
       setOnboardingDone(null);
       return;
     }
 
+    const userId = authState.user?.id;
+    if (!userId) return;
+
     (async () => {
       try {
+        // If switching users, reset old data first
+        if (prevUserId.current && prevUserId.current !== userId) {
+          resetAllData();
+        }
+        prevUserId.current = userId;
+
+        // Rehydrate this user's persisted Redux data from AsyncStorage
+        await rehydrateStore(userId);
+
         const [profile, subjectIds] = await Promise.all([
           getProfile(),
           getUserSubjectIds(),
         ]);
-        setOnboardingDone(profile?.onboarding_completed ?? false);
+        setOnboardingDone(isOnboardingActuallyComplete(profile));
 
         // Hydrate Redux user from Supabase profile so usePersona + selectors work
         if (profile) {
@@ -117,7 +137,7 @@ export default function RootLayout() {
         setOnboardingDone(false);
       }
     })();
-  }, [authState.status]);
+  }, [authState.status, authState.user?.id]);
 
   // Route protection: redirect based on auth + onboarding status
   useEffect(() => {
@@ -128,13 +148,16 @@ export default function RootLayout() {
     const inSetup = segments[0] === 'setup';
 
     if (authState.status === 'authenticated') {
-      // Still loading profile — wait
-      if (onboardingDone === null && !inAuthGroup && !inAuthCallback) return;
-
       if (inAuthGroup || inAuthCallback) {
-        // Just signed in — go to setup (profile check will run soon)
+        // Just signed in — go to setup (profile check will determine next step)
         router.replace('/setup/welcome');
-      } else if (onboardingDone === true && inSetup) {
+        return;
+      }
+
+      // Still loading profile — block navigation to main app
+      if (onboardingDone === null) return;
+
+      if (onboardingDone === true && inSetup) {
         // Onboarding done but on setup screens → go to main app
         router.replace('/(main)');
       } else if (onboardingDone === false && !inSetup) {
@@ -185,13 +208,28 @@ export default function RootLayout() {
     );
   }
 
+  // While authenticated but profile/onboarding status still loading — show loader
+  // This prevents the dashboard from flashing before we know if onboarding is complete
+  const isAuthLoading =
+    authState.status === 'authenticated' &&
+    onboardingDone === null &&
+    segments[0] !== '(auth)' &&
+    segments[0] !== 'auth' &&
+    segments[0] !== 'setup';
+
   return (
     <ReduxProvider store={store}>
       <AuthContext.Provider value={authState}>
         <OnboardingGateContext.Provider value={gateValue}>
           <ThemeContext.Provider value={themeValue}>
             <ToastProvider>
-              <Slot />
+              {isAuthLoading ? (
+                <View style={{ flex: 1, backgroundColor: '#fdfcf0', justifyContent: 'center', alignItems: 'center' }}>
+                  <ActivityIndicator size="large" color="#2563EB" />
+                </View>
+              ) : (
+                <Slot />
+              )}
               <GlobalMusicOverlay />
             </ToastProvider>
           </ThemeContext.Provider>

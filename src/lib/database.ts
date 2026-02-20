@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import type { ExamType, Language, SubjectId, OnboardingFlowConfig, OnboardingFlowMode } from '../types';
+import type { ExamType, Language, SubjectId, OnboardingFlowConfig } from '../types';
 
 // ── Types ────────────────────────────────────────────────────
 
@@ -70,6 +70,24 @@ export async function getProfile(): Promise<MedProfile | null> {
 
   if (error || !data) return null;
   return data as MedProfile;
+}
+
+/**
+ * Check if onboarding is truly complete — flag is true AND critical fields filled.
+ * Catches users who had onboarding_completed set by the old quick flow with empty profile.
+ */
+export function isOnboardingActuallyComplete(profile: MedProfile | null): boolean {
+  if (!profile) return false;
+  if (!profile.onboarding_completed) return false;
+
+  // Critical fields that must be filled during onboarding
+  const hasName = (profile.display_name ?? '').trim().length >= 2;
+  const hasPhone = (profile.phone ?? '').trim().length >= 4;
+  const hasCollege = (profile.college ?? '').trim().length >= 2;
+  const hasCity = (profile.city ?? '').trim().length >= 2;
+  const hasExam = !!profile.exam;
+
+  return hasName && hasPhone && hasCollege && hasCity && hasExam;
 }
 
 // ── Complete onboarding (batch save) ─────────────────────────
@@ -209,8 +227,12 @@ export async function updateProfile(
 
 // ── Sign out ────────────────────────────────────────────────
 
-/** Sign out the current user. */
+/** Sign out the current user — clears Supabase session AND local Redux/storage. */
 export async function signOut(): Promise<void> {
+  // Reset all Redux slices to initial state and stop persisting
+  const { resetAllData } = require('../store');
+  resetAllData();
+
   if (!supabase) return;
   await supabase.auth.signOut();
 }
@@ -375,16 +397,6 @@ export async function getOnboardingFlowConfig(): Promise<OnboardingFlowConfig> {
   } catch {
     return DEFAULT_ONBOARDING_FLOW;
   }
-}
-
-/** Resolve 'quick' or 'full' based on config + current date. */
-export function resolveFlowMode(config: OnboardingFlowConfig): OnboardingFlowMode {
-  if (config.mode === 'full') return 'full';
-  if (config.mode === 'quick') {
-    const cutoff = new Date(config.quick_until);
-    return new Date() < cutoff ? 'quick' : 'full';
-  }
-  return 'full';
 }
 
 export function clearOnboardingFlowCache(): void {

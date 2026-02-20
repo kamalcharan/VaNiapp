@@ -20,7 +20,6 @@ import { PuffyButton } from '../../src/components/ui/PuffyButton';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import {
-  signInWithGoogle,
   signInWithEmail,
   signUpWithEmail,
   resetPassword,
@@ -34,7 +33,6 @@ type Mode = 'signin' | 'signup';
 export default function SignInScreen() {
   const { colors } = useTheme();
   const [mode, setMode] = useState<Mode>('signin');
-  const [showEmailForm, setShowEmailForm] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -53,30 +51,6 @@ export default function SignInScreen() {
       useNativeDriver: true,
     }).start();
   }, []);
-
-  // ── Google Sign-In ─────────────────────────────────────────────
-  const handleGoogleSignIn = async () => {
-    setError(null);
-    setSuccessMsg(null);
-    setLoading(true);
-    try {
-      const { cancelled } = await signInWithGoogle();
-      if (cancelled) {
-        // User dismissed the browser — do nothing
-        setLoading(false);
-      }
-      // If not cancelled, auth listener handles navigation automatically
-    } catch (err: any) {
-      setLoading(false);
-      const msg = err?.message || String(err);
-      if (msg.includes('not configured')) {
-        setError('Google sign-in is not configured yet. Use email sign-in below.');
-        setShowEmailForm(true);
-      } else {
-        setError(msg);
-      }
-    }
-  };
 
   // ── Email Sign-In / Sign-Up ────────────────────────────────────
   const handleEmailSubmit = async () => {
@@ -254,7 +228,6 @@ export default function SignInScreen() {
                     onPress={() => {
                       setPendingEmail(null);
                       setMode('signin');
-                      setShowEmailForm(true);
                       setEmail(pendingEmail || '');
                       setPassword('');
                       setError(null);
@@ -323,11 +296,9 @@ export default function SignInScreen() {
               <JournalCard rotation={-0.5} delay={100}>
                 <View style={styles.cardContent}>
                   <HandwrittenText variant="handLg" color={colors.text}>
-                    {showEmailForm
-                      ? mode === 'signin'
-                        ? "Let's get you in"
-                        : 'Create your account'
-                      : 'Welcome to VaNi'}
+                    {mode === 'signin'
+                      ? "Let's get you in"
+                      : 'Create your account'}
                   </HandwrittenText>
 
                   <Text
@@ -336,11 +307,9 @@ export default function SignInScreen() {
                       { color: colors.textSecondary, textAlign: 'center' },
                     ]}
                   >
-                    {showEmailForm
-                      ? mode === 'signin'
-                        ? 'Sign in to save your progress, track your strengths, and pick up right where you left off.'
-                        : 'Create an account to start your learning journey.'
-                      : 'Sign in to save your progress, track your strengths, and pick up right where you left off.'}
+                    {mode === 'signin'
+                      ? 'Sign in to save your progress, track your strengths, and pick up right where you left off.'
+                      : 'Create an account to start your learning journey.'}
                   </Text>
 
                   {/* Success banner */}
@@ -382,181 +351,119 @@ export default function SignInScreen() {
                     </View>
                   )}
 
-                  {/* ── Google Sign-In (primary) ── */}
-                  {!showEmailForm && (
-                    <>
-                      {loading ? (
-                        <View style={styles.loadingWrap}>
-                          <ActivityIndicator size="small" color={colors.primary} />
-                          <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
-                            Signing in with Google...
-                          </Text>
-                        </View>
-                      ) : (
-                        <PuffyButton
-                          title="Sign in with Google"
-                          onPress={handleGoogleSignIn}
-                        />
-                      )}
+                  {/* ── Email / Password form ── */}
+                  <View style={styles.form}>
+                    <TextInput
+                      style={[
+                        styles.input,
+                        {
+                          backgroundColor: colors.surface,
+                          borderColor: colors.surfaceBorder,
+                          color: colors.text,
+                          fontFamily: 'PlusJakartaSans_400Regular',
+                        },
+                      ]}
+                      placeholder="Email"
+                      placeholderTextColor={colors.textTertiary}
+                      value={email}
+                      onChangeText={setEmail}
+                      autoCapitalize="none"
+                      keyboardType="email-address"
+                      textContentType="emailAddress"
+                      autoComplete="email"
+                      editable={!loading}
+                    />
+                    <TextInput
+                      style={[
+                        styles.input,
+                        {
+                          backgroundColor: colors.surface,
+                          borderColor: colors.surfaceBorder,
+                          color: colors.text,
+                          fontFamily: 'PlusJakartaSans_400Regular',
+                        },
+                      ]}
+                      placeholder="Password"
+                      placeholderTextColor={colors.textTertiary}
+                      value={password}
+                      onChangeText={setPassword}
+                      secureTextEntry
+                      textContentType={mode === 'signup' ? 'newPassword' : 'password'}
+                      autoComplete={mode === 'signup' ? 'new-password' : 'password'}
+                      editable={!loading}
+                    />
+                    {mode === 'signup' && (
+                      <TextInput
+                        style={[
+                          styles.input,
+                          {
+                            backgroundColor: colors.surface,
+                            borderColor:
+                              confirmPassword && confirmPassword !== password
+                                ? colors.incorrect
+                                : colors.surfaceBorder,
+                            color: colors.text,
+                            fontFamily: 'PlusJakartaSans_400Regular',
+                          },
+                        ]}
+                        placeholder="Confirm Password"
+                        placeholderTextColor={colors.textTertiary}
+                        value={confirmPassword}
+                        onChangeText={setConfirmPassword}
+                        secureTextEntry
+                        textContentType="newPassword"
+                        autoComplete="new-password"
+                        editable={!loading}
+                      />
+                    )}
+                    {mode === 'signup' && password.length > 0 && password.length < 6 && (
+                      <Text style={[Typography.bodySm, { color: colors.warning, fontSize: 12 }]}>
+                        Password must be at least 6 characters
+                      </Text>
+                    )}
+                  </View>
 
-                      {/* Divider */}
-                      <View style={styles.dividerRow}>
-                        <View style={[styles.dividerLine, { backgroundColor: colors.surfaceBorder }]} />
-                        <Text style={[Typography.bodySm, { color: colors.textTertiary, paddingHorizontal: Spacing.md }]}>
-                          or
-                        </Text>
-                        <View style={[styles.dividerLine, { backgroundColor: colors.surfaceBorder }]} />
-                      </View>
-
-                      <Pressable onPress={() => setShowEmailForm(true)} disabled={loading}>
-                        <Text
-                          style={[
-                            Typography.bodySm,
-                            { color: colors.primary, textAlign: 'center' },
-                          ]}
-                        >
-                          Sign in with Email
-                        </Text>
-                      </Pressable>
-                    </>
+                  {loading ? (
+                    <View style={styles.loadingWrap}>
+                      <ActivityIndicator size="small" color={colors.primary} />
+                      <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
+                        {mode === 'signin' ? 'Signing in...' : 'Creating account...'}
+                      </Text>
+                    </View>
+                  ) : (
+                    <PuffyButton
+                      title={mode === 'signin' ? 'Sign In' : 'Create Account'}
+                      onPress={handleEmailSubmit}
+                    />
                   )}
 
-                  {/* ── Email / Password form (secondary) ── */}
-                  {showEmailForm && (
-                    <>
-                      <View style={styles.form}>
-                        <TextInput
-                          style={[
-                            styles.input,
-                            {
-                              backgroundColor: colors.surface,
-                              borderColor: colors.surfaceBorder,
-                              color: colors.text,
-                              fontFamily: 'PlusJakartaSans_400Regular',
-                            },
-                          ]}
-                          placeholder="Email"
-                          placeholderTextColor={colors.textTertiary}
-                          value={email}
-                          onChangeText={setEmail}
-                          autoCapitalize="none"
-                          keyboardType="email-address"
-                          textContentType="emailAddress"
-                          autoComplete="email"
-                          editable={!loading}
-                        />
-                        <TextInput
-                          style={[
-                            styles.input,
-                            {
-                              backgroundColor: colors.surface,
-                              borderColor: colors.surfaceBorder,
-                              color: colors.text,
-                              fontFamily: 'PlusJakartaSans_400Regular',
-                            },
-                          ]}
-                          placeholder="Password"
-                          placeholderTextColor={colors.textTertiary}
-                          value={password}
-                          onChangeText={setPassword}
-                          secureTextEntry
-                          textContentType={mode === 'signup' ? 'newPassword' : 'password'}
-                          autoComplete={mode === 'signup' ? 'new-password' : 'password'}
-                          editable={!loading}
-                        />
-                        {mode === 'signup' && (
-                          <TextInput
-                            style={[
-                              styles.input,
-                              {
-                                backgroundColor: colors.surface,
-                                borderColor:
-                                  confirmPassword && confirmPassword !== password
-                                    ? colors.incorrect
-                                    : colors.surfaceBorder,
-                                color: colors.text,
-                                fontFamily: 'PlusJakartaSans_400Regular',
-                              },
-                            ]}
-                            placeholder="Confirm Password"
-                            placeholderTextColor={colors.textTertiary}
-                            value={confirmPassword}
-                            onChangeText={setConfirmPassword}
-                            secureTextEntry
-                            textContentType="newPassword"
-                            autoComplete="new-password"
-                            editable={!loading}
-                          />
-                        )}
-                        {mode === 'signup' && password.length > 0 && password.length < 6 && (
-                          <Text style={[Typography.bodySm, { color: colors.warning, fontSize: 12 }]}>
-                            Password must be at least 6 characters
-                          </Text>
-                        )}
-                      </View>
-
-                      {loading ? (
-                        <View style={styles.loadingWrap}>
-                          <ActivityIndicator size="small" color={colors.primary} />
-                          <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
-                            {mode === 'signin' ? 'Signing in...' : 'Creating account...'}
-                          </Text>
-                        </View>
-                      ) : (
-                        <PuffyButton
-                          title={mode === 'signin' ? 'Sign In' : 'Create Account'}
-                          onPress={handleEmailSubmit}
-                        />
-                      )}
-
-                      {/* Forgot Password — sign-in mode only */}
-                      {mode === 'signin' && !loading && (
-                        <Pressable onPress={handleForgotPassword}>
-                          <Text
-                            style={[
-                              Typography.bodySm,
-                              { color: colors.textSecondary, textAlign: 'center', fontSize: 13 },
-                            ]}
-                          >
-                            Forgot Password?
-                          </Text>
-                        </Pressable>
-                      )}
-
-                      {/* Toggle signin/signup */}
-                      <Pressable onPress={toggleMode} disabled={loading}>
-                        <Text
-                          style={[
-                            Typography.bodySm,
-                            { color: colors.primary, textAlign: 'center' },
-                          ]}
-                        >
-                          {mode === 'signin'
-                            ? "Don't have an account? Sign Up"
-                            : 'Already have an account? Sign In'}
-                        </Text>
-                      </Pressable>
-
-                      {/* Back to Google option */}
-                      <Pressable
-                        onPress={() => {
-                          setShowEmailForm(false);
-                          setError(null);
-                          setSuccessMsg(null);
-                        }}
-                        disabled={loading}
+                  {/* Forgot Password — sign-in mode only */}
+                  {mode === 'signin' && !loading && (
+                    <Pressable onPress={handleForgotPassword}>
+                      <Text
+                        style={[
+                          Typography.bodySm,
+                          { color: colors.textSecondary, textAlign: 'center', fontSize: 13 },
+                        ]}
                       >
-                        <Text
-                          style={[
-                            Typography.bodySm,
-                            { color: colors.textTertiary, textAlign: 'center', fontSize: 12 },
-                          ]}
-                        >
-                          Back to Google Sign-In
-                        </Text>
-                      </Pressable>
-                    </>
+                        Forgot Password?
+                      </Text>
+                    </Pressable>
                   )}
+
+                  {/* Toggle signin/signup */}
+                  <Pressable onPress={toggleMode} disabled={loading}>
+                    <Text
+                      style={[
+                        Typography.bodySm,
+                        { color: colors.primary, textAlign: 'center' },
+                      ]}
+                    >
+                      {mode === 'signin'
+                        ? "Don't have an account? Sign Up"
+                        : 'Already have an account? Sign In'}
+                    </Text>
+                  </Pressable>
                 </View>
               </JournalCard>
 
@@ -640,14 +547,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.lg,
     paddingVertical: Spacing.lg,
     gap: Spacing.xs,
-  },
-  dividerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
   },
 });

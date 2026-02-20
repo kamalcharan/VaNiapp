@@ -2,8 +2,8 @@ import { createContext, useContext, useState, useRef, useEffect } from 'react';
 import { View, Animated, StyleSheet } from 'react-native';
 import { Slot } from 'expo-router';
 import { useTheme } from '../../src/hooks/useTheme';
-import { ExamType, Language, SubjectId, OnboardingFlowConfig, OnboardingFlowMode } from '../../src/types';
-import { getProfile, getOnboardingFlowConfig, resolveFlowMode } from '../../src/lib/database';
+import { ExamType, Language, SubjectId, OnboardingFlowConfig } from '../../src/types';
+import { getProfile, getOnboardingFlowConfig } from '../../src/lib/database';
 import { supabase } from '../../src/lib/supabase';
 import { ToastProvider } from '../../src/components/ui/Toast';
 
@@ -25,7 +25,6 @@ interface OnboardingContextType {
   update: (partial: Partial<OnboardingData>) => void;
   step: number;
   setStep: (s: number) => void;
-  flowMode: OnboardingFlowMode;
   flowConfig: OnboardingFlowConfig | null;
 }
 
@@ -45,7 +44,6 @@ const OnboardingContext = createContext<OnboardingContextType>({
   update: () => {},
   step: 1,
   setStep: () => {},
-  flowMode: 'full',
   flowConfig: null,
 });
 
@@ -53,17 +51,13 @@ export const useOnboarding = () => useContext(OnboardingContext);
 
 // ── Layout ───────────────────────────────────────────────────
 
-const FULL_STEPS = 7;
-const QUICK_STEPS = 2; // welcome + quick-start
+const TOTAL_STEPS = 7;
 
 export default function OnboardingLayout() {
   const { colors } = useTheme();
   const [data, setData] = useState<OnboardingData>(defaultData);
   const [step, setStep] = useState(1);
-  const [flowMode, setFlowMode] = useState<OnboardingFlowMode>('full');
   const [flowConfig, setFlowConfig] = useState<OnboardingFlowConfig | null>(null);
-
-  const totalSteps = flowMode === 'quick' ? QUICK_STEPS : FULL_STEPS;
 
   // Fetch onboarding flow config from DB
   useEffect(() => {
@@ -71,10 +65,8 @@ export default function OnboardingLayout() {
       try {
         const config = await getOnboardingFlowConfig();
         setFlowConfig(config);
-        setFlowMode(resolveFlowMode(config));
       } catch {
-        // Fallback to full mode
-        setFlowMode('full');
+        // Fallback — config not critical for full flow
       }
     })();
   }, []);
@@ -118,16 +110,16 @@ export default function OnboardingLayout() {
     })();
   }, []);
 
-  const progressAnim = useRef(new Animated.Value(1 / FULL_STEPS)).current;
+  const progressAnim = useRef(new Animated.Value(1 / TOTAL_STEPS)).current;
 
   useEffect(() => {
     Animated.spring(progressAnim, {
-      toValue: step / totalSteps,
+      toValue: step / TOTAL_STEPS,
       damping: 20,
       stiffness: 120,
       useNativeDriver: false,
     }).start();
-  }, [step, totalSteps]);
+  }, [step]);
 
   const update = (partial: Partial<OnboardingData>) => {
     setData((prev) => ({ ...prev, ...partial }));
@@ -139,7 +131,7 @@ export default function OnboardingLayout() {
   });
 
   return (
-    <OnboardingContext.Provider value={{ data, update, step, setStep, flowMode, flowConfig }}>
+    <OnboardingContext.Provider value={{ data, update, step, setStep, flowConfig }}>
       <ToastProvider>
         <View style={styles.root}>
           {/* Progress bar */}

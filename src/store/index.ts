@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import authReducer from './slices/authSlice';
 import practiceReducer from './slices/practiceSlice';
@@ -10,20 +10,41 @@ import strengthReducer from './slices/strengthSlice';
 import bookmarkReducer from './slices/bookmarkSlice';
 import streakReducer from './slices/streakSlice';
 
-const PERSIST_KEY = 'vani-persist';
+// ── Per-user persistence ─────────────────────────────────────
+const PERSIST_PREFIX = 'vani-persist';
+const LEGACY_PERSIST_KEY = 'vani-persist'; // old global key to clean up
+let _currentUserId: string | null = null;
+
+function persistKey(userId: string): string {
+  return `${PERSIST_PREFIX}-${userId}`;
+}
+
+// ── Resettable root reducer ──────────────────────────────────
+// Dispatching RESET_ALL resets every slice to initial state.
+export const RESET_ALL = 'store/RESET_ALL';
+
+const appReducer = combineReducers({
+  auth: authReducer,
+  practice: practiceReducer,
+  music: musicReducer,
+  focus: focusReducer,
+  squad: squadReducer,
+  ai: aiReducer,
+  strength: strengthReducer,
+  bookmark: bookmarkReducer,
+  streak: streakReducer,
+});
+
+const rootReducer: typeof appReducer = (state, action) => {
+  if (action.type === RESET_ALL) {
+    // Return undefined to let each slice use its own initialState
+    return appReducer(undefined, action);
+  }
+  return appReducer(state, action);
+};
 
 export const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    practice: practiceReducer,
-    music: musicReducer,
-    focus: focusReducer,
-    squad: squadReducer,
-    ai: aiReducer,
-    strength: strengthReducer,
-    bookmark: bookmarkReducer,
-    streak: streakReducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
 });
@@ -31,24 +52,39 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-// ── Lightweight persistence (auth + practice only) ──────────────
-// Saves to AsyncStorage on every state change, rehydrates on app start.
+// ── Per-user persistence — save ──────────────────────────────
+// Only saves when a user is active. Data is keyed per user ID.
 
 let saveTimeout: ReturnType<typeof setTimeout> | null = null;
 
 store.subscribe(() => {
+  if (!_currentUserId) return; // Don't persist if no user
+  const userId = _currentUserId;
+
   if (saveTimeout) clearTimeout(saveTimeout);
   saveTimeout = setTimeout(() => {
     const { auth, practice, squad, ai, strength, bookmark, streak } = store.getState();
-    AsyncStorage.setItem(PERSIST_KEY, JSON.stringify({ auth, practice, squad, ai, strength, bookmark, streak })).catch(
-      () => {}
-    );
-  }, 500); // debounce 500ms
+    AsyncStorage.setItem(
+      persistKey(userId),
+      JSON.stringify({ auth, practice, squad, ai, strength, bookmark, streak }),
+    ).catch(() => {});
+  }, 500);
 });
 
-export async function rehydrateStore(): Promise<void> {
+// ── Per-user persistence — load ──────────────────────────────
+
+/**
+ * Rehydrate Redux from the user's persisted data.
+ * Call this AFTER authenticating so we know which user ID to load.
+ */
+export async function rehydrateStore(userId: string): Promise<void> {
+  _currentUserId = userId;
+
+  // Clean up legacy global key (one-time migration)
+  AsyncStorage.removeItem(LEGACY_PERSIST_KEY).catch(() => {});
+
   try {
-    const raw = await AsyncStorage.getItem(PERSIST_KEY);
+    const raw = await AsyncStorage.getItem(persistKey(userId));
     if (!raw) return;
     const saved = JSON.parse(raw) as Partial<RootState>;
     if (saved.auth) {
@@ -75,4 +111,18 @@ export async function rehydrateStore(): Promise<void> {
   } catch {
     // storage read failed — start fresh
   }
+}
+
+/**
+ * Reset all Redux state and stop persisting.
+ * Call this on sign-out to ensure the next user starts clean.
+ */
+export function resetAllData(): void {
+  // Cancel any pending save
+  if (saveTimeout) {
+    clearTimeout(saveTimeout);
+    saveTimeout = null;
+  }
+  _currentUserId = null;
+  store.dispatch({ type: RESET_ALL });
 }

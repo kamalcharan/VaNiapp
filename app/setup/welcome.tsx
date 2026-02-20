@@ -17,7 +17,7 @@ const logo = require('../../assets/logo.png');
 export default function WelcomeScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const { setStep, flowMode } = useOnboarding();
+  const { setStep } = useOnboarding();
 
   const { user } = useAuth();
 
@@ -25,8 +25,6 @@ export default function WelcomeScreen() {
     user?.user_metadata?.full_name?.split(' ')[0] ||
     user?.user_metadata?.name?.split(' ')[0] ||
     'there';
-
-  const isQuick = flowMode === 'quick';
 
   useEffect(() => {
     setStep(1);
@@ -88,11 +86,7 @@ export default function WelcomeScreen() {
   }, []);
 
   const handleContinue = () => {
-    if (isQuick) {
-      router.push('/setup/quick-start');
-    } else {
-      router.push('/setup/profile-details');
-    }
+    router.push('/setup/profile-details');
   };
 
   return (
@@ -132,9 +126,7 @@ export default function WelcomeScreen() {
             </Text>
 
             <HandwrittenText variant="hand" color={colors.textSecondary}>
-              {isQuick
-                ? "let's start practicing..."
-                : "let's set up your journal..."}
+              let's set up your journal...
             </HandwrittenText>
           </Animated.View>
 
@@ -143,9 +135,7 @@ export default function WelcomeScreen() {
             <JournalCard rotation={-0.5} delay={0}>
               <View style={styles.cardContent}>
                 <HandwrittenText variant="handSm" color={colors.textSecondary}>
-                  {isQuick
-                    ? "You're just one tap away from NEET practice. We'll handle the rest!"
-                    : "Just a few quick things and you're all set to start your exam prep journey."}
+                  Just a few quick things and you're all set to start your exam prep journey.
                 </HandwrittenText>
               </View>
             </JournalCard>
@@ -154,8 +144,8 @@ export default function WelcomeScreen() {
           {/* CTA */}
           <Animated.View style={{ opacity: btnFade }}>
             <PuffyButton
-              title={isQuick ? 'Start Practicing' : "Let's Go"}
-              icon={isQuick ? '\uD83D\uDE80' : '\u2728'}
+              title="Let's Go"
+              icon={'\u2728'}
               onPress={handleContinue}
             />
           </Animated.View>

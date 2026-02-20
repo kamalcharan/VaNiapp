@@ -4,11 +4,9 @@ export type Language = 'en' | 'te';
 
 // ── Onboarding Flow Config (from med_app_config) ────────────
 
-export type OnboardingFlowMode = 'quick' | 'full';
-
 export interface OnboardingFlowConfig {
-  mode: OnboardingFlowMode;
-  quick_until: string;        // ISO date — quick mode expires after this
+  mode: string;
+  quick_until: string;
   default_exam: ExamType;
   auto_assign_subjects: boolean;
   default_language: Language;
