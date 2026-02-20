@@ -229,8 +229,8 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 |-------|----------|------------|-----|--------|
 | B61 | `zoo-biotech-rdna` | rDNA Technology | 20 | DONE |
 | B62 | `zoo-biotech-pcr` | PCR | 20 | DONE |
-| B63 | `zoo-biotech-gel` | Gel Electrophoresis | 20 | PENDING |
-| B64 | `zoo-biotech-vectors` | Vectors | 20 | PENDING |
+| B63 | `zoo-biotech-gel` | Gel Electrophoresis | 20 | DONE |
+| B64 | `zoo-biotech-vectors` | Vectors | 20 | DONE |
 | B65 | `zoo-biotech-cloning` | Cloning | 20 | PENDING |
 | | | **Chapter 14 Total** | **100** | |
 
@@ -430,6 +430,6 @@ Commit and push.
 | Ch11 Repro Health | 4 | 80 | 80 | 100% |
 | Ch12 Evolution | 4 | 80 | 80 | 100% |
 | Ch13 Human Health | 5 | 100 | 100 | 100% |
-| Ch14 Biotech Princ | 5 | 100 | 40 | 40% |
+| Ch14 Biotech Princ | 5 | 100 | 80 | 80% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **1,240** | **95.4%** |
+| **TOTAL** | **65** | **1,300** | **1,280** | **98.5%** |
