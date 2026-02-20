@@ -72,6 +72,24 @@ export async function getProfile(): Promise<MedProfile | null> {
   return data as MedProfile;
 }
 
+/**
+ * Check if onboarding is truly complete — flag is true AND critical fields filled.
+ * Catches users who had onboarding_completed set by the old quick flow with empty profile.
+ */
+export function isOnboardingActuallyComplete(profile: MedProfile | null): boolean {
+  if (!profile) return false;
+  if (!profile.onboarding_completed) return false;
+
+  // Critical fields that must be filled during onboarding
+  const hasName = (profile.display_name ?? '').trim().length >= 2;
+  const hasPhone = (profile.phone ?? '').trim().length >= 4;
+  const hasCollege = (profile.college ?? '').trim().length >= 2;
+  const hasCity = (profile.city ?? '').trim().length >= 2;
+  const hasExam = !!profile.exam;
+
+  return hasName && hasPhone && hasCollege && hasCity && hasExam;
+}
+
 // ── Complete onboarding (batch save) ─────────────────────────
 
 interface OnboardingPayload {

@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import { useTheme } from '../../src/hooks/useTheme';
 import { ToastProvider } from '../../src/components/ui/Toast';
-import { getProfile } from '../../src/lib/database';
+import { getProfile, isOnboardingActuallyComplete } from '../../src/lib/database';
 import { useAuth } from '../_layout';
 
 const TABS = [
@@ -30,7 +30,7 @@ export default function MainLayout() {
     (async () => {
       try {
         const profile = await getProfile();
-        if (!profile?.onboarding_completed) {
+        if (!isOnboardingActuallyComplete(profile)) {
           router.replace('/setup/welcome');
           return;
         }

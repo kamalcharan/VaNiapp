@@ -26,7 +26,7 @@ import { store, rehydrateStore, resetAllData } from '../src/store';
 import { setUser } from '../src/store/slices/authSlice';
 import { ToastProvider } from '../src/components/ui/Toast';
 import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
-import { getProfile, getUserSubjectIds } from '../src/lib/database';
+import { getProfile, getUserSubjectIds, isOnboardingActuallyComplete } from '../src/lib/database';
 import { pullRemoteProgress } from '../src/lib/progressSync';
 
 NativeSplashScreen.preventAutoHideAsync();
@@ -116,7 +116,7 @@ export default function RootLayout() {
           getProfile(),
           getUserSubjectIds(),
         ]);
-        setOnboardingDone(profile?.onboarding_completed ?? false);
+        setOnboardingDone(isOnboardingActuallyComplete(profile));
 
         // Hydrate Redux user from Supabase profile so usePersona + selectors work
         if (profile) {
