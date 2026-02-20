@@ -178,7 +178,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 |-------|----------|------------|-----|--------|
 | B40 | `zoo-chem-endocrine` | Endocrine Glands | 20 | DONE |
 | B41 | `zoo-chem-hormones` | Hormones | 20 | DONE |
-| B42 | `zoo-chem-feedback` | Feedback Mechanism | 20 | PENDING |
+| B42 | `zoo-chem-feedback` | Feedback Mechanism | 20 | DONE |
 | | | **Chapter 9 Total** | **60** | |
 
 ### Chapter 10: Human Reproduction (`zoo-human-reproduction`) — 5 batches
@@ -425,11 +425,11 @@ Commit and push.
 | Ch6 Excretion | 4 | 80 | 80 | 100% |
 | Ch7 Locomotion | 4 | 80 | 80 | 100% |
 | Ch8 Neural Control | 4 | 80 | 80 | 100% |
-| Ch9 Chemical Coord | 3 | 60 | 40 | 67% |
+| Ch9 Chemical Coord | 3 | 60 | 60 | 100% |
 | Ch10 Human Repro | 5 | 100 | 0 | 0% |
 | Ch11 Repro Health | 4 | 80 | 0 | 0% |
 | Ch12 Evolution | 4 | 80 | 0 | 0% |
 | Ch13 Human Health | 5 | 100 | 0 | 0% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **820** | **63.1%** |
+| **TOTAL** | **65** | **1,300** | **840** | **64.6%** |
