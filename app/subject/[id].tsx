@@ -35,48 +35,56 @@ function getStrengthConfig(level: StrengthLevel) {
   return STRENGTH_LEVELS.find((s) => s.id === level) || STRENGTH_LEVELS[0];
 }
 
-// VaNi coaching messages per chapter strength
-function getChapterCoaching(level: StrengthLevel, accuracy: number, chapterName: string): string {
+// VaNi coaching messages per chapter strength — always positive
+function getChapterCoaching(level: StrengthLevel, accuracy: number, _chapterName: string): string {
   if (level === 'needs-focus') {
-    if (accuracy < 25) return `This one's tricky — but that's okay. Let's go through it slowly together.`;
-    return `You're close to getting this. A focused retry will make the difference.`;
+    if (accuracy < 25) return `Every expert started here. One more round and you'll surprise yourself!`;
+    return `You're building a foundation — one more practice and this will click.`;
   }
-  if (level === 'just-started') return `Ready when you are! Let's see what you know.`;
+  if (level === 'just-started') return `Ready when you are! Let's see what you already know.`;
   if (level === 'getting-there') {
-    return `Good start! ${Math.round(accuracy)}% accuracy — let's push past 55%.`;
+    return `Nice progress! ${Math.round(accuracy)}% and climbing. You're getting the hang of this.`;
   }
   if (level === 'on-track') {
-    return `Solid work! ${Math.round(accuracy)}% accuracy. Keep this up.`;
+    return `Looking great! ${Math.round(accuracy)}% accuracy. You're on a roll.`;
   }
   // strong
-  return `You've nailed this! ${Math.round(accuracy)}% accuracy.`;
+  return `You've crushed this! ${Math.round(accuracy)}% accuracy. Exam-ready!`;
 }
 
-// VaNi subject-level coaching
+// VaNi subject-level coaching — always encouraging
 function getSubjectCoaching(
   level: StrengthLevel,
   accuracy: number,
   coverage: number,
-  weakestChapter: string | null,
+  nextUpChapter: string | null,
 ): string {
   if (level === 'just-started') {
     return `Let's begin your journey! Pick a chapter and I'll guide you through it.`;
   }
   if (level === 'needs-focus') {
-    return weakestChapter
-      ? `Your accuracy is ${Math.round(accuracy)}% overall. I'd focus on "${weakestChapter}" first — that's where we can improve the most.`
-      : `${Math.round(accuracy)}% accuracy with ${Math.round(coverage)}% coverage. Let's work on getting those fundamentals right.`;
+    return nextUpChapter
+      ? `${Math.round(accuracy)}% accuracy so far — you're just getting started! I'd try "${nextUpChapter}" next, it'll boost your confidence.`
+      : `${Math.round(accuracy)}% accuracy with ${Math.round(coverage)}% covered. Great start — keep going!`;
   }
   if (level === 'getting-there') {
-    return weakestChapter
-      ? `${Math.round(accuracy)}% accuracy across ${Math.round(coverage)}% of questions. "${weakestChapter}" needs the most attention.`
-      : `You're building momentum — ${Math.round(accuracy)}% accuracy. Keep practicing!`;
+    return nextUpChapter
+      ? `${Math.round(accuracy)}% accuracy across ${Math.round(coverage)}% of questions — solid momentum! "${nextUpChapter}" is a great next step.`
+      : `You're building momentum — ${Math.round(accuracy)}% accuracy. Keep it up!`;
   }
   if (level === 'on-track') {
-    return `${Math.round(accuracy)}% accuracy across ${Math.round(coverage)}% coverage — strong foundation! ${weakestChapter ? `"${weakestChapter}" could use one more round.` : 'Keep pushing!'}`;
+    return `${Math.round(accuracy)}% accuracy across ${Math.round(coverage)}% coverage — looking strong! ${nextUpChapter ? `"${nextUpChapter}" is your best next move.` : 'Keep this energy going!'}`;
   }
   // strong
-  return `${Math.round(accuracy)}% accuracy, ${Math.round(coverage)}% coverage. You're exam-ready here!`;
+  return `${Math.round(accuracy)}% accuracy, ${Math.round(coverage)}% covered. You're exam-ready here!`;
+}
+
+// VaNi nudge for not-started chapters
+function getNotStartedNudge(isRecommended: boolean, weightage: number): string | null {
+  if (isRecommended) return `VaNi recommends this one next!`;
+  if (weightage >= 8) return `High weightage — shows up often in exams`;
+  if (weightage >= 5) return `Good weightage chapter`;
+  return null;
 }
 
 export default function SubjectDetailScreen() {
@@ -222,21 +230,23 @@ export default function SubjectDetailScreen() {
 
   const hasProgress = chapterAnalytics.some((ca) => ca.totalAnswered > 0);
 
-  // Find weakest and strongest chapters
-  const weakestChapter = useMemo(() => {
+  // Find VaNi's recommended next chapter (most room to grow)
+  const nextUpChapter = useMemo(() => {
     const practiced = chapterAnalytics.filter((ca) => ca.totalAnswered > 0);
     if (practiced.length === 0) return null;
-    return practiced.reduce((weakest, ca) =>
-      ca.accuracy < weakest.accuracy ? ca : weakest,
+    // Pick the one with most room to grow (lowest accuracy among practiced)
+    return practiced.reduce((best, ca) =>
+      ca.accuracy < best.accuracy ? ca : best,
     );
   }, [chapterAnalytics]);
 
-  const strongestChapter = useMemo(() => {
-    const practiced = chapterAnalytics.filter((ca) => ca.totalAnswered > 0);
-    if (practiced.length === 0) return null;
-    return practiced.reduce((strongest, ca) =>
-      ca.accuracy > strongest.accuracy ? ca : strongest,
-    );
+  // VaNi's recommended not-started chapter
+  const recommendedNextId = useMemo(() => {
+    const notStarted = chapterAnalytics.filter((ca) => ca.totalAnswered === 0);
+    if (notStarted.length === 0) return null;
+    // Prefer highest weightage, otherwise first in list
+    const sorted = [...notStarted].sort((a, b) => (b.chapter.weightage ?? 0) - (a.chapter.weightage ?? 0));
+    return sorted[0]?.chapter.id ?? null;
   }, [chapterAnalytics]);
 
   // Sort chapters: needs-focus first, then by coverage (ascending), then not-started last
@@ -350,7 +360,7 @@ export default function SubjectDetailScreen() {
                     subjectStrength.level,
                     subjectStrength.accuracy,
                     subjectStrength.coverage,
-                    weakestChapter?.chapter.name ?? null,
+                    nextUpChapter?.chapter.name ?? null,
                   )}
                 </Text>
               </View>
@@ -369,17 +379,13 @@ export default function SubjectDetailScreen() {
             </StickyNote>
           )}
 
-          {/* ── VaNi suggestion for weakest chapter ── */}
-          {hasProgress && weakestChapter && weakestChapter.strengthLevel !== 'strong' && (
-            <StickyNote
-              color={weakestChapter.strengthLevel === 'needs-focus' ? 'pink' : 'yellow'}
-              rotation={-0.5}
-              delay={200}
-            >
+          {/* ── VaNi's next-up suggestion ── */}
+          {hasProgress && nextUpChapter && nextUpChapter.strengthLevel !== 'strong' && (
+            <StickyNote color="yellow" rotation={-0.5} delay={200}>
               <HandwrittenText variant="handSm">
-                {weakestChapter.strengthLevel === 'needs-focus'
-                  ? `"${weakestChapter.chapter.name}" needs your attention — ${Math.round(weakestChapter.accuracy)}% accuracy. Want to give it another shot?`
-                  : `I'd suggest working on "${weakestChapter.chapter.name}" next — it's your weakest area at ${Math.round(weakestChapter.accuracy)}%.`}
+                {nextUpChapter.accuracy < 40
+                  ? `"${nextUpChapter.chapter.name}" has the most room to grow — one more round and you'll see a big jump!`
+                  : `I'd pick "${nextUpChapter.chapter.name}" next — a little more practice and you'll be flying through it.`}
               </HandwrittenText>
             </StickyNote>
           )}
@@ -505,26 +511,39 @@ export default function SubjectDetailScreen() {
                           {getChapterCoaching(ca.strengthLevel, ca.accuracy, ca.chapter.name)}
                         </Text>
 
-                        {/* Retry CTA for weak chapters */}
-                        {isWeak && (
+                        {/* Practice again CTA for chapters with room to grow */}
+                        {(ca.strengthLevel === 'needs-focus' || ca.strengthLevel === 'getting-there') && (
                           <Pressable
-                            style={[styles.retryButton, { backgroundColor: '#EF444418' }]}
+                            style={[styles.practiceAgainButton, { backgroundColor: subject.color + '15' }]}
                             onPress={() => handleStartChapter(ca.chapter.id)}
                           >
-                            <Text style={[styles.retryText, { color: '#EF4444' }]}>
-                              Retry this chapter
+                            <Text style={[styles.practiceAgainText, { color: subject.color }]}>
+                              Practice again
                             </Text>
                           </Pressable>
                         )}
                       </View>
                     )}
 
-                    {/* Not started — light prompt */}
-                    {!practiced && !isLocked && (
-                      <Text style={[styles.notStartedText, { color: colors.textTertiary }]}>
-                        {ca.chapter.avg_questions > 0 ? `~${ca.chapter.avg_questions} questions` : 'Tap to start'}
-                      </Text>
-                    )}
+                    {/* Not started — VaNi nudge */}
+                    {!practiced && !isLocked && (() => {
+                      const isRec = ca.chapter.id === recommendedNextId;
+                      const nudge = getNotStartedNudge(isRec, ca.chapter.weightage ?? 0);
+                      return (
+                        <View style={styles.notStartedSection}>
+                          {nudge && (
+                            <View style={[styles.nudgeBadge, { backgroundColor: isRec ? subject.color + '15' : colors.surfaceBorder + '80' }]}>
+                              <Text style={[styles.nudgeText, { color: isRec ? subject.color : colors.textSecondary }]}>
+                                {nudge}
+                              </Text>
+                            </View>
+                          )}
+                          <Text style={[styles.notStartedText, { color: colors.textTertiary }]}>
+                            {ca.chapter.avg_questions > 0 ? `~${ca.chapter.avg_questions} questions` : 'Tap to start'}
+                          </Text>
+                        </View>
+                      );
+                    })()}
                     {isLocked && (
                       <Text style={[styles.notStartedText, { color: colors.textTertiary }]}>
                         Complete previous level to unlock
@@ -705,22 +724,35 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     lineHeight: 17,
   },
-  retryButton: {
+  practiceAgainButton: {
     paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.md,
     borderRadius: 10,
     alignSelf: 'flex-start',
   },
-  retryText: {
+  practiceAgainText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 12,
   },
 
   // Not started
+  notStartedSection: {
+    paddingLeft: 48,
+    gap: 4,
+  },
+  nudgeBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+    alignSelf: 'flex-start',
+  },
+  nudgeText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 10,
+  },
   notStartedText: {
     fontFamily: 'PlusJakartaSans_400Regular',
     fontSize: 11,
-    paddingLeft: 48,
   },
 
   // Quick practice CTA
