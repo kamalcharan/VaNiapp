@@ -1,6 +1,6 @@
 # VaNi App — Release Plan & Progress Tracker
 
-> **Last updated:** 2026-02-19
+> **Last updated:** 2026-02-20
 >
 > **Stack:** Expo SDK 54, React Native 0.81.5, React 19.1.0, expo-router v6,
 > Redux Toolkit + AsyncStorage, Supabase Auth + DB, Gemini AI
@@ -16,7 +16,8 @@
 | R7 | Strength Tracker + QuestionV2 Types | DONE |
 | R8 | 8 Question Type UIs + Adaptive Mix | DONE |
 | R9 | Practice V2 + Bookmarks + Dashboard V2 | DONE |
-| R10 | AI Doubt Solver (Gemini) + VaNi Sheet | IN PROGRESS |
+| R10 | AI Doubt Solver (Gemini) + VaNi Sheet + Practice Flows | DONE |
+| R10.5 | Persona, Progress Sync, VaNi Coaching, Positive UX | DONE |
 | R11 | Wrong-Answer Analysis + Concept Explainer | NOT STARTED |
 | R12 | AI Study Plan + Mock Analysis | NOT STARTED |
 | R13 | Paywall + Tier Gating | NOT STARTED |
@@ -70,9 +71,38 @@
 - [x] Bookmark system: Redux slice (`bookmarkSlice.ts`) with toggleBookmark
 - [x] Bookmark UI: Save/Saved badge on all 3 question screens with haptic feedback
 - [x] **Bookmarks viewer screen** (`app/(main)/bookmarks.tsx`) — fully working with footer tab
-- [x] Dashboard: "Saved Questions" card, "Focus Areas" section (weak chapters)
+- [x] Dashboard: "Saved Questions" card, strength-based coaching nudges
 - [x] Results V2: `chapter-results.tsx` with question type breakdown
-- [x] `getV2QuestionsByIds(ids)` utility for bookmark/weak-topic lookups
+- [x] `getV2QuestionsByIds(ids)` utility for bookmark/topic lookups
+
+### R10 — AI Doubt Solver (Gemini) + VaNi Sheet + Practice Flows
+- [x] `src/config/ai.ts` — Gemini API config (2.5-flash + 2.5-pro)
+- [x] `src/lib/aiClient.ts` — Gemini generateContent API client
+- [x] `src/store/slices/aiSlice.ts` — Redux slice for AI state, doubt cache, rate limiting
+- [x] `src/components/AskVaniSheet.tsx` — bottom sheet UI for doubt solving (intent-only, no free chat)
+- [x] VaNi sheet integrated on quick-practice quiz + answer-review screens
+- [x] Entry points: answer-review button, quiz-screen Ask VaNi pill
+- [x] **Quick Practice screen** (`app/quick-practice/`) — subject picker + 20-question quiz with timer
+- [x] **Practice Exam screen** (`app/practice-exam/`) — full NEET format mock (Section A/B, navigation, timer)
+- [x] Practice results with positive analytics (next-up / your-best framing)
+
+### R10.5 — Persona, Progress Sync, VaNi Coaching, Positive UX
+- [x] `usePersona` hook — target year, exam labels, coaching messages
+- [x] Persona wired into home, quiz, and subject screens
+- [x] `display_name` captured during onboarding, editable in profile
+- [x] **Progress sync to Supabase** — `syncChapterProgress()` on quiz completion, `pullRemoteProgress()` on launch
+- [x] Bookmarks fixed + language switching fixed
+- [x] **Subject detail with real strength data** — accuracy %, coverage bars, VaNi coaching per chapter
+- [x] VaNi coaching: purely positive language, zero negative framing across all screens
+- [x] "Practice again" button (subject-colored) replaces red "Retry" for chapters with room to grow
+- [x] Not-started chapters get VaNi nudges: "VaNi recommends this one next!", weightage hints
+- [x] Sticky notes: positive framing ("most room to grow" instead of "needs attention")
+- [x] Practice results: "PRACTICE NEXT" / "YOUR BEST" instead of "NEEDS WORK" / "STRONGEST"
+- [x] About VaNi + onboarding: "Smart topic nudges" replaces "Weak topic alerts"
+- [x] GlobalMusicOverlay in root layout (music player working)
+- [x] Music tracks migrated from jsDelivr to raw GitHub URLs
+- [x] Invite Your Gang CTA on dashboard + profile
+- [x] Redux user hydration fix for usePersona
 
 ### Database & Admin Tools — DONE
 - [x] 8 Supabase migrations (1,814 lines)
@@ -93,15 +123,32 @@
 
 ---
 
-## IN PROGRESS
+## NOT STARTED — Upcoming Releases
 
-### R10 — AI Doubt Solver (Gemini Refactor)
-- [x] `src/config/ai.ts` — Gemini API config (2.5-flash + 2.5-pro)
-- [x] `src/lib/aiClient.ts` — Gemini generateContent API client
-- [x] `src/store/slices/aiSlice.ts` — Redux slice for AI state, doubt cache, rate limiting
-- [x] `src/components/AskVaniSheet.tsx` — bottom sheet UI for doubt solving
-- [ ] Fix/test VaNi sheet integration on question screens
-- [ ] Entry points: answer-review button, struggling CTA, dashboard card
+### R11 — Wrong-Answer Analysis + Concept Explainer
+- [ ] Pre-generated explanation JSON files per chapter
+- [ ] Pre-generated concept files per subject
+- [ ] `scripts/generate-explanations.ts` (batch generation)
+- [ ] Edge Function fallbacks for cache misses
+- [ ] Wrong-answer UI card + Concept explainer bottom sheet
+
+### R12 — AI Study Plan + Mock Analysis
+- [ ] `ai-study-plan` Edge Function (Sonnet)
+- [ ] `ai-mock-analysis` Edge Function (Sonnet)
+- [ ] `performanceCollector.ts` — aggregate performance data
+- [ ] Study plan spread screen
+- [ ] Mock analysis on practice-results
+
+### R13 — Paywall + Tier Gating
+- [ ] `paywall.tsx` — tier comparison + Razorpay
+- [ ] `useAIGate.ts` hook
+- [ ] `payment-webhook` Edge Function
+- [ ] Tier enforcement across all AI entry points
+- [ ] Trial management (7-day)
+
+---
+
+## PENDING — Content & Tech Debt
 
 ### Question Content Creation — Zoology
 Progress: **520 / 1,300 questions (40%)**
@@ -124,59 +171,26 @@ See `docs/ZOO_GENERATION_PLAN.md` for full batch registry.
 | Chemistry | 15 | NOT STARTED |
 | Botany | 15 | NOT STARTED |
 
----
-
-## NOT STARTED — Upcoming Releases
-
-### R11 — Wrong-Answer Analysis + Concept Explainer
-- [ ] Pre-generated explanation JSON files per chapter
-- [ ] Pre-generated concept files per subject
-- [ ] `scripts/generate-explanations.ts` (batch generation)
-- [ ] Edge Function fallbacks for cache misses
-- [ ] Wrong-answer UI card + Concept explainer bottom sheet
-
-### R12 — AI Study Plan + Mock Analysis
-- [ ] `ai-study-plan` Edge Function (Sonnet)
-- [ ] `ai-mock-analysis` Edge Function (Sonnet)
-- [ ] `performanceCollector.ts` — aggregate performance data
-- [ ] Study plan weekly spread screen
-- [ ] Mock analysis on practice-results
-
-### R13 — Paywall + Tier Gating
-- [ ] `paywall.tsx` — tier comparison + Razorpay
-- [ ] `useAIGate.ts` hook
-- [ ] `payment-webhook` Edge Function
-- [ ] Tier enforcement across all AI entry points
-- [ ] Trial management (7-day)
-
----
-
-## KNOWN GAPS & TECH DEBT
-
 ### Features TBD
 | Feature | Impact | Effort |
 |---------|--------|--------|
-| Practice Exam / Quick Practice screens | HIGH — buttons exist on dashboard, both are no-ops | Medium |
-| Progress persistence to Supabase | HIGH — progress lost between devices | Medium |
 | Subscription check | MEDIUM — hardcoded `isTrial = true` | Low |
 | Diagram image rendering | LOW — 4 sample questions have placeholder URIs | Low |
 | Additional languages (Hindi, Tamil, Kannada) | MEDIUM — English only currently | High |
-| Practice My Mistakes mode | MEDIUM — `getV2QuestionsByIds()` ready, no UI | Low |
-| Analytics / Study Gang features | LOW — "coming soon" on dashboard | High |
+| Practice My Saved Mistakes mode | MEDIUM — `getV2QuestionsByIds()` ready, no UI yet | Low |
 
 ### Tech Debt
 | Item | File | Notes |
 |------|------|-------|
 | `expo-av` deprecated | `src/hooks/useAudioPlayer.ts` | Migrate to `expo-audio` on next native build |
-| `practice-results.tsx` uses legacy Question type | `app/(exam)/practice-results.tsx` | Needs V2 upgrade like chapter-results |
-| Subject progress not fetched from DB | `app/subject/[id].tsx:90` | Hardcoded to no-progress |
+| `practice-results.tsx` uses legacy Question type | `app/(exam)/practice-results.tsx` | Upgrade to V2 like chapter-results |
 | Topic ID always null in Qbank insert | `Qbank/insert.html:316` | Doesn't map topic names to IDs |
 
 ---
 
 ## MUSIC TRACKS
 
-6 lo-fi tracks served via jsDelivr CDN from [lofi-resources](https://github.com/ItzAshOffcl/lofi-resources):
+6 lo-fi tracks served via raw GitHub URLs from [lofi-resources](https://github.com/ItzAshOffcl/lofi-resources):
 
 | Track | Mood | File |
 |-------|------|------|
@@ -193,7 +207,7 @@ See `docs/ZOO_GENERATION_PLAN.md` for full batch registry.
 
 ### Navigation Structure
 ```
-app/_layout.tsx                  — Root layout (theme, fonts, Redux, splash)
+app/_layout.tsx                  — Root layout (theme, fonts, Redux, splash, GlobalMusicOverlay)
 app/(main)/
   _layout.tsx                    — 3-tab footer: Study Board | Saved | Me
   index.tsx                      — Dashboard
@@ -202,15 +216,17 @@ app/(main)/
 app/(auth)/                      — Auth + onboarding flow (10 screens)
 app/(exam)/                      — Exam flow (11 screens)
 app/chapter/[id].tsx             — Chapter practice
-app/subject/[id].tsx             — Subject detail
+app/subject/[id].tsx             — Subject detail + VaNi coaching analytics
+app/quick-practice/              — Quick Practice (subject picker + 20-Q quiz)
+app/practice-exam/               — Practice Exam (NEET format mock)
 app/setup/                       — Language, getting started
 ```
 
-### State Management (Redux + AsyncStorage)
+### State Management (Redux + AsyncStorage + Supabase sync)
 ```
 authSlice     — User profile, language, exam type
 practiceSlice — Exam sessions + history
-strengthSlice — Per-chapter mastery tracking
+strengthSlice — Per-chapter mastery tracking (synced to Supabase)
 bookmarkSlice — Saved question IDs
 aiSlice       — AI usage, doubt cache, rate limiting
 squadSlice    — Study groups
@@ -221,10 +237,10 @@ focusSlice    — App-switch tracking
 ### Data Flow
 ```
 Questions:  Supabase DB → Qbank tools → JSON → App bundle
-Progress:   Redux → AsyncStorage (device-only for now)
+Progress:   Redux → AsyncStorage → Supabase sync (both directions)
 Auth:       Supabase Auth (email/OTP)
 AI:         Gemini API (2.5-flash / 2.5-pro) via direct client call
-Music:      jsDelivr CDN → expo-av streaming
+Music:      GitHub raw CDN → expo-av streaming
 ```
 
 ---
@@ -236,7 +252,7 @@ Music:      jsDelivr CDN → expo-av streaming
 | Doubt Solver | Gemini 2.5 Flash (80%) / Pro (20%) | 20-50/user/day | ~₹0.02-0.50 |
 | Wrong-Answer Analysis | Flash | 5-10/user/day (cache misses) | ~₹0.02 |
 | Concept Explainer | Pro | 3-5/user/day (cache misses) | ~₹0.50 |
-| Study Plan | Pro | 1/user/week | ~₹0.70 |
+| Study Plan | Pro | 1/user/session | ~₹0.70 |
 | Mock Analysis | Pro | 2-4/user/month | ~₹1.00 |
 
 Estimated: **₹30-50/user/month** with Gemini pricing + client cache.

@@ -53,13 +53,13 @@ const VANI_SCREENS = [
     id: 'tracking',
     title: 'I Track Everything',
     subtitle: 'So you focus on what matters',
-    body: "Every question you answer teaches me about your strengths and weaknesses. I'll make sure you spend time where it counts.",
+    body: "Every question you answer helps me understand your strengths. I'll guide you to the chapters where you can grow the most.",
     emoji: '📊',
     highlight: {
       type: 'features',
       items: [
         { emoji: '✅', text: 'Chapter-wise progress' },
-        { emoji: '🎯', text: 'Weak topic alerts' },
+        { emoji: '🎯', text: 'Smart topic nudges' },
         { emoji: '📈', text: 'Accuracy trends' },
       ],
     },

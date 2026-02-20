@@ -258,7 +258,7 @@ export default function SubjectDetailScreen() {
       // Needs-focus goes first
       if (a.strengthLevel === 'needs-focus' && b.strengthLevel !== 'needs-focus') return -1;
       if (a.strengthLevel !== 'needs-focus' && b.strengthLevel === 'needs-focus') return 1;
-      // Then by accuracy ascending (weakest first)
+      // Then by accuracy ascending (most room to grow first)
       return a.accuracy - b.accuracy;
     });
   }, [chapterAnalytics]);
@@ -399,7 +399,7 @@ export default function SubjectDetailScreen() {
             {sortedChapterAnalytics.map((ca, idx) => {
               const chConfig = getStrengthConfig(ca.strengthLevel);
               const practiced = ca.totalAnswered > 0;
-              const isWeak = ca.strengthLevel === 'needs-focus';
+
               const isLocked = persona.showLevels && idx > 0 && !hasProgress;
 
               return (

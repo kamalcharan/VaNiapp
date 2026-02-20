@@ -118,7 +118,7 @@ export default function PracticeResultsScreen() {
       }))
       .sort((a, b) => a.accuracy - b.accuracy);
 
-    return { diffStats, chapters, weakest: chapters[0], strongest: chapters[chapters.length - 1] };
+    return { diffStats, chapters, nextUp: chapters[0], strongest: chapters[chapters.length - 1] };
   }, [lastExam]);
 
   const handleRetry = () => router.replace('/practice-exam');
@@ -283,8 +283,8 @@ export default function PracticeResultsScreen() {
               <StickyNote color="yellow" rotation={-1} delay={300}>
                 <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20 }]}>
                   {percentage >= 60
-                    ? 'Strong performance! Focus on your weakest subject and try the Chapter Exam mode for targeted practice.'
-                    : 'Use Chapter Exam mode to strengthen individual chapters. Focus on the explanations and elimination techniques.'}
+                    ? 'Great performance! Try Chapter Exam mode to grow even further in your best subjects.'
+                    : 'Every practice makes you better! Try Chapter Exam mode to build confidence one chapter at a time.'}
                 </Text>
               </StickyNote>
             </>
@@ -398,18 +398,18 @@ export default function PracticeResultsScreen() {
                 </JournalCard>
               )}
 
-              {/* Weak / Strong identification */}
-              {analytics?.weakest && analytics?.strongest && (
-                <View style={styles.weakStrongRow}>
-                  <StickyNote color="pink" rotation={-1} delay={400}>
-                    <Text style={[Typography.label, { color: '#EF4444', marginBottom: 4 }]}>NEEDS WORK</Text>
+              {/* Next Up / Best Subject identification */}
+              {analytics?.nextUp && analytics?.strongest && (
+                <View style={styles.nextUpStrongRow}>
+                  <StickyNote color="yellow" rotation={-1} delay={400}>
+                    <Text style={[Typography.label, { color: '#F59E0B', marginBottom: 4 }]}>PRACTICE NEXT</Text>
                     <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20 }]}>
-                      {analytics.weakest.name}{'\n'}
-                      {analytics.weakest.accuracy}% accuracy
+                      {analytics.nextUp.name}{'\n'}
+                      {analytics.nextUp.accuracy}% — most room to grow!
                     </Text>
                   </StickyNote>
                   <StickyNote color="teal" rotation={1} delay={500}>
-                    <Text style={[Typography.label, { color: '#22C55E', marginBottom: 4 }]}>STRONGEST</Text>
+                    <Text style={[Typography.label, { color: '#22C55E', marginBottom: 4 }]}>YOUR BEST</Text>
                     <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20 }]}>
                       {analytics.strongest.name}{'\n'}
                       {analytics.strongest.accuracy}% accuracy
@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans_800ExtraBold',
     fontSize: 14,
   },
-  weakStrongRow: {
+  nextUpStrongRow: {
     flexDirection: 'row',
     gap: Spacing.md,
   },
