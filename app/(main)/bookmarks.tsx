@@ -22,6 +22,7 @@ import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
 import { removeBookmark } from '../../src/store/slices/bookmarkSlice';
 import { supabase } from '../../src/lib/supabase';
+import { getV2QuestionsByIds } from '../../src/data/questions';
 
 interface BookmarkedQuestion {
   id: string;
@@ -60,7 +61,7 @@ export default function BookmarksScreen() {
     ]).start();
   }, []);
 
-  // Fetch bookmarked question details from Supabase
+  // Fetch bookmarked question details from local data + Supabase
   useEffect(() => {
     if (bookmarkedIds.length === 0) {
       setQuestions([]);
@@ -70,54 +71,43 @@ export default function BookmarksScreen() {
 
     (async () => {
       setIsLoading(true);
-      if (!supabase) {
-        setIsLoading(false);
-        return;
-      }
 
-      const { data, error } = await supabase
-        .from('med_questions')
-        .select('id, question_text, subject_id, chapter_id, difficulty, correct_answer, payload')
-        .in('id', bookmarkedIds)
-        .eq('is_active', true);
+      // 1. Look up local questions first (chapter bank + V2 samples)
+      const localQuestions = getV2QuestionsByIds(bookmarkedIds);
+      const localResults: BookmarkedQuestion[] = localQuestions.map((q) => ({
+        id: q.id,
+        questionText: q.text,
+        subjectId: q.subjectId,
+        chapterId: q.chapterId,
+        difficulty: q.difficulty,
+        correctAnswer: '',
+      }));
+      const foundLocalIds = new Set(localResults.map((q) => q.id));
 
-      if (error || !data) {
-        // Try matching by payload->question_id for questions with custom IDs
-        const { data: data2 } = await supabase
+      // 2. For any IDs not found locally, try Supabase
+      const remainingIds = bookmarkedIds.filter((id) => !foundLocalIds.has(id));
+      let supabaseResults: BookmarkedQuestion[] = [];
+
+      if (remainingIds.length > 0 && supabase) {
+        const { data } = await supabase
           .from('med_questions')
           .select('id, question_text, subject_id, chapter_id, difficulty, correct_answer, payload')
+          .in('id', remainingIds)
           .eq('is_active', true);
 
-        if (data2) {
-          const matched = data2.filter((q: any) => {
-            const qid = (q.payload as any)?.question_id || q.id;
-            return bookmarkedIds.includes(qid);
-          });
-          setQuestions(
-            matched.map((q: any) => ({
-              id: (q.payload as any)?.question_id || q.id,
-              questionText: q.question_text,
-              subjectId: q.subject_id,
-              chapterId: q.chapter_id,
-              difficulty: q.difficulty,
-              correctAnswer: q.correct_answer,
-            })),
-          );
+        if (data && data.length > 0) {
+          supabaseResults = data.map((q: any) => ({
+            id: (q.payload as any)?.question_id || q.id,
+            questionText: q.question_text,
+            subjectId: q.subject_id,
+            chapterId: q.chapter_id,
+            difficulty: q.difficulty,
+            correctAnswer: q.correct_answer,
+          }));
         }
-        setIsLoading(false);
-        return;
       }
 
-      setQuestions(
-        data.map((q: any) => ({
-          id: (q.payload as any)?.question_id || q.id,
-          questionText: q.question_text,
-          subjectId: q.subject_id,
-          chapterId: q.chapter_id,
-          difficulty: q.difficulty,
-          correctAnswer: q.correct_answer,
-        })),
-      );
+      setQuestions([...localResults, ...supabaseResults]);
       setIsLoading(false);
     })();
   }, [bookmarkedIds]);
