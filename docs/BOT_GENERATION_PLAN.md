@@ -100,9 +100,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B04 | `bot-class-monera` | Kingdom Monera (Bacteria & Archaebacteria) | 20 | DONE |
-| B05 | `bot-class-protista` | Kingdom Protista | 20 | PENDING |
+| B05 | `bot-class-protista` | Kingdom Protista | 20 | DONE |
 | B06 | `bot-class-fungi` | Kingdom Fungi | 20 | DONE |
-| B07 | `bot-class-viruses` | Viruses, Viroids and Lichens | 20 | PENDING |
+| B07 | `bot-class-viruses` | Viruses, Viroids and Lichens | 20 | DONE |
 | | | **Chapter 2 Total** | **80** | |
 
 ### Chapter 3: Plant Kingdom (`bot-plant-kingdom`) — 5 batches
@@ -199,7 +199,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B44 | `bot-growth-phases` | Growth Phases and Differentiation | 20 | PENDING |
+| B44 | `bot-growth-phases` | Growth Phases and Differentiation | 20 | DONE |
 | B45 | `bot-growth-auxin` | Auxins and Gibberellins | 20 | PENDING |
 | B46 | `bot-growth-cytokinins` | Cytokinins, ABA, and Ethylene | 20 | PENDING |
 | B47 | `bot-growth-photoperiodism` | Photoperiodism and Vernalisation | 20 | PENDING |
