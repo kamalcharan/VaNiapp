@@ -112,7 +112,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | B08 | `bot-plant-algae` | Algae | 20 | DONE |
 | B09 | `bot-plant-bryophytes` | Bryophytes | 20 | DONE |
 | B10 | `bot-plant-pteridophytes` | Pteridophytes | 20 | DONE |
-| B11 | `bot-plant-gymnosperms` | Gymnosperms | 20 | PENDING |
+| B11 | `bot-plant-gymnosperms` | Gymnosperms | 20 | DONE |
 | B12 | `bot-plant-angiosperms` | Angiosperms and Alternation of Generations | 20 | PENDING |
 | | | **Chapter 3 Total** | **100** | |
 
