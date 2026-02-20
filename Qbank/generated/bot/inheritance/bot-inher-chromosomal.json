@@ -303,59 +303,59 @@
     "id": "bot-inher-chromosomal-13",
     "question_type": "assertion-reasoning",
     "difficulty": "medium",
-    "question_text": "Assertion (A): Linked genes do not show independent assortment.\nReason (R): Linked genes are located on the same chromosome and tend to be inherited together.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
-    "explanation": "The assertion is correct because linked genes (genes on the same chromosome) do not show independent assortment, which applies only to genes on different chromosomes. The reason is also correct and directly explains the assertion: because linked genes are physically located on the same chromosome, they tend to be transmitted together during meiosis, which is exactly why they do not assort independently.",
-    "correct_answer": "A",
-    "concept_tags": ["linkage", "independent-assortment", "linked-genes"],
+    "question_text": "Assertion (A): Recombination between linked genes produces new gene combinations in offspring.\nReason (R): Polyploidy increases the number of complete chromosome sets in an organism.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The assertion is correct because crossing over during meiosis leads to recombination between linked genes, producing new combinations of alleles in the offspring. The reason is also correct because polyploidy does involve an increase in complete sets of chromosomes (e.g., 3n, 4n). However, the reason does not explain the assertion, as polyploidy has no connection to recombination between linked genes. Therefore, both statements are true but R is not the correct explanation of A.",
+    "correct_answer": "B",
+    "concept_tags": ["recombination", "polyploidy", "linked-genes", "crossing-over"],
     "topic": "Chromosomal Disorders, Linkage, and Recombination",
     "subject": "biology",
     "chapter": "Principles of Inheritance and Variation",
     "bloom_level": "analyze",
     "exam_suitability": ["NEET"],
     "options": [
-      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true},
-      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": true},
       {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
       {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "B", "hint": "The reason directly explains why linked genes fail to assort independently; the causal link is clear.", "misconception": "Failing to see the direct cause-effect relationship between location on same chromosome and lack of independent assortment"},
-      {"option_key": "C", "hint": "The reason statement is factually correct as per NCERT: linked genes are indeed on the same chromosome and inherited together.", "misconception": null},
-      {"option_key": "D", "hint": "The assertion is correct; linked genes genuinely do not assort independently, as established by Morgan.", "misconception": null}
+      {"option_key": "A", "hint": "Polyploidy is about whole chromosome set changes and has no causal link to recombination between linked genes.", "misconception": "Incorrectly connecting polyploidy with recombination between linked genes"},
+      {"option_key": "C", "hint": "The reason is factually correct; polyploidy does increase complete chromosome sets. It is just not related to the assertion.", "misconception": "Thinking polyploidy is an incorrect concept"},
+      {"option_key": "D", "hint": "The assertion is correct; recombination during crossing over does produce new gene combinations from linked genes.", "misconception": "Denying that crossing over generates new allele combinations"}
     ]
   },
   {
     "id": "bot-inher-chromosomal-14",
     "question_type": "assertion-reasoning",
     "difficulty": "hard",
-    "question_text": "Assertion (A): The frequency of recombination between two linked genes can never exceed 50%.\nReason (R): Genes located very far apart on the same chromosome behave as if they are unlinked and show independent assortment.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
-    "explanation": "Both statements are correct. The recombination frequency between two genes can never exceed 50% because this is the maximum value obtained when genes assort independently (as on different chromosomes). When two linked genes are very far apart on the same chromosome, multiple crossovers can occur between them, and the effective recombination frequency approaches 50%, making them behave as though unlinked. The reason correctly explains why the recombination frequency caps at 50%.",
-    "correct_answer": "A",
-    "concept_tags": ["recombination-frequency", "linkage", "crossing-over", "independent-assortment"],
+    "question_text": "Assertion (A): Down syndrome is an autosomal disorder caused by non-disjunction of sex chromosomes.\nReason (R): In Down syndrome, the affected individual has an extra copy of chromosome 21 resulting in 47 chromosomes.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The assertion is incorrect because Down syndrome is caused by trisomy of chromosome 21 (an autosome), not by non-disjunction of sex chromosomes. Non-disjunction of chromosome 21 during meiosis leads to the extra copy. The reason is correct: individuals with Down syndrome do have 47 chromosomes due to an extra chromosome 21. Since the assertion is wrong but the reason is correct, the answer is D.",
+    "correct_answer": "D",
+    "concept_tags": ["down-syndrome", "non-disjunction", "trisomy-21", "autosomal-disorder"],
     "topic": "Chromosomal Disorders, Linkage, and Recombination",
     "subject": "biology",
     "chapter": "Principles of Inheritance and Variation",
     "bloom_level": "analyze",
     "exam_suitability": ["NEET"],
     "options": [
-      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true},
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false},
       {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
       {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
-      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": true}
     ],
     "elimination_hints": [
-      {"option_key": "B", "hint": "The reason directly explains the 50% cap: genes far apart behave as unlinked, and unlinked genes show 50% recombination, which is the maximum.", "misconception": "Not recognising the causal link between distant gene behaviour and the 50% ceiling"},
-      {"option_key": "C", "hint": "The reason is factually correct; genes far apart on the same chromosome do show independent assortment-like behaviour due to multiple crossovers.", "misconception": null},
-      {"option_key": "D", "hint": "The assertion is correct; 50% is indeed the theoretical maximum for recombination frequency.", "misconception": "Thinking recombination frequency can exceed 50%"}
+      {"option_key": "A", "hint": "The assertion incorrectly states that Down syndrome involves sex chromosome non-disjunction; it actually involves autosome 21.", "misconception": "Confusing autosomal trisomy with sex chromosome non-disjunction"},
+      {"option_key": "B", "hint": "The assertion itself is factually wrong, so the relationship between A and R is irrelevant for this option.", "misconception": null},
+      {"option_key": "C", "hint": "The reason is correct; Down syndrome individuals do have 47 chromosomes due to an extra chromosome 21 as stated in NCERT.", "misconception": "Thinking the reason statement about trisomy 21 is incorrect"}
     ]
   },
   {
     "id": "bot-inher-chromosomal-15",
     "question_type": "match-the-following",
     "difficulty": "medium",
-    "question_text": "Match the following chromosomal disorders with their characteristics:\n\nColumn I:\n(p) Down syndrome\n(q) Turner syndrome\n(r) Klinefelter syndrome\n\nColumn II:\n(i) 47, XXY; sterile male with gynaecomastia\n(ii) 45, XO; sterile female with webbed neck\n(iii) Trisomy 21; short stature with mental retardation\n\nSelect the correct match:\n(A) p-iii, q-ii, r-i\n(B) p-ii, q-iii, r-i\n(C) p-iii, q-i, r-ii\n(D) p-i, q-ii, r-iii",
-    "explanation": "Down syndrome is caused by trisomy of chromosome 21, with characteristic features of short stature and mental retardation (p-iii). Turner syndrome has 45, XO karyotype and affected individuals are sterile females with webbed neck (q-ii). Klinefelter syndrome has 47, XXY karyotype and affected individuals are sterile males showing gynaecomastia (r-i). These are the three major chromosomal disorders described in NCERT.",
-    "correct_answer": "A",
+    "question_text": "Match the following chromosomal disorders with their characteristics:\n\nColumn I:\n(p) Down syndrome\n(q) Turner syndrome\n(r) Klinefelter syndrome\n\nColumn II:\n(i) 45, XO; sterile female with webbed neck\n(ii) Trisomy 21; short stature with mental retardation\n(iii) 47, XXY; sterile male with gynaecomastia\n\nSelect the correct match:\n(A) p-i, q-ii, r-iii\n(B) p-iii, q-i, r-ii\n(C) p-ii, q-iii, r-i\n(D) p-ii, q-i, r-iii",
+    "explanation": "Down syndrome is caused by trisomy of chromosome 21, with characteristic features of short stature and mental retardation (p-ii). Turner syndrome has 45, XO karyotype and affected individuals are sterile females with webbed neck (q-i). Klinefelter syndrome has 47, XXY karyotype and affected individuals are sterile males showing gynaecomastia (r-iii). These are the three major chromosomal disorders described in NCERT.",
+    "correct_answer": "D",
     "concept_tags": ["down-syndrome", "turner-syndrome", "klinefelter-syndrome", "chromosomal-disorders"],
     "topic": "Chromosomal Disorders, Linkage, and Recombination",
     "subject": "biology",
@@ -363,15 +363,15 @@
     "bloom_level": "remember",
     "exam_suitability": ["NEET"],
     "options": [
-      {"key": "A", "text": "p-iii, q-ii, r-i", "is_correct": true},
-      {"key": "B", "text": "p-ii, q-iii, r-i", "is_correct": false},
-      {"key": "C", "text": "p-iii, q-i, r-ii", "is_correct": false},
-      {"key": "D", "text": "p-i, q-ii, r-iii", "is_correct": false}
+      {"key": "A", "text": "p-i, q-ii, r-iii", "is_correct": false},
+      {"key": "B", "text": "p-iii, q-i, r-ii", "is_correct": false},
+      {"key": "C", "text": "p-ii, q-iii, r-i", "is_correct": false},
+      {"key": "D", "text": "p-ii, q-i, r-iii", "is_correct": true}
     ],
     "elimination_hints": [
-      {"option_key": "B", "hint": "This pairs Down syndrome with 45, XO, but Down syndrome involves trisomy 21 (47 chromosomes), not monosomy.", "misconception": "Confusing autosomal and sex chromosomal disorders"},
-      {"option_key": "C", "hint": "This pairs Turner syndrome with XXY, but Turner syndrome is XO (monosomy of X), not XXY.", "misconception": "Swapping the karyotypes of Turner and Klinefelter syndromes"},
-      {"option_key": "D", "hint": "This pairs Down syndrome with XXY and Klinefelter with trisomy 21, which reverses their actual features.", "misconception": "Completely mismatching autosomal and sex chromosomal disorders"}
+      {"option_key": "A", "hint": "This pairs Down syndrome with 45, XO, but Down syndrome involves trisomy 21 (47 chromosomes), not monosomy.", "misconception": "Confusing autosomal and sex chromosomal disorders"},
+      {"option_key": "B", "hint": "This pairs Down syndrome with XXY, but Down syndrome is an autosomal disorder involving chromosome 21, not a sex chromosome abnormality.", "misconception": "Confusing autosomal trisomy with sex chromosome trisomy"},
+      {"option_key": "C", "hint": "This pairs Turner syndrome with XXY and Klinefelter with XO, which swaps their karyotypes.", "misconception": "Swapping the karyotypes of Turner and Klinefelter syndromes"}
     ]
   },
   {
