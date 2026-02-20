@@ -241,7 +241,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | B66 | `zoo-bioapp-gmo` | GMO | 20 | DONE |
 | B67 | `zoo-bioapp-bt` | Bt Crops | 20 | DONE |
 | B68 | `zoo-bioapp-gene-therapy` | Gene Therapy | 20 | DONE |
-| B69 | `zoo-bioapp-transgenic` | Transgenic Animals | 20 | PENDING |
+| B69 | `zoo-bioapp-transgenic` | Transgenic Animals | 20 | DONE |
 | | | **Chapter 15 Total** | **80** | |
 
 ---
@@ -431,6 +431,6 @@ Commit and push.
 | Ch12 Evolution | 4 | 80 | 80 | 100% |
 | Ch13 Human Health | 5 | 100 | 100 | 100% |
 | Ch14 Biotech Princ | 5 | 100 | 100 | 100% |
-| Ch15 Biotech Apps | 4 | 80 | 60 | 75% |
-| **TOTAL** | **65** | **1,300** | **1,280** | **98.5%** |
+| Ch15 Biotech Apps | 4 | 80 | 80 | 100% |
+| **TOTAL** | **65** | **1,300** | **1,300** | **100%** |
 
