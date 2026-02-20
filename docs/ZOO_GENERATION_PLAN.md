@@ -239,8 +239,8 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B66 | `zoo-bioapp-gmo` | GMO | 20 | DONE |
-| B67 | `zoo-bioapp-bt` | Bt Crops | 20 | PENDING |
-| B68 | `zoo-bioapp-gene-therapy` | Gene Therapy | 20 | PENDING |
+| B67 | `zoo-bioapp-bt` | Bt Crops | 20 | DONE |
+| B68 | `zoo-bioapp-gene-therapy` | Gene Therapy | 20 | DONE |
 | B69 | `zoo-bioapp-transgenic` | Transgenic Animals | 20 | PENDING |
 | | | **Chapter 15 Total** | **80** | |
 
@@ -431,6 +431,6 @@ Commit and push.
 | Ch12 Evolution | 4 | 80 | 80 | 100% |
 | Ch13 Human Health | 5 | 100 | 100 | 100% |
 | Ch14 Biotech Princ | 5 | 100 | 100 | 100% |
-| Ch15 Biotech Apps | 4 | 80 | 20 | 25% |
-| **TOTAL** | **65** | **1,300** | **1,240** | **95.4%** |
+| Ch15 Biotech Apps | 4 | 80 | 60 | 75% |
+| **TOTAL** | **65** | **1,300** | **1,280** | **98.5%** |
 
