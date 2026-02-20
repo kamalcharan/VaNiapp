@@ -6,6 +6,7 @@ import {
   Pressable,
   Animated,
   Easing,
+  Share,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -17,7 +18,7 @@ import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing } from '../../src/constants/theme';
-import { getProfile, getUserSubjectIds, MedProfile } from '../../src/lib/database';
+import { getProfile, getUserSubjectIds, generateReferralCode, MedProfile } from '../../src/lib/database';
 import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
 import { RootState } from '../../src/store';
@@ -147,6 +148,19 @@ export default function DashboardScreen() {
   const handleExamFocusChange = (focus: ExamFocus) => {
     setExamFocus(focus);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  };
+
+  const handleInviteGang = async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    try {
+      const code = await generateReferralCode();
+      const examText = profile?.exam === 'BOTH' ? 'NEET & CUET' : profile?.exam || 'exams';
+      await Share.share({
+        message: `Hey! I'm prepping for ${examText} on VaNi. Join my study gang!\n\nUse my code: ${code}\n\nDownload VaNi and let's crack it together!`,
+      });
+    } catch {
+      // share dismissed or failed
+    }
   };
 
   // Entrance animation
@@ -405,10 +419,35 @@ export default function DashboardScreen() {
 
           </View>
 
+          {/* Invite Your Gang CTA */}
+          <JournalCard delay={550} rotation={-0.3}>
+            <Pressable style={styles.inviteCta} onPress={handleInviteGang}>
+              <View style={styles.inviteCtaLeft}>
+                <Text style={styles.inviteCtaEmoji}>{'\uD83D\uDC6F'}</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={[Typography.h3, { color: colors.text }]}>
+                    Invite Your Gang
+                  </Text>
+                  <Text
+                    style={[
+                      Typography.bodySm,
+                      { color: colors.textSecondary, marginTop: 2 },
+                    ]}
+                  >
+                    Study together, score better!
+                  </Text>
+                </View>
+              </View>
+              <View style={[styles.inviteCtaBadge, { backgroundColor: colors.primary }]}>
+                <Text style={styles.inviteCtaBadgeText}>Share</Text>
+              </View>
+            </Pressable>
+          </JournalCard>
+
           {/* Coming Soon */}
-          <StickyNote color="teal" rotation={0.5} delay={500}>
+          <StickyNote color="teal" rotation={0.5} delay={600}>
             <HandwrittenText variant="handSm">
-              Questions, analytics, and study gang features coming soon!
+              Questions, analytics, and more coming soon!
             </HandwrittenText>
           </StickyNote>
         </Animated.ScrollView>
@@ -505,5 +544,29 @@ const styles = StyleSheet.create({
   },
   actionIcon: {
     fontSize: 32,
+  },
+  // Invite CTA
+  inviteCta: {
+    flexDirection: 'column',
+    gap: Spacing.md,
+  },
+  inviteCtaLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+  },
+  inviteCtaEmoji: {
+    fontSize: 36,
+  },
+  inviteCtaBadge: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.sm,
+    borderRadius: 20,
+  },
+  inviteCtaBadgeText: {
+    color: '#FFFFFF',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 14,
   },
 });
