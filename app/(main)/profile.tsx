@@ -8,6 +8,7 @@ import {
   Animated,
   Easing,
   ActivityIndicator,
+  Share,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -26,6 +27,8 @@ import {
   getUserSubjectIds,
   updateProfile,
   signOut,
+  generateReferralCode,
+  joinWithReferralCode,
   MedProfile,
 } from '../../src/lib/database';
 import { getSubjects, getLanguages, CatalogSubject, CatalogLanguage } from '../../src/lib/catalog';
@@ -61,6 +64,9 @@ export default function ProfileScreen() {
   const [saving, setSaving] = useState(false);
   const [logoutDialog, setLogoutDialog] = useState(false);
   const [subjectDialog, setSubjectDialog] = useState(false);
+  const [referralCode, setReferralCode] = useState<string | null>(null);
+  const [joinCode, setJoinCode] = useState('');
+  const [generatingCode, setGeneratingCode] = useState(false);
   const [pendingExamChange, setPendingExamChange] = useState<ExamType | null>(null);
 
   const EXAM_OPTIONS: { id: ExamType; label: string; emoji: string }[] = [
@@ -190,6 +196,44 @@ export default function ProfileScreen() {
   const handleSignOut = async () => {
     setLogoutDialog(false);
     await signOut();
+  };
+
+  const handleGenerateCode = async () => {
+    setGeneratingCode(true);
+    try {
+      const code = await generateReferralCode();
+      setReferralCode(code);
+    } catch {
+      toast.show('error', 'Could not generate code');
+    } finally {
+      setGeneratingCode(false);
+    }
+  };
+
+  const handleShareInvite = async () => {
+    if (!referralCode) {
+      await handleGenerateCode();
+    }
+    const examText = profile?.exam === 'BOTH' ? 'NEET & CUET' : profile?.exam || 'exams';
+    const code = referralCode || 'VaNi';
+    try {
+      await Share.share({
+        message: `Hey! I'm prepping for ${examText} on VaNi. Join my study gang!\n\nUse code: ${code}\n\nDownload VaNi and let's study together.`,
+      });
+    } catch {
+      // share dismissed
+    }
+  };
+
+  const handleJoinGang = async () => {
+    if (joinCode.trim().length < 4) return;
+    const ok = await joinWithReferralCode(joinCode.trim());
+    if (ok) {
+      toast.show('success', 'Joined!', 'Welcome to the gang');
+      setJoinCode('');
+    } else {
+      toast.show('error', 'Invalid code', 'Check the code and try again');
+    }
   };
 
   const examLabel =
@@ -633,6 +677,84 @@ export default function ProfileScreen() {
             </JournalCard>
           )}
 
+          {/* Invite / Referral */}
+          <JournalCard rotation={0.3} delay={350}>
+            <Text
+              style={[
+                Typography.label,
+                { color: colors.textTertiary, marginBottom: Spacing.md },
+              ]}
+            >
+              STUDY GANG
+            </Text>
+
+            {/* Share invite */}
+            <Pressable
+              style={[styles.inviteRow, { backgroundColor: colors.primaryLight }]}
+              onPress={handleShareInvite}
+            >
+              <Text style={{ fontSize: 20 }}>{'\uD83D\uDCE8'}</Text>
+              <View style={{ flex: 1 }}>
+                <Text style={[Typography.body, { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
+                  Invite Friends
+                </Text>
+                <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                  Share your code & study together
+                </Text>
+              </View>
+              <Text style={{ color: colors.textTertiary }}>{'\u203A'}</Text>
+            </Pressable>
+
+            {/* Your referral code */}
+            {referralCode && (
+              <View style={[styles.codeDisplay, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
+                <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Your code</Text>
+                <Text style={[Typography.h2, { color: colors.primary, letterSpacing: 3 }]}>
+                  {referralCode}
+                </Text>
+              </View>
+            )}
+
+            <View style={[styles.divider, { backgroundColor: colors.surfaceBorder, marginVertical: Spacing.sm }]} />
+
+            {/* Join with code */}
+            <Text style={[Typography.bodySm, { color: colors.textSecondary, marginBottom: Spacing.xs }]}>
+              Have a friend's code?
+            </Text>
+            <View style={styles.joinRow}>
+              <TextInput
+                style={[
+                  styles.joinInput,
+                  {
+                    color: colors.text,
+                    backgroundColor: colors.surface,
+                    borderColor: colors.surfaceBorder,
+                  },
+                ]}
+                placeholder="Enter code"
+                placeholderTextColor={colors.textTertiary}
+                value={joinCode}
+                onChangeText={(t) => setJoinCode(t.toUpperCase().slice(0, 6))}
+                autoCapitalize="characters"
+                maxLength={6}
+              />
+              <Pressable
+                onPress={handleJoinGang}
+                disabled={joinCode.trim().length < 4}
+                style={[
+                  styles.joinBtn,
+                  {
+                    backgroundColor: joinCode.trim().length >= 4 ? colors.primary : colors.surfaceBorder,
+                  },
+                ]}
+              >
+                <Text style={[Typography.bodySm, { color: '#FFF', fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
+                  Join
+                </Text>
+              </Pressable>
+            </View>
+          </JournalCard>
+
           {/* App Info */}
           <StickyNote color="yellow" rotation={-0.5} delay={400}>
             <View style={styles.appInfo}>
@@ -832,5 +954,42 @@ const styles = StyleSheet.create({
   aboutLink: {
     alignItems: 'center',
     paddingVertical: Spacing.md,
+  },
+  // Invite / Referral
+  inviteRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+    padding: Spacing.md,
+    borderRadius: BorderRadius.lg,
+  },
+  codeDisplay: {
+    alignItems: 'center',
+    padding: Spacing.md,
+    borderRadius: BorderRadius.md,
+    borderWidth: 1,
+    marginTop: Spacing.sm,
+    gap: 4,
+  },
+  joinRow: {
+    flexDirection: 'row',
+    gap: Spacing.sm,
+  },
+  joinInput: {
+    flex: 1,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 16,
+    letterSpacing: 2,
+    borderWidth: 1,
+    borderRadius: BorderRadius.md,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    textAlign: 'center',
+  },
+  joinBtn: {
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.sm,
+    borderRadius: BorderRadius.md,
+    justifyContent: 'center',
   },
 });
