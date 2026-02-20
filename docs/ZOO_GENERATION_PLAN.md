@@ -187,8 +187,8 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 |-------|----------|------------|-----|--------|
 | B43 | `zoo-repro-male` | Male Reproductive System | 20 | DONE |
 | B44 | `zoo-repro-female` | Female Reproductive System | 20 | DONE |
-| B45 | `zoo-repro-gametogenesis` | Gametogenesis | 20 | PENDING |
-| B46 | `zoo-repro-menstrual` | Menstrual Cycle | 20 | PENDING |
+| B45 | `zoo-repro-gametogenesis` | Gametogenesis | 20 | DONE |
+| B46 | `zoo-repro-menstrual` | Menstrual Cycle | 20 | DONE |
 | B47 | `zoo-repro-fertilization` | Fertilization | 20 | DONE |
 | | | **Chapter 10 Total** | **100** | |
 
@@ -426,10 +426,10 @@ Commit and push.
 | Ch7 Locomotion | 4 | 80 | 80 | 100% |
 | Ch8 Neural Control | 4 | 80 | 80 | 100% |
 | Ch9 Chemical Coord | 3 | 60 | 60 | 100% |
-| Ch10 Human Repro | 5 | 100 | 60 | 60% |
+| Ch10 Human Repro | 5 | 100 | 100 | 100% |
 | Ch11 Repro Health | 4 | 80 | 60 | 75% |
 | Ch12 Evolution | 4 | 80 | 80 | 100% |
 | Ch13 Human Health | 5 | 100 | 80 | 80% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **1,120** | **86.2%** |
+| **TOTAL** | **65** | **1,300** | **1,160** | **89.2%** |
