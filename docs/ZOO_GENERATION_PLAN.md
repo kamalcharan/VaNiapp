@@ -146,30 +146,30 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B28 | `zoo-excr-nephron` | Nephron Structure | 20 | PENDING |
-| B29 | `zoo-excr-urine` | Urine Formation | 20 | PENDING |
-| B30 | `zoo-excr-osmoregulation` | Osmoregulation | 20 | PENDING |
-| B31 | `zoo-excr-disorders` | Kidney Disorders | 20 | PENDING |
+| B28 | `zoo-excr-nephron` | Nephron Structure | 20 | DONE |
+| B29 | `zoo-excr-urine` | Urine Formation | 20 | DONE |
+| B30 | `zoo-excr-osmoregulation` | Osmoregulation | 20 | DONE |
+| B31 | `zoo-excr-disorders` | Kidney Disorders | 20 | DONE |
 | | | **Chapter 6 Total** | **80** | |
 
 ### Chapter 7: Locomotion and Movement (`zoo-locomotion`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B32 | `zoo-loco-muscle` | Muscle Contraction | 20 | PENDING |
-| B33 | `zoo-loco-skeletal` | Skeletal System | 20 | PENDING |
-| B34 | `zoo-loco-joints` | Joints | 20 | PENDING |
-| B35 | `zoo-loco-disorders` | Muscular Disorders | 20 | PENDING |
+| B32 | `zoo-loco-muscle` | Muscle Contraction | 20 | DONE |
+| B33 | `zoo-loco-skeletal` | Skeletal System | 20 | DONE |
+| B34 | `zoo-loco-joints` | Joints | 20 | DONE |
+| B35 | `zoo-loco-disorders` | Muscular Disorders | 20 | DONE |
 | | | **Chapter 7 Total** | **80** | |
 
 ### Chapter 8: Neural Control and Coordination (`zoo-neural-control`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B36 | `zoo-neural-neuron` | Neuron Structure | 20 | PENDING |
-| B37 | `zoo-neural-impulse` | Nerve Impulse | 20 | PENDING |
-| B38 | `zoo-neural-brain` | Human Brain | 20 | PENDING |
-| B39 | `zoo-neural-reflex` | Reflex Arc | 20 | PENDING |
+| B36 | `zoo-neural-neuron` | Neuron Structure | 20 | DONE |
+| B37 | `zoo-neural-impulse` | Nerve Impulse | 20 | DONE |
+| B38 | `zoo-neural-brain` | Human Brain | 20 | DONE |
+| B39 | `zoo-neural-reflex` | Reflex Arc | 20 | DONE |
 | | | **Chapter 8 Total** | **80** | |
 
 ### Chapter 9: Chemical Coordination and Integration (`zoo-chemical-coordination`) — 3 batches
@@ -422,9 +422,9 @@ Commit and push.
 | Ch3 Biomolecules | 5 | 100 | 100 | 100% |
 | Ch4 Breathing | 4 | 80 | 80 | 100% |
 | Ch5 Body Fluids | 5 | 100 | 100 | 100% |
-| Ch6 Excretion | 4 | 80 | 0 | 0% |
-| Ch7 Locomotion | 4 | 80 | 0 | 0% |
-| Ch8 Neural Control | 4 | 80 | 0 | 0% |
+| Ch6 Excretion | 4 | 80 | 80 | 100% |
+| Ch7 Locomotion | 4 | 80 | 80 | 100% |
+| Ch8 Neural Control | 4 | 80 | 80 | 100% |
 | Ch9 Chemical Coord | 3 | 60 | 0 | 0% |
 | Ch10 Human Repro | 5 | 100 | 0 | 0% |
 | Ch11 Repro Health | 4 | 80 | 0 | 0% |
@@ -432,4 +432,4 @@ Commit and push.
 | Ch13 Human Health | 5 | 100 | 0 | 0% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **540** | **41.5%** |
+| **TOTAL** | **65** | **1,300** | **780** | **60.0%** |
