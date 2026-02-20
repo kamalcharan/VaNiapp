@@ -99,9 +99,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B04 | `bot-class-monera` | Kingdom Monera (Bacteria & Archaebacteria) | 20 | PENDING |
+| B04 | `bot-class-monera` | Kingdom Monera (Bacteria & Archaebacteria) | 20 | DONE |
 | B05 | `bot-class-protista` | Kingdom Protista | 20 | PENDING |
-| B06 | `bot-class-fungi` | Kingdom Fungi | 20 | PENDING |
+| B06 | `bot-class-fungi` | Kingdom Fungi | 20 | DONE |
 | B07 | `bot-class-viruses` | Viruses, Viroids and Lichens | 20 | PENDING |
 | | | **Chapter 2 Total** | **80** | |
 
