@@ -15,6 +15,7 @@ import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
+import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing } from '../../src/constants/theme';
 import { getSubjects, getChapters, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
 import { getProfile } from '../../src/lib/database';
@@ -41,6 +42,7 @@ export default function SubjectDetailScreen() {
   const { id, focus } = useLocalSearchParams<{ id: string; focus?: string }>();
   const router = useRouter();
   const { colors } = useTheme();
+  const persona = usePersona();
 
   const [subject, setSubject] = useState<CatalogSubject | null>(null);
   const [chapters, setChapters] = useState<CatalogChapter[]>([]);
@@ -182,7 +184,7 @@ export default function SubjectDetailScreen() {
               <JournalCard delay={200}>
                 <View style={styles.recommendationCard}>
                   <HandwrittenText variant="hand">
-                    Let's get started!
+                    {persona.labels.homeGreeting}
                   </HandwrittenText>
 
                   <Text style={[Typography.body, { color: colors.textSecondary, marginTop: Spacing.sm }]}>
@@ -196,7 +198,7 @@ export default function SubjectDetailScreen() {
                       onPress={() => handleStartChapter(recommendedChapter.id)}
                     >
                       <Text style={styles.primaryButtonText}>
-                        Start with "{recommendedChapter.name}"
+                        {persona.labels.quizStart}: {recommendedChapter.name}
                       </Text>
                     </Pressable>
                   ) : (
@@ -239,39 +241,51 @@ export default function SubjectDetailScreen() {
 
               <View style={styles.chapterList}>
                 <HandwrittenText variant="hand">
-                  Pick a chapter
+                  {persona.labels.chapterListHeader}
                 </HandwrittenText>
 
-                {chapters.map((chapter, idx) => (
-                  <JournalCard key={chapter.id} delay={150 + idx * 50}>
-                    <Pressable
-                      style={styles.chapterItem}
-                      onPress={() => handleStartChapter(chapter.id)}
-                    >
-                      <View style={[styles.chapterNumber, { backgroundColor: subject.color + '20' }]}>
-                        <Text style={[Typography.bodySm, { color: subject.color, fontWeight: '700' }]}>
-                          {chapter.chapter_number || idx + 1}
-                        </Text>
-                      </View>
-                      <View style={styles.chapterInfo}>
-                        <Text style={[Typography.body, { color: colors.text }]}>
-                          {chapter.name}
-                        </Text>
-                        {chapter.branch && (
-                          <Text style={[styles.chapterMeta, { color: colors.textTertiary }]}>
-                            {chapter.branch} {chapter.class_level ? `• Class ${chapter.class_level}` : ''}
+                {chapters.map((chapter, idx) => {
+                  // In levels mode (2027), lock chapters beyond the first
+                  const isLocked = persona.showLevels && idx > 0 && !hasProgress;
+                  return (
+                    <JournalCard key={chapter.id} delay={150 + idx * 50}>
+                      <Pressable
+                        style={[styles.chapterItem, isLocked && { opacity: 0.45 }]}
+                        onPress={() => !isLocked && handleStartChapter(chapter.id)}
+                        disabled={isLocked}
+                      >
+                        <View style={[styles.chapterNumber, { backgroundColor: subject.color + '20' }]}>
+                          <Text style={[Typography.bodySm, { color: subject.color, fontWeight: '700' }]}>
+                            {isLocked ? '\uD83D\uDD12' : (chapter.chapter_number || idx + 1)}
                           </Text>
-                        )}
-                        {chapter.weightage > 0 && (
-                          <Text style={[styles.chapterMeta, { color: subject.color }]}>
-                            {chapter.weightage}% weightage • ~{chapter.avg_questions} questions
+                        </View>
+                        <View style={styles.chapterInfo}>
+                          <Text style={[Typography.body, { color: colors.text }]}>
+                            {chapter.name}
                           </Text>
-                        )}
-                      </View>
-                      <Text style={{ color: colors.textTertiary }}>{'\u203A'}</Text>
-                    </Pressable>
-                  </JournalCard>
-                ))}
+                          {isLocked && (
+                            <Text style={[styles.chapterMeta, { color: colors.textTertiary }]}>
+                              Complete previous level to unlock
+                            </Text>
+                          )}
+                          {!isLocked && chapter.branch && (
+                            <Text style={[styles.chapterMeta, { color: colors.textTertiary }]}>
+                              {chapter.branch} {chapter.class_level ? `• Class ${chapter.class_level}` : ''}
+                            </Text>
+                          )}
+                          {!isLocked && chapter.weightage > 0 && (
+                            <Text style={[styles.chapterMeta, { color: subject.color }]}>
+                              {chapter.weightage}% weightage • ~{chapter.avg_questions} questions
+                            </Text>
+                          )}
+                        </View>
+                        <Text style={{ color: colors.textTertiary }}>
+                          {isLocked ? '' : '\u203A'}
+                        </Text>
+                      </Pressable>
+                    </JournalCard>
+                  );
+                })}
 
                 {/* Back to recommendation */}
                 <Pressable

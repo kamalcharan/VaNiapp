@@ -18,6 +18,7 @@ import { JournalCard } from '../../src/components/ui/JournalCard';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { QuestionRenderer } from '../../src/components/exam/QuestionRenderer';
 import { useTheme } from '../../src/hooks/useTheme';
+import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
 import { SUBJECT_META } from '../../src/constants/subjects';
@@ -51,6 +52,7 @@ const DIFF_COLORS = { easy: '#22C55E', medium: '#F59E0B', hard: '#EF4444' };
 
 export default function ChapterQuizScreen() {
   const { colors, mode } = useTheme();
+  const persona = usePersona();
   const router = useRouter();
   const dispatch = useDispatch();
   const toast = useToast();
@@ -282,8 +284,7 @@ export default function ChapterQuizScreen() {
                 },
               ]}
             >
-              Questions for this chapter haven't been added yet. Check back
-              soon!
+              {persona.labels.emptyState}
             </Text>
             <Pressable
               onPress={() => router.back()}
@@ -598,14 +599,14 @@ export default function ChapterQuizScreen() {
                   { color: mode === 'dark' ? '#0F172A' : '#FFF' },
                 ]}
               >
-                {isLast ? 'See Results' : 'Next Question  >'}
+                {isLast ? persona.labels.quizComplete : 'Next Question  >'}
               </Text>
             </Pressable>
           ) : (
             <Text
               style={[Typography.bodySm, { color: colors.textTertiary }]}
             >
-              Tap an option to answer
+              {persona.labels.quizStart}
             </Text>
           )}
         </View>

@@ -15,6 +15,7 @@ import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
+import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing } from '../../src/constants/theme';
 import { getProfile, getUserSubjectIds, MedProfile } from '../../src/lib/database';
 import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
@@ -75,6 +76,7 @@ function getStrengthConfig(level: StrengthLevel) {
 
 export default function DashboardScreen() {
   const { colors, mode, toggle } = useTheme();
+  const persona = usePersona();
   const router = useRouter();
   const [profile, setProfile] = useState<MedProfile | null>(null);
   const [subjectJourneys, setSubjectJourneys] = useState<SubjectJourney[]>([]);
@@ -246,12 +248,12 @@ export default function DashboardScreen() {
             </View>
           )}
 
-          {/* VaNi Greeting */}
+          {/* VaNi Greeting — persona-aware */}
           <StickyNote color="yellow" rotation={-0.5} delay={100}>
             <HandwrittenText variant="handSm">
               {profile?.display_name
-                ? `Hi ${profile.display_name.split(' ')[0]}! I'm here to guide your journey.`
-                : "Hi! I'm VaNi, your AI coach. Let's learn together!"}
+                ? `Hi ${profile.display_name.split(' ')[0]}! ${persona.labels.homeGreeting}`
+                : persona.labels.homeGreeting}
             </HandwrittenText>
           </StickyNote>
 
@@ -259,7 +261,7 @@ export default function DashboardScreen() {
           {filteredJourneys.length > 0 && (
             <View style={styles.journeySection}>
               <HandwrittenText variant="hand" rotation={-1}>
-                {isBothUser && examFocus !== 'ALL' ? `${examFocus} Journey` : 'Your Journey'}
+                {isBothUser && examFocus !== 'ALL' ? `${examFocus} Journey` : persona.labels.chapterListHeader}
               </HandwrittenText>
 
               <View style={styles.journeyGrid}>
