@@ -120,22 +120,22 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B13 | `bot-morph-root` | Root System | 20 | PENDING |
-| B14 | `bot-morph-stem` | Stem System | 20 | PENDING |
-| B15 | `bot-morph-leaf` | Leaf Morphology | 20 | PENDING |
-| B16 | `bot-morph-flower` | Flower, Inflorescence, Fruit and Seed | 20 | PENDING |
-| B17 | `bot-morph-families` | Plant Families (Fabaceae, Solanaceae, Liliaceae) | 20 | PENDING |
+| B13 | `bot-morph-root` | Root System | 20 | DONE |
+| B14 | `bot-morph-stem` | Stem System | 20 | DONE |
+| B15 | `bot-morph-leaf` | Leaf Morphology | 20 | DONE |
+| B16 | `bot-morph-flower` | Flower, Inflorescence, Fruit and Seed | 20 | DONE |
+| B17 | `bot-morph-families` | Plant Families (Fabaceae, Solanaceae, Liliaceae) | 20 | DONE |
 | | | **Chapter 4 Total** | **100** | |
 
 ### Chapter 5: Anatomy of Flowering Plants (`bot-anatomy`) — 5 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B18 | `bot-anat-tissues` | Plant Tissues (Meristematic and Permanent) | 20 | PENDING |
-| B19 | `bot-anat-tissue-system` | Tissue System (Epidermal, Ground, Vascular) | 20 | PENDING |
-| B20 | `bot-anat-root-stem` | Anatomy of Root and Stem (Dicot vs Monocot) | 20 | PENDING |
-| B21 | `bot-anat-leaf` | Anatomy of Leaf (Dorsiventral vs Isobilateral) | 20 | PENDING |
-| B22 | `bot-anat-secondary` | Secondary Growth | 20 | PENDING |
+| B18 | `bot-anat-tissues` | Plant Tissues (Meristematic and Permanent) | 20 | DONE |
+| B19 | `bot-anat-tissue-system` | Tissue System (Epidermal, Ground, Vascular) | 20 | DONE |
+| B20 | `bot-anat-root-stem` | Anatomy of Root and Stem (Dicot vs Monocot) | 20 | DONE |
+| B21 | `bot-anat-leaf` | Anatomy of Leaf (Dorsiventral vs Isobilateral) | 20 | DONE |
+| B22 | `bot-anat-secondary` | Secondary Growth | 20 | DONE |
 | | | **Chapter 5 Total** | **100** | |
 
 ### Chapter 6: Cell — The Unit of Life (`bot-cell`) — 4 batches
@@ -180,7 +180,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B37 | `bot-photo-pigments` | Site of Photosynthesis and Photosynthetic Pigments | 20 | PENDING |
+| B37 | `bot-photo-pigments` | Site of Photosynthesis and Photosynthetic Pigments | 20 | DONE |
 | B38 | `bot-photo-light` | Light Reactions (Cyclic and Non-Cyclic Photophosphorylation) | 20 | PENDING |
 | B39 | `bot-photo-calvin` | Calvin Cycle (C3 Pathway) | 20 | PENDING |
 | B40 | `bot-photo-c4` | Photorespiration, C4 Pathway, and CAM | 20 | PENDING |
@@ -234,8 +234,8 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | B58 | `bot-mol-dna` | DNA Structure (Watson-Crick Model) | 20 | DONE |
 | B59 | `bot-mol-replication` | DNA Replication | 20 | DONE |
 | B60 | `bot-mol-transcription` | Transcription | 20 | DONE |
-| B61 | `bot-mol-translation` | Genetic Code and Translation | 20 | PENDING |
-| B62 | `bot-mol-regulation` | Gene Regulation (Lac Operon) and Human Genome Project | 20 | PENDING |
+| B61 | `bot-mol-translation` | Genetic Code and Translation | 20 | DONE |
+| B62 | `bot-mol-regulation` | Gene Regulation (Lac Operon) and Human Genome Project | 20 | DONE |
 | | | **Chapter 15 Total** | **100** | |
 
 ### Chapter 16: Organisms and Populations (`bot-ecology-pop`) — 3 batches
@@ -468,20 +468,20 @@ Commit and push.
 | Ch1 The Living World | 3 | 60 | 0 | 0% |
 | Ch2 Biological Classification | 4 | 80 | 0 | 0% |
 | Ch3 Plant Kingdom | 5 | 100 | 0 | 0% |
-| Ch4 Morphology | 5 | 100 | 0 | 0% |
-| Ch5 Anatomy | 5 | 100 | 0 | 0% |
+| Ch4 Morphology | 5 | 100 | 100 | 100% |
+| Ch5 Anatomy | 5 | 100 | 100 | 100% |
 | Ch6 Cell Unit of Life | 4 | 80 | 0 | 0% |
 | Ch7 Cell Division | 3 | 60 | 0 | 0% |
 | Ch8 Transport in Plants | 4 | 80 | 0 | 0% |
 | Ch9 Mineral Nutrition | 3 | 60 | 0 | 0% |
-| Ch10 Photosynthesis | 4 | 80 | 0 | 0% |
+| Ch10 Photosynthesis | 4 | 80 | 20 | 25% |
 | Ch11 Respiration | 3 | 60 | 0 | 0% |
 | Ch12 Plant Growth | 4 | 80 | 0 | 0% |
 | Ch13 Sexual Reproduction | 5 | 100 | 100 | 100% |
 | Ch14 Inheritance | 5 | 100 | 100 | 100% |
-| Ch15 Molecular Inheritance | 5 | 100 | 60 | 60% |
+| Ch15 Molecular Inheritance | 5 | 100 | 100 | 100% |
 | Ch16 Organisms & Populations | 3 | 60 | 0 | 0% |
 | Ch17 Ecosystem | 4 | 80 | 0 | 0% |
 | Ch18 Biodiversity | 3 | 60 | 0 | 0% |
 | Ch19 Environmental Issues | 3 | 60 | 0 | 0% |
-| **TOTAL** | **75** | **1,500** | **260** | **17%** |
+| **TOTAL** | **75** | **1,500** | **520** | **35%** |
