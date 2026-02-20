@@ -366,9 +366,7 @@ export default function SubjectDetailScreen() {
 
                 <Pressable
                   style={[styles.optionButton, { borderColor: colors.surfaceBorder }]}
-                  onPress={() => {
-                    // TODO: Quick practice for this subject
-                  }}
+                  onPress={() => router.push({ pathname: '/quick-practice/quiz', params: { subjectId: id } })}
                 >
                   <Text style={[Typography.bodySm, { color: colors.text }]}>
                     Quick Practice

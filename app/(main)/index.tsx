@@ -370,10 +370,7 @@ export default function DashboardScreen() {
             <JournalCard delay={400} rotation={0.3}>
               <Pressable
                 style={styles.actionRow}
-                onPress={() => {
-                  // TODO: Navigate to practice exam
-                  // router.push('/practice-exam');
-                }}
+                onPress={() => router.push('/practice-exam')}
               >
                 <Text style={styles.actionIcon}>{'\uD83C\uDFAF'}</Text>
                 <View style={{ flex: 1 }}>
@@ -395,10 +392,7 @@ export default function DashboardScreen() {
             <JournalCard delay={500} rotation={-0.2}>
               <Pressable
                 style={styles.actionRow}
-                onPress={() => {
-                  // TODO: Navigate to quick practice
-                  // router.push('/quick-practice');
-                }}
+                onPress={() => router.push('/quick-practice')}
               >
                 <Text style={styles.actionIcon}>{'\u26A1'}</Text>
                 <View style={{ flex: 1 }}>
@@ -411,7 +405,7 @@ export default function DashboardScreen() {
                       { color: colors.textSecondary, marginTop: 2 },
                     ]}
                   >
-                    20 questions. No timer. Pure focus.
+                    20 questions. 10 minutes. Pure focus.
                   </Text>
                 </View>
               </Pressable>

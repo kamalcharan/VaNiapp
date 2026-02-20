@@ -231,8 +231,16 @@ export default function ChapterQuizScreen() {
       // Sync progress to Supabase in background
       syncChapterProgress(chapterId!).catch(() => {});
 
-      // Navigate back with results (or show inline)
-      router.back();
+      // Navigate to results screen
+      router.replace({
+        pathname: '/chapter-results',
+        params: {
+          chapterId: chapterId!,
+          correct: String(finalCorrect),
+          total: String(questions.length),
+          timeUsedMs: String(timeUsedMs),
+        },
+      });
       return;
     }
 
