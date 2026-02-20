@@ -209,8 +209,12 @@ export async function updateProfile(
 
 // ── Sign out ────────────────────────────────────────────────
 
-/** Sign out the current user. */
+/** Sign out the current user — clears Supabase session AND local Redux/storage. */
 export async function signOut(): Promise<void> {
+  // Reset all Redux slices to initial state and stop persisting
+  const { resetAllData } = require('../store');
+  resetAllData();
+
   if (!supabase) return;
   await supabase.auth.signOut();
 }

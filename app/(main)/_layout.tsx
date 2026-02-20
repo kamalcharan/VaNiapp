@@ -1,9 +1,12 @@
+import { useEffect, useState } from 'react';
 import { Slot, useSegments, useRouter } from 'expo-router';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ActivityIndicator } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import { useTheme } from '../../src/hooks/useTheme';
 import { ToastProvider } from '../../src/components/ui/Toast';
+import { getProfile } from '../../src/lib/database';
+import { useAuth } from '../_layout';
 
 const TABS = [
   { key: 'index', route: '/(main)', label: 'Study Board', emoji: '\uD83D\uDCDA' },
@@ -16,11 +19,41 @@ export default function MainLayout() {
   const segments = useSegments();
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const auth = useAuth();
+
+  const [verified, setVerified] = useState(false);
+
+  // Secondary onboarding guard — prevent access to dashboard without onboarding
+  useEffect(() => {
+    if (auth.status !== 'authenticated') return;
+
+    (async () => {
+      try {
+        const profile = await getProfile();
+        if (!profile?.onboarding_completed) {
+          router.replace('/setup/welcome');
+          return;
+        }
+        setVerified(true);
+      } catch {
+        // If profile check fails, still allow (root layout handles gating)
+        setVerified(true);
+      }
+    })();
+  }, [auth.status]);
 
   // Determine active tab from URL segments
   const seg1 = segments.length > 1 ? (segments as string[])[1] : '';
   const activeKey =
     seg1 === 'profile' ? 'profile' : seg1 === 'bookmarks' ? 'bookmarks' : 'index';
+
+  if (!verified) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
 
   return (
     <ToastProvider>
