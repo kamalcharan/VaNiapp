@@ -99,21 +99,21 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B04 | `bot-class-monera` | Kingdom Monera (Bacteria & Archaebacteria) | 20 | PENDING |
-| B05 | `bot-class-protista` | Kingdom Protista | 20 | PENDING |
-| B06 | `bot-class-fungi` | Kingdom Fungi | 20 | PENDING |
-| B07 | `bot-class-viruses` | Viruses, Viroids and Lichens | 20 | PENDING |
+| B04 | `bot-class-monera` | Kingdom Monera (Bacteria & Archaebacteria) | 20 | DONE |
+| B05 | `bot-class-protista` | Kingdom Protista | 20 | DONE |
+| B06 | `bot-class-fungi` | Kingdom Fungi | 20 | DONE |
+| B07 | `bot-class-viruses` | Viruses, Viroids and Lichens | 20 | DONE |
 | | | **Chapter 2 Total** | **80** | |
 
 ### Chapter 3: Plant Kingdom (`bot-plant-kingdom`) — 5 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B08 | `bot-plant-algae` | Algae | 20 | PENDING |
-| B09 | `bot-plant-bryophytes` | Bryophytes | 20 | PENDING |
-| B10 | `bot-plant-pteridophytes` | Pteridophytes | 20 | PENDING |
-| B11 | `bot-plant-gymnosperms` | Gymnosperms | 20 | PENDING |
-| B12 | `bot-plant-angiosperms` | Angiosperms and Alternation of Generations | 20 | PENDING |
+| B08 | `bot-plant-algae` | Algae | 20 | DONE |
+| B09 | `bot-plant-bryophytes` | Bryophytes | 20 | DONE |
+| B10 | `bot-plant-pteridophytes` | Pteridophytes | 20 | DONE |
+| B11 | `bot-plant-gymnosperms` | Gymnosperms | 20 | DONE |
+| B12 | `bot-plant-angiosperms` | Angiosperms and Alternation of Generations | 20 | DONE |
 | | | **Chapter 3 Total** | **100** | |
 
 ### Chapter 4: Morphology of Flowering Plants (`bot-morphology`) — 5 batches
@@ -181,9 +181,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B37 | `bot-photo-pigments` | Site of Photosynthesis and Photosynthetic Pigments | 20 | DONE |
-| B38 | `bot-photo-light` | Light Reactions (Cyclic and Non-Cyclic Photophosphorylation) | 20 | PENDING |
-| B39 | `bot-photo-calvin` | Calvin Cycle (C3 Pathway) | 20 | PENDING |
-| B40 | `bot-photo-c4` | Photorespiration, C4 Pathway, and CAM | 20 | PENDING |
+| B38 | `bot-photo-light` | Light Reactions (Cyclic and Non-Cyclic Photophosphorylation) | 20 | DONE |
+| B39 | `bot-photo-calvin` | Calvin Cycle (C3 Pathway) | 20 | DONE |
+| B40 | `bot-photo-c4` | Photorespiration, C4 Pathway, and CAM | 20 | DONE |
 | | | **Chapter 10 Total** | **80** | |
 
 ### Chapter 11: Respiration in Plants (`bot-respiration`) — 3 batches
@@ -199,7 +199,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B44 | `bot-growth-phases` | Growth Phases and Differentiation | 20 | PENDING |
+| B44 | `bot-growth-phases` | Growth Phases and Differentiation | 20 | DONE |
 | B45 | `bot-growth-auxin` | Auxins and Gibberellins | 20 | PENDING |
 | B46 | `bot-growth-cytokinins` | Cytokinins, ABA, and Ethylene | 20 | PENDING |
 | B47 | `bot-growth-photoperiodism` | Photoperiodism and Vernalisation | 20 | PENDING |
