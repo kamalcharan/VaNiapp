@@ -31,6 +31,8 @@ import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession } from '.
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
+import { recordDailyPractice } from '../../src/store/slices/streakSlice';
+import { syncChapterProgress } from '../../src/lib/progressSync';
 
 const QUICK_TIME_LIMIT_MS = 10 * 60 * 1000; // 10 minutes
 const DIFF_COLORS = { easy: '#22C55E', medium: '#F59E0B', hard: '#EF4444' };
@@ -179,6 +181,14 @@ export default function QuickPracticeQuizScreen() {
           answeredQuestions: answered,
         })
       );
+    }
+
+    // Record daily practice streak
+    dispatch(recordDailyPractice());
+
+    // Sync progress to Supabase in background
+    for (const chapId of Object.keys(byChapter)) {
+      syncChapterProgress(chapId).catch(() => {});
     }
 
     router.replace({

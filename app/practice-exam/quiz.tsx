@@ -35,6 +35,9 @@ import {
 } from '../../src/store/slices/practiceSlice';
 import { calculateNeetScore, calculateSubjectScores } from '../../src/store/slices/practiceSlice';
 import { legacyBatchToV2, getCorrectId } from '../../src/lib/questionAdapter';
+import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
+import { recordDailyPractice } from '../../src/store/slices/streakSlice';
+import { syncChapterProgress } from '../../src/lib/progressSync';
 
 const SUBJECTS: { id: NeetSubjectId; emoji: string; short: string }[] = [
   { id: 'physics', emoji: '\u269B\uFE0F', short: 'PHY' },
@@ -321,6 +324,38 @@ export default function PracticeQuestionScreen() {
             timeUsedMs,
           })
         );
+
+        // Record strength tracking per chapter from scored answers
+        const byChapter: Record<string, { questionId: string; correct: boolean }[]> = {};
+        for (const sa of scoredAnswers) {
+          const q = allQuestions.find((qq) => qq.id === sa.questionId);
+          if (!q) continue;
+          const chapId = q.chapterId ?? `${q.subjectId}-practice`;
+          if (!byChapter[chapId]) byChapter[chapId] = [];
+          byChapter[chapId].push({
+            questionId: sa.questionId,
+            correct: sa.selectedOptionId === correctAnswerMap[sa.questionId],
+          });
+        }
+        for (const [chapId, answered] of Object.entries(byChapter)) {
+          const q = allQuestions.find((qq) => (qq.chapterId ?? `${qq.subjectId}-practice`) === chapId);
+          dispatch(
+            recordChapterAttempt({
+              chapterId: chapId,
+              subjectId: q?.subjectId ?? 'physics',
+              totalInBank: 50,
+              answeredQuestions: answered,
+            })
+          );
+        }
+
+        // Record daily practice streak
+        dispatch(recordDailyPractice());
+
+        // Sync progress to Supabase in background
+        for (const chapId of Object.keys(byChapter)) {
+          syncChapterProgress(chapId).catch(() => {});
+        }
 
         router.replace({
           pathname: '/practice-results',

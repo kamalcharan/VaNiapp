@@ -27,6 +27,7 @@ import { setUser, updateTargetYear } from '../src/store/slices/authSlice';
 import { ToastProvider } from '../src/components/ui/Toast';
 import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
 import { getProfile, getUserSubjectIds } from '../src/lib/database';
+import { pullRemoteProgress } from '../src/lib/progressSync';
 
 NativeSplashScreen.preventAutoHideAsync();
 
@@ -108,6 +109,9 @@ export default function RootLayout() {
             selectedSubjects: subjectIds as any[],
             targetYear: profile.target_year ?? undefined,
           }));
+
+          // Pull remote progress into Redux (merges with local, remote wins if ahead)
+          pullRemoteProgress().catch(() => {});
         }
       } catch {
         setOnboardingDone(false);
