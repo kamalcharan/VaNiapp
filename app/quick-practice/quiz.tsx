@@ -25,7 +25,6 @@ import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
-import { EliminationSheet } from '../../src/components/exam/EliminationSheet';
 import { useToast } from '../../src/components/ui/Toast';
 import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
@@ -72,7 +71,6 @@ export default function QuickPracticeQuizScreen() {
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [showElimination, setShowElimination] = useState(false);
   const [showVaniSheet, setShowVaniSheet] = useState(false);
   const [showConceptSheet, setShowConceptSheet] = useState(false);
   const [selectedConceptTag, setSelectedConceptTag] = useState('');
@@ -244,7 +242,6 @@ export default function QuickPracticeQuizScreen() {
     setCurrentIndex((prev) => prev + 1);
     setSelectedOptionId(null);
     setShowFeedback(false);
-    setShowElimination(false);
     setShowVaniSheet(false);
     setShowConceptSheet(false);
     scrollRef.current?.scrollTo({ y: 0, animated: true });
@@ -302,23 +299,23 @@ export default function QuickPracticeQuizScreen() {
             </View>
             <View style={styles.headerActions}>
               <Pressable
-                onPress={() => setShowElimination((p) => !p)}
+                onPress={() => setShowVaniSheet(true)}
                 hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                 style={[
                   styles.actionBadge,
                   {
-                    backgroundColor: showElimination ? '#8B5CF620' : '#64748B15',
-                    borderColor: showElimination ? '#8B5CF6' : '#64748B40',
+                    backgroundColor: showVaniSheet ? '#8B5CF620' : '#64748B15',
+                    borderColor: showVaniSheet ? '#8B5CF6' : '#64748B40',
                   },
                 ]}
               >
                 <Text
                   style={[
                     styles.actionBadgeText,
-                    { color: showElimination ? '#8B5CF6' : '#64748B' },
+                    { color: showVaniSheet ? '#8B5CF6' : '#64748B' },
                   ]}
                 >
-                  {'\u2702\uFE0F'} Eliminate
+                  {'\u2728'} Ask VaNi
                 </Text>
               </Pressable>
               <Pressable
@@ -341,23 +338,6 @@ export default function QuickPracticeQuizScreen() {
                   {isBookmarked ? '\uD83D\uDD16 Saved' : '\uD83D\uDCCC Save'}
                 </Text>
               </Pressable>
-              {showFeedback && !isCorrect && (
-                <Pressable
-                  onPress={() => setShowVaniSheet(true)}
-                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                  style={[
-                    styles.actionBadge,
-                    {
-                      backgroundColor: colors.primary + '15',
-                      borderColor: colors.primary + '50',
-                    },
-                  ]}
-                >
-                  <Text style={[styles.actionBadgeText, { color: colors.primary }]}>
-                    {'\u2728'} VaNi
-                  </Text>
-                </Pressable>
-              )}
             </View>
           </View>
 
@@ -446,13 +426,17 @@ export default function QuickPracticeQuizScreen() {
         </View>
       </SafeAreaView>
 
-      {/* Ask VaNi Bottom Sheet */}
+      {/* Ask VaNi — chat-style elimination */}
       <AskVaniSheet
         visible={showVaniSheet}
         onClose={() => setShowVaniSheet(false)}
         questionText={language === 'te' ? question.textTe : question.text}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
+        eliminationHints={question.eliminationHints}
+        eliminationText={String((language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique) || '')}
+        selectedOptionId={selectedOptionId}
+        language={language}
       />
 
       {/* Concept Explainer Bottom Sheet */}
@@ -463,13 +447,6 @@ export default function QuickPracticeQuizScreen() {
         subjectId={question.subjectId as SubjectId}
         chapterId={question.chapterId}
         language={language}
-      />
-
-      {/* Elimination Technique Bottom Sheet */}
-      <EliminationSheet
-        visible={showElimination}
-        onClose={() => setShowElimination(false)}
-        eliminationText={String((language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique) || '')}
       />
     </DotGridBackground>
   );
