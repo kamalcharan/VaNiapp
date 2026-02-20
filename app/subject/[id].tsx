@@ -21,6 +21,7 @@ import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { getSubjects, getChapters, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
 import { getProfile } from '../../src/lib/database';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
+import { NEET_CHAPTERS } from '../../src/data/chapters';
 import { RootState } from '../../src/store';
 import {
   StrengthLevel,
@@ -114,7 +115,26 @@ export default function SubjectDetailScreen() {
           filter = userExam ?? undefined;
         }
         setExamFilter(filter);
-        const subjectChapters = await getChapters(id!, filter);
+        let subjectChapters = await getChapters(id!, filter);
+
+        // Fallback to local NEET_CHAPTERS if Supabase returned nothing
+        if (subjectChapters.length === 0) {
+          const localChapters = NEET_CHAPTERS.filter((c) => c.subjectId === id);
+          subjectChapters = localChapters.map((c) => ({
+            id: c.id,
+            subject_id: c.subjectId,
+            exam_ids: ['NEET'],
+            branch: '',
+            name: c.name,
+            name_te: c.nameTe ?? c.name,
+            chapter_number: 0,
+            class_level: null,
+            weightage: 0,
+            avg_questions: c.questionCount,
+            important_topics: [],
+          }));
+        }
+
         setChapters(subjectChapters);
       }
       setIsLoading(false);
@@ -138,7 +158,10 @@ export default function SubjectDetailScreen() {
 
   // Compute per-chapter analytics from Redux
   const chapterAnalytics = useMemo(() => {
-    return chapters.map((ch) => {
+    const catalogIds = new Set(chapters.map((ch) => ch.id));
+
+    // Map catalog chapters to strength data
+    const mapped = chapters.map((ch) => {
       const data = strengthChapters[ch.id];
       return {
         chapter: ch,
@@ -151,7 +174,41 @@ export default function SubjectDetailScreen() {
         lastPracticedAt: data?.lastPracticedAt ?? null,
       };
     });
-  }, [chapters, strengthChapters]);
+
+    // Merge any Redux strength entries for this subject that weren't matched
+    // (handles ID mismatch between catalog and question data)
+    const unmatchedRedux = Object.values(strengthChapters).filter(
+      (ch) => ch.subjectId === id && !catalogIds.has(ch.chapterId),
+    );
+    for (const data of unmatchedRedux) {
+      // Find matching local chapter name from NEET_CHAPTERS
+      const localCh = NEET_CHAPTERS.find((c) => c.id === data.chapterId);
+      mapped.push({
+        chapter: {
+          id: data.chapterId,
+          subject_id: data.subjectId,
+          exam_ids: ['NEET'],
+          branch: '',
+          name: localCh?.name ?? data.chapterId.replace(/^[^-]+-/, '').replace(/-/g, ' '),
+          name_te: localCh?.nameTe ?? '',
+          chapter_number: 0,
+          class_level: null,
+          weightage: 0,
+          avg_questions: data.totalInBank,
+          important_topics: [],
+        },
+        coverage: data.coverage,
+        accuracy: data.accuracy,
+        totalAnswered: data.totalAnswered,
+        correctCount: data.correctCount,
+        totalInBank: data.totalInBank,
+        strengthLevel: data.strengthLevel as StrengthLevel,
+        lastPracticedAt: data.lastPracticedAt,
+      });
+    }
+
+    return mapped;
+  }, [chapters, strengthChapters, id]);
 
   // Subject-level strength
   const subjectStrength = useMemo(() => {
