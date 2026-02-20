@@ -139,109 +139,109 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | B24 | `zoo-blood-groups` | Blood Groups | 20 | DONE |
 | B25 | `zoo-blood-heart` | Human Heart | 20 | DONE |
 | B26 | `zoo-blood-cardiac` | Cardiac Cycle | 20 | DONE |
-| B27 | `zoo-blood-ecg` | ECG | 20 | PENDING |
+| B27 | `zoo-blood-ecg` | ECG | 20 | DONE |
 | | | **Chapter 5 Total** | **100** | |
 
 ### Chapter 6: Excretory Products and Elimination (`zoo-excretion`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B28 | `zoo-excr-nephron` | Nephron Structure | 20 | PENDING |
-| B29 | `zoo-excr-urine` | Urine Formation | 20 | PENDING |
-| B30 | `zoo-excr-osmoregulation` | Osmoregulation | 20 | PENDING |
-| B31 | `zoo-excr-disorders` | Kidney Disorders | 20 | PENDING |
+| B28 | `zoo-excr-nephron` | Nephron Structure | 20 | DONE |
+| B29 | `zoo-excr-urine` | Urine Formation | 20 | DONE |
+| B30 | `zoo-excr-osmoregulation` | Osmoregulation | 20 | DONE |
+| B31 | `zoo-excr-disorders` | Kidney Disorders | 20 | DONE |
 | | | **Chapter 6 Total** | **80** | |
 
 ### Chapter 7: Locomotion and Movement (`zoo-locomotion`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B32 | `zoo-loco-muscle` | Muscle Contraction | 20 | PENDING |
-| B33 | `zoo-loco-skeletal` | Skeletal System | 20 | PENDING |
-| B34 | `zoo-loco-joints` | Joints | 20 | PENDING |
-| B35 | `zoo-loco-disorders` | Muscular Disorders | 20 | PENDING |
+| B32 | `zoo-loco-muscle` | Muscle Contraction | 20 | DONE |
+| B33 | `zoo-loco-skeletal` | Skeletal System | 20 | DONE |
+| B34 | `zoo-loco-joints` | Joints | 20 | DONE |
+| B35 | `zoo-loco-disorders` | Muscular Disorders | 20 | DONE |
 | | | **Chapter 7 Total** | **80** | |
 
 ### Chapter 8: Neural Control and Coordination (`zoo-neural-control`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B36 | `zoo-neural-neuron` | Neuron Structure | 20 | PENDING |
-| B37 | `zoo-neural-impulse` | Nerve Impulse | 20 | PENDING |
-| B38 | `zoo-neural-brain` | Human Brain | 20 | PENDING |
-| B39 | `zoo-neural-reflex` | Reflex Arc | 20 | PENDING |
+| B36 | `zoo-neural-neuron` | Neuron Structure | 20 | DONE |
+| B37 | `zoo-neural-impulse` | Nerve Impulse | 20 | DONE |
+| B38 | `zoo-neural-brain` | Human Brain | 20 | DONE |
+| B39 | `zoo-neural-reflex` | Reflex Arc | 20 | DONE |
 | | | **Chapter 8 Total** | **80** | |
 
 ### Chapter 9: Chemical Coordination and Integration (`zoo-chemical-coordination`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B40 | `zoo-chem-endocrine` | Endocrine Glands | 20 | PENDING |
-| B41 | `zoo-chem-hormones` | Hormones | 20 | PENDING |
-| B42 | `zoo-chem-feedback` | Feedback Mechanism | 20 | PENDING |
+| B40 | `zoo-chem-endocrine` | Endocrine Glands | 20 | DONE |
+| B41 | `zoo-chem-hormones` | Hormones | 20 | DONE |
+| B42 | `zoo-chem-feedback` | Feedback Mechanism | 20 | DONE |
 | | | **Chapter 9 Total** | **60** | |
 
 ### Chapter 10: Human Reproduction (`zoo-human-reproduction`) — 5 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B43 | `zoo-repro-male` | Male Reproductive System | 20 | PENDING |
-| B44 | `zoo-repro-female` | Female Reproductive System | 20 | PENDING |
-| B45 | `zoo-repro-gametogenesis` | Gametogenesis | 20 | PENDING |
-| B46 | `zoo-repro-menstrual` | Menstrual Cycle | 20 | PENDING |
-| B47 | `zoo-repro-fertilization` | Fertilization | 20 | PENDING |
+| B43 | `zoo-repro-male` | Male Reproductive System | 20 | DONE |
+| B44 | `zoo-repro-female` | Female Reproductive System | 20 | DONE |
+| B45 | `zoo-repro-gametogenesis` | Gametogenesis | 20 | DONE |
+| B46 | `zoo-repro-menstrual` | Menstrual Cycle | 20 | DONE |
+| B47 | `zoo-repro-fertilization` | Fertilization | 20 | DONE |
 | | | **Chapter 10 Total** | **100** | |
 
 ### Chapter 11: Reproductive Health (`zoo-reproductive-health`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B48 | `zoo-rh-contraception` | Contraception Methods | 20 | PENDING |
-| B49 | `zoo-rh-stds` | STDs | 20 | PENDING |
-| B50 | `zoo-rh-infertility` | Infertility | 20 | PENDING |
-| B51 | `zoo-rh-art` | Assisted Reproductive Technologies | 20 | PENDING |
+| B48 | `zoo-rh-contraception` | Contraception Methods | 20 | DONE |
+| B49 | `zoo-rh-stds` | STDs | 20 | DONE |
+| B50 | `zoo-rh-infertility` | Infertility | 20 | DONE |
+| B51 | `zoo-rh-art` | Assisted Reproductive Technologies | 20 | DONE |
 | | | **Chapter 11 Total** | **80** | |
 
 ### Chapter 12: Evolution (`zoo-evolution`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B52 | `zoo-evo-origin` | Origin of Life | 20 | PENDING |
-| B53 | `zoo-evo-evidence` | Evidence of Evolution | 20 | PENDING |
-| B54 | `zoo-evo-natural` | Natural Selection | 20 | PENDING |
-| B55 | `zoo-evo-human` | Human Evolution | 20 | PENDING |
+| B52 | `zoo-evo-origin` | Origin of Life | 20 | DONE |
+| B53 | `zoo-evo-evidence` | Evidence of Evolution | 20 | DONE |
+| B54 | `zoo-evo-natural` | Natural Selection | 20 | DONE |
+| B55 | `zoo-evo-human` | Human Evolution | 20 | DONE |
 | | | **Chapter 12 Total** | **80** | |
 
 ### Chapter 13: Human Health and Diseases (`zoo-human-health`) — 5 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B56 | `zoo-health-diseases` | Common Diseases | 20 | PENDING |
-| B57 | `zoo-health-immunity` | Immunity | 20 | PENDING |
-| B58 | `zoo-health-aids` | AIDS | 20 | PENDING |
-| B59 | `zoo-health-cancer` | Cancer | 20 | PENDING |
-| B60 | `zoo-health-drugs` | Drug Abuse | 20 | PENDING |
+| B56 | `zoo-health-diseases` | Common Diseases | 20 | DONE |
+| B57 | `zoo-health-immunity` | Immunity | 20 | DONE |
+| B58 | `zoo-health-aids` | AIDS | 20 | DONE |
+| B59 | `zoo-health-cancer` | Cancer | 20 | DONE |
+| B60 | `zoo-health-drugs` | Drug Abuse | 20 | DONE |
 | | | **Chapter 13 Total** | **100** | |
 
 ### Chapter 14: Biotechnology: Principles and Processes (`zoo-biotechnology-principles`) — 5 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B61 | `zoo-biotech-rdna` | rDNA Technology | 20 | PENDING |
-| B62 | `zoo-biotech-pcr` | PCR | 20 | PENDING |
-| B63 | `zoo-biotech-gel` | Gel Electrophoresis | 20 | PENDING |
-| B64 | `zoo-biotech-vectors` | Vectors | 20 | PENDING |
-| B65 | `zoo-biotech-cloning` | Cloning | 20 | PENDING |
+| B61 | `zoo-biotech-rdna` | rDNA Technology | 20 | DONE |
+| B62 | `zoo-biotech-pcr` | PCR | 20 | DONE |
+| B63 | `zoo-biotech-gel` | Gel Electrophoresis | 20 | DONE |
+| B64 | `zoo-biotech-vectors` | Vectors | 20 | DONE |
+| B65 | `zoo-biotech-cloning` | Cloning | 20 | DONE |
 | | | **Chapter 14 Total** | **100** | |
 
 ### Chapter 15: Biotechnology and its Applications (`zoo-biotechnology-applications`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B66 | `zoo-bioapp-gmo` | GMO | 20 | PENDING |
-| B67 | `zoo-bioapp-bt` | Bt Crops | 20 | PENDING |
-| B68 | `zoo-bioapp-gene-therapy` | Gene Therapy | 20 | PENDING |
-| B69 | `zoo-bioapp-transgenic` | Transgenic Animals | 20 | PENDING |
+| B66 | `zoo-bioapp-gmo` | GMO | 20 | DONE |
+| B67 | `zoo-bioapp-bt` | Bt Crops | 20 | DONE |
+| B68 | `zoo-bioapp-gene-therapy` | Gene Therapy | 20 | DONE |
+| B69 | `zoo-bioapp-transgenic` | Transgenic Animals | 20 | DONE |
 | | | **Chapter 15 Total** | **80** | |
 
 ---
@@ -421,15 +421,16 @@ Commit and push.
 | Ch2 Structural Org | 5 | 100 | 100 | 100% |
 | Ch3 Biomolecules | 5 | 100 | 100 | 100% |
 | Ch4 Breathing | 4 | 80 | 80 | 100% |
-| Ch5 Body Fluids | 5 | 100 | 80 | 80% |
-| Ch6 Excretion | 4 | 80 | 0 | 0% |
-| Ch7 Locomotion | 4 | 80 | 0 | 0% |
-| Ch8 Neural Control | 4 | 80 | 0 | 0% |
-| Ch9 Chemical Coord | 3 | 60 | 0 | 0% |
-| Ch10 Human Repro | 5 | 100 | 0 | 0% |
-| Ch11 Repro Health | 4 | 80 | 0 | 0% |
-| Ch12 Evolution | 4 | 80 | 0 | 0% |
-| Ch13 Human Health | 5 | 100 | 0 | 0% |
-| Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
-| Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **520** | **40.0%** |
+| Ch5 Body Fluids | 5 | 100 | 100 | 100% |
+| Ch6 Excretion | 4 | 80 | 80 | 100% |
+| Ch7 Locomotion | 4 | 80 | 80 | 100% |
+| Ch8 Neural Control | 4 | 80 | 80 | 100% |
+| Ch9 Chemical Coord | 3 | 60 | 60 | 100% |
+| Ch10 Human Repro | 5 | 100 | 100 | 100% |
+| Ch11 Repro Health | 4 | 80 | 80 | 100% |
+| Ch12 Evolution | 4 | 80 | 80 | 100% |
+| Ch13 Human Health | 5 | 100 | 100 | 100% |
+| Ch14 Biotech Princ | 5 | 100 | 100 | 100% |
+| Ch15 Biotech Apps | 4 | 80 | 80 | 100% |
+| **TOTAL** | **65** | **1,300** | **1,300** | **100%** |
+
