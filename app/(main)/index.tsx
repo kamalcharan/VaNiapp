@@ -33,6 +33,7 @@ interface SubjectJourney {
   strengthLevel: StrengthLevel;
   chaptersCompleted: number;
   totalChapters: number;
+  accuracy: number;
   vaniMessage: string;
 }
 
@@ -126,9 +127,18 @@ export default function DashboardScreen() {
             else if (coverage >= 20 && accuracy < 40) level = 'needs-focus';
           }
 
+          const subjectAccuracy = subjectChapters.length > 0
+            ? (() => {
+                const totalAnswered = subjectChapters.reduce((s, c) => s + c.totalAnswered, 0);
+                const totalCorrect = subjectChapters.reduce((s, c) => s + c.correctCount, 0);
+                return totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+              })()
+            : 0;
+
           return {
             subject,
             strengthLevel: level,
+            accuracy: subjectAccuracy,
             chaptersCompleted,
             totalChapters: 10,
             vaniMessage: getVaniMessage(level),
@@ -338,6 +348,23 @@ export default function DashboardScreen() {
                             </Text>
                           </View>
 
+                          {/* Accuracy — only if they've practiced */}
+                          {journey.accuracy > 0 && (
+                            <Text
+                              style={[
+                                Typography.bodySm,
+                                {
+                                  color: journey.accuracy >= 70 ? '#22C55E' : journey.accuracy >= 40 ? '#F59E0B' : '#EF4444',
+                                  textAlign: 'center',
+                                  fontWeight: '600',
+                                  marginTop: Spacing.xs,
+                                },
+                              ]}
+                            >
+                              {journey.accuracy}% accuracy
+                            </Text>
+                          )}
+
                           {/* VaNi Message */}
                           <Text
                             style={[
@@ -345,8 +372,9 @@ export default function DashboardScreen() {
                               {
                                 color: colors.textSecondary,
                                 textAlign: 'center',
-                                marginTop: Spacing.xs,
+                                marginTop: journey.accuracy > 0 ? 2 : Spacing.xs,
                                 fontStyle: 'italic',
+                                fontSize: 11,
                               },
                             ]}
                           >
@@ -438,10 +466,12 @@ export default function DashboardScreen() {
             </Pressable>
           </JournalCard>
 
-          {/* Coming Soon */}
+          {/* Coaching nudge — tap a subject to see your progress */}
           <StickyNote color="teal" rotation={0.5} delay={600}>
             <HandwrittenText variant="handSm">
-              Questions, analytics, and more coming soon!
+              {filteredJourneys.some(j => j.strengthLevel !== 'just-started')
+                ? 'Tap any subject card above to see your chapter-by-chapter progress!'
+                : 'Start a chapter quiz and I\'ll track your strengths for you!'}
             </HandwrittenText>
           </StickyNote>
         </Animated.ScrollView>
