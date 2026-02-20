@@ -185,42 +185,42 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B43 | `zoo-repro-male` | Male Reproductive System | 20 | PENDING |
-| B44 | `zoo-repro-female` | Female Reproductive System | 20 | PENDING |
+| B43 | `zoo-repro-male` | Male Reproductive System | 20 | DONE |
+| B44 | `zoo-repro-female` | Female Reproductive System | 20 | DONE |
 | B45 | `zoo-repro-gametogenesis` | Gametogenesis | 20 | PENDING |
 | B46 | `zoo-repro-menstrual` | Menstrual Cycle | 20 | PENDING |
-| B47 | `zoo-repro-fertilization` | Fertilization | 20 | PENDING |
+| B47 | `zoo-repro-fertilization` | Fertilization | 20 | DONE |
 | | | **Chapter 10 Total** | **100** | |
 
 ### Chapter 11: Reproductive Health (`zoo-reproductive-health`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B48 | `zoo-rh-contraception` | Contraception Methods | 20 | PENDING |
-| B49 | `zoo-rh-stds` | STDs | 20 | PENDING |
+| B48 | `zoo-rh-contraception` | Contraception Methods | 20 | DONE |
+| B49 | `zoo-rh-stds` | STDs | 20 | DONE |
 | B50 | `zoo-rh-infertility` | Infertility | 20 | PENDING |
-| B51 | `zoo-rh-art` | Assisted Reproductive Technologies | 20 | PENDING |
+| B51 | `zoo-rh-art` | Assisted Reproductive Technologies | 20 | DONE |
 | | | **Chapter 11 Total** | **80** | |
 
 ### Chapter 12: Evolution (`zoo-evolution`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B52 | `zoo-evo-origin` | Origin of Life | 20 | PENDING |
-| B53 | `zoo-evo-evidence` | Evidence of Evolution | 20 | PENDING |
-| B54 | `zoo-evo-natural` | Natural Selection | 20 | PENDING |
-| B55 | `zoo-evo-human` | Human Evolution | 20 | PENDING |
+| B52 | `zoo-evo-origin` | Origin of Life | 20 | DONE |
+| B53 | `zoo-evo-evidence` | Evidence of Evolution | 20 | DONE |
+| B54 | `zoo-evo-natural` | Natural Selection | 20 | DONE |
+| B55 | `zoo-evo-human` | Human Evolution | 20 | DONE |
 | | | **Chapter 12 Total** | **80** | |
 
 ### Chapter 13: Human Health and Diseases (`zoo-human-health`) — 5 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B56 | `zoo-health-diseases` | Common Diseases | 20 | PENDING |
-| B57 | `zoo-health-immunity` | Immunity | 20 | PENDING |
-| B58 | `zoo-health-aids` | AIDS | 20 | PENDING |
+| B56 | `zoo-health-diseases` | Common Diseases | 20 | DONE |
+| B57 | `zoo-health-immunity` | Immunity | 20 | DONE |
+| B58 | `zoo-health-aids` | AIDS | 20 | DONE |
 | B59 | `zoo-health-cancer` | Cancer | 20 | PENDING |
-| B60 | `zoo-health-drugs` | Drug Abuse | 20 | PENDING |
+| B60 | `zoo-health-drugs` | Drug Abuse | 20 | DONE |
 | | | **Chapter 13 Total** | **100** | |
 
 ### Chapter 14: Biotechnology: Principles and Processes (`zoo-biotechnology-principles`) — 5 batches
@@ -426,10 +426,10 @@ Commit and push.
 | Ch7 Locomotion | 4 | 80 | 80 | 100% |
 | Ch8 Neural Control | 4 | 80 | 80 | 100% |
 | Ch9 Chemical Coord | 3 | 60 | 60 | 100% |
-| Ch10 Human Repro | 5 | 100 | 0 | 0% |
-| Ch11 Repro Health | 4 | 80 | 0 | 0% |
-| Ch12 Evolution | 4 | 80 | 0 | 0% |
-| Ch13 Human Health | 5 | 100 | 0 | 0% |
+| Ch10 Human Repro | 5 | 100 | 60 | 60% |
+| Ch11 Repro Health | 4 | 80 | 60 | 75% |
+| Ch12 Evolution | 4 | 80 | 80 | 100% |
+| Ch13 Human Health | 5 | 100 | 80 | 80% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **840** | **64.6%** |
+| **TOTAL** | **65** | **1,300** | **1,120** | **86.2%** |
