@@ -3,115 +3,295 @@
     "id": "zoo-biotech-cloning-01",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "The first step in gene cloning is:",
-    "explanation": "The first step in gene cloning (recombinant DNA technology) is the isolation of DNA from the donor organism. The genomic DNA must be extracted from the cells before it can be cut with restriction enzymes to isolate the gene of interest. This involves lysing the cells and purifying the DNA from proteins and other cellular components.",
-    "correct_answer": "A",
-    "concept_tags": ["gene cloning", "DNA isolation", "first step", "rDNA technology"],
-    "topic": "Gene Cloning",
+    "question_text": "The process of introducing recombinant DNA into a bacterial host cell such as E. coli is called:",
+    "explanation": "Transformation is the process of introducing foreign or recombinant DNA into a host bacterial cell. In recombinant DNA technology, the recombinant vector (plasmid with foreign DNA insert) is introduced into competent E. coli cells. The term was first coined by Frederick Griffith in 1928 during his experiments with Streptococcus pneumoniae, as described in NCERT Class 12 Biology.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "transformation",
+      "recombinant-dna",
+      "host-cell"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Isolation of DNA from the donor organism", "is_correct": true },
-      { "key": "B", "text": "Ligation of DNA fragments", "is_correct": false },
-      { "key": "C", "text": "Transformation of host cells", "is_correct": false },
-      { "key": "D", "text": "Selection of recombinants", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Transduction",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Transformation",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Conjugation",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Translation",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Ligation occurs after DNA has been isolated and cut with restriction enzymes. It is a later step in gene cloning.", "misconception": "Confusing the order of gene cloning steps" },
-      { "option_key": "C", "hint": "Transformation occurs after the recombinant DNA has been constructed. The host cells receive the recombinant vector at a later step.", "misconception": "Placing transformation before DNA isolation" },
-      { "option_key": "D", "hint": "Selection of recombinants is the final screening step, performed after transformation. It cannot happen without prior steps.", "misconception": "Thinking screening comes first in gene cloning" }
+      {
+        "option_key": "A",
+        "hint": "Transduction involves the transfer of genetic material from one bacterium to another via a bacteriophage (virus), not the direct uptake of free DNA.",
+        "misconception": "Confusing phage-mediated gene transfer with direct DNA uptake by competent cells."
+      },
+      {
+        "option_key": "C",
+        "hint": "Conjugation is the transfer of genetic material between bacteria through direct cell-to-cell contact via a pilus, not the uptake of free recombinant DNA.",
+        "misconception": "Confusing bacterial mating with the process of introducing recombinant DNA into host cells."
+      },
+      {
+        "option_key": "D",
+        "hint": "Translation is the process of protein synthesis from mRNA at ribosomes. It has nothing to do with introducing DNA into a cell.",
+        "misconception": "Confusing a molecular biology central dogma process with a DNA transfer technique."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-02",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "Which method involves treating bacterial cells with calcium chloride (CaCl2) to make them competent for DNA uptake?",
-    "explanation": "The CaCl2 method (chemical transformation) involves treating bacterial cells with ice-cold calcium chloride solution to make their cell membranes temporarily permeable to DNA. The CaCl2 treatment neutralizes the negative charges on both the DNA and the cell membrane, reducing electrostatic repulsion. A subsequent heat shock at 42°C for 60-90 seconds facilitates DNA entry into the cells.",
-    "correct_answer": "B",
-    "concept_tags": ["CaCl2 method", "transformation", "competent cells", "DNA uptake"],
-    "topic": "Gene Cloning",
+    "question_text": "In blue-white screening, recombinant colonies appear as:",
+    "explanation": "In blue-white screening, the cloning vector contains the lacZ gene encoding beta-galactosidase. When foreign DNA is inserted into the lacZ gene, it is disrupted (insertional inactivation). Recombinant colonies cannot produce functional beta-galactosidase and therefore appear WHITE on X-gal/IPTG plates. Non-recombinant colonies retain intact lacZ, produce active beta-galactosidase that cleaves X-gal, and appear BLUE.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "blue-white-screening",
+      "lacZ-gene",
+      "insertional-inactivation"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Electroporation", "is_correct": false },
-      { "key": "B", "text": "Chemical transformation", "is_correct": true },
-      { "key": "C", "text": "Microinjection", "is_correct": false },
-      { "key": "D", "text": "Biolistics", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Blue colonies",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Red colonies",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "White colonies",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Green colonies",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Electroporation uses short electrical pulses to create temporary pores in cell membranes, not chemical treatment with CaCl2.", "misconception": "Confusing chemical and electrical methods of making cells competent" },
-      { "option_key": "C", "hint": "Microinjection involves directly injecting DNA into cells using a fine glass needle, not CaCl2 treatment.", "misconception": "Confusing chemical transformation with physical injection methods" },
-      { "option_key": "D", "hint": "Biolistics (gene gun) uses high-velocity microprojectiles coated with DNA, not CaCl2 treatment.", "misconception": "Confusing chemical transformation with particle bombardment" }
+      {
+        "option_key": "A",
+        "hint": "Blue colonies are non-recombinants. They have an intact lacZ gene that produces functional beta-galactosidase, which cleaves X-gal into a blue-coloured product.",
+        "misconception": "Reversing which colony colour corresponds to recombinants and non-recombinants."
+      },
+      {
+        "option_key": "B",
+        "hint": "Red colonies are not produced in blue-white screening. The chromogenic substrate X-gal yields only blue colour when cleaved; no red product is formed.",
+        "misconception": "Introducing an irrelevant colour to the blue-white screening system."
+      },
+      {
+        "option_key": "D",
+        "hint": "Green colonies are not part of the blue-white screening system. The X-gal substrate only produces a blue colour when cleaved by beta-galactosidase.",
+        "misconception": "Confusing colony colours outside the scope of the blue-white screening method."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-03",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "In blue-white screening, recombinant colonies appear as:",
-    "explanation": "In blue-white screening, the cloning vector contains the lacZ gene (encoding beta-galactosidase). When foreign DNA is inserted into the lacZ gene, it disrupts the gene (insertional inactivation). Recombinant colonies cannot produce functional beta-galactosidase and appear WHITE on X-gal plates. Non-recombinant colonies have intact lacZ, produce beta-galactosidase that cleaves X-gal, and appear BLUE.",
-    "correct_answer": "C",
-    "concept_tags": ["blue-white screening", "lacZ gene", "X-gal", "recombinant selection"],
-    "topic": "Gene Cloning",
+    "question_text": "The first step in gene cloning using recombinant DNA technology is:",
+    "explanation": "The first step in gene cloning is the isolation of genetic material (DNA) from the donor organism. The genomic DNA must be extracted and purified from the cells before it can be cut with restriction enzymes to obtain the gene of interest. This involves cell lysis (using lysozyme for bacteria, or cellulase/pectinase for plant cells), removal of proteins using protease, removal of RNA using RNase, and purification of DNA.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "gene-cloning-steps",
+      "dna-isolation",
+      "first-step"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Blue colonies", "is_correct": false },
-      { "key": "B", "text": "Red colonies", "is_correct": false },
-      { "key": "C", "text": "White colonies", "is_correct": true },
-      { "key": "D", "text": "Green colonies", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Isolation of DNA from the donor organism",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Ligation of DNA fragments into a vector",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Transformation of host cells",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Screening and selection of recombinants",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Blue colonies indicate non-recombinants that have an intact lacZ gene producing functional beta-galactosidase that cleaves X-gal into a blue product.", "misconception": "Confusing recombinant (white) and non-recombinant (blue) colony colors" },
-      { "option_key": "B", "hint": "Red colonies are not produced in blue-white screening. The chromogenic substrate X-gal produces only blue or no color (white).", "misconception": "Introducing irrelevant colony colors to the screening method" },
-      { "option_key": "D", "hint": "Green colonies are not part of blue-white screening. The system uses X-gal which produces blue color when cleaved by beta-galactosidase.", "misconception": "Confusing colony colors in recombinant screening" }
+      {
+        "option_key": "B",
+        "hint": "Ligation occurs after DNA has been isolated and cut with restriction enzymes. You cannot ligate a gene into a vector without first isolating the DNA.",
+        "misconception": "Confusing the order of gene cloning steps by placing ligation before DNA isolation."
+      },
+      {
+        "option_key": "C",
+        "hint": "Transformation is the step where recombinant DNA is introduced into host cells. This occurs after the recombinant DNA molecule has already been constructed.",
+        "misconception": "Placing the host cell transformation step before obtaining the DNA to be cloned."
+      },
+      {
+        "option_key": "D",
+        "hint": "Screening and selection is the final step performed after transformation to identify which colonies contain the recombinant DNA.",
+        "misconception": "Thinking that selection can be performed before any of the earlier cloning steps."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-04",
     "question_type": "mcq",
-    "difficulty": "easy",
-    "question_text": "The process of introducing foreign DNA into a bacterial cell is called:",
-    "explanation": "Transformation is the process of introducing foreign DNA (usually a plasmid or recombinant vector) into a bacterial cell. The term was first used by Frederick Griffith in 1928. In the context of rDNA technology, transformation involves making bacterial cells competent to take up DNA using methods like CaCl2 treatment followed by heat shock, or electroporation.",
-    "correct_answer": "A",
-    "concept_tags": ["transformation", "DNA uptake", "bacterial cells", "competent cells"],
-    "topic": "Gene Cloning",
+    "difficulty": "medium",
+    "question_text": "During DNA isolation, purified DNA can be precipitated out of solution by adding:",
+    "explanation": "After purification steps (removal of proteins by protease, removal of RNA by RNase), the DNA in solution is precipitated by adding chilled ethanol. DNA is insoluble in cold ethanol and precipitates out as fine, white, thread-like fibres that can be collected by spooling on a glass rod or by centrifugation. This ethanol precipitation step is a standard technique described in NCERT for obtaining purified DNA.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "dna-precipitation",
+      "chilled-ethanol",
+      "spooling"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Transformation", "is_correct": true },
-      { "key": "B", "text": "Transduction", "is_correct": false },
-      { "key": "C", "text": "Conjugation", "is_correct": false },
-      { "key": "D", "text": "Translation", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Warm distilled water",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Hydrochloric acid",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Sodium hydroxide solution",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Chilled ethanol",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Transduction is the transfer of DNA from one bacterium to another via a bacteriophage (virus), not direct uptake of naked DNA.", "misconception": "Confusing transformation with phage-mediated DNA transfer" },
-      { "option_key": "C", "hint": "Conjugation involves direct transfer of DNA between bacteria through a pilus, not uptake of free DNA from the environment.", "misconception": "Confusing transformation with bacterial mating" },
-      { "option_key": "D", "hint": "Translation is the process of protein synthesis from mRNA at ribosomes, which is completely unrelated to DNA uptake.", "misconception": "Confusing DNA transfer with protein synthesis terminology" }
+      {
+        "option_key": "A",
+        "hint": "Warm distilled water would dissolve DNA rather than precipitate it. DNA is soluble in aqueous solution, especially at higher temperatures.",
+        "misconception": "Thinking that water can precipitate DNA when it actually keeps DNA in solution."
+      },
+      {
+        "option_key": "B",
+        "hint": "Hydrochloric acid is a strong acid that would damage and degrade the DNA by depurination, not precipitate it in a usable form.",
+        "misconception": "Confusing chemical degradation with precipitation of DNA."
+      },
+      {
+        "option_key": "C",
+        "hint": "Sodium hydroxide is a strong base used to denature DNA (separate strands) in alkaline lysis, not to precipitate it for collection.",
+        "misconception": "Confusing DNA denaturation with DNA precipitation."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-05",
     "question_type": "mcq",
-    "difficulty": "easy",
-    "question_text": "Biolistics (gene gun method) involves:",
-    "explanation": "Biolistics (biological ballistics), also called the gene gun or particle bombardment method, involves shooting high-velocity gold or tungsten microprojectiles (microparticles) coated with DNA into target cells or tissues. This method is particularly useful for transforming plant cells that have rigid cell walls, and also for organelles like chloroplasts and mitochondria. It does not require making cells competent.",
-    "correct_answer": "D",
-    "concept_tags": ["biolistics", "gene gun", "microprojectile bombardment", "plant transformation"],
-    "topic": "Gene Cloning",
-    "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "difficulty": "medium",
+    "question_text": "The enzyme DNA ligase is used in gene cloning to:",
+    "explanation": "DNA ligase catalyses the formation of phosphodiester bonds between the sugar-phosphate backbones of two DNA fragments. In gene cloning, after the foreign DNA and the vector are cut with the same restriction enzyme (producing compatible sticky ends or blunt ends), DNA ligase joins these fragments together to form a recombinant DNA molecule. This ligation step is essential for creating the recombinant vector that can then be introduced into a host cell.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "dna-ligase",
+      "ligation",
+      "phosphodiester-bonds"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Using electrical pulses to create pores in cell membrane", "is_correct": false },
-      { "key": "B", "text": "Injecting DNA using a fine glass micropipette", "is_correct": false },
-      { "key": "C", "text": "Using CaCl2 and heat shock to facilitate DNA uptake", "is_correct": false },
-      { "key": "D", "text": "Bombarding cells with high-velocity DNA-coated gold or tungsten microparticles", "is_correct": true }
+      {
+        "key": "A",
+        "text": "Cut DNA at specific palindromic sequences",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Join DNA fragments by forming phosphodiester bonds",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Separate double-stranded DNA into single strands",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Synthesise new DNA strands using a template",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Using electrical pulses describes electroporation, not biolistics. Electroporation creates temporary membrane pores.", "misconception": "Confusing electroporation with biolistics" },
-      { "option_key": "B", "hint": "Using a fine glass micropipette describes microinjection, which directly injects DNA into individual cells.", "misconception": "Confusing microinjection with biolistics" },
-      { "option_key": "C", "hint": "CaCl2 and heat shock describe chemical transformation of bacterial cells, not biolistics.", "misconception": "Confusing chemical transformation with particle bombardment" }
+      {
+        "option_key": "A",
+        "hint": "Cutting DNA at specific palindromic recognition sequences is the function of restriction endonucleases (molecular scissors), not DNA ligase.",
+        "misconception": "Confusing the cutting enzyme (restriction endonuclease) with the joining enzyme (DNA ligase)."
+      },
+      {
+        "option_key": "C",
+        "hint": "Separating double-stranded DNA into single strands is achieved by helicase in vivo or by heat denaturation in vitro. DNA ligase joins fragments, not separates them.",
+        "misconception": "Attributing strand separation to DNA ligase instead of helicase or heat."
+      },
+      {
+        "option_key": "D",
+        "hint": "Synthesising new DNA strands using a template is the function of DNA polymerase. DNA ligase only joins existing DNA fragments end to end.",
+        "misconception": "Confusing the function of DNA polymerase with that of DNA ligase."
+      }
     ]
   },
   {
@@ -119,336 +299,893 @@
     "question_type": "mcq",
     "difficulty": "medium",
     "question_text": "During DNA isolation from bacterial cells, which enzyme is used to digest the cell wall?",
-    "explanation": "Lysozyme is used to digest the bacterial cell wall during DNA isolation. Lysozyme breaks down peptidoglycan (the major structural component of bacterial cell walls) by hydrolyzing the glycosidic bonds between N-acetylmuramic acid (NAM) and N-acetylglucosamine (NAG). After cell wall digestion, detergents like SDS are used to lyse the cell membrane and release the cellular contents including DNA.",
-    "correct_answer": "B",
-    "concept_tags": ["DNA isolation", "lysozyme", "cell wall digestion", "peptidoglycan"],
-    "topic": "Gene Cloning",
+    "explanation": "Lysozyme is used to digest the bacterial cell wall during DNA isolation. It breaks down peptidoglycan, the major structural polymer of bacterial cell walls, by hydrolysing the glycosidic bonds between N-acetylmuramic acid (NAM) and N-acetylglucosamine (NAG). After cell wall digestion, detergents like SDS are used to lyse the cell membrane and release the cellular contents including DNA.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "lysozyme",
+      "cell-wall-digestion",
+      "dna-isolation"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Protease", "is_correct": false },
-      { "key": "B", "text": "Lysozyme", "is_correct": true },
-      { "key": "C", "text": "RNase", "is_correct": false },
-      { "key": "D", "text": "Cellulase", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Lysozyme",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Protease",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "RNase",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Cellulase",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Protease digests proteins (including histones and other DNA-associated proteins) during DNA purification, but it does not digest the bacterial cell wall.", "misconception": "Confusing protein digestion with cell wall digestion" },
-      { "option_key": "C", "hint": "RNase degrades RNA molecules during DNA isolation to obtain pure DNA, but it has no role in cell wall digestion.", "misconception": "Confusing RNA removal step with cell wall digestion" },
-      { "option_key": "D", "hint": "Cellulase digests cellulose, which is the cell wall component of plant cells, not the peptidoglycan of bacterial cell walls.", "misconception": "Confusing plant cell wall digestion with bacterial cell wall digestion" }
+      {
+        "option_key": "B",
+        "hint": "Protease digests proteins (including histones and other DNA-associated proteins) during DNA purification, but it does not act on the peptidoglycan of bacterial cell walls.",
+        "misconception": "Confusing the protein digestion step with the cell wall digestion step in DNA isolation."
+      },
+      {
+        "option_key": "C",
+        "hint": "RNase degrades RNA molecules during DNA isolation to obtain pure DNA. It has no role in digesting the bacterial cell wall.",
+        "misconception": "Confusing the RNA removal step with the cell wall digestion step."
+      },
+      {
+        "option_key": "D",
+        "hint": "Cellulase digests cellulose, which is the cell wall component of plant cells, not the peptidoglycan of bacterial cell walls.",
+        "misconception": "Confusing plant cell wall digestion with bacterial cell wall digestion."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-07",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "Electroporation is a technique that involves:",
-    "explanation": "Electroporation involves applying short, high-voltage electrical pulses to cells, which creates temporary microscopic pores in the cell membrane. These transient pores allow DNA molecules to enter the cell. After the electrical pulse, the pores reseal and the cell membrane returns to its normal state. This method can be used for both prokaryotic and eukaryotic cells and is more efficient than chemical transformation for many cell types.",
+    "question_text": "Bacterial cells are made competent for DNA uptake during transformation by treating them with:",
+    "explanation": "Bacterial cells are made competent (able to take up DNA from the surrounding medium) by treating them with ice-cold calcium chloride (CaCl2). The divalent Ca2+ ions neutralise the negative charges on both the DNA phosphate backbone and the bacterial cell membrane, reducing electrostatic repulsion between them. This is followed by a brief heat shock at 42 degrees Celsius for 60-90 seconds, which creates transient pores in the membrane allowing DNA to enter.",
     "correct_answer": "C",
-    "concept_tags": ["electroporation", "electrical pulses", "membrane pores", "DNA transfer"],
-    "topic": "Gene Cloning",
-    "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "concept_tags": [
+      "competent-cells",
+      "cacl2-treatment",
+      "heat-shock"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Using enzymes to create holes in the cell membrane", "is_correct": false },
-      { "key": "B", "text": "Coating DNA on gold particles and shooting into cells", "is_correct": false },
-      { "key": "C", "text": "Using brief electrical pulses to create temporary pores in the cell membrane for DNA entry", "is_correct": true },
-      { "key": "D", "text": "Using ultraviolet radiation to make cells competent", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Sodium chloride (NaCl)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Magnesium sulphate (MgSO4)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Calcium chloride (CaCl2)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Potassium permanganate (KMnO4)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Enzymes like lysozyme can weaken cell walls but electroporation specifically uses electrical pulses, not enzymatic treatment.", "misconception": "Confusing enzymatic methods with electrical methods of membrane permeabilization" },
-      { "option_key": "B", "hint": "Coating DNA on gold particles and shooting them into cells describes biolistics (gene gun), not electroporation.", "misconception": "Confusing biolistics with electroporation" },
-      { "option_key": "D", "hint": "UV radiation causes DNA damage (thymine dimers) and is not used to make cells competent for DNA uptake.", "misconception": "Confusing mutagenic radiation with DNA transfer methods" }
+      {
+        "option_key": "A",
+        "hint": "Sodium chloride is a common salt used in buffers and culture media, but it does not make bacterial cells competent for DNA uptake. Divalent cations (Ca2+) are specifically needed.",
+        "misconception": "Confusing general salts used in biology with the specific reagent for making cells competent."
+      },
+      {
+        "option_key": "B",
+        "hint": "Although Mg2+ is a divalent cation, MgSO4 is not the standard reagent used for making E. coli competent. CaCl2 is the classical and NCERT-specified reagent.",
+        "misconception": "Substituting other divalent cation salts for the specific CaCl2 treatment."
+      },
+      {
+        "option_key": "D",
+        "hint": "Potassium permanganate is a strong oxidising agent used as a disinfectant. It would damage bacterial cells rather than make them competent.",
+        "misconception": "Confusing a chemical disinfectant with a reagent for biological transformation."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-08",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "In the process of gene cloning, after cutting the donor DNA and the vector with the same restriction enzyme, the next step is:",
-    "explanation": "After both the donor DNA and the vector are cut with the same restriction enzyme (producing compatible sticky ends), the next step is ligation. The cut DNA fragments and the linearized vector are mixed together in the presence of DNA ligase enzyme. The ligase joins the complementary sticky ends by forming phosphodiester bonds, creating a recombinant DNA molecule (vector + foreign DNA insert).",
-    "correct_answer": "B",
-    "concept_tags": ["ligation", "DNA ligase", "recombinant DNA", "gene cloning steps"],
-    "topic": "Gene Cloning",
+    "question_text": "Insertional inactivation as a method of screening recombinants works because:",
+    "explanation": "Insertional inactivation relies on the principle that when foreign DNA is inserted into a gene within the vector (such as an antibiotic resistance gene or the lacZ gene), it disrupts that gene's function. Recombinant cells that carry the insert lose the function of the disrupted gene, while non-recombinant cells retain the intact gene. This phenotypic difference allows researchers to distinguish recombinants from non-recombinants by testing for the presence or absence of the gene product.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "insertional-inactivation",
+      "gene-disruption",
+      "recombinant-screening"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Transformation into host cells", "is_correct": false },
-      { "key": "B", "text": "Ligation of the DNA insert with the vector using DNA ligase", "is_correct": true },
-      { "key": "C", "text": "Gel electrophoresis of the products", "is_correct": false },
-      { "key": "D", "text": "PCR amplification of the fragments", "is_correct": false }
+      {
+        "key": "A",
+        "text": "The foreign DNA insert amplifies the marker gene activity",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The foreign DNA insert changes the size of the host chromosome",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The vector cannot replicate after foreign DNA insertion",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The foreign DNA insert disrupts a marker gene in the vector, causing loss of its function",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Transformation comes after ligation. The recombinant DNA molecule must first be constructed before being introduced into host cells.", "misconception": "Skipping the ligation step and proceeding directly to transformation" },
-      { "option_key": "C", "hint": "While gel electrophoresis can be used to separate and purify specific DNA fragments, the immediate next step after cutting is ligation to join the fragments.", "misconception": "Thinking gel electrophoresis is required between cutting and ligation" },
-      { "option_key": "D", "hint": "PCR amplification may be used to obtain the gene of interest initially, but after restriction enzyme cutting, the next step is ligation, not amplification.", "misconception": "Confusing the order of cloning steps" }
+      {
+        "option_key": "A",
+        "hint": "Insertion of foreign DNA into a marker gene disrupts (inactivates) it rather than amplifying its activity. The word 'inactivation' itself indicates loss of function.",
+        "misconception": "Thinking insertion enhances gene activity instead of disrupting it."
+      },
+      {
+        "option_key": "B",
+        "hint": "The foreign DNA is inserted into the plasmid vector, not the host chromosome. The screening depends on the vector's marker gene function, not chromosomal size changes.",
+        "misconception": "Confusing plasmid-based selection with chromosomal changes."
+      },
+      {
+        "option_key": "C",
+        "hint": "The vector can still replicate after foreign DNA insertion because the origin of replication (ori) remains intact. Only the specific marker gene at the insertion site is disrupted.",
+        "misconception": "Thinking that insertion of foreign DNA prevents vector replication."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-09",
     "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "Insertional inactivation is a method used to:",
-    "explanation": "Insertional inactivation is a method used to distinguish recombinant cells from non-recombinant cells. When foreign DNA is inserted into a gene within the vector (such as an antibiotic resistance gene), it disrupts (inactivates) that gene. Recombinant cells lose the function of the disrupted gene, while non-recombinant cells retain it. This difference is used to screen and select recombinants, for example by replica plating on different antibiotic media.",
-    "correct_answer": "D",
-    "concept_tags": ["insertional inactivation", "recombinant selection", "gene disruption", "screening"],
-    "topic": "Gene Cloning",
-    "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "difficulty": "hard",
+    "question_text": "A researcher inserts a foreign gene at the BamHI site in pBR322 and transforms E. coli. On which medium will recombinant colonies grow, and on which will they fail to grow?",
+    "explanation": "In pBR322, the BamHI restriction site is located within the tetracycline resistance (tetR) gene. When foreign DNA is inserted at this site, the tetR gene is disrupted by insertional inactivation while the ampicillin resistance (ampR) gene remains intact. Therefore, recombinant cells will grow on ampicillin-containing medium (ampR is functional) but will NOT grow on tetracycline-containing medium (tetR is disrupted). Non-recombinant cells with intact pBR322 will grow on both antibiotics.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "pBR322",
+      "BamHI-site",
+      "tetR-disruption",
+      "ampR-intact"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Amplify the gene of interest", "is_correct": false },
-      { "key": "B", "text": "Cut DNA at specific sites", "is_correct": false },
-      { "key": "C", "text": "Ligate DNA fragments", "is_correct": false },
-      { "key": "D", "text": "Select and identify recombinant clones by disruption of a marker gene", "is_correct": true }
+      {
+        "key": "A",
+        "text": "Grow on tetracycline medium; fail to grow on ampicillin medium",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Grow on ampicillin medium; fail to grow on tetracycline medium",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Grow on both ampicillin and tetracycline media",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Fail to grow on both ampicillin and tetracycline media",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Gene amplification is done by PCR. Insertional inactivation is a screening method, not an amplification method.", "misconception": "Confusing screening methods with amplification methods" },
-      { "option_key": "B", "hint": "Cutting DNA at specific sites is the function of restriction enzymes, not insertional inactivation.", "misconception": "Confusing restriction enzyme cutting with insertional inactivation" },
-      { "option_key": "C", "hint": "Ligation of DNA fragments is performed by DNA ligase. Insertional inactivation is a consequence of ligation used for screening.", "misconception": "Confusing ligation with the screening method that follows it" }
+      {
+        "option_key": "A",
+        "hint": "This is the reverse of what actually happens. The BamHI site is within the tetR gene, so tetR is disrupted. The ampR gene remains intact, not the other way around.",
+        "misconception": "Reversing which antibiotic resistance gene is disrupted by insertion at the BamHI site."
+      },
+      {
+        "option_key": "C",
+        "hint": "Growing on both antibiotics would indicate that both resistance genes are intact, meaning no insertion has occurred. These would be non-recombinant colonies.",
+        "misconception": "Confusing recombinant colonies with non-recombinant colonies that carry self-ligated vector."
+      },
+      {
+        "option_key": "D",
+        "hint": "Cells that grow on neither antibiotic likely did not take up any plasmid at all. Recombinants retain the intact ampR gene and will grow on ampicillin.",
+        "misconception": "Thinking that insertional inactivation disrupts both resistance genes simultaneously."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-10",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "Microinjection as a DNA transfer method involves:",
-    "explanation": "Microinjection is a physical method of introducing DNA directly into a cell using a very fine glass micropipette (needle) under a microscope. The DNA is injected directly into the nucleus of the target cell. This method is particularly useful for transforming animal cells and is commonly used in creating transgenic animals. It requires specialized equipment including a micromanipulator and an inverted microscope.",
+    "question_text": "The most commonly used type of bioreactor for large-scale production of recombinant proteins is the:",
+    "explanation": "The stirred-tank bioreactor is the most commonly used bioreactor for large-scale production of recombinant proteins. It has a cylindrical vessel with a mechanical stirrer (agitator) that continuously mixes the contents, ensuring uniform distribution of nutrients, oxygen, and temperature throughout the culture medium. It also has systems for aeration, pH control, temperature control, and foam control. The stirred-tank bioreactor provides better mixing compared to simple shake flasks, enabling consistent growth conditions for the host organisms.",
     "correct_answer": "A",
-    "concept_tags": ["microinjection", "DNA transfer", "glass micropipette", "animal cells"],
-    "topic": "Gene Cloning",
-    "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "concept_tags": [
+      "bioreactor",
+      "stirred-tank",
+      "scale-up",
+      "recombinant-protein"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Directly injecting DNA into the nucleus of a cell using a fine glass needle", "is_correct": true },
-      { "key": "B", "text": "Using viral vectors to carry DNA into the cell", "is_correct": false },
-      { "key": "C", "text": "Soaking cells in DNA solution", "is_correct": false },
-      { "key": "D", "text": "Using liposomes to deliver DNA into cells", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Stirred-tank bioreactor",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Simple shake flask",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Petri dish culture",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Test tube culture",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Using viral vectors is called transduction or viral-mediated gene transfer, which is a different method from microinjection.", "misconception": "Confusing microinjection with viral-mediated DNA delivery" },
-      { "option_key": "C", "hint": "Simply soaking cells in DNA solution (without CaCl2 treatment) is generally inefficient for DNA uptake. Microinjection is a direct physical method.", "misconception": "Confusing passive DNA uptake with active microinjection" },
-      { "option_key": "D", "hint": "Using liposomes (lipofection) is a separate transfection method where DNA is encapsulated in lipid vesicles, different from microinjection.", "misconception": "Confusing lipid-mediated transfection with microinjection" }
+      {
+        "option_key": "B",
+        "hint": "Simple shake flasks are used for small-scale laboratory experiments, not for large-scale (industrial) production. They cannot provide the controlled environment needed for consistent large-volume culture.",
+        "misconception": "Confusing small-scale lab culture with industrial-scale bioreactor production."
+      },
+      {
+        "option_key": "C",
+        "hint": "Petri dishes are used for plating and growing bacterial colonies on solid medium at the laboratory bench. They are entirely unsuitable for large-scale liquid culture.",
+        "misconception": "Thinking that solid-medium plate culture is used for industrial production."
+      },
+      {
+        "option_key": "D",
+        "hint": "Test tube cultures hold very small volumes and lack aeration, stirring, and environmental controls needed for large-scale production of recombinant proteins.",
+        "misconception": "Confusing basic laboratory glassware with industrial bioreactor systems."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-11",
     "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "In the heat shock method of transformation, bacteria treated with CaCl2 are briefly exposed to a temperature of approximately:",
-    "explanation": "In the heat shock method, CaCl2-treated competent bacterial cells are briefly exposed to a temperature of 42°C for about 60-90 seconds. This brief thermal shock creates temporary pores in the bacterial cell membrane, allowing the DNA molecules to enter the cell. The cells are then immediately transferred back to ice to reseal the membrane pores. This temperature shift is critical for efficient transformation.",
-    "correct_answer": "C",
-    "concept_tags": ["heat shock", "transformation", "42°C", "competent cells"],
-    "topic": "Gene Cloning",
-    "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "difficulty": "hard",
+    "question_text": "During gene cloning, if the vector and the foreign DNA are cut with two different restriction enzymes that produce non-compatible ends, the most likely result will be:",
+    "explanation": "When two different restriction enzymes that produce non-compatible (non-complementary) sticky ends are used to cut the vector and foreign DNA respectively, the overhanging single-stranded ends cannot base-pair with each other. DNA ligase requires the ends to be brought into close proximity through complementary base pairing (for sticky ends) to efficiently catalyse the formation of phosphodiester bonds. Non-compatible sticky ends will not anneal, so ligation will fail and no recombinant DNA will be formed.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "compatible-ends",
+      "restriction-enzymes",
+      "ligation-failure"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "4°C", "is_correct": false },
-      { "key": "B", "text": "37°C", "is_correct": false },
-      { "key": "C", "text": "42°C", "is_correct": true },
-      { "key": "D", "text": "94°C", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Efficient ligation of the insert into the vector",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The insert will integrate into the host chromosome instead",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The restriction enzymes will modify the ends to make them compatible",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Ligation will fail because the sticky ends cannot base-pair with each other",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "4°C (ice-cold) is the temperature at which cells are incubated WITH CaCl2 before and after heat shock, not the heat shock temperature itself.", "misconception": "Confusing the incubation temperature with the heat shock temperature" },
-      { "option_key": "B", "hint": "37°C is the normal growth temperature for E. coli and would not create the thermal shock needed for efficient DNA uptake.", "misconception": "Confusing optimal growth temperature with heat shock temperature" },
-      { "option_key": "D", "hint": "94°C would kill the bacteria. This temperature is used for DNA denaturation in PCR, not for heat shock transformation.", "misconception": "Confusing PCR denaturation temperature with transformation heat shock temperature" }
+      {
+        "option_key": "A",
+        "hint": "Efficient ligation requires compatible cohesive ends that can form hydrogen bonds. Non-compatible sticky ends produced by different enzymes cannot anneal, so ligation will not be efficient.",
+        "misconception": "Thinking that any sticky ends can pair with any other sticky ends regardless of sequence."
+      },
+      {
+        "option_key": "B",
+        "hint": "Chromosomal integration of the insert does not occur simply because vector ligation fails. Integration into the host chromosome requires specific mechanisms like homologous recombination.",
+        "misconception": "Confusing plasmid ligation failure with chromosomal integration events."
+      },
+      {
+        "option_key": "C",
+        "hint": "Restriction enzymes only cut DNA; they do not modify or alter existing ends to make them compatible with other enzyme-generated ends.",
+        "misconception": "Attributing end-modifying activity to restriction enzymes, which are only endonucleases."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-12",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A researcher wants to clone a gene into pBR322 and use antibiotic resistance for selecting recombinants. She inserts the foreign gene at the BamHI site. On which medium will she find recombinant colonies, and which medium will they NOT grow on?",
-    "explanation": "In pBR322, the BamHI site is located within the tetracycline resistance (tetR) gene. When foreign DNA is inserted at this site, the tetR gene is disrupted (insertional inactivation). The ampicillin resistance (ampR) gene remains intact. Therefore, recombinants will grow on ampicillin-containing medium (ampR is functional) but will NOT grow on tetracycline-containing medium (tetR is disrupted). Non-recombinants will grow on both.",
-    "correct_answer": "A",
-    "concept_tags": ["pBR322", "BamHI", "insertional inactivation", "antibiotic resistance", "recombinant selection"],
-    "topic": "Gene Cloning",
-    "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "question_text": "Downstream processing in recombinant DNA technology refers to:",
+    "explanation": "Downstream processing includes all the steps involved in the recovery, purification, and quality control of the desired recombinant protein product after it has been produced by the host organism in a bioreactor. This involves separation of the product from the culture medium, purification by techniques such as chromatography, and formulation into a final product with appropriate quality control checks. These steps are essential before the recombinant product can be used commercially or therapeutically.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "downstream-processing",
+      "purification",
+      "quality-control"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Grow on ampicillin medium; will NOT grow on tetracycline medium", "is_correct": true },
-      { "key": "B", "text": "Grow on tetracycline medium; will NOT grow on ampicillin medium", "is_correct": false },
-      { "key": "C", "text": "Grow on both ampicillin and tetracycline media", "is_correct": false },
-      { "key": "D", "text": "Will NOT grow on either ampicillin or tetracycline medium", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Cutting DNA with restriction enzymes and ligating it into vectors",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Transformation of host cells with recombinant DNA",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Separation, purification, and quality control of the recombinant protein product",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Amplification of the gene of interest by PCR",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "This is the reverse of what happens. BamHI disrupts the tetR gene (not ampR), so recombinants lose tetracycline resistance while retaining ampicillin resistance.", "misconception": "Reversing which antibiotic resistance gene is disrupted by BamHI insertion" },
-      { "option_key": "C", "hint": "Non-recombinants (with intact pBR322) grow on both media. Recombinants have disrupted tetR and cannot grow on tetracycline.", "misconception": "Confusing recombinant colonies with non-recombinant colonies" },
-      { "option_key": "D", "hint": "If cells don't grow on either medium, they likely didn't take up any plasmid at all. Recombinants retain at least one functional resistance gene.", "misconception": "Thinking insertion disrupts both resistance genes" }
+      {
+        "option_key": "A",
+        "hint": "Cutting and ligating DNA are upstream steps in recombinant DNA technology that occur during the construction of the recombinant vector, not during downstream processing.",
+        "misconception": "Confusing upstream molecular cloning steps with downstream product recovery steps."
+      },
+      {
+        "option_key": "B",
+        "hint": "Transformation is an upstream step where recombinant DNA is introduced into host cells. Downstream processing begins after the protein has been expressed.",
+        "misconception": "Placing transformation within the downstream processing category."
+      },
+      {
+        "option_key": "D",
+        "hint": "PCR amplification of the gene of interest is an upstream step used to obtain sufficient copies of the gene before cloning. It is not part of downstream processing.",
+        "misconception": "Confusing gene amplification with product recovery and purification."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-13",
     "question_type": "assertion-reasoning",
     "difficulty": "hard",
-    "question_text": "Assertion (A): Blue-white screening is a more convenient method of recombinant selection compared to antibiotic resistance-based insertional inactivation.\nReason (R): Blue-white screening allows direct visual identification of recombinant colonies on a single plate without the need for replica plating.",
-    "explanation": "Both the Assertion and Reason are true, and the Reason correctly explains the Assertion. In antibiotic resistance-based insertional inactivation (as in pBR322), replica plating on two different antibiotic media is needed to identify recombinants — a time-consuming process. Blue-white screening using vectors with the lacZ gene (like pUC vectors) allows direct identification on a single plate: white colonies are recombinants (lacZ disrupted) and blue colonies are non-recombinants. This makes blue-white screening faster and more convenient.",
+    "question_text": "Assertion (A): In gene cloning, the foreign DNA and the vector are cut with the same restriction enzyme.\nReason (R): Using the same restriction enzyme ensures the production of compatible sticky ends on both DNA molecules, which is necessary for efficient ligation by DNA ligase.\n\nSelect the correct option:",
+    "explanation": "The Assertion is correct: in standard gene cloning practice, both the foreign DNA and the vector must be cut with the same restriction enzyme. The Reason is also correct and directly explains the Assertion. When the same restriction enzyme cuts both molecules, it generates identical sticky ends (complementary overhangs) on both. These compatible ends can hydrogen-bond with each other, bringing the two DNA molecules into close proximity so DNA ligase can form covalent phosphodiester bonds to create the recombinant DNA molecule. However, there are exceptions where two different enzymes producing compatible ends can be used, but the NCERT principle states using the same enzyme.",
     "correct_answer": "A",
-    "concept_tags": ["blue-white screening", "insertional inactivation", "replica plating", "recombinant selection"],
-    "topic": "Gene Cloning",
+    "concept_tags": [
+      "same-restriction-enzyme",
+      "compatible-sticky-ends",
+      "ligation"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is true but R is false", "is_correct": false },
-      { "key": "D", "text": "Both A and R are false", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The Reason directly explains the Assertion — blue-white screening is more convenient precisely because it eliminates the need for replica plating.", "misconception": "Failing to see the direct logical connection between visual identification and convenience" },
-      { "option_key": "C", "hint": "The Reason is factually correct — blue-white screening does allow direct visual identification on a single plate containing X-gal and IPTG.", "misconception": "Incorrectly doubting the mechanism of blue-white screening" },
-      { "option_key": "D", "hint": "Both statements are factually accurate. Blue-white screening is indeed more convenient and does work on a single plate.", "misconception": "Rejecting established facts about screening methods" }
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains the Assertion. The whole purpose of using the same enzyme is precisely to produce compatible sticky ends for efficient ligation. There is a clear causal relationship.",
+        "misconception": "Failing to recognise the direct causal link between using the same enzyme and producing compatible ends."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct. Using the same restriction enzyme does produce compatible sticky ends, which is a well-established principle of molecular biology.",
+        "misconception": "Incorrectly doubting the mechanism of sticky end complementarity."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. It is standard practice in gene cloning to cut both DNA molecules with the same restriction enzyme, as stated in NCERT.",
+        "misconception": "Questioning a fundamental step of recombinant DNA technology."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-14",
     "question_type": "assertion-reasoning",
-    "difficulty": "hard",
-    "question_text": "Assertion (A): Both the foreign DNA and the vector must be cut with the same restriction enzyme.\nReason (R): Using the same restriction enzyme ensures that compatible sticky ends are produced on both the insert and the vector, facilitating their ligation.",
-    "explanation": "Both the Assertion and Reason are true, and the Reason correctly explains the Assertion. When the same restriction enzyme cuts both the foreign DNA and the vector, it produces identical sticky ends (cohesive ends) on both molecules. These complementary sticky ends can form hydrogen bonds with each other, bringing the two DNA molecules into close proximity. DNA ligase then forms permanent phosphodiester bonds to join them, creating a stable recombinant DNA molecule.",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Bioreactors are essential for large-scale production of recombinant proteins in biotechnology.\nReason (R): Bioreactors provide optimal growth conditions including temperature, pH, oxygen supply, and nutrient availability for host organisms expressing the cloned gene.\n\nSelect the correct option:",
+    "explanation": "Both the Assertion and the Reason are correct. Bioreactors are indeed essential for scaling up production from small laboratory volumes to industrial quantities. The Reason correctly explains why: bioreactors maintain optimal and uniform conditions (temperature, pH, dissolved oxygen, substrate concentration, and agitation) throughout a large culture volume, which is not possible with simple laboratory flasks. These controlled conditions ensure maximum growth of host organisms and maximum expression of the cloned gene product.",
     "correct_answer": "A",
-    "concept_tags": ["restriction enzymes", "sticky ends", "ligation", "compatible ends"],
-    "topic": "Gene Cloning",
-    "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "concept_tags": [
+      "bioreactors",
+      "optimal-conditions",
+      "scale-up"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is true but R is false", "is_correct": false },
-      { "key": "D", "text": "Both A and R are false", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Compatible sticky ends enabling ligation is the exact reason why the same enzyme must be used for both DNA molecules. The reason directly explains the assertion.", "misconception": "Not recognizing the direct causal relationship between compatible ends and using the same enzyme" },
-      { "option_key": "C", "hint": "The Reason is factually correct — using the same restriction enzyme does produce compatible sticky ends that facilitate ligation.", "misconception": "Doubting the relationship between same enzyme usage and compatible end generation" },
-      { "option_key": "D", "hint": "Both statements are fundamental principles of recombinant DNA technology as described in NCERT.", "misconception": "Rejecting core principles of rDNA technology" }
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains the Assertion. Bioreactors are essential precisely because they provide the controlled optimal conditions described in the Reason, enabling large-scale production.",
+        "misconception": "Failing to see the direct explanatory relationship between controlled conditions and large-scale production capability."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct. Bioreactors do provide controlled temperature, pH, oxygen, and nutrient conditions as described in NCERT.",
+        "misconception": "Doubting the well-established functions of bioreactor systems."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. Bioreactors are essential for industrial-scale production because simple laboratory flasks cannot maintain uniform conditions at large volumes.",
+        "misconception": "Questioning the necessity of bioreactors for large-scale biotechnological production."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-15",
     "question_type": "match-the-following",
     "difficulty": "medium",
-    "question_text": "Match the following methods of DNA transfer with their descriptions:\n\nColumn I (Method):\n(a) Chemical transformation\n(b) Electroporation\n(c) Microinjection\n(d) Biolistics\n\nColumn II (Description):\n(i) DNA-coated metal particles shot into cells at high velocity\n(ii) Brief electrical pulses create temporary pores in cell membrane\n(iii) CaCl2 treatment followed by heat shock at 42°C\n(iv) DNA injected directly into cell nucleus using glass micropipette",
-    "explanation": "Chemical transformation uses CaCl2 to make cells competent and heat shock at 42°C to facilitate DNA entry. Electroporation uses short electrical pulses to create transient pores in the cell membrane. Microinjection uses a fine glass micropipette to inject DNA directly into the cell nucleus, commonly used for animal cells. Biolistics uses high-velocity microprojectiles (gold or tungsten particles) coated with DNA to penetrate cell walls, particularly useful for plant cells.",
+    "question_text": "Match the following steps of gene cloning (Column I) with the enzymes or agents used (Column II):\n\nColumn I | Column II\nA. Fragmentation of DNA | 1. DNA ligase\nB. Joining of DNA fragments to vector | 2. CaCl2 and heat shock\nC. Removal of RNA from DNA preparation | 3. Restriction endonuclease\nD. Making host cells competent | 4. RNase\n\nSelect the correct matching:",
+    "explanation": "The correct matching is: A-3 (DNA fragmentation is performed by restriction endonucleases that cut at specific recognition sequences), B-1 (DNA fragments are joined to the vector by DNA ligase, which forms phosphodiester bonds), C-4 (RNA contamination in the DNA preparation is removed by treating with RNase), D-2 (Host bacterial cells are made competent for DNA uptake by CaCl2 treatment followed by heat shock at 42 degrees Celsius).",
     "correct_answer": "B",
-    "concept_tags": ["DNA transfer methods", "transformation", "electroporation", "microinjection", "biolistics"],
-    "topic": "Gene Cloning",
+    "concept_tags": [
+      "gene-cloning-steps",
+      "restriction-endonuclease",
+      "dna-ligase",
+      "rnase",
+      "competent-cells"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "(a)-(ii), (b)-(iii), (c)-(iv), (d)-(i)", "is_correct": false },
-      { "key": "B", "text": "(a)-(iii), (b)-(ii), (c)-(iv), (d)-(i)", "is_correct": true },
-      { "key": "C", "text": "(a)-(iv), (b)-(i), (c)-(ii), (d)-(iii)", "is_correct": false },
-      { "key": "D", "text": "(a)-(i), (b)-(iv), (c)-(iii), (d)-(ii)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-1, B-3, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-3, B-1, C-4, D-2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-2, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-4, C-1, D-3",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This swaps chemical transformation and electroporation. CaCl2/heat shock is chemical transformation, and electrical pulses define electroporation.", "misconception": "Confusing chemical and electrical methods of DNA transfer" },
-      { "option_key": "C", "hint": "This incorrectly matches chemical transformation with microinjection (glass micropipette) and assigns biolistics to CaCl2 treatment.", "misconception": "Complete confusion among DNA transfer methods" },
-      { "option_key": "D", "hint": "This assigns DNA-coated particles to chemical transformation and glass micropipette to electroporation, reversing multiple correct associations.", "misconception": "Mixing up all four DNA transfer method descriptions" }
+      {
+        "option_key": "A",
+        "hint": "This option swaps restriction endonuclease (cutting) and DNA ligase (joining). Restriction enzymes cut DNA; ligase joins fragments. Their functions are opposite.",
+        "misconception": "Reversing the roles of the cutting enzyme and the joining enzyme."
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns RNase to DNA fragmentation and restriction endonuclease to RNA removal. RNase only degrades RNA, not DNA, and restriction enzymes cut DNA, not RNA.",
+        "misconception": "Completely confusing the substrate specificities of RNase and restriction enzymes."
+      },
+      {
+        "option_key": "D",
+        "hint": "This matches CaCl2/heat shock with DNA fragmentation and RNase with joining, which is nonsensical. CaCl2 makes cells competent; RNase removes RNA.",
+        "misconception": "Randomly assigning enzymes and agents to unrelated steps."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-16",
     "question_type": "match-the-following",
     "difficulty": "hard",
-    "question_text": "Match the following steps of gene cloning with the enzymes/agents involved:\n\nColumn I (Step):\n(a) Fragmentation of DNA\n(b) Joining of DNA fragments\n(c) Isolation of DNA from cells\n(d) Removal of RNA from DNA preparation\n\nColumn II (Enzyme/Agent):\n(i) RNase\n(ii) Restriction endonuclease\n(iii) DNA ligase\n(iv) Lysozyme and detergents",
-    "explanation": "DNA fragmentation is performed by restriction endonucleases that cut at specific palindromic sequences. Joining of DNA fragments is catalyzed by DNA ligase that forms phosphodiester bonds. DNA isolation from bacterial cells begins with lysozyme (digests cell wall) and detergents like SDS (dissolve cell membrane). RNA is removed from the DNA preparation using RNase enzyme to obtain pure DNA.",
-    "correct_answer": "C",
-    "concept_tags": ["gene cloning steps", "restriction enzymes", "DNA ligase", "lysozyme", "RNase"],
-    "topic": "Gene Cloning",
+    "question_text": "Match the following screening/selection methods (Column I) with their correct descriptions (Column II):\n\nColumn I | Column II\nA. Antibiotic resistance | 1. Recombinant colonies appear white; non-recombinant colonies appear blue\nB. Blue-white screening | 2. Labelled probe binds to the cloned gene sequence in colony DNA\nC. Colony hybridisation | 3. Cells with plasmid survive on antibiotic-containing medium\nD. Replica plating | 4. Colonies transferred to multiple plates to test growth on different media\n\nSelect the correct matching:",
+    "explanation": "The correct matching is: A-3 (Antibiotic resistance allows selection of cells that have taken up the plasmid, as only those with the resistance gene survive on antibiotic media), B-1 (Blue-white screening identifies recombinants as white colonies due to disruption of the lacZ gene, while non-recombinants are blue), C-2 (Colony hybridisation uses a labelled DNA or RNA probe that binds to the target gene sequence, identifying colonies carrying the cloned gene), D-4 (Replica plating transfers colonies from one plate to multiple plates with different selection media to compare growth patterns).",
+    "correct_answer": "D",
+    "concept_tags": [
+      "screening-methods",
+      "antibiotic-resistance",
+      "blue-white-screening",
+      "colony-hybridisation",
+      "replica-plating"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "(a)-(iii), (b)-(ii), (c)-(i), (d)-(iv)", "is_correct": false },
-      { "key": "B", "text": "(a)-(i), (b)-(iv), (c)-(ii), (d)-(iii)", "is_correct": false },
-      { "key": "C", "text": "(a)-(ii), (b)-(iii), (c)-(iv), (d)-(i)", "is_correct": true },
-      { "key": "D", "text": "(a)-(iv), (b)-(i), (c)-(iii), (d)-(ii)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-1, B-3, C-4, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-4, C-1, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-2, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-1, C-2, D-4",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This swaps restriction enzyme (cutting) and DNA ligase (joining), which are opposite functions.", "misconception": "Confusing the cutting enzyme with the joining enzyme" },
-      { "option_key": "B", "hint": "This assigns RNase to DNA fragmentation, which is incorrect. RNase degrades RNA, not DNA.", "misconception": "Confusing RNA-degrading enzyme with DNA-cutting enzyme" },
-      { "option_key": "D", "hint": "This matches lysozyme with DNA fragmentation, but lysozyme digests cell walls, not DNA molecules.", "misconception": "Confusing cell wall digestion with DNA fragmentation" }
+      {
+        "option_key": "A",
+        "hint": "This matches antibiotic resistance with blue-white screening description and blue-white screening with antibiotic resistance. These are two distinct methods with different principles.",
+        "misconception": "Swapping the descriptions of antibiotic resistance selection and blue-white screening."
+      },
+      {
+        "option_key": "B",
+        "hint": "This assigns probe hybridisation to antibiotic resistance and replica plating to blue-white screening, which is incorrect. Probes are used in colony hybridisation, not antibiotic selection.",
+        "misconception": "Assigning probe-based detection to a phenotypic selection method."
+      },
+      {
+        "option_key": "C",
+        "hint": "This matches antibiotic resistance with replica plating description and blue-white screening with colony hybridisation description. Each method has a distinct mechanism that should not be confused.",
+        "misconception": "Scrambling the mechanisms of four different screening methods."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-17",
     "question_type": "true-false",
-    "difficulty": "medium",
-    "question_text": "Statement: In blue-white screening, the chromogenic substrate X-gal is cleaved by beta-galactosidase in recombinant colonies, producing the blue color.",
-    "explanation": "This statement is FALSE. In blue-white screening, it is the NON-RECOMBINANT colonies that appear blue, not the recombinant ones. Non-recombinant colonies have an intact lacZ gene that produces functional beta-galactosidase, which cleaves X-gal into a blue-colored product. Recombinant colonies have their lacZ gene disrupted by the foreign DNA insert, so they cannot produce functional beta-galactosidase and appear WHITE.",
-    "correct_answer": "B",
-    "concept_tags": ["blue-white screening", "beta-galactosidase", "X-gal", "recombinant vs non-recombinant"],
-    "topic": "Gene Cloning",
-    "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "difficulty": "easy",
+    "question_text": "Statement: During DNA isolation, the enzyme protease is used to remove proteins such as histones associated with the DNA.",
+    "explanation": "This statement is TRUE. During DNA isolation, after cell lysis, protease (or proteinase K) is added to digest proteins associated with the DNA, including histones (in eukaryotic cells) and other DNA-binding proteins. Removing these proteins is essential to obtain pure DNA that can be used in subsequent cloning steps such as restriction enzyme digestion and ligation. This is clearly described in NCERT Class 12 Chapter 14.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "protease",
+      "dna-isolation",
+      "protein-removal",
+      "histones"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "\u2014",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "\u2014",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The statement incorrectly attributes blue color to recombinant colonies. In reality, recombinants are white because their lacZ gene is disrupted, and non-recombinants are blue.", "misconception": "Reversing which colonies are blue and which are white in blue-white screening" }
+      {
+        "option_key": "B",
+        "hint": "The statement is accurate. Protease is indeed used during DNA isolation to digest proteins, including histones and other DNA-associated proteins, as stated in the NCERT textbook.",
+        "misconception": "Doubting the standard use of protease in DNA purification protocols."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-18",
     "question_type": "true-false",
-    "difficulty": "hard",
-    "question_text": "Statement: The biolistic method (gene gun) can be used to introduce DNA into both plant cells and animal cells.",
-    "explanation": "This statement is TRUE. Although the biolistic method (gene gun/particle bombardment) was originally developed primarily for plant cell transformation (to overcome the rigid cell wall barrier), it can also be used for animal cells and even subcellular organelles like chloroplasts and mitochondria. The method involves shooting DNA-coated gold or tungsten microparticles at high velocity into cells, making it versatile for different cell types.",
-    "correct_answer": "A",
-    "concept_tags": ["biolistics", "gene gun", "plant cells", "animal cells", "versatility"],
-    "topic": "Gene Cloning",
+    "difficulty": "medium",
+    "question_text": "Statement: In blue-white screening, blue colonies represent recombinant cells that have successfully taken up the foreign DNA insert.",
+    "explanation": "This statement is FALSE. In blue-white screening, BLUE colonies are the NON-RECOMBINANT cells. Blue colonies have an intact lacZ gene that produces functional beta-galactosidase, which cleaves the chromogenic substrate X-gal to produce a blue-coloured product. WHITE colonies are the recombinant cells because the foreign DNA inserted into the lacZ gene disrupts it (insertional inactivation), preventing the production of functional beta-galactosidase.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "blue-white-screening",
+      "recombinant-non-recombinant",
+      "lacZ-disruption"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "\u2014",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "\u2014",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Although biolistics is most commonly associated with plant cell transformation, it is not exclusive to plants. It can also be used for animal cells and organelles.", "misconception": "Thinking biolistics is exclusively a plant cell transformation technique" }
+      {
+        "option_key": "A",
+        "hint": "The statement incorrectly assigns blue colour to recombinant colonies. Recombinants have a disrupted lacZ gene and cannot cleave X-gal, so they appear WHITE, not blue.",
+        "misconception": "Reversing which colony colour corresponds to recombinants versus non-recombinants in blue-white screening."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-19",
     "question_type": "fill-in-blanks",
-    "difficulty": "medium",
-    "question_text": "In the process of DNA isolation from bacterial cells, the enzyme _____ is used to remove proteins associated with DNA, and chilled _____ is added to precipitate the purified DNA.",
-    "explanation": "During DNA isolation, protease (or proteinase K) is used to digest histone and other proteins associated with the DNA. After protein removal and other purification steps, chilled ethanol (absolute ethanol or isopropanol) is added to the aqueous DNA solution. DNA is insoluble in cold ethanol and precipitates out as fine, thread-like fibers that can be collected by centrifugation or spooling with a glass rod.",
-    "correct_answer": "B",
-    "concept_tags": ["DNA isolation", "protease", "ethanol precipitation", "DNA purification"],
-    "topic": "Gene Cloning",
+    "difficulty": "easy",
+    "question_text": "In gene cloning, the enzyme ______ is used to join the foreign DNA fragment to the cloning vector by forming phosphodiester bonds.",
+    "explanation": "DNA ligase is the enzyme that joins two DNA fragments by catalysing the formation of phosphodiester bonds between the 3'-hydroxyl end of one nucleotide and the 5'-phosphate end of another. In gene cloning, after the foreign DNA and the vector are cut with the same restriction enzyme to produce compatible sticky ends, DNA ligase seals the nicks and creates a continuous recombinant DNA molecule.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "dna-ligase",
+      "phosphodiester-bonds",
+      "ligation"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Lipase; methanol", "is_correct": false },
-      { "key": "B", "text": "Protease; ethanol", "is_correct": true },
-      { "key": "C", "text": "RNase; acetone", "is_correct": false },
-      { "key": "D", "text": "Lysozyme; water", "is_correct": false }
+      {
+        "key": "A",
+        "text": "DNA polymerase",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Restriction endonuclease",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "DNA ligase",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Helicase",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Lipase digests lipids, not proteins. And methanol is not used for DNA precipitation in standard protocols — ethanol is the standard precipitant.", "misconception": "Confusing protease with lipase and ethanol with methanol" },
-      { "option_key": "C", "hint": "RNase removes RNA contaminants, not proteins. Acetone is not the standard reagent for DNA precipitation.", "misconception": "Confusing RNA removal with protein removal, and standard precipitation reagents" },
-      { "option_key": "D", "hint": "Lysozyme digests bacterial cell walls (peptidoglycan), not proteins. Water would dissolve DNA, not precipitate it.", "misconception": "Confusing cell wall digestion enzyme with protein-digesting enzyme" }
+      {
+        "option_key": "A",
+        "hint": "DNA polymerase synthesises new DNA strands by adding nucleotides using a template. It does not join two pre-existing DNA fragments end to end.",
+        "misconception": "Confusing template-directed DNA synthesis with fragment joining."
+      },
+      {
+        "option_key": "B",
+        "hint": "Restriction endonuclease cuts DNA at specific recognition sequences. Its function is the opposite of joining; it is the molecular scissor, not the molecular glue.",
+        "misconception": "Confusing the cutting enzyme with the joining enzyme."
+      },
+      {
+        "option_key": "D",
+        "hint": "Helicase unwinds double-stranded DNA by breaking hydrogen bonds between base pairs. It separates strands but does not join DNA fragments.",
+        "misconception": "Confusing strand separation with strand joining."
+      }
     ]
   },
   {
     "id": "zoo-biotech-cloning-20",
     "question_type": "scenario-based",
     "difficulty": "hard",
-    "question_text": "A molecular biology student is trying to clone a gene of interest into pBR322 vector. She cuts both the target gene and pBR322 with BamHI restriction enzyme, performs ligation, transforms E. coli, and plates the bacteria on an ampicillin plate. All colonies grow. She then replica plates these colonies onto a tetracycline plate. She observes that 30 colonies grow on the ampicillin plate but only 18 of those grow on the tetracycline plate. How many colonies are likely recombinants?",
-    "explanation": "In pBR322, the BamHI site is within the tetracycline resistance (tetR) gene. When foreign DNA is inserted at this site, it disrupts tetR (insertional inactivation). Recombinants will grow on ampicillin (ampR intact) but NOT on tetracycline (tetR disrupted). Non-recombinants will grow on both. Out of 30 ampicillin-resistant colonies, 18 also grow on tetracycline (non-recombinants with intact pBR322). Therefore, 30 - 18 = 12 colonies that grow on ampicillin but NOT on tetracycline are the likely recombinants.",
-    "correct_answer": "C",
-    "concept_tags": ["pBR322", "insertional inactivation", "recombinant screening", "replica plating", "BamHI"],
-    "topic": "Gene Cloning",
+    "question_text": "Scenario: A biotechnology student is cloning a human insulin gene into pBR322 vector. She cuts both the insulin gene fragment and pBR322 with BamHI, performs ligation, and transforms E. coli. She plates the bacteria on an ampicillin plate and obtains 50 colonies. She then replica plates these colonies onto a tetracycline plate and observes that 35 colonies grow on tetracycline while 15 do not.\n\nQuestion: How many colonies are likely to be recombinants carrying the insulin gene insert, and what is the basis for this identification?",
+    "explanation": "In pBR322, the BamHI restriction site is located within the tetracycline resistance (tetR) gene. When the insulin gene is inserted at this site, the tetR gene is disrupted by insertional inactivation. Recombinants will grow on ampicillin (ampR gene is intact) but will NOT grow on tetracycline (tetR gene is disrupted). Of the 50 colonies on the ampicillin plate, 35 also grow on tetracycline (non-recombinants with intact pBR322), while 15 fail to grow on tetracycline. Therefore, 15 colonies are likely recombinants carrying the insulin gene insert.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "pBR322",
+      "BamHI",
+      "insertional-inactivation",
+      "replica-plating",
+      "recombinant-identification"
+    ],
+    "topic": "Cloning",
+    "subject": "biology",
+    "chapter": "Biotechnology: Principles and Processes",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "30 colonies", "is_correct": false },
-      { "key": "B", "text": "18 colonies", "is_correct": false },
-      { "key": "C", "text": "12 colonies", "is_correct": true },
-      { "key": "D", "text": "48 colonies", "is_correct": false }
+      {
+        "key": "A",
+        "text": "50 colonies are recombinants because all grow on ampicillin",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "35 colonies are recombinants because they grow on tetracycline",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "15 colonies are non-recombinants because they lack tetracycline resistance",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "15 colonies are recombinants because insertion at BamHI disrupts the tetR gene, so recombinants are tetracycline-sensitive but ampicillin-resistant",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "30 is the total number of colonies on the ampicillin plate, including both recombinants and non-recombinants. Not all are recombinants.", "misconception": "Thinking all transformed colonies are recombinants" },
-      { "option_key": "B", "hint": "18 colonies grow on BOTH antibiotics, meaning they have intact pBR322 without any insert — these are the non-recombinants.", "misconception": "Confusing non-recombinants (grow on both) with recombinants" },
-      { "option_key": "D", "hint": "48 (30+18) is a mathematical error. The recombinants are those on ampicillin but NOT on tetracycline: 30-18=12.", "misconception": "Incorrectly adding instead of subtracting to find recombinants" }
+      {
+        "option_key": "A",
+        "hint": "Not all 50 colonies are recombinants. Some carry self-ligated pBR322 without the insert. Both recombinants and non-recombinants grow on ampicillin because ampR is intact in both.",
+        "misconception": "Assuming all transformed colonies are recombinants without considering self-ligation of the vector."
+      },
+      {
+        "option_key": "B",
+        "hint": "The 35 colonies that grow on BOTH ampicillin and tetracycline have intact pBR322 with no insert. They are non-recombinants because both resistance genes are functional.",
+        "misconception": "Confusing non-recombinant colonies (grow on both antibiotics) with recombinant colonies."
+      },
+      {
+        "option_key": "C",
+        "hint": "The 15 colonies that lack tetracycline resistance are actually the RECOMBINANTS. Their tetR gene was disrupted when the insulin gene was inserted at the BamHI site within tetR.",
+        "misconception": "Reversing the identity of recombinant and non-recombinant colonies based on tetracycline sensitivity."
+      }
     ]
   }
 ]
