@@ -24,6 +24,7 @@ import {
 import { Provider as ReduxProvider } from 'react-redux';
 import { store } from '../src/store';
 import { ToastProvider } from '../src/components/ui/Toast';
+import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
 import { getProfile } from '../src/lib/database';
 
 NativeSplashScreen.preventAutoHideAsync();
@@ -170,6 +171,7 @@ export default function RootLayout() {
           <ThemeContext.Provider value={themeValue}>
             <ToastProvider>
               <Slot />
+              <GlobalMusicOverlay />
             </ToastProvider>
           </ThemeContext.Provider>
         </OnboardingGateContext.Provider>
