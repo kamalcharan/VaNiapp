@@ -113,7 +113,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | B09 | `bot-plant-bryophytes` | Bryophytes | 20 | DONE |
 | B10 | `bot-plant-pteridophytes` | Pteridophytes | 20 | DONE |
 | B11 | `bot-plant-gymnosperms` | Gymnosperms | 20 | DONE |
-| B12 | `bot-plant-angiosperms` | Angiosperms and Alternation of Generations | 20 | PENDING |
+| B12 | `bot-plant-angiosperms` | Angiosperms and Alternation of Generations | 20 | DONE |
 | | | **Chapter 3 Total** | **100** | |
 
 ### Chapter 4: Morphology of Flowering Plants (`bot-morphology`) — 5 batches
