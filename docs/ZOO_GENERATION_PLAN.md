@@ -139,7 +139,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | B24 | `zoo-blood-groups` | Blood Groups | 20 | DONE |
 | B25 | `zoo-blood-heart` | Human Heart | 20 | DONE |
 | B26 | `zoo-blood-cardiac` | Cardiac Cycle | 20 | DONE |
-| B27 | `zoo-blood-ecg` | ECG | 20 | PENDING |
+| B27 | `zoo-blood-ecg` | ECG | 20 | DONE |
 | | | **Chapter 5 Total** | **100** | |
 
 ### Chapter 6: Excretory Products and Elimination (`zoo-excretion`) — 4 batches
@@ -421,7 +421,7 @@ Commit and push.
 | Ch2 Structural Org | 5 | 100 | 100 | 100% |
 | Ch3 Biomolecules | 5 | 100 | 100 | 100% |
 | Ch4 Breathing | 4 | 80 | 80 | 100% |
-| Ch5 Body Fluids | 5 | 100 | 80 | 80% |
+| Ch5 Body Fluids | 5 | 100 | 100 | 100% |
 | Ch6 Excretion | 4 | 80 | 0 | 0% |
 | Ch7 Locomotion | 4 | 80 | 0 | 0% |
 | Ch8 Neural Control | 4 | 80 | 0 | 0% |
@@ -432,4 +432,4 @@ Commit and push.
 | Ch13 Human Health | 5 | 100 | 0 | 0% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **520** | **40.0%** |
+| **TOTAL** | **65** | **1,300** | **540** | **41.5%** |
