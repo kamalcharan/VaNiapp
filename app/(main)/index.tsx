@@ -170,9 +170,13 @@ export default function DashboardScreen() {
     ]).start();
   }, []);
 
-  const greeting = profile?.display_name
-    ? `Hey, ${profile.display_name.split(' ')[0]}`
-    : 'Study Board';
+  // Derive first name from display_name, else email prefix, else generic
+  const firstName = profile?.display_name
+    ? profile.display_name.split(' ')[0]
+    : profile?.email
+      ? profile.email.split('@')[0]
+      : null;
+  const greeting = firstName ? `Hey, ${firstName}` : 'Study Board';
 
   // For BOTH users, show the focused exam or combined label
   const examLabel = profile?.exam === 'BOTH'
@@ -251,8 +255,8 @@ export default function DashboardScreen() {
           {/* VaNi Greeting — persona-aware */}
           <StickyNote color="yellow" rotation={-0.5} delay={100}>
             <HandwrittenText variant="handSm">
-              {profile?.display_name
-                ? `Hi ${profile.display_name.split(' ')[0]}! ${persona.labels.homeGreeting}`
+              {firstName
+                ? `Hi ${firstName}! ${persona.labels.homeGreeting}`
                 : persona.labels.homeGreeting}
             </HandwrittenText>
           </StickyNote>

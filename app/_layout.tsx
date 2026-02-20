@@ -23,10 +23,10 @@ import {
 } from '../src/lib/auth';
 import { Provider as ReduxProvider } from 'react-redux';
 import { store } from '../src/store';
-import { updateTargetYear } from '../src/store/slices/authSlice';
+import { setUser, updateTargetYear } from '../src/store/slices/authSlice';
 import { ToastProvider } from '../src/components/ui/Toast';
 import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
-import { getProfile } from '../src/lib/database';
+import { getProfile, getUserSubjectIds } from '../src/lib/database';
 
 NativeSplashScreen.preventAutoHideAsync();
 
@@ -91,12 +91,23 @@ export default function RootLayout() {
 
     (async () => {
       try {
-        const profile = await getProfile();
+        const [profile, subjectIds] = await Promise.all([
+          getProfile(),
+          getUserSubjectIds(),
+        ]);
         setOnboardingDone(profile?.onboarding_completed ?? false);
 
-        // Sync target_year from DB into Redux (persona: 2026 crunch vs 2027 levels)
-        if (profile?.target_year != null) {
-          store.dispatch(updateTargetYear(profile.target_year));
+        // Hydrate Redux user from Supabase profile so usePersona + selectors work
+        if (profile) {
+          store.dispatch(setUser({
+            id: profile.id,
+            name: profile.display_name || '',
+            email: profile.email || '',
+            exam: profile.exam ?? 'NEET',
+            language: profile.language ?? 'en',
+            selectedSubjects: subjectIds as any[],
+            targetYear: profile.target_year ?? undefined,
+          }));
         }
       } catch {
         setOnboardingDone(false);
