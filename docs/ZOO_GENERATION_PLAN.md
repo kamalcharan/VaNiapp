@@ -198,7 +198,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 |-------|----------|------------|-----|--------|
 | B48 | `zoo-rh-contraception` | Contraception Methods | 20 | DONE |
 | B49 | `zoo-rh-stds` | STDs | 20 | DONE |
-| B50 | `zoo-rh-infertility` | Infertility | 20 | PENDING |
+| B50 | `zoo-rh-infertility` | Infertility | 20 | DONE |
 | B51 | `zoo-rh-art` | Assisted Reproductive Technologies | 20 | DONE |
 | | | **Chapter 11 Total** | **80** | |
 
@@ -427,9 +427,9 @@ Commit and push.
 | Ch8 Neural Control | 4 | 80 | 80 | 100% |
 | Ch9 Chemical Coord | 3 | 60 | 60 | 100% |
 | Ch10 Human Repro | 5 | 100 | 100 | 100% |
-| Ch11 Repro Health | 4 | 80 | 60 | 75% |
+| Ch11 Repro Health | 4 | 80 | 80 | 100% |
 | Ch12 Evolution | 4 | 80 | 80 | 100% |
 | Ch13 Human Health | 5 | 100 | 80 | 80% |
 | Ch14 Biotech Princ | 5 | 100 | 0 | 0% |
 | Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **1,160** | **89.2%** |
+| **TOTAL** | **65** | **1,300** | **1,180** | **90.8%** |
