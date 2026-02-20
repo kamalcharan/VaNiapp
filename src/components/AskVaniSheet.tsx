@@ -3,24 +3,20 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput,
   ScrollView,
   Pressable,
   Animated,
   Dimensions,
-  KeyboardAvoidingView,
-  Platform,
   Modal,
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useTheme } from '../hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../constants/theme';
-import { AnimatedPressable } from './ui/AnimatedPressable';
 import { useToast } from './ui/Toast';
 import { RootState } from '../store';
 import { askDoubt, checkRateLimit } from '../lib/aiClient';
 import { DoubtEntry } from '../store/slices/aiSlice';
-import { SubjectId } from '../types';
+import { SubjectId, EliminationHint } from '../types';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
@@ -30,6 +26,16 @@ interface AskVaniSheetProps {
   questionText: string;
   subjectId: SubjectId;
   questionId?: string;
+  eliminationHints?: EliminationHint[];
+  selectedOptionId?: string | null;
+  language?: string;
+}
+
+const ELIM_INTENT = 'eliminate';
+
+interface Intent {
+  id: string;
+  label: string;
 }
 
 export function AskVaniSheet({
@@ -37,20 +43,23 @@ export function AskVaniSheet({
   onClose,
   questionText,
   subjectId,
+  eliminationHints = [],
+  selectedOptionId,
+  language = 'en',
 }: AskVaniSheetProps) {
   const { colors } = useTheme();
   const toast = useToast();
   const user = useSelector((state: RootState) => state.auth.user);
   const isLoading = useSelector((state: RootState) => state.ai.isLoading);
 
-  const [query, setQuery] = useState('');
+  const [activeIntent, setActiveIntent] = useState<string | null>(null);
   const [response, setResponse] = useState<DoubtEntry | null>(null);
   const slideAnim = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
   const scrollRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     if (visible) {
-      setQuery('');
+      setActiveIntent(null);
       setResponse(null);
       Animated.spring(slideAnim, {
         toValue: 0,
@@ -67,20 +76,40 @@ export function AskVaniSheet({
     }
   }, [visible]);
 
-  const handleAsk = useCallback(async () => {
-    const q = query.trim();
-    if (!q || isLoading) return;
+  // Build intents based on context
+  const selectedHint = selectedOptionId
+    ? eliminationHints.find((h) => h.optionKey === selectedOptionId)
+    : null;
+
+  const intents: Intent[] = [];
+  if (selectedHint) {
+    intents.push({ id: 'why-wrong', label: 'Why is my answer wrong?' });
+  }
+  intents.push({ id: 'why-correct', label: 'Why is this the correct answer?' });
+  intents.push({ id: 'explain-simple', label: 'Explain this concept simply' });
+  if (eliminationHints.length > 0) {
+    intents.push({ id: ELIM_INTENT, label: 'How to eliminate wrong options?' });
+  }
+
+  const fireIntent = useCallback(async (intent: Intent) => {
+    if (isLoading) return;
+
+    if (intent.id === ELIM_INTENT) {
+      setActiveIntent(ELIM_INTENT);
+      return;
+    }
+
+    setActiveIntent(intent.id);
 
     try {
-      const result = await askDoubt({
-        query: q,
+      await askDoubt({
+        query: intent.label,
         subjectId,
         exam: user?.exam ?? 'NEET',
         language: user?.language ?? 'en',
         questionContext: questionText,
       });
 
-      // Find the entry just added to history
       const state = (await import('../store')).store.getState();
       const latest = state.ai.doubtHistory[0];
       if (latest) setResponse(latest);
@@ -88,19 +117,23 @@ export function AskVaniSheet({
       setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 200);
     } catch (err: any) {
       toast.show('error', 'AI Error', err.message ?? 'Something went wrong');
+      setActiveIntent(null);
     }
-  }, [query, isLoading, subjectId, user, questionText, toast]);
+  }, [isLoading, subjectId, user, questionText, toast]);
+
+  const handleBack = () => {
+    setActiveIntent(null);
+    setResponse(null);
+  };
 
   const { remaining } = checkRateLimit();
 
-  // Quick suggestions based on the question context
-  const suggestions = [
-    'Why is this the correct answer?',
-    'Explain this concept simply',
-    'What mistake did I make?',
-  ];
-
   if (!visible) return null;
+
+  const isTelugu = language === 'te';
+  const showingResult = activeIntent && activeIntent !== ELIM_INTENT;
+  const showingElim = activeIntent === ELIM_INTENT;
+  const showingIntents = !activeIntent;
 
   return (
     <Modal transparent visible={visible} animationType="none" onRequestClose={onClose}>
@@ -115,57 +148,143 @@ export function AskVaniSheet({
           ]}
         >
           <Pressable onPress={() => {}}>
-            <KeyboardAvoidingView
-              behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-            >
-              {/* Handle bar */}
-              <View style={styles.handleRow}>
-                <View style={[styles.handle, { backgroundColor: colors.surfaceBorder }]} />
-              </View>
+            {/* Handle bar */}
+            <View style={styles.handleRow}>
+              <View style={[styles.handle, { backgroundColor: colors.surfaceBorder }]} />
+            </View>
 
-              {/* Header */}
-              <View style={styles.header}>
-                <Text style={[Typography.h3, { color: colors.text }]}>Ask VaNi</Text>
-                <Text style={[styles.remainingText, { color: colors.textTertiary }]}>
-                  {remaining} left today
-                </Text>
-                <Pressable onPress={onClose} hitSlop={12}>
-                  <Text style={[styles.closeBtn, { color: colors.textSecondary }]}>Done</Text>
+            {/* Header */}
+            <View style={styles.header}>
+              {(showingResult || showingElim) && (
+                <Pressable onPress={handleBack} hitSlop={12} style={styles.backBtn}>
+                  <Text style={[styles.backArrow, { color: colors.text }]}>{'\u2190'}</Text>
                 </Pressable>
-              </View>
+              )}
+              <Text style={[Typography.h3, { color: colors.text, flex: 1 }]}>Ask VaNi</Text>
+              <Text style={[styles.remainingText, { color: colors.textTertiary }]}>
+                {remaining} left today
+              </Text>
+              <Pressable onPress={onClose} hitSlop={12}>
+                <Text style={[styles.closeBtn, { color: colors.textSecondary }]}>Done</Text>
+              </Pressable>
+            </View>
 
-              {/* Question context */}
-              <View style={[styles.contextBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
-                <Text style={[styles.contextLabel, { color: colors.textTertiary }]}>ABOUT THIS QUESTION</Text>
-                <Text style={[Typography.bodySm, { color: colors.textSecondary }]} numberOfLines={3}>
-                  {questionText}
+            {/* Question context */}
+            <View style={[styles.contextBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
+              <Text style={[styles.contextLabel, { color: colors.textTertiary }]}>ABOUT THIS QUESTION</Text>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]} numberOfLines={3}>
+                {questionText}
+              </Text>
+            </View>
+
+            {/* === Intent buttons === */}
+            {showingIntents && (
+              <View style={styles.intentsArea}>
+                <Text style={[styles.intentsHeading, { color: colors.textSecondary }]}>
+                  What would you like to know?
                 </Text>
+                {intents.map((intent) => (
+                  <Pressable
+                    key={intent.id}
+                    onPress={() => fireIntent(intent)}
+                    disabled={isLoading}
+                    style={[
+                      styles.intentBtn,
+                      {
+                        backgroundColor: colors.primaryLight,
+                        opacity: isLoading ? 0.5 : 1,
+                      },
+                    ]}
+                  >
+                    <Text style={[styles.intentLabel, { color: colors.primary }]}>
+                      {intent.label}
+                    </Text>
+                  </Pressable>
+                ))}
               </View>
+            )}
 
-              {/* Response area */}
+            {/* === Elimination hints (from DB) === */}
+            {showingElim && (
+              <View style={styles.elimSection}>
+                <View style={styles.elimHeader}>
+                  <Text style={[styles.elimTitle, { color: '#8B5CF6' }]}>
+                    Elimination Technique
+                  </Text>
+                </View>
+                <ScrollView
+                  style={styles.elimScroll}
+                  showsVerticalScrollIndicator={false}
+                >
+                  {eliminationHints.map((hint) => (
+                    <View
+                      key={hint.optionKey}
+                      style={[
+                        styles.elimCard,
+                        {
+                          backgroundColor:
+                            hint.optionKey === selectedOptionId
+                              ? '#EF444410'
+                              : colors.surface,
+                          borderColor:
+                            hint.optionKey === selectedOptionId
+                              ? '#EF444440'
+                              : colors.surfaceBorder,
+                        },
+                      ]}
+                    >
+                      <View style={styles.elimCardHeader}>
+                        <View
+                          style={[
+                            styles.optionBadge,
+                            {
+                              backgroundColor:
+                                hint.optionKey === selectedOptionId
+                                  ? '#EF444420'
+                                  : '#64748B15',
+                            },
+                          ]}
+                        >
+                          <Text
+                            style={[
+                              styles.optionBadgeText,
+                              {
+                                color:
+                                  hint.optionKey === selectedOptionId
+                                    ? '#EF4444'
+                                    : '#64748B',
+                              },
+                            ]}
+                          >
+                            {hint.optionKey}
+                          </Text>
+                        </View>
+                        {hint.optionKey === selectedOptionId && (
+                          <Text style={styles.yourPickLabel}>Your pick</Text>
+                        )}
+                      </View>
+                      <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20, marginTop: 4 }]}>
+                        {isTelugu && hint.hintTe ? hint.hintTe : hint.hint}
+                      </Text>
+                      {hint.misconception ? (
+                        <Text style={[styles.misconceptionText, { color: colors.textTertiary }]}>
+                          Misconception: {isTelugu && hint.misconceptionTe ? hint.misconceptionTe : hint.misconception}
+                        </Text>
+                      ) : null}
+                    </View>
+                  ))}
+                </ScrollView>
+              </View>
+            )}
+
+            {/* === AI Response === */}
+            {showingResult && (
               <ScrollView
                 ref={scrollRef}
                 style={styles.responseArea}
                 contentContainerStyle={styles.responseContent}
                 showsVerticalScrollIndicator={false}
               >
-                {!response && !isLoading && (
-                  <View style={styles.suggestionsArea}>
-                    <Text style={[Typography.bodySm, { color: colors.textTertiary, marginBottom: Spacing.sm }]}>
-                      Quick questions:
-                    </Text>
-                    {suggestions.map((s, i) => (
-                      <AnimatedPressable
-                        key={i}
-                        onPress={() => setQuery(s)}
-                        style={[styles.suggestionChip, { borderColor: colors.surfaceBorder }]}
-                      >
-                        <Text style={[Typography.bodySm, { color: colors.primary }]}>{s}</Text>
-                      </AnimatedPressable>
-                    ))}
-                  </View>
-                )}
-
                 {isLoading && (
                   <View style={[styles.loadingBox, { backgroundColor: colors.surface }]}>
                     <Text style={[Typography.bodySm, { color: colors.primary }]}>
@@ -179,7 +298,7 @@ export function AskVaniSheet({
                     <View style={styles.responseHeader}>
                       <Text style={[styles.vaniLabel, { color: colors.primary }]}>VANI</Text>
                       <Text style={[styles.modelTag, { color: colors.textTertiary }]}>
-                        {response.model === 'smart' ? 'GPT-4o' : '4o-mini'}
+                        {response.model === 'smart' ? 'Gemini Pro' : 'Gemini Flash'}
                       </Text>
                     </View>
                     <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
@@ -197,42 +316,7 @@ export function AskVaniSheet({
                   </View>
                 )}
               </ScrollView>
-
-              {/* Input bar */}
-              <View style={[styles.inputBar, { borderTopColor: colors.surfaceBorder }]}>
-                <TextInput
-                  style={[
-                    styles.input,
-                    {
-                      backgroundColor: colors.surface,
-                      borderColor: colors.surfaceBorder,
-                      color: colors.text,
-                    },
-                  ]}
-                  placeholder="Ask about this question..."
-                  placeholderTextColor={colors.textTertiary}
-                  value={query}
-                  onChangeText={setQuery}
-                  onSubmitEditing={handleAsk}
-                  returnKeyType="send"
-                  maxLength={300}
-                  editable={!isLoading}
-                />
-                <AnimatedPressable
-                  onPress={handleAsk}
-                  disabled={!query.trim() || isLoading}
-                  style={[
-                    styles.sendBtn,
-                    {
-                      backgroundColor:
-                        query.trim() && !isLoading ? colors.primary : colors.surfaceBorder,
-                    },
-                  ]}
-                >
-                  <Text style={styles.sendIcon}>{'>'}</Text>
-                </AnimatedPressable>
-              </View>
-            </KeyboardAvoidingView>
+            )}
           </Pressable>
         </Animated.View>
       </Pressable>
@@ -269,10 +353,19 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.sm,
     gap: Spacing.sm,
   },
+  backBtn: {
+    width: 32,
+    height: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backArrow: {
+    fontSize: 20,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+  },
   remainingText: {
     fontFamily: 'PlusJakartaSans_400Regular',
     fontSize: 12,
-    flex: 1,
   },
   closeBtn: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
@@ -290,21 +383,83 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     marginBottom: 4,
   },
-  responseArea: {
+  // Intent buttons
+  intentsArea: {
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.lg,
+    gap: 10,
+  },
+  intentsHeading: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 13,
+    marginBottom: 2,
+  },
+  intentBtn: {
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: BorderRadius.lg,
+  },
+  intentLabel: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 15,
+  },
+  // Elimination hints section
+  elimSection: {
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.sm,
+    maxHeight: SCREEN_HEIGHT * 0.4,
+  },
+  elimHeader: {
+    paddingBottom: Spacing.sm,
+  },
+  elimTitle: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 13,
+    letterSpacing: 0.3,
+  },
+  elimScroll: {
     maxHeight: SCREEN_HEIGHT * 0.35,
+  },
+  elimCard: {
+    padding: Spacing.md,
+    borderRadius: BorderRadius.md,
+    borderWidth: 1,
+    marginBottom: Spacing.sm,
+  },
+  elimCardHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+  },
+  optionBadge: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  optionBadgeText: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 11,
+  },
+  yourPickLabel: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 10,
+    color: '#EF4444',
+    letterSpacing: 0.5,
+  },
+  misconceptionText: {
+    fontFamily: 'PlusJakartaSans_400Regular',
+    fontSize: 11,
+    fontStyle: 'italic',
+    marginTop: 4,
+  },
+  // Response area
+  responseArea: {
+    maxHeight: SCREEN_HEIGHT * 0.4,
   },
   responseContent: {
     padding: Spacing.lg,
-  },
-  suggestionsArea: {
-    gap: Spacing.sm,
-  },
-  suggestionChip: {
-    paddingVertical: Spacing.sm,
-    paddingHorizontal: Spacing.md,
-    borderWidth: 1,
-    borderRadius: BorderRadius.md,
-    borderStyle: 'dashed',
   },
   loadingBox: {
     padding: Spacing.lg,
@@ -345,35 +500,5 @@ const styles = StyleSheet.create({
   conceptText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 11,
-  },
-  inputBar: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.sm,
-    borderTopWidth: 1,
-    gap: Spacing.sm,
-  },
-  input: {
-    flex: 1,
-    borderWidth: 1,
-    borderRadius: BorderRadius.lg,
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 14,
-    minHeight: 40,
-  },
-  sendBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  sendIcon: {
-    color: '#FFFFFF',
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 16,
   },
 });

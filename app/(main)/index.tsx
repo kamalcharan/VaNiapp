@@ -6,18 +6,22 @@ import {
   Pressable,
   Animated,
   Easing,
+  Share,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { useSelector } from 'react-redux';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
+import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing } from '../../src/constants/theme';
-import { getProfile, getUserSubjectIds, MedProfile } from '../../src/lib/database';
+import { getProfile, getUserSubjectIds, generateReferralCode, MedProfile } from '../../src/lib/database';
 import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
+import { RootState } from '../../src/store';
 import * as Haptics from 'expo-haptics';
 
 // Exam focus for BOTH users - which exam to focus on
@@ -29,6 +33,7 @@ interface SubjectJourney {
   strengthLevel: StrengthLevel;
   chaptersCompleted: number;
   totalChapters: number;
+  accuracy: number;
   vaniMessage: string;
 }
 
@@ -73,11 +78,13 @@ function getStrengthConfig(level: StrengthLevel) {
 
 export default function DashboardScreen() {
   const { colors, mode, toggle } = useTheme();
+  const persona = usePersona();
   const router = useRouter();
   const [profile, setProfile] = useState<MedProfile | null>(null);
   const [subjectJourneys, setSubjectJourneys] = useState<SubjectJourney[]>([]);
   const [allSubjects, setAllSubjects] = useState<CatalogSubject[]>([]);
   const [examFocus, setExamFocus] = useState<ExamFocus>('ALL');
+  const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
 
   useEffect(() => {
     (async () => {
@@ -94,15 +101,49 @@ export default function DashboardScreen() {
           .map((id) => subjects.find((s) => s.id === id))
           .filter(Boolean) as CatalogSubject[];
 
-        // Create journey data for each subject
-        // TODO: Fetch actual progress from DB once available
-        const journeys: SubjectJourney[] = matched.map((subject) => ({
-          subject,
-          strengthLevel: 'just-started' as StrengthLevel, // Default for new users
-          chaptersCompleted: 0,
-          totalChapters: 10, // Placeholder, will come from curriculum
-          vaniMessage: getVaniMessage('just-started'),
-        }));
+        // Create journey data from actual strength data in Redux
+        const journeys: SubjectJourney[] = matched.map((subject) => {
+          // Find all chapters for this subject in strength data
+          const subjectChapters = Object.values(strengthChapters).filter(
+            (ch) => ch.subjectId === subject.id,
+          );
+          const chaptersCompleted = subjectChapters.filter(
+            (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
+          ).length;
+
+          // Calculate subject-level strength (weighted average)
+          let level: StrengthLevel = 'just-started';
+          if (subjectChapters.length > 0) {
+            const totalQ = subjectChapters.reduce((s, c) => s + c.totalInBank, 0);
+            const totalCorrect = subjectChapters.reduce((s, c) => s + c.correctCount, 0);
+            const totalAnswered = subjectChapters.reduce((s, c) => s + c.totalAnswered, 0);
+            const totalAttempted = subjectChapters.reduce((s, c) => s + c.attemptedIds.length, 0);
+            const coverage = totalQ > 0 ? (totalAttempted / totalQ) * 100 : 0;
+            const accuracy = totalAnswered > 0 ? (totalCorrect / totalAnswered) * 100 : 0;
+
+            if (coverage >= 60 && accuracy >= 70) level = 'strong';
+            else if (coverage >= 40 && accuracy >= 55) level = 'on-track';
+            else if (coverage >= 20 && accuracy >= 40) level = 'getting-there';
+            else if (coverage >= 20 && accuracy < 40) level = 'needs-focus';
+          }
+
+          const subjectAccuracy = subjectChapters.length > 0
+            ? (() => {
+                const totalAnswered = subjectChapters.reduce((s, c) => s + c.totalAnswered, 0);
+                const totalCorrect = subjectChapters.reduce((s, c) => s + c.correctCount, 0);
+                return totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+              })()
+            : 0;
+
+          return {
+            subject,
+            strengthLevel: level,
+            accuracy: subjectAccuracy,
+            chaptersCompleted,
+            totalChapters: 10,
+            vaniMessage: getVaniMessage(level),
+          };
+        });
 
         setSubjectJourneys(journeys);
       }
@@ -117,6 +158,19 @@ export default function DashboardScreen() {
   const handleExamFocusChange = (focus: ExamFocus) => {
     setExamFocus(focus);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  };
+
+  const handleInviteGang = async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    try {
+      const code = await generateReferralCode();
+      const examText = profile?.exam === 'BOTH' ? 'NEET & CUET' : profile?.exam || 'exams';
+      await Share.share({
+        message: `Hey! I'm prepping for ${examText} on VaNi. Join my study gang!\n\nUse my code: ${code}\n\nDownload VaNi and let's crack it together!`,
+      });
+    } catch {
+      // share dismissed or failed
+    }
   };
 
   // Entrance animation
@@ -140,9 +194,13 @@ export default function DashboardScreen() {
     ]).start();
   }, []);
 
-  const greeting = profile?.display_name
-    ? `Hey, ${profile.display_name.split(' ')[0]}`
-    : 'Study Board';
+  // Derive first name from display_name, else email prefix, else generic
+  const firstName = profile?.display_name
+    ? profile.display_name.split(' ')[0]
+    : profile?.email
+      ? profile.email.split('@')[0]
+      : null;
+  const greeting = firstName ? `Hey, ${firstName}` : 'Study Board';
 
   // For BOTH users, show the focused exam or combined label
   const examLabel = profile?.exam === 'BOTH'
@@ -218,12 +276,12 @@ export default function DashboardScreen() {
             </View>
           )}
 
-          {/* VaNi Greeting */}
+          {/* VaNi Greeting — persona-aware */}
           <StickyNote color="yellow" rotation={-0.5} delay={100}>
             <HandwrittenText variant="handSm">
-              {profile?.display_name
-                ? `Hi ${profile.display_name.split(' ')[0]}! I'm here to guide your journey.`
-                : "Hi! I'm VaNi, your AI coach. Let's learn together!"}
+              {firstName
+                ? `Hi ${firstName}! ${persona.labels.homeGreeting}`
+                : persona.labels.homeGreeting}
             </HandwrittenText>
           </StickyNote>
 
@@ -231,7 +289,7 @@ export default function DashboardScreen() {
           {filteredJourneys.length > 0 && (
             <View style={styles.journeySection}>
               <HandwrittenText variant="hand" rotation={-1}>
-                {isBothUser && examFocus !== 'ALL' ? `${examFocus} Journey` : 'Your Journey'}
+                {isBothUser && examFocus !== 'ALL' ? `${examFocus} Journey` : persona.labels.chapterListHeader}
               </HandwrittenText>
 
               <View style={styles.journeyGrid}>
@@ -290,6 +348,23 @@ export default function DashboardScreen() {
                             </Text>
                           </View>
 
+                          {/* Accuracy — only if they've practiced */}
+                          {journey.accuracy > 0 && (
+                            <Text
+                              style={[
+                                Typography.bodySm,
+                                {
+                                  color: journey.accuracy >= 70 ? '#22C55E' : journey.accuracy >= 40 ? '#F59E0B' : '#EF4444',
+                                  textAlign: 'center',
+                                  fontWeight: '600',
+                                  marginTop: Spacing.xs,
+                                },
+                              ]}
+                            >
+                              {journey.accuracy}% accuracy
+                            </Text>
+                          )}
+
                           {/* VaNi Message */}
                           <Text
                             style={[
@@ -297,8 +372,9 @@ export default function DashboardScreen() {
                               {
                                 color: colors.textSecondary,
                                 textAlign: 'center',
-                                marginTop: Spacing.xs,
+                                marginTop: journey.accuracy > 0 ? 2 : Spacing.xs,
                                 fontStyle: 'italic',
+                                fontSize: 11,
                               },
                             ]}
                           >
@@ -322,10 +398,7 @@ export default function DashboardScreen() {
             <JournalCard delay={400} rotation={0.3}>
               <Pressable
                 style={styles.actionRow}
-                onPress={() => {
-                  // TODO: Navigate to practice exam
-                  // router.push('/practice-exam');
-                }}
+                onPress={() => router.push('/practice-exam')}
               >
                 <Text style={styles.actionIcon}>{'\uD83C\uDFAF'}</Text>
                 <View style={{ flex: 1 }}>
@@ -347,10 +420,7 @@ export default function DashboardScreen() {
             <JournalCard delay={500} rotation={-0.2}>
               <Pressable
                 style={styles.actionRow}
-                onPress={() => {
-                  // TODO: Navigate to quick practice
-                  // router.push('/quick-practice');
-                }}
+                onPress={() => router.push('/quick-practice')}
               >
                 <Text style={styles.actionIcon}>{'\u26A1'}</Text>
                 <View style={{ flex: 1 }}>
@@ -363,17 +433,45 @@ export default function DashboardScreen() {
                       { color: colors.textSecondary, marginTop: 2 },
                     ]}
                   >
-                    20 questions. No timer. Pure focus.
+                    20 questions. 10 minutes. Pure focus.
                   </Text>
                 </View>
               </Pressable>
             </JournalCard>
+
           </View>
 
-          {/* Coming Soon */}
-          <StickyNote color="teal" rotation={0.5} delay={500}>
+          {/* Invite Your Gang CTA */}
+          <JournalCard delay={550} rotation={-0.3}>
+            <Pressable style={styles.inviteCta} onPress={handleInviteGang}>
+              <View style={styles.inviteCtaLeft}>
+                <Text style={styles.inviteCtaEmoji}>{'\uD83D\uDC6F'}</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={[Typography.h3, { color: colors.text }]}>
+                    Invite Your Gang
+                  </Text>
+                  <Text
+                    style={[
+                      Typography.bodySm,
+                      { color: colors.textSecondary, marginTop: 2 },
+                    ]}
+                  >
+                    Study together, score better!
+                  </Text>
+                </View>
+              </View>
+              <View style={[styles.inviteCtaBadge, { backgroundColor: colors.primary }]}>
+                <Text style={styles.inviteCtaBadgeText}>Share</Text>
+              </View>
+            </Pressable>
+          </JournalCard>
+
+          {/* Coaching nudge — tap a subject to see your progress */}
+          <StickyNote color="teal" rotation={0.5} delay={600}>
             <HandwrittenText variant="handSm">
-              Questions, analytics, and study gang features coming soon!
+              {filteredJourneys.some(j => j.strengthLevel !== 'just-started')
+                ? 'Tap any subject card above to see your chapter-by-chapter progress!'
+                : 'Start a chapter quiz and I\'ll track your strengths for you!'}
             </HandwrittenText>
           </StickyNote>
         </Animated.ScrollView>
@@ -470,5 +568,29 @@ const styles = StyleSheet.create({
   },
   actionIcon: {
     fontSize: 32,
+  },
+  // Invite CTA
+  inviteCta: {
+    flexDirection: 'column',
+    gap: Spacing.md,
+  },
+  inviteCtaLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.md,
+  },
+  inviteCtaEmoji: {
+    fontSize: 36,
+  },
+  inviteCtaBadge: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.sm,
+    borderRadius: 20,
+  },
+  inviteCtaBadgeText: {
+    color: '#FFFFFF',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 14,
   },
 });

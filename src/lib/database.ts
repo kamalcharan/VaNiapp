@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import type { ExamType, Language, SubjectId } from '../types';
+import type { ExamType, Language, SubjectId, OnboardingFlowConfig, OnboardingFlowMode } from '../types';
 
 // ── Types ────────────────────────────────────────────────────
 
@@ -14,6 +14,7 @@ export interface MedProfile {
   city: string;
   exam: ExamType | null;
   language: Language;
+  target_year: number | null;
   onboarding_completed: boolean;
   vani_override: boolean; // Secret admin setting: overrides VaNi AI decisions
   created_at: string;
@@ -74,6 +75,7 @@ export async function getProfile(): Promise<MedProfile | null> {
 // ── Complete onboarding (batch save) ─────────────────────────
 
 interface OnboardingPayload {
+  displayName?: string;
   phone: string;
   countryCode: string;
   college: string;
@@ -81,6 +83,7 @@ interface OnboardingPayload {
   exam: ExamType;
   subjects: SubjectId[];
   language: Language;
+  targetYear?: number;
 }
 
 /**
@@ -100,7 +103,7 @@ export async function completeOnboarding(payload: OnboardingPayload): Promise<vo
     .from('med_profiles')
     .upsert({
       id: user.id,
-      display_name: user.user_metadata?.full_name || user.user_metadata?.name || '',
+      display_name: payload.displayName || user.user_metadata?.full_name || user.user_metadata?.name || '',
       avatar_url: user.user_metadata?.avatar_url || user.user_metadata?.picture || '',
       email: user.email || '',
       phone: payload.phone,
@@ -109,6 +112,7 @@ export async function completeOnboarding(payload: OnboardingPayload): Promise<vo
       city: payload.city,
       exam: payload.exam,
       language: payload.language,
+      target_year: payload.targetYear ?? null,
       onboarding_completed: true,
     }, { onConflict: 'id' });
 
@@ -188,7 +192,7 @@ export async function updateUserSubjects(subjectIds: string[]): Promise<void> {
 
 /** Update specific profile fields. */
 export async function updateProfile(
-  fields: Partial<Pick<MedProfile, 'phone' | 'country_code' | 'college' | 'city' | 'exam' | 'language'>>
+  fields: Partial<Pick<MedProfile, 'display_name' | 'phone' | 'country_code' | 'college' | 'city' | 'exam' | 'language' | 'target_year'>>
 ): Promise<void> {
   if (!supabase) throw new Error('Supabase is not configured.');
 
@@ -335,4 +339,54 @@ export async function getDefaultQuestionMix(
     fill_blanks_pct: data.fill_blanks_pct,
     scenario_based_pct: data.scenario_based_pct,
   };
+}
+
+// ── App Config (med_app_config) ──────────────────────────────
+
+const DEFAULT_ONBOARDING_FLOW: OnboardingFlowConfig = {
+  mode: 'full',
+  quick_until: '2000-01-01T00:00:00Z',
+  default_exam: 'NEET',
+  auto_assign_subjects: true,
+  default_language: 'en',
+};
+
+let _cachedFlowConfig: OnboardingFlowConfig | null = null;
+
+/**
+ * Fetch the onboarding flow config from med_app_config.
+ * Cached in-memory for the session — call clearOnboardingFlowCache() to refresh.
+ */
+export async function getOnboardingFlowConfig(): Promise<OnboardingFlowConfig> {
+  if (_cachedFlowConfig) return _cachedFlowConfig;
+  if (!supabase) return DEFAULT_ONBOARDING_FLOW;
+
+  try {
+    const { data, error } = await supabase
+      .from('med_app_config')
+      .select('value')
+      .eq('key', 'onboarding_flow')
+      .single();
+
+    if (error || !data?.value) return DEFAULT_ONBOARDING_FLOW;
+
+    _cachedFlowConfig = data.value as OnboardingFlowConfig;
+    return _cachedFlowConfig;
+  } catch {
+    return DEFAULT_ONBOARDING_FLOW;
+  }
+}
+
+/** Resolve 'quick' or 'full' based on config + current date. */
+export function resolveFlowMode(config: OnboardingFlowConfig): OnboardingFlowMode {
+  if (config.mode === 'full') return 'full';
+  if (config.mode === 'quick') {
+    const cutoff = new Date(config.quick_until);
+    return new Date() < cutoff ? 'quick' : 'full';
+  }
+  return 'full';
+}
+
+export function clearOnboardingFlowCache(): void {
+  _cachedFlowConfig = null;
 }

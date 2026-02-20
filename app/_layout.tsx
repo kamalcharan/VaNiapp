@@ -21,13 +21,26 @@ import {
   getInitialAuthState,
   onAuthStateChange,
 } from '../src/lib/auth';
-import { getProfile } from '../src/lib/database';
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from '../src/store';
+import { setUser, updateTargetYear } from '../src/store/slices/authSlice';
+import { ToastProvider } from '../src/components/ui/Toast';
+import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
+import { getProfile, getUserSubjectIds } from '../src/lib/database';
+import { pullRemoteProgress } from '../src/lib/progressSync';
 
 NativeSplashScreen.preventAutoHideAsync();
 
 // Auth context so any screen can read auth state
 export const AuthContext = createContext<AuthState>(initialAuthState);
 export const useAuth = () => useContext(AuthContext);
+
+// Onboarding gate — lets setup screens signal completion to root layout
+interface OnboardingGate {
+  markDone: () => void;
+}
+const OnboardingGateContext = createContext<OnboardingGate>({ markDone: () => {} });
+export const useOnboardingGate = () => useContext(OnboardingGateContext);
 
 export default function RootLayout() {
   const [themeMode, setThemeMode] = useState<ThemeMode>('light');
@@ -79,8 +92,27 @@ export default function RootLayout() {
 
     (async () => {
       try {
-        const profile = await getProfile();
+        const [profile, subjectIds] = await Promise.all([
+          getProfile(),
+          getUserSubjectIds(),
+        ]);
         setOnboardingDone(profile?.onboarding_completed ?? false);
+
+        // Hydrate Redux user from Supabase profile so usePersona + selectors work
+        if (profile) {
+          store.dispatch(setUser({
+            id: profile.id,
+            name: profile.display_name || '',
+            email: profile.email || '',
+            exam: profile.exam ?? 'NEET',
+            language: profile.language ?? 'en',
+            selectedSubjects: subjectIds as any[],
+            targetYear: profile.target_year ?? undefined,
+          }));
+
+          // Pull remote progress into Redux (merges with local, remote wins if ahead)
+          pullRemoteProgress().catch(() => {});
+        }
       } catch {
         setOnboardingDone(false);
       }
@@ -113,6 +145,13 @@ export default function RootLayout() {
       router.replace('/(auth)/onboarding');
     }
   }, [authState.status, segments, showSplash, onboardingDone]);
+
+  // Onboarding gate: called by setup screens after completeOnboarding() succeeds
+  const markDone = useCallback(() => {
+    setOnboardingDone(true);
+  }, []);
+
+  const gateValue = useMemo<OnboardingGate>(() => ({ markDone }), [markDone]);
 
   // Theme
   const toggleTheme = useCallback(() => {
@@ -147,10 +186,17 @@ export default function RootLayout() {
   }
 
   return (
-    <AuthContext.Provider value={authState}>
-      <ThemeContext.Provider value={themeValue}>
-        <Slot />
-      </ThemeContext.Provider>
-    </AuthContext.Provider>
+    <ReduxProvider store={store}>
+      <AuthContext.Provider value={authState}>
+        <OnboardingGateContext.Provider value={gateValue}>
+          <ThemeContext.Provider value={themeValue}>
+            <ToastProvider>
+              <Slot />
+              <GlobalMusicOverlay />
+            </ToastProvider>
+          </ThemeContext.Provider>
+        </OnboardingGateContext.Provider>
+      </AuthContext.Provider>
+    </ReduxProvider>
   );
 }

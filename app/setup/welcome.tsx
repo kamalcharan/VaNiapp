@@ -17,7 +17,7 @@ const logo = require('../../assets/logo.png');
 export default function WelcomeScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const { setStep } = useOnboarding();
+  const { setStep, flowMode } = useOnboarding();
 
   const { user } = useAuth();
 
@@ -25,6 +25,8 @@ export default function WelcomeScreen() {
     user?.user_metadata?.full_name?.split(' ')[0] ||
     user?.user_metadata?.name?.split(' ')[0] ||
     'there';
+
+  const isQuick = flowMode === 'quick';
 
   useEffect(() => {
     setStep(1);
@@ -85,6 +87,14 @@ export default function WelcomeScreen() {
     ]).start();
   }, []);
 
+  const handleContinue = () => {
+    if (isQuick) {
+      router.push('/setup/quick-start');
+    } else {
+      router.push('/setup/profile-details');
+    }
+  };
+
   return (
     <DotGridBackground>
       <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
@@ -122,7 +132,9 @@ export default function WelcomeScreen() {
             </Text>
 
             <HandwrittenText variant="hand" color={colors.textSecondary}>
-              let's set up your journal...
+              {isQuick
+                ? "let's start practicing..."
+                : "let's set up your journal..."}
             </HandwrittenText>
           </Animated.View>
 
@@ -131,8 +143,9 @@ export default function WelcomeScreen() {
             <JournalCard rotation={-0.5} delay={0}>
               <View style={styles.cardContent}>
                 <HandwrittenText variant="handSm" color={colors.textSecondary}>
-                  Just a few quick things and you're all set to start your exam
-                  prep journey.
+                  {isQuick
+                    ? "You're just one tap away from NEET practice. We'll handle the rest!"
+                    : "Just a few quick things and you're all set to start your exam prep journey."}
                 </HandwrittenText>
               </View>
             </JournalCard>
@@ -141,9 +154,9 @@ export default function WelcomeScreen() {
           {/* CTA */}
           <Animated.View style={{ opacity: btnFade }}>
             <PuffyButton
-              title="Let's Go"
-              icon={'\u2728'}
-              onPress={() => router.push('/setup/profile-details')}
+              title={isQuick ? 'Start Practicing' : "Let's Go"}
+              icon={isQuick ? '\uD83D\uDE80' : '\u2728'}
+              onPress={handleContinue}
             />
           </Animated.View>
         </View>

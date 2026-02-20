@@ -1,15 +1,14 @@
-// ── OpenAI Configuration ──────────────────────────────────
-// POC: API key is stored here. For production, move to Supabase Edge Function.
-// The key is used directly from the device during POC phase only.
+// ── Gemini Configuration ──────────────────────────────────
+// API key loaded from .env (EXPO_PUBLIC_GEMINI_API_KEY).
+// For production, move to Supabase Edge Function.
 
 export const AI_CONFIG = {
-  // Paste your OpenAI API key below
-  apiKey: 'YOUR_OPENAI_API_KEY_HERE',
+  apiKey: process.env.EXPO_PUBLIC_GEMINI_API_KEY || '',
 
   // Model routing
   models: {
-    fast: 'gpt-4o-mini',   // cheap, fast — used for 80% of queries
-    smart: 'gpt-4o',       // capable — used for complex multi-step queries
+    fast: 'gemini-2.5-flash',       // cheap, fast — used for 80% of queries
+    smart: 'gemini-2.5-pro',        // capable — used for complex multi-step queries
   },
 
   // Rate limits (client-side, per day)

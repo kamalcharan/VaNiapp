@@ -8,6 +8,7 @@ import squadReducer from './slices/squadSlice';
 import aiReducer from './slices/aiSlice';
 import strengthReducer from './slices/strengthSlice';
 import bookmarkReducer from './slices/bookmarkSlice';
+import streakReducer from './slices/streakSlice';
 
 const PERSIST_KEY = 'vani-persist';
 
@@ -21,6 +22,7 @@ export const store = configureStore({
     ai: aiReducer,
     strength: strengthReducer,
     bookmark: bookmarkReducer,
+    streak: streakReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
@@ -37,8 +39,8 @@ let saveTimeout: ReturnType<typeof setTimeout> | null = null;
 store.subscribe(() => {
   if (saveTimeout) clearTimeout(saveTimeout);
   saveTimeout = setTimeout(() => {
-    const { auth, practice, squad, ai, strength, bookmark } = store.getState();
-    AsyncStorage.setItem(PERSIST_KEY, JSON.stringify({ auth, practice, squad, ai, strength, bookmark })).catch(
+    const { auth, practice, squad, ai, strength, bookmark, streak } = store.getState();
+    AsyncStorage.setItem(PERSIST_KEY, JSON.stringify({ auth, practice, squad, ai, strength, bookmark, streak })).catch(
       () => {}
     );
   }, 500); // debounce 500ms
@@ -66,6 +68,9 @@ export async function rehydrateStore(): Promise<void> {
     }
     if (saved.bookmark) {
       store.dispatch({ type: 'bookmark/rehydrate', payload: saved.bookmark });
+    }
+    if (saved.streak) {
+      store.dispatch({ type: 'streak/rehydrate', payload: saved.streak });
     }
   } catch {
     // storage read failed — start fresh

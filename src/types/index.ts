@@ -2,6 +2,18 @@ export type ThemeMode = 'light' | 'dark';
 export type ExamType = 'NEET' | 'CUET' | 'BOTH';
 export type Language = 'en' | 'te';
 
+// ── Onboarding Flow Config (from med_app_config) ────────────
+
+export type OnboardingFlowMode = 'quick' | 'full';
+
+export interface OnboardingFlowConfig {
+  mode: OnboardingFlowMode;
+  quick_until: string;        // ISO date — quick mode expires after this
+  default_exam: ExamType;
+  auto_assign_subjects: boolean;
+  default_language: Language;
+}
+
 // NEET fixed subjects
 export type NeetSubjectId = 'physics' | 'chemistry' | 'botany' | 'zoology';
 
@@ -184,6 +196,7 @@ export interface UserProfile {
   exam: ExamType;
   language: Language;
   selectedSubjects: SubjectId[];
+  targetYear?: number; // 2026 = crunch mode, 2027 = levels/progression
 }
 
 export type AppScreen =
@@ -339,6 +352,14 @@ export type QuestionType =
   | 'fill-in-blanks'
   | 'scenario-based';
 
+export interface EliminationHint {
+  optionKey: string;
+  hint: string;
+  hintTe: string;
+  misconception: string;
+  misconceptionTe: string;
+}
+
 export interface QuestionV2 {
   id: string;
   type: QuestionType;
@@ -353,6 +374,7 @@ export interface QuestionV2 {
   explanationTe: string;
   eliminationTechnique: string;
   eliminationTechniqueTe: string;
+  eliminationHints: EliminationHint[];
 
   // Type-specific payload
   payload: QuestionPayload;
