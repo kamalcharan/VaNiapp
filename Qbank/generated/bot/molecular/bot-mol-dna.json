@@ -1,0 +1,502 @@
+[
+  {
+    "id": "bot-mol-dna-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The double helical structure of DNA was proposed by:",
+    "explanation": "James Watson and Francis Crick proposed the double helical model of DNA in 1953, based on X-ray diffraction data obtained by Maurice Wilkins and Rosalind Franklin. Their model described DNA as a right-handed double helix with two antiparallel polynucleotide strands coiled around a common axis, held together by hydrogen bonds between complementary base pairs.",
+    "correct_answer": "A",
+    "concept_tags": ["watson-crick-model", "DNA-double-helix", "discovery"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Watson and Crick", "is_correct": true},
+      {"key": "B", "text": "Hershey and Chase", "is_correct": false},
+      {"key": "C", "text": "Avery, MacLeod, and McCarty", "is_correct": false},
+      {"key": "D", "text": "Meselson and Stahl", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Hershey and Chase conducted the bacteriophage experiment (1952) proving DNA is the genetic material, not the structural model.", "misconception": "Confusing experiments proving DNA as genetic material with the structural model of DNA"},
+      {"option_key": "C", "hint": "Avery, MacLeod, and McCarty identified DNA as the transforming principle in Griffith's experiment, not the double helix model.", "misconception": "Confusing biochemical identification of DNA with its structural elucidation"},
+      {"option_key": "D", "hint": "Meselson and Stahl proved the semiconservative mode of DNA replication, not the structure of DNA.", "misconception": "Confusing replication experiments with structural discovery"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The number of hydrogen bonds between adenine and thymine in a DNA molecule is:",
+    "explanation": "In the Watson-Crick model of DNA, adenine (a purine) pairs with thymine (a pyrimidine) through two hydrogen bonds (A=T). In contrast, guanine pairs with cytosine through three hydrogen bonds (G≡C). This specific base pairing is the basis of Chargaff's rule and ensures the uniform diameter of the DNA double helix.",
+    "correct_answer": "B",
+    "concept_tags": ["hydrogen-bonds", "base-pairing", "A-T-pairing"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "One", "is_correct": false},
+      {"key": "B", "text": "Two", "is_correct": true},
+      {"key": "C", "text": "Three", "is_correct": false},
+      {"key": "D", "text": "Four", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "A single hydrogen bond would be too weak to maintain stable base pairing in DNA. A-T base pair has two hydrogen bonds.", "misconception": "Underestimating the number of hydrogen bonds in base pairing"},
+      {"option_key": "C", "hint": "Three hydrogen bonds are formed between guanine and cytosine (G≡C), not between adenine and thymine.", "misconception": "Confusing the number of hydrogen bonds in A-T pair with G-C pair"},
+      {"option_key": "D", "hint": "No standard Watson-Crick base pair involves four hydrogen bonds. A-T has two and G-C has three.", "misconception": "Incorrectly assigning hydrogen bond numbers to base pairs"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "According to Chargaff's rule, in double-stranded DNA the ratio of purines to pyrimidines is:",
+    "explanation": "Chargaff's rule states that in double-stranded DNA, A = T and G = C. Since adenine and guanine are purines, and thymine and cytosine are pyrimidines, the total purines (A + G) always equal total pyrimidines (T + C). Therefore, the purine to pyrimidine ratio is always 1:1. This rule provided key evidence for the Watson-Crick base pairing model.",
+    "correct_answer": "C",
+    "concept_tags": ["chargaff-rule", "purines", "pyrimidines", "base-equivalence"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "1:2", "is_correct": false},
+      {"key": "B", "text": "2:1", "is_correct": false},
+      {"key": "C", "text": "1:1", "is_correct": true},
+      {"key": "D", "text": "Variable depending on the organism", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "A 1:2 ratio would mean pyrimidines are double the purines, which contradicts Chargaff's rule where A=T and G=C.", "misconception": "Misunderstanding the quantitative relationship in Chargaff's rule"},
+      {"option_key": "B", "hint": "A 2:1 ratio would mean purines are double the pyrimidines, violating the complementary base pairing principle.", "misconception": "Reversing the purine-pyrimidine relationship"},
+      {"option_key": "D", "hint": "While the A+T to G+C ratio varies between organisms, the total purines always equal total pyrimidines (1:1) in all double-stranded DNA.", "misconception": "Confusing the variable A+T/G+C ratio with the constant purine/pyrimidine ratio"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In the Hershey-Chase experiment, which radioactive isotope was used to label the DNA of bacteriophage T2?",
+    "explanation": "In the Hershey-Chase experiment (1952), bacteriophage T2 was grown on bacteria containing radioactive phosphorus (32P) to label the DNA, and radioactive sulphur (35S) to label the protein coat. DNA contains phosphorus (in the sugar-phosphate backbone) but no sulphur, while proteins contain sulphur (in amino acids methionine and cysteine) but usually no phosphorus. This differential labelling proved that DNA, not protein, is the genetic material.",
+    "correct_answer": "D",
+    "concept_tags": ["hershey-chase", "radioactive-labelling", "32P", "bacteriophage-T2"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "35S", "is_correct": false},
+      {"key": "B", "text": "14C", "is_correct": false},
+      {"key": "C", "text": "15N", "is_correct": false},
+      {"key": "D", "text": "32P", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "35S (radioactive sulphur) was used to label the protein coat of the phage, not the DNA. DNA does not contain sulphur.", "misconception": "Confusing which isotope labels DNA vs protein"},
+      {"option_key": "B", "hint": "14C was not used in the Hershey-Chase experiment. Carbon is present in both DNA and protein, so it cannot differentially label them.", "misconception": "Not understanding why specific isotopes were chosen for the experiment"},
+      {"option_key": "C", "hint": "15N was used in the Meselson-Stahl experiment to prove semiconservative replication, not in the Hershey-Chase experiment.", "misconception": "Confusing Meselson-Stahl and Hershey-Chase experiments"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The distance between two consecutive base pairs in B-DNA is:",
+    "explanation": "In the B-form of DNA (the most common form described by Watson and Crick), the distance between two consecutive base pairs (rise per base pair) is 0.34 nm (3.4 Angstroms). Each complete turn of the helix has 10 base pairs, giving a pitch (distance per turn) of 3.4 nm. The diameter of the B-DNA helix is approximately 2 nm (20 Angstroms).",
+    "correct_answer": "B",
+    "concept_tags": ["B-DNA", "rise-per-base-pair", "DNA-dimensions"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "0.20 nm", "is_correct": false},
+      {"key": "B", "text": "0.34 nm", "is_correct": true},
+      {"key": "C", "text": "3.4 nm", "is_correct": false},
+      {"key": "D", "text": "2.0 nm", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "0.20 nm is not a standard DNA measurement. The rise per base pair in B-DNA is 0.34 nm.", "misconception": "Incorrect recall of DNA dimensions"},
+      {"option_key": "C", "hint": "3.4 nm is the pitch of the helix (distance per complete turn of 10 base pairs), not the distance between two consecutive base pairs.", "misconception": "Confusing pitch (3.4 nm per turn) with rise per base pair (0.34 nm)"},
+      {"option_key": "D", "hint": "2.0 nm is the diameter of the B-DNA double helix, not the distance between consecutive base pairs.", "misconception": "Confusing DNA diameter with inter-base-pair distance"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In Griffith's transformation experiment, when heat-killed S strain bacteria were mixed with live R strain bacteria and injected into mice, the mice:",
+    "explanation": "In Griffith's transformation experiment (1928), heat-killed smooth (S) strain of Streptococcus pneumoniae was mixed with live rough (R) strain and injected into mice. The mice died, and live S strain bacteria were recovered from the dead mice. This showed that the R strain had been 'transformed' by some 'transforming principle' from the heat-killed S strain. Griffith called this phenomenon transformation.",
+    "correct_answer": "C",
+    "concept_tags": ["griffith-experiment", "transformation", "S-strain", "R-strain"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Survived, as heat-killed bacteria cannot cause disease", "is_correct": false},
+      {"key": "B", "text": "Survived, as R strain is non-virulent", "is_correct": false},
+      {"key": "C", "text": "Died, and live S strain bacteria were recovered", "is_correct": true},
+      {"key": "D", "text": "Died, but only R strain bacteria were recovered", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "While heat-killed S bacteria alone cannot kill mice, mixing them with live R strain leads to transformation of R into virulent S bacteria.", "misconception": "Ignoring the transformation phenomenon when both strains are mixed"},
+      {"option_key": "B", "hint": "Although R strain alone is non-virulent, the transforming principle from heat-killed S strain converts R into virulent S strain.", "misconception": "Forgetting that non-virulent bacteria can acquire virulence through transformation"},
+      {"option_key": "D", "hint": "The key finding was the recovery of live S strain bacteria, not R strain. This showed transformation had occurred.", "misconception": "Misunderstanding the experimental outcome of Griffith's experiment"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A nucleoside differs from a nucleotide in that a nucleoside lacks:",
+    "explanation": "A nucleoside consists of a nitrogenous base attached to a pentose sugar (ribose or deoxyribose) by an N-glycosidic bond. A nucleotide is a nucleoside with one or more phosphate groups attached to the 5' carbon of the sugar. Therefore, a nucleoside lacks the phosphate group that is present in a nucleotide. For example, adenosine (nucleoside) vs adenosine monophosphate/AMP (nucleotide).",
+    "correct_answer": "A",
+    "concept_tags": ["nucleoside", "nucleotide", "phosphate-group"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "A phosphate group", "is_correct": true},
+      {"key": "B", "text": "A nitrogenous base", "is_correct": false},
+      {"key": "C", "text": "A pentose sugar", "is_correct": false},
+      {"key": "D", "text": "Both a sugar and a phosphate group", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "A nitrogenous base is present in both nucleosides and nucleotides. A nucleoside is base + sugar.", "misconception": "Confusing the components of a nucleoside"},
+      {"option_key": "C", "hint": "A pentose sugar is present in both nucleosides and nucleotides. Without the sugar, it would just be a free base.", "misconception": "Thinking a nucleoside lacks sugar"},
+      {"option_key": "D", "hint": "A nucleoside contains sugar + base. If both sugar and phosphate were removed, only the base would remain, which is neither a nucleoside nor nucleotide.", "misconception": "Not understanding the hierarchical relationship: base -> nucleoside -> nucleotide"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a DNA molecule, the two polynucleotide strands run in opposite directions. This arrangement is described as:",
+    "explanation": "The two strands of the DNA double helix are antiparallel, meaning they run in opposite directions. One strand runs in the 5'→3' direction while the complementary strand runs in the 3'→5' direction. The 5' end has a free phosphate group and the 3' end has a free hydroxyl group. This antiparallel arrangement is essential for proper Watson-Crick base pairing between complementary bases.",
+    "correct_answer": "D",
+    "concept_tags": ["antiparallel", "5-prime-3-prime", "strand-polarity"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Parallel", "is_correct": false},
+      {"key": "B", "text": "Complementary", "is_correct": false},
+      {"key": "C", "text": "Semiconservative", "is_correct": false},
+      {"key": "D", "text": "Antiparallel", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "If the strands were parallel, both would run 5'→3' in the same direction. In DNA, the strands run in opposite directions.", "misconception": "Thinking DNA strands run in the same direction"},
+      {"option_key": "B", "hint": "Complementary refers to the base pairing pattern (A-T, G-C), not the directionality of the strands.", "misconception": "Confusing base complementarity with strand orientation"},
+      {"option_key": "C", "hint": "Semiconservative describes the mode of DNA replication, not the arrangement of strands in the double helix.", "misconception": "Confusing replication terminology with structural terminology"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In the packaging of DNA in eukaryotes, the histone octamer around which DNA is wrapped in a nucleosome is composed of:",
+    "explanation": "A nucleosome is the basic unit of chromatin. It consists of a histone octamer around which approximately 200 bp of DNA is wrapped. The histone octamer is composed of two copies each of four types of histone proteins: H2A, H2B, H3, and H4 (i.e., 2 × 4 = 8 histone molecules). The DNA makes approximately 1.65 turns around the histone octamer. Histone H1 is not part of the octamer but acts as a linker histone that seals the DNA entry and exit points on the nucleosome.",
+    "correct_answer": "C",
+    "concept_tags": ["nucleosome", "histone-octamer", "chromatin-packaging", "H2A-H2B-H3-H4"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Two copies each of H1, H2A, H2B, and H3", "is_correct": false},
+      {"key": "B", "text": "Four copies each of H3 and H4 only", "is_correct": false},
+      {"key": "C", "text": "Two copies each of H2A, H2B, H3, and H4", "is_correct": true},
+      {"key": "D", "text": "One copy each of H1, H2A, H2B, H3, H4, H3, H2B, and H2A", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "H1 is NOT part of the histone octamer. H1 is the linker histone that holds the DNA at the entry and exit points of the nucleosome.", "misconception": "Including H1 in the histone octamer"},
+      {"option_key": "B", "hint": "The octamer includes all four core histones (H2A, H2B, H3, H4), not just H3 and H4. Four copies of two types would only give 8 molecules but with wrong composition.", "misconception": "Thinking only H3 and H4 form the octamer"},
+      {"option_key": "D", "hint": "H1 is not part of the octamer. The octamer consists of exactly two copies each of the four core histones, giving 8 molecules total.", "misconception": "Including H1 and incorrect stoichiometry of histone proteins"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Avery, MacLeod, and McCarty's experiment improved upon Griffith's work by demonstrating that the transforming principle is:",
+    "explanation": "Avery, MacLeod, and McCarty (1944) biochemically characterised the transforming principle discovered by Griffith. They purified biochemicals (proteins, DNA, RNA, etc.) from the heat-killed S strain and individually tested their ability to transform R strain bacteria. They found that DNA alone could cause transformation, while treatment with DNase (which degrades DNA) destroyed the transforming ability. Protease and RNase did not affect transformation. This proved that DNA is the transforming principle (genetic material).",
+    "correct_answer": "A",
+    "concept_tags": ["avery-macleod-mccarty", "transforming-principle", "DNA-as-genetic-material"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "DNA", "is_correct": true},
+      {"key": "B", "text": "Protein", "is_correct": false},
+      {"key": "C", "text": "RNA", "is_correct": false},
+      {"key": "D", "text": "Polysaccharide capsule", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Protease treatment did not destroy the transforming ability, proving that protein is NOT the transforming principle.", "misconception": "Believing proteins carry genetic information as was thought before the experiment"},
+      {"option_key": "C", "hint": "RNase treatment did not eliminate transformation, ruling out RNA as the transforming principle.", "misconception": "Confusing DNA with RNA as the transforming substance"},
+      {"option_key": "D", "hint": "The polysaccharide capsule gives the S strain its smooth appearance but is not the genetic material that transforms R into S strain.", "misconception": "Confusing the phenotypic marker (capsule) with the genetic material causing transformation"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "If the percentage of adenine in a double-stranded DNA molecule is 30%, what is the percentage of guanine?",
+    "explanation": "According to Chargaff's rule, in double-stranded DNA, A = T and G = C. If adenine is 30%, then thymine is also 30% (A = T = 30%). The total of all four bases must equal 100%. Therefore, G + C = 100% - (A + T) = 100% - 60% = 40%. Since G = C, each is 40% / 2 = 20%. So guanine constitutes 20% of the total bases.",
+    "correct_answer": "D",
+    "concept_tags": ["chargaff-rule", "base-composition", "numerical-problem"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "30%", "is_correct": false},
+      {"key": "B", "text": "40%", "is_correct": false},
+      {"key": "C", "text": "10%", "is_correct": false},
+      {"key": "D", "text": "20%", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "If G were also 30%, then A + T + G + C = 30 + 30 + 30 + 30 = 120%, which exceeds 100%. This is mathematically impossible.", "misconception": "Assuming all four bases are present in equal proportions"},
+      {"option_key": "B", "hint": "40% is the combined percentage of G + C, not guanine alone. Since G = C, you must divide 40% by 2.", "misconception": "Calculating G + C together instead of individual G percentage"},
+      {"option_key": "C", "hint": "If G were 10%, then C = 10%, giving A + T + G + C = 30 + 30 + 10 + 10 = 80%, which does not add up to 100%.", "misconception": "Arithmetic error in base composition calculation"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A DNA segment has 1000 base pairs. Among these, 200 base pairs involve adenine-thymine pairing. What is the total number of hydrogen bonds in this DNA segment?",
+    "explanation": "In the DNA double helix, A-T base pairs are held by 2 hydrogen bonds each, and G-C base pairs are held by 3 hydrogen bonds each. Given: Total base pairs = 1000; A-T pairs = 200; therefore G-C pairs = 1000 - 200 = 800. Total hydrogen bonds = (A-T pairs × 2) + (G-C pairs × 3) = (200 × 2) + (800 × 3) = 400 + 2400 = 2800.",
+    "correct_answer": "B",
+    "concept_tags": ["hydrogen-bonds", "base-pairing", "numerical-problem", "A-T-pair", "G-C-pair"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "2000", "is_correct": false},
+      {"key": "B", "text": "2800", "is_correct": true},
+      {"key": "C", "text": "3000", "is_correct": false},
+      {"key": "D", "text": "2600", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "2000 would be the answer if every base pair had only 2 hydrogen bonds. G-C pairs have 3 hydrogen bonds, not 2.", "misconception": "Assuming all base pairs have 2 hydrogen bonds"},
+      {"option_key": "C", "hint": "3000 would be the answer if every base pair had 3 hydrogen bonds. A-T pairs have only 2 hydrogen bonds.", "misconception": "Assuming all base pairs have 3 hydrogen bonds"},
+      {"option_key": "D", "hint": "2600 suggests a calculation error. Verify: (200 × 2) + (800 × 3) = 400 + 2400 = 2800, not 2600.", "misconception": "Arithmetic error in hydrogen bond calculation"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): DNA with higher G-C content requires more energy (higher temperature) to denature than DNA with higher A-T content.\nReason (R): Guanine-cytosine base pairs are held together by three hydrogen bonds, while adenine-thymine base pairs are held by two hydrogen bonds.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The assertion is correct: DNA with higher G-C content has a higher melting temperature (Tm) because more energy is needed to break apart the strands. The reason is also correct: G-C pairs have three hydrogen bonds while A-T pairs have two. The reason correctly explains the assertion because the greater number of hydrogen bonds in G-C pairs directly accounts for the higher thermal stability and greater energy requirement for denaturation.",
+    "correct_answer": "A",
+    "concept_tags": ["DNA-denaturation", "melting-temperature", "hydrogen-bonds", "G-C-content"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The number of hydrogen bonds directly determines the energy needed to separate strands, so R does explain A. The causal link is direct.", "misconception": "Failing to recognise the direct cause-effect relationship between hydrogen bond number and denaturation energy"},
+      {"option_key": "C", "hint": "The reason is factually correct: G-C has 3 hydrogen bonds and A-T has 2. This is a fundamental fact of the Watson-Crick model.", "misconception": "Incorrectly thinking the hydrogen bond numbers stated are wrong"},
+      {"option_key": "D", "hint": "The assertion is correct: higher G-C content correlates with higher melting temperature. This is a well-established principle in molecular biology.", "misconception": "Not knowing that G-C rich DNA is thermally more stable"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): Heterochromatin is transcriptionally inactive and appears as darkly stained regions in the nucleus.\nReason (R): Heterochromatin has loosely packed DNA that is accessible to transcription machinery.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The assertion is correct: heterochromatin is indeed transcriptionally inactive and stains darkly with nuclear dyes due to its tightly packed nature. However, the reason is incorrect: heterochromatin has TIGHTLY packed (condensed) DNA, not loosely packed DNA. It is euchromatin that has loosely packed DNA and is transcriptionally active. The tight packaging of heterochromatin makes the DNA inaccessible to the transcription machinery, which is why it is inactive.",
+    "correct_answer": "C",
+    "concept_tags": ["heterochromatin", "euchromatin", "chromatin-packaging", "transcription"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": true},
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Since the reason is factually wrong (heterochromatin is tightly packed, not loosely packed), option A cannot be correct.", "misconception": "Not carefully reading and evaluating the reason statement"},
+      {"option_key": "B", "hint": "The reason is factually incorrect. Heterochromatin is tightly packed, not loosely packed. Both A and R cannot be correct.", "misconception": "Accepting a false statement about chromatin packaging as true"},
+      {"option_key": "D", "hint": "The assertion is correct: heterochromatin IS transcriptionally inactive and does stain darkly. So A is not incorrect.", "misconception": "Incorrectly evaluating the assertion about heterochromatin properties"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following experiments (Column I) with their key conclusions (Column II):\n\nColumn I:\n(P) Griffith's experiment\n(Q) Avery, MacLeod, McCarty experiment\n(R) Hershey-Chase experiment\n\nColumn II:\n(i) DNA is the genetic material in bacteriophages\n(ii) DNA is the transforming principle\n(iii) Discovery of the phenomenon of transformation\n\nSelect the correct match:\n(A) P-ii, Q-iii, R-i\n(B) P-iii, Q-ii, R-i\n(C) P-i, Q-ii, R-iii\n(D) P-iii, Q-i, R-ii",
+    "explanation": "Griffith's experiment (1928) discovered the phenomenon of transformation (P-iii) by showing that heat-killed S strain could transform live R strain. Avery, MacLeod, and McCarty (1944) biochemically identified DNA as the transforming principle (Q-ii) by using enzymes like DNase, protease, and RNase. Hershey and Chase (1952) used radioactive isotopes (32P for DNA, 35S for protein) with bacteriophage T2 to confirm that DNA is the genetic material in bacteriophages (R-i).",
+    "correct_answer": "B",
+    "concept_tags": ["griffith", "avery-macleod-mccarty", "hershey-chase", "transformation", "genetic-material"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "P-ii, Q-iii, R-i", "is_correct": false},
+      {"key": "B", "text": "P-iii, Q-ii, R-i", "is_correct": true},
+      {"key": "C", "text": "P-i, Q-ii, R-iii", "is_correct": false},
+      {"key": "D", "text": "P-iii, Q-i, R-ii", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Griffith discovered the phenomenon of transformation (P-iii), not the transforming principle. It was Avery et al. who identified DNA as the transforming principle.", "misconception": "Confusing Griffith's discovery (transformation phenomenon) with Avery's discovery (DNA as transforming principle)"},
+      {"option_key": "C", "hint": "Griffith did not work with bacteriophages. The bacteriophage experiment was done by Hershey and Chase (R-i).", "misconception": "Attributing the bacteriophage experiment to Griffith"},
+      {"option_key": "D", "hint": "Avery et al. identified DNA (not bacteriophage DNA) as the transforming principle (Q-ii). Hershey-Chase proved DNA is genetic material in phages (R-i), not the transforming principle concept.", "misconception": "Swapping the conclusions of Avery et al. and Hershey-Chase"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following structural features (Column I) with their correct values/descriptions in B-DNA (Column II):\n\nColumn I:\n(P) Pitch of the helix\n(Q) Number of base pairs per turn\n(R) Diameter of the helix\n(S) Rise per base pair\n\nColumn II:\n(i) 2 nm\n(ii) 10\n(iii) 0.34 nm\n(iv) 3.4 nm\n\nSelect the correct match:\n(A) P-iii, Q-ii, R-iv, S-i\n(B) P-iv, Q-iii, R-i, S-ii\n(C) P-i, Q-ii, R-iv, S-iii\n(D) P-iv, Q-ii, R-i, S-iii",
+    "explanation": "In B-DNA as described by Watson and Crick: the pitch of the helix (distance per complete turn) is 3.4 nm (P-iv); the number of base pairs per turn is 10 (Q-ii); the diameter of the helix is 2 nm or 20 Angstroms (R-i); and the rise per base pair (distance between consecutive base pairs) is 0.34 nm (S-iii). Note: pitch = bp per turn × rise per bp = 10 × 0.34 nm = 3.4 nm.",
+    "correct_answer": "D",
+    "concept_tags": ["B-DNA-dimensions", "pitch", "base-pairs-per-turn", "diameter", "rise-per-bp"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "P-iii, Q-ii, R-iv, S-i", "is_correct": false},
+      {"key": "B", "text": "P-iv, Q-iii, R-i, S-ii", "is_correct": false},
+      {"key": "C", "text": "P-i, Q-ii, R-iv, S-iii", "is_correct": false},
+      {"key": "D", "text": "P-iv, Q-ii, R-i, S-iii", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This assigns pitch as 0.34 nm, which is actually the rise per base pair. The pitch is 3.4 nm (10 times the rise).", "misconception": "Confusing the pitch (3.4 nm) with the rise per base pair (0.34 nm)"},
+      {"option_key": "B", "hint": "This assigns 0.34 nm as bp per turn and 10 as rise per bp, which makes no sense dimensionally. bp per turn is a number (10), not a length.", "misconception": "Mixing up numerical and dimensional values of DNA parameters"},
+      {"option_key": "C", "hint": "This assigns pitch as 2 nm and diameter as 3.4 nm. The pitch (3.4 nm) is larger than the diameter (2 nm); these are swapped here.", "misconception": "Swapping the pitch and diameter values of B-DNA"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The backbone of each DNA strand is made up of alternating sugar and phosphate groups linked by phosphodiester bonds.",
+    "explanation": "This statement is TRUE. Each strand of the DNA double helix has a backbone composed of alternating deoxyribose sugar and phosphate groups. The phosphate group connects the 3' carbon of one sugar to the 5' carbon of the next sugar through phosphodiester bonds. The nitrogenous bases project inward from this backbone and are involved in base pairing with the complementary strand.",
+    "correct_answer": "A",
+    "concept_tags": ["sugar-phosphate-backbone", "phosphodiester-bond", "DNA-backbone"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The statement accurately describes the DNA backbone structure as given in NCERT. Sugar-phosphate backbone with phosphodiester bonds is a fundamental feature.", "misconception": "Doubting the basic description of the DNA backbone"},
+      {"option_key": "C", "hint": "This is a placeholder option and not a valid answer.", "misconception": null},
+      {"option_key": "D", "hint": "This is a placeholder option and not a valid answer.", "misconception": null}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "In the Watson-Crick model, the two DNA strands run in the same direction, i.e., both strands are oriented 5'→3'.",
+    "explanation": "This statement is FALSE. In the Watson-Crick model of DNA, the two polynucleotide strands are antiparallel, meaning they run in opposite directions. One strand runs 5'→3' while the complementary strand runs 3'→5'. If both strands ran in the same direction (parallel), proper Watson-Crick base pairing would not be possible.",
+    "correct_answer": "B",
+    "concept_tags": ["antiparallel-strands", "5-prime-3-prime", "watson-crick-model"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": false},
+      {"key": "B", "text": "False", "is_correct": true},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "The strands are antiparallel (opposite directions), not parallel. One runs 5'→3' and the other 3'→5'.", "misconception": "Thinking DNA strands are parallel rather than antiparallel"},
+      {"option_key": "C", "hint": "This is a placeholder option and not a valid answer.", "misconception": null},
+      {"option_key": "D", "hint": "This is a placeholder option and not a valid answer.", "misconception": null}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "In a nucleosome, approximately ________ base pairs of DNA are wrapped around a histone octamer.",
+    "explanation": "In eukaryotic chromatin, DNA is packaged into nucleosomes. Each nucleosome consists of a histone octamer (two copies each of H2A, H2B, H3, and H4) around which approximately 200 base pairs of DNA are wrapped. The DNA makes about 1.65 turns around the octamer. The nucleosomes are connected by linker DNA, and histone H1 (linker histone) holds the DNA at the entry and exit points of each nucleosome.",
+    "correct_answer": "C",
+    "concept_tags": ["nucleosome", "200-bp", "DNA-packaging", "chromatin"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "50", "is_correct": false},
+      {"key": "B", "text": "100", "is_correct": false},
+      {"key": "C", "text": "200", "is_correct": true},
+      {"key": "D", "text": "400", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "50 bp is too few for a nucleosome. As per NCERT, approximately 200 bp of DNA are associated with each nucleosome.", "misconception": "Underestimating the amount of DNA per nucleosome"},
+      {"option_key": "B", "hint": "100 bp is approximately the length of linker DNA between nucleosomes, not the total DNA per nucleosome. The nucleosome repeat length is about 200 bp.", "misconception": "Confusing linker DNA length with total nucleosome DNA"},
+      {"option_key": "D", "hint": "400 bp is too much for a single nucleosome. Each nucleosome is associated with about 200 bp, not 400 bp.", "misconception": "Overestimating the DNA per nucleosome"}
+    ]
+  },
+  {
+    "id": "bot-mol-dna-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A scientist analyses a double-stranded DNA sample and finds that 20% of the total bases are guanine. She then treats the DNA with an agent that specifically breaks hydrogen bonds but does not affect covalent bonds. Which of the following is the expected result?",
+    "explanation": "If 20% of bases are guanine, then by Chargaff's rule, cytosine is also 20% (G = C). Therefore, A + T = 100% - 40% = 60%, meaning A = T = 30% each. When an agent breaks hydrogen bonds (which hold the two complementary strands together through base pairing), the two strands will separate (denature). However, since covalent bonds (phosphodiester bonds in the backbone) are not affected, each individual strand will remain intact as a single polynucleotide chain. The DNA will not be broken into individual nucleotides.",
+    "correct_answer": "D",
+    "concept_tags": ["DNA-denaturation", "hydrogen-bonds", "phosphodiester-bonds", "chargaff-rule", "scenario"],
+    "topic": "DNA Structure (Watson-Crick Model)",
+    "subject": "biology",
+    "chapter": "Molecular Basis of Inheritance",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "The DNA double helix remains intact", "is_correct": false},
+      {"key": "B", "text": "The DNA is completely degraded into individual nucleotides", "is_correct": false},
+      {"key": "C", "text": "Only the A-T base pairs are disrupted while G-C pairs remain intact", "is_correct": false},
+      {"key": "D", "text": "The two strands separate but each strand remains as an intact polynucleotide chain", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "The double helix is held together by hydrogen bonds between base pairs. If hydrogen bonds are broken, the two strands will separate (denature).", "misconception": "Not understanding that hydrogen bonds maintain the double-stranded structure"},
+      {"option_key": "B", "hint": "Individual nucleotides within each strand are connected by covalent phosphodiester bonds, which are not affected. Only the inter-strand hydrogen bonds are broken.", "misconception": "Confusing hydrogen bonds (inter-strand) with phosphodiester bonds (intra-strand backbone)"},
+      {"option_key": "C", "hint": "The agent breaks ALL hydrogen bonds, not selectively. Both A-T (2 H-bonds) and G-C (3 H-bonds) pairs would be disrupted.", "misconception": "Thinking that the agent selectively breaks weaker hydrogen bonds only"}
+    ]
+  }
+]
