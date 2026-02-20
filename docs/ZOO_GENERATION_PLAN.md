@@ -231,14 +231,14 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | B62 | `zoo-biotech-pcr` | PCR | 20 | DONE |
 | B63 | `zoo-biotech-gel` | Gel Electrophoresis | 20 | DONE |
 | B64 | `zoo-biotech-vectors` | Vectors | 20 | DONE |
-| B65 | `zoo-biotech-cloning` | Cloning | 20 | PENDING |
+| B65 | `zoo-biotech-cloning` | Cloning | 20 | DONE |
 | | | **Chapter 14 Total** | **100** | |
 
 ### Chapter 15: Biotechnology and its Applications (`zoo-biotechnology-applications`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B66 | `zoo-bioapp-gmo` | GMO | 20 | PENDING |
+| B66 | `zoo-bioapp-gmo` | GMO | 20 | DONE |
 | B67 | `zoo-bioapp-bt` | Bt Crops | 20 | PENDING |
 | B68 | `zoo-bioapp-gene-therapy` | Gene Therapy | 20 | PENDING |
 | B69 | `zoo-bioapp-transgenic` | Transgenic Animals | 20 | PENDING |
@@ -430,6 +430,7 @@ Commit and push.
 | Ch11 Repro Health | 4 | 80 | 80 | 100% |
 | Ch12 Evolution | 4 | 80 | 80 | 100% |
 | Ch13 Human Health | 5 | 100 | 100 | 100% |
-| Ch14 Biotech Princ | 5 | 100 | 80 | 80% |
-| Ch15 Biotech Apps | 4 | 80 | 0 | 0% |
-| **TOTAL** | **65** | **1,300** | **1,280** | **98.5%** |
+| Ch14 Biotech Princ | 5 | 100 | 100 | 100% |
+| Ch15 Biotech Apps | 4 | 80 | 20 | 25% |
+| **TOTAL** | **65** | **1,300** | **1,240** | **95.4%** |
+
