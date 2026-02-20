@@ -1,6 +1,23 @@
 import { Question, QuestionV2, QuestionType } from '../types';
 
 /**
+ * Map old local chapter IDs → DB (med_chapters) chapter IDs.
+ * Legacy question files used long-form IDs like 'zoology-human-physiology',
+ * but the DB uses short-form 'zoo-*'. This ensures strength tracking,
+ * chapter quiz routing, and subject detail all use the same IDs.
+ */
+const LEGACY_CHAPTER_MAP: Record<string, string> = {
+  'physics-laws-of-motion':     'phy-laws-of-motion',
+  'physics-thermodynamics':     'phy-thermodynamics',
+  'chemistry-chemical-bonding': 'chem-chemical-bonding',
+  'chemistry-hydrocarbons':     'chem-hydrocarbons',
+  'botany-cell-biology':        'bot-cell-unit',
+  'botany-plant-anatomy':       'bot-anatomy-flowering',
+  'zoology-human-physiology':   'zoo-body-fluids',
+  'zoology-genetics':           'zoo-evolution',
+};
+
+/**
  * Convert a legacy Question (MCQ-only) to the QuestionV2 format.
  * This allows existing question data to work with the new type system
  * without modifying the question bank files.
@@ -9,7 +26,7 @@ export function legacyToV2(q: Question): QuestionV2 {
   return {
     id: q.id,
     type: 'mcq',
-    chapterId: q.chapterId,
+    chapterId: LEGACY_CHAPTER_MAP[q.chapterId] ?? q.chapterId,
     subjectId: q.subjectId,
     difficulty: q.difficulty,
     text: q.text,

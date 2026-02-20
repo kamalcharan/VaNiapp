@@ -507,29 +507,46 @@
     // e.g. zoo-kingdom-classification-01 → topic = zoo-kingdom-classification → chapter = zoo-animal-kingdom
     // We use the file name to infer the chapter, or fall back to topic prefix
     function resolveChapterId(q) {
-      // Topic prefix mapping to chapter IDs (all 4 subjects)
-      // Longer/more-specific prefixes first to avoid false matches
+      // Topic prefix → chapter ID mapping (all 4 subjects)
+      //
+      // IMPORTANT: Keys must match TOPIC ID prefixes (e.g. 'bot-cell' for topics
+      // like bot-cell-theory, bot-cell-prokaryotic), NOT chapter IDs!
+      // Longer/more-specific prefixes MUST come first to avoid false matches.
       const TOPIC_TO_CHAPTER = {
         // ── Botany (17 chapters) ──────────────────────────────
-        'bot-living':       'bot-living-world',
-        'bot-biological':   'bot-biological-classification',
+        // Topics: bot-cell-theory, bot-cell-prokaryotic, bot-cell-eukaryotic, bot-cell-organelles
+        'bot-cell':         'bot-cell-unit',
+        // Topics: bot-cycle-phases, bot-cycle-mitosis, bot-cycle-meiosis, bot-cycle-significance
+        'bot-cycle':        'bot-cell-cycle',
+        // Topics: bot-class-monera, bot-class-protista, bot-class-fungi, bot-class-viruses
+        'bot-class':        'bot-biological-classification',
+        // Topics: bot-plant-algae, bot-plant-bryophytes, bot-plant-pteridophytes, etc.
+        // (bot-plant-growth must come before bot-plant catch-all)
         'bot-plant-growth': 'bot-plant-growth',
         'bot-plant':        'bot-plant-kingdom',
+        // Topics: bot-morph-root, bot-morph-stem, bot-morph-leaf, etc.
         'bot-morph':        'bot-morphology-flowering',
+        // Topics: bot-anat-tissues, bot-anat-meristems, bot-anat-vascular, etc.
         'bot-anat':         'bot-anatomy-flowering',
-        'bot-cell-unit':    'bot-cell-unit',
-        'bot-cell-cycle':   'bot-cell-cycle',
-        'bot-cycle':        'bot-cell-cycle',
+        // Topics: bot-photo-light, bot-photo-dark, bot-photo-c3c4, bot-photo-photorespiration
         'bot-photo':        'bot-photosynthesis',
+        // Topics: bot-resp-glycolysis, bot-resp-krebs, bot-resp-etc, bot-resp-fermentation
         'bot-resp':         'bot-respiration',
+        // Topics: bot-growth-regulators, bot-growth-auxin, bot-growth-gibberellin, etc.
         'bot-growth':       'bot-plant-growth',
-        'bot-sexual':       'bot-sexual-reproduction',
+        // Topics: bot-repro-flower, bot-repro-pollination, bot-repro-fertilization, etc.
         'bot-repro':        'bot-sexual-reproduction',
+        // Topics: bot-inherit-mendel, bot-inherit-linkage, bot-inherit-sex, bot-inherit-disorders
+        'bot-inherit':      'bot-inheritance',
+        // Topics: bot-mol-dna-structure, bot-mol-replication, bot-mol-transcription, etc.
         'bot-mol':          'bot-molecular-inheritance',
-        'bot-inher':        'bot-inheritance',
+        // Topics: bot-eco-energy, bot-eco-pyramids, bot-eco-nutrient
+        'bot-eco':          'bot-ecosystem',
+        // No topics seeded yet — prefix-based fallbacks
+        'bot-living':       'bot-living-world',
+        'bot-biological':   'bot-biological-classification',
         'bot-microbes':     'bot-microbes-welfare',
         'bot-organisms':    'bot-organisms-populations',
-        'bot-eco':          'bot-ecosystem',
         'bot-biodiv':       'bot-biodiversity',
 
         // ── Zoology (15 chapters) ─────────────────────────────
@@ -562,11 +579,12 @@
         'phy-kinetic':  'phy-kinetic-theory',
         'phy-osc':      'phy-oscillations-waves',
         'phy-wave':     'phy-oscillations-waves',
-        'phy-electrostatics': 'phy-electrostatics',
+        // Electronic devices topics: more specific, must come before phy-elec catch-all
         'phy-elec-semiconductor': 'phy-electronic-devices',
         'phy-elec-diode':         'phy-electronic-devices',
         'phy-elec-transistor':    'phy-electronic-devices',
         'phy-elec-logic':         'phy-electronic-devices',
+        // Electrostatics topics: phy-elec-coulomb, phy-elec-field, phy-elec-gauss, phy-elec-capacitor
         'phy-elec':     'phy-electrostatics',
         'phy-curr':     'phy-current-electricity',
         'phy-mag':      'phy-magnetic-effects',
@@ -579,7 +597,8 @@
 
         // ── Chemistry (20 chapters) ───────────────────────────
         'chem-basic':    'chem-basic-concepts',
-        'chem-atomic':   'chem-atomic-structure',
+        // Topics use chem-atom-bohr, not chem-atomic-bohr
+        'chem-atom':     'chem-atomic-structure',
         'chem-bond':     'chem-chemical-bonding',
         'chem-thermo':   'chem-thermodynamics',
         'chem-eq':       'chem-equilibrium',

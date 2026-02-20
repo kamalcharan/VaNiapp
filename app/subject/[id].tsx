@@ -183,38 +183,6 @@ export default function SubjectDetailScreen() {
       };
     });
 
-    // Merge any Redux strength entries for this subject that weren't matched
-    // (handles ID mismatch between catalog and question data)
-    const unmatchedRedux = Object.values(strengthChapters).filter(
-      (ch) => ch.subjectId === id && !catalogIds.has(ch.chapterId),
-    );
-    for (const data of unmatchedRedux) {
-      // Find matching local chapter name from NEET_CHAPTERS
-      const localCh = NEET_CHAPTERS.find((c) => c.id === data.chapterId);
-      mapped.push({
-        chapter: {
-          id: data.chapterId,
-          subject_id: data.subjectId,
-          exam_ids: ['NEET'],
-          branch: '',
-          name: localCh?.name ?? data.chapterId.replace(/^[^-]+-/, '').replace(/-/g, ' '),
-          name_te: localCh?.nameTe ?? '',
-          chapter_number: 0,
-          class_level: null,
-          weightage: 0,
-          avg_questions: data.totalInBank,
-          important_topics: [],
-        },
-        coverage: data.coverage,
-        accuracy: data.accuracy,
-        totalAnswered: data.totalAnswered,
-        correctCount: data.correctCount,
-        totalInBank: data.totalInBank,
-        strengthLevel: data.strengthLevel as StrengthLevel,
-        lastPracticedAt: data.lastPracticedAt,
-      });
-    }
-
     return mapped;
   }, [chapters, strengthChapters, id]);
 
