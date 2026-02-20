@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import type { ExamType, Language, SubjectId, OnboardingFlowConfig, OnboardingFlowMode } from '../types';
+import type { ExamType, Language, SubjectId, OnboardingFlowConfig } from '../types';
 
 // ── Types ────────────────────────────────────────────────────
 
@@ -379,16 +379,6 @@ export async function getOnboardingFlowConfig(): Promise<OnboardingFlowConfig> {
   } catch {
     return DEFAULT_ONBOARDING_FLOW;
   }
-}
-
-/** Resolve 'quick' or 'full' based on config + current date. */
-export function resolveFlowMode(config: OnboardingFlowConfig): OnboardingFlowMode {
-  if (config.mode === 'full') return 'full';
-  if (config.mode === 'quick') {
-    const cutoff = new Date(config.quick_until);
-    return new Date() < cutoff ? 'quick' : 'full';
-  }
-  return 'full';
 }
 
 export function clearOnboardingFlowCache(): void {
