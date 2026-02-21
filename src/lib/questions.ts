@@ -1,5 +1,7 @@
 import { supabase } from './supabase';
 import type { QuestionV2, QuestionType, Difficulty, Option, EliminationHint } from '../types';
+import { resolveLegacyChapterId } from './questionAdapter';
+import { getV2QuestionsByChapter as getLocalV2Questions } from '../data/questions';
 
 // ── Types for DB rows ────────────────────────────────────────
 
@@ -45,14 +47,23 @@ const cache = new Map<string, QuestionV2[]>();
  * Fetch questions for a chapter from Supabase.
  * Returns QuestionV2[] ready for the quiz screen UI.
  * Fetches both English and Telugu (_te) columns for bilingual display.
+ *
+ * Handles legacy chapter IDs by resolving them to DB IDs.
+ * Falls back to local question data when Supabase returns nothing.
  */
 export async function fetchQuestionsByChapter(
   chapterId: string,
 ): Promise<QuestionV2[]> {
-  // Check cache first
-  if (cache.has(chapterId)) return cache.get(chapterId)!;
+  // Resolve legacy chapter IDs (e.g., 'zoology-human-physiology' → 'zoo-body-fluids')
+  const resolvedId = resolveLegacyChapterId(chapterId);
 
-  if (!supabase) return [];
+  // Check cache first (use resolved ID)
+  if (cache.has(resolvedId)) return cache.get(resolvedId)!;
+
+  if (!supabase) {
+    // No Supabase — fall back to local questions
+    return getLocalV2Questions(resolvedId);
+  }
 
   const { data, error } = await supabase
     .from('med_questions')
@@ -63,15 +74,23 @@ export async function fetchQuestionsByChapter(
        med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
        med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`,
     )
-    .eq('chapter_id', chapterId)
+    .eq('chapter_id', resolvedId)
     .eq('is_active', true)
     .eq('status', 'active')
     .order('created_at');
 
-  if (error || !data || data.length === 0) return [];
+  if (error || !data || data.length === 0) {
+    // Fall back to local questions when Supabase has nothing
+    const local = getLocalV2Questions(resolvedId);
+    if (local.length > 0) {
+      cache.set(resolvedId, local);
+      return local;
+    }
+    return [];
+  }
 
   const questions = (data as unknown as DbQuestion[]).map(dbToV2);
-  cache.set(chapterId, questions);
+  cache.set(resolvedId, questions);
   return questions;
 }
 

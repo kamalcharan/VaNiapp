@@ -6,7 +6,7 @@ import { Question, QuestionV2, QuestionType } from '../types';
  * but the DB uses short-form 'zoo-*'. This ensures strength tracking,
  * chapter quiz routing, and subject detail all use the same IDs.
  */
-const LEGACY_CHAPTER_MAP: Record<string, string> = {
+export const LEGACY_CHAPTER_MAP: Record<string, string> = {
   'physics-laws-of-motion':     'phy-laws-of-motion',
   'physics-thermodynamics':     'phy-thermodynamics',
   'chemistry-chemical-bonding': 'chem-chemical-bonding',
@@ -16,6 +16,14 @@ const LEGACY_CHAPTER_MAP: Record<string, string> = {
   'zoology-human-physiology':   'zoo-body-fluids',
   'zoology-genetics':           'zoo-evolution',
 };
+
+/**
+ * Resolve a potentially-legacy chapter ID to its DB equivalent.
+ * If the ID is already a DB ID (e.g., 'zoo-body-fluids'), returns it unchanged.
+ */
+export function resolveLegacyChapterId(chapterId: string): string {
+  return LEGACY_CHAPTER_MAP[chapterId] ?? chapterId;
+}
 
 /**
  * Convert a legacy Question (MCQ-only) to the QuestionV2 format.
@@ -35,6 +43,7 @@ export function legacyToV2(q: Question): QuestionV2 {
     explanationTe: q.explanationTe,
     eliminationTechnique: q.eliminationTechnique,
     eliminationTechniqueTe: q.eliminationTechniqueTe,
+    eliminationHints: [],
     payload: {
       type: 'mcq',
       options: q.options,

@@ -45,7 +45,7 @@ import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
 import { incrementStreak, resetStreak, recordDailyPractice } from '../../src/store/slices/streakSlice';
 import { fetchQuestionsByChapter } from '../../src/lib/questions';
-import { getCorrectId } from '../../src/lib/questionAdapter';
+import { getCorrectId, resolveLegacyChapterId } from '../../src/lib/questionAdapter';
 import { syncChapterProgress } from '../../src/lib/progressSync';
 
 const DIFF_COLORS = { easy: '#22C55E', medium: '#F59E0B', hard: '#EF4444' };
@@ -56,7 +56,9 @@ export default function ChapterQuizScreen() {
   const router = useRouter();
   const dispatch = useDispatch();
   const toast = useToast();
-  const { id: chapterId } = useLocalSearchParams<{ id: string }>();
+  const { id: rawChapterId } = useLocalSearchParams<{ id: string }>();
+  // Resolve legacy chapter IDs (e.g., 'zoology-human-physiology' → 'zoo-body-fluids')
+  const chapterId = rawChapterId ? resolveLegacyChapterId(rawChapterId) : rawChapterId;
   const language = useSelector(
     (state: RootState) => state.auth.user?.language ?? 'en',
   );
