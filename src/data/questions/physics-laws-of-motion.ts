@@ -8,7 +8,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q1 — Newton's First Law (Inertia) — easy — answer: c
   {
     id: 'phy-lom-001',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A passenger standing in a bus falls forward when the bus suddenly stops. This is due to:',
     textTe: 'బస్సు అకస్మాత్తుగా ఆగినప్పుడు బస్సులో నిలబడి ఉన్న ప్రయాణికుడు ముందుకు పడతాడు. దీనికి కారణం:',
@@ -33,7 +33,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q2 — Newton's Second Law (basic F = ma) — easy — answer: b
   {
     id: 'phy-lom-002',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A constant force of 20 N acts on a body of mass 4 kg initially at rest on a smooth surface. The acceleration produced in the body is:',
     textTe: 'నున్నని తలంపై విరామంలో ఉన్న 4 kg ద్రవ్యరాశి గల వస్తువుపై 20 N స్థిర బలం పనిచేస్తుంది. వస్తువులో ఉత్పన్నమయ్యే త్వరణం:',
@@ -58,7 +58,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q3 — Newton's Third Law (action-reaction) — easy — answer: a
   {
     id: 'phy-lom-003',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'When a bullet is fired from a gun, the gun recoils backward. This is best explained by:',
     textTe: 'తుపాకీ నుండి తూటా కాల్చినప్పుడు, తుపాకీ వెనుకకు తన్నుతుంది. దీనిని ఏ నియಮం ద్వారా బాగా వివరించవచ్చు:',
@@ -83,7 +83,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q4 — Static Friction (basic) — easy — answer: d
   {
     id: 'phy-lom-004',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A block of mass 10 kg rests on a rough horizontal surface. The coefficient of static friction is 0.4. The maximum horizontal force that can be applied without moving the block is (g = 10 m/s²):',
     textTe: 'ముతక క్షితిజ సమాంతర తలంపై 10 kg ద్రవ్యరాశి గల బ్లాక్ విరామంలో ఉంది. స్థిర ఘర్షణ గుణకం 0.4. బ్లాక్ ను కదపకుండా ప్రయోగించగల గరిష్ఠ క్షితిజ సమాంతర బలం (g = 10 m/s²):',
@@ -108,7 +108,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q5 — Momentum (basic calculation) — easy — answer: a
   {
     id: 'phy-lom-005',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A body of mass 2 kg is moving with a velocity of 3 m/s. The linear momentum of the body is:',
     textTe: '2 kg ద్రవ్యరాశి గల వస్తువు 3 m/s వేగంతో కదులుతోంది. వస్తువు యొక్క రేఖీయ ద్రవ్యవేగం:',
@@ -133,7 +133,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q6 — Free Body Diagram — easy — answer: b
   {
     id: 'phy-lom-006',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A book of mass 1 kg rests on a horizontal table. The forces acting on the book are:',
     textTe: '1 kg ద్రవ్యరాశి గల పుస్తకం క్షితిజ సమాంతర బల్లపై విరామంలో ఉంది. పుస్తకంపై పనిచేసే బలాలు:',
@@ -158,7 +158,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q7 — Apparent Weight in a Lift (conceptual) — easy — answer: c
   {
     id: 'phy-lom-007',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A person stands on a weighing scale inside a lift that is accelerating upward. The scale reading will be:',
     textTe: 'పైకి త్వరణంతో కదులుతున్న లిఫ్ట్ లోపల ఒక వ్యక్తి తూనిక యంత్రంపై నిలబడి ఉన్నాడు. యంత్రం చూపించే విలువ:',
@@ -183,7 +183,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q8 — Weight and Mass — easy — answer: d
   {
     id: 'phy-lom-008',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'An object weighs 49 N on the surface of the earth. Its mass is (g = 9.8 m/s²):',
     textTe: 'ఒక వస్తువు భూమి ఉపరితలంపై 49 N బరువు కలిగి ఉంది. దాని ద్రవ్యరాశి (g = 9.8 m/s²):',
@@ -212,7 +212,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q9 — Force on a smooth incline — medium — answer: a
   {
     id: 'phy-lom-009',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A block of mass 5 kg is placed on a smooth inclined plane making an angle of 30° with the horizontal. The net force acting on the block along the incline is (g = 10 m/s²):',
     textTe: 'క్షితిజ సమాంతరంతో 30° కోణం చేసే నున్నని వాలు తలంపై 5 kg ద్రవ్యరాశి గల బ్లాక్ ఉంచబడింది. వాలు వెంట బ్లాక్ పై పనిచేసే నికర బలం (g = 10 m/s²):',
@@ -237,7 +237,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q10 — Connected blocks on surface — medium — answer: c
   {
     id: 'phy-lom-010',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'Two blocks of masses 3 kg and 5 kg are connected by a light string on a smooth horizontal surface. A horizontal force of 16 N is applied on the 5 kg block. The tension in the string connecting the two blocks is:',
     textTe: 'నున్నని క్షితిజ సమాంతర తలంపై 3 kg మరియు 5 kg ద్రవ్యరాశుల రెండు బ్లాక్ లు తేలికైన దారంతో అనుసంధానించబడి ఉన్నాయి. 5 kg బ్లాక్ పై 16 N క్షితిజ సమాంతర బలం ప్రయోగించబడింది. రెండు బ్లాక్ లను అనుసంధానించే దారంలో తన్యత:',
@@ -262,7 +262,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q11 — Impulse-Momentum Theorem — medium — answer: b
   {
     id: 'phy-lom-011',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A ball of mass 0.5 kg moving at 10 m/s is brought to rest in 0.1 s by a fielder. The average force exerted by the fielder on the ball is:',
     textTe: 'ఫీల్డర్ 10 m/s వేగంతో కదులుతున్న 0.5 kg ద్రవ్యరాశి గల బంతిని 0.1 s లో ఆపుతాడు. ఫీల్డర్ బంతిపై ప్రయోగించిన సగటు బలం:',
@@ -287,7 +287,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q12 — Centripetal Force — medium — answer: d
   {
     id: 'phy-lom-012',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A car of mass 1000 kg moves along a circular track of radius 50 m with a uniform speed of 10 m/s. The centripetal force acting on the car is:',
     textTe: '1000 kg ద్రవ్యరాశి గల కారు 50 m వ్యాసార్ధం గల వృత్తాకార మార్గంలో 10 m/s ఏకరీతి వేగంతో కదులుతోంది. కారుపై పనిచేసే అభికేంద్ర బలం:',
@@ -312,7 +312,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q13 — Atwood Machine — medium — answer: a
   {
     id: 'phy-lom-013',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'In an Atwood machine, two masses of 3 kg and 5 kg are connected by a light string passing over a smooth, massless pulley. The acceleration of the system is (g = 10 m/s²):',
     textTe: 'Atwood యంత్రంలో, 3 kg మరియు 5 kg ద్రవ్యరాశులు నున్నని, ద్రవ్యరాశిరహిత కప్పి మీదుగా తేలికైన దారంతో అనుసంధానించబడి ఉన్నాయి. వ్యవస్థ యొక్క త్వరణం (g = 10 m/s²):',
@@ -337,7 +337,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q14 — Net force with opposing forces — medium — answer: c
   {
     id: 'phy-lom-014',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'Two forces of 10 N and 6 N act simultaneously on a body of mass 2 kg in opposite directions along a straight line. The acceleration of the body is:',
     textTe: '2 kg ద్రవ్యరాశి గల వస్తువుపై 10 N మరియు 6 N బలాలు ఒక సరళరేఖ వెంట వ్యతిరేక దిశలలో ఏకకాలంలో పనిచేస్తాయి. వస్తువు యొక్క త్వరణం:',
@@ -362,7 +362,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q15 — Finding coefficient of kinetic friction — medium — answer: b
   {
     id: 'phy-lom-015',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A body sliding on a horizontal surface with an initial velocity of 10 m/s comes to rest after covering 25 m. The coefficient of kinetic friction between the body and the surface is (g = 10 m/s²):',
     textTe: '10 m/s ప్రారంభ వేగంతో క్షితిజ సమాంతర తలంపై జారుతున్న వస్తువు 25 m దూరం ప్రయాణించిన తర్వాత ఆగిపోతుంది. వస్తువు మరియు తలం మధ్య గతిజ ఘర్షణ గుణకం (g = 10 m/s²):',
@@ -387,7 +387,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q16 — Momentum Conservation (collision) — medium — answer: d
   {
     id: 'phy-lom-016',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A bullet of mass 10 g moving with a velocity of 400 m/s gets embedded in a wooden block of mass 990 g initially at rest. The velocity of the block-bullet system after impact is:',
     textTe: '400 m/s వేగంతో కదులుతున్న 10 g ద్రవ్యరాశి గల తూటా, విరామంలో ఉన్న 990 g ద్రవ్యరాశి గల కలప బ్లాక్ లో దిగబడుతుంది. తాకిడి తర్వాత బ్లాక్-తూటా వ్యవస్థ వేగం:',
@@ -412,7 +412,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q17 — Apparent weight in accelerating lift (numerical) — medium — answer: a
   {
     id: 'phy-lom-017',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A person of mass 60 kg stands on a weighing scale inside a lift accelerating upward at 2 m/s². The reading on the scale is (g = 10 m/s²):',
     textTe: '60 kg ద్రవ్యరాశి గల వ్యక్తి పైకి 2 m/s² త్వరణంతో కదులుతున్న లిఫ్ట్ లోపల తూనిక యంత్రంపై నిలబడి ఉన్నాడు. యంత్రం చదువు (g = 10 m/s²):',
@@ -437,7 +437,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q18 — Block sliding at constant velocity on incline — medium — answer: c
   {
     id: 'phy-lom-018',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A block slides down a rough inclined plane of inclination 30° with uniform velocity. The coefficient of kinetic friction between the block and the incline is:',
     textTe: '30° వాలు కలిగిన ముతక వాలు తలంపై ఒక బ్లాక్ ఏకరీతి వేగంతో కిందికి జారుతోంది. బ్లాక్ మరియు వాలు తలం మధ్య గతిజ ఘర్షణ గుణకం:',
@@ -466,7 +466,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q19 — Incline-pulley connected system — hard — answer: b
   {
     id: 'phy-lom-019',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A block of mass 2 kg is placed on a smooth inclined plane of angle 30°. It is connected by a light, inextensible string over a frictionless pulley to a hanging block of mass 3 kg. The acceleration of the system is (g = 10 m/s²):',
     textTe: '30° కోణం గల నున్నని వాలు తలంపై 2 kg ద్రవ్యరాశి గల బ్లాక్ ఉంచబడింది. ఇది ఘర్షణరహిత కప్పి మీదుగా తేలికైన, సాగని దారంతో 3 kg ద్రవ్యరాశి గల వేలాడుతున్న బ్లాక్ కు అనుసంధానించబడింది. వ్యవస్థ యొక్క త్వరణం (g = 10 m/s²):',
@@ -491,7 +491,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q20 — Banking of road — hard — answer: d
   {
     id: 'phy-lom-020',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A car negotiates a banked curve of radius 10 m without any friction. If the banking angle is 45°, the optimum speed of the car is (g = 10 m/s²):',
     textTe: 'ఒక కారు ఘర్షణ లేకుండా 10 m వ్యాసార్ధం గల వంపు వాలు మార్గంలో ప్రయాణిస్తుంది. వంపు కోణం 45° అయితే, కారు యొక్క సరైన వేగం (g = 10 m/s²):',
@@ -516,7 +516,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q21 — Pseudo force / pendulum in accelerating car — hard — answer: c
   {
     id: 'phy-lom-021',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A simple pendulum is suspended from the ceiling of a car that is accelerating horizontally at 10 m/s² on a level road. The angle made by the string with the vertical in equilibrium is (g = 10 m/s²):',
     textTe: 'సమతల రోడ్డుపై 10 m/s² త్వరణంతో క్షితిజ సమాంతరంగా కదులుతున్న కారు పైకప్పు నుండి ఒక సాధారణ లోలకం వేలాడదీయబడింది. సమతౌల్యంలో దారం నిలువుతో చేసే కోణం (g = 10 m/s²):',
@@ -541,7 +541,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q22 — Variable force / impulse — hard — answer: a
   {
     id: 'phy-lom-022',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A time-dependent force F = 2t (in N) acts on a body of mass 2 kg initially at rest. The velocity of the body at t = 4 s is:',
     textTe: 'విరామంలో ఉన్న 2 kg ద్రవ్యరాశి గల వస్తువుపై కాల-ఆధారిత బలం F = 2t (N లో) పనిచేస్తుంది. t = 4 s వద్ద వస్తువు వేగం:',
@@ -566,7 +566,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q23 — Monkey climbing rope (tension limit) — hard — answer: b
   {
     id: 'phy-lom-023',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A monkey of mass 40 kg climbs up a rope that can withstand a maximum tension of 600 N. The maximum acceleration with which the monkey can safely climb up is (g = 10 m/s²):',
     textTe: '40 kg ద్రవ్యరాశి గల కోతి గరిష్ఠంగా 600 N తన్యతను తట్టుకోగల తాడు ఎక్కుతోంది. కోతి సురక్షితంగా పైకి ఎక్కగల గరిష్ఠ త్వరణం (g = 10 m/s²):',
@@ -591,7 +591,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q24 — Vertical circular motion (minimum speed at top) — hard — answer: d
   {
     id: 'phy-lom-024',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A ball of mass 0.5 kg is attached to a string of length 1 m and whirled in a vertical circle. The minimum speed at the topmost point so that the string does not become slack is (g = 10 m/s²):',
     textTe: '0.5 kg ద్రవ్యరాశి గల బంతి 1 m పొడవు గల దారానికి కట్టబడి నిలువు వృత్తంలో తిప్పబడుతుంది. దారం వదులు కాకుండా ఉండటానికి అత్యున్నత బిందువు వద్ద కనీస వేగం (g = 10 m/s²):',
@@ -616,7 +616,7 @@ export const physicsLawsOfMotionQuestions: Question[] = [
   // Q25 — Block pressed against rough vertical wall — hard — answer: c
   {
     id: 'phy-lom-025',
-    chapterId: 'physics-laws-of-motion',
+    chapterId: 'phy-laws-of-motion',
     subjectId: 'physics',
     text: 'A block of mass 5 kg is pushed against a rough vertical wall by a horizontal force of 100 N. If the coefficient of static friction between the block and the wall is 0.5, the frictional force acting on the block is (g = 10 m/s²):',
     textTe: '5 kg ద్రవ్యరాశి గల బ్లాక్ ను 100 N క్షితిజ సమాంతర బలంతో ముతక నిలువు గోడకు నొక్కబడుతోంది. బ్లాక్ మరియు గోడ మధ్య స్థిర ఘర్షణ గుణకం 0.5 అయితే, బ్లాక్ పై పనిచేసే ఘర్షణ బలం (g = 10 m/s²):',

@@ -7,7 +7,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-001',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'Which of the following compounds is formed by the transfer of electrons from one atom to another?',
     textTe: 'కింది సమ్మేళనాలలో ఒక పరమాణువు నుండి మరొక పరమాణువుకు ఎలక్ట్రాన్ల బదిలీ ద్వారా ఏర్పడేది ఏది?',
@@ -31,7 +31,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-002',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'The bond formed by mutual sharing of electron pairs between two atoms is called:',
     textTe: 'రెండు పరమాణువుల మధ్య ఎలక్ట్రాన్ జతల పరస్పర భాగస్వామ్యం ద్వారా ఏర్పడే బంధాన్ని ఏమంటారు?',
@@ -55,7 +55,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-003',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'In which of the following species does a coordinate (dative) bond exist?',
     textTe: 'కింది వాటిలో దేనిలో సమన్వయ (దాత) బంధం ఉంటుంది?',
@@ -79,7 +79,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-004',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'Which of the following hydrogen halides has the highest boiling point due to hydrogen bonding?',
     textTe: 'హైడ్రోజన్ బంధం కారణంగా కింది హైడ్రోజన్ హాలైడ్లలో అత్యధిక మరిగే బిందువు ఏది కలిగి ఉంటుంది?',
@@ -103,7 +103,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-005',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'Metallic bonding is best described as:',
     textTe: 'లోహ బంధాన్ని ఏ విధంగా ఉత్తమంగా వివరించవచ్చు?',
@@ -127,7 +127,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-006',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'What is the bond order of the oxygen molecule (O₂) according to molecular orbital theory?',
     textTe: 'మాలిక్యులర్ ఆర్బిటల్ సిద్ధాంతం ప్రకారం ఆక్సిజన్ అణువు (O₂) యొక్క బంధ క్రమం ఎంత?',
@@ -151,7 +151,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-007',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'The hybridization of the carbon atom in methane (CH₄) is:',
     textTe: 'మీథేన్ (CH₄) లోని కార్బన్ పరమాణువు యొక్క సంకరీకరణం ఏది?',
@@ -175,7 +175,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-008',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'Which of the following molecules has zero dipole moment?',
     textTe: 'కింది అణువులలో సున్నా ద్విధ్రువ భ్రామకం కలిగినది ఏది?',
@@ -203,7 +203,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-009',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'According to VSEPR theory, the shape of SF₄ molecule is:',
     textTe: 'VSEPR సిద్ధాంతం ప్రకారం SF₄ అణువు ఆకారం ఏమిటి?',
@@ -227,7 +227,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-010',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'Which of the following molecules has sp² hybridization on its central atom?',
     textTe: 'కింది అణువులలో దేని కేంద్ర పరమాణువు sp² సంకరీకరణం కలిగి ఉంటుంది?',
@@ -251,7 +251,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-011',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'The hybridization of each carbon atom in ethyne (C₂H₂) is:',
     textTe: 'ఇథైన్ (C₂H₂) లోని ప్రతి కార్బన్ పరమాణువు సంకరీకరణం ఏది?',
@@ -275,7 +275,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-012',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'According to molecular orbital theory, the bond order of N₂ is:',
     textTe: 'మాలిక్యులర్ ఆర్బిటల్ సిద్ధాంతం ప్రకారం N₂ యొక్క బంధ క్రమం ఎంత?',
@@ -299,7 +299,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-013',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'The correct order of bond dissociation energy is:',
     textTe: 'బంధ విఘటన శక్తి యొక్క సరైన క్రమం ఏది?',
@@ -323,7 +323,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-014',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'According to Fajan\'s rules, the covalent character of an ionic compound increases with:',
     textTe: 'Fajan\'s నియమాల ప్రకారం, అయానిక సమ్మేళనం యొక్క సహసంయోజక లక్షణం దేనితో పెరుగుతుంది?',
@@ -347,7 +347,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-015',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'Among the following ionic compounds, which one has the highest lattice energy?',
     textTe: 'కింది అయానిక సమ్మేళనాలలో అత్యధిక లాటిస్ శక్తి ఏది కలిగి ఉంటుంది?',
@@ -371,7 +371,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-016',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'The hybridization of the central atom in PCl₅ is:',
     textTe: 'PCl₅ లోని కేంద్ర పరమాణువు సంకరీకరణం ఏది?',
@@ -395,7 +395,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-017',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'The hybridization of sulfur in SF₆ is:',
     textTe: 'SF₆ లోని సల్ఫర్ యొక్క సంకరీకరణం ఏది?',
@@ -419,7 +419,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-018',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'Which pair of molecules both have non-zero dipole moments?',
     textTe: 'ఏ జత అణువులు రెండూ శూన్యేతర ద్విధ్రువ భ్రామకాలను కలిగి ఉంటాయి?',
@@ -447,7 +447,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-019',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'The correct order of bond order among O₂⁺, O₂, O₂⁻, and O₂²⁻ is:',
     textTe: 'O₂⁺, O₂, O₂⁻ మరియు O₂²⁻ మధ్య బంధ క్రమం యొక్క సరైన క్రమం ఏది?',
@@ -471,7 +471,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-020',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'What is the shape of XeF₄ according to VSEPR theory?',
     textTe: 'VSEPR సిద్ధాంతం ప్రకారం XeF₄ ఆకారం ఏమిటి?',
@@ -495,7 +495,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-021',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'The hybridization and molecular shape of XeF₂ are respectively:',
     textTe: 'XeF₂ యొక్క సంకరీకరణం మరియు అణు ఆకారం వరుసగా ఏమిటి?',
@@ -519,7 +519,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-022',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'Among LiCl, NaCl, KCl, and CsCl, the compound with the highest covalent character is:',
     textTe: 'LiCl, NaCl, KCl మరియు CsCl లో, అత్యధిక సహసంయోజక లక్షణం కలిగిన సమ్మేళనం ఏది?',
@@ -543,7 +543,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-023',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'The B–F bond length in BF₃ is shorter than expected for a single B–F bond. This is primarily because of:',
     textTe: 'BF₃ లో B–F బంధ పొడవు ఏక B–F బంధానికి ఊహించిన దాని కంటే తక్కువగా ఉంటుంది. ఇది ప్రధానంగా దేని కారణంగా?',
@@ -567,7 +567,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-024',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'The correct order of C–O bond length in CO, CO₂, and CO₃²⁻ is:',
     textTe: 'CO, CO₂ మరియు CO₃²⁻ లో C–O బంధ పొడవు యొక్క సరైన క్రమం ఏది?',
@@ -591,7 +591,7 @@ export const chemistryChemicalBondingQuestions: Question[] = [
 
   {
     id: 'chem-cb-025',
-    chapterId: 'chemistry-chemical-bonding',
+    chapterId: 'chem-chemical-bonding',
     subjectId: 'chemistry',
     text: 'Which of the following species is paramagnetic according to molecular orbital theory?',
     textTe: 'మాలిక్యులర్ ఆర్బిటల్ సిద్ధాంతం ప్రకారం కింది జాతులలో పారామాగ్నెటిక్ ఏది?',

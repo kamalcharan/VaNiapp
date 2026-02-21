@@ -5,7 +5,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-001',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'The cell theory was proposed by',
     textTe: 'కణ సిద్ధాంతాన్ని ప్రతిపాదించినది ఎవరు?',
@@ -29,7 +29,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-002',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Which of the following is absent in prokaryotic cells?',
     textTe: 'ప్రోకారియోటిక్ కణాలలో కింది వాటిలో ఏది ఉండదు?',
@@ -53,7 +53,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-003',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Which organelle is called the "powerhouse of the cell"?',
     textTe: 'ఏ కణాంగాన్ని "కణం యొక్క శక్తి కేంద్రం" అని పిలుస్తారు?',
@@ -77,7 +77,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-004',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'The primary function of ribosomes in a cell is',
     textTe: 'కణంలో ribosomes యొక్క ప్రాథమిక విధి ఏమిటి?',
@@ -101,7 +101,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-005',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'The fluid mosaic model of the plasma membrane was proposed by',
     textTe: 'ప్లాస్మా పొర యొక్క fluid mosaic model ను ప్రతిపాదించినది ఎవరు?',
@@ -125,7 +125,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-006',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Lysosomes are often referred to as',
     textTe: 'Lysosomes ను తరచుగా ఏమని పిలుస్తారు?',
@@ -149,7 +149,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-007',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'The site of photosynthesis in a plant cell is',
     textTe: 'మొక్క కణంలో కిరణజన్య సంయోగక్రియ జరిగే స్థానం ఏది?',
@@ -173,7 +173,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-008',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'The longest phase of the cell cycle is',
     textTe: 'కణ చక్రంలో అత్యంత సుదీర్ఘమైన దశ ఏది?',
@@ -199,7 +199,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-009',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Which of the following is NOT a function of the Golgi apparatus?',
     textTe: 'కింది వాటిలో Golgi apparatus యొక్క విధి కానిది ఏది?',
@@ -223,7 +223,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-010',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Smooth endoplasmic reticulum (SER) is primarily involved in',
     textTe: 'Smooth endoplasmic reticulum (SER) ప్రధానంగా దేనిలో పాల్గొంటుంది?',
@@ -247,7 +247,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-011',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'The correct sequence of stages during mitosis is',
     textTe: 'Mitosis సమయంలో దశల సరైన క్రమం ఏమిటి?',
@@ -287,7 +287,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-012',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Crossing over during meiosis takes place in which sub-stage of Prophase I?',
     textTe: 'Meiosis సమయంలో crossing over, Prophase I యొక్క ఏ ఉప-దశలో జరుగుతుంది?',
@@ -311,7 +311,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-013',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Active transport across the cell membrane differs from passive transport because it',
     textTe: 'కణ పొర ద్వారా active transport, passive transport నుండి భిన్నంగా ఉంటుంది ఎందుకంటే అది',
@@ -351,7 +351,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-014',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Which of the following is NOT a component found inside the nucleus?',
     textTe: 'కింది వాటిలో కేంద్రకం లోపల కనుగొనబడని భాగం ఏది?',
@@ -375,7 +375,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-015',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Which of the following is a characteristic feature of prokaryotic cells?',
     textTe: 'కింది వాటిలో ప్రోకారియోటిక్ కణాల లక్షణం ఏది?',
@@ -399,7 +399,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-016',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'The total number of autosomes in a human somatic cell is',
     textTe: 'మానవ శరీర కణంలో మొత్తం autosomes సంఖ్య ఎంత?',
@@ -423,7 +423,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-017',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'DNA replication takes place during which phase of the cell cycle?',
     textTe: 'కణ చక్రంలో DNA ప్రతిరూపణ ఏ దశలో జరుగుతుంది?',
@@ -447,7 +447,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-018',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'The presence of their own DNA and 70S ribosomes in mitochondria and chloroplasts supports which theory?',
     textTe: 'Mitochondria మరియు chloroplasts లో వాటి స్వంత DNA మరియు 70S ribosomes ఉండటం ఏ సిద్ధాంతానికి మద్దతు ఇస్తుంది?',
@@ -473,7 +473,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-019',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Which pair of organelles are termed "semi-autonomous" because they possess their own DNA, ribosomes, and can partially self-replicate?',
     textTe: 'ఏ జత కణాంగాలు వాటి స్వంత DNA, ribosomes కలిగి ఉండటం మరియు పాక్షికంగా స్వయంగా ప్రతిరూపణ చేయగలగడం వల్ల "semi-autonomous" అని పిలువబడతాయి?',
@@ -501,7 +501,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-020',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Which of the following is NOT a significance of meiosis?',
     textTe: 'కింది వాటిలో meiosis యొక్క ప్రాముఖ్యత కానిది ఏది?',
@@ -541,7 +541,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-021',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'In a metacentric chromosome, the centromere is located',
     textTe: 'Metacentric chromosome లో centromere ఎక్కడ ఉంటుంది?',
@@ -581,7 +581,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-022',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'The 70S ribosome found in prokaryotes is composed of which two subunits?',
     textTe: 'ప్రోకారియోట్లలో కనుగొనబడే 70S ribosome ఏ రెండు subunits తో కూడి ఉంటుంది?',
@@ -605,7 +605,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-023',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'When a living plant cell is placed in a concentrated salt solution (hypertonic), the cell undergoes',
     textTe: 'సజీవ మొక్క కణాన్ని సాంద్రీకృత ఉప్పు ద్రావణంలో (hypertonic) ఉంచినప్పుడు, కణం ఏమి అనుభవిస్తుంది?',
@@ -645,7 +645,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-024',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'The G2/M checkpoint of the cell cycle primarily ensures that',
     textTe: 'కణ చక్రం యొక్క G2/M checkpoint ప్రధానంగా దేనిని నిర్ధారిస్తుంది?',
@@ -685,7 +685,7 @@ export const botanyCellBiologyQuestions: Question[] = [
 
   {
     id: 'bot-cb-025',
-    chapterId: 'botany-cell-biology',
+    chapterId: 'bot-cell-unit',
     subjectId: 'botany',
     text: 'Which of the following organelles is NOT a part of the endomembrane system?',
     textTe: 'కింది కణాంగాలలో endomembrane system లో భాగం కానిది ఏది?',

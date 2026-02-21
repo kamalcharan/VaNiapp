@@ -5,7 +5,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-001',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'When Mendel crossed pure-breeding tall pea plants (TT) with pure-breeding dwarf pea plants (tt), all the F1 offspring were tall. This observation is best explained by:',
     textTe: 'మెండెల్ స్వచ్ఛ సంతాన పొడవు బఠానీ మొక్కలను (TT) స్వచ్ఛ సంతాన పొట్టి బఠానీ మొక్కలతో (tt) సంకరణం చేసినపుడు, F1 తరం మొక్కలన్నీ పొడవుగా ఉన్నాయి. ఈ పరిశీలనకు ఉత్తమ వివరణ:',
@@ -29,7 +29,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-002',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'In a monohybrid cross between two heterozygous tall pea plants (Tt × Tt), the expected phenotypic ratio in the F2 generation is:',
     textTe: 'రెండు హెటెరోజైగస్ పొడవు బఠానీ మొక్కల (Tt × Tt) మధ్య ఏక సంకర సంకరణంలో, F2 తరంలో ఆశించిన phenotypic నిష్పత్తి:',
@@ -53,7 +53,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-003',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'DNA replication is described as semiconservative because:',
     textTe: 'DNA ప్రతిరూపణను అర్ధ సంరక్షక (semiconservative) అని పిలుస్తారు ఎందుకంటే:',
@@ -93,7 +93,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-004',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'Down syndrome in humans is caused by:',
     textTe: 'మానవులలో Down syndrome దేని వలన కలుగుతుంది?',
@@ -117,7 +117,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-005',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'The genetic code is described as a triplet code. This means:',
     textTe: 'జన్యు సంకేతాన్ని త్రికం (triplet) సంకేతం అని వర్ణిస్తారు. దీని అర్థం:',
@@ -157,7 +157,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-006',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'Turner syndrome is characterized by which chromosomal constitution?',
     textTe: 'Turner syndrome ఏ chromosomal నిర్మాణం ద్వారా గుర్తించబడుతుంది?',
@@ -181,7 +181,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-007',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'A person with blood group AB has which of the following genotypes?',
     textTe: 'AB రక్తపు గ్రూపు ఉన్న వ్యక్తి యొక్క genotype ఏది?',
@@ -205,7 +205,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-008',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'Klinefelter syndrome is characterized by:',
     textTe: 'Klinefelter syndrome యొక్క లక్షణాలు:',
@@ -247,7 +247,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-009',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'In a dihybrid cross between two plants heterozygous for seed shape and seed colour (RrYy × RrYy), the expected phenotypic ratio in F2 is:',
     textTe: 'విత్తన ఆకారం మరియు విత్తన రంగుకు హెటెరోజైగస్ అయిన రెండు మొక్కల మధ్య ద్వంద్వ సంకర సంకరణంలో (RrYy × RrYy), F2 లో ఆశించిన phenotypic నిష్పత్తి:',
@@ -271,7 +271,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-010',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'In snapdragon (Antirrhinum majus), a cross between a homozygous red-flowered plant (RR) and a homozygous white-flowered plant (rr) produces pink-flowered F1 plants. This is an example of:',
     textTe: 'Snapdragon (Antirrhinum majus) లో, homozygous ఎరుపు పుష్పం మొక్క (RR) మరియు homozygous తెలుపు పుష్పం మొక్క (rr) మధ్య సంకరణం F1 లో గులాబీ పుష్పం మొక్కలను ఉత్పత్తి చేస్తుంది. ఇది దేనికి ఉదాహరణ?',
@@ -295,7 +295,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-011',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'In humans, an individual with blood group AB shows both A and B antigens on the surface of red blood cells. This phenomenon is an example of:',
     textTe: 'మానవులలో, AB రక్తపు గ్రూపు ఉన్న వ్యక్తి ఎర్ర రక్త కణాల ఉపరితలంపై A మరియు B antigen లు రెండింటినీ చూపిస్తాడు. ఈ దృగ్విషయం దేనికి ఉదాహరణ?',
@@ -319,7 +319,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-012',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'A colour-blind man marries a woman with normal vision who is a carrier for colour blindness. What is the probability that their son will be colour-blind?',
     textTe: 'వర్ణాంధత్వం ఉన్న పురుషుడు, వర్ణాంధత్వానికి వాహకురాలైన సాధారణ దృష్టి గల స్త్రీని వివాహం చేసుకున్నాడు. వారి కుమారుడు వర్ణాంధుడిగా ఉండే సంభావ్యత ఎంత?',
@@ -343,7 +343,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-013',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'During transcription, the enzyme that catalyzes the synthesis of mRNA from a DNA template is:',
     textTe: 'Transcription సమయంలో, DNA template నుండి mRNA సంశ్లేషణను ఉత్ప్రేరణ చేసే enzyme:',
@@ -367,7 +367,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-014',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'The codon AUG on mRNA is significant because it:',
     textTe: 'mRNA పై AUG codon ప్రాముఖ్యత ఏమిటంటే:',
@@ -407,7 +407,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-015',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'Mendel\'s Law of Independent Assortment is applicable when:',
     textTe: 'మెండెల్ స్వతంత్ర వర్గీకరణ నియమం ఎప్పుడు వర్తిస్తుంది?',
@@ -447,7 +447,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-016',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'A man heterozygous for blood group A (I^A i) marries a woman heterozygous for blood group B (I^B i). What are the possible blood groups of their children?',
     textTe: 'A రక్తపు గ్రూపుకు హెటెరోజైగస్ పురుషుడు (I^A i) B రక్తపు గ్రూపుకు హెటెరోజైగస్ స్త్రీని (I^B i) వివాహం చేసుకున్నాడు. వారి పిల్లలకు సాధ్యమయ్యే రక్తపు గ్రూపులు ఏవి?',
@@ -475,7 +475,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-017',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'In a pedigree chart, two phenotypically normal parents produce an affected child. This inheritance pattern is most characteristic of:',
     textTe: 'Pedigree chart లో, phenotypically సాధారణ తల్లిదండ్రులకు ప్రభావిత బిడ్డ పుట్టింది. ఈ వారసత్వ విధానం ఏ రకానికి చెందినది?',
@@ -515,7 +515,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-018',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'Sickle cell anemia is caused by a point mutation in the beta-globin gene where the codon GAG is changed to GUG. This results in the substitution of:',
     textTe: 'Sickle cell anemia, beta-globin gene లో GAG codon GUG గా మారే point mutation వల్ల కలుగుతుంది. దీని ఫలితంగా ఏ amino acid ప్రతిక్షేపణ జరుగుతుంది?',
@@ -557,7 +557,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-019',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'A plant heterozygous for two independently assorting gene pairs (RrYy) is test crossed with a double homozygous recessive plant (rryy). The expected phenotypic ratio in the offspring is:',
     textTe: 'రెండు స్వతంత్రంగా వర్గీకరించబడే gene జతలకు హెటెరోజైగస్ మొక్క (RrYy) ద్వంద్వ homozygous recessive మొక్కతో (rryy) test cross చేయబడింది. సంతానంలో ఆశించిన phenotypic నిష్పత్తి:',
@@ -581,7 +581,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-020',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'A mother with blood group O (genotype ii) and a father with blood group AB (genotype I^A I^B) have children. Which of the following correctly describes the possible blood groups of their offspring?',
     textTe: 'O రక్తపు గ్రూపు (genotype ii) ఉన్న తల్లి మరియు AB రక్తపు గ్రూపు (genotype I^A I^B) ఉన్న తండ్రికి పిల్లలు ఉన్నారు. వారి సంతానం యొక్క సాధ్యమయ్యే రక్తపు గ్రూపులను సరిగ్గా వర్ణించేది ఏది?',
@@ -621,7 +621,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-021',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'A carrier woman for haemophilia (X^H X^h) marries a normal man (X^H Y). What is the probability of haemophilia among ALL their children (sons and daughters combined)?',
     textTe: 'Haemophilia వాహకురాలు (X^H X^h) సాధారణ పురుషుడిని (X^H Y) వివాహం చేసుకుంది. వారి మొత్తం పిల్లలలో (కుమారులు మరియు కుమార్తెలు కలిపి) haemophilia సంభావ్యత ఎంత?',
@@ -645,7 +645,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-022',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'In a pedigree, an affected grandfather transmits a trait through his phenotypically normal daughter to his grandson, but never directly to his son. The trait is never transmitted from father to son. This pattern of inheritance is:',
     textTe: 'Pedigree లో, ప్రభావిత తాత ఒక లక్షణాన్ని తన phenotypically సాధారణ కుమార్తె ద్వారా మనవడికి అందిస్తాడు, కానీ తన కుమారుడికి నేరుగా ఇవ్వడు. తండ్రి నుండి కుమారుడికి ఎప్పుడూ అందని ఈ వారసత్వ విధానం:',
@@ -685,7 +685,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-023',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'A genetic disorder in humans caused by translocation of a portion of chromosome 21 to chromosome 14 results in:',
     textTe: 'మానవులలో chromosome 21 భాగం chromosome 14 కు translocation చెందడం వల్ల కలిగే జన్యు వ్యాధి:',
@@ -725,7 +725,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-024',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'During DNA replication, Okazaki fragments are synthesized on the:',
     textTe: 'DNA ప్రతిరూపణ సమయంలో, Okazaki fragments ఎక్కడ సంశ్లేషించబడతాయి?',
@@ -765,7 +765,7 @@ export const zoologyGeneticsQuestions: Question[] = [
 
   {
     id: 'zoo-gen-025',
-    chapterId: 'zoology-genetics',
+    chapterId: 'zoo-evolution',
     subjectId: 'zoology',
     text: 'According to the Wobble Hypothesis proposed by Francis Crick, the non-standard base pairing occurs at which position of the codon-anticodon interaction?',
     textTe: 'Francis Crick ప్రతిపాదించిన Wobble Hypothesis ప్రకారం, codon-anticodon పరస్పర చర్యలో ప్రామాణికం కాని base pairing ఏ స్థానంలో జరుగుతుంది?',
