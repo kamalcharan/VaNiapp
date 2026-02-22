@@ -65,33 +65,40 @@ export async function fetchQuestionsByChapter(
     return getLocalV2Questions(resolvedId);
   }
 
-  const { data, error } = await supabase
-    .from('med_questions')
-    .select(
-      `id, subject_id, chapter_id, question_type, difficulty,
-       question_text, question_text_te, explanation, explanation_te,
-       correct_answer, payload,
-       med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
-       med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`,
-    )
-    .eq('chapter_id', resolvedId)
-    .eq('is_active', true)
-    .eq('status', 'active')
-    .order('created_at');
+  try {
+    const { data, error } = await supabase
+      .from('med_questions')
+      .select(
+        `id, subject_id, chapter_id, question_type, difficulty,
+         question_text, question_text_te, explanation, explanation_te,
+         correct_answer, payload,
+         med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
+         med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`,
+      )
+      .eq('chapter_id', resolvedId)
+      .eq('status', 'active')
+      .order('created_at');
 
-  if (error || !data || data.length === 0) {
-    // Fall back to local questions when Supabase has nothing
-    const local = getLocalV2Questions(resolvedId);
-    if (local.length > 0) {
-      cache.set(resolvedId, local);
-      return local;
+    if (error) {
+      console.warn(`[questions] Supabase error for ${resolvedId}:`, error.message);
     }
-    return [];
+
+    if (!error && data && data.length > 0) {
+      const questions = (data as unknown as DbQuestion[]).map(dbToV2);
+      cache.set(resolvedId, questions);
+      return questions;
+    }
+  } catch (err) {
+    console.warn(`[questions] Fetch failed for ${resolvedId}:`, err);
   }
 
-  const questions = (data as unknown as DbQuestion[]).map(dbToV2);
-  cache.set(resolvedId, questions);
-  return questions;
+  // Fall back to local questions when Supabase has nothing or errors
+  const local = getLocalV2Questions(resolvedId);
+  if (local.length > 0) {
+    cache.set(resolvedId, local);
+    return local;
+  }
+  return [];
 }
 
 /** Clear cached questions (useful after imports). */

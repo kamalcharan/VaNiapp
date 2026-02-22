@@ -77,21 +77,26 @@ export default function ChapterQuizScreen() {
   useEffect(() => {
     if (!chapterId) return;
     setIsLoading(true);
-    fetchQuestionsByChapter(chapterId).then((allQs) => {
-      setTotalInBank(allQs.length);
+    fetchQuestionsByChapter(chapterId)
+      .then((allQs) => {
+        setTotalInBank(allQs.length);
 
-      // Shuffle using Fisher-Yates
-      const shuffled = [...allQs];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
+        // Shuffle using Fisher-Yates
+        const shuffled = [...allQs];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
 
-      // Limit to 20 questions per session
-      const batch = shuffled.slice(0, 20);
-      setQuestions(batch);
-      setIsLoading(false);
-    });
+        // Limit to 20 questions per session
+        const batch = shuffled.slice(0, 20);
+        setQuestions(batch);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.warn(`[chapter] Failed to load questions for ${chapterId}:`, err);
+        setIsLoading(false);
+      });
   }, [chapterId]);
 
   // Derive subject from chapterId prefix (e.g., "zoo-animal-kingdom" → "zoology")
