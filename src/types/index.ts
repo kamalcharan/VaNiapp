@@ -372,7 +372,7 @@ export interface QuestionV2 {
   explanationTe: string;
   eliminationTechnique: string;
   eliminationTechniqueTe: string;
-  eliminationHints: EliminationHint[];
+  eliminationHints?: EliminationHint[];
 
   // Type-specific payload
   payload: QuestionPayload;

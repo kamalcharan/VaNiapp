@@ -26,7 +26,6 @@ import { getAllQuestions } from '../src/data/questions';
 import { AskVaniSheet } from '../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../src/components/exam/ConceptExplainerSheet';
-import { EliminationSheet } from '../src/components/exam/EliminationSheet';
 import { useToast } from '../src/components/ui/Toast';
 import { toggleBookmark } from '../src/store/slices/bookmarkSlice';
 import { QuestionV2, UserAnswer, SubjectId } from '../src/types';
@@ -412,16 +411,20 @@ export default function AnswerReviewScreen() {
         </View>
       </SafeAreaView>
 
-      {/* Ask VaNi Bottom Sheet */}
+      {/* Ask VaNi — chat-style elimination */}
       <AskVaniSheet
-        visible={showVaniSheet}
-        onClose={() => setShowVaniSheet(false)}
+        visible={showVaniSheet || showElimination}
+        onClose={() => { setShowVaniSheet(false); setShowElimination(false); }}
         questionText={language === 'te' ? question.textTe : question.text}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
+        eliminationHints={question.eliminationHints}
+        eliminationText={String((language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique) || '')}
+        selectedOptionId={selected}
+        language={language}
       />
 
-      {/* Concept Explainer Bottom Sheet (R10) */}
+      {/* Concept Explainer Bottom Sheet */}
       <ConceptExplainerSheet
         visible={showConceptSheet}
         onClose={() => setShowConceptSheet(false)}
@@ -429,13 +432,6 @@ export default function AnswerReviewScreen() {
         subjectId={question.subjectId as SubjectId}
         chapterId={question.chapterId}
         language={language}
-      />
-
-      {/* Elimination Technique Bottom Sheet */}
-      <EliminationSheet
-        visible={showElimination}
-        onClose={() => setShowElimination(false)}
-        eliminationText={String((language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique) || '')}
       />
     </DotGridBackground>
   );

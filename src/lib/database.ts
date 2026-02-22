@@ -15,6 +15,7 @@ export interface MedProfile {
   exam: ExamType | null;
   language: Language;
   target_year: number | null;
+  app_version: string | null;
   onboarding_completed: boolean;
   vani_override: boolean; // Secret admin setting: overrides VaNi AI decisions
   created_at: string;
@@ -223,6 +224,32 @@ export async function updateProfile(
     .eq('id', user.id);
 
   if (error) throw error;
+}
+
+// ── App version tracking ─────────────────────────────────────
+
+/**
+ * Report the current app version to Supabase so the WhatsApp bot
+ * can notify users running outdated versions.
+ * Called once on startup; skips the update if already current.
+ */
+export async function reportAppVersion(profile: MedProfile): Promise<void> {
+  if (!supabase) return;
+
+  // Read version from app.json via Expo Constants
+  const Constants = require('expo-constants').default;
+  const currentVersion: string = Constants.expoConfig?.version ?? '0.0.0';
+
+  // Skip DB write if already up to date
+  if (profile.app_version === currentVersion) return;
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+
+  await supabase
+    .from('med_profiles')
+    .update({ app_version: currentVersion })
+    .eq('id', user.id);
 }
 
 // ── Sign out ────────────────────────────────────────────────

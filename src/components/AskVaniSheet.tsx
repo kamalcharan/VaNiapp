@@ -9,16 +9,16 @@ import {
   Dimensions,
   Modal,
 } from 'react-native';
-import { useSelector } from 'react-redux';
 import { useTheme } from '../hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../constants/theme';
-import { useToast } from './ui/Toast';
-import { RootState } from '../store';
-import { askDoubt, checkRateLimit } from '../lib/aiClient';
-import { DoubtEntry } from '../store/slices/aiSlice';
 import { SubjectId, EliminationHint } from '../types';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
+
+// Delay between each chat bubble appearing (ms)
+const BUBBLE_DELAY = 600;
+// How long the "typing..." indicator shows before each bubble
+const TYPING_DURATION = 500;
 
 interface AskVaniSheetProps {
   visible: boolean;
@@ -27,40 +27,275 @@ interface AskVaniSheetProps {
   subjectId: SubjectId;
   questionId?: string;
   eliminationHints?: EliminationHint[];
+  /** Plain-text fallback (used in quick-practice) */
+  eliminationText?: string;
   selectedOptionId?: string | null;
   language?: string;
 }
 
-const ELIM_INTENT = 'eliminate';
-
-interface Intent {
-  id: string;
-  label: string;
+// ── Chat message types ──────────────────────────────────────────────────
+interface ChatMessage {
+  type: 'intro' | 'hint' | 'misconception' | 'closing';
+  text: string;
+  optionKey?: string;
+  isUserPick?: boolean;
 }
 
+function buildChatMessages(
+  hints: EliminationHint[],
+  eliminationText: string | undefined,
+  selectedOptionId: string | null | undefined,
+  language: string,
+): ChatMessage[] {
+  const msgs: ChatMessage[] = [];
+  const isTelugu = language === 'te';
+
+  // If we have structured per-option hints
+  if (hints.length > 0) {
+    msgs.push({
+      type: 'intro',
+      text: "Let me help you eliminate the wrong options...",
+    });
+
+    for (const hint of hints) {
+      const hintText = isTelugu && hint.hintTe ? hint.hintTe : hint.hint;
+      const isUserPick = hint.optionKey === selectedOptionId;
+
+      msgs.push({
+        type: 'hint',
+        text: hintText,
+        optionKey: hint.optionKey,
+        isUserPick,
+      });
+
+      if (hint.misconception) {
+        const miscText = isTelugu && hint.misconceptionTe
+          ? hint.misconceptionTe
+          : hint.misconception;
+        msgs.push({
+          type: 'misconception',
+          text: miscText,
+          optionKey: hint.optionKey,
+        });
+      }
+    }
+
+    msgs.push({
+      type: 'closing',
+      text: "Now you can narrow it down and make a smarter choice!",
+    });
+  } else if (eliminationText) {
+    // Plain-text fallback
+    msgs.push({
+      type: 'intro',
+      text: "Here's how to approach this question...",
+    });
+    msgs.push({
+      type: 'hint',
+      text: eliminationText,
+    });
+  } else {
+    msgs.push({
+      type: 'intro',
+      text: "No elimination hints for this question yet. Try reading each option carefully and ruling out the ones that don't match the key concept!",
+    });
+  }
+
+  return msgs;
+}
+
+// ── Typing dots animation ───────────────────────────────────────────────
+function TypingIndicator({ colors }: { colors: any }) {
+  const dot1 = useRef(new Animated.Value(0.3)).current;
+  const dot2 = useRef(new Animated.Value(0.3)).current;
+  const dot3 = useRef(new Animated.Value(0.3)).current;
+
+  useEffect(() => {
+    const animate = (dot: Animated.Value, delay: number) =>
+      Animated.loop(
+        Animated.sequence([
+          Animated.delay(delay),
+          Animated.timing(dot, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: true,
+          }),
+          Animated.timing(dot, {
+            toValue: 0.3,
+            duration: 300,
+            useNativeDriver: true,
+          }),
+        ]),
+      );
+
+    const a1 = animate(dot1, 0);
+    const a2 = animate(dot2, 150);
+    const a3 = animate(dot3, 300);
+    a1.start();
+    a2.start();
+    a3.start();
+
+    return () => {
+      a1.stop();
+      a2.stop();
+      a3.stop();
+    };
+  }, []);
+
+  return (
+    <View style={chatStyles.typingRow}>
+      <View style={[chatStyles.avatar, { backgroundColor: '#8B5CF620' }]}>
+        <Text style={chatStyles.avatarText}>{'\u2728'}</Text>
+      </View>
+      <View style={[chatStyles.typingBubble, { backgroundColor: colors.surface }]}>
+        <Animated.View style={[chatStyles.dot, { opacity: dot1, backgroundColor: colors.textTertiary }]} />
+        <Animated.View style={[chatStyles.dot, { opacity: dot2, backgroundColor: colors.textTertiary }]} />
+        <Animated.View style={[chatStyles.dot, { opacity: dot3, backgroundColor: colors.textTertiary }]} />
+      </View>
+    </View>
+  );
+}
+
+// ── Single chat bubble ──────────────────────────────────────────────────
+function ChatBubble({
+  message,
+  colors,
+  showAvatar,
+}: {
+  message: ChatMessage;
+  colors: any;
+  showAvatar: boolean;
+}) {
+  const fadeIn = useRef(new Animated.Value(0)).current;
+  const slideUp = useRef(new Animated.Value(8)).current;
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeIn, {
+        toValue: 1,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+      Animated.timing(slideUp, {
+        toValue: 0,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
+
+  const isHint = message.type === 'hint';
+  const isMisconception = message.type === 'misconception';
+  const isIntroOrClosing = message.type === 'intro' || message.type === 'closing';
+
+  return (
+    <Animated.View
+      style={[
+        chatStyles.bubbleRow,
+        { opacity: fadeIn, transform: [{ translateY: slideUp }] },
+      ]}
+    >
+      {/* Avatar column */}
+      <View style={chatStyles.avatarCol}>
+        {showAvatar ? (
+          <View style={[chatStyles.avatar, { backgroundColor: '#8B5CF620' }]}>
+            <Text style={chatStyles.avatarText}>{'\u2728'}</Text>
+          </View>
+        ) : (
+          <View style={chatStyles.avatarSpacer} />
+        )}
+      </View>
+
+      {/* Bubble */}
+      <View
+        style={[
+          chatStyles.bubble,
+          {
+            backgroundColor: message.isUserPick
+              ? '#EF444410'
+              : isMisconception
+                ? '#F59E0B08'
+                : isIntroOrClosing
+                  ? '#8B5CF610'
+                  : colors.surface,
+            borderColor: message.isUserPick
+              ? '#EF444430'
+              : isMisconception
+                ? '#F59E0B25'
+                : isIntroOrClosing
+                  ? '#8B5CF625'
+                  : colors.surfaceBorder,
+          },
+        ]}
+      >
+        {/* Option badge for hint messages */}
+        {isHint && message.optionKey && (
+          <View style={chatStyles.optionHeader}>
+            <View
+              style={[
+                chatStyles.optionBadge,
+                {
+                  backgroundColor: message.isUserPick ? '#EF444420' : '#8B5CF620',
+                },
+              ]}
+            >
+              <Text
+                style={[
+                  chatStyles.optionBadgeText,
+                  { color: message.isUserPick ? '#EF4444' : '#8B5CF6' },
+                ]}
+              >
+                Option {message.optionKey}
+              </Text>
+            </View>
+            {message.isUserPick && (
+              <Text style={chatStyles.yourPickText}>Your pick</Text>
+            )}
+          </View>
+        )}
+
+        {/* Misconception label */}
+        {isMisconception && (
+          <Text style={chatStyles.misconceptionLabel}>
+            {'\uD83D\uDCA1'} Common misconception
+          </Text>
+        )}
+
+        <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 21 }]}>
+          {message.text}
+        </Text>
+      </View>
+    </Animated.View>
+  );
+}
+
+// ── Main component ──────────────────────────────────────────────────────
 export function AskVaniSheet({
   visible,
   onClose,
   questionText,
   subjectId,
   eliminationHints = [],
+  eliminationText,
   selectedOptionId,
   language = 'en',
 }: AskVaniSheetProps) {
   const { colors } = useTheme();
-  const toast = useToast();
-  const user = useSelector((state: RootState) => state.auth.user);
-  const isLoading = useSelector((state: RootState) => state.ai.isLoading);
-
-  const [activeIntent, setActiveIntent] = useState<string | null>(null);
-  const [response, setResponse] = useState<DoubtEntry | null>(null);
   const slideAnim = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
   const scrollRef = useRef<ScrollView>(null);
 
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [showTyping, setShowTyping] = useState(false);
+
+  const messages = useCallback(
+    () =>
+      buildChatMessages(eliminationHints, eliminationText, selectedOptionId, language),
+    [eliminationHints, eliminationText, selectedOptionId, language],
+  )();
+
+  // ── Slide animation ──
   useEffect(() => {
     if (visible) {
-      setActiveIntent(null);
-      setResponse(null);
       Animated.spring(slideAnim, {
         toValue: 0,
         useNativeDriver: true,
@@ -76,64 +311,58 @@ export function AskVaniSheet({
     }
   }, [visible]);
 
-  // Build intents based on context
-  const selectedHint = selectedOptionId
-    ? eliminationHints.find((h) => h.optionKey === selectedOptionId)
-    : null;
-
-  const intents: Intent[] = [];
-  if (selectedHint) {
-    intents.push({ id: 'why-wrong', label: 'Why is my answer wrong?' });
-  }
-  intents.push({ id: 'why-correct', label: 'Why is this the correct answer?' });
-  intents.push({ id: 'explain-simple', label: 'Explain this concept simply' });
-  if (eliminationHints.length > 0) {
-    intents.push({ id: ELIM_INTENT, label: 'How to eliminate wrong options?' });
-  }
-
-  const fireIntent = useCallback(async (intent: Intent) => {
-    if (isLoading) return;
-
-    if (intent.id === ELIM_INTENT) {
-      setActiveIntent(ELIM_INTENT);
+  // ── Staggered message reveal ──
+  useEffect(() => {
+    if (!visible) {
+      setVisibleCount(0);
+      setShowTyping(false);
       return;
     }
 
-    setActiveIntent(intent.id);
+    // Start the typing → reveal cycle
+    let cancelled = false;
+    const timers: ReturnType<typeof setTimeout>[] = [];
 
-    try {
-      await askDoubt({
-        query: intent.label,
-        subjectId,
-        exam: user?.exam ?? 'NEET',
-        language: user?.language ?? 'en',
-        questionContext: questionText,
-      });
+    const revealNext = (index: number) => {
+      if (cancelled || index >= messages.length) {
+        setShowTyping(false);
+        return;
+      }
 
-      const state = (await import('../store')).store.getState();
-      const latest = state.ai.doubtHistory[0];
-      if (latest) setResponse(latest);
+      // Show typing indicator
+      setShowTyping(true);
+      timers.push(
+        setTimeout(() => {
+          if (cancelled) return;
+          // Reveal the message
+          setVisibleCount(index + 1);
+          setShowTyping(index < messages.length - 1);
 
-      setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 200);
-    } catch (err: any) {
-      toast.show('error', 'AI Error', err.message ?? 'Something went wrong');
-      setActiveIntent(null);
-    }
-  }, [isLoading, subjectId, user, questionText, toast]);
+          // Scroll to bottom
+          setTimeout(() => {
+            scrollRef.current?.scrollToEnd({ animated: true });
+          }, 50);
 
-  const handleBack = () => {
-    setActiveIntent(null);
-    setResponse(null);
-  };
+          // Schedule next
+          timers.push(
+            setTimeout(() => {
+              revealNext(index + 1);
+            }, BUBBLE_DELAY),
+          );
+        }, TYPING_DURATION),
+      );
+    };
 
-  const { remaining } = checkRateLimit();
+    // Small initial delay before first message
+    timers.push(setTimeout(() => revealNext(0), 300));
+
+    return () => {
+      cancelled = true;
+      timers.forEach(clearTimeout);
+    };
+  }, [visible, messages.length]);
 
   if (!visible) return null;
-
-  const isTelugu = language === 'te';
-  const showingResult = activeIntent && activeIntent !== ELIM_INTENT;
-  const showingElim = activeIntent === ELIM_INTENT;
-  const showingIntents = !activeIntent;
 
   return (
     <Modal transparent visible={visible} animationType="none" onRequestClose={onClose}>
@@ -155,168 +384,54 @@ export function AskVaniSheet({
 
             {/* Header */}
             <View style={styles.header}>
-              {(showingResult || showingElim) && (
-                <Pressable onPress={handleBack} hitSlop={12} style={styles.backBtn}>
-                  <Text style={[styles.backArrow, { color: colors.text }]}>{'\u2190'}</Text>
-                </Pressable>
-              )}
-              <Text style={[Typography.h3, { color: colors.text, flex: 1 }]}>Ask VaNi</Text>
-              <Text style={[styles.remainingText, { color: colors.textTertiary }]}>
-                {remaining} left today
-              </Text>
+              <View style={styles.headerLeft}>
+                <Text style={chatStyles.headerEmoji}>{'\u2728'}</Text>
+                <View>
+                  <Text style={[Typography.h3, { color: colors.text }]}>VaNi</Text>
+                  <Text style={[chatStyles.headerSub, { color: colors.textTertiary }]}>
+                    Elimination Coach
+                  </Text>
+                </View>
+              </View>
               <Pressable onPress={onClose} hitSlop={12}>
                 <Text style={[styles.closeBtn, { color: colors.textSecondary }]}>Done</Text>
               </Pressable>
             </View>
 
-            {/* Question context */}
+            {/* Question context (compact) */}
             <View style={[styles.contextBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
-              <Text style={[styles.contextLabel, { color: colors.textTertiary }]}>ABOUT THIS QUESTION</Text>
-              <Text style={[Typography.bodySm, { color: colors.textSecondary }]} numberOfLines={3}>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]} numberOfLines={2}>
                 {questionText}
               </Text>
             </View>
 
-            {/* === Intent buttons === */}
-            {showingIntents && (
-              <View style={styles.intentsArea}>
-                <Text style={[styles.intentsHeading, { color: colors.textSecondary }]}>
-                  What would you like to know?
-                </Text>
-                {intents.map((intent) => (
-                  <Pressable
-                    key={intent.id}
-                    onPress={() => fireIntent(intent)}
-                    disabled={isLoading}
-                    style={[
-                      styles.intentBtn,
-                      {
-                        backgroundColor: colors.primaryLight,
-                        opacity: isLoading ? 0.5 : 1,
-                      },
-                    ]}
-                  >
-                    <Text style={[styles.intentLabel, { color: colors.primary }]}>
-                      {intent.label}
-                    </Text>
-                  </Pressable>
-                ))}
-              </View>
-            )}
+            {/* Chat area */}
+            <ScrollView
+              ref={scrollRef}
+              style={chatStyles.chatScroll}
+              contentContainerStyle={chatStyles.chatContent}
+              showsVerticalScrollIndicator={false}
+            >
+              {messages.slice(0, visibleCount).map((msg, idx) => {
+                // Show avatar on first message, or when previous message was a different "group"
+                const prev = idx > 0 ? messages[idx - 1] : null;
+                const showAvatar =
+                  idx === 0 ||
+                  msg.type === 'intro' ||
+                  msg.type === 'closing' ||
+                  (msg.type === 'hint' && prev?.type !== 'hint');
+                return (
+                  <ChatBubble
+                    key={`${idx}-${msg.optionKey ?? msg.type}`}
+                    message={msg}
+                    colors={colors}
+                    showAvatar={showAvatar}
+                  />
+                );
+              })}
 
-            {/* === Elimination hints (from DB) === */}
-            {showingElim && (
-              <View style={styles.elimSection}>
-                <View style={styles.elimHeader}>
-                  <Text style={[styles.elimTitle, { color: '#8B5CF6' }]}>
-                    Elimination Technique
-                  </Text>
-                </View>
-                <ScrollView
-                  style={styles.elimScroll}
-                  showsVerticalScrollIndicator={false}
-                >
-                  {eliminationHints.map((hint) => (
-                    <View
-                      key={hint.optionKey}
-                      style={[
-                        styles.elimCard,
-                        {
-                          backgroundColor:
-                            hint.optionKey === selectedOptionId
-                              ? '#EF444410'
-                              : colors.surface,
-                          borderColor:
-                            hint.optionKey === selectedOptionId
-                              ? '#EF444440'
-                              : colors.surfaceBorder,
-                        },
-                      ]}
-                    >
-                      <View style={styles.elimCardHeader}>
-                        <View
-                          style={[
-                            styles.optionBadge,
-                            {
-                              backgroundColor:
-                                hint.optionKey === selectedOptionId
-                                  ? '#EF444420'
-                                  : '#64748B15',
-                            },
-                          ]}
-                        >
-                          <Text
-                            style={[
-                              styles.optionBadgeText,
-                              {
-                                color:
-                                  hint.optionKey === selectedOptionId
-                                    ? '#EF4444'
-                                    : '#64748B',
-                              },
-                            ]}
-                          >
-                            {hint.optionKey}
-                          </Text>
-                        </View>
-                        {hint.optionKey === selectedOptionId && (
-                          <Text style={styles.yourPickLabel}>Your pick</Text>
-                        )}
-                      </View>
-                      <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20, marginTop: 4 }]}>
-                        {isTelugu && hint.hintTe ? hint.hintTe : hint.hint}
-                      </Text>
-                      {hint.misconception ? (
-                        <Text style={[styles.misconceptionText, { color: colors.textTertiary }]}>
-                          Misconception: {isTelugu && hint.misconceptionTe ? hint.misconceptionTe : hint.misconception}
-                        </Text>
-                      ) : null}
-                    </View>
-                  ))}
-                </ScrollView>
-              </View>
-            )}
-
-            {/* === AI Response === */}
-            {showingResult && (
-              <ScrollView
-                ref={scrollRef}
-                style={styles.responseArea}
-                contentContainerStyle={styles.responseContent}
-                showsVerticalScrollIndicator={false}
-              >
-                {isLoading && (
-                  <View style={[styles.loadingBox, { backgroundColor: colors.surface }]}>
-                    <Text style={[Typography.bodySm, { color: colors.primary }]}>
-                      VaNi is thinking...
-                    </Text>
-                  </View>
-                )}
-
-                {response && (
-                  <View style={[styles.responseBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
-                    <View style={styles.responseHeader}>
-                      <Text style={[styles.vaniLabel, { color: colors.primary }]}>VANI</Text>
-                      <Text style={[styles.modelTag, { color: colors.textTertiary }]}>
-                        {response.model === 'smart' ? 'Gemini Pro' : 'Gemini Flash'}
-                      </Text>
-                    </View>
-                    <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-                      {response.response}
-                    </Text>
-                    {response.relatedConcepts.length > 0 && (
-                      <View style={styles.conceptsRow}>
-                        {response.relatedConcepts.map((c, i) => (
-                          <View key={i} style={[styles.conceptChip, { backgroundColor: colors.primaryLight }]}>
-                            <Text style={[styles.conceptText, { color: colors.primary }]}>{c}</Text>
-                          </View>
-                        ))}
-                      </View>
-                    )}
-                  </View>
-                )}
-              </ScrollView>
-            )}
+              {showTyping && <TypingIndicator colors={colors} />}
+            </ScrollView>
           </Pressable>
         </Animated.View>
       </Pressable>
@@ -324,6 +439,7 @@ export function AskVaniSheet({
   );
 }
 
+// ── Base styles (sheet chrome) ──────────────────────────────────────────
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
@@ -349,23 +465,14 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: Spacing.lg,
     paddingBottom: Spacing.sm,
-    gap: Spacing.sm,
   },
-  backBtn: {
-    width: 32,
-    height: 32,
-    justifyContent: 'center',
+  headerLeft: {
+    flexDirection: 'row',
     alignItems: 'center',
-  },
-  backArrow: {
-    fontSize: 20,
-    fontFamily: 'PlusJakartaSans_600SemiBold',
-  },
-  remainingText: {
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 12,
+    gap: 10,
   },
   closeBtn: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
@@ -377,128 +484,103 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.md,
     borderWidth: 1,
   },
-  contextLabel: {
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 10,
-    letterSpacing: 0.5,
-    marginBottom: 4,
+});
+
+// ── Chat-specific styles ────────────────────────────────────────────────
+const chatStyles = StyleSheet.create({
+  headerEmoji: {
+    fontSize: 28,
   },
-  // Intent buttons
-  intentsArea: {
+  headerSub: {
+    fontFamily: 'PlusJakartaSans_400Regular',
+    fontSize: 11,
+    marginTop: -1,
+  },
+  chatScroll: {
+    maxHeight: SCREEN_HEIGHT * 0.45,
+    marginTop: Spacing.md,
+  },
+  chatContent: {
     paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.lg,
+    paddingBottom: Spacing.lg,
     gap: 10,
   },
-  intentsHeading: {
-    fontFamily: 'PlusJakartaSans_600SemiBold',
-    fontSize: 13,
-    marginBottom: 2,
-  },
-  intentBtn: {
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    borderRadius: BorderRadius.lg,
-  },
-  intentLabel: {
-    fontFamily: 'PlusJakartaSans_600SemiBold',
-    fontSize: 15,
-  },
-  // Elimination hints section
-  elimSection: {
-    paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.sm,
-    maxHeight: SCREEN_HEIGHT * 0.4,
-  },
-  elimHeader: {
-    paddingBottom: Spacing.sm,
-  },
-  elimTitle: {
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 13,
-    letterSpacing: 0.3,
-  },
-  elimScroll: {
-    maxHeight: SCREEN_HEIGHT * 0.35,
-  },
-  elimCard: {
-    padding: Spacing.md,
-    borderRadius: BorderRadius.md,
-    borderWidth: 1,
-    marginBottom: Spacing.sm,
-  },
-  elimCardHeader: {
+  // Chat bubble row
+  bubbleRow: {
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
+    alignItems: 'flex-start',
   },
-  optionBadge: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+  avatarCol: {
+    width: 36,
+    marginRight: 8,
+  },
+  avatar: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  avatarText: {
+    fontSize: 14,
+  },
+  avatarSpacer: {
+    width: 28,
+    height: 1,
+  },
+  // Bubble content
+  bubble: {
+    flex: 1,
+    padding: 12,
+    borderRadius: 14,
+    borderTopLeftRadius: 4,
+    borderWidth: 1,
+  },
+  optionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 6,
+  },
+  optionBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
   },
   optionBadgeText: {
     fontFamily: 'PlusJakartaSans_800ExtraBold',
     fontSize: 11,
   },
-  yourPickLabel: {
+  yourPickText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 10,
     color: '#EF4444',
-    letterSpacing: 0.5,
+    letterSpacing: 0.3,
   },
-  misconceptionText: {
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 11,
-    fontStyle: 'italic',
-    marginTop: 4,
-  },
-  // Response area
-  responseArea: {
-    maxHeight: SCREEN_HEIGHT * 0.4,
-  },
-  responseContent: {
-    padding: Spacing.lg,
-  },
-  loadingBox: {
-    padding: Spacing.lg,
-    borderRadius: BorderRadius.lg,
-    alignItems: 'center',
-  },
-  responseBox: {
-    padding: Spacing.md,
-    borderRadius: BorderRadius.lg,
-    borderWidth: 1,
-  },
-  responseHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
-    marginBottom: Spacing.sm,
-  },
-  vaniLabel: {
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 11,
-    letterSpacing: 1,
-  },
-  modelTag: {
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 10,
-  },
-  conceptsRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: Spacing.sm,
-    marginTop: Spacing.md,
-  },
-  conceptChip: {
-    paddingHorizontal: 10,
-    paddingVertical: 3,
-    borderRadius: BorderRadius.round,
-  },
-  conceptText: {
+  misconceptionLabel: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 11,
+    color: '#F59E0B',
+    marginBottom: 4,
+  },
+  // Typing indicator
+  typingRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  typingBubble: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 14,
+    borderTopLeftRadius: 4,
+    marginLeft: 8,
+  },
+  dot: {
+    width: 7,
+    height: 7,
+    borderRadius: 3.5,
   },
 });

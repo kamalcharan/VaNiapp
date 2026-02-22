@@ -4,7 +4,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   // ===== EASY (8 questions) =====
   {
     id: 'bot-pa-001',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Which type of meristematic tissue is found at the tips of roots and shoots?',
     textTe: 'వేర్లు మరియు కాండం చివరలలో ఏ రకమైన meristematic కణజాలం కనిపిస్తుంది?',
@@ -27,7 +27,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-002',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Parenchyma cells are characterized by which of the following features?',
     textTe: 'Parenchyma కణాలు కింది లక్షణాలలో దేని ద్వారా గుర్తించబడతాయి?',
@@ -50,7 +50,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-003',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Sclerenchyma cells are dead at maturity because:',
     textTe: 'Sclerenchyma కణాలు పరిపక్వత సమయంలో చనిపోతాయి ఎందుకంటే:',
@@ -73,7 +73,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-004',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Which of the following is the water-conducting element of xylem?',
     textTe: 'కింది వాటిలో xylem యొక్క నీటిని ప్రసరించే మూలకం ఏది?',
@@ -96,7 +96,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-005',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'In phloem, which of the following cells is living but lacks a nucleus at maturity?',
     textTe: 'Phloem లో, కింది కణాలలో ఏది జీవించి ఉంటుంది కానీ పరిపక్వత సమయంలో కేంద్రకం లేదు?',
@@ -119,7 +119,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-006',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'The three types of tissue systems in a plant are:',
     textTe: 'మొక్కలో మూడు రకాల కణజాల వ్యవస్థలు:',
@@ -142,7 +142,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-007',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Open vascular bundles differ from closed vascular bundles in having:',
     textTe: 'Open vascular bundles మూసిన vascular bundles నుండి దేనిని కలిగి ఉండటం ద్వారా భిన్నంగా ఉంటాయి?',
@@ -165,7 +165,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-008',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Cork cambium (phellogen) gives rise to:',
     textTe: 'Cork cambium (phellogen) దేనిని ఉత్పత్తి చేస్తుంది?',
@@ -190,7 +190,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   // ===== MEDIUM (10 questions) =====
   {
     id: 'bot-pa-009',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Collenchyma differs from sclerenchyma in that collenchyma:',
     textTe: 'Collenchyma, sclerenchyma నుండి భిన్నంగా ఉంటుంది ఎందుకంటే collenchyma:',
@@ -213,7 +213,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-010',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Which of the following is NOT a component of xylem?',
     textTe: 'కింది వాటిలో xylem యొక్క భాగం కానిది ఏది?',
@@ -236,7 +236,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-011',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'In a dicot root, the vascular bundles are arranged in which pattern?',
     textTe: 'ద్విదళ వేరులో, vascular bundles ఏ విధంగా అమర్చబడి ఉంటాయి?',
@@ -259,7 +259,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-012',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'A key anatomical difference between a monocot root and a dicot root is:',
     textTe: 'ఏకదళ వేరు మరియు ద్విదళ వేరు మధ్య కీలకమైన anatomy తేడా ఏమిటి?',
@@ -282,7 +282,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-013',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'In the transverse section of a dicot stem, the vascular bundles are:',
     textTe: 'ద్విదళ కాండం యొక్క అడ్డు విభాగంలో, vascular bundles:',
@@ -305,7 +305,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-014',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'In a monocot stem, the vascular bundles are:',
     textTe: 'ఏకదళ కాండంలో, vascular bundles:',
@@ -328,7 +328,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-015',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'A dorsiventral leaf (typical dicot leaf) shows differentiation of mesophyll into:',
     textTe: 'Dorsiventral ఆకు (సాధారణ ద్విదళ ఆకు) mesophyll యొక్క భేదాన్ని దేనిలోకి చూపిస్తుంది?',
@@ -351,7 +351,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-016',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'In isobilateral leaves (typical monocot leaves), stomata are:',
     textTe: 'Isobilateral ఆకులలో (సాధారణ ఏకదళ ఆకులు), stomata:',
@@ -374,7 +374,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-017',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'During secondary growth in a dicot stem, the vascular cambium forms a continuous ring by the activity of:',
     textTe: 'ద్విదళ కాండంలో ద్వితీయ పెరుగుదల సమయంలో, vascular cambium దేని కార్యకలాపం ద్వారా నిరంతర వలయాన్ని ఏర్పరుస్తుంది?',
@@ -397,7 +397,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-018',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Companion cells are closely associated with sieve tube elements in angiosperms. Their primary function is to:',
     textTe: 'Companion cells angiosperms లో sieve tube elements తో దగ్గరగా అనుసంధానం చేయబడి ఉంటాయి. వాటి ప్రాథమిక విధి ఏమిటి?',
@@ -422,7 +422,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   // ===== HARD (7 questions) =====
   {
     id: 'bot-pa-019',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Casparian strips are found in the:',
     textTe: 'Casparian strips ఎక్కడ కనిపిస్తాయి?',
@@ -445,7 +445,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-020',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Passage cells (thin-walled cells) in the endodermis of roots are significant because they:',
     textTe: 'వేర్ల endodermis లోని passage cells (సన్నని గోడల కణాలు) ముఖ్యమైనవి ఎందుకంటే అవి:',
@@ -468,7 +468,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-021',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Heartwood differs from sapwood in that heartwood:',
     textTe: 'Heartwood, sapwood నుండి భిన్నంగా ఉంటుంది ఎందుకంటే heartwood:',
@@ -491,7 +491,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-022',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'In the anatomy of a dicot root, the xylem is described as "exarch." This means that:',
     textTe: 'ద్విదళ వేరు anatomy లో, xylem "exarch" గా వర్ణించబడుతుంది. దీని అర్థం:',
@@ -514,7 +514,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-023',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Kranz anatomy is a specialized leaf anatomy found in:',
     textTe: 'Kranz anatomy అనేది ఎక్కడ కనిపించే ప్రత్యేక ఆకు anatomy?',
@@ -537,7 +537,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-024',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Which of the following statements about secondary growth is INCORRECT?',
     textTe: 'ద్వితీయ పెరుగుదల గురించి కింది ప్రకటనలలో సరికానిది ఏది?',
@@ -560,7 +560,7 @@ export const botanyPlantAnatomyQuestions: Question[] = [
   },
   {
     id: 'bot-pa-025',
-    chapterId: 'botany-plant-anatomy',
+    chapterId: 'bot-anatomy-flowering',
     subjectId: 'botany',
     text: 'Lenticels are found in the bark of woody plants and their primary function is:',
     textTe: 'Lenticels కొయ్య మొక్కల బెరడులో కనిపిస్తాయి మరియు వాటి ప్రాథమిక విధి:',

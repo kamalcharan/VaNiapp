@@ -1,5 +1,6 @@
 import { supabase } from './supabase';
 import type { QuestionV2, QuestionType, Difficulty, Option, EliminationHint } from '../types';
+import { resolveLegacyChapterId } from './questionAdapter';
 
 // ── Types for DB rows ────────────────────────────────────────
 
@@ -35,6 +36,12 @@ interface DbQuestion {
   med_elimination_hints: DbEliminationHint[];
 }
 
+// ── Result type ──────────────────────────────────────────────
+
+export type FetchQuestionsResult =
+  | { ok: true; questions: QuestionV2[] }
+  | { ok: false; error: 'no-connection' | 'no-questions' | 'not-configured' };
+
 // ── In-memory cache ──────────────────────────────────────────
 
 const cache = new Map<string, QuestionV2[]>();
@@ -43,36 +50,53 @@ const cache = new Map<string, QuestionV2[]>();
 
 /**
  * Fetch questions for a chapter from Supabase.
- * Returns QuestionV2[] ready for the quiz screen UI.
- * Fetches both English and Telugu (_te) columns for bilingual display.
+ * Returns a result object with questions or a typed error.
+ * No silent local fallback — errors surface to the UI.
  */
 export async function fetchQuestionsByChapter(
   chapterId: string,
-): Promise<QuestionV2[]> {
+): Promise<FetchQuestionsResult> {
+  const resolvedId = resolveLegacyChapterId(chapterId);
+
   // Check cache first
-  if (cache.has(chapterId)) return cache.get(chapterId)!;
+  if (cache.has(resolvedId)) {
+    return { ok: true, questions: cache.get(resolvedId)! };
+  }
 
-  if (!supabase) return [];
+  if (!supabase) {
+    return { ok: false, error: 'not-configured' };
+  }
 
-  const { data, error } = await supabase
-    .from('med_questions')
-    .select(
-      `id, subject_id, chapter_id, question_type, difficulty,
-       question_text, question_text_te, explanation, explanation_te,
-       correct_answer, payload,
-       med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
-       med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`,
-    )
-    .eq('chapter_id', chapterId)
-    .eq('is_active', true)
-    .eq('status', 'active')
-    .order('created_at');
+  try {
+    const { data, error } = await supabase
+      .from('med_questions')
+      .select(
+        `id, subject_id, chapter_id, question_type, difficulty,
+         question_text, question_text_te, explanation, explanation_te,
+         correct_answer, payload,
+         med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
+         med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`,
+      )
+      .eq('chapter_id', resolvedId)
+      .eq('status', 'active')
+      .order('created_at');
 
-  if (error || !data || data.length === 0) return [];
+    if (error) {
+      console.warn(`[questions] Supabase error for ${resolvedId}:`, error.message);
+      return { ok: false, error: 'no-connection' };
+    }
 
-  const questions = (data as unknown as DbQuestion[]).map(dbToV2);
-  cache.set(chapterId, questions);
-  return questions;
+    if (!data || data.length === 0) {
+      return { ok: false, error: 'no-questions' };
+    }
+
+    const questions = (data as unknown as DbQuestion[]).map(dbToV2);
+    cache.set(resolvedId, questions);
+    return { ok: true, questions };
+  } catch (err) {
+    console.warn(`[questions] Fetch failed for ${resolvedId}:`, err);
+    return { ok: false, error: 'no-connection' };
+  }
 }
 
 /** Clear cached questions (useful after imports). */

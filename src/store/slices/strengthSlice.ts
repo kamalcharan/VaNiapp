@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StrengthLevel, SubjectId } from '../../types';
 import { evaluateStrength } from '../../lib/strengthEvaluator';
+import { LEGACY_CHAPTER_MAP } from '../../lib/questionAdapter';
 
 // ── Types ──
 
@@ -44,7 +45,9 @@ const strengthSlice = createSlice({
         answeredQuestions: { questionId: string; correct: boolean }[];
       }>
     ) => {
-      const { chapterId, subjectId, totalInBank, answeredQuestions } = action.payload;
+      const { subjectId, totalInBank, answeredQuestions } = action.payload;
+      // Always resolve legacy chapter IDs to DB IDs
+      const chapterId = LEGACY_CHAPTER_MAP[action.payload.chapterId] ?? action.payload.chapterId;
 
       // Get or create chapter entry
       let ch = state.chapters[chapterId];
@@ -109,8 +112,44 @@ const strengthSlice = createSlice({
       ch.lastPracticedAt = new Date().toISOString();
     },
 
+    /**
+     * Migrate legacy chapter IDs when rehydrating from persisted state.
+     * Moves strength data from old keys (e.g., 'zoology-human-physiology')
+     * to new DB keys (e.g., 'zoo-body-fluids') so history isn't lost.
+     */
     rehydrate: (_state, action: PayloadAction<StrengthState>) => {
-      return action.payload;
+      const incoming = action.payload;
+      const migrated: Record<string, ChapterStrengthData> = {};
+
+      for (const [key, data] of Object.entries(incoming.chapters)) {
+        const newKey = LEGACY_CHAPTER_MAP[key] ?? key;
+        if (newKey !== key && migrated[newKey]) {
+          // Merge old data into existing new-key entry
+          const existing = migrated[newKey];
+          existing.totalAnswered += data.totalAnswered;
+          existing.correctCount += data.correctCount;
+          for (const id of data.attemptedIds) {
+            if (!existing.attemptedIds.includes(id)) {
+              existing.attemptedIds.push(id);
+            }
+          }
+          existing.totalInBank = Math.max(existing.totalInBank, data.totalInBank);
+          // Recompute
+          const result = evaluateStrength({
+            totalInBank: existing.totalInBank,
+            uniqueAttempted: existing.attemptedIds.length,
+            totalAnswered: existing.totalAnswered,
+            correctCount: existing.correctCount,
+          });
+          existing.coverage = result.coverage;
+          existing.accuracy = result.accuracy;
+          existing.strengthLevel = result.level;
+        } else {
+          migrated[newKey] = { ...data, chapterId: newKey };
+        }
+      }
+
+      return { chapters: migrated };
     },
   },
 });

@@ -4,7 +4,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   // ===== EASY (8 questions) =====
   {
     id: 'chem-hc-001',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'The general formula of alkanes is:',
     textTe: 'ఆల్కేన్ల సాధారణ సూత్రం ఏమిటి?',
@@ -27,7 +27,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-002',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'What is the IUPAC name of CH₃–CH₂–CH₃?',
     textTe: 'CH₃–CH₂–CH₃ యొక్క IUPAC నామం ఏమిటి?',
@@ -50,7 +50,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-003',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'The molecular formula of benzene is:',
     textTe: 'బెంజీన్ యొక్క అణు సూత్రం ఏమిటి?',
@@ -73,7 +73,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-004',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'The hybridization of each carbon atom in ethylene (C₂H₄) is:',
     textTe: 'ఇథిలీన్ (C₂H₄) లో ప్రతి కార్బన్ పరమాణువు యొక్క సంకరీకరణం ఏమిటి?',
@@ -96,7 +96,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-005',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Which of the following is a saturated hydrocarbon?',
     textTe: 'కింది వాటిలో సంతృప్త హైడ్రోకార్బన్ ఏది?',
@@ -119,7 +119,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-006',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Complete combustion of methane (CH₄) produces:',
     textTe: 'మీథేన్ (CH₄) యొక్క సంపూర్ణ దహనం ద్వారా ఏర్పడే ఉత్పన్నాలు:',
@@ -142,7 +142,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-007',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'The total number of sigma (σ) bonds in ethane (C₂H₆) is:',
     textTe: 'Ethane (C₂H₆) లో మొత్తం సిగ్మా (σ) బంధాల సంఖ్య ఎంత?',
@@ -165,7 +165,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-008',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'The most stable conformation of ethane is:',
     textTe: 'Ethane యొక్క అత్యంత స్థిరమైన రూపాంతరం ఏది?',
@@ -190,7 +190,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   // ===== MEDIUM (10 questions) =====
   {
     id: 'chem-hc-009',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Addition of HBr to propene in the absence of peroxide gives predominantly:',
     textTe: 'పెరాక్సైడ్ లేనప్పుడు propene కు HBr సంకలనం చేస్తే ప్రధానంగా ఏర్పడే ఉత్పన్నం:',
@@ -213,7 +213,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-010',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'The IUPAC name of neopentane is:',
     textTe: 'Neopentane యొక్క IUPAC నామం ఏమిటి?',
@@ -236,7 +236,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-011',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Which of the following compounds exhibits geometrical (cis-trans) isomerism?',
     textTe: 'కింది సమ్మేళనాలలో జ్యామితీయ (cis-trans) సమాంగత్వాన్ని ప్రదర్శించేది ఏది?',
@@ -259,7 +259,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-012',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Ozonolysis of 2-butene followed by reductive workup with Zn/H₂O gives:',
     textTe: '2-Butene యొక్క ఓజోనాలిసిస్ తరువాత Zn/H₂O తో క్షయకారక ప్రక్రియ చేస్తే ఏర్పడే ఉత్పన్నాలు:',
@@ -282,7 +282,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-013',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Benzene reacts with Cl₂ in the presence of anhydrous AlCl₃ to form:',
     textTe: 'బెంజీన్ నిర్జల AlCl₃ సమక్షంలో Cl₂ తో చర్య జరిపి ఏర్పరిచే ఉత్పన్నం:',
@@ -305,7 +305,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-014',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'The correct order of acidic strength among hydrocarbons is:',
     textTe: 'హైడ్రోకార్బన్లలో ఆమ్ల బలం యొక్క సరైన క్రమం:',
@@ -328,7 +328,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-015',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: "Baeyer's reagent (dilute alkaline KMnO₄) is used to detect the presence of:",
     textTe: "Baeyer's రీఏజెంట్ (విలీన క్షారీయ KMnO₄) దేని ఉనికిని గుర్తించడానికి ఉపయోగిస్తారు?",
@@ -351,7 +351,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-016',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Addition of HBr to propene in the presence of benzoyl peroxide gives predominantly:',
     textTe: 'బెంజాయిల్ పెరాక్సైడ్ సమక్షంలో propene కు HBr సంకలనం చేస్తే ప్రధానంగా ఏర్పడే ఉత్పన్నం:',
@@ -374,7 +374,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-017',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Wurtz reaction of CH₃Br with sodium metal in dry ether gives:',
     textTe: 'పొడి ఈథర్‌లో CH₃Br ను సోడియం లోహంతో Wurtz చర్య జరిపితే ఏర్పడే ఉత్పన్నం:',
@@ -397,7 +397,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-018',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Friedel-Crafts acylation of benzene with CH₃COCl in the presence of anhydrous AlCl₃ gives:',
     textTe: 'నిర్జల AlCl₃ సమక్షంలో బెంజీన్ యొక్క CH₃COCl తో Friedel-Crafts ఎసైలేషన్ చర్య ఇచ్చే ఉత్పన్నం:',
@@ -422,7 +422,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   // ===== HARD (7 questions) =====
   {
     id: 'chem-hc-019',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: "Reduction of 2-butyne with Lindlar's catalyst (Pd/BaSO₄ poisoned with quinoline) gives:",
     textTe: "Lindlar's ఉత్ప్రేరకం (quinoline తో విషపూరితమైన Pd/BaSO₄) తో 2-butyne యొక్క క్షయకరణం ఇచ్చే ఉత్పన్నం:",
@@ -445,7 +445,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-020',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Birch reduction of benzene (using Na in liquid NH₃ with alcohol) gives:',
     textTe: 'బెంజీన్ యొక్క Birch క్షయకరణం (ఆల్కహాల్ తో ద్రవ NH₃ లో Na ఉపయోగించి) ఇచ్చే ఉత్పన్నం:',
@@ -468,7 +468,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-021',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'The correct order of reactivity towards electrophilic aromatic substitution is:',
     textTe: 'ఎలక్ట్రోఫిలిక్ ఆరోమాటిక్ ప్రతిక్షేపణ పట్ల చర్యాశీలత యొక్క సరైన క్రమం:',
@@ -491,7 +491,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-022',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'The total number of structural isomers possible for the molecular formula C₅H₁₂ is:',
     textTe: 'C₅H₁₂ అణు సూత్రానికి సాధ్యమయ్యే నిర్మాణ సమాంగుల మొత్తం సంఖ్య:',
@@ -514,7 +514,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-023',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'Among the various conformations of n-butane, the most stable one is:',
     textTe: 'n-Butane యొక్క వివిధ రూపాంతరాలలో అత్యంత స్థిరమైనది:',
@@ -537,7 +537,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-024',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: 'When acetylene is passed through dilute H₂SO₄ in the presence of HgSO₄ at 333 K, the product formed is:',
     textTe: '333 K వద్ద HgSO₄ సమక్షంలో విలీన H₂SO₄ ద్వారా acetylene ను పంపినప్పుడు ఏర్పడే ఉత్పన్నం:',
@@ -560,7 +560,7 @@ export const chemistryHydrocarbonsQuestions: Question[] = [
   },
   {
     id: 'chem-hc-025',
-    chapterId: 'chemistry-hydrocarbons',
+    chapterId: 'chem-hydrocarbons',
     subjectId: 'chemistry',
     text: "In Kolbe's electrolytic method, when a concentrated aqueous solution of sodium acetate (CH₃COONa) is electrolyzed, the hydrocarbon obtained at the anode is:",
     textTe: "Kolbe's విద్యుద్విశ్లేషణ పద్ధతిలో, సోడియం ఎసిటేట్ (CH₃COONa) యొక్క సాంద్ర జలద్రావణాన్ని విద్యుద్విశ్లేషణం చేసినప్పుడు, ఆనోడ్ వద్ద ఏర్పడే హైడ్రోకార్బన్:",

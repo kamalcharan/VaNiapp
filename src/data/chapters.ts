@@ -4,10 +4,14 @@ export interface ChapterMeta extends Chapter {
   subjectId: NeetSubjectId;
 }
 
+/**
+ * Local fallback chapters — IDs MUST match med_chapters in Supabase.
+ * Only used when the DB fetch fails. Covers a representative sample per subject.
+ */
 export const NEET_CHAPTERS: ChapterMeta[] = [
-  // Physics
+  // Physics (sample — full 20 in DB)
   {
-    id: 'physics-laws-of-motion',
+    id: 'phy-laws-of-motion',
     name: 'Laws of Motion',
     nameTe: 'చలన నియమాలు',
     subjectId: 'physics',
@@ -15,16 +19,16 @@ export const NEET_CHAPTERS: ChapterMeta[] = [
     timeMinutes: 30,
   },
   {
-    id: 'physics-thermodynamics',
+    id: 'phy-thermodynamics',
     name: 'Thermodynamics',
     nameTe: 'ఉష్ణగతిశాస్త్రం',
     subjectId: 'physics',
     questionCount: 25,
     timeMinutes: 30,
   },
-  // Chemistry
+  // Chemistry (sample — full 20 in DB)
   {
-    id: 'chemistry-chemical-bonding',
+    id: 'chem-chemical-bonding',
     name: 'Chemical Bonding',
     nameTe: 'రసాయన బంధం',
     subjectId: 'chemistry',
@@ -32,43 +36,43 @@ export const NEET_CHAPTERS: ChapterMeta[] = [
     timeMinutes: 30,
   },
   {
-    id: 'chemistry-hydrocarbons',
+    id: 'chem-hydrocarbons',
     name: 'Hydrocarbons',
     nameTe: 'హైడ్రోకార్బన్లు',
     subjectId: 'chemistry',
     questionCount: 25,
     timeMinutes: 30,
   },
-  // Botany
+  // Botany (sample — full 17 in DB)
   {
-    id: 'botany-cell-biology',
-    name: 'Cell Biology',
+    id: 'bot-cell-unit',
+    name: 'Cell: The Unit of Life',
     nameTe: 'కణ జీవశాస్త్రం',
     subjectId: 'botany',
     questionCount: 25,
     timeMinutes: 30,
   },
   {
-    id: 'botany-plant-anatomy',
-    name: 'Plant Anatomy',
+    id: 'bot-anatomy-flowering',
+    name: 'Anatomy of Flowering Plants',
     nameTe: 'మొక్కల శరీర నిర్మాణ శాస్త్రం',
     subjectId: 'botany',
     questionCount: 25,
     timeMinutes: 30,
   },
-  // Zoology
+  // Zoology (sample — full 15 in DB)
   {
-    id: 'zoology-human-physiology',
-    name: 'Human Physiology',
-    nameTe: 'మానవ శరీర ధర్మశాస్త్రం',
+    id: 'zoo-animal-kingdom',
+    name: 'Animal Kingdom',
+    nameTe: 'జంతు రాజ్యం',
     subjectId: 'zoology',
     questionCount: 25,
     timeMinutes: 30,
   },
   {
-    id: 'zoology-genetics',
-    name: 'Genetics',
-    nameTe: 'జన్యుశాస్త్రం',
+    id: 'zoo-human-reproduction',
+    name: 'Human Reproduction',
+    nameTe: 'మానవ ప్రత్యుత్పత్తి',
     subjectId: 'zoology',
     questionCount: 25,
     timeMinutes: 30,

@@ -14,20 +14,23 @@ import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
 import { getChapterById } from '../src/data/chapters';
 import { getV2QuestionsByChapter } from '../src/data/questions';
-import { getCorrectId } from '../src/lib/questionAdapter';
+import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter';
 import { RootState } from '../src/store';
 import { NeetSubjectId } from '../src/types';
 
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const { chapterId, correct, total, timeUsedMs: timeParam } = useLocalSearchParams<{
+  const { chapterId: rawChapterId, correct, total, timeUsedMs: timeParam } = useLocalSearchParams<{
     chapterId: string;
     correct: string;
     total: string;
     timeUsedMs: string;
   }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
+
+  // Resolve legacy chapter IDs so results screen works with old IDs
+  const chapterId = rawChapterId ? resolveLegacyChapterId(rawChapterId) : rawChapterId;
 
   const isQuickMode = chapterId?.startsWith('quick-') ?? false;
   const quickSubjectId = isQuickMode ? chapterId!.replace('quick-', '') as NeetSubjectId : null;

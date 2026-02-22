@@ -10,16 +10,16 @@ import { zoologyHumanPhysiologyQuestions } from './zoology-human-physiology';
 import { zoologyGeneticsQuestions } from './zoology-genetics';
 import { sampleV2Questions } from './sample-v2-questions';
 
-// All questions indexed by chapter ID
+// All questions indexed by chapter ID (DB med_chapters IDs)
 const questionsByChapter: Record<string, Question[]> = {
-  'physics-laws-of-motion': physicsLawsOfMotionQuestions,
-  'physics-thermodynamics': physicsThermodynamicsQuestions,
-  'chemistry-chemical-bonding': chemistryChemicalBondingQuestions,
-  'chemistry-hydrocarbons': chemistryHydrocarbonsQuestions,
-  'botany-cell-biology': botanyCellBiologyQuestions,
-  'botany-plant-anatomy': botanyPlantAnatomyQuestions,
-  'zoology-human-physiology': zoologyHumanPhysiologyQuestions,
-  'zoology-genetics': zoologyGeneticsQuestions,
+  'phy-laws-of-motion': physicsLawsOfMotionQuestions,
+  'phy-thermodynamics': physicsThermodynamicsQuestions,
+  'chem-chemical-bonding': chemistryChemicalBondingQuestions,
+  'chem-hydrocarbons': chemistryHydrocarbonsQuestions,
+  'bot-cell-unit': botanyCellBiologyQuestions,
+  'bot-anatomy-flowering': botanyPlantAnatomyQuestions,
+  'zoo-body-fluids': zoologyHumanPhysiologyQuestions,
+  'zoo-evolution': zoologyGeneticsQuestions,
 };
 
 // All questions indexed by subject

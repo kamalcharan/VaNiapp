@@ -4,7 +4,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   // ===== EASY (8 questions): Q1–Q8 =====
   {
     id: 'phy-thd-001',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'According to the zeroth law of thermodynamics, if body A is in thermal equilibrium with body B, and body B is in thermal equilibrium with body C, then:',
     textTe: 'ఉష్ణగతిశాస్త్రం యొక్క సున్నా నియమం ప్రకారం, A వస్తువు B వస్తువుతో ఉష్ణ సమతాస్థితిలో ఉంటే, మరియు B వస్తువు C వస్తువుతో ఉష్ణ సమతాస్థితిలో ఉంటే, అప్పుడు:',
@@ -43,7 +43,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-002',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'The first law of thermodynamics is essentially a statement of:',
     textTe: 'ఉష్ణగతిశాస్త్రం యొక్క మొదటి నియమం ప్రాథమికంగా దేని గురించి చెబుతుంది:',
@@ -82,7 +82,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-003',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'During an isothermal expansion of an ideal gas, the change in internal energy is:',
     textTe: 'ఆదర్శ వాయువు యొక్క సమోష్ణ వ్యాకోచం సమయంలో, అంతర శక్తిలో మార్పు:',
@@ -121,7 +121,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-004',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'In an isobaric process, the work done by the gas is given by:',
     textTe: 'సమపీడన ప్రక్రియలో, వాయువు చేసిన పని ఇలా ఇవ్వబడుతుంది:',
@@ -160,7 +160,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-005',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'For an ideal gas, the molar specific heat at constant pressure (Cp) is greater than the molar specific heat at constant volume (Cv) because:',
     textTe: 'ఆదర్శ వాయువుకు, స్థిర పీడనం వద్ద మోలార్ విశిష్ట ఉష్ణం (Cp) స్థిర ఘనపరిమాణం వద్ద మోలార్ విశిష్ట ఉష్ణం (Cv) కంటే ఎక్కువగా ఉంటుంది ఎందుకంటే:',
@@ -199,7 +199,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-006',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'The internal energy of an ideal gas depends only on:',
     textTe: 'ఆదర్శ వాయువు యొక్క అంతర శక్తి దేనిపై మాత్రమే ఆధారపడి ఉంటుంది:',
@@ -238,7 +238,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-007',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'The Kelvin-Planck statement of the second law of thermodynamics states that:',
     textTe: 'ఉష్ణగతిశాస్త్రం యొక్క రెండవ నియమం యొక్క Kelvin-Planck ప్రకటన ఇలా చెబుతుంది:',
@@ -277,7 +277,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-008',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'In an adiabatic process involving an ideal gas, which of the following is true?',
     textTe: 'ఆదర్శ వాయువుతో కూడిన రుద్ధోష్ణ ప్రక్రియలో, కింది వాటిలో ఏది నిజం?',
@@ -318,7 +318,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   // ===== MEDIUM (10 questions): Q9–Q18 =====
   {
     id: 'phy-thd-009',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'A Carnot engine operates between a heat source at 600 K and a heat sink at 300 K. The efficiency of the engine is:',
     textTe: '600 K వద్ద ఉష్ణ మూలం మరియు 300 K వద్ద ఉష్ణ సింక్ మధ్య Carnot యంత్రం పని చేస్తుంది. యంత్రం యొక్క సామర్థ్యం:',
@@ -357,7 +357,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-010',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'A system absorbs 500 J of heat and does 200 J of work on the surroundings. The change in internal energy of the system is:',
     textTe: 'ఒక వ్యవస్థ 500 J ఉష్ణాన్ని గ్రహించి, పరిసరాలపై 200 J పని చేస్తుంది. వ్యవస్థ యొక్క అంతర శక్తిలో మార్పు:',
@@ -396,7 +396,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-011',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'For a reversible adiabatic process involving an ideal gas, the correct relation is:',
     textTe: 'ఆదర్శ వాయువుతో కూడిన విరామయోగ్య రుద్ధోష్ణ ప్రక్రియకు, సరైన సంబంధం:',
@@ -435,7 +435,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-012',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'One mole of an ideal gas at 300 K is expanded isothermally to twice its initial volume. The work done by the gas is approximately: (Given: R = 8.314 J mol^-1 K^-1, ln 2 = 0.693)',
     textTe: '300 K వద్ద ఒక మోల్ ఆదర్శ వాయువు దాని ప్రారంభ ఘనపరిమాణం రెట్టింపుకు సమోష్ణంగా వ్యాకోచం చెందుతుంది. వాయువు చేసిన పని సుమారు: (ఇవ్వబడినది: R = 8.314 J mol^-1 K^-1, ln 2 = 0.693)',
@@ -474,7 +474,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-013',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'When 1000 J of heat is added reversibly and isothermally to a system at 500 K, the change in entropy of the system is:',
     textTe: '500 K వద్ద ఒక వ్యవస్థకు 1000 J ఉష్ణం విరామయోగ్యంగా మరియు సమోష్ణంగా జోడించినప్పుడు, వ్యవస్థ యొక్క ఎంట్రోపీలో మార్పు:',
@@ -513,7 +513,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-014',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'A gas undergoes a cyclic process ABCDA on a PV diagram forming a rectangle with corners at A(1 L, 100 kPa), B(3 L, 100 kPa), C(3 L, 300 kPa), and D(1 L, 300 kPa). The net work done by the gas per cycle is:',
     textTe: 'ఒక వాయువు PV రేఖాచిత్రంపై ABCDA చక్రీయ ప్రక్రియను చతురస్రం రూపంలో A(1 L, 100 kPa), B(3 L, 100 kPa), C(3 L, 300 kPa), మరియు D(1 L, 300 kPa) మూలలతో అనుసరిస్తుంది. ప్రతి చక్రానికి వాయువు చేసిన నికర పని:',
@@ -552,7 +552,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-015',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'For one mole of an ideal gas, the difference between the molar specific heat at constant pressure (Cp) and the molar specific heat at constant volume (Cv) equals:',
     textTe: 'ఒక మోల్ ఆదర్శ వాయువుకు, స్థిర పీడనం వద్ద మోలార్ విశిష్ట ఉష్ణం (Cp) మరియు స్థిర ఘనపరిమాణం వద్ద మోలార్ విశిష్ట ఉష్ణం (Cv) మధ్య తేడా సమానం:',
@@ -591,7 +591,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-016',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'A Carnot refrigerator operates between a cold reservoir at 250 K and a hot reservoir at 300 K. Its coefficient of performance (COP) is:',
     textTe: '250 K వద్ద శీతల భాండం మరియు 300 K వద్ద ఉష్ణ భాండం మధ్య Carnot శీతలీకరణ యంత్రం పని చేస్తుంది. దాని పనితీరు గుణకం (COP):',
@@ -630,7 +630,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-017',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'A gas undergoes a cyclic process along a triangular path on a PV diagram with vertices at (2 L, 100 kPa), (4 L, 100 kPa), and (4 L, 300 kPa). The net work done by the gas per cycle is:',
     textTe: 'ఒక వాయువు PV రేఖాచిత్రంపై (2 L, 100 kPa), (4 L, 100 kPa), మరియు (4 L, 300 kPa) శీర్షాలతో త్రికోణ మార్గంలో చక్రీయ ప్రక్రియను అనుసరిస్తుంది. ప్రతి చక్రానికి వాయువు చేసిన నికర పని:',
@@ -669,7 +669,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-018',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'An ideal gas undergoes free expansion (expansion into vacuum). Which of the following is correct?',
     textTe: 'ఆదర్శ వాయువు స్వేచ్ఛా వ్యాకోచం (శూన్యంలోకి వ్యాకోచం) చెందుతుంది. కింది వాటిలో ఏది సరైనది?',
@@ -710,7 +710,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   // ===== HARD (7 questions): Q19–Q25 =====
   {
     id: 'phy-thd-019',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'Two Carnot engines A and B are connected in series. Engine A receives heat from a hot reservoir at 900 K and rejects heat to a reservoir at temperature T. Engine B receives the heat rejected by A and rejects heat to a cold reservoir at 400 K. If both engines have equal efficiency, the temperature T is:',
     textTe: 'రెండు Carnot యంత్రాలు A మరియు B శ్రేణిలో అనుసంధానమై ఉన్నాయి. యంత్రం A, 900 K వద్ద ఉష్ణ భాండం నుండి ఉష్ణాన్ని గ్రహించి T ఉష్ణోగ్రత వద్ద భాండానికి ఉష్ణాన్ని తిరస్కరిస్తుంది. యంత్రం B, A తిరస్కరించిన ఉష్ణాన్ని గ్రహించి 400 K వద్ద శీతల భాండానికి ఉష్ణాన్ని తిరస్కరిస్తుంది. రెండు యంత్రాలు సమాన సామర్థ్యం కలిగి ఉంటే, ఉష్ణోగ్రత T:',
@@ -749,7 +749,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-020',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'An ideal monoatomic gas (gamma = 5/3) at 300 K is compressed adiabatically to 1/8th of its original volume. The final temperature of the gas is:',
     textTe: '300 K వద్ద ఆదర్శ ఏకపరమాణు వాయువు (gamma = 5/3) దాని అసలు ఘనపరిమాణంలో 1/8 వ వంతుకు రుద్ధోష్ణంగా సంపీడనం చేయబడింది. వాయువు యొక్క తుది ఉష్ణోగ్రత:',
@@ -788,7 +788,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-021',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'A metal block at 600 K is brought into thermal contact with a large heat reservoir at 300 K. If 1800 J of heat flows irreversibly from the block to the reservoir, the total entropy change of the universe is approximately:',
     textTe: '600 K వద్ద లోహపు బ్లాకును 300 K వద్ద పెద్ద ఉష్ణ భాండంతో ఉష్ణ సంపర్కంలోకి తీసుకువస్తారు. 1800 J ఉష్ణం బ్లాకు నుండి భాండానికి అవిరామంగా ప్రవహిస్తే, విశ్వం యొక్క మొత్తం ఎంట్రోపీ మార్పు సుమారు:',
@@ -827,7 +827,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-022',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'An ideal gas is taken from state A to state C via two different paths: Path 1 is A -> B (isobaric expansion at 200 kPa from 2 L to 5 L) followed by B -> C (isochoric decrease from 200 kPa to 100 kPa at 5 L). Path 2 is directly from A to C. The total work done by the gas along Path 1 is:',
     textTe: 'ఆదర్శ వాయువు A స్థితి నుండి C స్థితికి రెండు వేర్వేరు మార్గాల ద్వారా తీసుకువెళ్ళబడుతుంది: మార్గం 1 అనేది A -> B (2 L నుండి 5 L కి 200 kPa వద్ద సమపీడన వ్యాకోచం) తర్వాత B -> C (5 L వద్ద 200 kPa నుండి 100 kPa కి సమఘనపరిమాణ తగ్గుదల). మార్గం 2 A నుండి C కి నేరుగా ఉంటుంది. మార్గం 1 వెంట వాయువు చేసిన మొత్తం పని:',
@@ -866,7 +866,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-023',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'A heat engine absorbs 2000 J of heat from a hot reservoir per cycle and has an efficiency of 40%. The work done by the engine and the heat rejected to the cold reservoir per cycle are, respectively:',
     textTe: 'ఒక ఉష్ణ యంత్రం ప్రతి చక్రానికి ఉష్ణ భాండం నుండి 2000 J ఉష్ణాన్ని గ్రహిస్తుంది మరియు 40% సామర్థ్యం కలిగి ఉంటుంది. యంత్రం చేసిన పని మరియు ప్రతి చక్రానికి శీతల భాండానికి తిరస్కరించిన ఉష్ణం, వరుసగా:',
@@ -905,7 +905,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-024',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'An ideal diatomic gas (gamma = 7/5) at pressure P and volume V undergoes a reversible adiabatic expansion to a final volume of 32V. The final pressure of the gas is:',
     textTe: 'P పీడనం మరియు V ఘనపరిమాణం వద్ద ఆదర్శ ద్విపరమాణు వాయువు (gamma = 7/5) 32V తుది ఘనపరిమాణానికి విరామయోగ్య రుద్ధోష్ణ వ్యాకోచం చెందుతుంది. వాయువు యొక్క తుది పీడనం:',
@@ -944,7 +944,7 @@ export const physicsThermodynamicsQuestions: Question[] = [
   },
   {
     id: 'phy-thd-025',
-    chapterId: 'physics-thermodynamics',
+    chapterId: 'phy-thermodynamics',
     subjectId: 'physics',
     text: 'One mole of an ideal monoatomic gas (gamma = 5/3) initially at 300 K first undergoes an isothermal expansion to double its volume, and then undergoes an adiabatic expansion to double its volume again. The final temperature of the gas is approximately: (Given: 2^(2/3) = 1.587)',
     textTe: 'ఒక మోల్ ఆదర్శ ఏకపరమాణు వాయువు (gamma = 5/3) ప్రారంభంలో 300 K వద్ద ఉన్నప్పుడు, మొదట దాని ఘనపరిమాణాన్ని రెట్టింపు చేయడానికి సమోష్ణ వ్యాకోచం చెందుతుంది, తర్వాత దాని ఘనపరిమాణాన్ని మళ్ళీ రెట్టింపు చేయడానికి రుద్ధోష్ణ వ్యాకోచం చెందుతుంది. వాయువు యొక్క తుది ఉష్ణోగ్రత సుమారు: (ఇవ్వబడినది: 2^(2/3) = 1.587)',
