@@ -465,6 +465,18 @@ export default function PracticeResultsScreen() {
           {/* Actions (shared) */}
           <View style={styles.actions}>
             <PuffyButton title="Review Answers" onPress={handleReview} variant="secondary" />
+            {wrongNum > 0 && lastExam && (
+              <PuffyButton
+                title="Practice My Mistakes"
+                onPress={() =>
+                  router.push({
+                    pathname: '/practice-mistakes',
+                    params: { sessionId: lastExam.id, sessionMode: 'practice' },
+                  })
+                }
+                variant="ghost"
+              />
+            )}
             <PuffyButton title="Retry Practice Exam" onPress={handleRetry} variant="ghost" />
             <PuffyButton title="Back to Dashboard" onPress={handleGoHome} />
           </View>
