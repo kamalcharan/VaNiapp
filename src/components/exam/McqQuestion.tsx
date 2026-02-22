@@ -32,6 +32,7 @@ export function McqQuestion({ question, language, selectedOptionId, showFeedback
 
   return (
     <View style={styles.optionsList}>
+      <Text style={[styles.contextLabel, { color: colors.textTertiary }]}>SELECT ONE ANSWER</Text>
       {payload.options.map((opt, idx) => {
         const os = getOptionStyle(opt.id);
         const label = String.fromCharCode(65 + idx);
@@ -74,6 +75,12 @@ export function McqQuestion({ question, language, selectedOptionId, showFeedback
 const styles = StyleSheet.create({
   optionsList: {
     gap: Spacing.md,
+  },
+  contextLabel: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 10,
+    letterSpacing: 1,
+    marginBottom: 2,
   },
   optionRow: {
     flexDirection: 'row',

@@ -186,13 +186,13 @@ See `docs/ZOO_GENERATION_PLAN.md` for full batch registry.
 | ~~`practice-results.tsx` uses legacy Question type~~ | ~~`app/(exam)/practice-results.tsx`~~ | DONE — already uses `legacyBatchToV2()` + V2 adapter |
 | Topic ID always null in Qbank insert | `Qbank/insert.html:316` | Doesn't map topic names to IDs |
 
-### Question Type UI — Known Issues
-| Component | Status | Issue |
+### Question Type UI — Status
+| Component | Status | Notes |
 |-----------|--------|-------|
-| MCQ | Needs context | No question stem header — assumes parent handles it |
-| ScenarioBased | Needs context | Scenario is plain text, no "Given this scenario..." prompt |
-| LogicalSequence | Needs rework | No drag/reorder — just MCQ options, defeats purpose |
-| DiagramBased | **Broken** | Placeholder only — not rendering actual images |
+| MCQ | Good | "SELECT ONE ANSWER" context label added |
+| ScenarioBased | Good | Transition prompt "Based on the above scenario..." added |
+| LogicalSequence | Good | "SELECT THE CORRECT SEQUENCE" label + correct order reveal (P → Q → R) on feedback |
+| DiagramBased | Good | Real `Image` rendering with loading spinner + error fallback |
 | MatchTheFollowing | Good | Interactive pairs, dynamic colors, instruction text |
 | TrueFalse | Good | Clear STATEMENT card, emoji buttons |
 | AssertionReasoning | Good | Distinct colored A/R labels, card separation |
