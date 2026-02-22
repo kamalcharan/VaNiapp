@@ -90,9 +90,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B01 | `bot-living-characteristics` | Characteristics of Living Organisms | 20 | PENDING |
-| B02 | `bot-living-classification` | Biodiversity and Need for Classification | 20 | PENDING |
-| B03 | `bot-living-taxonomy` | Taxonomic Categories and Taxonomic Aids | 20 | PENDING |
+| B01 | `bot-living-characteristics` | Characteristics of Living Organisms | 20 | DONE |
+| B02 | `bot-living-classification` | Biodiversity and Need for Classification | 20 | DONE |
+| B03 | `bot-living-taxonomy` | Taxonomic Categories and Taxonomic Aids | 20 | DONE |
 | | | **Chapter 1 Total** | **60** | |
 
 ### Chapter 2: Biological Classification (`bot-biological-classification`) — 4 batches
@@ -142,38 +142,38 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B23 | `bot-cell-theory` | Cell Theory and Prokaryotic Cell | 20 | PENDING |
-| B24 | `bot-cell-organelles` | Cell Organelles (Mitochondria, Plastids, Ribosomes) | 20 | PENDING |
-| B25 | `bot-cell-membrane` | Cell Membrane and Endomembrane System | 20 | PENDING |
-| B26 | `bot-cell-nucleus` | Nucleus, Chromosomes, and Cytoskeleton | 20 | PENDING |
+| B23 | `bot-cell-theory` | Cell Theory and Prokaryotic Cell | 20 | DONE |
+| B24 | `bot-cell-organelles` | Cell Organelles (Mitochondria, Plastids, Ribosomes) | 20 | DONE |
+| B25 | `bot-cell-membrane` | Cell Membrane and Endomembrane System | 20 | DONE |
+| B26 | `bot-cell-nucleus` | Nucleus, Chromosomes, and Cytoskeleton | 20 | DONE |
 | | | **Chapter 6 Total** | **80** | |
 
 ### Chapter 7: Cell Cycle and Cell Division (`bot-cell-division`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B27 | `bot-div-cell-cycle` | Cell Cycle and Mitosis | 20 | PENDING |
-| B28 | `bot-div-meiosis-i` | Meiosis I | 20 | PENDING |
-| B29 | `bot-div-meiosis-ii` | Meiosis II and Significance of Meiosis | 20 | PENDING |
+| B27 | `bot-div-cell-cycle` | Cell Cycle and Mitosis | 20 | DONE |
+| B28 | `bot-div-meiosis-i` | Meiosis I | 20 | DONE |
+| B29 | `bot-div-meiosis-ii` | Meiosis II and Significance of Meiosis | 20 | DONE |
 | | | **Chapter 7 Total** | **60** | |
 
 ### Chapter 8: Transport in Plants (`bot-transport`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B30 | `bot-trans-diffusion` | Diffusion, Osmosis, and Plasmolysis | 20 | PENDING |
-| B31 | `bot-trans-water` | Water Absorption and Ascent of Sap | 20 | PENDING |
-| B32 | `bot-trans-transpiration` | Transpiration | 20 | PENDING |
-| B33 | `bot-trans-phloem` | Mineral Transport and Phloem Transport | 20 | PENDING |
+| B30 | `bot-trans-diffusion` | Diffusion, Osmosis, and Plasmolysis | 20 | DONE |
+| B31 | `bot-trans-water` | Water Absorption and Ascent of Sap | 20 | DONE |
+| B32 | `bot-trans-transpiration` | Transpiration | 20 | DONE |
+| B33 | `bot-trans-phloem` | Mineral Transport and Phloem Transport | 20 | DONE |
 | | | **Chapter 8 Total** | **80** | |
 
 ### Chapter 9: Mineral Nutrition (`bot-mineral`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B34 | `bot-mineral-essential` | Essential Mineral Nutrients and Criteria | 20 | PENDING |
-| B35 | `bot-mineral-deficiency` | Deficiency Symptoms and Mineral Toxicity | 20 | PENDING |
-| B36 | `bot-mineral-nitrogen` | Nitrogen Metabolism and Biological N₂ Fixation | 20 | PENDING |
+| B34 | `bot-mineral-essential` | Essential Mineral Nutrients and Criteria | 20 | DONE |
+| B35 | `bot-mineral-deficiency` | Deficiency Symptoms and Mineral Toxicity | 20 | DONE |
+| B36 | `bot-mineral-nitrogen` | Nitrogen Metabolism and Biological N₂ Fixation | 20 | DONE |
 | | | **Chapter 9 Total** | **60** | |
 
 ### Chapter 10: Photosynthesis in Higher Plants (`bot-photosynthesis`) — 4 batches
@@ -190,9 +190,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B41 | `bot-resp-glycolysis` | Glycolysis and Fermentation | 20 | PENDING |
-| B42 | `bot-resp-tca` | TCA Cycle (Krebs Cycle) | 20 | PENDING |
-| B43 | `bot-resp-etc` | ETC, Oxidative Phosphorylation, and Respiratory Quotient | 20 | PENDING |
+| B41 | `bot-resp-glycolysis` | Glycolysis and Fermentation | 20 | DONE |
+| B42 | `bot-resp-tca` | TCA Cycle (Krebs Cycle) | 20 | DONE |
+| B43 | `bot-resp-etc` | ETC, Oxidative Phosphorylation, and Respiratory Quotient | 20 | DONE |
 | | | **Chapter 11 Total** | **60** | |
 
 ### Chapter 12: Plant Growth and Development (`bot-growth`) — 4 batches
@@ -200,9 +200,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B44 | `bot-growth-phases` | Growth Phases and Differentiation | 20 | DONE |
-| B45 | `bot-growth-auxin` | Auxins and Gibberellins | 20 | PENDING |
-| B46 | `bot-growth-cytokinins` | Cytokinins, ABA, and Ethylene | 20 | PENDING |
-| B47 | `bot-growth-photoperiodism` | Photoperiodism and Vernalisation | 20 | PENDING |
+| B45 | `bot-growth-auxin` | Auxins and Gibberellins | 20 | DONE |
+| B46 | `bot-growth-cytokinins` | Cytokinins, ABA, and Ethylene | 20 | DONE |
+| B47 | `bot-growth-photoperiodism` | Photoperiodism and Vernalisation | 20 | DONE |
 | | | **Chapter 12 Total** | **80** | |
 
 ### Chapter 13: Sexual Reproduction in Flowering Plants (`bot-reproduction`) — 5 batches
@@ -242,9 +242,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B63 | `bot-eco-organisms` | Organisms and Environment (Adaptations) | 20 | PENDING |
-| B64 | `bot-eco-populations` | Population Attributes and Growth Models | 20 | PENDING |
-| B65 | `bot-eco-interactions` | Population Interactions (Mutualism, Competition, Predation) | 20 | PENDING |
+| B63 | `bot-eco-organisms` | Organisms and Environment (Adaptations) | 20 | DONE |
+| B64 | `bot-eco-populations` | Population Attributes and Growth Models | 20 | DONE |
+| B65 | `bot-eco-interactions` | Population Interactions (Mutualism, Competition, Predation) | 20 | DONE |
 | | | **Chapter 16 Total** | **60** | |
 
 ### Chapter 17: Ecosystem (`bot-ecosystem`) — 4 batches
@@ -465,23 +465,23 @@ Commit and push.
 
 | Chapter | Topics | Qs Target | Qs Done | % |
 |---------|--------|-----------|---------|---|
-| Ch1 The Living World | 3 | 60 | 0 | 0% |
-| Ch2 Biological Classification | 4 | 80 | 0 | 0% |
-| Ch3 Plant Kingdom | 5 | 100 | 0 | 0% |
+| Ch1 The Living World | 3 | 60 | 60 | 100% |
+| Ch2 Biological Classification | 4 | 80 | 80 | 100% |
+| Ch3 Plant Kingdom | 5 | 100 | 100 | 100% |
 | Ch4 Morphology | 5 | 100 | 100 | 100% |
 | Ch5 Anatomy | 5 | 100 | 100 | 100% |
-| Ch6 Cell Unit of Life | 4 | 80 | 0 | 0% |
-| Ch7 Cell Division | 3 | 60 | 0 | 0% |
-| Ch8 Transport in Plants | 4 | 80 | 0 | 0% |
-| Ch9 Mineral Nutrition | 3 | 60 | 0 | 0% |
-| Ch10 Photosynthesis | 4 | 80 | 20 | 25% |
-| Ch11 Respiration | 3 | 60 | 0 | 0% |
-| Ch12 Plant Growth | 4 | 80 | 0 | 0% |
+| Ch6 Cell Unit of Life | 4 | 80 | 80 | 100% |
+| Ch7 Cell Division | 3 | 60 | 60 | 100% |
+| Ch8 Transport in Plants | 4 | 80 | 80 | 100% |
+| Ch9 Mineral Nutrition | 3 | 60 | 60 | 100% |
+| Ch10 Photosynthesis | 4 | 80 | 80 | 100% |
+| Ch11 Respiration | 3 | 60 | 60 | 100% |
+| Ch12 Plant Growth | 4 | 80 | 80 | 100% |
 | Ch13 Sexual Reproduction | 5 | 100 | 100 | 100% |
 | Ch14 Inheritance | 5 | 100 | 100 | 100% |
 | Ch15 Molecular Inheritance | 5 | 100 | 100 | 100% |
-| Ch16 Organisms & Populations | 3 | 60 | 0 | 0% |
+| Ch16 Organisms & Populations | 3 | 60 | 60 | 100% |
 | Ch17 Ecosystem | 4 | 80 | 0 | 0% |
 | Ch18 Biodiversity | 3 | 60 | 0 | 0% |
 | Ch19 Environmental Issues | 3 | 60 | 0 | 0% |
-| **TOTAL** | **75** | **1,500** | **520** | **35%** |
+| **TOTAL** | **75** | **1,500** | **1,300** | **87%** |
