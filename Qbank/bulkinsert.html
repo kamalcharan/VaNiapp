@@ -517,7 +517,9 @@
         // Topics: bot-cell-theory, bot-cell-prokaryotic, bot-cell-eukaryotic, bot-cell-organelles
         'bot-cell':         'bot-cell-unit',
         // Topics: bot-cycle-phases, bot-cycle-mitosis, bot-cycle-meiosis, bot-cycle-significance
+        // Also: bot-div-cell-cycle, bot-div-meiosis-i, bot-div-meiosis-ii (generated JSONs)
         'bot-cycle':        'bot-cell-cycle',
+        'bot-div':          'bot-cell-cycle',
         // Topics: bot-class-monera, bot-class-protista, bot-class-fungi, bot-class-viruses
         'bot-class':        'bot-biological-classification',
         // Topics: bot-plant-algae, bot-plant-bryophytes, bot-plant-pteridophytes, etc.
@@ -537,7 +539,9 @@
         // Topics: bot-repro-flower, bot-repro-pollination, bot-repro-fertilization, etc.
         'bot-repro':        'bot-sexual-reproduction',
         // Topics: bot-inherit-mendel, bot-inherit-linkage, bot-inherit-sex, bot-inherit-disorders
+        // Also: bot-inher-mendel, bot-inher-dihybrid, bot-inher-sex, etc. (generated JSONs)
         'bot-inherit':      'bot-inheritance',
+        'bot-inher':        'bot-inheritance',
         // Topics: bot-mol-dna-structure, bot-mol-replication, bot-mol-transcription, etc.
         'bot-mol':          'bot-molecular-inheritance',
         // Topics: bot-eco-energy, bot-eco-pyramids, bot-eco-nutrient
@@ -550,6 +554,10 @@
         'bot-biodiv':       'bot-biodiversity',
 
         // ── Zoology (15 chapters) ─────────────────────────────
+        // IMPORTANT: zoo-biotech and zoo-bioapp MUST come before zoo-bio
+        // to avoid false prefix match (zoo-biotech starts with zoo-bio)
+        'zoo-biotech':  'zoo-biotechnology-principles',
+        'zoo-bioapp':   'zoo-biotechnology-applications',
         'zoo-kingdom':  'zoo-animal-kingdom',
         'zoo-struct':   'zoo-structural-organization',
         'zoo-bio':      'zoo-biomolecules',
@@ -563,8 +571,6 @@
         'zoo-rh':       'zoo-reproductive-health',
         'zoo-evo':      'zoo-evolution',
         'zoo-health':   'zoo-human-health',
-        'zoo-biotech':  'zoo-biotechnology-principles',
-        'zoo-bioapp':   'zoo-biotechnology-applications',
 
         // ── Physics (20 chapters) ─────────────────────────────
         'phy-units':    'phy-units-measurement',
