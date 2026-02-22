@@ -43,7 +43,7 @@ const CRUNCH: PersonaConfig = {
 const LEVELS: PersonaConfig = {
   mode: 'levels',
   targetYear: 2027,
-  showLevels: true,
+  showLevels: false,
   showCountdown: false,
   labels: {
     homeGreeting: 'Welcome back, explorer!',
