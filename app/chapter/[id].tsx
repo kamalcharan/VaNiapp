@@ -68,17 +68,25 @@ export default function ChapterQuizScreen() {
     (state: RootState) => chapterId ? state.strength.chapters[chapterId] : undefined,
   );
 
-  // Fetch questions from Supabase, shuffle, and filter out already-correct ones
+  // Fetch questions from Supabase, shuffle, and pick a batch
   const [questions, setQuestions] = useState<QuestionV2[]>([]);
   const [totalInBank, setTotalInBank] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<'no-connection' | 'no-questions' | 'not-configured' | null>(null);
   const [sessionStarted, setSessionStarted] = useState(false);
 
-  useEffect(() => {
+  const loadQuestions = () => {
     if (!chapterId) return;
     setIsLoading(true);
+    setLoadError(null);
     fetchQuestionsByChapter(chapterId)
-      .then((allQs) => {
+      .then((result) => {
+        if (!result.ok) {
+          setLoadError(result.error);
+          setIsLoading(false);
+          return;
+        }
+        const allQs = result.questions;
         setTotalInBank(allQs.length);
 
         // Shuffle using Fisher-Yates
@@ -95,8 +103,13 @@ export default function ChapterQuizScreen() {
       })
       .catch((err) => {
         console.warn(`[chapter] Failed to load questions for ${chapterId}:`, err);
+        setLoadError('no-connection');
         setIsLoading(false);
       });
+  };
+
+  useEffect(() => {
+    loadQuestions();
   }, [chapterId]);
 
   // Derive subject from chapterId prefix (e.g., "zoo-animal-kingdom" → "zoology")
@@ -280,14 +293,24 @@ export default function ChapterQuizScreen() {
     );
   }
 
-  // ── No questions ──
-  if (questions.length === 0) {
+  // ── Error / empty states ──
+  if (loadError || questions.length === 0) {
+    const isConnectionError = loadError === 'no-connection' || loadError === 'not-configured';
+    const icon = isConnectionError ? '\uD83D\uDD0C' : '\uD83D\uDCDA';
+    const title = isConnectionError
+      ? 'Connection Problem'
+      : 'No Questions Yet';
+    const message = isConnectionError
+      ? 'Could not reach the server. Please check your internet connection and try again.'
+      : 'Questions for this chapter haven\'t been added yet. Check back soon!';
+
     return (
       <DotGridBackground>
         <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
           <View style={styles.loadingContainer}>
-            <Text style={[Typography.h3, { color: colors.text }]}>
-              No questions yet
+            <Text style={{ fontSize: 48, marginBottom: Spacing.md }}>{icon}</Text>
+            <Text style={[Typography.h3, { color: colors.text, textAlign: 'center' }]}>
+              {title}
             </Text>
             <Text
               style={[
@@ -296,20 +319,39 @@ export default function ChapterQuizScreen() {
                   color: colors.textSecondary,
                   marginTop: Spacing.sm,
                   textAlign: 'center',
+                  paddingHorizontal: Spacing.xl,
+                  lineHeight: 22,
                 },
               ]}
             >
-              {persona.labels.emptyState}
+              {message}
             </Text>
-            <Pressable
-              onPress={() => router.back()}
-              style={[
-                styles.backBtnLarge,
-                { backgroundColor: subjectMeta.color },
-              ]}
-            >
-              <Text style={styles.backBtnLargeText}>Go Back</Text>
-            </Pressable>
+            <View style={{ flexDirection: 'row', gap: Spacing.md, marginTop: Spacing.lg }}>
+              {isConnectionError && (
+                <Pressable
+                  onPress={loadQuestions}
+                  style={[
+                    styles.backBtnLarge,
+                    { backgroundColor: subjectMeta.color },
+                  ]}
+                >
+                  <Text style={styles.backBtnLargeText}>Try Again</Text>
+                </Pressable>
+              )}
+              <Pressable
+                onPress={() => router.back()}
+                style={[
+                  styles.backBtnLarge,
+                  isConnectionError
+                    ? { backgroundColor: colors.surfaceBorder }
+                    : { backgroundColor: subjectMeta.color },
+                ]}
+              >
+                <Text style={[styles.backBtnLargeText, isConnectionError && { color: colors.text }]}>
+                  Go Back
+                </Text>
+              </Pressable>
+            </View>
           </View>
         </SafeAreaView>
       </DotGridBackground>

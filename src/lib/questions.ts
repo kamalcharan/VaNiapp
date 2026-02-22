@@ -1,7 +1,6 @@
 import { supabase } from './supabase';
 import type { QuestionV2, QuestionType, Difficulty, Option, EliminationHint } from '../types';
 import { resolveLegacyChapterId } from './questionAdapter';
-import { getV2QuestionsByChapter as getLocalV2Questions } from '../data/questions';
 
 // ── Types for DB rows ────────────────────────────────────────
 
@@ -37,6 +36,12 @@ interface DbQuestion {
   med_elimination_hints: DbEliminationHint[];
 }
 
+// ── Result type ──────────────────────────────────────────────
+
+export type FetchQuestionsResult =
+  | { ok: true; questions: QuestionV2[] }
+  | { ok: false; error: 'no-connection' | 'no-questions' | 'not-configured' };
+
 // ── In-memory cache ──────────────────────────────────────────
 
 const cache = new Map<string, QuestionV2[]>();
@@ -45,24 +50,21 @@ const cache = new Map<string, QuestionV2[]>();
 
 /**
  * Fetch questions for a chapter from Supabase.
- * Returns QuestionV2[] ready for the quiz screen UI.
- * Fetches both English and Telugu (_te) columns for bilingual display.
- *
- * Handles legacy chapter IDs by resolving them to DB IDs.
- * Falls back to local question data when Supabase returns nothing.
+ * Returns a result object with questions or a typed error.
+ * No silent local fallback — errors surface to the UI.
  */
 export async function fetchQuestionsByChapter(
   chapterId: string,
-): Promise<QuestionV2[]> {
-  // Resolve legacy chapter IDs (e.g., 'zoology-human-physiology' → 'zoo-body-fluids')
+): Promise<FetchQuestionsResult> {
   const resolvedId = resolveLegacyChapterId(chapterId);
 
-  // Check cache first (use resolved ID)
-  if (cache.has(resolvedId)) return cache.get(resolvedId)!;
+  // Check cache first
+  if (cache.has(resolvedId)) {
+    return { ok: true, questions: cache.get(resolvedId)! };
+  }
 
   if (!supabase) {
-    // No Supabase — fall back to local questions
-    return getLocalV2Questions(resolvedId);
+    return { ok: false, error: 'not-configured' };
   }
 
   try {
@@ -81,24 +83,20 @@ export async function fetchQuestionsByChapter(
 
     if (error) {
       console.warn(`[questions] Supabase error for ${resolvedId}:`, error.message);
+      return { ok: false, error: 'no-connection' };
     }
 
-    if (!error && data && data.length > 0) {
-      const questions = (data as unknown as DbQuestion[]).map(dbToV2);
-      cache.set(resolvedId, questions);
-      return questions;
+    if (!data || data.length === 0) {
+      return { ok: false, error: 'no-questions' };
     }
+
+    const questions = (data as unknown as DbQuestion[]).map(dbToV2);
+    cache.set(resolvedId, questions);
+    return { ok: true, questions };
   } catch (err) {
     console.warn(`[questions] Fetch failed for ${resolvedId}:`, err);
+    return { ok: false, error: 'no-connection' };
   }
-
-  // Fall back to local questions when Supabase has nothing or errors
-  const local = getLocalV2Questions(resolvedId);
-  if (local.length > 0) {
-    cache.set(resolvedId, local);
-    return local;
-  }
-  return [];
 }
 
 /** Clear cached questions (useful after imports). */
