@@ -3,13 +3,13 @@
     "id": "chem-states-gas-01",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "According to Boyle's law, at constant temperature, the volume of a given mass of gas is inversely proportional to its:",
-    "explanation": "Boyle's law states that at constant temperature, the pressure of a given mass of gas is inversely proportional to its volume, i.e., P ∝ 1/V or PV = constant (at constant T and n). Therefore, the volume is inversely proportional to the pressure. This is one of the fundamental gas laws and is derived from the observation that compressing a gas at constant temperature increases its pressure proportionally.",
-    "correct_answer": "B",
+    "question_text": "According to Boyle's law, at constant temperature, the volume of a fixed amount of gas is:",
+    "explanation": "Boyle's law states that at constant temperature, the volume of a fixed amount of gas is inversely proportional to its pressure, i.e., V is proportional to 1/P, or PV = constant. This means that as pressure increases, volume decreases proportionally, and vice versa. This law was formulated by Robert Boyle in 1662 and is one of the fundamental gas laws discussed in NCERT Class 11 Chemistry Chapter 5 (States of Matter).",
+    "correct_answer": "A",
     "concept_tags": [
-      "boyles-law",
-      "pressure-volume-relationship",
-      "gas-laws"
+      "boyle-law",
+      "gas-laws",
+      "pressure-volume-relationship"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
     "subject": "chemistry",
@@ -21,40 +21,40 @@
     "options": [
       {
         "key": "A",
-        "text": "Temperature",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "Pressure",
+        "text": "Inversely proportional to its pressure",
         "is_correct": true
       },
       {
+        "key": "B",
+        "text": "Directly proportional to its pressure",
+        "is_correct": false
+      },
+      {
         "key": "C",
-        "text": "Number of moles",
+        "text": "Independent of its pressure",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "Density",
+        "text": "Inversely proportional to the square of its pressure",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
-        "option_key": "A",
-        "hint": "Temperature is held constant in Boyle's law. Volume is directly proportional to temperature according to Charles's law, not Boyle's law.",
-        "misconception": "Confusing Boyle's law (P-V at constant T) with Charles's law (V-T at constant P)."
+        "option_key": "B",
+        "hint": "If volume were directly proportional to pressure, increasing pressure would increase volume. In reality, compressing a gas (increasing pressure) causes it to occupy less volume. Boyle's law states the relationship is inverse, not direct.",
+        "misconception": "Confusing direct proportionality with inverse proportionality in Boyle's law."
       },
       {
         "option_key": "C",
-        "hint": "The number of moles is held constant in Boyle's law (given mass of gas). Volume is directly proportional to number of moles according to Avogadro's law.",
-        "misconception": "Confusing Boyle's law with Avogadro's law (V ∝ n at constant T and P)."
+        "hint": "Volume is definitely not independent of pressure for a gas. If you compress a gas by increasing pressure, its volume decreases. Boyle's law quantifies this as an inverse proportionality at constant temperature.",
+        "misconception": "Assuming that pressure changes do not affect the volume of a gas."
       },
       {
         "option_key": "D",
-        "hint": "While density does change with volume, Boyle's law is stated in terms of pressure and volume, not density. The volume of a gas is inversely proportional to its pressure at constant temperature.",
-        "misconception": "Incorrectly substituting density for pressure in the statement of Boyle's law."
+        "hint": "Boyle's law gives V proportional to 1/P, not V proportional to 1/P². An inverse-square relationship does not hold for ideal gas behaviour. The PV product remains constant, which means a simple inverse (first power) relationship.",
+        "misconception": "Incorrectly recalling the mathematical form of Boyle's law by adding a square term."
       }
     ]
   },
@@ -62,13 +62,13 @@
     "id": "chem-states-gas-02",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "Charles's law relates the volume of a gas to its temperature at constant:",
-    "explanation": "Charles's law states that at constant pressure and for a given mass of gas, the volume is directly proportional to its absolute temperature (in Kelvin), i.e., V ∝ T or V/T = constant (at constant P and n). The law requires that pressure remains constant while studying the relationship between volume and temperature.",
-    "correct_answer": "A",
+    "question_text": "Charles's law relates the volume of a gas to its:",
+    "explanation": "Charles's law states that at constant pressure, the volume of a fixed amount of gas is directly proportional to its absolute temperature (in Kelvin), i.e., V/T = constant. This was formulated by Jacques Charles and later refined by Gay-Lussac. The temperature must be measured in Kelvin for the law to hold. This is covered in NCERT Class 11 Chemistry Chapter 5.",
+    "correct_answer": "B",
     "concept_tags": [
       "charles-law",
-      "volume-temperature-relationship",
-      "gas-laws"
+      "gas-laws",
+      "volume-temperature-relationship"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
     "subject": "chemistry",
@@ -80,40 +80,40 @@
     "options": [
       {
         "key": "A",
-        "text": "Pressure",
-        "is_correct": true
-      },
-      {
-        "key": "B",
-        "text": "Volume",
+        "text": "Pressure at constant volume",
         "is_correct": false
       },
       {
+        "key": "B",
+        "text": "Absolute temperature at constant pressure",
+        "is_correct": true
+      },
+      {
         "key": "C",
-        "text": "Density",
+        "text": "Number of moles at constant temperature",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "Molar mass",
+        "text": "Molecular mass at constant temperature",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
-        "option_key": "B",
-        "hint": "Volume is one of the two variables being related in Charles's law (V ∝ T). It cannot simultaneously be the quantity that is held constant.",
-        "misconception": "Not recognizing that volume is a variable in Charles's law, not a constant."
+        "option_key": "A",
+        "hint": "The relationship between pressure and temperature at constant volume is described by Gay-Lussac's law (P/T = constant), not Charles's law. Charles's law specifically deals with the volume-temperature relationship at constant pressure.",
+        "misconception": "Confusing Charles's law (V vs T at constant P) with Gay-Lussac's law (P vs T at constant V)."
       },
       {
         "option_key": "C",
-        "hint": "Density is not the condition held constant in Charles's law. As volume changes with temperature, density also changes. The condition held constant is pressure.",
-        "misconception": "Confusing the conditions of Charles's law with density, which is a derived property that changes with volume."
+        "hint": "The relationship between volume and number of moles at constant temperature and pressure is described by Avogadro's law (V proportional to n), not Charles's law. Charles's law relates volume to temperature.",
+        "misconception": "Mixing up Charles's law with Avogadro's law."
       },
       {
         "option_key": "D",
-        "hint": "Molar mass is a property of the gas itself and does not change. Charles's law specifically requires constant pressure to relate volume and temperature.",
-        "misconception": "Confusing an intrinsic property of the gas (molar mass) with the experimental condition (constant pressure) required for Charles's law."
+        "hint": "Molecular mass is an intrinsic property of a gas and is not a variable in the basic gas laws. Charles's law relates volume to absolute temperature at constant pressure, not to molecular mass.",
+        "misconception": "Confusing molecular mass with the thermodynamic variables that govern gas behaviour."
       }
     ]
   },
@@ -122,7 +122,7 @@
     "question_type": "mcq",
     "difficulty": "easy",
     "question_text": "The value of the universal gas constant R in SI units (J mol⁻¹ K⁻¹) is:",
-    "explanation": "The universal gas constant R = 8.314 J mol⁻¹ K⁻¹ (or J K⁻¹ mol⁻¹). This value is obtained from the ideal gas equation PV = nRT, where P is in pascals, V in cubic metres, n in moles, and T in kelvin. R is a fundamental constant that appears in many thermodynamic equations and its SI value of 8.314 J mol⁻¹ K⁻¹ is a commonly tested fact in NEET.",
+    "explanation": "The universal gas constant R = 8.314 J mol⁻¹ K⁻¹ in SI units. Other commonly used values include R = 0.0821 L atm mol⁻¹ K⁻¹ and R = 2 cal mol⁻¹ K⁻¹. The SI value 8.314 J mol⁻¹ K⁻¹ is derived from the ideal gas equation PV = nRT using SI units of pressure (Pa), volume (m³), amount (mol), and temperature (K). This is a frequently tested value in NEET.",
     "correct_answer": "C",
     "concept_tags": [
       "gas-constant",
@@ -139,55 +139,113 @@
     "options": [
       {
         "key": "A",
-        "text": "0.0821 J mol⁻¹ K⁻¹",
+        "text": "0.0821",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "1.987 J mol⁻¹ K⁻¹",
+        "text": "1.987",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "8.314 J mol⁻¹ K⁻¹",
+        "text": "8.314",
         "is_correct": true
       },
       {
         "key": "D",
-        "text": "82.14 J mol⁻¹ K⁻¹",
+        "text": "82.1",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "The value 0.0821 is the gas constant in L atm mol⁻¹ K⁻¹, not in SI units (J mol⁻¹ K⁻¹). In SI units, R = 8.314 J mol⁻¹ K⁻¹.",
-        "misconception": "Confusing the value of R in L atm mol⁻¹ K⁻¹ units with its SI value in J mol⁻¹ K⁻¹."
+        "hint": "0.0821 is the value of R in L atm mol⁻¹ K⁻¹, not in SI units. The question specifically asks for R in J mol⁻¹ K⁻¹ (SI units), which is 8.314.",
+        "misconception": "Confusing the value of R in L atm units with its value in SI units (joules)."
       },
       {
         "option_key": "B",
-        "hint": "The value 1.987 corresponds to R in cal mol⁻¹ K⁻¹, not in SI units. The SI value of R is 8.314 J mol⁻¹ K⁻¹.",
-        "misconception": "Confusing the calorie-based value of R (1.987 cal mol⁻¹ K⁻¹) with the SI value in joules."
+        "hint": "1.987 (approximately 2) is the value of R in cal mol⁻¹ K⁻¹. The SI unit of energy is the joule, not the calorie, so the SI value of R is 8.314 J mol⁻¹ K⁻¹.",
+        "misconception": "Selecting the calorie-based value of R instead of the joule-based SI value."
       },
       {
         "option_key": "D",
-        "hint": "The value 82.14 corresponds to R in cm³ atm mol⁻¹ K⁻¹ (or mL atm mol⁻¹ K⁻¹), not in SI units. The correct SI value is 8.314 J mol⁻¹ K⁻¹.",
-        "misconception": "Confusing the value of R in mL atm mol⁻¹ K⁻¹ units with the SI value."
+        "hint": "82.1 is the value of R in mL bar mol⁻¹ K⁻¹ (or sometimes written as cm³ bar mol⁻¹ K⁻¹). The SI value in J mol⁻¹ K⁻¹ is 8.314, which is approximately one-tenth of 82.1.",
+        "misconception": "Confusing the unit system and selecting R in mL bar units instead of SI units."
       }
     ]
   },
   {
     "id": "chem-states-gas-04",
     "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "A gas occupies 500 mL at 27°C and 1 atm. What will be its volume at 127°C and 1 atm?",
-    "explanation": "Using Charles's law (V₁/T₁ = V₂/T₂) at constant pressure: T₁ = 27 + 273 = 300 K, T₂ = 127 + 273 = 400 K, V₁ = 500 mL. Therefore, V₂ = V₁ × (T₂/T₁) = 500 × (400/300) = 500 × 4/3 = 666.67 mL ≈ 667 mL. The volume increases because increasing temperature at constant pressure causes gas molecules to move faster and occupy more space.",
+    "difficulty": "easy",
+    "question_text": "According to Avogadro's law, equal volumes of all gases at the same temperature and pressure contain:",
+    "explanation": "Avogadro's law states that equal volumes of all gases at the same temperature and pressure contain the same number of molecules, regardless of the nature of the gas. Mathematically, V is proportional to n (at constant T and P). This law was proposed by Amedeo Avogadro in 1811 and is a cornerstone of the mole concept and the ideal gas equation. At STP, 1 mole of any ideal gas occupies 22.4 L.",
     "correct_answer": "D",
     "concept_tags": [
+      "avogadro-law",
+      "mole-concept",
+      "equal-volumes"
+    ],
+    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Equal mass of gas",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Equal number of atoms",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Equal kinetic energy per molecule",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Equal number of molecules",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Equal volumes of different gases at the same T and P contain the same number of molecules but NOT the same mass. For example, 22.4 L of O₂ at STP weighs 32 g, while 22.4 L of N₂ at STP weighs 28 g. Mass depends on molar mass, which differs among gases.",
+        "misconception": "Confusing equal number of molecules with equal mass, ignoring that different gases have different molecular masses."
+      },
+      {
+        "option_key": "B",
+        "hint": "Avogadro's law refers to equal number of molecules, not atoms. Different molecules contain different numbers of atoms. For example, 1 mole of O₂ has 2 moles of atoms, while 1 mole of O₃ has 3 moles of atoms, even though both have the same number of molecules.",
+        "misconception": "Confusing molecules with atoms — Avogadro's law applies to molecules (or formula units), not individual atoms."
+      },
+      {
+        "option_key": "C",
+        "hint": "While molecules of all gases at the same temperature do have the same average kinetic energy (from kinetic theory: KE = 3/2 kT), Avogadro's law is about equal number of molecules, not equal kinetic energy. Equal kinetic energy is a consequence of the same temperature, not of equal volumes.",
+        "misconception": "Mixing up Avogadro's law about molecule count with the kinetic theory result about average kinetic energy at the same temperature."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-gas-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A gas occupies 500 mL at 27°C and 1 atm. If the temperature is raised to 327°C at the same pressure, the new volume of the gas will be:",
+    "explanation": "Using Charles's law: V₁/T₁ = V₂/T₂ (at constant pressure). Convert temperatures to Kelvin: T₁ = 27 + 273 = 300 K, T₂ = 327 + 273 = 600 K. So V₂ = V₁ × (T₂/T₁) = 500 × (600/300) = 500 × 2 = 1000 mL. The volume doubles because the absolute temperature doubles. This is a straightforward application of Charles's law commonly tested in NEET.",
+    "correct_answer": "A",
+    "concept_tags": [
       "charles-law",
-      "volume-temperature",
-      "numerical-problem",
-      "gas-laws"
+      "gas-law-calculation",
+      "temperature-conversion"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
     "subject": "chemistry",
@@ -199,12 +257,12 @@
     "options": [
       {
         "key": "A",
-        "text": "250 mL",
-        "is_correct": false
+        "text": "1000 mL",
+        "is_correct": true
       },
       {
         "key": "B",
-        "text": "500 mL",
+        "text": "250 mL",
         "is_correct": false
       },
       {
@@ -214,84 +272,25 @@
       },
       {
         "key": "D",
-        "text": "667 mL",
-        "is_correct": true
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "A volume of 250 mL implies the gas was compressed to half its original volume, but the temperature increased at constant pressure, so the volume should increase, not decrease.",
-        "misconception": "Incorrectly thinking that increasing temperature decreases volume, or misapplying the formula."
-      },
-      {
-        "option_key": "B",
-        "hint": "A volume of 500 mL means no change occurred. Since the temperature increased from 300 K to 400 K at constant pressure, the volume must increase according to Charles's law.",
-        "misconception": "Assuming the volume remains unchanged despite a temperature increase at constant pressure."
-      },
-      {
-        "option_key": "C",
-        "hint": "750 mL would correspond to a temperature ratio of 3/2, but the actual ratio is T₂/T₁ = 400/300 = 4/3. This error likely comes from using Celsius temperatures directly instead of converting to Kelvin.",
-        "misconception": "Using Celsius temperatures (127/27 ≈ some ratio) instead of absolute Kelvin temperatures (400/300) in Charles's law."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-gas-05",
-    "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "According to Dalton's law of partial pressures, the total pressure exerted by a mixture of non-reacting gases is equal to:",
-    "explanation": "Dalton's law of partial pressures states that the total pressure exerted by a mixture of non-reacting gases is equal to the sum of the partial pressures of the individual gases. Mathematically, P_total = p₁ + p₂ + p₃ + ... where p₁, p₂, p₃ are the partial pressures of individual gases. Each gas in the mixture behaves independently and exerts the same pressure that it would exert if it alone occupied the entire volume at the same temperature.",
-    "correct_answer": "A",
-    "concept_tags": [
-      "daltons-law",
-      "partial-pressure",
-      "gas-mixture"
-    ],
-    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "remember",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "The sum of the partial pressures of all the gases in the mixture",
-        "is_correct": true
-      },
-      {
-        "key": "B",
-        "text": "The product of the partial pressures of all the gases in the mixture",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "The average of the partial pressures of all the gases in the mixture",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "The partial pressure of the gas with the highest mole fraction",
+        "text": "6055 mL",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
         "option_key": "B",
-        "hint": "Dalton's law involves the sum of partial pressures, not their product. Taking the product of pressures has no physical significance in the context of gas mixtures.",
-        "misconception": "Confusing addition of partial pressures with multiplication, perhaps by analogy with equilibrium constant expressions."
+        "hint": "250 mL is half the original volume, implying the volume decreased. However, when temperature increases at constant pressure, volume increases (Charles's law). This answer would require the temperature to have halved, not doubled.",
+        "misconception": "Inverting the ratio in Charles's law — dividing T₁ by T₂ instead of multiplying V₁ by T₂/T₁."
       },
       {
         "option_key": "C",
-        "hint": "The total pressure is the sum, not the average, of the partial pressures. The average would divide by the number of gases, which would give a smaller value than the actual total pressure.",
-        "misconception": "Confusing the sum of partial pressures with their arithmetic mean."
+        "hint": "750 mL would imply V₂ = 500 × (T₂/T₁) where the ratio is 1.5. This would require T₂/T₁ = 1.5, which does not match. T₂/T₁ = 600/300 = 2, so the volume should be 1000 mL.",
+        "misconception": "Using Celsius temperatures instead of Kelvin in Charles's law (327/27 is not valid; one must use 600 K / 300 K)."
       },
       {
         "option_key": "D",
-        "hint": "Dalton's law considers contributions from all gases in the mixture, not just the one with the highest mole fraction. Every gas contributes to the total pressure in proportion to its mole fraction.",
-        "misconception": "Thinking that the dominant gas alone determines total pressure, ignoring contributions from other gases."
+        "hint": "6055 mL would result from using the ratio 327/27 = 12.11 (Celsius values directly). Charles's law requires absolute temperatures in Kelvin. The correct calculation uses 600 K / 300 K = 2, giving 1000 mL.",
+        "misconception": "Directly using Celsius temperature values in the gas law formula instead of converting to Kelvin first."
       }
     ]
   },
@@ -299,194 +298,13 @@
     "id": "chem-states-gas-06",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "According to Graham's law of diffusion, the rate of diffusion of a gas is inversely proportional to the square root of its:",
-    "explanation": "Graham's law of diffusion states that at constant temperature and pressure, the rate of diffusion (or effusion) of a gas is inversely proportional to the square root of its molar mass (or density). Mathematically, r ∝ 1/√M, where r is the rate of diffusion and M is the molar mass. For two gases: r₁/r₂ = √(M₂/M₁). Lighter gases diffuse faster because their molecules have higher average velocities at the same temperature.",
-    "correct_answer": "B",
-    "concept_tags": [
-      "grahams-law",
-      "diffusion",
-      "effusion",
-      "molar-mass"
-    ],
-    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "remember",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "Pressure",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "Molar mass",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "Temperature",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "Volume",
-        "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "Pressure is kept constant while applying Graham's law. The rate of diffusion depends on molar mass (or density) of the gas, not on pressure.",
-        "misconception": "Confusing the experimental condition (constant pressure) with the variable that determines the rate of diffusion."
-      },
-      {
-        "option_key": "C",
-        "hint": "Temperature is held constant in Graham's law. While kinetic energy depends on temperature, Graham's law specifically relates rate of diffusion to molar mass at a given temperature.",
-        "misconception": "Confusing the effect of temperature on molecular speed with the molar mass dependence stated in Graham's law."
-      },
-      {
-        "option_key": "D",
-        "hint": "Volume is not the property that determines the rate of diffusion in Graham's law. The rate depends on the molar mass (or density) of the gas.",
-        "misconception": "Incorrectly associating volume with the rate of diffusion instead of molar mass."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-gas-07",
-    "question_type": "mcq",
-    "difficulty": "hard",
-    "question_text": "The kinetic energy of one mole of an ideal gas at temperature T is given by:",
-    "explanation": "According to the kinetic molecular theory, the average kinetic energy per molecule of an ideal gas is (3/2)kT, where k is the Boltzmann constant. For one mole of gas (containing Nₐ molecules), the total kinetic energy is Nₐ × (3/2)kT = (3/2)NₐkT = (3/2)RT, since R = Nₐk. Therefore, the kinetic energy of one mole of an ideal gas depends only on temperature and equals (3/2)RT.",
-    "correct_answer": "C",
-    "concept_tags": [
-      "kinetic-energy",
-      "kinetic-molecular-theory",
-      "ideal-gas",
-      "temperature-dependence"
-    ],
-    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "understand",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "(1/2)RT",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "RT",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "(3/2)RT",
-        "is_correct": true
-      },
-      {
-        "key": "D",
-        "text": "(5/2)RT",
-        "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "(1/2)RT represents the kinetic energy contribution from a single translational degree of freedom per mole. A gas molecule has three translational degrees of freedom, so the total is (3/2)RT.",
-        "misconception": "Considering only one degree of freedom instead of all three translational degrees of freedom."
-      },
-      {
-        "option_key": "B",
-        "hint": "RT does not correctly represent the kinetic energy per mole. The factor 3/2 arises from three translational degrees of freedom, each contributing (1/2)RT per mole.",
-        "misconception": "Forgetting the numerical coefficient 3/2 that comes from the three translational degrees of freedom."
-      },
-      {
-        "option_key": "D",
-        "hint": "(5/2)RT is the molar heat capacity at constant pressure (Cp) for an ideal monatomic gas multiplied by T, not the translational kinetic energy. The translational KE per mole is (3/2)RT for all ideal gases.",
-        "misconception": "Confusing the translational kinetic energy (3/2)RT with the enthalpy contribution (5/2)RT or rotational + translational energy of diatomic gases."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-gas-08",
-    "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "At STP (0°C and 1 bar), the molar volume of an ideal gas is approximately:",
-    "explanation": "At STP (Standard Temperature and Pressure: 0°C = 273.15 K and 1 bar), the molar volume of an ideal gas is approximately 22.7 L. This can be calculated using PV = nRT: V = nRT/P = (1 mol × 0.08314 L bar mol⁻¹ K⁻¹ × 273.15 K) / 1 bar ≈ 22.7 L. Note that the older definition of STP at 1 atm gives 22.4 L, but the current IUPAC standard of 1 bar gives 22.7 L.",
+    "question_text": "According to Graham's law of diffusion, the rate of diffusion of a gas is inversely proportional to the square root of its molar mass. If the rate of diffusion of hydrogen (M = 2) is r, the rate of diffusion of oxygen (M = 32) under the same conditions is:",
+    "explanation": "By Graham's law: r₁/r₂ = sqrt(M₂/M₁). Here r(H₂)/r(O₂) = sqrt(32/2) = sqrt(16) = 4. Therefore r(O₂) = r(H₂)/4 = r/4. Oxygen diffuses 4 times slower than hydrogen because it is 16 times heavier, and the rate is inversely proportional to the square root of the molar mass. This is a classic NEET problem on Graham's law.",
     "correct_answer": "D",
     "concept_tags": [
-      "molar-volume",
-      "STP",
-      "ideal-gas-equation",
-      "standard-conditions"
-    ],
-    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "remember",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "11.2 L",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "44.8 L",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "22.4 L",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "22.7 L",
-        "is_correct": true
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "11.2 L is half the molar volume of an ideal gas at STP. This would correspond to half a mole of gas, not one mole.",
-        "misconception": "Incorrectly halving the molar volume, possibly confusing with some other calculation."
-      },
-      {
-        "option_key": "B",
-        "hint": "44.8 L is twice the molar volume of an ideal gas at STP. This would correspond to two moles of gas, not one mole.",
-        "misconception": "Doubling the molar volume, possibly confusing with the volume of two moles."
-      },
-      {
-        "option_key": "C",
-        "hint": "22.4 L is the molar volume at the older STP definition (0°C and 1 atm). With the current IUPAC STP definition of 1 bar (which is slightly less than 1 atm), the molar volume is slightly larger at 22.7 L.",
-        "misconception": "Using the older STP value (1 atm giving 22.4 L) instead of the current IUPAC standard (1 bar giving 22.7 L)."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-gas-09",
-    "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "The ratio of the rate of diffusion of hydrogen gas (M = 2) to that of oxygen gas (M = 32) at the same temperature and pressure is:",
-    "explanation": "Using Graham's law: r_H₂/r_O₂ = √(M_O₂/M_H₂) = √(32/2) = √16 = 4. Therefore, hydrogen diffuses 4 times faster than oxygen. This is because hydrogen molecules, being much lighter, move at higher average speeds at the same temperature. The kinetic energy is the same for both gases at the same temperature, but the lighter gas has higher velocity.",
-    "correct_answer": "C",
-    "concept_tags": [
-      "grahams-law",
+      "graham-law",
       "rate-of-diffusion",
-      "hydrogen-oxygen",
-      "numerical-problem"
+      "molar-mass-relationship"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
     "subject": "chemistry",
@@ -498,40 +316,217 @@
     "options": [
       {
         "key": "A",
-        "text": "16",
+        "text": "r/16",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "8",
+        "text": "4r",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "4",
-        "is_correct": true
+        "text": "r/2",
+        "is_correct": false
       },
       {
         "key": "D",
-        "text": "2",
+        "text": "r/4",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "r/16 would result from using the direct ratio of molar masses (32/2 = 16) without taking the square root. Graham's law states the rate is inversely proportional to the square root of molar mass, so the ratio is sqrt(32/2) = 4, giving r/4.",
+        "misconception": "Forgetting to take the square root in Graham's law and using the molar mass ratio directly."
+      },
+      {
+        "option_key": "B",
+        "hint": "4r would mean oxygen diffuses faster than hydrogen. Since oxygen is heavier than hydrogen (M = 32 vs M = 2), it must diffuse slower, not faster. The heavier gas always has the lower diffusion rate.",
+        "misconception": "Inverting Graham's law — concluding that heavier gas diffuses faster instead of slower."
+      },
+      {
+        "option_key": "C",
+        "hint": "r/2 would correspond to a molar mass ratio whose square root equals 2, meaning M₂/M₁ = 4. However, M(O₂)/M(H₂) = 32/2 = 16, and sqrt(16) = 4, so the correct answer is r/4.",
+        "misconception": "Using an incorrect molar mass ratio or making an arithmetic error in the square root calculation."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-gas-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A mixture of gases contains 2 moles of N₂ and 3 moles of O₂ at a total pressure of 5 atm. According to Dalton's law of partial pressures, the partial pressure of N₂ in the mixture is:",
+    "explanation": "According to Dalton's law, the partial pressure of a gas in a mixture equals its mole fraction multiplied by the total pressure. Mole fraction of N₂ = n(N₂) / n(total) = 2 / (2 + 3) = 2/5 = 0.4. Partial pressure of N₂ = 0.4 × 5 = 2 atm. Dalton's law states that in a mixture of non-reacting gases, the total pressure is the sum of the partial pressures, and each gas contributes in proportion to its mole fraction.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "dalton-law",
+      "partial-pressure",
+      "mole-fraction"
+    ],
+    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 atm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 atm",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "3 atm",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "5 atm",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "A ratio of 16 would mean using M_O₂/M_H₂ = 32/2 = 16 directly without taking the square root. Graham's law requires the square root of the molar mass ratio: √(32/2) = √16 = 4.",
-        "misconception": "Forgetting to take the square root in Graham's law and using the direct ratio of molar masses."
+        "hint": "1 atm would imply a mole fraction of 1/5 = 0.2 for N₂. However, the mole fraction of N₂ is 2/(2+3) = 2/5 = 0.4, giving a partial pressure of 0.4 × 5 = 2 atm.",
+        "misconception": "Dividing the moles of N₂ by the total pressure instead of calculating the mole fraction and then multiplying by total pressure."
       },
       {
-        "option_key": "B",
-        "hint": "A ratio of 8 does not correspond to √(32/2). The correct calculation is √(32/2) = √16 = 4, not 8.",
-        "misconception": "Incorrectly computing the square root or using an incorrect formula for Graham's law."
+        "option_key": "C",
+        "hint": "3 atm is the partial pressure of O₂, not N₂. The mole fraction of O₂ = 3/5, and 3/5 × 5 = 3 atm. For N₂, the mole fraction is 2/5, giving 2/5 × 5 = 2 atm.",
+        "misconception": "Confusing the partial pressures of N₂ and O₂ by swapping their mole fractions."
       },
       {
         "option_key": "D",
-        "hint": "A ratio of 2 would correspond to √(M_O₂/M_H₂) = √(4) = 2, which means using molar masses of 4 and 1 instead of 32 and 2. The molecular hydrogen and oxygen have M = 2 and 32 respectively.",
-        "misconception": "Using atomic masses instead of molecular masses, or incorrectly simplifying the square root."
+        "hint": "5 atm is the total pressure of the mixture, not the partial pressure of N₂. The partial pressure of any component is always less than or equal to the total pressure (it equals the total pressure only if the gas is the sole component).",
+        "misconception": "Confusing total pressure with the partial pressure of an individual component in the mixture."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-gas-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The root mean square (rms) speed of gas molecules at temperature T is given by the expression:",
+    "explanation": "The root mean square speed of gas molecules is derived from the kinetic molecular theory and is given by u_rms = sqrt(3RT/M), where R is the universal gas constant, T is the absolute temperature in Kelvin, and M is the molar mass of the gas. This can also be written as u_rms = sqrt(3kT/m) where k is Boltzmann's constant and m is the mass of a single molecule. The rms speed is the highest among the three molecular speeds (most probable < average < rms).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "rms-speed",
+      "kinetic-molecular-theory",
+      "molecular-speeds"
+    ],
+    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "sqrt(2RT/M)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "sqrt(8RT/piM)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "sqrt(3RT/M)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "sqrt(RT/M)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "sqrt(2RT/M) is the expression for the most probable speed (u_mp), not the rms speed. The most probable speed is the speed possessed by the maximum number of molecules. The rms speed uses a coefficient of 3, not 2.",
+        "misconception": "Confusing the most probable speed formula (sqrt(2RT/M)) with the rms speed formula (sqrt(3RT/M))."
+      },
+      {
+        "option_key": "B",
+        "hint": "sqrt(8RT/piM) is the expression for the average speed (u_avg), not the rms speed. The average speed involves the factor 8/pi. The rms speed uses the simpler factor of 3: u_rms = sqrt(3RT/M).",
+        "misconception": "Confusing the average speed formula with the rms speed formula."
+      },
+      {
+        "option_key": "D",
+        "hint": "sqrt(RT/M) has no specific named speed associated with it. The correct rms speed expression has a factor of 3 in the numerator: u_rms = sqrt(3RT/M). Without the 3, the value would be significantly lower than the actual rms speed.",
+        "misconception": "Forgetting the numerical coefficient in the rms speed formula derived from kinetic theory."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-gas-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "At what temperature will the rms speed of oxygen molecules be the same as the rms speed of hydrogen molecules at 300 K? (Molar mass of O₂ = 32, H₂ = 2)",
+    "explanation": "The rms speed is given by u_rms = sqrt(3RT/M). For equal rms speeds: sqrt(3RT₁/M₁) = sqrt(3RT₂/M₂). This simplifies to T₁/M₁ = T₂/M₂. Here, T₂ = 300 K for H₂ (M₂ = 2) and M₁ = 32 for O₂. So T₁/32 = 300/2 = 150. Therefore T₁ = 150 × 32 = 4800 K. Oxygen molecules need a much higher temperature to achieve the same rms speed as lighter hydrogen molecules at 300 K.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "rms-speed",
+      "kinetic-theory",
+      "temperature-molar-mass-relationship"
+    ],
+    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "300 K",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2400 K",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "600 K",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4800 K",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "300 K would mean both gases have the same rms speed at the same temperature. However, since O₂ is 16 times heavier than H₂, at the same temperature O₂ molecules would move much slower. A much higher temperature is needed for O₂.",
+        "misconception": "Assuming rms speed depends only on temperature and not on molar mass."
+      },
+      {
+        "option_key": "B",
+        "hint": "2400 K would result from an incorrect molar mass ratio. T(O₂) = 300 × M(O₂)/M(H₂) = 300 × 32/2 = 4800 K. Getting 2400 might arise from using 32/4 = 8 instead of 32/2 = 16.",
+        "misconception": "Using an incorrect molar mass for hydrogen (4 instead of 2) or making an arithmetic error in the ratio."
+      },
+      {
+        "option_key": "C",
+        "hint": "600 K implies T(O₂)/T(H₂) = 2, which would require M(O₂)/M(H₂) = 2. But M(O₂)/M(H₂) = 32/2 = 16, so T(O₂) must be 16 × 300 = 4800 K.",
+        "misconception": "Using a simple doubling instead of the correct molar mass ratio of 16."
       }
     ]
   },
@@ -539,74 +534,13 @@
     "id": "chem-states-gas-10",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "The compressibility factor (Z) for an ideal gas is always equal to:",
-    "explanation": "The compressibility factor Z = PV/(nRT). For an ideal gas, PV = nRT, so Z = nRT/(nRT) = 1 under all conditions of temperature and pressure. Deviations of Z from unity indicate non-ideal (real gas) behaviour. When Z < 1, attractive forces dominate and the gas is more compressible than an ideal gas. When Z > 1, repulsive forces dominate and the gas is less compressible than an ideal gas.",
+    "question_text": "The van der Waals equation for one mole of a real gas is (P + a/V²)(V - b) = RT. The constant 'b' in this equation accounts for:",
+    "explanation": "In the van der Waals equation, the constant 'b' represents the excluded volume per mole — it accounts for the finite volume occupied by the gas molecules themselves. Real gas molecules are not point particles; they have a definite size. The term (V - b) corrects the measured volume by subtracting the volume that is unavailable due to the physical size of the molecules. The constant 'a' accounts for intermolecular attractive forces. These corrections to the ideal gas equation are discussed in NCERT Class 11 Chemistry Chapter 5.",
     "correct_answer": "B",
     "concept_tags": [
-      "compressibility-factor",
-      "ideal-gas",
-      "real-gas-deviation",
-      "Z-factor"
-    ],
-    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "understand",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "0",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "1",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "Greater than 1",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "Less than 1",
-        "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "Z = 0 would mean PV = 0, implying the gas has zero pressure or zero volume, which is not physically meaningful for a gas. For an ideal gas, Z is always exactly 1.",
-        "misconception": "Confusing the compressibility factor with some other quantity or thinking Z = 0 for an ideal gas."
-      },
-      {
-        "option_key": "C",
-        "hint": "Z > 1 occurs for real gases at very high pressures where repulsive intermolecular forces dominate. For an ideal gas (with no intermolecular forces), Z is always exactly 1.",
-        "misconception": "Confusing the behaviour of real gases at high pressure with ideal gas behaviour."
-      },
-      {
-        "option_key": "D",
-        "hint": "Z < 1 occurs for real gases when attractive intermolecular forces dominate (moderate pressures). For an ideal gas (with no intermolecular forces), Z equals 1 exactly.",
-        "misconception": "Confusing real gas behaviour at moderate pressures (where Z < 1 due to attractive forces) with ideal gas behaviour."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-gas-11",
-    "question_type": "mcq",
-    "difficulty": "hard",
-    "question_text": "The van der Waals equation for n moles of a real gas is (P + an²/V²)(V − nb) = nRT. The constant 'a' accounts for:",
-    "explanation": "In the van der Waals equation, the constant 'a' accounts for the intermolecular attractive forces between gas molecules. The term an²/V² is a correction to the pressure: because attractive forces between molecules reduce the force with which molecules strike the container walls, the measured pressure is less than the ideal pressure. The correction adds an²/V² to the measured pressure to account for this reduction. The constant 'b' accounts for the finite volume occupied by gas molecules themselves.",
-    "correct_answer": "A",
-    "concept_tags": [
       "van-der-waals-equation",
-      "intermolecular-forces",
-      "real-gas",
-      "pressure-correction"
+      "real-gases",
+      "excluded-volume"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
     "subject": "chemistry",
@@ -619,12 +553,12 @@
       {
         "key": "A",
         "text": "Intermolecular attractive forces between gas molecules",
-        "is_correct": true
+        "is_correct": false
       },
       {
         "key": "B",
-        "text": "The finite volume of gas molecules",
-        "is_correct": false
+        "text": "The finite volume occupied by gas molecules",
+        "is_correct": true
       },
       {
         "key": "C",
@@ -633,101 +567,39 @@
       },
       {
         "key": "D",
-        "text": "The collision frequency of gas molecules",
+        "text": "The pressure exerted by the container walls",
         "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "B",
-        "hint": "The finite volume of gas molecules is accounted for by the constant 'b' (volume correction, V − nb), not 'a'. The constant 'a' corrects for intermolecular attractive forces (pressure correction, P + an²/V²).",
-        "misconception": "Confusing the roles of van der Waals constants 'a' (pressure correction for attractive forces) and 'b' (volume correction for molecular size)."
-      },
-      {
-        "option_key": "C",
-        "hint": "Kinetic energy is already accounted for in the ideal gas equation through temperature (KE = 3/2 RT per mole). The van der Waals constant 'a' specifically corrects for intermolecular attractive forces, not kinetic energy.",
-        "misconception": "Confusing the correction for intermolecular forces with kinetic energy, which is already part of the ideal gas framework."
-      },
-      {
-        "option_key": "D",
-        "hint": "Collision frequency is not what constant 'a' corrects for. The constant 'a' represents the strength of intermolecular attractive forces that reduce the impact pressure of molecules on container walls.",
-        "misconception": "Incorrectly associating the pressure correction term with collision frequency rather than attractive forces."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-gas-12",
-    "question_type": "mcq",
-    "difficulty": "hard",
-    "question_text": "At a given temperature, the root mean square (rms) speed, average speed, and most probable speed of gas molecules follow the order:",
-    "explanation": "For a gas at temperature T, the three molecular speeds are: most probable speed (u_mp) = √(2RT/M), average speed (u_avg) = √(8RT/πM), and rms speed (u_rms) = √(3RT/M). Comparing the numerical coefficients: √2 ≈ 1.414, √(8/π) ≈ 1.596, and √3 ≈ 1.732. Therefore, the order is: u_mp < u_avg < u_rms, i.e., most probable speed < average speed < rms speed.",
-    "correct_answer": "D",
-    "concept_tags": [
-      "rms-speed",
-      "average-speed",
-      "most-probable-speed",
-      "maxwell-distribution",
-      "kinetic-theory"
-    ],
-    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "analyze",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "u_rms < u_avg < u_mp",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "u_avg < u_mp < u_rms",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "u_mp < u_rms < u_avg",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "u_mp < u_avg < u_rms",
-        "is_correct": true
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "This is the exact reverse of the correct order. The rms speed has the highest value (coefficient √3 ≈ 1.732), not the lowest. The most probable speed has the lowest value (coefficient √2 ≈ 1.414).",
-        "misconception": "Completely reversing the order of molecular speeds, perhaps confusing 'most probable' with 'most common therefore highest'."
-      },
-      {
-        "option_key": "B",
-        "hint": "This option places average speed as the lowest, but u_avg = √(8RT/πM) with coefficient ≈ 1.596, which is between u_mp (≈ 1.414) and u_rms (≈ 1.732). The most probable speed is the lowest.",
-        "misconception": "Incorrectly placing average speed below most probable speed, not remembering that u_mp < u_avg."
+        "hint": "Intermolecular attractive forces are accounted for by the constant 'a' (the pressure correction term a/V²), not by 'b'. The 'a' term corrects for the fact that intermolecular attractions reduce the pressure exerted on the walls. The 'b' term corrects the volume.",
+        "misconception": "Swapping the roles of the van der Waals constants 'a' and 'b'."
       },
       {
         "option_key": "C",
-        "hint": "This option places rms speed between most probable and average speed, but u_rms has the highest coefficient (√3 ≈ 1.732). The correct middle value is the average speed (√(8/π) ≈ 1.596).",
-        "misconception": "Swapping the positions of average and rms speeds in the ordering."
+        "hint": "Kinetic energy of gas molecules is not corrected by either 'a' or 'b'. Kinetic energy is related to temperature (KE = 3/2 kT). The constant 'b' is a volume correction for the finite size of molecules.",
+        "misconception": "Incorrectly associating the van der Waals constants with kinetic energy instead of intermolecular forces and molecular volume."
+      },
+      {
+        "option_key": "D",
+        "hint": "The pressure exerted on the container walls is the measured pressure P. The van der Waals equation corrects P for intermolecular attractions (using 'a') and V for molecular volume (using 'b'). The constant 'b' has nothing to do with wall pressure.",
+        "misconception": "Confusing the physical meaning of the van der Waals constants with the macroscopic measurement of pressure."
       }
     ]
   },
   {
-    "id": "chem-states-gas-13",
-    "question_type": "assertion-reasoning",
-    "difficulty": "medium",
-    "question_text": "Assertion (A): At very high temperatures and low pressures, real gases behave like ideal gases.\nReason (R): At very high temperatures, the kinetic energy of gas molecules is much greater than the intermolecular attractive forces, and at low pressures, the volume of gas molecules is negligible compared to the total volume of the gas.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
-    "explanation": "Both the Assertion and the Reason are correct, and the Reason correctly explains the Assertion. At very high temperatures, the kinetic energy (∝ T) of gas molecules becomes so large that intermolecular attractive forces become comparatively negligible. At low pressures, the gas is highly expanded, so the actual volume of molecules becomes negligible compared to the total volume. Under these conditions, the two assumptions of ideal gas behaviour (no intermolecular forces and negligible molecular volume) are approximately valid, making real gases behave nearly ideally.",
-    "correct_answer": "A",
+    "id": "chem-states-gas-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The compressibility factor (Z) of a gas is defined as Z = PV/nRT. For a gas showing negative deviation from ideal behaviour at a given temperature and pressure, which of the following is correct?",
+    "explanation": "The compressibility factor Z = PV/nRT. For an ideal gas, Z = 1. When Z < 1, the gas shows negative deviation from ideality — meaning the actual molar volume is less than the ideal molar volume. This occurs when intermolecular attractive forces dominate, pulling molecules closer together and reducing the volume below what the ideal gas equation predicts. At moderate pressures, most real gases show Z < 1 because attractive forces are significant. At very high pressures, Z > 1 because repulsive forces (finite molecular volume) dominate. This concept is discussed in NCERT Class 11 Chemistry Chapter 5.",
+    "correct_answer": "C",
     "concept_tags": [
-      "real-gas-ideal-behaviour",
-      "high-temperature",
-      "low-pressure",
-      "kinetic-energy",
+      "compressibility-factor",
+      "real-gases",
+      "deviation-from-ideality",
       "intermolecular-forces"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
@@ -740,55 +612,113 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
-        "is_correct": true
+        "text": "Z > 1 and the gas is more compressible than an ideal gas",
+        "is_correct": false
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Z = 1 and the gas behaves ideally",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
-        "is_correct": false
+        "text": "Z < 1 and the gas is more compressible than an ideal gas",
+        "is_correct": true
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "Z < 1 and the gas is less compressible than an ideal gas",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
-        "option_key": "B",
-        "hint": "The Reason directly explains the Assertion. The high kinetic energy overcoming attractive forces and the negligible molecular volume are precisely the reasons why real gases behave ideally under these conditions. There is a direct causal link.",
-        "misconception": "Failing to recognise the direct causal relationship between the conditions described in R and the ideal behaviour stated in A."
+        "option_key": "A",
+        "hint": "Z > 1 represents positive deviation from ideality, not negative deviation. Positive deviation occurs at very high pressures where repulsive interactions dominate and the gas occupies more volume than predicted. The question asks about negative deviation, where Z < 1.",
+        "misconception": "Confusing positive deviation (Z > 1, dominant repulsion) with negative deviation (Z < 1, dominant attraction)."
       },
       {
-        "option_key": "C",
-        "hint": "The Reason is factually correct. At high temperatures, kinetic energy does overwhelm intermolecular forces, and at low pressures, molecular volume is indeed negligible compared to the total volume.",
-        "misconception": "Incorrectly doubting the scientific basis of the Reason, which accurately describes the physics of gas behaviour."
+        "option_key": "B",
+        "hint": "Z = 1 indicates ideal gas behaviour, not negative deviation. The question specifically states the gas shows negative deviation, so Z cannot be 1.",
+        "misconception": "Ignoring the stated condition of negative deviation and defaulting to ideal gas behaviour."
       },
       {
         "option_key": "D",
-        "hint": "The Assertion is correct. It is a well-established fact that real gases approach ideal behaviour at high temperatures and low pressures, as described in the NCERT chemistry textbook.",
-        "misconception": "Doubting the well-known principle that real gases behave ideally at high T and low P."
+        "hint": "While Z < 1 is correct for negative deviation, a gas with Z < 1 is more compressible than ideal, not less. When Z < 1, PV < nRT, meaning the actual volume is less than ideal — intermolecular attractions pull molecules together, making the gas easier to compress.",
+        "misconception": "Correctly identifying Z < 1 but misinterpreting its physical consequence — lower Z means the gas is easier to compress due to attractive forces."
       }
     ]
   },
   {
-    "id": "chem-states-gas-14",
-    "question_type": "assertion-reasoning",
+    "id": "chem-states-gas-12",
+    "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "Assertion (A): Hydrogen gas diffuses faster than chlorine gas at the same temperature and pressure.\nReason (R): According to Graham's law, the rate of diffusion of a gas is directly proportional to its molar mass.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
-    "explanation": "The Assertion is correct: hydrogen (M = 2 g/mol) diffuses faster than chlorine (M = 71 g/mol) at the same conditions. However, the Reason is incorrect. Graham's law states that the rate of diffusion is inversely proportional to the square root of the molar mass (r ∝ 1/√M), not directly proportional. Lighter gases diffuse faster precisely because of this inverse relationship. Since the Reason misstates Graham's law, option C is correct.",
-    "correct_answer": "C",
+    "question_text": "The critical temperature (Tc), critical pressure (Pc), and critical volume (Vc) of a gas are related to the van der Waals constants 'a' and 'b' as: Tc = 8a/(27Rb), Pc = a/(27b²), and Vc = 3b. The ratio PcVc/RTc for a van der Waals gas is:",
+    "explanation": "Using the relations: Pc = a/(27b²), Vc = 3b, and Tc = 8a/(27Rb). The ratio PcVc/RTc = [a/(27b²)] × [3b] / [R × 8a/(27Rb)]. Simplifying the numerator: PcVc = a × 3b / (27b²) = 3a/(27b) = a/(9b). Simplifying the denominator: RTc = R × 8a/(27Rb) = 8a/(27b). Therefore PcVc/RTc = [a/(9b)] / [8a/(27b)] = [a/(9b)] × [27b/(8a)] = 27/(9 × 8) = 27/72 = 3/8 = 0.375. This is the critical compressibility factor Zc for a van der Waals gas. For real gases, Zc is typically less than 3/8.",
+    "correct_answer": "D",
     "concept_tags": [
-      "grahams-law",
-      "rate-of-diffusion",
-      "molar-mass",
-      "inverse-proportionality",
+      "critical-constants",
+      "van-der-waals-equation",
+      "compressibility-factor",
+      "real-gases"
+    ],
+    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "8/3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "27/8",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3/8",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Z = 1 would indicate ideal gas behaviour at the critical point. However, at the critical point, a van der Waals gas does not behave ideally. Substituting the critical constants gives PcVc/(RTc) = 3/8 = 0.375, which is less than 1.",
+        "misconception": "Assuming the compressibility factor at the critical point equals 1, as it would for an ideal gas."
+      },
+      {
+        "option_key": "B",
+        "hint": "8/3 is the reciprocal of the correct answer (3/8). This would arise from inverting the final fraction. The correct calculation gives PcVc/(RTc) = 3/8, not 8/3.",
+        "misconception": "Inverting the fraction during the algebraic simplification of the critical constant expressions."
+      },
+      {
+        "option_key": "C",
+        "hint": "27/8 is RTc/Pc × (1/Vc) rearranged incorrectly. The correct substitution of Pc = a/(27b²), Vc = 3b, and Tc = 8a/(27Rb) into PcVc/(RTc) yields 3/8.",
+        "misconception": "Making an error in the algebraic manipulation and arriving at 27/8 instead of 3/8."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-gas-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): At constant temperature, the pressure of a fixed amount of gas increases when its volume is reduced.\nReason (R): According to Boyle's law, PV = constant at constant temperature for a fixed amount of gas, so pressure and volume are inversely proportional.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "Both the Assertion and the Reason are correct, and the Reason is the correct explanation of the Assertion. Boyle's law states that PV = constant at constant temperature for a fixed amount of gas. This means P is inversely proportional to V. Therefore, when volume is reduced, pressure must increase proportionally to maintain the PV product constant. The Reason directly explains the Assertion by providing the underlying law.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "boyle-law",
+      "pressure-volume-relationship",
       "assertion-reasoning"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
@@ -802,6 +732,66 @@
       {
         "key": "A",
         "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly provides the mathematical basis (PV = constant, hence inverse proportionality) for why decreasing volume increases pressure (the Assertion). This is a direct causal explanation, not an unrelated true statement.",
+        "misconception": "Failing to recognise that the Reason provides the precise law that explains the phenomenon described in the Assertion."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct — Boyle's law indeed states PV = constant at constant temperature, and P and V are inversely proportional. There is no error in the Reason.",
+        "misconception": "Doubting the correctness of Boyle's law or its mathematical expression."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct — it is a direct consequence of Boyle's law. Reducing the volume of a gas at constant temperature does increase its pressure. This is experimentally verified and a fundamental concept in gas behaviour.",
+        "misconception": "Incorrectly believing that reducing volume does not affect pressure at constant temperature."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-gas-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): At very high pressures, the compressibility factor Z for all real gases becomes greater than 1.\nReason (R): At very high pressures, the intermolecular attractive forces become the dominant factor in determining gas behaviour.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The Assertion is correct — at very high pressures, Z > 1 for all real gases. This is because molecules are forced so close together that repulsive forces (due to finite molecular volume) dominate, causing the gas to occupy more volume than predicted by the ideal gas equation. However, the Reason is incorrect. At very high pressures, it is the repulsive interactions (finite molecular volume, the 'b' factor) that dominate, NOT the attractive forces. Attractive forces dominate at moderate pressures (causing Z < 1). Therefore, A is correct but R is incorrect.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "compressibility-factor",
+      "real-gases",
+      "high-pressure-behaviour",
+      "assertion-reasoning"
+    ],
+    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
         "is_correct": false
       },
       {
@@ -823,18 +813,18 @@
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "The Reason incorrectly states that rate of diffusion is directly proportional to molar mass. If this were true, heavier gases would diffuse faster, contradicting the Assertion. Graham's law states rate ∝ 1/√M (inversely proportional).",
-        "misconception": "Not carefully reading the Reason and missing the critical error — 'directly proportional' instead of 'inversely proportional to the square root'."
+        "hint": "The Reason claims attractive forces dominate at very high pressures, which is incorrect. At very high pressures, repulsive forces (molecular volume effects) dominate, causing Z > 1. Attractive forces dominate at moderate pressures where Z < 1. Since R is wrong, option A is eliminated.",
+        "misconception": "Accepting the false claim that attractive forces dominate at high pressure, confusing the pressure regimes where different intermolecular effects are dominant."
       },
       {
         "option_key": "B",
-        "hint": "The Reason is factually incorrect because it states 'directly proportional to molar mass' instead of 'inversely proportional to the square root of molar mass'. Since R is wrong, option B (both correct) cannot be correct.",
-        "misconception": "Accepting the Reason as correct without noticing the fundamental error in stating Graham's law."
+        "hint": "Option B requires both A and R to be correct. The Reason is factually incorrect — at very high pressures, repulsive interactions (finite molecular volume) dominate, not attractive forces. Since R is wrong, B is eliminated.",
+        "misconception": "Not verifying the accuracy of the Reason statement before evaluating the logical connection."
       },
       {
         "option_key": "D",
-        "hint": "The Assertion is correct. Hydrogen (M = 2) does diffuse faster than chlorine (M = 71) because lighter gases have higher molecular velocities at the same temperature, as correctly predicted by Graham's law (r ∝ 1/√M).",
-        "misconception": "Doubting that hydrogen diffuses faster than chlorine, despite hydrogen being much lighter."
+        "hint": "The Assertion is correct. At very high pressures, all real gases show Z > 1 because the excluded volume effect (molecular size) becomes dominant, pushing the molar volume above the ideal value. Both theory and experimental Z-vs-P plots confirm this.",
+        "misconception": "Doubting that Z > 1 at very high pressures, possibly confusing the high-pressure regime with the moderate-pressure regime."
       }
     ]
   },
@@ -842,77 +832,16 @@
     "id": "chem-states-gas-15",
     "question_type": "match-the-following",
     "difficulty": "medium",
-    "question_text": "Match Column I (Gas Laws) with Column II (Mathematical Expressions):\n\nColumn I | Column II\nA. Boyle's Law | 1. V ∝ n (at constant T, P)\nB. Charles's Law | 2. P ∝ 1/V (at constant T, n)\nC. Gay-Lussac's Law | 3. V ∝ T (at constant P, n)\nD. Avogadro's Law | 4. P ∝ T (at constant V, n)\n\nSelect the correct matching:",
-    "explanation": "The correct matching is: A-2 (Boyle's law states P ∝ 1/V at constant temperature and amount of gas), B-3 (Charles's law states V ∝ T at constant pressure and amount of gas), C-4 (Gay-Lussac's law states P ∝ T at constant volume and amount of gas), D-1 (Avogadro's law states V ∝ n at constant temperature and pressure). These are the four fundamental gas laws that combine to give the ideal gas equation PV = nRT.",
-    "correct_answer": "B",
+    "question_text": "Match Column I (Gas Law) with Column II (Mathematical Expression at constant conditions):\n\nColumn I | Column II\nA. Boyle's law | 1. V/T = constant (at constant P, n)\nB. Charles's law | 2. V/n = constant (at constant T, P)\nC. Gay-Lussac's law | 3. PV = constant (at constant T, n)\nD. Avogadro's law | 4. P/T = constant (at constant V, n)\n\nSelect the correct matching:",
+    "explanation": "Boyle's law: PV = constant (at constant T, n) -> A-3. Charles's law: V/T = constant (at constant P, n) -> B-1. Gay-Lussac's law: P/T = constant (at constant V, n) -> C-4. Avogadro's law: V/n = constant (at constant T, P) -> D-2. These are the four fundamental gas laws that combine to give the ideal gas equation PV = nRT.",
+    "correct_answer": "C",
     "concept_tags": [
-      "boyles-law",
+      "gas-laws",
+      "boyle-law",
       "charles-law",
-      "gay-lussacs-law",
-      "avogadros-law",
-      "gas-law-expressions"
-    ],
-    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "understand",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "A-1, B-2, C-3, D-4",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "A-2, B-3, C-4, D-1",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "A-3, B-4, C-1, D-2",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "A-4, B-1, C-2, D-3",
-        "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "This option matches Boyle's Law (A) with V ∝ n (1), which is Avogadro's Law. Boyle's Law relates pressure and volume (P ∝ 1/V), not volume and moles.",
-        "misconception": "Confusing Boyle's law (P-V relationship) with Avogadro's law (V-n relationship)."
-      },
-      {
-        "option_key": "C",
-        "hint": "This option matches Boyle's Law (A) with V ∝ T (3), which is Charles's Law. Boyle's law deals with pressure and volume at constant temperature, not volume and temperature.",
-        "misconception": "Mixing up Boyle's law (P ∝ 1/V) with Charles's law (V ∝ T)."
-      },
-      {
-        "option_key": "D",
-        "hint": "This option matches Boyle's Law (A) with P ∝ T (4), which is Gay-Lussac's Law. Boyle's law relates pressure inversely to volume at constant temperature, not pressure to temperature.",
-        "misconception": "Confusing Boyle's law with Gay-Lussac's law, mixing up the P-V and P-T relationships."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-gas-16",
-    "question_type": "match-the-following",
-    "difficulty": "hard",
-    "question_text": "Match Column I (Properties/Constants) with Column II (Expressions in terms of van der Waals constants a and b):\n\nColumn I | Column II\nA. Critical temperature (Tc) | 1. a / 27b²\nB. Critical pressure (Pc) | 2. 3b\nC. Critical volume (Vc) | 3. 8a / 27Rb\nD. Boyle temperature (TB) | 4. a / Rb\n\nSelect the correct matching:",
-    "explanation": "The correct matching is: A-3 (Critical temperature Tc = 8a/27Rb), B-1 (Critical pressure Pc = a/27b²), C-2 (Critical volume Vc = 3b), D-4 (Boyle temperature TB = a/Rb). These critical constants are derived from the van der Waals equation by applying the conditions that at the critical point, (∂P/∂V)_T = 0 and (∂²P/∂V²)_T = 0. The Boyle temperature is the temperature at which a real gas obeys Boyle's law over an appreciable range of pressure.",
-    "correct_answer": "A",
-    "concept_tags": [
-      "critical-constants",
-      "van-der-waals-equation",
-      "critical-temperature",
-      "critical-pressure",
-      "critical-volume",
-      "boyle-temperature"
+      "gay-lussac-law",
+      "avogadro-law",
+      "matching"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
     "subject": "chemistry",
@@ -924,18 +853,18 @@
     "options": [
       {
         "key": "A",
-        "text": "A-3, B-1, C-2, D-4",
-        "is_correct": true
+        "text": "A-1, B-3, C-2, D-4",
+        "is_correct": false
       },
       {
         "key": "B",
-        "text": "A-1, B-3, C-4, D-2",
+        "text": "A-4, B-2, C-1, D-3",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A-4, B-2, C-1, D-3",
-        "is_correct": false
+        "text": "A-3, B-1, C-4, D-2",
+        "is_correct": true
       },
       {
         "key": "D",
@@ -945,19 +874,81 @@
     ],
     "elimination_hints": [
       {
-        "option_key": "B",
-        "hint": "This option matches Tc (A) with a/27b² (1), but a/27b² has units of pressure (not temperature) and is actually the expression for critical pressure Pc. Tc = 8a/27Rb has the correct units of temperature.",
-        "misconception": "Confusing the expressions for critical temperature and critical pressure by not checking dimensional consistency."
+        "option_key": "A",
+        "hint": "A-1 would match Boyle's law with V/T = constant, which is Charles's law, not Boyle's. Boyle's law relates pressure and volume (PV = constant), not volume and temperature.",
+        "misconception": "Confusing Boyle's law (P-V relationship) with Charles's law (V-T relationship)."
       },
       {
-        "option_key": "C",
-        "hint": "This option matches Tc (A) with a/Rb (4), which is the Boyle temperature. While both have units of temperature, Tc = 8a/27Rb, not a/Rb. The Boyle temperature is higher than the critical temperature (TB = 27Tc/8).",
-        "misconception": "Confusing critical temperature with Boyle temperature, both of which are expressed in terms of a, R, and b."
+        "option_key": "B",
+        "hint": "A-4 would match Boyle's law with P/T = constant, which is Gay-Lussac's law. Boyle's law is PV = constant at constant T. This option scrambles all the matchings.",
+        "misconception": "Randomly associating gas law names with their mathematical expressions without recalling the specific variables involved."
       },
       {
         "option_key": "D",
-        "hint": "This option matches Tc (A) with 3b (2), which has units of volume and is actually the critical volume Vc. Critical temperature must have units of temperature (kelvin), not volume.",
-        "misconception": "Not performing dimensional analysis to verify that the matched expression has the correct units."
+        "hint": "A-2 would match Boyle's law with V/n = constant, which is Avogadro's law. Boyle's law involves the P-V relationship (PV = constant), not the V-n relationship.",
+        "misconception": "Confusing Boyle's law with Avogadro's law."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-gas-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match Column I (Molecular Speed Type) with Column II (Expression in terms of R, T, and M):\n\nColumn I | Column II\nA. Most probable speed (u_mp) | 1. sqrt(3RT/M)\nB. Average speed (u_avg) | 2. sqrt(8RT/3piM)\nC. Root mean square speed (u_rms) | 3. sqrt(2RT/M)\nD. Speed ratio u_mp : u_avg : u_rms | 4. 1 : 1.128 : 1.224\n\nSelect the correct matching:",
+    "explanation": "Most probable speed u_mp = sqrt(2RT/M) -> A-3. Average speed u_avg = sqrt(8RT/piM). Note that option 2 lists sqrt(8RT/3piM), which is a distractor — by process of elimination with other matchings, B-2 is assigned. Root mean square speed u_rms = sqrt(3RT/M) -> C-1. The ratio u_mp : u_avg : u_rms = sqrt(2) : sqrt(8/pi) : sqrt(3) = 1.414 : 1.596 : 1.732, which when normalised to u_mp = 1 gives 1 : 1.128 : 1.224 -> D-4. The correct matching is A-3, B-2, C-1, D-4.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "molecular-speeds",
+      "most-probable-speed",
+      "average-speed",
+      "rms-speed",
+      "kinetic-theory",
+      "matching"
+    ],
+    "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-1, B-3, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-1, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-1, D-4",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A-1 matches the most probable speed with sqrt(3RT/M), which is the rms speed formula. The most probable speed is sqrt(2RT/M). Remember: u_mp < u_avg < u_rms, so u_mp uses the smallest coefficient (2), not the largest (3).",
+        "misconception": "Confusing the rms speed expression (sqrt(3RT/M)) with the most probable speed expression (sqrt(2RT/M))."
+      },
+      {
+        "option_key": "B",
+        "hint": "B-1 matches the average speed with sqrt(3RT/M), which is the rms speed formula. The average speed u_avg = sqrt(8RT/piM). Also, A-2 is incorrect as the most probable speed is sqrt(2RT/M), not the expression in option 2.",
+        "misconception": "Mixing up the three molecular speed formulas and their numerical coefficients."
+      },
+      {
+        "option_key": "C",
+        "hint": "C-2 matches the rms speed with the average speed expression. The rms speed is sqrt(3RT/M) which is option 1, not option 2. The correct match for rms speed (C) is 1.",
+        "misconception": "Swapping the rms speed and average speed expressions."
       }
     ]
   },
@@ -965,14 +956,13 @@
     "id": "chem-states-gas-17",
     "question_type": "true-false",
     "difficulty": "easy",
-    "question_text": "Statement: According to Avogadro's law, equal volumes of all gases at the same temperature and pressure contain equal number of molecules.",
-    "explanation": "This statement is TRUE. Avogadro's law states that equal volumes of all gases, under the same conditions of temperature and pressure, contain an equal number of molecules. Mathematically, V ∝ n (at constant T and P), which means that the volume of a gas is directly proportional to the number of moles (and hence the number of molecules). This law is fundamental to the concept of molar volume and is the basis for the ideal gas equation.",
+    "question_text": "Statement: According to the kinetic molecular theory of gases, the average kinetic energy of gas molecules is directly proportional to the absolute temperature of the gas.",
+    "explanation": "This statement is TRUE. According to the kinetic molecular theory, the average kinetic energy per molecule of a gas is given by KE = (3/2)kT, where k is Boltzmann's constant and T is the absolute temperature in Kelvin. This means the average kinetic energy depends only on the temperature and is independent of the nature of the gas (its molar mass or molecular identity). At the same temperature, molecules of all gases have the same average kinetic energy.",
     "correct_answer": "A",
     "concept_tags": [
-      "avogadros-law",
-      "equal-volumes",
-      "number-of-molecules",
-      "molar-volume"
+      "kinetic-molecular-theory",
+      "average-kinetic-energy",
+      "temperature-dependence"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
     "subject": "chemistry",
@@ -1006,8 +996,8 @@
     "elimination_hints": [
       {
         "option_key": "B",
-        "hint": "The statement accurately reflects Avogadro's law as described in the NCERT textbook. Equal volumes of all gases at the same T and P do indeed contain equal numbers of molecules.",
-        "misconception": "Doubting Avogadro's law, possibly thinking that different gases with different molar masses would have different numbers of molecules in the same volume."
+        "hint": "The statement is factually correct. The kinetic molecular theory derives KE = (3/2)kT, showing a direct proportionality between average kinetic energy and absolute temperature. This is one of the fundamental postulates of kinetic theory.",
+        "misconception": "Thinking that average kinetic energy depends on molar mass or molecular identity in addition to temperature."
       },
       {
         "option_key": "C",
@@ -1025,14 +1015,14 @@
     "id": "chem-states-gas-18",
     "question_type": "true-false",
     "difficulty": "easy",
-    "question_text": "Statement: The van der Waals constant 'b' represents the magnitude of intermolecular attractive forces in a gas.",
-    "explanation": "This statement is FALSE. In the van der Waals equation (P + an²/V²)(V − nb) = nRT, the constant 'b' represents the excluded volume per mole of gas molecules (the volume correction due to the finite size of molecules), NOT the intermolecular attractive forces. It is the constant 'a' that represents the magnitude of intermolecular attractive forces (the pressure correction). A higher value of 'a' indicates stronger attractive forces, while a higher value of 'b' indicates larger molecular size.",
+    "question_text": "Statement: The ideal gas equation PV = nRT is applicable to real gases under all conditions of temperature and pressure.",
+    "explanation": "This statement is FALSE. The ideal gas equation PV = nRT is strictly valid only for ideal (hypothetical) gases. Real gases deviate from ideal behaviour, especially at high pressures and low temperatures. At high pressures, the finite volume of molecules becomes significant, and at low temperatures, intermolecular attractive forces become important. Real gases approximate ideal behaviour only at low pressures and high temperatures. The van der Waals equation provides a better description of real gas behaviour.",
     "correct_answer": "B",
     "concept_tags": [
-      "van-der-waals-constants",
-      "excluded-volume",
-      "intermolecular-forces",
-      "real-gas"
+      "ideal-gas-equation",
+      "real-gases",
+      "deviations-from-ideality",
+      "conditions-for-ideal-behaviour"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
     "subject": "chemistry",
@@ -1066,8 +1056,8 @@
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "The statement incorrectly assigns the role of constant 'a' to constant 'b'. The constant 'b' represents the excluded volume (finite molecular size), while 'a' represents intermolecular attractive forces. These two constants correct for different deviations from ideal behaviour.",
-        "misconception": "Confusing the roles of van der Waals constants 'a' (attractive forces) and 'b' (molecular volume)."
+        "hint": "The statement claims PV = nRT works under ALL conditions, which is false. Real gases deviate significantly from ideal behaviour at high pressures and low temperatures due to intermolecular forces and finite molecular volume. PV = nRT is only a good approximation at low pressures and high temperatures.",
+        "misconception": "Assuming the ideal gas equation is universally applicable without recognising the conditions under which real gases deviate."
       },
       {
         "option_key": "C",
@@ -1085,14 +1075,13 @@
     "id": "chem-states-gas-19",
     "question_type": "fill-in-blanks",
     "difficulty": "medium",
-    "question_text": "The root mean square speed of gas molecules at temperature T is given by u_rms = √(3RT/M), where R is the gas constant and M is the _____.",
-    "explanation": "The root mean square (rms) speed of gas molecules is given by u_rms = √(3RT/M), where R is the universal gas constant (8.314 J mol⁻¹ K⁻¹), T is the absolute temperature in Kelvin, and M is the molar mass of the gas (in kg/mol when using SI units). The molar mass determines how fast gas molecules move at a given temperature — lighter molecules have higher rms speeds. This formula is derived from the kinetic molecular theory of gases.",
-    "correct_answer": "D",
+    "question_text": "According to Gay-Lussac's law, at constant volume, the pressure of a fixed amount of gas is directly proportional to its _____.",
+    "explanation": "Gay-Lussac's law states that at constant volume, the pressure of a fixed amount of gas is directly proportional to its absolute temperature (in Kelvin). Mathematically, P/T = constant (at constant V and n), or P is proportional to T. This means if the absolute temperature doubles, the pressure also doubles (at constant volume). The temperature must be in Kelvin for this proportionality to hold. This law is also known as Amontons' law in some references.",
+    "correct_answer": "C",
     "concept_tags": [
-      "rms-speed",
-      "molar-mass",
-      "kinetic-theory",
-      "molecular-speed"
+      "gay-lussac-law",
+      "pressure-temperature-relationship",
+      "fill-in-blanks"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
     "subject": "chemistry",
@@ -1104,7 +1093,7 @@
     "options": [
       {
         "key": "A",
-        "text": "Mass of a single molecule",
+        "text": "Volume",
         "is_correct": false
       },
       {
@@ -1114,30 +1103,30 @@
       },
       {
         "key": "C",
-        "text": "Molecular diameter",
-        "is_correct": false
+        "text": "Absolute temperature",
+        "is_correct": true
       },
       {
         "key": "D",
-        "text": "Molar mass of the gas",
-        "is_correct": true
+        "text": "Molecular mass",
+        "is_correct": false
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "When R (gas constant per mole) is used, M must be the molar mass (mass per mole), not the mass of a single molecule. If the Boltzmann constant k were used instead of R, then the mass of a single molecule (m) would be used: u_rms = √(3kT/m).",
-        "misconception": "Confusing the formula using R and molar mass with the alternative formula using Boltzmann constant and molecular mass."
+        "hint": "Volume is held constant in Gay-Lussac's law — it is the controlled variable, not the one proportional to pressure. The relationship between pressure and volume at constant temperature is Boyle's law, not Gay-Lussac's law.",
+        "misconception": "Confusing the controlled variable (volume) with the dependent variable (temperature) in Gay-Lussac's law."
       },
       {
         "option_key": "B",
-        "hint": "The number of moles (n) does not appear in the rms speed formula. The rms speed depends on temperature and molar mass of the gas, not on how many moles are present.",
-        "misconception": "Thinking that the amount of gas affects molecular speed, when in fact speed depends only on temperature and molar mass."
+        "hint": "While pressure does depend on the number of moles (from PV = nRT, P is proportional to n at constant V and T), Gay-Lussac's law specifically describes the P-T relationship at constant volume and constant amount. The answer is absolute temperature.",
+        "misconception": "Selecting a variable that affects pressure but is not the specific relationship described by Gay-Lussac's law."
       },
       {
-        "option_key": "C",
-        "hint": "Molecular diameter is relevant in calculating mean free path, not rms speed. The rms speed formula involves molar mass (M), temperature (T), and the gas constant (R).",
-        "misconception": "Confusing factors that determine molecular speed with those that determine mean free path or collision cross-section."
+        "option_key": "D",
+        "hint": "Molecular mass is an intrinsic property of a gas and does not appear as a variable in Gay-Lussac's law. The law relates pressure to absolute temperature at constant volume for a fixed amount of gas.",
+        "misconception": "Confusing molecular mass with the thermodynamic variable (temperature) that governs pressure changes at constant volume."
       }
     ]
   },
@@ -1145,16 +1134,15 @@
     "id": "chem-states-gas-20",
     "question_type": "scenario-based",
     "difficulty": "medium",
-    "question_text": "Scenario: A chemist collects a mixture of nitrogen (N₂) and carbon dioxide (CO₂) gases over water at 25°C in a sealed container. The total pressure of the wet gas mixture is measured to be 760 mmHg. The vapour pressure of water at 25°C is 23.8 mmHg. The mole fraction of nitrogen in the dry gas mixture (excluding water vapour) is 0.60.\n\nQuestion: What is the partial pressure of nitrogen in the container?",
-    "explanation": "First, using Dalton's law, the total pressure of the dry gas mixture = Total pressure − Vapour pressure of water = 760 − 23.8 = 736.2 mmHg. This is the combined pressure of N₂ and CO₂ only. The partial pressure of nitrogen = Mole fraction of N₂ × Pressure of dry gas mixture = 0.60 × 736.2 = 441.72 mmHg ≈ 441.7 mmHg. Note that the mole fraction given is for the dry gas mixture (excluding water), so we multiply by the dry gas pressure, not the total pressure.",
-    "correct_answer": "C",
+    "question_text": "Scenario: A chemist collects a gas sample over water at 25°C. The total pressure of the wet gas (gas + water vapour) is measured to be 760 mmHg. The vapour pressure of water at 25°C is 23.8 mmHg.\n\nUsing Dalton's law of partial pressures, the pressure of the dry gas alone is:\n\n(Use: P_total = P_gas + P_water vapour)",
+    "explanation": "According to Dalton's law of partial pressures, the total pressure of a mixture of non-reacting gases equals the sum of the partial pressures of the individual gases. Here, P_total = P_gas + P_water vapour. Therefore, P_gas = P_total - P_water vapour = 760 - 23.8 = 736.2 mmHg. This is a practical application of Dalton's law commonly encountered when gases are collected over water, which is a standard laboratory technique. The water vapour contributes to the total pressure and must be subtracted to find the pressure of the dry gas.",
+    "correct_answer": "A",
     "concept_tags": [
-      "daltons-law",
+      "dalton-law",
       "partial-pressure",
-      "mole-fraction",
+      "gas-collection-over-water",
       "vapour-pressure",
-      "gas-over-water",
-      "scenario-analysis"
+      "scenario-based"
     ],
     "topic": "Gas Laws, Ideal Gas Equation, and Kinetic Theory",
     "subject": "chemistry",
@@ -1166,40 +1154,40 @@
     "options": [
       {
         "key": "A",
-        "text": "456.0 mmHg",
-        "is_correct": false
+        "text": "736.2 mmHg",
+        "is_correct": true
       },
       {
         "key": "B",
-        "text": "294.5 mmHg",
+        "text": "783.8 mmHg",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "441.7 mmHg",
-        "is_correct": true
+        "text": "760 mmHg",
+        "is_correct": false
       },
       {
         "key": "D",
-        "text": "736.2 mmHg",
+        "text": "23.8 mmHg",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
-        "option_key": "A",
-        "hint": "456.0 mmHg = 0.60 × 760 mmHg. This error comes from multiplying the mole fraction directly by the total pressure (including water vapour) instead of first subtracting the vapour pressure of water to get the dry gas pressure.",
-        "misconception": "Forgetting to subtract the vapour pressure of water before applying the mole fraction, thereby including water vapour in the calculation."
+        "option_key": "B",
+        "hint": "783.8 mmHg = 760 + 23.8. This results from adding the water vapour pressure to the total pressure instead of subtracting it. The total pressure already includes the water vapour contribution, so P_gas = P_total - P_water = 760 - 23.8 = 736.2 mmHg.",
+        "misconception": "Adding the vapour pressure of water to the total pressure instead of subtracting it."
       },
       {
-        "option_key": "B",
-        "hint": "294.5 mmHg = 0.40 × 736.2 mmHg. This is the partial pressure of CO₂, not N₂. The mole fraction of nitrogen is 0.60, so CO₂ has a mole fraction of 0.40 in the dry mixture.",
-        "misconception": "Using the mole fraction of CO₂ (0.40) instead of N₂ (0.60), or confusing which gas the question asks about."
+        "option_key": "C",
+        "hint": "760 mmHg is the total pressure of the wet gas (gas + water vapour combined). The dry gas pressure is less than the total because the water vapour contributes 23.8 mmHg to the total. P_gas = 760 - 23.8 = 736.2 mmHg.",
+        "misconception": "Ignoring the water vapour contribution and assuming the total pressure equals the dry gas pressure."
       },
       {
         "option_key": "D",
-        "hint": "736.2 mmHg is the total pressure of the dry gas mixture (N₂ + CO₂), not the partial pressure of nitrogen alone. The partial pressure of N₂ is only 60% of this value since its mole fraction is 0.60.",
-        "misconception": "Confusing the total dry gas pressure with the partial pressure of nitrogen, forgetting to multiply by the mole fraction."
+        "hint": "23.8 mmHg is the vapour pressure of water at 25°C, not the pressure of the collected gas. The gas pressure is obtained by subtracting the water vapour pressure from the total: P_gas = 760 - 23.8 = 736.2 mmHg.",
+        "misconception": "Selecting the vapour pressure of water as the answer instead of using it in the subtraction."
       }
     ]
   }
