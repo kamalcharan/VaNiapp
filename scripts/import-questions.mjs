@@ -382,7 +382,7 @@ function buildDbRows(q, index) {
     topic_id: q.topic_id || null,
     question_type: q.question_type,
     difficulty: q.difficulty,
-    strength_required: q.strength_required || 1,
+    strength_required: q.strength_required || 'just-started',
     question_text: q.question_text,
     question_text_te: q.question_text_te || null,
     explanation: q.explanation || null,
