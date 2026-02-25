@@ -617,15 +617,30 @@ function getAutoInsertTimeRemaining(jobCreatedAt) {
 
 async function getQuestionStats() {
   if (!SUPABASE) return [];
-  const { data, error } = await SUPABASE
-    .from('med_questions')
-    .select('subject_id, question_type, difficulty, status');
 
-  if (error) {
-    console.error('Error fetching stats:', error);
-    return null;
+  // Supabase returns max 1000 rows by default — paginate to get all
+  const allData = [];
+  const pageSize = 1000;
+  let from = 0;
+  let hasMore = true;
+
+  while (hasMore) {
+    const { data, error } = await SUPABASE
+      .from('med_questions')
+      .select('subject_id, chapter_id, question_type, difficulty, status')
+      .range(from, from + pageSize - 1);
+
+    if (error) {
+      console.error('Error fetching stats:', error);
+      return null;
+    }
+
+    allData.push(...(data || []));
+    hasMore = data && data.length === pageSize;
+    from += pageSize;
   }
-  return data;
+
+  return allData;
 }
 
 async function fetchQuestionsByChapter(chapterId, options = {}) {
