@@ -1,0 +1,85 @@
+{
+  "_comment": "Sample import file for: node scripts/import-questions.mjs --file=scripts/sample-import.json --images-dir=scripts/images",
+  "questions": [
+    {
+      "subject_id": "physics",
+      "chapter_id": "physics-laws-of-motion",
+      "question_type": "diagram-based",
+      "difficulty": "medium",
+      "question_text": "Observe the free-body diagram and determine the acceleration of the 5 kg block.",
+      "question_text_te": "స్వేచ్ఛా-వస్తు రేఖాచిత్రాన్ని గమనించి 5 kg బ్లాక్ యొక్క త్వరణాన్ని నిర్ణయించండి.",
+      "explanation": "The normal force balances weight (both vertical). Net horizontal force is 10 N to the right. By F = ma: a = 10/5 = 2 m/s² to the right.",
+      "explanation_te": "అభిలంబ బలం బరువును సమతుల్యం చేస్తుంది. నికర సమాంతర బలం కుడికి 10 N. F = ma ద్వారా: a = 10/5 = 2 m/s² కుడికి.",
+      "image_file": "free-body-diagram.png",
+      "image_alt": "Free-body diagram: 5 kg block on surface, 10 N force arrow pointing right, Normal force up, Weight down",
+      "correct_answer": "b",
+      "options": [
+        { "key": "a", "text": "10 m/s² to the right", "text_te": "10 m/s² కుడికి", "is_correct": false },
+        { "key": "b", "text": "2 m/s² to the right", "text_te": "2 m/s² కుడికి", "is_correct": true },
+        { "key": "c", "text": "5 m/s² to the right", "text_te": "5 m/s² కుడికి", "is_correct": false },
+        { "key": "d", "text": "0 m/s² (no acceleration)", "text_te": "0 m/s² (త్వరణం లేదు)", "is_correct": false }
+      ],
+      "elimination_hints": [
+        { "option_key": "a", "hint": "This would require F = 50 N, not 10 N", "hint_te": "దీనికి F = 50 N అవసరం, 10 N కాదు", "misconception": "Confused F = ma with a = F", "misconception_te": "" },
+        { "option_key": "c", "hint": "Check: 5 × 5 = 25 N ≠ 10 N", "hint_te": "తనిఖీ: 5 × 5 = 25 N ≠ 10 N", "misconception": "Used mass as acceleration", "misconception_te": "" }
+      ]
+    },
+    {
+      "subject_id": "botany",
+      "chapter_id": "botany-cell-biology",
+      "question_type": "diagram-based",
+      "difficulty": "easy",
+      "question_text": "Identify the labeled part 'X' in the cell diagram.",
+      "question_text_te": "కణ రేఖాచిత్రంలో 'X' అని గుర్తించబడిన భాగాన్ని గుర్తించండి.",
+      "explanation": "Part X points to the large central vacuole, which stores water, ions, and waste products in plant cells.",
+      "explanation_te": "X భాగం పెద్ద కేంద్ర రిక్తికను సూచిస్తుంది, ఇది మొక్కల కణాలలో నీరు, అయాన్లు మరియు వ్యర్థ ఉత్పత్తులను నిల్వ చేస్తుంది.",
+      "image_file": "plant-cell-labeled.png",
+      "image_alt": "Plant cell diagram with part X labeled pointing to a large central structure",
+      "correct_answer": "c",
+      "options": [
+        { "key": "a", "text": "Nucleus", "text_te": "కేంద్రకం", "is_correct": false },
+        { "key": "b", "text": "Chloroplast", "text_te": "హరితకణం", "is_correct": false },
+        { "key": "c", "text": "Central vacuole", "text_te": "కేంద్ర రిక్తిక", "is_correct": true },
+        { "key": "d", "text": "Mitochondria", "text_te": "మైటోకాండ్రియా", "is_correct": false }
+      ]
+    },
+    {
+      "_comment": "Example: diagram-based with pre-existing URL (no local file needed)",
+      "subject_id": "chemistry",
+      "chapter_id": "chemistry-atomic-structure",
+      "question_type": "diagram-based",
+      "difficulty": "medium",
+      "question_text": "Identify the orbital shape shown in the diagram.",
+      "question_text_te": "రేఖాచిత్రంలో చూపిన కక్ష్య ఆకారాన్ని గుర్తించండి.",
+      "explanation": "The dumbbell shape is characteristic of p-orbitals.",
+      "explanation_te": "డంబెల్ ఆకారం p-కక్ష్యల లక్షణం.",
+      "image_url": "https://your-project.supabase.co/storage/v1/object/public/question-images/chemistry/atomic-structure/p-orbital.png",
+      "image_alt": "Dumbbell-shaped orbital diagram along the x-axis",
+      "correct_answer": "b",
+      "options": [
+        { "key": "a", "text": "s-orbital", "text_te": "s-కక్ష్య", "is_correct": false },
+        { "key": "b", "text": "p-orbital", "text_te": "p-కక్ష్య", "is_correct": true },
+        { "key": "c", "text": "d-orbital", "text_te": "d-కక్ష్య", "is_correct": false },
+        { "key": "d", "text": "f-orbital", "text_te": "f-కక్ష్య", "is_correct": false }
+      ]
+    },
+    {
+      "_comment": "Example: regular MCQ (no image)",
+      "subject_id": "physics",
+      "chapter_id": "physics-laws-of-motion",
+      "question_type": "mcq",
+      "difficulty": "easy",
+      "question_text": "What is the SI unit of force?",
+      "question_text_te": "బలం యొక్క SI యూనిట్ ఏమిటి?",
+      "explanation": "The SI unit of force is the Newton (N), defined as kg⋅m/s².",
+      "explanation_te": "బలం యొక్క SI యూనిట్ న్యూటన్ (N), kg⋅m/s² గా నిర్వచించబడింది.",
+      "correct_answer": "a",
+      "options": [
+        { "key": "a", "text": "Newton", "text_te": "న్యూటన్", "is_correct": true },
+        { "key": "b", "text": "Joule", "text_te": "జౌల్", "is_correct": false },
+        { "key": "c", "text": "Watt", "text_te": "వాట్", "is_correct": false },
+        { "key": "d", "text": "Pascal", "text_te": "పాస్కల్", "is_correct": false }
+      ]
+    }
+  ]
+}

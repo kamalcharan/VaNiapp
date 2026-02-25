@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import type { QuestionV2, QuestionType, Difficulty, Option, EliminationHint } from '../types';
+import type { QuestionV2, QuestionType, QuestionPayload, Difficulty, Option, EliminationHint } from '../types';
 import { resolveLegacyChapterId } from './questionAdapter';
 
 // ── Types for DB rows ────────────────────────────────────────
@@ -32,6 +32,8 @@ interface DbQuestion {
   explanation_te: string | null;
   correct_answer: string;
   payload: Record<string, unknown> | null;
+  image_url: string | null;
+  image_alt: string | null;
   med_question_options: DbOption[];
   med_elimination_hints: DbEliminationHint[];
 }
@@ -73,7 +75,7 @@ export async function fetchQuestionsByChapter(
       .select(
         `id, subject_id, chapter_id, question_type, difficulty,
          question_text, question_text_te, explanation, explanation_te,
-         correct_answer, payload,
+         correct_answer, payload, image_url, image_alt,
          med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
          med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`,
       )
@@ -155,11 +157,95 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     eliminationTechnique: eliminationText,
     eliminationTechniqueTe: eliminationTextTe,
     eliminationHints,
-    // Map all DB questions as MCQ payload since all types have A/B/C/D options
-    payload: {
-      type: 'mcq',
-      options,
-      correctOptionId,
-    },
+    payload: buildPayload(row, options, correctOptionId),
   };
+}
+
+/**
+ * Build the type-specific payload from DB row.
+ * If the row has a stored payload with a matching type, use its fields.
+ * Otherwise, fall back to constructing from options.
+ */
+function buildPayload(
+  row: DbQuestion,
+  options: Option[],
+  correctOptionId: string,
+): QuestionPayload {
+  const p = (row.payload || {}) as Record<string, unknown>;
+  const qType = row.question_type;
+
+  switch (qType) {
+    case 'diagram-based':
+      return {
+        type: 'diagram-based',
+        imageUri: row.image_url || (p.imageUri as string) || '',
+        imageAlt: row.image_alt || (p.imageAlt as string) || '',
+        options,
+        correctOptionId,
+      };
+
+    case 'true-false':
+      return {
+        type: 'true-false',
+        statement: (p.statement as string) || row.question_text,
+        statementTe: (p.statementTe as string) || row.question_text_te || '',
+        correctAnswer: p.correctAnswer === true || row.correct_answer === 'true',
+      };
+
+    case 'assertion-reasoning':
+      return {
+        type: 'assertion-reasoning',
+        assertion: (p.assertion as string) || '',
+        assertionTe: (p.assertionTe as string) || '',
+        reason: (p.reason as string) || '',
+        reasonTe: (p.reasonTe as string) || '',
+        options,
+        correctOptionId,
+      };
+
+    case 'match-the-following':
+      return {
+        type: 'match-the-following',
+        columnA: (p.columnA as { id: string; text: string; textTe: string }[]) || [],
+        columnB: (p.columnB as { id: string; text: string; textTe: string }[]) || [],
+        correctMapping: (p.correctMapping as Record<string, string>) || {},
+        options,
+        correctOptionId,
+      };
+
+    case 'logical-sequence':
+      return {
+        type: 'logical-sequence',
+        items: (p.items as { id: string; text: string; textTe: string }[]) || [],
+        correctOrder: (p.correctOrder as string[]) || [],
+        options,
+        correctOptionId,
+      };
+
+    case 'fill-in-blanks':
+      return {
+        type: 'fill-in-blanks',
+        textWithBlanks: (p.textWithBlanks as string) || '',
+        textWithBlanksTe: (p.textWithBlanksTe as string) || '',
+        options,
+        correctOptionId,
+      };
+
+    case 'scenario-based':
+      return {
+        type: 'scenario-based',
+        scenario: (p.scenario as string) || '',
+        scenarioTe: (p.scenarioTe as string) || '',
+        options,
+        correctOptionId,
+      };
+
+    case 'mcq':
+    default:
+      return {
+        type: 'mcq',
+        options,
+        correctOptionId,
+      };
+  }
 }
