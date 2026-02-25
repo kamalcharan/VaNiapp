@@ -563,6 +563,49 @@ async function main() {
 
   console.log(`  Images uploaded: ${uploadCount}, skipped (already URL): ${skipCount}`);
 
+  // ── Phase 1.5: Ensure referenced chapters exist ────────────
+  console.log('\nPhase 1.5: Ensuring chapters exist...');
+
+  const chapterMap = new Map(); // chapter_id → subject_id
+  for (const q of questions) {
+    if (!chapterMap.has(q.chapter_id)) {
+      chapterMap.set(q.chapter_id, q.subject_id);
+    }
+  }
+
+  // Derive a human-readable name from the chapter_id
+  // e.g. "physics-laws-of-motion" → strip subject prefix → "Laws Of Motion"
+  function chapterNameFromId(chapterId, subjectId) {
+    let slug = chapterId;
+    if (slug.startsWith(subjectId + '-')) {
+      slug = slug.slice(subjectId.length + 1);
+    }
+    return slug
+      .split('-')
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
+  }
+
+  const chapterRows = [];
+  for (const [chapterId, subjectId] of chapterMap) {
+    chapterRows.push({
+      id: chapterId,
+      subject_id: subjectId,
+      name: chapterNameFromId(chapterId, subjectId),
+    });
+  }
+
+  // Use onConflict so existing chapters are left untouched
+  const { error: chapterErr } = await supabase
+    .from('med_chapters')
+    .upsert(chapterRows, { onConflict: 'id', ignoreDuplicates: true });
+
+  if (chapterErr) {
+    console.error(`  ERROR ensuring chapters: ${chapterErr.message}`);
+    process.exit(1);
+  }
+  console.log(`  Ensured ${chapterRows.length} chapter(s): ${[...chapterMap.keys()].join(', ')}`);
+
   // ── Phase 2: Build and upsert DB rows ──────────────────────
   console.log('\nPhase 2: Importing questions to database...');
 
