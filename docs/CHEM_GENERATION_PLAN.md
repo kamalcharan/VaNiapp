@@ -133,16 +133,16 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 |-------|----------|------------|-----|--------|
 | B12 | `chem-equil-chemical` | Chemical Equilibrium and Le Chatelier's Principle | 20 | DONE |
 | B13 | `chem-equil-kc` | Equilibrium Constant (Kc, Kp) and Calculations | 20 | DONE |
-| B14 | `chem-equil-ionic` | Ionic Equilibrium, Acids, Bases, and pH | 20 | PENDING |
-| B15 | `chem-equil-buffer` | Buffer Solutions and Solubility Product | 20 | PENDING |
+| B14 | `chem-equil-ionic` | Ionic Equilibrium, Acids, Bases, and pH | 20 | DONE |
+| B15 | `chem-equil-buffer` | Buffer Solutions and Solubility Product | 20 | DONE |
 | | | **Chapter 7 Total** | **80** | |
 
 ### Chapter 8: Redox Reactions (`chem-redox`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B16 | `chem-redox-concepts` | Oxidation Number and Types of Redox Reactions | 20 | PENDING |
-| B17 | `chem-redox-balancing` | Balancing Redox Reactions | 20 | PENDING |
+| B16 | `chem-redox-concepts` | Oxidation Number and Types of Redox Reactions | 20 | DONE |
+| B17 | `chem-redox-balancing` | Balancing Redox Reactions | 20 | DONE |
 | | | **Chapter 8 Total** | **40** | |
 
 ---
@@ -155,33 +155,33 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B18 | `chem-periodic-table` | Modern Periodic Table and s,p,d,f Blocks | 20 | PENDING |
-| B19 | `chem-periodic-trends` | Periodic Trends (IE, EA, EN, Atomic/Ionic Radius) | 20 | PENDING |
-| B20 | `chem-periodic-anomalous` | Anomalous Properties and Diagonal Relationships | 20 | PENDING |
+| B18 | `chem-periodic-table` | Modern Periodic Table and s,p,d,f Blocks | 20 | DONE |
+| B19 | `chem-periodic-trends` | Periodic Trends (IE, EA, EN, Atomic/Ionic Radius) | 20 | DONE |
+| B20 | `chem-periodic-anomalous` | Anomalous Properties and Diagonal Relationships | 20 | DONE |
 | | | **Chapter 3 Total** | **60** | |
 
 ### Chapter 4: Chemical Bonding and Molecular Structure (`chem-bonding`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B21 | `chem-bond-ionic` | Ionic Bond and Lattice Energy | 20 | PENDING |
-| B22 | `chem-bond-covalent` | Covalent Bond, Lewis Structures, and VSEPR | 20 | PENDING |
-| B23 | `chem-bond-hybrid` | Hybridization (sp, sp², sp³, sp³d, sp³d²) | 20 | PENDING |
-| B24 | `chem-bond-mot` | Molecular Orbital Theory and Hydrogen Bonding | 20 | PENDING |
+| B21 | `chem-bond-ionic` | Ionic Bond and Lattice Energy | 20 | DONE |
+| B22 | `chem-bond-covalent` | Covalent Bond, Lewis Structures, and VSEPR | 20 | DONE |
+| B23 | `chem-bond-hybrid` | Hybridization (sp, sp², sp³, sp³d, sp³d²) | 20 | DONE |
+| B24 | `chem-bond-mot` | Molecular Orbital Theory and Hydrogen Bonding | 20 | DONE |
 | | | **Chapter 4 Total** | **80** | |
 
 ### Chapter 9: Hydrogen (`chem-hydrogen`) — 1 batch
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B25 | `chem-hydrogen` | Hydrogen: Properties, Water, and Hydrogen Peroxide | 20 | PENDING |
+| B25 | `chem-hydrogen` | Hydrogen: Properties, Water, and Hydrogen Peroxide | 20 | DONE |
 | | | **Chapter 9 Total** | **20** | |
 
 ### Chapter 10: s-Block Elements (`chem-sblock`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B26 | `chem-sblock-alkali` | Alkali Metals (Group 1) | 20 | PENDING |
+| B26 | `chem-sblock-alkali` | Alkali Metals (Group 1) | 20 | DONE |
 | B27 | `chem-sblock-alkaline` | Alkaline Earth Metals (Group 2) | 20 | PENDING |
 | B28 | `chem-sblock-compounds` | Important Compounds (NaOH, Na₂CO₃, CaO, CaCO₃, Plaster of Paris) | 20 | PENDING |
 | | | **Chapter 10 Total** | **60** | |
@@ -588,14 +588,14 @@ Commit and push.
 |---------|--------|-----------|---------|---|
 | Ch1 Some Basic Concepts | 3 | 60 | 60 | 100% |
 | Ch2 Structure of Atom | 3 | 60 | 60 | 100% |
-| Ch3 Periodicity | 3 | 60 | 0 | 0% |
-| Ch4 Chemical Bonding | 4 | 80 | 0 | 0% |
+| Ch3 Periodicity | 3 | 60 | 60 | 100% |
+| Ch4 Chemical Bonding | 4 | 80 | 80 | 100% |
 | Ch5 States of Matter | 2 | 40 | 40 | 100% |
 | Ch6 Thermodynamics | 3 | 60 | 60 | 100% |
-| Ch7 Equilibrium | 4 | 80 | 40 | 50% |
-| Ch8 Redox Reactions | 2 | 40 | 0 | 0% |
-| Ch9 Hydrogen | 1 | 20 | 0 | 0% |
-| Ch10 s-Block Elements | 3 | 60 | 0 | 0% |
+| Ch7 Equilibrium | 4 | 80 | 80 | 100% |
+| Ch8 Redox Reactions | 2 | 40 | 40 | 100% |
+| Ch9 Hydrogen | 1 | 20 | 20 | 100% |
+| Ch10 s-Block Elements | 3 | 60 | 20 | 33% |
 | Ch11 p-Block (Class 11) | 3 | 60 | 0 | 0% |
 | Ch12 Organic Basics | 3 | 60 | 0 | 0% |
 | Ch13 Hydrocarbons | 4 | 80 | 0 | 0% |
@@ -616,4 +616,4 @@ Commit and push.
 | Ch28 Biomolecules | 2 | 40 | 0 | 0% |
 | Ch29 Polymers | 1 | 20 | 0 | 0% |
 | Ch30 Chemistry in Everyday Life | 1 | 20 | 0 | 0% |
-| **TOTAL** | **82** | **1,640** | **260** | **16%** |
+| **TOTAL** | **82** | **1,640** | **520** | **32%** |

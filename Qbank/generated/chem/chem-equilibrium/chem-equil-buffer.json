@@ -1,0 +1,1169 @@
+[
+  {
+    "id": "chem-equil-buffer-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A buffer solution resists changes in pH upon addition of small amounts of acid or base. Which of the following is an example of an acidic buffer?",
+    "explanation": "An acidic buffer consists of a weak acid and its conjugate base (salt of the weak acid with a strong base). CH₃COOH + CH₃COONa is a classic example: acetic acid is the weak acid and sodium acetate provides the conjugate base CH₃COO⁻. NaOH + NaCl is a strong base + salt combination, not a buffer. NH₄OH + NH₄Cl is a basic buffer. HCl + NaCl is a strong acid + its salt, which cannot function as a buffer.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "buffer-solution",
+      "acidic-buffer",
+      "weak-acid-conjugate-base"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "CH₃COOH + CH₃COONa",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "NaOH + NaCl",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "NH₄OH + NH₄Cl",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "HCl + NaCl",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "NaOH is a strong base, not a weak acid. A strong base with its salt cannot form a buffer system.",
+        "misconception": "Confusing strong base-salt mixtures with buffer solutions."
+      },
+      {
+        "option_key": "C",
+        "hint": "NH₄OH + NH₄Cl is indeed a buffer, but it is a basic buffer (weak base + its salt), not an acidic buffer.",
+        "misconception": "Failing to distinguish between acidic and basic buffers."
+      },
+      {
+        "option_key": "D",
+        "hint": "HCl is a strong acid. A strong acid mixed with its salt does not constitute a buffer because HCl dissociates completely.",
+        "misconception": "Thinking any acid-salt combination forms a buffer, ignoring the requirement for a weak acid."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The Henderson-Hasselbalch equation for an acidic buffer is given by pH = pKₐ + log([Salt]/[Acid]). If the concentrations of the weak acid and its conjugate base are equal, the pH of the buffer is:",
+    "explanation": "When [Salt] = [Acid], the ratio [Salt]/[Acid] = 1. Since log(1) = 0, the Henderson-Hasselbalch equation simplifies to pH = pKₐ + 0 = pKₐ. This is a fundamental result: at equal concentrations of acid and conjugate base, the buffer pH equals the pKₐ of the weak acid, and the buffer capacity is at its maximum.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "henderson-hasselbalch",
+      "pKa",
+      "buffer-pH"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Equal to pKb",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Equal to pKₐ",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Equal to 7",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Equal to 14 − pKₐ",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "pKb relates to the base dissociation constant. The Henderson-Hasselbalch equation for an acidic buffer uses pKₐ, not pKb.",
+        "misconception": "Confusing pKₐ with pKb in the context of acidic buffers."
+      },
+      {
+        "option_key": "C",
+        "hint": "pH = 7 would only occur if pKₐ of the acid happened to be 7. The pH depends on the acid's pKₐ, not a fixed neutral value.",
+        "misconception": "Assuming all buffers with equal acid and salt concentrations are neutral."
+      },
+      {
+        "option_key": "D",
+        "hint": "14 − pKₐ equals pKb (since pKₐ + pKb = 14 for a conjugate acid-base pair). This would be relevant for a basic buffer, not an acidic one.",
+        "misconception": "Mixing up the relationship between pKₐ and pKb when applying the Henderson-Hasselbalch equation."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The solubility product (Ksp) expression for silver chloride (AgCl) is:",
+    "explanation": "AgCl dissociates in water as: AgCl(s) ⇌ Ag⁺(aq) + Cl⁻(aq). The solubility product expression includes only the ions in solution (the solid is excluded). Since each formula unit produces one Ag⁺ and one Cl⁻, Ksp = [Ag⁺][Cl⁻]. There are no exponents other than 1 because the stoichiometric coefficients are both 1.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "solubility-product",
+      "Ksp-expression",
+      "AgCl"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Ksp = [AgCl]",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Ksp = [Ag⁺]²[Cl⁻]",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Ksp = [Ag⁺][Cl⁻]",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Ksp = [Ag⁺][Cl⁻]²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The concentration of a pure solid is constant and is not included in the equilibrium expression. Ksp only involves aqueous ion concentrations.",
+        "misconception": "Including the undissolved solid in the Ksp expression."
+      },
+      {
+        "option_key": "B",
+        "hint": "The exponent on each ion concentration must match its stoichiometric coefficient. AgCl produces only one Ag⁺ ion per formula unit, so the exponent should be 1, not 2.",
+        "misconception": "Incorrectly assigning stoichiometric coefficients in the Ksp expression."
+      },
+      {
+        "option_key": "D",
+        "hint": "This would be the Ksp expression for a salt like AgCl₂ (which does not exist for silver). AgCl gives a 1:1 ratio of ions.",
+        "misconception": "Confusing AgCl with a salt that has a different stoichiometry, such as PbCl₂."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following statements about buffer capacity is correct?",
+    "explanation": "Buffer capacity is defined as the amount of acid or base a buffer can neutralize before a significant pH change occurs. It is maximum when the concentrations of the weak acid and its conjugate base are equal (i.e., [Acid] = [Salt]), and it increases with higher total concentrations of the buffering species. A dilute buffer has less capacity than a concentrated one because fewer moles of acid/base components are available to neutralize added H⁺ or OH⁻.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "buffer-capacity",
+      "buffer-concentration",
+      "acid-base-ratio"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Buffer capacity is independent of the concentration of buffer components",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Buffer capacity is maximum when [Acid] >> [Salt]",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Buffer capacity decreases with increasing concentration of the buffer",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Buffer capacity is maximum when [Acid] = [Salt] and increases with total buffer concentration",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A more concentrated buffer can neutralize more added acid or base. Buffer capacity clearly depends on the total concentration of buffer components.",
+        "misconception": "Thinking buffer capacity depends only on the ratio, not the absolute concentrations."
+      },
+      {
+        "option_key": "B",
+        "hint": "When [Acid] >> [Salt], the buffer is heavily skewed and cannot effectively neutralize added acid. Maximum capacity requires a balanced ratio.",
+        "misconception": "Confusing having excess acid with having greater buffering ability."
+      },
+      {
+        "option_key": "C",
+        "hint": "Increasing concentration provides more moles of buffering species, which increases the buffer's ability to resist pH changes.",
+        "misconception": "Reversing the relationship between buffer concentration and buffer capacity."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The pKₐ of acetic acid is 4.76. What is the pH of a buffer solution containing 0.1 M acetic acid and 0.2 M sodium acetate?",
+    "explanation": "Using the Henderson-Hasselbalch equation: pH = pKₐ + log([Salt]/[Acid]) = 4.76 + log(0.2/0.1) = 4.76 + log(2) = 4.76 + 0.301 = 5.06. The salt concentration is double the acid concentration, so the log term is positive (log 2 ≈ 0.30), making the pH slightly above the pKₐ.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "henderson-hasselbalch",
+      "buffer-pH-calculation",
+      "acetic-acid-buffer"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "4.46",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "5.06",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "4.76",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "5.76",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "4.46 = 4.76 − 0.30. This would be correct if [Salt]/[Acid] = 0.5, meaning [Salt] < [Acid]. Here the salt concentration is higher, so pH should be above pKₐ.",
+        "misconception": "Inverting the ratio in the Henderson-Hasselbalch equation, using [Acid]/[Salt] instead of [Salt]/[Acid]."
+      },
+      {
+        "option_key": "C",
+        "hint": "pH = pKₐ only when [Acid] = [Salt]. Since [Salt] = 0.2 M and [Acid] = 0.1 M, the ratio is not 1, so pH ≠ pKₐ.",
+        "misconception": "Assuming pH always equals pKₐ regardless of the acid-to-salt ratio."
+      },
+      {
+        "option_key": "D",
+        "hint": "5.76 = 4.76 + 1.0, which would require log([Salt]/[Acid]) = 1, meaning [Salt]/[Acid] = 10. The actual ratio is only 2.",
+        "misconception": "Miscalculating the logarithm or the concentration ratio."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The Ksp of PbCl₂ is 1.6 × 10⁻⁵. What is the molar solubility of PbCl₂ in pure water?",
+    "explanation": "PbCl₂ dissociates as: PbCl₂(s) ⇌ Pb²⁺(aq) + 2Cl⁻(aq). If the molar solubility is s, then [Pb²⁺] = s and [Cl⁻] = 2s. Ksp = [Pb²⁺][Cl⁻]² = s(2s)² = 4s³. Solving: 4s³ = 1.6 × 10⁻⁵, s³ = 4.0 × 10⁻⁶, s = (4.0 × 10⁻⁶)^(1/3). The cube root of 4.0 is approximately 1.587 and the cube root of 10⁻⁶ is 10⁻². Therefore s ≈ 1.59 × 10⁻² M ≈ 1.6 × 10⁻² M.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "solubility-product",
+      "molar-solubility",
+      "PbCl2"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "4.0 × 10⁻³ M",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2.0 × 10⁻³ M",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1.6 × 10⁻² M",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1.6 × 10⁻⁵ M",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This would result from an incorrect Ksp expression. Check whether the stoichiometry of Cl⁻ ions has been correctly accounted for (the exponent on [Cl⁻] should be 2).",
+        "misconception": "Using Ksp = s² instead of Ksp = 4s³, ignoring the correct stoichiometry."
+      },
+      {
+        "option_key": "B",
+        "hint": "This value does not satisfy the equation 4s³ = 1.6 × 10⁻⁵. Verify the cube root calculation carefully.",
+        "misconception": "Arithmetic error in solving the cubic equation."
+      },
+      {
+        "option_key": "D",
+        "hint": "Simply equating solubility to Ksp is incorrect. Ksp = 4s³ for PbCl₂, not Ksp = s. You need to solve the cubic equation.",
+        "misconception": "Assuming molar solubility equals Ksp directly without solving the equilibrium expression."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The common ion effect states that the solubility of a sparingly soluble salt decreases in the presence of a common ion. What happens to the solubility of AgCl (Ksp = 1.8 × 10⁻¹⁰) when it is dissolved in 0.1 M NaCl solution instead of pure water?",
+    "explanation": "In pure water, Ksp = s² for AgCl, giving s = √(1.8 × 10⁻¹⁰) = 1.34 × 10⁻⁵ M. In 0.1 M NaCl, Cl⁻ is already 0.1 M. So Ksp = [Ag⁺](0.1 + s) ≈ [Ag⁺](0.1) since s << 0.1. Thus [Ag⁺] = 1.8 × 10⁻¹⁰ / 0.1 = 1.8 × 10⁻⁹ M. The solubility drops from ~10⁻⁵ M to ~10⁻⁹ M, a dramatic decrease due to the common ion effect.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "common-ion-effect",
+      "solubility-decrease",
+      "AgCl",
+      "Ksp"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Solubility decreases to 1.8 × 10⁻⁹ M",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Solubility increases to 1.8 × 10⁻⁸ M",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Solubility remains 1.34 × 10⁻⁵ M",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Solubility decreases to 1.8 × 10⁻¹¹ M",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The common ion effect always decreases solubility, never increases it. Adding more Cl⁻ shifts the equilibrium to the left.",
+        "misconception": "Thinking the common ion effect can increase solubility."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is the solubility in pure water. The presence of 0.1 M NaCl provides extra Cl⁻ ions, which will suppress AgCl dissociation.",
+        "misconception": "Ignoring the effect of common ions on solubility equilibrium."
+      },
+      {
+        "option_key": "D",
+        "hint": "1.8 × 10⁻¹¹ would result from dividing Ksp by 1 M NaCl rather than 0.1 M. Check the NaCl concentration used in the calculation.",
+        "misconception": "Using incorrect concentration of the common ion in the Ksp calculation."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A basic buffer can be prepared by mixing a weak base with its conjugate acid (salt). Which of the following mixtures will form a basic buffer?",
+    "explanation": "A basic buffer consists of a weak base and its salt with a strong acid. NH₃ (weak base) + NH₄Cl (ammonium chloride, which provides the conjugate acid NH₄⁺) forms a classic basic buffer. NaOH + NaCl involves a strong base, not a buffer. CH₃COOH + CH₃COONa is an acidic buffer. HCl + KCl involves a strong acid and cannot buffer.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "basic-buffer",
+      "weak-base-conjugate-acid",
+      "ammonia-buffer"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "NaOH + NaCl",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "CH₃COOH + CH₃COONa",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "HCl + KCl",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "NH₃ + NH₄Cl",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "NaOH is a strong base. Strong bases cannot form buffers because they dissociate completely and cannot establish an equilibrium.",
+        "misconception": "Thinking any base-salt combination can form a buffer."
+      },
+      {
+        "option_key": "B",
+        "hint": "This is an acidic buffer (weak acid + its salt), not a basic buffer. The question asks specifically for a basic buffer.",
+        "misconception": "Confusing acidic buffers with basic buffers."
+      },
+      {
+        "option_key": "C",
+        "hint": "HCl is a strong acid that dissociates completely. Strong acid + its salt does not create a buffering system.",
+        "misconception": "Believing strong acids can participate in buffer systems."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For selective precipitation, two salts with different Ksp values are considered. If a solution contains 0.01 M Cl⁻ and 0.01 M CrO₄²⁻, and AgNO₃ is slowly added, which salt precipitates first? (Ksp of AgCl = 1.8 × 10⁻¹⁰; Ksp of Ag₂CrO₄ = 1.1 × 10⁻¹²)",
+    "explanation": "To determine which precipitates first, calculate the minimum [Ag⁺] needed to start precipitation of each salt. For AgCl: [Ag⁺] = Ksp/[Cl⁻] = 1.8 × 10⁻¹⁰ / 0.01 = 1.8 × 10⁻⁸ M. For Ag₂CrO₄: Ksp = [Ag⁺]²[CrO₄²⁻], so [Ag⁺]² = 1.1 × 10⁻¹² / 0.01 = 1.1 × 10⁻¹⁰, [Ag⁺] = 1.05 × 10⁻⁵ M. AgCl requires a much lower [Ag⁺] (1.8 × 10⁻⁸ M vs 1.05 × 10⁻⁵ M), so AgCl precipitates first.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "selective-precipitation",
+      "Ksp-comparison",
+      "ion-product"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Ag₂CrO₄ precipitates first because it has a lower Ksp",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both precipitate simultaneously",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "AgCl precipitates first because it requires a lower [Ag⁺] to exceed its Ksp",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Neither can precipitate from this solution",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A lower Ksp does not always mean a salt precipitates first. You must compare the ion concentrations needed to exceed each Ksp, accounting for stoichiometry (Ag₂CrO₄ has [Ag⁺]² in its expression).",
+        "misconception": "Assuming the salt with the smallest Ksp always precipitates first, without calculating the required ion concentrations."
+      },
+      {
+        "option_key": "B",
+        "hint": "Simultaneous precipitation would require both salts to reach their Ksp at the same [Ag⁺], which is extremely unlikely given different Ksp values and stoichiometries.",
+        "misconception": "Thinking both salts precipitate at the same time regardless of their different Ksp thresholds."
+      },
+      {
+        "option_key": "D",
+        "hint": "Both salts are sparingly soluble and will precipitate once sufficient Ag⁺ is added. The question is about which precipitates first.",
+        "misconception": "Misunderstanding that precipitation occurs when the ion product exceeds Ksp."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The solubility of Mg(OH)₂ in pure water is s mol/L. Its Ksp is:",
+    "explanation": "Mg(OH)₂ dissociates as: Mg(OH)₂(s) ⇌ Mg²⁺(aq) + 2OH⁻(aq). If solubility = s, then [Mg²⁺] = s and [OH⁻] = 2s. Therefore, Ksp = [Mg²⁺][OH⁻]² = s × (2s)² = s × 4s² = 4s³. The factor of 4 arises from the stoichiometric coefficient 2 for OH⁻, which gets squared in the Ksp expression.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "Ksp-expression",
+      "molar-solubility",
+      "Mg(OH)2"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "s²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2s³",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4s³",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "27s⁴",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "s² would be the Ksp for a 1:1 salt like AgCl. Mg(OH)₂ produces 2 moles of OH⁻ per mole dissolved, so the expression must account for this.",
+        "misconception": "Treating Mg(OH)₂ as a 1:1 electrolyte."
+      },
+      {
+        "option_key": "B",
+        "hint": "2s³ incorrectly uses the coefficient 2 as a multiplier instead of squaring (2s). The correct expression has (2s)² = 4s², giving 4s³.",
+        "misconception": "Multiplying by the coefficient instead of raising the concentration to the power of the coefficient."
+      },
+      {
+        "option_key": "D",
+        "hint": "27s⁴ = (3s)³ × s or similar, which corresponds to a salt like A₃B or AB₃, not Mg(OH)₂ with its 1:2 stoichiometry.",
+        "misconception": "Using the wrong stoichiometry, perhaps confusing with a salt like Ca₃(PO₄)₂."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A solution contains 0.10 M CH₃COOH (pKₐ = 4.76) and 0.10 M CH₃COONa. If 0.01 mol of NaOH is added to 1 L of this buffer, the new pH is approximately:",
+    "explanation": "Initially: [CH₃COOH] = 0.10 M, [CH₃COO⁻] = 0.10 M in 1 L. Adding 0.01 mol NaOH neutralizes 0.01 mol of CH₃COOH: New [CH₃COOH] = 0.10 − 0.01 = 0.09 M, New [CH₃COO⁻] = 0.10 + 0.01 = 0.11 M. Using Henderson-Hasselbalch: pH = 4.76 + log(0.11/0.09) = 4.76 + log(1.222) = 4.76 + 0.087 ≈ 4.85. The buffer effectively resists the pH change; without the buffer, adding NaOH would have raised the pH dramatically.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "buffer-action",
+      "henderson-hasselbalch",
+      "NaOH-addition",
+      "pH-change"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "4.76",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4.85",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "5.76",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "12.00",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "4.76 was the initial pH. Adding NaOH converts some acid to conjugate base, changing the ratio and therefore the pH. The change is small but non-zero.",
+        "misconception": "Thinking the buffer pH does not change at all upon addition of base."
+      },
+      {
+        "option_key": "C",
+        "hint": "A jump of 1.0 pH unit would mean the [Salt]/[Acid] ratio became 10, which would require adding 0.09 mol NaOH, not 0.01 mol.",
+        "misconception": "Overestimating the pH change due to a small amount of added base."
+      },
+      {
+        "option_key": "D",
+        "hint": "pH 12 would imply the solution behaves as if no buffer were present. The buffer effectively neutralizes the added NaOH, preventing such a drastic pH increase.",
+        "misconception": "Ignoring the buffering action entirely and treating the solution as if only NaOH determines the pH."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The Ksp of Ca(OH)₂ is 5.5 × 10⁻⁶. In a solution buffered at pH = 12, the solubility of Ca(OH)₂ is:",
+    "explanation": "At pH = 12, pOH = 14 − 12 = 2, so [OH⁻] = 10⁻² M = 0.01 M. For Ca(OH)₂: Ksp = [Ca²⁺][OH⁻]². At the buffered pH, [OH⁻] is fixed at 0.01 M. Therefore [Ca²⁺] = Ksp / [OH⁻]² = 5.5 × 10⁻⁶ / (0.01)² = 5.5 × 10⁻⁶ / 10⁻⁴ = 5.5 × 10⁻² M = 0.055 M. The solubility of Ca(OH)₂ equals [Ca²⁺] = 0.055 M. Compared to pure water (where s = (5.5 × 10⁻⁶/4)^(1/3) ≈ 0.011 M), the solubility is actually higher here because the buffered [OH⁻] at pH 12 (0.01 M) is lower than what Ca(OH)₂ would produce at equilibrium in pure water (2 × 0.011 = 0.022 M).",
+    "correct_answer": "D",
+    "concept_tags": [
+      "Ksp-pH-relationship",
+      "Ca(OH)2-solubility",
+      "buffered-solution",
+      "pH-effect-on-solubility"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "5.5 × 10⁻⁶ M",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "5.5 × 10⁻⁴ M",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "5.5 × 10⁻³ M",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "5.5 × 10⁻² M",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This is the Ksp value itself, not the solubility. You need to divide Ksp by [OH⁻]² to find [Ca²⁺].",
+        "misconception": "Confusing Ksp with molar solubility."
+      },
+      {
+        "option_key": "B",
+        "hint": "This would result from dividing Ksp by [OH⁻] instead of [OH⁻]². Remember the exponent on OH⁻ in the Ksp expression is 2.",
+        "misconception": "Forgetting to square the hydroxide ion concentration in the Ksp expression."
+      },
+      {
+        "option_key": "C",
+        "hint": "Check your calculation of [OH⁻] from the pH. At pH 12, pOH = 2, so [OH⁻] = 0.01 M, and [OH⁻]² = 10⁻⁴.",
+        "misconception": "Arithmetic error in computing [OH⁻] from pH or in the division."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Blood maintains a nearly constant pH of 7.4 due to the carbonic acid-bicarbonate buffer system (H₂CO₃/HCO₃⁻).\n\nReason (R): The Henderson-Hasselbalch equation shows that pH depends on the ratio of conjugate base to weak acid, and biological systems maintain this ratio through metabolic and respiratory regulation.\n\nSelect the correct option:\n(A) Both A and R are true, and R is the correct explanation of A.\n(B) Both A and R are true, but R is not the correct explanation of A.\n(C) A is true but R is false.\n(D) A is false but R is true.",
+    "explanation": "Both statements are true. Blood pH is maintained at ~7.4 by the H₂CO₃/HCO₃⁻ buffer system (Assertion is true). The Henderson-Hasselbalch equation pH = pKₐ + log([HCO₃⁻]/[H₂CO₃]) shows that pH depends on the ratio of bicarbonate to carbonic acid, and the body regulates this ratio via lungs (CO₂ exhalation controls H₂CO₃) and kidneys (HCO₃⁻ reabsorption). The Reason correctly explains why the buffer maintains a constant pH — it is the regulation of the [HCO₃⁻]/[H₂CO₃] ratio that keeps pH constant.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "biological-buffer",
+      "blood-pH",
+      "carbonic-acid-bicarbonate",
+      "henderson-hasselbalch"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is not the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains the mechanism by which the buffer maintains constant pH. The Henderson-Hasselbalch equation and metabolic/respiratory regulation are the exact reasons blood pH stays at 7.4.",
+        "misconception": "Failing to see the direct causal link between the Henderson-Hasselbalch relationship and blood pH maintenance."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is scientifically accurate. The Henderson-Hasselbalch equation does describe buffer pH, and biological regulation of the ratio is well-established.",
+        "misconception": "Incorrectly doubting the validity of the Henderson-Hasselbalch equation for biological systems."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is a well-known biological fact. Blood does maintain pH ~7.4 through the carbonic acid-bicarbonate system.",
+        "misconception": "Not recognizing the H₂CO₃/HCO₃⁻ buffer as the primary blood buffer system."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The solubility of CaF₂ (Ksp = 3.9 × 10⁻¹¹) increases when the pH of the solution is decreased (made more acidic).\n\nReason (R): In acidic solution, H⁺ ions react with F⁻ ions to form the weak acid HF, thereby reducing [F⁻] and shifting the dissolution equilibrium to the right.\n\nSelect the correct option:\n(A) Both A and R are true, and R is the correct explanation of A.\n(B) Both A and R are true, but R is not the correct explanation of A.\n(C) A is true but R is false.\n(D) A is false but R is true.",
+    "explanation": "Both statements are correct. CaF₂(s) ⇌ Ca²⁺(aq) + 2F⁻(aq). When pH is lowered, H⁺ ions react with F⁻ to form HF (a weak acid, Kₐ = 6.8 × 10⁻⁴). This consumes F⁻ ions, reducing their concentration. By Le Chatelier's principle, the equilibrium shifts to the right, dissolving more CaF₂. The Reason correctly explains the mechanism behind the Assertion. This effect applies to salts of weak acids in general — their solubility increases in acidic solutions.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "pH-effect-on-solubility",
+      "CaF2",
+      "Le-Chatelier-principle",
+      "weak-acid-anion"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is not the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason provides the exact chemical mechanism (H⁺ reacting with F⁻ to form HF) that causes the increased solubility stated in the Assertion. This is a direct causal explanation.",
+        "misconception": "Not recognizing that the removal of F⁻ by protonation is the direct cause of the increased solubility."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is chemically accurate. F⁻ is the conjugate base of the weak acid HF, and in acidic solution, H⁺ does react with F⁻ to form HF.",
+        "misconception": "Thinking F⁻ does not react with H⁺, perhaps confusing with Cl⁻ (conjugate base of strong acid HCl, which would not react)."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. CaF₂ solubility does increase in acidic solution. This is a general principle for salts containing anions of weak acids.",
+        "misconception": "Thinking pH has no effect on the solubility of CaF₂."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following salt formulas in Column I with their correct Ksp expressions in Column II.\n\nColumn I:\n(P) AgCl\n(Q) PbI₂\n(R) Ag₂CrO₄\n(S) Ca₃(PO₄)₂\n\nColumn II:\n(1) Ksp = [Ag⁺]²[CrO₄²⁻]\n(2) Ksp = [Ag⁺][Cl⁻]\n(3) Ksp = [Ca²⁺]³[PO₄³⁻]²\n(4) Ksp = [Pb²⁺][I⁻]²\n\nSelect the correct matching:\n(A) P→2, Q→4, R→1, S→3\n(B) P→1, Q→4, R→2, S→3\n(C) P→2, Q→1, R→4, S→3\n(D) P→4, Q→2, R→3, S→1",
+    "explanation": "AgCl → Ag⁺ + Cl⁻: Ksp = [Ag⁺][Cl⁻] → (P)→(2). PbI₂ → Pb²⁺ + 2I⁻: Ksp = [Pb²⁺][I⁻]² → (Q)→(4). Ag₂CrO₄ → 2Ag⁺ + CrO₄²⁻: Ksp = [Ag⁺]²[CrO₄²⁻] → (R)→(1). Ca₃(PO₄)₂ → 3Ca²⁺ + 2PO₄³⁻: Ksp = [Ca²⁺]³[PO₄³⁻]² → (S)→(3). The correct matching is P→2, Q→4, R→1, S→3.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "Ksp-expressions",
+      "stoichiometry",
+      "ionic-dissociation"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→2, Q→4, R→1, S→3",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "P→1, Q→4, R→2, S→3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P→2, Q→1, R→4, S→3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P→4, Q→2, R→3, S→1",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Option B matches P (AgCl) with expression (1) which has [Ag⁺]². AgCl produces only one Ag⁺ ion, so no squared term is needed. Expression (2) is correct for AgCl.",
+        "misconception": "Confusing the Ksp expression of AgCl with that of Ag₂CrO₄."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C matches Q (PbI₂) with expression (1) which has [Ag⁺]²[CrO₄²⁻]. PbI₂ contains no silver or chromate ions.",
+        "misconception": "Mismatching the dissociation products of PbI₂."
+      },
+      {
+        "option_key": "D",
+        "hint": "Option D reverses nearly all the matchings. AgCl does not produce Pb²⁺ and I⁻ ions, and PbI₂ does not produce Ag⁺ and Cl⁻.",
+        "misconception": "Randomly assigning Ksp expressions without considering the actual ions produced."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following buffer systems or conditions in Column I with their corresponding pH or property in Column II.\n\nColumn I:\n(P) 0.1 M CH₃COOH + 0.1 M CH₃COONa (pKₐ of CH₃COOH = 4.76)\n(Q) 0.1 M NH₃ + 0.1 M NH₄Cl (pKb of NH₃ = 4.74)\n(R) Buffer with [Salt]/[Acid] = 10 and pKₐ = 5.0\n(S) Buffer at maximum buffer capacity\n\nColumn II:\n(1) pH = 9.26\n(2) [Acid] = [Conjugate base]\n(3) pH = 6.0\n(4) pH = 4.76\n\nSelect the correct matching:\n(A) P→4, Q→2, R→3, S→1\n(B) P→4, Q→1, R→3, S→2\n(C) P→1, Q→4, R→2, S→3\n(D) P→3, Q→1, R→4, S→2",
+    "explanation": "(P) Equal concentrations of acid and salt: pH = pKₐ = 4.76 → (4). (Q) For NH₃/NH₄Cl buffer: pOH = pKb + log([Salt]/[Base]) = 4.74 + log(1) = 4.74, so pH = 14 − 4.74 = 9.26 → (1). (R) pH = pKₐ + log(10) = 5.0 + 1.0 = 6.0 → (3). (S) Maximum buffer capacity occurs when [Acid] = [Conjugate base] → (2). Correct matching: P→4, Q→1, R→3, S→2.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "henderson-hasselbalch",
+      "buffer-pH",
+      "buffer-capacity",
+      "basic-buffer-pH"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→4, Q→2, R→3, S→1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→4, Q→1, R→3, S→2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "P→1, Q→4, R→2, S→3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P→3, Q→1, R→4, S→2",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Option A matches Q with (2), meaning [Acid] = [Conjugate base]. While this is true for Q, property (2) describes maximum buffer capacity (S), and Q's pH can be calculated as 9.26 using pH = 14 − pKb.",
+        "misconception": "Confusing the property of equal concentrations with the calculated pH of the NH₃ buffer."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C matches P (acetic acid buffer at equal concentrations) with pH 9.26, which is a basic pH. An acetic acid buffer has acidic pH near pKₐ = 4.76.",
+        "misconception": "Swapping the pH values of acidic and basic buffers."
+      },
+      {
+        "option_key": "D",
+        "hint": "Option D matches P with pH 6.0 and R with pH 4.76. P has equal acid and salt concentrations (pH = pKₐ = 4.76), while R has [Salt]/[Acid] = 10 (pH = 5.0 + 1 = 6.0). These are reversed in option D.",
+        "misconception": "Mixing up which buffer system has which concentration ratio."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "True or False: The solubility of AgCl decreases when NaCl is added to the solution, due to the common ion effect.",
+    "explanation": "This statement is TRUE. AgCl dissociates as AgCl(s) ⇌ Ag⁺(aq) + Cl⁻(aq). When NaCl is added, it provides additional Cl⁻ ions (the common ion). According to Le Chatelier's principle, the increase in [Cl⁻] shifts the equilibrium to the left, causing more AgCl to precipitate and reducing its solubility. This is the classic demonstration of the common ion effect on solubility.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "common-ion-effect",
+      "AgCl-solubility",
+      "Le-Chatelier-principle"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The common ion effect is well-established: adding a common ion suppresses the solubility of a sparingly soluble salt. NaCl provides Cl⁻, the same ion produced by AgCl dissolution.",
+        "misconception": "Thinking that adding more ions always increases solubility, confusing with the ionic strength effect."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "True or False: A solution of a strong acid (HCl) and its salt (NaCl) can act as a buffer solution.",
+    "explanation": "This statement is FALSE. A buffer solution requires a weak acid (or weak base) and its conjugate base (or conjugate acid). HCl is a strong acid that dissociates completely in water and cannot establish an equilibrium with its conjugate base Cl⁻. Therefore, a mixture of HCl and NaCl cannot resist pH changes upon addition of small amounts of acid or base — it is not a buffer.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "buffer-requirements",
+      "strong-acid",
+      "non-buffer"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Buffer action requires an equilibrium between a weak acid/base and its conjugate. HCl is a strong acid that dissociates completely — there is no equilibrium to resist pH changes.",
+        "misconception": "Assuming any acid-salt pair can act as a buffer, regardless of whether the acid is strong or weak."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The Ksp of BaSO₄ is 1.1 × 10⁻¹⁰. The molar solubility of BaSO₄ in pure water is ________ M. (Given: √(1.1) ≈ 1.05)",
+    "explanation": "BaSO₄ dissociates as: BaSO₄(s) ⇌ Ba²⁺(aq) + SO₄²⁻(aq). If molar solubility = s, then [Ba²⁺] = s and [SO₄²⁻] = s. Ksp = [Ba²⁺][SO₄²⁻] = s × s = s². Therefore s = √Ksp = √(1.1 × 10⁻¹⁰) = √(1.1) × √(10⁻¹⁰) = 1.05 × 10⁻⁵ M. The molar solubility of BaSO₄ is approximately 1.05 × 10⁻⁵ M.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "molar-solubility",
+      "Ksp-calculation",
+      "BaSO4"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1.1 × 10⁻¹⁰ M",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.1 × 10⁻⁵ M",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1.05 × 10⁻⁵ M",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1.05 × 10⁻³ M",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This is the Ksp value itself, not the solubility. Solubility is the square root of Ksp for a 1:1 salt like BaSO₄.",
+        "misconception": "Equating Ksp directly with molar solubility."
+      },
+      {
+        "option_key": "B",
+        "hint": "The √(1.1) ≈ 1.05, not 1.1. This option uses the wrong value for the square root.",
+        "misconception": "Forgetting to take the square root of the coefficient 1.1."
+      },
+      {
+        "option_key": "D",
+        "hint": "10⁻³ would come from √(10⁻⁶), not √(10⁻¹⁰). The correct calculation gives √(10⁻¹⁰) = 10⁻⁵.",
+        "misconception": "Making an error in the exponent when taking the square root of 10⁻¹⁰."
+      }
+    ]
+  },
+  {
+    "id": "chem-equil-buffer-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A chemistry student is preparing a buffer solution for an experiment that requires a pH of 5.0. She has access to acetic acid (pKₐ = 4.76) and sodium acetate. She prepares 1 L of buffer by mixing appropriate amounts of both components.\n\nTo achieve pH = 5.0, what should be the ratio of [CH₃COONa] to [CH₃COOH] in the buffer? (Given: antilog(0.24) ≈ 1.74)",
+    "explanation": "Using the Henderson-Hasselbalch equation: pH = pKₐ + log([Salt]/[Acid]). Substituting: 5.0 = 4.76 + log([CH₃COONa]/[CH₃COOH]). Therefore log([Salt]/[Acid]) = 5.0 − 4.76 = 0.24. Taking antilog: [Salt]/[Acid] = antilog(0.24) = 10^0.24 ≈ 1.74. So the student needs approximately 1.74 times more sodium acetate than acetic acid (by molarity) to achieve pH 5.0.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "henderson-hasselbalch",
+      "buffer-preparation",
+      "salt-acid-ratio",
+      "pH-calculation"
+    ],
+    "topic": "Buffer Solutions and Solubility Product",
+    "subject": "chemistry",
+    "chapter": "Equilibrium",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.24",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.0",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.58",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.74",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0.24 is the value of log([Salt]/[Acid]), not the ratio itself. You need to take the antilog (10^0.24) to find the actual ratio.",
+        "misconception": "Confusing the logarithm of the ratio with the ratio itself."
+      },
+      {
+        "option_key": "B",
+        "hint": "A ratio of 1.0 would give pH = pKₐ = 4.76, not 5.0. Since the desired pH is above pKₐ, the salt must be in excess.",
+        "misconception": "Thinking equal concentrations are needed regardless of the target pH."
+      },
+      {
+        "option_key": "C",
+        "hint": "0.58 ≈ 1/1.74, which is the inverse ratio [Acid]/[Salt]. This would give a pH below pKₐ (pH = 4.76 − 0.24 = 4.52), not above it.",
+        "misconception": "Inverting the Henderson-Hasselbalch ratio, using [Acid]/[Salt] instead of [Salt]/[Acid]."
+      }
+    ]
+  }
+]
