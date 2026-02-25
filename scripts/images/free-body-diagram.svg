@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <!-- Surface -->
+  <line x1="50" y1="200" x2="350" y2="200" stroke="#333" stroke-width="2"/>
+  <line x1="50" y1="200" x2="60" y2="210" stroke="#999" stroke-width="1"/>
+  <line x1="80" y1="200" x2="90" y2="210" stroke="#999" stroke-width="1"/>
+  <line x1="110" y1="200" x2="120" y2="210" stroke="#999" stroke-width="1"/>
+  <line x1="140" y1="200" x2="150" y2="210" stroke="#999" stroke-width="1"/>
+  <line x1="170" y1="200" x2="180" y2="210" stroke="#999" stroke-width="1"/>
+  <line x1="200" y1="200" x2="210" y2="210" stroke="#999" stroke-width="1"/>
+  <line x1="230" y1="200" x2="240" y2="210" stroke="#999" stroke-width="1"/>
+  <line x1="260" y1="200" x2="270" y2="210" stroke="#999" stroke-width="1"/>
+  <line x1="290" y1="200" x2="300" y2="210" stroke="#999" stroke-width="1"/>
+  <line x1="320" y1="200" x2="330" y2="210" stroke="#999" stroke-width="1"/>
+  <!-- Block -->
+  <rect x="150" y="140" width="80" height="60" fill="#4A90D9" stroke="#333" stroke-width="2" rx="3"/>
+  <text x="190" y="175" text-anchor="middle" fill="white" font-size="16" font-weight="bold">5 kg</text>
+  <!-- Normal force (up) -->
+  <line x1="190" y1="140" x2="190" y2="70" stroke="#E74C3C" stroke-width="3" marker-end="url(#arrowRed)"/>
+  <text x="200" y="65" fill="#E74C3C" font-size="14" font-weight="bold">N</text>
+  <!-- Weight (down) -->
+  <line x1="190" y1="200" x2="190" y2="270" stroke="#E74C3C" stroke-width="3" marker-end="url(#arrowRed)"/>
+  <text x="200" y="280" fill="#E74C3C" font-size="14" font-weight="bold">mg</text>
+  <!-- Applied force (right) -->
+  <line x1="230" y1="170" x2="330" y2="170" stroke="#27AE60" stroke-width="3" marker-end="url(#arrowGreen)"/>
+  <text x="340" y="175" fill="#27AE60" font-size="14" font-weight="bold">10 N</text>
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#E74C3C"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+  </defs>
+  <text x="200" y="30" text-anchor="middle" fill="#333" font-size="13">Frictionless surface</text>
+</svg>
