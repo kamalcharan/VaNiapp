@@ -4,7 +4,7 @@
     "question_type": "mcq",
     "difficulty": "easy",
     "question_text": "Which of the following intermolecular forces is the weakest?",
-    "explanation": "London dispersion forces (also called instantaneous dipole-induced dipole forces) are the weakest of all intermolecular forces. They arise from temporary fluctuations in electron distribution that create instantaneous dipoles, which then induce dipoles in neighbouring molecules. While present in all molecules, they are the only intermolecular forces operating between non-polar molecules. Dipole-dipole interactions are stronger as they occur between permanent dipoles, and hydrogen bonding is even stronger due to the highly polar nature of the H-F, H-O, or H-N bond. Ion-dipole forces are the strongest intermolecular forces as they involve the interaction between an ion and a polar molecule.",
+    "explanation": "London dispersion forces (also called instantaneous dipole-induced dipole forces) are the weakest of all intermolecular forces. They arise from temporary fluctuations in electron distribution that create instantaneous dipoles, which then induce dipoles in neighbouring molecules. While present in all molecules, they are the only intermolecular forces operating between non-polar molecules. Dipole-dipole interactions are stronger as they occur between permanent dipoles, hydrogen bonding is even stronger due to the highly polar nature of the H-F, H-O, or H-N bond, and ion-dipole forces are the strongest intermolecular forces as they involve the interaction between an ion and a polar molecule.",
     "correct_answer": "A",
     "concept_tags": [
       "london-dispersion-forces",
@@ -43,18 +43,18 @@
     "elimination_hints": [
       {
         "option_key": "B",
-        "hint": "Dipole-dipole interactions occur between molecules that have permanent dipole moments and are stronger than London dispersion forces, which arise only from temporary fluctuations in electron clouds.",
-        "misconception": "Confusing the strength hierarchy of intermolecular forces; dipole-dipole forces are intermediate in strength, not the weakest."
+        "hint": "Dipole-dipole interactions occur between molecules with permanent dipoles and are considerably stronger than London dispersion forces. They require a permanent charge separation, which provides a consistent attractive force.",
+        "misconception": "Confusing the temporary nature of dispersion forces with the permanent nature of dipole-dipole interactions."
       },
       {
         "option_key": "C",
-        "hint": "Hydrogen bonding is a special, unusually strong type of dipole-dipole interaction involving H bonded to highly electronegative atoms (F, O, N). It is significantly stronger than London dispersion forces.",
-        "misconception": "Not recognising that hydrogen bonding is a particularly strong intermolecular force, much stronger than dispersion forces."
+        "hint": "Hydrogen bonding is a special, stronger case of dipole-dipole interaction involving H bonded to highly electronegative atoms (F, O, N). It is much stronger than London dispersion forces.",
+        "misconception": "Failing to recognise that hydrogen bonds are significantly stronger than ordinary dispersion forces due to the high polarity of H-F, H-O, or H-N bonds."
       },
       {
         "option_key": "D",
-        "hint": "Ion-dipole interactions involve the attraction between a full ion and a polar molecule. These are the strongest intermolecular forces and are far stronger than London dispersion forces.",
-        "misconception": "Confusing ion-dipole interactions (strongest) with London dispersion forces (weakest) in the hierarchy of intermolecular forces."
+        "hint": "Ion-dipole interactions involve full ionic charges interacting with polar molecules and are the strongest of all intermolecular forces. They are far stronger than London dispersion forces.",
+        "misconception": "Not appreciating the magnitude of charge involved in ion-dipole interactions compared to the transient dipoles in dispersion forces."
       }
     ]
   },
@@ -62,73 +62,12 @@
     "id": "chem-states-liquid-02",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "Hydrogen bonding is strongest when hydrogen is bonded to which of the following elements?",
-    "explanation": "Hydrogen bonding is strongest when hydrogen is bonded to fluorine. Fluorine is the most electronegative element (electronegativity = 4.0 on the Pauling scale), which creates the most polar H-X bond and the strongest hydrogen bonds. The strength of hydrogen bonds follows the order: H-F > H-O > H-N. This is why HF has an unexpectedly high boiling point for a molecule of its size. Hydrogen bonding requires hydrogen to be bonded to a small, highly electronegative atom with lone pairs (F, O, or N), and among these, fluorine forms the strongest hydrogen bonds.",
+    "question_text": "Surface tension of a liquid is defined as the force acting per unit length perpendicular to an imaginary line drawn on the surface of the liquid. Its SI unit is:",
+    "explanation": "Surface tension is defined as the force per unit length acting along the surface of a liquid perpendicular to any line drawn on the surface. The SI unit of force is newton (N) and that of length is metre (m), so the SI unit of surface tension is N/m (newton per metre). This can also be expressed as J/m² (joule per square metre), since 1 N/m = 1 J/m². Surface tension arises because molecules at the surface experience a net inward pull due to intermolecular attractions, creating a tendency for the surface to contract.",
     "correct_answer": "B",
     "concept_tags": [
-      "hydrogen-bonding",
-      "electronegativity",
-      "bond-strength",
-      "fluorine"
-    ],
-    "topic": "Liquid State and Intermolecular Forces",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "remember",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "Nitrogen",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "Fluorine",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "Chlorine",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "Carbon",
-        "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "Nitrogen does form hydrogen bonds (as seen in ammonia and amines), but nitrogen is less electronegative than fluorine (N = 3.0 vs F = 4.0), so H-N hydrogen bonds are weaker than H-F hydrogen bonds.",
-        "misconception": "Not recognising that hydrogen bond strength correlates with the electronegativity of the atom bonded to hydrogen, and fluorine has the highest electronegativity."
-      },
-      {
-        "option_key": "C",
-        "hint": "Chlorine does not typically form strong hydrogen bonds despite being electronegative. Its larger atomic size means the lone pair electrons are more diffuse, resulting in much weaker hydrogen bonding compared to F, O, or N.",
-        "misconception": "Assuming that all halogens form equally strong hydrogen bonds; in reality, only fluorine among the halogens forms strong hydrogen bonds due to its small size and high electronegativity."
-      },
-      {
-        "option_key": "D",
-        "hint": "Carbon is not electronegative enough (electronegativity = 2.5) to form significant hydrogen bonds. Hydrogen bonding requires H to be bonded to small, highly electronegative atoms like F, O, or N.",
-        "misconception": "Not understanding that carbon lacks the necessary electronegativity and lone pair availability to participate in conventional hydrogen bonding."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-liquid-03",
-    "question_type": "mcq",
-    "difficulty": "easy",
-    "question_text": "Surface tension of a liquid generally ______ with increase in temperature.",
-    "explanation": "Surface tension of a liquid decreases with increase in temperature. As temperature rises, the kinetic energy of molecules increases, which weakens the intermolecular forces holding the surface molecules together. The inward pull on surface molecules becomes weaker, reducing the surface tension. This is why hot water is a better cleaning agent than cold water — the reduced surface tension allows it to spread more easily and penetrate fabrics and surfaces better. At the critical temperature, the surface tension of a liquid becomes zero as the distinction between liquid and gas phases disappears.",
-    "correct_answer": "C",
-    "concept_tags": [
       "surface-tension",
-      "temperature-effect",
-      "intermolecular-forces",
+      "si-units",
       "liquid-properties"
     ],
     "topic": "Liquid State and Intermolecular Forces",
@@ -141,60 +80,540 @@
     "options": [
       {
         "key": "A",
-        "text": "Increases",
+        "text": "N/m²",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "Remains constant",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "Decreases",
+        "text": "N/m",
         "is_correct": true
       },
       {
+        "key": "C",
+        "text": "N m",
+        "is_correct": false
+      },
+      {
         "key": "D",
-        "text": "First increases then decreases",
+        "text": "Pa",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "Increasing temperature provides more kinetic energy to molecules, which disrupts intermolecular attractions. Since surface tension depends on the strength of intermolecular forces at the surface, it decreases, not increases, with temperature.",
-        "misconception": "Incorrectly thinking that higher temperature strengthens intermolecular attractions at the liquid surface."
+        "hint": "N/m² is the unit of pressure (pascal). Surface tension is force per unit length, not force per unit area. Pressure measures force distributed over an area, while surface tension measures force along a line.",
+        "misconception": "Confusing surface tension (force/length) with pressure (force/area)."
       },
       {
-        "option_key": "B",
-        "hint": "Surface tension is directly dependent on intermolecular forces, which are affected by temperature. Since increased temperature weakens these forces, surface tension cannot remain constant.",
-        "misconception": "Assuming surface tension is an intrinsic property that does not change with external conditions."
+        "option_key": "C",
+        "hint": "N m (newton-metre) is the unit of torque or work/energy. Surface tension involves dividing force by length, not multiplying them.",
+        "misconception": "Reversing the mathematical operation from division to multiplication in the definition of surface tension."
       },
       {
         "option_key": "D",
-        "hint": "Surface tension shows a monotonic decrease with temperature, not a complex pattern. As temperature increases, kinetic energy consistently increases and intermolecular forces consistently weaken, leading to a steady decrease in surface tension.",
-        "misconception": "Confusing surface tension behaviour with some other property that may show a non-monotonic trend with temperature."
+        "hint": "Pascal (Pa) is the unit of pressure, equivalent to N/m². Surface tension has units of N/m, not N/m². The dimensions are different.",
+        "misconception": "Equating surface tension with pressure, both of which involve force but differ in whether it is per length or per area."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-liquid-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following liquids has the highest viscosity at room temperature?",
+    "explanation": "Glycerol (glycerine, C₃H₈O₃) has the highest viscosity at room temperature among the given options. This is because glycerol has three hydroxyl (-OH) groups per molecule, enabling extensive hydrogen bonding networks between molecules. This creates very strong intermolecular attractions that resist flow. Water has only two lone pairs and two O-H bonds for hydrogen bonding per molecule, ethanol has one -OH group, and diethyl ether has no -OH groups and exhibits only weak dipole-dipole and dispersion forces. The more extensive the hydrogen bonding network, the greater the viscosity.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "viscosity",
+      "hydrogen-bonding",
+      "glycerol",
+      "liquid-properties"
+    ],
+    "topic": "Liquid State and Intermolecular Forces",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Water",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Ethanol",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Glycerol",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Diethyl ether",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Water does have significant hydrogen bonding, but it has only two O-H bonds per molecule. Glycerol has three -OH groups per molecule, forming a much more extensive hydrogen bonding network, resulting in higher viscosity.",
+        "misconception": "Assuming that water always has the strongest intermolecular interactions among common liquids."
+      },
+      {
+        "option_key": "B",
+        "hint": "Ethanol has only one -OH group per molecule, so its hydrogen bonding capacity is less extensive than glycerol, which has three -OH groups. This results in lower viscosity for ethanol.",
+        "misconception": "Overlooking the number of hydrogen bonding sites per molecule when comparing viscosities."
+      },
+      {
+        "option_key": "D",
+        "hint": "Diethyl ether has no -OH groups and cannot form hydrogen bonds as a donor. It only has weak dipole-dipole and dispersion forces, giving it a very low viscosity compared to glycerol.",
+        "misconception": "Not considering that the absence of hydrogen bond donor groups drastically reduces intermolecular attractions and viscosity."
       }
     ]
   },
   {
     "id": "chem-states-liquid-04",
     "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "Which of the following liquids is expected to have the highest viscosity at room temperature?",
-    "explanation": "Glycerol (C₃H₅(OH)₃) is expected to have the highest viscosity among the given liquids at room temperature. Glycerol has three hydroxyl (-OH) groups per molecule, allowing it to form an extensive three-dimensional hydrogen bonding network. This creates very strong intermolecular attractions that resist the flow of one layer of liquid over another. In comparison, water has two -OH groups but a smaller molecule with fewer hydrogen bonding sites per molecule, ethanol has only one -OH group, and diethyl ether lacks -OH groups entirely and can only exhibit weak dipole-dipole and dispersion forces. The extensive hydrogen bonding network in glycerol gives it a viscosity approximately 1000 times greater than water at 25°C.",
+    "difficulty": "easy",
+    "question_text": "The vapour pressure of a liquid increases when:",
+    "explanation": "The vapour pressure of a liquid increases with increasing temperature. As temperature rises, more molecules acquire sufficient kinetic energy to escape from the liquid surface into the vapour phase. This increases the concentration of molecules in the vapour phase, thereby raising the vapour pressure. At the boiling point, the vapour pressure equals the atmospheric pressure. Adding a non-volatile solute decreases vapour pressure (Raoult's law), increasing intermolecular forces decreases vapour pressure, and increasing external pressure has a negligible effect on the liquid's own vapour pressure.",
     "correct_answer": "D",
     "concept_tags": [
-      "viscosity",
+      "vapour-pressure",
+      "temperature-dependence",
+      "kinetic-energy",
+      "boiling-point"
+    ],
+    "topic": "Liquid State and Intermolecular Forces",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A non-volatile solute is added",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Intermolecular forces increase",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "External pressure is increased",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Temperature is increased",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Adding a non-volatile solute actually decreases the vapour pressure of a liquid according to Raoult's law, because fewer solvent molecules are at the surface to escape into the vapour phase.",
+        "misconception": "Confusing the effect of solute addition with temperature increase on vapour pressure."
+      },
+      {
+        "option_key": "B",
+        "hint": "Stronger intermolecular forces make it harder for molecules to escape from the liquid surface, which decreases vapour pressure rather than increasing it.",
+        "misconception": "Incorrectly associating stronger intermolecular forces with higher vapour pressure, when the relationship is inverse."
+      },
+      {
+        "option_key": "C",
+        "hint": "Increasing external pressure has a negligible direct effect on vapour pressure. The vapour pressure is an intrinsic property of the liquid at a given temperature and does not significantly change with external pressure.",
+        "misconception": "Confusing external (atmospheric) pressure with the liquid's own vapour pressure."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-liquid-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Hydrogen bonding is strongest in which of the following compounds?",
+    "explanation": "Hydrogen fluoride (HF) forms the strongest hydrogen bonds among the given options. The strength of a hydrogen bond depends on the electronegativity of the atom bonded to hydrogen. Fluorine is the most electronegative element (electronegativity = 4.0), creating the most polar H-F bond and hence the strongest hydrogen bonds. While water (H₂O) also forms strong hydrogen bonds (O electronegativity = 3.5), the H-F hydrogen bond is stronger on a per-bond basis. Ammonia (NH₃) has weaker hydrogen bonds (N electronegativity = 3.0), and hydrogen sulphide (H₂S) does not form significant hydrogen bonds because sulphur's electronegativity (2.5) is too low.",
+    "correct_answer": "B",
+    "concept_tags": [
       "hydrogen-bonding",
-      "glycerol",
+      "electronegativity",
+      "hydrogen-fluoride",
+      "bond-strength"
+    ],
+    "topic": "Liquid State and Intermolecular Forces",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "H₂O",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "HF",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "NH₃",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "H₂S",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "While water forms strong hydrogen bonds, the electronegativity of oxygen (3.5) is less than that of fluorine (4.0). The H-F hydrogen bond is stronger on a per-bond basis than the H-O hydrogen bond.",
+        "misconception": "Assuming water always has the strongest hydrogen bonds because of its familiar properties, without comparing electronegativities."
+      },
+      {
+        "option_key": "C",
+        "hint": "Nitrogen has an electronegativity of 3.0, which is lower than both oxygen (3.5) and fluorine (4.0). Consequently, hydrogen bonds in NH₃ are weaker than those in HF or H₂O.",
+        "misconception": "Overestimating the hydrogen bonding ability of nitrogen compared to fluorine."
+      },
+      {
+        "option_key": "D",
+        "hint": "Sulphur has an electronegativity of only 2.5 and its large atomic size makes the H-S bond insufficiently polar for effective hydrogen bonding. H₂S does not exhibit significant hydrogen bonding.",
+        "misconception": "Assuming all hydrides of Group 16 elements form hydrogen bonds, when only oxygen is electronegative enough."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-liquid-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The boiling point of water (100 °C) is anomalously high compared to H₂S (−60 °C), H₂Se (−41 °C) and H₂Te (−2 °C). This is primarily due to:",
+    "explanation": "Water has an anomalously high boiling point compared to other hydrides of Group 16 (H₂S, H₂Se, H₂Te) because of extensive hydrogen bonding between water molecules. In H₂O, each molecule can form up to four hydrogen bonds (two as donor through its two O-H bonds and two as acceptor through its two lone pairs on oxygen). This creates an extensive three-dimensional hydrogen bonding network that requires a large amount of energy to break, leading to an unusually high boiling point. The heavier hydrides H₂S, H₂Se and H₂Te cannot form significant hydrogen bonds because S, Se and Te are not electronegative enough, so their boiling points follow the expected trend based on molecular mass and London dispersion forces.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "hydrogen-bonding",
+      "anomalous-boiling-point",
+      "water-properties",
+      "group-16-hydrides"
+    ],
+    "topic": "Liquid State and Intermolecular Forces",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Extensive hydrogen bonding in water",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Higher molecular mass of water",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Stronger London dispersion forces in water",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Higher ionisation energy of oxygen",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Water (molar mass 18 g/mol) actually has a lower molecular mass than H₂S (34 g/mol), H₂Se (81 g/mol) and H₂Te (130 g/mol). If molecular mass were the deciding factor, water would have the lowest boiling point, not the highest.",
+        "misconception": "Assuming boiling point correlates only with molecular mass, ignoring the role of intermolecular forces."
+      },
+      {
+        "option_key": "C",
+        "hint": "London dispersion forces increase with molecular size and number of electrons. Water is the smallest and lightest of the Group 16 hydrides, so it has the weakest London dispersion forces among them, not the strongest.",
+        "misconception": "Confusing hydrogen bonding with London dispersion forces; the anomaly is caused by hydrogen bonds, not dispersion forces."
+      },
+      {
+        "option_key": "D",
+        "hint": "Ionisation energy of oxygen is a property of individual atoms and does not directly determine the boiling point of a liquid. Boiling points are governed by intermolecular forces between molecules, not by atomic ionisation energies.",
+        "misconception": "Conflating atomic properties (ionisation energy) with molecular properties (intermolecular forces and boiling point)."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-liquid-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "At the boiling point of a liquid, which of the following is true?",
+    "explanation": "At the boiling point of a liquid, its vapour pressure becomes equal to the external (atmospheric) pressure. This is the defining condition for boiling. When the vapour pressure equals the atmospheric pressure, bubbles of vapour can form throughout the bulk of the liquid and rise to the surface, which is what we observe as boiling. Below the boiling point, vapour pressure is less than atmospheric pressure, and evaporation occurs only from the surface. The boiling point changes if the external pressure changes (e.g., water boils below 100 °C at high altitudes where atmospheric pressure is lower).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "boiling-point",
+      "vapour-pressure",
+      "atmospheric-pressure",
+      "phase-transition"
+    ],
+    "topic": "Liquid State and Intermolecular Forces",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Vapour pressure is zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Vapour pressure is greater than atmospheric pressure",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Vapour pressure equals the atmospheric pressure",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "All intermolecular forces are completely broken",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A liquid always has a non-zero vapour pressure above 0 K. At the boiling point, the vapour pressure is at its maximum equilibrium value (equal to atmospheric pressure), far from zero.",
+        "misconception": "Confusing the concept of zero vapour pressure with the condition for boiling; vapour pressure is actually at its highest at the boiling point."
+      },
+      {
+        "option_key": "B",
+        "hint": "If the vapour pressure exceeded atmospheric pressure, the liquid would already be boiling vigorously or would be superheated. At the boiling point, vapour pressure exactly equals atmospheric pressure, not exceeds it.",
+        "misconception": "Thinking that boiling requires the vapour pressure to surpass atmospheric pressure, rather than simply equalling it."
+      },
+      {
+        "option_key": "D",
+        "hint": "At the boiling point, molecules gain enough energy to escape from the liquid phase, but intermolecular forces are not completely broken for all molecules. Complete breakdown of intermolecular forces would correspond to an ideal gas at very high temperatures.",
+        "misconception": "Believing that boiling requires complete elimination of all intermolecular forces, when in reality only some molecules gain enough energy to escape."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-liquid-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which of the following correctly describes the effect of increasing temperature on surface tension and viscosity of a liquid?",
+    "explanation": "Both surface tension and viscosity of a liquid decrease with increasing temperature. As temperature rises, the kinetic energy of molecules increases, which weakens the effective intermolecular attractions. Since surface tension arises from the net inward pull on surface molecules by their neighbours, weaker intermolecular forces lead to lower surface tension. Similarly, viscosity is the resistance to flow caused by intermolecular attractions; higher kinetic energy allows molecules to overcome these attractions more easily, reducing viscosity. This is why hot liquids flow more easily than cold ones.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "surface-tension",
+      "viscosity",
+      "temperature-effect",
       "intermolecular-forces"
     ],
     "topic": "Liquid State and Intermolecular Forces",
     "subject": "chemistry",
     "chapter": "States of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both surface tension and viscosity increase",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Surface tension increases and viscosity decreases",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Surface tension decreases and viscosity increases",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Both surface tension and viscosity decrease",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Increasing temperature provides more kinetic energy to molecules, weakening the effective intermolecular forces. Both surface tension and viscosity depend on intermolecular attractions, so both decrease, not increase, with temperature.",
+        "misconception": "Incorrectly thinking that more energy strengthens molecular interactions."
+      },
+      {
+        "option_key": "B",
+        "hint": "Surface tension does not increase with temperature. Higher kinetic energy disrupts the cohesive forces at the surface, causing surface tension to decrease.",
+        "misconception": "Mistakenly believing surface tension and viscosity respond oppositely to temperature changes."
+      },
+      {
+        "option_key": "C",
+        "hint": "Viscosity does not increase with temperature for liquids. Greater thermal energy helps molecules overcome intermolecular attractions, so liquids flow more easily at higher temperatures, meaning viscosity decreases.",
+        "misconception": "Confusing the temperature dependence of viscosity in liquids with that in gases, where viscosity increases with temperature."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-liquid-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "London dispersion forces between two molecules increase with:",
+    "explanation": "London dispersion forces increase with the size and polarisability of the electron cloud of molecules. Larger molecules have more electrons spread over a larger volume, making their electron clouds more easily distorted (more polarisable). This leads to stronger instantaneous dipoles and hence stronger induced dipole-induced dipole (London dispersion) forces. For example, among the halogens, the boiling points increase from F₂ to I₂ because larger halogen molecules have greater polarisability. Higher electronegativity, lower molecular mass, and stronger permanent dipole moments are not factors that enhance London dispersion forces specifically.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "london-dispersion-forces",
+      "polarisability",
+      "molecular-size",
+      "electron-cloud"
+    ],
+    "topic": "Liquid State and Intermolecular Forces",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Increasing electronegativity of atoms",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Increasing size and polarisability of the electron cloud",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Decreasing molecular mass",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Increasing permanent dipole moment",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Higher electronegativity makes atoms hold their electrons tightly, making the electron cloud less polarisable. London dispersion forces depend on how easily the electron cloud can be distorted, not on electronegativity.",
+        "misconception": "Confusing electronegativity (electron-attracting ability) with polarisability (ease of electron cloud distortion)."
+      },
+      {
+        "option_key": "C",
+        "hint": "Decreasing molecular mass generally means fewer electrons and a smaller electron cloud, which reduces polarisability and weakens London dispersion forces. The trend is the opposite.",
+        "misconception": "Reversing the relationship between molecular size and dispersion forces."
+      },
+      {
+        "option_key": "D",
+        "hint": "Permanent dipole moment is related to dipole-dipole interactions, not London dispersion forces. London forces arise from temporary, instantaneous dipoles and are present even in non-polar molecules with zero permanent dipole.",
+        "misconception": "Conflating dipole-dipole forces (permanent dipoles) with London dispersion forces (instantaneous dipoles)."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-liquid-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When NaCl is dissolved in water, the primary intermolecular force responsible for the dissolution process is:",
+    "explanation": "When NaCl dissolves in water, it dissociates into Na⁺ and Cl⁻ ions. These ions interact with polar water molecules through ion-dipole interactions. The positive Na⁺ ion attracts the partially negative oxygen end of water molecules, while the negative Cl⁻ ion attracts the partially positive hydrogen end. These ion-dipole forces are strong enough to overcome both the lattice energy of NaCl (ion-ion attractions) and the hydrogen bonds between water molecules. Ion-dipole interactions are the strongest type of intermolecular force and are the primary driving force for the dissolution of ionic compounds in polar solvents.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "ion-dipole-interactions",
+      "dissolution",
+      "sodium-chloride",
+      "hydration"
+    ],
+    "topic": "Liquid State and Intermolecular Forces",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
     "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "London dispersion forces",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Dipole-dipole interactions",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Ion-dipole interactions",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Hydrogen bonding",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "London dispersion forces are weak, temporary forces between all molecules. They cannot account for the strong interaction between charged Na⁺/Cl⁻ ions and polar water molecules that drives dissolution of an ionic compound.",
+        "misconception": "Thinking that the weakest intermolecular force can drive the energetically demanding process of breaking an ionic lattice."
+      },
+      {
+        "option_key": "B",
+        "hint": "Dipole-dipole interactions occur between two polar molecules. In this case, one partner is a full ion (Na⁺ or Cl⁻), not just a dipolar molecule. The interaction between an ion and a dipole is called an ion-dipole interaction and is much stronger than dipole-dipole.",
+        "misconception": "Failing to distinguish between partial charges (dipoles) and full charges (ions) when classifying intermolecular forces."
+      },
+      {
+        "option_key": "D",
+        "hint": "Hydrogen bonding occurs between H bonded to F, O, or N and a lone pair on another F, O, or N atom. While water molecules do hydrogen bond with each other, the primary force responsible for dissolving NaCl is the interaction between ions and water dipoles (ion-dipole force).",
+        "misconception": "Attributing the dissolution of ionic compounds to hydrogen bonding rather than to the much stronger ion-dipole interactions."
+      }
+    ]
+  },
+  {
+    "id": "chem-states-liquid-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Among the following, which liquid has the lowest vapour pressure at 25 °C?",
+    "explanation": "Mercury (Hg) has the lowest vapour pressure at 25 °C among the given options. Mercury is a liquid metal with very strong metallic bonding between its atoms. These metallic bonds are much stronger than the intermolecular forces in organic liquids, making it extremely difficult for mercury atoms to escape into the vapour phase. At 25 °C, the vapour pressure of mercury is only about 0.002 mmHg, while diethyl ether has approximately 520 mmHg, ethanol about 59 mmHg, and water about 24 mmHg. The stronger the cohesive forces in a liquid, the lower its vapour pressure at a given temperature.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "vapour-pressure",
+      "metallic-bonding",
+      "mercury",
+      "intermolecular-forces-comparison"
+    ],
+    "topic": "Liquid State and Intermolecular Forces",
+    "subject": "chemistry",
+    "chapter": "States of Matter",
+    "bloom_level": "analyze",
     "exam_suitability": [
       "NEET"
     ],
@@ -216,445 +635,25 @@
       },
       {
         "key": "D",
-        "text": "Glycerol",
+        "text": "Mercury",
         "is_correct": true
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "Diethyl ether is a non-polar molecule that lacks -OH groups and cannot form hydrogen bonds. It has only weak dipole-dipole and London dispersion forces, giving it very low viscosity compared to hydrogen-bonding liquids like glycerol.",
-        "misconception": "Not recognising that the absence of hydrogen bonding capability in ethers results in much lower viscosity compared to polyhydroxy compounds."
+        "hint": "Diethyl ether has only weak dipole-dipole and London dispersion forces, making it highly volatile with a vapour pressure of about 520 mmHg at 25 °C. This is the highest vapour pressure among the options, not the lowest.",
+        "misconception": "Confusing high volatility (ease of evaporation) with low vapour pressure."
       },
       {
         "option_key": "B",
-        "hint": "Ethanol has only one -OH group and can form limited hydrogen bonds. Glycerol has three -OH groups per molecule, enabling a far more extensive hydrogen bonding network, resulting in much higher viscosity.",
-        "misconception": "Thinking that one -OH group is sufficient to create viscosity comparable to a molecule with three -OH groups."
+        "hint": "Ethanol has hydrogen bonding but still has a significant vapour pressure (~59 mmHg at 25 °C). Its cohesive forces are much weaker than metallic bonding in mercury.",
+        "misconception": "Overestimating the strength of hydrogen bonds in ethanol relative to metallic bonds in mercury."
       },
       {
         "option_key": "C",
-        "hint": "Although water has strong hydrogen bonding, each water molecule has only two hydrogen bonding donors. Glycerol, with three -OH groups and a larger molecular framework, forms a much more extensive hydrogen bonding network, giving it significantly higher viscosity than water.",
-        "misconception": "Assuming that water's strong hydrogen bonding makes it the most viscous liquid, without considering that glycerol's three -OH groups create a more extensive intermolecular network."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-liquid-05",
-    "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "The vapour pressure of a liquid depends on:",
-    "explanation": "The vapour pressure of a liquid depends on the nature of the liquid and its temperature. Different liquids have different intermolecular forces; liquids with weaker intermolecular forces (like diethyl ether) have higher vapour pressures because their molecules can escape the liquid surface more easily. Temperature is the other critical factor — as temperature increases, more molecules gain enough kinetic energy to overcome intermolecular forces and enter the vapour phase, increasing vapour pressure. Vapour pressure does not depend on the amount of liquid as long as some liquid remains in equilibrium with its vapour. It also does not depend on the surface area of the liquid, as vapour pressure is an equilibrium property determined by the balance between evaporation and condensation rates.",
-    "correct_answer": "A",
-    "concept_tags": [
-      "vapour-pressure",
-      "temperature-dependence",
-      "intermolecular-forces",
-      "liquid-properties"
-    ],
-    "topic": "Liquid State and Intermolecular Forces",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "understand",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "Nature of the liquid and temperature",
-        "is_correct": true
-      },
-      {
-        "key": "B",
-        "text": "Volume of the liquid only",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "Surface area of the liquid only",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "Shape of the container only",
-        "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "B",
-        "hint": "The volume (or amount) of liquid does not affect its vapour pressure. Vapour pressure is an intensive property — it depends on the nature of the liquid and temperature, not on how much liquid is present, as long as some liquid remains.",
-        "misconception": "Confusing intensive and extensive properties; vapour pressure is intensive and does not depend on the quantity of liquid."
-      },
-      {
-        "option_key": "C",
-        "hint": "Surface area affects the rate of evaporation but not the equilibrium vapour pressure. A larger surface area allows faster attainment of equilibrium, but the final vapour pressure at equilibrium remains the same regardless of surface area.",
-        "misconception": "Confusing the rate of evaporation (which depends on surface area) with the equilibrium vapour pressure (which does not)."
-      },
-      {
-        "option_key": "D",
-        "hint": "The shape of the container has no effect on vapour pressure. Vapour pressure is determined solely by the nature of the liquid (its intermolecular forces) and the temperature, not by any physical property of the container.",
-        "misconception": "Incorrectly attributing liquid properties to the container rather than to the molecular characteristics of the liquid itself."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-liquid-06",
-    "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "A liquid boils when its vapour pressure becomes equal to:",
-    "explanation": "A liquid boils when its vapour pressure becomes equal to the external (atmospheric) pressure acting on its surface. At this point, vapour bubbles can form throughout the bulk of the liquid, not just at the surface, and the liquid undergoes a rapid phase transition to gas. The normal boiling point is defined as the temperature at which the vapour pressure of a liquid equals 1 atm (101.325 kPa). If the external pressure is reduced (for example, at high altitudes), the liquid boils at a lower temperature because less vapour pressure is needed to equal the lower external pressure. Conversely, in a pressure cooker, the increased pressure raises the boiling point.",
-    "correct_answer": "D",
-    "concept_tags": [
-      "boiling-point",
-      "vapour-pressure",
-      "atmospheric-pressure",
-      "phase-transition"
-    ],
-    "topic": "Liquid State and Intermolecular Forces",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "understand",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "Zero",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "Twice the atmospheric pressure",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "The critical pressure",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "The external (atmospheric) pressure",
-        "is_correct": true
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "Vapour pressure can never be zero for a liquid at any temperature above absolute zero. Boiling occurs when vapour pressure equals the external pressure, not when it reaches zero.",
-        "misconception": "Confusing the condition for boiling with a state where no vapour exists, which contradicts the dynamic nature of liquid-vapour equilibrium."
-      },
-      {
-        "option_key": "B",
-        "hint": "There is no physical basis for boiling occurring at twice the atmospheric pressure. Boiling occurs when the vapour pressure exactly equals the external pressure — not at any multiple of it.",
-        "misconception": "Arbitrarily assigning a numerical multiplier to the boiling condition without understanding the fundamental principle of vapour pressure equilibrium."
-      },
-      {
-        "option_key": "C",
-        "hint": "Critical pressure is the minimum pressure needed to liquefy a gas at its critical temperature. It is unrelated to the boiling condition, which requires vapour pressure to equal the external atmospheric pressure.",
-        "misconception": "Confusing the critical point (end of the liquid-gas phase boundary) with the normal boiling condition."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-liquid-07",
-    "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "Among the following substances, which one has the highest boiling point due to the presence of strong hydrogen bonding?",
-    "explanation": "Water (H₂O) has the highest boiling point (100°C) among the given substances due to strong intermolecular hydrogen bonding. Water molecules can form up to four hydrogen bonds per molecule (two as donor through its two H atoms and two as acceptor through its two lone pairs on oxygen), creating an extensive three-dimensional hydrogen bonding network. In contrast, H₂S (boiling point -60°C), PH₃ (boiling point -87°C), and HCl (boiling point -85°C) are all gases at room temperature because they lack significant hydrogen bonding. H₂S, PH₃, and HCl have only weak dipole-dipole and London dispersion forces as their primary intermolecular interactions, since S, P, and Cl are not electronegative or small enough to form strong hydrogen bonds.",
-    "correct_answer": "B",
-    "concept_tags": [
-      "hydrogen-bonding",
-      "boiling-point-comparison",
-      "water-anomaly",
-      "intermolecular-forces"
-    ],
-    "topic": "Liquid State and Intermolecular Forces",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "apply",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "H₂S",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "H₂O",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "PH₃",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "HCl",
-        "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "H₂S does not form significant hydrogen bonds because sulphur is not sufficiently electronegative (electronegativity = 2.5) and is too large to participate in strong hydrogen bonding. Its boiling point (-60°C) is much lower than that of water.",
-        "misconception": "Assuming that all Group 16 hydrides form hydrogen bonds of similar strength; only oxygen in this group has sufficient electronegativity and small size for strong hydrogen bonding."
-      },
-      {
-        "option_key": "C",
-        "hint": "PH₃ does not exhibit significant hydrogen bonding because phosphorus has low electronegativity (2.1) and a large atomic radius. Its boiling point (-87°C) is far below water's, as it relies mainly on weak van der Waals forces.",
-        "misconception": "Thinking that any compound containing hydrogen can form strong hydrogen bonds, without considering the electronegativity requirement (F, O, N)."
-      },
-      {
-        "option_key": "D",
-        "hint": "HCl has predominantly dipole-dipole interactions rather than true hydrogen bonding. Chlorine's large atomic size prevents effective hydrogen bond formation. HCl boils at -85°C, far below water's 100°C.",
-        "misconception": "Confusing the polar nature of HCl with the ability to form strong hydrogen bonds; polarity alone is not sufficient for strong hydrogen bonding."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-liquid-08",
-    "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "Ion-dipole interaction is important in which of the following processes?",
-    "explanation": "Ion-dipole interaction is the primary force responsible for the dissolution of ionic compounds in polar solvents like water. When an ionic compound such as NaCl is dissolved in water, the cations (Na⁺) are attracted to the negative end (oxygen) of water molecules, and the anions (Cl⁻) are attracted to the positive end (hydrogen) of water molecules. These ion-dipole interactions provide the energy needed to overcome the strong lattice energy of the ionic crystal. This process, called hydration (or solvation in general), is energetically favourable and drives the dissolution process. The enthalpy of hydration must be comparable to the lattice enthalpy for an ionic compound to dissolve readily in water.",
-    "correct_answer": "C",
-    "concept_tags": [
-      "ion-dipole-interaction",
-      "dissolution",
-      "ionic-compounds",
-      "hydration"
-    ],
-    "topic": "Liquid State and Intermolecular Forces",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "understand",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "Sublimation of dry ice",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "Melting of metallic sodium",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "Dissolution of NaCl in water",
-        "is_correct": true
-      },
-      {
-        "key": "D",
-        "text": "Evaporation of acetone",
-        "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "Sublimation of dry ice (solid CO₂) involves overcoming London dispersion forces between non-polar CO₂ molecules. Since CO₂ is non-polar and there are no ions involved, ion-dipole forces play no role in this process.",
-        "misconception": "Confusing intermolecular forces in non-polar molecular solids with the ion-dipole forces that operate when ions interact with polar solvents."
-      },
-      {
-        "option_key": "B",
-        "hint": "Melting of metallic sodium involves overcoming metallic bonding (the electrostatic attraction between metal cations and the delocalised electron sea), not ion-dipole interactions. Ion-dipole forces specifically involve the interaction between ions and polar molecules.",
-        "misconception": "Confusing metallic bonding with ion-dipole interactions; the former involves delocalised electrons, the latter involves polar solvent molecules."
-      },
-      {
-        "option_key": "D",
-        "hint": "Evaporation of acetone involves overcoming dipole-dipole interactions and London dispersion forces between acetone molecules. Since no ions are involved in the evaporation of a pure molecular liquid, ion-dipole forces are not relevant here.",
-        "misconception": "Not distinguishing between dipole-dipole interactions (between neutral polar molecules) and ion-dipole interactions (between ions and polar molecules)."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-liquid-09",
-    "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "Which of the following correctly ranks the intermolecular forces in order of increasing strength?",
-    "explanation": "The correct order of intermolecular forces in increasing strength is: London dispersion forces < dipole-dipole interactions < hydrogen bonding < ion-dipole interactions. London dispersion forces are the weakest and arise from temporary fluctuations in electron distributions. Dipole-dipole forces are stronger and operate between permanent dipoles. Hydrogen bonding is a special, stronger type of dipole-dipole interaction involving H bonded to F, O, or N. Ion-dipole interactions are the strongest intermolecular forces as they involve the full charge of an ion interacting with the partial charges of a polar molecule. This hierarchy is fundamental to understanding liquid properties such as boiling point, vapour pressure, viscosity, and surface tension.",
-    "correct_answer": "D",
-    "concept_tags": [
-      "intermolecular-forces-ranking",
-      "force-strength-comparison",
-      "london-forces",
-      "hydrogen-bonding"
-    ],
-    "topic": "Liquid State and Intermolecular Forces",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "understand",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "Ion-dipole < hydrogen bonding < dipole-dipole < London dispersion",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "Dipole-dipole < London dispersion < ion-dipole < hydrogen bonding",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "Hydrogen bonding < dipole-dipole < London dispersion < ion-dipole",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "London dispersion < dipole-dipole < hydrogen bonding < ion-dipole",
-        "is_correct": true
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "This option reverses the correct order entirely, placing the strongest force (ion-dipole) as the weakest and the weakest (London dispersion) as the strongest. Ion-dipole interactions involve full ionic charges and are the strongest intermolecular forces.",
-        "misconception": "Completely inverting the strength hierarchy of intermolecular forces."
-      },
-      {
-        "option_key": "B",
-        "hint": "This option incorrectly places London dispersion forces above dipole-dipole forces. London dispersion forces arise from temporary dipoles and are generally weaker than permanent dipole-dipole interactions.",
-        "misconception": "Overestimating the strength of London dispersion forces relative to dipole-dipole interactions for comparable-sized molecules."
-      },
-      {
-        "option_key": "C",
-        "hint": "This option places hydrogen bonding as the weakest force, which is incorrect. Hydrogen bonding is stronger than both ordinary dipole-dipole interactions and London dispersion forces because it involves highly polar H-F, H-O, or H-N bonds.",
-        "misconception": "Underestimating the strength of hydrogen bonding, which is a particularly strong form of dipole-dipole interaction."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-liquid-10",
-    "question_type": "mcq",
-    "difficulty": "hard",
-    "question_text": "At high altitudes, water boils at a temperature lower than 100°C because:",
-    "explanation": "At high altitudes, the atmospheric pressure is lower than at sea level. Since a liquid boils when its vapour pressure equals the external atmospheric pressure, a lower external pressure means the liquid needs a lower vapour pressure to boil — which corresponds to a lower temperature. For water, the normal boiling point of 100°C is defined at 1 atm (sea level). At the top of Mount Everest (approximately 0.34 atm), water boils at about 70°C. This principle is also applied in vacuum distillation, where pressure is reduced to lower the boiling point of heat-sensitive compounds. Conversely, in a pressure cooker, the increased pressure raises the boiling point above 100°C, allowing food to cook faster.",
-    "correct_answer": "A",
-    "concept_tags": [
-      "boiling-point",
-      "atmospheric-pressure",
-      "altitude-effect",
-      "vapour-pressure"
-    ],
-    "topic": "Liquid State and Intermolecular Forces",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "analyze",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "The atmospheric pressure is lower at high altitudes, so the vapour pressure equals the external pressure at a lower temperature",
-        "is_correct": true
-      },
-      {
-        "key": "B",
-        "text": "The intermolecular forces in water become stronger at high altitudes",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "Gravity is weaker at high altitudes, reducing the surface tension of water",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "The oxygen concentration decreases at high altitudes, preventing the liquid from reaching 100°C",
-        "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "B",
-        "hint": "Intermolecular forces in water are an intrinsic molecular property that does not change with altitude. The hydrogen bonding between water molecules remains the same regardless of elevation. The boiling point change is due to reduced external atmospheric pressure.",
-        "misconception": "Confusing molecular-level properties (intermolecular forces) with macroscopic environmental conditions (atmospheric pressure)."
-      },
-      {
-        "option_key": "C",
-        "hint": "The change in gravitational acceleration at accessible altitudes is negligible and does not significantly affect surface tension. The lower boiling point is caused by reduced atmospheric pressure, not by changes in gravity or surface tension.",
-        "misconception": "Incorrectly linking gravity changes to surface tension and boiling point, rather than recognising the role of atmospheric pressure."
-      },
-      {
-        "option_key": "D",
-        "hint": "Oxygen concentration in the atmosphere has no direct effect on the boiling point of water. Boiling is a physical process determined by the balance between vapour pressure and external pressure, not by the composition of the surrounding gas.",
-        "misconception": "Confusing atmospheric composition with atmospheric pressure; it is the total pressure, not the gas composition, that determines boiling point."
-      }
-    ]
-  },
-  {
-    "id": "chem-states-liquid-11",
-    "question_type": "mcq",
-    "difficulty": "hard",
-    "question_text": "The boiling points of hydrides of Group 16 elements follow the order: H₂O > H₂Te > H₂Se > H₂S. The anomalously high boiling point of H₂O compared to H₂S is due to:",
-    "explanation": "The anomalously high boiling point of H₂O compared to H₂S is due to extensive intermolecular hydrogen bonding in water. While in the series H₂S, H₂Se, and H₂Te the boiling points increase with molecular mass (due to increasing London dispersion forces), H₂O breaks this trend with a much higher boiling point. This is because oxygen is small and highly electronegative (3.5), enabling water molecules to form strong hydrogen bonds. Each water molecule can form up to four hydrogen bonds, creating an extensive three-dimensional network that requires significantly more energy to disrupt during boiling. H₂S cannot form strong hydrogen bonds because sulphur (electronegativity 2.5) is not electronegative enough and its larger atomic size makes the lone pairs too diffuse for effective hydrogen bonding.",
-    "correct_answer": "B",
-    "concept_tags": [
-      "hydrogen-bonding",
-      "boiling-point-anomaly",
-      "group-16-hydrides",
-      "water-properties"
-    ],
-    "topic": "Liquid State and Intermolecular Forces",
-    "subject": "chemistry",
-    "chapter": "States of Matter",
-    "bloom_level": "analyze",
-    "exam_suitability": [
-      "NEET"
-    ],
-    "options": [
-      {
-        "key": "A",
-        "text": "Higher molecular mass of H₂O compared to H₂S",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "Extensive intermolecular hydrogen bonding in H₂O due to high electronegativity and small size of oxygen",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "Stronger London dispersion forces in H₂O due to more electrons",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "Ionic character of the O-H bond in water",
-        "is_correct": false
-      }
-    ],
-    "elimination_hints": [
-      {
-        "option_key": "A",
-        "hint": "H₂O (molar mass 18 g/mol) actually has a lower molecular mass than H₂S (34 g/mol). If molecular mass were the determining factor, H₂S would have the higher boiling point. The anomaly exists precisely because something other than molecular mass (hydrogen bonding) dominates.",
-        "misconception": "Incorrectly thinking H₂O is heavier than H₂S, or not realising that molecular mass alone would predict a lower boiling point for water."
-      },
-      {
-        "option_key": "C",
-        "hint": "H₂O has fewer electrons (10) than H₂S (18), so London dispersion forces are actually weaker in H₂O. The higher boiling point of water is due to strong hydrogen bonding, not London dispersion forces.",
-        "misconception": "Confusing the source of strong intermolecular forces in water (hydrogen bonding) with London dispersion forces, which are actually weaker in water than in H₂S."
-      },
-      {
-        "option_key": "D",
-        "hint": "The O-H bond in water is covalent (though polar), not ionic. The high boiling point is due to intermolecular hydrogen bonding between water molecules, not due to any ionic character of the O-H bond within a single molecule.",
-        "misconception": "Confusing the polarity of the O-H covalent bond with ionic bonding, and mixing up intramolecular bond character with intermolecular forces."
+        "hint": "Water has extensive hydrogen bonding giving it a relatively low vapour pressure (~24 mmHg at 25 °C) for an organic-sized molecule, but mercury's metallic bonding is far stronger, giving it a vapour pressure of only ~0.002 mmHg.",
+        "misconception": "Assuming water has the lowest vapour pressure because of its well-known hydrogen bonding, without considering metallic bonding in mercury."
       }
     ]
   },
@@ -662,14 +661,14 @@
     "id": "chem-states-liquid-12",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "Liquid A has a lower vapour pressure than liquid B at the same temperature. Which of the following statements is correct?",
-    "explanation": "If liquid A has a lower vapour pressure than liquid B at the same temperature, it means that fewer molecules of liquid A are able to escape into the vapour phase. This indicates that liquid A has stronger intermolecular forces holding its molecules in the liquid phase. Since boiling occurs when vapour pressure equals external pressure, liquid A needs to be heated to a higher temperature to reach the required vapour pressure for boiling. Therefore, liquid A will have a higher boiling point than liquid B. This inverse relationship between vapour pressure and boiling point is a fundamental concept: stronger intermolecular forces lead to lower vapour pressure and higher boiling point, while weaker intermolecular forces lead to higher vapour pressure and lower boiling point.",
-    "correct_answer": "C",
+    "question_text": "The correct order of boiling points of the following compounds is:\nCH₃OH (methanol), CH₃CH₂OH (ethanol), CH₃OCH₃ (dimethyl ether), CH₃CH₂CH₂OH (1-propanol)",
+    "explanation": "The correct order is: CH₃OCH₃ < CH₃OH < CH₃CH₂OH < CH₃CH₂CH₂OH. Dimethyl ether (CH₃OCH₃, b.p. −24 °C) has the lowest boiling point because it cannot form hydrogen bonds (no O-H group); it only has weak dipole-dipole and dispersion forces. Among the alcohols, all can form hydrogen bonds through their -OH groups. The boiling point increases with increasing molecular mass and chain length because of increasing London dispersion forces: methanol (CH₃OH, b.p. 64.7 °C) < ethanol (CH₃CH₂OH, b.p. 78.4 °C) < 1-propanol (CH₃CH₂CH₂OH, b.p. 97.2 °C). The combined effect of hydrogen bonding (similar in all three alcohols) and increasing dispersion forces determines this order.",
+    "correct_answer": "A",
     "concept_tags": [
-      "vapour-pressure",
-      "boiling-point-relationship",
-      "intermolecular-forces",
-      "liquid-comparison"
+      "boiling-point-comparison",
+      "hydrogen-bonding",
+      "london-dispersion-forces",
+      "alcohols-vs-ethers"
     ],
     "topic": "Liquid State and Intermolecular Forces",
     "subject": "chemistry",
@@ -681,40 +680,40 @@
     "options": [
       {
         "key": "A",
-        "text": "Liquid A has a lower boiling point than liquid B",
-        "is_correct": false
+        "text": "CH₃OCH₃ < CH₃OH < CH₃CH₂OH < CH₃CH₂CH₂OH",
+        "is_correct": true
       },
       {
         "key": "B",
-        "text": "Liquid A has weaker intermolecular forces than liquid B",
+        "text": "CH₃OH < CH₃OCH₃ < CH₃CH₂OH < CH₃CH₂CH₂OH",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "Liquid A has a higher boiling point and stronger intermolecular forces than liquid B",
-        "is_correct": true
+        "text": "CH₃CH₂CH₂OH < CH₃CH₂OH < CH₃OH < CH₃OCH₃",
+        "is_correct": false
       },
       {
         "key": "D",
-        "text": "Both liquids have the same boiling point since temperature is the same",
+        "text": "CH₃OCH₃ < CH₃CH₂CH₂OH < CH₃CH₂OH < CH₃OH",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
-        "option_key": "A",
-        "hint": "Lower vapour pressure means stronger intermolecular forces, which means more energy (higher temperature) is needed for the vapour pressure to reach atmospheric pressure. Therefore, liquid A has a higher boiling point, not a lower one.",
-        "misconception": "Incorrectly assuming that lower vapour pressure correlates with lower boiling point, when the relationship is actually inverse."
+        "option_key": "B",
+        "hint": "This places methanol below dimethyl ether. Despite having similar molecular masses (both 32 g/mol), methanol can form hydrogen bonds through its -OH group, while dimethyl ether cannot. Methanol therefore has a much higher boiling point than dimethyl ether.",
+        "misconception": "Failing to recognise that hydrogen bonding capability (presence of -OH group) dramatically raises boiling point above what molecular mass alone would predict."
       },
       {
-        "option_key": "B",
-        "hint": "Lower vapour pressure indicates that fewer molecules can escape the liquid surface, meaning the intermolecular forces are stronger, not weaker. Weaker intermolecular forces would result in higher vapour pressure.",
-        "misconception": "Reversing the relationship between vapour pressure and intermolecular force strength."
+        "option_key": "C",
+        "hint": "This is the reverse order. Among alcohols, boiling point increases with chain length due to greater London dispersion forces. Dimethyl ether has the lowest boiling point, not the highest.",
+        "misconception": "Inverting the relationship between molecular size and boiling point."
       },
       {
         "option_key": "D",
-        "hint": "Two different liquids at the same temperature can have very different boiling points. Boiling point is an inherent property of each liquid depending on its intermolecular forces, not on the current temperature of the sample.",
-        "misconception": "Confusing the current temperature of a liquid sample with its boiling point, which is a characteristic property of the substance."
+        "hint": "This incorrectly places 1-propanol below ethanol and methanol. Longer carbon chains provide more surface area for London dispersion forces, increasing the boiling point. The correct order among alcohols is methanol < ethanol < 1-propanol.",
+        "misconception": "Incorrectly assuming that smaller alcohols have higher boiling points, ignoring the additive effect of dispersion forces with chain length."
       }
     ]
   },
@@ -722,14 +721,15 @@
     "id": "chem-states-liquid-13",
     "question_type": "assertion-reasoning",
     "difficulty": "medium",
-    "question_text": "Assertion (A): Water has a higher surface tension than most other liquids at room temperature.\nReason (R): Water molecules form extensive intermolecular hydrogen bonds, creating a strong cohesive force at the liquid surface.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
-    "explanation": "Both the Assertion and the Reason are correct, and the Reason is the correct explanation of the Assertion. Water has one of the highest surface tensions of any common liquid (72.8 mN/m at 20°C) because of its extensive hydrogen bonding network. Surface tension arises from the net inward force on surface molecules, which is stronger when intermolecular forces are stronger. Water molecules at the surface experience strong hydrogen bonding from molecules below and to the sides, creating a significant inward pull. This strong cohesive force is directly responsible for water's high surface tension. The extensive hydrogen bonding (Reason) is indeed the cause of the high surface tension (Assertion), making R the correct explanation of A.",
+    "question_text": "Assertion (A): Water has an unusually high surface tension compared to most other liquids.\nReason (R): Water molecules are held together by extensive intermolecular hydrogen bonding, which creates strong cohesive forces at the surface.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "Both the Assertion and the Reason are correct, and the Reason is the correct explanation of the Assertion. Water indeed has an unusually high surface tension (72.8 mN/m at 20 °C) compared to most other common liquids. This is because water molecules form an extensive three-dimensional hydrogen bonding network. Each water molecule can form up to four hydrogen bonds (two as donor, two as acceptor). At the surface, molecules experience a net inward pull from neighbouring molecules beneath and beside them, creating high cohesive forces. This strong cohesion directly causes the high surface tension. The Reason (hydrogen bonding causing strong cohesive forces) directly and correctly explains the Assertion (unusually high surface tension).",
     "correct_answer": "A",
     "concept_tags": [
       "surface-tension",
       "hydrogen-bonding",
       "water-properties",
-      "cohesive-forces"
+      "cohesive-forces",
+      "assertion-reasoning"
     ],
     "topic": "Liquid State and Intermolecular Forces",
     "subject": "chemistry",
@@ -763,18 +763,18 @@
     "elimination_hints": [
       {
         "option_key": "B",
-        "hint": "The Reason directly explains the Assertion. Surface tension is a direct consequence of intermolecular forces at the liquid surface. Hydrogen bonding is the dominant intermolecular force in water and is the precise reason for its high surface tension. There is a direct causal link between R and A.",
-        "misconception": "Failing to recognise the direct causal relationship between hydrogen bonding strength and surface tension magnitude."
+        "hint": "The Reason directly explains the Assertion. Surface tension is caused by cohesive forces at the surface, and hydrogen bonding is the primary cohesive force in water. There is a direct causal link: hydrogen bonding creates strong cohesion, which causes high surface tension.",
+        "misconception": "Failing to recognise the direct causal relationship between hydrogen bonding, cohesive forces, and surface tension."
       },
       {
         "option_key": "C",
-        "hint": "The Reason is factually correct. Water molecules do form extensive intermolecular hydrogen bonds, with each molecule capable of forming up to four hydrogen bonds, creating strong cohesive forces at the surface.",
-        "misconception": "Incorrectly doubting that water forms extensive hydrogen bonds, which is a well-established and fundamental property of water."
+        "hint": "The Reason is factually correct. Water molecules do form extensive hydrogen bonds, and these do create strong cohesive forces. This is a well-established fact in chemistry.",
+        "misconception": "Doubting the role of hydrogen bonding in water's cohesive properties."
       },
       {
         "option_key": "D",
-        "hint": "The Assertion is correct. Water has a surface tension of 72.8 mN/m at 20°C, which is higher than most common liquids such as ethanol (22.1 mN/m), acetone (25.2 mN/m), and benzene (28.9 mN/m). Only mercury, with its metallic bonding, has a significantly higher surface tension.",
-        "misconception": "Not knowing that water's surface tension is indeed among the highest for common liquids at room temperature."
+        "hint": "The Assertion is factually correct. Water has a surface tension of 72.8 mN/m at 20 °C, which is significantly higher than most organic liquids (e.g., ethanol at 22.1 mN/m, acetone at 25.2 mN/m).",
+        "misconception": "Not knowing that water's surface tension is indeed anomalously high among common liquids."
       }
     ]
   },
@@ -782,19 +782,21 @@
     "id": "chem-states-liquid-14",
     "question_type": "assertion-reasoning",
     "difficulty": "hard",
-    "question_text": "Assertion (A): Ethanol (C₂H₅OH) has a higher boiling point than dimethyl ether (CH₃OCH₃) despite having the same molecular formula C₂H₆O.\nReason (R): Dimethyl ether has a higher molecular mass than ethanol, leading to stronger London dispersion forces.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
-    "explanation": "The Assertion is correct: ethanol (bp 78.4°C) has a significantly higher boiling point than dimethyl ether (bp -24.8°C) despite both having the molecular formula C₂H₆O. The Reason is incorrect: ethanol and dimethyl ether are structural isomers with the same molecular formula and therefore the same molecular mass (46 g/mol). The Reason falsely claims that dimethyl ether has a higher molecular mass. The actual reason for ethanol's higher boiling point is that ethanol has a hydroxyl (-OH) group that can form intermolecular hydrogen bonds, while dimethyl ether lacks an O-H bond and cannot form hydrogen bonds as a donor. Therefore, A is correct but R is incorrect.",
-    "correct_answer": "C",
+    "question_text": "Assertion (A): The viscosity of glycerol is much higher than that of ethanol at room temperature.\nReason (R): Glycerol has a higher molecular mass than ethanol.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The Assertion is correct: glycerol (viscosity ~1.5 Pa·s at 20 °C) has a much higher viscosity than ethanol (viscosity ~0.0012 Pa·s at 20 °C). The Reason is also correct: glycerol (C₃H₈O₃, molar mass 92 g/mol) does have a higher molecular mass than ethanol (C₂H₅OH, molar mass 46 g/mol). However, the Reason is NOT the correct explanation for the Assertion. The primary reason for glycerol's much higher viscosity is its three hydroxyl (-OH) groups, which enable extensive intermolecular hydrogen bonding networks. Ethanol has only one -OH group. It is the number and extent of hydrogen bonds, not merely the molecular mass, that accounts for the enormous difference in viscosity. Many compounds heavier than glycerol have much lower viscosities because they lack multiple hydrogen bonding sites.",
+    "correct_answer": "B",
     "concept_tags": [
-      "boiling-point-isomers",
+      "viscosity",
       "hydrogen-bonding",
-      "ethanol-vs-ether",
-      "structural-isomers"
+      "glycerol",
+      "ethanol",
+      "molecular-mass",
+      "assertion-reasoning"
     ],
     "topic": "Liquid State and Intermolecular Forces",
     "subject": "chemistry",
     "chapter": "States of Matter",
-    "bloom_level": "evaluate",
+    "bloom_level": "analyze",
     "exam_suitability": [
       "NEET"
     ],
@@ -807,12 +809,12 @@
       {
         "key": "B",
         "text": "Both A and R are correct but R is NOT the correct explanation of A",
-        "is_correct": false
+        "is_correct": true
       },
       {
         "key": "C",
         "text": "A is correct but R is incorrect",
-        "is_correct": true
+        "is_correct": false
       },
       {
         "key": "D",
@@ -823,18 +825,18 @@
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "The Reason is factually incorrect because ethanol and dimethyl ether have the same molecular formula (C₂H₆O) and therefore the same molecular mass (46 g/mol). The Reason falsely states that dimethyl ether has higher molecular mass. Since R is wrong, it cannot be the correct explanation of A.",
-        "misconception": "Not recognising that structural isomers with the same molecular formula have the same molecular mass."
+        "hint": "While both statements are true, molecular mass alone does not explain the massive viscosity difference. Hexane (molar mass 86 g/mol, close to glycerol's 92 g/mol) has a viscosity of only 0.0003 Pa·s, far lower than glycerol. The correct explanation involves glycerol's three -OH groups forming extensive hydrogen bonds.",
+        "misconception": "Assuming molecular mass is the primary determinant of viscosity, when in fact intermolecular force type and extent are far more important."
       },
       {
-        "option_key": "B",
-        "hint": "Option B requires both A and R to be correct. The Reason is factually incorrect — dimethyl ether does not have a higher molecular mass than ethanol. They are isomers with identical molecular masses. This option cannot be selected when R contains a false statement.",
-        "misconception": "Accepting an incorrect factual statement in the Reason without verifying that structural isomers have the same molecular mass."
+        "option_key": "C",
+        "hint": "The Reason is factually correct. Glycerol (molar mass 92 g/mol) does have a higher molecular mass than ethanol (46 g/mol). The issue is not that R is wrong, but that R does not correctly explain A.",
+        "misconception": "Incorrectly judging a factually true statement as false because it does not explain the assertion."
       },
       {
         "option_key": "D",
-        "hint": "The Assertion is correct. Ethanol (bp 78.4°C) does have a higher boiling point than dimethyl ether (bp -24.8°C). This is due to hydrogen bonding in ethanol through its -OH group, which dimethyl ether cannot form as a hydrogen bond donor.",
-        "misconception": "Doubting the well-established boiling point difference between ethanol and dimethyl ether."
+        "hint": "The Assertion is correct. Glycerol is well known for its high viscosity (thick, syrupy consistency) compared to ethanol, which flows easily. This is a readily observable physical property.",
+        "misconception": "Not recognising the significant difference in viscosity between glycerol (a thick liquid) and ethanol (a thin, easily flowing liquid)."
       }
     ]
   },
@@ -842,15 +844,16 @@
     "id": "chem-states-liquid-15",
     "question_type": "match-the-following",
     "difficulty": "medium",
-    "question_text": "Match Column I (Liquid Property) with Column II (Definition/Description):\n\nColumn I | Column II\nA. Vapour pressure | 1. The resistance of a liquid to flow\nB. Surface tension | 2. The pressure exerted by the vapour in equilibrium with its liquid at a given temperature\nC. Viscosity | 3. The energy required to increase the surface area of a liquid by a unit amount\nD. Boiling point | 4. The temperature at which the vapour pressure of a liquid equals the external pressure\n\nSelect the correct matching:",
-    "explanation": "The correct matching is: A-2 (Vapour pressure is the pressure exerted by the vapour in equilibrium with its liquid at a given temperature), B-3 (Surface tension is the energy required to increase the surface area of a liquid by a unit amount, or equivalently the force per unit length acting on the surface), C-1 (Viscosity is the measure of a liquid's resistance to flow, arising from internal friction between layers of liquid moving at different velocities), D-4 (Boiling point is the temperature at which the vapour pressure of a liquid equals the external atmospheric pressure). These are fundamental definitions of liquid properties covered in NCERT Class 11 Chemistry Chapter 5.",
-    "correct_answer": "C",
+    "question_text": "Match Column I (Property) with Column II (Description):\n\nColumn I | Column II\nA. Surface tension | 1. Resistance of a liquid to flow\nB. Viscosity | 2. Pressure exerted by vapour in equilibrium with its liquid\nC. Vapour pressure | 3. Force per unit length acting on the surface of a liquid\nD. Boiling point | 4. Temperature at which vapour pressure equals atmospheric pressure\n\nSelect the correct matching:",
+    "explanation": "The correct matching is: A-3 (Surface tension is defined as the force per unit length acting perpendicular to an imaginary line drawn on the surface of a liquid), B-1 (Viscosity is the measure of resistance of a liquid to flow, arising from internal friction between layers of the liquid), C-2 (Vapour pressure is the pressure exerted by the vapour in dynamic equilibrium with its liquid at a given temperature), D-4 (The boiling point is the temperature at which the vapour pressure of the liquid equals the external atmospheric pressure). Therefore, A-3, B-1, C-2, D-4.",
+    "correct_answer": "D",
     "concept_tags": [
-      "liquid-properties-definitions",
-      "vapour-pressure",
       "surface-tension",
       "viscosity",
-      "boiling-point"
+      "vapour-pressure",
+      "boiling-point",
+      "definitions",
+      "matching"
     ],
     "topic": "Liquid State and Intermolecular Forces",
     "subject": "chemistry",
@@ -862,40 +865,40 @@
     "options": [
       {
         "key": "A",
-        "text": "A-1, B-2, C-3, D-4",
+        "text": "A-1, B-3, C-4, D-2",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "A-3, B-4, C-2, D-1",
+        "text": "A-2, B-4, C-1, D-3",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A-2, B-3, C-1, D-4",
-        "is_correct": true
+        "text": "A-4, B-2, C-3, D-1",
+        "is_correct": false
       },
       {
         "key": "D",
-        "text": "A-4, B-1, C-3, D-2",
-        "is_correct": false
+        "text": "A-3, B-1, C-2, D-4",
+        "is_correct": true
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "This option matches vapour pressure (A) with resistance to flow (1), which is the definition of viscosity, not vapour pressure. Vapour pressure is the equilibrium pressure exerted by vapour above its liquid.",
-        "misconception": "Confusing vapour pressure with viscosity; vapour pressure relates to liquid-gas equilibrium, while viscosity relates to internal resistance to flow."
+        "hint": "This matches surface tension (A) with resistance to flow (1), which is actually the definition of viscosity. Surface tension is a surface phenomenon involving force per unit length, not bulk flow resistance.",
+        "misconception": "Confusing surface tension (a surface property) with viscosity (a bulk flow property)."
       },
       {
         "option_key": "B",
-        "hint": "This option matches vapour pressure (A) with energy to increase surface area (3), which is surface tension. It also matches surface tension (B) with the boiling point definition (4). These are incorrectly swapped associations.",
-        "misconception": "Mixing up the definitions of vapour pressure, surface tension, and boiling point."
+        "hint": "This matches surface tension (A) with vapour pressure (2) and viscosity (B) with boiling point (4). These are incorrect pairings that show a fundamental confusion between the definitions of these distinct liquid properties.",
+        "misconception": "Randomly associating liquid properties with unrelated definitions."
       },
       {
-        "option_key": "D",
-        "hint": "This option matches vapour pressure (A) with the boiling point definition (4) and boiling point (D) with the vapour pressure definition (2). While vapour pressure and boiling point are related concepts, their definitions are distinct and cannot be interchanged.",
-        "misconception": "Swapping the definitions of vapour pressure and boiling point; although related, they are different physical quantities."
+        "option_key": "C",
+        "hint": "This matches surface tension (A) with boiling point description (4) and boiling point (D) with viscosity description (1). Surface tension is force per unit length at the surface, while boiling point relates to vapour pressure equalling atmospheric pressure.",
+        "misconception": "Swapping the definitions of different properties without recognising their distinct physical meanings."
       }
     ]
   },
@@ -903,60 +906,61 @@
     "id": "chem-states-liquid-16",
     "question_type": "match-the-following",
     "difficulty": "hard",
-    "question_text": "Match Column I (Substance) with Column II (Dominant Intermolecular Force):\n\nColumn I | Column II\nA. HF (liquid) | 1. Ion-dipole interactions\nB. CH₄ (liquid) | 2. Dipole-dipole interactions\nC. NaCl dissolved in water | 3. London dispersion forces\nD. CHCl₃ (liquid) | 4. Hydrogen bonding\n\nSelect the correct matching:",
-    "explanation": "The correct matching is: A-4 (Liquid HF exhibits strong hydrogen bonding because hydrogen is bonded to fluorine, the most electronegative element; F is small with lone pairs, enabling strong H-bonds), B-3 (Liquid CH₄ is non-polar and symmetric, so the only intermolecular forces are London dispersion forces arising from temporary dipoles), C-1 (When NaCl dissolves in water, Na⁺ and Cl⁻ ions interact with the polar water molecules through ion-dipole interactions, which provide the hydration energy), D-2 (Liquid CHCl₃ is a polar molecule with a permanent dipole moment, and its dominant intermolecular forces are dipole-dipole interactions; it cannot form hydrogen bonds as a donor since C-H is not polar enough).",
-    "correct_answer": "D",
+    "question_text": "Match Column I (Substance pair) with Column II (Dominant intermolecular force between them):\n\nColumn I | Column II\nA. HCl and HCl | 1. Ion-dipole interaction\nB. He and He | 2. Hydrogen bonding\nC. Na⁺ and H₂O | 3. Dipole-dipole interaction\nD. H₂O and H₂O | 4. London dispersion forces\n\nSelect the correct matching:",
+    "explanation": "The correct matching is: A-3 (HCl is a polar molecule with a permanent dipole; HCl-HCl interactions are primarily dipole-dipole interactions), B-4 (He is a noble gas atom with no permanent dipole; He-He interactions are solely London dispersion forces due to temporary fluctuations in the electron cloud), C-1 (Na⁺ is a cation interacting with polar H₂O; this is an ion-dipole interaction, the strongest intermolecular force), D-2 (H₂O-H₂O interactions involve hydrogen bonding, where the H of one water molecule bonds to the lone pair on O of another). Therefore, A-3, B-4, C-1, D-2.",
+    "correct_answer": "C",
     "concept_tags": [
-      "intermolecular-forces-identification",
-      "hydrogen-bonding",
-      "london-forces",
+      "intermolecular-forces-types",
+      "dipole-dipole",
+      "london-dispersion",
       "ion-dipole",
-      "dipole-dipole"
+      "hydrogen-bonding",
+      "matching"
     ],
     "topic": "Liquid State and Intermolecular Forces",
     "subject": "chemistry",
     "chapter": "States of Matter",
-    "bloom_level": "apply",
+    "bloom_level": "analyze",
     "exam_suitability": [
       "NEET"
     ],
     "options": [
       {
         "key": "A",
-        "text": "A-2, B-1, C-4, D-3",
+        "text": "A-2, B-4, C-1, D-3",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "A-3, B-4, C-2, D-1",
+        "text": "A-4, B-3, C-2, D-1",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A-1, B-2, C-3, D-4",
-        "is_correct": false
+        "text": "A-3, B-4, C-1, D-2",
+        "is_correct": true
       },
       {
         "key": "D",
-        "text": "A-4, B-3, C-1, D-2",
-        "is_correct": true
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "This option matches HF (A) with dipole-dipole interactions (2), ignoring that HF forms strong hydrogen bonds since H is bonded to the most electronegative element, fluorine. It also incorrectly assigns ion-dipole forces to non-polar CH₄.",
-        "misconception": "Failing to recognise that HF is a classic example of hydrogen bonding, and that non-polar CH₄ cannot have ion-dipole interactions."
+        "hint": "This matches HCl-HCl (A) with hydrogen bonding (2). HCl does not exhibit hydrogen bonding because Cl is not electronegative enough (hydrogen bonding requires H bonded to F, O, or N). HCl-HCl interactions are dipole-dipole.",
+        "misconception": "Assuming any molecule with H can form hydrogen bonds, when hydrogen bonding specifically requires H bonded to F, O, or N."
       },
       {
         "option_key": "B",
-        "hint": "This option matches CH₄ (B) with hydrogen bonding (4), which is impossible since CH₄ is non-polar and carbon is not electronegative enough to form hydrogen bonds. CH₄ only exhibits London dispersion forces.",
-        "misconception": "Incorrectly assigning hydrogen bonding to CH₄, not recognising that hydrogen bonding requires H bonded to F, O, or N."
+        "hint": "This matches He-He (B) with dipole-dipole (3). Helium atoms are non-polar with no permanent dipole, so dipole-dipole forces cannot operate between them. He-He interactions are London dispersion forces only.",
+        "misconception": "Attributing permanent dipole interactions to a noble gas, which has a symmetrical, non-polar electron distribution."
       },
       {
-        "option_key": "C",
-        "hint": "This option matches HF (A) with ion-dipole forces (1) and NaCl in water (C) with London dispersion (3). HF is a covalent molecule exhibiting hydrogen bonding, not ion-dipole forces. NaCl in water involves ions interacting with polar water, which is ion-dipole interaction.",
-        "misconception": "Confusing HF (a polar covalent molecule) with an ionic system, and not recognising that dissolved NaCl produces ions that interact with water through ion-dipole forces."
+        "option_key": "D",
+        "hint": "This matches Na⁺-H₂O (C) with dipole-dipole (3) and H₂O-H₂O (D) with London dispersion (4). Na⁺ is an ion, not a dipole, so its interaction with water is ion-dipole, not dipole-dipole. H₂O-H₂O is dominated by hydrogen bonding, not dispersion forces.",
+        "misconception": "Failing to distinguish between full ionic charges and partial dipolar charges, and ignoring hydrogen bonding in water."
       }
     ]
   },
@@ -964,14 +968,14 @@
     "id": "chem-states-liquid-17",
     "question_type": "true-false",
     "difficulty": "easy",
-    "question_text": "Statement: Viscosity of a liquid decreases with increase in temperature because the increased kinetic energy of molecules overcomes intermolecular forces more easily.",
-    "explanation": "This statement is TRUE. As temperature increases, the average kinetic energy of liquid molecules increases. This increased kinetic energy allows molecules to overcome intermolecular attractive forces more easily, reducing the internal friction between layers of the liquid. As a result, the liquid flows more readily, and its viscosity decreases. This is why engine oils become thinner and flow more easily when heated, and honey becomes less viscous when warmed. The relationship between viscosity and temperature is described by the Arrhenius-type equation, showing an exponential decrease in viscosity with increasing temperature.",
+    "question_text": "Statement: The vapour pressure of a liquid at a given temperature is independent of the amount of liquid present, as long as some liquid remains in equilibrium with its vapour.",
+    "explanation": "This statement is TRUE. Vapour pressure is an intensive property that depends only on the nature of the liquid and the temperature, not on the quantity of liquid present. As long as there is sufficient liquid to establish a dynamic equilibrium between the liquid and vapour phases, the vapour pressure remains constant regardless of whether there is 1 mL or 1 L of liquid. This is because vapour pressure represents the equilibrium between the rates of evaporation and condensation, which depend on the intermolecular forces and temperature, not on the total amount of liquid.",
     "correct_answer": "A",
     "concept_tags": [
-      "viscosity",
-      "temperature-effect",
-      "kinetic-energy",
-      "intermolecular-forces"
+      "vapour-pressure",
+      "intensive-property",
+      "equilibrium",
+      "liquid-vapour-equilibrium"
     ],
     "topic": "Liquid State and Intermolecular Forces",
     "subject": "chemistry",
@@ -993,20 +997,20 @@
       },
       {
         "key": "C",
-        "text": "---",
+        "text": "—",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "---",
+        "text": "—",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
         "option_key": "B",
-        "hint": "The statement is scientifically accurate. Viscosity does decrease with temperature because increased kinetic energy helps molecules overcome intermolecular attractions. This is a well-established experimental observation seen in everyday phenomena like heating honey or engine oil.",
-        "misconception": "Doubting the inverse relationship between temperature and viscosity, which is consistently observed in all common liquids."
+        "hint": "Vapour pressure is an intensive property, meaning it does not depend on the amount of substance. Just as density or temperature are intensive properties, vapour pressure at a given temperature remains the same regardless of the volume of liquid present (as long as equilibrium is maintained).",
+        "misconception": "Thinking that more liquid would exert more vapour pressure, confusing an intensive property with an extensive one."
       },
       {
         "option_key": "C",
@@ -1025,7 +1029,7 @@
     "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Statement: A liquid with strong intermolecular forces will have a high vapour pressure at a given temperature.",
-    "explanation": "This statement is FALSE. A liquid with strong intermolecular forces will have a LOW vapour pressure at a given temperature, not a high one. Strong intermolecular forces (such as hydrogen bonding) hold the molecules tightly in the liquid phase, making it harder for them to escape into the vapour phase. Therefore, fewer molecules enter the gas phase, resulting in lower vapour pressure. For example, water (strong hydrogen bonding) has a much lower vapour pressure (23.8 mmHg at 25°C) compared to diethyl ether (weak dipole-dipole and dispersion forces) which has a high vapour pressure (442 mmHg at 20°C). The relationship between intermolecular forces and vapour pressure is inverse.",
+    "explanation": "This statement is FALSE. A liquid with strong intermolecular forces will have a low vapour pressure, not a high one. Strong intermolecular forces (such as hydrogen bonding or strong dipole-dipole interactions) hold molecules tightly in the liquid phase, making it difficult for them to escape into the vapour phase. Consequently, fewer molecules have enough kinetic energy to overcome these strong attractions and enter the gas phase, resulting in a lower vapour pressure. For example, water (strong hydrogen bonding) has a much lower vapour pressure than diethyl ether (weak dipole-dipole and dispersion forces only) at the same temperature.",
     "correct_answer": "B",
     "concept_tags": [
       "vapour-pressure",
@@ -1053,20 +1057,20 @@
       },
       {
         "key": "C",
-        "text": "---",
+        "text": "—",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "---",
+        "text": "—",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "The statement incorrectly claims that strong intermolecular forces lead to high vapour pressure. In reality, strong intermolecular forces keep molecules in the liquid phase, resulting in low vapour pressure. The relationship is inverse — stronger forces mean lower vapour pressure.",
-        "misconception": "Confusing the relationship between intermolecular forces and vapour pressure; stronger forces reduce vapour pressure because fewer molecules can escape the liquid."
+        "hint": "The relationship between intermolecular forces and vapour pressure is inverse. Stronger intermolecular forces make it harder for molecules to escape to the vapour phase, resulting in lower vapour pressure. For example, water (strong H-bonds) has lower vapour pressure than acetone (weaker forces) at the same temperature.",
+        "misconception": "Incorrectly assuming a direct relationship between intermolecular force strength and vapour pressure, when the relationship is actually inverse."
       },
       {
         "option_key": "C",
@@ -1084,14 +1088,15 @@
     "id": "chem-states-liquid-19",
     "question_type": "fill-in-blanks",
     "difficulty": "medium",
-    "question_text": "The SI unit of viscosity is _____, which is equivalent to pascal second (Pa·s).",
-    "explanation": "The SI unit of viscosity (dynamic viscosity) is N s m⁻² (newton second per square metre), which is equivalent to pascal second (Pa·s), since 1 Pa = 1 N/m². In CGS units, viscosity is measured in poise (P), where 1 poise = 1 g cm⁻¹ s⁻¹ = 0.1 Pa·s. The viscosity coefficient (η) appears in the equation F = ηA(dv/dx), where F is the force required to maintain a velocity difference dv between two layers of liquid separated by a distance dx, and A is the area of the layers. The SI unit follows directly from this equation: η = F/(A × dv/dx) = N/(m² × s⁻¹) = N s m⁻² = Pa·s.",
+    "question_text": "The phenomenon in which a liquid rises or falls in a narrow tube (capillary) due to the interplay of adhesive and cohesive forces is called _____.",
+    "explanation": "The phenomenon is called capillary action (or capillarity). When a narrow tube (capillary) is placed in a liquid, the liquid either rises or falls depending on the relative strengths of adhesive forces (between liquid molecules and the tube wall) and cohesive forces (between liquid molecules themselves). If adhesive forces are stronger than cohesive forces (as with water in a glass tube), the liquid rises and forms a concave meniscus. If cohesive forces are stronger (as with mercury in a glass tube), the liquid is depressed and forms a convex meniscus. Capillary action is directly related to surface tension of the liquid.",
     "correct_answer": "C",
     "concept_tags": [
-      "viscosity-units",
-      "SI-units",
-      "pascal-second",
-      "liquid-properties"
+      "capillary-action",
+      "adhesive-forces",
+      "cohesive-forces",
+      "surface-tension",
+      "fill-in-blanks"
     ],
     "topic": "Liquid State and Intermolecular Forces",
     "subject": "chemistry",
@@ -1103,40 +1108,40 @@
     "options": [
       {
         "key": "A",
-        "text": "N m⁻¹ (newton per metre)",
+        "text": "Osmosis",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "kg m⁻¹ (kilogram per metre)",
+        "text": "Viscosity",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "N s m⁻² (newton second per square metre)",
+        "text": "Capillary action",
         "is_correct": true
       },
       {
         "key": "D",
-        "text": "J m⁻² (joule per square metre)",
+        "text": "Diffusion",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "N m⁻¹ (newton per metre) is the SI unit of surface tension, not viscosity. Viscosity has an additional time dimension in its unit because it relates to the rate of flow (velocity gradient). The correct unit includes seconds: N s m⁻².",
-        "misconception": "Confusing the units of surface tension (N/m or J/m²) with the units of viscosity (N s/m² or Pa·s)."
+        "hint": "Osmosis is the movement of solvent molecules through a semipermeable membrane from a region of lower solute concentration to higher concentration. It does not involve the rise or fall of liquid in a narrow tube due to adhesive and cohesive forces.",
+        "misconception": "Confusing osmosis (membrane-mediated solvent movement) with capillary action (tube-mediated liquid movement due to surface forces)."
       },
       {
         "option_key": "B",
-        "hint": "kg m⁻¹ is not a complete unit for viscosity. The correct expression in base SI units is kg m⁻¹ s⁻¹ (which equals Pa·s). The time dimension (s⁻¹) is essential since viscosity involves resistance to the rate of flow.",
-        "misconception": "Omitting the time dimension from the viscosity unit, which is essential since viscosity depends on the velocity gradient."
+        "hint": "Viscosity is the resistance of a liquid to flow. While viscosity is related to intermolecular forces, it does not describe the specific phenomenon of liquid rising or falling in a narrow tube.",
+        "misconception": "Mixing up different liquid properties; viscosity describes flow resistance, not the rise/fall of liquid in a capillary."
       },
       {
         "option_key": "D",
-        "hint": "J m⁻² (joule per square metre) is equivalent to N m⁻¹, which is the unit of surface tension, not viscosity. Viscosity requires a time component in its unit (Pa·s = N s m⁻²).",
-        "misconception": "Confusing surface tension units with viscosity units; both are liquid properties but have different physical dimensions."
+        "hint": "Diffusion is the spontaneous movement of particles from a region of higher concentration to lower concentration. It occurs due to random molecular motion, not due to adhesive and cohesive forces in a narrow tube.",
+        "misconception": "Confusing diffusion (concentration-gradient-driven movement) with capillary action (surface-force-driven movement in narrow tubes)."
       }
     ]
   },
@@ -1144,15 +1149,16 @@
     "id": "chem-states-liquid-20",
     "question_type": "scenario-based",
     "difficulty": "medium",
-    "question_text": "Scenario: A student performs an experiment comparing the rates at which water drops fall from identical droppers for four different liquids — water, ethanol, acetone, and glycerol — all at 25°C. The student observes that glycerol drops fall the slowest and acetone drops fall the fastest.\n\nQuestion: Which of the following best explains the observation in terms of intermolecular forces and liquid properties?",
-    "explanation": "The observation is best explained by differences in viscosity and surface tension, which are determined by the strength of intermolecular forces. Glycerol has three -OH groups enabling extensive hydrogen bonding, giving it very high viscosity and surface tension, so its drops form slowly and fall last. Water has strong hydrogen bonding but fewer bonding sites per molecule than glycerol, giving it intermediate viscosity. Ethanol has one -OH group and moderate hydrogen bonding. Acetone has only dipole-dipole interactions and London dispersion forces (no -OH group for hydrogen bonding), resulting in the lowest viscosity and surface tension among these liquids, so its drops form and fall fastest. The rate of drop formation from a dropper is governed by viscosity (resistance to flow) and surface tension (which determines drop size), both of which increase with stronger intermolecular forces.",
+    "question_text": "Scenario: A student performs an experiment to study the boiling points of four liquids: A, B, C and D. Liquid A is a non-polar hydrocarbon with molar mass 72 g/mol. Liquid B is a polar molecule with molar mass 74 g/mol that can act as a hydrogen bond acceptor but not a donor. Liquid C is an alcohol with molar mass 74 g/mol containing one -OH group. Liquid D is a diol (containing two -OH groups) with molar mass 76 g/mol.\n\nQuestion: Based on the types and strengths of intermolecular forces, what is the expected order of boiling points from lowest to highest?",
+    "explanation": "The expected order from lowest to highest boiling point is A < B < C < D. Liquid A (non-polar hydrocarbon, 72 g/mol) has only London dispersion forces, giving it the lowest boiling point. Liquid B (polar molecule, 74 g/mol, H-bond acceptor only) has dipole-dipole interactions in addition to London forces, but cannot form hydrogen bonds as a donor, so it has a higher boiling point than A but lower than C. Liquid C (alcohol with one -OH group, 74 g/mol) can form hydrogen bonds both as donor and acceptor through its -OH group, giving it a significantly higher boiling point than B. Liquid D (diol with two -OH groups, 76 g/mol) has even more extensive hydrogen bonding due to two -OH groups, resulting in the highest boiling point. This scenario mirrors real compounds like pentane (A, b.p. 36 °C), butanal (B, b.p. 75 °C), 1-butanol (C, b.p. 117 °C), and 1,3-propanediol (D, b.p. 214 °C).",
     "correct_answer": "B",
     "concept_tags": [
-      "viscosity-comparison",
-      "surface-tension",
-      "hydrogen-bonding",
+      "boiling-point-comparison",
       "intermolecular-forces",
-      "experimental-observation"
+      "hydrogen-bonding",
+      "dipole-dipole",
+      "london-dispersion",
+      "scenario-analysis"
     ],
     "topic": "Liquid State and Intermolecular Forces",
     "subject": "chemistry",
@@ -1164,40 +1170,40 @@
     "options": [
       {
         "key": "A",
-        "text": "Acetone has the strongest intermolecular forces, so it flows the fastest through the dropper",
+        "text": "D < C < B < A",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "Glycerol has the highest viscosity due to extensive hydrogen bonding from three -OH groups, while acetone with only dipole-dipole forces has the lowest viscosity",
+        "text": "A < B < C < D",
         "is_correct": true
       },
       {
         "key": "C",
-        "text": "Glycerol has the highest molecular mass, and molecular mass alone determines how fast drops fall",
+        "text": "B < A < D < C",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "All four liquids have similar intermolecular forces, and the difference is due only to their densities",
+        "text": "A < C < B < D",
         "is_correct": false
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "Acetone does not have the strongest intermolecular forces among these liquids. Acetone lacks -OH groups and cannot form hydrogen bonds. Its intermolecular forces (dipole-dipole and London dispersion) are much weaker than those in glycerol, water, or ethanol. A liquid with weaker forces flows faster, not because the forces are strong.",
-        "misconception": "Confusing 'flows fastest' with 'has strongest forces'; in reality, weaker intermolecular forces lead to lower viscosity and faster flow."
+        "hint": "This is the exact reverse of the correct order. Non-polar hydrocarbons have the weakest intermolecular forces (only London dispersion), so they have the lowest boiling points, not the highest. Diols with extensive hydrogen bonding have the highest boiling points.",
+        "misconception": "Completely inverting the relationship between intermolecular force strength and boiling point."
       },
       {
         "option_key": "C",
-        "hint": "While glycerol does have a higher molecular mass than acetone, molecular mass alone does not determine viscosity or drop rate. The key factor is the nature and strength of intermolecular forces. Glycerol's three -OH groups create extensive hydrogen bonding, which is the primary reason for its high viscosity.",
-        "misconception": "Attributing viscosity differences solely to molecular mass without considering the crucial role of intermolecular forces, especially hydrogen bonding."
+        "hint": "This places the polar molecule B below the non-polar hydrocarbon A. Even though their molar masses are similar, the polar molecule B has dipole-dipole interactions in addition to London forces, giving it a higher boiling point than the non-polar A.",
+        "misconception": "Ignoring that dipole-dipole forces add to London forces, making polar molecules have higher boiling points than similar-sized non-polar molecules."
       },
       {
         "option_key": "D",
-        "hint": "These four liquids have very different intermolecular forces. Glycerol has extensive hydrogen bonding (three -OH groups), water has strong hydrogen bonding, ethanol has moderate hydrogen bonding (one -OH group), and acetone has only dipole-dipole forces. Density differences alone cannot explain the observed order.",
-        "misconception": "Incorrectly assuming all liquids have similar intermolecular forces, ignoring the fundamental differences in their molecular structures and bonding capabilities."
+        "hint": "This places the alcohol C (one -OH group, hydrogen bond donor and acceptor) below the polar molecule B (H-bond acceptor only, no donor capability). Hydrogen bonding involving both donor and acceptor capabilities produces stronger intermolecular forces than dipole-dipole interactions alone.",
+        "misconception": "Underestimating the boiling point elevation caused by hydrogen bond donor capability in alcohols compared to molecules that can only accept hydrogen bonds."
       }
     ]
   }
