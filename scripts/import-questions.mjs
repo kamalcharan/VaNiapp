@@ -506,7 +506,7 @@ async function main() {
 
   // Resolve credentials
   const supabaseUrl = args.url || process.env.SUPABASE_URL || process.env.EXPO_PUBLIC_SUPABASE_URL;
-  const supabaseKey = args.key || process.env.SUPABASE_SERVICE_KEY;
+  const supabaseKey = args.key || process.env.SUPABASE_SERVICE_KEY || process.env.EXPO_SUPABASE_SERVICE_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
     const missing = [];
