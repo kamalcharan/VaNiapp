@@ -365,8 +365,13 @@ function buildPayload(q) {
   }
 }
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+function toUUID(val) {
+  return val && UUID_RE.test(val) ? val : randomUUID();
+}
+
 function buildDbRows(q, index) {
-  const questionId = q.id || randomUUID();
+  const questionId = toUUID(q.id);
   const payload = buildPayload(q);
 
   // Main question row
@@ -390,9 +395,9 @@ function buildDbRows(q, index) {
     concept_tags: q.concept_tags || [],
   };
 
-  // Option rows
+  // Option rows (always generate UUID for composite IDs)
   const optionRows = (q.options || []).map((o, idx) => ({
-    id: `${questionId}-${o.key}`,
+    id: randomUUID(),
     question_id: questionId,
     option_key: o.key,
     option_text: o.text,
@@ -403,7 +408,7 @@ function buildDbRows(q, index) {
 
   // Elimination hint rows
   const hintRows = (q.elimination_hints || []).map((h) => ({
-    id: `${questionId}-hint-${h.option_key}`,
+    id: randomUUID(),
     question_id: questionId,
     option_key: h.option_key,
     hint_text: h.hint || h.hint_text || '',
