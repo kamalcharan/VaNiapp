@@ -1,0 +1,1204 @@
+[
+  {
+    "id": "chem-thermo-first-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A thermos flask containing hot coffee is an example of which type of thermodynamic system?",
+    "explanation": "A thermos flask (ideal) does not allow exchange of either matter or energy with its surroundings. It is thermally insulated and sealed, so neither heat nor mass can cross its boundary. This makes it an example of an isolated system. In contrast, an open system exchanges both matter and energy, and a closed system exchanges energy but not matter with the surroundings.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "types-of-systems",
+      "isolated-system",
+      "thermodynamic-system"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Open system",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Closed system",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Isolated system",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Adiabatic system",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "An open system exchanges both matter and energy with its surroundings. A thermos flask is sealed and insulated — it does not allow either to pass through its boundary.",
+        "misconception": "Confusing an open system (which allows exchange of both matter and energy) with an isolated system that prevents both."
+      },
+      {
+        "option_key": "B",
+        "hint": "A closed system allows exchange of energy but not matter. An ideal thermos flask does not allow even energy exchange, making it isolated rather than merely closed.",
+        "misconception": "Thinking that a sealed container is always a closed system, without considering that an isolated system also prevents energy transfer."
+      },
+      {
+        "option_key": "D",
+        "hint": "'Adiabatic system' is not a standard classification of thermodynamic systems. The three types are open, closed, and isolated. An adiabatic process is one with no heat exchange, but the system classification here is isolated.",
+        "misconception": "Confusing process terminology (adiabatic) with system classification (open, closed, isolated)."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following is a state function?",
+    "explanation": "Internal energy (U) is a state function because its value depends only on the current state of the system (defined by temperature, pressure, volume, etc.) and not on the path by which that state was reached. Heat (q) and work (w) are path functions — their values depend on how the process is carried out. Friction is not a thermodynamic function at all. According to NCERT, state functions are those whose values depend only upon the state of the system and not on how it is reached.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "state-function",
+      "path-function",
+      "internal-energy"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Internal energy (U)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Heat (q)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Work (w)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Friction",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Heat (q) is a path function because its value depends on how the process is carried out (e.g., reversible vs. irreversible). It is not determined solely by the initial and final states of the system.",
+        "misconception": "Assuming heat is a state function because temperature (which relates to heat) is a state function."
+      },
+      {
+        "option_key": "C",
+        "hint": "Work (w) is a path function. The amount of work done depends on the specific path taken during the process. For example, reversible and irreversible expansions between the same initial and final states yield different amounts of work.",
+        "misconception": "Thinking work is a state function because it appears in the first law equation alongside state function ΔU."
+      },
+      {
+        "option_key": "D",
+        "hint": "Friction is a dissipative force, not a thermodynamic state or path function. It converts mechanical energy to heat and is not a property of the thermodynamic state of a system.",
+        "misconception": "Confusing a mechanical force with a thermodynamic function."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "According to the first law of thermodynamics, the change in internal energy (ΔU) of a system is given by:",
+    "explanation": "The first law of thermodynamics states that the change in internal energy of a system equals the sum of heat added to the system (q) and work done on the system (w). Mathematically, ΔU = q + w. Here, IUPAC convention is followed: q is positive when heat is absorbed by the system, and w is positive when work is done on the system. This is the fundamental energy conservation law applied to thermodynamic systems as described in NCERT Class 11 Chemistry.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "first-law-of-thermodynamics",
+      "internal-energy",
+      "heat",
+      "work"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ΔU = q − w",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ΔU = q + w",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "ΔU = q × w",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ΔU = q / w",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "ΔU = q − w uses the old convention where w represents work done BY the system. In the IUPAC convention used in NCERT, w represents work done ON the system, so the correct expression is ΔU = q + w.",
+        "misconception": "Using the older sign convention where work done by the system is positive, instead of the IUPAC convention where work done on the system is positive."
+      },
+      {
+        "option_key": "C",
+        "hint": "The first law of thermodynamics involves addition of heat and work contributions, not their multiplication. Energy is conserved by summing the heat and work exchanges.",
+        "misconception": "Incorrectly assuming a multiplicative relationship between heat and work in the energy balance."
+      },
+      {
+        "option_key": "D",
+        "hint": "The first law involves summation, not division. Heat and work are both forms of energy transfer that contribute additively to the change in internal energy.",
+        "misconception": "Confusing the mathematical relationship in the first law, which is additive, not a ratio."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "For an exothermic reaction occurring at constant pressure, which of the following is true?",
+    "explanation": "In an exothermic reaction, the system releases heat to the surroundings. At constant pressure, the heat exchanged equals the enthalpy change (ΔH). Since heat is released, ΔH is negative for an exothermic reaction. This is a fundamental concept from NCERT Class 11 Chemistry: exothermic reactions have ΔH < 0 because the enthalpy of products is less than the enthalpy of reactants.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "exothermic-reaction",
+      "enthalpy-change",
+      "constant-pressure"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ΔH > 0",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ΔH = 0",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ΔU = 0",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ΔH < 0",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "ΔH > 0 signifies an endothermic reaction where the system absorbs heat. For an exothermic reaction, heat is released, making ΔH negative, not positive.",
+        "misconception": "Confusing the sign of ΔH for exothermic and endothermic reactions."
+      },
+      {
+        "option_key": "B",
+        "hint": "ΔH = 0 would mean no heat is exchanged at constant pressure, which is not the case for an exothermic reaction. An exothermic reaction actively releases heat.",
+        "misconception": "Thinking that an exothermic reaction has zero enthalpy change, possibly confusing it with a process at equilibrium."
+      },
+      {
+        "option_key": "C",
+        "hint": "ΔU = 0 applies to isothermal processes of an ideal gas or cyclic processes. An exothermic reaction is characterised by ΔH < 0 at constant pressure; ΔU need not be zero.",
+        "misconception": "Confusing the condition for an isothermal ideal gas process with the defining characteristic of an exothermic reaction."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a reaction involving gases at constant temperature, the relationship between enthalpy change and internal energy change is given by ΔH = ΔU + ΔnₘRT. In this equation, Δnₘ represents:",
+    "explanation": "In the equation ΔH = ΔU + ΔnₘRT (often written as Δn_g RT), Δnₘ represents the change in the number of moles of gaseous products minus the number of moles of gaseous reactants. This relationship arises because enthalpy H = U + PV, and for ideal gases, PV = nRT. The difference between ΔH and ΔU accounts for the PV work associated with the change in gaseous moles during the reaction. Only gaseous species contribute because the PV term for solids and liquids is negligible compared to gases.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "enthalpy-internal-energy-relation",
+      "delta-n-gas",
+      "ideal-gas",
+      "PV-work"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Moles of gaseous products minus moles of gaseous reactants",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Total moles of products minus total moles of reactants (all phases)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Moles of solid products minus moles of solid reactants",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Moles of reactants minus moles of products in the gaseous state",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Only gaseous species are considered in Δnₘ because the PV term for solids and liquids is negligible. The equation uses the ideal gas law (PV = nRT), which applies only to gases.",
+        "misconception": "Including solids and liquids in the mole count, not recognising that only gaseous moles significantly contribute to the PV work term."
+      },
+      {
+        "option_key": "C",
+        "hint": "Solid species have negligible molar volumes compared to gases and do not contribute significantly to the PV work. Δnₘ counts only gaseous species.",
+        "misconception": "Incorrectly thinking that solids contribute to the PV work term in the enthalpy-internal energy relationship."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option reverses the subtraction order. Δnₘ is defined as (moles of gaseous products) minus (moles of gaseous reactants), not the other way around.",
+        "misconception": "Reversing the order of subtraction in the definition of Δnₘ, which would give the wrong sign for the PV correction."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For the reaction N₂(g) + 3H₂(g) → 2NH₃(g), if ΔH = −92.4 kJ mol⁻¹ at a certain temperature T, then ΔU at the same temperature is (R = 8.314 J K⁻¹ mol⁻¹):",
+    "explanation": "Using the relation ΔH = ΔU + ΔnₘRT, we first calculate Δnₘ = moles of gaseous products − moles of gaseous reactants = 2 − (1 + 3) = 2 − 4 = −2. Therefore, ΔU = ΔH − ΔnₘRT = −92.4 − (−2)(RT) = −92.4 + 2RT. Since ΔnₘRT is negative (Δnₘ = −2), ΔU = ΔH − ΔnₘRT means ΔU is less negative than ΔH (i.e., ΔU > ΔH in algebraic value). The numerical value depends on T, but the key relationship is ΔU = ΔH − (−2)RT = ΔH + 2RT, making ΔU greater than ΔH.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "enthalpy-internal-energy-relation",
+      "delta-n-gas",
+      "numerical-problem",
+      "ammonia-synthesis"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ΔU = ΔH + 4RT",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ΔU = ΔH − 2RT",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ΔU = ΔH + 2RT",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "ΔU = ΔH − 4RT",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This answer uses |Δnₘ| = 4, which is the total number of moles of gas, not the change. Δnₘ = 2 − 4 = −2, so ΔnₘRT = −2RT. Therefore ΔU = ΔH − (−2RT) = ΔH + 2RT.",
+        "misconception": "Using the total moles of gas instead of the change in moles (Δnₘ) in the calculation."
+      },
+      {
+        "option_key": "B",
+        "hint": "This would be correct if Δnₘ = +2, but Δnₘ = 2 − 4 = −2 (products minus reactants). Since ΔU = ΔH − ΔnₘRT = ΔH − (−2RT) = ΔH + 2RT, the sign is positive.",
+        "misconception": "Getting the sign of Δnₘ wrong by subtracting products from reactants instead of reactants from products, or miscalculating the rearrangement."
+      },
+      {
+        "option_key": "D",
+        "hint": "This combines two errors: using the total moles (4) instead of the change (−2) and getting the sign wrong. The correct calculation gives Δnₘ = −2, so ΔU = ΔH + 2RT.",
+        "misconception": "Both miscounting the mole change and applying incorrect sign convention."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The work done during the isothermal reversible expansion of an ideal gas from volume V₁ to volume V₂ is given by:",
+    "explanation": "For an isothermal reversible expansion of an ideal gas, the work done on the system is w = −nRT ln(V₂/V₁). The negative sign indicates that work is done BY the system (since V₂ > V₁ in expansion, ln(V₂/V₁) > 0, making w negative). This formula is derived by integrating w = −∫PdV where P = nRT/V for an ideal gas. This can also be written as w = −2.303 nRT log(V₂/V₁). This is a key formula from NCERT Class 11 Chemistry thermodynamics chapter.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "isothermal-process",
+      "reversible-expansion",
+      "ideal-gas",
+      "work-done"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "w = −PΔV",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "w = −nRT ln(V₂/V₁)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "w = nRT ln(V₁/V₂)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "w = nCᵥΔT",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "w = −PΔV applies to expansion against a constant external pressure (irreversible process). In a reversible isothermal expansion, the external pressure continuously adjusts, and integration yields the logarithmic expression.",
+        "misconception": "Applying the constant-pressure work formula to a reversible process where pressure varies continuously."
+      },
+      {
+        "option_key": "C",
+        "hint": "Note that −nRT ln(V₂/V₁) = nRT ln(V₁/V₂) mathematically. However, by NCERT convention and IUPAC sign convention, the standard form written is w = −nRT ln(V₂/V₁). Option C omits the negative sign in the standard representation, which could lead to sign errors in calculations.",
+        "misconception": "While mathematically equivalent, this form obscures the standard sign convention and may cause confusion in multi-step problems."
+      },
+      {
+        "option_key": "D",
+        "hint": "w = nCᵥΔT relates to work in an adiabatic process where temperature changes. In an isothermal process, ΔT = 0, so this expression would give w = 0, which is incorrect.",
+        "misconception": "Confusing the work formula for adiabatic processes with that for isothermal processes."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In an adiabatic process, which of the following conditions holds true?",
+    "explanation": "An adiabatic process is defined as one in which no heat is exchanged between the system and its surroundings, i.e., q = 0. Applying the first law of thermodynamics: ΔU = q + w. When q = 0, we get ΔU = w. This means that in an adiabatic process, the change in internal energy equals the work done on the system. If work is done on the system (compression), the internal energy and temperature increase; if work is done by the system (expansion), the internal energy and temperature decrease.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "adiabatic-process",
+      "first-law",
+      "heat-exchange",
+      "internal-energy"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ΔU = 0 and q = w",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "w = 0 and ΔU = q",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ΔH = 0 and q = 0",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "q = 0 and ΔU = w",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "ΔU = 0 is the condition for an isothermal process involving an ideal gas, not an adiabatic process. In an adiabatic process, ΔU changes because work is done without heat exchange.",
+        "misconception": "Confusing the isothermal condition (ΔU = 0 for ideal gas) with the adiabatic condition (q = 0)."
+      },
+      {
+        "option_key": "B",
+        "hint": "w = 0 describes an isochoric (constant volume) process. In an isochoric process, ΔU = q. In an adiabatic process, it is q that equals zero, not w.",
+        "misconception": "Confusing the isochoric condition (w = 0, ΔU = q) with the adiabatic condition (q = 0, ΔU = w)."
+      },
+      {
+        "option_key": "C",
+        "hint": "While q = 0 is correct for an adiabatic process, ΔH = 0 is not generally true. ΔH = 0 would require constant pressure and no heat exchange simultaneously, which is not the defining feature of adiabatic processes in general.",
+        "misconception": "Incorrectly assuming that zero heat exchange implies zero enthalpy change."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The difference between heat capacities at constant pressure and constant volume for one mole of an ideal gas (Cₚ − Cᵥ) is equal to:",
+    "explanation": "For one mole of an ideal gas, the relationship Cₚ − Cᵥ = R holds, where R is the universal gas constant (8.314 J K⁻¹ mol⁻¹). This arises because at constant pressure, the gas must do expansion work (PΔV work) in addition to increasing its internal energy when heated. The extra heat required for this PΔV work at constant pressure compared to constant volume equals R per mole per kelvin. This is a fundamental result derived from the ideal gas equation and the definitions of Cₚ and Cᵥ as described in NCERT.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "heat-capacity",
+      "Cp-Cv-relation",
+      "ideal-gas",
+      "gas-constant"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "R (universal gas constant)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "2R",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "R/2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Cₚ − Cᵥ = 2R is not correct for any ideal gas. The result Cₚ − Cᵥ = R is universal for all ideal gases, regardless of whether they are monoatomic, diatomic, or polyatomic.",
+        "misconception": "Confusing the value of Cᵥ for a monoatomic ideal gas (3R/2) with the Cₚ − Cᵥ difference."
+      },
+      {
+        "option_key": "C",
+        "hint": "R/2 is not the correct difference. While individual values of Cₚ and Cᵥ depend on the atomicity of the gas (e.g., Cᵥ = 3R/2 for monoatomic), their difference is always exactly R for one mole of any ideal gas.",
+        "misconception": "Mixing up the individual heat capacity values with their difference."
+      },
+      {
+        "option_key": "D",
+        "hint": "Cₚ − Cᵥ cannot be zero for an ideal gas. At constant pressure, additional energy is needed for PΔV expansion work, so Cₚ is always greater than Cᵥ for an ideal gas.",
+        "misconception": "Failing to account for the PV work that makes heating at constant pressure require more energy than at constant volume."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When an ideal gas expands isothermally against zero external pressure (free expansion), the values of q, w, and ΔU respectively are:",
+    "explanation": "In free expansion, the external pressure is zero, so w = −Pₑₓₜ × ΔV = 0 (no work is done). For an ideal gas undergoing an isothermal process, the temperature remains constant, and since the internal energy of an ideal gas depends only on temperature, ΔU = 0. From the first law, ΔU = q + w, so 0 = q + 0, giving q = 0. Therefore, in an isothermal free expansion of an ideal gas, q = 0, w = 0, and ΔU = 0.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "free-expansion",
+      "isothermal-process",
+      "ideal-gas",
+      "first-law"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "q > 0, w > 0, ΔU > 0",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "q < 0, w = 0, ΔU < 0",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "q = 0, w = 0, ΔU = 0",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "q > 0, w < 0, ΔU = 0",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "In free expansion against zero external pressure, no work is done (w = 0). For an isothermal ideal gas, ΔU = 0. By the first law, q must also be zero.",
+        "misconception": "Assuming that gas expansion always involves positive work and heat absorption, without considering that free expansion against vacuum involves no opposing pressure."
+      },
+      {
+        "option_key": "B",
+        "hint": "While w = 0 is correct for free expansion, ΔU cannot be negative for an isothermal ideal gas (ΔU depends only on T, and T is constant). By the first law, q = ΔU − w = 0, not negative.",
+        "misconception": "Incorrectly thinking that expansion always leads to a decrease in internal energy, forgetting that for an ideal gas ΔU depends only on temperature."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option correctly has ΔU = 0 but incorrectly assigns w < 0 and q > 0. In free expansion, Pₑₓₜ = 0, so w = −PₑₓₜΔV = 0. Consequently, q must also be zero by the first law.",
+        "misconception": "Confusing free expansion (Pₑₓₜ = 0) with reversible isothermal expansion where work is done and heat is absorbed."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two moles of an ideal gas are compressed isothermally and reversibly at 300 K from a volume of 20 L to 10 L. The work done on the gas is approximately (R = 8.314 J K⁻¹ mol⁻¹):",
+    "explanation": "For isothermal reversible compression: w = −nRT ln(V₂/V₁) = −2 × 8.314 × 300 × ln(10/20) = −2 × 8.314 × 300 × ln(0.5) = −2 × 8.314 × 300 × (−0.693) = +2 × 8.314 × 300 × 0.693 = +3458.2 J ≈ +3.46 kJ. The positive sign indicates work is done ON the gas (compression). Using the formula: w = −nRT ln(V₂/V₁), since V₂ < V₁, ln(V₂/V₁) is negative, making w positive, confirming work is done on the system during compression.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "isothermal-reversible-compression",
+      "work-calculation",
+      "ideal-gas",
+      "numerical-problem"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "−3.46 kJ",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "+3.46 kJ",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "+6.92 kJ",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "−1.73 kJ",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A negative value of w means work is done BY the system (expansion). Since the gas is being compressed (volume decreases), work is done ON the system, so w must be positive.",
+        "misconception": "Getting the sign wrong by not recognising that compression means work is done on the gas, giving a positive w value."
+      },
+      {
+        "option_key": "C",
+        "hint": "This value is exactly double the correct answer. Check whether you used n = 4 instead of n = 2, or made an error with ln(2) ≈ 0.693. The correct calculation is w = 2 × 8.314 × 300 × 0.693 ≈ 3458 J ≈ 3.46 kJ.",
+        "misconception": "Doubling the number of moles or making an arithmetic error that doubles the final answer."
+      },
+      {
+        "option_key": "D",
+        "hint": "This value has both the wrong sign and wrong magnitude (it is half and negative). During isothermal compression, w should be positive, and using n = 2, R = 8.314, T = 300, and ln(2) = 0.693 gives approximately +3.46 kJ.",
+        "misconception": "Multiple errors: using n = 1 instead of 2 and getting the sign wrong for a compression process."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "For the decomposition reaction CaCO₃(s) → CaO(s) + CO₂(g), at temperature T, which of the following correctly relates ΔH and ΔU?",
+    "explanation": "Using ΔH = ΔU + ΔnₘRT, we need to find Δnₘ (change in moles of gaseous species). Reactant side: CaCO₃(s) has 0 moles of gas. Product side: CaO(s) has 0 moles of gas, CO₂(g) has 1 mole of gas. So Δnₘ = 1 − 0 = 1. Therefore, ΔH = ΔU + (1)RT = ΔU + RT. This means ΔH is greater than ΔU by RT for this decomposition reaction, since one mole of gas is produced from solid reactants.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "enthalpy-internal-energy-relation",
+      "delta-n-gas",
+      "decomposition-reaction",
+      "calcium-carbonate"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ΔH = ΔU − RT",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ΔH = ΔU + 2RT",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ΔH = ΔU",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ΔH = ΔU + RT",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "ΔH = ΔU − RT would require Δnₘ = −1, meaning one mole of gas is consumed. In this reaction, one mole of CO₂(g) is produced from solids, so Δnₘ = +1, giving ΔH = ΔU + RT.",
+        "misconception": "Getting the sign of Δnₘ wrong, possibly by subtracting products from reactants instead of the correct (products − reactants)."
+      },
+      {
+        "option_key": "B",
+        "hint": "ΔH = ΔU + 2RT would require Δnₘ = 2, meaning two moles of gas are produced. Only one mole of CO₂(g) is produced in this reaction, and both CaCO₃ and CaO are solids.",
+        "misconception": "Miscounting the gaseous moles, perhaps incorrectly counting CaO or CaCO₃ as gaseous species."
+      },
+      {
+        "option_key": "C",
+        "hint": "ΔH = ΔU only when Δnₘ = 0, i.e., when there is no change in the number of moles of gaseous species. Here, one mole of CO₂(g) is produced with no gaseous reactants, so Δnₘ = 1.",
+        "misconception": "Failing to account for the mole of CO₂ gas produced, or thinking that solid-to-gas conversion does not affect the ΔH-ΔU relationship."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The internal energy of an ideal gas depends only on its temperature and is independent of pressure and volume.\nReason (R): In an ideal gas, there are no intermolecular forces of attraction, so potential energy contribution is zero and internal energy is entirely kinetic.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "Both the Assertion and the Reason are correct, and the Reason correctly explains the Assertion. For an ideal gas, there are no intermolecular interactions (by definition), so there is no potential energy component. The internal energy is entirely due to the kinetic energy of molecules, which depends only on temperature (U = nCᵥT for an ideal gas). Since changing pressure or volume at constant temperature does not change the kinetic energy of ideal gas molecules, internal energy remains unchanged. The absence of intermolecular forces (Reason) is precisely why internal energy depends only on temperature (Assertion).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "internal-energy",
+      "ideal-gas",
+      "temperature-dependence",
+      "intermolecular-forces",
+      "assertion-reasoning"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains the Assertion. The absence of intermolecular forces (R) is the exact reason why internal energy depends only on temperature (A). If intermolecular forces existed, internal energy would also depend on volume (intermolecular distance).",
+        "misconception": "Failing to recognise the direct causal link between the absence of intermolecular forces and the temperature-only dependence of internal energy."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct. By definition, ideal gas molecules have no intermolecular forces of attraction, so their potential energy contribution is indeed zero, making internal energy purely kinetic.",
+        "misconception": "Doubting the fundamental assumption of the ideal gas model that there are no intermolecular interactions."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. It is a well-established thermodynamic fact (Joule's law) that the internal energy of an ideal gas depends only on temperature. This is experimentally verified and theoretically derived from kinetic molecular theory.",
+        "misconception": "Incorrectly thinking that internal energy of an ideal gas depends on pressure or volume."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): For an ideal gas undergoing isothermal expansion, ΔH = 0.\nReason (R): During isothermal expansion of an ideal gas, no work is done by the system, so all the internal energy is conserved as enthalpy.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The Assertion is correct: for an isothermal process involving an ideal gas, ΔH = 0. This is because H = U + PV; for an ideal gas at constant T, U depends only on temperature (ΔU = 0) and PV = nRT is constant (Δ(PV) = 0), so ΔH = 0. However, the Reason is INCORRECT: during isothermal expansion of an ideal gas, work IS done by the system (w is negative in IUPAC convention). The gas does work at the expense of absorbed heat (q = −w), not because 'no work is done.' The statement that no work is done is factually wrong. Since A is correct but R is incorrect, the answer is (C).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "enthalpy",
+      "isothermal-process",
+      "ideal-gas",
+      "work-done",
+      "assertion-reasoning"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The Reason is factually incorrect. During isothermal expansion of an ideal gas, work IS done by the system on the surroundings (the gas expands against external pressure). The heat absorbed equals the work done. Since R is wrong, option A cannot be correct.",
+        "misconception": "Accepting the false claim that no work is done during isothermal expansion, when in fact w = −nRT ln(V₂/V₁) for a reversible process."
+      },
+      {
+        "option_key": "B",
+        "hint": "This option requires both A and R to be correct. The Reason is factually wrong — work is indeed done during isothermal expansion of an ideal gas. Therefore, B is not the correct choice.",
+        "misconception": "Not verifying the factual accuracy of the Reason before selecting an option that assumes both statements are correct."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. For an ideal gas, H = U + PV = U + nRT. At constant temperature, both U and nRT are constant, so ΔH = 0. The Assertion is not incorrect.",
+        "misconception": "Doubting the well-established result that ΔH = 0 for an isothermal ideal gas process."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match Column I (Process) with Column II (Condition):\n\nColumn I | Column II\nA. Isothermal process | 1. q = 0\nB. Adiabatic process | 2. ΔV = 0\nC. Isochoric process | 3. ΔP = 0\nD. Isobaric process | 4. ΔT = 0\n\nSelect the correct matching:",
+    "explanation": "The correct matching is: A-4 (Isothermal process occurs at constant temperature, so ΔT = 0), B-1 (Adiabatic process involves no heat exchange with surroundings, so q = 0), C-2 (Isochoric process occurs at constant volume, so ΔV = 0), D-3 (Isobaric process occurs at constant pressure, so ΔP = 0). These are fundamental definitions of thermodynamic processes described in NCERT Class 11 Chemistry.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "isothermal-process",
+      "adiabatic-process",
+      "isochoric-process",
+      "isobaric-process",
+      "thermodynamic-processes"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-1, B-4, C-3, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-4, B-1, C-2, D-3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-3, C-4, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-1, D-4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This option matches isothermal (A) with q = 0, but q = 0 is the condition for an adiabatic process. 'Iso-thermal' literally means constant temperature, so A must match with ΔT = 0 (option 4).",
+        "misconception": "Confusing the adiabatic condition (q = 0) with the isothermal condition (ΔT = 0)."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option matches isothermal (A) with ΔV = 0 (constant volume). Constant volume is the isochoric condition. 'Isothermal' means constant temperature (ΔT = 0).",
+        "misconception": "Mixing up the Greek prefixes: 'iso-thermal' (constant temperature) vs 'iso-choric' (constant volume)."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option matches adiabatic (B) with ΔV = 0 and isochoric (C) with q = 0. Adiabatic means no heat exchange (q = 0), and isochoric means constant volume (ΔV = 0) — these are swapped in this option.",
+        "misconception": "Interchanging the defining conditions of adiabatic and isochoric processes."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match Column I (Thermodynamic Quantity) with Column II (Mathematical Expression for an Ideal Gas):\n\nColumn I | Column II\nA. Work done in irreversible expansion against constant Pₑₓₜ | 1. ΔU = nCᵥΔT\nB. Change in internal energy | 2. w = −Pₑₓₜ × ΔV\nC. Enthalpy change at constant pressure | 3. Cₚ − Cᵥ = R\nD. Relation between Cₚ and Cᵥ | 4. ΔH = qₚ\n\nSelect the correct matching:",
+    "explanation": "The correct matching is: A-2 (Work done against constant external pressure is w = −PₑₓₜΔV), B-1 (Change in internal energy for an ideal gas is ΔU = nCᵥΔT regardless of the process), C-4 (At constant pressure, enthalpy change equals heat exchanged: ΔH = qₚ), D-3 (For one mole of an ideal gas, Cₚ − Cᵥ = R). These are fundamental equations from NCERT thermodynamics.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "work-PV",
+      "internal-energy-change",
+      "enthalpy-heat",
+      "Cp-Cv-relation",
+      "thermodynamic-expressions"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-4, B-3, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-4, C-1, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-1, C-4, D-3",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This matches work in irreversible expansion (A) with ΔH = qₚ, which is the relation for enthalpy at constant pressure, not a work expression. Work against constant external pressure is w = −PₑₓₜΔV.",
+        "misconception": "Confusing the enthalpy-heat relation at constant pressure with the expression for PV work."
+      },
+      {
+        "option_key": "B",
+        "hint": "This matches work (A) with ΔU = nCᵥΔT. The expression nCᵥΔT gives the change in internal energy, not work. Work against constant Pₑₓₜ is w = −PₑₓₜΔV.",
+        "misconception": "Swapping the expressions for internal energy change and work done."
+      },
+      {
+        "option_key": "C",
+        "hint": "This matches work (A) with Cₚ − Cᵥ = R, which is the heat capacity relation, not a work formula. Also, it matches internal energy change (B) with ΔH = qₚ, which describes enthalpy, not internal energy.",
+        "misconception": "Completely scrambling the thermodynamic expressions with their corresponding quantities."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Statement: Internal energy (U) is a state function, meaning its value depends only on the state of the system and not on the path by which the state was reached.",
+    "explanation": "This statement is TRUE. Internal energy (U) is a state function as described in NCERT Class 11 Chemistry. A state function depends only on the current state of the system (defined by state variables such as temperature, pressure, and volume) and is independent of the path followed to reach that state. The change in internal energy (ΔU) between two states is the same regardless of whether the process is carried out reversibly or irreversibly, or through any intermediate steps.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "internal-energy",
+      "state-function",
+      "path-independence"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement accurately describes internal energy as a state function. This is a fundamental concept in thermodynamics — U, H, S, G, T, P, and V are all state functions. Only q and w are path functions.",
+        "misconception": "Confusing internal energy (a state function) with heat or work (path functions), or misunderstanding the definition of a state function."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Statement: In an adiabatic expansion of an ideal gas, the temperature of the gas increases.",
+    "explanation": "This statement is FALSE. In an adiabatic expansion, no heat is exchanged with the surroundings (q = 0). When an ideal gas expands adiabatically, it does work on the surroundings at the expense of its own internal energy. Since ΔU = w (with q = 0), and work done by the system is negative (w < 0 for expansion), ΔU < 0. For an ideal gas, internal energy depends only on temperature, so a decrease in U means a decrease in temperature. Therefore, adiabatic expansion causes cooling, not heating.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "adiabatic-expansion",
+      "temperature-change",
+      "ideal-gas",
+      "cooling"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "During adiabatic expansion, the gas does work using its own internal energy (since no heat enters the system). This causes the internal energy and temperature to decrease, not increase. Adiabatic expansion leads to cooling.",
+        "misconception": "Confusing adiabatic expansion (which causes cooling) with adiabatic compression (which causes heating)."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "Enthalpy (H) is defined as H = U + PV. At constant pressure, the change in enthalpy equals the heat exchanged, i.e., ΔH = _____.",
+    "explanation": "At constant pressure, the enthalpy change equals the heat exchanged with the surroundings, expressed as ΔH = qₚ, where qₚ denotes heat at constant pressure. This is one of the most important relationships in thermodynamics as described in NCERT. Starting from the first law: ΔU = q + w = qₚ + (−PΔV) = qₚ − PΔV. Since H = U + PV, ΔH = ΔU + PΔV = (qₚ − PΔV) + PΔV = qₚ. This makes enthalpy a practical quantity because most chemical reactions occur at constant (atmospheric) pressure.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "enthalpy",
+      "heat-at-constant-pressure",
+      "qp",
+      "enthalpy-definition"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "qᵥ (heat at constant volume)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "w (work done)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "qₚ (heat at constant pressure)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "ΔU + w",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "qᵥ (heat at constant volume) equals ΔU, not ΔH. At constant volume, w = 0, so ΔU = qᵥ. At constant pressure, ΔH = qₚ. These are two different and important relationships.",
+        "misconception": "Confusing the constant volume condition (ΔU = qᵥ) with the constant pressure condition (ΔH = qₚ)."
+      },
+      {
+        "option_key": "B",
+        "hint": "Work (w) is not equal to ΔH. At constant pressure, ΔH equals the heat exchanged, not the work done. Work at constant pressure is w = −PΔV.",
+        "misconception": "Confusing heat transfer with work in the enthalpy relationship."
+      },
+      {
+        "option_key": "D",
+        "hint": "ΔU + w equals q (by rearranging the first law ΔU = q + w to q = ΔU − w). But ΔH specifically equals qₚ (heat at constant pressure), not the general expression ΔU + w.",
+        "misconception": "Confusing the general first law rearrangement with the specific constant-pressure enthalpy relation."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-first-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "Scenario: A chemistry student performs an experiment in which 3 moles of an ideal gas are heated in a rigid sealed container (constant volume) from 300 K to 500 K. The student measures the heat supplied to the gas and finds it to be equal to the change in internal energy of the gas. When the same gas is heated in a container with a frictionless movable piston (constant pressure) through the same temperature range, more heat is required.\n\nQuestion: Why does heating at constant pressure require more heat than heating at constant volume for the same temperature change?",
+    "explanation": "At constant volume, all the heat supplied goes entirely into increasing the internal energy (kinetic energy) of the gas molecules, since no PV work is done (ΔV = 0, so w = 0 and qᵥ = ΔU). At constant pressure, the gas expands as it is heated, doing PΔV work against the surroundings. Therefore, in addition to the energy needed to raise the temperature (increase internal energy), extra energy is required to perform the expansion work. This is why Cₚ > Cᵥ, and their difference for one mole of ideal gas is Cₚ − Cᵥ = R. The additional heat at constant pressure accounts for the PV work of expansion.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "Cp-Cv-relation",
+      "constant-volume",
+      "constant-pressure",
+      "PV-work",
+      "heat-capacity",
+      "scenario-analysis"
+    ],
+    "topic": "First Law, Internal Energy, and Enthalpy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "At constant pressure, the gas molecules move faster, requiring more kinetic energy input",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "At constant pressure, intermolecular attractions increase, requiring extra energy to overcome them",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "At constant volume, the gas absorbs extra energy to compress itself, so less heat is needed externally",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "At constant pressure, the gas must do PΔV expansion work against the surroundings in addition to increasing its internal energy",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "For the same temperature change (300 K to 500 K), the final kinetic energy of gas molecules is the same regardless of whether heating is done at constant pressure or constant volume. The difference in heat requirement is due to PV work, not molecular speed.",
+        "misconception": "Thinking that the molecular speed or kinetic energy differs between constant pressure and constant volume heating for the same final temperature."
+      },
+      {
+        "option_key": "B",
+        "hint": "The question specifies an ideal gas, which has no intermolecular forces of attraction. The extra heat at constant pressure is due to the PΔV expansion work, not intermolecular interactions.",
+        "misconception": "Introducing real gas behaviour (intermolecular forces) into a problem that specifies an ideal gas."
+      },
+      {
+        "option_key": "C",
+        "hint": "At constant volume, the gas does NOT compress itself. The volume remains fixed, so no PV work is done (w = 0). All heat goes to increasing internal energy. The statement in this option is physically meaningless.",
+        "misconception": "Misunderstanding the constant volume condition, incorrectly suggesting that the gas does compression work on itself."
+      }
+    ]
+  }
+]

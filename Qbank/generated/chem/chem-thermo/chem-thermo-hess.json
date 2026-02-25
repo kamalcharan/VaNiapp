@@ -1,0 +1,1196 @@
+[
+  {
+    "id": "chem-thermo-hess-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The standard enthalpy of formation (ΔfH°) of an element in its most stable form (reference form) at 1 bar and specified temperature is:",
+    "explanation": "By convention, the standard enthalpy of formation of an element in its most stable allotropic form (reference form) at the specified temperature and 1 bar pressure is taken as zero. For example, ΔfH° of O₂(g), N₂(g), C(graphite), H₂(g), and all other elements in their standard states is zero. This convention serves as the baseline for calculating standard enthalpies of formation of compounds. Note that ΔfH° of C(diamond) is NOT zero because graphite is the more stable allotrope of carbon.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "standard-enthalpy-of-formation",
+      "reference-state",
+      "thermodynamic-convention"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "+1 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Zero",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "-1 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Depends on the element",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "There is no convention that assigns +1 kJ mol⁻¹ to elements in their standard state. The reference point is a fixed universal value, not a positive arbitrary number.",
+        "misconception": "Confusing the standard enthalpy of formation convention with an arbitrary nonzero baseline."
+      },
+      {
+        "option_key": "C",
+        "hint": "A value of -1 kJ mol⁻¹ would imply some energy is released in forming an element from itself, which is meaningless. The convention assigns a simpler baseline value.",
+        "misconception": "Incorrectly assuming a negative value is assigned as a baseline for element formation enthalpies."
+      },
+      {
+        "option_key": "D",
+        "hint": "The standard enthalpy of formation for ALL elements in their most stable form is universally the same value by convention. It does not vary from element to element.",
+        "misconception": "Thinking that different elements have different ΔfH° values in their reference states, rather than recognising the universal zero convention."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The standard enthalpy of combustion (ΔcH°) of any substance is always:",
+    "explanation": "The standard enthalpy of combustion is always negative (exothermic). Combustion reactions involve the burning of a substance in excess oxygen, which always releases heat energy to the surroundings. For example, the combustion of methane: CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l), ΔcH° = -890.3 kJ mol⁻¹. Since energy is released during combustion, the enthalpy change is negative. This is true for all combustion reactions — they are invariably exothermic.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "enthalpy-of-combustion",
+      "exothermic-reaction",
+      "sign-convention"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Negative",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Positive",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Either positive or negative depending on the substance",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "A positive ΔcH° would mean combustion absorbs heat, making it endothermic. Combustion reactions release heat and light — they are always exothermic, never endothermic.",
+        "misconception": "Thinking that some combustion reactions can be endothermic and absorb heat."
+      },
+      {
+        "option_key": "C",
+        "hint": "A zero enthalpy of combustion would mean no heat is exchanged during burning. This is impossible since combustion by definition involves vigorous oxidation with significant energy release.",
+        "misconception": "Believing that heat released and absorbed could exactly cancel in a combustion reaction."
+      },
+      {
+        "option_key": "D",
+        "hint": "Unlike some other enthalpy changes that can be positive or negative, combustion enthalpy is ALWAYS negative regardless of the substance. Every combustion reaction releases heat to the surroundings.",
+        "misconception": "Confusing combustion enthalpy with other types of enthalpy changes (like enthalpy of solution) that can have variable signs."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Hess's law of constant heat summation states that the total enthalpy change for a reaction is:",
+    "explanation": "Hess's law states that the total enthalpy change for a chemical reaction is the same regardless of the route (pathway) by which the reaction takes place, provided the initial and final conditions are the same. This is because enthalpy is a state function — its value depends only on the initial and final states of the system, not on the path taken. This law is a direct consequence of the first law of thermodynamics and is extremely useful for calculating enthalpy changes for reactions that are difficult to measure directly.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "hess-law",
+      "state-function",
+      "path-independence",
+      "constant-heat-summation"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Dependent on the number of intermediate steps involved",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Different for different pathways connecting the same reactants and products",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Independent of the pathway and depends only on the initial and final states",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Valid only for reactions occurring in a single step",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "If enthalpy change depended on the number of steps, it would not be a state function. Hess's law explicitly states that the total ΔH is the same whether the reaction occurs in one step or multiple steps.",
+        "misconception": "Confusing state functions (path-independent) with path functions (like work and heat for non-state processes)."
+      },
+      {
+        "option_key": "B",
+        "hint": "This directly contradicts Hess's law. Since enthalpy is a state function, the total ΔH must be the same for all pathways connecting the same initial and final states.",
+        "misconception": "Failing to understand that enthalpy is a state function and its change is path-independent."
+      },
+      {
+        "option_key": "D",
+        "hint": "The entire utility of Hess's law lies in its applicability to multi-step reactions. It allows calculation of ΔH for reactions that cannot occur in a single step by summing ΔH values of individual steps.",
+        "misconception": "Not appreciating that Hess's law is specifically designed for handling reactions via multiple hypothetical or actual steps."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The enthalpy of atomization is the enthalpy change when one mole of a substance is completely dissociated into gaseous atoms. For a diatomic molecule like Cl₂, the enthalpy of atomization is:",
+    "explanation": "For a diatomic molecule such as Cl₂(g), the enthalpy of atomization (ΔaH°) is the enthalpy change for the process: Cl₂(g) → 2Cl(g). Since Cl₂ has only one Cl-Cl bond, the enthalpy of atomization of Cl₂ equals its bond dissociation enthalpy. For a diatomic molecule, bond dissociation enthalpy and enthalpy of atomization are equivalent because breaking one bond in the diatomic molecule produces individual gaseous atoms. However, for polyatomic molecules, the enthalpy of atomization involves breaking all bonds and is the sum of all bond dissociation enthalpies.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "enthalpy-of-atomization",
+      "bond-dissociation-enthalpy",
+      "diatomic-molecule"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Half the bond dissociation enthalpy of Cl₂",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Twice the bond dissociation enthalpy of Cl₂",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Equal to the lattice enthalpy of Cl₂",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Equal to the bond dissociation enthalpy of Cl₂",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The enthalpy of atomization refers to breaking the ENTIRE Cl₂ molecule into atoms, not half of it. For Cl₂ → 2Cl, one full Cl-Cl bond is broken, so the full bond dissociation enthalpy is required.",
+        "misconception": "Confusing atomization per atom with atomization per molecule. The question refers to one mole of Cl₂, not one mole of Cl atoms."
+      },
+      {
+        "option_key": "B",
+        "hint": "Since Cl₂ has only ONE Cl-Cl bond, only one bond needs to be broken. Twice the bond dissociation enthalpy would imply breaking two bonds, which does not apply to a diatomic molecule.",
+        "misconception": "Incorrectly doubling the bond energy, perhaps confusing with breaking bonds in a polyatomic molecule."
+      },
+      {
+        "option_key": "C",
+        "hint": "Lattice enthalpy applies to ionic compounds and refers to the energy required to separate ions in a crystal lattice. Cl₂ is a covalent diatomic molecule and does not have a lattice enthalpy.",
+        "misconception": "Confusing lattice enthalpy (ionic crystals) with bond dissociation enthalpy (covalent bonds in molecules)."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Calculate the standard enthalpy of reaction (ΔrH°) for the reaction:\n2Al(s) + Fe₂O₃(s) → Al₂O₃(s) + 2Fe(s)\n\nGiven: ΔfH°[Al₂O₃(s)] = -1675.7 kJ mol⁻¹, ΔfH°[Fe₂O₃(s)] = -824.2 kJ mol⁻¹",
+    "explanation": "Using the formula: ΔrH° = Σ ΔfH°(products) - Σ ΔfH°(reactants)\n\nΔrH° = [ΔfH°(Al₂O₃) + 2 × ΔfH°(Fe)] - [2 × ΔfH°(Al) + ΔfH°(Fe₂O₃)]\n\nSince Al(s) and Fe(s) are elements in their standard states, ΔfH° = 0 for both.\n\nΔrH° = [-1675.7 + 0] - [0 + (-824.2)]\nΔrH° = -1675.7 + 824.2\nΔrH° = -851.5 kJ mol⁻¹\n\nThis is the thermite reaction, which is highly exothermic and is used in welding of railway tracks.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "standard-enthalpy-of-reaction",
+      "enthalpy-of-formation",
+      "hess-law-calculation",
+      "thermite-reaction"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "-851.5 kJ mol⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "+851.5 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "-2499.9 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "+2499.9 kJ mol⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "A positive value would mean the reaction is endothermic. The thermite reaction is highly exothermic (Al is a stronger reducing agent than Fe). Check whether you reversed the subtraction (reactants minus products instead of products minus reactants).",
+        "misconception": "Reversing the formula to ΔrH° = Σ ΔfH°(reactants) - Σ ΔfH°(products) instead of the correct products minus reactants."
+      },
+      {
+        "option_key": "C",
+        "hint": "This value (-2499.9) results from adding the magnitudes of both ΔfH° values instead of subtracting. The correct formula requires: ΔrH° = ΔfH°(products) - ΔfH°(reactants), not their sum.",
+        "misconception": "Adding both formation enthalpies with their negative signs: (-1675.7) + (-824.2) = -2499.9 instead of subtracting."
+      },
+      {
+        "option_key": "D",
+        "hint": "This positive value is obtained by incorrectly adding magnitudes and reversing the sign. The thermite reaction is exothermic with ΔrH° = -1675.7 - (-824.2) = -851.5 kJ mol⁻¹.",
+        "misconception": "Both adding formation enthalpies incorrectly and getting the wrong sign convention."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Using bond enthalpy data, calculate ΔrH° for the reaction:\nH₂(g) + Cl₂(g) → 2HCl(g)\n\nGiven bond enthalpies: H-H = 436 kJ mol⁻¹, Cl-Cl = 242 kJ mol⁻¹, H-Cl = 431 kJ mol⁻¹",
+    "explanation": "Using the bond enthalpy method:\nΔrH° = Σ (Bond enthalpies of bonds broken) - Σ (Bond enthalpies of bonds formed)\n\nBonds broken: 1 × H-H + 1 × Cl-Cl = 436 + 242 = 678 kJ mol⁻¹\nBonds formed: 2 × H-Cl = 2 × 431 = 862 kJ mol⁻¹\n\nΔrH° = 678 - 862 = -184 kJ mol⁻¹\n\nThe negative value indicates the reaction is exothermic, which is consistent with the fact that HCl formation releases energy. The bonds formed in the products are stronger (in total) than the bonds broken in the reactants.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "bond-enthalpy-calculation",
+      "bonds-broken-minus-formed",
+      "hess-law-application"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "-247 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "+184 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "-184 kJ mol⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "-92 kJ mol⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The value -247 does not correspond to any correct combination of the given bond enthalpies. Recheck: bonds broken = 436 + 242 = 678, bonds formed = 2 × 431 = 862, so ΔrH° = 678 - 862 = -184.",
+        "misconception": "Arithmetic error in calculating the sum of bond enthalpies broken or formed."
+      },
+      {
+        "option_key": "B",
+        "hint": "A positive value would mean more energy is needed to form bonds than is released when breaking them, which reverses the formula. The correct formula is: ΔrH° = Σ(bonds broken) - Σ(bonds formed), not the reverse.",
+        "misconception": "Reversing the bond enthalpy formula to bonds formed minus bonds broken instead of the correct bonds broken minus bonds formed."
+      },
+      {
+        "option_key": "D",
+        "hint": "The value -92 kJ mol⁻¹ is exactly half of the correct answer. This would be the ΔrH° per mole of HCl formed, but the question asks for the reaction as written (producing 2 moles of HCl).",
+        "misconception": "Dividing the final answer by 2, possibly thinking the answer should be per mole of HCl rather than for the entire balanced equation."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In the Born-Haber cycle for the formation of NaCl(s), which of the following steps is endothermic?",
+    "explanation": "In the Born-Haber cycle for NaCl, the following steps occur:\n1. Sublimation of Na(s) → Na(g): ENDOTHERMIC (ΔsubH° > 0)\n2. Ionization of Na(g) → Na⁺(g) + e⁻: ENDOTHERMIC (IE > 0)\n3. Dissociation of ½Cl₂(g) → Cl(g): ENDOTHERMIC (½ΔdissH° > 0)\n4. Electron gain by Cl(g) + e⁻ → Cl⁻(g): EXOTHERMIC (ΔegH° < 0)\n5. Lattice formation Na⁺(g) + Cl⁻(g) → NaCl(s): EXOTHERMIC (Lattice enthalpy is released)\n\nThe ionization of Na(g) to Na⁺(g), i.e., removing an electron from a gaseous sodium atom, requires energy input and is therefore endothermic. The ionization enthalpy of sodium is +496 kJ mol⁻¹.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "born-haber-cycle",
+      "ionization-enthalpy",
+      "endothermic-step",
+      "nacl-formation"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Formation of the ionic crystal lattice from gaseous ions",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Ionization of Na(g) to Na⁺(g)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Electron gain by Cl(g) to form Cl⁻(g)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Overall formation of NaCl(s) from its elements",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Lattice formation is the coming together of gaseous cations and anions to form a solid ionic lattice. This releases a large amount of energy (lattice enthalpy) and is highly exothermic, not endothermic.",
+        "misconception": "Confusing lattice formation (exothermic, energy released) with lattice dissociation (endothermic, energy required)."
+      },
+      {
+        "option_key": "C",
+        "hint": "For halogens like chlorine, the electron gain process Cl(g) + e⁻ → Cl⁻(g) is exothermic because chlorine has high electron affinity. Energy is released when Cl gains an electron (ΔegH° = -349 kJ mol⁻¹).",
+        "misconception": "Thinking electron gain is endothermic for all elements. For most nonmetals (especially halogens), electron gain is exothermic."
+      },
+      {
+        "option_key": "D",
+        "hint": "The overall formation of NaCl(s) from Na(s) and ½Cl₂(g) is exothermic with ΔfH° = -411.2 kJ mol⁻¹. The question asks about an individual step, not the overall process.",
+        "misconception": "Confusing the overall enthalpy of formation (exothermic for NaCl) with individual steps within the Born-Haber cycle."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Kirchhoff's equation relates the enthalpy of reaction at two different temperatures. If ΔrH° at temperature T₁ is known, the enthalpy of reaction at temperature T₂ is given by:",
+    "explanation": "Kirchhoff's equation is: ΔrH°(T₂) = ΔrH°(T₁) + ΔrCp(T₂ - T₁), where ΔrCp = Σ Cp(products) - Σ Cp(reactants). This equation shows how the enthalpy of reaction varies with temperature. If the heat capacity of products is greater than that of reactants (ΔrCp > 0), then the enthalpy of reaction becomes more positive (or less negative) as temperature increases. This equation is derived by differentiating the enthalpy of reaction with respect to temperature: d(ΔrH°)/dT = ΔrCp.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "kirchhoff-equation",
+      "temperature-dependence",
+      "heat-capacity",
+      "enthalpy-variation"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ΔrH°(T₂) = ΔrH°(T₁) + ΔrCp(T₁ - T₂)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ΔrH°(T₂) = ΔrH°(T₁) × ΔrCp(T₂ - T₁)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ΔrH°(T₂) = ΔrH°(T₁) / ΔrCp(T₂ - T₁)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ΔrH°(T₂) = ΔrH°(T₁) + ΔrCp(T₂ - T₁)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This has the temperature difference reversed as (T₁ - T₂). The correct Kirchhoff equation uses (T₂ - T₁) because we are calculating the change FROM T₁ TO T₂.",
+        "misconception": "Reversing the order of temperature subtraction, which would give the wrong sign for the correction term."
+      },
+      {
+        "option_key": "B",
+        "hint": "Kirchhoff's equation involves ADDITION of the correction term ΔrCp(T₂ - T₁) to ΔrH°(T₁), not multiplication. Multiplying ΔrH° by the correction term is dimensionally incorrect.",
+        "misconception": "Confusing additive correction with multiplicative correction in the Kirchhoff equation."
+      },
+      {
+        "option_key": "C",
+        "hint": "Division by ΔrCp(T₂ - T₁) is dimensionally inconsistent and does not appear in any form of Kirchhoff's equation. The relationship is additive: ΔrH°(T₂) = ΔrH°(T₁) + ΔrCp × ΔT.",
+        "misconception": "Incorrectly applying a division operation where an addition is required in the Kirchhoff relationship."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The enthalpy of solution of NaCl in water is +3.9 kJ mol⁻¹. This indicates that:",
+    "explanation": "The enthalpy of solution (ΔsolH°) is the enthalpy change when one mole of a solute dissolves in a specified amount of solvent. For NaCl, ΔsolH° = +3.9 kJ mol⁻¹, which is positive. A positive enthalpy of solution means the dissolution process is endothermic — it absorbs heat from the surroundings. This occurs because the lattice enthalpy of NaCl (energy required to separate ions) is slightly greater than the hydration enthalpy (energy released when ions are hydrated). Since ΔsolH° = ΔlatticeH° + ΔhydrationH°, a small positive value indicates these two large opposing energies nearly cancel out.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "enthalpy-of-solution",
+      "endothermic-dissolution",
+      "lattice-vs-hydration-enthalpy"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Dissolving NaCl in water is an endothermic process",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Dissolving NaCl in water is an exothermic process",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The hydration enthalpy is greater than the lattice enthalpy",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "NaCl is insoluble in water",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "An exothermic process would have a NEGATIVE enthalpy change. Since ΔsolH° = +3.9 kJ mol⁻¹ is positive, the process absorbs heat and is endothermic, not exothermic.",
+        "misconception": "Confusing the sign convention: positive ΔH means endothermic (heat absorbed), not exothermic (heat released)."
+      },
+      {
+        "option_key": "C",
+        "hint": "If hydration enthalpy were greater than lattice enthalpy, the overall ΔsolH° would be negative (exothermic). The positive value (+3.9) tells us that lattice enthalpy slightly exceeds hydration enthalpy.",
+        "misconception": "Reversing the relationship between lattice and hydration enthalpies. Positive ΔsolH° means lattice enthalpy > hydration enthalpy."
+      },
+      {
+        "option_key": "D",
+        "hint": "Solubility is determined by the Gibbs free energy change (ΔG), not just enthalpy. NaCl is highly soluble in water despite the slightly positive ΔsolH° because the entropy increase (ΔS > 0) during dissolution makes ΔG negative.",
+        "misconception": "Assuming that an endothermic dissolution implies insolubility, forgetting the entropy contribution to spontaneity."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which of the following statements about lattice enthalpy is correct?",
+    "explanation": "Lattice enthalpy (ΔlatticeH°) is defined as the enthalpy change when one mole of an ionic compound dissociates into gaseous ions. For example: NaCl(s) → Na⁺(g) + Cl⁻(g), ΔlatticeH° = +786 kJ mol⁻¹. Since separating ions from the crystal lattice requires energy to overcome the strong electrostatic attractions between oppositely charged ions, the lattice enthalpy is always positive (endothermic process). Lattice enthalpy cannot be measured directly but is calculated using the Born-Haber cycle, which applies Hess's law to relate it to other measurable enthalpy values.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "lattice-enthalpy",
+      "born-haber-cycle",
+      "ionic-compound",
+      "indirect-measurement"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Lattice enthalpy is always negative because forming an ionic lattice releases energy",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Lattice enthalpy cannot be measured directly and is determined using the Born-Haber cycle",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Lattice enthalpy decreases as the charge on the ions increases",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Lattice enthalpy is independent of the size of the constituent ions",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The sign depends on the definition used. When lattice enthalpy is defined as the energy to DISSOCIATE the lattice into gaseous ions (the NCERT convention), it is positive. The energy released upon FORMING the lattice is the negative of lattice enthalpy.",
+        "misconception": "Confusing lattice dissociation enthalpy (positive, breaking lattice) with lattice formation energy (negative, forming lattice)."
+      },
+      {
+        "option_key": "C",
+        "hint": "Lattice enthalpy INCREASES with increasing ionic charge because the electrostatic attraction between ions is directly proportional to the product of their charges (Coulomb's law: F ∝ q₁q₂/r²).",
+        "misconception": "Reversing the relationship between ionic charge and lattice enthalpy. Higher charges lead to stronger attractions and higher lattice enthalpy."
+      },
+      {
+        "option_key": "D",
+        "hint": "Lattice enthalpy is strongly dependent on ionic size. Smaller ions have shorter interionic distances, leading to stronger electrostatic attraction and higher lattice enthalpy (Coulomb's law: F ∝ 1/r²).",
+        "misconception": "Ignoring the inverse relationship between ionic radius and lattice enthalpy, as described by Coulomb's law."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Given the following data:\nC(graphite) + O₂(g) → CO₂(g), ΔrH° = -393.5 kJ mol⁻¹\nCO(g) + ½O₂(g) → CO₂(g), ΔrH° = -283.0 kJ mol⁻¹\n\nUsing Hess's law, the enthalpy of formation of CO(g) is:",
+    "explanation": "We need to find ΔfH° for: C(graphite) + ½O₂(g) → CO(g)\n\nUsing Hess's law:\nReaction (i): C(graphite) + O₂(g) → CO₂(g), ΔH₁ = -393.5 kJ mol⁻¹\nReaction (ii): CO(g) + ½O₂(g) → CO₂(g), ΔH₂ = -283.0 kJ mol⁻¹\n\nSubtracting reaction (ii) from reaction (i):\nC(graphite) + O₂(g) - CO(g) - ½O₂(g) → CO₂(g) - CO₂(g)\nC(graphite) + ½O₂(g) → CO(g)\n\nΔfH°(CO) = ΔH₁ - ΔH₂ = -393.5 - (-283.0) = -393.5 + 283.0 = -110.5 kJ mol⁻¹\n\nThis is a classic application of Hess's law where the enthalpy of formation of CO cannot be determined directly because carbon burns to give a mixture of CO and CO₂.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "hess-law-calculation",
+      "enthalpy-of-formation",
+      "co-formation",
+      "subtraction-method"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "-676.5 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "+110.5 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "-110.5 kJ mol⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "-338.25 kJ mol⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The value -676.5 is obtained by ADDING the two enthalpy values (-393.5 + (-283.0)). Hess's law here requires subtraction (reaction i minus reaction ii), not addition.",
+        "misconception": "Adding both reaction enthalpies instead of subtracting, failing to correctly manipulate the thermochemical equations."
+      },
+      {
+        "option_key": "B",
+        "hint": "While the magnitude 110.5 is correct, the sign should be negative. CO formation from C(graphite) and ½O₂ is exothermic. Check the subtraction: -393.5 - (-283.0) = -110.5, not +110.5.",
+        "misconception": "Getting the correct magnitude but wrong sign, likely from reversing the subtraction order."
+      },
+      {
+        "option_key": "D",
+        "hint": "The value -338.25 does not correspond to any correct manipulation of the given data. Review the Hess's law approach: subtract reaction (ii) from reaction (i) to get the target reaction.",
+        "misconception": "Arithmetic error or incorrectly averaging the two enthalpy values instead of properly applying Hess's law."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The enthalpy change for the reaction:\nCH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(g)\nis calculated using bond enthalpies.\n\nGiven: C-H = 413 kJ mol⁻¹, O=O = 498 kJ mol⁻¹, C=O = 799 kJ mol⁻¹, O-H = 463 kJ mol⁻¹\n\nThe ΔrH° for the reaction is:",
+    "explanation": "Using bond enthalpy method:\nΔrH° = Σ (Bond enthalpies of bonds broken) - Σ (Bond enthalpies of bonds formed)\n\nBonds broken in reactants:\n- CH₄: 4 × C-H = 4 × 413 = 1652 kJ\n- 2O₂: 2 × O=O = 2 × 498 = 996 kJ\nTotal bonds broken = 1652 + 996 = 2648 kJ\n\nBonds formed in products:\n- CO₂: 2 × C=O = 2 × 799 = 1598 kJ\n- 2H₂O: 2 × 2 × O-H = 4 × 463 = 1852 kJ\nTotal bonds formed = 1598 + 1852 = 3450 kJ\n\nΔrH° = 2648 - 3450 = -802 kJ mol⁻¹\n\nThe large negative value confirms that methane combustion is highly exothermic.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "bond-enthalpy-calculation",
+      "methane-combustion",
+      "energy-balance"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "-648 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "+802 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "-1050 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "-802 kJ mol⁻¹",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This value likely comes from counting an incorrect number of bonds. Ensure you count all 4 C-H bonds in CH₄, 2 O=O bonds in 2O₂, 2 C=O bonds in CO₂, and 4 O-H bonds in 2H₂O.",
+        "misconception": "Miscounting the number of bonds broken or formed, possibly counting only 2 C-H bonds instead of 4 in methane."
+      },
+      {
+        "option_key": "B",
+        "hint": "A positive value implies the reaction is endothermic. Methane combustion is one of the most well-known exothermic reactions. You likely reversed the formula to (bonds formed - bonds broken) instead of (bonds broken - bonds formed).",
+        "misconception": "Reversing the bond enthalpy formula, subtracting broken from formed instead of formed from broken."
+      },
+      {
+        "option_key": "C",
+        "hint": "The value -1050 does not match the correct calculation. Recheck: bonds broken = 4(413) + 2(498) = 2648; bonds formed = 2(799) + 4(463) = 3450; ΔrH° = 2648 - 3450 = -802.",
+        "misconception": "Arithmetic error in summing bond enthalpies, possibly doubling a value incorrectly or using wrong bond enthalpy data."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The standard enthalpy of formation of H₂O(l) is not the same as the standard enthalpy of formation of H₂O(g).\nReason (R): The conversion of H₂O(g) to H₂O(l) involves the enthalpy of condensation, which must be accounted for.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "Both the Assertion and Reason are correct, and the Reason correctly explains the Assertion.\n\nΔfH°[H₂O(l)] = -286 kJ mol⁻¹ and ΔfH°[H₂O(g)] = -242 kJ mol⁻¹. These values differ because forming liquid water from gaseous water involves an additional exothermic step — condensation:\nH₂O(g) → H₂O(l), ΔcondH° = -44 kJ mol⁻¹\n\nBy Hess's law: ΔfH°[H₂O(l)] = ΔfH°[H₂O(g)] + ΔcondH°\n= -242 + (-44) = -286 kJ mol⁻¹\n\nThe enthalpy of condensation is the reason for the difference, making R the correct explanation of A.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "enthalpy-of-formation",
+      "phase-change",
+      "enthalpy-of-condensation",
+      "state-specification"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains why the two formation enthalpies differ. The enthalpy of condensation (H₂O(g) → H₂O(l)) is the precise additional energy term that accounts for the difference between ΔfH°[H₂O(l)] and ΔfH°[H₂O(g)]. There is a direct causal link.",
+        "misconception": "Failing to see the direct causal connection between the enthalpy of condensation and the difference in formation enthalpies of the two phases."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct. The conversion of water vapour to liquid water does involve the enthalpy of condensation (ΔcondH° = -44 kJ mol⁻¹), which is a well-established thermodynamic quantity.",
+        "misconception": "Incorrectly doubting that phase transitions have associated enthalpy changes that affect formation enthalpies."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. ΔfH°[H₂O(l)] = -286 kJ mol⁻¹ and ΔfH°[H₂O(g)] = -242 kJ mol⁻¹ are indeed different values. The physical state of the product matters in defining standard enthalpy of formation.",
+        "misconception": "Thinking that enthalpy of formation is independent of the physical state of the product."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The lattice enthalpy of MgO is much higher than that of NaCl.\nReason (R): In MgO, both Mg²⁺ and O²⁻ ions carry single charges, similar to Na⁺ and Cl⁻ in NaCl.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The Assertion is CORRECT: The lattice enthalpy of MgO (3850 kJ mol⁻¹) is indeed much higher than that of NaCl (786 kJ mol⁻¹). This is because MgO has doubly charged ions (Mg²⁺ and O²⁻) and smaller ionic radii compared to NaCl.\n\nThe Reason is INCORRECT: Mg²⁺ and O²⁻ carry DOUBLE charges (+2 and -2), not single charges. The statement that they carry single charges like Na⁺ and Cl⁻ is factually wrong.\n\nSince A is correct but R is incorrect, the answer is (C). The actual reason for the higher lattice enthalpy of MgO is the higher ionic charges (q₁ × q₂ = 4 for MgO vs. 1 for NaCl) and smaller ionic radii, both of which lead to much stronger electrostatic attraction according to Coulomb's law.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "lattice-enthalpy-comparison",
+      "coulombs-law",
+      "ionic-charge",
+      "mgo-vs-nacl"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The Reason is factually incorrect. Mg²⁺ has a +2 charge and O²⁻ has a -2 charge — these are NOT single charges. The reason incorrectly equates the charges of MgO ions with those of NaCl ions.",
+        "misconception": "Not carefully reading the Reason statement and missing the factual error about ionic charges in MgO."
+      },
+      {
+        "option_key": "B",
+        "hint": "This option assumes the Reason is correct. The Reason falsely states that Mg²⁺ and O²⁻ carry single charges. Mg has a +2 charge and O has a -2 charge, which is the very reason MgO has higher lattice enthalpy.",
+        "misconception": "Accepting the incorrect claim about ionic charges without verifying. Mg is in Group 2 (forms Mg²⁺) and O is in Group 16 (forms O²⁻)."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. MgO has a lattice enthalpy of ~3850 kJ mol⁻¹ compared to ~786 kJ mol⁻¹ for NaCl. The higher charges and smaller radii in MgO result in much stronger ionic bonding.",
+        "misconception": "Doubting the well-established fact that MgO has significantly higher lattice enthalpy than NaCl."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match Column I (Type of Enthalpy) with Column II (Definition/Example):\n\nColumn I | Column II\nA. Enthalpy of formation | 1. Energy required to completely separate all atoms in one mole of a substance into gaseous atoms\nB. Enthalpy of combustion | 2. Enthalpy change when one mole of a compound is formed from its elements in their standard states\nC. Enthalpy of atomization | 3. Enthalpy change when one mole of an ionic compound separates into gaseous ions\nD. Lattice enthalpy | 4. Enthalpy change when one mole of a substance undergoes complete combustion in excess oxygen\n\nSelect the correct matching:",
+    "explanation": "The correct matching is:\nA-2: Enthalpy of formation is the enthalpy change when one mole of a compound is formed from its constituent elements in their standard states (most stable form) at 1 bar pressure.\nB-4: Enthalpy of combustion is the enthalpy change when one mole of a substance undergoes complete combustion in excess oxygen under standard conditions.\nC-1: Enthalpy of atomization is the energy required to completely dissociate one mole of a substance into isolated gaseous atoms.\nD-3: Lattice enthalpy is the enthalpy change when one mole of an ionic compound in its solid state is completely separated into gaseous ions.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "enthalpy-types",
+      "definitions",
+      "formation-combustion-atomization-lattice"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-1, B-3, C-4, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-4, C-1, D-3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-2, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-1, C-2, D-4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This incorrectly matches enthalpy of formation (A) with atomization (1). Formation enthalpy involves forming a compound from elements, not dissociating into atoms. Also, combustion (B) is matched with lattice enthalpy (3), which is incorrect.",
+        "misconception": "Confusing formation (building a compound from elements) with atomization (breaking a substance into gaseous atoms)."
+      },
+      {
+        "option_key": "C",
+        "hint": "This matches formation (A) with combustion definition (4) and combustion (B) with formation definition (2). These are swapped. Formation involves synthesis from elements; combustion involves burning in oxygen.",
+        "misconception": "Swapping the definitions of enthalpy of formation and enthalpy of combustion."
+      },
+      {
+        "option_key": "D",
+        "hint": "This completely scrambles all matchings. Enthalpy of formation (A) is matched with lattice enthalpy definition (3), and combustion (B) is matched with atomization definition (1). None of these pairings are correct.",
+        "misconception": "Fundamental confusion between all four types of enthalpy changes and their definitions."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match Column I (Born-Haber Cycle Steps for NaCl) with Column II (Enthalpy Values):\n\nColumn I | Column II\nA. Sublimation of Na(s) → Na(g) | 1. -349 kJ mol⁻¹\nB. Ionization of Na(g) → Na⁺(g) + e⁻ | 2. +108 kJ mol⁻¹\nC. Electron gain: Cl(g) + e⁻ → Cl⁻(g) | 3. +496 kJ mol⁻¹\nD. Dissociation: ½Cl₂(g) → Cl(g) | 4. +121 kJ mol⁻¹\n\nSelect the correct matching:",
+    "explanation": "The correct matching is:\nA-2: Sublimation enthalpy of Na(s) → Na(g) = +108 kJ mol⁻¹ (endothermic — energy needed to convert solid to gas)\nB-3: Ionization enthalpy of Na(g) → Na⁺(g) + e⁻ = +496 kJ mol⁻¹ (endothermic — energy needed to remove electron)\nC-1: Electron gain enthalpy of Cl(g) + e⁻ → Cl⁻(g) = -349 kJ mol⁻¹ (exothermic — energy released when Cl gains electron)\nD-4: Half the bond dissociation enthalpy of Cl₂ = ½ × 242 = +121 kJ mol⁻¹ (endothermic — energy to break half a mole of Cl-Cl bonds)\n\nThese are standard values used in Born-Haber cycle calculations for NaCl.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "born-haber-cycle",
+      "sublimation-enthalpy",
+      "ionization-enthalpy",
+      "electron-gain-enthalpy",
+      "bond-dissociation"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-1, B-4, C-2, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-3, C-1, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This matches sublimation of Na (A) with +496 kJ mol⁻¹ (3). The sublimation enthalpy of sodium is only +108 kJ mol⁻¹. The value +496 kJ mol⁻¹ corresponds to the ionization enthalpy of Na, a much more energy-intensive process.",
+        "misconception": "Confusing the sublimation enthalpy of Na (+108 kJ mol⁻¹) with its ionization enthalpy (+496 kJ mol⁻¹)."
+      },
+      {
+        "option_key": "B",
+        "hint": "This matches electron gain of Cl (C) with +108 kJ mol⁻¹ (2), making it endothermic. Chlorine has a highly negative electron gain enthalpy (-349 kJ mol⁻¹) because halogens readily accept electrons.",
+        "misconception": "Thinking that electron gain by chlorine is endothermic, when chlorine actually releases significant energy upon gaining an electron."
+      },
+      {
+        "option_key": "C",
+        "hint": "This matches sublimation (A) with +121 kJ mol⁻¹ (4) and dissociation (D) with +108 kJ mol⁻¹ (2). These are swapped. Na sublimation = +108, while ½Cl₂ dissociation = +121 kJ mol⁻¹.",
+        "misconception": "Swapping the sublimation enthalpy of Na with the half bond dissociation enthalpy of Cl₂, which have similar magnitudes but different processes."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Statement: Hess's law is a consequence of the fact that enthalpy is a state function, and therefore the enthalpy change for a reaction depends only on the initial and final states, not on the path taken.",
+    "explanation": "This statement is TRUE. Hess's law of constant heat summation is a direct consequence of enthalpy being a state function. A state function depends only on the state of the system (defined by temperature, pressure, and composition), not on how the system reached that state. Since enthalpy (H) is a state function, the change in enthalpy (ΔH) between any two states is fixed regardless of the pathway. This is why the total enthalpy change for a reaction is the same whether it occurs in one step or through multiple intermediate steps, which is the essence of Hess's law.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "hess-law",
+      "state-function",
+      "path-independence",
+      "first-law-thermodynamics"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement is factually accurate. Hess's law is indeed derived from the state function nature of enthalpy. Since ΔH depends only on initial and final states, the total enthalpy change is path-independent — this is exactly what Hess's law states.",
+        "misconception": "Doubting the fundamental thermodynamic basis of Hess's law and its connection to enthalpy being a state function."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Statement: The standard enthalpy of formation of O₃(g) (ozone) is zero because oxygen is an element.",
+    "explanation": "This statement is FALSE. The standard enthalpy of formation is zero ONLY for elements in their MOST STABLE allotropic form (reference form). The most stable allotrope of oxygen at 298 K and 1 bar is O₂(g), not O₃(g) (ozone). Therefore, ΔfH°[O₂(g)] = 0, but ΔfH°[O₃(g)] ≠ 0. The formation of ozone from oxygen is: (3/2)O₂(g) → O₃(g), and this process has a positive ΔfH° = +142.7 kJ mol⁻¹. Similarly, ΔfH°[C(diamond)] ≠ 0 because graphite is the more stable allotrope of carbon.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "standard-enthalpy-of-formation",
+      "allotropy",
+      "reference-state",
+      "ozone-vs-oxygen"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The ΔfH° = 0 convention applies only to elements in their MOST STABLE allotropic form. Ozone (O₃) is NOT the most stable form of oxygen — diatomic oxygen (O₂) is. Therefore ΔfH°[O₃(g)] = +142.7 kJ mol⁻¹, not zero.",
+        "misconception": "Assuming that ALL forms of an element have zero enthalpy of formation, without distinguishing between stable and unstable allotropes."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The enthalpy change when an already dilute solution is further diluted is called the enthalpy of ______. For strong electrolytes at infinite dilution, this value approaches ______.",
+    "explanation": "The enthalpy change when an already dilute solution is further diluted is called the enthalpy of dilution. When a solution is diluted, the interactions between solute particles and solvent molecules change, resulting in an enthalpy change. For strong electrolytes (like NaCl, HCl, NaOH), when the solution is already at infinite dilution (very large excess of solvent), the ions are so far apart that further dilution does not change the ion-solvent interactions. Therefore, the enthalpy of dilution approaches zero at infinite dilution for strong electrolytes. This concept is important in precise thermochemical calculations.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "enthalpy-of-dilution",
+      "infinite-dilution",
+      "strong-electrolyte"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "solution; infinity",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "hydration; maximum value",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "dilution; zero",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "neutralization; -57.1 kJ mol⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Enthalpy of solution refers to dissolving a SOLID solute in a solvent, not to further diluting an already-made solution. The process described — diluting a dilute solution — specifically refers to enthalpy of dilution. Also, the value does not approach infinity.",
+        "misconception": "Confusing enthalpy of solution (dissolving solute in solvent) with enthalpy of dilution (adding more solvent to a solution)."
+      },
+      {
+        "option_key": "B",
+        "hint": "Enthalpy of hydration refers to the energy released when gaseous ions are surrounded by water molecules. The question describes further dilution of an existing solution, not the initial hydration of gaseous ions.",
+        "misconception": "Confusing enthalpy of hydration (gaseous ion + water) with enthalpy of dilution (solution + more water)."
+      },
+      {
+        "option_key": "D",
+        "hint": "Enthalpy of neutralization (-57.1 kJ mol⁻¹) refers to the reaction of a strong acid with a strong base to form water. The question describes diluting a solution, which is a completely different process.",
+        "misconception": "Confusing enthalpy of dilution with enthalpy of neutralization, which involves an acid-base reaction, not a dilution process."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-hess-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "Scenario: A student is given the following thermochemical equations:\n(i) C₂H₂(g) + (5/2)O₂(g) → 2CO₂(g) + H₂O(l), ΔH = -1300 kJ mol⁻¹\n(ii) C(graphite) + O₂(g) → CO₂(g), ΔH = -394 kJ mol⁻¹\n(iii) H₂(g) + ½O₂(g) → H₂O(l), ΔH = -286 kJ mol⁻¹\n\nThe student wants to calculate the standard enthalpy of formation of acetylene, C₂H₂(g), using Hess's law.\n\nQuestion: What is ΔfH° of C₂H₂(g)?",
+    "explanation": "The target reaction for the standard enthalpy of formation of C₂H₂(g) is:\n2C(graphite) + H₂(g) → C₂H₂(g), ΔfH° = ?\n\nUsing Hess's law, we combine the given reactions:\n- Use reaction (ii) × 2: 2C(graphite) + 2O₂(g) → 2CO₂(g), ΔH = 2 × (-394) = -788 kJ\n- Use reaction (iii) × 1: H₂(g) + ½O₂(g) → H₂O(l), ΔH = -286 kJ\n- Reverse reaction (i): 2CO₂(g) + H₂O(l) → C₂H₂(g) + (5/2)O₂(g), ΔH = +1300 kJ\n\nAdding these:\n2C(graphite) + 2O₂(g) + H₂(g) + ½O₂(g) + 2CO₂(g) + H₂O(l) → 2CO₂(g) + H₂O(l) + C₂H₂(g) + (5/2)O₂(g)\n\nSimplifying (cancelling common terms on both sides):\n2C(graphite) + H₂(g) → C₂H₂(g)\n\nΔfH° = -788 + (-286) + 1300 = -788 - 286 + 1300 = +226 kJ mol⁻¹\n\nThe positive value indicates that acetylene formation from elements is endothermic, consistent with it being a high-energy molecule with a triple bond.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "hess-law-calculation",
+      "enthalpy-of-formation",
+      "combustion-data",
+      "acetylene",
+      "scenario-analysis"
+    ],
+    "topic": "Thermochemistry and Hess's Law",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "-226 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "-1980 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "+620 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "+226 kJ mol⁻¹",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The magnitude 226 is correct, but the sign is wrong. When you reverse reaction (i) to get C₂H₂ as a product, the sign of ΔH changes from -1300 to +1300. The final sum gives a positive value, indicating endothermic formation.",
+        "misconception": "Forgetting to reverse the sign of the combustion enthalpy when reversing reaction (i), leading to -226 instead of +226."
+      },
+      {
+        "option_key": "B",
+        "hint": "The value -1980 results from adding all three enthalpies without reversing reaction (i): -1300 + (-394) + (-286) = -1980. You must reverse the combustion of C₂H₂ to make it a product in the target equation.",
+        "misconception": "Simply adding all given enthalpy values without properly applying Hess's law — forgetting that the combustion reaction must be reversed."
+      },
+      {
+        "option_key": "C",
+        "hint": "The value +620 does not result from any correct combination. Recheck: ΔfH° = 2(-394) + (-286) - (-1300) = -788 - 286 + 1300 = +226 kJ mol⁻¹.",
+        "misconception": "Arithmetic error in the Hess's law calculation, possibly forgetting to multiply reaction (ii) by 2 for the two carbon atoms in acetylene."
+      }
+    ]
+  }
+]

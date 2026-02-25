@@ -96,43 +96,43 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B01 | `chem-basic-mole` | Mole Concept and Molar Mass | 20 | PENDING |
-| B02 | `chem-basic-stoich` | Stoichiometry and Limiting Reagent | 20 | PENDING |
-| B03 | `chem-basic-concentration` | Concentration Terms and Solutions | 20 | PENDING |
+| B01 | `chem-basic-mole` | Mole Concept and Molar Mass | 20 | DONE |
+| B02 | `chem-basic-stoich` | Stoichiometry and Limiting Reagent | 20 | DONE |
+| B03 | `chem-basic-concentration` | Concentration Terms and Solutions | 20 | DONE |
 | | | **Chapter 1 Total** | **60** | |
 
 ### Chapter 2: Structure of Atom (`chem-atom`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B04 | `chem-atom-models` | Atomic Models (Thomson, Rutherford, Bohr) | 20 | PENDING |
-| B05 | `chem-atom-quantum` | Quantum Numbers, Orbitals, and Shapes | 20 | PENDING |
-| B06 | `chem-atom-config` | Electronic Configuration and Aufbau Principle | 20 | PENDING |
+| B04 | `chem-atom-models` | Atomic Models (Thomson, Rutherford, Bohr) | 20 | DONE |
+| B05 | `chem-atom-quantum` | Quantum Numbers, Orbitals, and Shapes | 20 | DONE |
+| B06 | `chem-atom-config` | Electronic Configuration and Aufbau Principle | 20 | DONE |
 | | | **Chapter 2 Total** | **60** | |
 
 ### Chapter 5: States of Matter (`chem-states`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B07 | `chem-states-gas` | Gas Laws, Ideal Gas Equation, and Kinetic Theory | 20 | PENDING |
-| B08 | `chem-states-liquid` | Liquid State and Intermolecular Forces | 20 | PENDING |
+| B07 | `chem-states-gas` | Gas Laws, Ideal Gas Equation, and Kinetic Theory | 20 | DONE |
+| B08 | `chem-states-liquid` | Liquid State and Intermolecular Forces | 20 | DONE |
 | | | **Chapter 5 Total** | **40** | |
 
 ### Chapter 6: Thermodynamics (`chem-thermo`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B09 | `chem-thermo-first` | First Law, Internal Energy, and Enthalpy | 20 | PENDING |
-| B10 | `chem-thermo-hess` | Thermochemistry and Hess's Law | 20 | PENDING |
-| B11 | `chem-thermo-gibbs` | Entropy, Second Law, and Gibbs Free Energy | 20 | PENDING |
+| B09 | `chem-thermo-first` | First Law, Internal Energy, and Enthalpy | 20 | DONE |
+| B10 | `chem-thermo-hess` | Thermochemistry and Hess's Law | 20 | DONE |
+| B11 | `chem-thermo-gibbs` | Entropy, Second Law, and Gibbs Free Energy | 20 | DONE |
 | | | **Chapter 6 Total** | **60** | |
 
 ### Chapter 7: Equilibrium (`chem-equilibrium`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B12 | `chem-equil-chemical` | Chemical Equilibrium and Le Chatelier's Principle | 20 | PENDING |
-| B13 | `chem-equil-kc` | Equilibrium Constant (Kc, Kp) and Calculations | 20 | PENDING |
+| B12 | `chem-equil-chemical` | Chemical Equilibrium and Le Chatelier's Principle | 20 | DONE |
+| B13 | `chem-equil-kc` | Equilibrium Constant (Kc, Kp) and Calculations | 20 | DONE |
 | B14 | `chem-equil-ionic` | Ionic Equilibrium, Acids, Bases, and pH | 20 | PENDING |
 | B15 | `chem-equil-buffer` | Buffer Solutions and Solubility Product | 20 | PENDING |
 | | | **Chapter 7 Total** | **80** | |
@@ -586,13 +586,13 @@ Commit and push.
 
 | Chapter | Topics | Qs Target | Qs Done | % |
 |---------|--------|-----------|---------|---|
-| Ch1 Some Basic Concepts | 3 | 60 | 0 | 0% |
-| Ch2 Structure of Atom | 3 | 60 | 0 | 0% |
+| Ch1 Some Basic Concepts | 3 | 60 | 60 | 100% |
+| Ch2 Structure of Atom | 3 | 60 | 60 | 100% |
 | Ch3 Periodicity | 3 | 60 | 0 | 0% |
 | Ch4 Chemical Bonding | 4 | 80 | 0 | 0% |
-| Ch5 States of Matter | 2 | 40 | 0 | 0% |
-| Ch6 Thermodynamics | 3 | 60 | 0 | 0% |
-| Ch7 Equilibrium | 4 | 80 | 0 | 0% |
+| Ch5 States of Matter | 2 | 40 | 40 | 100% |
+| Ch6 Thermodynamics | 3 | 60 | 60 | 100% |
+| Ch7 Equilibrium | 4 | 80 | 40 | 50% |
 | Ch8 Redox Reactions | 2 | 40 | 0 | 0% |
 | Ch9 Hydrogen | 1 | 20 | 0 | 0% |
 | Ch10 s-Block Elements | 3 | 60 | 0 | 0% |
@@ -616,4 +616,4 @@ Commit and push.
 | Ch28 Biomolecules | 2 | 40 | 0 | 0% |
 | Ch29 Polymers | 1 | 20 | 0 | 0% |
 | Ch30 Chemistry in Everyday Life | 1 | 20 | 0 | 0% |
-| **TOTAL** | **82** | **1,640** | **0** | **0%** |
+| **TOTAL** | **82** | **1,640** | **260** | **16%** |
