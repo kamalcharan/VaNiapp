@@ -703,7 +703,7 @@ async function fetchQuestionsCountByChapter(subjectId) {
   if (!SUPABASE) return {};
   const { data, error } = await SUPABASE
     .from('med_questions')
-    .select('chapter_id, status')
+    .select('chapter_id, status, question_type')
     .ilike('subject_id', subjectId);
 
   if (error) {
@@ -711,16 +711,20 @@ async function fetchQuestionsCountByChapter(subjectId) {
     return {};
   }
 
-  // Group by chapter_id and status
+  // Group by chapter_id, status, and question_type
   const counts = {};
   (data || []).forEach(q => {
     if (!counts[q.chapter_id]) {
-      counts[q.chapter_id] = { total: 0, active: 0, draft: 0, pending: 0 };
+      counts[q.chapter_id] = { total: 0, active: 0, draft: 0, pending: 0, byType: {} };
     }
     counts[q.chapter_id].total++;
     if (q.status === 'active') counts[q.chapter_id].active++;
     else if (q.status === 'draft') counts[q.chapter_id].draft++;
     else counts[q.chapter_id].pending++;
+
+    // Count by question type
+    const qt = q.question_type || 'unknown';
+    counts[q.chapter_id].byType[qt] = (counts[q.chapter_id].byType[qt] || 0) + 1;
   });
   return counts;
 }

@@ -265,11 +265,16 @@
     function renderSubjectCards(examSubjects, stats, jobs, chapters) {
       const grid = document.getElementById('subjectCardsGrid');
 
-      // Count questions per subject (normalize keys for case-insensitive matching)
+      // Count questions per subject and by type (normalize keys for case-insensitive matching)
       const subjectQCounts = {};
+      const subjectTypeCounts = {};
       stats.forEach(q => {
         const key = Qbank.normalizeId(q.subject_id);
         subjectQCounts[key] = (subjectQCounts[key] || 0) + 1;
+        // Count by question type per subject
+        if (!subjectTypeCounts[key]) subjectTypeCounts[key] = {};
+        const qt = q.question_type || 'unknown';
+        subjectTypeCounts[key][qt] = (subjectTypeCounts[key][qt] || 0) + 1;
       });
 
       // Count pending review per subject (only status === 'pending')
@@ -306,6 +311,12 @@
         }
       });
 
+      const typeLabels = {
+        'mcq': 'MCQ', 'true-false': 'T/F', 'assertion-reasoning': 'A-R',
+        'match-the-following': 'Match', 'fill-in-blanks': 'Fill',
+        'diagram-based': 'Diagram', 'logical-sequence': 'Sequence', 'scenario-based': 'Scenario'
+      };
+
       grid.innerHTML = examSubjects.map(subjectId => {
         const meta = Qbank.getSubjectMeta(subjectId);
         const nId = Qbank.normalizeId(subjectId);
@@ -314,6 +325,13 @@
         const ready = subjectReady[nId] || 0;
         const chapData = subjectChapters[nId] || { total: 0, covered: 0 };
         const coveragePct = chapData.total > 0 ? ((chapData.covered / chapData.total) * 100).toFixed(0) : 0;
+
+        // Build type breakdown pills
+        const typeCounts = subjectTypeCounts[nId] || {};
+        const typePillsHtml = Object.entries(typeCounts)
+          .sort((a, b) => b[1] - a[1])
+          .map(([t, c]) => `<span style="display:inline-flex;align-items:center;gap:2px;font-size:0.7rem;padding:1px 5px;border-radius:6px;background:${meta.bg};color:${meta.color};white-space:nowrap;font-weight:500;"><strong>${c}</strong> ${typeLabels[t] || t}</span>`)
+          .join('');
 
         return `
           <div class="subject-card" style="--subject-color: ${meta.color}; --subject-bg: ${meta.bg};">
@@ -341,6 +359,7 @@
                 <span class="subject-stat-label">Ready</span>
               </div>` : ''}
             </div>
+            ${typePillsHtml ? `<div style="display:flex;flex-wrap:wrap;gap:4px;padding:0 12px 8px;">${typePillsHtml}</div>` : ''}
             <div class="subject-card-progress">
               <div class="subject-card-progress-info">
                 <span>${chapData.covered}/${chapData.total} chapters covered</span>

@@ -113,6 +113,54 @@
     .chapter-counts .c-total { font-weight: 600; }
     .chapter-counts .c-active { color: var(--success); }
     .chapter-counts .c-draft { color: var(--warning, #f59e0b); }
+    .chapter-type-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+    }
+    .type-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 8px;
+      background: var(--gray-100, #f3f4f6);
+      color: var(--gray-600, #4b5563);
+      white-space: nowrap;
+      font-weight: 500;
+    }
+    .type-pill .tp-count {
+      font-weight: 700;
+      color: var(--gray-800, #1f2937);
+    }
+    .subject-type-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+      padding: 12px;
+      background: var(--gray-50, #f9fafb);
+      border-radius: 8px;
+    }
+    .subject-type-item {
+      text-align: center;
+      padding: 8px 4px;
+      background: white;
+      border-radius: 6px;
+      border: 1px solid var(--gray-200, #e5e7eb);
+    }
+    .subject-type-item .st-count {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gray-800, #1f2937);
+    }
+    .subject-type-item .st-label {
+      font-size: 0.72rem;
+      color: var(--gray-500, #6b7280);
+      margin-top: 2px;
+    }
     .chapter-actions {
       display: flex;
       gap: 8px;
@@ -437,6 +485,9 @@
         </div>
       </div>
 
+      <!-- Question Type Breakdown -->
+      <div class="subject-type-grid" id="typeBreakdownGrid" style="display: none;"></div>
+
       <!-- Chapters -->
       <div class="card">
         <div class="card-header">
@@ -531,12 +582,17 @@
 
     function renderStats() {
       let total = 0, active = 0, draft = 0, pending = 0;
+      const totalByType = {};
 
       Object.values(chapterQuestionCounts).forEach(c => {
         total += c.total;
         active += c.active;
         draft += c.draft;
         pending += c.pending;
+        // Aggregate question types across all chapters
+        Object.entries(c.byType || {}).forEach(([t, cnt]) => {
+          totalByType[t] = (totalByType[t] || 0) + cnt;
+        });
       });
 
       // Add pending from jobs
@@ -552,6 +608,25 @@
       let jobReady = 0;
       Object.values(readyByChapter).forEach(v => jobReady += v);
       document.getElementById('statReady').textContent = jobReady;
+
+      // Render question type breakdown grid
+      const typeLabels = {
+        'mcq': 'MCQ', 'true-false': 'T/F', 'assertion-reasoning': 'A-R',
+        'match-the-following': 'Match', 'fill-in-blanks': 'Fill',
+        'diagram-based': 'Diagram', 'logical-sequence': 'Sequence', 'scenario-based': 'Scenario'
+      };
+      const typeGrid = document.getElementById('typeBreakdownGrid');
+      const typeEntries = Object.entries(totalByType).sort((a, b) => b[1] - a[1]);
+      if (typeEntries.length > 0) {
+        typeGrid.style.display = 'grid';
+        typeGrid.innerHTML = typeEntries.map(([t, c]) => {
+          const pct = total > 0 ? ((c / total) * 100).toFixed(1) : 0;
+          return `<div class="subject-type-item">
+            <div class="st-count">${c}</div>
+            <div class="st-label">${typeLabels[t] || t} (${pct}%)</div>
+          </div>`;
+        }).join('');
+      }
 
       // Make stat cards clickable
       document.getElementById('pendingStatCard').onclick = () => {
@@ -583,10 +658,21 @@
       document.getElementById('chaptersTitle').textContent = `Chapters (${chapters.length})`;
 
       container.innerHTML = chapters.map((ch, idx) => {
-        const counts = chapterQuestionCounts[ch.id] || { total: 0, active: 0, draft: 0, pending: 0 };
+        const counts = chapterQuestionCounts[ch.id] || { total: 0, active: 0, draft: 0, pending: 0, byType: {} };
         const chPending = pendingByChapter[ch.id] || 0;
         const chReady = readyByChapter[ch.id] || 0;
         const activePct = counts.total > 0 ? ((counts.active / counts.total) * 100).toFixed(0) : 0;
+
+        // Build type pills HTML
+        const typeLabels = {
+          'mcq': 'MCQ', 'true-false': 'T/F', 'assertion-reasoning': 'A-R',
+          'match-the-following': 'Match', 'fill-in-blanks': 'Fill',
+          'diagram-based': 'Diagram', 'logical-sequence': 'Sequence', 'scenario-based': 'Scenario'
+        };
+        const typePillsHtml = Object.entries(counts.byType || {})
+          .sort((a, b) => b[1] - a[1])
+          .map(([t, c]) => `<span class="type-pill"><span class="tp-count">${c}</span> ${typeLabels[t] || t}</span>`)
+          .join('');
 
         return `
           <div class="chapter-row" id="chapter-${ch.id}">
@@ -607,6 +693,7 @@
                 <span class="c-draft">${counts.draft} draft</span>
                 ${chPending > 0 ? `<span style="color: #f59e0b;">${chPending} needs review</span>` : ''}
                 ${chReady > 0 ? `<span style="color: var(--success);">${chReady} ready</span>` : ''}
+                ${typePillsHtml ? `<div class="chapter-type-pills">${typePillsHtml}</div>` : ''}
               </div>
               <div class="chapter-actions">
                 <a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${ch.id}"
