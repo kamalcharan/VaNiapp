@@ -1,0 +1,50 @@
+[
+  {
+    "id": "zoo-kingdom-diagram-01",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "Study the following diagram showing the body plan of a typical animal:\n\n[DIAGRAM DESCRIPTION]\nA cross-sectional diagram of an animal body showing three concentric layers:\n- Outermost layer labeled 'X' (derived from ectoderm)\n- Middle layer labeled 'Y' (derived from mesoderm)\n- Innermost layer labeled 'Z' (derived from endoderm)\n- A body cavity 'C' is present between layer Y and layer Z\n- The cavity 'C' is NOT completely lined by mesoderm — mesoderm is present only on the outer side (below X) but not on the inner side (around Z)\n[END DIAGRAM]\n\nBased on the diagram, identify the type of body cavity 'C' and select the correct option:",
+    "options": [
+      { "key": "A", "text": "C is a true coelom, and the animal is a coelomate (e.g., Annelida)", "is_correct": false },
+      { "key": "B", "text": "C is a pseudocoelom, and the animal is a pseudocoelomate (e.g., Aschelminthes)", "is_correct": true },
+      { "key": "C", "text": "C is absent, and the animal is an acoelomate (e.g., Platyhelminthes)", "is_correct": false },
+      { "key": "D", "text": "C is a haemocoel, and the animal is an arthropod", "is_correct": false }
+    ],
+    "correct_answer": "B",
+    "explanation": "In the diagram, the body cavity 'C' is present between the mesoderm (Y) and endoderm (Z), but it is NOT completely lined by mesoderm. Mesoderm is present only on the outer wall (below ectoderm) but the inner wall (gut wall) is bounded by endoderm directly. This is the defining feature of a pseudocoelom. Animals with a pseudocoelom are called pseudocoelomates — the phylum Aschelminthes (roundworms like Ascaris) is the classic NEET example. In contrast, a true coelom is completely lined by mesoderm on both sides, and acoelomates have no body cavity at all.",
+    "concept_tags": ["coelom", "pseudocoelom", "body-cavity", "germ-layers", "aschelminthes"],
+    "topic": "Basis of Classification",
+    "subtopic": "Coelom types",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A true coelom requires mesoderm lining on BOTH sides of the cavity. The diagram clearly shows mesoderm only on the outer side.", "misconception": "Confusing pseudocoelom with true coelom" },
+      { "option_key": "C", "hint": "The diagram clearly shows a cavity 'C' is present. Acoelomates have NO body cavity at all.", "misconception": "Ignoring the visible cavity in the diagram" },
+      { "option_key": "D", "hint": "Haemocoel is a blood-filled cavity in arthropods, which is a specific type related to open circulatory system — not the same as what's shown here.", "misconception": "Confusing haemocoel with pseudocoelom" }
+    ]
+  },
+  {
+    "id": "zoo-kingdom-sequence-01",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following phyla in the correct evolutionary sequence based on increasing complexity of body organisation (from simplest to most complex):\n\n(I) Annelida\n(II) Porifera\n(III) Platyhelminthes\n(IV) Coelenterata (Cnidaria)\n(V) Aschelminthes\n\nSelect the correct ascending order:",
+    "options": [
+      { "key": "A", "text": "II → IV → III → V → I", "is_correct": true },
+      { "key": "B", "text": "II → III → IV → V → I", "is_correct": false },
+      { "key": "C", "text": "IV → II → V → III → I", "is_correct": false },
+      { "key": "D", "text": "II → IV → V → III → I", "is_correct": false }
+    ],
+    "correct_answer": "A",
+    "explanation": "The correct evolutionary sequence based on increasing body complexity is:\n\n1. Porifera (II) — Cellular level of organisation, no true tissues, asymmetric\n2. Coelenterata/Cnidaria (IV) — Tissue level of organisation, radial symmetry, diploblastic (2 germ layers)\n3. Platyhelminthes (III) — Organ level of organisation, bilateral symmetry, triploblastic, acoelomate\n4. Aschelminthes (V) — Organ-system level, bilateral symmetry, triploblastic, pseudocoelomate\n5. Annelida (I) — Organ-system level, bilateral symmetry, triploblastic, true coelomate with metamerism\n\nSo the order is: II → IV → III → V → I. Key progression: cellular → tissue → organ → organ-system (pseudocoelom) → organ-system (true coelom with segmentation).",
+    "concept_tags": ["classification", "body-organization", "evolutionary-complexity", "phyla-comparison"],
+    "topic": "Basis of Classification",
+    "subtopic": "Levels of organisation and evolutionary complexity",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "This places Platyhelminthes (organ level, triploblastic) BEFORE Cnidaria (tissue level, diploblastic). Cnidaria is simpler than Platyhelminthes.", "misconception": "Thinking flatworms are simpler than cnidarians" },
+      { "option_key": "C", "hint": "This places Cnidaria BEFORE Porifera. Porifera (sponges) have the simplest cellular-level organisation and must come first.", "misconception": "Not recognising Porifera as the simplest multicellular animals" },
+      { "option_key": "D", "hint": "This places Aschelminthes (pseudocoelomate) BEFORE Platyhelminthes (acoelomate). Acoelomates evolved before pseudocoelomates.", "misconception": "Confusing the coelom progression: acoelomate → pseudocoelomate → coelomate" }
+    ]
+  }
+]
