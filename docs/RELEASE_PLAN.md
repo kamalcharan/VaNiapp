@@ -183,8 +183,20 @@ See `docs/ZOO_GENERATION_PLAN.md` for full batch registry.
 | Item | File | Notes |
 |------|------|-------|
 | `expo-av` deprecated | `src/hooks/useAudioPlayer.ts` | Migrate to `expo-audio` on next native build |
-| `practice-results.tsx` uses legacy Question type | `app/(exam)/practice-results.tsx` | Upgrade to V2 like chapter-results |
+| ~~`practice-results.tsx` uses legacy Question type~~ | ~~`app/(exam)/practice-results.tsx`~~ | DONE — already uses `legacyBatchToV2()` + V2 adapter |
 | Topic ID always null in Qbank insert | `Qbank/insert.html:316` | Doesn't map topic names to IDs |
+
+### Question Type UI — Status
+| Component | Status | Notes |
+|-----------|--------|-------|
+| MCQ | Good | "SELECT ONE ANSWER" context label added |
+| ScenarioBased | Good | Transition prompt "Based on the above scenario..." added |
+| LogicalSequence | Good | "SELECT THE CORRECT SEQUENCE" label + correct order reveal (P → Q → R) on feedback |
+| DiagramBased | Good | Real `Image` rendering with loading spinner + error fallback |
+| MatchTheFollowing | Good | Interactive pairs, dynamic colors, instruction text |
+| TrueFalse | Good | Clear STATEMENT card, emoji buttons |
+| AssertionReasoning | Good | Distinct colored A/R labels, card separation |
+| FillInBlanks | Good | Smart blank detection, numbered inline blanks |
 
 ---
 

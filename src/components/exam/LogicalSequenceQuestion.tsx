@@ -25,6 +25,14 @@ interface Props extends QuestionRendererProps {
 export function LogicalSequenceQuestion({ language, selectedOptionId, showFeedback, onSelect, colors, payload }: Props) {
   const isCorrect = selectedOptionId === payload.correctOptionId;
 
+  // Build the correct order display string (e.g. "P → Q → R → S")
+  const correctOrderDisplay = payload.correctOrder
+    .map((itemId) => {
+      const idx = payload.items.findIndex((i) => i.id === itemId);
+      return idx >= 0 ? String.fromCharCode(80 + idx) : '?'; // P, Q, R, S...
+    })
+    .join(' \u2192 ');
+
   const getOptionStyle = (optId: string) => {
     if (!showFeedback) {
       return { bg: colors.surface, border: colors.surfaceBorder, text: colors.text };
@@ -61,6 +69,19 @@ export function LogicalSequenceQuestion({ language, selectedOptionId, showFeedba
           ))}
         </View>
       </View>
+
+      {/* Correct order reveal after feedback */}
+      {showFeedback && (
+        <View style={[styles.correctOrderCard, { backgroundColor: '#22C55E18', borderColor: '#22C55E' }]}>
+          <Text style={[styles.cardLabel, { color: '#16A34A' }]}>CORRECT ORDER</Text>
+          <Text style={[Typography.body, { color: '#16A34A', fontFamily: 'PlusJakartaSans_800ExtraBold' }]}>
+            {correctOrderDisplay}
+          </Text>
+        </View>
+      )}
+
+      {/* Select the correct sequence */}
+      <Text style={[styles.selectLabel, { color: colors.textTertiary }]}>SELECT THE CORRECT SEQUENCE</Text>
 
       {/* MCQ options (sequence combinations) */}
       <View style={styles.optionsList}>
@@ -118,6 +139,19 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans_800ExtraBold',
     fontSize: 10,
     letterSpacing: 1,
+  },
+  correctOrderCard: {
+    padding: Spacing.lg,
+    borderRadius: BorderRadius.lg,
+    borderWidth: 2,
+    gap: Spacing.xs,
+    alignItems: 'center',
+  },
+  selectLabel: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 10,
+    letterSpacing: 1,
+    marginTop: -4,
   },
   itemsList: {
     gap: Spacing.sm,

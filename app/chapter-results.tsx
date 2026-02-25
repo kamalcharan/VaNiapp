@@ -238,6 +238,18 @@ export default function ChapterResultsScreen() {
           {/* Actions */}
           <View style={styles.actions}>
             <PuffyButton title="Review Answers" onPress={handleReview} variant="secondary" />
+            {wrongNum > 0 && lastSession && (
+              <PuffyButton
+                title="Practice My Mistakes"
+                onPress={() =>
+                  router.push({
+                    pathname: '/practice-mistakes',
+                    params: { sessionId: lastSession.id, sessionMode: 'chapter' },
+                  })
+                }
+                variant="ghost"
+              />
+            )}
             <PuffyButton title={isQuickMode ? 'Try Again' : 'Retry Chapter'} onPress={handleRetry} variant="ghost" />
             {!isQuickMode && <PuffyButton title="Pick Another Subject" onPress={handleBackToSubjects} variant="ghost" />}
             <PuffyButton title="Back to Dashboard" onPress={handleGoHome} variant="ghost" />

@@ -110,6 +110,21 @@ export default function PracticeResultsScreen() {
       if (isWrong) chapterMap[q.chapterId].wrong++;
     }
 
+    // Question type breakdown
+    const typeMap: Record<string, { correct: number; total: number; label: string }> = {};
+    for (const q of v2Questions) {
+      if (!typeMap[q.type]) {
+        const label = q.type.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        typeMap[q.type] = { correct: 0, total: 0, label };
+      }
+      typeMap[q.type].total++;
+      const selectedOpt2 = answeredMap[q.id] ?? null;
+      if (selectedOpt2 === getCorrectId(q)) {
+        typeMap[q.type].correct++;
+      }
+    }
+    const typeStats = Object.entries(typeMap).filter(([, v]) => v.total > 0);
+
     const chapters = Object.entries(chapterMap)
       .map(([id, stats]) => ({
         id,
@@ -118,7 +133,7 @@ export default function PracticeResultsScreen() {
       }))
       .sort((a, b) => a.accuracy - b.accuracy);
 
-    return { diffStats, chapters, nextUp: chapters[0], strongest: chapters[chapters.length - 1] };
+    return { diffStats, typeStats, chapters, nextUp: chapters[0], strongest: chapters[chapters.length - 1] };
   }, [lastExam]);
 
   const handleRetry = () => router.replace('/practice-exam');
@@ -369,6 +384,33 @@ export default function PracticeResultsScreen() {
                 </JournalCard>
               )}
 
+              {/* Question Type Breakdown */}
+              {analytics && analytics.typeStats.length > 1 && (
+                <JournalCard delay={250}>
+                  <Text style={[Typography.label, { color: colors.textTertiary, marginBottom: Spacing.md }]}>
+                    QUESTION TYPES
+                  </Text>
+                  {analytics.typeStats.map(([type, stat]) => {
+                    const pct = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
+                    return (
+                      <View key={type} style={styles.diffRow}>
+                        <View style={[styles.typeLabel, { backgroundColor: colors.primary + '15' }]}>
+                          <Text style={[styles.typeLabelText, { color: colors.primary }]} numberOfLines={1}>
+                            {stat.label}
+                          </Text>
+                        </View>
+                        <View style={styles.barBg}>
+                          <View style={[styles.barFill, { width: `${pct}%`, backgroundColor: colors.primary }]} />
+                        </View>
+                        <Text style={[Typography.bodySm, { color: colors.textSecondary, width: 55, textAlign: 'right' }]}>
+                          {stat.correct}/{stat.total}
+                        </Text>
+                      </View>
+                    );
+                  })}
+                </JournalCard>
+              )}
+
               {/* Chapter Performance */}
               {analytics && (
                 <JournalCard delay={300}>
@@ -423,6 +465,18 @@ export default function PracticeResultsScreen() {
           {/* Actions (shared) */}
           <View style={styles.actions}>
             <PuffyButton title="Review Answers" onPress={handleReview} variant="secondary" />
+            {wrongNum > 0 && lastExam && (
+              <PuffyButton
+                title="Practice My Mistakes"
+                onPress={() =>
+                  router.push({
+                    pathname: '/practice-mistakes',
+                    params: { sessionId: lastExam.id, sessionMode: 'practice' },
+                  })
+                }
+                variant="ghost"
+              />
+            )}
             <PuffyButton title="Retry Practice Exam" onPress={handleRetry} variant="ghost" />
             <PuffyButton title="Back to Dashboard" onPress={handleGoHome} />
           </View>
@@ -573,6 +627,18 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans_800ExtraBold',
     fontSize: 10,
     letterSpacing: 0.5,
+  },
+  typeLabel: {
+    width: 100,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: BorderRadius.sm,
+    alignItems: 'center' as const,
+  },
+  typeLabelText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 10,
+    letterSpacing: 0.3,
   },
   chapterRow: {
     paddingBottom: Spacing.sm,

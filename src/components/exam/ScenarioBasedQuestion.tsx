@@ -42,6 +42,11 @@ export function ScenarioBasedQuestion({ language, selectedOptionId, showFeedback
         </Text>
       </View>
 
+      {/* Transition prompt */}
+      <Text style={[styles.transitionPrompt, { color: colors.textSecondary }]}>
+        Based on the above scenario, select the correct answer:
+      </Text>
+
       {/* MCQ options */}
       <View style={styles.optionsList}>
         {payload.options.map((opt, idx) => {
@@ -87,6 +92,12 @@ export function ScenarioBasedQuestion({ language, selectedOptionId, showFeedback
 const styles = StyleSheet.create({
   container: {
     gap: Spacing.lg,
+  },
+  transitionPrompt: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 13,
+    fontStyle: 'italic',
+    marginTop: -4,
   },
   scenarioCard: {
     padding: Spacing.lg,

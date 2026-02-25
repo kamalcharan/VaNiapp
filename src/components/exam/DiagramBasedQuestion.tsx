@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Pressable, Image, ActivityIndicator } from 'react-native';
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
 import { Option } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
@@ -17,7 +17,10 @@ interface Props extends QuestionRendererProps {
 }
 
 export function DiagramBasedQuestion({ language, selectedOptionId, showFeedback, onSelect, colors, payload }: Props) {
+  const [imageLoading, setImageLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
   const isCorrect = selectedOptionId === payload.correctOptionId;
+  const hasImage = !!payload.imageUri && payload.imageUri.startsWith('http');
 
   const getOptionStyle = (optId: string) => {
     if (!showFeedback) {
@@ -34,19 +37,35 @@ export function DiagramBasedQuestion({ language, selectedOptionId, showFeedback,
 
   return (
     <View style={styles.container}>
-      {/* Diagram placeholder */}
+      {/* Diagram */}
       <View style={[styles.diagramCard, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
-        <View style={[styles.placeholderBox, { borderColor: colors.surfaceBorder }]}>
-          <Text style={[styles.placeholderIcon, { color: colors.textTertiary }]}>{'\uD83D\uDDBC\uFE0F'}</Text>
-          <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center' }]}>
-            {payload.imageAlt || 'Diagram'}
-          </Text>
-          {payload.imageUri ? (
-            <Text style={[Typography.bodySm, { color: colors.textTertiary, fontSize: 10, marginTop: 4 }]}>
-              {payload.imageUri}
+        <Text style={[styles.cardLabel, { color: '#8B5CF6' }]}>DIAGRAM</Text>
+        {hasImage && !imageError ? (
+          <View style={styles.imageContainer}>
+            {imageLoading && (
+              <View style={styles.loadingOverlay}>
+                <ActivityIndicator size="small" color={colors.primary} />
+              </View>
+            )}
+            <Image
+              source={{ uri: payload.imageUri }}
+              style={styles.diagramImage}
+              resizeMode="contain"
+              onLoadEnd={() => setImageLoading(false)}
+              onError={() => { setImageError(true); setImageLoading(false); }}
+              accessibilityLabel={payload.imageAlt || 'Diagram'}
+            />
+          </View>
+        ) : (
+          <View style={[styles.placeholderBox, { borderColor: colors.surfaceBorder }]}>
+            <Text style={[styles.placeholderIcon, { color: colors.textTertiary }]}>
+              {imageError ? '\u26A0\uFE0F' : '\uD83D\uDDBC\uFE0F'}
             </Text>
-          ) : null}
-        </View>
+            <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center' }]}>
+              {imageError ? 'Could not load diagram' : (payload.imageAlt || 'Diagram')}
+            </Text>
+          </View>
+        )}
       </View>
 
       {/* MCQ options */}
@@ -99,6 +118,32 @@ const styles = StyleSheet.create({
     padding: Spacing.lg,
     borderRadius: BorderRadius.lg,
     borderWidth: 1,
+    gap: Spacing.sm,
+  },
+  cardLabel: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 10,
+    letterSpacing: 1,
+  },
+  imageContainer: {
+    borderRadius: BorderRadius.md,
+    overflow: 'hidden',
+    minHeight: 180,
+  },
+  diagramImage: {
+    width: '100%',
+    height: 220,
+    borderRadius: BorderRadius.md,
+  },
+  loadingOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
   },
   placeholderBox: {
     height: 180,
