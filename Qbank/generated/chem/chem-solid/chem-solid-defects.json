@@ -721,14 +721,14 @@
     "id": "chem-solid-defects-13",
     "question_type": "assertion-reasoning",
     "difficulty": "medium",
-    "question_text": "Assertion (A): When NaCl is doped with SrCl₂, the electrical conductivity of NaCl increases.\nReason (R): Each Sr²⁺ ion replaces one Na⁺ ion and simultaneously creates one cation vacancy, and these vacancies facilitate ionic conduction.",
-    "explanation": "Both the assertion and the reason are true. When SrCl₂ is added to NaCl, Sr²⁺ replaces Na⁺ at cationic sites. Since Sr²⁺ has double the charge of Na⁺, one cation vacancy is created for each Sr²⁺ to maintain electrical neutrality. These additional vacancies provide pathways for Na⁺ ions to migrate through the crystal, thereby increasing ionic conductivity. The reason correctly explains the assertion because it is precisely the creation of cation vacancies by Sr²⁺ doping that enhances conductivity.",
-    "correct_answer": "A",
+    "question_text": "Assertion (A): The density of an ionic crystal decreases when it has Schottky defects.\nReason (R): In Schottky defects, ions are displaced from their lattice sites to interstitial positions within the crystal.",
+    "explanation": "The assertion is true — Schottky defects involve missing ions (equal numbers of cations and anions leave the lattice), so the mass decreases while the volume remains nearly the same, causing a decrease in density. However, the reason is false. In Schottky defects, ions do NOT move to interstitial positions; instead, they are completely absent from the lattice (they migrate to the crystal surface). The description in the reason actually corresponds to Frenkel defects, where an ion shifts from its lattice site to an interstitial position. Since the reason is factually incorrect, the correct answer is that A is true but R is false.",
+    "correct_answer": "C",
     "concept_tags": [
-      "impurity-defect",
-      "ionic-conductivity",
-      "cation-vacancy",
-      "SrCl2-doping"
+      "schottky-defect",
+      "density",
+      "point-defects",
+      "frenkel-defect"
     ],
     "topic": "Defects in Solids and Electrical Properties",
     "subject": "chemistry",
@@ -741,7 +741,7 @@
       {
         "key": "A",
         "text": "Both A and R are true and R is the correct explanation of A",
-        "is_correct": true
+        "is_correct": false
       },
       {
         "key": "B",
@@ -751,7 +751,7 @@
       {
         "key": "C",
         "text": "A is true but R is false",
-        "is_correct": false
+        "is_correct": true
       },
       {
         "key": "D",
@@ -761,19 +761,19 @@
     ],
     "elimination_hints": [
       {
-        "option_key": "B",
-        "hint": "The reason directly explains the assertion. The cation vacancies created by Sr²⁺ doping are the precise mechanism through which ionic conductivity increases. There is a clear causal link.",
-        "misconception": "Failing to recognise the direct causal link between vacancy creation and enhanced ionic conduction"
+        "option_key": "A",
+        "hint": "While the assertion is true, the reason is factually wrong. Schottky defects do NOT involve ions moving to interstitial sites — that describes Frenkel defects. In Schottky defects, ions are simply absent from the lattice.",
+        "misconception": "Accepting a false reason as true because the assertion happens to be correct"
       },
       {
-        "option_key": "C",
-        "hint": "The reason is factually correct. Each Sr²⁺ does indeed replace one Na⁺ and create one cation vacancy to maintain charge neutrality. This is well-established in solid-state chemistry.",
-        "misconception": "Doubting the charge compensation mechanism of aliovalent doping"
+        "option_key": "B",
+        "hint": "The reason is not merely 'not the correct explanation' — it is factually false. Ions moving to interstitial sites is the definition of Frenkel defect, not Schottky defect. When R is false, option B does not apply.",
+        "misconception": "Failing to identify that the reason describes Frenkel defect rather than Schottky defect"
       },
       {
         "option_key": "D",
-        "hint": "The assertion is true. Doping NaCl with SrCl₂ does increase conductivity — this is a standard demonstration of how impurity defects enhance ionic transport in crystals.",
-        "misconception": "Assuming that adding impurities always decreases conductivity in ionic crystals"
+        "hint": "The assertion is definitely true. Schottky defects do cause a decrease in density because ions are missing from the lattice, reducing the mass per unit volume. So A cannot be false.",
+        "misconception": "Incorrectly thinking Schottky defects do not affect crystal density"
       }
     ]
   },
@@ -781,14 +781,15 @@
     "id": "chem-solid-defects-14",
     "question_type": "assertion-reasoning",
     "difficulty": "hard",
-    "question_text": "Assertion (A): Ferromagnetic substances lose their ferromagnetism and become paramagnetic when heated above the Curie temperature.\nReason (R): Above the Curie temperature, the thermal energy overcomes the exchange coupling that aligns magnetic domains, causing random orientation of individual magnetic moments.",
-    "explanation": "Both the assertion and the reason are true, and the reason correctly explains the assertion. Below the Curie temperature, ferromagnetic materials (like Fe, Co, Ni) have aligned magnetic domains due to exchange coupling between adjacent atoms. When heated above the Curie temperature, thermal energy disrupts this cooperative alignment, randomising the magnetic moments. The material then behaves as a paramagnet, showing magnetism only in the presence of an external field. For example, the Curie temperature of iron is 1043 K.",
-    "correct_answer": "A",
+    "question_text": "Assertion (A): Non-stoichiometric compound Fe₀.₉₅O exhibits p-type semiconducting behaviour.\nReason (R): In Fe₀.₉₅O, some Fe²⁺ ions are replaced by Fe³⁺ ions, and the Fe³⁺ ions have a smaller ionic radius than Fe²⁺ ions.",
+    "explanation": "Both the assertion and reason are independently true statements. Fe₀.₉₅O is indeed a p-type semiconductor because the presence of Fe³⁺ in a lattice of Fe²⁺ creates positive holes; when an electron hops from a neighbouring Fe²⁺ to Fe³⁺, the Fe²⁺ site becomes Fe³⁺ (a hole migrates), enabling p-type conduction. The reason is also true — Fe³⁺ (0.645 Å) does have a smaller ionic radius than Fe²⁺ (0.77 Å) due to greater nuclear charge on fewer electrons. However, the smaller ionic radius of Fe³⁺ is NOT the reason for p-type conductivity. The p-type behaviour arises from the electron-hopping mechanism between Fe²⁺ and Fe³⁺, not from any size difference. Hence, both A and R are true but R is not the correct explanation of A.",
+    "correct_answer": "B",
     "concept_tags": [
-      "ferromagnetism",
-      "Curie-temperature",
-      "paramagnetism",
-      "magnetic-domains"
+      "non-stoichiometric-defect",
+      "metal-deficiency",
+      "p-type-semiconductor",
+      "FeO",
+      "ionic-radius"
     ],
     "topic": "Defects in Solids and Electrical Properties",
     "subject": "chemistry",
@@ -801,12 +802,12 @@
       {
         "key": "A",
         "text": "Both A and R are true and R is the correct explanation of A",
-        "is_correct": true
+        "is_correct": false
       },
       {
         "key": "B",
         "text": "Both A and R are true but R is NOT the correct explanation of A",
-        "is_correct": false
+        "is_correct": true
       },
       {
         "key": "C",
@@ -821,19 +822,19 @@
     ],
     "elimination_hints": [
       {
-        "option_key": "B",
-        "hint": "The reason provides the exact physical mechanism for the loss of ferromagnetism: thermal disruption of exchange coupling causes random domain orientation. This is precisely why the transition to paramagnetism occurs.",
-        "misconception": "Not connecting the physical mechanism (thermal disruption of exchange coupling) with the observable phenomenon (loss of ferromagnetism)"
+        "option_key": "A",
+        "hint": "While both statements are true, the ionic radius difference between Fe²⁺ and Fe³⁺ does not explain p-type conductivity. The p-type behaviour arises from electron hopping between Fe²⁺ and Fe³⁺, not from size differences.",
+        "misconception": "Assuming that any true property of Fe³⁺ can explain the electrical behaviour of the defect crystal"
       },
       {
         "option_key": "C",
-        "hint": "The reason is scientifically accurate. Exchange coupling is the quantum mechanical interaction responsible for aligning moments in ferromagnetic domains, and thermal energy does overcome it above the Curie temperature.",
-        "misconception": "Doubting the role of exchange coupling in ferromagnetism or misunderstanding the Curie temperature concept"
+        "hint": "The reason IS factually true. Fe³⁺ does have a smaller ionic radius (0.645 Å) than Fe²⁺ (0.77 Å). The higher charge-to-radius ratio of Fe³⁺ pulls electrons closer, reducing its radius.",
+        "misconception": "Incorrectly thinking Fe³⁺ is larger than Fe²⁺ or that higher charge increases ionic radius"
       },
       {
         "option_key": "D",
-        "hint": "The assertion is a well-established fact. All ferromagnetic materials have a characteristic Curie temperature above which they become paramagnetic. This is standard NCERT content.",
-        "misconception": "Believing that ferromagnetic properties are permanent regardless of temperature"
+        "hint": "The assertion is true. Fe₀.₉₅O does show p-type semiconducting behaviour due to the presence of Fe³⁺ in an Fe²⁺ lattice, enabling positive hole migration. This is a classic NCERT example.",
+        "misconception": "Not recognising that metal-deficiency defects with mixed oxidation states lead to p-type semiconductivity"
       }
     ]
   },

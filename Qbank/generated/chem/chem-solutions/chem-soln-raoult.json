@@ -779,14 +779,14 @@
     "id": "chem-soln-raoult-14",
     "question_type": "assertion-reasoning",
     "difficulty": "hard",
-    "question_text": "Assertion (A): The vapour pressure of a solution containing a non-volatile solute is always lower than the vapour pressure of the pure solvent at the same temperature.\nReason (R): The non-volatile solute molecules occupy positions at the surface of the solution, thereby reducing the number of solvent molecules that can escape into the vapour phase.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
-    "explanation": "The Assertion seems straightforward but is actually incorrect when stated as 'always lower.' For ideal and most dilute solutions with non-volatile solutes, the vapour pressure is indeed lower than the pure solvent (Raoult's law: p = x₁p°₁, where x₁ < 1). However, in certain cases involving strong solute-solvent interactions or association effects, the actual behaviour can be more complex. More importantly, the word 'always' makes the assertion problematic because Raoult's law as stated for vapour pressure lowering is strictly valid for ideal dilute solutions. However, from the NEET perspective, the assertion can be considered correct for the vast majority of cases. The Reason is correct: non-volatile solute particles at the surface reduce the fraction of surface occupied by solvent molecules, lowering the rate of evaporation and thus the vapour pressure. The Reason correctly and directly explains the Assertion. Since both A and R are correct and R correctly explains A, the answer should be (A). But note: the Assertion uses 'always' — for solutions of non-volatile solutes that do not dissociate or associate, this is indeed always true. However, considering typical NEET-level interpretation, both statements are correct and R explains A. Wait — re-examining: The assertion says vapour pressure is always lower with a non-volatile solute. This is indeed always true by Raoult's law since x₁ < 1 means p < p°. The reason correctly explains this via the surface occupation mechanism. However, the surface occupation explanation is a simplified kinetic model, while the thermodynamic basis is the entropy of mixing. At the NEET level, R is the accepted explanation. Yet the surface argument is incomplete — it explains the kinetic aspect but not the full thermodynamic picture. For NEET: A is correct, R is correct, but R is an incomplete (though partially correct) explanation. Actually, the standard NCERT explanation does use the surface occupation reasoning. Given the NEET context, both are correct and R explains A. Let me reconsider: The question is at the hard level. The subtle point is that the Assertion says 'always' — and this IS always true for non-volatile solutes (since the solute doesn't contribute to vapour pressure). R provides the mechanistic explanation. So both are correct and R correctly explains A. But I've assigned this answer D. Let me restructure: I'll make A incorrect by adding a subtle twist.",
+    "question_text": "Assertion (A): The relative lowering of vapour pressure of a dilute solution is equal to the mole fraction of the solvent in the solution.\nReason (R): When a non-volatile solute is added to a solvent, the solute molecules at the surface reduce the number of solvent molecules escaping into the vapour phase, thereby lowering the vapour pressure.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The Assertion is INCORRECT. The relative lowering of vapour pressure is defined as (p° - p)/p° = Δp/p°. According to Raoult's law, p = x₁p° (where x₁ is the mole fraction of solvent). Therefore, (p° - p)/p° = (p° - x₁p°)/p° = 1 - x₁ = x₂, where x₂ is the mole fraction of the SOLUTE, not the solvent. The assertion incorrectly states it equals the mole fraction of the solvent (x₁), when it actually equals the mole fraction of the solute (x₂). The Reason is CORRECT: the mechanistic explanation for vapour pressure lowering is that non-volatile solute molecules occupy surface sites, reducing the number of solvent molecules that can escape into the vapour phase. This is the standard explanation provided in NCERT. Since A is incorrect but R is correct, the answer is (D).",
     "correct_answer": "D",
     "concept_tags": [
-      "vapour-pressure-lowering",
+      "relative-lowering-vapour-pressure",
       "non-volatile-solute",
       "raoults-law",
-      "surface-effect",
+      "mole-fraction",
       "assertion-reasoning"
     ],
     "topic": "Types of Solutions and Raoult's Law",
@@ -821,18 +821,18 @@
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "For both A and R to be correct with R explaining A, the Assertion must be entirely correct. However, the claim that the vapour pressure is 'always' lower is not universally true — when the non-volatile solute undergoes association in solution, the actual number of solute particles is less than expected, and in extreme cases involving anomalous molar masses, the lowering may not follow the simple prediction.",
-        "misconception": "Accepting a universal claim ('always') without considering edge cases like solute association or dissociation."
+        "hint": "The Assertion states that relative lowering equals the mole fraction of the solvent. However, Raoult's law gives (p° - p)/p° = x₂ (mole fraction of solute), not x₁ (mole fraction of solvent). Since A is incorrect, both A and R cannot be correct.",
+        "misconception": "Confusing the mole fraction of solute (x₂) with the mole fraction of solvent (x₁) in the relative lowering formula."
       },
       {
         "option_key": "B",
-        "hint": "This option assumes both A and R are correct. Since the Assertion contains the word 'always' and there are exceptions (e.g., when electrolytic solutes dissociate, the actual lowering differs from the prediction based on formula units), A is not entirely correct as stated.",
-        "misconception": "Overlooking the absolute nature of the word 'always' in the assertion."
+        "hint": "This option requires both A and R to be correct. The Assertion is factually wrong — relative lowering of vapour pressure equals the mole fraction of the solute (x₂), not the solvent (x₁). Therefore, option B is eliminated.",
+        "misconception": "Not verifying the mathematical derivation of relative lowering from Raoult's law before accepting the assertion."
       },
       {
         "option_key": "C",
-        "hint": "The Reason is correct — non-volatile solute molecules at the surface do reduce the number of solvent molecules available for evaporation, which is the accepted mechanistic explanation for vapour pressure lowering as given in NCERT textbooks.",
-        "misconception": "Rejecting the surface occupation model as the explanation for vapour pressure lowering."
+        "hint": "The Reason is a correct and well-accepted explanation (found in NCERT) for vapour pressure lowering. Non-volatile solute molecules at the surface reduce the effective surface area available for solvent evaporation, which is the mechanistic basis for the phenomenon.",
+        "misconception": "Rejecting the kinetic surface-occupation explanation for vapour pressure lowering, which is the standard NCERT explanation."
       }
     ]
   },
