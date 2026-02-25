@@ -1,0 +1,1199 @@
+[
+  {
+    "id": "chem-thermo-gibbs-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Entropy of a system is a measure of:",
+    "explanation": "Entropy (S) is a thermodynamic state function that measures the degree of disorder or randomness in a system. According to the second law of thermodynamics, in any spontaneous process the entropy of the universe increases. Greater randomness or disorder corresponds to higher entropy. For example, gases have higher entropy than liquids, which in turn have higher entropy than solids, because molecular disorder increases in that order.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "entropy-definition",
+      "disorder",
+      "randomness",
+      "state-function"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Enthalpy of the system",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Internal energy of the system",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Degree of disorder or randomness of the system",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Work done by the system on the surroundings",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Enthalpy (H) is a different thermodynamic quantity that represents the heat content of a system at constant pressure. Entropy (S), not enthalpy, measures disorder or randomness.",
+        "misconception": "Confusing enthalpy (H), which relates to heat content, with entropy (S), which relates to randomness."
+      },
+      {
+        "option_key": "B",
+        "hint": "Internal energy (U) is the total energy contained within a system including kinetic and potential energy of molecules. It is not a measure of disorder. Entropy is the state function that quantifies disorder.",
+        "misconception": "Confusing internal energy (U) with entropy (S). While both are state functions, they measure entirely different properties."
+      },
+      {
+        "option_key": "D",
+        "hint": "Work done is a path function, not a state function, and it does not measure disorder. Entropy is a state function that quantifies the randomness or disorder in a system.",
+        "misconception": "Confusing a path-dependent quantity (work) with the state function entropy that measures molecular disorder."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "For a spontaneous process occurring in an isolated system, which of the following is always true?",
+    "explanation": "According to the second law of thermodynamics, for any spontaneous (irreversible) process occurring in an isolated system, the entropy of the system always increases, i.e., ΔS > 0. In an isolated system, there is no exchange of energy or matter with the surroundings, so the system itself constitutes the universe for thermodynamic purposes. Therefore, the entropy must increase for any spontaneous change. At equilibrium, entropy reaches its maximum value and ΔS = 0.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "second-law",
+      "spontaneous-process",
+      "entropy-increase",
+      "isolated-system"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ΔS > 0",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "ΔS < 0",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ΔS = 0",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ΔH < 0",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "A decrease in entropy (ΔS < 0) in an isolated system would violate the second law of thermodynamics. Spontaneous processes in isolated systems always proceed in the direction of increasing entropy.",
+        "misconception": "Thinking that entropy can decrease spontaneously in an isolated system, which contradicts the second law."
+      },
+      {
+        "option_key": "C",
+        "hint": "ΔS = 0 applies to a reversible process or a system at equilibrium, not to a spontaneous irreversible process. For a spontaneous process in an isolated system, ΔS must be positive.",
+        "misconception": "Confusing the condition for equilibrium (ΔS = 0 for a reversible process) with the criterion for spontaneity."
+      },
+      {
+        "option_key": "D",
+        "hint": "ΔH < 0 is a criterion for exothermic reactions but is not the correct condition for spontaneity in an isolated system. In an isolated system, the entropy criterion (ΔS > 0) governs spontaneity, not the enthalpy change.",
+        "misconception": "Applying the enthalpy criterion for spontaneity instead of the entropy criterion that applies to isolated systems."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The Gibbs free energy (G) of a system is defined by the expression:",
+    "explanation": "Gibbs free energy is defined as G = H − TS, where H is the enthalpy, T is the absolute temperature, and S is the entropy of the system. This is a fundamental thermodynamic relationship that combines enthalpy and entropy into a single quantity useful for predicting spontaneity at constant temperature and pressure. The change in Gibbs free energy, ΔG = ΔH − TΔS, determines whether a process is spontaneous (ΔG < 0), non-spontaneous (ΔG > 0), or at equilibrium (ΔG = 0).",
+    "correct_answer": "B",
+    "concept_tags": [
+      "gibbs-free-energy-definition",
+      "G-equals-H-minus-TS",
+      "thermodynamic-potentials"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "G = H + TS",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "G = H − TS",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "G = U + PV",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "G = E − PV",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "G = H + TS has the wrong sign. Gibbs free energy subtracts the entropy term (TS) from enthalpy, i.e., G = H − TS. The minus sign is critical because it accounts for the entropy contribution to free energy.",
+        "misconception": "Incorrectly remembering the sign in the Gibbs free energy equation. The entropy term is subtracted, not added."
+      },
+      {
+        "option_key": "C",
+        "hint": "G = U + PV is actually the definition of enthalpy (H = U + PV), not Gibbs free energy. Gibbs free energy further incorporates the entropy term: G = H − TS.",
+        "misconception": "Confusing the definition of enthalpy (H = U + PV) with the definition of Gibbs free energy (G = H − TS)."
+      },
+      {
+        "option_key": "D",
+        "hint": "G = E − PV is not a standard thermodynamic definition. The correct expression for Gibbs free energy is G = H − TS, which combines enthalpy and entropy at a given temperature.",
+        "misconception": "Fabricating an incorrect thermodynamic expression by misremembering the variables in the Gibbs free energy definition."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a reaction at constant temperature and pressure, if ΔH is negative and ΔS is positive, the reaction is:",
+    "explanation": "Using the Gibbs free energy equation ΔG = ΔH − TΔS, when ΔH is negative (exothermic) and ΔS is positive (entropy increases), the term −TΔS is also negative (since T is always positive). Therefore, ΔG = (negative) − T(positive) = negative − positive magnitude = always negative, regardless of temperature. Since ΔG < 0 at all temperatures, the reaction is spontaneous at all temperatures. This is the most favorable combination for spontaneity.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "spontaneity-criteria",
+      "delta-G-delta-H-delta-S",
+      "temperature-effect",
+      "gibbs-helmholtz"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Spontaneous only at low temperatures",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Spontaneous only at high temperatures",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Non-spontaneous at all temperatures",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Spontaneous at all temperatures",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A reaction spontaneous only at low temperatures would require ΔH < 0 and ΔS < 0 (where the enthalpy term dominates at low T). With ΔH < 0 and ΔS > 0, both terms contribute to making ΔG negative at every temperature.",
+        "misconception": "Confusing the case where ΔH < 0 and ΔS < 0 (spontaneous at low T) with the case where both factors favor spontaneity."
+      },
+      {
+        "option_key": "B",
+        "hint": "A reaction spontaneous only at high temperatures requires ΔH > 0 and ΔS > 0 (where the TΔS term overcomes the positive ΔH at high T). Here, ΔH is already negative, so spontaneity is not limited to high temperatures.",
+        "misconception": "Confusing the case ΔH > 0, ΔS > 0 (spontaneous at high T) with ΔH < 0, ΔS > 0 (spontaneous at all T)."
+      },
+      {
+        "option_key": "C",
+        "hint": "A reaction non-spontaneous at all temperatures requires ΔH > 0 and ΔS < 0 (both terms make ΔG positive). When ΔH < 0 and ΔS > 0, ΔG is always negative, making the reaction always spontaneous.",
+        "misconception": "Incorrectly concluding non-spontaneity when both thermodynamic factors actually favor a negative ΔG."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The entropy change (ΔS) for the phase transition of water from liquid to vapour at 373 K and 1 atm pressure, given ΔH_vap = 40.7 kJ mol⁻¹, is approximately:",
+    "explanation": "For a reversible phase transition at constant temperature and pressure, the entropy change is given by ΔS = ΔH / T. Here, ΔH_vap = 40.7 kJ mol⁻¹ = 40700 J mol⁻¹ and T = 373 K. Therefore, ΔS = 40700 / 373 = 109.1 J K⁻¹ mol⁻¹ ≈ 109 J K⁻¹ mol⁻¹. This positive value of ΔS is expected because vaporisation increases disorder as molecules go from the ordered liquid state to the highly disordered gaseous state.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "entropy-phase-change",
+      "delta-S-equals-delta-H-over-T",
+      "vaporisation",
+      "troutons-rule"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "40.7 J K⁻¹ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "109 J K⁻¹ mol⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "373 J K⁻¹ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "−109 J K⁻¹ mol⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "40.7 J K⁻¹ mol⁻¹ is simply the numerical value of ΔH without dividing by the temperature. ΔS = ΔH/T, so you must divide 40700 J mol⁻¹ by 373 K to get the correct answer.",
+        "misconception": "Using the enthalpy value directly as the entropy change without performing the division by temperature."
+      },
+      {
+        "option_key": "C",
+        "hint": "373 J K⁻¹ mol⁻¹ is the boiling point value being incorrectly used as the entropy change. The correct calculation is ΔS = 40700/373 ≈ 109 J K⁻¹ mol⁻¹.",
+        "misconception": "Confusing the temperature value with the calculated entropy change."
+      },
+      {
+        "option_key": "D",
+        "hint": "The entropy change for vaporisation is always positive because the system goes from a more ordered liquid state to a more disordered gaseous state. A negative ΔS would apply to condensation (the reverse process).",
+        "misconception": "Incorrectly assigning a negative sign to the entropy change of vaporisation, confusing it with condensation."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The relationship between standard Gibbs free energy change (ΔG°) and the equilibrium constant (K) is given by:",
+    "explanation": "The relationship between the standard Gibbs free energy change and the equilibrium constant is ΔG° = −RT ln K, where R is the universal gas constant (8.314 J K⁻¹ mol⁻¹), T is the absolute temperature in Kelvin, and K is the equilibrium constant. This equation connects thermodynamics with chemical equilibrium. When K > 1, ln K is positive, making ΔG° negative, indicating the forward reaction is favored. When K < 1, ln K is negative, making ΔG° positive, indicating the reverse reaction is favored.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "delta-G-and-equilibrium-constant",
+      "delta-G-equals-minus-RT-ln-K",
+      "thermodynamic-equilibrium"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ΔG° = −RT ln K",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "ΔG° = RT ln K",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ΔG° = −RT / K",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ΔG° = RT / ln K",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "ΔG° = RT ln K has the wrong sign. The correct relationship includes a negative sign: ΔG° = −RT ln K. The negative sign is essential because a large K (products favored) must correspond to a negative ΔG° (spontaneous forward reaction).",
+        "misconception": "Forgetting the negative sign in the ΔG°-K relationship, which would incorrectly predict that a large K corresponds to a positive ΔG°."
+      },
+      {
+        "option_key": "C",
+        "hint": "ΔG° = −RT/K is mathematically incorrect. The equilibrium constant appears inside a natural logarithm function, not as a simple divisor. The correct expression is ΔG° = −RT ln K.",
+        "misconception": "Incorrectly placing K in the denominator instead of inside the logarithm function."
+      },
+      {
+        "option_key": "D",
+        "hint": "ΔG° = RT/ln K is not the correct relationship. The standard form is ΔG° = −RT ln K, where the product of R, T, and ln K is taken, not a ratio.",
+        "misconception": "Incorrectly inverting the mathematical relationship between ΔG°, RT, and ln K."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When ΔH > 0 and ΔS > 0 for a reaction, the reaction becomes spontaneous:",
+    "explanation": "For a reaction where both ΔH and ΔS are positive, ΔG = ΔH − TΔS. At low temperatures, the positive ΔH dominates and ΔG > 0 (non-spontaneous). At high temperatures, the TΔS term becomes large enough to overcome the positive ΔH, making ΔG < 0 (spontaneous). The crossover temperature is T = ΔH/ΔS. Above this temperature the reaction is spontaneous, below it the reaction is non-spontaneous. Examples include the melting of ice and the thermal decomposition of calcium carbonate.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "temperature-dependent-spontaneity",
+      "endothermic-entropy-driven",
+      "delta-G-sign-analysis"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "At all temperatures",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "At low temperatures only",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "At high temperatures only",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "The reaction can never be spontaneous",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "For a reaction to be spontaneous at all temperatures, ΔH must be negative and ΔS must be positive. With both ΔH and ΔS positive, the reaction is only spontaneous when T is high enough for TΔS to exceed ΔH.",
+        "misconception": "Thinking that a positive ΔS alone guarantees spontaneity at all temperatures, ignoring the positive ΔH contribution."
+      },
+      {
+        "option_key": "B",
+        "hint": "At low temperatures, TΔS is small and cannot compensate for the positive ΔH, so ΔG remains positive. The reaction is non-spontaneous at low T. The ΔH < 0, ΔS < 0 case is spontaneous at low temperatures.",
+        "misconception": "Confusing the ΔH > 0, ΔS > 0 case (high T spontaneous) with the ΔH < 0, ΔS < 0 case (low T spontaneous)."
+      },
+      {
+        "option_key": "D",
+        "hint": "With positive ΔS, there will always exist a sufficiently high temperature where TΔS > ΔH, making ΔG negative. Therefore, the reaction can become spontaneous above the crossover temperature T = ΔH/ΔS.",
+        "misconception": "Incorrectly concluding that a positive ΔH makes a reaction permanently non-spontaneous, ignoring the temperature-dependent entropy contribution."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a reaction at equilibrium at constant temperature and pressure, the value of ΔG is:",
+    "explanation": "At equilibrium, the Gibbs free energy of the system is at its minimum, and the change in Gibbs free energy (ΔG) for the reaction equals zero. This is a fundamental criterion for chemical equilibrium. It means that the free energy of the products equals the free energy of the reactants, so there is no thermodynamic driving force for the reaction to proceed in either direction. Note that ΔG = 0 at equilibrium, but ΔG° (standard free energy change) is generally not zero unless K = 1.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "equilibrium-condition",
+      "delta-G-zero",
+      "gibbs-free-energy-minimum"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Positive",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Negative",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Depends on the value of ΔH",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A positive ΔG indicates a non-spontaneous reaction that would proceed in the reverse direction. At equilibrium, there is no net tendency for the reaction to proceed in either direction, so ΔG cannot be positive.",
+        "misconception": "Confusing the condition for non-spontaneity (ΔG > 0) with the condition for equilibrium (ΔG = 0)."
+      },
+      {
+        "option_key": "B",
+        "hint": "A negative ΔG indicates a spontaneous reaction that would proceed in the forward direction. At equilibrium, the reaction has no preferred direction, so ΔG cannot be negative.",
+        "misconception": "Confusing the condition for spontaneity (ΔG < 0) with the condition for equilibrium (ΔG = 0)."
+      },
+      {
+        "option_key": "C",
+        "hint": "At equilibrium, ΔG is always zero regardless of the values of ΔH and ΔS. The equilibrium condition ΔG = 0 is a universal thermodynamic criterion and does not depend on individual ΔH or ΔS values.",
+        "misconception": "Thinking that the equilibrium condition depends on the enthalpy change rather than recognizing ΔG = 0 as the universal equilibrium criterion."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "According to the third law of thermodynamics, the entropy of a perfectly crystalline substance at absolute zero (0 K) is:",
+    "explanation": "The third law of thermodynamics states that the entropy of a perfectly crystalline substance at absolute zero temperature (0 K) is zero. At absolute zero, the molecules are in a perfectly ordered state with no thermal motion, and there is only one possible microstate (W = 1). Using Boltzmann's equation S = k_B ln W, when W = 1, S = k_B ln 1 = 0. This provides a reference point for calculating absolute entropies of substances.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "third-law-thermodynamics",
+      "absolute-zero",
+      "perfect-crystal",
+      "zero-entropy"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Maximum",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Infinity",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Depends on the nature of the substance",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Entropy is maximum at high temperatures where molecular motion and disorder are greatest. At absolute zero, a perfect crystal has minimum possible entropy (zero), not maximum.",
+        "misconception": "Confusing the conditions for maximum entropy (high temperature, high disorder) with the condition at absolute zero (perfect order)."
+      },
+      {
+        "option_key": "C",
+        "hint": "Entropy approaches infinity at extremely high temperatures for ideal gases, not at absolute zero. At 0 K, a perfect crystal has zero entropy because there is only one microstate available.",
+        "misconception": "Incorrectly applying high-temperature behavior of entropy to the absolute zero condition."
+      },
+      {
+        "option_key": "D",
+        "hint": "The third law applies universally to all perfectly crystalline substances at 0 K — the entropy is zero regardless of the chemical identity. The key conditions are 'perfectly crystalline' and '0 K', not the nature of the substance.",
+        "misconception": "Not recognizing that the third law is a universal statement about all perfect crystals at absolute zero, independent of the specific substance."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-10",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following processes is accompanied by an increase in entropy?",
+    "explanation": "Dissolution of a solid in water increases entropy because the highly ordered crystalline lattice breaks down and the ions or molecules become dispersed throughout the solvent. This increases the disorder and randomness of the system. In contrast, freezing converts a disordered liquid to an ordered solid (ΔS < 0), condensation converts gas to liquid (ΔS < 0), and crystallisation converts a disordered solution/melt to an ordered crystal (ΔS < 0).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "entropy-increase",
+      "dissolution",
+      "phase-changes",
+      "disorder"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Freezing of water to ice",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Condensation of steam to water",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Dissolution of a crystalline solid in water",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Crystallisation of a solute from a supersaturated solution",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Freezing converts liquid water (more disordered) to ice (highly ordered crystalline solid). This decreases the entropy of the system (ΔS < 0), not increases it.",
+        "misconception": "Not recognizing that the liquid-to-solid transition reduces molecular randomness and therefore decreases entropy."
+      },
+      {
+        "option_key": "B",
+        "hint": "Condensation converts steam (gas, highly disordered) to water (liquid, more ordered). This is a decrease in entropy because molecular freedom of motion is reduced in the liquid phase.",
+        "misconception": "Not recognizing that gas-to-liquid transitions reduce entropy due to decreased molecular disorder."
+      },
+      {
+        "option_key": "D",
+        "hint": "Crystallisation involves the formation of a highly ordered crystal lattice from a disordered solution. This process decreases entropy as the solute particles become arranged in a regular, repeating pattern.",
+        "misconception": "Confusing dissolution (disorder increases) with crystallisation (order increases), which have opposite entropy effects."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "For a reaction with ΔG° = −30 kJ mol⁻¹ at 298 K, the equilibrium constant K is approximately: (Given: R = 8.314 J K⁻¹ mol⁻¹, ln K = −ΔG°/RT)",
+    "explanation": "Using ΔG° = −RT ln K, we get ln K = −ΔG°/(RT) = −(−30000)/(8.314 × 298) = 30000/2477.6 = 12.11. Therefore K = e^12.11 ≈ 1.8 × 10⁵. A large negative ΔG° indicates that the equilibrium lies strongly in favor of the products, which is reflected by the large value of K. This is consistent with the thermodynamic principle that more negative ΔG° values correspond to larger equilibrium constants.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "delta-G-and-K-calculation",
+      "equilibrium-constant",
+      "numerical-problem",
+      "delta-G-equals-minus-RT-ln-K"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1.8 × 10³",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.8 × 10⁵",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1.2 × 10²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "5.5 × 10⁻⁶",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This value is approximately e^7.5, which would correspond to ΔG° ≈ −18.6 kJ mol⁻¹, not −30 kJ mol⁻¹. The correct calculation gives ln K ≈ 12.1, leading to K ≈ 1.8 × 10⁵.",
+        "misconception": "Making an arithmetic error in the calculation of ln K, possibly by not converting kJ to J properly."
+      },
+      {
+        "option_key": "C",
+        "hint": "K = 1.2 × 10² is far too small for ΔG° = −30 kJ mol⁻¹. A ΔG° of −30 kJ mol⁻¹ corresponds to a very product-favored reaction with K in the range of 10⁵.",
+        "misconception": "Significantly underestimating the value of K, possibly due to an error in the exponential calculation."
+      },
+      {
+        "option_key": "D",
+        "hint": "K = 5.5 × 10⁻⁶ would correspond to a positive ΔG° (reactant-favored reaction). A negative ΔG° always gives K > 1, indicating a product-favored equilibrium.",
+        "misconception": "Getting the sign of ln K wrong, which reverses the relationship between ΔG° and K."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "For the reaction N₂(g) + O₂(g) → 2NO(g), ΔH = +180.5 kJ mol⁻¹ and ΔS = +24.7 J K⁻¹ mol⁻¹. The temperature above which this reaction becomes spontaneous is approximately:",
+    "explanation": "The reaction becomes spontaneous when ΔG < 0, i.e., when ΔH − TΔS < 0, or T > ΔH/ΔS. Converting units: ΔH = 180500 J mol⁻¹ and ΔS = 24.7 J K⁻¹ mol⁻¹. Therefore T = ΔH/ΔS = 180500/24.7 = 7308 K ≈ 7307 K. Above this temperature, the TΔS term exceeds ΔH, making ΔG negative and the reaction spontaneous. This extremely high crossover temperature explains why NO formation from N₂ and O₂ occurs only at very high temperatures, such as in lightning strikes or internal combustion engines.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "crossover-temperature",
+      "spontaneity-threshold",
+      "endothermic-reaction",
+      "temperature-calculation"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "730 K",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1807 K",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3650 K",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "7307 K",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "730 K would be obtained if ΔH were about 18 kJ mol⁻¹ instead of 180.5 kJ mol⁻¹. Ensure you are using the correct value of ΔH and dividing by ΔS in consistent units (both in J or both in kJ).",
+        "misconception": "Possibly misplacing the decimal point in ΔH or not converting kJ to J consistently when dividing by ΔS in J K⁻¹ mol⁻¹."
+      },
+      {
+        "option_key": "B",
+        "hint": "1807 K would result from an incorrect calculation. T = ΔH/ΔS = 180500/24.7 ≈ 7307 K, not 1807 K. Check your arithmetic carefully.",
+        "misconception": "Making a division error, possibly dividing 180.5 by 0.1 instead of correctly computing 180500/24.7."
+      },
+      {
+        "option_key": "C",
+        "hint": "3650 K would correspond to roughly half the correct answer. The correct calculation is T = 180500/24.7 ≈ 7307 K. This may result from halving ΔH or doubling ΔS incorrectly.",
+        "misconception": "Making an arithmetic error that leads to approximately half the correct crossover temperature."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The entropy of the universe increases in every spontaneous process.\nReason (R): For a spontaneous process, the Gibbs free energy change of the system at constant temperature and pressure is negative (ΔG < 0).\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "Both the Assertion and Reason are correct. The Assertion is a statement of the second law of thermodynamics: in any spontaneous process, the total entropy of the universe (system + surroundings) always increases. The Reason states that ΔG < 0 for a spontaneous process at constant T and P. However, ΔG < 0 is actually derived from the condition ΔS_universe > 0. The Gibbs free energy criterion (ΔG_system < 0) is essentially an alternative expression of the second law that accounts for both the entropy change of the system and the surroundings (through the enthalpy term). Since ΔG = ΔH − TΔS and ΔS_universe = ΔS_system − ΔH/T (at constant P), ΔG < 0 is equivalent to ΔS_universe > 0. Therefore, R is the correct explanation of A — both express the same thermodynamic criterion for spontaneity.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "second-law",
+      "entropy-universe",
+      "spontaneity",
+      "gibbs-free-energy",
+      "assertion-reasoning"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason is indeed the correct explanation of the Assertion. ΔG < 0 at constant T and P is mathematically equivalent to ΔS_universe > 0 (since ΔG = −TΔS_universe). The Gibbs criterion is derived from and explains the universal entropy increase.",
+        "misconception": "Failing to recognize that the Gibbs free energy criterion is a direct mathematical consequence of the entropy increase principle for the universe."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct. ΔG < 0 is the well-established thermodynamic criterion for spontaneity at constant temperature and pressure, as stated in NCERT and all standard thermodynamics references.",
+        "misconception": "Incorrectly doubting the validity of the ΔG < 0 criterion for spontaneity."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. The second law of thermodynamics explicitly states that the entropy of the universe increases for every spontaneous (irreversible) process. This is a fundamental law of nature.",
+        "misconception": "Doubting the second law of thermodynamics, which is one of the most well-established principles in science."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The decomposition of calcium carbonate (CaCO₃ → CaO + CO₂) is non-spontaneous at room temperature but becomes spontaneous at high temperatures.\nReason (R): For this reaction, both ΔH and ΔS are positive, so TΔS exceeds ΔH only above a certain temperature.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "Both the Assertion and the Reason are correct, and the Reason correctly explains the Assertion. The decomposition of CaCO₃ is endothermic (ΔH > 0) because energy is needed to break the strong ionic bonds in the carbonate. The entropy change is positive (ΔS > 0) because a solid decomposes into a solid and a gas, increasing disorder. At low temperatures, ΔG = ΔH − TΔS > 0 because the positive ΔH dominates. At high temperatures (above about 1100 K), TΔS > ΔH, making ΔG < 0 and the reaction spontaneous. This is exactly why limestone is heated in kilns at high temperatures to produce quicklime. The Reason correctly identifies the signs of ΔH and ΔS and explains the temperature dependence, making it the correct explanation of A. The correct answer is (A), not (C).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "calcium-carbonate-decomposition",
+      "temperature-dependent-spontaneity",
+      "endothermic-entropy-driven",
+      "assertion-reasoning"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains the Assertion. The positive ΔH and positive ΔS values, combined with the Gibbs equation ΔG = ΔH − TΔS, precisely explain why the reaction is non-spontaneous at low T and spontaneous at high T. There is a direct causal connection.",
+        "misconception": "Failing to recognize that the thermodynamic reasoning (positive ΔH and ΔS leading to temperature-dependent spontaneity) is the direct cause of the observed behavior in the Assertion."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct. CaCO₃ decomposition is indeed endothermic (ΔH > 0) and produces a gas from a solid, so ΔS > 0. The statement that TΔS exceeds ΔH only above a certain temperature is a correct application of the Gibbs equation.",
+        "misconception": "Incorrectly doubting that the decomposition of CaCO₃ has positive ΔH and ΔS values."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. It is a well-known fact that CaCO₃ does not decompose at room temperature but decomposes at high temperatures (around 840°C in lime kilns). This is a standard NCERT example.",
+        "misconception": "Doubting the well-established observation that CaCO₃ decomposition is temperature-dependent."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match Column I (Signs of ΔH and ΔS) with Column II (Spontaneity condition):\n\nColumn I | Column II\nA. ΔH < 0, ΔS > 0 | 1. Spontaneous only at high temperatures\nB. ΔH > 0, ΔS > 0 | 2. Spontaneous at all temperatures\nC. ΔH < 0, ΔS < 0 | 3. Non-spontaneous at all temperatures\nD. ΔH > 0, ΔS < 0 | 4. Spontaneous only at low temperatures\n\nSelect the correct matching:",
+    "explanation": "Using ΔG = ΔH − TΔS: (A) When ΔH < 0 and ΔS > 0, both terms make ΔG negative, so the reaction is spontaneous at all temperatures (A-2). (B) When ΔH > 0 and ΔS > 0, at high T the TΔS term dominates making ΔG negative, so spontaneous only at high temperatures (B-1). (C) When ΔH < 0 and ΔS < 0, at low T the ΔH term dominates making ΔG negative, so spontaneous only at low temperatures (C-4). (D) When ΔH > 0 and ΔS < 0, both terms make ΔG positive, so non-spontaneous at all temperatures (D-3).",
+    "correct_answer": "B",
+    "concept_tags": [
+      "spontaneity-conditions",
+      "delta-H-delta-S-signs",
+      "temperature-dependence",
+      "gibbs-equation"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-1, C-4, D-3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-4, C-1, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-4, B-3, C-2, D-1",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This option matches ΔH < 0, ΔS > 0 with 'spontaneous only at high T', which is wrong. When ΔH is negative and ΔS is positive, both favor spontaneity, making the reaction spontaneous at ALL temperatures, not just high T.",
+        "misconception": "Not recognizing that when both thermodynamic factors favor spontaneity (negative ΔH, positive ΔS), the reaction is always spontaneous."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option reverses nearly all the correct matchings. For example, it matches ΔH < 0, ΔS > 0 with 'non-spontaneous at all T', which contradicts the Gibbs equation since both terms make ΔG negative.",
+        "misconception": "Fundamentally misunderstanding how the signs of ΔH and ΔS determine the sign of ΔG through the equation ΔG = ΔH − TΔS."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option matches ΔH > 0, ΔS < 0 with 'spontaneous at high T'. In reality, with positive ΔH and negative ΔS, ΔG = ΔH − TΔS is positive at all temperatures (ΔH is positive and −TΔS is also positive), making the reaction non-spontaneous at all temperatures.",
+        "misconception": "Confusing the case ΔH > 0, ΔS < 0 (never spontaneous) with ΔH > 0, ΔS > 0 (spontaneous at high T)."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match Column I (Process) with Column II (Entropy change):\n\nColumn I | Column II\nA. Expansion of an ideal gas into vacuum | 1. ΔS = ΔH_fus / T_m\nB. Mixing of two ideal gases | 2. ΔS = nR ln(V₂/V₁)\nC. Melting of a solid at its melting point | 3. ΔS is always positive (irreversible mixing)\nD. Heating a substance from T₁ to T₂ at constant pressure | 4. ΔS = nCp ln(T₂/T₁)\n\nSelect the correct matching:",
+    "explanation": "The correct matching is: (A-2) For free expansion of an ideal gas from volume V₁ to V₂, ΔS = nR ln(V₂/V₁). Since V₂ > V₁, ΔS is positive. (B-3) When two ideal gases are mixed, the entropy always increases because the randomness of the system increases as each gas occupies a larger volume. This is an irreversible spontaneous process. (C-1) At the melting point, the entropy change of fusion equals ΔH_fus/T_m, where T_m is the melting point temperature. (D-4) When a substance is heated at constant pressure from T₁ to T₂, ΔS = nCp ln(T₂/T₁), obtained by integrating dS = nCp dT/T.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "entropy-change-processes",
+      "free-expansion",
+      "mixing-entropy",
+      "fusion-entropy",
+      "heating-entropy"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-1, B-2, C-4, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-3, B-4, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-1, C-3, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This option matches gas expansion (A) with ΔH_fus/T_m (1), which is the formula for entropy of fusion at the melting point, not for gas expansion. Gas expansion uses ΔS = nR ln(V₂/V₁).",
+        "misconception": "Confusing the entropy formula for gas expansion with the entropy formula for phase change at the melting point."
+      },
+      {
+        "option_key": "B",
+        "hint": "This option matches gas expansion (A) with 'always positive, irreversible mixing' (3). While free expansion does have positive ΔS, the formula ΔS = nR ln(V₂/V₁) is the specific expression for gas expansion, and the statement about irreversible mixing applies to gas mixing.",
+        "misconception": "Mixing up the specific entropy expressions for free expansion and gas mixing processes."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option matches gas expansion (A) with nCp ln(T₂/T₁) (4), which is the entropy change for heating at constant pressure. Free expansion of an ideal gas into vacuum is isothermal, so a temperature-based formula does not apply.",
+        "misconception": "Applying the constant-pressure heating entropy formula to a free expansion process, which is isothermal for an ideal gas."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Statement: For a reaction to be spontaneous at constant temperature and pressure, the Gibbs free energy change (ΔG) must be negative.",
+    "explanation": "This statement is TRUE. According to the Gibbs free energy criterion for spontaneity, a process at constant temperature and pressure is spontaneous if and only if ΔG < 0 (negative). When ΔG = 0, the system is at equilibrium, and when ΔG > 0, the process is non-spontaneous in the forward direction. This is a fundamental criterion derived from the second law of thermodynamics and is one of the most important concepts in chemical thermodynamics as described in NCERT.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "gibbs-free-energy",
+      "spontaneity-criterion",
+      "delta-G-negative"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement accurately describes the Gibbs free energy criterion for spontaneity. ΔG < 0 is the universally accepted condition for a process to be spontaneous at constant T and P, as stated in NCERT and all standard chemistry textbooks.",
+        "misconception": "Doubting the fundamental Gibbs free energy criterion for spontaneity that is a cornerstone of chemical thermodynamics."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Statement: The entropy of a system always decreases during a spontaneous process.",
+    "explanation": "This statement is FALSE. It is the entropy of the universe (system + surroundings), not the entropy of the system alone, that always increases during a spontaneous process. The entropy of the system can decrease in a spontaneous process, provided the entropy of the surroundings increases by a greater amount so that ΔS_universe > 0. For example, when water freezes spontaneously below 0°C, the entropy of the system (water) decreases, but the heat released to the surroundings increases the entropy of the surroundings by a greater amount, making ΔS_universe positive.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "entropy-system-vs-universe",
+      "second-law",
+      "spontaneous-process",
+      "common-misconception"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The statement incorrectly claims the system's entropy always decreases. The second law states that the entropy of the universe always increases in a spontaneous process. The system's entropy can increase, decrease, or remain unchanged as long as the total universal entropy increases.",
+        "misconception": "Confusing the entropy of the system with the entropy of the universe. The second law applies to the universe (system + surroundings), not just the system."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": "N/A"
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "For a reaction at equilibrium, ΔG = 0 and the relationship ΔG° = −RT ln K shows that when K = 1, the value of ΔG° is ______.",
+    "explanation": "When the equilibrium constant K = 1, substituting into the equation ΔG° = −RT ln K gives ΔG° = −RT ln(1) = −RT × 0 = 0. This means that when K = 1, the standard Gibbs free energy change is zero, indicating that the reactants and products are equally favored under standard conditions. When K > 1, ΔG° is negative (products favored), and when K < 1, ΔG° is positive (reactants favored).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "delta-G-standard",
+      "equilibrium-constant",
+      "K-equals-one",
+      "delta-G-equals-zero"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Negative",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Positive",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zero",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Equal to −RT",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "ΔG° is negative only when K > 1, meaning products are favored at equilibrium. When K = 1, ln K = ln 1 = 0, so ΔG° = −RT × 0 = 0, not a negative value.",
+        "misconception": "Confusing the condition K > 1 (which gives ΔG° < 0) with the condition K = 1 (which gives ΔG° = 0)."
+      },
+      {
+        "option_key": "B",
+        "hint": "ΔG° is positive only when K < 1, meaning reactants are favored. When K = 1, the standard free energies of reactants and products are equal, giving ΔG° = 0.",
+        "misconception": "Confusing the condition K < 1 (which gives ΔG° > 0) with K = 1 (which gives ΔG° = 0)."
+      },
+      {
+        "option_key": "D",
+        "hint": "ΔG° = −RT would require ln K = 1, i.e., K = e ≈ 2.718. When K = 1, ln K = 0, so ΔG° = −RT × 0 = 0, not −RT.",
+        "misconception": "Confusing ln(1) = 0 with ln(e) = 1, leading to an incorrect value of ΔG° = −RT instead of 0."
+      }
+    ]
+  },
+  {
+    "id": "chem-thermo-gibbs-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "Scenario: A chemist is studying a reaction that has ΔH = +50 kJ mol⁻¹ and ΔS = +150 J K⁻¹ mol⁻¹. She wants to determine whether this reaction can be made spontaneous by adjusting the temperature, and if so, the minimum temperature required.\n\nQuestion: At what minimum temperature (in Kelvin) will this reaction become spontaneous?",
+    "explanation": "For the reaction to become spontaneous, ΔG must be negative. Using ΔG = ΔH − TΔS, setting ΔG = 0 gives the crossover temperature: T = ΔH/ΔS. Converting to consistent units: ΔH = 50000 J mol⁻¹ and ΔS = 150 J K⁻¹ mol⁻¹. Therefore T = 50000/150 = 333.3 K ≈ 333 K. Above this temperature, TΔS > ΔH, so ΔG becomes negative and the reaction is spontaneous. Since both ΔH and ΔS are positive, this is an entropy-driven endothermic reaction that becomes spontaneous above the crossover temperature. The chemist should heat the reaction mixture above 333 K to make the reaction proceed spontaneously.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "crossover-temperature",
+      "spontaneity-calculation",
+      "gibbs-equation-application",
+      "scenario-analysis"
+    ],
+    "topic": "Entropy, Second Law, and Gibbs Free Energy",
+    "subject": "chemistry",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "250 K",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "500 K",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "150 K",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "333 K",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "250 K is below the crossover temperature. At 250 K, ΔG = 50000 − (250 × 150) = 50000 − 37500 = +12500 J mol⁻¹ > 0, so the reaction is still non-spontaneous. The minimum temperature is T = 50000/150 = 333 K.",
+        "misconception": "Guessing a temperature without performing the correct calculation T = ΔH/ΔS."
+      },
+      {
+        "option_key": "B",
+        "hint": "500 K is above the crossover temperature, so the reaction would be spontaneous at this temperature. However, the question asks for the minimum temperature, which is T = ΔH/ΔS = 50000/150 = 333 K.",
+        "misconception": "Choosing a temperature at which the reaction is spontaneous but not the minimum temperature required."
+      },
+      {
+        "option_key": "C",
+        "hint": "150 K is simply the numerical value of ΔS, not the crossover temperature. The correct calculation requires dividing ΔH by ΔS: T = 50000/150 = 333 K.",
+        "misconception": "Using the numerical value of ΔS as the temperature instead of calculating T = ΔH/ΔS."
+      }
+    ]
+  }
+]
