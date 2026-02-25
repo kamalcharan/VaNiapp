@@ -1,0 +1,96 @@
+{
+  "questions": [
+    {
+      "id": "test-diagram-001",
+      "subject_id": "physics",
+      "chapter_id": "physics-laws-of-motion",
+      "question_type": "diagram-based",
+      "difficulty": "medium",
+      "question_text": "A 5 kg block is placed on a frictionless surface. A horizontal force of 10 N is applied to the right. What is the acceleration of the block?",
+      "question_text_te": "ఒక 5 kg బ్లాక్ ఘర్షణ లేని ఉపరితలంపై ఉంచబడింది. 10 N సమాంతర బలం కుడివైపుకు వర్తింపజేయబడింది. బ్లాక్ యొక్క త్వరణం ఎంత?",
+      "explanation": "From the free-body diagram: Normal force balances weight (vertical forces cancel). The only horizontal force is 10 N to the right. Using F = ma: a = F/m = 10/5 = 2 m/s² to the right.",
+      "explanation_te": "స్వేచ్ఛా-వస్తు రేఖాచిత్రం నుండి: అభిలంబ బలం బరువును సమతుల్యం చేస్తుంది. ఏకైక సమాంతర బలం కుడికి 10 N. F = ma ఉపయోగించి: a = F/m = 10/5 = 2 m/s² కుడికి.",
+      "image_file": "free-body-diagram.svg",
+      "image_alt": "Free-body diagram showing a 5 kg block on a frictionless surface with 10 N horizontal force to the right, normal force upward, and weight downward",
+      "correct_answer": "b",
+      "options": [
+        { "key": "a", "text": "10 m/s² to the right", "text_te": "10 m/s² కుడికి", "is_correct": false },
+        { "key": "b", "text": "2 m/s² to the right", "text_te": "2 m/s² కుడికి", "is_correct": true },
+        { "key": "c", "text": "5 m/s² to the right", "text_te": "5 m/s² కుడికి", "is_correct": false },
+        { "key": "d", "text": "0 m/s² (no acceleration)", "text_te": "0 m/s² (త్వరణం లేదు)", "is_correct": false }
+      ],
+      "elimination_hints": [
+        { "option_key": "a", "hint": "If a = 10, then F = 5×10 = 50 N, not 10 N. You divided the wrong way.", "hint_te": "a = 10 అయితే, F = 5×10 = 50 N, 10 N కాదు.", "misconception": "Confused a = F with a = F/m", "misconception_te": "a = F ను a = F/m తో కలిపారు" },
+        { "option_key": "c", "hint": "Check: 5 kg × 5 m/s² = 25 N ≠ 10 N. This uses the mass value as acceleration.", "hint_te": "తనిఖీ: 5 kg × 5 m/s² = 25 N ≠ 10 N", "misconception": "Used mass as acceleration value", "misconception_te": "ద్రవ్యరాశి విలువను త్వరణంగా ఉపయోగించారు" },
+        { "option_key": "d", "hint": "There is a net force (10 N), so acceleration cannot be zero. Zero acceleration only when net force is zero.", "hint_te": "నికర బలం (10 N) ఉంది, కాబట్టి త్వరణం సున్నా కాదు.", "misconception": "Ignored the applied force", "misconception_te": "వర్తించిన బలాన్ని విస్మరించారు" }
+      ]
+    },
+    {
+      "id": "test-diagram-002",
+      "subject_id": "physics",
+      "chapter_id": "physics-laws-of-motion",
+      "question_type": "diagram-based",
+      "difficulty": "hard",
+      "question_text": "In the Atwood machine shown, two masses m₁ = 2 kg and m₂ = 3 kg are connected by a string over a frictionless pulley. What is the acceleration of the system? (Take g = 10 m/s²)",
+      "question_text_te": "చూపిన ఆట్వుడ్ యంత్రంలో, రెండు ద్రవ్యరాశులు m₁ = 2 kg మరియు m₂ = 3 kg ఘర్షణ లేని గిరగిరపై తాడుతో అనుసంధానించబడ్డాయి. వ్యవస్థ యొక్క త్వరణం ఎంత? (g = 10 m/s² తీసుకోండి)",
+      "explanation": "Net force = (m₂ - m₁)g = (3 - 2) × 10 = 10 N. Total mass = m₁ + m₂ = 5 kg. Acceleration a = F/m = 10/5 = 2 m/s².",
+      "explanation_te": "నికర బలం = (m₂ - m₁)g = (3 - 2) × 10 = 10 N. మొత్తం ద్రవ్యరాశి = m₁ + m₂ = 5 kg. త్వరణం a = F/m = 10/5 = 2 m/s².",
+      "image_file": "atwood-machine.svg",
+      "image_alt": "Atwood machine with a pulley at top, 2 kg mass hanging on the left and 3 kg mass hanging on the right, g = 10 m/s²",
+      "correct_answer": "b",
+      "options": [
+        { "key": "a", "text": "1 m/s²", "text_te": "1 m/s²", "is_correct": false },
+        { "key": "b", "text": "2 m/s²", "text_te": "2 m/s²", "is_correct": true },
+        { "key": "c", "text": "5 m/s²", "text_te": "5 m/s²", "is_correct": false },
+        { "key": "d", "text": "10 m/s²", "text_te": "10 m/s²", "is_correct": false }
+      ],
+      "elimination_hints": [
+        { "option_key": "a", "hint": "This would mean net force = 5 × 1 = 5 N, but actual net force is (3-2)×10 = 10 N.", "hint_te": "దీని అర్థం నికర బలం = 5 × 1 = 5 N, కానీ వాస్తవ నికర బలం 10 N.", "misconception": "Used difference in mass without multiplying by g properly", "misconception_te": "" },
+        { "option_key": "c", "hint": "This uses only one mass (m₂ - m₁ = 1, then 10/1?). Both masses accelerate together.", "hint_te": "ఇది ఒక ద్రవ్యరాశిని మాత్రమే ఉపయోగిస్తుంది. రెండు ద్రవ్యరాశులు కలిసి త్వరణం పొందుతాయి.", "misconception": "Forgot to use total mass in denominator", "misconception_te": "" }
+      ]
+    },
+    {
+      "id": "test-diagram-003",
+      "subject_id": "botany",
+      "chapter_id": "botany-cell-biology",
+      "question_type": "diagram-based",
+      "difficulty": "easy",
+      "question_text": "Identify the part labeled 'X' in the plant cell diagram shown.",
+      "question_text_te": "చూపిన మొక్కల కణ రేఖాచిత్రంలో 'X' అని గుర్తించబడిన భాగాన్ని గుర్తించండి.",
+      "explanation": "The large central structure labeled X is the central vacuole. In mature plant cells, it occupies up to 90% of cell volume and stores water, ions, sugars, and waste products. It maintains turgor pressure essential for plant rigidity.",
+      "explanation_te": "X అని గుర్తించబడిన పెద్ద కేంద్ర నిర్మాణం కేంద్ర రిక్తిక. పరిణత మొక్కల కణాలలో, ఇది కణ పరిమాణంలో 90% వరకు ఆక్రమిస్తుంది మరియు నీరు, అయాన్లు, చక్కెరలు మరియు వ్యర్థ ఉత్పత్తులను నిల్వ చేస్తుంది.",
+      "image_file": "plant-cell-diagram.svg",
+      "image_alt": "Plant cell diagram with cell wall, cell membrane, nucleus, chloroplasts, mitochondria, and a large central structure labeled X",
+      "correct_answer": "c",
+      "options": [
+        { "key": "a", "text": "Nucleus", "text_te": "కేంద్రకం", "is_correct": false },
+        { "key": "b", "text": "Chloroplast", "text_te": "హరితకణం", "is_correct": false },
+        { "key": "c", "text": "Central vacuole", "text_te": "కేంద్ర రిక్తిక", "is_correct": true },
+        { "key": "d", "text": "Mitochondria", "text_te": "మైటోకాండ్రియా", "is_correct": false }
+      ],
+      "elimination_hints": [
+        { "option_key": "a", "hint": "The nucleus is the smaller yellow circle with a dark center (nucleolus). X is much larger.", "hint_te": "కేంద్రకం చిన్న పసుపు వృత్తం. X చాలా పెద్దది.", "misconception": "Confused nucleus with vacuole based on size", "misconception_te": "" },
+        { "option_key": "b", "hint": "Chloroplasts are the small green oval organelles. X is the large blue central structure.", "hint_te": "హరితకణాలు చిన్న ఆకుపచ్చ అండాకార అవయవాలు. X పెద్ద నీలి కేంద్ర నిర్మాణం.", "misconception": "Did not recognize chloroplast shape", "misconception_te": "" },
+        { "option_key": "d", "hint": "Mitochondria are the small pink/red oval organelles. X is far larger than any mitochondrion.", "hint_te": "మైటోకాండ్రియా చిన్న గులాబీ/ఎరుపు అండాకార అవయవాలు.", "misconception": "Could not distinguish organelle sizes", "misconception_te": "" }
+      ]
+    },
+    {
+      "id": "test-mcq-001",
+      "subject_id": "physics",
+      "chapter_id": "physics-laws-of-motion",
+      "question_type": "mcq",
+      "difficulty": "easy",
+      "question_text": "What is the SI unit of force?",
+      "question_text_te": "బలం యొక్క SI యూనిట్ ఏమిటి?",
+      "explanation": "The SI unit of force is the Newton (N). 1 Newton = 1 kg × 1 m/s². Named after Sir Isaac Newton.",
+      "explanation_te": "బలం యొక్క SI యూనిట్ న్యూటన్ (N). 1 న్యూటన్ = 1 kg × 1 m/s².",
+      "correct_answer": "a",
+      "options": [
+        { "key": "a", "text": "Newton", "text_te": "న్యూటన్", "is_correct": true },
+        { "key": "b", "text": "Joule", "text_te": "జౌల్", "is_correct": false },
+        { "key": "c", "text": "Watt", "text_te": "వాట్", "is_correct": false },
+        { "key": "d", "text": "Pascal", "text_te": "పాస్కల్", "is_correct": false }
+      ]
+    }
+  ]
+}

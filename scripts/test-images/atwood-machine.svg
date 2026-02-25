@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="350" viewBox="0 0 400 350">
+  <rect x="0" y="0" width="400" height="350" fill="#f8f9fa"/>
+
+  <!-- Support beam -->
+  <rect x="170" y="30" width="60" height="10" fill="#7F8C8D" stroke="#333" stroke-width="1"/>
+
+  <!-- Pulley -->
+  <circle cx="200" cy="60" r="25" fill="#BDC3C7" stroke="#333" stroke-width="2"/>
+  <circle cx="200" cy="60" r="5" fill="#333"/>
+
+  <!-- Left string -->
+  <line x1="175" y1="60" x2="175" y2="200" stroke="#333" stroke-width="2"/>
+
+  <!-- Right string -->
+  <line x1="225" y1="60" x2="225" y2="240" stroke="#333" stroke-width="2"/>
+
+  <!-- Left mass (2 kg) -->
+  <rect x="150" y="200" width="50" height="50" fill="#3498DB" stroke="#333" stroke-width="2" rx="4"/>
+  <text x="175" y="230" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">2 kg</text>
+
+  <!-- Right mass (3 kg) -->
+  <rect x="200" y="240" width="50" height="50" fill="#E74C3C" stroke="#333" stroke-width="2" rx="4"/>
+  <text x="225" y="270" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="white">3 kg</text>
+
+  <!-- Labels -->
+  <text x="175" y="270" text-anchor="middle" font-family="Arial" font-size="12" fill="#333">m₁</text>
+  <text x="225" y="310" text-anchor="middle" font-family="Arial" font-size="12" fill="#333">m₂</text>
+
+  <!-- g value -->
+  <text x="330" y="180" text-anchor="middle" font-family="Arial" font-size="14" fill="#666">g = 10 m/s²</text>
+
+  <!-- Gravity arrows -->
+  <line x1="175" y1="250" x2="175" y2="290" stroke="#8E44AD" stroke-width="2"/>
+  <polygon points="175,290 170,280 180,280" fill="#8E44AD"/>
+  <text x="175" y="305" text-anchor="middle" font-family="Arial" font-size="10" fill="#8E44AD">m₁g</text>
+
+  <line x1="225" y1="290" x2="225" y2="330" stroke="#8E44AD" stroke-width="2"/>
+  <polygon points="225,330 220,320 230,320" fill="#8E44AD"/>
+  <text x="225" y="345" text-anchor="middle" font-family="Arial" font-size="10" fill="#8E44AD">m₂g</text>
+
+  <!-- Title -->
+  <text x="200" y="20" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Atwood Machine</text>
+</svg>
