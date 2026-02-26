@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@expo-google-fonts/caveat": "^0.2.3",
@@ -47,6 +48,7 @@
     "@babel/core": "^7.25.2",
     "@types/react": "~19.1.10",
     "babel-preset-expo": "~54.0.10",
+    "patch-package": "^8.0.1",
     "typescript": "~5.9.2"
   },
   "private": true
