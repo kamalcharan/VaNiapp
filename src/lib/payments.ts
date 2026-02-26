@@ -58,13 +58,17 @@ export async function saveSubscription(params: SaveSubscriptionParams): Promise<
     throw error;
   }
 
-  // Track coupon usage
+  // Track coupon usage (non-critical — don't block if it fails)
   if (params.couponCode) {
-    await supabase.from('med_coupon_redemptions').insert({
-      user_id: user.id,
-      coupon_code: params.couponCode,
-      plan_type: params.planType,
-    }).catch(() => {}); // non-critical
+    try {
+      await supabase.from('med_coupon_redemptions').insert({
+        user_id: user.id,
+        coupon_code: params.couponCode,
+        plan_type: params.planType,
+      });
+    } catch {
+      // ignore — redemption tracking is best-effort
+    }
   }
 }
 

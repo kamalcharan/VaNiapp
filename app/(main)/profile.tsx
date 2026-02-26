@@ -33,9 +33,11 @@ import {
 } from '../../src/lib/database';
 import { getSubjects, getLanguages, CatalogSubject, CatalogLanguage } from '../../src/lib/catalog';
 import { ExamType, Language } from '../../src/types';
-import { store } from '../../src/store';
+import { useSelector } from 'react-redux';
+import { store, RootState } from '../../src/store';
 import { updateTargetYear, updateLanguage } from '../../src/store/slices/authSlice';
 import { getTargetYearOptions } from '../../src/constants/persona';
+import { PLANS, type PlanId } from '../../src/constants/pricing';
 
 const TARGET_YEAR_OPTIONS = getTargetYearOptions();
 
@@ -43,6 +45,11 @@ export default function ProfileScreen() {
   const { colors, mode, toggle } = useTheme();
   const toast = useToast();
   const router = useRouter();
+
+  // Subscription state from Redux
+  const isPaid = useSelector((s: RootState) => s.trial.isPaid);
+  const subscriptionPlan = useSelector((s: RootState) => s.trial.subscriptionPlan);
+  const subscriptionExpiresAt = useSelector((s: RootState) => s.trial.subscriptionExpiresAt);
 
   const [profile, setProfile] = useState<MedProfile | null>(null);
   const [subjects, setSubjects] = useState<CatalogSubject[]>([]);
@@ -680,6 +687,78 @@ export default function ProfileScreen() {
             </JournalCard>
           )}
 
+          {/* Subscription / Plan */}
+          <StickyNote color="pink" rotation={0.5} delay={325}>
+            <Text
+              style={[
+                Typography.label,
+                { color: colors.textTertiary, marginBottom: Spacing.md },
+              ]}
+            >
+              MY PLAN
+            </Text>
+
+            {isPaid && subscriptionPlan ? (
+              <>
+                <View style={styles.infoRow}>
+                  <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Plan</Text>
+                  <Text
+                    style={[
+                      Typography.body,
+                      { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' },
+                    ]}
+                  >
+                    {PLANS[subscriptionPlan]?.name ?? subscriptionPlan}
+                  </Text>
+                </View>
+                <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
+
+                <View style={styles.infoRow}>
+                  <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Status</Text>
+                  <View style={[styles.statusBadge, { backgroundColor: colors.correctBg }]}>
+                    <Text style={[Typography.bodySm, { color: colors.correct, fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
+                      Active
+                    </Text>
+                  </View>
+                </View>
+                <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
+
+                <View style={styles.infoRow}>
+                  <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                    {subscriptionPlan === 'crunch' ? 'Valid until' : 'Renews on'}
+                  </Text>
+                  <Text
+                    style={[
+                      Typography.body,
+                      { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' },
+                    ]}
+                  >
+                    {subscriptionExpiresAt
+                      ? new Date(subscriptionExpiresAt).toLocaleDateString('en-IN', {
+                          day: 'numeric',
+                          month: 'short',
+                          year: 'numeric',
+                        })
+                      : 'Until exam season'}
+                  </Text>
+                </View>
+              </>
+            ) : (
+              <View style={{ alignItems: 'center', gap: Spacing.md, paddingVertical: Spacing.sm }}>
+                <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center' }]}>
+                  You're on the free trial. Upgrade to unlock full access!
+                </Text>
+                <PuffyButton
+                  title="View Plans"
+                  icon={'\u2B50'}
+                  variant="secondary"
+                  onPress={() => router.push('/upgrade')}
+                  style={{ alignSelf: 'center' }}
+                />
+              </View>
+            )}
+          </StickyNote>
+
           {/* Invite / Referral */}
           <JournalCard rotation={0.3} delay={350}>
             <Text
@@ -957,6 +1036,11 @@ const styles = StyleSheet.create({
   aboutLink: {
     alignItems: 'center',
     paddingVertical: Spacing.md,
+  },
+  statusBadge: {
+    paddingHorizontal: Spacing.md,
+    paddingVertical: 4,
+    borderRadius: BorderRadius.round,
   },
   // Invite / Referral
   inviteRow: {
