@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
 import { Option } from '../../types';
@@ -23,19 +23,6 @@ interface Props extends QuestionRendererProps {
   payload: MatchTheFollowingPayloadShape;
 }
 
-// Distinct colors for each pair (up to 5 items)
-const PAIR_COLORS = ['#8B5CF6', '#3B82F6', '#F59E0B', '#14B8A6', '#EC4899'];
-
-// Parse option text like "1-b, 2-c, 3-a" → { '1': 'b', '2': 'c', '3': 'a' }
-function parseOptionMapping(text: string): Record<string, string> {
-  const mapping: Record<string, string> = {};
-  for (const part of text.split(',')) {
-    const [num, letter] = part.trim().split('-');
-    if (num && letter) mapping[num.trim()] = letter.trim();
-  }
-  return mapping;
-}
-
 export function MatchTheFollowingQuestion({
   language,
   selectedOptionId,
@@ -44,252 +31,140 @@ export function MatchTheFollowingQuestion({
   colors,
   payload,
 }: Props) {
-  const [selectedA, setSelectedA] = useState<string | null>(null);
-  const [pairs, setPairs] = useState<Record<string, string>>({});
+  const isCorrect = selectedOptionId === payload.correctOptionId;
 
-  const isConfirmed = selectedOptionId !== null;
-
-  // When showing feedback (including revisiting an answered question),
-  // derive pairs from the selected option so the display is correct.
-  const displayPairs = useMemo(() => {
-    if (isConfirmed && selectedOptionId) {
-      const opt = payload.options.find((o) => o.id === selectedOptionId);
-      if (opt) return parseOptionMapping(opt.text);
+  const getOptionStyle = (optId: string) => {
+    if (!showFeedback) {
+      return { bg: colors.surface, border: colors.surfaceBorder, text: colors.text };
     }
-    return pairs;
-  }, [isConfirmed, selectedOptionId, pairs, payload.options]);
-
-  const allPaired = Object.keys(pairs).length === payload.columnA.length;
-
-  // Color for a pair — based on Column A item's position in the array
-  const colorForA = (aId: string): string | null => {
-    if (!displayPairs[aId]) return null;
-    const idx = payload.columnA.findIndex((a) => a.id === aId);
-    return PAIR_COLORS[idx % PAIR_COLORS.length];
+    if (optId === payload.correctOptionId) {
+      return { bg: '#22C55E18', border: '#22C55E', text: '#16A34A' };
+    }
+    if (optId === selectedOptionId && !isCorrect) {
+      return { bg: '#EF444418', border: '#EF4444', text: '#DC2626' };
+    }
+    return { bg: colors.surface, border: colors.surfaceBorder, text: colors.textTertiary };
   };
 
-  const colorForB = (bId: string): string | null => {
-    const aId = Object.entries(displayPairs).find(([, v]) => v === bId)?.[0];
-    return aId ? colorForA(aId) : null;
-  };
-
-  // ── Interaction handlers ──
-
-  const onTapA = (aId: string) => {
-    if (isConfirmed) return;
-    if (selectedA === aId) {
-      setSelectedA(null);
-      return;
-    }
-    // If already paired, unpair it first
-    if (pairs[aId]) {
-      const next = { ...pairs };
-      delete next[aId];
-      setPairs(next);
-    }
-    setSelectedA(aId);
-  };
-
-  const onTapB = (bId: string) => {
-    if (isConfirmed) return;
-
-    // If no A is selected, tap on a paired B unpairs it
-    if (!selectedA) {
-      const existingA = Object.entries(pairs).find(([, v]) => v === bId)?.[0];
-      if (existingA) {
-        const next = { ...pairs };
-        delete next[existingA];
-        setPairs(next);
-      }
-      return;
-    }
-
-    // Create pair: selectedA → bId
-    const next = { ...pairs };
-    // If this B was paired to another A, remove that pair
-    const prevA = Object.entries(next).find(([, v]) => v === bId)?.[0];
-    if (prevA) delete next[prevA];
-    next[selectedA] = bId;
-    setPairs(next);
-    setSelectedA(null);
-  };
-
-  // Find which MCQ option matches the user's pairing
-  const onConfirm = () => {
-    for (const opt of payload.options) {
-      const optMapping = parseOptionMapping(opt.text);
-      const matches =
-        Object.keys(optMapping).length === Object.keys(pairs).length &&
-        Object.entries(pairs).every(([a, b]) => optMapping[a] === b);
-      if (matches) {
-        onSelect(opt.id);
-        return;
-      }
-    }
-    // User's combination not in options → pick a wrong option
-    const wrong = payload.options.find((o) => o.id !== payload.correctOptionId);
-    onSelect(wrong?.id || payload.options[0].id);
-  };
-
-  // ── Render helpers ──
-
-  const renderItemCard = (
-    item: ColumnItem,
-    side: 'A' | 'B',
-    idx: number,
-  ) => {
-    const isA = side === 'A';
-    const pairColor = isA ? colorForA(item.id) : colorForB(item.id);
-    const isPaired = !!pairColor;
-    const isActive = isA && selectedA === item.id;
-    const label = isA ? `${idx + 1}` : String.fromCharCode(97 + idx);
-
-    // Feedback colors
-    let borderColor = colors.surfaceBorder;
-    let bgColor = colors.surface;
-    let labelBg = colors.surfaceBorder + '80';
-    let labelColor = colors.textTertiary;
-
-    if (showFeedback && isPaired && isA) {
-      const correct = displayPairs[item.id] === payload.correctMapping[item.id];
-      borderColor = correct ? '#22C55E' : '#EF4444';
-      bgColor = correct ? '#22C55E12' : '#EF444412';
-      labelBg = correct ? '#22C55E30' : '#EF444430';
-      labelColor = correct ? '#16A34A' : '#DC2626';
-    } else if (showFeedback && isPaired && !isA) {
-      const pairedA = Object.entries(displayPairs).find(([, v]) => v === item.id)?.[0];
-      if (pairedA) {
-        const correct = displayPairs[pairedA] === payload.correctMapping[pairedA];
-        borderColor = correct ? '#22C55E' : '#EF4444';
-        bgColor = correct ? '#22C55E12' : '#EF444412';
-        labelBg = correct ? '#22C55E30' : '#EF444430';
-        labelColor = correct ? '#16A34A' : '#DC2626';
-      }
-    } else if (isActive) {
-      borderColor = colors.primary;
-      bgColor = colors.primary + '08';
-      labelBg = colors.primary + '25';
-      labelColor = colors.primary;
-    } else if (isPaired) {
-      borderColor = pairColor!;
-      bgColor = pairColor + '10';
-      labelBg = pairColor + '25';
-      labelColor = pairColor!;
-    }
-
-    return (
-      <Pressable
-        key={item.id}
-        onPress={() => (isA ? onTapA(item.id) : onTapB(item.id))}
-        disabled={isConfirmed}
-        style={[
-          styles.itemCard,
-          {
-            backgroundColor: bgColor,
-            borderColor,
-            borderWidth: isActive || (isPaired && !showFeedback) ? 2 : 1,
-          },
-        ]}
-      >
-        <View style={styles.itemRow}>
-          {/* Label badge */}
-          <View style={[styles.labelBadge, { backgroundColor: labelBg }]}>
-            <Text style={[styles.labelText, { color: labelColor }]}>{label}</Text>
-          </View>
-
-          {/* Text */}
-          <Text
-            style={[Typography.bodySm, { color: colors.text, flex: 1 }]}
-            numberOfLines={4}
-          >
-            {language === 'te' ? item.textTe : item.text}
-          </Text>
-
-          {/* Pair indicator (small colored dot with matching number) */}
-          {isPaired && !showFeedback && (
-            <View style={[styles.pairDot, { backgroundColor: pairColor! }]}>
-              <Text style={styles.pairDotText}>
-                {isA
-                  ? String.fromCharCode(
-                      97 + payload.columnB.findIndex((b) => b.id === displayPairs[item.id]),
-                    )
-                  : Object.entries(displayPairs).find(([, v]) => v === item.id)?.[0] || ''}
-              </Text>
-            </View>
-          )}
-
-          {/* Feedback icons */}
-          {showFeedback && isA && isPaired && (
-            <Text style={{ fontSize: 16 }}>
-              {displayPairs[item.id] === payload.correctMapping[item.id] ? '\u2713' : '\u2717'}
-            </Text>
-          )}
-        </View>
-      </Pressable>
-    );
-  };
+  const maxRows = Math.max(payload.columnA.length, payload.columnB.length);
 
   return (
     <View style={styles.container}>
-      {/* Instruction text */}
-      {!isConfirmed && (
-        <Text
-          style={[
-            Typography.bodySm,
-            { color: colors.textSecondary, textAlign: 'center', marginBottom: Spacing.xs },
-          ]}
-        >
-          {selectedA
-            ? 'Now tap an item from Column B to pair'
-            : allPaired
-            ? 'Review your pairs, then confirm'
-            : 'Tap an item from Column A, then match it in Column B'}
-        </Text>
-      )}
-
-      {/* Two-column layout */}
-      <View style={styles.columnsContainer}>
-        {/* Column A */}
-        <View style={styles.column}>
-          <Text style={[styles.colHeader, { color: '#6366F1' }]}>COLUMN A</Text>
-          {payload.columnA.map((item, idx) => renderItemCard(item, 'A', idx))}
+      {/* Reference table card */}
+      <View style={[styles.tableCard, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
+        {/* Header row */}
+        <View style={[styles.tableHeaderRow, { borderBottomColor: colors.surfaceBorder }]}>
+          <View style={styles.tableHalf}>
+            <Text style={[styles.colHeader, { color: '#6366F1' }]}>COLUMN I</Text>
+          </View>
+          <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
+          <View style={styles.tableHalf}>
+            <Text style={[styles.colHeader, { color: '#F59E0B' }]}>COLUMN II</Text>
+          </View>
         </View>
 
-        {/* Column B */}
-        <View style={styles.column}>
-          <Text style={[styles.colHeader, { color: '#F59E0B' }]}>COLUMN B</Text>
-          {payload.columnB.map((item, idx) => renderItemCard(item, 'B', idx))}
-        </View>
+        {/* Data rows */}
+        {Array.from({ length: maxRows }).map((_, idx) => {
+          const aItem = payload.columnA[idx];
+          const bItem = payload.columnB[idx];
+          const aLabel = `${idx + 1}`;
+          const bLabel = String.fromCharCode(97 + idx);
+          const isLast = idx === maxRows - 1;
+
+          return (
+            <View
+              key={idx}
+              style={[
+                styles.tableDataRow,
+                !isLast && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: colors.surfaceBorder },
+              ]}
+            >
+              {/* Column A cell */}
+              <View style={styles.tableHalf}>
+                {aItem && (
+                  <View style={styles.cellContent}>
+                    <View style={[styles.cellBadge, { backgroundColor: '#6366F115' }]}>
+                      <Text style={[styles.cellBadgeText, { color: '#6366F1' }]}>{aLabel}</Text>
+                    </View>
+                    <Text style={[Typography.bodySm, { color: colors.text, flex: 1 }]} numberOfLines={4}>
+                      {language === 'te' ? aItem.textTe : aItem.text}
+                    </Text>
+                  </View>
+                )}
+              </View>
+
+              <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
+
+              {/* Column B cell */}
+              <View style={styles.tableHalf}>
+                {bItem && (
+                  <View style={styles.cellContent}>
+                    <View style={[styles.cellBadge, { backgroundColor: '#F59E0B15' }]}>
+                      <Text style={[styles.cellBadgeText, { color: '#D97706' }]}>{bLabel}</Text>
+                    </View>
+                    <Text style={[Typography.bodySm, { color: colors.text, flex: 1 }]} numberOfLines={4}>
+                      {language === 'te' ? bItem.textTe : bItem.text}
+                    </Text>
+                  </View>
+                )}
+              </View>
+            </View>
+          );
+        })}
       </View>
 
-      {/* Confirm button */}
-      {allPaired && !isConfirmed && (
-        <Pressable
-          onPress={onConfirm}
-          style={[styles.confirmBtn, { backgroundColor: colors.primary }]}
-        >
-          <Text style={[Typography.button, { color: '#FFFFFF' }]}>Confirm Match</Text>
-        </Pressable>
-      )}
+      {/* MCQ options — standard exam format */}
+      <View style={styles.optionsList}>
+        <Text style={[styles.optionsLabel, { color: colors.textTertiary }]}>SELECT THE CORRECT MATCHING</Text>
+        {payload.options.map((opt, idx) => {
+          const os = getOptionStyle(opt.id);
+          const label = String.fromCharCode(65 + idx);
+          return (
+            <Pressable
+              key={opt.id}
+              onPress={() => onSelect(opt.id)}
+              disabled={showFeedback}
+              style={[
+                styles.optionRow,
+                {
+                  backgroundColor: os.bg,
+                  borderColor: os.border,
+                  borderWidth:
+                    showFeedback && (opt.id === payload.correctOptionId || opt.id === selectedOptionId)
+                      ? 2
+                      : 1,
+                },
+              ]}
+            >
+              <View style={[styles.optBadge, { backgroundColor: os.border + '30' }]}>
+                <Text style={[styles.optBadgeText, { color: os.text }]}>{label}</Text>
+              </View>
+              <Text style={[Typography.body, { color: os.text, flex: 1, letterSpacing: 0.5 }]}>
+                {language === 'te' ? opt.textTe : opt.text}
+              </Text>
+              {showFeedback && opt.id === payload.correctOptionId && (
+                <Text style={{ fontSize: 18, color: '#16A34A' }}>{'\u2713'}</Text>
+              )}
+              {showFeedback && opt.id === selectedOptionId && !isCorrect && (
+                <Text style={{ fontSize: 18, color: '#DC2626' }}>{'\u2717'}</Text>
+              )}
+            </Pressable>
+          );
+        })}
+      </View>
 
-      {/* Show correct mapping when wrong */}
+      {/* Correct answer detail — only shown when wrong */}
       {showFeedback && selectedOptionId !== payload.correctOptionId && (
         <View style={[styles.correctionCard, { borderColor: '#22C55E' }]}>
-          <Text
-            style={[
-              Typography.bodySm,
-              { color: '#16A34A', fontFamily: 'PlusJakartaSans_700Bold', marginBottom: Spacing.xs },
-            ]}
-          >
-            Correct matching:
-          </Text>
+          <Text style={[styles.correctionTitle, { color: '#16A34A' }]}>Correct matching:</Text>
           {payload.columnA.map((a, idx) => {
             const correctBId = payload.correctMapping[a.id];
             const bItem = payload.columnB.find((b) => b.id === correctBId);
+            const aText = language === 'te' ? a.textTe : a.text;
             const bText = bItem ? (language === 'te' ? bItem.textTe : bItem.text) : correctBId;
             return (
-              <Text key={a.id} style={[Typography.bodySm, { color: '#16A34A' }]}>
-                {idx + 1}. {language === 'te' ? a.textTe : a.text} → {bText}
+              <Text key={a.id} style={[Typography.bodySm, { color: '#16A34A', marginTop: idx > 0 ? 2 : 0 }]}>
+                {idx + 1}. {aText}  →  {bText}
               </Text>
             );
           })}
@@ -301,65 +176,92 @@ export function MatchTheFollowingQuestion({
 
 const styles = StyleSheet.create({
   container: {
-    gap: Spacing.md,
+    gap: Spacing.lg,
   },
-  columnsContainer: {
+  // ── Reference table ──
+  tableCard: {
+    borderWidth: 1,
+    borderRadius: BorderRadius.md,
+    overflow: 'hidden',
+  },
+  tableHeaderRow: {
     flexDirection: 'row',
-    gap: Spacing.sm,
+    borderBottomWidth: 1,
+    paddingVertical: Spacing.sm,
   },
-  column: {
+  tableHalf: {
     flex: 1,
-    gap: Spacing.sm,
+    paddingHorizontal: Spacing.md,
+  },
+  divider: {
+    width: 1,
   },
   colHeader: {
     fontFamily: 'PlusJakartaSans_800ExtraBold',
     fontSize: 10,
-    letterSpacing: 1,
+    letterSpacing: 1.5,
     textAlign: 'center',
-    marginBottom: Spacing.xs,
   },
-  itemCard: {
-    borderRadius: BorderRadius.md,
-    padding: Spacing.md,
-  },
-  itemRow: {
+  tableDataRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    paddingVertical: Spacing.md,
+    minHeight: 48,
+  },
+  cellContent: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
     gap: Spacing.sm,
   },
-  labelBadge: {
-    width: 26,
-    height: 26,
-    borderRadius: 9,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  labelText: {
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 13,
-  },
-  pairDot: {
+  cellBadge: {
     width: 22,
     height: 22,
-    borderRadius: 11,
+    borderRadius: 7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 1,
+  },
+  cellBadgeText: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 12,
+  },
+  // ── MCQ options ──
+  optionsList: {
+    gap: Spacing.md,
+  },
+  optionsLabel: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 10,
+    letterSpacing: 1,
+    marginBottom: 2,
+  },
+  optionRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: Spacing.lg,
+    borderRadius: BorderRadius.lg,
+    gap: Spacing.md,
+  },
+  optBadge: {
+    width: 32,
+    height: 32,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  pairDotText: {
-    fontFamily: 'PlusJakartaSans_700Bold',
-    fontSize: 11,
-    color: '#FFFFFF',
+  optBadgeText: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 14,
   },
-  confirmBtn: {
-    paddingVertical: Spacing.lg,
-    borderRadius: BorderRadius.lg,
-    alignItems: 'center',
-    marginTop: Spacing.sm,
-  },
+  // ── Correction card ──
   correctionCard: {
     borderWidth: 1,
     borderRadius: BorderRadius.md,
     padding: Spacing.lg,
     backgroundColor: '#22C55E08',
+  },
+  correctionTitle: {
+    fontFamily: 'PlusJakartaSans_700Bold',
+    fontSize: 14,
+    marginBottom: Spacing.xs,
   },
 });
