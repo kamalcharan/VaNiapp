@@ -9,13 +9,17 @@ export interface ChapterStrengthData {
   chapterId: string;
   subjectId: string;
   totalInBank: number;
-  attemptedIds: string[];
-  totalAnswered: number;
-  correctCount: number;
+  /** Map of questionId → true (correct) / false (wrong) — latest attempt wins */
+  questionResults: Record<string, boolean>;
   coverage: number;
   accuracy: number;
   strengthLevel: StrengthLevel;
   lastPracticedAt: string | null;
+
+  // Derived (kept for backward compat with progressSync / display)
+  attemptedIds: string[];
+  totalAnswered: number;
+  correctCount: number;
 }
 
 interface StrengthState {
@@ -26,6 +30,13 @@ const initialState: StrengthState = {
   chapters: {},
 };
 
+/** Derive counts from questionResults map */
+function deriveFromResults(results: Record<string, boolean>) {
+  const ids = Object.keys(results);
+  const correct = ids.filter((id) => results[id]).length;
+  return { attemptedIds: ids, totalAnswered: ids.length, correctCount: correct };
+}
+
 // ── Slice ──
 
 const strengthSlice = createSlice({
@@ -35,6 +46,7 @@ const strengthSlice = createSlice({
     /**
      * Record a batch of answers for a chapter.
      * Called after completing a chapter exam or quick practice.
+     * Latest attempt per question wins — re-answering a question updates the result.
      */
     recordChapterAttempt: (
       state,
@@ -56,6 +68,7 @@ const strengthSlice = createSlice({
           chapterId,
           subjectId,
           totalInBank,
+          questionResults: {},
           attemptedIds: [],
           totalAnswered: 0,
           correctCount: 0,
@@ -70,17 +83,21 @@ const strengthSlice = createSlice({
       // Update totalInBank in case it changed
       ch.totalInBank = totalInBank;
 
-      // Record each answer
-      for (const aq of answeredQuestions) {
-        // Track unique question IDs
-        if (!ch.attemptedIds.includes(aq.questionId)) {
-          ch.attemptedIds.push(aq.questionId);
-        }
-        ch.totalAnswered += 1;
-        if (aq.correct) {
-          ch.correctCount += 1;
-        }
+      // Migrate: if old data had attemptedIds but no questionResults, seed from them
+      if (!ch.questionResults || Object.keys(ch.questionResults).length === 0) {
+        ch.questionResults = {};
       }
+
+      // Record each answer — latest attempt wins
+      for (const aq of answeredQuestions) {
+        ch.questionResults[aq.questionId] = aq.correct;
+      }
+
+      // Derive counts from the results map
+      const derived = deriveFromResults(ch.questionResults);
+      ch.attemptedIds = derived.attemptedIds;
+      ch.totalAnswered = derived.totalAnswered;
+      ch.correctCount = derived.correctCount;
 
       // Recompute strength
       const result = evaluateStrength({
@@ -123,18 +140,35 @@ const strengthSlice = createSlice({
 
       for (const [key, data] of Object.entries(incoming.chapters)) {
         const newKey = LEGACY_CHAPTER_MAP[key] ?? key;
+
+        // Migrate old format: if questionResults doesn't exist, build from attemptedIds
+        if (!data.questionResults) {
+          const results: Record<string, boolean> = {};
+          // Best guess: distribute correctCount across attemptedIds
+          // (can't know which specific questions were correct from old data)
+          const ids = data.attemptedIds ?? [];
+          const correctCount = data.correctCount ?? 0;
+          const total = ids.length;
+          for (let i = 0; i < total; i++) {
+            // Mark the first N as correct proportionally
+            results[ids[i]] = i < correctCount;
+          }
+          data.questionResults = results;
+        }
+
         if (newKey !== key && migrated[newKey]) {
           // Merge old data into existing new-key entry
           const existing = migrated[newKey];
-          existing.totalAnswered += data.totalAnswered;
-          existing.correctCount += data.correctCount;
-          for (const id of data.attemptedIds) {
-            if (!existing.attemptedIds.includes(id)) {
-              existing.attemptedIds.push(id);
-            }
+          // Merge questionResults — incoming overwrites existing for same IDs
+          for (const [qid, result] of Object.entries(data.questionResults)) {
+            existing.questionResults[qid] = result;
           }
           existing.totalInBank = Math.max(existing.totalInBank, data.totalInBank);
-          // Recompute
+          // Recompute derived
+          const derived = deriveFromResults(existing.questionResults);
+          existing.attemptedIds = derived.attemptedIds;
+          existing.totalAnswered = derived.totalAnswered;
+          existing.correctCount = derived.correctCount;
           const result = evaluateStrength({
             totalInBank: existing.totalInBank,
             uniqueAttempted: existing.attemptedIds.length,
@@ -145,7 +179,15 @@ const strengthSlice = createSlice({
           existing.accuracy = result.accuracy;
           existing.strengthLevel = result.level;
         } else {
-          migrated[newKey] = { ...data, chapterId: newKey };
+          // Recompute derived from questionResults
+          const derived = deriveFromResults(data.questionResults);
+          migrated[newKey] = {
+            ...data,
+            chapterId: newKey,
+            attemptedIds: derived.attemptedIds,
+            totalAnswered: derived.totalAnswered,
+            correctCount: derived.correctCount,
+          };
         }
       }
 

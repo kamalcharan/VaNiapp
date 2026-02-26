@@ -45,7 +45,7 @@ export async function syncChapterProgress(chapterId: string): Promise<void> {
 /**
  * Pull chapter progress from Supabase and merge into Redux.
  * Remote data wins only for chapters that are MORE advanced on the server
- * (higher totalAnswered), preserving local progress that hasn't synced yet.
+ * (higher unique_attempted), preserving local progress that hasn't synced yet.
  */
 export async function pullRemoteProgress(): Promise<void> {
   if (!supabase) return;
@@ -66,34 +66,46 @@ export async function pullRemoteProgress(): Promise<void> {
 
   for (const row of data) {
     const local = localChapters[row.chapter_id];
-    const remoteTotalAnswered = row.total_answered ?? 0;
-
-    // Skip if local has more progress than remote
-    if (local && local.totalAnswered >= remoteTotalAnswered) continue;
-
-    // Build attemptedIds placeholder — we don't store individual IDs in Supabase,
-    // so use the count to create placeholder entries for coverage calculation
-    const attemptedIds = local?.attemptedIds ?? [];
-    // Pad to match remote unique_attempted count if remote is ahead
     const remoteUnique = row.unique_attempted ?? 0;
-    while (attemptedIds.length < remoteUnique) {
-      attemptedIds.push(`remote-${row.chapter_id}-${attemptedIds.length}`);
+
+    // Skip if local has more unique questions attempted than remote
+    if (local && local.attemptedIds.length >= remoteUnique) continue;
+
+    // Build questionResults from remote counts
+    // We don't have per-question data from remote, so create placeholder entries
+    const questionResults: Record<string, boolean> = {};
+    const correctCount = row.correct_count ?? 0;
+    for (let i = 0; i < remoteUnique; i++) {
+      const qid = local?.attemptedIds[i] ?? `remote-${row.chapter_id}-${i}`;
+      questionResults[qid] = i < correctCount;
     }
+
+    // Merge local questionResults on top (local data is more accurate per-question)
+    if (local?.questionResults) {
+      for (const [qid, result] of Object.entries(local.questionResults)) {
+        questionResults[qid] = result;
+      }
+    }
+
+    const attemptedIds = Object.keys(questionResults);
+    const totalAnswered = attemptedIds.length;
+    const mergedCorrect = attemptedIds.filter((id) => questionResults[id]).length;
 
     const result = evaluateStrength({
       totalInBank: row.total_in_bank ?? 25,
-      uniqueAttempted: remoteUnique,
-      totalAnswered: remoteTotalAnswered,
-      correctCount: row.correct_count ?? 0,
+      uniqueAttempted: totalAnswered,
+      totalAnswered,
+      correctCount: mergedCorrect,
     });
 
     merged[row.chapter_id] = {
       chapterId: row.chapter_id,
       subjectId: row.subject_id,
       totalInBank: row.total_in_bank ?? 25,
+      questionResults,
       attemptedIds,
-      totalAnswered: remoteTotalAnswered,
-      correctCount: row.correct_count ?? 0,
+      totalAnswered,
+      correctCount: mergedCorrect,
       coverage: result.coverage,
       accuracy: result.accuracy,
       strengthLevel: result.level,

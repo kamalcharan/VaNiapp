@@ -467,27 +467,18 @@ export default function SubjectDetailScreen() {
                           </View>
                         </View>
 
-                        {/* Stats chips — latest session only */}
-                        {(() => {
-                          const latest = latestChapterSessions[ca.chapter.id];
-                          if (!latest) return null;
-                          return (
-                            <View style={styles.chapterStatsRow}>
-                              <Text style={[styles.chapterStatText, { color: '#22C55E' }]}>
-                                {latest.correct} correct
-                              </Text>
-                              <Text style={[styles.chapterStatText, { color: '#EF4444' }]}>
-                                {latest.wrong} wrong
-                              </Text>
-                              <Text style={[styles.chapterStatText, { color: colors.textTertiary }]}>
-                                {latest.total} answered
-                              </Text>
-                              <Text style={[styles.chapterStatText, { color: colors.textTertiary, fontStyle: 'italic' }]}>
-                                (last session)
-                              </Text>
-                            </View>
-                          );
-                        })()}
+                        {/* Stats chips */}
+                        <View style={styles.chapterStatsRow}>
+                          <Text style={[styles.chapterStatText, { color: '#22C55E' }]}>
+                            {ca.correctCount} correct
+                          </Text>
+                          <Text style={[styles.chapterStatText, { color: '#EF4444' }]}>
+                            {ca.totalAnswered - ca.correctCount} wrong
+                          </Text>
+                          <Text style={[styles.chapterStatText, { color: colors.textTertiary }]}>
+                            {ca.totalAnswered}/{ca.totalInBank} attempted
+                          </Text>
+                        </View>
 
                         {/* Important topics (from catalog) */}
                         {ca.chapter.important_topics && ca.chapter.important_topics.length > 0 && (
