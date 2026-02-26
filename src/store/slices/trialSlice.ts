@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { PlanId } from '../../constants/pricing';
 
 interface TrialState {
   /** ISO date string when the trial started (set from profile.created_at) */
@@ -7,12 +8,18 @@ interface TrialState {
   questionsAnswered: number;
   /** Whether the user has an active paid subscription */
   isPaid: boolean;
+  /** Active subscription plan type (null if no subscription) */
+  subscriptionPlan: PlanId | null;
+  /** ISO date when subscription expires (null = no expiry) */
+  subscriptionExpiresAt: string | null;
 }
 
 const initialState: TrialState = {
   trialStartedAt: null,
   questionsAnswered: 0,
   isPaid: false,
+  subscriptionPlan: null,
+  subscriptionExpiresAt: null,
 };
 
 export const TRIAL_DAYS = 3;
@@ -37,6 +44,11 @@ const trialSlice = createSlice({
     setPaid: (state, action: PayloadAction<boolean>) => {
       state.isPaid = action.payload;
     },
+    setSubscription: (state, action: PayloadAction<{ plan: PlanId; expiresAt: string | null }>) => {
+      state.subscriptionPlan = action.payload.plan;
+      state.subscriptionExpiresAt = action.payload.expiresAt;
+      state.isPaid = true;
+    },
     rehydrate: (_state, action: PayloadAction<TrialState>) => ({
       ...initialState,
       ...action.payload,
@@ -49,6 +61,7 @@ export const {
   incrementQuestionsAnswered,
   seedQuestionsAnswered,
   setPaid,
+  setSubscription,
 } = trialSlice.actions;
 
 export default trialSlice.reducer;

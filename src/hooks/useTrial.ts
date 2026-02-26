@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { TRIAL_DAYS, TRIAL_QUESTION_LIMIT } from '../store/slices/trialSlice';
+import type { PlanId } from '../constants/pricing';
 
 export interface TrialStatus {
   /** Whether the user can start a new practice session */
@@ -17,6 +18,10 @@ export interface TrialStatus {
   questionsLeft: number;
   /** Total questions answered so far */
   questionsAnswered: number;
+  /** Active subscription plan (null if none) */
+  subscriptionPlan: PlanId | null;
+  /** ISO date when subscription expires */
+  subscriptionExpiresAt: string | null;
 }
 
 /**
@@ -26,9 +31,13 @@ export interface TrialStatus {
  *   2. Less than TRIAL_QUESTION_LIMIT questions answered
  */
 export function useTrial(): TrialStatus {
-  const { trialStartedAt, questionsAnswered, isPaid } = useSelector(
-    (state: RootState) => state.trial,
-  );
+  const {
+    trialStartedAt,
+    questionsAnswered,
+    isPaid,
+    subscriptionPlan,
+    subscriptionExpiresAt,
+  } = useSelector((state: RootState) => state.trial);
 
   if (isPaid) {
     return {
@@ -39,6 +48,8 @@ export function useTrial(): TrialStatus {
       daysLeft: Infinity,
       questionsLeft: Infinity,
       questionsAnswered,
+      subscriptionPlan,
+      subscriptionExpiresAt,
     };
   }
 
@@ -63,5 +74,7 @@ export function useTrial(): TrialStatus {
     daysLeft,
     questionsLeft,
     questionsAnswered,
+    subscriptionPlan: null,
+    subscriptionExpiresAt: null,
   };
 }

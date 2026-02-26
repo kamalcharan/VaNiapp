@@ -18,7 +18,6 @@ export default function PaywallScreen() {
   const trial = useTrial();
 
   const handleUpgrade = () => {
-    // TODO: Razorpay integration — for now just show a message
     router.push('/upgrade');
   };
 
