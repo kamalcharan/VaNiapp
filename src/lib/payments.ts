@@ -48,7 +48,15 @@ export async function saveSubscription(params: SaveSubscriptionParams): Promise<
     expires_at: expiresAt,
   });
 
-  if (error) throw error;
+  if (error) {
+    // Provide a clear message if the table hasn't been created yet
+    if (error.code === '42P01' || error.message?.includes('schema cache')) {
+      throw new Error(
+        'Subscriptions table not found. Please run the database migration first.',
+      );
+    }
+    throw error;
+  }
 
   // Track coupon usage
   if (params.couponCode) {
@@ -121,34 +129,26 @@ export async function createRazorpayOrder(
   const pricing = calculatePricing(plan.basePrice, discountPercent);
   const amountPaise = pricing.total * 100;
 
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) throw new Error('Not authenticated.');
-
-  const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
-  const res = await fetch(`${supabaseUrl}/functions/v1/create-order`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${session.access_token}`,
-    },
-    body: JSON.stringify({
+  // supabase.functions.invoke() automatically:
+  // - includes the current user's JWT (refreshed if expired)
+  // - adds the apikey header
+  const { data, error } = await supabase.functions.invoke('create-order', {
+    body: {
       amount: amountPaise,
       currency: 'INR',
       receipt: `${planType}_${Date.now()}`,
       notes: { plan_type: planType },
-    }),
+    },
   });
 
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Failed to create order: ${err}`);
+  if (error) {
+    throw new Error(`Failed to create order: ${error.message}`);
   }
 
-  const order = await res.json();
   return {
-    orderId: order.id,
-    amount: order.amount,
-    currency: order.currency,
+    orderId: data.id,
+    amount: data.amount,
+    currency: data.currency,
   };
 }
 
@@ -163,6 +163,7 @@ export async function openRazorpayCheckout(params: {
 }): Promise<{ paymentId: string; orderId: string; signature: string } | null> {
   const WebBrowser = require('expo-web-browser');
 
+  // checkout-page must be deployed with --no-verify-jwt since a browser opens it
   const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
   const checkoutUrl =
     `${supabaseUrl}/functions/v1/checkout-page` +
