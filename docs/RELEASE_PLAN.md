@@ -1,6 +1,6 @@
 # VaNi App — Release Plan & Progress Tracker
 
-> **Last updated:** 2026-02-20
+> **Last updated:** 2026-02-26
 >
 > **Stack:** Expo SDK 54, React Native 0.81.5, React 19.1.0, expo-router v6,
 > Redux Toolkit + AsyncStorage, Supabase Auth + DB, Gemini AI
@@ -20,7 +20,8 @@
 | R10.5 | Persona, Progress Sync, VaNi Coaching, Positive UX | DONE |
 | R11 | Wrong-Answer Analysis + Concept Explainer | NOT STARTED |
 | R12 | AI Study Plan + Mock Analysis | NOT STARTED |
-| R13 | Paywall + Tier Gating | NOT STARTED |
+| R13 | Paywall + Subscriptions + Payments | DONE (test mode) |
+| R13.1 | Go Live — Real Payments | NOT STARTED |
 
 ---
 
@@ -139,12 +140,83 @@
 - [ ] Study plan spread screen
 - [ ] Mock analysis on practice-results
 
-### R13 — Paywall + Tier Gating
-- [ ] `paywall.tsx` — tier comparison + Razorpay
-- [ ] `useAIGate.ts` hook
-- [ ] `payment-webhook` Edge Function
-- [ ] Tier enforcement across all AI entry points
-- [ ] Trial management (7-day)
+### R13 — Paywall + Subscriptions + Payments (TEST MODE) — DONE
+- [x] `trialSlice.ts` — 3-day trial + 50-question limit, `isPaid` / `subscriptionPlan` / `subscriptionExpiresAt`
+- [x] `useTrial.ts` hook — `canPractice`, `trialExpired`, `questionLimitReached`, `daysLeft`, `questionsLeft`
+- [x] `paywall.tsx` — shown when trial expires, features list, CTA to upgrade
+- [x] `upgrade.tsx` — plan selection (Crunch/Monthly/Yearly), coupon codes, price breakdown with GST
+- [x] `RazorpayCheckoutModal.tsx` — WebView-based Razorpay Checkout JS (UPI, card, netbanking, wallet)
+- [x] `src/lib/payments.ts` — `saveSubscription()`, `getActiveSubscription()`, `createRazorpayOrder()`
+- [x] `create-order` Edge Function — Razorpay order creation via Supabase
+- [x] `med_subscriptions` + `med_coupon_redemptions` tables with RLS
+- [x] `payment-success.tsx` — confetti animation, auto-redirect to dashboard
+- [x] `payment-failure.tsx` — error display, troubleshooting tips, retry
+- [x] Profile screen — "MY PLAN" card showing plan, status, renewal date
+- [x] Dashboard `guardedPush()` — routes to paywall when trial expired
+- [x] Coupon system — VaNiGO (25%), VaNiGem (10%), VaNiValue (100% free yearly)
+- [x] Plan routing by `target_year` — current year → Crunch only, next year → Monthly/Yearly
+
+---
+
+### R13.1 — Go Live: Activate Real Payments — NOT STARTED
+
+> **Goal:** Switch from Razorpay test mode to live mode so real payments work.
+
+#### Pre-requisites (Razorpay Dashboard)
+- [ ] Complete Razorpay KYC / business activation at https://dashboard.razorpay.com/activation
+- [ ] Get **live** API keys from Razorpay Dashboard → Settings → API Keys
+- [ ] Create **live** subscription plans in Razorpay Dashboard (if using plan IDs)
+- [ ] Enable desired payment methods on Razorpay Dashboard (UPI, cards, netbanking, wallets)
+- [ ] Set up webhook endpoint in Razorpay Dashboard for `payment.captured`, `payment.failed`, `subscription.charged` events
+
+#### Code Changes
+- [ ] **`src/constants/pricing.ts`** — Replace test key with live key:
+  - `RAZORPAY_KEY_ID`: `rzp_test_SBip7OyaGlp8TF` → `rzp_live_XXXXXXXXXX`
+  - Update `razorpayPlanId` for each plan with live plan IDs (if they differ)
+- [ ] **Supabase secrets** — Update Edge Function secrets to live credentials:
+  ```
+  supabase secrets set RAZORPAY_KEY_ID=rzp_live_XXXXXXXXXX RAZORPAY_KEY_SECRET=YYYYYYYYYY
+  ```
+- [ ] **`create-order` Edge Function** — Redeploy after secrets update:
+  ```
+  supabase functions deploy create-order --no-verify-jwt
+  ```
+
+#### Payment Verification (Critical)
+- [ ] Add **server-side signature verification** Edge Function (`verify-payment`):
+  - Verify `razorpay_signature` using HMAC SHA256 with key secret
+  - Only mark subscription as `paid` after server verification
+  - Currently payment is saved client-side after checkout — this must be hardened for production
+- [ ] Add **Razorpay webhook** Edge Function (`payment-webhook`):
+  - Listen for `payment.captured` — confirm subscription in DB
+  - Listen for `payment.failed` — mark subscription as failed
+  - Listen for `subscription.charged` — handle recurring renewals (monthly/yearly)
+  - Verify webhook signature to prevent spoofing
+
+#### Renewal & Expiry Handling
+- [ ] Add cron job or Edge Function to check expired subscriptions daily
+- [ ] Handle monthly/yearly auto-renewal via Razorpay Subscriptions API (or manual renewal flow)
+- [ ] Grace period logic — what happens when a subscription lapses (immediate lock vs 3-day grace)
+
+#### Testing Checklist (before going live)
+- [ ] Test UPI payment end-to-end (success@razorpay in test mode)
+- [ ] Test card payment (Indian test card: `4111 1111 1111 1111`)
+- [ ] Test coupon flow (VaNiGO, VaNiGem, VaNiValue)
+- [ ] Test payment failure → retry flow
+- [ ] Test subscription shows correctly on profile page
+- [ ] Test trial expiry → paywall → upgrade → payment → success → dashboard access
+- [ ] Test one real payment with live keys (small amount) before public launch
+
+#### Environment Configuration Summary
+| Item | Test (current) | Live (needed) |
+|------|---------------|---------------|
+| `RAZORPAY_KEY_ID` | `rzp_test_SBip7OyaGlp8TF` | `rzp_live_XXXXXXXXXX` |
+| `RAZORPAY_KEY_SECRET` | (set in Supabase secrets) | New live secret |
+| `razorpayPlanId` (crunch) | `plan_SKeuAORlFlY9nv` | New live plan ID |
+| `razorpayPlanId` (monthly) | `plan_SKeufdrgIwFRH7` | New live plan ID |
+| `razorpayPlanId` (yearly) | `plan_SKevPIDmnF6tCw` | New live plan ID |
+| Webhook URL | Not configured | `https://<supabase-ref>.functions.supabase.co/payment-webhook` |
+| Signature verification | Not implemented | Required for production |
 
 ---
 
@@ -174,7 +246,8 @@ See `docs/ZOO_GENERATION_PLAN.md` for full batch registry.
 ### Features TBD
 | Feature | Impact | Effort |
 |---------|--------|--------|
-| Subscription check | MEDIUM — hardcoded `isTrial = true` | Low |
+| ~~Subscription check~~ | ~~MEDIUM — hardcoded `isTrial = true`~~ | ~~DONE — R13~~ |
+| Go live with real payments | HIGH — Razorpay KYC + live keys + signature verification | Medium |
 | Diagram image rendering | LOW — 4 sample questions have placeholder URIs | Low |
 | Additional languages (Hindi, Tamil, Kannada) | MEDIUM — English only currently | High |
 | Practice My Saved Mistakes mode | MEDIUM — `getV2QuestionsByIds()` ready, no UI yet | Low |
