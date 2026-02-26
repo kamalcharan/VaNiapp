@@ -96,7 +96,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B01 | `phy-world` | Nature of Physical Laws, Fundamental Forces, and Scientific Method | 20 | PENDING |
+| B01 | `phy-world` | Nature of Physical Laws, Fundamental Forces, and Scientific Method | 20 | DONE |
 | | | **Chapter 1 Total** | **20** | |
 
 ### Chapter 2: Units and Measurements (`phy-units`) — 2 batches
@@ -170,25 +170,25 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B21 | `phy-solid-stress` | Stress, Strain, and Hooke's Law | 20 | PENDING |
-| B22 | `phy-solid-moduli` | Elastic Moduli (Young's, Bulk, Shear) and Applications | 20 | PENDING |
+| B21 | `phy-solid-stress` | Stress, Strain, and Hooke's Law | 20 | DONE |
+| B22 | `phy-solid-moduli` | Elastic Moduli (Young's, Bulk, Shear) and Applications | 20 | DONE |
 | | | **Chapter 9 Total** | **40** | |
 
 ### Chapter 10: Mechanical Properties of Fluids (`phy-fluid`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B23 | `phy-fluid-pressure` | Pressure, Pascal's Law, and Hydraulic Machines | 20 | PENDING |
-| B24 | `phy-fluid-bernoulli` | Bernoulli's Principle and Viscosity | 20 | PENDING |
-| B25 | `phy-fluid-surface` | Surface Tension and Capillarity | 20 | PENDING |
+| B23 | `phy-fluid-pressure` | Pressure, Pascal's Law, and Hydraulic Machines | 20 | DONE |
+| B24 | `phy-fluid-bernoulli` | Bernoulli's Principle and Viscosity | 20 | DONE |
+| B25 | `phy-fluid-surface` | Surface Tension and Capillarity | 20 | DONE |
 | | | **Chapter 10 Total** | **60** | |
 
 ### Chapter 11: Thermal Properties of Matter (`phy-thermal`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B26 | `phy-thermal-expansion` | Thermal Expansion and Calorimetry | 20 | PENDING |
-| B27 | `phy-thermal-transfer` | Heat Transfer (Conduction, Convection, Radiation) | 20 | PENDING |
+| B26 | `phy-thermal-expansion` | Thermal Expansion and Calorimetry | 20 | DONE |
+| B27 | `phy-thermal-transfer` | Heat Transfer (Conduction, Convection, Radiation) | 20 | DONE |
 | | | **Chapter 11 Total** | **40** | |
 
 ---
@@ -209,8 +209,8 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B30 | `phy-kinetic-gas` | Kinetic Theory of Ideal Gas and Pressure | 20 | PENDING |
-| B31 | `phy-kinetic-speed` | RMS Speed, Mean Free Path, and Degrees of Freedom | 20 | PENDING |
+| B30 | `phy-kinetic-gas` | Kinetic Theory of Ideal Gas and Pressure | 20 | DONE |
+| B31 | `phy-kinetic-speed` | RMS Speed, Mean Free Path, and Degrees of Freedom | 20 | DONE |
 | | | **Chapter 13 Total** | **40** | |
 
 ---
@@ -325,7 +325,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B56 | `phy-emwave` | Electromagnetic Spectrum, Properties, and Displacement Current | 20 | PENDING |
+| B56 | `phy-emwave` | Electromagnetic Spectrum, Properties, and Displacement Current | 20 | DONE |
 | | | **Chapter 23 Total** | **20** | |
 
 ---
@@ -386,9 +386,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B69 | `phy-semi-pn` | p-n Junction Diode and Characteristics | 20 | PENDING |
-| B70 | `phy-semi-diode` | Diode Applications (Rectifier, Zener, LED, Photodiode) | 20 | PENDING |
-| B71 | `phy-semi-transistor` | Transistor, Logic Gates, and Amplifiers | 20 | PENDING |
+| B69 | `phy-semi-pn` | p-n Junction Diode and Characteristics | 20 | DONE |
+| B70 | `phy-semi-diode` | Diode Applications (Rectifier, Zener, LED, Photodiode) | 20 | DONE |
+| B71 | `phy-semi-transistor` | Transistor, Logic Gates, and Amplifiers | 20 | DONE |
 | | | **Chapter 29 Total** | **60** | |
 
 ---
@@ -600,7 +600,7 @@ Commit and push.
 
 | Chapter | Topics | Qs Target | Qs Done | % |
 |---------|--------|-----------|---------|---|
-| Ch1 Physical World | 1 | 20 | 0 | 0% |
+| Ch1 Physical World | 1 | 20 | 20 | 100% |
 | Ch2 Units and Measurements | 2 | 40 | 40 | 100% |
 | Ch3 Motion in a Straight Line | 2 | 40 | 40 | 100% |
 | Ch4 Motion in a Plane | 3 | 60 | 60 | 100% |
@@ -608,11 +608,11 @@ Commit and push.
 | Ch6 Work, Energy and Power | 3 | 60 | 60 | 100% |
 | Ch7 Rotational Motion | 3 | 60 | 60 | 100% |
 | Ch8 Gravitation | 3 | 60 | 60 | 100% |
-| Ch9 Mech Properties of Solids | 2 | 40 | 0 | 0% |
-| Ch10 Mech Properties of Fluids | 3 | 60 | 0 | 0% |
-| Ch11 Thermal Properties | 2 | 40 | 0 | 0% |
+| Ch9 Mech Properties of Solids | 2 | 40 | 40 | 100% |
+| Ch10 Mech Properties of Fluids | 3 | 60 | 60 | 100% |
+| Ch11 Thermal Properties | 2 | 40 | 40 | 100% |
 | Ch12 Thermodynamics | 2 | 40 | 40 | 100% |
-| Ch13 Kinetic Theory | 2 | 40 | 0 | 0% |
+| Ch13 Kinetic Theory | 2 | 40 | 40 | 100% |
 | Ch14 Oscillations | 3 | 60 | 60 | 100% |
 | Ch15 Waves | 3 | 60 | 60 | 100% |
 | Ch16 Electric Charges and Fields | 3 | 60 | 60 | 100% |
@@ -622,11 +622,11 @@ Commit and push.
 | Ch20 Magnetism and Matter | 2 | 40 | 40 | 100% |
 | Ch21 Electromagnetic Induction | 2 | 40 | 40 | 100% |
 | Ch22 Alternating Current | 2 | 40 | 40 | 100% |
-| Ch23 Electromagnetic Waves | 1 | 20 | 0 | 0% |
+| Ch23 Electromagnetic Waves | 1 | 20 | 20 | 100% |
 | Ch24 Ray Optics | 3 | 60 | 60 | 100% |
 | Ch25 Wave Optics | 3 | 60 | 60 | 100% |
 | Ch26 Dual Nature | 2 | 40 | 40 | 100% |
 | Ch27 Atoms | 2 | 40 | 40 | 100% |
 | Ch28 Nuclei | 2 | 40 | 40 | 100% |
-| Ch29 Semiconductor Electronics | 3 | 60 | 0 | 0% |
-| **TOTAL** | **71** | **1,420** | **1,140** | **80%** |
+| Ch29 Semiconductor Electronics | 3 | 60 | 60 | 100% |
+| **TOTAL** | **71** | **1,420** | **1,420** | **100%** |
