@@ -35,11 +35,9 @@ import { getSubjects, getLanguages, CatalogSubject, CatalogLanguage } from '../.
 import { ExamType, Language } from '../../src/types';
 import { store } from '../../src/store';
 import { updateTargetYear, updateLanguage } from '../../src/store/slices/authSlice';
+import { getTargetYearOptions } from '../../src/constants/persona';
 
-const TARGET_YEAR_OPTIONS = [
-  { year: 2026, label: '2026', emoji: '\u26A1' },
-  { year: 2027, label: '2027', emoji: '\uD83C\uDF31' },
-];
+const TARGET_YEAR_OPTIONS = getTargetYearOptions();
 
 export default function ProfileScreen() {
   const { colors, mode, toggle } = useTheme();
