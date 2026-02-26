@@ -237,43 +237,43 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B40 | `chem-solid-lattice` | Crystal Lattices and Unit Cells | 20 | PENDING |
-| B41 | `chem-solid-packing` | Packing Efficiency and Voids | 20 | PENDING |
-| B42 | `chem-solid-defects` | Defects in Solids and Electrical Properties | 20 | PENDING |
+| B40 | `chem-solid-lattice` | Crystal Lattices and Unit Cells | 20 | DONE |
+| B41 | `chem-solid-packing` | Packing Efficiency and Voids | 20 | DONE |
+| B42 | `chem-solid-defects` | Defects in Solids and Electrical Properties | 20 | DONE |
 | | | **Chapter 15 Total** | **60** | |
 
 ### Chapter 16: Solutions (`chem-solutions`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B43 | `chem-soln-raoult` | Types of Solutions and Raoult's Law | 20 | PENDING |
-| B44 | `chem-soln-colligative` | Colligative Properties (Boiling Point Elevation, Freezing Point Depression, Osmotic Pressure) | 20 | PENDING |
-| B45 | `chem-soln-abnormal` | Abnormal Molar Mass and Van't Hoff Factor | 20 | PENDING |
+| B43 | `chem-soln-raoult` | Types of Solutions and Raoult's Law | 20 | DONE |
+| B44 | `chem-soln-colligative` | Colligative Properties (Boiling Point Elevation, Freezing Point Depression, Osmotic Pressure) | 20 | DONE |
+| B45 | `chem-soln-abnormal` | Abnormal Molar Mass and Van't Hoff Factor | 20 | DONE |
 | | | **Chapter 16 Total** | **60** | |
 
 ### Chapter 17: Electrochemistry (`chem-electrochem`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B46 | `chem-electrochem-cells` | Electrochemical Cells (Galvanic and Electrolytic) | 20 | PENDING |
-| B47 | `chem-electrochem-nernst` | Nernst Equation and EMF | 20 | PENDING |
-| B48 | `chem-electrochem-conductance` | Conductance, Kohlrausch's Law, Batteries, and Corrosion | 20 | PENDING |
+| B46 | `chem-electrochem-cells` | Electrochemical Cells (Galvanic and Electrolytic) | 20 | DONE |
+| B47 | `chem-electrochem-nernst` | Nernst Equation and EMF | 20 | DONE |
+| B48 | `chem-electrochem-conductance` | Conductance, Kohlrausch's Law, Batteries, and Corrosion | 20 | DONE |
 | | | **Chapter 17 Total** | **60** | |
 
 ### Chapter 18: Chemical Kinetics (`chem-kinetics`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B49 | `chem-kinetics-rate` | Rate of Reaction and Rate Law | 20 | PENDING |
-| B50 | `chem-kinetics-order` | Integrated Rate Equations and Half-Life | 20 | PENDING |
-| B51 | `chem-kinetics-arrhenius` | Arrhenius Equation and Collision Theory | 20 | PENDING |
+| B49 | `chem-kinetics-rate` | Rate of Reaction and Rate Law | 20 | DONE |
+| B50 | `chem-kinetics-order` | Integrated Rate Equations and Half-Life | 20 | DONE |
+| B51 | `chem-kinetics-arrhenius` | Arrhenius Equation and Collision Theory | 20 | DONE |
 | | | **Chapter 18 Total** | **60** | |
 
 ### Chapter 19: Surface Chemistry (`chem-surface`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B52 | `chem-surface-adsorption` | Adsorption (Physical and Chemical) | 20 | PENDING |
+| B52 | `chem-surface-adsorption` | Adsorption (Physical and Chemical) | 20 | DONE |
 | B53 | `chem-surface-catalysis` | Catalysis (Homogeneous and Heterogeneous) | 20 | PENDING |
 | B54 | `chem-surface-colloids` | Colloids and Emulsions | 20 | PENDING |
 | | | **Chapter 19 Total** | **60** | |
@@ -600,11 +600,11 @@ Commit and push.
 | Ch12 Organic Basics | 3 | 60 | 60 | 100% |
 | Ch13 Hydrocarbons | 4 | 80 | 80 | 100% |
 | Ch14 Environmental Chem | 1 | 20 | 20 | 100% |
-| Ch15 Solid State | 3 | 60 | 0 | 0% |
-| Ch16 Solutions | 3 | 60 | 0 | 0% |
-| Ch17 Electrochemistry | 3 | 60 | 0 | 0% |
-| Ch18 Chemical Kinetics | 3 | 60 | 0 | 0% |
-| Ch19 Surface Chemistry | 3 | 60 | 0 | 0% |
+| Ch15 Solid State | 3 | 60 | 60 | 100% |
+| Ch16 Solutions | 3 | 60 | 60 | 100% |
+| Ch17 Electrochemistry | 3 | 60 | 60 | 100% |
+| Ch18 Chemical Kinetics | 3 | 60 | 60 | 100% |
+| Ch19 Surface Chemistry | 3 | 60 | 20 | 33% |
 | Ch20 Isolation of Elements | 1 | 20 | 0 | 0% |
 | Ch21 p-Block (Class 12) | 4 | 80 | 0 | 0% |
 | Ch22 d and f Block | 3 | 60 | 0 | 0% |
@@ -616,4 +616,4 @@ Commit and push.
 | Ch28 Biomolecules | 2 | 40 | 0 | 0% |
 | Ch29 Polymers | 1 | 20 | 0 | 0% |
 | Ch30 Chemistry in Everyday Life | 1 | 20 | 0 | 0% |
-| **TOTAL** | **82** | **1,640** | **780** | **48%** |
+| **TOTAL** | **82** | **1,640** | **1,040** | **63%** |
