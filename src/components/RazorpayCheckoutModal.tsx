@@ -1,7 +1,6 @@
 import React, { useRef, useCallback } from 'react';
 import { Modal, View, StyleSheet, ActivityIndicator, TouchableOpacity, Text } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { RAZORPAY_KEY_ID } from '../constants/pricing';
 
 export interface RazorpayCheckoutParams {
   orderId: string;
@@ -26,12 +25,13 @@ export interface RazorpayPaymentError {
 interface Props {
   visible: boolean;
   params: RazorpayCheckoutParams | null;
+  razorpayKeyId: string;
   onSuccess: (result: RazorpayPaymentResult) => void;
   onFailure: (error: RazorpayPaymentError) => void;
   onDismiss: () => void;
 }
 
-function buildCheckoutHtml(params: RazorpayCheckoutParams): string {
+function buildCheckoutHtml(params: RazorpayCheckoutParams, razorpayKeyId: string): string {
   return `<!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +63,7 @@ function buildCheckoutHtml(params: RazorpayCheckoutParams): string {
   <script src="https://checkout.razorpay.com/v1/checkout.js"><\/script>
   <script>
     var options = {
-      key: "${RAZORPAY_KEY_ID}",
+      key: "${razorpayKeyId}",
       amount: "${params.amount}",
       currency: "INR",
       order_id: "${params.orderId}",
@@ -112,7 +112,7 @@ function buildCheckoutHtml(params: RazorpayCheckoutParams): string {
 </html>`;
 }
 
-export default function RazorpayCheckoutModal({ visible, params, onSuccess, onFailure, onDismiss }: Props) {
+export default function RazorpayCheckoutModal({ visible, params, razorpayKeyId, onSuccess, onFailure, onDismiss }: Props) {
   const webviewRef = useRef<WebView>(null);
 
   const handleMessage = useCallback((event: { nativeEvent: { data: string } }) => {
@@ -149,7 +149,7 @@ export default function RazorpayCheckoutModal({ visible, params, onSuccess, onFa
         </View>
         <WebView
           ref={webviewRef}
-          source={{ html: buildCheckoutHtml(params) }}
+          source={{ html: buildCheckoutHtml(params, razorpayKeyId) }}
           originWhitelist={['*']}
           javaScriptEnabled
           domStorageEnabled

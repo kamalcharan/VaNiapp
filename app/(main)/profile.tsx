@@ -37,7 +37,8 @@ import { useSelector } from 'react-redux';
 import { store, RootState } from '../../src/store';
 import { updateTargetYear, updateLanguage } from '../../src/store/slices/authSlice';
 import { getTargetYearOptions } from '../../src/constants/persona';
-import { PLANS, type PlanId } from '../../src/constants/pricing';
+import type { PlanId } from '../../src/constants/pricing';
+import { getRazorpayConfig } from '../../src/lib/appConfig';
 
 const TARGET_YEAR_OPTIONS = getTargetYearOptions();
 
@@ -70,6 +71,7 @@ export default function ProfileScreen() {
   const [logoutDialog, setLogoutDialog] = useState(false);
   const [subjectDialog, setSubjectDialog] = useState(false);
   const [referralCode, setReferralCode] = useState<string | null>(null);
+  const [planDisplayName, setPlanDisplayName] = useState<string | null>(null);
   const [joinCode, setJoinCode] = useState('');
   const [generatingCode, setGeneratingCode] = useState(false);
   const [pendingExamChange, setPendingExamChange] = useState<ExamType | null>(null);
@@ -83,6 +85,15 @@ export default function ProfileScreen() {
   useEffect(() => {
     loadProfile();
   }, []);
+
+  // Fetch plan display name from DB config
+  useEffect(() => {
+    if (!subscriptionPlan) return;
+    getRazorpayConfig().then((cfg) => {
+      const name = cfg.plans[subscriptionPlan]?.name;
+      if (name) setPlanDisplayName(name);
+    });
+  }, [subscriptionPlan]);
 
   const loadProfile = async () => {
     const [prof, subjectIds, allSubjects, langs] = await Promise.all([
@@ -708,7 +719,7 @@ export default function ProfileScreen() {
                       { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' },
                     ]}
                   >
-                    {PLANS[subscriptionPlan]?.name ?? subscriptionPlan}
+                    {planDisplayName ?? subscriptionPlan}
                   </Text>
                 </View>
                 <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
