@@ -232,32 +232,20 @@ export default function SubjectDetailScreen() {
     });
   }, [chapterAnalytics]);
 
-  // Find the latest chapter session that has wrong answers, per chapter
-  const latestMistakeSession = useMemo(() => {
-    const map: Record<string, string> = {}; // chapterId → sessionId
-    for (const session of chapterHistory) {
-      if (map[session.chapterId]) continue; // already found latest
-      const wrongCount = session.answers.filter(
-        (a) => a.selectedOptionId && a.selectedOptionId !== a.correctOptionId,
-      ).length;
-      if (wrongCount > 0) {
-        map[session.chapterId] = session.id;
-      }
-    }
-    return map;
-  }, [chapterHistory]);
-
-  // Find the latest completed session with wrong answers per chapter
-  const latestMistakeSession = useMemo(() => {
-    const map: Record<string, string> = {}; // chapterId → sessionId
+  // Find the latest completed session per chapter (for stats + mistakes)
+  const latestChapterSessions = useMemo(() => {
+    const map: Record<string, { sessionId: string; correct: number; wrong: number; total: number }> = {};
     for (const session of chapterHistory) {
       if (!session.completedAt) continue;
-      if (map[session.chapterId]) continue; // already have the latest (history is newest-first)
-      const totalAnswered = session.answers.filter((a) => a.selectedOptionId).length;
-      const wrongCount = totalAnswered - (session.correctCount ?? 0);
-      if (wrongCount > 0) {
-        map[session.chapterId] = session.id;
-      }
+      if (map[session.chapterId]) continue; // history is newest-first, so first match = latest
+      const answered = session.answers.filter((a) => a.selectedOptionId).length;
+      const correct = session.correctCount ?? 0;
+      map[session.chapterId] = {
+        sessionId: session.id,
+        correct,
+        wrong: answered - correct,
+        total: answered,
+      };
     }
     return map;
   }, [chapterHistory]);
@@ -479,18 +467,27 @@ export default function SubjectDetailScreen() {
                           </View>
                         </View>
 
-                        {/* Stats chips */}
-                        <View style={styles.chapterStatsRow}>
-                          <Text style={[styles.chapterStatText, { color: '#22C55E' }]}>
-                            {ca.correctCount} correct
-                          </Text>
-                          <Text style={[styles.chapterStatText, { color: '#EF4444' }]}>
-                            {ca.totalAnswered - ca.correctCount} wrong
-                          </Text>
-                          <Text style={[styles.chapterStatText, { color: colors.textTertiary }]}>
-                            {ca.totalAnswered} answered
-                          </Text>
-                        </View>
+                        {/* Stats chips — latest session only */}
+                        {(() => {
+                          const latest = latestChapterSessions[ca.chapter.id];
+                          if (!latest) return null;
+                          return (
+                            <View style={styles.chapterStatsRow}>
+                              <Text style={[styles.chapterStatText, { color: '#22C55E' }]}>
+                                {latest.correct} correct
+                              </Text>
+                              <Text style={[styles.chapterStatText, { color: '#EF4444' }]}>
+                                {latest.wrong} wrong
+                              </Text>
+                              <Text style={[styles.chapterStatText, { color: colors.textTertiary }]}>
+                                {latest.total} answered
+                              </Text>
+                              <Text style={[styles.chapterStatText, { color: colors.textTertiary, fontStyle: 'italic' }]}>
+                                (last session)
+                              </Text>
+                            </View>
+                          );
+                        })()}
 
                         {/* Important topics (from catalog) */}
                         {ca.chapter.important_topics && ca.chapter.important_topics.length > 0 && (
@@ -525,14 +522,14 @@ export default function SubjectDetailScreen() {
                           )}
 
                           {/* Practice Mistakes — only if the latest session had wrong answers */}
-                          {latestMistakeSession[ca.chapter.id] && (
+                          {latestChapterSessions[ca.chapter.id]?.wrong > 0 && (
                             <Pressable
                               style={[styles.practiceAgainButton, { backgroundColor: '#EF444415' }]}
                               onPress={() =>
                                 router.push({
                                   pathname: '/practice-mistakes',
                                   params: {
-                                    sessionId: latestMistakeSession[ca.chapter.id],
+                                    sessionId: latestChapterSessions[ca.chapter.id].sessionId,
                                     sessionMode: 'chapter',
                                   },
                                 })
