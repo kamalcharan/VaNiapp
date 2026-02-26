@@ -548,6 +548,8 @@
         'bot-eco':          'bot-ecosystem',
         // Topics: bot-trans-diffusion, bot-trans-transpiration, bot-trans-water
         'bot-trans':        'bot-transport-plants',
+        // Mineral Nutrition: bot-mineral-deficiency, bot-mineral-essential, bot-mineral-nitrogen
+        'bot-mineral':      'bot-mineral-nutrition',
         // No topics seeded yet — prefix-based fallbacks
         'bot-living':       'bot-living-world',
         'bot-biological':   'bot-biological-classification',
@@ -569,6 +571,7 @@
         'zoo-loco':     'zoo-locomotion',
         'zoo-neural':   'zoo-neural-control',
         'zoo-chem':     'zoo-chemical-coordination',
+        'zoo-rephealth': 'zoo-reproductive-health',  // zoo-rephealth-infertility etc.
         'zoo-repro':    'zoo-human-reproduction',
         'zoo-rh':       'zoo-reproductive-health',
         'zoo-evo':      'zoo-evolution',
@@ -576,14 +579,22 @@
 
         // ── Physics (20 chapters) ─────────────────────────────
         'phy-units':    'phy-units-measurement',
+        'phy-world':    'phy-units-measurement',   // Physical World → Units chapter
         'phy-kin':      'phy-kinematics',
+        'phy-motion1d': 'phy-kinematics',          // Motion in a Straight Line
+        'phy-motion2d': 'phy-kinematics',          // Motion in a Plane
         'phy-laws':     'phy-laws-of-motion',
+        'phy-newton':   'phy-laws-of-motion',      // Newton's laws, friction, circular dynamics
         'phy-wep':      'phy-work-energy-power',
         'phy-work':     'phy-work-energy-power',
+        'phy-energy':   'phy-work-energy-power',   // collisions, conservation, work-energy
         'phy-rot':      'phy-rotational-motion',
         'phy-grav':     'phy-gravitation',
         'phy-prop':     'phy-properties-matter',
+        'phy-solid':    'phy-properties-matter',   // Mechanical Properties of Solids
+        'phy-fluid':    'phy-properties-matter',   // Mechanical Properties of Fluids
         'phy-thermo':   'phy-thermodynamics',
+        'phy-thermal':  'phy-thermodynamics',      // Thermal Properties of Matter
         'phy-kinetic':  'phy-kinetic-theory',
         'phy-osc':      'phy-oscillations-waves',
         'phy-wave':     'phy-oscillations-waves',
@@ -592,45 +603,70 @@
         'phy-elec-diode':         'phy-electronic-devices',
         'phy-elec-transistor':    'phy-electronic-devices',
         'phy-elec-logic':         'phy-electronic-devices',
+        'phy-semi':     'phy-electronic-devices',  // Semiconductor Electronics
         // Electrostatics topics: phy-elec-coulomb, phy-elec-field, phy-elec-gauss, phy-elec-capacitor
         'phy-elec':     'phy-electrostatics',
+        'phy-pot':      'phy-electrostatics',      // Electrostatic Potential & Capacitance
         'phy-curr':     'phy-current-electricity',
         'phy-mag':      'phy-magnetic-effects',
         'phy-emi':      'phy-em-induction',
+        'phy-ac':       'phy-em-induction',        // Alternating Current
         'phy-emw':      'phy-em-waves',
         'phy-opt':      'phy-optics',
+        'phy-ray':      'phy-optics',              // Ray Optics and Optical Instruments
         'phy-dual':     'phy-dual-nature',
         'phy-atom':     'phy-atoms-nuclei',
+        'phy-nuclei':   'phy-atoms-nuclei',        // Nuclei (decay, properties)
         'phy-exp':      'phy-experimental',
 
-        // ── Chemistry (20 chapters) ───────────────────────────
-        'chem-basic':    'chem-basic-concepts',
+        // ── Chemistry (28 chapters) ───────────────────────────
+        'chem-basic':       'chem-basic-concepts',
         // Topics use chem-atom-bohr, not chem-atomic-bohr
-        'chem-atom':     'chem-atomic-structure',
-        'chem-bond':     'chem-chemical-bonding',
-        'chem-thermo':   'chem-thermodynamics',
-        'chem-eq':       'chem-equilibrium',
-        'chem-redox':    'chem-redox',
-        'chem-sol':      'chem-solutions',
-        'chem-electro':  'chem-electrochemistry',
-        'chem-kin':      'chem-kinetics',
-        'chem-period':   'chem-periodicity',
-        'chem-p-block':  'chem-p-block',
-        'chem-d-f':      'chem-d-f-block',
-        'chem-coord':    'chem-coordination',
-        'chem-org':      'chem-organic-basics',
-        'chem-hc':       'chem-hydrocarbons',
-        'chem-halo':     'chem-haloalkanes',
-        'chem-alcohol':  'chem-alcohols-ethers',
-        'chem-ald':      'chem-aldehydes-ketones',
-        'chem-amine':    'chem-amines',
-        'chem-biomol':   'chem-biomolecules',
+        'chem-atom':        'chem-atomic-structure',
+        'chem-bond':        'chem-chemical-bonding',
+        'chem-states':      'chem-states-matter',      // States of Matter (new DB chapter)
+        'chem-thermo':      'chem-thermodynamics',
+        'chem-eq':          'chem-equilibrium',
+        'chem-redox':       'chem-redox',
+        'chem-hydrogen':    'chem-hydrogen',            // Hydrogen (new DB chapter)
+        'chem-sblock':      'chem-s-block',             // s-Block Elements (new DB chapter)
+        'chem-period':      'chem-periodicity',
+        'chem-pblock11':    'chem-p-block',             // p-Block Class 11
+        'chem-pblock12':    'chem-p-block',             // p-Block Class 12
+        'chem-p-block':     'chem-p-block',
+        'chem-org':         'chem-organic-basics',
+        'chem-hydrocarbon': 'chem-hydrocarbons',        // alkanes, alkenes, alkynes, aromatic
+        'chem-hc':          'chem-hydrocarbons',
+        'chem-environment': 'chem-environment',          // Environmental Chemistry (new DB chapter)
+        'chem-sol':         'chem-solutions',
+        'chem-electro':     'chem-electrochemistry',
+        'chem-kin':         'chem-kinetics',
+        'chem-surface':     'chem-surface',              // Surface Chemistry (new DB chapter)
+        'chem-metallurgy':  'chem-metallurgy',           // Isolation of Elements (new DB chapter)
+        'chem-dblock':      'chem-d-f-block',            // d-block → d-f-block chapter
+        'chem-d-f':         'chem-d-f-block',
+        'chem-coord':       'chem-coordination',
+        'chem-halo':        'chem-haloalkanes',
+        // Alcohols/Phenols/Ethers: more specific prefixes first
+        'chem-phenol':      'chem-alcohols-ethers',      // Phenol reactions
+        'chem-ether':       'chem-alcohols-ethers',      // Ether reactions
+        'chem-alcohol':     'chem-alcohols-ethers',
+        // Aldehydes/Ketones/Carboxylic Acids: more specific prefixes first
+        'chem-carboxylic':  'chem-aldehydes-ketones',    // Carboxylic acids
+        'chem-carbonyl':    'chem-aldehydes-ketones',    // Carbonyl compounds
+        'chem-ald':         'chem-aldehydes-ketones',
+        'chem-amine':       'chem-amines',
+        'chem-polymers':    'chem-polymers',             // Polymers (new DB chapter)
+        'chem-biomol':      'chem-biomolecules',
+        'chem-everyday':    'chem-everyday',             // Chemistry in Everyday Life (new DB chapter)
       };
 
       if (!q.id) return 'unknown';
 
-      // Try to match topic prefix (longest match wins due to ordering)
-      for (const [prefix, chapterId] of Object.entries(TOPIC_TO_CHAPTER)) {
+      // Sort by prefix length descending so longer/more-specific prefixes match first
+      const sorted = Object.entries(TOPIC_TO_CHAPTER)
+        .sort((a, b) => b[0].length - a[0].length);
+      for (const [prefix, chapterId] of sorted) {
         if (q.id.startsWith(prefix)) return chapterId;
       }
 
