@@ -138,6 +138,7 @@ export default function UpgradeScreen() {
         planName: `VaNi ${plan.name}`,
         userEmail: userEmail || '',
         userName: userName || '',
+        userPhone: '',
       });
       setCheckoutVisible(true);
     } catch (err: any) {

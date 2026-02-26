@@ -9,6 +9,7 @@ export interface RazorpayCheckoutParams {
   planName: string;
   userEmail: string;
   userName: string;
+  userPhone?: string;
 }
 
 export interface RazorpayPaymentResult {
@@ -70,7 +71,14 @@ function buildCheckoutHtml(params: RazorpayCheckoutParams): string {
       description: "${params.planName.replace(/"/g, '\\"')}",
       prefill: {
         email: "${params.userEmail.replace(/"/g, '\\"')}",
-        name: "${params.userName.replace(/"/g, '\\"')}"
+        name: "${params.userName.replace(/"/g, '\\"')}",
+        contact: "${(params.userPhone || '').replace(/"/g, '\\"')}"
+      },
+      method: {
+        upi: true,
+        card: true,
+        netbanking: true,
+        wallet: true
       },
       theme: { color: "#2563EB" },
       handler: function(response) {
