@@ -142,7 +142,15 @@ export async function createRazorpayOrder(
   });
 
   if (error) {
-    throw new Error(`Failed to create order: ${error.message}`);
+    // supabase.functions.invoke wraps the real error — extract it
+    let detail = error.message;
+    try {
+      if (error.context instanceof Response) {
+        const body = await error.context.json();
+        detail = body?.error || JSON.stringify(body);
+      }
+    } catch { /* use default message */ }
+    throw new Error(`Failed to create order: ${detail}`);
   }
 
   return {
