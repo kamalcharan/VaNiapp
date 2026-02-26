@@ -228,25 +228,25 @@
     "id": "phy-thermo-first-10",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "An ideal gas is taken through a cyclic process. In process A→B, 500 J of heat is absorbed by the gas and 200 J of work is done by the gas. In process B→C, 300 J of heat is rejected by the gas and no work is done. In process C→A, the gas returns to its initial state. The work done by the gas during C→A is:",
-    "explanation": "For A→B: Q₁ = +500 J, W₁ = +200 J, so ΔU_AB = 500 − 200 = 300 J. For B→C: Q₂ = −300 J, W₂ = 0, so ΔU_BC = −300 − 0 = −300 J. For the complete cycle: ΔU_cycle = 0 (internal energy is a state function). So ΔU_CA = −(ΔU_AB + ΔU_BC) = −(300 + (−300)) = 0 J. Net work for the cycle: W_cycle = Q_cycle (since ΔU = 0). Q_cycle = 500 + (−300) + Q_CA. Also W_cycle = 200 + 0 + W_CA. Since ΔU_CA = 0, Q_CA = W_CA. So Q_cycle = 200 + W_CA and W_cycle = 200 + W_CA. From Q_cycle = W_cycle: 500 − 300 + W_CA = 200 + W_CA, which gives 200 + W_CA = 200 + W_CA (always true). Using ΔU_CA = Q_CA − W_CA = 0, so Q_CA = W_CA. The net heat = 500 − 300 + Q_CA = 200 + Q_CA. The net work = 200 + W_CA = 200 + Q_CA. Since net heat = net work (cyclic), this is consistent. For the net work of the cycle: W_net = Q_net = 500 − 300 + Q_CA. We also know ΔU_CA = 0, and the cycle must close. Since B→C has W = 0 (isochoric), and ΔU_BC = −300 J, the temperature drops. For C→A, ΔU = 0 means the temperature at C equals that at A. So C→A is isothermal and W_CA = Q_CA. The net work of the cycle equals the net heat absorbed: W_net = 500 − 300 + Q_CA. But from the cycle: W_net = 200 + W_CA. Since the problem gives complete information for two processes and asks for the third, use: the cycle gives ΔU_cycle = ΔU_AB + ΔU_BC + ΔU_CA = 0, so ΔU_CA = 0. For C→A: Q_CA = ΔU_CA + W_CA = W_CA. The net work = 200 + W_CA and net Q = 200 + W_CA, confirming consistency. The total work done by the gas in the cycle = area enclosed = net heat = 500 − 300 = 200 J (if Q_CA = 0 and W_CA = 0). Actually, if ΔU_CA = 0 and no additional information constrains Q_CA, but the problem is solvable because from Q_net = W_net and the given data: W_net = Q_net = (500 − 300) + Q_CA, and W_net = 200 + W_CA = 200 + Q_CA. These are identical, so W_CA = Q_CA. To find W_CA explicitly, note that ΔU_CA = 0 requires that C and A are at the same temperature. If C→A is a general process with Q_CA released: the net Q = 200 + Q_CA. Actually, re-reading the problem: the process is fully determined. Given ΔU_CA = 0, and the fact that C→A must return the gas to its initial state, W_CA = −200 J (compression) and Q_CA = −200 J (heat rejected). Net cycle: W = 200 + 0 + (−200) = 0... No, that gives zero net work. Let me reconsider. The problem simply asks for W_CA. From ΔU_CA = 0: Q_CA = W_CA. This alone doesn't determine W_CA. The problem needs one more constraint. Since the problem states the gas returns to its initial state, and we know ΔU_AB + ΔU_BC = 0, ΔU_CA = 0 automatically. The net cycle work = net cycle heat = 200 J. So 200 + 0 + W_CA = 200, giving W_CA = 0. Wait: net Q = 500 − 300 + Q_CA = 200 + Q_CA. Net W = 200 + W_CA. Setting Q_cycle = W_cycle: 200 + Q_CA = 200 + W_CA. Since Q_CA = W_CA (from ΔU_CA = 0), this is satisfied for any W_CA. The problem as written is underdetermined. Let me rewrite it completely.",
+    "question_text": "An ideal gas is taken through a cyclic process. In process A→B, the gas absorbs 600 J of heat and does 200 J of work. In process B→C, 400 J of heat is rejected by the gas and 100 J of work is done on the gas. In process C→A, 200 J of work is done on the gas. The heat exchanged in process C→A is:",
+    "explanation": "For the complete cycle, ΔU = 0, so Q_net = W_net. Process A→B: Q₁ = +600 J, W₁ = +200 J. Process B→C: Q₂ = −400 J, W₂ = −100 J (work done on gas). Process C→A: W₃ = −200 J (work done on gas), Q₃ = ? Net work: W_net = 200 + (−100) + (−200) = −100 J. Since Q_net = W_net for a cycle: Q₁ + Q₂ + Q₃ = −100. So 600 + (−400) + Q₃ = −100, giving Q₃ = −100 − 200 = −300 J. The gas rejects 300 J of heat during C→A.",
     "correct_answer": "A",
-    "concept_tags": ["cyclic process", "first law", "isobaric", "isochoric", "state function"],
+    "concept_tags": ["cyclic process", "first law", "net heat equals net work", "state function"],
     "topic": "First Law of Thermodynamics and Thermodynamic Processes",
     "subject": "physics",
     "chapter": "Thermodynamics",
     "bloom_level": "analyze",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "−100 J", "is_correct": true },
-      { "key": "B", "text": "−200 J", "is_correct": false },
-      { "key": "C", "text": "100 J", "is_correct": false },
-      { "key": "D", "text": "−300 J", "is_correct": false }
+      { "key": "A", "text": "−300 J (rejected)", "is_correct": true },
+      { "key": "B", "text": "−200 J (rejected)", "is_correct": false },
+      { "key": "C", "text": "+100 J (absorbed)", "is_correct": false },
+      { "key": "D", "text": "−100 J (rejected)", "is_correct": false }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "−200 J would equal the negative of W_AB. The work in the return path is not simply the negative of the work in the first step.", "misconception": null },
-      { "option_key": "C", "hint": "Positive work means expansion, but C→A is a compression step, so the work done by the gas should be negative.", "misconception": "Getting the sign wrong for compression work" },
-      { "option_key": "D", "hint": "−300 J is the heat rejected during B→C, not the work during C→A.", "misconception": "Confusing quantities from different process steps" }
+      { "option_key": "B", "hint": "−200 J equals the work done on the gas during C→A, but Q₃ ≠ W₃ unless ΔU_CA = 0. The heat must satisfy the cyclic constraint Q_net = W_net.", "misconception": "Equating heat to work for an individual process without checking ΔU" },
+      { "option_key": "C", "hint": "+100 J would make Q_net = 600 − 400 + 100 = 300 J, but W_net = −100 J. For a cycle, Q_net must equal W_net.", "misconception": "Incorrect application of cyclic process constraint" },
+      { "option_key": "D", "hint": "−100 J would give Q_net = 600 − 400 − 100 = 100 J, which does not equal W_net = −100 J.", "misconception": "Arithmetic error in applying the first law to the cycle" }
     ]
   },
   {
@@ -328,10 +328,10 @@
     "id": "phy-thermo-first-14",
     "question_type": "assertion_reasoning",
     "difficulty": "hard",
-    "question_text": "Assertion (A): The specific heat of a gas during an adiabatic process is zero.\nReason (R): In an adiabatic process, the temperature of the gas changes without any heat exchange.",
-    "explanation": "The assertion is incorrect. Specific heat is defined as C = ΔQ/(nΔT). In an adiabatic process, ΔQ = 0 and ΔT ≠ 0, so C = 0/ΔT = 0. Actually, C = 0 is correct. Wait — let me reconsider. The molar specific heat C = dQ/(ndT). In an adiabatic process, dQ = 0, and dT ≠ 0, so C = 0. The assertion IS correct. The reason is also correct — temperature does change without heat exchange. And the reason explains the assertion: because Q = 0 and T changes, C = Q/(nΔT) = 0. So both are correct and R explains A.",
-    "correct_answer": "D",
-    "concept_tags": ["specific heat", "adiabatic process", "zero specific heat"],
+    "question_text": "Assertion (A): In an isothermal expansion of an ideal gas, the heat absorbed by the gas is completely converted into work.\nReason (R): In an isothermal process, the pressure of an ideal gas remains constant.",
+    "explanation": "The assertion is correct. In an isothermal process for an ideal gas, ΔT = 0, so ΔU = nCᵥΔT = 0. By the first law, Q = ΔU + W = 0 + W = W. Thus, all the heat absorbed is converted into work. The reason is incorrect. In an isothermal process, the temperature remains constant, not the pressure. As the gas expands isothermally, the pressure decreases (PV = nRT = constant, so P ∝ 1/V). Constant pressure defines an isobaric process, not an isothermal one.",
+    "correct_answer": "C",
+    "concept_tags": ["isothermal process", "internal energy", "heat to work conversion", "ideal gas"],
     "topic": "First Law of Thermodynamics and Thermodynamic Processes",
     "subject": "physics",
     "chapter": "Thermodynamics",
@@ -340,13 +340,13 @@
     "options": [
       { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
       { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": true }
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The assertion needs careful examination. While dQ = 0 and dT ≠ 0 might suggest C = 0, the specific heat of a process is defined as the heat required per unit temperature change. For an adiabatic process, the concept of specific heat is not simply zero — rather, it is not meaningfully defined as a fixed property of the gas since the same gas can undergo different processes.", "misconception": "Assuming C = dQ/ndT = 0 makes physical sense as a 'specific heat of the gas'" },
-      { "option_key": "B", "hint": "Reconsider whether the assertion about specific heat being zero is a correct physical statement. A gas does not have a single specific heat; Cₚ and Cᵥ are its properties regardless of process.", "misconception": null },
-      { "option_key": "C", "hint": "The reason is factually correct: in an adiabatic process, temperature changes while Q = 0.", "misconception": null }
+      { "option_key": "A", "hint": "The reason claims pressure remains constant in an isothermal process, which is false. In isothermal expansion, pressure decreases as volume increases (Boyle's law: PV = constant).", "misconception": "Confusing isothermal (constant T) with isobaric (constant P)" },
+      { "option_key": "B", "hint": "The reason is factually incorrect — pressure does not remain constant in an isothermal process. It changes according to P = nRT/V.", "misconception": null },
+      { "option_key": "D", "hint": "The assertion is correct. For an ideal gas in isothermal expansion, ΔU = 0 (since T is constant), so by the first law Q = W.", "misconception": "Not recognizing that ΔU = 0 for isothermal process of ideal gas" }
     ]
   },
   {
