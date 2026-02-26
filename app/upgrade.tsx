@@ -34,8 +34,11 @@ import {
 import {
   saveSubscription,
   createRazorpayOrder,
-  openRazorpayCheckout,
 } from '../src/lib/payments';
+import RazorpayCheckoutModal, {
+  type RazorpayCheckoutParams,
+  type RazorpayPaymentResult,
+} from '../src/components/RazorpayCheckoutModal';
 
 export default function UpgradeScreen() {
   const { colors, mode } = useTheme();
@@ -64,6 +67,10 @@ export default function UpgradeScreen() {
 
   // Loading
   const [loading, setLoading] = useState(false);
+
+  // Razorpay modal state
+  const [checkoutVisible, setCheckoutVisible] = useState(false);
+  const [checkoutParams, setCheckoutParams] = useState<RazorpayCheckoutParams | null>(null);
 
   // Price breakdown
   const plan = PLANS[selectedPlan];
@@ -122,23 +129,31 @@ export default function UpgradeScreen() {
         return;
       }
 
-      // Paid flow — create order via Edge Function, then open checkout
+      // Paid flow — create order via Edge Function, then open checkout modal
       const order = await createRazorpayOrder(selectedPlan, discountPercent);
 
-      const result = await openRazorpayCheckout({
+      setCheckoutParams({
         orderId: order.orderId,
         amount: order.amount,
         planName: `VaNi ${plan.name}`,
         userEmail: userEmail || '',
         userName: userName || '',
       });
+      setCheckoutVisible(true);
+    } catch (err: any) {
+      Alert.alert('Error', err?.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }, [isFree, selectedPlan, discountPercent, appliedCoupon, plan, pricing, userEmail, userName, router]);
 
-      if (!result) {
-        // User cancelled
-        return;
-      }
+  // ── Razorpay modal callbacks ────────────────────────────────
 
-      // Payment successful — save subscription
+  const handlePaymentSuccess = useCallback(async (result: RazorpayPaymentResult) => {
+    setCheckoutVisible(false);
+    setCheckoutParams(null);
+    setLoading(true);
+    try {
       await saveSubscription({
         planType: selectedPlan,
         paymentStatus: 'paid',
@@ -149,7 +164,6 @@ export default function UpgradeScreen() {
         amountPaidPaise: pricing.total * 100,
         gstPaise: pricing.gst * 100,
       });
-
       store.dispatch(setPaid(true));
       Alert.alert(
         'Payment Successful!',
@@ -157,11 +171,17 @@ export default function UpgradeScreen() {
         [{ text: 'Let\'s Go', onPress: () => router.replace('/(main)') }],
       );
     } catch (err: any) {
-      Alert.alert('Error', err?.message || 'Something went wrong. Please try again.');
+      Alert.alert('Error', err?.message || 'Failed to save subscription.');
     } finally {
       setLoading(false);
     }
-  }, [isFree, selectedPlan, discountPercent, appliedCoupon, plan, pricing, userEmail, userName, router]);
+  }, [selectedPlan, appliedCoupon, pricing, plan, router]);
+
+  const handlePaymentDismiss = useCallback(() => {
+    setCheckoutVisible(false);
+    setCheckoutParams(null);
+    setLoading(false);
+  }, []);
 
   // ── Render ─────────────────────────────────────────────────
 
@@ -368,6 +388,12 @@ export default function UpgradeScreen() {
           </View>
         )}
       </SafeAreaView>
+      <RazorpayCheckoutModal
+        visible={checkoutVisible}
+        params={checkoutParams}
+        onSuccess={handlePaymentSuccess}
+        onDismiss={handlePaymentDismiss}
+      />
     </DotGridBackground>
   );
 }

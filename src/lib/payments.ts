@@ -1,6 +1,6 @@
 import { supabase } from './supabase';
 import type { PlanId } from '../constants/pricing';
-import { PLANS, calculatePricing, RAZORPAY_KEY_ID } from '../constants/pricing';
+import { PLANS, calculatePricing } from '../constants/pricing';
 
 // ── Save subscription ────────────────────────────────────────
 
@@ -160,57 +160,3 @@ export async function createRazorpayOrder(
   };
 }
 
-// ── Open Razorpay checkout via browser ───────────────────────
-
-export async function openRazorpayCheckout(params: {
-  orderId: string;
-  amount: number;
-  planName: string;
-  userEmail: string;
-  userName: string;
-}): Promise<{ paymentId: string; orderId: string; signature: string } | null> {
-  const WebBrowser = require('expo-web-browser');
-
-  // checkout-page must be deployed with --no-verify-jwt since a browser opens it
-  const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
-  const checkoutUrl =
-    `${supabaseUrl}/functions/v1/checkout-page` +
-    `?order_id=${encodeURIComponent(params.orderId)}` +
-    `&amount=${params.amount}` +
-    `&key=${RAZORPAY_KEY_ID}` +
-    `&name=${encodeURIComponent(params.planName)}` +
-    `&email=${encodeURIComponent(params.userEmail)}` +
-    `&prefill_name=${encodeURIComponent(params.userName)}`;
-
-  const result = await WebBrowser.openAuthSessionAsync(
-    checkoutUrl,
-    'vani://payment',
-    { showInRecents: false },
-  );
-
-  if (result.type === 'success' && result.url) {
-    const url = result.url;
-    const paymentId = extractParam(url, 'razorpay_payment_id');
-    const orderId = extractParam(url, 'razorpay_order_id');
-    const signature = extractParam(url, 'razorpay_signature');
-
-    if (paymentId && orderId && signature) {
-      return { paymentId, orderId, signature };
-    }
-  }
-
-  return null; // cancelled or failed
-}
-
-function extractParam(url: string, param: string): string | null {
-  const qIdx = url.indexOf('?');
-  if (qIdx === -1) return null;
-  const qs = url.substring(qIdx + 1);
-  for (const part of qs.split('&')) {
-    const [key, ...rest] = part.split('=');
-    if (decodeURIComponent(key) === param) {
-      return decodeURIComponent(rest.join('='));
-    }
-  }
-  return null;
-}
