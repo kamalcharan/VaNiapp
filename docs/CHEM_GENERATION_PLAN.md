@@ -274,8 +274,8 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B52 | `chem-surface-adsorption` | Adsorption (Physical and Chemical) | 20 | DONE |
-| B53 | `chem-surface-catalysis` | Catalysis (Homogeneous and Heterogeneous) | 20 | PENDING |
-| B54 | `chem-surface-colloids` | Colloids and Emulsions | 20 | PENDING |
+| B53 | `chem-surface-catalysis` | Catalysis (Homogeneous and Heterogeneous) | 20 | DONE |
+| B54 | `chem-surface-colloids` | Colloids and Emulsions | 20 | DONE |
 | | | **Chapter 19 Total** | **60** | |
 
 ---
@@ -288,35 +288,35 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B55 | `chem-metallurgy` | Thermodynamic Principles, Ellingham Diagram, and Refining | 20 | PENDING |
+| B55 | `chem-metallurgy` | Thermodynamic Principles, Ellingham Diagram, and Refining | 20 | DONE |
 | | | **Chapter 20 Total** | **20** | |
 
 ### Chapter 21: p-Block Elements — Class 12 (`chem-pblock12`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B56 | `chem-pblock12-group15` | Group 15 — Nitrogen Family and Compounds | 20 | PENDING |
-| B57 | `chem-pblock12-group16` | Group 16 — Oxygen Family and Compounds | 20 | PENDING |
-| B58 | `chem-pblock12-group17` | Group 17 — Halogens and Compounds | 20 | PENDING |
-| B59 | `chem-pblock12-group18` | Group 18 — Noble Gases and Interhalogen Compounds | 20 | PENDING |
+| B56 | `chem-pblock12-group15` | Group 15 — Nitrogen Family and Compounds | 20 | DONE |
+| B57 | `chem-pblock12-group16` | Group 16 — Oxygen Family and Compounds | 20 | DONE |
+| B58 | `chem-pblock12-group17` | Group 17 — Halogens and Compounds | 20 | DONE |
+| B59 | `chem-pblock12-group18` | Group 18 — Noble Gases and Interhalogen Compounds | 20 | DONE |
 | | | **Chapter 21 Total** | **80** | |
 
 ### Chapter 22: d and f Block Elements (`chem-dblock`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B60 | `chem-dblock-properties` | General Properties of Transition Elements | 20 | PENDING |
-| B61 | `chem-dblock-compounds` | Important Compounds (KMnO₄, K₂Cr₂O₇) | 20 | PENDING |
-| B62 | `chem-dblock-inner` | Lanthanoids and Actinoids | 20 | PENDING |
+| B60 | `chem-dblock-properties` | General Properties of Transition Elements | 20 | DONE |
+| B61 | `chem-dblock-compounds` | Important Compounds (KMnO₄, K₂Cr₂O₇) | 20 | DONE |
+| B62 | `chem-dblock-inner` | Lanthanoids and Actinoids | 20 | DONE |
 | | | **Chapter 22 Total** | **60** | |
 
 ### Chapter 23: Coordination Compounds (`chem-coordination`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B63 | `chem-coord-theory` | Werner's Theory, Nomenclature, and Terminology | 20 | PENDING |
-| B64 | `chem-coord-isomerism` | Isomerism in Coordination Compounds | 20 | PENDING |
-| B65 | `chem-coord-cft` | Crystal Field Theory, Bonding, and Applications | 20 | PENDING |
+| B63 | `chem-coord-theory` | Werner's Theory, Nomenclature, and Terminology | 20 | DONE |
+| B64 | `chem-coord-isomerism` | Isomerism in Coordination Compounds | 20 | DONE |
+| B65 | `chem-coord-cft` | Crystal Field Theory, Bonding, and Applications | 20 | DONE |
 | | | **Chapter 23 Total** | **60** | |
 
 ---
@@ -604,11 +604,11 @@ Commit and push.
 | Ch16 Solutions | 3 | 60 | 60 | 100% |
 | Ch17 Electrochemistry | 3 | 60 | 60 | 100% |
 | Ch18 Chemical Kinetics | 3 | 60 | 60 | 100% |
-| Ch19 Surface Chemistry | 3 | 60 | 20 | 33% |
-| Ch20 Isolation of Elements | 1 | 20 | 0 | 0% |
-| Ch21 p-Block (Class 12) | 4 | 80 | 0 | 0% |
-| Ch22 d and f Block | 3 | 60 | 0 | 0% |
-| Ch23 Coordination Compounds | 3 | 60 | 0 | 0% |
+| Ch19 Surface Chemistry | 3 | 60 | 60 | 100% |
+| Ch20 Isolation of Elements | 1 | 20 | 20 | 100% |
+| Ch21 p-Block (Class 12) | 4 | 80 | 80 | 100% |
+| Ch22 d and f Block | 3 | 60 | 60 | 100% |
+| Ch23 Coordination Compounds | 3 | 60 | 60 | 100% |
 | Ch24 Haloalkanes | 3 | 60 | 0 | 0% |
 | Ch25 Alcohols, Phenols, Ethers | 3 | 60 | 0 | 0% |
 | Ch26 Aldehydes, Ketones, COOH | 4 | 80 | 0 | 0% |
@@ -616,4 +616,4 @@ Commit and push.
 | Ch28 Biomolecules | 2 | 40 | 0 | 0% |
 | Ch29 Polymers | 1 | 20 | 0 | 0% |
 | Ch30 Chemistry in Everyday Life | 1 | 20 | 0 | 0% |
-| **TOTAL** | **82** | **1,640** | **1,040** | **63%** |
+| **TOTAL** | **82** | **1,640** | **1,300** | **79%** |
