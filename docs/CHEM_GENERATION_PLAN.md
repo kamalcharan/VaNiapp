@@ -366,22 +366,22 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B79 | `chem-biomol-carbs` | Carbohydrates (Mono-, Di-, and Polysaccharides) | 20 | PENDING |
-| B80 | `chem-biomol-proteins` | Amino Acids, Proteins, Nucleic Acids, and Vitamins | 20 | PENDING |
+| B79 | `chem-biomol-carbs` | Carbohydrates (Mono-, Di-, and Polysaccharides) | 20 | DONE |
+| B80 | `chem-biomol-proteins` | Amino Acids, Proteins, Nucleic Acids, and Vitamins | 20 | DONE |
 | | | **Chapter 28 Total** | **40** | |
 
 ### Chapter 29: Polymers (`chem-polymers`) — 1 batch
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B81 | `chem-polymers` | Classification, Polymerization, and Important Polymers | 20 | PENDING |
+| B81 | `chem-polymers` | Classification, Polymerization, and Important Polymers | 20 | DONE |
 | | | **Chapter 29 Total** | **20** | |
 
 ### Chapter 30: Chemistry in Everyday Life (`chem-everyday`) — 1 batch
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B82 | `chem-everyday` | Drugs, Food Additives, and Cleansing Agents | 20 | PENDING |
+| B82 | `chem-everyday` | Drugs, Food Additives, and Cleansing Agents | 20 | DONE |
 | | | **Chapter 30 Total** | **20** | |
 
 ---
@@ -613,7 +613,7 @@ Commit and push.
 | Ch25 Alcohols, Phenols, Ethers | 3 | 60 | 60 | 100% |
 | Ch26 Aldehydes, Ketones, COOH | 4 | 80 | 80 | 100% |
 | Ch27 Amines | 3 | 60 | 60 | 100% |
-| Ch28 Biomolecules | 2 | 40 | 0 | 0% |
-| Ch29 Polymers | 1 | 20 | 0 | 0% |
-| Ch30 Chemistry in Everyday Life | 1 | 20 | 0 | 0% |
-| **TOTAL** | **82** | **1,640** | **1,560** | **95%** |
+| Ch28 Biomolecules | 2 | 40 | 40 | 100% |
+| Ch29 Polymers | 1 | 20 | 20 | 100% |
+| Ch30 Chemistry in Everyday Life | 1 | 20 | 20 | 100% |
+| **TOTAL** | **82** | **1,640** | **1,640** | **100%** |
