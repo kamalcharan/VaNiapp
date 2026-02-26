@@ -77,26 +77,26 @@
   {
     "id": "phy-wave-types-04",
     "question_type": "mcq",
-    "difficulty": "easy",
-    "question_text": "The relationship between wave speed (v), frequency (f), and wavelength (lambda) is:",
-    "explanation": "The fundamental wave equation relates wave speed to frequency and wavelength as v = f*lambda. This is a universal relation valid for all types of waves. Since frequency f = 1/T (where T is the time period), this can also be written as v = lambda/T. The wave travels one wavelength in one time period.",
+    "difficulty": "hard",
+    "question_text": "A transverse wave on a string is described by y = 0.01 sin(100*pi*t - 50*pi*x) m. The ratio of the maximum particle velocity to the wave velocity is:",
+    "explanation": "Comparing with y = A sin(omega*t - k*x): A = 0.01 m, omega = 100*pi rad/s, k = 50*pi rad/m. Maximum particle velocity = A*omega = 0.01 * 100*pi = pi m/s. Wave velocity = omega/k = 100*pi/(50*pi) = 2 m/s. Ratio = pi/2. Alternatively, the ratio of max particle velocity to wave velocity = A*omega/(omega/k) = A*k = 0.01 * 50*pi = pi/2.",
     "correct_answer": "D",
-    "concept_tags": ["wave-equation", "frequency", "wavelength", "wave-speed"],
+    "concept_tags": ["particle-velocity", "wave-velocity", "velocity-ratio", "wave-equation"],
     "topic": "Wave Types, Transverse and Longitudinal Waves",
     "subject": "physics",
     "chapter": "Waves",
-    "bloom_level": "remember",
+    "bloom_level": "analyze",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "v = f/lambda", "is_correct": false },
-      { "key": "B", "text": "v = lambda/f", "is_correct": false },
-      { "key": "C", "text": "v = f^2 * lambda", "is_correct": false },
-      { "key": "D", "text": "v = f * lambda", "is_correct": true }
+      { "key": "A", "text": "pi", "is_correct": false },
+      { "key": "B", "text": "2*pi", "is_correct": false },
+      { "key": "C", "text": "1/pi", "is_correct": false },
+      { "key": "D", "text": "pi/2", "is_correct": true }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Dimensional check: f/lambda = (1/s)/(m) = 1/(m*s), which does not have dimensions of speed (m/s). The correct relation must give v in m/s.", "misconception": "Dividing instead of multiplying frequency and wavelength" },
-      { "option_key": "B", "hint": "lambda/f = m/(1/s) = m*s, which has dimensions of length times time, not speed. Speed requires length divided by time.", "misconception": "Inverting frequency instead of multiplying" },
-      { "option_key": "C", "hint": "f^2 * lambda has dimensions (1/s^2)(m) = m/s^2, which is acceleration, not speed. The relation is linear in both f and lambda.", "misconception": "Incorrectly squaring frequency" }
+      { "option_key": "A", "hint": "pi would be correct if the wave velocity were 1 m/s. The wave velocity is omega/k = 100*pi/(50*pi) = 2 m/s, so the ratio is pi/2, not pi.", "misconception": "Error in calculating wave velocity" },
+      { "option_key": "B", "hint": "2*pi would result from using A*k*2 or A*omega incorrectly. The ratio is A*k = 0.01 * 50*pi = 0.5*pi = pi/2.", "misconception": "Multiplying by an extra factor of 2" },
+      { "option_key": "C", "hint": "1/pi would mean the wave velocity exceeds the max particle velocity by a factor of pi. The ratio A*k = 0.5*pi > 1, so particle velocity actually exceeds wave velocity here.", "misconception": "Inverting the ratio" }
     ]
   },
   {
