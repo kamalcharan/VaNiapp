@@ -46,8 +46,14 @@ serve(async (req) => {
       });
     }
 
-    const keyId = Deno.env.get('RAZORPAY_KEY_ID')!;
-    const keySecret = Deno.env.get('RAZORPAY_KEY_SECRET')!;
+    const keyId = Deno.env.get('RAZORPAY_KEY_ID');
+    const keySecret = Deno.env.get('RAZORPAY_KEY_SECRET');
+    if (!keyId || !keySecret) {
+      return new Response(
+        JSON.stringify({ error: 'Razorpay secrets not configured. Run: supabase secrets set RAZORPAY_KEY_ID=xxx RAZORPAY_KEY_SECRET=xxx' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      );
+    }
     const auth = btoa(`${keyId}:${keySecret}`);
 
     const orderRes = await fetch('https://api.razorpay.com/v1/orders', {
@@ -61,10 +67,11 @@ serve(async (req) => {
 
     if (!orderRes.ok) {
       const errText = await orderRes.text();
-      return new Response(JSON.stringify({ error: errText }), {
-        status: orderRes.status,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+      // Return 502 so the client can distinguish Razorpay failures from auth issues
+      return new Response(
+        JSON.stringify({ error: `Razorpay error (${orderRes.status}): ${errText}` }),
+        { status: 502, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      );
     }
 
     const order = await orderRes.json();
