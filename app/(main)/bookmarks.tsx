@@ -80,6 +80,8 @@ export default function BookmarksScreen() {
     (async () => {
       setIsLoading(true);
       try {
+        console.log('[Bookmarks] Looking up IDs:', bookmarkedIds);
+
         // 1. Look up local questions first (chapter bank + V2 samples)
         const localQuestions = getV2QuestionsByIds(bookmarkedIds);
         const localResults: BookmarkedQuestion[] = localQuestions.map((q) => ({
@@ -91,40 +93,63 @@ export default function BookmarksScreen() {
           correctAnswer: '',
         }));
         const foundLocalIds = new Set(localResults.map((q) => q.id));
+        console.log('[Bookmarks] Found locally:', localResults.length, 'of', bookmarkedIds.length);
 
         // 2. For any IDs not found locally, try Supabase
         const remainingIds = bookmarkedIds.filter((id) => !foundLocalIds.has(id));
-        let supabaseResults: BookmarkedQuestion[] = [];
+        const supabaseResults: BookmarkedQuestion[] = [];
 
         if (remainingIds.length > 0 && supabase) {
-          // Search by both DB id AND payload->question_id since
-          // dbToV2() uses payload.question_id as the question ID
-          const { data } = await supabase
+          const toBookmark = (q: any): BookmarkedQuestion => {
+            const qid = (q.payload as any)?.question_id || q.id;
+            return {
+              id: qid,
+              questionText: q.question_text,
+              subjectId: q.subject_id,
+              chapterId: q.chapter_id,
+              difficulty: q.difficulty,
+              correctAnswer: q.correct_answer,
+            };
+          };
+
+          // Query 1: search by DB UUID
+          const { data: byId } = await supabase
             .from('med_questions')
             .select('id, question_text, subject_id, chapter_id, difficulty, correct_answer, payload')
-            .or(
-              `id.in.(${remainingIds.map((i) => `"${i}"`).join(',')}),` +
-              `payload->>question_id.in.(${remainingIds.map((i) => `"${i}"`).join(',')})`
-            )
+            .in('id', remainingIds)
             .eq('status', 'active');
 
-          if (data && data.length > 0) {
-            supabaseResults = data.map((q: any) => {
-              const qid = (q.payload as any)?.question_id || q.id;
-              return {
-                id: qid,
-                questionText: q.question_text,
-                subjectId: q.subject_id,
-                chapterId: q.chapter_id,
-                difficulty: q.difficulty,
-                correctAnswer: q.correct_answer,
-              };
-            });
+          const foundByUuid = new Set<string>();
+          if (byId && byId.length > 0) {
+            for (const q of byId) {
+              const bm = toBookmark(q);
+              supabaseResults.push(bm);
+              foundByUuid.add(bm.id);
+              foundByUuid.add(q.id);
+            }
+          }
+
+          // Query 2: for IDs still not found, search by payload->question_id
+          const stillMissing = remainingIds.filter((id) => !foundByUuid.has(id));
+          if (stillMissing.length > 0) {
+            const { data: byPayload } = await supabase
+              .from('med_questions')
+              .select('id, question_text, subject_id, chapter_id, difficulty, correct_answer, payload')
+              .in('payload->>question_id', stillMissing)
+              .eq('status', 'active');
+
+            if (byPayload && byPayload.length > 0) {
+              for (const q of byPayload) {
+                supabaseResults.push(toBookmark(q));
+              }
+            }
           }
         }
 
+        console.log('[Bookmarks] Supabase found:', supabaseResults.length, '| Total:', localResults.length + supabaseResults.length);
         setQuestions([...localResults, ...supabaseResults]);
       } catch (err) {
+        console.warn('[Bookmarks] Fetch error:', err);
         reportError(err, 'medium', 'Bookmarks.fetchQuestions');
       } finally {
         setIsLoading(false);
