@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-energy-conservation-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The kinetic energy of a body of mass 2 kg moving with a velocity of 4 m/s is:",
+    "explanation": "Kinetic energy is given by KE = ½mv². Substituting m = 2 kg and v = 4 m/s: KE = ½ × 2 × (4)² = ½ × 2 × 16 = 16 J.",
+    "correct_answer": "B",
+    "concept_tags": ["kinetic energy", "KE formula"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "8 J", "is_correct": false },
+      { "key": "B", "text": "16 J", "is_correct": true },
+      { "key": "C", "text": "32 J", "is_correct": false },
+      { "key": "D", "text": "4 J", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "8 J would result from using mv instead of ½mv², which gives momentum, not kinetic energy.", "misconception": "Using mv for kinetic energy instead of ½mv²" },
+      { "option_key": "C", "hint": "32 J would result from forgetting the ½ factor: mv² = 2 × 16 = 32.", "misconception": "Forgetting the ½ factor in ½mv²" },
+      { "option_key": "D", "hint": "4 J does not follow from any correct substitution into the kinetic energy formula.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The gravitational potential energy of a body of mass 5 kg at a height of 10 m above the ground is (g = 10 m/s²):",
+    "explanation": "Gravitational potential energy is PE = mgh = 5 × 10 × 10 = 500 J. This represents the energy stored in the body due to its position in the gravitational field.",
+    "correct_answer": "C",
+    "concept_tags": ["gravitational potential energy", "mgh"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "50 J", "is_correct": false },
+      { "key": "B", "text": "250 J", "is_correct": false },
+      { "key": "C", "text": "500 J", "is_correct": true },
+      { "key": "D", "text": "100 J", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "50 J would be mg = 5 × 10 = 50, which gives the weight, not the potential energy.", "misconception": "Confusing weight (mg) with potential energy (mgh)" },
+      { "option_key": "B", "hint": "250 J would come from ½mgh = ½ × 5 × 10 × 10, but potential energy has no ½ factor.", "misconception": "Incorrectly applying a ½ factor to mgh" },
+      { "option_key": "D", "hint": "100 J would be gh = 10 × 10, which omits the mass from the calculation.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following is a conservative force?",
+    "explanation": "Gravitational force is a conservative force because the work done by it depends only on the initial and final positions, not on the path taken. Friction and air resistance are non-conservative forces as their work depends on the path.",
+    "correct_answer": "A",
+    "concept_tags": ["conservative force", "gravitational force"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Gravitational force", "is_correct": true },
+      { "key": "B", "text": "Frictional force", "is_correct": false },
+      { "key": "C", "text": "Air resistance", "is_correct": false },
+      { "key": "D", "text": "Viscous force", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Friction is a non-conservative force because work done by friction depends on the path length and is always negative.", "misconception": null },
+      { "option_key": "C", "hint": "Air resistance is a non-conservative dissipative force that converts kinetic energy into heat.", "misconception": null },
+      { "option_key": "D", "hint": "Viscous force opposes motion in fluids and is path-dependent, making it non-conservative.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A ball is dropped from a height of 20 m. At the moment just before hitting the ground, its kinetic energy equals (neglect air resistance, g = 10 m/s²) for a ball of mass 1 kg:",
+    "explanation": "By conservation of mechanical energy (no air resistance), the entire gravitational potential energy converts to kinetic energy. KE = mgh = 1 × 10 × 20 = 200 J. At the ground, PE = 0 and all energy is kinetic.",
+    "correct_answer": "D",
+    "concept_tags": ["conservation of energy", "PE to KE conversion", "free fall"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "100 J", "is_correct": false },
+      { "key": "B", "text": "20 J", "is_correct": false },
+      { "key": "C", "text": "400 J", "is_correct": false },
+      { "key": "D", "text": "200 J", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "100 J would correspond to a height of 10 m or a mass of 0.5 kg, not the given values.", "misconception": null },
+      { "option_key": "B", "hint": "20 J would come from mh = 1 × 20, forgetting to multiply by g.", "misconception": "Forgetting to include g in the mgh formula" },
+      { "option_key": "C", "hint": "400 J would require m = 2 kg or h = 40 m, neither of which matches the given data.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A spring with spring constant k = 400 N/m is compressed by 0.2 m. The elastic potential energy stored in the spring is:",
+    "explanation": "The elastic potential energy stored in a spring is PE = ½kx² = ½ × 400 × (0.2)² = ½ × 400 × 0.04 = 8 J. This energy is the same whether the spring is compressed or stretched by the same amount.",
+    "correct_answer": "B",
+    "concept_tags": ["elastic potential energy", "spring PE", "½kx²"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "16 J", "is_correct": false },
+      { "key": "B", "text": "8 J", "is_correct": true },
+      { "key": "C", "text": "80 J", "is_correct": false },
+      { "key": "D", "text": "4 J", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "16 J would result from forgetting the ½ factor: kx² = 400 × 0.04 = 16.", "misconception": "Forgetting the ½ in ½kx²" },
+      { "option_key": "C", "hint": "80 J would come from using kx = 400 × 0.2 = 80, which is the spring force, not the stored energy.", "misconception": "Confusing spring force (kx) with spring potential energy (½kx²)" },
+      { "option_key": "D", "hint": "4 J would result from using ½k × x instead of ½k × x², which is dimensionally incorrect.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If the speed of a body is doubled, its kinetic energy becomes:",
+    "explanation": "Kinetic energy KE = ½mv². If speed v is doubled to 2v, the new KE = ½m(2v)² = ½m × 4v² = 4 × ½mv² = 4 times the original KE. Kinetic energy is proportional to the square of speed.",
+    "correct_answer": "C",
+    "concept_tags": ["kinetic energy", "speed dependence", "proportionality"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Doubled", "is_correct": false },
+      { "key": "B", "text": "Halved", "is_correct": false },
+      { "key": "C", "text": "Four times", "is_correct": true },
+      { "key": "D", "text": "Eight times", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "KE is proportional to v², not v. Doubling speed quadruples KE, not doubles it.", "misconception": "Thinking KE is directly proportional to speed" },
+      { "option_key": "B", "hint": "Halving would occur if speed were reduced, not doubled. Doubling speed increases KE.", "misconception": null },
+      { "option_key": "D", "hint": "Eight times would require KE ∝ v³, but KE ∝ v², so doubling speed gives 2² = 4 times.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A pendulum bob of mass 0.5 kg is released from a height of 0.8 m above its lowest point. What is the speed of the bob at the lowest point? (g = 10 m/s², neglect air resistance)",
+    "explanation": "By conservation of mechanical energy: mgh = ½mv². Solving for v: v = √(2gh) = √(2 × 10 × 0.8) = √16 = 4 m/s. The mass cancels out and does not affect the speed at the lowest point.",
+    "correct_answer": "A",
+    "concept_tags": ["conservation of energy", "pendulum", "PE to KE"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "4 m/s", "is_correct": true },
+      { "key": "B", "text": "2 m/s", "is_correct": false },
+      { "key": "C", "text": "8 m/s", "is_correct": false },
+      { "key": "D", "text": "16 m/s", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "2 m/s would come from v = √(gh) instead of v = √(2gh), missing the factor of 2.", "misconception": "Forgetting the factor of 2 in v = √(2gh)" },
+      { "option_key": "C", "hint": "8 m/s would come from v = 2gh = 2 × 10 × 0.8 = 16, then confusing 16 for 8.", "misconception": null },
+      { "option_key": "D", "hint": "16 m/s would come from v = 2gh = 16 without taking the square root.", "misconception": "Forgetting to take the square root in v = √(2gh)" }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A block of mass 2 kg is attached to a spring (k = 200 N/m) on a frictionless surface. If the spring is compressed by 0.1 m and then released, the maximum speed of the block is:",
+    "explanation": "At maximum compression, all energy is elastic PE. When released, this converts to KE at natural length. ½kx² = ½mv². So v = x√(k/m) = 0.1 × √(200/2) = 0.1 × √100 = 0.1 × 10 = 1 m/s.",
+    "correct_answer": "D",
+    "concept_tags": ["spring PE to KE", "conservation of energy", "spring-mass system"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "10 m/s", "is_correct": false },
+      { "key": "B", "text": "0.1 m/s", "is_correct": false },
+      { "key": "C", "text": "2 m/s", "is_correct": false },
+      { "key": "D", "text": "1 m/s", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "10 m/s would result from forgetting to multiply by the compression distance: √(k/m) = √100 = 10, but v = x√(k/m).", "misconception": "Forgetting to include compression distance in the velocity formula" },
+      { "option_key": "B", "hint": "0.1 m/s confuses the compression distance with the velocity.", "misconception": null },
+      { "option_key": "C", "hint": "2 m/s would result from an error such as using kx/m instead of x√(k/m).", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A 3 kg block slides down a frictionless incline of height 5 m. At the bottom of the incline, it encounters a rough horizontal surface (μₖ = 0.5). How far does the block travel on the rough surface before stopping? (g = 10 m/s²)",
+    "explanation": "At the bottom, KE = mgh = 3 × 10 × 5 = 150 J. On the rough surface, friction force = μₖmg = 0.5 × 3 × 10 = 15 N. The block stops when friction dissipates all KE: μₖmg × d = mgh. So d = h/μₖ = 5/0.5 = 10 m.",
+    "correct_answer": "C",
+    "concept_tags": ["energy conservation", "friction", "energy dissipation"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "5 m", "is_correct": false },
+      { "key": "B", "text": "15 m", "is_correct": false },
+      { "key": "C", "text": "10 m", "is_correct": true },
+      { "key": "D", "text": "20 m", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "5 m would be correct only if μₖ = 1, not 0.5. d = h/μₖ = 5/0.5 = 10 m.", "misconception": "Assuming distance equals height without accounting for friction coefficient" },
+      { "option_key": "B", "hint": "15 m does not correspond to any valid calculation with the given values.", "misconception": null },
+      { "option_key": "D", "hint": "20 m would result from d = 2h/μₖ, which involves an extra factor of 2.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two bodies of masses m and 4m have equal kinetic energies. The ratio of their momenta is:",
+    "explanation": "KE = p²/(2m), so p = √(2mKE). For equal KE: p₁/p₂ = √(2m₁KE)/√(2m₂KE) = √(m₁/m₂) = √(m/4m) = √(1/4) = 1/2. Thus the ratio is 1:2.",
+    "correct_answer": "B",
+    "concept_tags": ["kinetic energy", "momentum", "KE-momentum relation"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1 : 4", "is_correct": false },
+      { "key": "B", "text": "1 : 2", "is_correct": true },
+      { "key": "C", "text": "1 : 1", "is_correct": false },
+      { "key": "D", "text": "4 : 1", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1:4 would be the mass ratio, not the momentum ratio. Momentum ratio depends on the square root of mass for equal KE.", "misconception": "Confusing mass ratio with momentum ratio" },
+      { "option_key": "C", "hint": "Equal KE does not mean equal momentum. Since p = √(2mKE), different masses give different momenta.", "misconception": "Assuming equal kinetic energy implies equal momentum" },
+      { "option_key": "D", "hint": "4:1 is the inverse of the mass ratio. The heavier body has more momentum for equal KE, not less.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A block of mass 1 kg is released from the top of a smooth curved track at a height of 1 m. At the bottom, it slides onto a rough horizontal surface (μₖ = 0.4) and then compresses a spring (k = 50 N/m) before coming to rest. If the block travels 0.5 m on the rough surface before hitting the spring, what is the maximum compression of the spring? (g = 10 m/s²)",
+    "explanation": "Initial PE = mgh = 1 × 10 × 1 = 10 J. Energy lost to friction before hitting spring = μₖmg × d = 0.4 × 1 × 10 × 0.5 = 2 J. Energy available for spring compression = 10 − 2 = 8 J. Also, friction acts during compression over distance x: ½kx² + μₖmgx = 8, i.e., 25x² + 4x − 8 = 0. Using the quadratic formula: x = (−4 + √(16 + 800))/50 = (−4 + √816)/50 ≈ (−4 + 28.57)/50 ≈ 0.49 m ≈ 0.5 m.",
+    "correct_answer": "A",
+    "concept_tags": ["energy conservation", "spring compression", "friction", "quadratic equation"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "≈ 0.49 m", "is_correct": true },
+      { "key": "B", "text": "0.4 m", "is_correct": false },
+      { "key": "C", "text": "0.63 m", "is_correct": false },
+      { "key": "D", "text": "0.2 m", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "0.4 m would result from an approximate calculation that underestimates the compression by neglecting some energy terms.", "misconception": null },
+      { "option_key": "C", "hint": "0.63 m would come from ignoring friction during the compression phase: ½kx² = 8 gives x = √(16/50) ≈ 0.57, still not 0.63.", "misconception": "Ignoring friction during spring compression" },
+      { "option_key": "D", "hint": "0.2 m significantly underestimates the compression; the available energy (8 J) would store only ½ × 50 × 0.04 = 1 J in the spring at 0.2 m compression.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A particle of mass m is released from the top of a smooth hemisphere of radius R fixed on the ground. At what angle θ from the vertical does the particle leave the surface of the hemisphere?",
+    "explanation": "At angle θ, by energy conservation: mgR(1 − cos θ) = ½mv². At the point of leaving, the normal force becomes zero, so mg cos θ = mv²/R. From the energy equation, v² = 2gR(1 − cos θ). Substituting: mg cos θ = m × 2g(1 − cos θ)/R × R/1, giving cos θ = 2 − 2cos θ, so 3cos θ = 2, thus cos θ = 2/3 and θ = cos⁻¹(2/3).",
+    "correct_answer": "B",
+    "concept_tags": ["hemisphere problem", "energy conservation", "circular motion", "normal force"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "cos⁻¹(1/3)", "is_correct": false },
+      { "key": "B", "text": "cos⁻¹(2/3)", "is_correct": true },
+      { "key": "C", "text": "cos⁻¹(3/4)", "is_correct": false },
+      { "key": "D", "text": "cos⁻¹(1/2)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "cos⁻¹(1/3) would result from an incorrect equation such as cos θ = 1 − cos θ instead of the correct 3cos θ = 2.", "misconception": null },
+      { "option_key": "C", "hint": "cos⁻¹(3/4) does not follow from the correct combination of energy conservation and centripetal force equations.", "misconception": null },
+      { "option_key": "D", "hint": "cos⁻¹(1/2) = 60° is a commonly assumed angle but does not satisfy the condition 3cos θ = 2 derived from the physics.", "misconception": "Guessing standard angles without solving the energy equations" }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The total mechanical energy of a freely falling body remains constant throughout its fall (neglecting air resistance).\nReason (R): Gravity is a conservative force, and for conservative forces, the total mechanical energy of a system is conserved.",
+    "explanation": "Both the assertion and reason are correct, and the reason correctly explains the assertion. In free fall without air resistance, only gravity (a conservative force) does work. For conservative forces, the sum of kinetic and potential energy remains constant. As the body falls, PE decreases and KE increases by the same amount.",
+    "correct_answer": "A",
+    "concept_tags": ["conservation of mechanical energy", "conservative force", "free fall"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The reason directly explains why mechanical energy is conserved: gravity is conservative, so total mechanical energy is conserved. R is the correct explanation of A.", "misconception": null },
+      { "option_key": "C", "hint": "The reason is scientifically correct; gravity is indeed a conservative force and mechanical energy is conserved under conservative forces.", "misconception": null },
+      { "option_key": "D", "hint": "The assertion is correct; mechanical energy is conserved in free fall without air resistance, as confirmed by experiments and theory.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): When a ball is thrown vertically upward, its total energy (kinetic + potential) at the highest point is zero.\nReason (R): At the highest point, the velocity of the ball is zero, so its kinetic energy is zero.",
+    "explanation": "The assertion is incorrect. At the highest point, KE = 0 but PE = mgh_max, so total energy = 0 + mgh_max ≠ 0. The total energy equals the initial kinetic energy and remains constant throughout the motion. The reason is correct: at the highest point, velocity is indeed zero, making KE = 0.",
+    "correct_answer": "D",
+    "concept_tags": ["total energy", "kinetic energy", "potential energy", "vertical throw"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The assertion is wrong; total energy at the top is not zero. It equals the initial KE, which is entirely converted to PE.", "misconception": "Thinking total energy is zero when KE is zero" },
+      { "option_key": "B", "hint": "The assertion is factually incorrect (total energy ≠ 0 at the top), so no option with 'Both correct' applies.", "misconception": null },
+      { "option_key": "C", "hint": "The assertion is incorrect. The total energy at the highest point is mgh, not zero. The reason, however, is correct.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the following types of energy (Column I) with their expressions (Column II):\n\nColumn I:\nA. Kinetic energy\nB. Gravitational potential energy\nC. Elastic potential energy of a spring\nD. Kinetic energy in terms of momentum\n\nColumn II:\n1. ½kx²\n2. ½mv²\n3. mgh\n4. p²/(2m)",
+    "explanation": "A-2: Kinetic energy = ½mv². B-3: Gravitational PE = mgh. C-1: Spring elastic PE = ½kx². D-4: KE = p²/(2m), derived from KE = ½mv² and p = mv.",
+    "correct_answer": "C",
+    "concept_tags": ["energy formulas", "kinetic energy", "potential energy", "momentum-energy relation"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-2, B-1, C-3, D-4", "is_correct": false },
+      { "key": "B", "text": "A-4, B-3, C-1, D-2", "is_correct": false },
+      { "key": "C", "text": "A-2, B-3, C-1, D-4", "is_correct": true },
+      { "key": "D", "text": "A-1, B-3, C-2, D-4", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Gravitational PE is mgh (formula 3), not ½kx² (formula 1). ½kx² is the elastic spring PE.", "misconception": "Confusing gravitational PE with elastic PE formulas" },
+      { "option_key": "B", "hint": "Kinetic energy is ½mv² (formula 2), not p²/(2m) (formula 4). While both are correct, the question specifically asks for KE expression, and D is for KE in terms of momentum.", "misconception": null },
+      { "option_key": "D", "hint": "½kx² (formula 1) is spring PE, not kinetic energy. Kinetic energy is ½mv² (formula 2).", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the following scenarios (Column I) with the correct energy transformation (Column II):\n\nColumn I:\nA. A compressed spring launches a ball vertically upward (at maximum height)\nB. A freely falling ball just before hitting the ground\nC. A ball rolling on a rough horizontal surface coming to rest\nD. A pendulum swinging from extreme position to mean position\n\nColumn II:\n1. KE → PE (gravitational)\n2. Elastic PE → Gravitational PE\n3. KE → Heat (thermal energy)\n4. Gravitational PE → KE",
+    "explanation": "A-2: The compressed spring's elastic PE converts to gravitational PE at maximum height. B-4: The falling ball's gravitational PE converts to KE. C-3: The rolling ball's KE is converted to heat by friction. D-4: At the extreme, the pendulum has maximum gravitational PE which converts to KE at the mean position.",
+    "correct_answer": "B",
+    "concept_tags": ["energy transformation", "PE to KE", "elastic PE", "heat dissipation"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-2, B-4, C-1, D-3", "is_correct": false },
+      { "key": "B", "text": "A-2, B-4, C-3, D-4", "is_correct": true },
+      { "key": "C", "text": "A-1, B-4, C-3, D-2", "is_correct": false },
+      { "key": "D", "text": "A-2, B-3, C-4, D-1", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A ball rolling to rest on a rough surface loses KE to heat (friction), not KE to PE. There is no height change involved.", "misconception": "Confusing energy loss to friction with conversion to potential energy" },
+      { "option_key": "C", "hint": "A compressed spring launching a ball involves elastic PE to gravitational PE, not KE to gravitational PE.", "misconception": null },
+      { "option_key": "D", "hint": "A freely falling ball converts gravitational PE to KE, not to heat. Heat dissipation requires friction or air resistance.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "Kinetic energy of a body is always positive or zero; it can never be negative.",
+    "explanation": "This statement is TRUE. Kinetic energy KE = ½mv². Since mass m is always positive and v² (square of velocity) is always non-negative, KE is always greater than or equal to zero. It is zero only when the body is at rest.",
+    "correct_answer": "A",
+    "concept_tags": ["kinetic energy", "positive quantity"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "KE = ½mv² involves mass (positive) and v² (non-negative), so KE can never be negative.", "misconception": "Confusing kinetic energy (always non-negative) with potential energy (can be negative)" },
+      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The mechanical energy of a system is always conserved, even when non-conservative forces are acting on it.",
+    "explanation": "This statement is FALSE. Mechanical energy (KE + PE) is conserved only when no non-conservative forces (like friction, air resistance) do work. When non-conservative forces act, they dissipate mechanical energy as heat or sound, causing the total mechanical energy to decrease.",
+    "correct_answer": "B",
+    "concept_tags": ["conservation of energy", "non-conservative forces", "energy dissipation"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Non-conservative forces like friction convert mechanical energy to thermal energy, so mechanical energy is NOT conserved in their presence.", "misconception": "Confusing conservation of total energy with conservation of mechanical energy" },
+      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-19",
+    "question_type": "fill_in_the_blanks",
+    "difficulty": "medium",
+    "question_text": "The elastic potential energy stored in a spring compressed by a distance x is given by the expression _____.",
+    "explanation": "The elastic potential energy stored in a spring is ½kx², where k is the spring constant and x is the compression (or extension) from the natural length. This follows from integrating the spring force F = kx over the displacement.",
+    "correct_answer": "D",
+    "concept_tags": ["elastic potential energy", "spring constant", "½kx²"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "kx", "is_correct": false },
+      { "key": "B", "text": "kx²", "is_correct": false },
+      { "key": "C", "text": "½kx", "is_correct": false },
+      { "key": "D", "text": "½kx²", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "kx gives the spring force magnitude (Hooke's law), not the stored energy.", "misconception": "Confusing spring force with spring potential energy" },
+      { "option_key": "B", "hint": "kx² is missing the ½ factor that arises from integrating the linearly varying spring force.", "misconception": "Forgetting the ½ factor in the spring PE formula" },
+      { "option_key": "C", "hint": "½kx has incorrect dimensions: it gives N (force), not J (energy). Energy requires x².", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-energy-conservation-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A roller coaster car of mass 500 kg starts from rest at the top of a hill 40 m high. It then passes through a loop of radius 10 m. Assume the track is frictionless and g = 10 m/s².\n\nWhat is the speed of the car at the top of the loop (which is 20 m above the ground)?",
+    "explanation": "Using conservation of energy between the hilltop (h₁ = 40 m) and the top of the loop (h₂ = 20 m): mgh₁ = ½mv² + mgh₂. So ½v² = g(h₁ − h₂) = 10 × (40 − 20) = 200. Therefore v² = 400, giving v = 20 m/s. The mass cancels out in the calculation.",
+    "correct_answer": "C",
+    "concept_tags": ["conservation of energy", "roller coaster", "loop"],
+    "topic": "Conservation of Energy and Types of Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "10 m/s", "is_correct": false },
+      { "key": "B", "text": "28.3 m/s", "is_correct": false },
+      { "key": "C", "text": "20 m/s", "is_correct": true },
+      { "key": "D", "text": "14.1 m/s", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "10 m/s would come from using v = √(2g × 5) or a height difference of only 5 m, which is incorrect.", "misconception": null },
+      { "option_key": "B", "hint": "28.3 m/s ≈ √(2 × 10 × 40) uses the full height of 40 m, ignoring that the top of the loop is 20 m high.", "misconception": "Using total height instead of height difference" },
+      { "option_key": "D", "hint": "14.1 m/s ≈ √(2 × 10 × 10) uses a height difference of 10 m (the loop radius) instead of the correct 20 m.", "misconception": "Using loop radius as height difference instead of actual height difference" }
+    ]
+  }
+]

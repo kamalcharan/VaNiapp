@@ -1,0 +1,762 @@
+[
+  {
+    "id": "phy-motion1d-kinematics-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "batch": "B03",
+    "question_text": "A person walks 4 m towards the east and then 3 m towards the north. What is the magnitude of his displacement?",
+    "explanation": "Displacement is the shortest straight-line distance from the initial to the final position. Using the Pythagorean theorem: displacement = √(4² + 3²) = √(16 + 9) = √25 = 5 m. The total distance walked is 4 + 3 = 7 m, but displacement is only 5 m because it is a vector quantity representing the straight-line path from start to finish.",
+    "correct_answer": "A",
+    "concept_tags": ["displacement", "distance", "vector", "pythagorean-theorem"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "5 m", "is_correct": true},
+      {"key": "B", "text": "7 m", "is_correct": false},
+      {"key": "C", "text": "1 m", "is_correct": false},
+      {"key": "D", "text": "3.5 m", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "7 m is the total distance travelled (4 + 3), not the displacement. Displacement is the magnitude of the resultant vector, not the sum of individual paths.",
+        "misconception": "Confusing distance (scalar, path length) with displacement (vector, shortest straight-line separation)."
+      },
+      {
+        "option_key": "C",
+        "hint": "1 m would result only if the two displacements were in opposite directions (4 − 3). Here they are perpendicular, so the Pythagorean theorem must be used.",
+        "misconception": "Subtracting the two path lengths instead of finding the vector resultant."
+      },
+      {
+        "option_key": "D",
+        "hint": "3.5 m is simply half of the total distance, which has no physical significance for displacement. The correct approach is √(4² + 3²) = 5 m.",
+        "misconception": "Averaging the path lengths rather than computing the resultant magnitude."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "batch": "B03",
+    "question_text": "Which of the following quantities is a scalar?",
+    "explanation": "Speed is defined as the magnitude of velocity and has no directional component, making it a scalar quantity. Velocity, acceleration, and displacement are all vector quantities because they have both magnitude and direction. Speed tells us 'how fast' an object moves but not 'in which direction', hence it is scalar.",
+    "correct_answer": "B",
+    "concept_tags": ["scalar", "vector", "speed", "velocity"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Velocity", "is_correct": false},
+      {"key": "B", "text": "Speed", "is_correct": true},
+      {"key": "C", "text": "Acceleration", "is_correct": false},
+      {"key": "D", "text": "Displacement", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Velocity is a vector quantity because it specifies both magnitude (speed) and direction of motion. A car moving at 60 km/h north has a different velocity from one moving at 60 km/h south.",
+        "misconception": "Treating velocity as scalar by focusing only on its numerical (speed) component."
+      },
+      {
+        "option_key": "C",
+        "hint": "Acceleration is a vector quantity as it describes the rate of change of velocity, which itself is a vector. It has both magnitude and direction.",
+        "misconception": "Assuming acceleration is scalar because it is often expressed as a single number in everyday language."
+      },
+      {
+        "option_key": "D",
+        "hint": "Displacement is a vector quantity representing the change in position with a definite direction from initial to final position.",
+        "misconception": "Confusing displacement with distance, which is a scalar."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "batch": "B03",
+    "question_text": "An object travels 30 m in 5 s and the next 30 m in 10 s. What is its average speed over the entire journey?",
+    "explanation": "Average speed = Total distance / Total time. Total distance = 30 + 30 = 60 m. Total time = 5 + 10 = 15 s. Average speed = 60 / 15 = 4 m/s. Note that average speed is NOT the arithmetic mean of the two individual speeds (6 m/s and 3 m/s = 4.5 m/s), because equal distances are covered in unequal times. The harmonic mean formula gives 2×6×3/(6+3) = 4 m/s, consistent with the direct calculation.",
+    "correct_answer": "C",
+    "concept_tags": ["average-speed", "distance", "time"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "6 m/s", "is_correct": false},
+      {"key": "B", "text": "4.5 m/s", "is_correct": false},
+      {"key": "C", "text": "4 m/s", "is_correct": true},
+      {"key": "D", "text": "3 m/s", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "6 m/s is the speed during the first segment only (30 m / 5 s). It does not represent the average over the full journey.",
+        "misconception": "Using only the first segment's speed as the overall average."
+      },
+      {
+        "option_key": "B",
+        "hint": "4.5 m/s is the simple arithmetic mean of 6 m/s and 3 m/s. This is incorrect because the object spends more time at the lower speed, pulling the true average below 4.5 m/s.",
+        "misconception": "Averaging the two speeds arithmetically instead of dividing total distance by total time."
+      },
+      {
+        "option_key": "D",
+        "hint": "3 m/s is the speed during the second segment only (30 m / 10 s). It similarly does not account for the full journey.",
+        "misconception": "Using only the second segment's speed as the overall average."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "batch": "B03",
+    "question_text": "The slope of a position-time (x-t) graph at any instant gives:",
+    "explanation": "The slope of a position-time graph (dx/dt) represents the rate of change of position with time, which is the instantaneous velocity at that point. A steeper slope means higher speed; a negative slope means motion in the negative direction. The area under an x-t graph has no standard kinematic meaning. The slope of a velocity-time graph gives acceleration, not the x-t graph.",
+    "correct_answer": "D",
+    "concept_tags": ["position-time-graph", "instantaneous-velocity", "slope"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Distance", "is_correct": false},
+      {"key": "B", "text": "Acceleration", "is_correct": false},
+      {"key": "C", "text": "Average velocity", "is_correct": false},
+      {"key": "D", "text": "Instantaneous velocity", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Distance is obtained from the odometer or by integrating speed over time. The slope of an x-t graph is a rate of change, not a cumulative quantity like distance.",
+        "misconception": "Confusing the slope (a rate) with the actual position or distance values on the graph."
+      },
+      {
+        "option_key": "B",
+        "hint": "Acceleration is the slope of a velocity-time (v-t) graph, not the position-time graph. The x-t slope gives velocity.",
+        "misconception": "Misidentifying which graph's slope gives acceleration versus velocity."
+      },
+      {
+        "option_key": "C",
+        "hint": "Average velocity over an interval equals the slope of the chord (secant line) connecting two points on the x-t graph, not the slope of the tangent at a single instant.",
+        "misconception": "Confusing the tangent slope (instantaneous) with the secant slope (average) on an x-t graph."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-05",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "batch": "B03",
+    "question_text": "Statement: The magnitude of displacement of an object can never exceed the total distance travelled by it.",
+    "explanation": "This statement is TRUE. Displacement is the shortest straight-line distance between the initial and final positions, while distance is the actual path length. Since the shortest path between two points is always less than or equal to any other path, displacement ≤ distance. Equality holds when the object moves in a perfectly straight line without changing direction.",
+    "correct_answer": "A",
+    "concept_tags": ["displacement", "distance", "inequality"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "False would imply displacement can exceed distance, which is impossible. The straight-line distance (displacement) is always the minimum possible path length between two points.",
+        "misconception": "Thinking displacement and distance are unrelated or that vectors can be larger than the path traced."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable (---). The statement is straightforwardly TRUE based on the geometric definition of displacement.",
+        "misconception": "Not applicable."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable (---). The statement is straightforwardly TRUE based on the geometric definition of displacement.",
+        "misconception": "Not applicable."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-06",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "batch": "B03",
+    "question_text": "Statement: An object with zero velocity must also have zero acceleration.",
+    "explanation": "This statement is FALSE. A classic counterexample is a ball thrown vertically upward. At its highest point, the velocity is zero, but acceleration due to gravity (−9.8 m/s²) is non-zero and acts downward. Acceleration describes the rate of change of velocity, so an object can be instantaneously at rest while still experiencing a force (and hence acceleration) that changes its velocity.",
+    "correct_answer": "B",
+    "concept_tags": ["velocity", "acceleration", "instantaneous-rest", "independence-of-v-and-a"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": false},
+      {"key": "B", "text": "False", "is_correct": true},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "True would mean that whenever an object stops momentarily, no net force acts on it. A ball at the top of its trajectory disproves this—it is momentarily at rest but gravity still accelerates it at 9.8 m/s².",
+        "misconception": "Confusing zero instantaneous velocity with a complete absence of acceleration or net force."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable (---). The statement is FALSE as shown by the example of a projectile at its apex.",
+        "misconception": "Not applicable."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable (---). The statement is FALSE as shown by the example of a projectile at its apex.",
+        "misconception": "Not applicable."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "batch": "B03",
+    "question_text": "A car starts from rest and accelerates uniformly to 20 m/s in 10 s. It then maintains this speed for 20 s before decelerating uniformly to rest in 5 s. What is the total distance covered?",
+    "explanation": "Phase 1 (acceleration): u = 0, v = 20 m/s, t = 10 s. Distance = (u + v)/2 × t = (0 + 20)/2 × 10 = 100 m. Phase 2 (constant speed): v = 20 m/s, t = 20 s. Distance = 20 × 20 = 400 m. Phase 3 (deceleration): u = 20 m/s, v = 0, t = 5 s. Distance = (20 + 0)/2 × 5 = 50 m. Total distance = 100 + 400 + 50 = 550 m.",
+    "correct_answer": "B",
+    "concept_tags": ["uniform-acceleration", "v-t-graph-area", "kinematics-equations"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "500 m", "is_correct": false},
+      {"key": "B", "text": "550 m", "is_correct": true},
+      {"key": "C", "text": "600 m", "is_correct": false},
+      {"key": "D", "text": "450 m", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "500 m results from incorrectly computing phase 3 as 20 × 5 = 100 m instead of using the average speed (20 + 0)/2 × 5 = 50 m. The deceleration phase covers only 50 m.",
+        "misconception": "Using the initial speed rather than the average speed for the decelerating segment."
+      },
+      {
+        "option_key": "C",
+        "hint": "600 m could arise from counting phase 1 as 200 m (using only 20 × 10 without halving for the average). Uniformly accelerating from rest means the average speed is v/2, not v.",
+        "misconception": "Forgetting to halve the final speed when computing distance during uniform acceleration from rest."
+      },
+      {
+        "option_key": "D",
+        "hint": "450 m may come from omitting phase 2 or using t = 15 s for constant speed instead of 20 s. Each phase must be calculated separately.",
+        "misconception": "Combining phases incorrectly or using wrong time values."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "batch": "B03",
+    "question_text": "The velocity of a particle as a function of time is given by v = (3t² − 6t + 2) m/s, where t is in seconds. What is the acceleration of the particle at t = 2 s?",
+    "explanation": "Instantaneous acceleration is the time derivative of velocity: a = dv/dt. Given v = 3t² − 6t + 2, we differentiate: a = d/dt(3t² − 6t + 2) = 6t − 6. At t = 2 s: a = 6(2) − 6 = 12 − 6 = 6 m/s². This illustrates motion under variable (non-uniform) acceleration where a changes linearly with time.",
+    "correct_answer": "C",
+    "concept_tags": ["instantaneous-acceleration", "variable-acceleration", "differentiation"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "2 m/s²", "is_correct": false},
+      {"key": "B", "text": "4 m/s²", "is_correct": false},
+      {"key": "C", "text": "6 m/s²", "is_correct": true},
+      {"key": "D", "text": "8 m/s²", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "2 m/s² is the constant term in v, not the acceleration. Acceleration requires differentiating v with respect to t, yielding a = 6t − 6. At t = 2 s this is 6, not 2.",
+        "misconception": "Reading off the constant term of the velocity expression instead of differentiating."
+      },
+      {
+        "option_key": "B",
+        "hint": "4 m/s² does not arise from the correct derivative. a = 6t − 6 at t = 2 gives 6, not 4. Perhaps from incorrectly evaluating 6(1) − 2 or similar arithmetic error.",
+        "misconception": "Arithmetic error in substituting t = 2 into the differentiated expression."
+      },
+      {
+        "option_key": "D",
+        "hint": "8 m/s² could come from evaluating the velocity itself at t = 2 (v = 12 − 12 + 2 = 2, not 8) or from differentiating incorrectly. The derivative of 3t² is 6t, not 8t.",
+        "misconception": "Incorrectly differentiating 3t² as 4t² or confusing velocity with acceleration."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "batch": "B03",
+    "question_text": "Train A moves east at 40 m/s and Train B moves west at 30 m/s on parallel tracks. What is the velocity of Train B as observed from Train A? (Take east as positive)",
+    "explanation": "Relative velocity of B with respect to A is given by v_BA = v_B − v_A. Taking east as positive: v_A = +40 m/s, v_B = −30 m/s (westward). v_BA = (−30) − (+40) = −70 m/s. The magnitude is 70 m/s and the direction is west (negative), so Train B appears to move west at 70 m/s as seen from Train A. This is the principle of relative velocity in 1D.",
+    "correct_answer": "D",
+    "concept_tags": ["relative-velocity", "1D-motion", "reference-frame"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "10 m/s east", "is_correct": false},
+      {"key": "B", "text": "10 m/s west", "is_correct": false},
+      {"key": "C", "text": "70 m/s east", "is_correct": false},
+      {"key": "D", "text": "70 m/s west", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "10 m/s east results from subtracting speeds (40 − 30) and keeping the direction of the faster train. However, relative velocity requires vectorial subtraction: v_B − v_A = (−30) − (40) = −70 m/s.",
+        "misconception": "Subtracting magnitudes and assigning the direction of the larger velocity instead of using vector subtraction."
+      },
+      {
+        "option_key": "B",
+        "hint": "10 m/s west comes from subtracting the speeds (40 − 30 = 10) and reversing the direction. The correct result is the sum of the magnitudes (70 m/s) because the trains move in opposite directions.",
+        "misconception": "Subtracting speeds when the trains move in opposite directions; the relative speed is the sum of speeds in that case."
+      },
+      {
+        "option_key": "C",
+        "hint": "70 m/s east has the correct magnitude but the wrong direction. From A's perspective, B moves in the opposite direction to A (westward), so the relative velocity must be westward, i.e., −70 m/s.",
+        "misconception": "Correctly computing the magnitude (70 m/s) but assigning the wrong sign or direction."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "batch": "B03",
+    "question_text": "A particle starts from rest and moves along a straight line. Its acceleration varies with time as a = (4 − 2t) m/s², where t is in seconds. At what time does the particle attain maximum velocity?",
+    "explanation": "The particle attains maximum velocity when acceleration becomes zero (since after that point, a < 0 would decelerate the particle). Setting a = 0: 4 − 2t = 0 → t = 2 s. To confirm it is a maximum and not minimum, note that before t = 2 s the acceleration is positive (velocity increasing) and after t = 2 s the acceleration is negative (velocity decreasing). Hence maximum velocity occurs at t = 2 s.",
+    "correct_answer": "A",
+    "concept_tags": ["variable-acceleration", "maximum-velocity", "a-equals-zero"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "2 s", "is_correct": true},
+      {"key": "B", "text": "4 s", "is_correct": false},
+      {"key": "C", "text": "1 s", "is_correct": false},
+      {"key": "D", "text": "3 s", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "At t = 4 s, a = 4 − 2(4) = −4 m/s², meaning the particle is already decelerating. The velocity has been decreasing since t = 2 s, so t = 4 s is not when maximum velocity occurs.",
+        "misconception": "Confusing the time when acceleration is largest with the time when velocity is largest."
+      },
+      {
+        "option_key": "C",
+        "hint": "At t = 1 s, a = 4 − 2(1) = 2 m/s² > 0, so the particle is still accelerating and velocity is still increasing. Maximum velocity has not yet been reached.",
+        "misconception": "Selecting a time before acceleration reaches zero, where velocity is still growing."
+      },
+      {
+        "option_key": "D",
+        "hint": "At t = 3 s, a = 4 − 2(3) = −2 m/s², which means the particle is decelerating. The velocity peaked earlier at t = 2 s when a = 0.",
+        "misconception": "Choosing a time after the turning point where the particle is already slowing down."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-11",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "batch": "B03",
+    "question_text": "On a velocity-time graph, a straight line with a positive slope passing through the origin represents:",
+    "explanation": "A straight line through the origin on a v-t graph means v = at, where a (the slope) is a positive constant. This represents uniform acceleration starting from rest (v = 0 at t = 0). The area under this line gives displacement. A constant positive velocity would be a horizontal line (zero slope). Uniform deceleration would have a negative slope. Non-uniform acceleration would be a curve, not a straight line.",
+    "correct_answer": "D",
+    "concept_tags": ["v-t-graph", "uniform-acceleration", "slope"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Uniform velocity", "is_correct": false},
+      {"key": "B", "text": "Uniform deceleration", "is_correct": false},
+      {"key": "C", "text": "Non-uniform acceleration", "is_correct": false},
+      {"key": "D", "text": "Uniform acceleration from rest", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Uniform velocity is represented by a horizontal line (slope = 0) on a v-t graph, not a line with a positive slope. A positive slope indicates that velocity is changing, i.e., the object is accelerating.",
+        "misconception": "Confusing a v-t graph with an x-t graph where a positive slope indicates constant motion."
+      },
+      {
+        "option_key": "B",
+        "hint": "Uniform deceleration would be a straight line with a negative slope on the v-t graph, meaning velocity decreases with time. The described line has a positive slope, so velocity is increasing.",
+        "misconception": "Not distinguishing between the sign of the slope on a v-t graph and its physical meaning."
+      },
+      {
+        "option_key": "C",
+        "hint": "Non-uniform acceleration corresponds to a curved line on a v-t graph because the slope (acceleration) changes from point to point. A straight line always implies constant (uniform) acceleration.",
+        "misconception": "Incorrectly thinking that any motion from rest represents non-uniform acceleration."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-12",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "batch": "B03",
+    "question_text": "A particle moves along the x-axis with its position given by x = 2t³ − 9t² + 12t − 4 (in metres, t in seconds). What is the displacement of the particle between t = 0 and t = 3 s?",
+    "explanation": "Displacement = x(3) − x(0). x(3) = 2(27) − 9(9) + 12(3) − 4 = 54 − 81 + 36 − 4 = 5 m. x(0) = 2(0) − 9(0) + 12(0) − 4 = −4 m. Displacement = 5 − (−4) = 9 m. Note that the total distance may differ from 9 m if the particle reverses direction. To find reversal points: v = dx/dt = 6t² − 18t + 12 = 6(t² − 3t + 2) = 6(t−1)(t−2) = 0 at t = 1 s and t = 2 s, confirming direction changes.",
+    "correct_answer": "C",
+    "concept_tags": ["displacement", "position-function", "calculus-kinematics"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "5 m", "is_correct": false},
+      {"key": "B", "text": "4 m", "is_correct": false},
+      {"key": "C", "text": "9 m", "is_correct": true},
+      {"key": "D", "text": "−4 m", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "5 m is the value of x at t = 3 s, not the displacement. Displacement is x(3) − x(0) = 5 − (−4) = 9 m. Forgetting to subtract the initial position x(0) = −4 leads to this error.",
+        "misconception": "Using the final position directly instead of computing the change in position (final minus initial)."
+      },
+      {
+        "option_key": "B",
+        "hint": "4 m has no straightforward derivation from the correct formula. This might arise from a sign error: |x(0)| = 4, but x(0) is −4 and must be subtracted, giving +4, added to x(3) = 5, totalling 9 m.",
+        "misconception": "Using only the magnitude of x(0) without its sign in the displacement formula."
+      },
+      {
+        "option_key": "D",
+        "hint": "−4 m is the initial position x(0), not the displacement. Displacement requires subtracting the initial position from the final position, not reporting the initial position itself.",
+        "misconception": "Confusing the initial position with displacement."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "batch": "B03",
+    "question_text": "Assertion (A): A body can have zero velocity but non-zero acceleration.\nReasoning (R): Acceleration is the rate of change of velocity with time and is independent of the instantaneous value of velocity.",
+    "explanation": "Assertion A is correct: a ball thrown vertically upward momentarily has zero velocity at the highest point, yet gravity still accelerates it at 9.8 m/s² downward. Reasoning R is also correct and directly explains A: since acceleration = dv/dt, it depends on how velocity is changing, not on its current value. Even when v = 0, if velocity is changing (which it is under gravity), acceleration is non-zero. Thus both A and R are true, and R correctly explains A.",
+    "correct_answer": "A",
+    "concept_tags": ["velocity", "acceleration", "independence", "dv-dt"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Option B would apply if both statements were true but unrelated. Here, R directly explains why v = 0 does not imply a = 0, by defining acceleration as dv/dt. So R is indeed the correct explanation of A.",
+        "misconception": "Thinking the two statements are both correct but coincidentally unrelated rather than causally linked."
+      },
+      {
+        "option_key": "C",
+        "hint": "R is not incorrect. The definition a = dv/dt is a fundamental kinematic relation and clearly supports why acceleration can be non-zero when velocity is zero.",
+        "misconception": "Misreading the reasoning as claiming something false about the definition of acceleration."
+      },
+      {
+        "option_key": "D",
+        "hint": "Assertion A is not incorrect. The standard example of a projectile at the top of its path (v = 0, a = g downward) confirms that zero velocity and non-zero acceleration can coexist.",
+        "misconception": "Believing that zero velocity necessarily requires zero acceleration, ignoring the gravitational example."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-14",
+    "question_type": "match_following",
+    "difficulty": "medium",
+    "batch": "B03",
+    "question_text": "Match the graph description in Column I with the type of motion in Column II.\n\nColumn I (Graph feature):\n(P) x-t graph is a straight line with positive slope\n(Q) v-t graph is a straight horizontal line\n(R) v-t graph has a positive slope\n(S) x-t graph is a parabola opening upward\n\nColumn II (Type of motion):\n(1) Uniformly accelerated motion\n(2) Uniform velocity\n(3) Uniform acceleration starting from rest\n(4) Constant velocity (same as uniform velocity)\n\nWhich of the following correctly matches all four?",
+    "explanation": "(P) A straight line with positive slope on an x-t graph means dx/dt = constant positive value, i.e., uniform velocity → (2). (Q) A horizontal line on a v-t graph means velocity is constant → uniform velocity → (4). However, since (2) and (4) both represent uniform velocity (they are equivalent concepts), the unique matches are: P→2, Q→4 (both uniform velocity), R→1 (positive slope on v-t means constant positive acceleration), S→3 (parabolic x-t: x ∝ t² from rest under uniform acceleration). Answer: P-2, Q-4, R-1, S-3.",
+    "correct_answer": "B",
+    "concept_tags": ["x-t-graph", "v-t-graph", "uniform-velocity", "uniform-acceleration"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "P-1, Q-2, R-3, S-4", "is_correct": false},
+      {"key": "B", "text": "P-2, Q-4, R-1, S-3", "is_correct": true},
+      {"key": "C", "text": "P-3, Q-1, R-4, S-2", "is_correct": false},
+      {"key": "D", "text": "P-4, Q-3, R-2, S-1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Option A maps P to uniformly accelerated motion (1), which is wrong. A straight line on an x-t graph means constant velocity (slope = constant velocity), not accelerated motion.",
+        "misconception": "Confusing a linear x-t graph (constant velocity) with a linear v-t graph (constant acceleration)."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C maps Q (horizontal v-t) to uniformly accelerated motion (1), which is incorrect. A horizontal v-t line means acceleration = slope = 0, i.e., constant velocity, not acceleration.",
+        "misconception": "Misreading a horizontal line on a v-t graph as implying acceleration rather than constant velocity."
+      },
+      {
+        "option_key": "D",
+        "hint": "Option D maps R (positive v-t slope) to constant velocity (2), which is wrong. A positive slope on a v-t graph means dv/dt > 0, i.e., the object is accelerating. Constant velocity requires slope = 0.",
+        "misconception": "Confusing the slope of a v-t graph with the value of velocity rather than the rate of change of velocity."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-15",
+    "question_type": "fill_in_blanks",
+    "difficulty": "medium",
+    "batch": "B03",
+    "question_text": "The area under a velocity-time graph between two time instants gives the ________ of the object during that interval. If the velocity is always positive, this area also equals the total ________ covered.",
+    "explanation": "The area under a v-t graph (∫v dt) gives the displacement of the object. When velocity is always positive (no direction reversal), the object moves in one direction only, so displacement equals distance. If the velocity becomes negative at any point, the area below the time axis (negative contribution) cancels part of the positive area, making displacement less than distance. Therefore: blank 1 = displacement, blank 2 = distance.",
+    "correct_answer": "C",
+    "concept_tags": ["v-t-graph", "area-under-graph", "displacement", "distance"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "acceleration, displacement", "is_correct": false},
+      {"key": "B", "text": "distance, displacement", "is_correct": false},
+      {"key": "C", "text": "displacement, distance", "is_correct": true},
+      {"key": "D", "text": "velocity, acceleration", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The area under a v-t graph is not acceleration. Acceleration is the slope of the v-t graph (dv/dt). Area under a v-t graph = ∫v dt = displacement.",
+        "misconception": "Confusing the slope and area of the v-t graph, which give acceleration and displacement respectively."
+      },
+      {
+        "option_key": "B",
+        "hint": "The area under a v-t graph represents displacement (which accounts for direction), not distance (which is always positive). When velocity is always positive, displacement equals distance — so the second blank should be 'distance', not 'displacement'.",
+        "misconception": "Reversing the roles of displacement and distance in relation to the v-t graph area."
+      },
+      {
+        "option_key": "D",
+        "hint": "Neither velocity nor acceleration is given by the area under a v-t graph. Velocity is on the y-axis itself, and acceleration is the slope of the graph. Area gives displacement.",
+        "misconception": "Confusing graphical quantities (area vs. slope vs. axis value) with kinematic quantities."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-16",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "batch": "B03",
+    "question_text": "A student is tracking a car's journey on a straight road. The car starts from a traffic light (position x = 0) and moves east. Its position is recorded every second:\n\nt = 0 s: x = 0 m\nt = 1 s: x = 5 m\nt = 2 s: x = 18 m\nt = 3 s: x = 39 m\nt = 4 s: x = 68 m\n\nUsing this data, what is the average velocity of the car between t = 1 s and t = 3 s? Also, based on the increasing gaps between successive positions, what can the student conclude about the car's motion?",
+    "explanation": "Average velocity between t = 1 s and t = 3 s: Δx = x(3) − x(1) = 39 − 5 = 34 m, Δt = 3 − 1 = 2 s. Average velocity = 34/2 = 17 m/s (eastward). The successive displacements are: 5, 13, 21, 29 m — these increase by 8 m each second, indicating that the car covers more distance every second. This means the car is accelerating (non-uniform speed). Since the increments themselves are equal (+8 m/s each second), the acceleration is uniform at 8 m/s².",
+    "correct_answer": "D",
+    "concept_tags": ["average-velocity", "non-uniform-motion", "uniform-acceleration", "data-analysis"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Average velocity = 13 m/s; the car moves at constant speed", "is_correct": false},
+      {"key": "B", "text": "Average velocity = 19.5 m/s; the car is decelerating", "is_correct": false},
+      {"key": "C", "text": "Average velocity = 17 m/s; the car moves at constant speed", "is_correct": false},
+      {"key": "D", "text": "Average velocity = 17 m/s; the car is uniformly accelerating", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "13 m/s is the instantaneous speed during the interval t = 1 s to t = 2 s only (Δx = 13 m in 1 s), not the average over t = 1 s to t = 3 s. Also, the increasing position gaps clearly show the car is not at constant speed.",
+        "misconception": "Using only a one-second interval instead of the specified two-second interval for average velocity."
+      },
+      {
+        "option_key": "B",
+        "hint": "19.5 m/s might come from averaging the speeds of the first and last seconds arithmetically. However, average velocity must be computed as total displacement divided by total time over the given interval. Additionally, the increasing gaps indicate acceleration, not deceleration.",
+        "misconception": "Averaging endpoint speeds instead of computing displacement/time, and misreading increasing gaps as deceleration."
+      },
+      {
+        "option_key": "C",
+        "hint": "While 17 m/s is the correct average velocity, concluding constant speed is wrong. Equal time intervals producing increasing displacements (5, 13, 21, 29 m) is the hallmark of accelerated motion, not uniform speed.",
+        "misconception": "Correctly computing the average velocity but failing to interpret the position data as evidence of acceleration."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-17",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "batch": "B03",
+    "question_text": "A particle moves along the positive x-axis with velocity v = k√x, where k is a positive constant and x is the position. If the particle starts from rest at x = 0... wait — since v = k√x, at x = 0 the velocity is zero. What is the acceleration of the particle as a function of x?",
+    "explanation": "Using the relation a = v(dv/dx): v = k√x, so dv/dx = k/(2√x). Therefore a = v × (dv/dx) = k√x × k/(2√x) = k²/2. The acceleration is constant and equal to k²/2, independent of x. This is a non-trivial result: even though the velocity varies with position (v = k√x), the acceleration is uniform. This demonstrates that variable velocity does not necessarily mean variable acceleration.",
+    "correct_answer": "A",
+    "concept_tags": ["variable-velocity", "constant-acceleration", "v-dv-dx", "calculus-kinematics"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "k²/2 (constant)", "is_correct": true},
+      {"key": "B", "text": "k²x", "is_correct": false},
+      {"key": "C", "text": "k/(2√x)", "is_correct": false},
+      {"key": "D", "text": "k²√x / 2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "k²x would arise from incorrectly computing a = v² (which equals k²x) rather than a = v dv/dx. Acceleration is not equal to v²; that is the square of velocity.",
+        "misconception": "Confusing a = v² with the correct formula a = v dv/dx."
+      },
+      {
+        "option_key": "C",
+        "hint": "k/(2√x) is dv/dx, the rate of change of velocity with position, not the acceleration. Acceleration is a = v × dv/dx = k√x × k/(2√x) = k²/2.",
+        "misconception": "Stopping at dv/dx and reporting it as acceleration, forgetting to multiply by v."
+      },
+      {
+        "option_key": "D",
+        "hint": "k²√x / 2 would result from multiplying v² by (1/2x) or some incorrect partial substitution. The correct simplification of k√x × k/(2√x) cancels √x completely, leaving k²/2.",
+        "misconception": "Failing to cancel the √x terms in the numerator and denominator during simplification."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-18",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "batch": "B03",
+    "question_text": "Two particles X and Y start from the same point and move along the same straight line. Particle X has initial velocity 10 m/s and deceleration 2 m/s². Particle Y starts from rest 4 seconds after X but with acceleration 3 m/s². When does Y catch up with X? (Measure time from when X starts.)",
+    "explanation": "Let t be the time from when X starts. Y starts at t = 4 s. Position of X: x_X = 10t − ½(2)t² = 10t − t². But X stops when v_X = 10 − 2t = 0 → t = 5 s. After t = 5 s, X remains stationary at x_X = 10(5) − 25 = 25 m. Position of Y (for t ≥ 4): x_Y = ½(3)(t − 4)² = 1.5(t − 4)². Setting x_Y = x_X: for t > 5, x_X = 25 m. So 1.5(t − 4)² = 25 → (t − 4)² = 50/3 → t − 4 = √(50/3) ≈ 4.08 s → t ≈ 8.08 s. Check: is this after t = 5 s? Yes (8.08 > 5). So Y catches X at t ≈ 8 s (exact: 4 + 5√(2/3) = 4 + √(50/3)).",
+    "correct_answer": "B",
+    "concept_tags": ["relative-motion", "deceleration", "catching-up", "kinematics-equations"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "t = 6 s", "is_correct": false},
+      {"key": "B", "text": "t ≈ 8.1 s", "is_correct": true},
+      {"key": "C", "text": "t = 10 s", "is_correct": false},
+      {"key": "D", "text": "t ≈ 7 s", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "At t = 6 s, x_X = 25 m (stopped) and x_Y = 1.5(6−4)² = 1.5(4) = 6 m. Y has not yet caught X. t = 6 s is too early.",
+        "misconception": "Ignoring that X decelerates to rest at t = 5 s and then remains at 25 m, not continuing beyond that."
+      },
+      {
+        "option_key": "C",
+        "hint": "At t = 10 s, x_Y = 1.5(10−4)² = 1.5(36) = 54 m, while x_X = 25 m. Y has already overtaken X before t = 10 s.",
+        "misconception": "Overestimating the time needed for Y to catch X, perhaps not accounting for X stopping at t = 5 s."
+      },
+      {
+        "option_key": "D",
+        "hint": "At t = 7 s, x_Y = 1.5(7−4)² = 1.5(9) = 13.5 m < 25 m. Y has not yet caught X at t = 7 s, so this answer is too small.",
+        "misconception": "Underestimating the distance X has covered or overestimating Y's early speed."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-19",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "batch": "B03",
+    "question_text": "Assertion (A): It is possible for an object to have a positive average velocity over a time interval even if its instantaneous velocity is negative for part of that interval.\nReasoning (R): Average velocity depends only on the net displacement and total time, not on the details of motion during the interval.",
+    "explanation": "Assertion A is correct. Consider a particle that moves +10 m in 4 s and then −2 m in 2 s. Net displacement = 8 m in 6 s, so average velocity = +1.33 m/s (positive), even though instantaneous velocity was negative during the last 2 s. Reasoning R is also correct and precisely explains this: average velocity = Δx/Δt depends only on the endpoints of position and the elapsed time, completely ignoring the path taken in between. Thus both A and R are correct, and R is the correct explanation of A.",
+    "correct_answer": "C",
+    "concept_tags": ["average-velocity", "instantaneous-velocity", "net-displacement"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": true},
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "While both A and R are individually true, R as stated is subtly incomplete as a standalone explanation of A. The reasoning correctly identifies the formula but the question tests whether R provides the 'correct explanation' — here the nuance is that R's phrasing 'not on the details' is exactly why A is possible. Review whether R fully and specifically explains A or merely restates the definition.",
+        "misconception": "Accepting R as the full explanation without noticing that R describes the formula generally without specifically addressing why instantaneous negative velocity is compatible with positive average velocity."
+      },
+      {
+        "option_key": "B",
+        "hint": "Option B requires R to be correct but not explanatory. However, R directly addresses why A is true by pointing to the net displacement formula. If R is correct, it does explain A in this context.",
+        "misconception": "Thinking that R is only a definition and therefore cannot serve as an explanation of A."
+      },
+      {
+        "option_key": "D",
+        "hint": "A is not incorrect. A concrete example: particle moves +6 m in 3 s then −1 m in 1 s gives average velocity = 5/4 = +1.25 m/s despite momentary negative velocity. Assertion A is valid.",
+        "misconception": "Believing that any period of negative instantaneous velocity must make the average velocity negative or zero."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-kinematics-20",
+    "question_type": "match_following",
+    "difficulty": "hard",
+    "batch": "B03",
+    "question_text": "Match the physical situation in Column I with the correct mathematical description in Column II.\n\nColumn I:\n(P) A ball dropped from rest (taking downward as positive)\n(Q) A car braking to a stop from initial speed u\n(R) A particle with velocity v = A sin(ωt)\n(S) A particle moving with constant non-zero velocity\n\nColumn II:\n(1) Displacement ∝ t (linear)\n(2) Velocity decreases uniformly to zero; acceleration is negative\n(3) Acceleration is zero at points of maximum velocity\n(4) Displacement = ½gt² from release",
+    "explanation": "(P) Ball dropped from rest: x = ½gt² → displacement ∝ t², and starts from rest, matching (4). (Q) Car braking uniformly: velocity decreases uniformly (constant negative acceleration) → matches (2). (R) v = A sin(ωt): acceleration = dv/dt = Aω cos(ωt); velocity is maximum when sin(ωt) = ±1, i.e., ωt = π/2, 3π/2, etc. At these points cos(ωt) = 0 → acceleration = 0 → matches (3). (S) Constant non-zero velocity: x = vt → displacement ∝ t → matches (1). Correct matching: P-4, Q-2, R-3, S-1.",
+    "correct_answer": "D",
+    "concept_tags": ["free-fall", "uniform-deceleration", "SHM-velocity", "constant-velocity", "graph-matching"],
+    "topic": "Distance, Displacement, Speed, Velocity, and Acceleration",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "P-1, Q-4, R-2, S-3", "is_correct": false},
+      {"key": "B", "text": "P-4, Q-3, R-1, S-2", "is_correct": false},
+      {"key": "C", "text": "P-2, Q-1, R-4, S-3", "is_correct": false},
+      {"key": "D", "text": "P-4, Q-2, R-3, S-1", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Option A maps P (free fall) to linear displacement (1), which is wrong. Free fall from rest gives x = ½gt², a quadratic relationship, not linear. Linear displacement (x ∝ t) is characteristic of constant velocity.",
+        "misconception": "Thinking free fall produces linear rather than quadratic displacement growth."
+      },
+      {
+        "option_key": "B",
+        "hint": "Option B maps Q (braking car) to 'acceleration zero at max velocity' (3), which applies to the sinusoidal particle R, not a uniformly decelerating car. A braking car has constant non-zero (negative) acceleration throughout.",
+        "misconception": "Applying SHM-related reasoning (zero acceleration at peak velocity) to a uniformly decelerating vehicle."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C maps P (free fall) to 'velocity decreases uniformly' (2), which describes deceleration (braking), not free fall. In free fall, velocity increases uniformly (downward positive).",
+        "misconception": "Confusing the direction of acceleration in free fall with deceleration, reversing the roles of P and Q."
+      }
+    ]
+  }
+]

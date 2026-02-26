@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-rot-com-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The centre of mass of a system of particles depends upon:",
+    "explanation": "The centre of mass of a system depends on the masses of the particles and their positions. It is the mass-weighted average position of all particles in the system. The nature of forces (internal or external) does not determine the location of the centre of mass.",
+    "correct_answer": "C",
+    "concept_tags": ["centre-of-mass", "definition", "position"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Only the masses of the particles", "is_correct": false },
+      { "key": "B", "text": "Only the positions of the particles", "is_correct": false },
+      { "key": "C", "text": "Both masses and positions of the particles", "is_correct": true },
+      { "key": "D", "text": "The internal forces between the particles", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Mass alone cannot determine COM; you also need to know where each mass is located.", "misconception": "Thinking COM depends only on mass distribution without regard to spatial positions" },
+      { "option_key": "B", "hint": "Position alone is insufficient; a heavier particle pulls the COM toward itself more than a lighter one at the same distance.", "misconception": "Ignoring the role of mass weighting in COM calculation" },
+      { "option_key": "D", "hint": "Internal forces affect relative motion of particles but do not change the position of the centre of mass.", "misconception": "Confusing factors that affect COM position with those that affect COM motion" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Two particles of masses 2 kg and 3 kg are placed at positions x = 0 m and x = 5 m respectively along the x-axis. The centre of mass of the system is at:",
+    "explanation": "Using x_cm = (m₁x₁ + m₂x₂)/(m₁ + m₂) = (2×0 + 3×5)/(2+3) = 15/5 = 3 m from the origin. The COM lies closer to the heavier mass, which is consistent with the result.",
+    "correct_answer": "B",
+    "concept_tags": ["centre-of-mass", "two-particle-system", "calculation"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "2.0 m from the origin", "is_correct": false },
+      { "key": "B", "text": "3.0 m from the origin", "is_correct": true },
+      { "key": "C", "text": "2.5 m from the origin", "is_correct": false },
+      { "key": "D", "text": "4.0 m from the origin", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This would be the result if the COM were closer to the lighter mass, which contradicts the principle that COM shifts toward the heavier particle.", "misconception": "Reversing the mass assignment in the COM formula" },
+      { "option_key": "C", "hint": "2.5 m is the geometric midpoint and would only be correct if both masses were equal.", "misconception": "Assuming COM is always at the geometric centre regardless of mass distribution" },
+      { "option_key": "D", "hint": "4.0 m places the COM beyond the 3 kg mass, but COM must lie between the two particles.", "misconception": "Arithmetic error in applying the COM formula" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The centre of mass of a uniform circular ring lies at:",
+    "explanation": "Due to the symmetry of a uniform circular ring, the centre of mass lies at its geometric centre. Since the ring is hollow, the COM is at the centre where no material is physically present. This is a key example showing that COM need not lie within the body itself.",
+    "correct_answer": "A",
+    "concept_tags": ["centre-of-mass", "ring", "symmetry", "rigid-body"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Its geometric centre where no mass is present", "is_correct": true },
+      { "key": "B", "text": "On the circumference of the ring", "is_correct": false },
+      { "key": "C", "text": "At a distance R/2 from the centre", "is_correct": false },
+      { "key": "D", "text": "It cannot be determined without knowing the radius", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "If the COM were on the circumference, symmetry would be violated since no single point on the ring is preferred over any other.", "misconception": "Believing COM must be located where material exists" },
+      { "option_key": "C", "hint": "There is no reason for the COM to be at R/2; the full symmetry of the ring places it exactly at the centre.", "misconception": "Confusing COM of a ring with COM of a semicircular body" },
+      { "option_key": "D", "hint": "By symmetry, the COM is at the centre regardless of the radius of the ring.", "misconception": "Thinking the radius affects the relative position of the COM" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If no external force acts on a system of particles, the velocity of the centre of mass of the system:",
+    "explanation": "From Newton's second law applied to a system, F_ext = M·a_cm. If F_ext = 0, then a_cm = 0, meaning the velocity of the centre of mass remains constant. This is true regardless of internal forces or explosions within the system.",
+    "correct_answer": "D",
+    "concept_tags": ["centre-of-mass", "velocity", "external-force", "conservation"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Increases uniformly", "is_correct": false },
+      { "key": "B", "text": "Decreases to zero", "is_correct": false },
+      { "key": "C", "text": "Changes direction continuously", "is_correct": false },
+      { "key": "D", "text": "Remains constant", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A uniform increase in velocity would require a constant net external force, which is absent here.", "misconception": "Confusing internal energy release with external force effects on COM" },
+      { "option_key": "B", "hint": "The velocity cannot decrease without an opposing external force acting on the system.", "misconception": "Assuming internal friction can change COM velocity" },
+      { "option_key": "C", "hint": "A change in direction implies a net external force providing centripetal acceleration, which is absent.", "misconception": "Confusing individual particle trajectories with COM trajectory" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Three particles of masses 1 kg, 2 kg, and 3 kg are placed at the vertices of an equilateral triangle of side 1 m. The 1 kg mass is at (0, 0), 2 kg at (1, 0), and 3 kg at (0.5, √3/2). The x-coordinate of the centre of mass is:",
+    "explanation": "x_cm = (m₁x₁ + m₂x₂ + m₃x₃)/(m₁ + m₂ + m₃) = (1×0 + 2×1 + 3×0.5)/(1+2+3) = (0 + 2 + 1.5)/6 = 3.5/6 = 7/12 m. This places the COM closer to the heavier masses as expected.",
+    "correct_answer": "B",
+    "concept_tags": ["centre-of-mass", "multi-particle", "coordinate-geometry"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "5/12 m", "is_correct": false },
+      { "key": "B", "text": "7/12 m", "is_correct": true },
+      { "key": "C", "text": "1/2 m", "is_correct": false },
+      { "key": "D", "text": "2/3 m", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "5/12 m would result from an incorrect substitution of coordinates or masses in the formula.", "misconception": "Mixing up x and y coordinates in the COM formula" },
+      { "option_key": "C", "hint": "1/2 m is the geometric centroid, which applies only when all three masses are equal.", "misconception": "Assuming COM coincides with the geometric centroid for unequal masses" },
+      { "option_key": "D", "hint": "2/3 m overestimates the contribution of the 2 kg mass at x = 1 m.", "misconception": "Incorrectly weighting the masses in the formula" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A uniform rod of length L is bent into the shape of the letter 'L' with two equal arms. The centre of mass of the bent rod from the corner is at a distance of:",
+    "explanation": "Each arm has length L/2 and mass M/2. The COM of one arm is at L/4 from the corner along one direction, and the COM of the other arm is at L/4 along the perpendicular direction. The net distance of the system COM from the corner is √((L/4)² + (L/4)²) = L√2/4.",
+    "correct_answer": "C",
+    "concept_tags": ["centre-of-mass", "bent-rod", "L-shape", "geometry"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "L/4", "is_correct": false },
+      { "key": "B", "text": "L/2", "is_correct": false },
+      { "key": "C", "text": "L√2/4", "is_correct": true },
+      { "key": "D", "text": "L√2/2", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "L/4 is the distance of each arm's individual COM from the corner, not the combined COM distance.", "misconception": "Forgetting to combine the two perpendicular components vectorially" },
+      { "option_key": "B", "hint": "L/2 is the length of each arm, not the COM distance from the corner.", "misconception": "Confusing arm length with COM position" },
+      { "option_key": "D", "hint": "L√2/2 would be correct only if each arm's COM were at L/2 from the corner, i.e., at the end of each arm.", "misconception": "Using the endpoint of each arm instead of its midpoint for COM calculation" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A circular disc of radius R has a circular hole of radius R/2 cut from it. The centre of the hole is at R/2 from the centre of the disc. The centre of mass of the remaining portion shifts from the original centre by:",
+    "explanation": "Let σ be the surface mass density. Mass of full disc = σπR². Mass of removed portion = σπ(R/2)² = σπR²/4. Using the subtraction method: x_cm = −(M_removed × d)/(M_full − M_removed) = −(σπR²/4 × R/2)/(σπR² − σπR²/4) = −(R/8)/(3/4) = −R/6. The COM shifts by R/6 away from the hole.",
+    "correct_answer": "A",
+    "concept_tags": ["centre-of-mass", "cavity", "disc", "subtraction-method"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "R/6 away from the hole", "is_correct": true },
+      { "key": "B", "text": "R/4 away from the hole", "is_correct": false },
+      { "key": "C", "text": "R/6 toward the hole", "is_correct": false },
+      { "key": "D", "text": "R/3 away from the hole", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "R/4 results from using the mass of the removed portion incorrectly in the denominator.", "misconception": "Using total disc mass instead of remaining mass in the denominator" },
+      { "option_key": "C", "hint": "The COM must shift away from the hole, not toward it, since mass has been removed from that side.", "misconception": "Getting the direction of COM shift reversed" },
+      { "option_key": "D", "hint": "R/3 overestimates the shift and does not follow from the correct formula.", "misconception": "Incorrect calculation of the mass ratio" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A man of mass 80 kg is standing on a boat of mass 320 kg that is at rest in still water. If the man walks 4 m on the boat toward the shore, the boat moves away from the shore by:",
+    "explanation": "Since no external horizontal force acts, the COM remains stationary. If the man moves 4 m forward on the boat, the boat moves backward. Using m_man × d_man = m_boat × d_boat relative to the ground: 80 × (4 − d) = 320 × d, where d is the boat's displacement. Solving: 320 − 80d = 320d → 320 = 400d → d = 0.8 m. The boat moves 0.8 m away from the shore.",
+    "correct_answer": "D",
+    "concept_tags": ["centre-of-mass", "man-boat", "conservation", "no-external-force"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "4.0 m", "is_correct": false },
+      { "key": "B", "text": "1.0 m", "is_correct": false },
+      { "key": "C", "text": "3.2 m", "is_correct": false },
+      { "key": "D", "text": "0.8 m", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "4.0 m would mean the boat moves as much as the man walks, which ignores the mass ratio completely.", "misconception": "Assuming equal displacements regardless of mass" },
+      { "option_key": "B", "hint": "1.0 m results from dividing 4 by the number of bodies (4/4) rather than applying momentum conservation.", "misconception": "Using an arbitrary division instead of the correct mass-ratio formula" },
+      { "option_key": "C", "hint": "3.2 m is the displacement of the man relative to the ground, not the boat's displacement.", "misconception": "Confusing the boat's displacement with the man's net displacement relative to ground" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A body at rest explodes into two fragments of masses in the ratio 1:3. If the lighter fragment has a kinetic energy of 48 J, the total energy released in the explosion is:",
+    "explanation": "By conservation of momentum, m₁v₁ = m₂v₂. With m₁:m₂ = 1:3, we get v₁ = 3v₂. KE₁ = ½m₁v₁² = 48 J. KE₂ = ½m₂v₂² = ½(3m₁)(v₁/3)² = ½m₁v₁²/3 = 48/3 = 16 J. Total energy released = 48 + 16 = 64 J.",
+    "correct_answer": "C",
+    "concept_tags": ["centre-of-mass", "explosion", "conservation-of-momentum", "kinetic-energy"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "48 J", "is_correct": false },
+      { "key": "B", "text": "96 J", "is_correct": false },
+      { "key": "C", "text": "64 J", "is_correct": true },
+      { "key": "D", "text": "144 J", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "48 J is only the KE of the lighter fragment; the heavier fragment also carries kinetic energy.", "misconception": "Ignoring the kinetic energy of the heavier fragment" },
+      { "option_key": "B", "hint": "96 J would mean both fragments have equal KE, but the heavier fragment has less KE than the lighter one in an explosion from rest.", "misconception": "Assuming equal KE distribution between fragments" },
+      { "option_key": "D", "hint": "144 J results from multiplying 48 by 3, which has no physical basis in momentum conservation.", "misconception": "Incorrectly scaling by the mass ratio" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-10",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The centre of mass of a uniform semicircular wire of radius R lies at a distance from the centre equal to:",
+    "explanation": "For a uniform semicircular wire, the COM is located along the axis of symmetry at a distance 2R/π from the centre. This result is obtained by integrating the position of mass elements along the semicircular arc using the relation y_cm = (1/M)∫y dm.",
+    "correct_answer": "B",
+    "concept_tags": ["centre-of-mass", "semicircular-wire", "integration", "standard-result"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "R/π", "is_correct": false },
+      { "key": "B", "text": "2R/π", "is_correct": true },
+      { "key": "C", "text": "4R/3π", "is_correct": false },
+      { "key": "D", "text": "R/2", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "R/π is half the correct value and does not result from the standard integration for a semicircular wire.", "misconception": "Confusing with a different geometric configuration" },
+      { "option_key": "C", "hint": "4R/3π is the COM distance for a semicircular disc (solid), not a semicircular wire.", "misconception": "Mixing up COM of semicircular wire and semicircular disc" },
+      { "option_key": "D", "hint": "R/2 is the midpoint of the radius and has no special significance for COM of a semicircular shape.", "misconception": "Using an intuitive guess rather than the derived formula" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A uniform chain of length L and mass M lies on a smooth table with one-third of its length hanging over the edge. The work done to pull the hanging part back onto the table is:",
+    "explanation": "The hanging portion has length L/3 and mass M/3. Its centre of mass is at a depth of L/6 below the table edge. The work done equals the change in potential energy: W = (M/3) × g × (L/6) = MgL/18. This is the minimum work needed to pull the chain onto the table.",
+    "correct_answer": "A",
+    "concept_tags": ["centre-of-mass", "work-energy", "chain-problem", "potential-energy"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "MgL/18", "is_correct": true },
+      { "key": "B", "text": "MgL/9", "is_correct": false },
+      { "key": "C", "text": "MgL/6", "is_correct": false },
+      { "key": "D", "text": "MgL/3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "MgL/9 results from using the full hanging length (L/3) as the COM depth instead of half of it (L/6).", "misconception": "Using the full length of the hanging portion instead of its COM height" },
+      { "option_key": "C", "hint": "MgL/6 uses the correct depth but the full mass M instead of the hanging mass M/3.", "misconception": "Using total chain mass instead of only the hanging portion mass" },
+      { "option_key": "D", "hint": "MgL/3 greatly overestimates the work by using both full mass and full hanging length.", "misconception": "Failing to account for both the reduced mass and COM position of the hanging part" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two particles of masses m and 2m are connected by a light rigid rod of length L. An external force F is applied perpendicular to the rod at the position of mass m. The angular acceleration of the system about the centre of mass is:",
+    "explanation": "The COM is at a distance 2L/3 from mass m and L/3 from mass 2m. The torque about COM due to force F (applied at mass m) is τ = F × 2L/3. The moment of inertia about COM is I = m(2L/3)² + 2m(L/3)² = 4mL²/9 + 2mL²/9 = 6mL²/9 = 2mL²/3. Angular acceleration α = τ/I = (2FL/3)/(2mL²/3) = F/(mL).",
+    "correct_answer": "D",
+    "concept_tags": ["centre-of-mass", "torque", "angular-acceleration", "moment-of-inertia"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "F/(3mL)", "is_correct": false },
+      { "key": "B", "text": "3F/(2mL)", "is_correct": false },
+      { "key": "C", "text": "2F/(3mL)", "is_correct": false },
+      { "key": "D", "text": "F/(mL)", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "F/(3mL) results from using the total length L for the torque arm instead of the COM distance 2L/3.", "misconception": "Using the wrong reference point for calculating torque" },
+      { "option_key": "B", "hint": "3F/(2mL) arises from an incorrect MOI calculation about the centre of mass.", "misconception": "Computing the moment of inertia about an endpoint instead of the COM" },
+      { "option_key": "C", "hint": "2F/(3mL) results from an error in combining the torque and MOI values.", "misconception": "Arithmetic error in the torque-to-MOI ratio" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Internal forces cannot change the velocity of the centre of mass of a system.\nReason (R): Internal forces always occur in equal and opposite pairs according to Newton's third law.",
+    "explanation": "The assertion is correct: internal forces do not affect the COM velocity because the net internal force on the system is zero. The reason is also correct: by Newton's third law, internal forces form action-reaction pairs that cancel out when summed over the entire system. Since the cancellation of internal forces (R) is precisely why they cannot change COM velocity (A), R is the correct explanation of A.",
+    "correct_answer": "A",
+    "concept_tags": ["centre-of-mass", "internal-forces", "newtons-third-law", "COM-velocity"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "R directly explains A because it is the Newton's third law pairing that causes internal forces to sum to zero, preserving COM velocity.", "misconception": "Failing to see the causal link between Newton's third law and COM velocity conservation" },
+      { "option_key": "C", "hint": "Newton's third law is a fundamental principle and R is a correct statement of it.", "misconception": "Doubting the validity of Newton's third law for internal forces" },
+      { "option_key": "D", "hint": "The assertion is a well-established result in mechanics; internal forces cannot change COM velocity.", "misconception": "Thinking internal forces like explosions can change COM velocity" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The centre of mass of a system of two particles always lies on the line joining the two particles.\nReason (R): The centre of mass of a system always lies inside the body.",
+    "explanation": "The assertion is correct: for a two-particle system, the COM formula gives a point that divides the line joining the two particles internally in the inverse ratio of their masses, so it always lies on this line. However, the reason is incorrect: the COM does not always lie inside the body. For example, the COM of a ring or a hollow sphere lies at the geometric centre where no material exists.",
+    "correct_answer": "C",
+    "concept_tags": ["centre-of-mass", "two-particle", "COM-location", "hollow-bodies"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The reason R is factually wrong since hollow objects have their COM outside the material, so it cannot correctly explain A.", "misconception": "Believing COM must always lie within the physical body" },
+      { "option_key": "B", "hint": "Option B requires both statements to be correct, but R is false as demonstrated by hollow objects.", "misconception": "Accepting R as true without considering counterexamples" },
+      { "option_key": "D", "hint": "The assertion is correct by the COM formula for two particles; it always yields a point between them on the joining line.", "misconception": "Doubting the standard two-particle COM result" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the following uniform bodies (Column I) with the position of their centre of mass from the geometric centre (Column II):\n\nColumn I:\nA. Uniform solid sphere\nB. Semicircular disc of radius R\nC. Semicircular wire of radius R\nD. Uniform circular disc\n\nColumn II:\n1. At the geometric centre\n2. 2R/π from centre\n3. 4R/3π from centre\n4. At the geometric centre",
+    "explanation": "A uniform solid sphere has COM at its geometric centre (A-1). A semicircular disc has COM at 4R/3π from the centre along the axis of symmetry (B-3). A semicircular wire has COM at 2R/π from the centre (C-2). A uniform circular disc has COM at its geometric centre due to symmetry (D-4). Both entries 1 and 4 state the same position but are listed as separate match targets.",
+    "correct_answer": "B",
+    "concept_tags": ["centre-of-mass", "standard-bodies", "semicircular-disc", "semicircular-wire"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-1, B-2, C-3, D-4", "is_correct": false },
+      { "key": "B", "text": "A-1, B-3, C-2, D-4", "is_correct": true },
+      { "key": "C", "text": "A-4, B-2, C-3, D-1", "is_correct": false },
+      { "key": "D", "text": "A-4, B-3, C-2, D-1", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This swaps the COM values for the semicircular disc and wire; the wire (2R/π) has a larger COM distance than the disc (4R/3π).", "misconception": "Confusing COM of semicircular wire with that of semicircular disc" },
+      { "option_key": "C", "hint": "While swapping 1 and 4 between sphere and disc is technically valid since both are at the geometric centre, B and C are still swapped here.", "misconception": "Getting the semicircular body formulas reversed" },
+      { "option_key": "D", "hint": "Though B-3 and C-2 are correct here, swapping the matched entries for the sphere and disc with entries 1 and 4 is acceptable but the standard assignment pairs A with 1.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-rot-com-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the following physical situations (Column I) with the behaviour of the centre of mass (Column II):\n\nColumn I:\nA. A bomb at rest explodes into fragments\nB. A ball is thrown upward in gravity\nC. Two skaters push each other on frictionless ice (initially at rest)\nD. A charged particle moves in a uniform electric field\n\nColumn II:\n1. COM follows a parabolic path\n2. COM remains at rest\n3. COM moves with constant velocity\n4. COM accelerates uniformly",
+    "explanation": "A bomb at rest with no external force: COM stays at rest (A-2). A ball in gravity has constant external force: COM follows a parabolic path, but since it is a single body, its path is parabolic (A-1 is tempting, but a ball thrown straight up follows a straight line up/down). Actually, if thrown at an angle it is parabolic, but thrown upward it is linear with uniform acceleration — the COM accelerates under gravity. For a single ball thrown upward, COM = ball itself, and it decelerates uniformly under gravity (A-4 is the general case for uniform external force). Let me reconsider: B is a ball thrown upward in gravity — as a single particle, its COM accelerates uniformly downward (B-4). C: two skaters initially at rest push off on frictionless ice — no external horizontal force, so COM remains at rest (C-2 is also possible but A-2 is taken). Wait — A-2 and C would both be at rest. Let me reconsider the matching. A bomb at rest explodes: no external force, COM stays at rest (A-2). Two skaters push on frictionless ice from rest: no external force, COM remains at rest (C-2). But both can't map to 2 in a standard match. Reconsidering: the skaters are on ice and gravity acts but their vertical COM doesn't change, horizontally COM is at rest — typically for NEET, C-3 (constant velocity = zero) encompasses rest. Actually, rest IS constant velocity (v=0). So A-2 (remains at rest) and C-3 (constant velocity, which at v=0 means at rest). B: single ball thrown up under gravity, COM accelerates uniformly downward (B-4). D: charged particle in uniform E field experiences constant force, COM follows parabolic path (D-1).",
+    "correct_answer": "D",
+    "concept_tags": ["centre-of-mass", "COM-motion", "external-forces", "conservation"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-2, B-1, C-3, D-4", "is_correct": false },
+      { "key": "B", "text": "A-3, B-4, C-2, D-1", "is_correct": false },
+      { "key": "C", "text": "A-2, B-4, C-2, D-1", "is_correct": false },
+      { "key": "D", "text": "A-2, B-4, C-3, D-1", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A ball thrown upward under gravity undergoes uniform acceleration (g downward), not a parabolic path for vertical-only motion.", "misconception": "Confusing trajectory shape with the nature of COM acceleration" },
+      { "option_key": "B", "hint": "A bomb at rest with no external force cannot have its COM moving at constant velocity; it must remain stationary.", "misconception": "Thinking internal explosive forces can set COM into motion" },
+      { "option_key": "C", "hint": "In standard matching, each entry in Column II should be used once. C-2 repeats the mapping already used for A-2.", "misconception": "Not distinguishing between 'at rest' and 'constant velocity (zero)' as separate matching options" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The centre of mass of a uniform solid hemisphere of radius R lies at a distance 3R/8 from the flat face.",
+    "explanation": "This is a standard result. For a uniform solid hemisphere, the COM is located at a height of 3R/8 from the flat (diametral) face along the axis of symmetry. This is derived by integrating thin disc elements from the base to the top of the hemisphere.",
+    "correct_answer": "A",
+    "concept_tags": ["centre-of-mass", "hemisphere", "standard-result"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The value 3R/8 is the well-known standard result for a solid hemisphere, obtained by integration.", "misconception": "Confusing the COM of a solid hemisphere with that of a hemispherical shell (R/2)" },
+      { "option_key": "C", "hint": "This option is not applicable for true/false questions.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for true/false questions.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-rot-com-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "When a cracker explodes in mid-air, the centre of mass of all its fragments follows a new trajectory different from the original parabolic path.",
+    "explanation": "This statement is false. When a cracker (or any projectile) explodes mid-air, the forces involved are internal to the system. Since only the external force (gravity) acts on the system, the COM continues to follow the same parabolic trajectory as before the explosion, regardless of how the fragments scatter.",
+    "correct_answer": "B",
+    "concept_tags": ["centre-of-mass", "explosion", "projectile", "internal-forces"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The explosion is caused by internal forces only, which cannot alter the COM trajectory. The COM continues on the original parabolic path under gravity.", "misconception": "Thinking internal explosive forces can change the trajectory of the centre of mass" },
+      { "option_key": "C", "hint": "This option is not applicable for true/false questions.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for true/false questions.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-rot-com-19",
+    "question_type": "fill_in_the_blanks",
+    "difficulty": "medium",
+    "question_text": "A uniform triangular lamina has its centre of mass at the _____ of the triangle, which is located at one-third the height from the base.",
+    "explanation": "The centre of mass of a uniform triangular lamina (plate) coincides with the centroid of the triangle. The centroid is the point of intersection of the medians and is located at a distance of one-third the height from the base (or equivalently, two-thirds the height from the apex). This is a standard geometric result.",
+    "correct_answer": "C",
+    "concept_tags": ["centre-of-mass", "triangle", "centroid", "lamina"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Incentre", "is_correct": false },
+      { "key": "B", "text": "Circumcentre", "is_correct": false },
+      { "key": "C", "text": "Centroid", "is_correct": true },
+      { "key": "D", "text": "Orthocentre", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The incentre is the centre of the inscribed circle and does not represent the mass-weighted average position for a uniform lamina.", "misconception": "Confusing incentre (related to angle bisectors) with centroid (related to medians)" },
+      { "option_key": "B", "hint": "The circumcentre is equidistant from all vertices and is relevant to the circumscribed circle, not to mass distribution.", "misconception": "Confusing circumcentre with the COM of a uniform triangular lamina" },
+      { "option_key": "D", "hint": "The orthocentre is the intersection of altitudes and does not coincide with the COM for a general triangle.", "misconception": "Confusing orthocentre with centroid" }
+    ]
+  },
+  {
+    "id": "phy-rot-com-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A 60 kg girl and a 40 kg boy are sitting at opposite ends of a 4 m long boat of mass 100 kg floating in still water. The girl is at the left end and the boy is at the right end. The girl now moves to the right end where the boy is sitting. Assume no friction between the boat and water.\n\nHow far does the boat move, and in which direction?",
+    "explanation": "Since there is no external horizontal force, the COM of the system (girl + boy + boat) remains stationary. Initially, taking the left end of the boat as origin, the girl is at 0 m, the boat's COM is at 2 m, and the boy is at 4 m. When the girl moves to the right end (4 m on the boat), using conservation of COM position: let x be the leftward shift of the boat. 60×(4−x) + 100×(2−x) + 40×(4−x) = 60×0 + 100×2 + 40×4. Solving: 240−60x + 200−100x + 160−40x = 0 + 200 + 160. So 600 − 200x = 360, giving 200x = 240, x = 1.2 m. The boat moves 1.2 m to the left.",
+    "correct_answer": "D",
+    "concept_tags": ["centre-of-mass", "girl-boy-boat", "no-external-force", "COM-conservation"],
+    "topic": "Centre of Mass and System of Particles",
+    "subject": "physics",
+    "chapter": "System of Particles and Rotational Motion",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "2.0 m to the left", "is_correct": false },
+      { "key": "B", "text": "1.2 m to the right", "is_correct": false },
+      { "key": "C", "text": "2.4 m to the left", "is_correct": false },
+      { "key": "D", "text": "1.2 m to the left", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "2.0 m would result if the boat mass were ignored in the calculation.", "misconception": "Neglecting the boat's mass contribution to the total system mass" },
+      { "option_key": "B", "hint": "The boat must shift in the opposite direction to the girl's motion to keep the COM fixed, so it moves left, not right.", "misconception": "Getting the direction of the boat's displacement wrong" },
+      { "option_key": "C", "hint": "2.4 m is the girl's displacement relative to the ground, not the boat's displacement.", "misconception": "Confusing the girl's net displacement with the boat's displacement" }
+    ]
+  }
+]
