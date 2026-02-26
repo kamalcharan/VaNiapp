@@ -3,58 +3,36 @@
     "id": "phy-newton-circular-01",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "The centripetal force required to keep a body moving in a circular path is directed:",
-    "explanation": "Centripetal force is always directed towards the centre of the circular path. It is this inward force that continuously changes the direction of velocity, keeping the body on its circular trajectory. Without this inward force, the body would move in a straight line (tangent to the circle).",
+    "question_text": "A car of mass 1000 kg is moving along a circular road of radius 100 m. The centripetal force required to keep the car on the circular path when it travels at 10 m/s is:",
+    "explanation": "Centripetal force is given by F = mv²/r. Here m = 1000 kg, v = 10 m/s, r = 100 m. F = 1000 × (10)² / 100 = 1000 × 100 / 100 = 1000 N. This force is provided by friction between the tyres and the road on a level road. The centripetal force always acts towards the centre of the circular path and is responsible for the change in direction of velocity without changing its magnitude.",
     "correct_answer": "A",
-    "concept_tags": [
-      "centripetal-force",
-      "circular-motion",
-      "direction-of-force"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "concept_tags": ["centripetal-force", "circular-motion", "newton-second-law"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "remember",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "Towards the centre of the circular path",
-        "is_correct": true
-      },
-      {
-        "key": "B",
-        "text": "Away from the centre of the circular path",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "Along the tangent to the circular path",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "At 45° to the radius of the circular path",
-        "is_correct": false
-      }
+      {"key": "A", "text": "1000 N", "is_correct": true},
+      {"key": "B", "text": "100 N", "is_correct": false},
+      {"key": "C", "text": "10000 N", "is_correct": false},
+      {"key": "D", "text": "500 N", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "B",
-        "hint": "A force directed away from the centre would push the body outward, not keep it moving in a circle. The so-called 'centrifugal force' is a pseudo force in rotating frames, not a real force.",
-        "misconception": "Confusing centripetal force with centrifugal force"
+        "hint": "100 N would result if you forgot to square the velocity or made an arithmetic error. Check: F = mv²/r = 1000 × 100 / 100 = 1000 N, not 100 N.",
+        "misconception": "Not squaring the velocity or making an arithmetic error in the division."
       },
       {
         "option_key": "C",
-        "hint": "A tangential force would change the speed of the body, not its direction. Centripetal force changes direction to maintain circular motion.",
-        "misconception": "Confusing tangential force with centripetal force"
+        "hint": "10000 N would result if the radius were 10 m rather than 100 m. Re-read the problem: r = 100 m, giving F = 1000 N.",
+        "misconception": "Using r = 10 m instead of r = 100 m, or multiplying instead of dividing by r."
       },
       {
         "option_key": "D",
-        "hint": "Centripetal force is strictly radially inward (along the radius toward the centre), not at any angle to the radius.",
-        "misconception": null
+        "hint": "500 N would result if half the mass (500 kg) were used or if r were taken as 200 m. The correct mass is 1000 kg and r = 100 m.",
+        "misconception": "Incorrectly halving the mass or doubling the radius in the formula."
       }
     ]
   },
@@ -62,58 +40,36 @@
     "id": "phy-newton-circular-02",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "The centripetal acceleration of a body moving with speed v in a circle of radius r is:",
-    "explanation": "The centripetal acceleration is given by a_c = v²/r, directed towards the centre of the circular path. This can also be written as a_c = ω²r, where ω is the angular velocity. It represents the rate of change of direction of velocity.",
+    "question_text": "On a level circular road, what provides the centripetal force to a vehicle moving in a circle?",
+    "explanation": "On a level (unbanked) circular road, the only horizontal force acting on the vehicle is the static friction between the tyres and the road surface. This friction acts radially inward (towards the centre of the circle) and provides the necessary centripetal force. The normal reaction from the road is vertical and only balances gravity. Gravity acts downward and has no horizontal component to contribute to centripetal force.",
     "correct_answer": "B",
-    "concept_tags": [
-      "centripetal-acceleration",
-      "circular-motion-formula",
-      "velocity-radius"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "concept_tags": ["centripetal-force", "friction", "level-road"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "remember",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "v/r",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "v²/r",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "v²r",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "vr²",
-        "is_correct": false
-      }
+      {"key": "A", "text": "Normal reaction from the road", "is_correct": false},
+      {"key": "B", "text": "Friction between tyres and road", "is_correct": true},
+      {"key": "C", "text": "Gravitational force on the vehicle", "is_correct": false},
+      {"key": "D", "text": "Engine thrust of the vehicle", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "v/r has dimensions of 1/s (angular velocity), not m/s² (acceleration). The correct expression squares the velocity.",
-        "misconception": "Confusing angular velocity with centripetal acceleration"
+        "hint": "The normal reaction acts perpendicular to the road surface (vertically upward on a level road). It cannot provide any horizontal centripetal force.",
+        "misconception": "Confusing the direction of normal reaction; it is vertical, not horizontal, on a level road."
       },
       {
         "option_key": "C",
-        "hint": "v²r has dimensions of m³/s², which is not the dimension of acceleration. The radius should be in the denominator.",
-        "misconception": "Placing radius in numerator instead of denominator"
+        "hint": "Gravity acts vertically downward. On a level road it has no horizontal component, so it cannot contribute to centripetal (radially inward) force.",
+        "misconception": "Thinking gravity has a horizontal component on a level surface."
       },
       {
         "option_key": "D",
-        "hint": "vr² has dimensions of m³/s, which is not acceleration. The correct formula is v²/r.",
-        "misconception": null
+        "hint": "Engine thrust drives the vehicle forward (tangential direction). It cannot provide the inward centripetal force needed for circular motion.",
+        "misconception": "Confusing tangential (forward) driving force with the radially inward centripetal force."
       }
     ]
   },
@@ -121,59 +77,36 @@
     "id": "phy-newton-circular-03",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "A stone tied to a string is whirled in a horizontal circle. If the string breaks, the stone will:",
-    "explanation": "When the string breaks, the centripetal force (tension) ceases to act. By Newton's first law, the stone will continue moving in the direction of its velocity at the instant the string breaks, which is along the tangent to the circle at that point.",
+    "question_text": "A stone tied to a string is whirled in a vertical circle. The tension in the string is maximum at which position?",
+    "explanation": "At the bottom of the vertical circle, both tension (upward) and centripetal acceleration point upward (toward centre), while gravity points downward. Newton's second law: T_bottom − mg = mv²_bottom/r, so T_bottom = mg + mv²_bottom/r. At the top, both tension and gravity point downward (toward centre): T_top + mg = mv²_top/r, giving T_top = mv²_top/r − mg. By energy conservation, speed is greatest at the bottom and least at the top. Since mg adds to tension at the bottom (and subtracts at the top), tension is maximum at the bottom of the circle.",
     "correct_answer": "C",
-    "concept_tags": [
-      "tangential-velocity",
-      "newton-first-law",
-      "string-breaks",
-      "circular-motion"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "concept_tags": ["vertical-circular-motion", "tension", "energy-conservation"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "remember",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "Move radially outward from the centre",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "Move radially inward toward the centre",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "Fly off tangentially to the circle",
-        "is_correct": true
-      },
-      {
-        "key": "D",
-        "text": "Continue moving in the circular path",
-        "is_correct": false
-      }
+      {"key": "A", "text": "At the top of the circle", "is_correct": false},
+      {"key": "B", "text": "At the horizontal level of the centre", "is_correct": false},
+      {"key": "C", "text": "At the bottom of the circle", "is_correct": true},
+      {"key": "D", "text": "At 45° from the bottom", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "There is no outward force on the stone. The velocity is tangential, not radial, so the stone moves tangentially, not radially outward.",
-        "misconception": "Believing centrifugal force pushes objects outward when released"
+        "hint": "At the top, both tension and gravity point toward the centre (downward), giving T_top = mv²_top/r − mg. The mg term reduces tension and the speed is lowest here, making tension minimum at the top.",
+        "misconception": "Thinking that the highest point requires the most tension to hold the stone up."
       },
       {
         "option_key": "B",
-        "hint": "Moving inward would require an inward force, but the tension (the only inward force) no longer exists after the string breaks.",
-        "misconception": null
+        "hint": "At the horizontal level (side positions), tension = mv²_side/r. The speed here is intermediate between top and bottom, so tension is neither maximum nor minimum.",
+        "misconception": "Choosing a symmetric-looking position without analysing the force equation properly."
       },
       {
         "option_key": "D",
-        "hint": "Circular motion requires a continuous centripetal force. Without the string providing tension, there is no force to maintain the circular path.",
-        "misconception": "Thinking circular motion continues without centripetal force"
+        "hint": "At 45° from the bottom, the weight has a component along the string that partially reduces tension. This intermediate position does not give maximum tension.",
+        "misconception": "Incorrectly assuming a diagonal position maximises string tension."
       }
     ]
   },
@@ -181,58 +114,36 @@
     "id": "phy-newton-circular-04",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "In uniform circular motion, the quantity that remains constant is:",
-    "explanation": "In uniform circular motion, the speed (magnitude of velocity) remains constant, but the direction of velocity continuously changes. Since velocity is a vector (has both magnitude and direction), the velocity itself is not constant. Acceleration and force are also not constant in direction.",
+    "question_text": "A bob of mass m is suspended by a string of length L and whirled in a horizontal circle forming a conical pendulum. If the string makes an angle θ with the vertical, the time period of revolution is:",
+    "explanation": "For a conical pendulum, resolving forces: T cosθ = mg (vertical equilibrium) and T sinθ = mω²r where r = L sinθ (centripetal force). Dividing these: tanθ = ω²L sinθ/g, giving ω² = g/(L cosθ). The time period T_period = 2π/ω = 2π√(L cosθ/g). This result shows that for small angles (cosθ ≈ 1), the period approaches 2π√(L/g), similar to a simple pendulum. The period decreases as the angle increases (faster rotation needed to maintain a larger angle).",
     "correct_answer": "D",
-    "concept_tags": [
-      "uniform-circular-motion",
-      "constant-speed",
-      "changing-velocity"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "concept_tags": ["conical-pendulum", "circular-motion", "time-period"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "remember",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "Velocity",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "Acceleration",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "Force",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "Speed",
-        "is_correct": true
-      }
+      {"key": "A", "text": "2π√(L/g)", "is_correct": false},
+      {"key": "B", "text": "2π√(L sinθ/g)", "is_correct": false},
+      {"key": "C", "text": "2π√(L tanθ/g)", "is_correct": false},
+      {"key": "D", "text": "2π√(L cosθ/g)", "is_correct": true}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "Velocity is a vector quantity. Although its magnitude (speed) is constant, its direction changes continuously in circular motion, so velocity is not constant.",
-        "misconception": "Confusing speed (scalar) with velocity (vector)"
+        "hint": "2π√(L/g) is the period of a simple pendulum with small oscillations, where cosθ ≈ 1. For a conical pendulum at angle θ, the effective length is L cosθ, not L.",
+        "misconception": "Forgetting to account for the angle; treating the conical pendulum as a simple pendulum."
       },
       {
         "option_key": "B",
-        "hint": "Centripetal acceleration has constant magnitude (v²/r) but its direction changes continuously as it always points toward the centre.",
-        "misconception": "Forgetting that acceleration is a vector whose direction matters"
+        "hint": "L sinθ is the radius of the horizontal circle, not the effective length determining the period. Balancing vertical forces gives ω² = g/(L cosθ), so cosθ is needed.",
+        "misconception": "Substituting the radius r = L sinθ into the simple-pendulum formula instead of the vertical component L cosθ."
       },
       {
         "option_key": "C",
-        "hint": "The centripetal force has constant magnitude but continuously changes direction (always toward the centre), so it is not a constant vector.",
-        "misconception": null
+        "hint": "tanθ = sinθ/cosθ is not the relevant ratio here. The vertical equilibrium T cosθ = mg leads to cosθ in the period formula, not tanθ.",
+        "misconception": "Incorrectly using tanθ instead of cosθ in the period expression."
       }
     ]
   },
@@ -240,59 +151,36 @@
     "id": "phy-newton-circular-05",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A car of mass 1000 kg is moving on a flat circular road of radius 50 m. The maximum speed at which the car can take the turn safely without skidding is: (Coefficient of friction μ = 0.5, g = 10 m/s²)",
-    "explanation": "On a flat (unbanked) circular road, friction provides the centripetal force. At the maximum speed, mv²/r = μmg. Solving: v² = μgr = 0.5 × 10 × 50 = 250, so v = √250 ≈ 15.8 m/s. The mass cancels out and does not affect the maximum safe speed.",
-    "correct_answer": "B",
-    "concept_tags": [
-      "flat-curve",
-      "maximum-speed",
-      "friction-centripetal",
-      "skidding"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "question_text": "A road is banked at an angle θ for a vehicle moving with speed v. The ideal banking condition (no friction needed) is given by:",
+    "explanation": "On a banked road with no friction, the only forces are the normal reaction N (perpendicular to the road surface) and gravity mg. Resolving: N cosθ = mg (vertical equilibrium) and N sinθ = mv²/r (centripetal force, horizontal). Dividing these equations: tanθ = v²/(rg). This is the ideal banking condition. At this speed, no friction is needed. If the vehicle goes faster than this ideal speed, friction acts inward; if slower, friction acts outward to prevent slipping.",
+    "correct_answer": "A",
+    "concept_tags": ["banking-of-roads", "ideal-banking", "centripetal-force"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "apply",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "10 m/s",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "15.8 m/s",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "22.4 m/s",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "25 m/s",
-        "is_correct": false
-      }
+      {"key": "A", "text": "tan θ = v²/(rg)", "is_correct": true},
+      {"key": "B", "text": "sin θ = v²/(rg)", "is_correct": false},
+      {"key": "C", "text": "cos θ = v²/(rg)", "is_correct": false},
+      {"key": "D", "text": "tan θ = v/(rg)", "is_correct": false}
     ],
     "elimination_hints": [
       {
-        "option_key": "A",
-        "hint": "10 m/s gives v² = 100, requiring μgr = 100. But μgr = 250, so the car can safely go faster than 10 m/s.",
-        "misconception": null
+        "option_key": "B",
+        "hint": "sinθ = v²/(rg) would be correct only if the vertical and horizontal force equations were swapped. Dividing the correct equations (N sinθ = mv²/r by N cosθ = mg) gives tanθ, not sinθ.",
+        "misconception": "Swapping the vertical and horizontal components of the normal force in the force equations."
       },
       {
         "option_key": "C",
-        "hint": "22.4 m/s gives v² = 500. This would require μ = 1.0 for the given road, which is twice the actual coefficient of friction.",
-        "misconception": "Using incorrect coefficient or forgetting to take square root properly"
+        "hint": "cosθ appears in the vertical equilibrium equation (N cosθ = mg), not as the ratio equal to v²/(rg). Dividing the two force equations gives tanθ = v²/(rg).",
+        "misconception": "Using the vertical component equation alone rather than the ratio of horizontal to vertical equations."
       },
       {
         "option_key": "D",
-        "hint": "25 m/s gives v² = 625. The centripetal force needed (12,500 N) would exceed the maximum friction (5,000 N), causing the car to skid.",
-        "misconception": null
+        "hint": "tanθ = v/(rg) lacks a square on v. Centripetal acceleration is v²/r (not v/r), so the correct relation involves v² in the numerator.",
+        "misconception": "Forgetting to square the speed; centripetal acceleration is v²/r, not v/r."
       }
     ]
   },
@@ -300,59 +188,36 @@
     "id": "phy-newton-circular-06",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A cyclist goes around a circular track of radius 100 m at a speed of 20 m/s. The angle at which the cyclist should lean with the vertical is: (Take g = 10 m/s²)",
-    "explanation": "For a cyclist or vehicle on a circular track, the lean angle θ satisfies tan θ = v²/(rg) = (20)²/(100 × 10) = 400/1000 = 0.4. Therefore θ = tan⁻¹(0.4) ≈ 21.8° ≈ 22°. This lean provides the necessary centripetal force component.",
-    "correct_answer": "C",
-    "concept_tags": [
-      "leaning-angle",
-      "cyclist-circular-track",
-      "centripetal-force",
-      "banking-angle"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "question_text": "A vehicle travels over a convex bridge (hump) of radius of curvature R at speed v. The normal reaction from the road on the vehicle at the top of the hump is:",
+    "explanation": "At the top of a convex bridge (hump), the centripetal direction is downward toward the centre of curvature. Applying Newton's second law toward the centre: mg − N = mv²/R. Therefore N = mg − mv²/R = m(g − v²/R). The normal force is reduced compared to a flat road. When v = √(gR), N = 0 and the vehicle just loses contact. For v > √(gR), the vehicle becomes airborne, so √(gR) is the maximum safe speed over the hump.",
+    "correct_answer": "B",
+    "concept_tags": ["convex-bridge", "normal-force", "vertical-circular-motion"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "apply",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "tan⁻¹(0.2)",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "tan⁻¹(0.3)",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "tan⁻¹(0.4)",
-        "is_correct": true
-      },
-      {
-        "key": "D",
-        "text": "tan⁻¹(0.5)",
-        "is_correct": false
-      }
+      {"key": "A", "text": "N = mg + mv²/R", "is_correct": false},
+      {"key": "B", "text": "N = m(g − v²/R)", "is_correct": true},
+      {"key": "C", "text": "N = mv²/R", "is_correct": false},
+      {"key": "D", "text": "N = m(g + v²/R)/2", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "tan⁻¹(0.2) would require v²/(rg) = 0.2, meaning v² = 200 or v ≈ 14.1 m/s, not 20 m/s.",
-        "misconception": null
+        "hint": "N = mg + mv²/R corresponds to the bottom of a concave bridge or the inside of a loop, where centripetal acceleration points upward and N must exceed mg. At the top of a convex hump, centripetal acceleration is downward, so N is reduced.",
+        "misconception": "Applying the formula for the bottom of a loop to the top of a convex bridge."
       },
       {
-        "option_key": "B",
-        "hint": "tan⁻¹(0.3) doesn't match v²/(rg) = 400/1000 = 0.4. Check your arithmetic.",
-        "misconception": null
+        "option_key": "C",
+        "hint": "N = mv²/R ignores gravity entirely. The correct equation at the top is mg − N = mv²/R, giving N = m(g − v²/R), not just mv²/R.",
+        "misconception": "Setting only the centripetal force equal to N, forgetting that gravity also contributes to the net downward force."
       },
       {
         "option_key": "D",
-        "hint": "tan⁻¹(0.5) would require v² = 500, corresponding to v ≈ 22.4 m/s, not 20 m/s.",
-        "misconception": null
+        "hint": "Dividing by 2 has no physical basis here. Newton's second law gives N = m(g − v²/R) directly without any averaging factor.",
+        "misconception": "Incorrectly averaging forces or making an unjustified algebraic error in the force balance."
       }
     ]
   },
@@ -360,59 +225,36 @@
     "id": "phy-newton-circular-07",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A road is banked at an angle θ for a curve of radius r. The maximum safe speed for a vehicle on this banked road (ignoring friction) is:",
-    "explanation": "On a frictionless banked road, the horizontal component of the normal force provides the centripetal force: N sin θ = mv²/r and N cos θ = mg. Dividing: tan θ = v²/(rg), so v = √(rg tan θ). This is the optimum speed for the banked road without friction.",
-    "correct_answer": "B",
-    "concept_tags": [
-      "banking-of-roads",
-      "banked-curve",
-      "centripetal-force",
-      "normal-force"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "question_text": "A banked road has banking angle θ and coefficient of static friction μ between tyre and road. The maximum safe speed for a vehicle on this road (radius r) is:",
+    "explanation": "On a banked road with friction, the maximum speed condition occurs when friction acts inward (down the slope) to prevent the vehicle from skidding outward. After applying Newton's laws in both the vertical and centripetal directions and solving, the standard result is v_max = √[rg(tanθ + μ)/(1 − μ tanθ)]. Both the banking angle and friction cooperate to allow a higher maximum speed compared to a level road. When μ = 0, this reduces to v_ideal = √(rg tanθ), consistent with the ideal banking formula.",
+    "correct_answer": "C",
+    "concept_tags": ["banking-with-friction", "maximum-speed", "banked-road"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "apply",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "√(rg sin θ)",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "√(rg tan θ)",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "√(rg cos θ)",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "√(rg / tan θ)",
-        "is_correct": false
-      }
+      {"key": "A", "text": "v_max = √[rg(tanθ − μ)/(1 + μ tanθ)]", "is_correct": false},
+      {"key": "B", "text": "v_max = √[rg(tanθ + μ)]", "is_correct": false},
+      {"key": "C", "text": "v_max = √[rg(tanθ + μ)/(1 − μ tanθ)]", "is_correct": true},
+      {"key": "D", "text": "v_max = √[rg(μ + sinθ)/(cosθ)]", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "Using sin θ alone doesn't account for the vertical equilibrium condition. The correct derivation involves dividing the horizontal and vertical force equations, yielding tan θ.",
-        "misconception": "Using sin instead of tan in the banking formula"
+        "hint": "Option A gives the minimum safe speed (v_min) on a banked road, not the maximum. At minimum speed, friction acts up the slope (outward) to prevent inward skidding, leading to the expression (tanθ − μ)/(1 + μ tanθ).",
+        "misconception": "Confusing the maximum-speed condition (friction acts inward, down slope) with the minimum-speed condition (friction acts outward, up slope)."
       },
       {
-        "option_key": "C",
-        "hint": "cos θ appears in the vertical equilibrium (N cos θ = mg) but the speed formula involves tan θ, not cos θ.",
-        "misconception": null
+        "option_key": "B",
+        "hint": "Omitting the denominator (1 − μ tanθ) ignores the effect of friction on the normal force's vertical component. The full derivation yields a denominator term that is essential for the correct result.",
+        "misconception": "Partially deriving the formula and dropping the denominator correction from the friction contribution to the vertical equation."
       },
       {
         "option_key": "D",
-        "hint": "This is the reciprocal of the correct expression inside the square root. tan θ should be in the numerator, not the denominator.",
-        "misconception": "Inverting the tan θ relationship"
+        "hint": "This option mixes sinθ and cosθ inconsistently with the friction term and misses the (1 − μ tanθ) denominator entirely. The correct formula uses tanθ throughout.",
+        "misconception": "Incorrectly combining the force components without properly dividing the horizontal centripetal equation by the vertical equilibrium equation."
       }
     ]
   },
@@ -420,59 +262,36 @@
     "id": "phy-newton-circular-08",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A conical pendulum has a string of length L making an angle θ with the vertical. The speed of the bob of mass m in the horizontal circle is:",
-    "explanation": "For a conical pendulum, the radius of the circle is r = L sin θ. The tension component T sin θ provides centripetal force, and T cos θ = mg. From these: v² = rg tan θ = (L sin θ)(g)(sin θ/cos θ) = gL sin²θ/cos θ. Equivalently, v = √(gL sin θ tan θ) = √(gL sin²θ/cos θ).",
+    "question_text": "A particle undergoes uniform circular motion. Which of the following statements is correct?",
+    "explanation": "In uniform circular motion, the speed (magnitude of velocity) remains constant, but the direction of velocity continuously changes. Since velocity is a vector, a change in direction constitutes a change in velocity, meaning acceleration is not zero. This centripetal acceleration is always directed toward the centre and is perpendicular to the velocity at every instant. The net centripetal force does no work because it is always perpendicular to the displacement.",
     "correct_answer": "D",
-    "concept_tags": [
-      "conical-pendulum",
-      "tension",
-      "circular-motion",
-      "pendulum-speed"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "concept_tags": ["uniform-circular-motion", "centripetal-acceleration", "velocity-direction"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "apply",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "√(gL cos θ)",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "√(gL sin θ)",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "√(gL tan θ)",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "√(gL sin θ tan θ)",
-        "is_correct": true
-      }
+      {"key": "A", "text": "Both speed and velocity remain constant", "is_correct": false},
+      {"key": "B", "text": "The net force on the particle is zero", "is_correct": false},
+      {"key": "C", "text": "The acceleration is in the direction of velocity", "is_correct": false},
+      {"key": "D", "text": "The centripetal acceleration is always perpendicular to the velocity", "is_correct": true}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "√(gL cos θ) is the expression that appears in the time period formula of a conical pendulum (T = 2π√(L cos θ/g)), not in the speed formula.",
-        "misconception": "Confusing time period formula with speed formula for conical pendulum"
+        "hint": "Speed (scalar magnitude) is constant in uniform circular motion, but velocity (vector) changes direction continuously. Since direction changes, velocity is not constant.",
+        "misconception": "Treating speed and velocity as identical quantities, ignoring that velocity is a vector with direction."
       },
       {
         "option_key": "B",
-        "hint": "√(gL sin θ) only accounts for the radius r = L sin θ but misses the tan θ factor from the force balance.",
-        "misconception": null
+        "hint": "If the net force were zero, the particle would move in a straight line (Newton's first law). A net centripetal force mv²/r directed inward is essential for circular motion.",
+        "misconception": "Confusing constant speed with zero acceleration or zero net force."
       },
       {
         "option_key": "C",
-        "hint": "√(gL tan θ) would be correct if the radius were L, but the radius is L sin θ, not L.",
-        "misconception": "Using string length instead of radius of circular path"
+        "hint": "Acceleration in the direction of velocity would change the speed (tangential acceleration). In uniform circular motion, speed is constant, so acceleration must be perpendicular to velocity, directed centripetally.",
+        "misconception": "Confusing centripetal (perpendicular) acceleration with tangential acceleration that changes speed."
       }
     ]
   },
@@ -480,59 +299,36 @@
     "id": "phy-newton-circular-09",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A body of mass 0.5 kg is whirled in a vertical circle of radius 2 m. The minimum speed at the topmost point of the circle so that the string does not become slack is: (Take g = 10 m/s²)",
-    "explanation": "At the topmost point, both the weight mg and the tension T provide centripetal force: mg + T = mv²/r. For the string to not go slack, T ≥ 0. At minimum speed, T = 0, so mg = mv²_min/r, giving v_min = √(gr) = √(10 × 2) = √20 ≈ 4.47 m/s.",
+    "question_text": "An object moves in a horizontal circle of radius r with angular velocity ω. In the non-inertial rotating reference frame co-rotating with the object, the centrifugal pseudo force acting on the object has magnitude and direction:",
+    "explanation": "In a non-inertial reference frame rotating with angular velocity ω, a pseudo force called the centrifugal force appears. For an object of mass m moving in a circle of radius r, the centrifugal force has magnitude mω²r and is directed radially outward (away from the axis of rotation). In the rotating frame, this outward pseudo force balances the inward centripetal force (the real force), making the object appear stationary. Note: Centrifugal force is NOT a real force; it arises due to the non-inertial nature of the rotating frame.",
     "correct_answer": "A",
-    "concept_tags": [
-      "vertical-circular-motion",
-      "minimum-speed-top",
-      "critical-velocity",
-      "string-slack"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "concept_tags": ["centrifugal-force", "pseudo-force", "non-inertial-frame"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "apply",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "√20 m/s",
-        "is_correct": true
-      },
-      {
-        "key": "B",
-        "text": "√40 m/s",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "√10 m/s",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "√50 m/s",
-        "is_correct": false
-      }
+      {"key": "A", "text": "mω²r directed radially outward", "is_correct": true},
+      {"key": "B", "text": "mω²r directed radially inward", "is_correct": false},
+      {"key": "C", "text": "mωr directed radially outward", "is_correct": false},
+      {"key": "D", "text": "mω²r directed tangentially", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "B",
-        "hint": "√40 would give v² = 40, implying gr = 40 or r = 4 m with g = 10. But the radius is 2 m, so gr = 20.",
-        "misconception": "Doubling the product gr incorrectly"
+        "hint": "mω²r inward describes the centripetal force (real force), not the centrifugal pseudo force. The centrifugal force is the apparent outward push in a rotating frame, opposite to the centripetal direction.",
+        "misconception": "Confusing the direction of centripetal force (inward) with that of the centrifugal pseudo force (outward)."
       },
       {
         "option_key": "C",
-        "hint": "√10 gives v² = 10, which means mv²/r = 0.5 × 10/2 = 2.5 N, less than mg = 5 N. Gravity alone would exceed the centripetal force needed, and the string would go slack.",
-        "misconception": null
+        "hint": "The centrifugal force magnitude is mω²r, not mωr. The centripetal acceleration is ω²r (not ωr), so the pseudo force magnitude must include the square of ω.",
+        "misconception": "Forgetting to square the angular velocity ω when writing the centrifugal force magnitude."
       },
       {
         "option_key": "D",
-        "hint": "√50 corresponds to √(5gr), which is the minimum speed at the bottom of a vertical circle, not at the top.",
-        "misconception": "Confusing minimum speed at top with minimum speed at bottom"
+        "hint": "Centrifugal force acts radially outward, not tangentially. A tangential pseudo force (Coriolis force) arises from the velocity of the object relative to the rotating frame.",
+        "misconception": "Confusing the radial centrifugal pseudo force with the tangential Coriolis pseudo force."
       }
     ]
   },
@@ -540,59 +336,36 @@
     "id": "phy-newton-circular-10",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A car is moving on a banked road of angle 30° with radius 100 m. The optimum speed of the car (at which no friction is needed) is approximately: (Take g = 10 m/s², tan 30° = 0.577)",
-    "explanation": "The optimum speed on a banked road (where no friction is needed) is v = √(rg tan θ) = √(100 × 10 × 0.577) = √577 ≈ 24 m/s. At this speed, the horizontal component of the normal force exactly provides the required centripetal force.",
-    "correct_answer": "C",
-    "concept_tags": [
-      "banking-of-roads",
-      "optimum-speed",
-      "banked-curve",
-      "no-friction"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "question_text": "A ball of mass m is rotating in a vertical circle of radius r. The minimum speed at the top of the circle so that the string does not go slack is:",
+    "explanation": "At the top of a vertical circle, both gravity mg and tension T act downward toward the centre. Newton's second law: T + mg = mv²/r. For the string not to go slack, T ≥ 0. Setting T = 0 for the critical (minimum) condition: mg = mv²_min/r, giving v_min = √(gr). At this critical speed, the centripetal acceleration equals g and the string tension is exactly zero. Any speed lower than √(gr) at the top means the available centripetal force is insufficient and the string goes slack.",
+    "correct_answer": "B",
+    "concept_tags": ["vertical-circular-motion", "critical-speed", "minimum-speed"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "apply",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "14 m/s",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "18 m/s",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "24 m/s",
-        "is_correct": true
-      },
-      {
-        "key": "D",
-        "text": "31 m/s",
-        "is_correct": false
-      }
+      {"key": "A", "text": "√(2gr)", "is_correct": false},
+      {"key": "B", "text": "√(gr)", "is_correct": true},
+      {"key": "C", "text": "√(5gr)", "is_correct": false},
+      {"key": "D", "text": "√(gr/2)", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "14 m/s gives v² = 196. The required rg tan θ = 577, so 14 m/s is too slow for the banking angle.",
-        "misconception": null
+        "hint": "√(2gr) is not the critical condition at the top. Setting T = 0: mg = mv²/r gives v = √(gr), not √(2gr). The factor of 2 does not appear in the top-of-circle critical analysis.",
+        "misconception": "Including an extra factor of 2 in the critical speed, possibly from confusing the top-of-circle result with another formula."
       },
       {
-        "option_key": "B",
-        "hint": "18 m/s gives v² = 324, still less than 577. This car would tend to slide inward on the banked road.",
-        "misconception": null
+        "option_key": "C",
+        "hint": "√(5gr) is the minimum speed required at the bottom of the circle for the ball to complete the full vertical circle (derived by energy conservation from v_top = √(gr)). The question asks for minimum speed at the top, which is √(gr).",
+        "misconception": "Confusing the minimum speed needed at the bottom of the loop with the minimum speed at the top."
       },
       {
         "option_key": "D",
-        "hint": "31 m/s gives v² = 961, much greater than 577. At this speed, the car would tend to slide outward off the road.",
-        "misconception": null
+        "hint": "√(gr/2) is less than the critical speed √(gr). At this speed, the centripetal acceleration v²/r = g/2 < g, which is insufficient even with T = 0, so the string would be slack.",
+        "misconception": "Incorrectly halving the gravitational acceleration in the critical condition."
       }
     ]
   },
@@ -600,59 +373,36 @@
     "id": "phy-newton-circular-11",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "A ball of mass m is attached to a string and whirled in a vertical circle of radius r. The minimum speed at the bottom of the circle for the ball to complete the full vertical circle is:",
-    "explanation": "At the top of the circle, minimum speed v_top = √(gr). Using energy conservation from bottom to top: ½mv²_bottom = ½mv²_top + mg(2r). Substituting v_top = √(gr): ½v²_bottom = ½gr + 2gr = 5gr/2. So v_bottom = √(5gr). This ensures the string stays taut throughout the entire loop.",
-    "correct_answer": "D",
-    "concept_tags": [
-      "vertical-circular-motion",
-      "minimum-speed-bottom",
-      "energy-conservation",
-      "critical-velocity"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "question_text": "A ball of mass m is attached to a string of length L and swung in a vertical circle. If the speed at the bottom is v₀, what is the tension in the string when the ball is at the side (same horizontal level as the centre)?",
+    "explanation": "Using energy conservation between the bottom and the side position (height gain = L): ½mv²_side = ½mv₀² − mgL, giving v²_side = v₀² − 2gL. At the side position, the centripetal direction is horizontal (toward the centre), and gravity acts vertically downward. Only the tension contributes to centripetal force (gravity is purely tangential here). Newton's second law in the centripetal direction: T = mv²_side/L = m(v₀² − 2gL)/L.",
+    "correct_answer": "C",
+    "concept_tags": ["vertical-circular-motion", "energy-conservation", "tension-calculation"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "analyze",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "analyse",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "√(gr)",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "√(2gr)",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "√(3gr)",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "√(5gr)",
-        "is_correct": true
-      }
+      {"key": "A", "text": "m(v₀² − gL)/L", "is_correct": false},
+      {"key": "B", "text": "m(v₀² − 2gL)/L + mg", "is_correct": false},
+      {"key": "C", "text": "m(v₀² − 2gL)/L", "is_correct": true},
+      {"key": "D", "text": "m(v₀² + 2gL)/L", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "√(gr) is the minimum speed at the top of the circle, not the bottom. By the time the ball reaches the top from the bottom, it needs additional speed to overcome gravity.",
-        "misconception": "Confusing critical speed at top with critical speed at bottom"
+        "hint": "Using height = L/2 instead of L gives v²_side = v₀² − gL, which is incorrect. The side position is at a height L above the bottom (one full radius), not L/2.",
+        "misconception": "Incorrectly using half the string length as the height gained when moving from bottom to side."
       },
       {
         "option_key": "B",
-        "hint": "√(2gr) would only account for the height gain of 2r using ½v² = g(2r), but it ignores the kinetic energy needed at the top to maintain the circular path.",
-        "misconception": "Only considering potential energy change, not the kinetic energy requirement at the top"
+        "hint": "Adding mg would apply if gravity had a radially inward component at the side position. But at the side, gravity is purely tangential (vertical) and does not contribute to tension (centripetal force) at all.",
+        "misconception": "Incorrectly adding mg to the centripetal force equation at the side position where gravity is perpendicular to the centripetal direction."
       },
       {
-        "option_key": "C",
-        "hint": "√(3gr) results from an incorrect energy balance. The correct balance gives v²_bottom = 5gr, not 3gr.",
-        "misconception": null
+        "option_key": "D",
+        "hint": "Using v²_side = v₀² + 2gL would imply the ball gained kinetic energy moving upward, violating energy conservation. Speed decreases going up, so the correct expression is v₀² − 2gL.",
+        "misconception": "Using incorrect sign in energy conservation, adding potential energy instead of subtracting it."
       }
     ]
   },
@@ -660,59 +410,36 @@
     "id": "phy-newton-circular-12",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "A motorcyclist rides inside a vertical cylindrical wall (death well) of radius 5 m. The minimum speed required so that the rider does not fall is: (Coefficient of friction between tyres and wall μ = 0.5, g = 10 m/s²)",
-    "explanation": "In a death well, the normal force from the wall provides centripetal force: N = mv²/r. The frictional force (upward) supports the weight: μN ≥ mg, so μ(mv²/r) ≥ mg, giving v² ≥ rg/μ = 5 × 10/0.5 = 100. Therefore v_min = 10 m/s.",
-    "correct_answer": "B",
-    "concept_tags": [
-      "death-well",
-      "wall-of-death",
-      "friction-centripetal",
-      "minimum-speed"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "question_text": "A car is moving on a banked circular road of radius 100 m and banking angle 30°. The coefficient of static friction between the tyres and road is 0.3. Taking g = 10 m/s² and tan 30° = 1/√3 ≈ 0.577, the maximum safe speed of the car is approximately:",
+    "explanation": "Using v_max = √[rg(tanθ + μ)/(1 − μ tanθ)]. Here r = 100 m, g = 10 m/s², tanθ = 0.577, μ = 0.3. Numerator: tanθ + μ = 0.577 + 0.3 = 0.877. Denominator: 1 − μ tanθ = 1 − 0.3 × 0.577 = 1 − 0.173 = 0.827. Ratio = 0.877/0.827 ≈ 1.061. v_max = √(100 × 10 × 1.061) = √1061 ≈ 32.6 m/s ≈ 33 m/s. For comparison, on a level road v_max = √(μrg) = √300 ≈ 17.3 m/s, showing how banking significantly increases the safe speed.",
+    "correct_answer": "D",
+    "concept_tags": ["banking-with-friction", "maximum-speed", "numerical-problem"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "analyze",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "5 m/s",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "10 m/s",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "15 m/s",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "20 m/s",
-        "is_correct": false
-      }
+      {"key": "A", "text": "17 m/s", "is_correct": false},
+      {"key": "B", "text": "24 m/s", "is_correct": false},
+      {"key": "C", "text": "28 m/s", "is_correct": false},
+      {"key": "D", "text": "33 m/s", "is_correct": true}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "At v = 5 m/s, N = mv²/r = m × 25/5 = 5m. Friction = μN = 0.5 × 5m = 2.5m < mg = 10m. The rider would slide down.",
-        "misconception": null
+        "hint": "17 m/s corresponds to v_max = √(μrg) for a level (unbanked) road. Here the road is banked at 30°, which significantly increases the maximum safe speed beyond 17 m/s.",
+        "misconception": "Ignoring the banking angle and using only friction to find maximum speed, as if the road were flat."
+      },
+      {
+        "option_key": "B",
+        "hint": "24 m/s is approximately the ideal banking speed √(rg tanθ) = √(100 × 10 × 0.577) ≈ 24 m/s, which ignores the contribution of friction. The actual maximum speed with friction is higher.",
+        "misconception": "Computing only the ideal banking speed (no-friction case) instead of the maximum speed with both banking and friction."
       },
       {
         "option_key": "C",
-        "hint": "15 m/s gives v² = 225 > 100, so the rider is safe but this is not the minimum speed. The minimum is when friction exactly balances weight.",
-        "misconception": null
-      },
-      {
-        "option_key": "D",
-        "hint": "20 m/s is well above the minimum. While safe, the question asks for the minimum speed to avoid falling.",
-        "misconception": null
+        "hint": "28 m/s results from arithmetic errors in computing the ratio (tanθ + μ)/(1 − μ tanθ). The correct numerator is 0.877 and denominator is 0.827, giving a ratio ≈ 1.061, not the value that leads to 28 m/s.",
+        "misconception": "Correct formula but computational error in the denominator or the final square root evaluation."
       }
     ]
   },
@@ -720,59 +447,36 @@
     "id": "phy-newton-circular-13",
     "question_type": "assertion_reasoning",
     "difficulty": "medium",
-    "question_text": "Assertion (A): On a banked road, a vehicle can negotiate a curve without any friction at a particular speed.\nReason (R): At the optimum speed, the horizontal component of the normal force provides the necessary centripetal force.",
-    "explanation": "Both A and R are correct, and R is the correct explanation of A. When a road is banked at angle θ, the normal force has a horizontal component N sin θ that points toward the centre of the curve. At the optimum speed v = √(rg tan θ), this horizontal component exactly equals mv²/r, so no friction is needed to negotiate the curve.",
-    "correct_answer": "A",
-    "concept_tags": [
-      "banking-of-roads",
-      "normal-force-components",
-      "optimum-speed",
-      "frictionless-banking"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "question_text": "Assertion (A): A cyclist leans inward while taking a turn on a level road.\nReasoning (R): By leaning inward, the horizontal component of the normal reaction from the road provides the necessary centripetal force.",
+    "explanation": "When a cyclist leans inward on a level road, the Assertion is correct — cyclists do lean inward to take turns. However, the Reasoning is incorrect: on a level road, the normal reaction from the road is perpendicular to the road surface (vertically upward) and has no horizontal component. It is the static friction between the tyres and road that acts horizontally inward and provides the centripetal force. The lean adjusts the angle so that the resultant of friction and normal force passes through the centre of gravity, preventing toppling. Hence A is correct but R is incorrect.",
+    "correct_answer": "C",
+    "concept_tags": ["cyclist-leaning", "centripetal-force", "friction"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "understand",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "analyse",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
-        "is_correct": true
-      },
-      {
-        "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "A is correct but R is incorrect",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "A is incorrect but R is correct",
-        "is_correct": false
-      }
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": true},
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
     ],
     "elimination_hints": [
       {
-        "option_key": "B",
-        "hint": "The Reason directly explains the Assertion: the horizontal component of the normal force on a banked road is the mechanism by which friction is eliminated at the optimum speed.",
-        "misconception": null
+        "option_key": "A",
+        "hint": "Option A requires both A and R to be correct, with R explaining A. While A is correct, R is wrong: on a level road the normal force is vertical and has no horizontal component. Friction provides centripetal force.",
+        "misconception": "Accepting the reasoning without checking whether the normal reaction on a level road has a horizontal component."
       },
       {
-        "option_key": "C",
-        "hint": "The Reason is a correct physics statement. On a banked road, N sin θ indeed provides centripetal force when friction is absent.",
-        "misconception": null
+        "option_key": "B",
+        "hint": "Option B requires both statements to be correct. The reasoning R is factually wrong — normal force on a level road is vertical and cannot provide a horizontal centripetal force component.",
+        "misconception": "Partially identifying that A is correct but not recognising that R contains a factual error about force direction."
       },
       {
         "option_key": "D",
-        "hint": "The Assertion is correct. Banked roads are specifically designed so that vehicles can safely turn at the design speed without depending on friction.",
-        "misconception": null
+        "hint": "Option D requires A to be incorrect. But A is correct — cyclists visibly and necessarily lean inward to maintain balance and achieve the required centripetal force through friction.",
+        "misconception": "Incorrectly concluding that leaning inward does not happen or is not necessary for circular motion on a level road."
       }
     ]
   },
@@ -780,59 +484,36 @@
     "id": "phy-newton-circular-14",
     "question_type": "assertion_reasoning",
     "difficulty": "hard",
-    "question_text": "Assertion (A): In a vertical circular motion with a string, the tension at the bottom of the circle is maximum.\nReason (R): At the bottom, the centripetal force is provided by the difference of tension and weight.",
-    "explanation": "The Assertion is correct: tension is maximum at the bottom. However, the Reason is incorrect in its statement. At the bottom, the net centripetal force equation is T − mg = mv²/r, so T = mv²/r + mg. The centripetal force is provided by the net inward force, which is the excess of tension over weight (T − mg), not 'the difference of tension and weight' as a standalone centripetal force. Actually, re-reading: R says centripetal force = T − mg, which is correct. Wait: at the bottom, the centre is above, so T acts upward (toward centre) and mg acts downward (away from centre). Net inward = T − mg = mv²/r. R states this correctly. So both are correct and R explains A? T = mv²/r + mg shows T is large at the bottom because both terms add. At the top, T = mv²/r − mg, so T is smaller. But does R explain why T is maximum? R correctly states the force equation at the bottom. Since T = mv²/r + mg (both terms positive, and v is maximum at bottom due to energy conservation), T is indeed maximum. But R only states the force balance, not the complete argument about maximum speed. Still, R is the core reason. Let me reconsider: A is correct. R is correct. R explains A because T = mv²/r + mg means tension equals centripetal force plus weight, making it maximum at the bottom. Answer should be A.",
+    "question_text": "Assertion (A): The minimum speed required at the bottom of a vertical circular loop to complete the full circle is √(5gR), where R is the radius.\nReasoning (R): At the top of the loop, for the critical condition, the tension (or normal force) is zero and gravity alone provides the centripetal force; using energy conservation from bottom to top then yields v_bottom_min = √(5gR).",
+    "explanation": "At the top of the vertical circle, the critical condition is T = 0. Then mg = mv²_top/R, giving v_top = √(gR). Using energy conservation from bottom to top (height = 2R): ½mv²_bottom = ½mv²_top + mg(2R). Substituting v²_top = gR: v²_bottom = gR + 4gR = 5gR, so v_bottom = √(5gR). Both A and R are correct, and R is precisely the step-by-step explanation that derives the assertion. R correctly identifies: (1) the critical condition T = 0 at the top, and (2) application of energy conservation from bottom to top to derive the result.",
     "correct_answer": "A",
-    "concept_tags": [
-      "vertical-circular-motion",
-      "tension-variation",
-      "bottom-of-circle",
-      "force-balance"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "concept_tags": ["vertical-circular-motion", "minimum-speed", "energy-conservation", "critical-condition"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "evaluate",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
-        "is_correct": true
-      },
-      {
-        "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "A is correct but R is incorrect",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "A is incorrect but R is correct",
-        "is_correct": false
-      }
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "B",
-        "hint": "R directly explains A: since T − mg = mv²/r at the bottom, T = mv²/r + mg. The tension must support both the weight and provide centripetal force, making it maximum.",
-        "misconception": null
+        "hint": "Option B requires R to not explain A. But R directly derives v_bottom = √(5gR) by applying T = 0 at the top and then using energy conservation — this is precisely the explanation that proves assertion A.",
+        "misconception": "Thinking R is correct but unrelated to A, when in fact R is the exact derivation that proves A."
       },
       {
         "option_key": "C",
-        "hint": "The Reason correctly states the force equation at the bottom of a vertical circle. The centripetal acceleration is provided by T − mg.",
-        "misconception": null
+        "hint": "R is not incorrect. R correctly states the critical condition (T = 0 at top gives v_top = √(gR)) and correctly applies energy conservation (height = 2R) to obtain v_bottom = √(5gR). Both steps are valid.",
+        "misconception": "Incorrectly identifying an error in R's reasoning, perhaps using the wrong height in energy conservation."
       },
       {
         "option_key": "D",
-        "hint": "The Assertion is correct. At the bottom of a vertical circle, the speed is maximum (by energy conservation) and the force equation gives T = mv²/r + mg, the largest value of tension.",
-        "misconception": null
+        "hint": "A is correct, not incorrect. The minimum speed at the bottom for completing a vertical circular loop is indeed √(5gR), a well-established result confirmed by the reasoning in R.",
+        "misconception": "Incorrectly believing the minimum speed at the bottom is different from √(5gR), perhaps confusing it with the minimum speed at the top √(gR)."
       }
     ]
   },
@@ -840,59 +521,36 @@
     "id": "phy-newton-circular-15",
     "question_type": "match_the_following",
     "difficulty": "medium",
-    "question_text": "Match the following positions in a vertical circle (Column I) with the expressions for tension/normal force in the string/track (Column II), where v is the speed at that point:\n\nColumn I:\nA. Top of the circle (string)\nB. Bottom of the circle (string)\nC. Horizontal position (string, at the side)\nD. Top of a circular loop on a track (normal force from track)\n\nColumn II:\n1. T = mv²/r + mg\n2. T = mv²/r − mg\n3. T = mv²/r\n4. N = mv²/r − mg",
-    "explanation": "A-2: At the top with a string, T + mg = mv²/r, so T = mv²/r − mg. B-1: At the bottom, T − mg = mv²/r, so T = mv²/r + mg. C-3: At the horizontal position, weight acts perpendicular to the radius (downward) and doesn't contribute to centripetal direction, so T = mv²/r (tension alone provides centripetal force). D-4: At the top of a loop track, N + mg = mv²/r (both N and mg point toward centre), so N = mv²/r − mg.",
+    "question_text": "Match the physical situation in Column I with the correct expression or condition in Column II.\n\nColumn I:\n(P) Ideal banking angle condition\n(Q) Maximum speed on a level circular road\n(R) Minimum speed at top of vertical circle (string)\n(S) Time period of conical pendulum\n\nColumn II:\n(1) √(μrg)\n(2) tanθ = v²/(rg)\n(3) 2π√(L cosθ/g)\n(4) √(gr)",
+    "explanation": "P → 2: The ideal banking condition is obtained by resolving forces on a frictionless banked road — N sinθ provides centripetal force and N cosθ balances gravity — giving tanθ = v²/(rg). Q → 1: On a level road, maximum static friction = μmg provides centripetal force, so v_max = √(μrg). R → 4: At the top of a vertical circle, critical condition T = 0 gives mg = mv²/r, so v_min = √(gr). S → 3: For a conical pendulum of string length L at angle θ from vertical, ω² = g/(L cosθ), so T_period = 2π/ω = 2π√(L cosθ/g). Correct matching: P-2, Q-1, R-4, S-3.",
     "correct_answer": "B",
-    "concept_tags": [
-      "vertical-circular-motion",
-      "tension-at-positions",
-      "normal-force",
-      "force-balance"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "concept_tags": ["banking", "level-road", "vertical-circle", "conical-pendulum"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "understand",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "A-1, B-2, C-3, D-4",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "A-2, B-1, C-3, D-4",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "A-2, B-1, C-4, D-3",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "A-4, B-3, C-1, D-2",
-        "is_correct": false
-      }
+      {"key": "A", "text": "P-1, Q-2, R-4, S-3", "is_correct": false},
+      {"key": "B", "text": "P-2, Q-1, R-4, S-3", "is_correct": true},
+      {"key": "C", "text": "P-2, Q-1, R-3, S-4", "is_correct": false},
+      {"key": "D", "text": "P-2, Q-4, R-1, S-3", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "This swaps top and bottom formulas. At the top, weight aids centripetal direction (both point to centre), so T = mv²/r − mg (subtract), not + mg.",
-        "misconception": "Reversing the tension formulas at top and bottom"
+        "hint": "In option A, P is matched to 1 (√μrg) which is the max speed on a level road (scenario Q), not the banking angle condition. The banking angle condition is tanθ = v²/(rg), which is expression 2.",
+        "misconception": "Confusing the ideal banking condition (a trigonometric relation) with the maximum speed formula for a level road."
       },
       {
         "option_key": "C",
-        "hint": "C-4 is incorrect because at the horizontal position for a string, the weight is perpendicular to the radius and T = mv²/r (not mv²/r − mg).",
-        "misconception": null
+        "hint": "In option C, R and S are swapped. The minimum speed at the top of a vertical circle is √(gr) (expression 4) and the conical pendulum period is 2π√(L cosθ/g) (expression 3).",
+        "misconception": "Swapping the formulas for minimum speed in vertical circular motion and the time period of a conical pendulum."
       },
       {
         "option_key": "D",
-        "hint": "This gives entirely wrong assignments. At the top (A), the formula involves subtraction of mg, not just N = mv²/r − mg (which is for the track).",
-        "misconception": null
+        "hint": "In option D, Q is matched to 4 (√gr, the vertical circle critical speed) instead of 1 (√μrg, the level road maximum speed due to friction). These two √(grX) expressions are distinct and must not be confused.",
+        "misconception": "Mixing up √(gr) (critical speed at top of vertical circle) with √(μrg) (max speed on level road due to friction)."
       }
     ]
   },
@@ -900,60 +558,36 @@
     "id": "phy-newton-circular-16",
     "question_type": "match_the_following",
     "difficulty": "hard",
-    "question_text": "Match the following circular motion scenarios (Column I) with the source of centripetal force (Column II):\n\nColumn I:\nA. Car on a flat circular road\nB. Car on a banked road (no friction)\nC. Electron orbiting a nucleus\nD. Satellite orbiting Earth\n\nColumn II:\n1. Gravitational force\n2. Electrostatic (Coulomb) force\n3. Friction between tyres and road\n4. Horizontal component of normal force",
-    "explanation": "A-3: On a flat road, friction between tyres and road provides centripetal force. B-4: On a frictionless banked road, the horizontal component of the normal force (N sin θ) provides centripetal force. C-2: The electrostatic (Coulomb) force between the electron and nucleus provides centripetal force. D-1: Gravitational force between the satellite and Earth provides centripetal force for orbital motion.",
-    "correct_answer": "C",
-    "concept_tags": [
-      "centripetal-force-source",
-      "banking",
-      "gravitational-orbit",
-      "coulomb-force",
-      "friction"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "question_text": "Match the scenario in Column I with the correct expression for the normal force N in Column II.\n\nColumn I:\n(P) Vehicle at the bottom of a concave bridge (radius R, speed v)\n(Q) Vehicle at the top of a convex bridge (radius R, speed v)\n(R) Ball at the top of a vertical circular loop (radius R, speed v)\n(S) Ball at the bottom of a vertical circular loop (radius R, speed v)\n\nColumn II:\n(1) N = m(v²/R − g)\n(2) N = m(g + v²/R)\n(3) N = m(g − v²/R)\n(4) N = m(g + v²/R) [same form as 2, for loop bottom]",
+    "explanation": "P — Bottom of concave bridge: centripetal direction is upward. N − mg = mv²/R → N = m(g + v²/R). Matches expression 2. Q — Top of convex bridge: centripetal direction is downward. mg − N = mv²/R → N = m(g − v²/R). Matches expression 3. R — Top of vertical loop: both N and mg point downward (centripetally). N + mg = mv²/R → N = m(v²/R − g). Matches expression 1. S — Bottom of vertical loop: N points upward (centripetally), mg downward. N − mg = mv²/R → N = m(g + v²/R). Same form as P (expression 2). Correct matching: P-2, Q-3, R-1, S-2.",
+    "correct_answer": "D",
+    "concept_tags": ["normal-force", "vertical-circular-motion", "convex-bridge", "concave-bridge"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "analyze",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "analyse",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "A-4, B-3, C-2, D-1",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "A-3, B-4, C-1, D-2",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "A-3, B-4, C-2, D-1",
-        "is_correct": true
-      },
-      {
-        "key": "D",
-        "text": "A-3, B-1, C-4, D-2",
-        "is_correct": false
-      }
+      {"key": "A", "text": "P-3, Q-2, R-1, S-2", "is_correct": false},
+      {"key": "B", "text": "P-2, Q-3, R-2, S-1", "is_correct": false},
+      {"key": "C", "text": "P-2, Q-1, R-3, S-2", "is_correct": false},
+      {"key": "D", "text": "P-2, Q-3, R-1, S-2", "is_correct": true}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "A-4 says the normal force provides centripetal force on a flat road. On a flat road, the normal force is vertical and cannot provide horizontal centripetal force; friction does.",
-        "misconception": "Confusing normal force role on flat vs banked roads"
+        "hint": "Option A maps P (bottom of concave bridge) to expression 3 = m(g − v²/R), which is the formula for the top of a convex bridge. At the bottom of a concave bridge, centripetal acceleration is upward, giving N = m(g + v²/R), not m(g − v²/R).",
+        "misconception": "Swapping the normal force expressions for the top and bottom of a bridge, not accounting for the direction of centripetal acceleration."
       },
       {
         "option_key": "B",
-        "hint": "This swaps electron (Coulomb force) and satellite (gravitational force). Electrons are held in orbit by electrostatic force, not gravity.",
-        "misconception": "Confusing the forces governing atomic and planetary orbits"
+        "hint": "Option B maps R (top of vertical loop) to expression 2 = m(g + v²/R), which is the formula for the bottom positions. At the top of a loop, both N and mg point toward the centre, giving N = m(v²/R − g), which is expression 1.",
+        "misconception": "Applying the bottom-of-loop formula (where N exceeds mg) to the top of a loop (where N is reduced by mg)."
       },
       {
-        "option_key": "D",
-        "hint": "B-1 incorrectly assigns gravitational force to banked roads. Gravity acts vertically and is balanced by N cos θ; it's the horizontal component N sin θ that provides centripetal force.",
-        "misconception": null
+        "option_key": "C",
+        "hint": "Option C maps Q (top of convex bridge) to expression 1 = m(v²/R − g). But at the top of a convex bridge, N = m(g − v²/R) = expression 3. Expression 1 applies to the top of a vertical loop where N + mg = mv²/R, giving N = m(v²/R − g).",
+        "misconception": "Confusing the top-of-convex-bridge formula with the top-of-vertical-loop formula; the key difference is whether mg appears with a positive or negative sign relative to N."
       }
     ]
   },
@@ -961,58 +595,36 @@
     "id": "phy-newton-circular-17",
     "question_type": "true_false",
     "difficulty": "easy",
-    "question_text": "Banking of roads is done to reduce the dependence on friction for negotiating curved paths.",
-    "explanation": "This statement is TRUE. Banking a road tilts the road surface inward, so the normal force has a horizontal component that contributes to the centripetal force. This reduces (or at the optimum speed, completely eliminates) the need for friction to provide centripetal force, making the curve safer especially in wet conditions.",
+    "question_text": "Centripetal force is a real force that always acts toward the centre of the circular path and is responsible for changing the direction of velocity of an object in uniform circular motion.",
+    "explanation": "This statement is TRUE. Centripetal force is indeed a real force (or the resultant of real forces such as gravity, tension, friction, or normal force component) that acts toward the centre of the circular path. It causes centripetal acceleration a_c = v²/r directed inward. This force continuously changes the direction of the velocity vector without changing its magnitude (in uniform circular motion), keeping the object on the circular path. It is distinct from the centrifugal force, which is a pseudo force in a rotating (non-inertial) frame.",
     "correct_answer": "A",
-    "concept_tags": [
-      "banking-of-roads",
-      "friction-reduction",
-      "road-safety"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "concept_tags": ["centripetal-force", "circular-motion", "real-force"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "remember",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "True",
-        "is_correct": true
-      },
-      {
-        "key": "B",
-        "text": "False",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "---",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "---",
-        "is_correct": false
-      }
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "B",
-        "hint": "The statement is correct. The primary purpose of banking is to use the normal force component for centripetal force, reducing reliance on friction.",
-        "misconception": null
+        "hint": "Choosing False would imply centripetal force is not a real force or does not act inward. While centrifugal force is a pseudo force (outward in a rotating frame), centripetal force is real and acts inward toward the centre.",
+        "misconception": "Confusing centripetal force (real, inward) with centrifugal force (pseudo, outward in rotating frame)."
       },
       {
         "option_key": "C",
-        "hint": "This option is not applicable.",
-        "misconception": null
+        "hint": "This option is not applicable (---). The statement is clearly either true or false, and the analysis of forces in circular motion confirms it is true.",
+        "misconception": "Not applicable."
       },
       {
         "option_key": "D",
-        "hint": "This option is not applicable.",
-        "misconception": null
+        "hint": "This option is not applicable (---). The correct answer is A (True), supported by Newton's second law applied to circular motion: F_net = mv²/r directed inward.",
+        "misconception": "Not applicable."
       }
     ]
   },
@@ -1020,58 +632,36 @@
     "id": "phy-newton-circular-18",
     "question_type": "true_false",
     "difficulty": "easy",
-    "question_text": "Centripetal force is a new type of force, separate from forces like gravity, friction, and tension.",
-    "explanation": "This statement is FALSE. Centripetal force is not a new type of force. It is the name given to the net force (or a component of force) that is directed toward the centre of the circular path. The actual force can be gravity (as in planetary orbits), tension (as in a string), friction (as on roads), normal force, or any combination of these.",
+    "question_text": "On a banked road, a vehicle always requires friction to move in a circular path regardless of its speed.",
+    "explanation": "This statement is FALSE. On a banked road, there exists an ideal speed v_ideal = √(rg tanθ) at which the vehicle can navigate the curve without any friction at all. At this speed, the horizontal component of the normal force (N sinθ) exactly provides the required centripetal force, and the vertical component (N cosθ) exactly balances gravity. Friction is needed only when the vehicle moves faster than v_ideal (friction acts inward to prevent outward skidding) or slower than v_ideal (friction acts outward to prevent inward sliding). At exactly the ideal speed, friction force is zero.",
     "correct_answer": "B",
-    "concept_tags": [
-      "centripetal-force",
-      "force-classification",
-      "misconception-centripetal"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "concept_tags": ["banking-of-roads", "ideal-speed", "friction-not-needed"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "remember",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "True",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "False",
-        "is_correct": true
-      },
-      {
-        "key": "C",
-        "text": "---",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "---",
-        "is_correct": false
-      }
+      {"key": "A", "text": "True", "is_correct": false},
+      {"key": "B", "text": "False", "is_correct": true},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "Centripetal force is not a fundamental force. It is a label for whichever force (or component of forces) acts radially inward in circular motion.",
-        "misconception": "Thinking centripetal force is a separate fundamental force"
+        "hint": "Choosing True would mean friction is always needed on a banked road. But the ideal banking condition tanθ = v²/(rg) is specifically designed so that at one particular speed, no friction is required. The purpose of banking is precisely to reduce friction dependence.",
+        "misconception": "Thinking that friction is always needed for circular motion, unaware that banking geometry can provide centripetal force through the normal force component alone at the ideal speed."
       },
       {
         "option_key": "C",
-        "hint": "This option is not applicable.",
-        "misconception": null
+        "hint": "This option is not applicable (---). The statement has a clear factual answer: it is False, because at the ideal banking speed friction is zero.",
+        "misconception": "Not applicable."
       },
       {
         "option_key": "D",
-        "hint": "This option is not applicable.",
-        "misconception": null
+        "hint": "This option is not applicable (---). The correct answer is B (False), as a vehicle travelling at v = √(rg tanθ) on a banked road requires zero friction.",
+        "misconception": "Not applicable."
       }
     ]
   },
@@ -1079,59 +669,36 @@
     "id": "phy-newton-circular-19",
     "question_type": "fill_in_blanks",
     "difficulty": "medium",
-    "question_text": "For a car moving on a banked road of angle θ without friction, the optimum speed is given by v = √(_____). If the speed exceeds this value, the car tends to slide _____ on the banked road.",
-    "explanation": "The optimum speed on a frictionless banked road is v = √(rg tan θ), derived from the balance of the horizontal component of normal force with the centripetal force requirement. If the car exceeds this speed, the required centripetal force exceeds what the normal force component can provide, and the car tends to slide outward (up the bank), away from the centre of the curve.",
-    "correct_answer": "D",
-    "concept_tags": [
-      "banking-formula",
-      "optimum-speed",
-      "sliding-direction",
-      "banked-road"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "question_text": "A particle of mass m moves in a horizontal circle of radius r with uniform speed v. The centripetal acceleration of the particle is ________, and the centripetal force required is ________. If the radius is doubled while keeping the speed constant, the centripetal force becomes ________ of the original value.",
+    "explanation": "Centripetal acceleration: a_c = v²/r, directed radially inward. Centripetal force: F_c = ma_c = mv²/r, provided by a real inward force. If radius is doubled (r → 2r) with constant v: F_new = mv²/(2r) = (1/2)(mv²/r) = F_c/2. So the centripetal force becomes half (1/2) of the original. This inverse proportionality (F ∝ 1/r at constant speed) explains why larger radius curves require less centripetal force — gentle highway curves need less friction from tyres than sharp curves.",
+    "correct_answer": "C",
+    "concept_tags": ["centripetal-acceleration", "centripetal-force", "radius-dependence"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "understand",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "rg sin θ; inward",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "rg tan θ; inward",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "rg cos θ; outward",
-        "is_correct": false
-      },
-      {
-        "key": "D",
-        "text": "rg tan θ; outward",
-        "is_correct": true
-      }
+      {"key": "A", "text": "v²/r ; mv/r ; one-fourth", "is_correct": false},
+      {"key": "B", "text": "v/r ; mv²/r ; half", "is_correct": false},
+      {"key": "C", "text": "v²/r ; mv²/r ; half", "is_correct": true},
+      {"key": "D", "text": "v²/r ; mv²/r ; double", "is_correct": false}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "The formula uses tan θ, not sin θ. Also, exceeding the optimum speed causes outward sliding, not inward.",
-        "misconception": null
+        "hint": "The centripetal force is mv²/r, not mv/r. You must square the velocity in both the acceleration and force expressions. Also, doubling r gives F_new = mv²/(2r) = half, not one-fourth (one-fourth would result from doubling r twice, i.e. quadrupling r).",
+        "misconception": "Not squaring velocity in the centripetal force formula and confusing the effect of doubling versus quadrupling the radius."
       },
       {
         "option_key": "B",
-        "hint": "The formula rg tan θ is correct, but the sliding direction is wrong. At speeds above optimum, the car needs more centripetal force than available and slides outward.",
-        "misconception": "Confusing the direction of sliding when speed exceeds optimum"
+        "hint": "Centripetal acceleration is v²/r, not v/r. The formula a_c = v²/r has dimensions of m/s², requiring v² in the numerator. The force expression mv²/r in this option is correct, but the acceleration expression is wrong.",
+        "misconception": "Forgetting to square velocity in the centripetal acceleration formula while correctly writing the force formula."
       },
       {
-        "option_key": "C",
-        "hint": "The formula should be rg tan θ, not rg cos θ. Although the outward sliding direction is correct, the formula is wrong.",
-        "misconception": null
+        "option_key": "D",
+        "hint": "Doubling r gives F_new = mv²/(2r), which is half the original force, not double. Force and radius are inversely proportional at constant speed (F ∝ 1/r), so increasing r decreases F.",
+        "misconception": "Confusing direct and inverse proportionality: F ∝ 1/r (not F ∝ r) when speed is constant."
       }
     ]
   },
@@ -1139,60 +706,36 @@
     "id": "phy-newton-circular-20",
     "question_type": "scenario_based",
     "difficulty": "medium",
-    "question_text": "An amusement park ride consists of a vertical loop of radius 10 m. A car of mass 500 kg enters the loop from the bottom and must complete the full loop without losing contact with the track.\n\nWhat is the minimum speed the car must have at the top of the loop, and what is the corresponding normal force from the track on the car at the top? (Take g = 10 m/s²)",
-    "explanation": "At the top of the loop, both the weight (mg) and normal force (N) act downward (toward the centre). The equation is N + mg = mv²/r. For minimum speed, N = 0 (the car barely maintains contact). So mg = mv²_min/r, giving v_min = √(gr) = √(10 × 10) = 10 m/s. At this minimum speed, the normal force N = 0.",
-    "correct_answer": "C",
-    "concept_tags": [
-      "vertical-loop",
-      "minimum-speed",
-      "normal-force-top",
-      "amusement-ride",
-      "critical-velocity"
-    ],
-    "topic": "Circular Motion Dynamics and Applications",
+    "question_text": "Scenario: Rohit is designing a mountain highway curve of radius 200 m with a design speed of 20 m/s (g = 10 m/s²). The engineer banks the road at the ideal angle. A vehicle later travels at twice the design speed (40 m/s) on this banked curve.\n\n(i) What is the ideal banking angle θ?\n(ii) At 40 m/s, compared to the centripetal force the banking alone provides, the vehicle needs ________ times more centripetal force, so the vehicle tends to:\n\nSelect the answer that correctly addresses both (i) and (ii).",
+    "explanation": "Part (i): Ideal banking: tanθ = v²/(rg) = (20)²/(200 × 10) = 400/2000 = 0.2. So θ = arctan(0.2) ≈ 11.3°. Part (ii): Centripetal force needed at 40 m/s: F_needed = mv²/r = m(40)²/200 = 8m N. Centripetal force provided by banking at design speed: F_banking = mv_design²/r = m(20)²/200 = 2m N. The vehicle now needs 4 times the force that banking alone provides. The extra required centripetal force must come from friction directed inward (down the slope of the bank). If friction is insufficient, the vehicle skids outward (up the banked slope), away from the centre of the curve.",
+    "correct_answer": "D",
+    "concept_tags": ["banking-angle", "design-speed", "skidding"],
+    "topic": "Circular Motion Dynamics and Banking",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "apply",
-    "exam_suitability": [
-      "NEET"
-    ],
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
     "options": [
-      {
-        "key": "A",
-        "text": "v = 10 m/s, N = 5000 N",
-        "is_correct": false
-      },
-      {
-        "key": "B",
-        "text": "v = √50 m/s, N = 0 N",
-        "is_correct": false
-      },
-      {
-        "key": "C",
-        "text": "v = 10 m/s, N = 0 N",
-        "is_correct": true
-      },
-      {
-        "key": "D",
-        "text": "v = 10 m/s, N = 500 N",
-        "is_correct": false
-      }
+      {"key": "A", "text": "θ ≈ 5.7° ; vehicle remains stable at all speeds due to banking", "is_correct": false},
+      {"key": "B", "text": "θ ≈ 11.3° ; vehicle tends to skid inward (down the banked slope)", "is_correct": false},
+      {"key": "C", "text": "θ ≈ 11.3° ; vehicle remains stable at all speeds since the road is banked", "is_correct": false},
+      {"key": "D", "text": "θ ≈ 11.3° ; vehicle tends to skid outward (up the banked slope)", "is_correct": true}
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "The speed is correct at 10 m/s, but N = 5000 N would mean mv²/r = N + mg = 5000 + 5000 = 10000, giving v² = 200 and v ≈ 14.1 m/s, which is not the minimum speed condition.",
-        "misconception": "Confusing minimum speed condition with the case where N equals mg"
+        "hint": "tanθ = v²/(rg) = 400/2000 = 0.2 gives θ ≈ 11.3°, not 5.7°. θ ≈ 5.7° would require tanθ ≈ 0.1, corresponding to a design speed of about 14 m/s, not 20 m/s.",
+        "misconception": "Halving the correct tangent value, possibly from computing v/(rg) instead of v²/(rg)."
       },
       {
         "option_key": "B",
-        "hint": "√50 ≈ 7.07 m/s is less than √(gr) = 10 m/s. At this speed, the required centripetal force would be less than mg alone, so the car would lose contact.",
-        "misconception": "Using v = √(gr/2) instead of v = √(gr)"
+        "hint": "Inward skidding (down the slope) occurs when the vehicle moves slower than the ideal speed — banking provides more centripetal push than needed. At 40 m/s (greater than 20 m/s), the required centripetal force far exceeds what banking provides, so the vehicle skids outward.",
+        "misconception": "Confusing the direction of skidding at speeds above the ideal speed (outward skid) with the direction at speeds below the ideal speed (inward skid)."
       },
       {
-        "option_key": "D",
-        "hint": "If N = 500 N at v = 10 m/s, then N + mg = 500 + 5000 = 5500 N, but mv²/r = 500 × 100/10 = 5000 N. These don't match, so this is inconsistent.",
-        "misconception": null
+        "option_key": "C",
+        "hint": "Banking provides adequate centripetal force only at the ideal design speed. At twice the design speed, the required centripetal force is four times the ideal (F ∝ v²), far exceeding what banking provides. Without sufficient friction, skidding outward occurs.",
+        "misconception": "Thinking that banking provides stability at all speeds, not understanding that ideal banking is designed for only one specific speed."
       }
     ]
   }
