@@ -104,14 +104,14 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B02 | `phy-units-dimensions` | Units, Dimensions, and Dimensional Analysis | 20 | PENDING |
-| B03 | `phy-units-errors` | Errors in Measurement and Significant Figures | 20 | PENDING |
+| B03 | `phy-units-errors` | Errors in Measurement and Significant Figures | 20 | DONE |
 | | | **Chapter 2 Total** | **40** | |
 
 ### Chapter 3: Motion in a Straight Line (`phy-motion1d`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B04 | `phy-motion1d-kinematics` | Kinematic Equations and Uniform Acceleration | 20 | PENDING |
+| B04 | `phy-motion1d-kinematics` | Kinematic Equations and Uniform Acceleration | 20 | DONE |
 | B05 | `phy-motion1d-graphs` | Position-Time and Velocity-Time Graphs | 20 | PENDING |
 | | | **Chapter 3 Total** | **40** | |
 
@@ -120,8 +120,8 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B06 | `phy-motion2d-vectors` | Vectors: Addition, Subtraction, and Resolution | 20 | DONE |
-| B07 | `phy-motion2d-projectile` | Projectile Motion | 20 | PENDING |
-| B08 | `phy-motion2d-circular` | Uniform Circular Motion | 20 | PENDING |
+| B07 | `phy-motion2d-projectile` | Projectile Motion | 20 | DONE |
+| B08 | `phy-motion2d-circular` | Uniform Circular Motion | 20 | DONE |
 | | | **Chapter 4 Total** | **60** | |
 
 ### Chapter 5: Laws of Motion (`phy-newton`) — 3 batches
@@ -247,18 +247,18 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B38 | `phy-elec-coulomb` | Coulomb's Law and Electric Field | 20 | PENDING |
-| B39 | `phy-elec-dipole` | Electric Dipole and Field Lines | 20 | PENDING |
-| B40 | `phy-elec-gauss` | Gauss's Law and Applications | 20 | PENDING |
+| B38 | `phy-elec-coulomb` | Coulomb's Law and Electric Field | 20 | DONE |
+| B39 | `phy-elec-dipole` | Electric Dipole and Field Lines | 20 | DONE |
+| B40 | `phy-elec-gauss` | Gauss's Law and Applications | 20 | DONE |
 | | | **Chapter 16 Total** | **60** | |
 
 ### Chapter 17: Electrostatic Potential and Capacitance (`phy-capacitance`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B41 | `phy-pot-potential` | Electric Potential and Potential Energy | 20 | PENDING |
-| B42 | `phy-pot-capacitor` | Capacitors and Capacitance | 20 | PENDING |
-| B43 | `phy-pot-dielectric` | Combination of Capacitors and Dielectrics | 20 | PENDING |
+| B41 | `phy-pot-potential` | Electric Potential and Potential Energy | 20 | DONE |
+| B42 | `phy-pot-capacitor` | Capacitors and Capacitance | 20 | DONE |
+| B43 | `phy-pot-dielectric` | Combination of Capacitors and Dielectrics | 20 | DONE |
 | | | **Chapter 17 Total** | **60** | |
 
 ---
@@ -271,9 +271,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B44 | `phy-current-ohm` | Ohm's Law, Resistance, and Resistivity | 20 | PENDING |
-| B45 | `phy-current-kirchhoff` | Kirchhoff's Laws and Circuit Analysis | 20 | PENDING |
-| B46 | `phy-current-instruments` | Wheatstone Bridge, Potentiometer, and Meters | 20 | PENDING |
+| B44 | `phy-current-ohm` | Ohm's Law, Resistance, and Resistivity | 20 | DONE |
+| B45 | `phy-current-kirchhoff` | Kirchhoff's Laws and Circuit Analysis | 20 | DONE |
+| B46 | `phy-current-instruments` | Wheatstone Bridge, Potentiometer, and Meters | 20 | DONE |
 | | | **Chapter 18 Total** | **60** | |
 
 ---
@@ -338,9 +338,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B57 | `phy-ray-reflection` | Reflection, Mirrors, and Refraction at Surfaces | 20 | PENDING |
-| B58 | `phy-ray-prism` | Total Internal Reflection, Prism, and Dispersion | 20 | PENDING |
-| B59 | `phy-ray-instruments` | Microscope, Telescope, and Human Eye | 20 | PENDING |
+| B57 | `phy-ray-reflection` | Reflection, Mirrors, and Refraction at Surfaces | 20 | DONE |
+| B58 | `phy-ray-prism` | Total Internal Reflection, Prism, and Dispersion | 20 | DONE |
+| B59 | `phy-ray-instruments` | Microscope, Telescope, and Human Eye | 20 | DONE |
 | | | **Chapter 24 Total** | **60** | |
 
 ### Chapter 25: Wave Optics (`phy-waveopt`) — 3 batches
@@ -601,9 +601,9 @@ Commit and push.
 | Chapter | Topics | Qs Target | Qs Done | % |
 |---------|--------|-----------|---------|---|
 | Ch1 Physical World | 1 | 20 | 0 | 0% |
-| Ch2 Units and Measurements | 2 | 40 | 0 | 0% |
-| Ch3 Motion in a Straight Line | 2 | 40 | 0 | 0% |
-| Ch4 Motion in a Plane | 3 | 60 | 20 | 33% |
+| Ch2 Units and Measurements | 2 | 40 | 20 | 50% |
+| Ch3 Motion in a Straight Line | 2 | 40 | 20 | 50% |
+| Ch4 Motion in a Plane | 3 | 60 | 60 | 100% |
 | Ch5 Laws of Motion | 3 | 60 | 60 | 100% |
 | Ch6 Work, Energy and Power | 3 | 60 | 60 | 100% |
 | Ch7 Rotational Motion | 3 | 60 | 60 | 100% |
@@ -615,18 +615,18 @@ Commit and push.
 | Ch13 Kinetic Theory | 2 | 40 | 0 | 0% |
 | Ch14 Oscillations | 3 | 60 | 0 | 0% |
 | Ch15 Waves | 3 | 60 | 0 | 0% |
-| Ch16 Electric Charges and Fields | 3 | 60 | 0 | 0% |
-| Ch17 Electrostatic Potential | 3 | 60 | 0 | 0% |
-| Ch18 Current Electricity | 3 | 60 | 0 | 0% |
+| Ch16 Electric Charges and Fields | 3 | 60 | 60 | 100% |
+| Ch17 Electrostatic Potential | 3 | 60 | 60 | 100% |
+| Ch18 Current Electricity | 3 | 60 | 60 | 100% |
 | Ch19 Moving Charges & Magnetism | 3 | 60 | 0 | 0% |
 | Ch20 Magnetism and Matter | 2 | 40 | 0 | 0% |
 | Ch21 Electromagnetic Induction | 2 | 40 | 0 | 0% |
 | Ch22 Alternating Current | 2 | 40 | 0 | 0% |
 | Ch23 Electromagnetic Waves | 1 | 20 | 0 | 0% |
-| Ch24 Ray Optics | 3 | 60 | 0 | 0% |
+| Ch24 Ray Optics | 3 | 60 | 60 | 100% |
 | Ch25 Wave Optics | 3 | 60 | 0 | 0% |
 | Ch26 Dual Nature | 2 | 40 | 0 | 0% |
 | Ch27 Atoms | 2 | 40 | 0 | 0% |
 | Ch28 Nuclei | 2 | 40 | 0 | 0% |
 | Ch29 Semiconductor Electronics | 3 | 60 | 0 | 0% |
-| **TOTAL** | **71** | **1,420** | **260** | **18%** |
+| **TOTAL** | **71** | **1,420** | **560** | **39%** |

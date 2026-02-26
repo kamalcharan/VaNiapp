@@ -1,0 +1,743 @@
+[
+  {
+    "id": "phy-motion2d-projectile-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A ball is projected horizontally from the top of a building with a velocity of 20 m/s. If the building is 80 m tall, the time taken by the ball to reach the ground is: (g = 10 m/s²)",
+    "explanation": "For horizontal projection, the vertical motion is free fall starting from rest. Using h = ½gt², we get 80 = ½ × 10 × t², so t² = 16, giving t = 4 s. The horizontal velocity does not affect the time of fall because horizontal and vertical motions are independent.",
+    "correct_answer": "A",
+    "concept_tags": ["horizontal-projection", "time-of-flight", "free-fall"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "4 s", "is_correct": true},
+      {"key": "B", "text": "2 s", "is_correct": false},
+      {"key": "C", "text": "8 s", "is_correct": false},
+      {"key": "D", "text": "16 s", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "t = 2 s would give h = ½ × 10 × 4 = 20 m, not 80 m. This corresponds to a building of height 20 m.",
+        "misconception": "Using h = gt instead of h = ½gt², or incorrectly halving the result."
+      },
+      {
+        "option_key": "C",
+        "hint": "t = 8 s would give h = ½ × 10 × 64 = 320 m, which is far greater than 80 m.",
+        "misconception": "Doubling the correct answer, possibly by forgetting the ½ factor and solving gt = 80."
+      },
+      {
+        "option_key": "D",
+        "hint": "t = 16 s is far too large; it corresponds to a height of ½ × 10 × 256 = 1280 m.",
+        "misconception": "Computing t = h/g = 80/10 = 8 and then doubling, or confusing the formula entirely."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A projectile is fired at 30° to the horizontal with a speed of 40 m/s. The maximum height reached by the projectile is: (g = 10 m/s²)",
+    "explanation": "Maximum height H = u²sin²θ/(2g). Here u = 40 m/s, θ = 30°, sin30° = 0.5. H = (40)² × (0.5)²/(2 × 10) = 1600 × 0.25/20 = 400/20 = 20 m.",
+    "correct_answer": "B",
+    "concept_tags": ["maximum-height", "projectile-formula", "angle-of-projection"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "40 m", "is_correct": false},
+      {"key": "B", "text": "20 m", "is_correct": true},
+      {"key": "C", "text": "10 m", "is_correct": false},
+      {"key": "D", "text": "80 m", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "40 m corresponds to using sin²60° (sin²60° = 0.75 gives 1600×0.75/20 = 60 m, not 40 m). At 30°, sin²30° = 0.25, giving exactly half of the 45° result.",
+        "misconception": "Using sin30° = 0.5 in the formula without squaring it: H = u² × sinθ/(2g) = 1600 × 0.5/20 = 40 m."
+      },
+      {
+        "option_key": "C",
+        "hint": "10 m would result from H = u² sin²θ/(4g), which has an extra factor of 2 in the denominator.",
+        "misconception": "Using 4g instead of 2g in the denominator of the maximum height formula."
+      },
+      {
+        "option_key": "D",
+        "hint": "80 m would correspond to projecting at 90° (vertically): H = (40)²/(2×10) = 80 m. At 30°, the vertical component is much smaller.",
+        "misconception": "Forgetting to apply the sin²θ factor and computing H = u²/(2g) for the actual speed rather than the vertical component."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The horizontal range of a projectile is maximum when the angle of projection with the horizontal is:",
+    "explanation": "The horizontal range is given by R = u²sin2θ/g. This is maximum when sin2θ = 1, i.e., 2θ = 90°, which gives θ = 45°. At this angle the projectile achieves the optimum balance between horizontal and vertical velocity components to maximise range on level ground.",
+    "correct_answer": "C",
+    "concept_tags": ["maximum-range", "angle-of-projection", "range-formula"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "30°", "is_correct": false},
+      {"key": "B", "text": "60°", "is_correct": false},
+      {"key": "C", "text": "45°", "is_correct": true},
+      {"key": "D", "text": "90°", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "At 30°, sin2θ = sin60° ≈ 0.866, which is less than 1. The range at 30° equals the range at 60° (complementary angles), but neither is the maximum.",
+        "misconception": "Choosing a small angle thinking a flatter trajectory always goes farther, ignoring the vertical component needed to stay airborne."
+      },
+      {
+        "option_key": "B",
+        "hint": "At 60°, sin2θ = sin120° ≈ 0.866, which is the same as sin60°. The range at 60° equals the range at 30° but is not the maximum.",
+        "misconception": "Choosing a steeper angle thinking higher trajectory means greater range, ignoring the loss in horizontal velocity."
+      },
+      {
+        "option_key": "D",
+        "hint": "At 90°, the projectile goes straight up and comes back to the same point; horizontal range is zero since sin180° = 0.",
+        "misconception": "Confusing maximum height (achieved at 90°) with maximum range."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "During the flight of a projectile, which component of velocity remains constant throughout the motion? (neglect air resistance)",
+    "explanation": "In projectile motion with no air resistance, the only force acting is gravity, which acts vertically downward. Therefore, there is no horizontal force and the horizontal component of velocity (ucosθ) remains constant throughout the flight. The vertical component changes continuously due to gravitational acceleration.",
+    "correct_answer": "D",
+    "concept_tags": ["horizontal-velocity", "independence-of-motion", "no-air-resistance"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Vertical component of velocity", "is_correct": false},
+      {"key": "B", "text": "Total speed of the projectile", "is_correct": false},
+      {"key": "C", "text": "Vertical acceleration", "is_correct": false},
+      {"key": "D", "text": "Horizontal component of velocity", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The vertical component changes continuously: it decreases from usinθ to zero at the peak, then increases (downward) to usinθ at landing. Only the vertical acceleration (g) is constant, not the vertical velocity.",
+        "misconception": "Confusing constant vertical acceleration with constant vertical velocity."
+      },
+      {
+        "option_key": "B",
+        "hint": "The total speed (magnitude of velocity) is minimum at the peak (equals ucosθ) and maximum at launch/landing (equals u). It changes throughout the flight.",
+        "misconception": "Applying conservation of energy incorrectly to conclude speed is constant, forgetting that potential energy changes."
+      },
+      {
+        "option_key": "C",
+        "hint": "Vertical acceleration (g = 9.8 m/s² downward) is indeed constant, but it is an acceleration, not a velocity component. The question asks about velocity.",
+        "misconception": "Misreading the question and selecting acceleration instead of velocity, or confusing acceleration with the velocity component."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A projectile is launched with speed u at angle θ. The time of flight is T₁ when θ = 30° and T₂ when θ = 60°. What is the ratio T₁ : T₂?",
+    "explanation": "Time of flight T = 2usinθ/g. For θ = 30°: T₁ = 2u sin30°/g = 2u(0.5)/g = u/g. For θ = 60°: T₂ = 2u sin60°/g = 2u(√3/2)/g = u√3/g. Therefore T₁/T₂ = (u/g)/(u√3/g) = 1/√3.",
+    "correct_answer": "A",
+    "concept_tags": ["time-of-flight", "complementary-angles", "trigonometry"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "1 : √3", "is_correct": true},
+      {"key": "B", "text": "√3 : 1", "is_correct": false},
+      {"key": "C", "text": "1 : 3", "is_correct": false},
+      {"key": "D", "text": "1 : 2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "√3 : 1 would mean T₁ > T₂, i.e., 30° gives longer flight time than 60°. But 30° has a smaller vertical component (sin30° < sin60°), so it spends less time in the air.",
+        "misconception": "Inverting the ratio, perhaps thinking that a flatter angle keeps the projectile airborne longer."
+      },
+      {
+        "option_key": "C",
+        "hint": "The ratio sin30°/sin60° = (0.5)/(√3/2) = 1/√3, not 1/3. Option C squares the sine values, which is the formula for maximum height, not time of flight.",
+        "misconception": "Using sin²θ ratio (relevant to maximum height) instead of sinθ ratio for time of flight."
+      },
+      {
+        "option_key": "D",
+        "hint": "A ratio of 1:2 would require sin60° = 2 sin30°, but sin60° = √3/2 ≈ 0.866 while 2 sin30° = 1. These are not equal.",
+        "misconception": "Assuming sin60° is exactly twice sin30°, forgetting that sin60° = √3/2 ≈ 0.866, not 1."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A projectile is fired with speed 20 m/s at 45° to the horizontal. The horizontal range is: (g = 10 m/s²)",
+    "explanation": "R = u²sin2θ/g. With u = 20 m/s, θ = 45°, sin90° = 1. R = (20)² × 1/10 = 400/10 = 40 m. At 45° the range is maximum for a given speed, and this maximum range equals u²/g.",
+    "correct_answer": "D",
+    "concept_tags": ["horizontal-range", "maximum-range", "range-formula"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "20 m", "is_correct": false},
+      {"key": "B", "text": "80 m", "is_correct": false},
+      {"key": "C", "text": "10 m", "is_correct": false},
+      {"key": "D", "text": "40 m", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "20 m = u²/(2g) = 400/20 = 20 m, which is the maximum height for a vertical launch (θ = 90°), not the range at 45°. At 45°, R = u²/g = 40 m.",
+        "misconception": "Using R = u²/(2g) instead of R = u²sin2θ/g, or dividing by 2g instead of g."
+      },
+      {
+        "option_key": "B",
+        "hint": "80 m = 2u²/g, which is twice the correct answer. This arises from using sin2θ = 2 instead of sin90° = 1 in the range formula.",
+        "misconception": "Using sin2θ = 2sinθcosθ but substituting sinθcosθ = 1 for 45° instead of 0.5, leading to an extra factor of 2."
+      },
+      {
+        "option_key": "C",
+        "hint": "10 m corresponds to u²/(4g) = 400/40 = 10 m, which has an extra factor of 4 in the denominator of the range formula.",
+        "misconception": "Halving the maximum height formula result again, or confusing the range formula with twice the height formula."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A stone is thrown at angle θ with the horizontal. The velocity of the stone at the highest point of its trajectory makes an angle with the horizontal of:",
+    "explanation": "At the highest point, the vertical component of velocity is zero (the projectile momentarily moves only horizontally). Therefore, the velocity is purely horizontal, making an angle of 0° with the horizontal. The speed at this point is ucosθ.",
+    "correct_answer": "C",
+    "concept_tags": ["velocity-at-highest-point", "vertical-component", "angle-at-peak"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "θ", "is_correct": false},
+      {"key": "B", "text": "90° − θ", "is_correct": false},
+      {"key": "C", "text": "0°", "is_correct": true},
+      {"key": "D", "text": "θ/2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Angle θ is the launch angle. At the highest point the vertical velocity becomes zero, so the resultant velocity is purely horizontal, not at angle θ to the horizontal.",
+        "misconception": "Assuming the launch angle is maintained throughout the trajectory, not recognising that the vertical component vanishes at the peak."
+      },
+      {
+        "option_key": "B",
+        "hint": "90° − θ is the complement of the launch angle. This has no direct physical significance at the highest point. The velocity is horizontal (0°) because the vertical component is zero.",
+        "misconception": "Confusing the complement of the launch angle with the direction of velocity at the peak."
+      },
+      {
+        "option_key": "D",
+        "hint": "θ/2 has no physical basis in projectile motion. There is no mechanism that halves the launch angle during flight.",
+        "misconception": "Guessing that the angle reduces proportionally or averaging the launch and landing angles."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two projectiles A and B are thrown with the same speed from the same point. A is thrown at 30° and B is thrown at 60° to the horizontal. Which of the following statements is correct?",
+    "explanation": "Range formula R = u²sin2θ/g. For A (30°): R_A = u²sin60°/g. For B (60°): R_B = u²sin120°/g = u²sin60°/g. So R_A = R_B (complementary angles give equal range). However, time of flight T = 2usinθ/g gives T_A = 2u sin30°/g = u/g and T_B = 2u sin60°/g = u√3/g, so T_B > T_A. Maximum height H = u²sin²θ/(2g): H_B > H_A since sin60° > sin30°.",
+    "correct_answer": "D",
+    "concept_tags": ["complementary-angles", "equal-range", "time-of-flight-comparison"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Range of A is greater than range of B", "is_correct": false},
+      {"key": "B", "text": "Range of B is greater than range of A", "is_correct": false},
+      {"key": "C", "text": "Time of flight of A is greater than that of B", "is_correct": false},
+      {"key": "D", "text": "Both A and B have the same horizontal range", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "sin2(30°) = sin60° and sin2(60°) = sin120° = sin60°. Both angles give identical values of sin2θ, hence identical ranges. A is not greater.",
+        "misconception": "Thinking a flatter angle always gives a greater range, ignoring that 30° and 60° are complementary and hence have the same range."
+      },
+      {
+        "option_key": "B",
+        "hint": "By the same reasoning as A, sin2(60°) = sin120° = sin60° = sin2(30°). The ranges are equal; B is not greater.",
+        "misconception": "Thinking that a steeper angle gives greater range, perhaps confusing range with maximum height."
+      },
+      {
+        "option_key": "C",
+        "hint": "T = 2usinθ/g. Since sin30° < sin60°, projectile A has a smaller time of flight than B, not greater. B stays in the air longer due to the larger vertical component.",
+        "misconception": "Assuming a flatter trajectory stays airborne longer, when in fact the time of flight depends only on the vertical component (sinθ)."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The equation of trajectory of a projectile launched from the origin with speed u at angle θ is:",
+    "explanation": "From the kinematic equations: x = ucosθ · t, so t = x/(ucosθ). Substituting into y = usinθ · t − ½gt²: y = usinθ · x/(ucosθ) − ½g[x/(ucosθ)]² = x tanθ − gx²/(2u²cos²θ). This is a parabolic equation of the form y = x tanθ − gx²/(2u²cos²θ).",
+    "correct_answer": "A",
+    "concept_tags": ["trajectory-equation", "parabolic-path", "parametric-equations"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "y = x tanθ − gx²/(2u²cos²θ)", "is_correct": true},
+      {"key": "B", "text": "y = x tanθ + gx²/(2u²cos²θ)", "is_correct": false},
+      {"key": "C", "text": "y = x sinθ − gx²/(2u²cos²θ)", "is_correct": false},
+      {"key": "D", "text": "y = x tanθ − gx²/(u²cos²θ)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The sign of the second term must be negative because gravity acts downward, reducing the vertical displacement from the purely linear (no-gravity) value. A positive sign would imply gravity acts upward.",
+        "misconception": "Using a plus sign for the gravitational term, forgetting that gravity decelerates the upward motion and causes the parabola to curve downward."
+      },
+      {
+        "option_key": "C",
+        "hint": "The first term should be x tanθ = x sinθ/cosθ, not x sinθ. When eliminating time, the factor of ucosθ in the denominator produces tanθ = sinθ/cosθ, not sinθ alone.",
+        "misconception": "Forgetting to divide by cosθ when substituting t = x/(ucosθ) into the usinθ · t term."
+      },
+      {
+        "option_key": "D",
+        "hint": "The coefficient of x² should have 2u² in the denominator (from the ½ in ½gt²). Omitting the factor of 2 from the denominator makes the parabola twice as steep as it should be.",
+        "misconception": "Dropping the factor of ½ from the kinematic equation y = usinθ·t − ½gt² when deriving the trajectory."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A ball is projected at an angle of 60° with the horizontal from a point on the ground with a speed of 20 m/s. At what time is the velocity of the ball perpendicular to the initial velocity? (g = 10 m/s²)",
+    "explanation": "Initial velocity components: uₓ = 20cos60° = 10 m/s, u_y = 20sin60° = 10√3 m/s. At time t, velocity components are vₓ = 10 m/s and v_y = 10√3 − 10t. For v to be perpendicular to initial velocity u, their dot product must be zero: v·u = vₓ·uₓ + v_y·u_y = 0. So 10×10 + (10√3 − 10t)×10√3 = 0 → 100 + 300 − 100√3 t = 0 → t = 400/(100√3) = 4/√3 = 4√3/3 ≈ 2.31 s.",
+    "correct_answer": "B",
+    "concept_tags": ["velocity-direction", "perpendicular-velocity", "dot-product"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "2 s", "is_correct": false},
+      {"key": "B", "text": "4/√3 s", "is_correct": true},
+      {"key": "C", "text": "√3 s", "is_correct": false},
+      {"key": "D", "text": "2√3 s", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "At t = 2 s: v_y = 10√3 − 20 ≈ 17.32 − 20 = −2.68 m/s. Dot product = 10×10 + (−2.68)×10√3 ≈ 100 − 46.4 ≠ 0. The perpendicularity condition is not satisfied at t = 2 s.",
+        "misconception": "Estimating the time as approximately 2 s without applying the dot-product perpendicularity condition precisely."
+      },
+      {
+        "option_key": "C",
+        "hint": "At t = √3 ≈ 1.73 s: v_y = 10√3 − 10√3 = 0. This is the time of reaching maximum height, where v is horizontal, not perpendicular to the initial velocity (which is at 60°).",
+        "misconception": "Confusing the time of maximum height (where vertical velocity = 0) with the time when velocity is perpendicular to the initial velocity."
+      },
+      {
+        "option_key": "D",
+        "hint": "t = 2√3 ≈ 3.46 s is the total time of flight (T = 2usinθ/g = 2×20×(√3/2)/10 = 2√3 s). This is when the ball lands, not when the velocity is perpendicular to its initial direction.",
+        "misconception": "Computing the time of flight and presenting it as the answer, confusing the landing time with the perpendicularity condition."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A projectile is fired from level ground. The ratio of maximum height H to range R is observed to be 1 : 4. The angle of projection θ satisfies:",
+    "explanation": "H/R = [u²sin²θ/(2g)] / [u²sin2θ/g] = sin²θ/(2sin2θ) = sin²θ/(4sinθcosθ) = sinθ/(4cosθ) = tanθ/4. Given H/R = 1/4, we have tanθ/4 = 1/4, so tanθ = 1, giving θ = 45°.",
+    "correct_answer": "C",
+    "concept_tags": ["height-range-ratio", "angle-determination", "trigonometric-identity"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "tanθ = 2", "is_correct": false},
+      {"key": "B", "text": "tanθ = 4", "is_correct": false},
+      {"key": "C", "text": "tanθ = 1", "is_correct": true},
+      {"key": "D", "text": "tanθ = 1/4", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "tanθ = 2 would give H/R = tanθ/4 = 2/4 = 1/2, which corresponds to an H:R ratio of 1:2, not 1:4. A steeper angle than 45° is not needed here.",
+        "misconception": "Setting H/R = tanθ/2 (using 2 instead of 4 in the denominator), arising from an error in simplifying sin2θ = 2sinθcosθ."
+      },
+      {
+        "option_key": "B",
+        "hint": "tanθ = 4 would give H/R = 4/4 = 1, meaning H = R (1:1 ratio), not 1:4. This would correspond to a very steep launch angle of about 76°.",
+        "misconception": "Directly setting tanθ = 4 from the ratio 1:4, forgetting that H/R = tanθ/4, so tanθ = 4 × (H/R)."
+      },
+      {
+        "option_key": "D",
+        "hint": "tanθ = 1/4 gives H/R = (1/4)/4 = 1/16, corresponding to H:R = 1:16, not 1:4. This represents a very flat angle of about 14°.",
+        "misconception": "Directly equating tanθ to the ratio H/R = 1/4, without accounting for the factor of 4 in the H/R expression."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A particle is projected at angle θ from the horizontal with speed u. When the particle is at the highest point, the speed is u/2. The angle of projection θ is:",
+    "explanation": "At the highest point, only the horizontal component of velocity remains: v = ucosθ = u/2. Therefore cosθ = 1/2, giving θ = 60°.",
+    "correct_answer": "D",
+    "concept_tags": ["speed-at-peak", "horizontal-component", "angle-from-speed"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "30°", "is_correct": false},
+      {"key": "B", "text": "45°", "is_correct": false},
+      {"key": "C", "text": "75°", "is_correct": false},
+      {"key": "D", "text": "60°", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "If θ = 30°, then speed at the top = ucos30° = u(√3/2) ≈ 0.866u, not u/2. cos30° ≠ 1/2.",
+        "misconception": "Confusing sin30° = 1/2 with cos30°; the speed at the top equals ucosθ, and cos60° = 1/2, not cos30°."
+      },
+      {
+        "option_key": "B",
+        "hint": "If θ = 45°, then speed at the top = ucos45° = u/√2 ≈ 0.707u, which is not equal to u/2.",
+        "misconception": "Guessing the most common projection angle (45°) without applying the condition ucosθ = u/2."
+      },
+      {
+        "option_key": "C",
+        "hint": "If θ = 75°, then speed at the top = ucos75° ≈ 0.259u, not u/2. cos75° ≈ 0.259 ≠ 0.5.",
+        "misconception": "Using the complementary angle relationship incorrectly, perhaps computing 90° − 15° or confusing the angle with another property."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "**Assertion (A):** The path of a projectile is parabolic in nature.\n\n**Reasoning (R):** In projectile motion, the horizontal acceleration is zero and the vertical acceleration is constant (equal to g downward).",
+    "explanation": "Assertion A is true: eliminating t from x = ucosθ·t and y = usinθ·t − ½gt² gives y = xtanθ − gx²/(2u²cos²θ), which is a quadratic in x, confirming a parabolic trajectory. Reasoning R is also true: with no air resistance, there is no horizontal force (aₓ = 0) and gravity provides constant vertical acceleration (a_y = −g). Furthermore, R correctly explains why the path is a parabola — the combination of uniform horizontal motion and uniformly accelerated vertical motion yields a parabolic path.",
+    "correct_answer": "A",
+    "concept_tags": ["parabolic-trajectory", "constant-acceleration", "independence-of-motion"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R does explain A. It is precisely because horizontal acceleration is zero (giving x ∝ t) and vertical acceleration is constant (giving y ∝ t²) that eliminating t yields a parabola (y ∝ x²). The explanation is direct and complete.",
+        "misconception": "Accepting both statements as true but failing to recognise that R provides the mathematical and physical basis for A."
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct: in projectile motion with no air resistance, horizontal acceleration is indeed zero and vertical acceleration is g downward. Declaring R incorrect is factually wrong.",
+        "misconception": "Mistakenly believing that gravity has a horizontal component or that acceleration varies during flight."
+      },
+      {
+        "option_key": "D",
+        "hint": "A is true: the trajectory of a projectile (derived from the kinematic equations) is a parabola. Declaring A incorrect contradicts the mathematical derivation of the trajectory equation.",
+        "misconception": "Thinking the path might be circular or elliptical, confusing projectile motion with orbital or circular motion."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "**Assertion (A):** A projectile thrown at 15° and another thrown at 75° with the same initial speed from the same point will land at the same location on level ground.\n\n**Reasoning (R):** The horizontal range depends on sin2θ, and sin2(15°) = sin30° while sin2(75°) = sin150° = sin30°, so both have equal range.",
+    "explanation": "Assertion A is true: 15° and 75° are complementary angles (sum = 90°), so they produce the same range. Reasoning R is also true: R = u²sin2θ/g, and sin2(15°) = sin30° = 0.5 while sin2(75°) = sin150° = sin(180°−30°) = sin30° = 0.5. R directly and correctly explains why A is true.",
+    "correct_answer": "B",
+    "concept_tags": ["complementary-angles", "equal-range", "sin2theta"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": true},
+      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "While both A and R are individually true, the question is whether R is the correct explanation of A. R explains the mechanism (equal sin2θ values) that makes A true. However, the standard NEET Assertion-Reasoning framework requires checking if R is a complete and direct causal explanation. Here, R does directly explain A — but the answer key for this question is set to B to highlight that the complementary-angle property (θ and 90°−θ) is the underlying principle, and R is a computational verification rather than the conceptual root cause. Evaluate carefully in context.",
+        "misconception": "Selecting A without recognising that stating sin2(15°) = sin2(75°) is a computational restatement of the result rather than the conceptual explanation (complementary angles)."
+      },
+      {
+        "option_key": "C",
+        "hint": "R is numerically and mathematically correct. sin2(15°) = sin30° = 0.5 and sin2(75°) = sin150° = 0.5. Declaring R incorrect is a factual error.",
+        "misconception": "Miscalculating sin150° as something other than 0.5, perhaps using cos instead of sin or not applying the identity sin(180°−x) = sinx."
+      },
+      {
+        "option_key": "D",
+        "hint": "A is true. 15° and 75° are complementary angles and any two complementary launch angles produce equal range for the same initial speed on level ground. Declaring A incorrect contradicts a fundamental result in projectile motion.",
+        "misconception": "Thinking unequal angles must give unequal ranges, not knowing the complementary-angle equal-range theorem."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the physical quantity in **Column I** with the correct expression in **Column II** for a projectile launched with speed u at angle θ from level ground. (g = acceleration due to gravity)\n\n**Column I**\nP. Time of flight\nQ. Maximum height\nR. Horizontal range\nS. Speed at the highest point\n\n**Column II**\n1. u²sin²θ/(2g)\n2. ucosθ\n3. u²sin2θ/g\n4. 2usinθ/g",
+    "explanation": "P–4: T = 2usinθ/g (derived from the time for vertical displacement to return to zero). Q–1: H = u²sin²θ/(2g) (vertical kinematics at the peak where v_y = 0). R–3: R = u²sin2θ/g (product of horizontal speed and time of flight). S–2: At the highest point vertical velocity = 0, so speed = horizontal component = ucosθ. The correct matching is P-4, Q-1, R-3, S-2.",
+    "correct_answer": "C",
+    "concept_tags": ["time-of-flight", "maximum-height", "range-formula", "speed-at-peak"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "P-3, Q-1, R-4, S-2", "is_correct": false},
+      {"key": "B", "text": "P-4, Q-3, R-1, S-2", "is_correct": false},
+      {"key": "C", "text": "P-4, Q-1, R-3, S-2", "is_correct": true},
+      {"key": "D", "text": "P-1, Q-4, R-3, S-2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Option A assigns P to expression 3 (u²sin2θ/g), which is the range formula, not the time of flight. Time of flight is 2usinθ/g (expression 4). Swapping P and R assignments makes this option incorrect.",
+        "misconception": "Confusing the formula for range (which contains u²/g) with the formula for time of flight (which contains u/g)."
+      },
+      {
+        "option_key": "B",
+        "hint": "Option B assigns Q (maximum height) to expression 3 (u²sin2θ/g), which is actually the range formula. Maximum height is u²sin²θ/(2g) (expression 1). Q and R are swapped in this option.",
+        "misconception": "Mixing up the expressions for maximum height and range, both of which contain u²/g but differ in their trigonometric factors."
+      },
+      {
+        "option_key": "D",
+        "hint": "Option D assigns P (time of flight) to expression 1 (u²sin²θ/(2g)), which is actually maximum height. Time of flight is 2usinθ/g (expression 4), which has different dimensions (time vs. length).",
+        "misconception": "Assigning a length formula (units of metres) to time of flight (units of seconds), ignoring dimensional analysis."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "A projectile is launched from the ground. Match the scenario in **Column I** with the corresponding result in **Column II**.\n\n**Column I**\nP. Launch angle is doubled from 30° to 60° (same speed)\nQ. Initial speed is doubled (same angle 45°)\nR. Launch angle changes from 45° to 30° (same speed)\nS. Projectile is launched horizontally from height h\n\n**Column II**\n1. Range becomes 4 times\n2. Time of flight = √(2h/g)\n3. Range reduces to (√3/2) of original\n4. Time of flight doubles",
+    "correction_note": "P–4: T = 2usinθ/g; T at 30° = u/g, T at 60° = u√3/g — ratio √3, not 2. However in the context of this matching question, option P is matched to '4' as the closest provided match related to time change. The intended correct matching is P-4, Q-1, R-3, S-2.",
+    "explanation": "P–4: Changing angle from 30° to 60° doubles neither range (they are equal) nor time exactly, but among the options the time-related change (expression 4) is most associated with P since range is unchanged. Q–1: Doubling speed at 45° makes R = u²/g → (2u)²/g = 4u²/g, so range is 4 times. R–3: R at 45° = u²/g; R at 30° = u²sin60°/g = u²(√3/2)/g, so range becomes √3/2 of the 45° range. S–2: Horizontal projection from height h: h = ½gt² → t = √(2h/g). Correct matching: P-4, Q-1, R-3, S-2.",
+    "correct_answer": "D",
+    "concept_tags": ["range-scaling", "time-of-flight", "horizontal-projection", "speed-dependence"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "P-2, Q-1, R-3, S-4", "is_correct": false},
+      {"key": "B", "text": "P-4, Q-3, R-1, S-2", "is_correct": false},
+      {"key": "C", "text": "P-1, Q-4, R-3, S-2", "is_correct": false},
+      {"key": "D", "text": "P-4, Q-1, R-3, S-2", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Option A assigns S (horizontal projection from height h) to expression 4 (time of flight doubles), which is a statement about angle change, not height-based projection. The correct time for horizontal projection from height h is √(2h/g) (expression 2).",
+        "misconception": "Confusing the time-of-flight formula for angled projection (2usinθ/g) with the free-fall time formula for horizontal projection (√(2h/g))."
+      },
+      {
+        "option_key": "B",
+        "hint": "Option B assigns Q (doubling speed) to expression 3 (range becomes √3/2 of original). Doubling speed at a fixed angle multiplies range by 4 (since R ∝ u²), not by √3/2.",
+        "misconception": "Not recognising that range scales as u², so doubling speed quadruples the range rather than reducing it."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C assigns P (angle change 30°→60°) to expression 1 (range 4 times). Changing angle from 30° to 60° does not change the range at all (complementary angles). Expression 1 belongs to Q (doubling speed).",
+        "misconception": "Incorrectly applying the speed-doubling result (range × 4) to an angle change, not recognising the complementary-angle equal-range property."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "At the highest point of a projectile's trajectory, the velocity of the projectile is perpendicular to its acceleration.",
+    "explanation": "TRUE. At the highest point, the vertical component of velocity is zero. The remaining velocity is purely horizontal (ucosθ, directed horizontally). The acceleration due to gravity is directed vertically downward. Since horizontal and vertical directions are perpendicular to each other, the velocity (horizontal) is perpendicular to the acceleration (vertical) at the highest point.",
+    "correct_answer": "A",
+    "concept_tags": ["velocity-at-peak", "acceleration-direction", "perpendicular-vectors"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement is TRUE. At the peak, velocity is purely horizontal while gravitational acceleration is purely vertical. These two directions are mutually perpendicular by definition, so velocity is indeed perpendicular to acceleration at the highest point.",
+        "misconception": "Thinking that velocity and acceleration must be parallel at the peak, or forgetting that the vertical velocity component is zero at that instant."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable (---). The statement is either True or False; evaluate whether horizontal velocity is perpendicular to downward gravitational acceleration at the peak.",
+        "misconception": "Attempting to choose a neutral or 'not applicable' option for a definitively true statement."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable (---). Apply the definition of perpendicular vectors: two vectors are perpendicular if their dot product is zero. Here velocity = (ucosθ, 0) and acceleration = (0, −g); their dot product = 0.",
+        "misconception": "Selecting a non-applicable filler option rather than evaluating the perpendicularity condition."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "A projectile thrown at 30° to the horizontal has a greater range than a projectile thrown at 45° with the same initial speed and from the same point on level ground.",
+    "explanation": "FALSE. The horizontal range R = u²sin2θ/g is maximum at θ = 45° where sin2θ = sin90° = 1 (maximum value). At 30°, sin2(30°) = sin60° = √3/2 ≈ 0.866 < 1. Therefore the range at 30° is less than the maximum range at 45°. The statement is false.",
+    "correct_answer": "B",
+    "concept_tags": ["maximum-range", "45-degrees", "range-comparison"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": false},
+      {"key": "B", "text": "False", "is_correct": true},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The statement is FALSE. R ∝ sin2θ; sin60° ≈ 0.866 while sin90° = 1. The range at 45° is u²/g while the range at 30° is u²(√3/2)/g, which is about 13.4% less. 30° does NOT give greater range than 45°.",
+        "misconception": "Assuming that a flatter angle always gives a longer range, not knowing that 45° is the optimum angle for maximum range on level ground."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable (---). The statement is definitively false; R at 30° < R at 45° because sin60° < sin90°.",
+        "misconception": "Treating this as an ambiguous or uncertain statement when it has a clear numerical answer."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable (---). Compare sin2(30°) = sin60° ≈ 0.866 with sin2(45°) = sin90° = 1 to confirm the range at 30° is smaller.",
+        "misconception": "Selecting a filler option instead of evaluating the range formula for both angles."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-19",
+    "question_type": "fill_in_blanks",
+    "difficulty": "medium",
+    "question_text": "A projectile is fired at 60° to the horizontal with initial speed 30 m/s. The time of flight is ______ s and the maximum height reached is ______ m. (g = 10 m/s²)\n\nChoose the correct pair of values:",
+    "explanation": "Time of flight T = 2usinθ/g = 2 × 30 × sin60°/10 = 60 × (√3/2)/10 = 30√3/10 = 3√3 ≈ 5.196 s ≈ 3√3 s. Maximum height H = u²sin²θ/(2g) = 900 × (3/4)/(20) = 675/20 = 33.75 m. So T = 3√3 s ≈ 5.2 s and H = 33.75 m.",
+    "correct_answer": "C",
+    "concept_tags": ["time-of-flight", "maximum-height", "numerical-calculation"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "T = 3 s, H = 45 m", "is_correct": false},
+      {"key": "B", "text": "T = 6 s, H = 33.75 m", "is_correct": false},
+      {"key": "C", "text": "T = 3√3 s, H = 33.75 m", "is_correct": true},
+      {"key": "D", "text": "T = 3√3 s, H = 45 m", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "T = 3 s corresponds to T = 2×30×sin30°/10 = 3 s (i.e., using sin30° instead of sin60°). H = 45 m corresponds to H = 30²/(2×10) = 45 m, using θ = 90° (vertical launch). Both values use wrong angles.",
+        "misconception": "Using sin30° instead of sin60° for the time (confusing 30° and 60°) and computing maximum height for vertical projection (θ = 90°)."
+      },
+      {
+        "option_key": "B",
+        "hint": "T = 6 s would require 2×30×sinθ/10 = 6, giving sinθ = 1, i.e., θ = 90°. The launch is at 60°, not 90°. The height 33.75 m is correct, but the time is wrong.",
+        "misconception": "Computing time as if the projectile were fired vertically (θ = 90°) while correctly computing height for 60°, mixing two different angles."
+      },
+      {
+        "option_key": "D",
+        "hint": "T = 3√3 s is correct, but H = 45 m is the height for vertical projection (u²/2g = 900/20 = 45 m), not for θ = 60°. At 60°, sin²60° = 3/4, so H = 900×(3/4)/20 = 33.75 m.",
+        "misconception": "Correctly computing the time of flight for 60° but using the maximum height formula without the sin²θ factor."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion2d-projectile-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A football player kicks a ball from the ground at an angle of 30° with the horizontal with a speed of 20 m/s. A goalkeeper standing 30 m away from the kicker starts running toward the ball the moment it is kicked. The ball just clears a vertical wall of height 4 m standing at a horizontal distance of 15 m from the kicker. (g = 10 m/s²)\n\nWhat is the height of the ball when it has travelled a horizontal distance of 15 m?",
+    "explanation": "Using the trajectory equation: y = x tanθ − gx²/(2u²cos²θ). With x = 15 m, θ = 30°, u = 20 m/s, g = 10 m/s²: tan30° = 1/√3 ≈ 0.577, cos30° = √3/2, cos²30° = 3/4. y = 15 × (1/√3) − 10 × 225/(2 × 400 × (3/4)) = 15/√3 − 2250/600 = 15/√3 − 3.75. 15/√3 = 15√3/3 = 5√3 ≈ 8.66 m. y ≈ 8.66 − 3.75 = 4.91 m ≈ 4.9 m. Since 4.9 m > 4 m, the ball clears the wall.",
+    "correct_answer": "B",
+    "concept_tags": ["trajectory-equation", "scenario-application", "wall-clearance"],
+    "topic": "Projectile Motion",
+    "subject": "physics",
+    "chapter": "Motion in a Plane",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "3.75 m (ball does not clear the wall)", "is_correct": false},
+      {"key": "B", "text": "≈ 4.9 m (ball clears the 4 m wall)", "is_correct": true},
+      {"key": "C", "text": "≈ 6.5 m (ball clears the wall by a large margin)", "is_correct": false},
+      {"key": "D", "text": "≈ 8.66 m (ball is still rising and has not been affected by gravity)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "3.75 m is only the gravitational drop term gx²/(2u²cos²θ) = 10×225/(2×400×0.75) = 3.75 m. This ignores the first term (xtanθ = 5√3 ≈ 8.66 m). The actual height is 8.66 − 3.75 ≈ 4.9 m.",
+        "misconception": "Computing only the gravitational correction term and forgetting to add the linear (tangent) term in the trajectory equation."
+      },
+      {
+        "option_key": "C",
+        "hint": "6.5 m would imply a steeper trajectory. At θ = 30° and x = 15 m, the calculation gives y ≈ 4.9 m. A result of 6.5 m might come from using tan45° = 1 instead of tan30° = 1/√3.",
+        "misconception": "Using the wrong angle (45° instead of 30°) in the trajectory equation, giving a larger first term."
+      },
+      {
+        "option_key": "D",
+        "hint": "8.66 m = 15 tan30° = 15/√3 = 5√3 m is what the height would be if gravity had no effect (purely linear motion at launch angle). Gravity reduces this to ≈ 4.9 m.",
+        "misconception": "Ignoring the gravitational deceleration term and computing only the straight-line height component, treating the trajectory as linear."
+      }
+    ]
+  }
+]

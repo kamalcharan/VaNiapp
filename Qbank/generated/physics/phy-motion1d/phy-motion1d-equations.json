@@ -1,0 +1,1188 @@
+[
+  {
+    "id": "phy-motion1d-equations-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A car starts from rest and accelerates uniformly at 4 m/s² for 5 seconds. What is the velocity of the car at the end of 5 seconds?",
+    "explanation": "Using the first equation of motion: v = u + at. Here u = 0 (starts from rest), a = 4 m/s², t = 5 s. Therefore v = 0 + (4)(5) = 20 m/s. This is a direct application of the kinematic equation relating velocity, initial velocity, acceleration, and time.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "equations-of-motion",
+      "uniform-acceleration",
+      "v-equals-u-plus-at"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "10 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "20 m/s",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "25 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "40 m/s",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "10 m/s would result from using only half the acceleration value (2 m/s²) or half the time (2.5 s). Recheck: v = 0 + 4 × 5 = 20 m/s.",
+        "misconception": "Halving either the acceleration or the time inadvertently."
+      },
+      {
+        "option_key": "C",
+        "hint": "25 m/s would result from incorrectly adding distance to velocity, mixing up kinematic quantities. Velocity is v = u + at, not u + a + t.",
+        "misconception": "Adding numerical values of different physical quantities instead of applying the formula correctly."
+      },
+      {
+        "option_key": "D",
+        "hint": "40 m/s would be obtained if you squared the time (t² = 25) or doubled the acceleration. The formula v = u + at is linear in time, not quadratic.",
+        "misconception": "Confusing the velocity formula with the displacement formula that contains t²."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A ball is dropped from rest from a height. If it takes 3 seconds to reach the ground, what is the height from which it was dropped? (g = 10 m/s²)",
+    "explanation": "Using s = ut + ½at². Since the ball is dropped from rest, u = 0, a = g = 10 m/s², t = 3 s. Therefore s = 0 + ½ × 10 × 9 = 45 m. Free fall is a classic application where initial velocity is zero and acceleration equals g downward.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "free-fall",
+      "equations-of-motion",
+      "displacement-formula"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "30 m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "90 m",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "45 m",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "15 m",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "30 m ignores the ½ factor in the formula and uses s = g × t = 10 × 3. The correct formula is s = ½gt², giving ½ × 10 × 9 = 45 m.",
+        "misconception": "Forgetting the ½ factor in the displacement formula for uniformly accelerated motion."
+      },
+      {
+        "option_key": "B",
+        "hint": "90 m would result from s = g × t² = 10 × 9, omitting the ½ factor and using t² directly. Always include ½ in s = ½gt².",
+        "misconception": "Omitting the factor of ½ and computing g × t² instead of ½ × g × t²."
+      },
+      {
+        "option_key": "D",
+        "hint": "15 m would result from s = ½ × g × t = ½ × 10 × 3 = 15, incorrectly using t instead of t². Time must be squared in the displacement formula.",
+        "misconception": "Using t instead of t² in the kinematic equation s = ½at²."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "On a velocity-time (v-t) graph for uniform acceleration, the slope of the line represents:",
+    "explanation": "The slope of a velocity-time graph is defined as Δv/Δt, which is the rate of change of velocity with respect to time. By definition, acceleration a = dv/dt. Therefore, the slope of a v-t graph directly gives the acceleration of the object. A steeper slope means greater acceleration; a negative slope indicates deceleration.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "v-t-graph",
+      "slope-interpretation",
+      "acceleration"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Displacement",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Speed",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Distance",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Acceleration",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Displacement is the area under the v-t graph, not the slope. The slope Δv/Δt gives acceleration, while ∫v dt gives displacement.",
+        "misconception": "Confusing slope and area under a v-t graph; slope = acceleration, area = displacement."
+      },
+      {
+        "option_key": "B",
+        "hint": "Speed is already plotted on the y-axis of the v-t graph. The slope represents how speed changes over time, which is acceleration, not speed itself.",
+        "misconception": "Thinking the slope represents the quantity on the y-axis rather than the rate of change of that quantity."
+      },
+      {
+        "option_key": "C",
+        "hint": "Distance is the area under the speed-time graph, not the slope. The slope of v vs t = Δv/Δt = acceleration.",
+        "misconception": "Confusing area under the graph (distance/displacement) with the slope (acceleration)."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A stone is thrown vertically upward with an initial velocity of 20 m/s. What is the maximum height reached by the stone? (g = 10 m/s²)",
+    "explanation": "At maximum height, the final velocity v = 0. Using v² = u² − 2gH (taking upward as positive): 0 = (20)² − 2 × 10 × H → H = 400/20 = 20 m. The negative sign for g arises because gravity decelerates the upward motion. This is a standard application of the third equation of motion for vertical projectile problems.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "vertical-throw-upward",
+      "maximum-height",
+      "v-squared-formula"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "20 m",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "40 m",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "10 m",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "200 m",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "40 m would result from forgetting the factor of 2 in v² = u² − 2gH, computing H = u²/g = 400/10 = 40 instead of u²/(2g).",
+        "misconception": "Omitting the factor of 2 in the third equation of motion 2as."
+      },
+      {
+        "option_key": "C",
+        "hint": "10 m would result from using u = 20/2 = 10 incorrectly or from a computational error. The formula gives H = u²/(2g) = 400/20 = 20 m.",
+        "misconception": "Halving the initial velocity before squaring, or making an arithmetic error in the final step."
+      },
+      {
+        "option_key": "D",
+        "hint": "200 m would result from computing H = u²/g without dividing by 2, and using g = 1 instead of 10. Always use H = u²/(2g).",
+        "misconception": "Using the wrong value of g and omitting the factor of 2 simultaneously."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A train moving at 72 km/h applies brakes and decelerates uniformly at 2 m/s². What is the stopping distance of the train?",
+    "explanation": "First convert velocity: 72 km/h = 72 × (5/18) = 20 m/s. Using v² = u² + 2as with v = 0, u = 20 m/s, a = −2 m/s²: 0 = 400 + 2(−2)s → s = 400/4 = 100 m. Stopping distance problems require unit conversion and application of the third kinematic equation with final velocity zero.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "stopping-distance",
+      "deceleration",
+      "unit-conversion",
+      "v-squared-formula"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "50 m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "200 m",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "100 m",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "400 m",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "50 m results from failing to convert km/h to m/s correctly and using u = 10 m/s (half of 20). Always multiply km/h by 5/18 to get m/s: 72 × 5/18 = 20 m/s.",
+        "misconception": "Incorrect unit conversion from km/h to m/s."
+      },
+      {
+        "option_key": "B",
+        "hint": "200 m would result from computing s = u²/(2a) = 400/2 = 200, forgetting that 2a means 2 × 2 = 4 in the denominator. It should be s = u²/(2×2) = 400/4 = 100 m.",
+        "misconception": "Substituting a instead of 2a in the denominator, treating the formula as s = u²/a."
+      },
+      {
+        "option_key": "D",
+        "hint": "400 m would result from not squaring the velocity or using u = 20 without squaring: s = u/a = 20/2 = 10 (wrong) or computing 400/1 = 400. The formula requires v² = u² + 2as with v = 0.",
+        "misconception": "Not squaring the initial velocity in the stopping distance formula."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The distance covered by a uniformly accelerating body starting from rest in the nth second is given by s_n = u + a(n − ½). If a body starts from rest with acceleration 4 m/s², what is the distance covered in the 5th second?",
+    "explanation": "Using the nth second formula: s_n = u + a(n − ½). Here u = 0, a = 4 m/s², n = 5. Therefore s₅ = 0 + 4(5 − ½) = 4 × 4.5 = 18 m. This formula gives the instantaneous distance covered specifically during the nth second (not total distance from start to the end of nth second).",
+    "correct_answer": "D",
+    "concept_tags": [
+      "nth-second-formula",
+      "uniform-acceleration",
+      "distance-in-nth-second"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "16 m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "20 m",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "10 m",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "18 m",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "16 m would result from using s_n = a × n = 4 × 4 (incorrect). The correct formula is s_n = u + a(n − ½) = 4 × 4.5 = 18 m.",
+        "misconception": "Using n−1 = 4 instead of n − ½ = 4.5 in the nth second formula."
+      },
+      {
+        "option_key": "B",
+        "hint": "20 m would result from using s_n = a × n = 4 × 5 = 20, which is incorrect. The nth second formula subtracts ½, giving 4 × 4.5 = 18 m.",
+        "misconception": "Directly multiplying acceleration by n without subtracting ½ as required by the formula."
+      },
+      {
+        "option_key": "C",
+        "hint": "10 m would result from computing total displacement at t = n seconds (s = ½ × 4 × 25 = 50) then dividing by 5, giving average of 10 m per second, which is not what the nth second formula asks for.",
+        "misconception": "Confusing the distance in the nth second with the average distance per second over n seconds."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A particle moves with uniform acceleration. Its velocity at t = 2 s is 10 m/s and at t = 6 s is 26 m/s. What is the displacement of the particle between t = 2 s and t = 6 s?",
+    "explanation": "First find acceleration: a = (v − u)/(t₂ − t₁) = (26 − 10)/(6 − 2) = 16/4 = 4 m/s². Time interval Δt = 4 s. Displacement = average velocity × time = [(10 + 26)/2] × 4 = 18 × 4 = 72 m. Alternatively, using s = ut + ½at²: s = 10×4 + ½×4×16 = 40 + 32 = 72 m.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "uniform-acceleration",
+      "displacement-calculation",
+      "average-velocity"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "64 m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "72 m",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "80 m",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "48 m",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "64 m would result from using displacement = u × Δt + ½a(Δt)² but computing ½ × 4 × 4² = 32, then adding only u × 2 = 20 instead of 10 × 4 = 40. Ensure time interval Δt = 4 s is used throughout.",
+        "misconception": "Incorrectly using part of the time interval when applying the displacement formula."
+      },
+      {
+        "option_key": "C",
+        "hint": "80 m would result from using only the final velocity to compute displacement: 26 × (6−2)/... or a computational error in the average velocity formula. Average velocity is (10+26)/2 = 18, not 20.",
+        "misconception": "Using only the final velocity to compute average velocity instead of (u+v)/2."
+      },
+      {
+        "option_key": "D",
+        "hint": "48 m would result from computing displacement as u × Δt = 10 × 4 = 40 only, or using average velocity with wrong time: 12 × 4 = 48. The correct average velocity is 18 m/s.",
+        "misconception": "Ignoring the acceleration contribution to displacement, using only the initial-velocity term."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The area under a velocity-time graph between two time instants gives the:",
+    "explanation": "The area under a v-t (velocity-time) graph between two time instants t₁ and t₂ equals ∫v dt, which by definition is the displacement of the object during that time interval. If the velocity remains positive throughout, the displacement equals the distance. This graphical interpretation is fundamental to understanding motion graphs in kinematics.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "v-t-graph",
+      "area-under-graph",
+      "displacement"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Acceleration of the object",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Jerk (rate of change of acceleration)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Displacement of the object",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Average speed of the object",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Acceleration is given by the slope (not the area) of the v-t graph. Slope = Δv/Δt = acceleration. Area = ∫v dt = displacement.",
+        "misconception": "Swapping slope and area interpretations of the v-t graph."
+      },
+      {
+        "option_key": "B",
+        "hint": "Jerk is the rate of change of acceleration (da/dt). It is not directly obtained from the area under the v-t graph. Area under v-t = displacement.",
+        "misconception": "Introducing an irrelevant kinematic quantity not derivable from a simple v-t graph area."
+      },
+      {
+        "option_key": "D",
+        "hint": "Average speed = total distance / total time, which cannot be read directly from the area of a v-t graph without additional steps. The area gives total displacement, not average speed.",
+        "misconception": "Confusing displacement (area under v-t) with average speed, which requires dividing displacement by time."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two trains A and B are moving in the same direction on parallel tracks. Train A moves at 60 km/h and train B at 90 km/h. What is the velocity of train B relative to train A?",
+    "explanation": "Relative velocity when moving in the same direction: v_BA = v_B − v_A = 90 − 60 = 30 km/h in the direction of motion. Relative motion is the velocity of one object as seen from another. When both objects move in the same direction, relative velocity is the difference; when opposite, it is the sum. Here, from train A's frame of reference, train B appears to move forward at 30 km/h.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "relative-motion",
+      "relative-velocity",
+      "same-direction-motion"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "150 km/h in the direction of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "150 km/h opposite to the direction of motion",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "30 km/h opposite to the direction of motion",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "30 km/h in the direction of motion",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "150 km/h is the sum of velocities, which applies when trains move in opposite directions. For same-direction motion, use v_rel = v_B − v_A = 90 − 60 = 30 km/h.",
+        "misconception": "Adding velocities instead of subtracting for same-direction relative motion."
+      },
+      {
+        "option_key": "B",
+        "hint": "150 km/h is incorrect (sum of speeds applies for opposite-direction motion), and the direction is also wrong. B is faster than A, so from A's frame B moves forward, not backward.",
+        "misconception": "Both the magnitude (should subtract) and direction (should be forward) are incorrect."
+      },
+      {
+        "option_key": "C",
+        "hint": "The magnitude 30 km/h is correct, but the direction is wrong. Since train B moves faster than train A in the same direction, B appears to move forward (in the direction of motion) from A's perspective.",
+        "misconception": "Correct magnitude but incorrect direction; B is faster so it moves ahead of A, not behind."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A body is thrown vertically upward. Neglecting air resistance, which of the following statements about the motion at the highest point is CORRECT?",
+    "explanation": "At the highest point of vertical throw upward, the velocity of the body is zero (the body momentarily comes to rest before reversing direction). However, the acceleration due to gravity (g = 9.8 m/s² downward) acts continuously throughout the motion, including at the highest point. The common misconception that acceleration is zero at the highest point is incorrect; only velocity is zero there.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "vertical-throw-upward",
+      "highest-point",
+      "velocity-at-highest-point",
+      "acceleration-due-to-gravity"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both velocity and acceleration are zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Velocity is zero but acceleration is g downward",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Velocity is zero and acceleration is g upward",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Velocity is maximum and acceleration is zero",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Acceleration cannot be zero at the highest point because gravity always acts downward. Only the velocity is momentarily zero; g = 9.8 m/s² acts throughout the flight.",
+        "misconception": "Incorrectly concluding that if velocity is zero, acceleration must also be zero at the highest point."
+      },
+      {
+        "option_key": "C",
+        "hint": "Gravity always acts downward regardless of the direction of motion. Even when the body moves upward or is at rest at the top, g points downward, not upward.",
+        "misconception": "Confusing the direction of initial velocity (upward) with the direction of gravitational acceleration."
+      },
+      {
+        "option_key": "D",
+        "hint": "Velocity is zero at the highest point, not maximum. Maximum velocity occurs at the start (or at the end when returning). The claim of zero acceleration is also wrong; g acts throughout.",
+        "misconception": "Confusing the point of maximum height with the point of maximum velocity."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A body starts from rest and moves with uniform acceleration. The ratio of the distances covered in the 1st, 2nd, 3rd, and 4th seconds is:",
+    "explanation": "Using the nth second formula s_n = u + a(n − ½) with u = 0: s_n = a(n − ½). So s₁ = a/2, s₂ = 3a/2, s₃ = 5a/2, s₄ = 7a/2. The ratio s₁:s₂:s₃:s₄ = 1:3:5:7. This is the famous result for uniformly accelerated motion from rest — distances in successive seconds are in the ratio of odd numbers (1:3:5:7:...).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "nth-second-formula",
+      "ratio-of-distances",
+      "odd-number-rule"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 : 3 : 5 : 7",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1 : 2 : 3 : 4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1 : 4 : 9 : 16",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2 : 4 : 6 : 8",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "1:2:3:4 is the ratio of total displacements at the end of each second (S_n ∝ n²... actually S_n ∝ n for uniform velocity). For uniform acceleration from rest, total displacement S_n = ½an² so the ratio is 1:4:9:16, not 1:2:3:4.",
+        "misconception": "Confusing the ratio of total displacements at end of each second with distances covered during each second."
+      },
+      {
+        "option_key": "C",
+        "hint": "1:4:9:16 is the ratio of total displacements from start to end of each second (S_n = ½an² ∝ n²), not the distance in each individual second. The nth second distance follows the odd-number rule (1:3:5:7).",
+        "misconception": "Using total cumulative displacement ratios instead of the distance covered in each individual second."
+      },
+      {
+        "option_key": "D",
+        "hint": "2:4:6:8 simplifies to 1:2:3:4, which is incorrect. The nth second formula gives s_n ∝ (2n−1), producing odd numbers: 1, 3, 5, 7 for n = 1, 2, 3, 4.",
+        "misconception": "Thinking distances increase in even multiples rather than as consecutive odd numbers."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A particle starts from rest and moves with an acceleration that doubles every second. If the acceleration at t = 1 s is 2 m/s², what is the velocity at the end of t = 3 s? (Assume acceleration is constant within each second interval.)",
+    "explanation": "Acceleration values: during 1st second a₁ = 1 m/s² (average, but here we treat as: at t=1s, a=2; so during 1st s, a=1 m/s² since it doubles each second, starting from some a₀). Rethinking: if at t=1s, a=2 m/s², and acceleration doubles each second, then at t=2s, a=4 m/s²; at t=3s, a=8 m/s². Treating each 1-second interval with constant acceleration: Δv₁ = 2×1=2 m/s (1st second), Δv₂ = 4×1=4 m/s (2nd second), Δv₃ = 8×1=8 m/s (3rd second). Total v = 0+2+4+8 = 14 m/s.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "variable-acceleration",
+      "velocity-calculation",
+      "equations-of-motion"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "6 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "10 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "12 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "14 m/s",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "6 m/s results from only summing two intervals (2+4) or from incorrectly using only the average acceleration over 3 s. Three full second-intervals contribute: Δv = 2+4+8 = 14 m/s.",
+        "misconception": "Counting only two of the three time intervals or ignoring the third doubling."
+      },
+      {
+        "option_key": "B",
+        "hint": "10 m/s would result from summing as 2+4+4 = 10 (not doubling the last interval) or computing 2+3+5 incorrectly. The acceleration doubles: 2, 4, 8, giving Δv = 2+4+8 = 14 m/s.",
+        "misconception": "Not correctly applying the doubling rule to each successive second."
+      },
+      {
+        "option_key": "C",
+        "hint": "12 m/s would result from using 2+4+6 = 12 (arithmetic progression instead of geometric). Doubling means 2, 4, 8 (geometric), not 2, 4, 6 (arithmetic).",
+        "misconception": "Treating the increase as arithmetic (adding 2 each time) rather than geometric (doubling each time)."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The slope of a displacement-time (s-t) graph gives the velocity of the object.\n\nReason (R): Velocity is defined as the rate of change of displacement with respect to time (v = ds/dt).",
+    "explanation": "The slope of the s-t graph at any point is ds/dt, which is the instantaneous velocity by definition. The Assertion is correct because the slope of the displacement-time graph directly yields velocity. The Reason is also correct and provides the precise mathematical definition that explains why the slope equals velocity. R is the correct explanation of A.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "s-t-graph",
+      "slope-interpretation",
+      "velocity-definition"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R directly defines why the slope of the s-t graph equals velocity (slope = ds/dt = velocity by definition), making R the correct and sufficient explanation of A. Option B is wrong.",
+        "misconception": "Thinking R is correct but unrelated to A; in fact R is the defining formula that makes A true."
+      },
+      {
+        "option_key": "C",
+        "hint": "R is not incorrect; v = ds/dt is the standard definition of velocity. Both A and R are correct, and R explains A through this definition.",
+        "misconception": "Incorrectly identifying the standard kinematic definition of velocity as wrong."
+      },
+      {
+        "option_key": "D",
+        "hint": "A is not incorrect. The slope of a displacement-time graph does give velocity (ds/dt). Both statements are correct and causally linked.",
+        "misconception": "Incorrectly believing that the s-t slope gives something other than velocity (e.g., acceleration)."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): For a body thrown vertically upward, the time of ascent equals the time of descent (ignoring air resistance).\n\nReason (R): This is because the acceleration due to gravity acts equally and in the same direction during both ascent and descent, making the motion symmetric about the highest point.",
+    "explanation": "The Assertion is correct: by symmetry of kinematics under constant acceleration, time of ascent = time of descent = u/g. The Reason is also correct: gravity is constant (magnitude and direction) throughout the flight, making the equations of motion symmetric. However, the phrase 'same direction during both ascent and descent' in R is technically accurate (gravity always acts downward), and this symmetry indeed causes equal times. R is the correct explanation of A.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "vertical-throw-upward",
+      "time-of-flight",
+      "symmetry-of-motion"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R provides the mechanistic reason for symmetry: constant g in a fixed direction creates symmetric equations for ascent and descent. This directly explains why ascent time equals descent time, so R IS the correct explanation.",
+        "misconception": "Separating A and R as unrelated truths when R directly and sufficiently explains the symmetry stated in A."
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct. Gravity acts downward with constant magnitude throughout both ascent and descent, which is precisely the condition that makes the kinematic equations symmetric and produces equal ascent and descent times.",
+        "misconception": "Finding a subtle inaccuracy in R where none exists; the constant nature of g is the valid reason for the symmetry."
+      },
+      {
+        "option_key": "D",
+        "hint": "A is not incorrect. Time of ascent = u/g and time of descent = u/g are derived from the same kinematic equations, confirming they are equal. A is a well-established kinematic result.",
+        "misconception": "Doubting the standard kinematic result that ascent and descent times are equal under constant gravity."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the following graphical features (Column I) with the physical quantities they represent (Column II):\n\nColumn I:\n(P) Slope of displacement-time (s-t) graph\n(Q) Area under velocity-time (v-t) graph\n(R) Slope of velocity-time (v-t) graph\n(S) Area under acceleration-time (a-t) graph\n\nColumn II:\n(1) Acceleration\n(2) Change in velocity\n(3) Displacement\n(4) Velocity",
+    "explanation": "P → (4): Slope of s-t graph = ds/dt = velocity. Q → (3): Area under v-t graph = ∫v dt = displacement. R → (1): Slope of v-t graph = dv/dt = acceleration. S → (2): Area under a-t graph = ∫a dt = change in velocity (Δv). These four relationships are the backbone of graphical analysis in kinematics.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "graphical-analysis",
+      "s-t-graph",
+      "v-t-graph",
+      "a-t-graph",
+      "slope-and-area"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→(1), Q→(3), R→(4), S→(2)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→(4), Q→(3), R→(1), S→(2)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "P→(4), Q→(2), R→(1), S→(3)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P→(3), Q→(4), R→(2), S→(1)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Option A maps P→(1) which would mean slope of s-t gives acceleration. But slope of s-t = ds/dt = velocity (4), not acceleration. Acceleration is the slope of the v-t graph (R→1).",
+        "misconception": "Swapping the slopes of s-t and v-t graphs; s-t slope = velocity, v-t slope = acceleration."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C maps Q→(2) meaning area under v-t = change in velocity. But area under a-t = ∫a dt = Δv (change in velocity). Area under v-t = ∫v dt = displacement (3). Q and S mappings are swapped.",
+        "misconception": "Confusing which graph's area gives displacement versus change in velocity."
+      },
+      {
+        "option_key": "D",
+        "hint": "Option D maps P→(3) meaning slope of s-t = displacement, which is circular and dimensionally incorrect (slope has units of m/s, not m). Slope of s-t = velocity (4), not displacement.",
+        "misconception": "Confusing the slope of the graph with the quantity plotted on the y-axis."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the following equations/conditions (Column I) with the corresponding physical situations (Column II):\n\nColumn I:\n(P) v² = 2gH\n(Q) T = 2u/g\n(R) s_n = a(2n−1)/2\n(S) v_rel = v₁ + v₂\n\nColumn II:\n(1) Total time of flight for vertical throw upward\n(2) Distance covered in nth second from rest\n(3) Final velocity of a body dropped from height H\n(4) Relative velocity of two bodies moving in opposite directions",
+    "explanation": "P → (3): A body dropped from height H gains velocity v where v² = u² + 2gH with u = 0, giving v² = 2gH. Q → (1): Total time of flight = 2u/g for vertical projection upward. R → (2): nth second distance for body starting from rest (u=0): s_n = 0 + a(2n−1)/2 = a(2n−1)/2. S → (4): For two bodies moving in opposite directions, relative velocity = v₁ + v₂.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "free-fall",
+      "time-of-flight",
+      "nth-second-formula",
+      "relative-velocity"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→(1), Q→(3), R→(2), S→(4)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→(3), Q→(1), R→(4), S→(2)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P→(3), Q→(2), R→(1), S→(4)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P→(3), Q→(1), R→(2), S→(4)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Option A maps P→(1) as if v² = 2gH represents time of flight, which is dimensionally wrong (v² has units m²/s², not seconds). v² = 2gH is the velocity of a freely falling body after dropping height H.",
+        "misconception": "Misidentifying the physical meaning of the energy-based velocity equation for free fall."
+      },
+      {
+        "option_key": "B",
+        "hint": "Option B maps R→(4), associating the nth second formula with relative velocity. R is the nth second distance formula (s_n = a(2n−1)/2), not a relative velocity expression. S = v₁ + v₂ is for opposite-direction relative motion.",
+        "misconception": "Misidentifying the nth second formula as a relative velocity equation."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C maps Q→(2), implying T = 2u/g gives nth second distance, which is dimensionally wrong (2u/g has units of time, not length). Q correctly matches with time of flight (1).",
+        "misconception": "Confusing the time-of-flight formula (dimensional result in seconds) with a distance formula."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "A body undergoing uniform acceleration has a constant rate of change of velocity.",
+    "explanation": "Uniform acceleration means acceleration is constant (a = constant). Acceleration is defined as the rate of change of velocity (a = dv/dt). Therefore, if acceleration is constant, the rate of change of velocity is constant. This statement is TRUE.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "uniform-acceleration",
+      "rate-of-change-of-velocity",
+      "definition-of-acceleration"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement is True. By definition, uniform acceleration means a = dv/dt = constant. A constant rate of change of velocity is exactly what uniform acceleration means.",
+        "misconception": "Thinking uniform acceleration implies velocity is constant rather than the rate of change of velocity being constant."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable (---). The question is a True/False type; evaluate the statement using the definition a = dv/dt = constant for uniform acceleration.",
+        "misconception": "N/A — placeholder option."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable (---). Focus on options A and B; the statement correctly describes uniform acceleration.",
+        "misconception": "N/A — placeholder option."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The stopping distance of a vehicle is directly proportional to its initial speed.",
+    "explanation": "The stopping distance is given by s = u²/(2a), where u is the initial speed and a is the deceleration. This shows that stopping distance is proportional to u² (the square of initial speed), NOT to u directly. Doubling the speed quadruples the stopping distance. Therefore, the statement is FALSE.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "stopping-distance",
+      "proportionality",
+      "v-squared-formula"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The statement is False. From v² = u² − 2as with v = 0: s = u²/(2a). Stopping distance is proportional to u², not u. This is why highway speed limits drastically affect braking distances.",
+        "misconception": "Assuming a simple linear (direct) relationship between speed and stopping distance, ignoring that kinetic energy and thus stopping distance scale as v²."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable (---). From v² = u² + 2as with v = 0 and a negative (deceleration): s = u²/(2|a|) — a quadratic, not linear, dependence on u.",
+        "misconception": "N/A — placeholder option."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable (---). The key formula to remember is s ∝ u², making stopping distance proportional to the square of speed.",
+        "misconception": "N/A — placeholder option."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-19",
+    "question_type": "fill_in_the_blank",
+    "difficulty": "medium",
+    "question_text": "A ball is dropped from rest. Using the formula for distance covered in the nth second (s_n = u + a(n − ½)), the distance covered by the ball in the 4th second of free fall is _______ m. (Take g = 10 m/s²)",
+    "explanation": "Using the nth second formula: s_n = u + g(n − ½). Here u = 0 (dropped from rest), g = 10 m/s², n = 4. s₄ = 0 + 10(4 − ½) = 10 × 3.5 = 35 m. This confirms the odd-number pattern: distances in successive seconds are in ratio 1:3:5:7, so s₄ = 7 × (½ × g × 1²) = 7 × 5 = 35 m.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "nth-second-formula",
+      "free-fall",
+      "distance-in-nth-second"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "25 m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "40 m",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "35 m",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "45 m",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "25 m corresponds to the distance in the 3rd second: s₃ = 10(3 − 0.5) = 25 m. For the 4th second, use n = 4: s₄ = 10(4 − 0.5) = 35 m.",
+        "misconception": "Using n = 3 instead of n = 4 in the nth second formula."
+      },
+      {
+        "option_key": "B",
+        "hint": "40 m would result from computing s₄ = g × n = 10 × 4 = 40, ignoring the (n − ½) factor. The formula is s_n = u + g(n − ½) = 10 × 3.5 = 35 m.",
+        "misconception": "Omitting the −½ in the nth second formula, effectively using s_n = gn rather than g(n−½)."
+      },
+      {
+        "option_key": "D",
+        "hint": "45 m is the distance in the 5th second: s₅ = 10(5 − 0.5) = 45 m. For the 4th second, n = 4 gives s₄ = 10 × 3.5 = 35 m.",
+        "misconception": "Using n = 5 instead of n = 4, confusing which second is being asked about."
+      }
+    ]
+  },
+  {
+    "id": "phy-motion1d-equations-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A traffic accident investigator finds skid marks of 50 m on a road. The coefficient of friction between the tyres and the road gives a deceleration of 5 m/s² for any vehicle. Traffic rules state the speed limit on this road is 60 km/h. The investigator needs to determine whether the vehicle was speeding before braking.\n\nWhat was the speed of the vehicle just before it applied the brakes?",
+    "explanation": "Using v² = u² + 2as with v = 0 (vehicle stopped), a = −5 m/s², s = 50 m: 0 = u² + 2(−5)(50) → u² = 500 → u = √500 ≈ 22.36 m/s. Converting: 22.36 × (18/5) = 22.36 × 3.6 ≈ 80.5 km/h. Since 80.5 km/h > 60 km/h speed limit, the vehicle was indeed speeding. This real-world application demonstrates the importance of the stopping distance formula in forensic analysis.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "stopping-distance",
+      "v-squared-formula",
+      "real-world-application",
+      "unit-conversion"
+    ],
+    "topic": "Equations of Motion and Graphical Analysis",
+    "subject": "physics",
+    "chapter": "Motion in a Straight Line",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "50 km/h — the vehicle was within the speed limit",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "60 km/h — the vehicle was exactly at the speed limit",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "≈ 80.5 km/h — the vehicle was speeding",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "≈ 100 km/h — the vehicle was speeding",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "50 km/h ≈ 13.9 m/s. Check: stopping distance = (13.9)²/(2×5) ≈ 193/10 ≈ 19.3 m, not 50 m. The vehicle needed 50 m to stop, which requires a much higher initial speed.",
+        "misconception": "Guessing the speed without applying the formula, or using a linear (not quadratic) relationship between speed and stopping distance."
+      },
+      {
+        "option_key": "B",
+        "hint": "60 km/h = 16.67 m/s. Stopping distance = (16.67)²/(2×5) = 277.9/10 ≈ 27.8 m, not 50 m. The actual 50-m skid mark corresponds to a higher initial speed of about 80.5 km/h.",
+        "misconception": "Assuming the vehicle was at the speed limit without verifying the calculation against the observed skid length."
+      },
+      {
+        "option_key": "D",
+        "hint": "100 km/h ≈ 27.8 m/s. Stopping distance = (27.8)²/(2×5) = 772.8/10 ≈ 77.3 m, which is too large (actual skid is 50 m). The correct speed is √500 ≈ 22.36 m/s ≈ 80.5 km/h.",
+        "misconception": "Overestimating the initial speed; 100 km/h would require a much longer stopping distance than 50 m."
+      }
+    ]
+  }
+]
