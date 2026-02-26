@@ -15,8 +15,10 @@ export function useAudioPlayer() {
   useEffect(() => {
     Audio.setAudioModeAsync({
       playsInSilentModeIOS: true,
+      allowsRecordingIOS: false,
       staysActiveInBackground: true,
       shouldDuckAndroid: true,
+      playThroughEarpieceAndroid: false,
     });
 
     return () => {
@@ -43,12 +45,16 @@ export function useAudioPlayer() {
       if (!track) return;
 
       try {
-        const { sound } = await Audio.Sound.createAsync(
+        const { sound, status } = await Audio.Sound.createAsync(
           { uri: track.uri },
-          { shouldPlay: isPlaying, isLooping: true, volume: 0.5 }
+          { shouldPlay: isPlaying, isLooping: true, volume: 1.0 }
         );
         soundRef.current = sound;
         loadedTrackIndex.current = currentTrackIndex;
+
+        if (!status.isLoaded) {
+          console.warn(`Track loaded but status not ready: ${track.title}`);
+        }
       } catch (err) {
         console.warn(`Failed to load track: ${track.title}`, err);
       }
@@ -62,9 +68,13 @@ export function useAudioPlayer() {
     if (!soundRef.current || loadedTrackIndex.current !== currentTrackIndex) return;
 
     if (isPlaying) {
-      soundRef.current.playAsync().catch(() => {});
+      soundRef.current.playAsync().catch((err) => {
+        console.warn('playAsync failed:', err);
+      });
     } else {
-      soundRef.current.pauseAsync().catch(() => {});
+      soundRef.current.pauseAsync().catch((err) => {
+        console.warn('pauseAsync failed:', err);
+      });
     }
   }, [isPlaying, currentTrackIndex]);
 
