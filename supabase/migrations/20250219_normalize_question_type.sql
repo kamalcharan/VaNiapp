@@ -19,6 +19,7 @@ begin
     when 'match_the_following'  then 'match-the-following'
     when 'true_false'           then 'true-false'
     when 'fill_in_the_blank'    then 'fill-in-blanks'
+    when 'fill_in_the_blanks'   then 'fill-in-blanks'
     when 'fill_in_blanks'       then 'fill-in-blanks'
     when 'scenario_based'       then 'scenario-based'
     when 'diagram_based'        then 'diagram-based'
