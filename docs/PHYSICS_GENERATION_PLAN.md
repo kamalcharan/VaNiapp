@@ -286,16 +286,16 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B47 | `phy-magmov-force` | Force on Moving Charge and Current-Carrying Conductor | 20 | PENDING |
-| B48 | `phy-magmov-biot` | Biot-Savart Law and Ampere's Law | 20 | PENDING |
-| B49 | `phy-magmov-devices` | Cyclotron, Galvanometer, and Solenoid | 20 | PENDING |
+| B47 | `phy-magmov-force` | Force on Moving Charge and Current-Carrying Conductor | 20 | DONE |
+| B48 | `phy-magmov-biot` | Biot-Savart Law and Ampere's Law | 20 | DONE |
+| B49 | `phy-magmov-devices` | Cyclotron, Galvanometer, and Solenoid | 20 | DONE |
 | | | **Chapter 19 Total** | **60** | |
 
 ### Chapter 20: Magnetism and Matter (`phy-magmat`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B50 | `phy-magmat-dipole` | Magnetic Dipole, Bar Magnet, and Earth's Magnetism | 20 | PENDING |
+| B50 | `phy-magmat-dipole` | Magnetic Dipole, Bar Magnet, and Earth's Magnetism | 20 | DONE |
 | B51 | `phy-magmat-materials` | Dia-, Para-, and Ferromagnetic Materials | 20 | PENDING |
 | | | **Chapter 20 Total** | **40** | |
 
@@ -347,9 +347,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B60 | `phy-waveopt-interference` | Young's Double Slit Experiment and Interference | 20 | PENDING |
-| B61 | `phy-waveopt-diffraction` | Diffraction and Resolving Power | 20 | PENDING |
-| B62 | `phy-waveopt-polarisation` | Polarisation (Malus's Law, Brewster's Angle) | 20 | PENDING |
+| B60 | `phy-waveopt-interference` | Young's Double Slit Experiment and Interference | 20 | DONE |
+| B61 | `phy-waveopt-diffraction` | Diffraction and Resolving Power | 20 | DONE |
+| B62 | `phy-waveopt-polarisation` | Polarisation (Malus's Law, Brewster's Angle) | 20 | DONE |
 | | | **Chapter 25 Total** | **60** | |
 
 ---
@@ -362,24 +362,24 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B63 | `phy-dual-photoelectric` | Photoelectric Effect and Einstein's Equation | 20 | PENDING |
-| B64 | `phy-dual-debroglie` | de Broglie Wavelength and Davisson-Germer Experiment | 20 | PENDING |
+| B63 | `phy-dual-photoelectric` | Photoelectric Effect and Einstein's Equation | 20 | DONE |
+| B64 | `phy-dual-debroglie` | de Broglie Wavelength and Davisson-Germer Experiment | 20 | DONE |
 | | | **Chapter 26 Total** | **40** | |
 
 ### Chapter 27: Atoms (`phy-atoms`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B65 | `phy-atom-bohr` | Bohr Model and Hydrogen Spectrum | 20 | PENDING |
-| B66 | `phy-atom-spectra` | Spectral Series and Energy Levels | 20 | PENDING |
+| B65 | `phy-atom-bohr` | Bohr Model and Hydrogen Spectrum | 20 | DONE |
+| B66 | `phy-atom-spectra` | Spectral Series and Energy Levels | 20 | DONE |
 | | | **Chapter 27 Total** | **40** | |
 
 ### Chapter 28: Nuclei (`phy-nuclei`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B67 | `phy-nuclei-properties` | Nuclear Properties, Size, and Binding Energy | 20 | PENDING |
-| B68 | `phy-nuclei-decay` | Radioactivity, Nuclear Fission, and Fusion | 20 | PENDING |
+| B67 | `phy-nuclei-properties` | Nuclear Properties, Size, and Binding Energy | 20 | DONE |
+| B68 | `phy-nuclei-decay` | Radioactivity, Nuclear Fission, and Fusion | 20 | DONE |
 | | | **Chapter 28 Total** | **40** | |
 
 ### Chapter 29: Semiconductor Electronics (`phy-semi`) — 3 batches
@@ -618,15 +618,15 @@ Commit and push.
 | Ch16 Electric Charges and Fields | 3 | 60 | 60 | 100% |
 | Ch17 Electrostatic Potential | 3 | 60 | 60 | 100% |
 | Ch18 Current Electricity | 3 | 60 | 60 | 100% |
-| Ch19 Moving Charges & Magnetism | 3 | 60 | 0 | 0% |
-| Ch20 Magnetism and Matter | 2 | 40 | 0 | 0% |
+| Ch19 Moving Charges & Magnetism | 3 | 60 | 60 | 100% |
+| Ch20 Magnetism and Matter | 2 | 40 | 20 | 50% |
 | Ch21 Electromagnetic Induction | 2 | 40 | 0 | 0% |
 | Ch22 Alternating Current | 2 | 40 | 0 | 0% |
 | Ch23 Electromagnetic Waves | 1 | 20 | 0 | 0% |
 | Ch24 Ray Optics | 3 | 60 | 60 | 100% |
-| Ch25 Wave Optics | 3 | 60 | 0 | 0% |
-| Ch26 Dual Nature | 2 | 40 | 0 | 0% |
-| Ch27 Atoms | 2 | 40 | 0 | 0% |
-| Ch28 Nuclei | 2 | 40 | 0 | 0% |
+| Ch25 Wave Optics | 3 | 60 | 60 | 100% |
+| Ch26 Dual Nature | 2 | 40 | 40 | 100% |
+| Ch27 Atoms | 2 | 40 | 40 | 100% |
+| Ch28 Nuclei | 2 | 40 | 40 | 100% |
 | Ch29 Semiconductor Electronics | 3 | 60 | 0 | 0% |
-| **TOTAL** | **71** | **1,420** | **620** | **44%** |
+| **TOTAL** | **71** | **1,420** | **880** | **62%** |
