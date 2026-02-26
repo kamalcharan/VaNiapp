@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet,
   Pressable,
-  FlatList,
+  SectionList,
   Animated,
   Easing,
   ActivityIndicator,
@@ -16,13 +16,14 @@ import * as Haptics from 'expo-haptics';
 
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
-import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
 import { removeBookmark } from '../../src/store/slices/bookmarkSlice';
 import { supabase } from '../../src/lib/supabase';
 import { getV2QuestionsByIds } from '../../src/data/questions';
+import { SUBJECT_META } from '../../src/constants/subjects';
+import { reportError } from '../../src/lib/errorReporting';
 
 interface BookmarkedQuestion {
   id: string;
@@ -31,6 +32,13 @@ interface BookmarkedQuestion {
   chapterId: string;
   difficulty: string;
   correctAnswer: string;
+}
+
+interface SubjectSection {
+  title: string;
+  emoji: string;
+  color: string;
+  data: BookmarkedQuestion[];
 }
 
 export default function BookmarksScreen() {
@@ -71,58 +79,89 @@ export default function BookmarksScreen() {
 
     (async () => {
       setIsLoading(true);
+      try {
+        // 1. Look up local questions first (chapter bank + V2 samples)
+        const localQuestions = getV2QuestionsByIds(bookmarkedIds);
+        const localResults: BookmarkedQuestion[] = localQuestions.map((q) => ({
+          id: q.id,
+          questionText: q.text,
+          subjectId: q.subjectId,
+          chapterId: q.chapterId,
+          difficulty: q.difficulty,
+          correctAnswer: '',
+        }));
+        const foundLocalIds = new Set(localResults.map((q) => q.id));
 
-      // 1. Look up local questions first (chapter bank + V2 samples)
-      const localQuestions = getV2QuestionsByIds(bookmarkedIds);
-      const localResults: BookmarkedQuestion[] = localQuestions.map((q) => ({
-        id: q.id,
-        questionText: q.text,
-        subjectId: q.subjectId,
-        chapterId: q.chapterId,
-        difficulty: q.difficulty,
-        correctAnswer: '',
-      }));
-      const foundLocalIds = new Set(localResults.map((q) => q.id));
+        // 2. For any IDs not found locally, try Supabase
+        const remainingIds = bookmarkedIds.filter((id) => !foundLocalIds.has(id));
+        let supabaseResults: BookmarkedQuestion[] = [];
 
-      // 2. For any IDs not found locally, try Supabase
-      const remainingIds = bookmarkedIds.filter((id) => !foundLocalIds.has(id));
-      let supabaseResults: BookmarkedQuestion[] = [];
+        if (remainingIds.length > 0 && supabase) {
+          // Search by both DB id AND payload->question_id since
+          // dbToV2() uses payload.question_id as the question ID
+          const { data } = await supabase
+            .from('med_questions')
+            .select('id, question_text, subject_id, chapter_id, difficulty, correct_answer, payload')
+            .or(
+              `id.in.(${remainingIds.map((i) => `"${i}"`).join(',')}),` +
+              `payload->>question_id.in.(${remainingIds.map((i) => `"${i}"`).join(',')})`
+            )
+            .eq('status', 'active');
 
-      if (remainingIds.length > 0 && supabase) {
-        const { data } = await supabase
-          .from('med_questions')
-          .select('id, question_text, subject_id, chapter_id, difficulty, correct_answer, payload')
-          .in('id', remainingIds)
-          .eq('is_active', true);
-
-        if (data && data.length > 0) {
-          supabaseResults = data.map((q: any) => ({
-            id: (q.payload as any)?.question_id || q.id,
-            questionText: q.question_text,
-            subjectId: q.subject_id,
-            chapterId: q.chapter_id,
-            difficulty: q.difficulty,
-            correctAnswer: q.correct_answer,
-          }));
+          if (data && data.length > 0) {
+            supabaseResults = data.map((q: any) => {
+              const qid = (q.payload as any)?.question_id || q.id;
+              return {
+                id: qid,
+                questionText: q.question_text,
+                subjectId: q.subject_id,
+                chapterId: q.chapter_id,
+                difficulty: q.difficulty,
+                correctAnswer: q.correct_answer,
+              };
+            });
+          }
         }
-      }
 
-      setQuestions([...localResults, ...supabaseResults]);
-      setIsLoading(false);
+        setQuestions([...localResults, ...supabaseResults]);
+      } catch (err) {
+        reportError(err, 'medium', 'Bookmarks.fetchQuestions');
+      } finally {
+        setIsLoading(false);
+      }
     })();
   }, [bookmarkedIds]);
+
+  // Group questions by subject
+  const sections = useMemo<SubjectSection[]>(() => {
+    const grouped: Record<string, BookmarkedQuestion[]> = {};
+    for (const q of questions) {
+      if (!grouped[q.subjectId]) grouped[q.subjectId] = [];
+      grouped[q.subjectId].push(q);
+    }
+    // Sort subjects in consistent order
+    const order = ['physics', 'chemistry', 'botany', 'zoology'];
+    return Object.entries(grouped)
+      .sort(([a], [b]) => {
+        const ai = order.indexOf(a);
+        const bi = order.indexOf(b);
+        return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+      })
+      .map(([subjectId, data]) => {
+        const meta = SUBJECT_META[subjectId] || { name: subjectId, emoji: '', color: '#94A3B8' };
+        return {
+          title: meta.name,
+          emoji: meta.emoji,
+          color: meta.color,
+          data,
+        };
+      });
+  }, [questions]);
 
   const DIFF_COLORS: Record<string, string> = {
     easy: '#22C55E',
     medium: '#F59E0B',
     hard: '#EF4444',
-  };
-
-  const SUBJECT_EMOJI: Record<string, string> = {
-    zoology: '\uD83E\uDD9A',
-    botany: '\uD83C\uDF3F',
-    physics: '\u269B\uFE0F',
-    chemistry: '\uD83E\uDDEA',
   };
 
   const handleRemove = (id: string) => {
@@ -186,33 +225,40 @@ export default function BookmarksScreen() {
                 </Text>
               </View>
             ) : (
-              <FlatList
-                data={questions}
+              <SectionList
+                sections={sections}
                 keyExtractor={(item) => item.id}
                 contentContainerStyle={styles.list}
                 showsVerticalScrollIndicator={false}
+                stickySectionHeadersEnabled={false}
+                renderSectionHeader={({ section }) => (
+                  <View style={styles.sectionHeader}>
+                    <Text style={{ fontSize: 18 }}>{section.emoji}</Text>
+                    <Text style={[Typography.h3, { color: section.color }]}>
+                      {section.title}
+                    </Text>
+                    <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
+                      {section.data.length}
+                    </Text>
+                  </View>
+                )}
                 renderItem={({ item, index }) => (
                   <JournalCard delay={index * 80}>
                     <View style={styles.card}>
                       <View style={styles.cardTop}>
-                        <View style={styles.badges}>
-                          <View
+                        <View
+                          style={[
+                            styles.diffBadge,
+                            { backgroundColor: (DIFF_COLORS[item.difficulty] || '#94A3B8') + '20' },
+                          ]}
+                        >
+                          <Text
                             style={[
-                              styles.diffBadge,
-                              { backgroundColor: (DIFF_COLORS[item.difficulty] || '#94A3B8') + '20' },
+                              styles.diffText,
+                              { color: DIFF_COLORS[item.difficulty] || '#94A3B8' },
                             ]}
                           >
-                            <Text
-                              style={[
-                                styles.diffText,
-                                { color: DIFF_COLORS[item.difficulty] || '#94A3B8' },
-                              ]}
-                            >
-                              {item.difficulty.toUpperCase()}
-                            </Text>
-                          </View>
-                          <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
-                            {SUBJECT_EMOJI[item.subjectId] || ''} {item.subjectId}
+                            {item.difficulty.toUpperCase()}
                           </Text>
                         </View>
                         <Pressable
@@ -241,6 +287,7 @@ export default function BookmarksScreen() {
                     </View>
                   </JournalCard>
                 )}
+                renderSectionFooter={() => <View style={{ height: Spacing.md }} />}
               />
             )}
           </Animated.View>
@@ -284,9 +331,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: Spacing.xl,
   },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    paddingVertical: Spacing.sm,
+    marginTop: Spacing.xs,
+  },
   list: {
     padding: Spacing.lg,
-    gap: Spacing.md,
     paddingBottom: 40,
   },
   card: {
@@ -296,11 +349,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  badges: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.sm,
   },
   diffBadge: {
     paddingHorizontal: 8,
