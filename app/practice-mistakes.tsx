@@ -54,36 +54,57 @@ export default function PracticeMistakesScreen() {
   // Fetch questions from Supabase and filter to wrong ones
   const [wrongQuestions, setWrongQuestions] = useState<QuestionV2[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isFallbackMode, setIsFallbackMode] = useState(false);
 
   useEffect(() => {
-    if (!chapterId || !chapterStrength?.questionResults) {
+    if (!chapterId) {
       setIsLoading(false);
       return;
     }
 
-    // Find question IDs answered wrong (value === false, skip remote-* placeholders)
-    const wrongIds = new Set<string>();
-    for (const [qid, correct] of Object.entries(chapterStrength.questionResults)) {
-      if (!correct && !qid.startsWith('remote-')) {
-        wrongIds.add(qid);
+    // Find real wrong question IDs (skip remote-* placeholders)
+    const realWrongIds = new Set<string>();
+    const hasAnyWrong = chapterStrength?.questionResults
+      ? Object.values(chapterStrength.questionResults).some((v) => !v)
+      : false;
+
+    if (chapterStrength?.questionResults) {
+      for (const [qid, correct] of Object.entries(chapterStrength.questionResults)) {
+        if (!correct && !qid.startsWith('remote-')) {
+          realWrongIds.add(qid);
+        }
       }
-    }
-
-    if (wrongIds.size === 0) {
-      setIsLoading(false);
-      return;
     }
 
     fetchQuestionsByChapter(chapterId)
       .then((result) => {
-        if (result.ok) {
-          const wrong = result.questions.filter((q) => wrongIds.has(q.id));
-          setWrongQuestions(wrong);
+        if (!result.ok) return;
+
+        if (realWrongIds.size > 0) {
+          // We have real wrong question IDs — show only those
+          const wrong = result.questions.filter((q) => realWrongIds.has(q.id));
+          if (wrong.length > 0) {
+            setWrongQuestions(wrong);
+            return;
+          }
+        }
+
+        // Fallback: no real wrong IDs found (only remote-* placeholders or ID mismatch)
+        // Show all chapter questions as a review practice
+        if (hasAnyWrong && result.questions.length > 0) {
+          // Shuffle and pick up to 20 questions for review
+          const shuffled = [...result.questions];
+          for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+          }
+          setWrongQuestions(shuffled.slice(0, Math.min(20, shuffled.length)));
+          setIsFallbackMode(true);
         }
       })
       .catch((e) => reportError(e, 'medium', 'PracticeMistakes.fetchQuestions'))
       .finally(() => setIsLoading(false));
-  }, [chapterId, chapterStrength?.questionResults]);
+  }, [chapterId]);
 
   // Quiz state
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -282,7 +303,7 @@ export default function PracticeMistakesScreen() {
           </Pressable>
           <View style={styles.topCenter}>
             <Text style={[Typography.bodySm, { color: colors.textSecondary }]} numberOfLines={1}>
-              {'🔄'} Practice My Mistakes
+              {'🔄'} {isFallbackMode ? 'Chapter Review' : 'Practice My Mistakes'}
             </Text>
           </View>
           <View style={[styles.counterBadge, { backgroundColor: '#EF444420' }]}>

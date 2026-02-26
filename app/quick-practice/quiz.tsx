@@ -81,6 +81,35 @@ export default function QuickPracticeQuizScreen() {
   const scrollRef = useRef<ScrollView>(null);
   const startTimeRef = useRef(Date.now());
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const answersRef = useRef<Record<string, string>>({});
+  const quizCompletedRef = useRef(false);
+
+  // Save partial results when user exits early (back button, swipe, etc.)
+  useEffect(() => {
+    return () => {
+      if (quizCompletedRef.current || questions.length === 0) return;
+      const partialAnswers = answersRef.current;
+      if (Object.keys(partialAnswers).length === 0) return;
+
+      // Group by chapter and record per-chapter strength
+      const byChapter: Record<string, { questionId: string; correct: boolean }[]> = {};
+      for (const [qId, optId] of Object.entries(partialAnswers)) {
+        const q = questions.find((qq) => qq.id === qId);
+        if (!q) continue;
+        if (!byChapter[q.chapterId]) byChapter[q.chapterId] = [];
+        byChapter[q.chapterId].push({ questionId: qId, correct: optId === getCorrectId(q) });
+      }
+      for (const [chapId, answered] of Object.entries(byChapter)) {
+        dispatch(recordChapterAttempt({
+          chapterId: chapId,
+          subjectId: subject,
+          totalInBank: 25,
+          answeredQuestions: answered,
+        }));
+        syncChapterProgress(chapId).catch((e) => reportError(e, 'low', 'QuickQuiz.partialSync'));
+      }
+    };
+  }, [questions, subject]);
 
   const question = questions[currentIndex];
   const isBookmarked = question ? bookmarkedIds.includes(question.id) : false;
@@ -143,6 +172,7 @@ export default function QuickPracticeQuizScreen() {
   const timerColor = timeLeftMs < 60000 ? '#EF4444' : timeLeftMs < 180000 ? '#F59E0B' : colors.text;
 
   const finishQuiz = () => {
+    quizCompletedRef.current = true;
     if (timerRef.current) clearInterval(timerRef.current);
     const currentAnswers = { ...answers };
     if (question && selectedOptionId) {
@@ -211,7 +241,11 @@ export default function QuickPracticeQuizScreen() {
       correct ? Haptics.ImpactFeedbackStyle.Light : Haptics.ImpactFeedbackStyle.Heavy
     );
 
-    setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
+    setAnswers((prev) => {
+      const next = { ...prev, [question.id]: optionId };
+      answersRef.current = next;
+      return next;
+    });
 
     if (correct) {
       setAnswerStreak((s) => s + 1);

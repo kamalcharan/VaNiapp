@@ -136,6 +136,35 @@ export default function ChapterQuizScreen() {
   const streakScaleAnim = useRef(new Animated.Value(0)).current;
   const scrollRef = useRef<ScrollView>(null);
   const startTimeRef = useRef(Date.now());
+  const answersRef = useRef<Record<string, string>>({});
+  const quizCompletedRef = useRef(false);
+
+  // Save partial results when the user exits the quiz early (back button, swipe, etc.)
+  useEffect(() => {
+    return () => {
+      if (quizCompletedRef.current || !chapterId || questions.length === 0) return;
+      const partialAnswers = answersRef.current;
+      if (Object.keys(partialAnswers).length === 0) return;
+
+      // Record whatever was answered so far into strength tracking
+      dispatch(
+        recordChapterAttempt({
+          chapterId,
+          subjectId,
+          totalInBank,
+          answeredQuestions: Object.entries(partialAnswers).map(([qId, optId]) => {
+            const q = questions.find((qq) => qq.id === qId);
+            return {
+              questionId: qId,
+              correct: q ? optId === getCorrectId(q) : false,
+            };
+          }),
+        }),
+      );
+      // Sync to Supabase in background
+      syncChapterProgress(chapterId).catch((e) => reportError(e, 'low', 'ChapterQuiz.partialSync'));
+    };
+  }, [chapterId, questions, subjectId, totalInBank]);
 
   // Start session once questions are loaded
   useEffect(() => {
@@ -181,7 +210,11 @@ export default function ChapterQuizScreen() {
         : Haptics.ImpactFeedbackStyle.Heavy,
     );
 
-    setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
+    setAnswers((prev) => {
+      const next = { ...prev, [question.id]: optionId };
+      answersRef.current = next;
+      return next;
+    });
 
     if (correct) {
       dispatch(incrementStreak());
@@ -215,7 +248,8 @@ export default function ChapterQuizScreen() {
     if (!question) return;
 
     if (currentIndex >= questions.length - 1) {
-      // Last question — compute final score
+      // Last question — mark as fully completed so cleanup doesn't double-save
+      quizCompletedRef.current = true;
       const allAnswers = { ...answers, [question.id]: selectedOptionId! };
       const finalCorrect = Object.entries(allAnswers).filter(([qId, optId]) => {
         const q = questions.find((qq) => qq.id === qId);
