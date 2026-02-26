@@ -42,9 +42,10 @@ export default function UpgradeScreen() {
   const router = useRouter();
   const shadow = mode === 'dark' ? Shadows.puffyDark : Shadows.puffy;
 
-  const { name: userName, email: userEmail, targetYear } = useSelector(
-    (s: RootState) => s.auth,
-  );
+  const authUser = useSelector((s: RootState) => s.auth.user);
+  const userName = authUser?.name ?? '';
+  const userEmail = authUser?.email ?? '';
+  const targetYear = authUser?.targetYear;
 
   // Determine which plans to show
   const availablePlanIds = getPlansForUser(targetYear);
@@ -212,6 +213,17 @@ export default function UpgradeScreen() {
                 )}
 
                 <View style={styles.planRow}>
+                  {/* Radio indicator — inline, not absolute */}
+                  <View style={[
+                    styles.radio,
+                    {
+                      borderColor: isSelected ? colors.primary : colors.textTertiary,
+                      backgroundColor: isSelected ? colors.primary : 'transparent',
+                    },
+                  ]}>
+                    {isSelected && <View style={styles.radioInner} />}
+                  </View>
+
                   <View style={{ flex: 1 }}>
                     <Text style={[Typography.h3, { color: colors.text }]}>{p.name}</Text>
                     <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 2 }]}>
@@ -226,17 +238,6 @@ export default function UpgradeScreen() {
                       {p.period}
                     </Text>
                   </View>
-                </View>
-
-                {/* Radio indicator */}
-                <View style={[
-                  styles.radio,
-                  {
-                    borderColor: isSelected ? colors.primary : colors.textTertiary,
-                    backgroundColor: isSelected ? colors.primary : 'transparent',
-                  },
-                ]}>
-                  {isSelected && <View style={styles.radioInner} />}
                 </View>
               </Pressable>
             );
@@ -439,12 +440,9 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: BorderRadius.sm,
   },
   radio: {
-    position: 'absolute',
-    top: Spacing.xl,
-    left: Spacing.xl,
-    width: 20,
-    height: 20,
-    borderRadius: 10,
+    width: 22,
+    height: 22,
+    borderRadius: 11,
     borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
