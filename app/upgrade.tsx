@@ -38,6 +38,7 @@ import {
 import RazorpayCheckoutModal, {
   type RazorpayCheckoutParams,
   type RazorpayPaymentResult,
+  type RazorpayPaymentError,
 } from '../src/components/RazorpayCheckoutModal';
 
 export default function UpgradeScreen() {
@@ -121,11 +122,10 @@ export default function UpgradeScreen() {
           gstPaise: 0,
         });
         store.dispatch(setPaid(true));
-        Alert.alert(
-          'Welcome to VaNi!',
-          'Full yearly access activated. Enjoy your learning journey!',
-          [{ text: 'Let\'s Go', onPress: () => router.replace('/(main)') }],
-        );
+        router.replace({
+          pathname: '/payment-success',
+          params: { planName: 'Yearly' },
+        });
         return;
       }
 
@@ -165,17 +165,26 @@ export default function UpgradeScreen() {
         gstPaise: pricing.gst * 100,
       });
       store.dispatch(setPaid(true));
-      Alert.alert(
-        'Payment Successful!',
-        `Your ${plan.name} plan is now active. Happy learning!`,
-        [{ text: 'Let\'s Go', onPress: () => router.replace('/(main)') }],
-      );
+      router.replace({
+        pathname: '/payment-success',
+        params: { planName: plan.name },
+      });
     } catch (err: any) {
       Alert.alert('Error', err?.message || 'Failed to save subscription.');
     } finally {
       setLoading(false);
     }
   }, [selectedPlan, appliedCoupon, pricing, plan, router]);
+
+  const handlePaymentFailure = useCallback((error: RazorpayPaymentError) => {
+    setCheckoutVisible(false);
+    setCheckoutParams(null);
+    setLoading(false);
+    router.push({
+      pathname: '/payment-failure',
+      params: { errorDescription: error.errorDescription },
+    });
+  }, [router]);
 
   const handlePaymentDismiss = useCallback(() => {
     setCheckoutVisible(false);
@@ -392,6 +401,7 @@ export default function UpgradeScreen() {
         visible={checkoutVisible}
         params={checkoutParams}
         onSuccess={handlePaymentSuccess}
+        onFailure={handlePaymentFailure}
         onDismiss={handlePaymentDismiss}
       />
     </DotGridBackground>

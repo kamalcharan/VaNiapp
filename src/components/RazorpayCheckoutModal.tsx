@@ -17,10 +17,16 @@ export interface RazorpayPaymentResult {
   signature: string;
 }
 
+export interface RazorpayPaymentError {
+  errorCode: string;
+  errorDescription: string;
+}
+
 interface Props {
   visible: boolean;
   params: RazorpayCheckoutParams | null;
   onSuccess: (result: RazorpayPaymentResult) => void;
+  onFailure: (error: RazorpayPaymentError) => void;
   onDismiss: () => void;
 }
 
@@ -98,7 +104,7 @@ function buildCheckoutHtml(params: RazorpayCheckoutParams): string {
 </html>`;
 }
 
-export default function RazorpayCheckoutModal({ visible, params, onSuccess, onDismiss }: Props) {
+export default function RazorpayCheckoutModal({ visible, params, onSuccess, onFailure, onDismiss }: Props) {
   const webviewRef = useRef<WebView>(null);
 
   const handleMessage = useCallback((event: { nativeEvent: { data: string } }) => {
@@ -110,13 +116,18 @@ export default function RazorpayCheckoutModal({ visible, params, onSuccess, onDi
           orderId: data.razorpay_order_id,
           signature: data.razorpay_signature,
         });
-      } else if (data.type === 'dismissed' || data.type === 'failed') {
+      } else if (data.type === 'failed') {
+        onFailure({
+          errorCode: data.error_code || 'UNKNOWN',
+          errorDescription: data.error_description || 'Payment failed. Please try again.',
+        });
+      } else if (data.type === 'dismissed') {
         onDismiss();
       }
     } catch {
       // ignore malformed messages
     }
-  }, [onSuccess, onDismiss]);
+  }, [onSuccess, onFailure, onDismiss]);
 
   if (!params) return null;
 
