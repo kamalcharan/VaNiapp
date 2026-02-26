@@ -9,21 +9,17 @@ import { pause, play, setTrack, skipNext, skipPrev, stopMusic } from '../store/s
  * Hook that manages expo-audio playback based on Redux music state.
  * Call this once in a screen that needs music playback (e.g. practice-question).
  *
- * Uses a single persistent AudioPlayer and swaps tracks via replace().
+ * Uses a single persistent AudioPlayer; swaps tracks via replace().
+ * Compatible with expo-audio 0.3.x (SDK 54).
  */
 export function useAudioPlayer() {
   const dispatch = useDispatch();
   const { currentTrackIndex, isPlaying } = useSelector((state: RootState) => state.music);
   const playerRef = useRef<AudioPlayer | null>(null);
   const loadedTrackIndex = useRef<number | null>(null);
-  // Guard against stale async callbacks after rapid skips
-  const loadIdRef = useRef(0);
 
   // Configure audio session once
   useEffect(() => {
-    // Note: interruptionMode is omitted — it crashes on Android due to a
-    // known expo-audio bug (expo/expo#34025). The default behaviour (mix)
-    // is fine for background lo-fi music.
     setAudioModeAsync({
       playsInSilentMode: true,
       shouldPlayInBackground: true,
@@ -37,7 +33,7 @@ export function useAudioPlayer() {
     };
   }, []);
 
-  // Load track when index changes — create player with source, use replace() for swaps
+  // Load track when index changes
   useEffect(() => {
     if (currentTrackIndex === null) {
       if (playerRef.current) {
@@ -50,35 +46,25 @@ export function useAudioPlayer() {
     const track = TRACKS[currentTrackIndex];
     if (!track) return;
 
-    const thisLoadId = ++loadIdRef.current;
-    const source = { uri: track.uri };
-
-    if (!playerRef.current) {
-      // First track — create the player with the source
-      const player = createAudioPlayer(source);
-      player.loop = true;
-      player.volume = 0.5;
-      playerRef.current = player;
-      loadedTrackIndex.current = currentTrackIndex;
-      if (isPlaying) {
-        player.play();
+    try {
+      if (!playerRef.current) {
+        // First track — create player with the source
+        const player = createAudioPlayer({ uri: track.uri });
+        player.loop = true;
+        player.volume = 0.5;
+        playerRef.current = player;
+      } else {
+        // Subsequent tracks — swap source (sync in 0.3.x)
+        playerRef.current.replace({ uri: track.uri });
       }
-    } else {
-      // Subsequent tracks — swap via replace()
-      const player = playerRef.current;
-      player.pause();
-      loadedTrackIndex.current = null;
 
-      player.replace(source).then(() => {
-        if (loadIdRef.current !== thisLoadId) return;
-        loadedTrackIndex.current = currentTrackIndex;
-        if (isPlaying) {
-          player.play();
-        }
-      }).catch(() => {
-        if (loadIdRef.current !== thisLoadId) return;
-        console.warn(`Failed to load track: ${track.title}`);
-      });
+      loadedTrackIndex.current = currentTrackIndex;
+
+      if (isPlaying) {
+        playerRef.current.play();
+      }
+    } catch {
+      console.warn(`Failed to load track: ${track.title}`);
     }
   }, [currentTrackIndex]);
 
