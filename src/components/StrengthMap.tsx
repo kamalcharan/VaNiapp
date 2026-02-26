@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { ChapterStrengthData } from '../store/slices/strengthSlice';
-import { NEET_CHAPTERS } from '../data/chapters';
+import { getChapters, CatalogChapter } from '../lib/catalog';
 import { SUBJECT_META } from '../constants/subjects';
 import { STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, StrengthLevel } from '../types';
 import { useTheme } from '../hooks/useTheme';
@@ -75,21 +75,25 @@ function SubjectSection({
   subjectId: string;
   colors: any;
 }) {
-  const chapters = useSelector((state: RootState) => state.strength.chapters);
+  const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
   const subjectMeta = SUBJECT_META[subjectId];
-  const subjectChapters = NEET_CHAPTERS.filter((c) => c.subjectId === subjectId);
+  const [catalogChapters, setCatalogChapters] = useState<CatalogChapter[]>([]);
+
+  useEffect(() => {
+    getChapters(subjectId).then(setCatalogChapters);
+  }, [subjectId]);
 
   const subjectStrength = useMemo(() => {
-    const chapterData = subjectChapters.map((ch) => {
-      const data = chapters[ch.id];
+    const chapterData = catalogChapters.map((ch) => {
+      const data = strengthChapters[ch.id];
       return {
         coverage: data?.coverage ?? 0,
         accuracy: data?.accuracy ?? 0,
-        totalInBank: ch.questionCount,
+        totalInBank: ch.avg_questions || 25,
       };
     });
     return evaluateSubjectStrength(chapterData);
-  }, [chapters, subjectChapters]);
+  }, [strengthChapters, catalogChapters]);
 
   const subjectConfig = getStrengthConfig(subjectStrength.level);
 
@@ -109,11 +113,11 @@ function SubjectSection({
       </View>
 
       {/* Chapter rows */}
-      {subjectChapters.map((ch) => (
+      {catalogChapters.map((ch) => (
         <ChapterRow
           key={ch.id}
           chapterName={ch.name}
-          data={chapters[ch.id] ?? null}
+          data={strengthChapters[ch.id] ?? null}
           colors={colors}
         />
       ))}
@@ -157,21 +161,25 @@ function CompactSubjectRow({
   subjectId: string;
   colors: any;
 }) {
-  const chapters = useSelector((state: RootState) => state.strength.chapters);
+  const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
   const subjectMeta = SUBJECT_META[subjectId];
-  const subjectChapters = NEET_CHAPTERS.filter((c) => c.subjectId === subjectId);
+  const [catalogChapters, setCatalogChapters] = useState<CatalogChapter[]>([]);
+
+  useEffect(() => {
+    getChapters(subjectId).then(setCatalogChapters);
+  }, [subjectId]);
 
   const subjectStrength = useMemo(() => {
-    const chapterData = subjectChapters.map((ch) => {
-      const data = chapters[ch.id];
+    const chapterData = catalogChapters.map((ch) => {
+      const data = strengthChapters[ch.id];
       return {
         coverage: data?.coverage ?? 0,
         accuracy: data?.accuracy ?? 0,
-        totalInBank: ch.questionCount,
+        totalInBank: ch.avg_questions || 25,
       };
     });
     return evaluateSubjectStrength(chapterData);
-  }, [chapters, subjectChapters]);
+  }, [strengthChapters, catalogChapters]);
 
   const config = getStrengthConfig(subjectStrength.level);
 

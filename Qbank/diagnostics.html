@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DB Diagnostics - Qbank Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .diag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+    .diag-box { text-align: center; padding: 20px; background: var(--gray-50); border-radius: var(--radius); border: 1px solid var(--gray-200); }
+    .diag-box .value { font-size: 2rem; font-weight: 700; }
+    .diag-box .label { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+    .diag-box.ok { border-color: #22c55e; background: #f0fdf4; }
+    .diag-box.warn { border-color: #f59e0b; background: #fffbeb; }
+    .diag-box.bad { border-color: #ef4444; background: #fef2f2; }
+    .chapter-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .chapter-table th, .chapter-table td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--gray-200); }
+    .chapter-table th { background: var(--gray-50); font-weight: 600; font-size: 12px; text-transform: uppercase; color: var(--gray-500); }
+    .chapter-table tr:hover { background: var(--gray-50); }
+    .subject-section { margin-top: 24px; }
+    .subject-header { font-size: 18px; font-weight: 700; margin-bottom: 8px; padding: 8px 12px; border-radius: var(--radius); }
+    .query-box { background: #1e293b; color: #e2e8f0; padding: 16px; border-radius: var(--radius); font-family: monospace; font-size: 13px; white-space: pre-wrap; margin: 12px 0; }
+  </style>
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-icon">🔍</span>
+          DB Diagnostics
+        </h1>
+        <p class="page-subtitle">Check what's actually in your database — question counts per subject & chapter</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Database Health Check</h3>
+          <button class="btn btn-primary" id="runBtn" onclick="runDiagnostics()">Run Diagnostics</button>
+        </div>
+        <div class="card-body" id="results">
+          <p style="color: var(--gray-500); text-align: center;">Click "Run Diagnostics" to query your database.</p>
+        </div>
+      </div>
+
+      <!-- App Query Tester -->
+      <div class="card" style="margin-top: 24px;">
+        <div class="card-header">
+          <h3 class="card-title">App Query Tester</h3>
+        </div>
+        <div class="card-body">
+          <p style="margin-bottom: 12px;">Test the exact same query the app uses for a chapter:</p>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <select id="chapterSelect" style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid var(--gray-300);">
+              <option value="">— run diagnostics first —</option>
+            </select>
+            <button class="btn btn-primary btn-sm" onclick="testAppQuery()">Test Query</button>
+          </div>
+          <div id="appQueryResult" style="margin-top: 12px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Qbank.requireAuth('admin');
+      if (!user) return;
+      Qbank.renderNavHeader();
+    });
+
+    async function runDiagnostics() {
+      const btn = document.getElementById('runBtn');
+      const results = document.getElementById('results');
+      btn.disabled = true;
+      btn.textContent = 'Querying...';
+      results.innerHTML = '<p>Querying database...</p>';
+
+      try {
+        // 1. Count all questions grouped by subject_id
+        const { data: subjectCounts, error: e1 } = await Qbank.supabase
+          .rpc('diagnostic_question_counts')
+          .select();
+
+        // If RPC doesn't exist, fall back to manual queries
+        let subjectData;
+        if (e1) {
+          // Manual approach: query each subject
+          subjectData = {};
+          for (const subj of ['physics', 'chemistry', 'botany', 'zoology']) {
+            const { count, error } = await Qbank.supabase
+              .from('med_questions')
+              .select('*', { count: 'exact', head: true })
+              .eq('subject_id', subj)
+              .eq('status', 'active');
+            subjectData[subj] = { total: error ? -1 : count };
+          }
+        }
+
+        // 2. Get chapter-level counts
+        const chapterData = {};
+        for (const subj of ['physics', 'chemistry', 'botany', 'zoology']) {
+          const { data: chapters, error: chErr } = await Qbank.supabase
+            .from('med_chapters')
+            .select('id, name, chapter_number')
+            .eq('subject_id', subj)
+            .eq('is_active', true)
+            .order('chapter_number');
+
+          if (chErr || !chapters) {
+            chapterData[subj] = { chapters: [], error: chErr?.message };
+            continue;
+          }
+
+          // For each chapter, count questions
+          const chapterResults = [];
+          for (const ch of chapters) {
+            const { count, error } = await Qbank.supabase
+              .from('med_questions')
+              .select('*', { count: 'exact', head: true })
+              .eq('chapter_id', ch.id)
+              .eq('status', 'active');
+
+            chapterResults.push({
+              id: ch.id,
+              name: ch.name,
+              number: ch.chapter_number,
+              questionCount: error ? -1 : count,
+              error: error?.message || null
+            });
+          }
+          chapterData[subj] = { chapters: chapterResults, error: null };
+        }
+
+        // 3. Check for orphaned questions (chapter_id not in med_chapters)
+        const { data: orphaned, error: orphErr } = await Qbank.supabase
+          .from('med_questions')
+          .select('subject_id, chapter_id')
+          .eq('status', 'active')
+          .not('chapter_id', 'in', `(${Object.values(chapterData).flatMap(s => s.chapters?.map(c => c.id) || []).join(',')})`)
+          .limit(100);
+
+        // 4. Total count
+        const { count: totalCount } = await Qbank.supabase
+          .from('med_questions')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'active');
+
+        // Populate chapter selector
+        const select = document.getElementById('chapterSelect');
+        select.innerHTML = '<option value="">— select a chapter —</option>';
+        for (const subj of ['physics', 'chemistry', 'botany', 'zoology']) {
+          const emoji = subj === 'physics' ? '⚛️' : subj === 'chemistry' ? '🧪' : subj === 'botany' ? '🌿' : '🦋';
+          (chapterData[subj]?.chapters || []).forEach(ch => {
+            select.innerHTML += `<option value="${ch.id}">${emoji} ${ch.id} (${ch.questionCount} qs)</option>`;
+          });
+        }
+
+        // Render
+        renderResults(subjectData, chapterData, totalCount, orphaned || []);
+
+      } catch (err) {
+        results.innerHTML = `<p style="color: #ef4444;">Error: ${Qbank.escapeHtml(err.message)}</p>`;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Run Diagnostics';
+      }
+    }
+
+    function renderResults(subjectData, chapterData, totalCount, orphaned) {
+      const results = document.getElementById('results');
+      let html = '';
+
+      // Overview
+      const subjects = ['physics', 'chemistry', 'botany', 'zoology'];
+      const emojis = { physics: '⚛️', chemistry: '🧪', botany: '🌿', zoology: '🦋' };
+      const colors = { physics: '#3b82f6', chemistry: '#f97316', botany: '#22c55e', zoology: '#a855f7' };
+
+      html += `<div class="diag-grid">`;
+      html += `<div class="diag-box ${totalCount > 0 ? 'ok' : 'bad'}"><div class="value">${totalCount ?? 0}</div><div class="label">Total Active Questions</div></div>`;
+      for (const subj of subjects) {
+        const count = subjectData ? subjectData[subj]?.total : chapterData[subj]?.chapters?.reduce((s, c) => s + (c.questionCount || 0), 0);
+        const cls = count > 0 ? 'ok' : count === 0 ? 'bad' : 'warn';
+        html += `<div class="diag-box ${cls}"><div class="value" style="color: ${colors[subj]}">${count ?? '?'}</div><div class="label">${emojis[subj]} ${subj}</div></div>`;
+      }
+      html += `</div>`;
+
+      // Per-subject chapter tables
+      for (const subj of subjects) {
+        const data = chapterData[subj];
+        if (!data) continue;
+
+        html += `<div class="subject-section">`;
+        html += `<div class="subject-header" style="background: ${colors[subj]}15; color: ${colors[subj]}">${emojis[subj]} ${subj.charAt(0).toUpperCase() + subj.slice(1)}</div>`;
+
+        if (data.error) {
+          html += `<p style="color: #ef4444;">Error: ${Qbank.escapeHtml(data.error)}</p>`;
+        } else {
+          html += `<table class="chapter-table">`;
+          html += `<thead><tr><th>#</th><th>Chapter ID</th><th>Name</th><th>Questions</th><th>Status</th></tr></thead><tbody>`;
+          for (const ch of data.chapters) {
+            const status = ch.questionCount > 0
+              ? `<span style="color: #22c55e; font-weight: 600;">✓ ${ch.questionCount}</span>`
+              : ch.questionCount === 0
+                ? `<span style="color: #ef4444; font-weight: 600;">✗ EMPTY</span>`
+                : `<span style="color: #f59e0b;">Error</span>`;
+            html += `<tr>
+              <td>${ch.number || '-'}</td>
+              <td><code>${Qbank.escapeHtml(ch.id)}</code></td>
+              <td>${Qbank.escapeHtml(ch.name)}</td>
+              <td>${ch.questionCount ?? '?'}</td>
+              <td>${status}</td>
+            </tr>`;
+          }
+          html += `</tbody></table>`;
+        }
+        html += `</div>`;
+      }
+
+      // Orphaned questions
+      if (orphaned && orphaned.length > 0) {
+        const grouped = {};
+        orphaned.forEach(q => {
+          const key = `${q.subject_id} → ${q.chapter_id}`;
+          grouped[key] = (grouped[key] || 0) + 1;
+        });
+        html += `<div class="subject-section">`;
+        html += `<div class="subject-header" style="background: #fef2f2; color: #ef4444;">⚠️ Orphaned Questions (chapter_id not in med_chapters)</div>`;
+        html += `<table class="chapter-table"><thead><tr><th>Subject → Chapter ID</th><th>Count</th></tr></thead><tbody>`;
+        for (const [key, count] of Object.entries(grouped)) {
+          html += `<tr><td><code>${Qbank.escapeHtml(key)}</code></td><td>${count}+</td></tr>`;
+        }
+        html += `</tbody></table>`;
+        html += `<p style="color: var(--gray-500); font-size: 13px;">Showing up to 100 orphaned rows. These have chapter_ids that don't match any med_chapters entry.</p>`;
+        html += `</div>`;
+      }
+
+      results.innerHTML = html;
+    }
+
+    async function testAppQuery() {
+      const chapterId = document.getElementById('chapterSelect').value;
+      const resultDiv = document.getElementById('appQueryResult');
+      if (!chapterId) {
+        resultDiv.innerHTML = '<p style="color: var(--gray-500);">Select a chapter first.</p>';
+        return;
+      }
+
+      resultDiv.innerHTML = '<p>Running exact app query...</p>';
+
+      // This is the EXACT query from src/lib/questions.ts
+      const { data, error } = await Qbank.supabase
+        .from('med_questions')
+        .select(
+          `id, subject_id, chapter_id, question_type, difficulty,
+           question_text, question_text_te, explanation, explanation_te,
+           correct_answer, payload,
+           med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
+           med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`)
+        .eq('chapter_id', chapterId)
+        .eq('status', 'active')
+        .order('created_at');
+
+      if (error) {
+        resultDiv.innerHTML = `
+          <div class="query-box">SELECT ... FROM med_questions
+WHERE chapter_id = '${Qbank.escapeHtml(chapterId)}'
+  AND status = 'active'
+ORDER BY created_at
+
+ERROR: ${Qbank.escapeHtml(error.message)}
+Code: ${error.code || 'unknown'}
+Details: ${Qbank.escapeHtml(error.details || 'none')}</div>`;
+        return;
+      }
+
+      const count = data ? data.length : 0;
+      let html = `
+        <div class="query-box">SELECT ... FROM med_questions
+WHERE chapter_id = '${Qbank.escapeHtml(chapterId)}'
+  AND status = 'active'
+ORDER BY created_at
+
+→ ${count} rows returned</div>`;
+
+      if (count > 0) {
+        html += `<p style="color: #22c55e; font-weight: 600;">✓ This chapter has ${count} questions. The app SHOULD show them.</p>`;
+        html += `<details><summary>First 3 questions (click to expand)</summary><pre style="font-size: 12px; max-height: 300px; overflow: auto;">`;
+        html += Qbank.escapeHtml(JSON.stringify(data.slice(0, 3), null, 2));
+        html += `</pre></details>`;
+      } else {
+        html += `<p style="color: #ef4444; font-weight: 600;">✗ Zero rows returned — this is why the app shows "No Questions Yet".</p>`;
+        html += `<p>Possible causes:</p><ul>
+          <li>Questions were never inserted for this chapter</li>
+          <li>Questions were inserted with a different <code>chapter_id</code></li>
+          <li>Questions have <code>status</code> other than 'active'</li>
+        </ul>`;
+
+        // Check if questions exist with different status
+        const { count: allStatuses } = await Qbank.supabase
+          .from('med_questions')
+          .select('*', { count: 'exact', head: true })
+          .eq('chapter_id', chapterId);
+        html += `<p>Total rows with chapter_id='${Qbank.escapeHtml(chapterId)}' (any status): <strong>${allStatuses ?? 0}</strong></p>`;
+      }
+
+      resultDiv.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
