@@ -142,57 +142,110 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     .map((h) => `Option ${h.optionKey}: ${h.hintTe}`)
     .join('\n');
 
+  const payload = buildPayload(row, options, correctOptionId);
+
+  // Clean display text — strip embedded structured data that the component renders
+  let displayText = row.question_text;
+  if (row.question_type === 'match-the-following') {
+    displayText = displayText.replace(/\n*column\s*(?:i|I|1|a|A)\s*[:\-][\s\S]*/i, '').trim();
+    // Remove trailing ":" if leftover
+    displayText = displayText.replace(/:\s*$/, '').trim();
+  } else if (row.question_type === 'assertion-reasoning') {
+    displayText = displayText.replace(/\n*assertion\s*(?:\(A\))?\s*[:\-][\s\S]*/i, '').trim();
+    displayText = displayText.replace(/:\s*$/, '').trim();
+    if (!displayText) displayText = 'Read the assertion and reason below and choose the correct option.';
+  }
+
   return {
     id: questionId,
     type: row.question_type as QuestionType,
     chapterId: row.chapter_id,
     subjectId: row.subject_id as QuestionV2['subjectId'],
     difficulty: row.difficulty as Difficulty,
-    text: row.question_text,
+    text: displayText,
     textTe: row.question_text_te || '',
     explanation: row.explanation || '',
     explanationTe: row.explanation_te || '',
     eliminationTechnique: eliminationText,
     eliminationTechniqueTe: eliminationTextTe,
     eliminationHints,
-    payload: buildPayload(row.question_type, raw, options, correctOptionId),
+    payload,
   };
 }
 
-// ── Build type-specific payload from DB row's payload JSON ───
+// ── Build type-specific payload ──────────────────────────────
+// Extracts structured data from DB payload JSON first, then falls
+// back to parsing question_text (the bulk-import only stores metadata
+// in payload, so the actual column/assertion data lives in question_text).
 
 function buildPayload(
-  questionType: string,
-  raw: Record<string, unknown>,
+  row: DbQuestion,
   options: Option[],
   correctOptionId: string,
 ): QuestionV2['payload'] {
-  switch (questionType) {
-    case 'assertion-reasoning':
+  const raw = (row.payload ?? {}) as Record<string, unknown>;
+  const text = row.question_text || '';
+
+  switch (row.question_type) {
+    case 'assertion-reasoning': {
+      // Try payload JSON first, fall back to parsing question_text
+      let assertion = (raw.assertion as string) || '';
+      let reason = (raw.reason as string) || '';
+      if (!assertion || !reason) {
+        const parsed = parseAssertionReason(text);
+        assertion = assertion || parsed.assertion;
+        reason = reason || parsed.reason;
+      }
       return {
         type: 'assertion-reasoning',
-        assertion: (raw.assertion as string) || '',
+        assertion,
         assertionTe: (raw.assertion_te as string) || '',
-        reason: (raw.reason as string) || '',
+        reason,
         reasonTe: (raw.reason_te as string) || '',
         options,
         correctOptionId,
       };
+    }
 
-    case 'match-the-following':
-      return {
-        type: 'match-the-following',
-        columnA: parseColumnItems(raw.column_a ?? raw.columnA),
-        columnB: parseColumnItems(raw.column_b ?? raw.columnB),
-        correctMapping: (raw.correct_mapping ?? raw.correctMapping ?? {}) as Record<string, string>,
-        options,
-        correctOptionId,
-      };
+    case 'match-the-following': {
+      // Try payload JSON first, fall back to parsing question_text
+      let colA = parseColumnItemsFromJson(raw.column_a ?? raw.columnA);
+      let colB = parseColumnItemsFromJson(raw.column_b ?? raw.columnB);
+      let mapping = (raw.correct_mapping ?? raw.correctMapping) as Record<string, string> | undefined;
+
+      if (colA.length === 0 || colB.length === 0) {
+        const parsed = parseMatchColumns(text);
+        colA = colA.length > 0 ? colA : parsed.columnA;
+        colB = colB.length > 0 ? colB : parsed.columnB;
+      }
+
+      // Build correctMapping from the correct option text if not in payload
+      if (!mapping || Object.keys(mapping).length === 0) {
+        const correctOpt = options.find((o) => o.id === correctOptionId);
+        if (correctOpt) {
+          mapping = parseOptionPairs(correctOpt.text);
+        }
+      }
+
+      // If we still have column data, return match-the-following
+      if (colA.length > 0 && colB.length > 0) {
+        return {
+          type: 'match-the-following',
+          columnA: colA,
+          columnB: colB,
+          correctMapping: mapping || {},
+          options,
+          correctOptionId,
+        };
+      }
+      // Fall back to MCQ if parsing failed
+      return { type: 'mcq', options, correctOptionId };
+    }
 
     case 'true-false':
       return {
         type: 'true-false',
-        statement: (raw.statement as string) || '',
+        statement: (raw.statement as string) || text,
         statementTe: (raw.statement_te as string) || '',
         correctAnswer: raw.correct_answer === true || raw.correct_answer === 'true',
       };
@@ -200,7 +253,7 @@ function buildPayload(
     case 'fill-in-blanks':
       return {
         type: 'fill-in-blanks',
-        textWithBlanks: (raw.text_with_blanks as string) || '',
+        textWithBlanks: (raw.text_with_blanks as string) || text,
         textWithBlanksTe: (raw.text_with_blanks_te as string) || '',
         options,
         correctOptionId,
@@ -209,7 +262,7 @@ function buildPayload(
     case 'scenario-based':
       return {
         type: 'scenario-based',
-        scenario: (raw.scenario as string) || '',
+        scenario: (raw.scenario as string) || text,
         scenarioTe: (raw.scenario_te as string) || '',
         options,
         correctOptionId,
@@ -227,7 +280,7 @@ function buildPayload(
     case 'logical-sequence':
       return {
         type: 'logical-sequence',
-        items: parseColumnItems(raw.items),
+        items: parseColumnItemsFromJson(raw.items),
         correctOrder: Array.isArray(raw.correct_order) ? raw.correct_order as string[] : [],
         options,
         correctOptionId,
@@ -238,12 +291,95 @@ function buildPayload(
   }
 }
 
+// ── Text parsers ─────────────────────────────────────────────
+
 /** Parse array of column/sequence items from DB payload JSON */
-function parseColumnItems(data: unknown): { id: string; text: string; textTe: string }[] {
+function parseColumnItemsFromJson(data: unknown): { id: string; text: string; textTe: string }[] {
   if (!Array.isArray(data)) return [];
   return data.map((item: Record<string, unknown>) => ({
     id: String(item.id ?? ''),
     text: String(item.text ?? ''),
     textTe: String(item.text_te ?? item.textTe ?? ''),
   }));
+}
+
+/**
+ * Parse match-the-following columns from question_text.
+ * Handles formats like:
+ *   Column I:\n(P) Bulliform cells\n(Q) Palisade...\nColumn II:\n(i) Bean-shaped...\n(ii) Large...
+ *   Column A:\n1. Item\n2. Item\nColumn B:\n(a) Item\n(b) Item
+ */
+function parseMatchColumns(text: string): {
+  columnA: { id: string; text: string; textTe: string }[];
+  columnB: { id: string; text: string; textTe: string }[];
+} {
+  const columnA: { id: string; text: string; textTe: string }[] = [];
+  const columnB: { id: string; text: string; textTe: string }[] = [];
+
+  // Split into Column I / Column II sections
+  // Match headers like "Column I:", "Column A:", "Column 1:", "List I:", "List-I"
+  const colSplit = text.split(/column\s*(?:ii|II|2|b|B)\s*[:\-]/i);
+  if (colSplit.length < 2) return { columnA, columnB };
+
+  const col1Text = colSplit[0];
+  const col2Text = colSplit[1];
+
+  // Remove the "Column I:" header from col1Text
+  const col1Body = col1Text.replace(/.*column\s*(?:i|I|1|a|A)\s*[:\-]/i, '');
+
+  // Extract labeled items: (P), (Q), (1), (a), (i), (ii) etc.
+  const itemRegex = /\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s*([^\n(]+)/g;
+
+  let match;
+  // eslint-disable-next-line no-cond-assign
+  while ((match = itemRegex.exec(col1Body)) !== null) {
+    columnA.push({ id: match[1].trim(), text: match[2].trim(), textTe: '' });
+  }
+
+  itemRegex.lastIndex = 0;
+  // eslint-disable-next-line no-cond-assign
+  while ((match = itemRegex.exec(col2Text)) !== null) {
+    columnB.push({ id: match[1].trim(), text: match[2].trim(), textTe: '' });
+  }
+
+  return { columnA, columnB };
+}
+
+/**
+ * Parse option text like "P-ii, Q-iii, R-iv, S-i" or "1-b, 2-c, 3-a"
+ * into a mapping { P: 'ii', Q: 'iii', R: 'iv', S: 'i' }
+ */
+function parseOptionPairs(text: string): Record<string, string> {
+  const mapping: Record<string, string> = {};
+  // Match patterns: P-ii, Q-iii or 1-b, 2-c (with various separators)
+  const pairs = text.split(/[,;]\s*/);
+  for (const pair of pairs) {
+    const m = pair.trim().match(/^([A-Za-z0-9]+)\s*[-–→]\s*\(?([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)?$/);
+    if (m) mapping[m[1].trim()] = m[2].trim();
+  }
+  return mapping;
+}
+
+/**
+ * Parse assertion and reason from question_text.
+ * Handles: "Assertion (A): text\nReason (R): text"
+ */
+function parseAssertionReason(text: string): { assertion: string; reason: string } {
+  let assertion = '';
+  let reason = '';
+
+  // Match "Assertion (A):" or "Assertion:" followed by text
+  const assertMatch = text.match(/assertion\s*(?:\(A\))?\s*[:\-]\s*([\s\S]*?)(?=\nreason\s*(?:\(R\))?\s*[:\-]|$)/i);
+  if (assertMatch) assertion = assertMatch[1].trim();
+
+  // Match "Reason (R):" followed by text
+  const reasonMatch = text.match(/reason\s*(?:\(R\))?\s*[:\-]\s*([\s\S]*?)(?=\n\s*(?:select|choose|$))/i);
+  if (reasonMatch) reason = reasonMatch[1].trim();
+  // If no "select" terminator, take everything after "Reason (R):"
+  if (!reason) {
+    const fallback = text.match(/reason\s*(?:\(R\))?\s*[:\-]\s*([\s\S]*)/i);
+    if (fallback) reason = fallback[1].trim();
+  }
+
+  return { assertion, reason };
 }
