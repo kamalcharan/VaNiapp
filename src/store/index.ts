@@ -9,6 +9,7 @@ import aiReducer from './slices/aiSlice';
 import strengthReducer from './slices/strengthSlice';
 import bookmarkReducer from './slices/bookmarkSlice';
 import streakReducer from './slices/streakSlice';
+import trialReducer, { incrementQuestionsAnswered } from './slices/trialSlice';
 
 // ── Per-user persistence ─────────────────────────────────────
 const PERSIST_PREFIX = 'vani-persist';
@@ -33,6 +34,7 @@ const appReducer = combineReducers({
   strength: strengthReducer,
   bookmark: bookmarkReducer,
   streak: streakReducer,
+  trial: trialReducer,
 });
 
 const rootReducer: typeof appReducer = (state, action) => {
@@ -43,10 +45,24 @@ const rootReducer: typeof appReducer = (state, action) => {
   return appReducer(state, action);
 };
 
+// Middleware: auto-increment trial question counter when a question is answered
+// Updates both Redux (instant UI) and Supabase (survives reinstall)
+const trialMiddleware: import('@reduxjs/toolkit').Middleware = (storeApi) => (next) => (action: any) => {
+  const result = next(action);
+  if (action.type === 'practice/updateAnswer' && action.payload?.selectedOptionId) {
+    storeApi.dispatch(incrementQuestionsAnswered());
+    // Fire-and-forget sync to Supabase — import dynamically to avoid circular deps
+    import('../lib/database').then(({ incrementQuestionsAnswered: syncToSupabase }) => {
+      syncToSupabase().catch(() => {});
+    });
+  }
+  return result;
+};
+
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }),
+    getDefaultMiddleware({ serializableCheck: false }).concat(trialMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
@@ -63,10 +79,10 @@ store.subscribe(() => {
 
   if (saveTimeout) clearTimeout(saveTimeout);
   saveTimeout = setTimeout(() => {
-    const { auth, practice, squad, ai, strength, bookmark, streak } = store.getState();
+    const { auth, practice, squad, ai, strength, bookmark, streak, trial } = store.getState();
     AsyncStorage.setItem(
       persistKey(userId),
-      JSON.stringify({ auth, practice, squad, ai, strength, bookmark, streak }),
+      JSON.stringify({ auth, practice, squad, ai, strength, bookmark, streak, trial }),
     ).catch(() => {});
   }, 500);
 });
@@ -107,6 +123,9 @@ export async function rehydrateStore(userId: string): Promise<void> {
     }
     if (saved.streak) {
       store.dispatch({ type: 'streak/rehydrate', payload: saved.streak });
+    }
+    if ((saved as any).trial) {
+      store.dispatch({ type: 'trial/rehydrate', payload: (saved as any).trial });
     }
   } catch {
     // storage read failed — start fresh

@@ -24,10 +24,12 @@ import {
 import { Provider as ReduxProvider } from 'react-redux';
 import { store, rehydrateStore, resetAllData } from '../src/store';
 import { setUser } from '../src/store/slices/authSlice';
+import { setTrialStart, seedQuestionsAnswered, setSubscription } from '../src/store/slices/trialSlice';
 import { ToastProvider } from '../src/components/ui/Toast';
 import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
 import { getProfile, getUserSubjectIds, isOnboardingActuallyComplete, reportAppVersion } from '../src/lib/database';
 import { pullRemoteProgress } from '../src/lib/progressSync';
+import { getActiveSubscription } from '../src/lib/payments';
 
 NativeSplashScreen.preventAutoHideAsync();
 
@@ -129,6 +131,22 @@ export default function RootLayout() {
             selectedSubjects: subjectIds as any[],
             targetYear: profile.target_year ?? undefined,
           }));
+
+          // Set trial start date + seed question count from Supabase
+          if (profile.created_at) {
+            store.dispatch(setTrialStart(profile.created_at));
+          }
+          store.dispatch(seedQuestionsAnswered(profile.questions_answered ?? 0));
+
+          // Check for active subscription and set paid status
+          getActiveSubscription().then((sub) => {
+            if (sub) {
+              store.dispatch(setSubscription({
+                plan: sub.planType,
+                expiresAt: sub.expiresAt,
+              }));
+            }
+          }).catch(() => {});
 
           // Pull remote progress into Redux (merges with local, remote wins if ahead)
           pullRemoteProgress().catch(() => {});

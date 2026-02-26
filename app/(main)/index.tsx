@@ -23,6 +23,7 @@ import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
 import { RootState } from '../../src/store';
 import * as Haptics from 'expo-haptics';
+import { useTrial } from '../../src/hooks/useTrial';
 
 // Exam focus for BOTH users - which exam to focus on
 type ExamFocus = 'ALL' | 'NEET' | 'CUET';
@@ -85,6 +86,16 @@ export default function DashboardScreen() {
   const [allSubjects, setAllSubjects] = useState<CatalogSubject[]>([]);
   const [examFocus, setExamFocus] = useState<ExamFocus>('ALL');
   const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
+  const trial = useTrial();
+
+  /** Navigate to a practice route, or to paywall if trial expired */
+  const guardedPush = (route: string) => {
+    if (!trial.canPractice) {
+      router.push('/paywall');
+    } else {
+      router.push(route as any);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -234,6 +245,30 @@ export default function DashboardScreen() {
             </Pressable>
           </View>
 
+          {/* Trial Banner */}
+          {!trial.isPaid && (
+            <Pressable
+              onPress={() => router.push('/paywall')}
+              style={[styles.trialBanner, {
+                backgroundColor: trial.canPractice ? colors.primaryLight : '#EF444415',
+                borderColor: trial.canPractice ? colors.primary + '30' : '#EF444440',
+              }]}
+            >
+              <Text style={{ fontSize: 14 }}>
+                {trial.canPractice ? '\u23F3' : '\uD83D\uDD12'}
+              </Text>
+              <Text style={[Typography.bodySm, {
+                color: trial.canPractice ? colors.primary : '#EF4444',
+                flex: 1,
+              }]}>
+                {trial.canPractice
+                  ? `Free trial: ${trial.daysLeft}d left \u00B7 ${trial.questionsLeft} Q remaining`
+                  : 'Trial ended \u2014 tap to upgrade'}
+              </Text>
+              <Text style={{ fontSize: 12, color: colors.textTertiary }}>{'\u203A'}</Text>
+            </Pressable>
+          )}
+
           {/* Exam Focus Toggle (for BOTH users) */}
           {isBothUser && (
             <View style={styles.examToggleContainer}>
@@ -302,7 +337,7 @@ export default function DashboardScreen() {
                       onPress={() => {
                         // Pass exam focus for BOTH users so subject detail can filter chapters
                         const focusParam = isBothUser && examFocus !== 'ALL' ? `?focus=${examFocus}` : '';
-                        router.push(`/subject/${journey.subject.id}${focusParam}`);
+                        guardedPush(`/subject/${journey.subject.id}${focusParam}`);
                       }}
                     >
                       <JournalCard delay={200 + idx * 100}>
@@ -398,7 +433,7 @@ export default function DashboardScreen() {
             <JournalCard delay={400} rotation={0.3}>
               <Pressable
                 style={styles.actionRow}
-                onPress={() => router.push('/practice-exam')}
+                onPress={() => guardedPush('/practice-exam')}
               >
                 <Text style={styles.actionIcon}>{'\uD83C\uDFAF'}</Text>
                 <View style={{ flex: 1 }}>
@@ -420,7 +455,7 @@ export default function DashboardScreen() {
             <JournalCard delay={500} rotation={-0.2}>
               <Pressable
                 style={styles.actionRow}
-                onPress={() => router.push('/quick-practice')}
+                onPress={() => guardedPush('/quick-practice')}
               >
                 <Text style={styles.actionIcon}>{'\u26A1'}</Text>
                 <View style={{ flex: 1 }}>
@@ -488,6 +523,15 @@ const styles = StyleSheet.create({
     padding: Spacing.lg,
     gap: Spacing.xl,
     paddingBottom: 40,
+  },
+  trialBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    borderRadius: 12,
+    borderWidth: 1,
   },
   header: {
     flexDirection: 'row',

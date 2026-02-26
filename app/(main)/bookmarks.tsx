@@ -156,7 +156,7 @@ export default function BookmarksScreen() {
             {/* Header */}
             <View style={styles.header}>
               <Pressable
-                onPress={() => router.back()}
+                onPress={() => router.replace('/(main)')}
                 hitSlop={8}
                 style={styles.backBtn}
               >
