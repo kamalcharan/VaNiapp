@@ -119,7 +119,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B06 | `phy-motion2d-vectors` | Vectors: Addition, Subtraction, and Resolution | 20 | PENDING |
+| B06 | `phy-motion2d-vectors` | Vectors: Addition, Subtraction, and Resolution | 20 | DONE |
 | B07 | `phy-motion2d-projectile` | Projectile Motion | 20 | PENDING |
 | B08 | `phy-motion2d-circular` | Uniform Circular Motion | 20 | PENDING |
 | | | **Chapter 4 Total** | **60** | |
@@ -128,36 +128,36 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B09 | `phy-newton-laws` | Newton's Laws of Motion | 20 | PENDING |
-| B10 | `phy-newton-friction` | Friction (Static, Kinetic, Rolling) | 20 | PENDING |
-| B11 | `phy-newton-circular` | Circular Motion Dynamics and Applications | 20 | PENDING |
+| B09 | `phy-newton-laws` | Newton's Laws of Motion | 20 | DONE |
+| B10 | `phy-newton-friction` | Friction (Static, Kinetic, Rolling) | 20 | DONE |
+| B11 | `phy-newton-circular` | Circular Motion Dynamics and Applications | 20 | DONE |
 | | | **Chapter 5 Total** | **60** | |
 
 ### Chapter 6: Work, Energy and Power (`phy-energy`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B12 | `phy-energy-work` | Work-Energy Theorem | 20 | PENDING |
-| B13 | `phy-energy-conservation` | Conservation of Energy and Types of Energy | 20 | PENDING |
-| B14 | `phy-energy-collisions` | Power and Collisions (Elastic, Inelastic) | 20 | PENDING |
+| B12 | `phy-energy-work` | Work-Energy Theorem | 20 | DONE |
+| B13 | `phy-energy-conservation` | Conservation of Energy and Types of Energy | 20 | DONE |
+| B14 | `phy-energy-collisions` | Power and Collisions (Elastic, Inelastic) | 20 | DONE |
 | | | **Chapter 6 Total** | **60** | |
 
 ### Chapter 7: System of Particles and Rotational Motion (`phy-rotation`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B15 | `phy-rot-com` | Centre of Mass and System of Particles | 20 | PENDING |
-| B16 | `phy-rot-moment` | Moment of Inertia and Theorems | 20 | PENDING |
-| B17 | `phy-rot-dynamics` | Torque, Angular Momentum, and Rolling Motion | 20 | PENDING |
+| B15 | `phy-rot-com` | Centre of Mass and System of Particles | 20 | DONE |
+| B16 | `phy-rot-moment` | Moment of Inertia and Theorems | 20 | DONE |
+| B17 | `phy-rot-dynamics` | Torque, Angular Momentum, and Rolling Motion | 20 | DONE |
 | | | **Chapter 7 Total** | **60** | |
 
 ### Chapter 8: Gravitation (`phy-gravitation`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B18 | `phy-grav-law` | Universal Law of Gravitation and Gravitational Field | 20 | PENDING |
-| B19 | `phy-grav-potential` | Gravitational Potential Energy and Escape Velocity | 20 | PENDING |
-| B20 | `phy-grav-satellite` | Orbital Velocity, Satellites, and Kepler's Laws | 20 | PENDING |
+| B18 | `phy-grav-law` | Universal Law of Gravitation and Gravitational Field | 20 | DONE |
+| B19 | `phy-grav-potential` | Gravitational Potential Energy and Escape Velocity | 20 | DONE |
+| B20 | `phy-grav-satellite` | Orbital Velocity, Satellites, and Kepler's Laws | 20 | DONE |
 | | | **Chapter 8 Total** | **60** | |
 
 ---
@@ -603,11 +603,11 @@ Commit and push.
 | Ch1 Physical World | 1 | 20 | 0 | 0% |
 | Ch2 Units and Measurements | 2 | 40 | 0 | 0% |
 | Ch3 Motion in a Straight Line | 2 | 40 | 0 | 0% |
-| Ch4 Motion in a Plane | 3 | 60 | 0 | 0% |
-| Ch5 Laws of Motion | 3 | 60 | 0 | 0% |
-| Ch6 Work, Energy and Power | 3 | 60 | 0 | 0% |
-| Ch7 Rotational Motion | 3 | 60 | 0 | 0% |
-| Ch8 Gravitation | 3 | 60 | 0 | 0% |
+| Ch4 Motion in a Plane | 3 | 60 | 20 | 33% |
+| Ch5 Laws of Motion | 3 | 60 | 60 | 100% |
+| Ch6 Work, Energy and Power | 3 | 60 | 60 | 100% |
+| Ch7 Rotational Motion | 3 | 60 | 60 | 100% |
+| Ch8 Gravitation | 3 | 60 | 60 | 100% |
 | Ch9 Mech Properties of Solids | 2 | 40 | 0 | 0% |
 | Ch10 Mech Properties of Fluids | 3 | 60 | 0 | 0% |
 | Ch11 Thermal Properties | 2 | 40 | 0 | 0% |
@@ -629,4 +629,4 @@ Commit and push.
 | Ch27 Atoms | 2 | 40 | 0 | 0% |
 | Ch28 Nuclei | 2 | 40 | 0 | 0% |
 | Ch29 Semiconductor Electronics | 3 | 60 | 0 | 0% |
-| **TOTAL** | **71** | **1,420** | **0** | **0%** |
+| **TOTAL** | **71** | **1,420** | **260** | **18%** |
