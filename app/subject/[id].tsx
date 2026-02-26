@@ -100,6 +100,7 @@ export default function SubjectDetailScreen() {
 
   // Redux strength data
   const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
+  const chapterHistory = useSelector((state: RootState) => state.practice.chapterHistory);
 
   // Animation
   const fadeIn = useRef(new Animated.Value(0)).current;
@@ -230,6 +231,36 @@ export default function SubjectDetailScreen() {
       return a.accuracy - b.accuracy;
     });
   }, [chapterAnalytics]);
+
+  // Find the latest chapter session that has wrong answers, per chapter
+  const latestMistakeSession = useMemo(() => {
+    const map: Record<string, string> = {}; // chapterId → sessionId
+    for (const session of chapterHistory) {
+      if (map[session.chapterId]) continue; // already found latest
+      const wrongCount = session.answers.filter(
+        (a) => a.selectedOptionId && a.selectedOptionId !== a.correctOptionId,
+      ).length;
+      if (wrongCount > 0) {
+        map[session.chapterId] = session.id;
+      }
+    }
+    return map;
+  }, [chapterHistory]);
+
+  // Find the latest completed session with wrong answers per chapter
+  const latestMistakeSession = useMemo(() => {
+    const map: Record<string, string> = {}; // chapterId → sessionId
+    for (const session of chapterHistory) {
+      if (!session.completedAt) continue;
+      if (map[session.chapterId]) continue; // already have the latest (history is newest-first)
+      const totalAnswered = session.answers.filter((a) => a.selectedOptionId).length;
+      const wrongCount = totalAnswered - (session.correctCount ?? 0);
+      if (wrongCount > 0) {
+        map[session.chapterId] = session.id;
+      }
+    }
+    return map;
+  }, [chapterHistory]);
 
   const handleStartChapter = (chapterId: string) => {
     router.push(`/chapter/${chapterId}`);
@@ -479,17 +510,40 @@ export default function SubjectDetailScreen() {
                           {getChapterCoaching(ca.strengthLevel, ca.accuracy, ca.chapter.name)}
                         </Text>
 
-                        {/* Practice again CTA for chapters with room to grow */}
-                        {(ca.strengthLevel === 'needs-focus' || ca.strengthLevel === 'getting-there') && (
-                          <Pressable
-                            style={[styles.practiceAgainButton, { backgroundColor: subject.color + '15' }]}
-                            onPress={() => handleStartChapter(ca.chapter.id)}
-                          >
-                            <Text style={[styles.practiceAgainText, { color: subject.color }]}>
-                              Practice again
-                            </Text>
-                          </Pressable>
-                        )}
+                        {/* Action buttons */}
+                        <View style={styles.chapterActions}>
+                          {/* Practice again CTA for chapters with room to grow */}
+                          {(ca.strengthLevel === 'needs-focus' || ca.strengthLevel === 'getting-there') && (
+                            <Pressable
+                              style={[styles.practiceAgainButton, { backgroundColor: subject.color + '15' }]}
+                              onPress={() => handleStartChapter(ca.chapter.id)}
+                            >
+                              <Text style={[styles.practiceAgainText, { color: subject.color }]}>
+                                Practice again
+                              </Text>
+                            </Pressable>
+                          )}
+
+                          {/* Practice Mistakes — only if the latest session had wrong answers */}
+                          {latestMistakeSession[ca.chapter.id] && (
+                            <Pressable
+                              style={[styles.practiceAgainButton, { backgroundColor: '#EF444415' }]}
+                              onPress={() =>
+                                router.push({
+                                  pathname: '/practice-mistakes',
+                                  params: {
+                                    sessionId: latestMistakeSession[ca.chapter.id],
+                                    sessionMode: 'chapter',
+                                  },
+                                })
+                              }
+                            >
+                              <Text style={[styles.practiceAgainText, { color: '#EF4444' }]}>
+                                Practice mistakes
+                              </Text>
+                            </Pressable>
+                          )}
+                        </View>
                       </View>
                     )}
 
@@ -692,11 +746,15 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     lineHeight: 17,
   },
+  chapterActions: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: Spacing.sm,
+  },
   practiceAgainButton: {
     paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.md,
     borderRadius: 10,
-    alignSelf: 'flex-start',
   },
   practiceAgainText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
