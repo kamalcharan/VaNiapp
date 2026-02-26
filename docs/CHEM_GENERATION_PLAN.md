@@ -329,37 +329,37 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B66 | `chem-haloalkane-prep` | Classification, Nomenclature, and Preparation | 20 | PENDING |
-| B67 | `chem-haloalkane-sn` | SN1, SN2, and Elimination Reactions | 20 | PENDING |
-| B68 | `chem-haloalkane-arene` | Haloarenes and Their Reactions | 20 | PENDING |
+| B66 | `chem-haloalkane-prep` | Classification, Nomenclature, and Preparation | 20 | DONE |
+| B67 | `chem-haloalkane-sn` | SN1, SN2, and Elimination Reactions | 20 | DONE |
+| B68 | `chem-haloalkane-arene` | Haloarenes and Their Reactions | 20 | DONE |
 | | | **Chapter 24 Total** | **60** | |
 
 ### Chapter 25: Alcohols, Phenols and Ethers (`chem-alcohols`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B69 | `chem-alcohol-reactions` | Alcohols (Preparation and Reactions) | 20 | PENDING |
-| B70 | `chem-phenol-reactions` | Phenols (Acidity and Reactions) | 20 | PENDING |
-| B71 | `chem-ether-reactions` | Ethers (Preparation and Reactions) | 20 | PENDING |
+| B69 | `chem-alcohol-reactions` | Alcohols (Preparation and Reactions) | 20 | DONE |
+| B70 | `chem-phenol-reactions` | Phenols (Acidity and Reactions) | 20 | DONE |
+| B71 | `chem-ether-reactions` | Ethers (Preparation and Reactions) | 20 | DONE |
 | | | **Chapter 25 Total** | **60** | |
 
 ### Chapter 26: Aldehydes, Ketones and Carboxylic Acids (`chem-carbonyl`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B72 | `chem-carbonyl-prep` | Nomenclature and Preparation of Aldehydes and Ketones | 20 | PENDING |
-| B73 | `chem-carbonyl-reactions` | Reactions of Aldehydes and Ketones | 20 | PENDING |
-| B74 | `chem-carboxylic-acids` | Carboxylic Acids (Acidity and Reactions) | 20 | PENDING |
-| B75 | `chem-carbonyl-named` | Named Reactions and Distinction Tests | 20 | PENDING |
+| B72 | `chem-carbonyl-prep` | Nomenclature and Preparation of Aldehydes and Ketones | 20 | DONE |
+| B73 | `chem-carbonyl-reactions` | Reactions of Aldehydes and Ketones | 20 | DONE |
+| B74 | `chem-carboxylic-acids` | Carboxylic Acids (Acidity and Reactions) | 20 | DONE |
+| B75 | `chem-carbonyl-named` | Named Reactions and Distinction Tests | 20 | DONE |
 | | | **Chapter 26 Total** | **80** | |
 
 ### Chapter 27: Amines (`chem-amines`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B76 | `chem-amine-basics` | Classification, Nomenclature, and Preparation | 20 | PENDING |
-| B77 | `chem-amine-basicity` | Basicity and Chemical Reactions | 20 | PENDING |
-| B78 | `chem-amine-diazonium` | Diazonium Salts and Coupling Reactions | 20 | PENDING |
+| B76 | `chem-amine-basics` | Classification, Nomenclature, and Preparation | 20 | DONE |
+| B77 | `chem-amine-basicity` | Basicity and Chemical Reactions | 20 | DONE |
+| B78 | `chem-amine-diazonium` | Diazonium Salts and Coupling Reactions | 20 | DONE |
 | | | **Chapter 27 Total** | **60** | |
 
 ### Chapter 28: Biomolecules (`chem-biomolecules`) — 2 batches
@@ -609,11 +609,11 @@ Commit and push.
 | Ch21 p-Block (Class 12) | 4 | 80 | 80 | 100% |
 | Ch22 d and f Block | 3 | 60 | 60 | 100% |
 | Ch23 Coordination Compounds | 3 | 60 | 60 | 100% |
-| Ch24 Haloalkanes | 3 | 60 | 0 | 0% |
-| Ch25 Alcohols, Phenols, Ethers | 3 | 60 | 0 | 0% |
-| Ch26 Aldehydes, Ketones, COOH | 4 | 80 | 0 | 0% |
-| Ch27 Amines | 3 | 60 | 0 | 0% |
+| Ch24 Haloalkanes | 3 | 60 | 60 | 100% |
+| Ch25 Alcohols, Phenols, Ethers | 3 | 60 | 60 | 100% |
+| Ch26 Aldehydes, Ketones, COOH | 4 | 80 | 80 | 100% |
+| Ch27 Amines | 3 | 60 | 60 | 100% |
 | Ch28 Biomolecules | 2 | 40 | 0 | 0% |
 | Ch29 Polymers | 1 | 20 | 0 | 0% |
 | Ch30 Chemistry in Everyday Life | 1 | 20 | 0 | 0% |
-| **TOTAL** | **82** | **1,640** | **1,300** | **79%** |
+| **TOTAL** | **82** | **1,640** | **1,560** | **95%** |
