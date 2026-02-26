@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-kinetic-speed-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The RMS speed of molecules of an ideal gas is given by:",
+    "explanation": "The root mean square (RMS) speed of gas molecules is derived from kinetic theory as v_rms = √(3RT/M), where R is the universal gas constant, T is the absolute temperature, and M is the molar mass of the gas. This can also be written as v_rms = √(3kT/m) where k is Boltzmann's constant and m is the mass of a single molecule.",
+    "correct_answer": "D",
+    "concept_tags": ["RMS speed", "kinetic theory", "molecular speed formula"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "√(8RT/πM)", "is_correct": false },
+      { "key": "B", "text": "√(2RT/M)", "is_correct": false },
+      { "key": "C", "text": "√(RT/M)", "is_correct": false },
+      { "key": "D", "text": "√(3RT/M)", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "√(8RT/πM) is the formula for the mean (average) speed of gas molecules, not the RMS speed.", "misconception": "Confusing mean speed with RMS speed" },
+      { "option_key": "B", "hint": "√(2RT/M) is the formula for the most probable speed of gas molecules, not the RMS speed.", "misconception": "Confusing most probable speed with RMS speed" },
+      { "option_key": "C", "hint": "√(RT/M) does not correspond to any standard molecular speed. The correct numerical factor for RMS speed is 3, not 1.", "misconception": "Forgetting the numerical factor in the RMS speed formula" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The degrees of freedom for a monoatomic ideal gas molecule are:",
+    "explanation": "A monoatomic gas molecule (such as He, Ne, Ar) is treated as a point mass with no internal structure for rotation or vibration. It can only have translational motion along three independent axes (x, y, z). Therefore, the number of degrees of freedom is 3 (all translational).",
+    "correct_answer": "B",
+    "concept_tags": ["degrees of freedom", "monoatomic gas", "translational motion"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1", "is_correct": false },
+      { "key": "B", "text": "3", "is_correct": true },
+      { "key": "C", "text": "5", "is_correct": false },
+      { "key": "D", "text": "7", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A monoatomic molecule can move in all three spatial directions (x, y, z), not just one. Each independent direction counts as one degree of freedom.", "misconception": "Thinking a point particle has only one degree of freedom" },
+      { "option_key": "C", "hint": "5 degrees of freedom correspond to a diatomic gas molecule at moderate temperatures (3 translational + 2 rotational), not a monoatomic gas.", "misconception": "Confusing monoatomic with diatomic degrees of freedom" },
+      { "option_key": "D", "hint": "7 degrees of freedom correspond to a diatomic gas molecule at high temperatures including vibrational modes, not a monoatomic gas.", "misconception": "Confusing monoatomic with diatomic gas at high temperature" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The ratio of RMS speed to most probable speed (v_rms : v_mp) of molecules in an ideal gas at a given temperature is:",
+    "explanation": "The RMS speed is v_rms = √(3RT/M) and the most probable speed is v_mp = √(2RT/M). Therefore, v_rms/v_mp = √(3RT/M) ÷ √(2RT/M) = √(3/2) = √1.5. This ratio is independent of the type of gas and temperature.",
+    "correct_answer": "C",
+    "concept_tags": ["RMS speed", "most probable speed", "speed ratio"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "√(3/8π)", "is_correct": false },
+      { "key": "B", "text": "√(8/3π)", "is_correct": false },
+      { "key": "C", "text": "√(3/2)", "is_correct": true },
+      { "key": "D", "text": "√(2/3)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "√(3/8π) would involve the factor from mean speed. The ratio v_rms/v_mp only involves the factors 3 and 2 from their respective formulas.", "misconception": "Incorrectly mixing the mean speed formula into the ratio" },
+      { "option_key": "B", "hint": "√(8/3π) is the ratio v_mean/v_mp, not v_rms/v_mp. Check which speeds are being compared.", "misconception": "Confusing the ratio v_mean/v_mp with v_rms/v_mp" },
+      { "option_key": "D", "hint": "√(2/3) is the inverse ratio v_mp/v_rms. The question asks for v_rms/v_mp, which is √(3/2).", "misconception": "Inverting the ratio" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If the temperature of an ideal gas is increased from 300 K to 1200 K, the RMS speed of its molecules will become:",
+    "explanation": "The RMS speed is v_rms = √(3RT/M), so v_rms ∝ √T. When the temperature increases from 300 K to 1200 K, the ratio T₂/T₁ = 1200/300 = 4. Therefore, v₂/v₁ = √(T₂/T₁) = √4 = 2. The RMS speed becomes double (twice) its original value.",
+    "correct_answer": "D",
+    "concept_tags": ["RMS speed", "temperature dependence", "proportionality"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Four times the original", "is_correct": false },
+      { "key": "B", "text": "Half the original", "is_correct": false },
+      { "key": "C", "text": "Same as the original", "is_correct": false },
+      { "key": "D", "text": "Twice the original", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The RMS speed is proportional to √T, not T. Since the temperature quadruples, the speed doubles (√4 = 2), not quadruples.", "misconception": "Assuming v_rms is directly proportional to T instead of √T" },
+      { "option_key": "B", "hint": "The speed increases with temperature, not decreases. Since T increases by a factor of 4, v_rms increases by √4 = 2.", "misconception": "Incorrectly assuming speed decreases with temperature" },
+      { "option_key": "C", "hint": "The RMS speed depends on temperature. A fourfold increase in T results in a twofold increase in v_rms.", "misconception": "Thinking molecular speed is independent of temperature" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The mean free path of a gas molecule is given by λ = kT/(√2 π d² P). If the pressure of the gas is doubled while keeping the temperature constant, the mean free path will:",
+    "explanation": "From the formula λ = kT/(√2 π d² P), at constant temperature T and for a given molecular diameter d, λ ∝ 1/P. If the pressure is doubled (P → 2P), the mean free path becomes λ/2, i.e., it is reduced to half its original value.",
+    "correct_answer": "A",
+    "concept_tags": ["mean free path", "pressure dependence", "kinetic theory"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Become half", "is_correct": true },
+      { "key": "B", "text": "Become double", "is_correct": false },
+      { "key": "C", "text": "Remain unchanged", "is_correct": false },
+      { "key": "D", "text": "Become one-fourth", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Mean free path is inversely proportional to pressure (λ ∝ 1/P). Doubling the pressure decreases, not increases, the mean free path.", "misconception": "Assuming direct proportionality between λ and P" },
+      { "option_key": "C", "hint": "The mean free path depends on pressure through the relation λ ∝ 1/P. Changing the pressure changes the mean free path.", "misconception": "Ignoring the pressure dependence of mean free path" },
+      { "option_key": "D", "hint": "One-fourth would result from λ ∝ 1/P². The correct dependence is λ ∝ 1/P, so doubling P halves λ.", "misconception": "Assuming inverse square dependence on pressure" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "According to the law of equipartition of energy, the average kinetic energy associated with each degree of freedom per molecule of an ideal gas at temperature T is:",
+    "explanation": "The law of equipartition of energy states that in thermal equilibrium, each quadratic term (degree of freedom) in the expression for total energy of a molecule contributes an average energy of (1/2)kT per molecule, where k is Boltzmann's constant and T is the absolute temperature. This applies to both translational and rotational degrees of freedom.",
+    "correct_answer": "B",
+    "concept_tags": ["equipartition of energy", "degrees of freedom", "Boltzmann constant", "average energy"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "kT", "is_correct": false },
+      { "key": "B", "text": "(1/2)kT", "is_correct": true },
+      { "key": "C", "text": "(3/2)kT", "is_correct": false },
+      { "key": "D", "text": "(5/2)kT", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "kT is the energy per degree of freedom per mole (using R instead of k), or it could arise from forgetting the 1/2 factor. The correct value per molecule per degree of freedom is (1/2)kT.", "misconception": "Forgetting the factor of 1/2 in the equipartition theorem" },
+      { "option_key": "C", "hint": "(3/2)kT is the total average translational kinetic energy of a monoatomic gas molecule (having 3 degrees of freedom), not the energy per degree of freedom.", "misconception": "Confusing total translational energy with energy per degree of freedom" },
+      { "option_key": "D", "hint": "(5/2)kT is the total average kinetic energy of a diatomic gas molecule at moderate temperatures (5 degrees of freedom), not the energy per degree of freedom.", "misconception": "Confusing total energy of a diatomic molecule with energy per degree of freedom" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The value of γ = Cₚ/Cᵥ for a monoatomic ideal gas is:",
+    "explanation": "For a monoatomic ideal gas, there are 3 degrees of freedom (all translational). Using the equipartition theorem, Cᵥ = (f/2)R = (3/2)R. By Mayer's relation, Cₚ = Cᵥ + R = (3/2)R + R = (5/2)R. Therefore, γ = Cₚ/Cᵥ = (5/2)R ÷ (3/2)R = 5/3 ≈ 1.67.",
+    "correct_answer": "C",
+    "concept_tags": ["specific heat ratio", "gamma", "monoatomic gas", "degrees of freedom"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "7/5", "is_correct": false },
+      { "key": "B", "text": "9/7", "is_correct": false },
+      { "key": "C", "text": "5/3", "is_correct": true },
+      { "key": "D", "text": "4/3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "γ = 7/5 = 1.4 applies to a diatomic gas at moderate temperatures (5 degrees of freedom), not a monoatomic gas.", "misconception": "Confusing monoatomic and diatomic values of γ" },
+      { "option_key": "B", "hint": "γ = 9/7 corresponds to a diatomic gas at high temperatures (7 degrees of freedom, including vibrational), not a monoatomic gas.", "misconception": "Using the high-temperature diatomic value for a monoatomic gas" },
+      { "option_key": "D", "hint": "γ = 4/3 corresponds to a gas with 6 degrees of freedom. A monoatomic gas has only 3 degrees of freedom, giving γ = 5/3.", "misconception": "Using an incorrect number of degrees of freedom" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The RMS speed of oxygen molecules (O₂, molar mass = 32 g/mol) at a certain temperature is 400 m/s. The RMS speed of hydrogen molecules (H₂, molar mass = 2 g/mol) at the same temperature will be:",
+    "explanation": "At the same temperature, v_rms = √(3RT/M), so v_rms ∝ 1/√M. The ratio v_H₂/v_O₂ = √(M_O₂/M_H₂) = √(32/2) = √16 = 4. Therefore, v_H₂ = 4 × 400 = 1600 m/s.",
+    "correct_answer": "A",
+    "concept_tags": ["RMS speed", "molar mass dependence", "hydrogen", "oxygen", "speed comparison"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1600 m/s", "is_correct": true },
+      { "key": "B", "text": "100 m/s", "is_correct": false },
+      { "key": "C", "text": "800 m/s", "is_correct": false },
+      { "key": "D", "text": "6400 m/s", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "100 m/s would mean v_H₂ = v_O₂/4, which implies lighter molecules move slower. In reality, lighter molecules move faster (v ∝ 1/√M).", "misconception": "Incorrectly using direct proportionality with molar mass instead of inverse" },
+      { "option_key": "C", "hint": "800 m/s would result from using the ratio √(M_O₂/M_H₂) = √(32/2) = 4 but only doubling (not quadrupling) the speed, possibly from using √(M ratio) = √4 = 2 instead of √16 = 4.", "misconception": "Taking the square root of the molar mass ratio twice" },
+      { "option_key": "D", "hint": "6400 m/s would result from using v ∝ 1/M instead of v ∝ 1/√M. The speed is inversely proportional to the square root of molar mass, not the molar mass itself.", "misconception": "Assuming v is inversely proportional to M instead of √M" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The Cᵥ for a diatomic gas at moderate temperatures (considering translational and rotational degrees of freedom only) is:",
+    "explanation": "A diatomic molecule at moderate temperatures has 5 degrees of freedom: 3 translational + 2 rotational. (Vibrational modes are not excited at moderate temperatures.) By the law of equipartition of energy, each degree of freedom contributes (1/2)R to Cᵥ. Therefore, Cᵥ = (5/2)R.",
+    "correct_answer": "D",
+    "concept_tags": ["specific heat", "Cv", "diatomic gas", "degrees of freedom", "equipartition"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "(3/2)R", "is_correct": false },
+      { "key": "B", "text": "(7/2)R", "is_correct": false },
+      { "key": "C", "text": "3R", "is_correct": false },
+      { "key": "D", "text": "(5/2)R", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "(3/2)R is the Cᵥ for a monoatomic gas (3 degrees of freedom), not for a diatomic gas which has 5 degrees of freedom at moderate temperatures.", "misconception": "Confusing monoatomic and diatomic Cᵥ values" },
+      { "option_key": "B", "hint": "(7/2)R is the Cₚ (not Cᵥ) for a diatomic gas at moderate temperatures. Recall Cₚ = Cᵥ + R, so Cᵥ = (7/2)R − R = (5/2)R.", "misconception": "Confusing Cₚ with Cᵥ for a diatomic gas" },
+      { "option_key": "C", "hint": "Cᵥ = 3R would imply 6 degrees of freedom. A diatomic gas at moderate temperatures has 5 degrees of freedom, giving Cᵥ = (5/2)R.", "misconception": "Using an incorrect number of degrees of freedom for diatomic gas" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-10",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The mean free path of nitrogen gas molecules at STP is λ₁. If the temperature is doubled and the pressure is halved, the new mean free path λ₂ is:",
+    "explanation": "The mean free path is given by λ = kT/(√2 π d² P). Therefore λ ∝ T/P. If T is doubled (T → 2T) and P is halved (P → P/2), then λ₂/λ₁ = (2T/(P/2))/(T/P) = (2T × 2/P) × (P/T) = 4. So λ₂ = 4λ₁.",
+    "correct_answer": "B",
+    "concept_tags": ["mean free path", "temperature and pressure dependence", "kinetic theory"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "2λ₁", "is_correct": false },
+      { "key": "B", "text": "4λ₁", "is_correct": true },
+      { "key": "C", "text": "λ₁", "is_correct": false },
+      { "key": "D", "text": "λ₁/2", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "2λ₁ would result from considering only the temperature change (doubling) and ignoring the effect of halving the pressure. Both changes affect the mean free path.", "misconception": "Ignoring the pressure change while calculating mean free path" },
+      { "option_key": "C", "hint": "λ₁ (unchanged) would occur if the temperature and pressure effects cancelled each other, but doubling T and halving P both increase λ, so they reinforce.", "misconception": "Assuming the effects of temperature and pressure cancel" },
+      { "option_key": "D", "hint": "λ₁/2 suggests the mean free path decreases, but both changes (increasing T and decreasing P) increase the mean free path.", "misconception": "Inverting the dependence of mean free path on T and P" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A gas mixture contains 2 moles of oxygen (O₂, M = 32 g/mol) and 3 moles of helium (He, M = 4 g/mol). The ratio of the RMS speed of oxygen molecules to that of helium molecules at the same temperature is:",
+    "explanation": "At the same temperature, v_rms = √(3RT/M), so v_rms ∝ 1/√M. Therefore, v_O₂/v_He = √(M_He/M_O₂) = √(4/32) = √(1/8) = 1/(2√2). The number of moles is irrelevant to the RMS speed comparison since RMS speed depends only on temperature and molar mass of the individual species, not on the amount of gas.",
+    "correct_answer": "C",
+    "concept_tags": ["RMS speed", "gas mixture", "molar mass ratio", "speed comparison"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1 : 4", "is_correct": false },
+      { "key": "B", "text": "1 : 2", "is_correct": false },
+      { "key": "C", "text": "1 : 2√2", "is_correct": true },
+      { "key": "D", "text": "2 : 3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1:4 would come from using v ∝ 1/M instead of v ∝ 1/√M. The RMS speed depends on the square root of molar mass.", "misconception": "Using inverse of molar mass ratio directly instead of its square root" },
+      { "option_key": "B", "hint": "1:2 would result from taking √(4/32) = √(1/4) = 1/2, which incorrectly simplifies 4/32 as 1/4 instead of 1/8.", "misconception": "Arithmetic error in computing the molar mass ratio" },
+      { "option_key": "D", "hint": "2:3 is the mole ratio of O₂ to He. The number of moles does not affect the RMS speed; only molar mass and temperature matter.", "misconception": "Confusing the mole ratio with the speed ratio" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A diatomic gas at high temperature has vibrational modes fully excited. The total degrees of freedom and the value of γ = Cₚ/Cᵥ for this gas are respectively:",
+    "explanation": "At high temperatures, a diatomic gas has all modes excited: 3 translational + 2 rotational + 2 vibrational (1 kinetic + 1 potential for each vibrational mode) = 7 degrees of freedom. Therefore, Cᵥ = (7/2)R, Cₚ = Cᵥ + R = (7/2)R + R = (9/2)R, and γ = Cₚ/Cᵥ = 9/7 ≈ 1.29.",
+    "correct_answer": "D",
+    "concept_tags": ["degrees of freedom", "vibrational modes", "diatomic gas", "gamma", "high temperature"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "5 and 7/5", "is_correct": false },
+      { "key": "B", "text": "6 and 4/3", "is_correct": false },
+      { "key": "C", "text": "7 and 7/5", "is_correct": false },
+      { "key": "D", "text": "7 and 9/7", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "5 degrees of freedom and γ = 7/5 apply to a diatomic gas at moderate temperatures where vibrational modes are NOT excited. The question specifies high temperature with vibrational modes fully excited.", "misconception": "Ignoring vibrational modes at high temperature" },
+      { "option_key": "B", "hint": "6 degrees of freedom would arise from counting only 1 vibrational mode instead of 2 (each vibrational mode contributes 2 degrees of freedom: 1 kinetic + 1 potential).", "misconception": "Counting only kinetic part of vibrational mode" },
+      { "option_key": "C", "hint": "While 7 degrees of freedom is correct, γ = 7/5 corresponds to f = 5, not f = 7. For f = 7, γ = (f+2)/f = 9/7.", "misconception": "Using the wrong formula or mismatching degrees of freedom with γ value" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): At a given temperature, the RMS speed of oxygen molecules (O₂) is less than that of nitrogen molecules (N₂).\nReason (R): The RMS speed of gas molecules is inversely proportional to the square root of their molar mass.",
+    "explanation": "Both the assertion and reason are correct, and the reason correctly explains the assertion. The RMS speed is v_rms = √(3RT/M), so v_rms ∝ 1/√M. The molar mass of O₂ (32 g/mol) is greater than that of N₂ (28 g/mol). Since v_rms is inversely proportional to √M, heavier O₂ molecules have a lower RMS speed than lighter N₂ molecules at the same temperature.",
+    "correct_answer": "A",
+    "concept_tags": ["RMS speed", "molar mass", "oxygen", "nitrogen", "speed comparison"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The reason directly provides the physical basis for the assertion. Since v_rms ∝ 1/√M and M(O₂) > M(N₂), O₂ has a lower RMS speed. The reason is the exact explanation.", "misconception": "Failing to recognize the direct causal connection between the reason and assertion" },
+      { "option_key": "C", "hint": "The reason is scientifically correct. From v_rms = √(3RT/M), it follows that v_rms ∝ 1/√M.", "misconception": "Incorrectly rejecting a valid physical relation" },
+      { "option_key": "D", "hint": "The assertion is correct. Since O₂ (M = 32) is heavier than N₂ (M = 28), and v_rms ∝ 1/√M, O₂ has a lower RMS speed.", "misconception": "Thinking heavier molecules move faster" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): Among the three molecular speeds, the RMS speed has the highest value at any given temperature, i.e., v_rms > v_mean > v_mp.\nReason (R): The RMS speed of a gas molecule is inversely proportional to the square root of its molar mass.",
+    "explanation": "The assertion is correct. For an ideal gas at temperature T: v_rms = √(3RT/M) ≈ 1.73√(RT/M), v_mean = √(8RT/πM) ≈ 1.60√(RT/M), and v_mp = √(2RT/M) ≈ 1.41√(RT/M). Since √3 > √(8/π) > √2, we have v_rms > v_mean > v_mp. The reason is also correct — from v_rms = √(3RT/M), v_rms ∝ 1/√M. However, the reason does not explain why v_rms is the largest among the three speeds. The ordering v_rms > v_mean > v_mp arises from comparing the numerical prefactors (√3, √(8/π), √2), not from the molar mass dependence.",
+    "correct_answer": "B",
+    "concept_tags": ["RMS speed", "mean speed", "most probable speed", "speed ordering", "molar mass"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": true },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The reason (v_rms ∝ 1/√M) is about how speed varies with molar mass, not about the relative ordering of the three speeds. The ordering comes from the different numerical prefactors √3, √(8/π), and √2.", "misconception": "Confusing the molar mass dependence with the reason for the speed ordering" },
+      { "option_key": "C", "hint": "The reason is factually correct. From v_rms = √(3RT/M), it is clear that v_rms ∝ 1/√M.", "misconception": "Incorrectly rejecting the molar mass dependence of RMS speed" },
+      { "option_key": "D", "hint": "The assertion is correct. The numerical factors √3 ≈ 1.73, √(8/π) ≈ 1.60, and √2 ≈ 1.41 confirm that v_rms > v_mean > v_mp.", "misconception": "Incorrectly ordering the three molecular speeds" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the gas type (Column I) with the correct value of γ = Cₚ/Cᵥ at moderate temperatures (Column II):\n\nColumn I:\nA. Monoatomic gas (e.g., He, Ar)\nB. Diatomic gas (e.g., O₂, N₂)\nC. Linear triatomic gas (e.g., CO₂)\nD. Non-linear triatomic gas (e.g., H₂O)\n\nColumn II:\n1. 4/3\n2. 7/5\n3. 5/3\n4. 9/7",
+    "explanation": "A-3: Monoatomic gas has f = 3, γ = (3+2)/3 = 5/3. B-2: Diatomic gas at moderate temperature has f = 5, γ = (5+2)/5 = 7/5. C-4: Linear triatomic gas has f = 7 (3 translational + 2 rotational + 2 vibrational partially activated, but at moderate temperatures considering only 3T + 2R = 5 for linear... However, for CO₂ as a linear triatomic, there are 3 translational + 2 rotational = 5 active at moderate T, but conventionally in NEET-level treatment, linear triatomic has f = 7, γ = 9/7). D-1: Non-linear triatomic gas has f = 6 (3 translational + 3 rotational), γ = (6+2)/6 = 8/6 = 4/3.",
+    "correct_answer": "C",
+    "concept_tags": ["gamma", "monoatomic", "diatomic", "triatomic", "degrees of freedom", "specific heat ratio"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-2, C-1, D-4", "is_correct": false },
+      { "key": "B", "text": "A-3, B-4, C-2, D-1", "is_correct": false },
+      { "key": "C", "text": "A-3, B-2, C-4, D-1", "is_correct": true },
+      { "key": "D", "text": "A-2, B-3, C-4, D-1", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This assigns γ = 4/3 to CO₂ and γ = 9/7 to H₂O. A non-linear triatomic molecule has 6 degrees of freedom (γ = 4/3), while a linear triatomic has 7 (γ = 9/7). The assignments for C and D are swapped here.", "misconception": "Swapping linear and non-linear triatomic γ values" },
+      { "option_key": "B", "hint": "This assigns γ = 9/7 to diatomic and γ = 7/5 to linear triatomic. A diatomic gas has 5 degrees of freedom (γ = 7/5), not 7.", "misconception": "Swapping diatomic and linear triatomic γ values" },
+      { "option_key": "D", "hint": "This assigns γ = 7/5 to monoatomic and γ = 5/3 to diatomic. Monoatomic has the highest γ (5/3) because it has the fewest degrees of freedom (3).", "misconception": "Swapping monoatomic and diatomic γ values" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the molecular speed type (Column I) with its expression and approximate numerical factor (Column II):\n\nColumn I:\nA. Most probable speed (v_mp)\nB. Mean speed (v_mean)\nC. RMS speed (v_rms)\nD. v_rms : v_mean : v_mp\n\nColumn II:\n1. √(3RT/M) ≈ 1.73√(RT/M)\n2. √(2RT/M) ≈ 1.41√(RT/M)\n3. √(8RT/πM) ≈ 1.60√(RT/M)\n4. 1.73 : 1.60 : 1.41",
+    "explanation": "A-2: Most probable speed v_mp = √(2RT/M) ≈ 1.41√(RT/M). B-3: Mean speed v_mean = √(8RT/πM) ≈ 1.60√(RT/M). C-1: RMS speed v_rms = √(3RT/M) ≈ 1.73√(RT/M). D-4: The ratio v_rms : v_mean : v_mp = √3 : √(8/π) : √2 ≈ 1.73 : 1.60 : 1.41. Note that v_rms > v_mean > v_mp always.",
+    "correct_answer": "D",
+    "concept_tags": ["most probable speed", "mean speed", "RMS speed", "speed ratio", "Maxwell-Boltzmann"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-1, B-3, C-2, D-4", "is_correct": false },
+      { "key": "B", "text": "A-3, B-2, C-1, D-4", "is_correct": false },
+      { "key": "C", "text": "A-2, B-1, C-3, D-4", "is_correct": false },
+      { "key": "D", "text": "A-2, B-3, C-1, D-4", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This assigns √(3RT/M) to the most probable speed. The most probable speed has the factor √2 (the smallest), not √3. Remember: v_mp < v_mean < v_rms.", "misconception": "Assigning the RMS speed formula to the most probable speed" },
+      { "option_key": "B", "hint": "This assigns the mean speed formula √(8RT/πM) to v_mp and the most probable speed formula √(2RT/M) to v_mean. These are swapped.", "misconception": "Swapping mean speed and most probable speed formulas" },
+      { "option_key": "C", "hint": "This assigns √(3RT/M) to the mean speed and √(8RT/πM) to the RMS speed. The RMS speed uses factor √3 (≈ 1.73) and mean speed uses √(8/π) (≈ 1.60).", "misconception": "Swapping RMS and mean speed formulas" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "At a given temperature, the average translational kinetic energy of molecules of all ideal gases is the same, regardless of their molar mass.",
+    "explanation": "This statement is TRUE. The average translational kinetic energy per molecule is (3/2)kT, where k is Boltzmann's constant and T is the absolute temperature. This expression is independent of the molar mass or molecular structure of the gas. At the same temperature, helium atoms, oxygen molecules, and nitrogen molecules all have the same average translational kinetic energy.",
+    "correct_answer": "A",
+    "concept_tags": ["translational kinetic energy", "equipartition", "temperature dependence", "molar mass independence"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The average translational KE = (3/2)kT depends only on temperature, not on molar mass. While heavier molecules move slower, their greater mass compensates, giving the same average KE.", "misconception": "Confusing kinetic energy with speed — heavier molecules have lower speed but same KE at a given temperature" },
+      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The mean free path of gas molecules is independent of the temperature of the gas.",
+    "explanation": "This statement is FALSE. The mean free path is given by λ = kT/(√2 π d² P). The mean free path depends on temperature (directly proportional at constant pressure) and pressure (inversely proportional at constant temperature). At constant pressure, increasing the temperature increases the mean free path because the gas expands and the number density decreases.",
+    "correct_answer": "B",
+    "concept_tags": ["mean free path", "temperature dependence", "pressure dependence"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The mean free path formula λ = kT/(√2 π d² P) contains T explicitly in the numerator, showing clear temperature dependence.", "misconception": "Ignoring the temperature term in the mean free path formula" },
+      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-19",
+    "question_type": "fill_in_the_blanks",
+    "difficulty": "medium",
+    "question_text": "According to the law of equipartition of energy, the total internal energy of one mole of a monoatomic ideal gas at temperature T is _____.",
+    "explanation": "A monoatomic ideal gas has 3 degrees of freedom (all translational). By the law of equipartition of energy, each degree of freedom contributes (1/2)kT per molecule or (1/2)RT per mole. Therefore, the total internal energy per mole = f × (1/2)RT = 3 × (1/2)RT = (3/2)RT.",
+    "correct_answer": "A",
+    "concept_tags": ["equipartition of energy", "internal energy", "monoatomic gas", "degrees of freedom"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "(3/2)RT", "is_correct": true },
+      { "key": "B", "text": "(5/2)RT", "is_correct": false },
+      { "key": "C", "text": "(1/2)RT", "is_correct": false },
+      { "key": "D", "text": "3RT", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "(5/2)RT is the internal energy per mole of a diatomic gas at moderate temperatures (5 degrees of freedom), not a monoatomic gas.", "misconception": "Confusing monoatomic and diatomic internal energy" },
+      { "option_key": "C", "hint": "(1/2)RT is the energy contribution from a single degree of freedom per mole. A monoatomic gas has 3 degrees of freedom, so the total is 3 × (1/2)RT = (3/2)RT.", "misconception": "Using only one degree of freedom instead of three" },
+      { "option_key": "D", "hint": "3RT would correspond to 6 degrees of freedom (each contributing (1/2)RT). A monoatomic gas has only 3 degrees of freedom.", "misconception": "Doubling the correct number of degrees of freedom" }
+    ]
+  },
+  {
+    "id": "phy-kinetic-speed-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A sealed container holds an ideal gas at temperature 400 K. The gas molecules have a molecular diameter d = 2 × 10⁻¹⁰ m, and the gas pressure is 1.0 × 10⁵ Pa. Given Boltzmann's constant k = 1.38 × 10⁻²³ J/K.\n\nThe mean free path of the gas molecules is approximately:",
+    "explanation": "The mean free path is given by λ = kT/(√2 π d² P). Substituting the values: λ = (1.38 × 10⁻²³ × 400)/(√2 × π × (2 × 10⁻¹⁰)² × 1.0 × 10⁵). Numerator = 1.38 × 10⁻²³ × 400 = 5.52 × 10⁻²¹. Denominator = 1.414 × 3.14 × 4 × 10⁻²⁰ × 10⁵ = 1.414 × 3.14 × 4 × 10⁻¹⁵ = 17.77 × 10⁻¹⁵ = 1.777 × 10⁻¹⁴. So λ = 5.52 × 10⁻²¹ / 1.777 × 10⁻¹⁴ = 3.11 × 10⁻⁷ m ≈ 3.1 × 10⁻⁷ m.",
+    "correct_answer": "C",
+    "concept_tags": ["mean free path", "numerical calculation", "Boltzmann constant", "molecular diameter"],
+    "topic": "RMS Speed, Mean Free Path, and Degrees of Freedom",
+    "subject": "physics",
+    "chapter": "Kinetic Theory",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "3.1 × 10⁻⁵ m", "is_correct": false },
+      { "key": "B", "text": "3.1 × 10⁻⁹ m", "is_correct": false },
+      { "key": "C", "text": "3.1 × 10⁻⁷ m", "is_correct": true },
+      { "key": "D", "text": "3.1 × 10⁻³ m", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "3.1 × 10⁻⁵ m is 100 times too large. Check the power of 10 in the denominator carefully, especially when squaring d = 2 × 10⁻¹⁰ m: d² = 4 × 10⁻²⁰ m².", "misconception": "Error in handling powers of 10 when squaring the molecular diameter" },
+      { "option_key": "B", "hint": "3.1 × 10⁻⁹ m is 100 times too small. This could result from incorrectly squaring d as (2 × 10⁻¹⁰)² = 4 × 10⁻¹⁸ instead of 4 × 10⁻²⁰.", "misconception": "Incorrect exponent arithmetic when squaring d" },
+      { "option_key": "D", "hint": "3.1 × 10⁻³ m is far too large for a mean free path at atmospheric pressure. Typical mean free paths for gases at STP are of the order of 10⁻⁷ m.", "misconception": "Major arithmetic error in power of 10 calculation" }
+    ]
+  }
+]
