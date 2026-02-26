@@ -1,0 +1,1190 @@
+[
+  {
+    "id": "chem-solid-lattice-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The total number of crystal systems known is:",
+    "explanation": "There are exactly seven crystal systems in crystallography: cubic (isometric), tetragonal, orthorhombic, monoclinic, triclinic, hexagonal, and rhombohedral (trigonal). These seven systems classify all possible unit cell geometries based on edge lengths (a, b, c) and the angles between them (α, β, γ). This is a fundamental classification covered in NCERT Class 12 Chemistry Chapter 1 (The Solid State).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "crystal-systems",
+      "crystallography",
+      "unit-cell-classification"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "7",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "14",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "6",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The number 14 refers to the total number of Bravais lattices, not crystal systems. Bravais lattices include variations like body-centred and face-centred within several crystal systems.",
+        "misconception": "Confusing the number of Bravais lattices (14) with the number of crystal systems (7)."
+      },
+      {
+        "option_key": "C",
+        "hint": "Six is an incorrect count. The seven crystal systems are cubic, tetragonal, orthorhombic, monoclinic, triclinic, hexagonal, and rhombohedral. Omitting any one of these would give six.",
+        "misconception": "Forgetting one of the seven crystal systems, often the rhombohedral system."
+      },
+      {
+        "option_key": "D",
+        "hint": "Four is far too few. There are seven distinct crystal systems, each with unique constraints on edge lengths and interaxial angles.",
+        "misconception": "Recalling only the most commonly discussed crystal systems (such as cubic, tetragonal, orthorhombic, and hexagonal) and missing the remaining three."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The number of atoms present per unit cell in a body-centred cubic (BCC) structure is:",
+    "explanation": "In a BCC unit cell, there are atoms at all 8 corners and 1 atom at the body centre. Each corner atom is shared among 8 unit cells, contributing 1/8 per cell. So corner contribution = 8 x (1/8) = 1 atom. The body-centre atom is entirely within the unit cell, contributing 1 atom. Total Z = 1 + 1 = 2 atoms per unit cell. This is a standard NEET-level fact from NCERT Class 12 Chemistry Chapter 1.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "bcc-structure",
+      "atoms-per-unit-cell",
+      "Z-value"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "6",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Z = 1 corresponds to a simple cubic (primitive) unit cell, where only corner atoms contribute. BCC has an additional atom at the body centre, making Z = 2.",
+        "misconception": "Confusing the BCC unit cell with the simple cubic (primitive) unit cell."
+      },
+      {
+        "option_key": "C",
+        "hint": "Z = 4 is the value for a face-centred cubic (FCC) unit cell, not BCC. FCC has additional atoms at face centres contributing 6 x (1/2) = 3, plus 1 from corners, totalling 4.",
+        "misconception": "Confusing BCC with FCC unit cell atom count."
+      },
+      {
+        "option_key": "D",
+        "hint": "No standard cubic unit cell type has Z = 6. The common values are Z = 1 (simple cubic), Z = 2 (BCC), and Z = 4 (FCC). The value 6 does not correspond to any of these.",
+        "misconception": "Incorrectly calculating the number of atoms by not applying the correct sharing fractions."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In a face-centred cubic (FCC) unit cell, each face-centred atom is shared between:",
+    "explanation": "Each face of a unit cell is shared between exactly 2 adjacent unit cells. Therefore, a face-centred atom contributes 1/2 of itself to each of the two unit cells it belongs to. This sharing principle is essential for calculating the effective number of atoms per unit cell in FCC structures. In FCC, there are 6 face-centred atoms, each contributing 1/2, giving 6 x (1/2) = 3 atoms from face centres, plus 8 x (1/8) = 1 from corners, totalling Z = 4.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "fcc-structure",
+      "atom-sharing",
+      "face-centred-atom"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "4 unit cells",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "6 unit cells",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2 unit cells",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "8 unit cells",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "An atom shared among 4 unit cells would contribute 1/4 per cell. This applies to edge-centred atoms (shared by 4 unit cells along an edge), not face-centred atoms.",
+        "misconception": "Confusing face-centred atom sharing with edge-centred atom sharing."
+      },
+      {
+        "option_key": "B",
+        "hint": "An atom shared among 6 unit cells would contribute 1/6 per cell. No standard position in a cubic unit cell involves sharing among exactly 6 cells.",
+        "misconception": "Incorrectly associating the number of faces (6) with the number of unit cells sharing a face-centred atom."
+      },
+      {
+        "option_key": "D",
+        "hint": "Sharing among 8 unit cells applies to corner atoms, not face-centred atoms. Each corner is at the junction of 8 unit cells, giving 1/8 contribution per cell.",
+        "misconception": "Confusing the sharing factor of corner atoms (1/8) with that of face-centred atoms (1/2)."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which crystal system has the maximum number of Bravais lattices?",
+    "explanation": "The orthorhombic crystal system has the maximum number of Bravais lattices, namely 4: primitive (P), body-centred (I), face-centred (F), and end-centred (C). No other crystal system has more than 4 Bravais lattice types. The cubic system has 3 (P, I, F), monoclinic has 2 (P, C), and the remaining systems (tetragonal has 2; triclinic, hexagonal, and rhombohedral each have 1).",
+    "correct_answer": "D",
+    "concept_tags": [
+      "bravais-lattices",
+      "orthorhombic-system",
+      "crystal-system-classification"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Cubic",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Tetragonal",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Monoclinic",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Orthorhombic",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The cubic system has 3 Bravais lattices (primitive, body-centred, and face-centred). While this is a high number, the orthorhombic system has 4, which is the maximum.",
+        "misconception": "Assuming the cubic system, being the most symmetric, must have the most Bravais lattice types."
+      },
+      {
+        "option_key": "B",
+        "hint": "The tetragonal system has only 2 Bravais lattices (primitive and body-centred). It does not have face-centred or end-centred variants.",
+        "misconception": "Overestimating the number of Bravais lattice types in the tetragonal system."
+      },
+      {
+        "option_key": "C",
+        "hint": "The monoclinic system has 2 Bravais lattices (primitive and end-centred). This is fewer than the 4 found in the orthorhombic system.",
+        "misconception": "Confusing the monoclinic system's lattice count with that of the orthorhombic system."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The coordination number of atoms in a face-centred cubic (FCC) lattice is:",
+    "explanation": "In an FCC lattice, each atom is surrounded by 12 nearest neighbours. For a corner atom, the nearest neighbours are the face-centred atoms on the adjacent faces. Each atom touches 4 atoms in its own layer, 4 atoms in the layer above, and 4 atoms in the layer below, giving a total coordination number of 12. This is also the same as the coordination number in hexagonal close packing (HCP), as both are close-packed structures with 74% packing efficiency.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "coordination-number",
+      "fcc-structure",
+      "close-packing"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "12",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "8",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "6",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "A coordination number of 8 is characteristic of a BCC lattice, where each atom at the body centre is surrounded by 8 corner atoms. FCC is more closely packed than BCC and has a higher coordination number.",
+        "misconception": "Confusing the coordination number of BCC (8) with that of FCC (12)."
+      },
+      {
+        "option_key": "C",
+        "hint": "A coordination number of 6 is characteristic of a simple cubic lattice, where each atom touches 6 neighbours (one along each direction of the three axes). FCC packing is denser than simple cubic.",
+        "misconception": "Confusing the coordination number of simple cubic (6) with that of FCC (12)."
+      },
+      {
+        "option_key": "D",
+        "hint": "A coordination number of 4 is found in certain tetrahedral arrangements (such as diamond cubic), not in FCC. The FCC structure is a close-packed arrangement with much higher coordination.",
+        "misconception": "Confusing the tetrahedral coordination found in structures like diamond with the FCC coordination number."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a body-centred cubic (BCC) unit cell, the relationship between edge length (a) and atomic radius (r) is:",
+    "explanation": "In a BCC unit cell, atoms touch along the body diagonal. The body diagonal of a cube with edge length a has a length of a√3. Along this diagonal, there is one complete atom at each corner (contributing a radius each) and one complete atom at the body centre (contributing a diameter). So the body diagonal = 4r. Therefore, a√3 = 4r, which gives r = (√3/4)a or equivalently a = 4r/√3. This is a frequently tested relationship in NEET.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "bcc-structure",
+      "edge-length-radius-relation",
+      "body-diagonal"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "a = 2r",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "a = 4r/√3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "a = 2√2 r",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "a = 4r/√2",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The relation a = 2r applies to a simple cubic unit cell, where atoms touch along the edge of the cube. In BCC, atoms touch along the body diagonal, not the edge, so a different relation applies.",
+        "misconception": "Applying the simple cubic edge-length-radius relationship to BCC."
+      },
+      {
+        "option_key": "C",
+        "hint": "The relation a = 2√2 r applies to an FCC unit cell, where atoms touch along the face diagonal (a√2 = 4r). In BCC, atoms touch along the body diagonal instead.",
+        "misconception": "Confusing the FCC face-diagonal relationship with the BCC body-diagonal relationship."
+      },
+      {
+        "option_key": "D",
+        "hint": "The expression a = 4r/√2 is a rearrangement of the FCC relationship (a√2 = 4r), not the BCC relationship. For BCC, the relevant diagonal is the body diagonal (a√3 = 4r), giving a = 4r/√3.",
+        "misconception": "Mixing up the face diagonal (√2) factor with the body diagonal (√3) factor."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In the cubic crystal system, the lattice parameters satisfy the conditions:",
+    "explanation": "The cubic crystal system is defined by three equal edge lengths (a = b = c) and all three interaxial angles equal to 90° (α = β = γ = 90°). This is the most symmetric of the seven crystal systems. Examples of substances crystallising in the cubic system include NaCl, diamond, and copper. This definition is directly from NCERT Class 12 Chemistry Chapter 1.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "cubic-system",
+      "lattice-parameters",
+      "crystal-system-definition"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "a = b ≠ c; α = β = γ = 90°",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "a ≠ b ≠ c; α = β = γ = 90°",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "a = b = c; α = β = γ = 90°",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "a = b = c; α = β = γ ≠ 90°",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The conditions a = b ≠ c with all angles 90° describe the tetragonal crystal system, not the cubic system. In the cubic system, all three edge lengths must be equal.",
+        "misconception": "Confusing the tetragonal system (two equal edges) with the cubic system (three equal edges)."
+      },
+      {
+        "option_key": "B",
+        "hint": "The conditions a ≠ b ≠ c with all angles 90° describe the orthorhombic crystal system. The cubic system requires all three edge lengths to be equal.",
+        "misconception": "Confusing the orthorhombic system (all edges unequal, all angles 90°) with the cubic system."
+      },
+      {
+        "option_key": "D",
+        "hint": "The conditions a = b = c with α = β = γ ≠ 90° describe the rhombohedral (trigonal) crystal system. In the cubic system, all angles must be exactly 90°.",
+        "misconception": "Confusing the rhombohedral system with the cubic system; both have equal edge lengths but differ in their angles."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The density of a crystalline solid with molecular mass M, edge length a, and Z atoms per unit cell is given by:",
+    "explanation": "The density formula for a unit cell is derived as follows: Mass of one unit cell = Z × M / Nₐ, where Z is the number of atoms (or formula units) per unit cell, M is the molar mass, and Nₐ is Avogadro's number. Volume of the unit cell = a³ (for a cubic cell). Therefore, density ρ = mass/volume = Z × M / (a³ × Nₐ). This formula is extensively used in NEET numerical problems on the solid state.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "density-formula",
+      "unit-cell-calculation",
+      "molar-mass"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ρ = Z × Nₐ / (a³ × M)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ρ = a³ × Nₐ / (Z × M)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ρ = Z × M × Nₐ / a³",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ρ = Z × M / (a³ × Nₐ)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This expression has Nₐ in the numerator and M in the denominator, which is the inverse of the correct formula. Mass of one unit cell is Z × M / Nₐ, so M should be in the numerator and Nₐ in the denominator.",
+        "misconception": "Inverting the positions of molar mass M and Avogadro's number Nₐ in the density formula."
+      },
+      {
+        "option_key": "B",
+        "hint": "This expression has a³ in the numerator, but volume should be in the denominator since density = mass/volume. Also, Z and M should be in the numerator together.",
+        "misconception": "Placing the volume term in the numerator instead of the denominator of the density expression."
+      },
+      {
+        "option_key": "C",
+        "hint": "Multiplying by Nₐ rather than dividing by it would give an astronomically large number. The mass of one unit cell is Z × M / Nₐ (dividing molar mass by Avogadro's number converts to mass per atom).",
+        "misconception": "Forgetting that Avogadro's number must be in the denominator to convert from molar mass to mass per atom."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The total number of Bravais lattices possible in three dimensions is:",
+    "explanation": "Auguste Bravais showed that there are exactly 14 distinct lattice types (Bravais lattices) in three-dimensional space, distributed among the 7 crystal systems. These are: triclinic (1), monoclinic (2), orthorhombic (4), tetragonal (2), cubic (3), hexagonal (1), and rhombohedral (1), totalling 1+2+4+2+3+1+1 = 14. This is a key fact tested in NEET from NCERT Class 12 Chemistry.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "bravais-lattices",
+      "three-dimensional-lattice",
+      "crystal-classification"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "14",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "7",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "28",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "12",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The number 7 refers to the crystal systems, not the Bravais lattices. Each crystal system can have one or more Bravais lattice types (primitive, body-centred, face-centred, end-centred), leading to a total of 14.",
+        "misconception": "Confusing the number of crystal systems (7) with the number of Bravais lattices (14)."
+      },
+      {
+        "option_key": "C",
+        "hint": "The number 28 (which is 7 × 4) would result from assuming each crystal system has all 4 lattice types (P, I, F, C). In reality, not all lattice types are distinct in every crystal system, so only 14 unique lattices exist.",
+        "misconception": "Incorrectly multiplying 7 crystal systems by 4 lattice types without considering which combinations are actually distinct."
+      },
+      {
+        "option_key": "D",
+        "hint": "There is no standard crystallographic classification that yields 12 Bravais lattices. The mathematically proven number is 14, as established by Auguste Bravais.",
+        "misconception": "Incorrectly recalling the total count of Bravais lattices."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In an FCC unit cell, the atoms are in contact along the:",
+    "explanation": "In a face-centred cubic (FCC) unit cell, atoms touch each other along the face diagonal. The face diagonal of a cube with edge length a has a length of a√2. Along this diagonal, there are 4 atomic radii (two half-atoms at corners and one full atom at the face centre), so a√2 = 4r. This is different from BCC where atoms touch along the body diagonal and simple cubic where they touch along the edge.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "fcc-structure",
+      "face-diagonal",
+      "atomic-contact"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Edge of the cube",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Face diagonal",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Body diagonal",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "All three: edge, face diagonal, and body diagonal",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Atoms touching along the edge of the cube describes a simple cubic structure, where adjacent corner atoms are in contact along the edge (a = 2r). In FCC, the edge length is greater than 2r, so atoms do not touch along the edge.",
+        "misconception": "Confusing the simple cubic contact direction with that of FCC."
+      },
+      {
+        "option_key": "C",
+        "hint": "Atoms touching along the body diagonal describes a BCC structure, where the body-centre atom and corner atoms are in contact along the body diagonal (a√3 = 4r). In FCC, contact occurs along the face diagonal instead.",
+        "misconception": "Confusing the BCC body-diagonal contact with the FCC face-diagonal contact."
+      },
+      {
+        "option_key": "D",
+        "hint": "In any given unit cell type, atoms are in contact along only one specific direction. In FCC, contact is exclusively along the face diagonal. The edge and body diagonal are longer than needed for contact.",
+        "misconception": "Assuming atoms touch along multiple directions simultaneously in FCC."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A metallic element crystallises in FCC structure with edge length 361 pm. If the density of the metal is 8.92 g/cm³, the molar mass of the element is approximately (Nₐ = 6.022 × 10²³): ",
+    "explanation": "Using the density formula: ρ = Z × M / (a³ × Nₐ). For FCC, Z = 4. Given a = 361 pm = 361 × 10⁻¹⁰ cm = 3.61 × 10⁻⁸ cm. So a³ = (3.61 × 10⁻⁸)³ = 47.05 × 10⁻²⁴ cm³ = 4.705 × 10⁻²³ cm³. Rearranging: M = ρ × a³ × Nₐ / Z = (8.92 × 4.705 × 10⁻²³ × 6.022 × 10²³) / 4 = (8.92 × 4.705 × 6.022) / 4 = (8.92 × 28.33) / 4 = 252.7 / 4 = 63.2 g/mol. This corresponds to copper (Cu, molar mass ≈ 63.5 g/mol), confirming the answer.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "density-formula",
+      "fcc-calculation",
+      "molar-mass-determination",
+      "numerical-problem"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "27 g/mol",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "56 g/mol",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "63.5 g/mol",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "108 g/mol",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "27 g/mol corresponds to aluminium. With the given density (8.92 g/cm³) and edge length, the calculation yields approximately 63.5 g/mol. Aluminium has a much lower density (~2.7 g/cm³).",
+        "misconception": "Incorrectly using Z = 1 (simple cubic) instead of Z = 4 (FCC) in the density formula."
+      },
+      {
+        "option_key": "B",
+        "hint": "56 g/mol corresponds to iron. However, iron crystallises in BCC (Z = 2), not FCC. The calculated molar mass with the given parameters is ~63.5 g/mol, which matches copper.",
+        "misconception": "Computational error in the density formula or confusing the metal with iron."
+      },
+      {
+        "option_key": "D",
+        "hint": "108 g/mol corresponds to silver. While silver does crystallise in FCC, its edge length (~409 pm) and density (~10.5 g/cm³) are different from the values given. The calculation with the stated values gives ~63.5 g/mol.",
+        "misconception": "Using incorrect values of edge length or density, or making a unit conversion error."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An element with BCC structure has a unit cell edge length of 288 pm. The atomic radius of the element is:",
+    "explanation": "In a BCC unit cell, atoms touch along the body diagonal. The body diagonal = a√3, and it equals 4r (one radius from each of the two corner atoms plus the full diameter of the body-centre atom). Therefore: a√3 = 4r, so r = a√3/4. Substituting a = 288 pm: r = 288 × √3 / 4 = 288 × 1.732 / 4 = 498.8 / 4 = 124.7 pm ≈ 124.8 pm. This type of numerical calculation is commonly asked in NEET.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "bcc-structure",
+      "atomic-radius-calculation",
+      "body-diagonal",
+      "numerical-problem"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "144 pm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "102 pm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "72 pm",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "124.8 pm",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The value 144 pm would be obtained if r = a/2 (i.e., 288/2), which is the simple cubic relationship (a = 2r). For BCC, the correct relation is r = a√3/4, yielding a smaller value of about 124.8 pm.",
+        "misconception": "Using the simple cubic formula (r = a/2) instead of the BCC formula (r = a√3/4)."
+      },
+      {
+        "option_key": "B",
+        "hint": "The value 102 pm would result from using the FCC relationship r = a/(2√2) = 288/2.828 ≈ 101.8 pm. This applies to FCC, not BCC. For BCC, the correct formula gives r = a√3/4 ≈ 124.8 pm.",
+        "misconception": "Applying the FCC edge-length-radius formula to a BCC structure."
+      },
+      {
+        "option_key": "C",
+        "hint": "The value 72 pm is obtained from r = a/4, which is not the correct relationship for any standard cubic unit cell. For BCC, the correct formula is r = a√3/4, which includes the √3 factor from the body diagonal.",
+        "misconception": "Omitting the √3 factor in the BCC body-diagonal relationship."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The packing efficiency of FCC and HCP structures is the same (74%).\nReason (R): Both FCC and HCP are close-packed structures with a coordination number of 12.",
+    "explanation": "Both the Assertion and the Reason are true, and the Reason correctly explains the Assertion. FCC (cubic close packing, ABCABC pattern) and HCP (hexagonal close packing, ABAB pattern) are both close-packed arrangements where each atom is surrounded by 12 nearest neighbours (coordination number = 12). Since both structures achieve the maximum packing possible for identical spheres, they both have a packing efficiency of 74.05%. The fact that both are close-packed structures with coordination number 12 directly accounts for their identical packing efficiency.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "packing-efficiency",
+      "fcc-hcp-comparison",
+      "close-packing",
+      "coordination-number"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is NOT the correct explanation of A.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true.",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The reason (both being close-packed with coordination number 12) is indeed the direct explanation for why they share the same packing efficiency. Close packing defines the packing fraction, so the reason correctly explains the assertion.",
+        "misconception": "Failing to see the causal link between close-packed arrangement (coordination number 12) and the 74% packing efficiency."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is factually correct. Both FCC and HCP do have a coordination number of 12, and they are indeed both close-packed structures. This is well-established in crystallography.",
+        "misconception": "Incorrectly believing that FCC and HCP have different coordination numbers."
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is factually correct. Both FCC and HCP have a packing efficiency of approximately 74%. This has been mathematically proven for close-packed spheres.",
+        "misconception": "Incorrectly believing that FCC and HCP have different packing efficiencies due to different stacking sequences."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): A face-centred cubic unit cell of a monoclinic crystal system is not possible as a distinct Bravais lattice.\nReason (R): In the monoclinic system, only primitive and end-centred (base-centred) Bravais lattices exist because other centring operations either reduce to these or change the crystal system.",
+    "explanation": "Both the Assertion and Reason are true, and the Reason correctly explains the Assertion. The monoclinic crystal system (a ≠ b ≠ c; α = γ = 90°, β ≠ 90°) has only 2 Bravais lattices: primitive (P) and end-centred/base-centred (C). If one attempts to create a body-centred or face-centred monoclinic lattice, the resulting lattice can be shown to be equivalent to one of the existing types through a redefinition of axes, or it transforms into a different crystal system. This is why only 14 (not 28) Bravais lattices exist in total.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "bravais-lattices",
+      "monoclinic-system",
+      "lattice-symmetry",
+      "crystal-system-constraints"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is NOT the correct explanation of A.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true.",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The reason directly explains the assertion. The assertion states that face-centred monoclinic is not a distinct Bravais lattice, and the reason explains exactly why: only P and C types survive as distinct lattices in the monoclinic system because other centering operations reduce to these or change the system.",
+        "misconception": "Failing to recognise the direct causal relationship between lattice equivalence arguments and the non-existence of face-centred monoclinic."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is factually correct. It is a well-established fact in crystallography that the monoclinic system has only P and C Bravais lattices. This is stated in NCERT and standard reference texts.",
+        "misconception": "Incorrectly believing the monoclinic system can have more than 2 Bravais lattice types."
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is factually correct. Face-centred monoclinic does not exist as a distinct Bravais lattice. A face-centred arrangement in a monoclinic system can be reduced to an end-centred lattice by choosing different unit cell axes.",
+        "misconception": "Incorrectly thinking that face-centred monoclinic exists as a separate Bravais lattice type."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following unit cell types (Column I) with the number of atoms per unit cell (Column II):\n\nColumn I:\n(P) Simple cubic\n(Q) Body-centred cubic (BCC)\n(R) Face-centred cubic (FCC)\n(S) End-centred (base-centred)\n\nColumn II:\n(i) 4\n(ii) 2\n(iii) 1\n(iv) 2",
+    "explanation": "Simple cubic (P) has atoms only at corners: 8 × (1/8) = 1 atom → matches (iii). BCC (Q) has corner atoms plus one body-centre atom: 8 × (1/8) + 1 = 2 atoms → matches (ii). FCC (R) has corner atoms plus face-centre atoms: 8 × (1/8) + 6 × (1/2) = 4 atoms → matches (i). End-centred (S) has corner atoms plus 2 atoms on opposite faces that are each shared between 2 cells: 8 × (1/8) + 2 × (1/2) = 2 atoms → matches (iv). So: P→iii, Q→ii, R→i, S→iv.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "atoms-per-unit-cell",
+      "Z-value",
+      "unit-cell-types",
+      "matching"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→ii, Q→iii, R→i, S→iv",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→iii, Q→ii, R→i, S→iv",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "P→iii, Q→iv, R→ii, S→i",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P→i, Q→ii, R→iii, S→iv",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This option assigns Z = 2 to simple cubic (P) and Z = 1 to BCC (Q). Simple cubic has only corner atoms giving Z = 1, while BCC has an additional body-centre atom giving Z = 2. The assignments for P and Q are swapped.",
+        "misconception": "Swapping the Z values of simple cubic and BCC."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option assigns Z = 2 to BCC (ii for Q) correctly but assigns Z = 2 to FCC (R→ii) and Z = 4 to end-centred (S→i). FCC has Z = 4, not 2, and end-centred has Z = 2, not 4.",
+        "misconception": "Confusing the Z values of FCC (4) and end-centred (2)."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option assigns Z = 4 to simple cubic (P→i), which is incorrect. Simple cubic has Z = 1 (only corner atoms). Also, FCC is assigned Z = 1 (R→iii), which is wrong since FCC has Z = 4.",
+        "misconception": "Reversing the Z values of simple cubic and FCC."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following crystal systems (Column I) with their correct lattice parameter conditions (Column II):\n\nColumn I:\n(P) Tetragonal\n(Q) Orthorhombic\n(R) Hexagonal\n(S) Triclinic\n\nColumn II:\n(i) a ≠ b ≠ c; α ≠ β ≠ γ ≠ 90°\n(ii) a = b ≠ c; α = β = 90°, γ = 120°\n(iii) a = b ≠ c; α = β = γ = 90°\n(iv) a ≠ b ≠ c; α = β = γ = 90°",
+    "explanation": "Tetragonal (P): Two equal edges, one different, all angles 90° → a = b ≠ c; α = β = γ = 90° → matches (iii). Orthorhombic (Q): All three edges different, all angles 90° → a ≠ b ≠ c; α = β = γ = 90° → matches (iv). Hexagonal (R): Two equal edges, one different, two angles 90° and one angle 120° → a = b ≠ c; α = β = 90°, γ = 120° → matches (ii). Triclinic (S): All edges different, all angles different and not 90° → a ≠ b ≠ c; α ≠ β ≠ γ ≠ 90° → matches (i). So: P→iii, Q→iv, R→ii, S→i.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "crystal-systems",
+      "lattice-parameters",
+      "crystal-classification",
+      "matching"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→iv, Q→iii, R→ii, S→i",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→iii, Q→ii, R→iv, S→i",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P→ii, Q→iv, R→iii, S→i",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P→iii, Q→iv, R→ii, S→i",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This assigns tetragonal (P) to condition (iv): a ≠ b ≠ c with all angles 90°. But tetragonal requires a = b ≠ c (two equal edges), not all three different. Condition (iv) describes the orthorhombic system.",
+        "misconception": "Confusing the tetragonal system (two equal edges) with the orthorhombic system (all edges unequal)."
+      },
+      {
+        "option_key": "B",
+        "hint": "This assigns orthorhombic (Q) to condition (ii): a = b ≠ c; α = β = 90°, γ = 120°. But condition (ii) describes the hexagonal system. Orthorhombic has all edges unequal and all angles 90°.",
+        "misconception": "Confusing the orthorhombic lattice parameters with those of the hexagonal system."
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns tetragonal (P) to condition (ii): a = b ≠ c; α = β = 90°, γ = 120°. While tetragonal has a = b ≠ c, it requires all angles to be 90°, not γ = 120°. Condition (ii) is for the hexagonal system.",
+        "misconception": "Confusing tetragonal (all angles 90°) with hexagonal (γ = 120°) since both have a = b ≠ c."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "A primitive (simple) unit cell has lattice points only at the corners of the unit cell.",
+    "explanation": "This statement is TRUE. A primitive unit cell, also called a simple unit cell, is defined as one that has lattice points (atoms, ions, or molecules) only at the corners and nowhere else (no body centre, no face centres, no edge centres). Each corner lattice point is shared among 8 unit cells in a three-dimensional lattice, contributing 1/8 per unit cell. This gives Z = 8 × (1/8) = 1 effective lattice point per primitive unit cell. This is a fundamental definition in NCERT Class 12 Chemistry Chapter 1.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "primitive-unit-cell",
+      "lattice-points",
+      "unit-cell-definition"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement is a standard definition from NCERT. A primitive unit cell, by definition, has lattice points only at the corners. Non-primitive unit cells (BCC, FCC, end-centred) have additional lattice points at body centres, face centres, or edge centres.",
+        "misconception": "Confusing primitive unit cells with non-primitive unit cells that have additional internal lattice points."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is not a valid option for this true-false question.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is not a valid option for this true-false question.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The packing efficiency of a body-centred cubic (BCC) structure is 74%.",
+    "explanation": "This statement is FALSE. The packing efficiency of BCC is approximately 68%, not 74%. The 74% packing efficiency corresponds to FCC (cubic close packing) and HCP (hexagonal close packing), which are the most efficiently packed structures. For BCC, the packing efficiency can be calculated as: (2 × (4/3)πr³) / a³ × 100%, where a = 4r/√3. This gives approximately 68.04%. The packing efficiencies for different structures are: simple cubic ≈ 52.4%, BCC ≈ 68%, FCC = HCP ≈ 74%.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "packing-efficiency",
+      "bcc-structure",
+      "close-packing-comparison"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The 74% packing efficiency belongs to FCC and HCP structures, not BCC. BCC has a lower packing efficiency of approximately 68% because it is not a close-packed structure.",
+        "misconception": "Confusing the packing efficiency of BCC (68%) with that of FCC/HCP (74%)."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is not a valid option for this true-false question.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is not a valid option for this true-false question.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The number of octahedral voids present per atom in a close-packed structure is ______.",
+    "explanation": "In a close-packed structure (FCC or HCP), the number of octahedral voids is equal to the number of atoms in the packing. Therefore, the ratio of octahedral voids to atoms is 1:1, meaning there is 1 octahedral void per atom. In an FCC unit cell with Z = 4 atoms, there are exactly 4 octahedral voids (1 at the body centre + 12 at edge centres, each shared among 4 unit cells: 1 + 12 × (1/4) = 4). This is a standard NEET fact from NCERT.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "octahedral-voids",
+      "close-packing",
+      "void-ratio"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.5",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The value 2 corresponds to the number of tetrahedral voids per atom in a close-packed structure (2N tetrahedral voids for N atoms). Octahedral voids number N, giving a ratio of 1 per atom, not 2.",
+        "misconception": "Confusing the octahedral void ratio (1:1) with the tetrahedral void ratio (2:1)."
+      },
+      {
+        "option_key": "B",
+        "hint": "A ratio of 0.5 (or 1:2) does not correspond to any standard void-to-atom ratio in close-packed structures. The correct ratios are 1:1 for octahedral voids and 2:1 for tetrahedral voids.",
+        "misconception": "Inverting the octahedral void ratio or confusing it with another relationship."
+      },
+      {
+        "option_key": "D",
+        "hint": "While there are 4 octahedral voids in one FCC unit cell, this is because there are also 4 atoms per FCC unit cell. The ratio of octahedral voids per atom is therefore 4/4 = 1, not 4.",
+        "misconception": "Reporting the absolute number of octahedral voids in one FCC unit cell instead of the ratio per atom."
+      }
+    ]
+  },
+  {
+    "id": "chem-solid-lattice-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A student is studying the crystal structure of sodium metal. Sodium crystallises in a body-centred cubic lattice with an edge length of 429 pm and a molar mass of 23 g/mol. The student wants to calculate the density of sodium. Using the unit cell density formula (ρ = Z × M / (a³ × Nₐ)), what is the approximate density of sodium? (Nₐ = 6.022 × 10²³ mol⁻¹)",
+    "explanation": "For BCC, Z = 2. Given: M = 23 g/mol, a = 429 pm = 429 × 10⁻¹⁰ cm = 4.29 × 10⁻⁸ cm. First, calculate a³ = (4.29 × 10⁻⁸)³ = 79.03 × 10⁻²⁴ cm³ = 7.903 × 10⁻²³ cm³. Now apply the formula: ρ = Z × M / (a³ × Nₐ) = (2 × 23) / (7.903 × 10⁻²³ × 6.022 × 10²³) = 46 / (7.903 × 6.022) = 46 / 47.59 = 0.966 g/cm³ ≈ 0.97 g/cm³. This matches the known density of sodium (~0.97 g/cm³), confirming the calculation.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "density-calculation",
+      "bcc-structure",
+      "sodium-crystal",
+      "unit-cell-formula",
+      "numerical-problem"
+    ],
+    "topic": "Crystal Lattices and Unit Cells",
+    "subject": "chemistry",
+    "chapter": "Solid State",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.48 g/cm³",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.94 g/cm³",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2.70 g/cm³",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.97 g/cm³",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The value 0.48 g/cm³ would be obtained if Z = 1 (simple cubic) were used instead of Z = 2 (BCC). Since sodium has a BCC structure, there are 2 atoms per unit cell, giving double this value.",
+        "misconception": "Using Z = 1 (simple cubic) instead of Z = 2 (BCC) in the density formula."
+      },
+      {
+        "option_key": "B",
+        "hint": "The value 1.94 g/cm³ would result from using Z = 4 (FCC) instead of Z = 2 (BCC). Sodium crystallises in BCC, not FCC, so only 2 atoms per unit cell should be used.",
+        "misconception": "Using Z = 4 (FCC) instead of Z = 2 (BCC) for the sodium unit cell calculation."
+      },
+      {
+        "option_key": "C",
+        "hint": "The value 2.70 g/cm³ is the density of aluminium, not sodium. This could result from using incorrect values for molar mass or edge length, or from confusing sodium with aluminium.",
+        "misconception": "Confusing the density of sodium with that of aluminium, or making errors in unit conversion."
+      }
+    ]
+  }
+]

@@ -1,0 +1,1204 @@
+[
+  {
+    "id": "chem-electrochem-conductance-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of molar conductivity (Λm) is:",
+    "explanation": "Molar conductivity is defined as Λm = κ/c, where κ is conductivity (S m⁻¹) and c is concentration in mol m⁻³. Therefore, Λm = (S m⁻¹)/(mol m⁻³) = S m² mol⁻¹. This is the standard SI unit used for molar conductivity in electrochemistry.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "molar-conductivity",
+      "units",
+      "conductivity"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "S cm⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "S m² mol⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "S m⁻¹ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Ω m² mol⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "S cm⁻¹ is the CGS unit of conductivity (κ), not molar conductivity. Molar conductivity involves dividing κ by concentration, which changes the units.",
+        "misconception": "Confusing the units of conductivity (κ) with those of molar conductivity (Λm)."
+      },
+      {
+        "option_key": "C",
+        "hint": "The dimensional analysis of κ/c gives S m² mol⁻¹, not S m⁻¹ mol⁻¹. Dividing S m⁻¹ by mol m⁻³ yields S m² mol⁻¹.",
+        "misconception": "Incorrectly cancelling units when dividing conductivity by molar concentration."
+      },
+      {
+        "option_key": "D",
+        "hint": "Ohm (Ω) is the unit of resistance, not conductance. Conductance uses Siemens (S), which is the reciprocal of Ohm.",
+        "misconception": "Confusing resistance (Ω) with conductance (S = Ω⁻¹)."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "On dilution, the molar conductivity of a strong electrolyte:",
+    "explanation": "For strong electrolytes, molar conductivity (Λm) increases with dilution and approaches a limiting value (Λm°) at infinite dilution. This is because strong electrolytes are completely dissociated at all concentrations, and dilution reduces interionic attractions, allowing ions to move more freely. According to the Debye-Huckel-Onsager equation, Λm = Λm° − A√c, showing a linear relationship with √c.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "molar-conductivity",
+      "dilution",
+      "strong-electrolyte",
+      "debye-huckel-onsager"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Increases slowly and approaches a limiting value",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Decreases continuously",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Remains constant at all concentrations",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "First increases then decreases sharply",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Conductivity (κ) decreases on dilution, but molar conductivity (Λm) increases. Do not confuse these two quantities.",
+        "misconception": "Confusing the behavior of conductivity (κ) with molar conductivity (Λm) on dilution."
+      },
+      {
+        "option_key": "C",
+        "hint": "If Λm were constant at all concentrations, there would be no concentration dependence. Interionic interactions cause Λm to vary with concentration.",
+        "misconception": "Assuming that complete dissociation means molar conductivity is independent of concentration."
+      },
+      {
+        "option_key": "D",
+        "hint": "There is no mechanism that would cause molar conductivity to decrease after an initial increase for a strong electrolyte upon dilution.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In a dry cell (Leclanché cell), the anode is made of:",
+    "explanation": "In a dry cell (Leclanché cell), the anode is a zinc container that undergoes oxidation: Zn → Zn²⁺ + 2e⁻. The cathode is a carbon (graphite) rod surrounded by a paste of MnO₂ and carbon powder. The electrolyte is a moist paste of NH₄Cl and ZnCl₂. The zinc container gradually gets consumed as the cell is used.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "dry-cell",
+      "primary-battery",
+      "leclanche-cell",
+      "anode"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Carbon rod",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Copper",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zinc",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Lead",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The carbon (graphite) rod serves as the cathode (positive terminal) in a dry cell, not the anode. It acts as an inert current collector.",
+        "misconception": "Confusing the roles of cathode and anode in a dry cell."
+      },
+      {
+        "option_key": "B",
+        "hint": "Copper is not used in a dry cell. Copper electrodes are found in Daniel cells and some other electrochemical cells.",
+        "misconception": "Mixing up the components of a dry cell with those of a Daniell cell."
+      },
+      {
+        "option_key": "D",
+        "hint": "Lead electrodes are used in lead-acid storage batteries, not in dry cells.",
+        "misconception": "Confusing the electrode materials of dry cells with those of lead storage batteries."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Rusting of iron requires the presence of:",
+    "explanation": "Rusting of iron is an electrochemical process that requires both water (moisture) and oxygen. At anodic spots on the iron surface, iron is oxidized: Fe → Fe²⁺ + 2e⁻. At cathodic spots, oxygen is reduced: O₂ + 4H⁺ + 4e⁻ → 2H₂O. The Fe²⁺ ions are further oxidized and hydrated to form rust (Fe₂O₃·xH₂O). Without either water or oxygen, rusting does not occur.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "corrosion",
+      "rusting",
+      "iron",
+      "electrochemical-corrosion"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Only water",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Only oxygen",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Only carbon dioxide",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Both water and oxygen",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Water alone is not sufficient for rusting. Iron kept in pure water without dissolved oxygen does not rust. Oxygen is essential for the cathodic half-reaction.",
+        "misconception": "Thinking that moisture alone is enough to cause rusting without oxygen."
+      },
+      {
+        "option_key": "B",
+        "hint": "Dry oxygen alone does not cause rusting. Water is needed to provide the medium for ion transport in the electrochemical corrosion process.",
+        "misconception": "Believing that oxygen alone can oxidize iron to rust without the presence of moisture."
+      },
+      {
+        "option_key": "C",
+        "hint": "Carbon dioxide can accelerate corrosion by making water slightly acidic, but it is not the essential requirement. Water and oxygen are the two mandatory components.",
+        "misconception": "Confusing the role of CO₂ as an accelerator with it being a primary requirement for rusting."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "According to Kohlrausch's law, the limiting molar conductivity of CH₃COOH can be calculated using:",
+    "explanation": "Kohlrausch's law states that the limiting molar conductivity of an electrolyte equals the sum of the limiting molar conductivities of its constituent ions: Λm°(CH₃COOH) = λ°(CH₃COO⁻) + λ°(H⁺). Since direct measurement of Λm° for weak electrolytes is difficult (their Λm vs √c curve rises steeply near zero concentration), we use the relation: Λm°(CH₃COOH) = Λm°(CH₃COONa) + Λm°(HCl) − Λm°(NaCl). This is a key application of Kohlrausch's law.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "kohlrausch-law",
+      "limiting-molar-conductivity",
+      "weak-electrolyte",
+      "acetic-acid"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Λm°(CH₃COONa) + Λm°(NaCl) − Λm°(HCl)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Λm°(CH₃COONa) + Λm°(HCl) − Λm°(NaCl)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Λm°(CH₃COONa) − Λm°(HCl) + Λm°(NaCl)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Λm°(HCl) + Λm°(NaCl) − Λm°(CH₃COONa)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Expanding this gives λ°(CH₃COO⁻) + λ°(Na⁺) + λ°(Na⁺) + λ°(Cl⁻) − λ°(H⁺) − λ°(Cl⁻), which leaves extra Na⁺ and loses H⁺. You need H⁺, not Na⁺.",
+        "misconception": "Incorrectly adding NaCl instead of subtracting it to cancel the unwanted ions."
+      },
+      {
+        "option_key": "C",
+        "hint": "Subtracting HCl removes H⁺, which is needed in CH₃COOH. The correct approach adds HCl to provide λ°(H⁺) and subtracts NaCl to remove λ°(Na⁺) and λ°(Cl⁻).",
+        "misconception": "Reversing the signs of HCl and NaCl in the Kohlrausch relation."
+      },
+      {
+        "option_key": "D",
+        "hint": "This combination does not yield λ°(CH₃COO⁻) + λ°(H⁺). Expanding gives λ°(H⁺) + λ°(Cl⁻) + λ°(Na⁺) + λ°(Cl⁻) − λ°(CH₃COO⁻) − λ°(Na⁺), which removes CH₃COO⁻ instead of retaining it.",
+        "misconception": "Incorrectly identifying which electrolyte contributions to add and subtract."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The relationship between conductivity (κ) and molar conductivity (Λm) is given by Λm = κ × 1000/M, where M is the molarity. If the conductivity of 0.02 M KCl solution is 2.768 × 10⁻³ S cm⁻¹, the molar conductivity in S cm² mol⁻¹ is:",
+    "explanation": "Using the formula Λm = (κ × 1000)/M, where κ = 2.768 × 10⁻³ S cm⁻¹ and M = 0.02 mol L⁻¹. Λm = (2.768 × 10⁻³ × 1000)/0.02 = 2.768/0.02 = 138.4 S cm² mol⁻¹. The factor 1000 converts from per litre to per cm³ (since 1 L = 1000 cm³).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "molar-conductivity",
+      "conductivity",
+      "numerical",
+      "kcl"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "13.84 S cm² mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1384 S cm² mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "138.4 S cm² mol⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "0.1384 S cm² mol⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This value is off by a factor of 10. Check if you correctly multiplied κ by 1000 before dividing by molarity.",
+        "misconception": "Using 100 instead of 1000 in the conversion formula for molar conductivity."
+      },
+      {
+        "option_key": "B",
+        "hint": "This value is 10 times too large. Verify that you divided by 0.02, not 0.002.",
+        "misconception": "Making an error in the decimal placement of the molarity value."
+      },
+      {
+        "option_key": "D",
+        "hint": "This value is far too small. It appears you may have divided κ by (1000 × M) instead of multiplying κ by (1000/M).",
+        "misconception": "Inverting the formula by dividing κ by 1000 and then by M."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a lead storage battery during discharge, the reaction at the cathode is:",
+    "explanation": "In a lead storage battery during discharge, the cathode (positive plate) is PbO₂. At the cathode, PbO₂ is reduced: PbO₂ + SO₄²⁻ + 4H⁺ + 2e⁻ → PbSO₄ + 2H₂O. At the anode (negative plate), Pb is oxidized: Pb + SO₄²⁻ → PbSO₄ + 2e⁻. Both electrodes become coated with PbSO₄ during discharge, and H₂SO₄ is consumed, decreasing the density of the electrolyte.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "lead-storage-battery",
+      "secondary-battery",
+      "cathode-reaction",
+      "discharge"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "PbO₂ + SO₄²⁻ + 4H⁺ + 2e⁻ → PbSO₄ + 2H₂O",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Pb + SO₄²⁻ → PbSO₄ + 2e⁻",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "PbSO₄ + 2e⁻ → Pb + SO₄²⁻",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "PbSO₄ + 2H₂O → PbO₂ + SO₄²⁻ + 4H⁺ + 2e⁻",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "This is the oxidation reaction occurring at the anode (negative plate) during discharge, not the cathode reaction.",
+        "misconception": "Confusing the anode and cathode reactions in a lead storage battery during discharge."
+      },
+      {
+        "option_key": "C",
+        "hint": "This reaction represents the charging process at the negative plate, not the discharge process at the cathode.",
+        "misconception": "Confusing the discharge reactions with the charging reactions in a secondary battery."
+      },
+      {
+        "option_key": "D",
+        "hint": "This is the reverse of the cathode discharge reaction and represents what happens at the positive plate during charging.",
+        "misconception": "Mixing up the forward (discharge) and reverse (charging) reactions at the cathode."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The degree of dissociation (α) of a weak electrolyte can be determined using the relation:",
+    "explanation": "For a weak electrolyte, the degree of dissociation at any concentration c is given by α = Λm/Λm°, where Λm is the molar conductivity at concentration c and Λm° is the limiting molar conductivity at infinite dilution. At infinite dilution, all molecules are completely dissociated (α = 1), so Λm = Λm°. At concentration c, only a fraction α of molecules dissociate, giving Λm = α × Λm°. This is an important application of Kohlrausch's law since Λm° for weak electrolytes is obtained using it.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "degree-of-dissociation",
+      "weak-electrolyte",
+      "molar-conductivity",
+      "kohlrausch-application"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "α = Λm° / Λm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "α = Λm° × Λm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "α = (Λm° − Λm) / Λm",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "α = Λm / Λm°",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This is the inverse of the correct relation. Since Λm° > Λm for weak electrolytes, this would give α > 1, which is physically meaningless.",
+        "misconception": "Inverting the ratio of molar conductivity to limiting molar conductivity."
+      },
+      {
+        "option_key": "B",
+        "hint": "Multiplying Λm° and Λm has no physical significance. The degree of dissociation is a dimensionless ratio, not a product of two conductivities.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "This expression gives (Λm° − Λm)/Λm, which does not represent the degree of dissociation. The correct formula is simply Λm/Λm°.",
+        "misconception": "Incorrectly constructing a fractional expression for degree of dissociation."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a hydrogen-oxygen fuel cell, the reaction at the cathode in alkaline medium is:",
+    "explanation": "In an H₂-O₂ fuel cell operating in alkaline (KOH) medium, the cathode reaction involves the reduction of oxygen: O₂ + 2H₂O + 4e⁻ → 4OH⁻. At the anode, hydrogen is oxidized: 2H₂ + 4OH⁻ → 4H₂O + 4e⁻. The overall reaction is 2H₂ + O₂ → 2H₂O. Fuel cells convert chemical energy directly into electrical energy with high efficiency and produce water as the only byproduct.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "fuel-cell",
+      "hydrogen-oxygen",
+      "cathode-reaction",
+      "alkaline-medium"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2H₂ + 4OH⁻ → 4H₂O + 4e⁻",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "O₂ + 2H₂O + 4e⁻ → 4OH⁻",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "O₂ + 4H⁺ + 4e⁻ → 2H₂O",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2H₂ → 4H⁺ + 4e⁻",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This is the oxidation reaction occurring at the anode in alkaline medium, not the cathode reaction. At the cathode, reduction takes place.",
+        "misconception": "Confusing the anode and cathode reactions in a fuel cell."
+      },
+      {
+        "option_key": "C",
+        "hint": "This cathode reaction involves H⁺ ions, which is the reaction in acidic medium, not alkaline medium. In KOH solution, OH⁻ ions are produced.",
+        "misconception": "Applying the acidic medium cathode reaction to an alkaline medium fuel cell."
+      },
+      {
+        "option_key": "D",
+        "hint": "This is the anode reaction in acidic medium. In alkaline medium, the anode reaction involves OH⁻ ions, and this is not the cathode reaction.",
+        "misconception": "Confusing both the electrode and the medium in the fuel cell reaction."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Galvanization is a method of protecting iron from corrosion by coating it with a layer of:",
+    "explanation": "Galvanization involves coating iron or steel with a thin layer of zinc (Zn). Zinc is more electropositive (more reactive) than iron, so even if the zinc coating is scratched and iron is exposed, zinc preferentially undergoes oxidation (acts as a sacrificial anode) and protects iron from rusting. The standard reduction potential of Zn²⁺/Zn (−0.76 V) is more negative than that of Fe²⁺/Fe (−0.44 V), confirming that zinc oxidizes preferentially.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "galvanization",
+      "corrosion-prevention",
+      "zinc-coating",
+      "sacrificial-anode"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Tin",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Copper",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zinc",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Nickel",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Tin coating (tin plating) is used for food cans but is not called galvanization. Also, tin is less reactive than iron, so if scratched, iron corrodes even faster.",
+        "misconception": "Confusing tin plating with galvanization and not understanding the sacrificial anode principle."
+      },
+      {
+        "option_key": "B",
+        "hint": "Copper is less reactive than iron (E° for Cu²⁺/Cu = +0.34 V). Coating iron with copper would not provide cathodic protection, and if scratched, iron would corrode preferentially.",
+        "misconception": "Not understanding that the protective metal must be more reactive than iron for sacrificial protection."
+      },
+      {
+        "option_key": "D",
+        "hint": "Nickel plating is used for decorative purposes and some corrosion resistance, but the specific process of galvanization refers exclusively to zinc coating.",
+        "misconception": "Confusing nickel plating with the galvanization process."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The molar conductivity at infinite dilution of NH₄OH (Λm°) can be determined from the Λm° values of NH₄Cl, NaOH, and NaCl. If Λm°(NH₄Cl) = 149.9, Λm°(NaOH) = 248.1, and Λm°(NaCl) = 126.4 S cm² mol⁻¹, and the molar conductivity of 0.01 M NH₄OH is 9.54 S cm² mol⁻¹, the degree of dissociation of NH₄OH at this concentration is approximately:",
+    "explanation": "Using Kohlrausch's law: Λm°(NH₄OH) = Λm°(NH₄Cl) + Λm°(NaOH) − Λm°(NaCl) = 149.9 + 248.1 − 126.4 = 271.6 S cm² mol⁻¹. The degree of dissociation α = Λm/Λm° = 9.54/271.6 = 0.0351 ≈ 0.035. This demonstrates a key application of Kohlrausch's law: determining the degree of dissociation of weak electrolytes whose Λm° cannot be measured directly.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "kohlrausch-law",
+      "degree-of-dissociation",
+      "weak-electrolyte",
+      "numerical-problem"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.035",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "0.35",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.065",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.0054",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "A degree of dissociation of 0.35 (35%) is unrealistically high for a weak base like NH₄OH at 0.01 M. Check your Λm° calculation and ensure you computed α correctly.",
+        "misconception": "Making an error in dividing Λm by Λm° by misplacing the decimal point."
+      },
+      {
+        "option_key": "C",
+        "hint": "Verify your Kohlrausch's law calculation. Ensure you add Λm°(NH₄Cl) + Λm°(NaOH) and then subtract Λm°(NaCl), giving 271.6, not a different value.",
+        "misconception": "Making an arithmetic error in the Kohlrausch's law calculation for Λm°."
+      },
+      {
+        "option_key": "D",
+        "hint": "This value is too small. It would correspond to dividing 9.54 by a much larger Λm° value. Double-check your arithmetic.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The cell constant of a conductivity cell is 0.5 cm⁻¹. When filled with 0.01 M KCl solution, the resistance is 230 Ω. The specific conductance of the solution and the molar conductivity are respectively:",
+    "explanation": "Cell constant = l/A = 0.5 cm⁻¹. Conductivity κ = Cell constant / Resistance = 0.5/230 = 2.174 × 10⁻³ S cm⁻¹. Molar conductivity Λm = (κ × 1000)/M = (2.174 × 10⁻³ × 1000)/0.01 = 2.174/0.01 = 217.4 S cm² mol⁻¹. This problem requires applying the relationships between cell constant, resistance, conductivity, and molar conductivity in sequence.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "cell-constant",
+      "specific-conductance",
+      "molar-conductivity",
+      "numerical-problem"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2.174 × 10⁻³ S cm⁻¹ and 21.74 S cm² mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4.348 × 10⁻³ S cm⁻¹ and 434.8 S cm² mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2.174 × 10⁻³ S cm⁻¹ and 2174 S cm² mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2.174 × 10⁻³ S cm⁻¹ and 217.4 S cm² mol⁻¹",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The specific conductance is correct, but the molar conductivity is wrong. When computing Λm = (κ × 1000)/M, make sure you divide by 0.01 M, not 0.1 M.",
+        "misconception": "Using incorrect molarity value in the molar conductivity formula, leading to a result off by a factor of 10."
+      },
+      {
+        "option_key": "B",
+        "hint": "The specific conductance is double the correct value. Check that κ = cell constant/R = 0.5/230, not 1.0/230.",
+        "misconception": "Using an incorrect cell constant value in the calculation."
+      },
+      {
+        "option_key": "C",
+        "hint": "While κ is correct, Λm = 2174 is too high by a factor of 10. Verify: (2.174 × 10⁻³ × 1000)/0.01 = 217.4, not 2174.",
+        "misconception": "Making an error in the multiplication by 1000/M by using an extra factor of 10."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The molar conductivity of a weak electrolyte increases sharply at very low concentrations.\n\nReason (R): At low concentrations, the degree of dissociation of a weak electrolyte increases significantly, producing more ions to carry the current.",
+    "explanation": "Both the Assertion and the Reason are true, and the Reason correctly explains the Assertion. For weak electrolytes like CH₃COOH, Λm increases slowly at higher concentrations but rises sharply as concentration decreases towards zero. This is because weak electrolytes are only partially dissociated, and their degree of dissociation (α) increases substantially with dilution (as per Ostwald's dilution law: Kₐ = cα²/(1−α)). At very low concentrations, α approaches 1, meaning nearly complete dissociation, which dramatically increases the number of charge-carrying ions and hence the molar conductivity.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "molar-conductivity",
+      "weak-electrolyte",
+      "dilution",
+      "degree-of-dissociation",
+      "ostwald-dilution-law"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is not the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly addresses why Λm increases sharply: increased dissociation produces more ions. This is indeed the correct explanation for the Assertion.",
+        "misconception": "Failing to see the causal link between increased dissociation at low concentrations and the sharp rise in molar conductivity."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is a well-established fact. Weak electrolytes do show increased dissociation at lower concentrations, as described by Ostwald's dilution law.",
+        "misconception": "Incorrectly thinking that degree of dissociation does not change with concentration."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is true. The Λm vs √c curve for weak electrolytes indeed shows a sharp rise at very low concentrations, which is well documented experimentally.",
+        "misconception": "Confusing the behavior of weak electrolytes with that of strong electrolytes, where the increase is gradual."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): In a mercury cell, the voltage remains constant throughout its useful life.\n\nReason (R): The overall reaction in a mercury cell does not involve any ion whose concentration changes during the cell operation.",
+    "explanation": "Both the Assertion and Reason are true, and the Reason correctly explains the Assertion. In a mercury cell, the overall reaction is: Zn(Hg) + HgO → ZnO + Hg. This reaction involves only pure solids (ZnO, HgO) and liquid mercury amalgam. Since there are no ions in solution whose concentration would change during cell operation, the cell potential remains constant at approximately 1.35 V throughout its useful life according to the Nernst equation (Q remains constant). This makes mercury cells ideal for hearing aids, watches, and other devices requiring stable voltage.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "mercury-cell",
+      "primary-battery",
+      "constant-voltage",
+      "nernst-equation"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is not the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The constant voltage is a direct consequence of the Nernst equation: since no ion concentration changes during the reaction (all reactants and products are solids/pure liquids), E = E° throughout. The Reason explains the Assertion causally.",
+        "misconception": "Not recognizing that constant concentrations in the Nernst equation directly lead to constant cell voltage."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct. The mercury cell reaction Zn(Hg) + HgO → ZnO + Hg involves only pure substances, so no ion concentrations change during operation.",
+        "misconception": "Incorrectly assuming that ion concentrations must change during any battery operation."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is true and well known. Mercury cells are specifically designed to provide constant voltage (approximately 1.35 V), which is why they are used in precision instruments.",
+        "misconception": "Confusing mercury cells with dry cells, whose voltage does drop during use."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following batteries/cells in Column I with their characteristics in Column II:\n\nColumn I:\n(P) Dry cell (Leclanché cell)\n(Q) Lead storage battery\n(R) Mercury cell\n(S) H₂-O₂ fuel cell\n\nColumn II:\n(1) Can be recharged by passing current in reverse direction\n(2) Provides constant voltage of approximately 1.35 V\n(3) Produces water as the only byproduct\n(4) Uses a paste of NH₄Cl and ZnCl₂ as electrolyte",
+    "explanation": "(P)→(4): The dry cell uses a moist paste of NH₄Cl and ZnCl₂ as the electrolyte. (Q)→(1): The lead storage battery is a secondary cell that can be recharged by reversing the current, converting PbSO₄ back to Pb and PbO₂. (R)→(2): The mercury cell provides a constant voltage of approximately 1.35 V because the cell reaction involves only pure solids and liquids. (S)→(3): The H₂-O₂ fuel cell produces water as the only byproduct (2H₂ + O₂ → 2H₂O), making it environmentally friendly.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "batteries",
+      "dry-cell",
+      "lead-storage-battery",
+      "mercury-cell",
+      "fuel-cell"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→4, Q→2, R→1, S→3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→4, Q→1, R→2, S→3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "P→3, Q→1, R→4, S→2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P→1, Q→4, R→3, S→2",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This incorrectly matches the lead storage battery (Q) with constant voltage (2) and mercury cell (R) with rechargeability (1). The lead storage battery is the rechargeable one; the mercury cell provides constant voltage.",
+        "misconception": "Swapping the key characteristics of lead storage battery and mercury cell."
+      },
+      {
+        "option_key": "C",
+        "hint": "The dry cell (P) does not produce water as its only byproduct. Also, the mercury cell (R) does not use NH₄Cl/ZnCl₂ paste. Reconsider each cell's unique feature.",
+        "misconception": "Incorrectly assigning characteristics to cells without understanding their chemistry."
+      },
+      {
+        "option_key": "D",
+        "hint": "The dry cell (P) is a primary cell that cannot be recharged. Also, the lead storage battery (Q) does not use NH₄Cl/ZnCl₂ paste; it uses H₂SO₄.",
+        "misconception": "Confusing primary and secondary batteries and mixing up their electrolytes."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following quantities in Column I with their behavior on dilution for a strong electrolyte in Column II:\n\nColumn I:\n(P) Conductivity (κ)\n(Q) Molar conductivity (Λm)\n(R) Equivalent conductivity (Λeq)\n(S) Resistance of solution\n\nColumn II:\n(1) Increases and approaches Λm° at infinite dilution\n(2) Decreases because the number of ions per unit volume decreases\n(3) Increases because ionic mobility increases and more dissociation occurs\n(4) Increases because conductance decreases with dilution",
+    "explanation": "(P)→(2): Conductivity (κ) decreases on dilution because although ionic mobility slightly increases, the dominant effect is the decrease in the number of charge carriers per unit volume. (Q)→(1): Molar conductivity increases on dilution and approaches Λm° at infinite dilution, as described by the Debye-Huckel-Onsager equation for strong electrolytes. (R)→(3): Equivalent conductivity also increases on dilution due to reduced interionic interactions allowing greater ionic mobility. (S)→(4): Resistance increases on dilution because conductance (which is inversely related to resistance) decreases as the solution becomes more dilute.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "conductivity",
+      "molar-conductivity",
+      "equivalent-conductivity",
+      "dilution-effect",
+      "resistance"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→1, Q→2, R→3, S→4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→2, Q→3, R→1, S→4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P→2, Q→1, R→3, S→4",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "P→4, Q→1, R→2, S→3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Conductivity (κ) does not increase on dilution; it decreases because there are fewer ions per unit volume. Λm is the quantity that approaches Λm° at infinite dilution.",
+        "misconception": "Confusing the behavior of conductivity (κ) with molar conductivity (Λm) on dilution."
+      },
+      {
+        "option_key": "B",
+        "hint": "This swaps the descriptions for molar conductivity (Q) and equivalent conductivity (R). Molar conductivity approaches Λm° at infinite dilution (description 1), not description 3.",
+        "misconception": "Mixing up the specific descriptions of molar conductivity and equivalent conductivity trends."
+      },
+      {
+        "option_key": "D",
+        "hint": "Conductivity (κ) decreases on dilution due to fewer ions per unit volume, not because conductance decreases with dilution (which describes resistance behavior). Also, resistance does not increase due to ionic mobility changes.",
+        "misconception": "Incorrectly matching the reasons for changes in conductivity and resistance."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Kohlrausch's law states that the limiting molar conductivity of an electrolyte is the sum of the individual contributions of the cation and the anion of the electrolyte.",
+    "explanation": "This statement is TRUE. Kohlrausch's law of independent migration of ions states that at infinite dilution, each ion makes a definite contribution to the total molar conductivity of the electrolyte, independent of the nature of the other ion present. Mathematically, Λm° = ν₊λ₊° + ν₋λ₋°, where ν₊ and ν₋ are the number of cations and anions per formula unit, and λ₊° and λ₋° are the limiting molar conductivities of the individual ions.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "kohlrausch-law",
+      "independent-migration",
+      "limiting-molar-conductivity"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement accurately describes Kohlrausch's law. At infinite dilution, each ion contributes independently to the total molar conductivity.",
+        "misconception": "Doubting the additive nature of ionic contributions to molar conductivity at infinite dilution."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a placeholder option and not applicable.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a placeholder option and not applicable.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "In a nickel-cadmium (Ni-Cd) battery, the cell voltage changes significantly during use because the electrolyte concentration varies with the state of charge.",
+    "explanation": "This statement is FALSE. In a Ni-Cd battery, the overall reaction is: Cd + 2Ni(OH)₃ → CdO + 2Ni(OH)₂ + H₂O (simplified). The KOH electrolyte does not appear in the overall cell reaction, so its concentration remains essentially constant during discharge. Because of this, the cell voltage remains relatively stable throughout discharge, similar to a mercury cell. The Ni-Cd cell maintains a steady voltage of about 1.2 V during most of its discharge cycle.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "nickel-cadmium-battery",
+      "secondary-battery",
+      "constant-voltage",
+      "electrolyte"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The KOH electrolyte in a Ni-Cd cell does not participate in the overall reaction, so its concentration does not change significantly. This means voltage remains stable.",
+        "misconception": "Assuming all batteries show significant voltage drop during use, like the dry cell."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a placeholder option and not applicable.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a placeholder option and not applicable.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The specific conductance (κ) of an electrolytic solution is related to its conductance (G) and cell constant (G*) by the relation κ = G × G*. The cell constant G* is defined as the ratio ______ / ______ of the conductivity cell.",
+    "explanation": "The cell constant (G*) is defined as l/A, where l is the distance between the two electrodes and A is the area of cross-section of the electrodes. It has units of cm⁻¹ or m⁻¹. The conductivity κ = G × (l/A), where G is the measured conductance. The cell constant is determined by calibrating the cell with a solution of known conductivity, typically KCl. Cell constant = κ(known)/G(measured).",
+    "correct_answer": "D",
+    "concept_tags": [
+      "cell-constant",
+      "specific-conductance",
+      "conductance",
+      "conductivity-cell"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Area of electrodes / distance between electrodes (A/l)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Volume of solution / distance between electrodes (V/l)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Distance between electrodes / volume of solution (l/V)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Distance between electrodes / area of cross-section of electrodes (l/A)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A/l is the inverse of the cell constant. The cell constant has units of cm⁻¹, meaning length is in the numerator and area in the denominator.",
+        "misconception": "Inverting the ratio in the definition of cell constant."
+      },
+      {
+        "option_key": "B",
+        "hint": "Volume of the solution is not directly used in defining the cell constant. The cell constant depends only on the geometry of the electrodes: the distance between them and their cross-sectional area.",
+        "misconception": "Introducing volume into the cell constant definition, confusing it with molar conductivity calculations."
+      },
+      {
+        "option_key": "C",
+        "hint": "While distance appears in the numerator correctly, the denominator should be the area of cross-section of the electrodes, not the volume of the solution.",
+        "misconception": "Replacing electrode area with solution volume in the cell constant formula."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-conductance-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A student is studying the corrosion of iron nails. She places four iron nails in separate test tubes under the following conditions:\n\nTest tube I: Iron nail in dry air (with CaCl₂ desiccant)\nTest tube II: Iron nail in boiled distilled water sealed with oil layer\nTest tube III: Iron nail in tap water open to atmosphere\nTest tube IV: Iron nail wrapped in zinc wire, placed in tap water open to atmosphere\n\nAfter one week, rusting will be observed in:",
+    "explanation": "Rusting requires both moisture and dissolved oxygen. In Test tube I, CaCl₂ removes moisture, so no rusting occurs. In Test tube II, boiled water has no dissolved oxygen and the oil layer prevents oxygen from dissolving, so no rusting occurs. In Test tube III, tap water provides moisture and being open to atmosphere provides dissolved oxygen, so rusting will occur. In Test tube IV, although water and oxygen are present, the zinc wire acts as a sacrificial anode (cathodic protection). Zinc is more reactive than iron (E° of Zn²⁺/Zn = −0.76 V vs Fe²⁺/Fe = −0.44 V), so zinc oxidizes preferentially and protects the iron nail. Therefore, rusting is observed only in Test tube III.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "corrosion",
+      "rusting-conditions",
+      "cathodic-protection",
+      "sacrificial-anode",
+      "experimental-setup"
+    ],
+    "topic": "Conductance, Kohlrausch's Law, Batteries, and Corrosion",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Test tubes III and IV only",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Test tubes I, III, and IV",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Test tube III only",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Test tubes II and III only",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "In Test tube IV, the zinc wire provides cathodic protection to the iron nail. Zinc is more reactive and acts as a sacrificial anode, preventing iron from rusting even though water and oxygen are present.",
+        "misconception": "Forgetting the concept of cathodic protection and assuming that the presence of water and oxygen always causes rusting regardless of other metals present."
+      },
+      {
+        "option_key": "B",
+        "hint": "In Test tube I, CaCl₂ absorbs moisture, creating dry conditions. Without water, rusting cannot occur even if oxygen is present. Also, Test tube IV has cathodic protection from zinc.",
+        "misconception": "Thinking that dry air can cause rusting and ignoring the role of the desiccant."
+      },
+      {
+        "option_key": "D",
+        "hint": "In Test tube II, the water has been boiled to remove dissolved oxygen and the oil layer prevents re-dissolution of oxygen. Without dissolved oxygen, the cathodic reaction cannot proceed and rusting does not occur.",
+        "misconception": "Assuming that the presence of water alone (even without dissolved oxygen) is sufficient for rusting."
+      }
+    ]
+  }
+]

@@ -182,17 +182,17 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B26 | `chem-sblock-alkali` | Alkali Metals (Group 1) | 20 | DONE |
-| B27 | `chem-sblock-alkaline` | Alkaline Earth Metals (Group 2) | 20 | PENDING |
-| B28 | `chem-sblock-compounds` | Important Compounds (NaOH, Na₂CO₃, CaO, CaCO₃, Plaster of Paris) | 20 | PENDING |
+| B27 | `chem-sblock-alkaline` | Alkaline Earth Metals (Group 2) | 20 | DONE |
+| B28 | `chem-sblock-compounds` | Important Compounds (NaOH, Na₂CO₃, CaO, CaCO₃, Plaster of Paris) | 20 | DONE |
 | | | **Chapter 10 Total** | **60** | |
 
 ### Chapter 11: p-Block Elements — Class 11 (`chem-pblock11`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B29 | `chem-pblock11-group13` | Group 13 — Boron Family | 20 | PENDING |
-| B30 | `chem-pblock11-group14` | Group 14 — Carbon Family | 20 | PENDING |
-| B31 | `chem-pblock11-compounds` | Important Compounds (Borax, Boron Hydrides, Silicones, Silicates) | 20 | PENDING |
+| B29 | `chem-pblock11-group13` | Group 13 — Boron Family | 20 | DONE |
+| B30 | `chem-pblock11-group14` | Group 14 — Carbon Family | 20 | DONE |
+| B31 | `chem-pblock11-compounds` | Important Compounds (Borax, Boron Hydrides, Silicones, Silicates) | 20 | DONE |
 | | | **Chapter 11 Total** | **60** | |
 
 ---
@@ -205,26 +205,26 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B32 | `chem-organic-nomenclature` | Classification, IUPAC Nomenclature, and Isomerism | 20 | PENDING |
-| B33 | `chem-organic-effects` | Electronic Effects (Inductive, Resonance, Hyperconjugation) | 20 | PENDING |
-| B34 | `chem-organic-intermediates` | Reaction Intermediates and Types of Organic Reactions | 20 | PENDING |
+| B32 | `chem-organic-nomenclature` | Classification, IUPAC Nomenclature, and Isomerism | 20 | DONE |
+| B33 | `chem-organic-effects` | Electronic Effects (Inductive, Resonance, Hyperconjugation) | 20 | DONE |
+| B34 | `chem-organic-intermediates` | Reaction Intermediates and Types of Organic Reactions | 20 | DONE |
 | | | **Chapter 12 Total** | **60** | |
 
 ### Chapter 13: Hydrocarbons (`chem-hydrocarbons`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B35 | `chem-hydrocarbon-alkanes` | Alkanes (Preparation and Reactions) | 20 | PENDING |
-| B36 | `chem-hydrocarbon-alkenes` | Alkenes (Preparation and Reactions) | 20 | PENDING |
-| B37 | `chem-hydrocarbon-alkynes` | Alkynes (Preparation and Reactions) | 20 | PENDING |
-| B38 | `chem-hydrocarbon-aromatic` | Aromatic Hydrocarbons (Benzene and Reactions) | 20 | PENDING |
+| B35 | `chem-hydrocarbon-alkanes` | Alkanes (Preparation and Reactions) | 20 | DONE |
+| B36 | `chem-hydrocarbon-alkenes` | Alkenes (Preparation and Reactions) | 20 | DONE |
+| B37 | `chem-hydrocarbon-alkynes` | Alkynes (Preparation and Reactions) | 20 | DONE |
+| B38 | `chem-hydrocarbon-aromatic` | Aromatic Hydrocarbons (Benzene and Reactions) | 20 | DONE |
 | | | **Chapter 13 Total** | **80** | |
 
 ### Chapter 14: Environmental Chemistry (`chem-environment`) — 1 batch
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B39 | `chem-environment` | Air/Water Pollution, Ozone Depletion, and Green Chemistry | 20 | PENDING |
+| B39 | `chem-environment` | Air/Water Pollution, Ozone Depletion, and Green Chemistry | 20 | DONE |
 | | | **Chapter 14 Total** | **20** | |
 
 ---
@@ -595,11 +595,11 @@ Commit and push.
 | Ch7 Equilibrium | 4 | 80 | 80 | 100% |
 | Ch8 Redox Reactions | 2 | 40 | 40 | 100% |
 | Ch9 Hydrogen | 1 | 20 | 20 | 100% |
-| Ch10 s-Block Elements | 3 | 60 | 20 | 33% |
-| Ch11 p-Block (Class 11) | 3 | 60 | 0 | 0% |
-| Ch12 Organic Basics | 3 | 60 | 0 | 0% |
-| Ch13 Hydrocarbons | 4 | 80 | 0 | 0% |
-| Ch14 Environmental Chem | 1 | 20 | 0 | 0% |
+| Ch10 s-Block Elements | 3 | 60 | 60 | 100% |
+| Ch11 p-Block (Class 11) | 3 | 60 | 60 | 100% |
+| Ch12 Organic Basics | 3 | 60 | 60 | 100% |
+| Ch13 Hydrocarbons | 4 | 80 | 80 | 100% |
+| Ch14 Environmental Chem | 1 | 20 | 20 | 100% |
 | Ch15 Solid State | 3 | 60 | 0 | 0% |
 | Ch16 Solutions | 3 | 60 | 0 | 0% |
 | Ch17 Electrochemistry | 3 | 60 | 0 | 0% |
@@ -616,4 +616,4 @@ Commit and push.
 | Ch28 Biomolecules | 2 | 40 | 0 | 0% |
 | Ch29 Polymers | 1 | 20 | 0 | 0% |
 | Ch30 Chemistry in Everyday Life | 1 | 20 | 0 | 0% |
-| **TOTAL** | **82** | **1,640** | **520** | **32%** |
+| **TOTAL** | **82** | **1,640** | **780** | **48%** |
