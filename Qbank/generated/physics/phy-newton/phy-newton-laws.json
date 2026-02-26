@@ -373,7 +373,7 @@
   {
     "id": "phy-newton-laws-08",
     "question_type": "mcq",
-    "difficulty": "easy",
+    "difficulty": "hard",
     "question_text": "A rifle of mass 4 kg fires a bullet of mass 20 g with a muzzle velocity of 300 m/s. What is the recoil speed of the rifle?",
     "explanation": "By conservation of linear momentum, initial total momentum = 0 (system at rest). m_bullet × v_bullet = m_rifle × v_rifle. (0.020 × 300) = 4 × v_rifle. 6 = 4 × v_rifle. v_rifle = 1.5 m/s (backward). Conservation of momentum is a consequence of Newton's third law — the bullet and rifle exert equal and opposite forces on each other.",
     "correct_answer": "A",
@@ -637,7 +637,7 @@
   },
   {
     "id": "phy-newton-laws-13",
-    "question_type": "match-the-following",
+    "question_type": "match_the_following",
     "difficulty": "hard",
     "question_text": "Match the scenario (Column I) with the correct expression for apparent weight or system acceleration (Column II):\n\nColumn I:\nP. Man in a lift accelerating upward with acceleration a\nQ. Man in a lift accelerating downward with acceleration a\nR. Man in a lift in free fall (cable cut)\nS. Atwood machine with masses m₁ and m₂ (m₂ > m₁), acceleration of the system\n\nColumn II:\n1. W_app = 0 (weightlessness)\n2. W_app = m(g + a)\n3. a_system = (m₂ − m₁)g / (m₁ + m₂)\n4. W_app = m(g − a)",
     "explanation": "P → 2: Lift accelerating upward — the floor pushes the person harder: W_app = m(g + a). Q → 4: Lift accelerating downward — the floor supports less: W_app = m(g − a). R → 1: Free fall means a = g downward, so W_app = m(g − g) = 0 (complete weightlessness). S → 3: Atwood machine acceleration = (m₂ − m₁)g / (m₁ + m₂). Correct matching: P-2, Q-4, R-1, S-3.",
@@ -690,7 +690,7 @@
   },
   {
     "id": "phy-newton-laws-14",
-    "question_type": "assertion-reasoning",
+    "question_type": "assertion_reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): A heavier ball falls faster than a lighter ball when both are dropped simultaneously from the same height in vacuum.\nReasoning (R): Heavier objects experience a greater gravitational force than lighter objects.",
     "explanation": "Assertion A is INCORRECT. In vacuum, both balls experience the same acceleration due to gravity (g ≈ 9.8 m/s²) regardless of mass, because the greater gravitational force on the heavier ball is exactly offset by its greater inertia (F = mg, a = F/m = g). Reasoning R is CORRECT — heavier objects do experience a larger gravitational force (F = mg). Therefore the correct answer is D: A is incorrect but R is correct.",
@@ -743,12 +743,12 @@
   },
   {
     "id": "phy-newton-laws-15",
-    "question_type": "assertion-reasoning",
+    "question_type": "assertion_reasoning",
     "difficulty": "hard",
-    "question_text": "Assertion (A): When a horse pulls a cart, the horse-cart system accelerates even though the cart pulls the horse back with an equal and opposite force.\nReasoning (R): Newton's third law action-reaction pairs act on two different bodies and do not cancel each other. The net external force on the system is provided by the ground's friction on the horse's hooves.",
-    "explanation": "Both A and R are correct, and R is the correct explanation of A. This addresses a classic misconception. The cart's pull on the horse and the horse's pull on the cart are an action-reaction pair acting on different bodies — they cannot cancel. The net external force on the combined system (horse + cart) comes from ground friction on the horse's hooves (forward). This net force accelerates the system. R precisely explains why A is true.",
+    "question_text": "Assertion (A): When two blocks of masses m₁ and m₂ are connected by a string and pulled by a force F on a frictionless surface, the tension in the string between them is less than F.\nReasoning (R): The tension is less than F because the inextensible string stretches slightly during acceleration, reducing the force it transmits.",
+    "explanation": "Assertion A is CORRECT. The tension T = m₂F/(m₁ + m₂) < F, because the applied force F must also accelerate block m₁. Reasoning R is INCORRECT. An inextensible string does not stretch. The tension is less than F not because of stretching, but because part of the force goes into accelerating the first block. The string transmits only the portion needed to accelerate the second block. Therefore, option C (A correct, R incorrect) is the answer.",
     "correct_answer": "C",
-    "concept_tags": ["newtons-third-law", "action-reaction-misconception", "net-external-force", "friction"],
+    "concept_tags": ["connected-bodies", "tension", "newtons-second-law", "inextensible-string"],
     "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
@@ -758,7 +758,7 @@
       {
         "key": "A",
         "text": "Both A and R are correct and R is the correct explanation of A",
-        "is_correct": true
+        "is_correct": false
       },
       {
         "key": "B",
@@ -768,7 +768,7 @@
       {
         "key": "C",
         "text": "A is correct but R is incorrect",
-        "is_correct": false
+        "is_correct": true
       },
       {
         "key": "D",
@@ -778,25 +778,25 @@
     ],
     "elimination_hints": [
       {
-        "option_key": "B",
-        "hint": "R correctly identifies the mechanism: action-reaction forces act on different bodies and cannot cancel within the system; the ground friction provides the net external force. R directly explains A.",
-        "misconception": "Accepting both statements but failing to see the causal link — R is the mechanistic explanation for why A holds."
+        "option_key": "A",
+        "hint": "R is incorrect — an inextensible string does not stretch. Although A is correct, R provides a false physical explanation. Therefore both A and R cannot both be correct.",
+        "misconception": "Accepting an incorrect reasoning (string stretching) without scrutinising whether it is physically valid for an inextensible string."
       },
       {
-        "option_key": "C",
-        "hint": "R is scientifically accurate on both counts: (1) action-reaction pairs act on different bodies, and (2) ground friction is the net external force. R is not incorrect.",
-        "misconception": "Labelling R as incorrect due to confusion about internal vs. external forces in the system."
+        "option_key": "B",
+        "hint": "R is physically wrong (inextensible strings do not stretch). Option B requires R to be correct (but unrelated to A). Since R is incorrect, B cannot be right.",
+        "misconception": "Marking R as correct despite its claim about string stretching being false for inextensible strings."
       },
       {
         "option_key": "D",
-        "hint": "A is correct — the horse-cart system does accelerate. The common misconception that third-law pairs cancel (implying no acceleration) is wrong because those pairs act on different bodies within the system.",
-        "misconception": "Believing that the equal-opposite third-law pair cancels out and prevents acceleration — a very common Newton's third law misconception."
+        "hint": "A is correct — tension T = m₂F/(m₁+m₂) < F is a standard result for connected bodies. Option D incorrectly labels A as incorrect.",
+        "misconception": "Not knowing the formula for tension in connected bodies, and incorrectly assuming tension must equal the applied force."
       }
     ]
   },
   {
     "id": "phy-newton-laws-16",
-    "question_type": "match-the-following",
+    "question_type": "match_the_following",
     "difficulty": "medium",
     "question_text": "Match the physical situation (Column I) with the applicable law or concept (Column II):\n\nColumn I:\nP. A book on a table remains at rest when no external force is applied\nQ. A football kicked with greater force accelerates more than one kicked gently (same mass)\nR. A swimmer pushes water backward and moves forward\nS. A gun recoils when a bullet is fired\n\nColumn II:\n1. Newton's First Law (Inertia)\n2. Newton's Second Law (F = ma)\n3. Newton's Third Law (Action-Reaction)\n4. Conservation of Linear Momentum",
     "explanation": "P → 1: Book remaining at rest is the law of inertia (Newton's first law). Q → 2: Greater force on same mass gives greater acceleration — directly F = ma (Newton's second law). R → 3: Swimmer pushes water backward (action); water pushes swimmer forward (reaction) — Newton's third law. S → 4: Gun-bullet system initially at rest; after firing, momentum is conserved and gun recoils — conservation of linear momentum. Correct matching: P-1, Q-2, R-3, S-4.",
