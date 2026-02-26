@@ -19,10 +19,12 @@ export function useAudioPlayer() {
 
   // Configure audio session once
   useEffect(() => {
+    // Note: interruptionMode is omitted — it crashes on Android due to a
+    // known expo-audio bug (expo/expo#34025). The default behaviour (mix)
+    // is fine for background lo-fi music.
     setAudioModeAsync({
       playsInSilentMode: true,
       shouldPlayInBackground: true,
-      interruptionMode: 'mixWithOthers',
     });
 
     return () => {
