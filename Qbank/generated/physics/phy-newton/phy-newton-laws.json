@@ -3,500 +3,1060 @@
     "id": "phy-newton-laws-01",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "A body continues in its state of rest or uniform motion in a straight line unless acted upon by an external force. This is a statement of:",
-    "explanation": "This is the direct statement of Newton's first law of motion, also known as the law of inertia. It states that an object will not change its state of motion unless a net external force acts on it.",
+    "question_text": "A book is lying on a table. The reaction force to the weight of the book (gravitational pull by Earth on the book) as per Newton's third law is:",
+    "explanation": "Newton's third law states that every action has an equal and opposite reaction. The weight of the book is the gravitational force exerted by Earth on the book (downward). The reaction to this force is the gravitational force exerted by the book on Earth (upward). Note that the normal force from the table on the book is NOT the reaction pair to weight — they are different pairs involving different bodies and different interactions.",
     "correct_answer": "A",
-    "concept_tags": ["newton-first-law", "inertia", "law-of-inertia"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["newtons-third-law", "action-reaction", "gravitation-pair"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "remember",
+    "bloom_level": "understand",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "Newton's first law of motion", "is_correct": true },
-      { "key": "B", "text": "Newton's second law of motion", "is_correct": false },
-      { "key": "C", "text": "Newton's third law of motion", "is_correct": false },
-      { "key": "D", "text": "Law of conservation of momentum", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Gravitational pull exerted by the book on Earth",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Normal force exerted by the table on the book",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Normal force exerted by the book on the table",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Friction force exerted by the table on the book",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Newton's second law relates force to mass and acceleration (F = ma), not the tendency to maintain state of motion.", "misconception": "Confusing first and second laws" },
-      { "option_key": "C", "hint": "Newton's third law deals with action-reaction pairs, not a body's tendency to remain at rest or in motion.", "misconception": null },
-      { "option_key": "D", "hint": "The law of conservation of momentum states that total momentum of an isolated system remains constant, which is a different concept.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The normal force from the table on the book balances the weight (equilibrium pair), but it is NOT the Newton's third law action-reaction pair of gravity. Action-reaction pairs involve the same type of force between the same two bodies.",
+        "misconception": "Confusing the static equilibrium pair (normal force balancing weight) with the Newton's third law action-reaction pair of gravity."
+      },
+      {
+        "option_key": "C",
+        "hint": "The book pushing down on the table is the reaction to the table pushing up on the book — that is a separate action-reaction pair (contact forces), not the reaction to the gravitational weight.",
+        "misconception": "Confusing two separate Newton's third law pairs: the gravity pair and the contact-force pair."
+      },
+      {
+        "option_key": "D",
+        "hint": "Friction is a tangential contact force and has no connection to the gravitational interaction between the book and Earth.",
+        "misconception": "Mixing up different types of forces when identifying action-reaction pairs."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-02",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "The SI unit of force is:",
-    "explanation": "The SI unit of force is the newton (N). One newton is defined as the force required to accelerate a mass of 1 kg at the rate of 1 m/s². Thus, 1 N = 1 kg\u22c5m/s².",
+    "question_text": "A net force of 20 N acts on a body of mass 4 kg initially at rest. What is the acceleration produced?",
+    "explanation": "According to Newton's second law, F = ma. Here F = 20 N and m = 4 kg. Therefore a = F/m = 20/4 = 5 m/s². The acceleration is directly proportional to the net force and inversely proportional to the mass.",
     "correct_answer": "B",
-    "concept_tags": ["force", "SI-units", "newton-unit"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["newtons-second-law", "F=ma", "acceleration"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "remember",
+    "bloom_level": "apply",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "kg\u22c5m/s", "is_correct": false },
-      { "key": "B", "text": "kg\u22c5m/s²", "is_correct": true },
-      { "key": "C", "text": "kg\u22c5m²/s²", "is_correct": false },
-      { "key": "D", "text": "kg\u22c5m²/s", "is_correct": false }
+      {
+        "key": "A",
+        "text": "2 m/s²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "5 m/s²",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "80 m/s²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "10 m/s²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "kg\u22c5m/s is the unit of momentum (mass \u00d7 velocity), not force.", "misconception": "Confusing units of momentum with force" },
-      { "option_key": "C", "hint": "kg\u22c5m²/s² is the unit of energy (joule), not force.", "misconception": "Confusing units of energy with force" },
-      { "option_key": "D", "hint": "kg\u22c5m²/s is the unit of angular momentum, not force.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "2 m/s² would result from dividing 20 by 10, not 4. Apply F = ma correctly: a = F/m = 20/4 = 5 m/s².",
+        "misconception": "Arithmetic error — dividing force by 10 instead of the given mass of 4 kg."
+      },
+      {
+        "option_key": "C",
+        "hint": "80 m/s² is obtained by multiplying F × m (20 × 4 = 80). Newton's second law gives a = F/m, not F × m.",
+        "misconception": "Multiplying force and mass instead of dividing force by mass."
+      },
+      {
+        "option_key": "D",
+        "hint": "10 m/s² would require a force of 40 N for a 4 kg body. Re-apply F = ma: a = 20/4 = 5 m/s².",
+        "misconception": "Possibly doubling the force or halving the mass in the calculation."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-03",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "A passenger in a moving bus tends to fall forward when the bus suddenly stops. This is due to:",
-    "explanation": "When the bus stops suddenly, the lower part of the passenger's body (in contact with the bus) comes to rest, but the upper part continues to move forward due to inertia of motion. This is a direct application of Newton's first law.",
+    "question_text": "Newton's first law of motion defines which fundamental property of matter?",
+    "explanation": "Newton's first law (the law of inertia) states that a body at rest remains at rest and a body in uniform motion continues to move uniformly unless acted upon by a net external force. This law defines inertia — the inherent tendency of matter to resist any change in its state of rest or uniform motion.",
     "correct_answer": "C",
-    "concept_tags": ["inertia-of-motion", "newton-first-law", "daily-life-application"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["newtons-first-law", "inertia", "property-of-matter"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "remember",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "Inertia of rest", "is_correct": false },
-      { "key": "B", "text": "Inertia of direction", "is_correct": false },
-      { "key": "C", "text": "Inertia of motion", "is_correct": true },
-      { "key": "D", "text": "Gravitational pull of Earth", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Momentum",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Force",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Inertia",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Impulse",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Inertia of rest would cause a body to resist starting motion, not continue moving forward when the bus stops.", "misconception": "Confusing inertia of rest with inertia of motion" },
-      { "option_key": "B", "hint": "Inertia of direction resists change in direction of motion, not the stopping of motion.", "misconception": null },
-      { "option_key": "D", "hint": "Gravitational pull acts vertically downward and cannot explain the forward tendency of the passenger.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Momentum (p = mv) is quantitatively defined through Newton's second law in its generalized form (F = dp/dt), not the first law.",
+        "misconception": "Confusing which Newton's law defines which physical quantity."
+      },
+      {
+        "option_key": "B",
+        "hint": "Force is quantitatively defined by Newton's second law (F = ma). The first law qualitatively introduces inertia, not force.",
+        "misconception": "Attributing the definition of force to Newton's first law instead of the second."
+      },
+      {
+        "option_key": "D",
+        "hint": "Impulse (J = F·Δt = Δp) is a concept derived from Newton's second law, not the first.",
+        "misconception": "Confusing impulse with inertia — both involve resistance to change in some sense but are distinct concepts from different laws."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-04",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "According to Newton's third law, action and reaction forces:",
-    "explanation": "Newton's third law states that for every action, there is an equal and opposite reaction. These forces always act on two different bodies simultaneously. They never act on the same body, which is why they do not cancel each other out.",
+    "question_text": "A passenger standing in a bus is pushed forward when the bus brakes suddenly. The best explanation for this phenomenon is:",
+    "explanation": "When the bus brakes suddenly, the bus decelerates. However, the passenger's body tends to remain in its state of motion (forward) due to inertia — the property defined by Newton's first law. The passenger continues moving forward while the floor (bus) decelerates beneath them. This is inertia of motion.",
     "correct_answer": "D",
-    "concept_tags": ["newton-third-law", "action-reaction", "force-pairs"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["inertia-of-motion", "newtons-first-law", "pseudo-force"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "remember",
+    "bloom_level": "understand",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "Act on the same body in opposite directions", "is_correct": false },
-      { "key": "B", "text": "Are unequal and act on different bodies", "is_correct": false },
-      { "key": "C", "text": "Act on the same body and cancel each other", "is_correct": false },
-      { "key": "D", "text": "Are equal, opposite, and act on different bodies", "is_correct": true }
+      {
+        "key": "A",
+        "text": "Newton's third law — the bus pushes the passenger forward",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Friction force acting forward on the passenger",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Newton's second law — a forward net force acts on the passenger",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Newton's first law — the passenger tends to remain in the state of forward motion (inertia of motion)",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Action and reaction forces always act on two different bodies, never on the same body.", "misconception": "Thinking action-reaction pairs act on the same body" },
-      { "option_key": "B", "hint": "Action and reaction forces are always equal in magnitude; they are never unequal.", "misconception": "Thinking action and reaction can have different magnitudes" },
-      { "option_key": "C", "hint": "Since they act on different bodies, they do not cancel each other. Forces cancel only when acting on the same body.", "misconception": "Confusing action-reaction pairs with balanced forces on same body" }
+      {
+        "option_key": "A",
+        "hint": "Newton's third law deals with action-reaction pairs between two bodies in interaction. Here the phenomenon is about the passenger's tendency to resist a change in state, which is inertia (first law).",
+        "misconception": "Applying Newton's third law incorrectly to an inertia situation involving a decelerating frame."
+      },
+      {
+        "option_key": "B",
+        "hint": "When the bus brakes, friction on the passenger acts backward (decelerating the passenger). The passenger 'feels' a forward lurch because inertia carries them forward relative to the bus.",
+        "misconception": "Reversing the direction of friction during braking."
+      },
+      {
+        "option_key": "C",
+        "hint": "Newton's second law applies when computing acceleration from a net force. The qualitative explanation of why the passenger lurches forward is Newton's first law — no extra forward force acts on the passenger.",
+        "misconception": "Invoking Newton's second law where Newton's first law (inertia) provides the correct conceptual explanation."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-05",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A force of 10 N acts on a body of mass 2 kg for 3 s. If the body was initially at rest, what is its final velocity?",
-    "explanation": "Using Newton's second law, F = ma, we get a = F/m = 10/2 = 5 m/s². Using the equation v = u + at with u = 0, v = 0 + 5 \u00d7 3 = 15 m/s. The force produces a constant acceleration which changes the velocity uniformly.",
-    "correct_answer": "C",
-    "concept_tags": ["F-equals-ma", "kinematics", "acceleration", "newton-second-law"],
-    "topic": "Newton's Laws of Motion",
+    "question_text": "A block of mass 5 kg is placed on a frictionless surface. A constant horizontal force of 15 N is applied to it for 4 seconds. What is the change in momentum of the block?",
+    "explanation": "By the impulse-momentum theorem: Impulse = F × Δt = change in momentum. Impulse = 15 × 4 = 60 N·s = 60 kg·m/s. The mass of the block (5 kg) is given as a distractor — for change in momentum, only force and time interval are needed via the impulse formula.",
+    "correct_answer": "B",
+    "concept_tags": ["impulse-momentum-theorem", "newtons-second-law", "momentum"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "apply",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "5 m/s", "is_correct": false },
-      { "key": "B", "text": "10 m/s", "is_correct": false },
-      { "key": "C", "text": "15 m/s", "is_correct": true },
-      { "key": "D", "text": "30 m/s", "is_correct": false }
+      {
+        "key": "A",
+        "text": "12 kg·m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "60 kg·m/s",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "75 kg·m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "20 kg·m/s",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "5 m/s is just the acceleration value (F/m = 10/2 = 5), not the final velocity after 3 seconds.", "misconception": "Confusing acceleration with velocity" },
-      { "option_key": "B", "hint": "10 m/s would result from using a = F/m but multiplying by only 2 s instead of 3 s.", "misconception": null },
-      { "option_key": "D", "hint": "30 m/s would result from incorrectly using v = F \u00d7 t without dividing by mass.", "misconception": "Forgetting to divide by mass when calculating acceleration" }
+      {
+        "option_key": "A",
+        "hint": "12 kg·m/s comes from a = F/m = 15/5 = 3 m/s², then velocity = at = 3×4 = 12 m/s, and p = mv = 5×12 = 60 (not 12). Or confusion of velocity with momentum change. The impulse = F×t = 60 kg·m/s directly.",
+        "misconception": "Computing only the velocity gained and confusing it with momentum, or arithmetic error in applying impulse."
+      },
+      {
+        "option_key": "C",
+        "hint": "75 kg·m/s might arise from multiplying mass × force (5 × 15 = 75), which has no physical basis. Change in momentum = impulse = F × t = 15 × 4 = 60 kg·m/s.",
+        "misconception": "Multiplying mass and force without applying the correct impulse-momentum formula."
+      },
+      {
+        "option_key": "D",
+        "hint": "20 kg·m/s could come from adding force and time (15 + 4 = 19 ≈ 20) or another error. Impulse = F × t (product, not sum) = 15 × 4 = 60 kg·m/s.",
+        "misconception": "Adding instead of multiplying force and time to find impulse."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-06",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A body of mass 5 kg is acted upon by two perpendicular forces of 3 N and 4 N. The magnitude of acceleration of the body is:",
-    "explanation": "When two perpendicular forces act on a body, the resultant force is found using the Pythagorean theorem: F = \u221a(3² + 4²) = \u221a(9 + 16) = \u221a25 = 5 N. Using F = ma, a = F/m = 5/5 = 1 m/s².",
-    "correct_answer": "B",
-    "concept_tags": ["resultant-force", "perpendicular-forces", "newton-second-law", "vector-addition"],
-    "topic": "Newton's Laws of Motion",
+    "question_text": "A man of mass 70 kg stands on a weighing scale inside a lift. What is the reading of the scale (in N) when the lift accelerates downward at 2 m/s²? (g = 10 m/s²)",
+    "explanation": "When the lift accelerates downward, the net downward force on the man is mg − N = ma, giving N = m(g − a) = 70 × (10 − 2) = 70 × 8 = 560 N. The scale reads the normal force (apparent weight), which is less than the true weight (700 N) because both the man and floor accelerate downward together.",
+    "correct_answer": "C",
+    "concept_tags": ["apparent-weight", "lift-problem", "newtons-second-law"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "apply",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "0.4 m/s²", "is_correct": false },
-      { "key": "B", "text": "1.0 m/s²", "is_correct": true },
-      { "key": "C", "text": "1.4 m/s²", "is_correct": false },
-      { "key": "D", "text": "7.0 m/s²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "700 N",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "840 N",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "560 N",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "140 N",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "0.4 m/s² would result from dividing only the smaller force (3 N) by some incorrect combination. The resultant must be computed vectorially.", "misconception": null },
-      { "option_key": "C", "hint": "1.4 m/s² results from simply adding 3 + 4 = 7 N and dividing by 5. Perpendicular forces cannot be added algebraically.", "misconception": "Adding perpendicular force magnitudes directly instead of using vector addition" },
-      { "option_key": "D", "hint": "7.0 m/s² comes from adding 3 + 4 = 7 and not dividing by mass, or dividing by 1. Both the vector addition and F = ma must be applied correctly.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "700 N is the true weight (mg = 70 × 10). This would be the scale reading only if the lift is stationary or at constant velocity — not when it accelerates downward.",
+        "misconception": "Ignoring the effect of acceleration on apparent weight."
+      },
+      {
+        "option_key": "B",
+        "hint": "840 N = m(g + a) = 70 × 12 applies when the lift accelerates upward. For downward acceleration, apparent weight = m(g − a) = 70 × 8 = 560 N.",
+        "misconception": "Using the upward acceleration formula for a downward acceleration scenario."
+      },
+      {
+        "option_key": "D",
+        "hint": "140 N = m × a = 70 × 2 is only the net force providing acceleration, not the normal force (apparent weight).",
+        "misconception": "Confusing the net accelerating force with the apparent weight (normal force)."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-07",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A person of mass 60 kg stands on a weighing scale in an elevator accelerating upward at 2 m/s². The reading of the scale is: (Take g = 10 m/s²)",
-    "explanation": "When the elevator accelerates upward, the apparent weight increases. The scale reads the normal force N = m(g + a) = 60(10 + 2) = 60 \u00d7 12 = 720 N. The scale reading in kg-wt would be 720/10 = 72 kg. The apparent weight exceeds the actual weight during upward acceleration.",
+    "question_text": "Two blocks of masses 3 kg and 5 kg are connected by a light inextensible string over a frictionless, massless pulley (Atwood machine). What is the acceleration of the system? (g = 10 m/s²)",
+    "explanation": "In an Atwood machine, a = (m₂ − m₁)g / (m₁ + m₂) where m₂ > m₁. Here m₁ = 3 kg, m₂ = 5 kg. a = (5 − 3) × 10 / (5 + 3) = 20/8 = 2.5 m/s². The heavier mass accelerates downward and the lighter mass accelerates upward with the same magnitude.",
     "correct_answer": "D",
-    "concept_tags": ["apparent-weight", "elevator-problem", "normal-force", "newton-second-law"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["atwood-machine", "connected-bodies", "newtons-second-law"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "apply",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "480 N", "is_correct": false },
-      { "key": "B", "text": "540 N", "is_correct": false },
-      { "key": "C", "text": "600 N", "is_correct": false },
-      { "key": "D", "text": "720 N", "is_correct": true }
+      {
+        "key": "A",
+        "text": "1.25 m/s²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "5 m/s²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "10 m/s²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2.5 m/s²",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "480 N = m(g \u2212 a) = 60 \u00d7 8. This would be the reading if the elevator were accelerating downward, not upward.", "misconception": "Using (g \u2212 a) instead of (g + a) for upward acceleration" },
-      { "option_key": "B", "hint": "540 N does not correspond to any correct formula application for this problem.", "misconception": null },
-      { "option_key": "C", "hint": "600 N = mg = 60 \u00d7 10 is the actual weight, i.e., the reading when the elevator is at rest or moving with constant velocity, not when accelerating upward.", "misconception": "Ignoring the effect of elevator's acceleration on apparent weight" }
+      {
+        "option_key": "A",
+        "hint": "1.25 m/s² comes from using a = (m₂ − m₁)g / (2(m₁ + m₂)) or a similar arithmetic error. The correct formula gives a = (5−3)×10 / (5+3) = 20/8 = 2.5 m/s².",
+        "misconception": "Doubling the denominator or incorrectly halving the result."
+      },
+      {
+        "option_key": "B",
+        "hint": "5 m/s² = g × (m₂ − m₁) / m₂ alone, ignoring m₁ in the denominator. The total mass (m₁ + m₂ = 8 kg) must be used as the denominator.",
+        "misconception": "Using only the heavier mass instead of the total mass in the denominator of the Atwood formula."
+      },
+      {
+        "option_key": "C",
+        "hint": "10 m/s² is just g (free-fall acceleration). In an Atwood machine, both masses resist each other through the string, so the net acceleration is much less than g.",
+        "misconception": "Treating the Atwood machine as free fall, ignoring the opposing mass."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-08",
     "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "Two blocks of masses 4 kg and 6 kg are connected by a massless string and placed on a frictionless horizontal surface. A force of 20 N is applied on the 6 kg block. The tension in the string connecting the two blocks is:",
-    "explanation": "The acceleration of the system is a = F/(m\u2081 + m\u2082) = 20/(4 + 6) = 2 m/s². The tension in the string is the force needed to accelerate the 4 kg block: T = m\u2081 \u00d7 a = 4 \u00d7 2 = 8 N. The string transmits only enough force to accelerate the 4 kg block.",
+    "difficulty": "easy",
+    "question_text": "A rifle of mass 4 kg fires a bullet of mass 20 g with a muzzle velocity of 300 m/s. What is the recoil speed of the rifle?",
+    "explanation": "By conservation of linear momentum, initial total momentum = 0 (system at rest). m_bullet × v_bullet = m_rifle × v_rifle. (0.020 × 300) = 4 × v_rifle. 6 = 4 × v_rifle. v_rifle = 1.5 m/s (backward). Conservation of momentum is a consequence of Newton's third law — the bullet and rifle exert equal and opposite forces on each other.",
     "correct_answer": "A",
-    "concept_tags": ["connected-bodies", "tension", "system-acceleration", "newton-second-law"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["conservation-of-momentum", "recoil", "newtons-third-law"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "apply",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "8 N", "is_correct": true },
-      { "key": "B", "text": "10 N", "is_correct": false },
-      { "key": "C", "text": "12 N", "is_correct": false },
-      { "key": "D", "text": "20 N", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1.5 m/s",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "0.5 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3.0 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "15 m/s",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "10 N would be the result if the total mass were incorrectly halved or the applied force were split equally, which is not how connected systems work.", "misconception": null },
-      { "option_key": "C", "hint": "12 N would correspond to 6 \u00d7 2 = 12 N, which is the net force on the 6 kg block minus tension, not the tension itself.", "misconception": "Using the wrong block's mass to calculate tension" },
-      { "option_key": "D", "hint": "The tension in the string is not equal to the applied force. The applied force accelerates the entire system, and tension only needs to accelerate the 4 kg block.", "misconception": "Assuming tension equals applied force" }
+      {
+        "option_key": "B",
+        "hint": "0.5 m/s would result if the bullet mass were taken as 20 kg instead of 20 g. Always convert: 20 g = 0.020 kg. Then v_rifle = (0.020 × 300)/4 = 1.5 m/s.",
+        "misconception": "Failing to convert the bullet mass from grams to kilograms."
+      },
+      {
+        "option_key": "C",
+        "hint": "3.0 m/s would arise if the bullet mass were taken as 40 g (double). Recheck: m_bullet = 20 g = 0.020 kg, so v_rifle = (0.020 × 300)/4 = 6/4 = 1.5 m/s.",
+        "misconception": "Doubling the bullet mass, possibly a conversion error."
+      },
+      {
+        "option_key": "D",
+        "hint": "15 m/s results from using 20 (not converting to kg) as the bullet mass: (20 × 300)/4 = 6000/4 = 1500, then dividing by 100 perhaps. Always use SI units: mass in kg.",
+        "misconception": "Using bullet mass as 20 kg (as-is) instead of converting 20 g to 0.020 kg."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-09",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A body of mass 2 kg has a velocity of 4 m/s. A force is applied on it for 2 s and the velocity becomes 10 m/s in the same direction. The magnitude of the applied force is:",
-    "explanation": "Using Newton's second law in impulse form: F \u00d7 t = m(v \u2212 u). So F \u00d7 2 = 2 \u00d7 (10 \u2212 4) = 12. Therefore F = 12/2 = 6 N. Alternatively, a = (v \u2212 u)/t = 6/2 = 3 m/s², and F = ma = 2 \u00d7 3 = 6 N.",
+    "question_text": "A block of mass 10 kg is pulled along a frictionless surface by two forces: F₁ = 30 N (east) and F₂ = 10 N (west). The acceleration of the block is:",
+    "explanation": "Net force = F₁ − F₂ = 30 − 10 = 20 N (eastward). By Newton's second law, a = F_net/m = 20/10 = 2 m/s² eastward. Forces in opposite directions are subtracted to find the net force before applying F = ma.",
     "correct_answer": "B",
-    "concept_tags": ["impulse", "newton-second-law", "change-in-momentum", "force-calculation"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["newtons-second-law", "net-force", "vector-addition-of-forces"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "apply",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "3 N", "is_correct": false },
-      { "key": "B", "text": "6 N", "is_correct": true },
-      { "key": "C", "text": "12 N", "is_correct": false },
-      { "key": "D", "text": "14 N", "is_correct": false }
+      {
+        "key": "A",
+        "text": "3 m/s² eastward",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 m/s² eastward",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "4 m/s² eastward",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1 m/s² westward",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "3 N is the acceleration value (3 m/s²), not the force. You still need to multiply by the mass.", "misconception": "Confusing acceleration with force" },
-      { "option_key": "C", "hint": "12 N is the total impulse (F\u00d7t = 12 N\u22c5s), not the force itself. Impulse must be divided by time to get force.", "misconception": "Confusing impulse with force" },
-      { "option_key": "D", "hint": "14 N would result from using v = 10 + 4 = 14 instead of the change in velocity (10 \u2212 4 = 6).", "misconception": "Adding initial and final velocities instead of finding the change" }
+      {
+        "option_key": "A",
+        "hint": "3 m/s² comes from using only F₁ = 30 N (a = 30/10 = 3), ignoring the opposing F₂. The net force must be computed: F_net = 30 − 10 = 20 N.",
+        "misconception": "Applying only the larger force instead of computing the net (resultant) force."
+      },
+      {
+        "option_key": "C",
+        "hint": "4 m/s² might come from adding the forces (30 + 10 = 40 N) instead of subtracting, then dividing by 10. Forces in opposite directions must be subtracted.",
+        "misconception": "Adding instead of subtracting forces that act in opposite directions."
+      },
+      {
+        "option_key": "D",
+        "hint": "Westward direction is wrong because F₁ (eastward) > F₂ (westward), so the net force and acceleration are eastward. A westward result would require F₂ > F₁.",
+        "misconception": "Reversing the direction of the net force, possibly from incorrect vector subtraction."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-10",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A monkey of mass 40 kg climbs on a rope which can withstand a maximum tension of 600 N. The maximum acceleration with which the monkey can climb up the rope is: (Take g = 10 m/s²)",
-    "explanation": "When the monkey climbs up with acceleration a, the tension in the rope is T = m(g + a). For maximum tension: 600 = 40(10 + a), so 10 + a = 15, giving a = 5 m/s². If the monkey accelerates faster, the rope will break.",
+    "question_text": "A 2 kg ball moving at 4 m/s to the right hits a wall and bounces back at 4 m/s to the left. What is the magnitude of the change in momentum of the ball?",
+    "explanation": "Taking rightward as positive: initial momentum p_i = +8 kg·m/s; final momentum p_f = −8 kg·m/s. Change in momentum Δp = p_f − p_i = −8 − 8 = −16 kg·m/s. Magnitude |Δp| = 16 kg·m/s. Momentum is a vector — reversing direction doubles the magnitude of change even though speed is unchanged.",
     "correct_answer": "C",
-    "concept_tags": ["tension", "climbing-rope", "newton-second-law", "maximum-acceleration"],
-    "topic": "Newton's Laws of Motion",
-    "subject": "physics",
-    "chapter": "Laws of Motion",
-    "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
-    "options": [
-      { "key": "A", "text": "2 m/s²", "is_correct": false },
-      { "key": "B", "text": "4 m/s²", "is_correct": false },
-      { "key": "C", "text": "5 m/s²", "is_correct": true },
-      { "key": "D", "text": "10 m/s²", "is_correct": false }
-    ],
-    "elimination_hints": [
-      { "option_key": "A", "hint": "2 m/s² is too low and doesn't satisfy T = m(g + a) = 40 \u00d7 12 = 480 N, which is less than the rope's capacity.", "misconception": null },
-      { "option_key": "B", "hint": "4 m/s² gives T = 40 \u00d7 14 = 560 N, which is below the maximum tension of 600 N, so this is not the maximum acceleration.", "misconception": null },
-      { "option_key": "D", "hint": "10 m/s² gives T = 40 \u00d7 20 = 800 N, which exceeds the rope's limit of 600 N and would break it.", "misconception": "Setting acceleration equal to g without considering the rope's tension limit" }
-    ]
-  },
-  {
-    "id": "phy-newton-laws-11",
-    "question_type": "mcq",
-    "difficulty": "hard",
-    "question_text": "Three blocks of masses m\u2081 = 1 kg, m\u2082 = 2 kg, and m\u2083 = 3 kg are connected in series by strings on a frictionless surface. A force F = 12 N is applied on m\u2083. The tension T\u2081 in the string between m\u2081 and m\u2082, and T\u2082 in the string between m\u2082 and m\u2083 are:",
-    "explanation": "Total acceleration a = F/(m\u2081 + m\u2082 + m\u2083) = 12/(1+2+3) = 2 m/s². T\u2081 pulls only m\u2081, so T\u2081 = m\u2081 \u00d7 a = 1 \u00d7 2 = 2 N. T\u2082 pulls both m\u2081 and m\u2082, so T\u2082 = (m\u2081 + m\u2082) \u00d7 a = 3 \u00d7 2 = 6 N.",
-    "correct_answer": "A",
-    "concept_tags": ["connected-bodies", "tension-in-strings", "system-acceleration", "free-body-diagram"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["momentum-change", "impulse", "vector-nature-of-momentum"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "analyze",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "T\u2081 = 2 N, T\u2082 = 6 N", "is_correct": true },
-      { "key": "B", "text": "T\u2081 = 4 N, T\u2082 = 8 N", "is_correct": false },
-      { "key": "C", "text": "T\u2081 = 6 N, T\u2082 = 2 N", "is_correct": false },
-      { "key": "D", "text": "T\u2081 = 6 N, T\u2082 = 10 N", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0 kg·m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "8 kg·m/s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "16 kg·m/s",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4 kg·m/s",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "T\u2081 = 4 N would imply an acceleration of 4 m/s² for mass 1 kg alone, but the system acceleration is 2 m/s².", "misconception": null },
-      { "option_key": "C", "hint": "T\u2081 > T\u2082 is impossible here. The string closer to the applied force (T\u2082) must carry more tension since it accelerates a larger mass.", "misconception": "Reversing which string carries more tension" },
-      { "option_key": "D", "hint": "T\u2082 = 10 N would mean the net force on m\u2083 is only 2 N, giving m\u2083 an acceleration of 2/3 m/s², inconsistent with the system acceleration.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "0 kg·m/s is wrong because although the speed is the same before and after, the direction is reversed. Momentum is a vector — opposite directions give a non-zero change: |Δp| = 2mv = 2×2×4 = 16 kg·m/s.",
+        "misconception": "Treating momentum as a scalar (considering only magnitude/speed, not direction)."
+      },
+      {
+        "option_key": "B",
+        "hint": "8 kg·m/s is the magnitude of momentum in one direction, but Δp = |p_f − p_i| = |−8 − 8| = 16 kg·m/s because both vectors point in opposite directions.",
+        "misconception": "Using only one momentum value rather than computing the vector difference."
+      },
+      {
+        "option_key": "D",
+        "hint": "4 kg·m/s seems to come from using only mass or only velocity: neither alone gives the correct momentum change. Δp = m|v_f − v_i| = 2×8 = 16 kg·m/s.",
+        "misconception": "Arithmetic error — using only one of the two factors (mass or velocity) in the momentum calculation."
+      }
+    ]
+  },
+  {
+    "id": "phy-newton-laws-11",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a free body diagram of a block sliding down a frictionless inclined plane of angle θ, which of the following CORRECTLY identifies all forces acting on the block?",
+    "explanation": "On a frictionless inclined plane, exactly two forces act on the block: (1) weight mg vertically downward, and (2) normal force N perpendicular to the inclined surface. The component of weight along the incline (mg sin θ) causes acceleration down the slope, while N = mg cos θ balances the perpendicular component. No friction exists since the surface is smooth.",
+    "correct_answer": "D",
+    "concept_tags": ["free-body-diagram", "inclined-plane", "normal-force", "weight-components"],
+    "topic": "Newton's Three Laws of Motion",
+    "subject": "physics",
+    "chapter": "Laws of Motion",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {
+        "key": "A",
+        "text": "Weight downward, Normal force upward (vertical), and Friction along the incline",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Weight along the incline downward and Normal force vertically upward",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Weight along the incline (downward) and Normal force perpendicular to incline",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Weight vertically downward and Normal force perpendicular to the inclined surface",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The surface is explicitly frictionless, so no friction force exists. Also, the normal force is perpendicular to the inclined surface, not vertically upward.",
+        "misconception": "Including friction on a frictionless surface and misidentifying the direction of the normal force."
+      },
+      {
+        "option_key": "B",
+        "hint": "Weight always acts vertically downward toward Earth's centre, not along the incline. Only the component of weight acts along the incline — the weight vector itself is vertical.",
+        "misconception": "Confusing the weight vector with its component along the incline."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C correctly identifies the normal force direction but incorrectly says weight acts along the incline. Weight is always vertical (downward); it is only resolved into components along and perpendicular to the incline.",
+        "misconception": "Resolving the weight vector into components and then treating a component as the weight itself."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-12",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "A block of mass 10 kg rests on top of another block of mass 20 kg on a frictionless floor. A horizontal force F = 60 N is applied to the bottom block. If both blocks move together, the force exerted by the bottom block on the top block is:",
-    "explanation": "When both blocks move together, the system acceleration is a = F/(m\u2081 + m\u2082) = 60/(10+20) = 2 m/s². The force on the top block (10 kg) that makes it accelerate is the friction from the bottom block: f = m\u2081 \u00d7 a = 10 \u00d7 2 = 20 N. This is the horizontal force exerted by the bottom block on the top block.",
+    "question_text": "Two blocks A (3 kg) and B (5 kg) are in contact on a frictionless horizontal surface. A force of 16 N is applied horizontally on block A. What is the contact force that block A exerts on block B?",
+    "explanation": "System acceleration: a = F_total / (m_A + m_B) = 16/8 = 2 m/s². For block B alone, the only horizontal force is the contact force N from A. Applying Newton's second law to B: N = m_B × a = 5 × 2 = 10 N. Verification for A: 16 − N = m_A × a → 16 − 10 = 3 × 2 = 6 ✓. Contact force = 10 N.",
     "correct_answer": "B",
-    "concept_tags": ["contact-force", "connected-bodies", "newton-second-law", "free-body-diagram"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["connected-bodies", "contact-force", "newtons-second-law", "system-of-masses"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "analyze",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "10 N", "is_correct": false },
-      { "key": "B", "text": "20 N", "is_correct": true },
-      { "key": "C", "text": "30 N", "is_correct": false },
-      { "key": "D", "text": "60 N", "is_correct": false }
+      {
+        "key": "A",
+        "text": "6 N",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "10 N",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "16 N",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "8 N",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "10 N would correspond to an acceleration of only 1 m/s² for the 10 kg block, but the system accelerates at 2 m/s².", "misconception": null },
-      { "option_key": "C", "hint": "30 N would be the result if you divided force equally between the two blocks, but the force on each block depends on its mass times the common acceleration.", "misconception": "Dividing force equally between blocks regardless of mass" },
-      { "option_key": "D", "hint": "60 N is the total applied external force. The contact force between the blocks is less because it only needs to accelerate the top block.", "misconception": "Assuming the entire applied force is transmitted between blocks" }
+      {
+        "option_key": "A",
+        "hint": "6 N is the net force on block A (F − N = 16 − 10 = 6 N), not the contact force itself. The contact force acts on B and equals m_B × a = 5 × 2 = 10 N.",
+        "misconception": "Calculating the net force on block A and confusing it with the contact force between the blocks."
+      },
+      {
+        "option_key": "C",
+        "hint": "16 N is the applied external force, not the contact force. If the contact force were 16 N, block A would have zero net force and zero acceleration — contradicting the problem.",
+        "misconception": "Equating the applied external force directly to the internal contact force without accounting for the system's acceleration."
+      },
+      {
+        "option_key": "D",
+        "hint": "8 N might come from dividing the applied force equally (16/2 = 8). Contact force depends on the ratio of masses: N = m_B × a = m_B × F/(m_A + m_B) = 5 × 16/8 = 10 N.",
+        "misconception": "Incorrectly splitting the applied force equally between the blocks regardless of their different masses."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-13",
-    "question_type": "assertion_reasoning",
-    "difficulty": "medium",
-    "question_text": "Assertion (A): A horse pulls a cart forward despite the cart pulling the horse backward with an equal force.\nReason (R): The action and reaction forces act on different bodies, so the net force on the horse-cart system depends on external forces like friction from the ground.",
-    "explanation": "Both the Assertion and the Reason are correct, and the Reason correctly explains the Assertion. The horse pushes the ground backward, and the ground pushes the horse forward (friction). This external friction force on the horse exceeds the backward pull of the cart, allowing the system to accelerate. The action-reaction pair between horse and cart are internal forces and cancel within the system.",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the scenario (Column I) with the correct expression for apparent weight or system acceleration (Column II):\n\nColumn I:\nP. Man in a lift accelerating upward with acceleration a\nQ. Man in a lift accelerating downward with acceleration a\nR. Man in a lift in free fall (cable cut)\nS. Atwood machine with masses m₁ and m₂ (m₂ > m₁), acceleration of the system\n\nColumn II:\n1. W_app = 0 (weightlessness)\n2. W_app = m(g + a)\n3. a_system = (m₂ − m₁)g / (m₁ + m₂)\n4. W_app = m(g − a)",
+    "explanation": "P → 2: Lift accelerating upward — the floor pushes the person harder: W_app = m(g + a). Q → 4: Lift accelerating downward — the floor supports less: W_app = m(g − a). R → 1: Free fall means a = g downward, so W_app = m(g − g) = 0 (complete weightlessness). S → 3: Atwood machine acceleration = (m₂ − m₁)g / (m₁ + m₂). Correct matching: P-2, Q-4, R-1, S-3.",
     "correct_answer": "A",
-    "concept_tags": ["newton-third-law", "action-reaction", "horse-cart-problem", "external-forces"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["apparent-weight", "lift-problem", "atwood-machine", "free-fall", "weightlessness"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
-    "bloom_level": "understand",
+    "bloom_level": "analyze",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "P-2, Q-4, R-1, S-3",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "P-4, Q-2, R-1, S-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P-2, Q-4, R-3, S-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P-1, Q-4, R-2, S-3",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The Reason directly addresses why the horse can pull the cart despite equal and opposite forces \u2014 it is indeed the correct explanation of the Assertion.", "misconception": null },
-      { "option_key": "C", "hint": "The Reason is factually correct: action-reaction forces do act on different bodies, and external forces (friction) determine the system's motion.", "misconception": null },
-      { "option_key": "D", "hint": "The Assertion is correct: the horse does pull the cart forward. This is an observable fact explained by Newton's laws.", "misconception": "Thinking Newton's third law prevents any motion" }
+      {
+        "option_key": "B",
+        "hint": "Option B swaps P and Q. Upward acceleration increases apparent weight: W_app = m(g + a) (so P → 2). Downward acceleration decreases it: W_app = m(g − a) (so Q → 4). Option B incorrectly assigns m(g − a) to upward acceleration.",
+        "misconception": "Reversing the apparent weight formulas for upward and downward acceleration."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C swaps R and S. Free fall gives weightlessness (R → 1), not the Atwood formula. The Atwood machine formula belongs to S → 3, not R.",
+        "misconception": "Confusing the free-fall condition (weightlessness) with the Atwood machine scenario."
+      },
+      {
+        "option_key": "D",
+        "hint": "Option D assigns weightlessness (1) to upward acceleration (P), which is wrong. Weightlessness occurs only in free fall (R). Upward acceleration gives W_app = m(g + a) (option 2 for P).",
+        "misconception": "Completely misidentifying the apparent weight outcomes, assigning weightlessness to upward acceleration."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-14",
-    "question_type": "assertion_reasoning",
-    "difficulty": "hard",
-    "question_text": "Assertion (A): When a person walks on a rough surface, the frictional force exerted by the surface on the person acts in the direction of motion.\nReason (R): By Newton's third law, the person pushes the ground backward, so the ground pushes the person forward.",
-    "explanation": "Both A and R are correct, and R is the correct explanation of A. While walking, a person pushes the ground backward with their foot. By Newton's third law, the ground exerts an equal and opposite force (friction) on the person in the forward direction, which is the direction of motion. This is the driving force that enables walking.",
-    "correct_answer": "A",
-    "concept_tags": ["walking-friction", "newton-third-law", "friction-direction", "action-reaction"],
-    "topic": "Newton's Laws of Motion",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): A heavier ball falls faster than a lighter ball when both are dropped simultaneously from the same height in vacuum.\nReasoning (R): Heavier objects experience a greater gravitational force than lighter objects.",
+    "explanation": "Assertion A is INCORRECT. In vacuum, both balls experience the same acceleration due to gravity (g ≈ 9.8 m/s²) regardless of mass, because the greater gravitational force on the heavier ball is exactly offset by its greater inertia (F = mg, a = F/m = g). Reasoning R is CORRECT — heavier objects do experience a larger gravitational force (F = mg). Therefore the correct answer is D: A is incorrect but R is correct.",
+    "correct_answer": "D",
+    "concept_tags": ["newtons-second-law", "free-fall", "inertia", "gravitational-force"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "evaluate",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "R directly explains why friction acts forward on the person (Newton's third law reaction to pushing ground backward), so it is the correct explanation of A.", "misconception": null },
-      { "option_key": "C", "hint": "The Reason is a correct statement of Newton's third law applied to walking. The person does push backward and the ground does push forward.", "misconception": null },
-      { "option_key": "D", "hint": "The Assertion is correct. Friction on a walking person acts forward (in the direction of motion), which is what propels the person.", "misconception": "Thinking friction always opposes motion \u2014 it opposes relative motion of surfaces, not necessarily the body's motion" }
+      {
+        "option_key": "A",
+        "hint": "Assertion A is incorrect — in vacuum, both balls hit the ground simultaneously. The Aristotelian idea that heavier objects fall faster is disproved by Galileo and explained by Newton's second law: a = F/m = mg/m = g for all masses.",
+        "misconception": "Believing the Aristotelian claim that heavier objects fall faster, ignoring that greater gravitational force is exactly cancelled by greater inertia."
+      },
+      {
+        "option_key": "B",
+        "hint": "Assertion A is incorrect (both balls fall equally fast in vacuum), so options A and B which say 'A is correct' can both be eliminated immediately.",
+        "misconception": "Accepting A as correct without recognising that mass-independent free-fall is a fundamental result of Newton's second law."
+      },
+      {
+        "option_key": "C",
+        "hint": "R (heavier objects experience greater gravitational force) is correct — F = mg does increase with mass. Only A is wrong (the balls still reach the ground together because acceleration a = g is independent of mass).",
+        "misconception": "Incorrectly rejecting R, which is a factually correct statement about the magnitude of gravitational force."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-15",
-    "question_type": "match_the_following",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): When a horse pulls a cart, the horse-cart system accelerates even though the cart pulls the horse back with an equal and opposite force.\nReasoning (R): Newton's third law action-reaction pairs act on two different bodies and do not cancel each other. The net external force on the system is provided by the ground's friction on the horse's hooves.",
+    "explanation": "Both A and R are correct, and R is the correct explanation of A. This addresses a classic misconception. The cart's pull on the horse and the horse's pull on the cart are an action-reaction pair acting on different bodies — they cannot cancel. The net external force on the combined system (horse + cart) comes from ground friction on the horse's hooves (forward). This net force accelerates the system. R precisely explains why A is true.",
+    "correct_answer": "C",
+    "concept_tags": ["newtons-third-law", "action-reaction-misconception", "net-external-force", "friction"],
+    "topic": "Newton's Three Laws of Motion",
+    "subject": "physics",
+    "chapter": "Laws of Motion",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R correctly identifies the mechanism: action-reaction forces act on different bodies and cannot cancel within the system; the ground friction provides the net external force. R directly explains A.",
+        "misconception": "Accepting both statements but failing to see the causal link — R is the mechanistic explanation for why A holds."
+      },
+      {
+        "option_key": "C",
+        "hint": "R is scientifically accurate on both counts: (1) action-reaction pairs act on different bodies, and (2) ground friction is the net external force. R is not incorrect.",
+        "misconception": "Labelling R as incorrect due to confusion about internal vs. external forces in the system."
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — the horse-cart system does accelerate. The common misconception that third-law pairs cancel (implying no acceleration) is wrong because those pairs act on different bodies within the system.",
+        "misconception": "Believing that the equal-opposite third-law pair cancels out and prevents acceleration — a very common Newton's third law misconception."
+      }
+    ]
+  },
+  {
+    "id": "phy-newton-laws-16",
+    "question_type": "match-the-following",
     "difficulty": "medium",
-    "question_text": "Match the following physical situations (Column I) with the correct descriptions (Column II):\n\nColumn I:\nA. Elevator moving up with constant velocity\nB. Elevator accelerating upward\nC. Elevator in free fall\nD. Elevator accelerating downward (a < g)\n\nColumn II:\n1. Apparent weight is zero\n2. Apparent weight equals actual weight\n3. Apparent weight is greater than actual weight\n4. Apparent weight is less than actual weight (but not zero)",
-    "explanation": "A-2: Constant velocity means zero acceleration, so apparent weight = mg = actual weight. B-3: Upward acceleration gives N = m(g+a) > mg. C-1: Free fall means a = g downward, so N = m(g\u2212g) = 0 (weightlessness). D-4: Downward acceleration with a < g gives N = m(g\u2212a) which is positive but less than mg.",
-    "correct_answer": "B",
-    "concept_tags": ["apparent-weight", "elevator", "weightlessness", "normal-force"],
-    "topic": "Newton's Laws of Motion",
+    "question_text": "Match the physical situation (Column I) with the applicable law or concept (Column II):\n\nColumn I:\nP. A book on a table remains at rest when no external force is applied\nQ. A football kicked with greater force accelerates more than one kicked gently (same mass)\nR. A swimmer pushes water backward and moves forward\nS. A gun recoils when a bullet is fired\n\nColumn II:\n1. Newton's First Law (Inertia)\n2. Newton's Second Law (F = ma)\n3. Newton's Third Law (Action-Reaction)\n4. Conservation of Linear Momentum",
+    "explanation": "P → 1: Book remaining at rest is the law of inertia (Newton's first law). Q → 2: Greater force on same mass gives greater acceleration — directly F = ma (Newton's second law). R → 3: Swimmer pushes water backward (action); water pushes swimmer forward (reaction) — Newton's third law. S → 4: Gun-bullet system initially at rest; after firing, momentum is conserved and gun recoils — conservation of linear momentum. Correct matching: P-1, Q-2, R-3, S-4.",
+    "correct_answer": "D",
+    "concept_tags": ["newtons-laws-applications", "matching", "conservation-of-momentum"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "understand",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "A-2, B-4, C-1, D-3", "is_correct": false },
-      { "key": "B", "text": "A-2, B-3, C-1, D-4", "is_correct": true },
-      { "key": "C", "text": "A-3, B-2, C-4, D-1", "is_correct": false },
-      { "key": "D", "text": "A-1, B-3, C-2, D-4", "is_correct": false }
+      {
+        "key": "A",
+        "text": "P-2, Q-1, R-4, S-3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P-1, Q-2, R-4, S-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P-3, Q-2, R-1, S-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P-1, Q-2, R-3, S-4",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This matches B with '4' (less than actual weight), but upward acceleration increases apparent weight, not decreases it.", "misconception": "Confusing the effect of upward vs downward acceleration on apparent weight" },
-      { "option_key": "C", "hint": "This incorrectly states that constant velocity gives greater than actual weight and upward acceleration gives actual weight, which are reversed.", "misconception": null },
-      { "option_key": "D", "hint": "This matches free fall (C) with actual weight, but in free fall the apparent weight is zero (weightlessness).", "misconception": "Not recognizing that free fall produces weightlessness" }
-    ]
-  },
-  {
-    "id": "phy-newton-laws-16",
-    "question_type": "match_the_following",
-    "difficulty": "hard",
-    "question_text": "Match the following concepts (Column I) with their correct definitions/formulas (Column II):\n\nColumn I:\nA. Impulse\nB. Momentum\nC. Newton's second law (general form)\nD. Recoil velocity of a gun\n\nColumn II:\n1. p = mv\n2. F = dp/dt\n3. v = \u2212(m/M)u\n4. J = F\u0394t = \u0394p",
-    "explanation": "A-4: Impulse equals force times time interval, which equals change in momentum (J = F\u0394t = \u0394p). B-1: Momentum is the product of mass and velocity (p = mv). C-2: The general form of Newton's second law relates force to the rate of change of momentum (F = dp/dt). D-3: The recoil velocity of a gun of mass M when a bullet of mass m is fired with velocity u is v = \u2212(m/M)u, from conservation of momentum.",
-    "correct_answer": "D",
-    "concept_tags": ["impulse", "momentum", "newton-second-law-general", "recoil", "conservation-of-momentum"],
-    "topic": "Newton's Laws of Motion",
-    "subject": "physics",
-    "chapter": "Laws of Motion",
-    "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
-    "options": [
-      { "key": "A", "text": "A-1, B-4, C-2, D-3", "is_correct": false },
-      { "key": "B", "text": "A-4, B-2, C-1, D-3", "is_correct": false },
-      { "key": "C", "text": "A-2, B-1, C-4, D-3", "is_correct": false },
-      { "key": "D", "text": "A-4, B-1, C-2, D-3", "is_correct": true }
-    ],
-    "elimination_hints": [
-      { "option_key": "A", "hint": "This matches Impulse (A) with p = mv, but p = mv defines momentum, not impulse. Impulse is F\u0394t = \u0394p.", "misconception": "Confusing impulse with momentum" },
-      { "option_key": "B", "hint": "This matches Momentum (B) with F = dp/dt, but F = dp/dt is Newton's second law, not the definition of momentum.", "misconception": null },
-      { "option_key": "C", "hint": "This matches Impulse (A) with F = dp/dt and Newton's second law (C) with J = F\u0394t, which are swapped.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Option A reverses P and Q: P (book at rest) relates to inertia (first law), not F = ma. Q (greater force → more acceleration) is the second law. Swap them: P-1, Q-2.",
+        "misconception": "Swapping Newton's first and second laws in the context of rest and force-acceleration."
+      },
+      {
+        "option_key": "B",
+        "hint": "Option B swaps R and S: swimming (R) is a direct action-reaction example (third law, not momentum conservation), while gun recoil (S) is best described by conservation of momentum. Correct: R-3, S-4.",
+        "misconception": "Confusing Newton's third law applications (swimming propulsion) with conservation of momentum (gun recoil)."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C assigns P to Newton's third law, which is incorrect. A stationary book remaining at rest is a demonstration of inertia (Newton's first law), not an action-reaction scenario.",
+        "misconception": "Misidentifying an inertia (first law) situation as an action-reaction (third law) scenario."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-17",
     "question_type": "true_false",
     "difficulty": "easy",
-    "question_text": "Newton's first law of motion defines the concept of inertia and is also called the law of inertia.",
-    "explanation": "This statement is TRUE. Newton's first law states that a body remains in its state of rest or uniform motion unless acted upon by an external force. This inherent property of a body to resist change in its state of motion is called inertia, which is why Newton's first law is also known as the law of inertia.",
+    "question_text": "According to Newton's third law, the action and reaction forces always act on two different objects and are equal in magnitude but opposite in direction.",
+    "explanation": "This statement is TRUE. Newton's third law explicitly states that for every action force exerted by object A on object B, there is an equal and opposite reaction force exerted by object B on object A. These forces always act on different bodies, which is why they cannot cancel each other — cancellation requires two forces to act on the same object.",
     "correct_answer": "A",
-    "concept_tags": ["newton-first-law", "inertia", "law-of-inertia"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["newtons-third-law", "action-reaction", "different-bodies"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "remember",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The statement is correct. Newton's first law does define inertia and is universally called the law of inertia.", "misconception": null },
-      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The statement is fully correct. Newton's third law requires action and reaction to act on different bodies and to be equal in magnitude with opposite directions. Selecting 'False' reflects the misconception that these forces act on the same body or are unequal.",
+        "misconception": "Believing action-reaction forces can act on the same body, or that they are not exactly equal in magnitude."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable (---). Only True or False are valid choices for this True-False question.",
+        "misconception": "N/A — placeholder option."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable (---). Only True or False are valid choices for this True-False question.",
+        "misconception": "N/A — placeholder option."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-18",
     "question_type": "true_false",
     "difficulty": "easy",
-    "question_text": "Action and reaction forces act on the same body and hence always cancel each other.",
-    "explanation": "This statement is FALSE. According to Newton's third law, action and reaction forces are equal in magnitude and opposite in direction, but they act on two different bodies. Since they act on different bodies, they do not cancel each other. Only forces acting on the same body can cancel.",
+    "question_text": "According to Newton's second law, if the net force acting on a body is zero, the body must necessarily be at rest.",
+    "explanation": "This statement is FALSE. Newton's second law states F_net = ma. If F_net = 0, then acceleration a = 0, meaning the body has zero acceleration — but this does NOT mean it is at rest. The body could be moving at constant velocity (uniform motion in a straight line). Zero net force implies zero acceleration, not zero velocity. A car moving at steady speed on a frictionless road has zero net force but is not at rest.",
     "correct_answer": "B",
-    "concept_tags": ["newton-third-law", "action-reaction", "force-cancellation"],
-    "topic": "Newton's Laws of Motion",
-    "subject": "physics",
-    "chapter": "Laws of Motion",
-    "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
-    "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
-    ],
-    "elimination_hints": [
-      { "option_key": "A", "hint": "Action and reaction forces act on different bodies, not the same body, so they cannot cancel each other.", "misconception": "Thinking action-reaction pairs act on the same body" },
-      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
-    ]
-  },
-  {
-    "id": "phy-newton-laws-19",
-    "question_type": "fill_in_blanks",
-    "difficulty": "medium",
-    "question_text": "A rocket works on the principle of conservation of _____. The hot gases expelled backward exert a forward force on the rocket by Newton's _____ law of motion.",
-    "explanation": "A rocket works on the principle of conservation of momentum. When hot gases are expelled backward at high speed, the rocket gains forward momentum to keep the total momentum of the system constant. The gases push the rocket forward as a reaction to being expelled backward, which is Newton's third law of motion.",
-    "correct_answer": "C",
-    "concept_tags": ["rocket-propulsion", "conservation-of-momentum", "newton-third-law"],
-    "topic": "Newton's Laws of Motion",
+    "concept_tags": ["newtons-second-law", "zero-net-force", "constant-velocity", "misconception"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "understand",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "energy; second", "is_correct": false },
-      { "key": "B", "text": "momentum; second", "is_correct": false },
-      { "key": "C", "text": "momentum; third", "is_correct": true },
-      { "key": "D", "text": "energy; third", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "While energy conservation applies, the primary principle of rocket propulsion is momentum conservation. Also, the reaction force is explained by the third law, not the second.", "misconception": null },
-      { "option_key": "B", "hint": "Conservation of momentum is correct, but the law describing the reaction force (gases push rocket forward) is Newton's third law, not the second law.", "misconception": "Confusing Newton's second and third laws in the context of rocket propulsion" },
-      { "option_key": "D", "hint": "While Newton's third law is correct, the principle is conservation of momentum, not conservation of energy.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Choosing 'True' reflects a very common misconception. Zero net force means zero acceleration (a = 0), not zero velocity (v = 0). A body can be moving at constant velocity with zero net force acting on it.",
+        "misconception": "Confusing zero acceleration (a = 0) with zero velocity (v = 0) — a fundamental error in applying Newton's second law."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable (---). Only True or False are valid choices for this True-False question.",
+        "misconception": "N/A — placeholder option."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable (---). Only True or False are valid choices for this True-False question.",
+        "misconception": "N/A — placeholder option."
+      }
+    ]
+  },
+  {
+    "id": "phy-newton-laws-19",
+    "question_type": "fill_in_the_blank",
+    "difficulty": "medium",
+    "question_text": "A body of mass 5 kg moving at 10 m/s is brought to rest in 2 seconds by a retarding force. The magnitude of the retarding force is _________ N.",
+    "explanation": "Change in momentum Δp = m(v_f − v_i) = 5 × (0 − 10) = −50 kg·m/s. By the impulse-momentum theorem, F × Δt = Δp → F × 2 = −50. Magnitude of force = 50/2 = 25 N. The force opposes motion (retarding force), but its magnitude is 25 N.",
+    "correct_answer": "C",
+    "concept_tags": ["impulse-momentum-theorem", "newtons-second-law", "retardation"],
+    "topic": "Newton's Three Laws of Motion",
+    "subject": "physics",
+    "chapter": "Laws of Motion",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {
+        "key": "A",
+        "text": "10 N",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "50 N",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "25 N",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "100 N",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "10 N could come from using only the velocity (10 m/s) without multiplying by mass or without dividing by time correctly. F = Δp/Δt = (5×10)/2 = 25 N.",
+        "misconception": "Using velocity alone instead of computing change in momentum (mass × change in velocity) before dividing by time."
+      },
+      {
+        "option_key": "B",
+        "hint": "50 N is the total change in momentum (kg·m/s), not the force. To get force, divide by the time interval: F = 50/2 = 25 N.",
+        "misconception": "Confusing the impulse/change in momentum value (50 kg·m/s) with the force (25 N), forgetting to divide by time."
+      },
+      {
+        "option_key": "D",
+        "hint": "100 N would arise from multiplying momentum by time (50 × 2) instead of dividing. Force = Δp/Δt, not Δp × Δt.",
+        "misconception": "Inverting the impulse formula — multiplying momentum by time instead of dividing."
+      }
     ]
   },
   {
     "id": "phy-newton-laws-20",
     "question_type": "scenario_based",
     "difficulty": "medium",
-    "question_text": "A 5 kg block is placed on a frictionless table. It is connected by a light string passing over a smooth pulley at the edge of the table to a 3 kg block hanging freely. The system is released from rest.\n\nWhat is the acceleration of the system and the tension in the string? (Take g = 10 m/s²)",
-    "explanation": "For the hanging block (3 kg): 3g \u2212 T = 3a. For the block on the table (5 kg): T = 5a. Adding both equations: 3g = 8a, so a = 3 \u00d7 10/8 = 3.75 m/s². Tension T = 5 \u00d7 3.75 = 18.75 N. The Atwood-like setup gives a system acceleration determined by the net unbalanced force (weight of hanging mass) divided by total mass.",
-    "correct_answer": "D",
-    "concept_tags": ["pulley-system", "connected-bodies", "tension", "atwood-machine", "free-body-diagram"],
-    "topic": "Newton's Laws of Motion",
+    "question_text": "Scenario: A 60 kg astronaut is floating at rest in outer space, 10 m from her spacecraft. She holds a 2 kg tool. To propel herself back, she throws the tool directly away from the spacecraft at a speed of 6 m/s (measured from the initial rest frame).\n\nQuestion: What is the astronaut's speed immediately after throwing the tool, and which principle governs this?",
+    "explanation": "Initial state: both astronaut and tool at rest — total momentum = 0. After throwing: m_tool × v_tool = m_astronaut × v_astronaut (magnitudes, opposite directions). 2 × 6 = 60 × v_astronaut. v_astronaut = 12/60 = 0.2 m/s toward the spacecraft. This is governed by conservation of linear momentum (and equivalently Newton's third law — the force she exerts on the tool equals the force the tool exerts on her).",
+    "correct_answer": "A",
+    "concept_tags": ["conservation-of-momentum", "newtons-third-law", "recoil", "space-application"],
+    "topic": "Newton's Three Laws of Motion",
     "subject": "physics",
     "chapter": "Laws of Motion",
     "bloom_level": "apply",
     "exam_suitability": ["NEET"],
     "options": [
-      { "key": "A", "text": "a = 6 m/s², T = 30 N", "is_correct": false },
-      { "key": "B", "text": "a = 5 m/s², T = 25 N", "is_correct": false },
-      { "key": "C", "text": "a = 3.75 m/s², T = 15 N", "is_correct": false },
-      { "key": "D", "text": "a = 3.75 m/s², T = 18.75 N", "is_correct": true }
+      {
+        "key": "A",
+        "text": "0.2 m/s; Conservation of linear momentum",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "0.1 m/s; Newton's first law",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "6 m/s; Newton's third law",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.5 m/s; Newton's second law",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "a = 6 m/s² would result from dividing 3g = 30 by 5 instead of by the total mass (8 kg). Both blocks must be included in the system mass.", "misconception": "Using only one block's mass for system acceleration" },
-      { "option_key": "B", "hint": "a = 5 m/s² would mean the net force is 40 N, but the only driving force is the weight of the 3 kg block = 30 N.", "misconception": null },
-      { "option_key": "C", "hint": "The acceleration is correct at 3.75 m/s², but T = 15 N is wrong. T = 5a = 5 \u00d7 3.75 = 18.75 N, not 15 N.", "misconception": "Using the wrong block's mass to calculate tension" }
+      {
+        "option_key": "B",
+        "hint": "0.1 m/s contains an arithmetic error (perhaps (2×6)/120 or halving incorrectly). Correct calculation: v = (m_tool × v_tool)/m_astronaut = (2 × 6)/60 = 0.2 m/s. Also, Newton's first law governs inertia/rest, not recoil.",
+        "misconception": "Arithmetic error in momentum conservation and incorrect identification of the governing law."
+      },
+      {
+        "option_key": "C",
+        "hint": "The astronaut cannot move at 6 m/s because she has 30 times the mass of the tool. Conservation of momentum requires her speed to be much smaller: v = (2/60) × 6 = 0.2 m/s, not 6 m/s.",
+        "misconception": "Assuming action-reaction forces produce equal velocities regardless of mass differences."
+      },
+      {
+        "option_key": "D",
+        "hint": "0.5 m/s might come from (2 × 6)/24 or another arithmetic error. The astronaut's mass is 60 kg: v = 12/60 = 0.2 m/s. While Newton's second law is related, conservation of momentum is the most direct governing principle here.",
+        "misconception": "Arithmetic error in applying momentum conservation and misidentifying the primary governing principle."
+      }
     ]
   }
 ]
