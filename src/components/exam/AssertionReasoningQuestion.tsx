@@ -18,6 +18,82 @@ interface Props extends QuestionRendererProps {
   payload: AssertionReasoningPayloadShape;
 }
 
+interface ARPattern {
+  aTrue: boolean;
+  rTrue: boolean;
+  rExplainsA: boolean | null; // null when both aren't true
+}
+
+/** Detect the standard NEET assertion-reasoning option pattern from English text */
+function parseARPattern(text: string): ARPattern | null {
+  const lower = text.toLowerCase();
+  // Both true + R explains A
+  if (lower.includes('both') && lower.includes('correct explanation') && !lower.includes('not')) {
+    return { aTrue: true, rTrue: true, rExplainsA: true };
+  }
+  // Both true + R does NOT explain A
+  if (lower.includes('both') && lower.includes('not')) {
+    return { aTrue: true, rTrue: true, rExplainsA: false };
+  }
+  // A true, R false
+  if (/a\s+is\s+true/i.test(lower) && /r\s+is\s+false/i.test(lower)) {
+    return { aTrue: true, rTrue: false, rExplainsA: null };
+  }
+  // A false, R true
+  if (/a\s+is\s+false/i.test(lower) && /r\s+is\s+true/i.test(lower)) {
+    return { aTrue: false, rTrue: true, rExplainsA: null };
+  }
+  return null;
+}
+
+function TruthPill({ label, value, colors }: { label: string; value: boolean; colors: Record<string, string> }) {
+  const bg = value ? '#22C55E18' : '#EF444418';
+  const color = value ? '#16A34A' : '#DC2626';
+  const labelBg = label === 'A' ? '#6366F118' : '#F59E0B18';
+  const labelColor = label === 'A' ? '#6366F1' : '#D97706';
+
+  return (
+    <View style={truthStyles.container}>
+      <View style={[truthStyles.labelBadge, { backgroundColor: labelBg }]}>
+        <Text style={[truthStyles.labelText, { color: labelColor }]}>{label}</Text>
+      </View>
+      <View style={[truthStyles.valueBadge, { backgroundColor: bg }]}>
+        <Text style={[truthStyles.valueText, { color }]}>
+          {value ? 'True' : 'False'}
+        </Text>
+      </View>
+    </View>
+  );
+}
+
+const truthStyles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  labelBadge: {
+    width: 22,
+    height: 22,
+    borderRadius: 7,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  labelText: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 11,
+  },
+  valueBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
+  },
+  valueText: {
+    fontFamily: 'PlusJakartaSans_700Bold',
+    fontSize: 12,
+  },
+});
+
 export function AssertionReasoningQuestion({ language, selectedOptionId, showFeedback, onSelect, colors, payload }: Props) {
   const isCorrect = selectedOptionId === payload.correctOptionId;
 
@@ -36,27 +112,46 @@ export function AssertionReasoningQuestion({ language, selectedOptionId, showFee
 
   return (
     <View style={styles.container}>
-      {/* Assertion card */}
-      <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
-        <Text style={[styles.cardLabel, { color: '#6366F1' }]}>ASSERTION (A)</Text>
-        <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-          {language === 'te' ? payload.assertionTe : payload.assertion}
-        </Text>
+      {/* Combined Assertion + Reason card */}
+      <View style={[styles.arCard, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
+        {/* Assertion section */}
+        <View style={styles.arSection}>
+          <View style={styles.arHeaderRow}>
+            <View style={[styles.arBadge, { backgroundColor: '#6366F118' }]}>
+              <Text style={[styles.arBadgeText, { color: '#6366F1' }]}>A</Text>
+            </View>
+            <Text style={[styles.arLabel, { color: '#6366F1' }]}>ASSERTION</Text>
+          </View>
+          <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
+            {language === 'te' ? payload.assertionTe : payload.assertion}
+          </Text>
+        </View>
+
+        {/* Divider */}
+        <View style={[styles.arDivider, { backgroundColor: colors.surfaceBorder }]} />
+
+        {/* Reason section */}
+        <View style={styles.arSection}>
+          <View style={styles.arHeaderRow}>
+            <View style={[styles.arBadge, { backgroundColor: '#F59E0B18' }]}>
+              <Text style={[styles.arBadgeText, { color: '#D97706' }]}>R</Text>
+            </View>
+            <Text style={[styles.arLabel, { color: '#D97706' }]}>REASON</Text>
+          </View>
+          <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
+            {language === 'te' ? payload.reasonTe : payload.reason}
+          </Text>
+        </View>
       </View>
 
-      {/* Reason card */}
-      <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
-        <Text style={[styles.cardLabel, { color: '#F59E0B' }]}>REASON (R)</Text>
-        <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-          {language === 'te' ? payload.reasonTe : payload.reason}
-        </Text>
-      </View>
-
-      {/* MCQ options */}
+      {/* Options */}
       <View style={styles.optionsList}>
+        <Text style={[styles.selectLabel, { color: colors.textTertiary }]}>SELECT THE CORRECT RELATIONSHIP</Text>
         {payload.options.map((opt, idx) => {
           const os = getOptionStyle(opt.id);
           const label = String.fromCharCode(65 + idx);
+          const pattern = parseARPattern(opt.text);
+
           return (
             <Pressable
               key={opt.id}
@@ -74,12 +169,44 @@ export function AssertionReasoningQuestion({ language, selectedOptionId, showFee
                 },
               ]}
             >
-              <View style={[styles.optLabel, { backgroundColor: os.border + '30' }]}>
-                <Text style={[styles.optLabelText, { color: os.text }]}>{label}</Text>
+              {/* Label badge */}
+              <View style={[styles.optBadge, { backgroundColor: os.border + '30' }]}>
+                <Text style={[styles.optBadgeText, { color: os.text }]}>{label}</Text>
               </View>
-              <Text style={[Typography.body, { color: os.text, flex: 1 }]}>
-                {language === 'te' ? opt.textTe : opt.text}
-              </Text>
+
+              {/* Structured layout or fallback to plain text */}
+              {pattern ? (
+                <View style={styles.structuredContent}>
+                  {/* Row 1: A and R truth values */}
+                  <View style={styles.truthRow}>
+                    <TruthPill label="A" value={pattern.aTrue} colors={colors} />
+                    <TruthPill label="R" value={pattern.rTrue} colors={colors} />
+                  </View>
+                  {/* Row 2: Relationship (only when both true) */}
+                  {pattern.rExplainsA !== null && (
+                    <View style={styles.relationRow}>
+                      <Text
+                        style={[
+                          styles.relationText,
+                          {
+                            color: pattern.rExplainsA ? '#16A34A' : '#DC2626',
+                          },
+                        ]}
+                      >
+                        {pattern.rExplainsA
+                          ? 'R correctly explains A'
+                          : 'R does NOT explain A'}
+                      </Text>
+                    </View>
+                  )}
+                </View>
+              ) : (
+                <Text style={[Typography.body, { color: os.text, flex: 1 }]}>
+                  {language === 'te' ? opt.textTe : opt.text}
+                </Text>
+              )}
+
+              {/* Feedback icons */}
               {showFeedback && opt.id === payload.correctOptionId && (
                 <Text style={{ fontSize: 18, color: '#16A34A' }}>{'\u2713'}</Text>
               )}
@@ -98,19 +225,50 @@ const styles = StyleSheet.create({
   container: {
     gap: Spacing.lg,
   },
-  card: {
-    padding: Spacing.lg,
+  // ── Combined A+R card ──
+  arCard: {
     borderRadius: BorderRadius.lg,
     borderWidth: 1,
+    overflow: 'hidden',
+  },
+  arSection: {
+    padding: Spacing.lg,
     gap: Spacing.sm,
   },
-  cardLabel: {
+  arHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+  },
+  arBadge: {
+    width: 28,
+    height: 28,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  arBadgeText: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 14,
+  },
+  arLabel: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 11,
+    letterSpacing: 1,
+  },
+  arDivider: {
+    height: 1,
+    marginHorizontal: Spacing.lg,
+  },
+  // ── Options ──
+  optionsList: {
+    gap: Spacing.md,
+  },
+  selectLabel: {
     fontFamily: 'PlusJakartaSans_800ExtraBold',
     fontSize: 10,
     letterSpacing: 1,
-  },
-  optionsList: {
-    gap: Spacing.md,
+    marginBottom: 2,
   },
   optionRow: {
     flexDirection: 'row',
@@ -119,15 +277,32 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.lg,
     gap: Spacing.md,
   },
-  optLabel: {
+  optBadge: {
     width: 32,
     height: 32,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  optLabelText: {
+  optBadgeText: {
     fontFamily: 'PlusJakartaSans_800ExtraBold',
     fontSize: 14,
+  },
+  // ── Structured option content ──
+  structuredContent: {
+    flex: 1,
+    gap: 6,
+  },
+  truthRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.lg,
+  },
+  relationRow: {
+    marginTop: 2,
+  },
+  relationText: {
+    fontFamily: 'PlusJakartaSans_700Bold',
+    fontSize: 13,
   },
 });

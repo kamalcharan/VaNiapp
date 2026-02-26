@@ -5,13 +5,6 @@ import { RootState } from '../store';
 import { TRACKS } from '../constants/tracks';
 import { pause, play, setTrack, skipNext, skipPrev, stopMusic } from '../store/slices/musicSlice';
 
-/**
- * Hook that manages expo-av Audio.Sound playback based on Redux music state.
- * Call this once in a screen that needs music playback (e.g. practice-question).
- *
- * TODO: Migrate to expo-audio (createAudioPlayer) on next native build.
- * expo-av is deprecated in SDK 54 but the current APK still has its native module.
- */
 export function useAudioPlayer() {
   const dispatch = useDispatch();
   const { currentTrackIndex, isPlaying } = useSelector((state: RootState) => state.music);
@@ -22,12 +15,13 @@ export function useAudioPlayer() {
   useEffect(() => {
     Audio.setAudioModeAsync({
       playsInSilentModeIOS: true,
+      allowsRecordingIOS: false,
       staysActiveInBackground: true,
       shouldDuckAndroid: true,
+      playThroughEarpieceAndroid: false,
     });
 
     return () => {
-      // Cleanup on unmount
       if (soundRef.current) {
         soundRef.current.unloadAsync();
         soundRef.current = null;
@@ -51,15 +45,18 @@ export function useAudioPlayer() {
       if (!track) return;
 
       try {
-        const { sound } = await Audio.Sound.createAsync(
+        const { sound, status } = await Audio.Sound.createAsync(
           { uri: track.uri },
-          { shouldPlay: isPlaying, isLooping: true, volume: 0.5 }
+          { shouldPlay: isPlaying, isLooping: true, volume: 1.0 }
         );
         soundRef.current = sound;
         loadedTrackIndex.current = currentTrackIndex;
-      } catch {
-        // Track failed to load — silently ignore for POC
-        console.warn(`Failed to load track: ${track.title}`);
+
+        if (!status.isLoaded) {
+          console.warn(`Track loaded but status not ready: ${track.title}`);
+        }
+      } catch (err) {
+        console.warn(`Failed to load track: ${track.title}`, err);
       }
     };
 
@@ -71,15 +68,18 @@ export function useAudioPlayer() {
     if (!soundRef.current || loadedTrackIndex.current !== currentTrackIndex) return;
 
     if (isPlaying) {
-      soundRef.current.playAsync().catch(() => {});
+      soundRef.current.playAsync().catch((err) => {
+        console.warn('playAsync failed:', err);
+      });
     } else {
-      soundRef.current.pauseAsync().catch(() => {});
+      soundRef.current.pauseAsync().catch((err) => {
+        console.warn('pauseAsync failed:', err);
+      });
     }
   }, [isPlaying, currentTrackIndex]);
 
   const handleTogglePlay = useCallback(() => {
     if (currentTrackIndex === null) {
-      // Nothing playing yet — start first track
       dispatch(setTrack(0));
     } else if (isPlaying) {
       dispatch(pause());

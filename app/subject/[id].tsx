@@ -457,7 +457,7 @@ export default function SubjectDetailScreen() {
                             {ca.totalAnswered - ca.correctCount} wrong
                           </Text>
                           <Text style={[styles.chapterStatText, { color: colors.textTertiary }]}>
-                            {ca.totalAnswered} answered
+                            {ca.totalAnswered}/{ca.totalInBank} attempted
                           </Text>
                         </View>
 
@@ -479,17 +479,37 @@ export default function SubjectDetailScreen() {
                           {getChapterCoaching(ca.strengthLevel, ca.accuracy, ca.chapter.name)}
                         </Text>
 
-                        {/* Practice again CTA for chapters with room to grow */}
-                        {(ca.strengthLevel === 'needs-focus' || ca.strengthLevel === 'getting-there') && (
-                          <Pressable
-                            style={[styles.practiceAgainButton, { backgroundColor: subject.color + '15' }]}
-                            onPress={() => handleStartChapter(ca.chapter.id)}
-                          >
-                            <Text style={[styles.practiceAgainText, { color: subject.color }]}>
-                              Practice again
-                            </Text>
-                          </Pressable>
-                        )}
+                        {/* Action buttons */}
+                        <View style={styles.chapterActions}>
+                          {/* Practice again CTA for chapters with room to grow */}
+                          {(ca.strengthLevel === 'needs-focus' || ca.strengthLevel === 'getting-there') && (
+                            <Pressable
+                              style={[styles.practiceAgainButton, { backgroundColor: subject.color + '15' }]}
+                              onPress={() => handleStartChapter(ca.chapter.id)}
+                            >
+                              <Text style={[styles.practiceAgainText, { color: subject.color }]}>
+                                Practice again
+                              </Text>
+                            </Pressable>
+                          )}
+
+                          {/* Practice Mistakes — show if chapter has wrong answers */}
+                          {(ca.totalAnswered - ca.correctCount) > 0 && (
+                            <Pressable
+                              style={[styles.practiceAgainButton, { backgroundColor: '#EF444415' }]}
+                              onPress={() =>
+                                router.push({
+                                  pathname: '/practice-mistakes',
+                                  params: { chapterId: ca.chapter.id },
+                                })
+                              }
+                            >
+                              <Text style={[styles.practiceAgainText, { color: '#EF4444' }]}>
+                                Practice mistakes ({ca.totalAnswered - ca.correctCount})
+                              </Text>
+                            </Pressable>
+                          )}
+                        </View>
                       </View>
                     )}
 
@@ -692,11 +712,15 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     lineHeight: 17,
   },
+  chapterActions: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: Spacing.sm,
+  },
   practiceAgainButton: {
     paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.md,
     borderRadius: 10,
-    alignSelf: 'flex-start',
   },
   practiceAgainText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',

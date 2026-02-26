@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -24,7 +24,6 @@ import { RootState } from '../src/store';
 import { store } from '../src/store';
 import { setPaid } from '../src/store/slices/trialSlice';
 import {
-  PLANS,
   type PlanId,
   type PriceBreakdown,
   calculatePricing,
@@ -35,6 +34,7 @@ import {
   saveSubscription,
   createRazorpayOrder,
 } from '../src/lib/payments';
+import { getRazorpayConfig, type RazorpayConfig } from '../src/lib/appConfig';
 import RazorpayCheckoutModal, {
   type RazorpayCheckoutParams,
   type RazorpayPaymentResult,
@@ -50,6 +50,16 @@ export default function UpgradeScreen() {
   const userName = authUser?.name ?? '';
   const userEmail = authUser?.email ?? '';
   const targetYear = authUser?.targetYear;
+
+  // ── DB config ────────────────────────────────────────────────
+  const [config, setConfig] = useState<RazorpayConfig | null>(null);
+  const [configLoading, setConfigLoading] = useState(true);
+
+  useEffect(() => {
+    getRazorpayConfig()
+      .then(setConfig)
+      .finally(() => setConfigLoading(false));
+  }, []);
 
   // Determine which plans to show
   const availablePlanIds = getPlansForUser(targetYear);
@@ -74,16 +84,21 @@ export default function UpgradeScreen() {
   const [checkoutParams, setCheckoutParams] = useState<RazorpayCheckoutParams | null>(null);
 
   // Price breakdown
-  const plan = PLANS[selectedPlan];
+  const plan = config?.plans[selectedPlan];
   const discountPercent = appliedCoupon?.discountPercent ?? 0;
   const isFree = discountPercent === 100;
-  const pricing: PriceBreakdown = calculatePricing(plan.basePrice, discountPercent);
+  const pricing: PriceBreakdown = calculatePricing(
+    plan?.basePrice ?? 0,
+    discountPercent,
+    config?.gst_rate,
+  );
 
   // ── Coupon ─────────────────────────────────────────────────
 
   const handleApplyCoupon = useCallback(() => {
+    if (!config) return;
     setCouponError('');
-    const result = validateCoupon(couponInput);
+    const result = validateCoupon(couponInput, config.coupons);
     if (!result) {
       setCouponError('Invalid coupon code');
       setAppliedCoupon(null);
@@ -95,7 +110,7 @@ export default function UpgradeScreen() {
     if (result.discountPercent === 100) {
       setSelectedPlan('yearly');
     }
-  }, [couponInput]);
+  }, [couponInput, config]);
 
   const handleRemoveCoupon = useCallback(() => {
     setAppliedCoupon(null);
@@ -110,6 +125,7 @@ export default function UpgradeScreen() {
   // ── Checkout ───────────────────────────────────────────────
 
   const handlePay = useCallback(async () => {
+    if (!config || !plan) return;
     setLoading(true);
     try {
       if (isFree) {
@@ -130,7 +146,12 @@ export default function UpgradeScreen() {
       }
 
       // Paid flow — create order via Edge Function, then open checkout modal
-      const order = await createRazorpayOrder(selectedPlan, discountPercent);
+      const order = await createRazorpayOrder(
+        selectedPlan,
+        discountPercent,
+        config.plans,
+        config.gst_rate,
+      );
 
       setCheckoutParams({
         orderId: order.orderId,
@@ -146,7 +167,7 @@ export default function UpgradeScreen() {
     } finally {
       setLoading(false);
     }
-  }, [isFree, selectedPlan, discountPercent, appliedCoupon, plan, pricing, userEmail, userName, router]);
+  }, [isFree, selectedPlan, discountPercent, appliedCoupon, plan, config, pricing, userEmail, userName, router]);
 
   // ── Razorpay modal callbacks ────────────────────────────────
 
@@ -168,7 +189,7 @@ export default function UpgradeScreen() {
       store.dispatch(setPaid(true));
       router.replace({
         pathname: '/payment-success',
-        params: { planName: plan.name },
+        params: { planName: plan?.name ?? selectedPlan },
       });
     } catch (err: any) {
       Alert.alert('Error', err?.message || 'Failed to save subscription.');
@@ -193,6 +214,18 @@ export default function UpgradeScreen() {
     setLoading(false);
   }, []);
 
+  // ── Loading state ─────────────────────────────────────────
+
+  if (configLoading || !config) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+          <ActivityIndicator size="large" color={colors.primary} />
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
   // ── Render ─────────────────────────────────────────────────
 
   return (
@@ -215,7 +248,8 @@ export default function UpgradeScreen() {
 
           {/* Plan Cards */}
           {availablePlanIds.map((planId) => {
-            const p = PLANS[planId];
+            const p = config.plans[planId];
+            if (!p) return null;
             const isSelected = selectedPlan === planId;
             const disabled = isFree; // Lock selection when VaNiValue applied
             return (
@@ -343,7 +377,7 @@ export default function UpgradeScreen() {
               />
             )}
 
-            <PriceRow label="GST (18%)" value={`\u20B9${pricing.gst}`} colors={colors} />
+            <PriceRow label={`GST (${Math.round((config.gst_rate) * 100)}%)`} value={`\u20B9${pricing.gst}`} colors={colors} />
 
             <View style={[styles.divider, { borderColor: colors.textTertiary }]} />
 
@@ -388,7 +422,7 @@ export default function UpgradeScreen() {
 
           {/* GST note */}
           <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center' }]}>
-            All prices include 18% GST. Payments secured by Razorpay.
+            All prices include {Math.round(config.gst_rate * 100)}% GST. Payments secured by Razorpay.
           </Text>
         </ScrollView>
 
@@ -401,6 +435,7 @@ export default function UpgradeScreen() {
       <RazorpayCheckoutModal
         visible={checkoutVisible}
         params={checkoutParams}
+        razorpayKeyId={config.razorpay_key_id}
         onSuccess={handlePaymentSuccess}
         onFailure={handlePaymentFailure}
         onDismiss={handlePaymentDismiss}

@@ -10,6 +10,7 @@ import strengthReducer from './slices/strengthSlice';
 import bookmarkReducer from './slices/bookmarkSlice';
 import streakReducer from './slices/streakSlice';
 import trialReducer, { incrementQuestionsAnswered } from './slices/trialSlice';
+import { reportError } from '../lib/errorReporting';
 
 // ── Per-user persistence ─────────────────────────────────────
 const PERSIST_PREFIX = 'vani-persist';
@@ -53,7 +54,7 @@ const trialMiddleware: import('@reduxjs/toolkit').Middleware = (storeApi) => (ne
     storeApi.dispatch(incrementQuestionsAnswered());
     // Fire-and-forget sync to Supabase — import dynamically to avoid circular deps
     import('../lib/database').then(({ incrementQuestionsAnswered: syncToSupabase }) => {
-      syncToSupabase().catch(() => {});
+      syncToSupabase().catch((e) => reportError(e, 'low', 'trialMiddleware.syncQuestion'));
     });
   }
   return result;
@@ -83,7 +84,7 @@ store.subscribe(() => {
     AsyncStorage.setItem(
       persistKey(userId),
       JSON.stringify({ auth, practice, squad, ai, strength, bookmark, streak, trial }),
-    ).catch(() => {});
+    ).catch((e) => reportError(e, 'medium', 'store.persistState'));
   }, 500);
 });
 
@@ -97,7 +98,7 @@ export async function rehydrateStore(userId: string): Promise<void> {
   _currentUserId = userId;
 
   // Clean up legacy global key (one-time migration)
-  AsyncStorage.removeItem(LEGACY_PERSIST_KEY).catch(() => {});
+  AsyncStorage.removeItem(LEGACY_PERSIST_KEY).catch((e) => reportError(e, 'low', 'store.legacyCleanup'));
 
   try {
     const raw = await AsyncStorage.getItem(persistKey(userId));

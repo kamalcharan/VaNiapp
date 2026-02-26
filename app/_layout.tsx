@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo, useCallback, createContext, useContext, useRef } from 'react';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import { View, ActivityIndicator } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   useFonts,
   PlusJakartaSans_300Light,
@@ -30,6 +31,12 @@ import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
 import { getProfile, getUserSubjectIds, isOnboardingActuallyComplete, reportAppVersion } from '../src/lib/database';
 import { pullRemoteProgress } from '../src/lib/progressSync';
 import { getActiveSubscription } from '../src/lib/payments';
+import { reportError, installGlobalErrorHandler, initSentry, setSentryUser, setCurrentScreen } from '../src/lib/errorReporting';
+import { ErrorBoundary } from '../src/components/ErrorBoundary';
+
+// Initialize Sentry before anything else renders
+initSentry();
+installGlobalErrorHandler();
 
 NativeSplashScreen.preventAutoHideAsync();
 
@@ -87,6 +94,21 @@ export default function RootLayout() {
 
     return () => unsubscribe?.();
   }, []);
+
+  // Set Sentry user context when auth changes
+  useEffect(() => {
+    if (authState.status === 'authenticated' && authState.user) {
+      setSentryUser({ id: authState.user.id, email: authState.user.email ?? undefined });
+    } else {
+      setSentryUser(null);
+    }
+  }, [authState.status, authState.user?.id]);
+
+  // Track current screen for Sentry breadcrumbs
+  useEffect(() => {
+    const screen = segments.join('/') || 'root';
+    setCurrentScreen(screen);
+  }, [segments]);
 
   // When auth state changes: load profile, rehydrate per-user data, or reset
   useEffect(() => {
@@ -146,13 +168,13 @@ export default function RootLayout() {
                 expiresAt: sub.expiresAt,
               }));
             }
-          }).catch(() => {});
+          }).catch((e) => reportError(e, 'medium', 'RootLayout.getSubscription'));
 
           // Pull remote progress into Redux (merges with local, remote wins if ahead)
-          pullRemoteProgress().catch(() => {});
+          pullRemoteProgress().catch((e) => reportError(e, 'medium', 'RootLayout.pullProgress'));
 
           // Report app version to DB for WhatsApp bot update notifications
-          reportAppVersion(profile).catch(() => {});
+          reportAppVersion(profile).catch((e) => reportError(e, 'low', 'RootLayout.reportVersion'));
         }
       } catch {
         setOnboardingDone(false);
@@ -239,23 +261,27 @@ export default function RootLayout() {
     segments[0] !== 'setup';
 
   return (
-    <ReduxProvider store={store}>
-      <AuthContext.Provider value={authState}>
-        <OnboardingGateContext.Provider value={gateValue}>
-          <ThemeContext.Provider value={themeValue}>
-            <ToastProvider>
-              {isAuthLoading ? (
-                <View style={{ flex: 1, backgroundColor: '#fdfcf0', justifyContent: 'center', alignItems: 'center' }}>
-                  <ActivityIndicator size="large" color="#2563EB" />
-                </View>
-              ) : (
-                <Slot />
-              )}
-              <GlobalMusicOverlay />
-            </ToastProvider>
-          </ThemeContext.Provider>
-        </OnboardingGateContext.Provider>
-      </AuthContext.Provider>
-    </ReduxProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ErrorBoundary>
+        <ReduxProvider store={store}>
+          <AuthContext.Provider value={authState}>
+            <OnboardingGateContext.Provider value={gateValue}>
+              <ThemeContext.Provider value={themeValue}>
+                <ToastProvider>
+                  {isAuthLoading ? (
+                    <View style={{ flex: 1, backgroundColor: '#fdfcf0', justifyContent: 'center', alignItems: 'center' }}>
+                      <ActivityIndicator size="large" color="#2563EB" />
+                    </View>
+                  ) : (
+                    <Slot />
+                  )}
+                  <GlobalMusicOverlay />
+                </ToastProvider>
+              </ThemeContext.Provider>
+            </OnboardingGateContext.Provider>
+          </AuthContext.Provider>
+        </ReduxProvider>
+      </ErrorBoundary>
+    </GestureHandlerRootView>
   );
 }

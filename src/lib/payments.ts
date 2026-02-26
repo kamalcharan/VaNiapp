@@ -1,6 +1,6 @@
 import { supabase } from './supabase';
-import type { PlanId } from '../constants/pricing';
-import { PLANS, calculatePricing } from '../constants/pricing';
+import type { PlanId, PricingPlan } from '../constants/pricing';
+import { calculatePricing } from '../constants/pricing';
 
 // ── Save subscription ────────────────────────────────────────
 
@@ -126,11 +126,14 @@ interface CreateOrderResult {
 export async function createRazorpayOrder(
   planType: PlanId,
   discountPercent: number = 0,
+  plans: Record<PlanId, PricingPlan>,
+  gstRate: number = 0.18,
 ): Promise<CreateOrderResult> {
   if (!supabase) throw new Error('Supabase is not configured.');
 
-  const plan = PLANS[planType];
-  const pricing = calculatePricing(plan.basePrice, discountPercent);
+  const plan = plans[planType];
+  if (!plan) throw new Error(`Unknown plan: ${planType}`);
+  const pricing = calculatePricing(plan.basePrice, discountPercent, gstRate);
   const amountPaise = pricing.total * 100;
 
   // supabase.functions.invoke() automatically:
