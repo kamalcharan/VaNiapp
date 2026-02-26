@@ -103,7 +103,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B02 | `phy-units-dimensions` | Units, Dimensions, and Dimensional Analysis | 20 | PENDING |
+| B02 | `phy-units-dimensions` | Units, Dimensions, and Dimensional Analysis | 20 | DONE |
 | B03 | `phy-units-errors` | Errors in Measurement and Significant Figures | 20 | DONE |
 | | | **Chapter 2 Total** | **40** | |
 
@@ -112,7 +112,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B04 | `phy-motion1d-kinematics` | Kinematic Equations and Uniform Acceleration | 20 | DONE |
-| B05 | `phy-motion1d-graphs` | Position-Time and Velocity-Time Graphs | 20 | PENDING |
+| B05 | `phy-motion1d-graphs` | Position-Time and Velocity-Time Graphs | 20 | DONE |
 | | | **Chapter 3 Total** | **40** | |
 
 ### Chapter 4: Motion in a Plane (`phy-motion2d`) — 3 batches
@@ -601,8 +601,8 @@ Commit and push.
 | Chapter | Topics | Qs Target | Qs Done | % |
 |---------|--------|-----------|---------|---|
 | Ch1 Physical World | 1 | 20 | 0 | 0% |
-| Ch2 Units and Measurements | 2 | 40 | 20 | 50% |
-| Ch3 Motion in a Straight Line | 2 | 40 | 20 | 50% |
+| Ch2 Units and Measurements | 2 | 40 | 40 | 100% |
+| Ch3 Motion in a Straight Line | 2 | 40 | 40 | 100% |
 | Ch4 Motion in a Plane | 3 | 60 | 60 | 100% |
 | Ch5 Laws of Motion | 3 | 60 | 60 | 100% |
 | Ch6 Work, Energy and Power | 3 | 60 | 60 | 100% |
@@ -629,4 +629,4 @@ Commit and push.
 | Ch27 Atoms | 2 | 40 | 0 | 0% |
 | Ch28 Nuclei | 2 | 40 | 0 | 0% |
 | Ch29 Semiconductor Electronics | 3 | 60 | 0 | 0% |
-| **TOTAL** | **71** | **1,420** | **560** | **39%** |
+| **TOTAL** | **71** | **1,420** | **620** | **44%** |
