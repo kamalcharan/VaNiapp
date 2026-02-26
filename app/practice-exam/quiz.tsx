@@ -38,6 +38,7 @@ import { legacyBatchToV2, getCorrectId } from '../../src/lib/questionAdapter';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { recordDailyPractice } from '../../src/store/slices/streakSlice';
 import { syncChapterProgress } from '../../src/lib/progressSync';
+import { reportError } from '../../src/lib/errorReporting';
 
 const SUBJECTS: { id: NeetSubjectId; emoji: string; short: string }[] = [
   { id: 'physics', emoji: '\u269B\uFE0F', short: 'PHY' },
@@ -354,7 +355,7 @@ export default function PracticeQuestionScreen() {
 
         // Sync progress to Supabase in background
         for (const chapId of Object.keys(byChapter)) {
-          syncChapterProgress(chapId).catch(() => {});
+          syncChapterProgress(chapId).catch((e) => reportError(e, 'medium', 'PracticeExam.syncProgress'));
         }
 
         router.replace({

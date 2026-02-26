@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { exchangeAuthCode } from '../../src/lib/supabase';
+import { reportError } from '../../src/lib/errorReporting';
 
 /**
  * Auth callback screen — catches the deep link after Google sign-in.
@@ -49,7 +50,7 @@ export default function AuthCallbackScreen() {
 
         if (code && typeof code === 'string') {
           exchanged.current = true;
-          exchangeAuthCode(code).catch(() => {});
+          exchangeAuthCode(code).catch((e) => reportError(e, 'high', 'AuthCallback.exchangeCode'));
         }
       } catch {
         // Swallow

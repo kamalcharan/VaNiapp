@@ -30,6 +30,8 @@ import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
 import { getProfile, getUserSubjectIds, isOnboardingActuallyComplete, reportAppVersion } from '../src/lib/database';
 import { pullRemoteProgress } from '../src/lib/progressSync';
 import { getActiveSubscription } from '../src/lib/payments';
+import { reportError, installGlobalErrorHandler } from '../src/lib/errorReporting';
+import { ErrorBoundary } from '../src/components/ErrorBoundary';
 
 NativeSplashScreen.preventAutoHideAsync();
 
@@ -146,13 +148,13 @@ export default function RootLayout() {
                 expiresAt: sub.expiresAt,
               }));
             }
-          }).catch(() => {});
+          }).catch((e) => reportError(e, 'medium', 'RootLayout.getSubscription'));
 
           // Pull remote progress into Redux (merges with local, remote wins if ahead)
-          pullRemoteProgress().catch(() => {});
+          pullRemoteProgress().catch((e) => reportError(e, 'medium', 'RootLayout.pullProgress'));
 
           // Report app version to DB for WhatsApp bot update notifications
-          reportAppVersion(profile).catch(() => {});
+          reportAppVersion(profile).catch((e) => reportError(e, 'low', 'RootLayout.reportVersion'));
         }
       } catch {
         setOnboardingDone(false);

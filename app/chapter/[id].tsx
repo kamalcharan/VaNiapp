@@ -47,6 +47,7 @@ import { incrementStreak, resetStreak, recordDailyPractice } from '../../src/sto
 import { fetchQuestionsByChapter } from '../../src/lib/questions';
 import { getCorrectId, resolveLegacyChapterId } from '../../src/lib/questionAdapter';
 import { syncChapterProgress } from '../../src/lib/progressSync';
+import { reportError } from '../../src/lib/errorReporting';
 
 const DIFF_COLORS = { easy: '#22C55E', medium: '#F59E0B', hard: '#EF4444' };
 
@@ -249,7 +250,7 @@ export default function ChapterQuizScreen() {
       dispatch(recordDailyPractice());
 
       // Sync progress to Supabase in background
-      syncChapterProgress(chapterId!).catch(() => {});
+      syncChapterProgress(chapterId!).catch((e) => reportError(e, 'medium', 'ChapterQuiz.syncProgress'));
 
       // Navigate to results screen
       router.replace({
