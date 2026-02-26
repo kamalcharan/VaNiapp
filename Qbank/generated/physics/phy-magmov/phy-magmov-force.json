@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-magmov-force-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A charged particle moving with velocity v enters a uniform magnetic field B perpendicular to its velocity. The magnetic force on the particle is:",
+    "explanation": "The magnetic force on a moving charged particle is given by F = qv × B. When the velocity is perpendicular to the magnetic field (θ = 90°), sin 90° = 1, so F = qvB. This is the maximum force the magnetic field can exert on the charge.",
+    "correct_answer": "A",
+    "concept_tags": ["lorentz-force", "magnetic-force", "moving-charge"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "qvB", "is_correct": true },
+      { "key": "B", "text": "qvB/2", "is_correct": false },
+      { "key": "C", "text": "Zero", "is_correct": false },
+      { "key": "D", "text": "qv/B", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The factor of 1/2 does not appear in the Lorentz force formula. F = qvB sinθ has no such coefficient.", "misconception": "Confusing with kinetic energy formula which has a 1/2 factor" },
+      { "option_key": "C", "hint": "Force is zero only when the charge moves parallel to B (θ = 0°). Here the motion is perpendicular to B, so sinθ = 1.", "misconception": "Confusing perpendicular and parallel motion relative to B" },
+      { "option_key": "D", "hint": "Dimensionally, qv/B gives C·m/(s·T) which does not have units of force. The correct formula has B in the numerator.", "misconception": "Incorrectly placing B in the denominator" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A proton moves parallel to a uniform magnetic field. The force acting on the proton is:",
+    "explanation": "The magnetic force on a charged particle is F = qvB sinθ. When the particle moves parallel to B, the angle θ = 0°, and sin 0° = 0. Therefore, F = 0. A magnetic field exerts no force on a charge moving along the field direction.",
+    "correct_answer": "B",
+    "concept_tags": ["magnetic-force", "parallel-motion", "zero-force"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "qvB", "is_correct": false },
+      { "key": "B", "text": "Zero", "is_correct": true },
+      { "key": "C", "text": "qvB/2", "is_correct": false },
+      { "key": "D", "text": "qB/v", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "F = qvB applies only when v is perpendicular to B (θ = 90°). Here the motion is parallel, so sinθ = 0.", "misconception": "Ignoring the sinθ dependence in the Lorentz force" },
+      { "option_key": "C", "hint": "There is no 1/2 factor in the force formula, and regardless the force is zero when velocity is parallel to B.", "misconception": null },
+      { "option_key": "D", "hint": "This expression is dimensionally incorrect for force and does not correspond to any known formula.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The work done by a magnetic force on a charged particle moving in a magnetic field is:",
+    "explanation": "The magnetic force F = qv × B is always perpendicular to the velocity of the charged particle. Since work done W = F · ds = F · v dt, and F is perpendicular to v, the dot product F · v = 0. Hence, the magnetic force does no work on a moving charge. It can only change the direction of velocity, not its magnitude.",
+    "correct_answer": "C",
+    "concept_tags": ["work-done", "magnetic-force", "perpendicular-force"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Positive", "is_correct": false },
+      { "key": "B", "text": "Negative", "is_correct": false },
+      { "key": "C", "text": "Always zero", "is_correct": true },
+      { "key": "D", "text": "Depends on the magnitude of charge", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Magnetic force is always perpendicular to velocity. A perpendicular force cannot increase the kinetic energy or do positive work.", "misconception": "Assuming any force that acts on a moving particle does work" },
+      { "option_key": "B", "hint": "Negative work would slow down the particle. But the speed of a charged particle in a pure magnetic field remains constant.", "misconception": "Confusing magnetic force with a drag or resistive force" },
+      { "option_key": "D", "hint": "Regardless of the magnitude of charge, the magnetic force is always perpendicular to displacement, so work is always zero.", "misconception": "Thinking work depends on charge magnitude alone" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Two long parallel conductors carry currents in the same direction. The force between them is:",
+    "explanation": "When two parallel conductors carry currents in the same direction, the magnetic field produced by one conductor at the location of the other results in an attractive force between them. This can be verified using the right-hand rule: the field from one wire at the other wire's location creates a force directed toward the first wire. Currents in opposite directions repel each other.",
+    "correct_answer": "A",
+    "concept_tags": ["parallel-conductors", "force-between-conductors", "attractive-force"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Attractive", "is_correct": true },
+      { "key": "B", "text": "Repulsive", "is_correct": false },
+      { "key": "C", "text": "Zero", "is_correct": false },
+      { "key": "D", "text": "Attractive or repulsive depending on the magnitude of currents", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Repulsive force occurs between parallel conductors carrying currents in opposite directions. Same-direction currents always attract.", "misconception": "Confusing same-direction and opposite-direction current rules" },
+      { "option_key": "C", "hint": "Two current-carrying conductors always exert a force on each other. The force is zero only when one of the currents is zero.", "misconception": "Thinking parallel conductors do not interact magnetically" },
+      { "option_key": "D", "hint": "The nature of the force (attractive/repulsive) depends only on the relative direction of currents, not on their magnitudes.", "misconception": "Confusing the nature of force with its magnitude" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A proton (mass 1.67 × 10⁻²⁷ kg) moves with a speed of 5 × 10⁶ m/s perpendicular to a magnetic field of 0.5 T. The radius of the circular path described by the proton is (charge of proton = 1.6 × 10⁻¹⁹ C):",
+    "explanation": "When a charged particle moves perpendicular to a magnetic field, it follows a circular path. The radius is given by r = mv/(qB). Substituting: r = (1.67 × 10⁻²⁷ × 5 × 10⁶) / (1.6 × 10⁻¹⁹ × 0.5) = (8.35 × 10⁻²¹) / (8.0 × 10⁻²⁰) = 0.104 m ≈ 0.1 m.",
+    "correct_answer": "B",
+    "concept_tags": ["circular-motion", "radius-of-path", "proton", "magnetic-field"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.01 m", "is_correct": false },
+      { "key": "B", "text": "0.1 m", "is_correct": true },
+      { "key": "C", "text": "1.0 m", "is_correct": false },
+      { "key": "D", "text": "0.05 m", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This is off by a factor of 10. Re-check the calculation: r = mv/(qB) = (1.67 × 10⁻²⁷ × 5 × 10⁶)/(1.6 × 10⁻¹⁹ × 0.5) ≈ 0.1 m.", "misconception": "Arithmetic error in power-of-ten calculation" },
+      { "option_key": "C", "hint": "1.0 m is ten times the correct answer. Ensure proper handling of exponents in the numerator and denominator.", "misconception": "Arithmetic error in power-of-ten calculation" },
+      { "option_key": "D", "hint": "0.05 m results from an incorrect factor of 2. The formula r = mv/(qB) does not include any additional numerical factor.", "misconception": "Introducing an extraneous factor in the formula" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An electron (charge e, mass m) and a proton (charge e, mass M) enter a uniform magnetic field perpendicularly with the same kinetic energy. The ratio of radii of their circular paths (rₑ/rₚ) is:",
+    "explanation": "The radius of circular motion in a magnetic field is r = mv/(eB). Since kinetic energy K = ½mv², we get v = √(2K/m), so r = m√(2K/m)/(eB) = √(2mK)/(eB). Therefore rₑ/rₚ = √(m/M). Since the electron mass m is much smaller than proton mass M, the electron follows a much smaller circle.",
+    "correct_answer": "C",
+    "concept_tags": ["radius-ratio", "kinetic-energy", "electron", "proton", "circular-motion"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "m/M", "is_correct": false },
+      { "key": "B", "text": "M/m", "is_correct": false },
+      { "key": "C", "text": "√(m/M)", "is_correct": true },
+      { "key": "D", "text": "√(M/m)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This would be the ratio if r were directly proportional to mass (at same velocity). But at same kinetic energy, r = √(2mK)/(eB), giving a square-root dependence.", "misconception": "Using r = mv/(qB) without converting velocity in terms of kinetic energy" },
+      { "option_key": "B", "hint": "M/m > 1 would mean the electron has a larger radius than the proton, which contradicts the fact that the lighter particle has a smaller radius at equal KE.", "misconception": "Inverting the mass ratio" },
+      { "option_key": "D", "hint": "√(M/m) > 1 would imply rₑ > rₚ. Since the electron is lighter, it has less momentum at the same KE and hence a smaller radius.", "misconception": "Confusing which particle has the larger radius" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A straight conductor of length 0.5 m carrying a current of 2 A is placed in a uniform magnetic field of 0.4 T at an angle of 30° to the field. The force on the conductor is:",
+    "explanation": "The force on a current-carrying conductor in a magnetic field is F = BIL sinθ. Substituting the given values: F = 0.4 × 2 × 0.5 × sin 30° = 0.4 × 2 × 0.5 × 0.5 = 0.2 N.",
+    "correct_answer": "D",
+    "concept_tags": ["force-on-conductor", "current-carrying-conductor", "magnetic-field", "numerical"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.4 N", "is_correct": false },
+      { "key": "B", "text": "0.1 N", "is_correct": false },
+      { "key": "C", "text": "0.8 N", "is_correct": false },
+      { "key": "D", "text": "0.2 N", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0.4 N would be the answer if sinθ = 1 (θ = 90°). Here θ = 30°, so sin 30° = 0.5 must be included.", "misconception": "Forgetting the sinθ factor when the conductor is not perpendicular to B" },
+      { "option_key": "B", "hint": "0.1 N would result from using sin 30° twice or an arithmetic error. Check: F = 0.4 × 2 × 0.5 × 0.5 = 0.2 N.", "misconception": "Arithmetic error in multiplication" },
+      { "option_key": "C", "hint": "0.8 N would result from ignoring sin 30° and also doubling the result. F = BIL sinθ, not 2BIL.", "misconception": "Using an incorrect formula" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a velocity selector, a charged particle passes undeflected when:",
+    "explanation": "In a velocity selector, crossed electric (E) and magnetic (B) fields are applied. The electric force qE and the magnetic force qvB act in opposite directions. The particle passes undeflected when these forces balance: qE = qvB, giving v = E/B. This condition is independent of the charge and mass of the particle.",
+    "correct_answer": "C",
+    "concept_tags": ["velocity-selector", "electric-field", "magnetic-field", "undeflected"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "v = B/E", "is_correct": false },
+      { "key": "B", "text": "v = EB", "is_correct": false },
+      { "key": "C", "text": "v = E/B", "is_correct": true },
+      { "key": "D", "text": "v = E²/B", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "B/E is the inverse of the correct answer. From qE = qvB, solving for v gives v = E/B, not B/E.", "misconception": "Inverting the ratio while solving qE = qvB" },
+      { "option_key": "B", "hint": "EB is dimensionally incorrect for velocity. E has units V/m and B has units T, so EB would have units V·T/m, not m/s.", "misconception": "Incorrectly combining E and B" },
+      { "option_key": "D", "hint": "E²/B does not follow from balancing electric and magnetic forces. The correct derivation gives v = E/B.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A charged particle moves in a helical path in a uniform magnetic field. This happens when the velocity of the particle:",
+    "explanation": "When a charged particle enters a magnetic field with its velocity at an angle to the field (neither parallel nor perpendicular), the velocity component perpendicular to B causes circular motion while the component parallel to B remains unaffected. The combination of circular motion and uniform linear motion along B produces a helical (spiral) path.",
+    "correct_answer": "D",
+    "concept_tags": ["helical-motion", "velocity-components", "magnetic-field"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Is perpendicular to B", "is_correct": false },
+      { "key": "B", "text": "Is parallel to B", "is_correct": false },
+      { "key": "C", "text": "Is zero", "is_correct": false },
+      { "key": "D", "text": "Has components both parallel and perpendicular to B", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "When velocity is purely perpendicular to B, the particle follows a circular path, not a helical one.", "misconception": "Confusing circular and helical paths" },
+      { "option_key": "B", "hint": "When velocity is parallel to B, there is no magnetic force and the particle moves in a straight line.", "misconception": "Not recognizing that parallel motion produces zero force" },
+      { "option_key": "C", "hint": "If velocity is zero, there is no motion at all and hence no path of any kind.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The force per unit length between two long parallel conductors carrying currents I₁ and I₂ separated by a distance d is given by:",
+    "explanation": "The magnetic field produced by conductor 1 at the location of conductor 2 is B₁ = μ₀I₁/(2πd). The force per unit length on conductor 2 is F/L = B₁I₂ = μ₀I₁I₂/(2πd). This expression is fundamental and is used to define the SI unit of current (ampere).",
+    "correct_answer": "B",
+    "concept_tags": ["force-per-unit-length", "parallel-conductors", "ampere-definition"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "μ₀I₁I₂/(4πd)", "is_correct": false },
+      { "key": "B", "text": "μ₀I₁I₂/(2πd)", "is_correct": true },
+      { "key": "C", "text": "μ₀I₁I₂/(2πd²)", "is_correct": false },
+      { "key": "D", "text": "μ₀I₁I₂d/(2π)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The factor is 2π in the denominator, not 4π. The field of a long wire is B = μ₀I/(2πd), and force/length = BI₂ = μ₀I₁I₂/(2πd).", "misconception": "Confusing 2π (Biot-Savart for infinite wire) with 4π (Coulomb's law constant)" },
+      { "option_key": "C", "hint": "The distance d appears to the first power, not squared. This is not an inverse-square law like Coulomb's law.", "misconception": "Incorrectly applying inverse-square law to magnetic force between wires" },
+      { "option_key": "D", "hint": "Having d in the numerator would mean force increases with distance, which is physically incorrect. Force decreases as conductors are moved apart.", "misconception": "Placing d in the wrong part of the formula" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An alpha particle (charge 2e, mass 4mₚ) and a proton (charge e, mass mₚ) are accelerated from rest through the same potential difference and then enter a uniform magnetic field perpendicular to their velocity. The ratio of the radii of their circular paths (rα/rₚ) is:",
+    "explanation": "After acceleration through potential difference V, kinetic energy K = qV. So Kα = 2eV and Kₚ = eV. The radius of circular motion is r = √(2mK)/(qB). For alpha particle: rα = √(2 × 4mₚ × 2eV)/(2eB) = √(16mₚeV)/(2eB) = 4√(mₚeV)/(2eB). For proton: rₚ = √(2mₚeV)/(eB) = √(2mₚeV)/(eB). Therefore rα/rₚ = [4√(mₚeV)/(2eB)] / [√(2mₚeV)/(eB)] = [4/(2)] × [1/√2] = 2/√2 = √2 = 1:1 × √2. So rα/rₚ = √2.",
+    "correct_answer": "C",
+    "concept_tags": ["alpha-particle", "proton", "radius-ratio", "potential-difference", "circular-motion"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1:1", "is_correct": false },
+      { "key": "B", "text": "2:1", "is_correct": false },
+      { "key": "C", "text": "√2 : 1", "is_correct": true },
+      { "key": "D", "text": "1 : √2", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1:1 would require identical r values. Since the alpha particle has different mass and charge, r = √(2mK)/(qB) with K = qV gives different radii.", "misconception": "Assuming equal radii for particles accelerated through same potential" },
+      { "option_key": "B", "hint": "2:1 would result from r ∝ m/q without properly accounting for the velocity gained through the potential difference.", "misconception": "Not correctly relating kinetic energy to the potential difference for different charges" },
+      { "option_key": "D", "hint": "1:√2 is the inverse of the correct ratio. The alpha particle, with greater momentum, has the larger radius.", "misconception": "Inverting the ratio of radii" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A wire of length L is bent into a semicircular loop and carries a current I. It is placed in a uniform magnetic field B directed perpendicular to the plane of the loop. The net force on the semicircular wire is:",
+    "explanation": "For a curved wire in a uniform magnetic field, the net force equals the force on a straight wire connecting the two ends of the curve. The semicircular wire of length L has radius r = L/π. The straight-line distance between the two ends (the diameter) is 2r = 2L/π. Therefore, the net force is F = BI × (2L/π) = 2BIL/π. The direction follows from F = IL × B for the equivalent straight conductor.",
+    "correct_answer": "A",
+    "concept_tags": ["semicircular-loop", "net-force", "uniform-field", "equivalent-straight-wire"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "2BIL/π", "is_correct": true },
+      { "key": "B", "text": "BIL", "is_correct": false },
+      { "key": "C", "text": "Zero", "is_correct": false },
+      { "key": "D", "text": "πBIL", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "BIL would be the force if the entire wire length L were straight and perpendicular to B. But for a semicircle, the effective length is the chord (diameter) = 2L/π.", "misconception": "Using the arc length instead of the chord length for net force" },
+      { "option_key": "C", "hint": "Zero net force applies to a complete closed loop in a uniform field. A semicircle is not a closed loop, so the net force is not zero.", "misconception": "Confusing semicircular wire with a complete loop" },
+      { "option_key": "D", "hint": "πBIL greatly overestimates the force. The effective straight-line length is 2L/π, which is shorter than L, not longer.", "misconception": "Using an incorrect geometric relationship" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The kinetic energy of a charged particle moving in a uniform magnetic field remains constant.\nReason (R): The magnetic force on a moving charge is always perpendicular to its velocity.",
+    "explanation": "The assertion is correct: since the magnetic force does no work, the kinetic energy (and hence the speed) of the charged particle remains unchanged. The reason is also correct: F = qv × B is always perpendicular to v by the nature of the cross product. Furthermore, the reason correctly explains the assertion — it is precisely because the force is perpendicular to velocity that no work is done (W = F · ds = 0 when F ⊥ v), and therefore kinetic energy is conserved.",
+    "correct_answer": "A",
+    "concept_tags": ["kinetic-energy", "magnetic-force", "no-work", "perpendicular-force"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "R directly explains A. The perpendicularity of F to v means W = F · v dt = 0, so KE is constant. The causal link is direct.", "misconception": "Failing to see the direct causal connection between perpendicular force and zero work" },
+      { "option_key": "C", "hint": "The reason is a fundamental property of the cross product (v × B is always perpendicular to v). R is definitely correct.", "misconception": "Doubting the perpendicularity of the magnetic force to velocity" },
+      { "option_key": "D", "hint": "The assertion is correct — speed and hence KE of a charged particle in a magnetic field do not change. This is experimentally verified.", "misconception": "Thinking magnetic field changes the kinetic energy of a charge" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): A current-carrying closed loop placed in a uniform magnetic field experiences a net force of zero.\nReason (R): The force on a current-carrying conductor in a magnetic field is given by F = I(L × B), where L is the length vector of the conductor.",
+    "explanation": "The assertion is correct: for a closed loop in a uniform magnetic field, the net force is the vector sum of forces on all elements, which equals I(∮dL) × B = I × 0 × B = 0, since the line integral of dL around a closed loop is zero. The reason is also correct: F = I(L × B) is indeed the expression for force on a straight current-carrying conductor. However, the reason by itself does not directly explain why the net force on a closed loop is zero — one also needs the fact that ∮dL = 0 for a closed loop in a uniform field. So R is not the complete explanation of A.",
+    "correct_answer": "B",
+    "concept_tags": ["closed-loop", "net-force-zero", "uniform-field", "force-on-conductor"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": true },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "While both statements are correct, R only gives the force formula for a conductor. It does not explain why the sum of all such forces on a closed loop is zero. The explanation requires ∮dL = 0.", "misconception": "Assuming the force formula alone explains the zero net force on a closed loop" },
+      { "option_key": "C", "hint": "R is indeed correct. F = I(L × B) is the standard expression for force on a current-carrying conductor in a uniform field.", "misconception": "Doubting the validity of the force formula" },
+      { "option_key": "D", "hint": "A is correct. A closed current loop in a uniform magnetic field has zero net force (though it may experience a torque).", "misconception": "Confusing torque with net force on a loop" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match Column I with Column II:\n\nColumn I:\n(P) Charged particle moving parallel to B\n(Q) Charged particle moving perpendicular to B\n(R) Charged particle moving at angle θ (0° < θ < 90°) to B\n(S) Charged particle at rest in B\n\nColumn II:\n(1) Helical path\n(2) Circular path\n(3) Straight line (no force)\n(4) No motion",
+    "explanation": "P → 3: When velocity is parallel to B, sinθ = 0, so F = 0 and the particle continues in a straight line. Q → 2: When velocity is perpendicular to B, the constant perpendicular force causes circular motion. R → 1: When velocity has both parallel and perpendicular components to B, the perpendicular component causes circular motion while the parallel component causes linear drift, resulting in a helical path. S → 4: A stationary charge (v = 0) experiences no magnetic force and remains at rest.",
+    "correct_answer": "D",
+    "concept_tags": ["motion-in-magnetic-field", "circular-motion", "helical-motion", "match-the-following"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "P→2, Q→3, R→1, S→4", "is_correct": false },
+      { "key": "B", "text": "P→3, Q→1, R→2, S→4", "is_correct": false },
+      { "key": "C", "text": "P→4, Q→2, R→1, S→3", "is_correct": false },
+      { "key": "D", "text": "P→3, Q→2, R→1, S→4", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "P→2 is wrong. A particle moving parallel to B experiences zero force and moves in a straight line, not a circle.", "misconception": "Confusing parallel and perpendicular motion in B" },
+      { "option_key": "B", "hint": "Q→1 is wrong. A particle moving perpendicular to B traces a circle, not a helix. A helix requires a velocity component along B.", "misconception": "Confusing circular and helical paths" },
+      { "option_key": "C", "hint": "P→4 is wrong. A particle moving parallel to B is not stationary — it continues in a straight line since there is no magnetic force.", "misconception": "Thinking no force means no motion" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match Column I with Column II:\n\nColumn I:\n(P) SI unit of magnetic field\n(Q) Force between two parallel conductors carrying 1 A each, separated by 1 m, per unit length\n(R) Radius of circular path of charge q, mass m, speed v in field B\n(S) Condition for a charged particle to pass undeflected through crossed E and B fields\n\nColumn II:\n(1) mv/(qB)\n(2) 2 × 10⁻⁷ N/m\n(3) v = E/B\n(4) Tesla (T)",
+    "explanation": "P → 4: The SI unit of magnetic field is Tesla (T). Q → 2: Using F/L = μ₀I₁I₂/(2πd) with I₁ = I₂ = 1 A, d = 1 m: F/L = (4π × 10⁻⁷ × 1 × 1)/(2π × 1) = 2 × 10⁻⁷ N/m. This is the basis for the definition of the ampere. R → 1: The radius of circular motion is r = mv/(qB), obtained by equating qvB = mv²/r. S → 3: In a velocity selector, qE = qvB gives v = E/B.",
+    "correct_answer": "C",
+    "concept_tags": ["tesla", "ampere-definition", "radius-formula", "velocity-selector", "match-the-following"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "P→4, Q→1, R→2, S→3", "is_correct": false },
+      { "key": "B", "text": "P→4, Q→2, R→3, S→1", "is_correct": false },
+      { "key": "C", "text": "P→4, Q→2, R→1, S→3", "is_correct": true },
+      { "key": "D", "text": "P→2, Q→4, R→1, S→3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Q→1 is wrong. The force per unit length between two wires is a numerical value (2 × 10⁻⁷ N/m), not the expression mv/(qB) which gives the radius of circular motion.", "misconception": "Mixing up the radius formula with the force between parallel conductors" },
+      { "option_key": "B", "hint": "R→3 is wrong. The radius of circular path is r = mv/(qB), not v = E/B. The condition v = E/B applies to velocity selectors.", "misconception": "Confusing the radius formula with the velocity selector condition" },
+      { "option_key": "D", "hint": "P→2 is wrong. The SI unit of magnetic field is Tesla (4), not 2 × 10⁻⁷ N/m (which is the force per unit length between parallel conductors).", "misconception": "Confusing the unit of B with the force value used in defining the ampere" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The direction of force on a current-carrying conductor placed in a magnetic field can be determined using Fleming's left-hand rule.",
+    "explanation": "This statement is TRUE. Fleming's left-hand rule states: if the forefinger points in the direction of the magnetic field (B), the middle finger points in the direction of current (I), then the thumb gives the direction of force (F) on the conductor. This rule is specifically used for determining the direction of force on a current-carrying conductor in a magnetic field (motor rule).",
+    "correct_answer": "A",
+    "concept_tags": ["flemings-left-hand-rule", "direction-of-force", "current-carrying-conductor"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Fleming's left-hand rule is the standard rule for finding the direction of force on a current-carrying conductor in a magnetic field. It is widely used and correct.", "misconception": "Confusing Fleming's left-hand rule (motor rule) with Fleming's right-hand rule (generator/dynamo rule)" },
+      { "option_key": "C", "hint": "This is not a valid option for this question.", "misconception": null },
+      { "option_key": "D", "hint": "This is not a valid option for this question.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "A magnetic field can change the speed of a charged particle moving through it.",
+    "explanation": "This statement is FALSE. The magnetic force on a charged particle is F = qv × B, which is always perpendicular to the velocity. A perpendicular force changes only the direction of velocity, not its magnitude (speed). Since no work is done by the magnetic force (W = F · ds = 0 when F ⊥ ds), the kinetic energy and hence the speed remain constant.",
+    "correct_answer": "B",
+    "concept_tags": ["magnetic-force", "speed-constant", "no-work", "perpendicular-force"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The magnetic force is always perpendicular to velocity and does zero work. Since work-energy theorem gives ΔKE = W = 0, speed cannot change.", "misconception": "Assuming any force acting on a particle changes its speed" },
+      { "option_key": "C", "hint": "This is not a valid option for this question.", "misconception": null },
+      { "option_key": "D", "hint": "This is not a valid option for this question.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-19",
+    "question_type": "fill_in_the_blanks",
+    "difficulty": "medium",
+    "question_text": "One ampere is defined as that steady current which, when flowing through each of two infinitely long, straight, parallel conductors placed 1 m apart in vacuum, produces a force per unit length of _____ N/m between them.",
+    "explanation": "The SI definition of one ampere is based on the force between two parallel current-carrying conductors. Using F/L = μ₀I₁I₂/(2πd), with I₁ = I₂ = 1 A and d = 1 m: F/L = (4π × 10⁻⁷ × 1 × 1)/(2π × 1) = 2 × 10⁻⁷ N/m. This value defines the ampere in the SI system.",
+    "correct_answer": "D",
+    "concept_tags": ["ampere-definition", "parallel-conductors", "force-per-unit-length", "SI-units"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "4π × 10⁻⁷", "is_correct": false },
+      { "key": "B", "text": "1 × 10⁻⁷", "is_correct": false },
+      { "key": "C", "text": "4 × 10⁻⁷", "is_correct": false },
+      { "key": "D", "text": "2 × 10⁻⁷", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "4π × 10⁻⁷ is the value of μ₀ (permeability of free space), not the force per unit length. F/L = μ₀I₁I₂/(2πd) = μ₀/(2π) = 2 × 10⁻⁷ N/m.", "misconception": "Confusing μ₀ with the force per unit length" },
+      { "option_key": "B", "hint": "1 × 10⁻⁷ is half the correct value. The calculation gives μ₀/(2π) = 4π × 10⁻⁷/(2π) = 2 × 10⁻⁷, not 1 × 10⁻⁷.", "misconception": "Arithmetic error in simplifying μ₀/(2π)" },
+      { "option_key": "C", "hint": "4 × 10⁻⁷ is twice the correct value. Carefully simplify: 4π × 10⁻⁷/(2π) = 2 × 10⁻⁷.", "misconception": "Cancellation error when dividing 4π by 2π" }
+    ]
+  },
+  {
+    "id": "phy-magmov-force-20",
+    "question_type": "scenario_based",
+    "difficulty": "hard",
+    "question_text": "In a mass spectrometer, singly ionized ions of two isotopes of an element (masses m₁ = 20 u and m₂ = 22 u, where 1 u = 1.66 × 10⁻²⁷ kg) are accelerated through a potential difference of 10 kV and then enter a uniform magnetic field of 0.2 T perpendicular to their velocity. The ions travel in semicircular paths and strike a photographic plate. What is the separation between the two lines formed on the photographic plate?",
+    "explanation": "After acceleration, KE = qV, so v = √(2qV/m). The radius of the semicircular path is r = mv/(qB) = (m/(qB))√(2qV/m) = √(2mV/q)/B. The separation on the plate equals the difference in diameters: Δx = 2r₂ − 2r₁ = (2/B)√(2V/q)(√m₂ − √m₁). With q = 1.6 × 10⁻¹⁹ C, V = 10⁴ V, B = 0.2 T: √(2V/q) = √(2 × 10⁴/(1.6 × 10⁻¹⁹)) = √(1.25 × 10²³) = 1.118 × 10¹¹·⁵. Computing: r = √(2mV/q)/B. For m₁ = 20 × 1.66 × 10⁻²⁷ = 3.32 × 10⁻²⁶ kg: r₁ = √(2 × 3.32 × 10⁻²⁶ × 10⁴/1.6 × 10⁻¹⁹)/0.2 = √(4.15 × 10⁻³)/0.2 = 0.0644/0.2 = 0.322 m. For m₂ = 22 × 1.66 × 10⁻²⁷ = 3.652 × 10⁻²⁶ kg: r₂ = √(2 × 3.652 × 10⁻²⁶ × 10⁴/1.6 × 10⁻¹⁹)/0.2 = √(4.565 × 10⁻³)/0.2 = 0.0676/0.2 = 0.338 m. Separation = 2(r₂ − r₁) = 2(0.338 − 0.322) = 2 × 0.016 = 0.032 m ≈ 3.2 cm.",
+    "correct_answer": "B",
+    "concept_tags": ["mass-spectrometer", "isotopes", "semicircular-path", "separation", "scenario-based"],
+    "topic": "Force on Moving Charge and Current-Carrying Conductor",
+    "subject": "physics",
+    "chapter": "Moving Charges and Magnetism",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1.6 cm", "is_correct": false },
+      { "key": "B", "text": "3.2 cm", "is_correct": true },
+      { "key": "C", "text": "6.4 cm", "is_correct": false },
+      { "key": "D", "text": "0.8 cm", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1.6 cm is the difference in radii (r₂ − r₁), not diameters. The separation on the photographic plate equals the difference in diameters: 2(r₂ − r₁).", "misconception": "Forgetting to multiply the radius difference by 2 for the diameter difference" },
+      { "option_key": "C", "hint": "6.4 cm is double the correct answer. Check that you are not multiplying by 4 instead of 2 when converting from radius to diameter difference.", "misconception": "Doubling the diameter difference instead of the radius difference" },
+      { "option_key": "D", "hint": "0.8 cm is too small. This may result from an error in the calculation of radii or forgetting to use the correct mass values.", "misconception": "Arithmetic error in computing the radii" }
+    ]
+  }
+]
