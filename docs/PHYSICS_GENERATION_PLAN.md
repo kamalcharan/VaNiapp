@@ -201,8 +201,8 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B28 | `phy-thermo-first` | First Law of Thermodynamics and Thermodynamic Processes | 20 | PENDING |
-| B29 | `phy-thermo-second` | Second Law, Carnot Engine, and Refrigerators | 20 | PENDING |
+| B28 | `phy-thermo-first` | First Law of Thermodynamics and Thermodynamic Processes | 20 | DONE |
+| B29 | `phy-thermo-second` | Second Law, Carnot Engine, and Refrigerators | 20 | DONE |
 | | | **Chapter 12 Total** | **40** | |
 
 ### Chapter 13: Kinetic Theory (`phy-kinetic`) — 2 batches
@@ -223,18 +223,18 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B32 | `phy-osc-shm` | Simple Harmonic Motion (Kinematics and Dynamics) | 20 | PENDING |
-| B33 | `phy-osc-energy` | Energy in SHM and Oscillating Systems | 20 | PENDING |
-| B34 | `phy-osc-pendulum` | Simple Pendulum and Damped/Forced Oscillations | 20 | PENDING |
+| B32 | `phy-osc-shm` | Simple Harmonic Motion (Kinematics and Dynamics) | 20 | DONE |
+| B33 | `phy-osc-energy` | Energy in SHM and Oscillating Systems | 20 | DONE |
+| B34 | `phy-osc-pendulum` | Simple Pendulum and Damped/Forced Oscillations | 20 | DONE |
 | | | **Chapter 14 Total** | **60** | |
 
 ### Chapter 15: Waves (`phy-waves`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B35 | `phy-wave-types` | Wave Types, Transverse and Longitudinal Waves | 20 | PENDING |
-| B36 | `phy-wave-standing` | Standing Waves, Harmonics, and Resonance | 20 | PENDING |
-| B37 | `phy-wave-doppler` | Beats, Doppler Effect, and Sound Waves | 20 | PENDING |
+| B35 | `phy-wave-types` | Wave Types, Transverse and Longitudinal Waves | 20 | DONE |
+| B36 | `phy-wave-standing` | Standing Waves, Harmonics, and Resonance | 20 | DONE |
+| B37 | `phy-wave-doppler` | Beats, Doppler Effect, and Sound Waves | 20 | DONE |
 | | | **Chapter 15 Total** | **60** | |
 
 ---
@@ -296,7 +296,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B50 | `phy-magmat-dipole` | Magnetic Dipole, Bar Magnet, and Earth's Magnetism | 20 | DONE |
-| B51 | `phy-magmat-materials` | Dia-, Para-, and Ferromagnetic Materials | 20 | PENDING |
+| B51 | `phy-magmat-materials` | Dia-, Para-, and Ferromagnetic Materials | 20 | DONE |
 | | | **Chapter 20 Total** | **40** | |
 
 ---
@@ -309,16 +309,16 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B52 | `phy-emi-faraday` | Faraday's Law and Lenz's Law | 20 | PENDING |
-| B53 | `phy-emi-inductance` | Self and Mutual Inductance, Eddy Currents | 20 | PENDING |
+| B52 | `phy-emi-faraday` | Faraday's Law and Lenz's Law | 20 | DONE |
+| B53 | `phy-emi-inductance` | Self and Mutual Inductance, Eddy Currents | 20 | DONE |
 | | | **Chapter 21 Total** | **40** | |
 
 ### Chapter 22: Alternating Current (`phy-ac`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B54 | `phy-ac-circuits` | AC Circuits (R, L, C, LCR Series) | 20 | PENDING |
-| B55 | `phy-ac-transformer` | Resonance, Power Factor, and Transformers | 20 | PENDING |
+| B54 | `phy-ac-circuits` | AC Circuits (R, L, C, LCR Series) | 20 | DONE |
+| B55 | `phy-ac-transformer` | Resonance, Power Factor, and Transformers | 20 | DONE |
 | | | **Chapter 22 Total** | **40** | |
 
 ### Chapter 23: Electromagnetic Waves (`phy-emwave`) — 1 batch
@@ -611,17 +611,17 @@ Commit and push.
 | Ch9 Mech Properties of Solids | 2 | 40 | 0 | 0% |
 | Ch10 Mech Properties of Fluids | 3 | 60 | 0 | 0% |
 | Ch11 Thermal Properties | 2 | 40 | 0 | 0% |
-| Ch12 Thermodynamics | 2 | 40 | 0 | 0% |
+| Ch12 Thermodynamics | 2 | 40 | 40 | 100% |
 | Ch13 Kinetic Theory | 2 | 40 | 0 | 0% |
-| Ch14 Oscillations | 3 | 60 | 0 | 0% |
-| Ch15 Waves | 3 | 60 | 0 | 0% |
+| Ch14 Oscillations | 3 | 60 | 60 | 100% |
+| Ch15 Waves | 3 | 60 | 60 | 100% |
 | Ch16 Electric Charges and Fields | 3 | 60 | 60 | 100% |
 | Ch17 Electrostatic Potential | 3 | 60 | 60 | 100% |
 | Ch18 Current Electricity | 3 | 60 | 60 | 100% |
 | Ch19 Moving Charges & Magnetism | 3 | 60 | 60 | 100% |
-| Ch20 Magnetism and Matter | 2 | 40 | 20 | 50% |
-| Ch21 Electromagnetic Induction | 2 | 40 | 0 | 0% |
-| Ch22 Alternating Current | 2 | 40 | 0 | 0% |
+| Ch20 Magnetism and Matter | 2 | 40 | 40 | 100% |
+| Ch21 Electromagnetic Induction | 2 | 40 | 40 | 100% |
+| Ch22 Alternating Current | 2 | 40 | 40 | 100% |
 | Ch23 Electromagnetic Waves | 1 | 20 | 0 | 0% |
 | Ch24 Ray Optics | 3 | 60 | 60 | 100% |
 | Ch25 Wave Optics | 3 | 60 | 60 | 100% |
@@ -629,4 +629,4 @@ Commit and push.
 | Ch27 Atoms | 2 | 40 | 40 | 100% |
 | Ch28 Nuclei | 2 | 40 | 40 | 100% |
 | Ch29 Semiconductor Electronics | 3 | 60 | 0 | 0% |
-| **TOTAL** | **71** | **1,420** | **880** | **62%** |
+| **TOTAL** | **71** | **1,420** | **1,140** | **80%** |
