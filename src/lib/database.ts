@@ -15,6 +15,7 @@ export interface MedProfile {
   exam: ExamType | null;
   language: Language;
   target_year: number | null;
+  questions_answered: number;
   app_version: string | null;
   onboarding_completed: boolean;
   vani_override: boolean; // Secret admin setting: overrides VaNi AI decisions
@@ -250,6 +251,31 @@ export async function reportAppVersion(profile: MedProfile): Promise<void> {
     .from('med_profiles')
     .update({ app_version: currentVersion })
     .eq('id', user.id);
+}
+
+// ── Trial question counter ──────────────────────────────────
+
+/**
+ * Increment questions_answered in Supabase.
+ * Read-then-write is fine since only one device per user at a time.
+ */
+export async function incrementQuestionsAnswered(delta: number = 1): Promise<void> {
+  if (!supabase) return;
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+
+  const { data } = await supabase
+    .from('med_profiles')
+    .select('questions_answered')
+    .eq('id', user.id)
+    .single();
+
+  if (data) {
+    await supabase
+      .from('med_profiles')
+      .update({ questions_answered: (data.questions_answered ?? 0) + delta })
+      .eq('id', user.id);
+  }
 }
 
 // ── Sign out ────────────────────────────────────────────────

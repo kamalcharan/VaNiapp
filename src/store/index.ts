@@ -46,10 +46,15 @@ const rootReducer: typeof appReducer = (state, action) => {
 };
 
 // Middleware: auto-increment trial question counter when a question is answered
+// Updates both Redux (instant UI) and Supabase (survives reinstall)
 const trialMiddleware: import('@reduxjs/toolkit').Middleware = (storeApi) => (next) => (action: any) => {
   const result = next(action);
   if (action.type === 'practice/updateAnswer' && action.payload?.selectedOptionId) {
     storeApi.dispatch(incrementQuestionsAnswered());
+    // Fire-and-forget sync to Supabase — import dynamically to avoid circular deps
+    import('../lib/database').then(({ incrementQuestionsAnswered: syncToSupabase }) => {
+      syncToSupabase().catch(() => {});
+    });
   }
   return result;
 };

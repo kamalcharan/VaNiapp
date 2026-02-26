@@ -30,6 +30,10 @@ const trialSlice = createSlice({
     incrementQuestionsAnswered: (state) => {
       state.questionsAnswered += 1;
     },
+    /** Seed from Supabase — takes the higher of local vs remote to prevent regression */
+    seedQuestionsAnswered: (state, action: PayloadAction<number>) => {
+      state.questionsAnswered = Math.max(state.questionsAnswered, action.payload);
+    },
     setPaid: (state, action: PayloadAction<boolean>) => {
       state.isPaid = action.payload;
     },
@@ -43,6 +47,7 @@ const trialSlice = createSlice({
 export const {
   setTrialStart,
   incrementQuestionsAnswered,
+  seedQuestionsAnswered,
   setPaid,
 } = trialSlice.actions;
 

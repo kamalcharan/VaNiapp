@@ -24,7 +24,7 @@ import {
 import { Provider as ReduxProvider } from 'react-redux';
 import { store, rehydrateStore, resetAllData } from '../src/store';
 import { setUser } from '../src/store/slices/authSlice';
-import { setTrialStart } from '../src/store/slices/trialSlice';
+import { setTrialStart, seedQuestionsAnswered } from '../src/store/slices/trialSlice';
 import { ToastProvider } from '../src/components/ui/Toast';
 import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
 import { getProfile, getUserSubjectIds, isOnboardingActuallyComplete, reportAppVersion } from '../src/lib/database';
@@ -131,10 +131,11 @@ export default function RootLayout() {
             targetYear: profile.target_year ?? undefined,
           }));
 
-          // Set trial start date from profile creation date
+          // Set trial start date + seed question count from Supabase
           if (profile.created_at) {
             store.dispatch(setTrialStart(profile.created_at));
           }
+          store.dispatch(seedQuestionsAnswered(profile.questions_answered ?? 0));
 
           // Pull remote progress into Redux (merges with local, remote wins if ahead)
           pullRemoteProgress().catch(() => {});
