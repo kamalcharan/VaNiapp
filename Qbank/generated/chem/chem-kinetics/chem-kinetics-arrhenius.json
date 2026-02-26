@@ -1,0 +1,1201 @@
+[
+  {
+    "id": "chem-kinetics-arrhenius-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The Arrhenius equation is given by k = Ae^(-Ea/RT). In this equation, 'A' is called the:",
+    "explanation": "In the Arrhenius equation k = Ae^(-Ea/RT), 'A' is known as the pre-exponential factor or frequency factor. It represents the frequency of collisions with the proper orientation for the reaction to occur. Its units are the same as that of the rate constant k. The term e^(-Ea/RT) is the fraction of molecules with energy equal to or greater than the activation energy.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "arrhenius-equation",
+      "pre-exponential-factor",
+      "frequency-factor"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Activation energy",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Pre-exponential factor or frequency factor",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Gas constant",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Equilibrium constant",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Activation energy is represented by Ea in the Arrhenius equation, not by A. It appears in the exponent of the equation.",
+        "misconception": "Confusing the symbol 'A' for the pre-exponential factor with activation energy Ea."
+      },
+      {
+        "option_key": "C",
+        "hint": "The gas constant is represented by R in the equation, not A. R has a fixed value of 8.314 J mol⁻¹ K⁻¹.",
+        "misconception": "Mixing up the symbols in the Arrhenius equation."
+      },
+      {
+        "option_key": "D",
+        "hint": "The equilibrium constant (K) is a thermodynamic quantity and does not appear in the Arrhenius equation. The Arrhenius equation describes the rate constant, not equilibrium.",
+        "misconception": "Confusing rate constant k with equilibrium constant K."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "According to the Arrhenius equation, the rate constant of a reaction increases with increase in temperature because:",
+    "explanation": "According to the Arrhenius equation k = Ae^(-Ea/RT), as temperature (T) increases, the value of Ea/RT decreases, making the exponent less negative. This means e^(-Ea/RT) increases, and consequently the rate constant k increases. Physically, at higher temperatures a larger fraction of molecules possess kinetic energy equal to or greater than the activation energy, leading to more effective collisions.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "arrhenius-equation",
+      "temperature-dependence",
+      "rate-constant",
+      "activation-energy"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The activation energy of the reaction decreases",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The frequency factor A increases with temperature",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A greater fraction of molecules have energy equal to or greater than the activation energy",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "The threshold energy of the reaction decreases",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Activation energy is a characteristic property of a reaction and does not change with temperature. Only a catalyst can lower Ea.",
+        "misconception": "Believing that temperature changes the activation energy barrier of a reaction."
+      },
+      {
+        "option_key": "B",
+        "hint": "The frequency factor A is approximately independent of temperature for most practical purposes in the Arrhenius equation.",
+        "misconception": "Thinking that the frequency factor significantly changes with temperature."
+      },
+      {
+        "option_key": "D",
+        "hint": "Threshold energy is the minimum energy that reactant molecules must possess for effective collision. It does not change with temperature; rather, more molecules exceed this threshold at higher temperatures.",
+        "misconception": "Confusing the increase in molecular kinetic energies with a decrease in the threshold energy."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The slope of the plot of log k versus 1/T for a reaction gives:",
+    "explanation": "Taking logarithm of the Arrhenius equation: log k = log A - Ea/(2.303RT). This is in the form y = c + mx, where y = log k, x = 1/T, c = log A, and m = -Ea/2.303R. Therefore, the slope of the log k vs 1/T plot is -Ea/2.303R. This graphical method is commonly used to determine the activation energy of a reaction.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "arrhenius-plot",
+      "activation-energy",
+      "graphical-determination",
+      "log-k-vs-1/T"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "-Ea/2.303R",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Ea/2.303R",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "-Ea/R",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Ea/R",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The slope is negative, not positive. Since log k increases as 1/T decreases (i.e., as temperature increases), the graph has a negative slope.",
+        "misconception": "Forgetting the negative sign in the slope of the Arrhenius plot."
+      },
+      {
+        "option_key": "C",
+        "hint": "The factor 2.303 appears because we use common logarithm (log base 10), not natural logarithm (ln). For ln k vs 1/T, the slope would be -Ea/R.",
+        "misconception": "Confusing the log k vs 1/T plot with the ln k vs 1/T plot."
+      },
+      {
+        "option_key": "D",
+        "hint": "This would be the magnitude of the slope for an ln k vs 1/T plot, and it also lacks the correct negative sign.",
+        "misconception": "Both confusing log with ln and forgetting the negative sign."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In collision theory, for a reaction to occur, the colliding molecules must have:",
+    "explanation": "According to collision theory, not every collision between reactant molecules leads to a chemical reaction. For a collision to be effective (fruitful), two conditions must be satisfied simultaneously: (1) the colliding molecules must possess kinetic energy equal to or greater than the threshold energy (activation energy), and (2) they must have the proper orientation at the time of collision. Only when both conditions are met does the collision result in product formation.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "collision-theory",
+      "effective-collision",
+      "threshold-energy",
+      "orientation-factor"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Only sufficient kinetic energy",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Only proper orientation",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "High molecular mass",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Both sufficient kinetic energy and proper orientation",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Sufficient kinetic energy alone is not enough. Even if molecules have energy above the threshold, they may bounce back without reacting if they collide with improper orientation.",
+        "misconception": "Ignoring the role of molecular orientation in determining whether a collision is effective."
+      },
+      {
+        "option_key": "B",
+        "hint": "Proper orientation alone is insufficient. If the colliding molecules lack the minimum threshold energy, the collision will not lead to bond breaking and product formation.",
+        "misconception": "Ignoring the energy requirement for effective collisions."
+      },
+      {
+        "option_key": "C",
+        "hint": "Molecular mass is not a criterion for effective collisions. Collision theory focuses on energy and orientation, not mass of the molecules.",
+        "misconception": "Confusing molecular mass with collision energy."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The rate constants of a reaction at 300 K and 310 K are k₁ and k₂ respectively. If the temperature coefficient of the reaction is 2, the ratio k₂/k₁ is:",
+    "explanation": "The temperature coefficient of a reaction is defined as the ratio of rate constants when the temperature is raised by 10°C (or 10 K). It is given by: Temperature coefficient = k(T+10)/k(T). Given that the temperature coefficient is 2 and the temperature difference between 310 K and 300 K is exactly 10 K, we get k₂/k₁ = k(310)/k(300) = 2. This is the commonly cited rule that for many reactions, the rate roughly doubles for every 10° rise in temperature.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "temperature-coefficient",
+      "rate-constant",
+      "10-degree-rule"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A ratio of 1 would mean the rate constant does not change with temperature, which contradicts the given temperature coefficient of 2.",
+        "misconception": "Thinking that rate constants are independent of temperature."
+      },
+      {
+        "option_key": "C",
+        "hint": "The ratio would be 4 (= 2²) if the temperature were raised by 20 K (two successive 10 K increases), not 10 K as in this problem.",
+        "misconception": "Squaring the temperature coefficient instead of applying it directly for a 10 K rise."
+      },
+      {
+        "option_key": "D",
+        "hint": "A temperature coefficient of 3 means the rate triples per 10°C rise, but the given temperature coefficient is 2, not 3.",
+        "misconception": "Misreading or misinterpreting the given temperature coefficient value."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For two reactions A and B, the activation energies are Ea₁ = 80 kJ/mol and Ea₂ = 45 kJ/mol respectively. If both have the same frequency factor, which statement is correct?",
+    "explanation": "From the Arrhenius equation k = Ae^(-Ea/RT), for a given temperature and same frequency factor A, a lower activation energy (Ea) gives a larger rate constant. Since Ea₂ (45 kJ/mol) < Ea₁ (80 kJ/mol), reaction B has a larger rate constant and is therefore faster than reaction A. The exponential term e^(-Ea/RT) is larger when Ea is smaller, meaning a greater fraction of molecules can overcome the energy barrier.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "activation-energy",
+      "rate-constant-comparison",
+      "arrhenius-equation"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Reaction A is faster than reaction B",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both reactions proceed at the same rate",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Reaction B is faster than reaction A",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "The rates cannot be compared without knowing the temperature",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Reaction A has a higher activation energy (80 kJ/mol), meaning a smaller fraction of molecules can overcome its energy barrier. Higher Ea means slower reaction, not faster.",
+        "misconception": "Incorrectly associating higher activation energy with a faster reaction."
+      },
+      {
+        "option_key": "B",
+        "hint": "With different activation energies but the same frequency factor, the rate constants will differ. The reaction with lower Ea will always have a larger rate constant at any given temperature.",
+        "misconception": "Thinking that the same frequency factor implies the same rate constant regardless of activation energy."
+      },
+      {
+        "option_key": "D",
+        "hint": "While the absolute rate constants depend on temperature, the relative comparison (which is faster) can be made at any temperature when Ea values differ and A is the same. At any T, the reaction with lower Ea will be faster.",
+        "misconception": "Believing that qualitative comparisons require exact numerical values of temperature."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The activation energy of a reaction is 75.24 kJ/mol. How many times will the rate constant increase if the temperature is raised from 300 K to 310 K? (Given: R = 8.314 J mol⁻¹ K⁻¹, e = 2.718)",
+    "explanation": "Using the Arrhenius equation in the two-temperature form: log(k₂/k₁) = (Ea/2.303R) × [(T₂-T₁)/(T₁T₂)]. Substituting values: log(k₂/k₁) = (75240)/(2.303 × 8.314) × [(310-300)/(300 × 310)] = (75240/19.147) × (10/93000) = 3929.6 × 1.075 × 10⁻⁴ = 0.4225 ≈ 0.4225. Therefore k₂/k₁ = 10^0.4225 ≈ 2.645 ≈ approximately 2.6 to 3 times. Rounding to the nearest whole number gives approximately 3 times.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "arrhenius-equation",
+      "two-temperature-form",
+      "numerical-calculation",
+      "activation-energy"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Nearly 3 times",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Nearly 10 times",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Nearly 5 times",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Nearly 100 times",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "A 10-fold increase would require log(k₂/k₁) = 1, meaning a much higher activation energy or a larger temperature change than given.",
+        "misconception": "Overestimating the effect of a 10 K temperature rise on the rate constant."
+      },
+      {
+        "option_key": "C",
+        "hint": "A 5-fold increase gives log(5) ≈ 0.699, which is significantly larger than the calculated value of approximately 0.42.",
+        "misconception": "Making arithmetic errors in the Arrhenius calculation or rounding incorrectly."
+      },
+      {
+        "option_key": "D",
+        "hint": "A 100-fold increase would require log(k₂/k₁) = 2, which is far too large for a mere 10 K temperature rise with the given activation energy.",
+        "misconception": "Greatly overestimating the temperature sensitivity of the rate constant."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A catalyst increases the rate of a reaction by:",
+    "explanation": "A catalyst provides an alternative reaction pathway with a lower activation energy (Ea). According to the Arrhenius equation k = Ae^(-Ea/RT), lowering Ea increases the exponential factor e^(-Ea/RT), thereby increasing the rate constant k. The catalyst does not change the overall thermodynamics (enthalpy change or equilibrium constant) of the reaction. It only lowers the energy barrier, allowing more molecules to have sufficient energy to react at the same temperature.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "catalyst",
+      "activation-energy",
+      "alternative-pathway",
+      "rate-enhancement"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Increasing the temperature of the system",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Increasing the concentration of reactants",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Changing the enthalpy of the reaction",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Providing an alternative pathway with lower activation energy",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A catalyst does not raise the temperature of the reaction mixture. It works by lowering the energy barrier, not by adding thermal energy.",
+        "misconception": "Confusing the role of a catalyst with the effect of heating."
+      },
+      {
+        "option_key": "B",
+        "hint": "A catalyst does not change the concentration of reactants. It accelerates the reaction by lowering the activation energy barrier.",
+        "misconception": "Confusing catalytic action with concentration effects on rate."
+      },
+      {
+        "option_key": "C",
+        "hint": "A catalyst does not alter the enthalpy change (ΔH) of a reaction. The initial and final states remain the same; only the pathway changes.",
+        "misconception": "Believing that a catalyst changes the thermodynamic properties of a reaction."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The steric factor (orientation factor) in collision theory accounts for the fact that:",
+    "explanation": "In collision theory, the rate of reaction is given by Rate = P × Z_AB × e^(-Ea/RT), where P is the steric factor (or probability factor or orientation factor), Z_AB is the collision frequency, and e^(-Ea/RT) is the fraction of collisions with sufficient energy. The steric factor P (where 0 < P ≤ 1) accounts for the fact that not all energetically sufficient collisions lead to reaction because the molecules may not be oriented properly. Only collisions where the reactive parts of the molecules come into contact lead to product formation.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "steric-factor",
+      "orientation-factor",
+      "collision-theory",
+      "probability-factor"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "All collisions are equally effective regardless of molecular arrangement",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Collisions occur more frequently at higher temperatures",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Not all collisions with sufficient energy lead to reaction due to improper molecular orientation",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Molecules must have zero kinetic energy to react",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "If all collisions were equally effective, we would not need a steric factor at all. The steric factor exists precisely because orientation matters.",
+        "misconception": "Ignoring the directional nature of chemical bonds and molecular interactions."
+      },
+      {
+        "option_key": "B",
+        "hint": "Increased collision frequency at higher temperatures is already accounted for by the collision frequency term Z_AB, not by the steric factor P.",
+        "misconception": "Confusing the roles of different terms in the collision theory rate expression."
+      },
+      {
+        "option_key": "D",
+        "hint": "Molecules need kinetic energy equal to or greater than the activation energy to react, not zero kinetic energy. This option contradicts the basic premise of collision theory.",
+        "misconception": "Fundamental misunderstanding of the energy requirement for chemical reactions."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The rate constant of a reaction at 500 K and 700 K are 0.02 s⁻¹ and 0.07 s⁻¹ respectively. The value of Ea is approximately: (Given: R = 8.314 J mol⁻¹ K⁻¹, log 3.5 = 0.5441)",
+    "explanation": "Using log(k₂/k₁) = (Ea/2.303R) × [(T₂-T₁)/(T₁T₂)], we substitute: log(0.07/0.02) = (Ea/(2.303 × 8.314)) × [(700-500)/(500 × 700)]. This gives: log(3.5) = (Ea/19.147) × (200/350000). So 0.5441 = (Ea/19.147) × 5.714 × 10⁻⁴. Therefore Ea = (0.5441 × 19.147)/(5.714 × 10⁻⁴) = 10.422/5.714 × 10⁻⁴ = 18237 J/mol ≈ 18.23 kJ/mol. This is approximately 18.23 kJ/mol.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "arrhenius-equation",
+      "activation-energy-calculation",
+      "two-temperature-form",
+      "numerical-problem"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "10.5 kJ/mol",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "18.23 kJ/mol",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "25.6 kJ/mol",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "36.8 kJ/mol",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This value is too low. Carefully substitute all values into the two-temperature form of the Arrhenius equation and verify the arithmetic.",
+        "misconception": "Arithmetic error in the calculation, possibly misplacing a decimal or using wrong units."
+      },
+      {
+        "option_key": "C",
+        "hint": "This value is too high. Check whether you used the correct formula and substituted T₁T₂ correctly in the denominator.",
+        "misconception": "Calculation error, possibly using incorrect values of T₁ or T₂."
+      },
+      {
+        "option_key": "D",
+        "hint": "This is approximately double the correct answer. Check if you made an error in computing the temperature difference term or the logarithm ratio.",
+        "misconception": "Multiplying by an extra factor or using the wrong logarithm value."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "For a reaction, the rate constant is 1.5 × 10⁻³ s⁻¹ at 300 K and 4.5 × 10⁻³ s⁻¹ at 320 K. The energy of activation is approximately: (Given: R = 8.314 J mol⁻¹ K⁻¹, log 3 = 0.4771)",
+    "explanation": "Using log(k₂/k₁) = (Ea/2.303R) × [(T₂-T₁)/(T₁T₂)], we get: log(4.5 × 10⁻³/1.5 × 10⁻³) = (Ea/(2.303 × 8.314)) × [(320-300)/(300 × 320)]. This gives: log(3) = (Ea/19.147) × (20/96000). So 0.4771 = Ea × (20)/(19.147 × 96000) = Ea × 1.0874 × 10⁻⁵. Therefore Ea = 0.4771/(1.0874 × 10⁻⁵) = 43878 J/mol ≈ 43.88 kJ/mol.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "arrhenius-equation",
+      "activation-energy-calculation",
+      "two-temperature-form",
+      "numerical-problem"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "22.0 kJ/mol",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "30.5 kJ/mol",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "55.2 kJ/mol",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "43.9 kJ/mol",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This value is approximately half the correct answer. Check if you accidentally used T₂ - T₁ = 10 instead of 20 in the numerator.",
+        "misconception": "Using 10 K instead of 20 K as the temperature difference."
+      },
+      {
+        "option_key": "B",
+        "hint": "This value is too low. Verify your calculation of the product T₁ × T₂ and ensure you used the correct log value.",
+        "misconception": "Arithmetic error in computing T₁T₂ or in the final division."
+      },
+      {
+        "option_key": "C",
+        "hint": "This value is too high. Double-check whether you used the correct ratio k₂/k₁ = 3 and the correct formula.",
+        "misconception": "Using an incorrect ratio of rate constants or making a computational error."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "For a first-order reaction, the temperature coefficient (k₃₁₀/k₃₀₀) is 2. If the reaction is carried out at 400 K, by what factor will the rate constant increase compared to 300 K? (Assume temperature coefficient remains constant for every 10° rise)",
+    "explanation": "The temperature coefficient means the rate constant doubles for every 10 K rise. From 300 K to 400 K, the temperature rises by 100 K, which corresponds to 100/10 = 10 intervals of 10 K each. Since the rate constant doubles for each 10 K interval, the overall multiplication factor is 2¹⁰ = 1024. Therefore, the rate constant at 400 K is approximately 1024 times the rate constant at 300 K.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "temperature-coefficient",
+      "rate-constant",
+      "exponential-growth",
+      "10-degree-rule"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1024",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "512",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "256",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2048",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "512 = 2⁹, which corresponds to only 9 intervals of 10 K. From 300 K to 400 K, there are 10 such intervals, not 9.",
+        "misconception": "Counting the number of 10 K intervals incorrectly."
+      },
+      {
+        "option_key": "C",
+        "hint": "256 = 2⁸, which corresponds to only 8 intervals. The temperature difference is 100 K, giving 10 intervals, so the factor should be 2¹⁰.",
+        "misconception": "Undercounting the number of temperature intervals."
+      },
+      {
+        "option_key": "D",
+        "hint": "2048 = 2¹¹, which would correspond to a 110 K rise (11 intervals). The actual rise is 100 K, giving exactly 10 intervals.",
+        "misconception": "Overcounting the number of 10 K intervals."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The Arrhenius equation predicts that at very high temperatures, the rate constant approaches the value of the frequency factor A.\n\nReason (R): As temperature T → ∞, the exponential factor e^(-Ea/RT) approaches unity.",
+    "explanation": "The Arrhenius equation is k = Ae^(-Ea/RT). As T → ∞, the term Ea/RT → 0, so e^(-Ea/RT) → e⁰ = 1. Therefore k → A × 1 = A. This means the rate constant approaches the frequency factor at very high temperatures, which makes physical sense because virtually all collisions would have sufficient energy to overcome the activation barrier. Both the assertion and reason are true, and the reason correctly explains the assertion.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "arrhenius-equation",
+      "frequency-factor",
+      "temperature-limit",
+      "exponential-factor"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is not the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The reason directly explains why k approaches A: it is precisely because e^(-Ea/RT) → 1 that k → A. The reason is the mathematical justification for the assertion.",
+        "misconception": "Failing to see the direct causal link between the exponential factor approaching 1 and k approaching A."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is mathematically correct: as T → ∞, Ea/RT → 0, and e⁰ = 1. There is no error in the reason statement.",
+        "misconception": "Doubting the mathematical limit of the exponential function."
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct and follows directly from the Arrhenius equation. Substituting the limit into k = Ae^(-Ea/RT) confirms that k → A as T → ∞.",
+        "misconception": "Misunderstanding the physical meaning of the frequency factor or the behavior of the Arrhenius equation at extreme temperatures."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): According to collision theory, the rate constant predicted using only collision frequency and Boltzmann factor is always higher than the experimentally observed rate constant.\n\nReason (R): The steric factor (P) is always less than or equal to 1, and it accounts for the fraction of collisions with proper molecular orientation.",
+    "explanation": "In collision theory, the rate constant is given by k = P × Z_AB × e^(-Ea/RT), where P is the steric factor (0 < P ≤ 1). If we calculate the rate constant using only Z_AB × e^(-Ea/RT) (without P), we get a value that is higher than or equal to the experimental value, because the steric factor P ≤ 1 reduces the predicted rate. The steric factor accounts for the fact that only a fraction of energetically sufficient collisions have the correct molecular orientation. Both the assertion and the reason are true, and the reason correctly explains why the calculated rate (without P) exceeds the experimental rate.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "collision-theory",
+      "steric-factor",
+      "rate-constant-prediction",
+      "orientation-factor"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is not the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The steric factor directly explains the discrepancy between calculated and experimental rate constants. Since P ≤ 1, multiplying by P reduces the calculated value to match experiments. The reason directly explains the assertion.",
+        "misconception": "Failing to connect the steric factor's role to the overestimation of rate constants in simple collision theory."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is scientifically correct. The steric factor P is indeed always ≤ 1 for bimolecular reactions, reflecting that not all orientations are favorable.",
+        "misconception": "Doubting the valid range of the steric factor."
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. Without the steric factor, collision theory overestimates rate constants because it assumes all energetically sufficient collisions are effective, ignoring orientation requirements.",
+        "misconception": "Thinking that simple collision theory without orientation correction gives accurate or lower rate constants."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the terms in Column I with their descriptions in Column II.\n\nColumn I:\n(P) Frequency factor (A)\n(Q) Activation energy (Ea)\n(R) Boltzmann factor\n(S) Threshold energy\n\nColumn II:\n(i) Minimum energy that reactant molecules must possess for effective collision\n(ii) e^(-Ea/RT) — fraction of molecules with energy ≥ Ea\n(iii) Relates to collision frequency and proper orientation\n(iv) Energy difference between threshold energy and average kinetic energy of reactants",
+    "explanation": "The correct matching is: (P)-(iii): The frequency factor A relates to the collision frequency and proper orientation of molecules. (Q)-(iv): Activation energy is the energy difference between the threshold energy and the average kinetic energy of the reactant molecules. (R)-(ii): The Boltzmann factor e^(-Ea/RT) represents the fraction of molecules with kinetic energy equal to or greater than the activation energy. (S)-(i): Threshold energy is the minimum energy that reactant molecules must possess for an effective collision to occur.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "frequency-factor",
+      "activation-energy",
+      "boltzmann-factor",
+      "threshold-energy"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "(P)-(ii), (Q)-(iv), (R)-(iii), (S)-(i)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "(P)-(iii), (Q)-(i), (R)-(ii), (S)-(iv)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "(P)-(iii), (Q)-(iv), (R)-(ii), (S)-(i)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "(P)-(iv), (Q)-(iii), (R)-(i), (S)-(ii)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This incorrectly matches (P) frequency factor with (ii) the Boltzmann factor. The frequency factor A is related to collision frequency and orientation, not to the exponential energy distribution.",
+        "misconception": "Confusing the frequency factor A with the Boltzmann factor e^(-Ea/RT)."
+      },
+      {
+        "option_key": "B",
+        "hint": "This incorrectly matches (Q) activation energy with (i) threshold energy description. Activation energy is the difference between threshold energy and average kinetic energy, not the threshold energy itself.",
+        "misconception": "Confusing activation energy with threshold energy; they are related but distinct concepts."
+      },
+      {
+        "option_key": "D",
+        "hint": "This has multiple incorrect matches. The frequency factor is not described by (iv), and activation energy is not related to collision frequency.",
+        "misconception": "Complete misunderstanding of the relationships between the terms and their definitions."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the conditions in Column I with their effects in Column II.\n\nColumn I:\n(P) Addition of a catalyst\n(Q) Increase in temperature\n(R) Ea = 0\n(S) Steric factor P → 0\n\nColumn II:\n(i) Rate constant k = A (maximum possible value)\n(ii) Rate constant becomes practically zero; reaction does not occur\n(iii) Provides alternative pathway; Ea decreases\n(iv) Increases fraction of molecules with E ≥ Ea; shifts Maxwell-Boltzmann curve",
+    "explanation": "The correct matching is: (P)-(iii): A catalyst provides an alternative reaction pathway with lower activation energy. (Q)-(iv): Increasing temperature shifts the Maxwell-Boltzmann distribution curve to the right, increasing the fraction of molecules with energy ≥ Ea. (R)-(i): When Ea = 0, the exponential factor e^(-Ea/RT) = e⁰ = 1, so k = A, the maximum possible rate constant. (S)-(ii): When the steric factor P approaches 0, virtually no collisions have proper orientation, so k = P × Z × e^(-Ea/RT) → 0, meaning the reaction effectively does not occur.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "catalyst-effect",
+      "temperature-effect",
+      "maxwell-boltzmann",
+      "steric-factor",
+      "activation-energy"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "(P)-(iv), (Q)-(iii), (R)-(i), (S)-(ii)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "(P)-(iii), (Q)-(iv), (R)-(ii), (S)-(i)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "(P)-(i), (Q)-(iv), (R)-(iii), (S)-(ii)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "(P)-(iii), (Q)-(iv), (R)-(i), (S)-(ii)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This incorrectly swaps the effects of catalyst addition and temperature increase. A catalyst lowers Ea (alternative pathway), while temperature increase shifts the energy distribution curve.",
+        "misconception": "Confusing the mechanism of catalysis with the effect of temperature on the Maxwell-Boltzmann distribution."
+      },
+      {
+        "option_key": "B",
+        "hint": "This incorrectly matches Ea = 0 with rate becoming zero, when in fact Ea = 0 gives the maximum rate (k = A). It also incorrectly assigns the maximum rate to the steric factor approaching zero.",
+        "misconception": "Reversing the effects of zero activation energy and zero steric factor."
+      },
+      {
+        "option_key": "C",
+        "hint": "A catalyst does not make k = A; that happens only when Ea = 0. A catalyst lowers Ea but does not reduce it to zero in most cases.",
+        "misconception": "Believing that a catalyst completely eliminates the activation energy barrier."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The plot of log k versus 1/T for a reaction following the Arrhenius equation gives a straight line with a negative slope.",
+    "explanation": "Taking the logarithmic form of the Arrhenius equation: log k = log A - (Ea/2.303R)(1/T). This is in the form y = c + mx where y = log k, x = 1/T, intercept c = log A, and slope m = -Ea/2.303R. Since Ea and R are both positive quantities, the slope -Ea/2.303R is always negative. Therefore, the plot of log k versus 1/T indeed gives a straight line with a negative slope. The statement is TRUE.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "arrhenius-plot",
+      "log-k-vs-1/T",
+      "negative-slope",
+      "graphical-method"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The slope is -Ea/(2.303R), and since both Ea and R are positive, the slope is indeed negative. The statement is correct.",
+        "misconception": "Forgetting the negative sign in the Arrhenius equation slope or confusing which axis variables determine the sign."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is not a valid option for this question type.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is not a valid option for this question type.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "A catalyst changes the equilibrium constant of a reversible reaction by lowering the activation energy.",
+    "explanation": "This statement is FALSE. A catalyst lowers the activation energy for both the forward and reverse reactions equally. Since it speeds up both the forward and reverse reactions to the same extent, the equilibrium constant (K = kf/kr) remains unchanged. The catalyst only helps the system reach equilibrium faster; it does not shift the position of equilibrium or change the equilibrium constant.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "catalyst",
+      "equilibrium-constant",
+      "activation-energy",
+      "forward-reverse-reaction"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A catalyst lowers the activation energy for both forward and reverse reactions equally. This means the ratio kf/kr (which equals K) remains the same. The equilibrium constant is a thermodynamic quantity and is not affected by a catalyst.",
+        "misconception": "Believing that lowering activation energy changes the equilibrium constant, when in fact it only affects how quickly equilibrium is reached."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is not a valid option for this question type.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is not a valid option for this question type.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "According to the Maxwell-Boltzmann distribution, when the temperature of a gas is increased, the fraction of molecules with kinetic energy greater than the activation energy ________, and the peak of the distribution curve shifts to ________ energy values.",
+    "explanation": "When the temperature increases, the Maxwell-Boltzmann distribution curve broadens and flattens. The peak of the curve shifts to higher energy values, and the area under the curve beyond the activation energy (Ea) increases. This means a larger fraction of molecules possess kinetic energy greater than or equal to Ea, which is why reaction rates increase with temperature. The total area under the curve remains constant (representing the total number of molecules), but the distribution shifts toward higher energies.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "maxwell-boltzmann-distribution",
+      "temperature-effect",
+      "energy-distribution",
+      "activation-energy"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "decreases; lower",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "increases; lower",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "decreases; higher",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "increases; higher",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Both blanks are incorrect. At higher temperature, more molecules exceed Ea (fraction increases), and the peak shifts to higher energies, not lower.",
+        "misconception": "Completely misunderstanding the effect of temperature on the Maxwell-Boltzmann distribution."
+      },
+      {
+        "option_key": "B",
+        "hint": "The first blank is correct (fraction increases), but the peak shifts to higher energy values, not lower. At higher temperature, the most probable energy increases.",
+        "misconception": "Confusing the decrease in peak height with a shift to lower energies; the peak broadens and moves right."
+      },
+      {
+        "option_key": "C",
+        "hint": "The second blank is correct (higher energies), but the fraction of molecules with E ≥ Ea increases with temperature, not decreases.",
+        "misconception": "Confusing the decrease in peak height with a decrease in the fraction of high-energy molecules."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-arrhenius-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A pharmaceutical company is studying the stability of a new drug compound. At 25°C (298 K), the decomposition rate constant is 2.5 × 10⁻⁶ s⁻¹, and at 35°C (308 K), it is 7.5 × 10⁻⁶ s⁻¹. The company wants to determine the shelf life at 5°C (278 K). Using the Arrhenius equation, the activation energy (Ea) of the decomposition reaction is approximately: (Given: R = 8.314 J mol⁻¹ K⁻¹, log 3 = 0.4771)",
+    "explanation": "Using log(k₂/k₁) = (Ea/2.303R) × [(T₂-T₁)/(T₁T₂)], we substitute: log(7.5 × 10⁻⁶/2.5 × 10⁻⁶) = (Ea/(2.303 × 8.314)) × [(308-298)/(298 × 308)]. This gives: log(3) = (Ea/19.147) × (10/91784). So 0.4771 = Ea × 1.0894 × 10⁻⁵/19.147 = Ea × 5.691 × 10⁻⁷. Wait, let me recalculate: 0.4771 = (Ea/19.147) × (10/91784) = Ea × (10)/(19.147 × 91784) = Ea × (10/1757628) = Ea × 5.689 × 10⁻⁶. Therefore Ea = 0.4771/5.689 × 10⁻⁶ = 83866 J/mol ≈ 83.9 kJ/mol.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "arrhenius-equation",
+      "activation-energy-calculation",
+      "drug-stability",
+      "two-temperature-form",
+      "shelf-life"
+    ],
+    "topic": "Arrhenius Equation and Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "42.0 kJ/mol",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "62.5 kJ/mol",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "83.9 kJ/mol",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "105.3 kJ/mol",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This is approximately half the correct answer. Check if you used the wrong temperature values or incorrectly doubled the temperature difference.",
+        "misconception": "Computational error, possibly using an incorrect T₁T₂ product or halving the result."
+      },
+      {
+        "option_key": "B",
+        "hint": "This value does not match the calculation. Verify that you correctly computed T₁ × T₂ = 298 × 308 = 91784 and used log(3) = 0.4771.",
+        "misconception": "Arithmetic error in one of the intermediate calculation steps."
+      },
+      {
+        "option_key": "D",
+        "hint": "This value is too high. Check your calculation of the ratio k₂/k₁ and ensure you did not use an incorrect temperature difference.",
+        "misconception": "Using wrong values in the formula or making an error in the final division step."
+      }
+    ]
+  }
+]
