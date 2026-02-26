@@ -100,7 +100,6 @@ export default function SubjectDetailScreen() {
 
   // Redux strength data
   const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
-  const chapterHistory = useSelector((state: RootState) => state.practice.chapterHistory);
 
   // Animation
   const fadeIn = useRef(new Animated.Value(0)).current;
@@ -231,24 +230,6 @@ export default function SubjectDetailScreen() {
       return a.accuracy - b.accuracy;
     });
   }, [chapterAnalytics]);
-
-  // Find the latest completed session per chapter (for stats + mistakes)
-  const latestChapterSessions = useMemo(() => {
-    const map: Record<string, { sessionId: string; correct: number; wrong: number; total: number }> = {};
-    for (const session of chapterHistory) {
-      if (!session.completedAt) continue;
-      if (map[session.chapterId]) continue; // history is newest-first, so first match = latest
-      const answered = session.answers.filter((a) => a.selectedOptionId).length;
-      const correct = session.correctCount ?? 0;
-      map[session.chapterId] = {
-        sessionId: session.id,
-        correct,
-        wrong: answered - correct,
-        total: answered,
-      };
-    }
-    return map;
-  }, [chapterHistory]);
 
   const handleStartChapter = (chapterId: string) => {
     router.push(`/chapter/${chapterId}`);
@@ -512,22 +493,19 @@ export default function SubjectDetailScreen() {
                             </Pressable>
                           )}
 
-                          {/* Practice Mistakes — only if the latest session had wrong answers */}
-                          {latestChapterSessions[ca.chapter.id]?.wrong > 0 && (
+                          {/* Practice Mistakes — show if chapter has wrong answers */}
+                          {(ca.totalAnswered - ca.correctCount) > 0 && (
                             <Pressable
                               style={[styles.practiceAgainButton, { backgroundColor: '#EF444415' }]}
                               onPress={() =>
                                 router.push({
                                   pathname: '/practice-mistakes',
-                                  params: {
-                                    sessionId: latestChapterSessions[ca.chapter.id].sessionId,
-                                    sessionMode: 'chapter',
-                                  },
+                                  params: { chapterId: ca.chapter.id },
                                 })
                               }
                             >
                               <Text style={[styles.practiceAgainText, { color: '#EF4444' }]}>
-                                Practice mistakes
+                                Practice mistakes ({ca.totalAnswered - ca.correctCount})
                               </Text>
                             </Pressable>
                           )}

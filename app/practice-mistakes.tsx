@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   ScrollView,
   Pressable,
   Animated,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -25,10 +26,12 @@ import { useTheme } from '../src/hooks/useTheme';
 import { usePersona } from '../src/hooks/usePersona';
 import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { RootState } from '../src/store';
+import { recordChapterAttempt } from '../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../src/store/slices/bookmarkSlice';
 import { useToast } from '../src/components/ui/Toast';
-import { getV2QuestionsByChapter, getAllQuestions } from '../src/data/questions';
-import { getCorrectId, legacyBatchToV2 } from '../src/lib/questionAdapter';
+import { getCorrectId } from '../src/lib/questionAdapter';
+import { fetchQuestionsByChapter } from '../src/lib/questions';
+import { reportError } from '../src/lib/errorReporting';
 import { QuestionV2, SubjectId } from '../src/types';
 
 const DIFF_COLORS = { easy: '#22C55E', medium: '#F59E0B', hard: '#EF4444' };
@@ -39,43 +42,48 @@ export default function PracticeMistakesScreen() {
   const router = useRouter();
   const dispatch = useDispatch();
   const toast = useToast();
-  const { sessionId, sessionMode } = useLocalSearchParams<{
-    sessionId: string;
-    sessionMode: string; // 'chapter' | 'practice'
-  }>();
+  const { chapterId } = useLocalSearchParams<{ chapterId: string }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
   const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
 
-  // Find session in Redux history
-  const session = useSelector((state: RootState) => {
-    if (sessionMode === 'practice') {
-      return state.practice.practiceHistory.find((s) => s.id === sessionId) ?? null;
-    }
-    return state.practice.chapterHistory.find((s) => s.id === sessionId) ?? null;
-  });
+  // Get wrong question IDs from strength data
+  const chapterStrength = useSelector(
+    (state: RootState) => chapterId ? state.strength.chapters[chapterId] : undefined,
+  );
 
-  // Load only the wrong questions
-  const wrongQuestions = useMemo(() => {
-    if (!session) return [];
+  // Fetch questions from Supabase and filter to wrong ones
+  const [wrongQuestions, setWrongQuestions] = useState<QuestionV2[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    let allQs: QuestionV2[];
-    if (session.mode === 'chapter') {
-      allQs = getV2QuestionsByChapter(session.chapterId);
-    } else {
-      allQs = legacyBatchToV2(getAllQuestions());
+  useEffect(() => {
+    if (!chapterId || !chapterStrength?.questionResults) {
+      setIsLoading(false);
+      return;
     }
 
+    // Find question IDs answered wrong (value === false, skip remote-* placeholders)
     const wrongIds = new Set<string>();
-    for (const a of session.answers) {
-      if (!a.selectedOptionId) continue; // skipped, not wrong
-      const q = allQs.find((qq) => qq.id === a.questionId);
-      if (q && a.selectedOptionId !== getCorrectId(q)) {
-        wrongIds.add(a.questionId);
+    for (const [qid, correct] of Object.entries(chapterStrength.questionResults)) {
+      if (!correct && !qid.startsWith('remote-')) {
+        wrongIds.add(qid);
       }
     }
 
-    return allQs.filter((q) => wrongIds.has(q.id));
-  }, [session]);
+    if (wrongIds.size === 0) {
+      setIsLoading(false);
+      return;
+    }
+
+    fetchQuestionsByChapter(chapterId)
+      .then((result) => {
+        if (result.ok) {
+          const wrong = result.questions.filter((q) => wrongIds.has(q.id));
+          setWrongQuestions(wrong);
+        }
+      })
+      .catch((e) => reportError(e, 'medium', 'PracticeMistakes.fetchQuestions'))
+      .finally(() => setIsLoading(false));
+  }, [chapterId, chapterStrength?.questionResults]);
 
   // Quiz state
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -123,6 +131,22 @@ export default function PracticeMistakesScreen() {
     if (!question) return;
 
     if (currentIndex >= wrongQuestions.length - 1) {
+      // Record the re-attempt results back to strength data
+      if (chapterId) {
+        const answeredQuestions = Object.entries({ ...answers, [question.id]: selectedOptionId! }).map(([qId, optId]) => {
+          const q = wrongQuestions.find((qq) => qq.id === qId);
+          return {
+            questionId: qId,
+            correct: q ? optId === getCorrectId(q) : false,
+          };
+        });
+        dispatch(recordChapterAttempt({
+          chapterId,
+          subjectId: wrongQuestions[0]?.subjectId ?? '',
+          totalInBank: chapterStrength?.totalInBank ?? 25,
+          answeredQuestions,
+        }));
+      }
       setFinished(true);
       return;
     }
@@ -135,8 +159,24 @@ export default function PracticeMistakesScreen() {
     scrollRef.current?.scrollTo({ y: 0, animated: true });
   };
 
-  // ── No wrong questions or no session ──
-  if (!session || wrongQuestions.length === 0) {
+  // ── Loading ──
+  if (isLoading) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+          <View style={styles.emptyContainer}>
+            <ActivityIndicator size="large" color={colors.primary} />
+            <Text style={[Typography.body, { color: colors.textSecondary, marginTop: Spacing.md }]}>
+              Loading your mistakes...
+            </Text>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  // ── No wrong questions ──
+  if (wrongQuestions.length === 0) {
     return (
       <DotGridBackground>
         <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>

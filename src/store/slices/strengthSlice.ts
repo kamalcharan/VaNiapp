@@ -99,6 +99,9 @@ const strengthSlice = createSlice({
       ch.totalAnswered = derived.totalAnswered;
       ch.correctCount = derived.correctCount;
 
+      // Debug: log strength update so we can verify it's running
+      console.log(`[strength] ${chapterId}: +${answeredQuestions.length} answers → ${derived.totalAnswered} total, ${derived.correctCount} correct, ${derived.totalAnswered - derived.correctCount} wrong`);
+
       // Recompute strength
       const result = evaluateStrength({
         totalInBank: ch.totalInBank,
