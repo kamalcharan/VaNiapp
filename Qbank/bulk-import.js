@@ -261,13 +261,18 @@ async function main() {
   for (const q of newQuestions) {
     try {
       const subjectId = SUBJECT_MAP[q._subject] || q._subject;
+      const chapterId = resolveChapterId(q._subject, q._chapter, q.id);
+
+      if (!chapterId) {
+        throw new Error(`No chapter mapping for question ID "${q.id}" (folder: ${q._chapter}). Add a mapping to TOPIC_TO_CHAPTER.`);
+      }
 
       // Insert main question record
       const { data: insertedQ, error: qError } = await supabase
         .from('med_questions')
         .insert({
           subject_id: subjectId,
-          chapter_id: resolveChapterId(q._subject, q._chapter),
+          chapter_id: chapterId,
           question_type: q.question_type || 'mcq',
           difficulty: q.difficulty || 'medium',
           question_text: q.question_text,
@@ -333,12 +338,144 @@ async function main() {
 // ============================================================================
 // CHAPTER ID RESOLVER
 // ============================================================================
-// Maps subject/chapter folder names to DB chapter IDs
-// Update this mapping as you add more chapters to the DB
-function resolveChapterId(subject, chapterFolder) {
-  // Convention: {subject_short}-{chapter_folder}
-  // e.g., zoo + animal-kingdom → zoo-animal-kingdom
-  return `${subject}-${chapterFolder}`;
+// Maps question ID prefixes to DB chapter IDs (med_chapters.id).
+// Longest-prefix matching: more-specific entries must come before shorter ones
+// when they share the same prefix (e.g. zoo-biotech before zoo-bio).
+const TOPIC_TO_CHAPTER = {
+  // ── Botany (17 chapters) ──────────────────────────────
+  'bot-cell':         'bot-cell-unit',
+  'bot-cycle':        'bot-cell-cycle',
+  'bot-div':          'bot-cell-cycle',
+  'bot-class':        'bot-biological-classification',
+  'bot-plant-growth': 'bot-plant-growth',
+  'bot-plant':        'bot-plant-kingdom',
+  'bot-morph':        'bot-morphology-flowering',
+  'bot-anat':         'bot-anatomy-flowering',
+  'bot-photo':        'bot-photosynthesis',
+  'bot-resp':         'bot-respiration',
+  'bot-growth':       'bot-plant-growth',
+  'bot-mineral':      'bot-plant-growth',       // Mineral Nutrition → Plant Growth & Development
+  'bot-trans':        'bot-plant-growth',        // Transport in Plants → Plant Growth & Development
+  'bot-repro':        'bot-sexual-reproduction',
+  'bot-inherit':      'bot-inheritance',
+  'bot-inher':        'bot-inheritance',
+  'bot-mol':          'bot-molecular-inheritance',
+  'bot-eco':          'bot-ecosystem',
+  'bot-living':       'bot-living-world',
+  'bot-biological':   'bot-biological-classification',
+  'bot-microbes':     'bot-microbes-welfare',
+  'bot-organisms':    'bot-organisms-populations',
+  'bot-biodiv':       'bot-biodiversity',
+
+  // ── Zoology (15 chapters) ─────────────────────────────
+  'zoo-biotech':  'zoo-biotechnology-principles',
+  'zoo-bioapp':   'zoo-biotechnology-applications',
+  'zoo-kingdom':  'zoo-animal-kingdom',
+  'zoo-struct':   'zoo-structural-organization',
+  'zoo-bio':      'zoo-biomolecules',
+  'zoo-breath':   'zoo-breathing',
+  'zoo-blood':    'zoo-body-fluids',
+  'zoo-excr':     'zoo-excretion',
+  'zoo-loco':     'zoo-locomotion',
+  'zoo-neural':   'zoo-neural-control',
+  'zoo-chem':     'zoo-chemical-coordination',
+  'zoo-repro':    'zoo-human-reproduction',
+  'zoo-rephealth':'zoo-reproductive-health',  // zoo-rephealth-infertility
+  'zoo-rh':       'zoo-reproductive-health',
+  'zoo-evo':      'zoo-evolution',
+  'zoo-health':   'zoo-human-health',
+
+  // ── Physics (20 chapters) ─────────────────────────────
+  'phy-world':    'phy-units-measurement',   // Ch1 maps to closest
+  'phy-units':    'phy-units-measurement',
+  'phy-motion1d': 'phy-kinematics',
+  'phy-motion2d': 'phy-kinematics',
+  'phy-kin':      'phy-kinematics',
+  'phy-newton':   'phy-laws-of-motion',      // phy-newton-laws, phy-newton-friction, phy-newton-circular
+  'phy-laws':     'phy-laws-of-motion',
+  'phy-energy':   'phy-work-energy-power',   // phy-energy-work, phy-energy-conservation, phy-energy-collisions
+  'phy-wep':      'phy-work-energy-power',
+  'phy-work':     'phy-work-energy-power',
+  'phy-rot':      'phy-rotational-motion',
+  'phy-grav':     'phy-gravitation',
+  'phy-solid':    'phy-properties-matter',
+  'phy-fluid':    'phy-properties-matter',
+  'phy-prop':     'phy-properties-matter',
+  'phy-thermal':  'phy-thermodynamics',
+  'phy-thermo':   'phy-thermodynamics',
+  'phy-kinetic':  'phy-kinetic-theory',
+  'phy-osc':      'phy-oscillations-waves',
+  'phy-wave':     'phy-oscillations-waves',
+  'phy-elec-semiconductor': 'phy-electronic-devices',
+  'phy-elec-diode':         'phy-electronic-devices',
+  'phy-elec-transistor':    'phy-electronic-devices',
+  'phy-elec-logic':         'phy-electronic-devices',
+  'phy-semi':     'phy-electronic-devices',
+  'phy-pot':      'phy-electrostatics',      // phy-pot-potential, phy-pot-capacitor, phy-pot-dielectric
+  'phy-capacitance': 'phy-electrostatics',
+  'phy-elec':     'phy-electrostatics',
+  'phy-curr':     'phy-current-electricity',
+  'phy-mag':      'phy-magnetic-effects',
+  'phy-ac':       'phy-em-induction',
+  'phy-emi':      'phy-em-induction',
+  'phy-emwave':   'phy-em-waves',
+  'phy-emw':      'phy-em-waves',
+  'phy-ray':      'phy-optics',             // phy-ray-reflection, phy-ray-prism, phy-ray-instruments
+  'phy-rayopt':   'phy-optics',
+  'phy-waveopt':  'phy-optics',
+  'phy-opt':      'phy-optics',
+  'phy-dual':     'phy-dual-nature',
+  'phy-atom':     'phy-atoms-nuclei',
+  'phy-nucl':     'phy-atoms-nuclei',
+  'phy-exp':      'phy-experimental',
+
+  // ── Chemistry (20 chapters) ───────────────────────────
+  'chem-basic':    'chem-basic-concepts',
+  'chem-states':   'chem-basic-concepts',     // States of Matter → Basic Concepts
+  'chem-hydrogen': 'chem-basic-concepts',     // Hydrogen → Basic Concepts
+  'chem-atom':     'chem-atomic-structure',
+  'chem-bond':     'chem-chemical-bonding',
+  'chem-thermo':   'chem-thermodynamics',
+  'chem-eq':       'chem-equilibrium',
+  'chem-redox':    'chem-redox',
+  'chem-sol':      'chem-solutions',
+  'chem-surface':  'chem-solutions',          // Surface Chemistry → Solutions
+  'chem-electro':  'chem-electrochemistry',
+  'chem-kin':      'chem-kinetics',
+  'chem-sblock':   'chem-periodicity',        // s-Block Elements → Periodicity
+  'chem-period':   'chem-periodicity',
+  'chem-pblock':   'chem-p-block',            // pblock11-*, pblock12-* → p-Block
+  'chem-p-block':  'chem-p-block',
+  'chem-metallurgy': 'chem-d-f-block',        // Metallurgy → d-f Block
+  'chem-dblock':   'chem-d-f-block',          // d-Block topics → d-f Block
+  'chem-d-f':      'chem-d-f-block',
+  'chem-coord':    'chem-coordination',
+  'chem-org':      'chem-organic-basics',
+  'chem-hydrocarbon': 'chem-hydrocarbons',    // chem-hydrocarbon-alkanes/alkenes/alkynes/aromatic
+  'chem-hc':       'chem-hydrocarbons',
+  'chem-halo':     'chem-haloalkanes',
+  'chem-phenol':   'chem-alcohols-ethers',    // Phenol reactions → Alcohols/Ethers
+  'chem-ether':    'chem-alcohols-ethers',    // Ether reactions → Alcohols/Ethers
+  'chem-alcohol':  'chem-alcohols-ethers',
+  'chem-carbonyl': 'chem-aldehydes-ketones',  // Carbonyl compounds → Aldehydes/Ketones
+  'chem-carboxylic': 'chem-aldehydes-ketones', // Carboxylic acids → Aldehydes/Ketones chapter
+  'chem-ald':      'chem-aldehydes-ketones',
+  'chem-amine':    'chem-amines',
+  'chem-polymer':  'chem-biomolecules',       // Polymers → Biomolecules
+  'chem-everyday': 'chem-biomolecules',       // Chemistry in Everyday Life → Biomolecules
+  'chem-environment': 'chem-biomolecules',    // Environmental Chemistry → Biomolecules
+  'chem-biomol':   'chem-biomolecules',
+};
+
+function resolveChapterId(subject, chapterFolder, questionId) {
+  // Primary: match question ID prefix against TOPIC_TO_CHAPTER
+  if (questionId) {
+    for (const [prefix, chapterId] of Object.entries(TOPIC_TO_CHAPTER)) {
+      if (questionId.startsWith(prefix)) return chapterId;
+    }
+  }
+  // Fallback: return null so we can log a clear warning
+  return null;
 }
 
 // ============================================================================
