@@ -237,45 +237,45 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B40 | `chem-solid-lattice` | Crystal Lattices and Unit Cells | 20 | PENDING |
-| B41 | `chem-solid-packing` | Packing Efficiency and Voids | 20 | PENDING |
-| B42 | `chem-solid-defects` | Defects in Solids and Electrical Properties | 20 | PENDING |
+| B40 | `chem-solid-lattice` | Crystal Lattices and Unit Cells | 20 | DONE |
+| B41 | `chem-solid-packing` | Packing Efficiency and Voids | 20 | DONE |
+| B42 | `chem-solid-defects` | Defects in Solids and Electrical Properties | 20 | DONE |
 | | | **Chapter 15 Total** | **60** | |
 
 ### Chapter 16: Solutions (`chem-solutions`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B43 | `chem-soln-raoult` | Types of Solutions and Raoult's Law | 20 | PENDING |
-| B44 | `chem-soln-colligative` | Colligative Properties (Boiling Point Elevation, Freezing Point Depression, Osmotic Pressure) | 20 | PENDING |
-| B45 | `chem-soln-abnormal` | Abnormal Molar Mass and Van't Hoff Factor | 20 | PENDING |
+| B43 | `chem-soln-raoult` | Types of Solutions and Raoult's Law | 20 | DONE |
+| B44 | `chem-soln-colligative` | Colligative Properties (Boiling Point Elevation, Freezing Point Depression, Osmotic Pressure) | 20 | DONE |
+| B45 | `chem-soln-abnormal` | Abnormal Molar Mass and Van't Hoff Factor | 20 | DONE |
 | | | **Chapter 16 Total** | **60** | |
 
 ### Chapter 17: Electrochemistry (`chem-electrochem`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B46 | `chem-electrochem-cells` | Electrochemical Cells (Galvanic and Electrolytic) | 20 | PENDING |
-| B47 | `chem-electrochem-nernst` | Nernst Equation and EMF | 20 | PENDING |
-| B48 | `chem-electrochem-conductance` | Conductance, Kohlrausch's Law, Batteries, and Corrosion | 20 | PENDING |
+| B46 | `chem-electrochem-cells` | Electrochemical Cells (Galvanic and Electrolytic) | 20 | DONE |
+| B47 | `chem-electrochem-nernst` | Nernst Equation and EMF | 20 | DONE |
+| B48 | `chem-electrochem-conductance` | Conductance, Kohlrausch's Law, Batteries, and Corrosion | 20 | DONE |
 | | | **Chapter 17 Total** | **60** | |
 
 ### Chapter 18: Chemical Kinetics (`chem-kinetics`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B49 | `chem-kinetics-rate` | Rate of Reaction and Rate Law | 20 | PENDING |
-| B50 | `chem-kinetics-order` | Integrated Rate Equations and Half-Life | 20 | PENDING |
-| B51 | `chem-kinetics-arrhenius` | Arrhenius Equation and Collision Theory | 20 | PENDING |
+| B49 | `chem-kinetics-rate` | Rate of Reaction and Rate Law | 20 | DONE |
+| B50 | `chem-kinetics-order` | Integrated Rate Equations and Half-Life | 20 | DONE |
+| B51 | `chem-kinetics-arrhenius` | Arrhenius Equation and Collision Theory | 20 | DONE |
 | | | **Chapter 18 Total** | **60** | |
 
 ### Chapter 19: Surface Chemistry (`chem-surface`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B52 | `chem-surface-adsorption` | Adsorption (Physical and Chemical) | 20 | PENDING |
-| B53 | `chem-surface-catalysis` | Catalysis (Homogeneous and Heterogeneous) | 20 | PENDING |
-| B54 | `chem-surface-colloids` | Colloids and Emulsions | 20 | PENDING |
+| B52 | `chem-surface-adsorption` | Adsorption (Physical and Chemical) | 20 | DONE |
+| B53 | `chem-surface-catalysis` | Catalysis (Homogeneous and Heterogeneous) | 20 | DONE |
+| B54 | `chem-surface-colloids` | Colloids and Emulsions | 20 | DONE |
 | | | **Chapter 19 Total** | **60** | |
 
 ---
@@ -288,35 +288,35 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B55 | `chem-metallurgy` | Thermodynamic Principles, Ellingham Diagram, and Refining | 20 | PENDING |
+| B55 | `chem-metallurgy` | Thermodynamic Principles, Ellingham Diagram, and Refining | 20 | DONE |
 | | | **Chapter 20 Total** | **20** | |
 
 ### Chapter 21: p-Block Elements — Class 12 (`chem-pblock12`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B56 | `chem-pblock12-group15` | Group 15 — Nitrogen Family and Compounds | 20 | PENDING |
-| B57 | `chem-pblock12-group16` | Group 16 — Oxygen Family and Compounds | 20 | PENDING |
-| B58 | `chem-pblock12-group17` | Group 17 — Halogens and Compounds | 20 | PENDING |
-| B59 | `chem-pblock12-group18` | Group 18 — Noble Gases and Interhalogen Compounds | 20 | PENDING |
+| B56 | `chem-pblock12-group15` | Group 15 — Nitrogen Family and Compounds | 20 | DONE |
+| B57 | `chem-pblock12-group16` | Group 16 — Oxygen Family and Compounds | 20 | DONE |
+| B58 | `chem-pblock12-group17` | Group 17 — Halogens and Compounds | 20 | DONE |
+| B59 | `chem-pblock12-group18` | Group 18 — Noble Gases and Interhalogen Compounds | 20 | DONE |
 | | | **Chapter 21 Total** | **80** | |
 
 ### Chapter 22: d and f Block Elements (`chem-dblock`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B60 | `chem-dblock-properties` | General Properties of Transition Elements | 20 | PENDING |
-| B61 | `chem-dblock-compounds` | Important Compounds (KMnO₄, K₂Cr₂O₇) | 20 | PENDING |
-| B62 | `chem-dblock-inner` | Lanthanoids and Actinoids | 20 | PENDING |
+| B60 | `chem-dblock-properties` | General Properties of Transition Elements | 20 | DONE |
+| B61 | `chem-dblock-compounds` | Important Compounds (KMnO₄, K₂Cr₂O₇) | 20 | DONE |
+| B62 | `chem-dblock-inner` | Lanthanoids and Actinoids | 20 | DONE |
 | | | **Chapter 22 Total** | **60** | |
 
 ### Chapter 23: Coordination Compounds (`chem-coordination`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B63 | `chem-coord-theory` | Werner's Theory, Nomenclature, and Terminology | 20 | PENDING |
-| B64 | `chem-coord-isomerism` | Isomerism in Coordination Compounds | 20 | PENDING |
-| B65 | `chem-coord-cft` | Crystal Field Theory, Bonding, and Applications | 20 | PENDING |
+| B63 | `chem-coord-theory` | Werner's Theory, Nomenclature, and Terminology | 20 | DONE |
+| B64 | `chem-coord-isomerism` | Isomerism in Coordination Compounds | 20 | DONE |
+| B65 | `chem-coord-cft` | Crystal Field Theory, Bonding, and Applications | 20 | DONE |
 | | | **Chapter 23 Total** | **60** | |
 
 ---
@@ -329,59 +329,59 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B66 | `chem-haloalkane-prep` | Classification, Nomenclature, and Preparation | 20 | PENDING |
-| B67 | `chem-haloalkane-sn` | SN1, SN2, and Elimination Reactions | 20 | PENDING |
-| B68 | `chem-haloalkane-arene` | Haloarenes and Their Reactions | 20 | PENDING |
+| B66 | `chem-haloalkane-prep` | Classification, Nomenclature, and Preparation | 20 | DONE |
+| B67 | `chem-haloalkane-sn` | SN1, SN2, and Elimination Reactions | 20 | DONE |
+| B68 | `chem-haloalkane-arene` | Haloarenes and Their Reactions | 20 | DONE |
 | | | **Chapter 24 Total** | **60** | |
 
 ### Chapter 25: Alcohols, Phenols and Ethers (`chem-alcohols`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B69 | `chem-alcohol-reactions` | Alcohols (Preparation and Reactions) | 20 | PENDING |
-| B70 | `chem-phenol-reactions` | Phenols (Acidity and Reactions) | 20 | PENDING |
-| B71 | `chem-ether-reactions` | Ethers (Preparation and Reactions) | 20 | PENDING |
+| B69 | `chem-alcohol-reactions` | Alcohols (Preparation and Reactions) | 20 | DONE |
+| B70 | `chem-phenol-reactions` | Phenols (Acidity and Reactions) | 20 | DONE |
+| B71 | `chem-ether-reactions` | Ethers (Preparation and Reactions) | 20 | DONE |
 | | | **Chapter 25 Total** | **60** | |
 
 ### Chapter 26: Aldehydes, Ketones and Carboxylic Acids (`chem-carbonyl`) — 4 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B72 | `chem-carbonyl-prep` | Nomenclature and Preparation of Aldehydes and Ketones | 20 | PENDING |
-| B73 | `chem-carbonyl-reactions` | Reactions of Aldehydes and Ketones | 20 | PENDING |
-| B74 | `chem-carboxylic-acids` | Carboxylic Acids (Acidity and Reactions) | 20 | PENDING |
-| B75 | `chem-carbonyl-named` | Named Reactions and Distinction Tests | 20 | PENDING |
+| B72 | `chem-carbonyl-prep` | Nomenclature and Preparation of Aldehydes and Ketones | 20 | DONE |
+| B73 | `chem-carbonyl-reactions` | Reactions of Aldehydes and Ketones | 20 | DONE |
+| B74 | `chem-carboxylic-acids` | Carboxylic Acids (Acidity and Reactions) | 20 | DONE |
+| B75 | `chem-carbonyl-named` | Named Reactions and Distinction Tests | 20 | DONE |
 | | | **Chapter 26 Total** | **80** | |
 
 ### Chapter 27: Amines (`chem-amines`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B76 | `chem-amine-basics` | Classification, Nomenclature, and Preparation | 20 | PENDING |
-| B77 | `chem-amine-basicity` | Basicity and Chemical Reactions | 20 | PENDING |
-| B78 | `chem-amine-diazonium` | Diazonium Salts and Coupling Reactions | 20 | PENDING |
+| B76 | `chem-amine-basics` | Classification, Nomenclature, and Preparation | 20 | DONE |
+| B77 | `chem-amine-basicity` | Basicity and Chemical Reactions | 20 | DONE |
+| B78 | `chem-amine-diazonium` | Diazonium Salts and Coupling Reactions | 20 | DONE |
 | | | **Chapter 27 Total** | **60** | |
 
 ### Chapter 28: Biomolecules (`chem-biomolecules`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B79 | `chem-biomol-carbs` | Carbohydrates (Mono-, Di-, and Polysaccharides) | 20 | PENDING |
-| B80 | `chem-biomol-proteins` | Amino Acids, Proteins, Nucleic Acids, and Vitamins | 20 | PENDING |
+| B79 | `chem-biomol-carbs` | Carbohydrates (Mono-, Di-, and Polysaccharides) | 20 | DONE |
+| B80 | `chem-biomol-proteins` | Amino Acids, Proteins, Nucleic Acids, and Vitamins | 20 | DONE |
 | | | **Chapter 28 Total** | **40** | |
 
 ### Chapter 29: Polymers (`chem-polymers`) — 1 batch
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B81 | `chem-polymers` | Classification, Polymerization, and Important Polymers | 20 | PENDING |
+| B81 | `chem-polymers` | Classification, Polymerization, and Important Polymers | 20 | DONE |
 | | | **Chapter 29 Total** | **20** | |
 
 ### Chapter 30: Chemistry in Everyday Life (`chem-everyday`) — 1 batch
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B82 | `chem-everyday` | Drugs, Food Additives, and Cleansing Agents | 20 | PENDING |
+| B82 | `chem-everyday` | Drugs, Food Additives, and Cleansing Agents | 20 | DONE |
 | | | **Chapter 30 Total** | **20** | |
 
 ---
@@ -600,20 +600,20 @@ Commit and push.
 | Ch12 Organic Basics | 3 | 60 | 60 | 100% |
 | Ch13 Hydrocarbons | 4 | 80 | 80 | 100% |
 | Ch14 Environmental Chem | 1 | 20 | 20 | 100% |
-| Ch15 Solid State | 3 | 60 | 0 | 0% |
-| Ch16 Solutions | 3 | 60 | 0 | 0% |
-| Ch17 Electrochemistry | 3 | 60 | 0 | 0% |
-| Ch18 Chemical Kinetics | 3 | 60 | 0 | 0% |
-| Ch19 Surface Chemistry | 3 | 60 | 0 | 0% |
-| Ch20 Isolation of Elements | 1 | 20 | 0 | 0% |
-| Ch21 p-Block (Class 12) | 4 | 80 | 0 | 0% |
-| Ch22 d and f Block | 3 | 60 | 0 | 0% |
-| Ch23 Coordination Compounds | 3 | 60 | 0 | 0% |
-| Ch24 Haloalkanes | 3 | 60 | 0 | 0% |
-| Ch25 Alcohols, Phenols, Ethers | 3 | 60 | 0 | 0% |
-| Ch26 Aldehydes, Ketones, COOH | 4 | 80 | 0 | 0% |
-| Ch27 Amines | 3 | 60 | 0 | 0% |
-| Ch28 Biomolecules | 2 | 40 | 0 | 0% |
-| Ch29 Polymers | 1 | 20 | 0 | 0% |
-| Ch30 Chemistry in Everyday Life | 1 | 20 | 0 | 0% |
-| **TOTAL** | **82** | **1,640** | **780** | **48%** |
+| Ch15 Solid State | 3 | 60 | 60 | 100% |
+| Ch16 Solutions | 3 | 60 | 60 | 100% |
+| Ch17 Electrochemistry | 3 | 60 | 60 | 100% |
+| Ch18 Chemical Kinetics | 3 | 60 | 60 | 100% |
+| Ch19 Surface Chemistry | 3 | 60 | 60 | 100% |
+| Ch20 Isolation of Elements | 1 | 20 | 20 | 100% |
+| Ch21 p-Block (Class 12) | 4 | 80 | 80 | 100% |
+| Ch22 d and f Block | 3 | 60 | 60 | 100% |
+| Ch23 Coordination Compounds | 3 | 60 | 60 | 100% |
+| Ch24 Haloalkanes | 3 | 60 | 60 | 100% |
+| Ch25 Alcohols, Phenols, Ethers | 3 | 60 | 60 | 100% |
+| Ch26 Aldehydes, Ketones, COOH | 4 | 80 | 80 | 100% |
+| Ch27 Amines | 3 | 60 | 60 | 100% |
+| Ch28 Biomolecules | 2 | 40 | 40 | 100% |
+| Ch29 Polymers | 1 | 20 | 20 | 100% |
+| Ch30 Chemistry in Everyday Life | 1 | 20 | 20 | 100% |
+| **TOTAL** | **82** | **1,640** | **1,640** | **100%** |
