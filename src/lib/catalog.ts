@@ -113,11 +113,17 @@ export async function getExams(): Promise<CatalogExam[]> {
         .eq('is_active', true)
         .order('sort_order');
 
-      if (!error && data && data.length > 0) {
+      if (error) {
+        console.warn('[catalog] Failed to fetch exams:', error.message);
+      } else if (data && data.length > 0) {
         cachedExams = data as CatalogExam[];
         return cachedExams;
+      } else {
+        console.warn('[catalog] No exams found in DB');
       }
-    } catch {}
+    } catch (err) {
+      console.warn('[catalog] Exception fetching exams:', err);
+    }
   }
 
   cachedExams = FALLBACK_EXAMS;
@@ -134,10 +140,16 @@ export async function getSubjects(examId?: string): Promise<CatalogSubject[]> {
           .eq('is_active', true)
           .order('sort_order');
 
-        if (!error && data && data.length > 0) {
+        if (error) {
+          console.warn('[catalog] Failed to fetch subjects:', error.message);
+        } else if (data && data.length > 0) {
           cachedSubjects = data as CatalogSubject[];
+        } else {
+          console.warn('[catalog] No subjects found in DB');
         }
-      } catch {}
+      } catch (err) {
+        console.warn('[catalog] Exception fetching subjects:', err);
+      }
     }
 
     if (!cachedSubjects) {
@@ -162,11 +174,17 @@ export async function getLanguages(): Promise<CatalogLanguage[]> {
         .eq('is_active', true)
         .order('sort_order');
 
-      if (!error && data && data.length > 0) {
+      if (error) {
+        console.warn('[catalog] Failed to fetch languages:', error.message);
+      } else if (data && data.length > 0) {
         cachedLanguages = data as CatalogLanguage[];
         return cachedLanguages;
+      } else {
+        console.warn('[catalog] No languages found in DB');
       }
-    } catch {}
+    } catch (err) {
+      console.warn('[catalog] Exception fetching languages:', err);
+    }
   }
 
   cachedLanguages = FALLBACK_LANGUAGES;
@@ -188,31 +206,42 @@ export async function getChapters(subjectId: string, examId?: string): Promise<C
     return cachedChapters.get(cacheKey)!;
   }
 
-  if (supabase) {
-    try {
-      let query = supabase
-        .from('med_chapters')
-        .select('id, subject_id, exam_ids, branch, name, name_te, chapter_number, class_level, weightage, avg_questions, important_topics')
-        .eq('subject_id', subjectId)
-        .eq('is_active', true);
-
-      // Filter by exam_ids if provided (uses PostgreSQL array contains operator)
-      if (examId) {
-        query = query.contains('exam_ids', [examId]);
-      }
-
-      const { data, error } = await query.order('chapter_number');
-
-      if (!error && data && data.length > 0) {
-        const chapters = data as CatalogChapter[];
-        cachedChapters.set(cacheKey, chapters);
-        return chapters;
-      }
-    } catch {}
+  if (!supabase) {
+    console.warn('[catalog] Supabase not configured — cannot fetch chapters');
+    return [];
   }
 
-  // Return empty array if no chapters found (no fallback for chapters)
-  return [];
+  try {
+    let query = supabase
+      .from('med_chapters')
+      .select('id, subject_id, exam_ids, branch, name, name_te, chapter_number, class_level, weightage, avg_questions, important_topics')
+      .eq('subject_id', subjectId)
+      .eq('is_active', true);
+
+    // Filter by exam_ids if provided (uses PostgreSQL array contains operator)
+    if (examId) {
+      query = query.contains('exam_ids', [examId]);
+    }
+
+    const { data, error } = await query.order('chapter_number');
+
+    if (error) {
+      console.warn(`[catalog] Failed to fetch chapters for ${subjectId}:`, error.message, error.details);
+      return [];
+    }
+
+    if (!data || data.length === 0) {
+      console.warn(`[catalog] No chapters found for subject=${subjectId}, examId=${examId ?? 'any'}`);
+      return [];
+    }
+
+    const chapters = data as CatalogChapter[];
+    cachedChapters.set(cacheKey, chapters);
+    return chapters;
+  } catch (err) {
+    console.warn(`[catalog] Exception fetching chapters for ${subjectId}:`, err);
+    return [];
+  }
 }
 
 /** Get NEET subject IDs from catalog. */

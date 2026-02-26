@@ -21,7 +21,7 @@ import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { getSubjects, getChapters, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
 import { getProfile } from '../../src/lib/database';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
-import { NEET_CHAPTERS } from '../../src/data/chapters';
+// NEET_CHAPTERS fallback removed — chapters must come from DB
 import { RootState } from '../../src/store';
 import {
   StrengthLevel,
@@ -96,6 +96,7 @@ export default function SubjectDetailScreen() {
   const [subject, setSubject] = useState<CatalogSubject | null>(null);
   const [chapters, setChapters] = useState<CatalogChapter[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [examFilter, setExamFilter] = useState<string | undefined>(undefined);
 
   // Redux strength data
@@ -108,6 +109,7 @@ export default function SubjectDetailScreen() {
   useEffect(() => {
     (async () => {
       setIsLoading(true);
+      setLoadError(null);
       const profile = await getProfile();
       const userExam: ExamType | null = profile?.exam ?? null;
       const allSubjects = await getSubjects();
@@ -123,27 +125,16 @@ export default function SubjectDetailScreen() {
           filter = userExam ?? undefined;
         }
         setExamFilter(filter);
-        let subjectChapters = await getChapters(id!, filter);
+        const subjectChapters = await getChapters(id!, filter);
 
-        // Fallback to local NEET_CHAPTERS if Supabase returned nothing
         if (subjectChapters.length === 0) {
-          const localChapters = NEET_CHAPTERS.filter((c) => c.subjectId === id);
-          subjectChapters = localChapters.map((c) => ({
-            id: c.id,
-            subject_id: c.subjectId,
-            exam_ids: ['NEET'],
-            branch: '',
-            name: c.name,
-            name_te: c.nameTe ?? c.name,
-            chapter_number: 0,
-            class_level: null,
-            weightage: 0,
-            avg_questions: c.questionCount,
-            important_topics: [],
-          }));
+          console.warn(`[SubjectDetail] No chapters returned for subject=${id}, filter=${filter}`);
+          setLoadError(`No chapters found for ${found.name}. Check DB connection.`);
         }
 
         setChapters(subjectChapters);
+      } else {
+        setLoadError(`Subject "${id}" not found`);
       }
       setIsLoading(false);
     })();
@@ -240,6 +231,28 @@ export default function SubjectDetailScreen() {
       <DotGridBackground>
         <SafeAreaView style={styles.container}>
           <Text style={[Typography.body, { color: colors.text }]}>Loading...</Text>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.container}>
+          <View style={{ padding: Spacing.lg, gap: Spacing.md }}>
+            <Pressable onPress={() => router.back()} style={styles.backButton}>
+              <Text style={[Typography.body, { color: colors.textSecondary }]}>
+                {'\u2190'} Back
+              </Text>
+            </Pressable>
+            <Text style={[Typography.h2, { color: '#EF4444' }]}>
+              {loadError}
+            </Text>
+            <Text style={[Typography.body, { color: colors.textSecondary }]}>
+              Chapters should load from the database. If you see this, the Supabase query returned no data.
+            </Text>
+          </View>
         </SafeAreaView>
       </DotGridBackground>
     );
