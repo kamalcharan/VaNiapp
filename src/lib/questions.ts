@@ -120,8 +120,8 @@ function dbToV2(row: DbQuestion): QuestionV2 {
   const correctOption = dbOptions.find((o) => o.is_correct);
   const correctOptionId = correctOption?.option_key || row.correct_answer;
 
-  const questionId =
-    (row.payload as Record<string, unknown>)?.question_id as string || row.id;
+  const raw = (row.payload ?? {}) as Record<string, unknown>;
+  const questionId = (raw.question_id as string) || row.id;
 
   // Map elimination hints from DB
   const eliminationHints: EliminationHint[] = (row.med_elimination_hints || []).map((h) => ({
@@ -155,11 +155,95 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     eliminationTechnique: eliminationText,
     eliminationTechniqueTe: eliminationTextTe,
     eliminationHints,
-    // Map all DB questions as MCQ payload since all types have A/B/C/D options
-    payload: {
-      type: 'mcq',
-      options,
-      correctOptionId,
-    },
+    payload: buildPayload(row.question_type, raw, options, correctOptionId),
   };
+}
+
+// ── Build type-specific payload from DB row's payload JSON ───
+
+function buildPayload(
+  questionType: string,
+  raw: Record<string, unknown>,
+  options: Option[],
+  correctOptionId: string,
+): QuestionV2['payload'] {
+  switch (questionType) {
+    case 'assertion-reasoning':
+      return {
+        type: 'assertion-reasoning',
+        assertion: (raw.assertion as string) || '',
+        assertionTe: (raw.assertion_te as string) || '',
+        reason: (raw.reason as string) || '',
+        reasonTe: (raw.reason_te as string) || '',
+        options,
+        correctOptionId,
+      };
+
+    case 'match-the-following':
+      return {
+        type: 'match-the-following',
+        columnA: parseColumnItems(raw.column_a ?? raw.columnA),
+        columnB: parseColumnItems(raw.column_b ?? raw.columnB),
+        correctMapping: (raw.correct_mapping ?? raw.correctMapping ?? {}) as Record<string, string>,
+        options,
+        correctOptionId,
+      };
+
+    case 'true-false':
+      return {
+        type: 'true-false',
+        statement: (raw.statement as string) || '',
+        statementTe: (raw.statement_te as string) || '',
+        correctAnswer: raw.correct_answer === true || raw.correct_answer === 'true',
+      };
+
+    case 'fill-in-blanks':
+      return {
+        type: 'fill-in-blanks',
+        textWithBlanks: (raw.text_with_blanks as string) || '',
+        textWithBlanksTe: (raw.text_with_blanks_te as string) || '',
+        options,
+        correctOptionId,
+      };
+
+    case 'scenario-based':
+      return {
+        type: 'scenario-based',
+        scenario: (raw.scenario as string) || '',
+        scenarioTe: (raw.scenario_te as string) || '',
+        options,
+        correctOptionId,
+      };
+
+    case 'diagram-based':
+      return {
+        type: 'diagram-based',
+        imageUri: (raw.image_uri as string) || '',
+        imageAlt: (raw.image_alt as string) || '',
+        options,
+        correctOptionId,
+      };
+
+    case 'logical-sequence':
+      return {
+        type: 'logical-sequence',
+        items: parseColumnItems(raw.items),
+        correctOrder: Array.isArray(raw.correct_order) ? raw.correct_order as string[] : [],
+        options,
+        correctOptionId,
+      };
+
+    default:
+      return { type: 'mcq', options, correctOptionId };
+  }
+}
+
+/** Parse array of column/sequence items from DB payload JSON */
+function parseColumnItems(data: unknown): { id: string; text: string; textTe: string }[] {
+  if (!Array.isArray(data)) return [];
+  return data.map((item: Record<string, unknown>) => ({
+    id: String(item.id ?? ''),
+    text: String(item.text ?? ''),
+    textTe: String(item.text_te ?? item.textTe ?? ''),
+  }));
 }
