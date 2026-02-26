@@ -31,7 +31,14 @@
       "enabled": false
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "@sentry/react-native/expo",
+        {
+          "organization": "vikuna",
+          "project": "vani-app"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

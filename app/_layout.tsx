@@ -30,8 +30,12 @@ import { GlobalMusicOverlay } from '../src/components/GlobalMusicOverlay';
 import { getProfile, getUserSubjectIds, isOnboardingActuallyComplete, reportAppVersion } from '../src/lib/database';
 import { pullRemoteProgress } from '../src/lib/progressSync';
 import { getActiveSubscription } from '../src/lib/payments';
-import { reportError, installGlobalErrorHandler } from '../src/lib/errorReporting';
+import { reportError, installGlobalErrorHandler, initSentry, setSentryUser, setCurrentScreen } from '../src/lib/errorReporting';
 import { ErrorBoundary } from '../src/components/ErrorBoundary';
+
+// Initialize Sentry before anything else renders
+initSentry();
+installGlobalErrorHandler();
 
 NativeSplashScreen.preventAutoHideAsync();
 
@@ -89,6 +93,21 @@ export default function RootLayout() {
 
     return () => unsubscribe?.();
   }, []);
+
+  // Set Sentry user context when auth changes
+  useEffect(() => {
+    if (authState.status === 'authenticated' && authState.user) {
+      setSentryUser({ id: authState.user.id, email: authState.user.email ?? undefined });
+    } else {
+      setSentryUser(null);
+    }
+  }, [authState.status, authState.user?.id]);
+
+  // Track current screen for Sentry breadcrumbs
+  useEffect(() => {
+    const screen = segments.join('/') || 'root';
+    setCurrentScreen(screen);
+  }, [segments]);
 
   // When auth state changes: load profile, rehydrate per-user data, or reset
   useEffect(() => {
@@ -241,23 +260,25 @@ export default function RootLayout() {
     segments[0] !== 'setup';
 
   return (
-    <ReduxProvider store={store}>
-      <AuthContext.Provider value={authState}>
-        <OnboardingGateContext.Provider value={gateValue}>
-          <ThemeContext.Provider value={themeValue}>
-            <ToastProvider>
-              {isAuthLoading ? (
-                <View style={{ flex: 1, backgroundColor: '#fdfcf0', justifyContent: 'center', alignItems: 'center' }}>
-                  <ActivityIndicator size="large" color="#2563EB" />
-                </View>
-              ) : (
-                <Slot />
-              )}
-              <GlobalMusicOverlay />
-            </ToastProvider>
-          </ThemeContext.Provider>
-        </OnboardingGateContext.Provider>
-      </AuthContext.Provider>
-    </ReduxProvider>
+    <ErrorBoundary>
+      <ReduxProvider store={store}>
+        <AuthContext.Provider value={authState}>
+          <OnboardingGateContext.Provider value={gateValue}>
+            <ThemeContext.Provider value={themeValue}>
+              <ToastProvider>
+                {isAuthLoading ? (
+                  <View style={{ flex: 1, backgroundColor: '#fdfcf0', justifyContent: 'center', alignItems: 'center' }}>
+                    <ActivityIndicator size="large" color="#2563EB" />
+                  </View>
+                ) : (
+                  <Slot />
+                )}
+                <GlobalMusicOverlay />
+              </ToastProvider>
+            </ThemeContext.Provider>
+          </OnboardingGateContext.Provider>
+        </AuthContext.Provider>
+      </ReduxProvider>
+    </ErrorBoundary>
   );
 }

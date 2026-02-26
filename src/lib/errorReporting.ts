@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react-native';
 import { Platform } from 'react-native';
 import { supabase } from './supabase';
 
@@ -5,27 +6,22 @@ import { supabase } from './supabase';
 
 type ErrorSeverity = 'low' | 'medium' | 'high' | 'critical';
 
-interface ErrorReport {
-  message: string;
-  stack?: string;
-  severity: ErrorSeverity;
-  context?: string;       // e.g. "RootLayout.auth", "QuizScreen.sync"
-  componentStack?: string; // React error boundary componentStack
-  userId?: string;
-  extra?: Record<string, unknown>;
-}
+const SENTRY_LEVEL: Record<ErrorSeverity, Sentry.SeverityLevel> = {
+  low: 'info',
+  medium: 'warning',
+  high: 'error',
+  critical: 'fatal',
+};
 
 // ── In-memory dedup ──────────────────────────────────────────
-// Prevents the same error from flooding the DB in a tight loop.
 const _recentErrors = new Map<string, number>();
-const DEDUP_WINDOW_MS = 30_000; // 30 seconds
+const DEDUP_WINDOW_MS = 30_000;
 
 function isDuplicate(fingerprint: string): boolean {
   const now = Date.now();
   const lastSeen = _recentErrors.get(fingerprint);
   if (lastSeen && now - lastSeen < DEDUP_WINDOW_MS) return true;
   _recentErrors.set(fingerprint, now);
-  // Prune old entries
   if (_recentErrors.size > 100) {
     for (const [key, ts] of _recentErrors) {
       if (now - ts > DEDUP_WINDOW_MS) _recentErrors.delete(key);
@@ -34,11 +30,43 @@ function isDuplicate(fingerprint: string): boolean {
   return false;
 }
 
+// ── Initialize Sentry ────────────────────────────────────────
+
+export function initSentry(): void {
+  const dsn = process.env.EXPO_PUBLIC_SENTRY_DSN || '';
+  if (!dsn) {
+    console.warn('[VaNi] EXPO_PUBLIC_SENTRY_DSN not set — error reporting disabled');
+    return;
+  }
+
+  Sentry.init({
+    dsn,
+    debug: __DEV__,
+    environment: __DEV__ ? 'development' : 'production',
+    // Send 100% of errors, sample 20% of transactions for performance
+    tracesSampleRate: __DEV__ ? 1.0 : 0.2,
+    // Attach user info automatically
+    sendDefaultPii: true,
+    // Don't send in dev by default (noisy) — flip to true when testing Sentry
+    enabled: !__DEV__,
+  });
+}
+
+// ── Set user context (call after auth) ──────────────────────
+
+export function setSentryUser(user: { id: string; email?: string; name?: string } | null): void {
+  if (user) {
+    Sentry.setUser({ id: user.id, email: user.email, username: user.name });
+  } else {
+    Sentry.setUser(null);
+  }
+}
+
 // ── Core reporter ────────────────────────────────────────────
 
 /**
- * Report an error to Supabase `med_error_logs` table + console.warn.
- * Fire-and-forget — never throws.
+ * Report an error to Sentry + console.
+ * context = screen/function name, e.g. "PracticeExam.syncProgress"
  */
 export function reportError(
   error: unknown,
@@ -46,108 +74,81 @@ export function reportError(
   context?: string,
   extra?: Record<string, unknown>,
 ): void {
-  const report = normalizeError(error, severity, context, extra);
+  const err = toError(error);
 
-  // Always log to console for dev visibility
-  console.warn(`[VaNi Error] [${report.severity}] ${report.context ?? ''}:`, report.message);
+  console.warn(`[VaNi Error] [${severity}] ${context ?? ''}:`, err.message);
 
-  const fingerprint = `${report.context}:${report.message}`;
+  const fingerprint = `${context}:${err.message}`;
   if (isDuplicate(fingerprint)) return;
 
-  // Fire-and-forget persist to Supabase
-  persistError(report).catch(() => {
-    // Last-resort: if even persisting fails, there's nothing else we can do
+  Sentry.withScope((scope) => {
+    scope.setLevel(SENTRY_LEVEL[severity]);
+    if (context) scope.setTag('context', context);
+    if (extra) scope.setExtras(extra);
+    scope.setTag('platform', Platform.OS);
+    Sentry.captureException(err);
   });
 }
 
 /**
- * Capture a React Error Boundary crash.
+ * Capture a React Error Boundary crash — always critical.
  */
 export function reportCrash(
   error: unknown,
   componentStack?: string,
 ): void {
-  const report = normalizeError(error, 'critical', 'ErrorBoundary');
-  report.componentStack = componentStack ?? undefined;
+  const err = toError(error);
 
-  console.error('[VaNi CRASH]', report.message, componentStack);
+  console.error('[VaNi CRASH]', err.message, componentStack);
 
-  const fingerprint = `crash:${report.message}`;
+  const fingerprint = `crash:${err.message}`;
   if (isDuplicate(fingerprint)) return;
 
-  persistError(report).catch(() => {});
-}
-
-// ── Normalize any thrown value ───────────────────────────────
-
-function normalizeError(
-  error: unknown,
-  severity: ErrorSeverity,
-  context?: string,
-  extra?: Record<string, unknown>,
-): ErrorReport {
-  if (error instanceof Error) {
-    return {
-      message: error.message,
-      stack: error.stack,
-      severity,
-      context,
-      extra,
-    };
-  }
-  return {
-    message: String(error),
-    severity,
-    context,
-    extra,
-  };
-}
-
-// ── Persist to Supabase ─────────────────────────────────────
-
-async function persistError(report: ErrorReport): Promise<void> {
-  if (!supabase) return;
-
-  // Try to get current user ID (non-blocking)
-  let userId: string | undefined;
-  try {
-    const { data } = await supabase.auth.getUser();
-    userId = data.user?.id;
-  } catch {
-    // Can't get user — that's okay
-  }
-
-  const Constants = require('expo-constants').default;
-  const appVersion: string = Constants.expoConfig?.version ?? '0.0.0';
-
-  await supabase.from('med_error_logs').insert({
-    user_id: userId ?? null,
-    severity: report.severity,
-    message: report.message.slice(0, 2000),
-    stack: (report.stack ?? '').slice(0, 5000),
-    component_stack: (report.componentStack ?? '').slice(0, 3000),
-    context: report.context ?? null,
-    extra: report.extra ?? null,
-    app_version: appVersion,
-    platform: Platform.OS,
+  Sentry.withScope((scope) => {
+    scope.setLevel('fatal');
+    scope.setTag('context', 'ErrorBoundary');
+    if (componentStack) {
+      scope.setExtra('componentStack', componentStack);
+    }
+    Sentry.captureException(err);
   });
+}
+
+// ── Navigation tracking ──────────────────────────────────────
+
+/**
+ * Call when the active screen changes so Sentry breadcrumbs
+ * and error reports include which page the user was on.
+ */
+export function setCurrentScreen(screenName: string): void {
+  Sentry.addBreadcrumb({
+    category: 'navigation',
+    message: screenName,
+    level: 'info',
+  });
+  Sentry.setTag('screen', screenName);
+}
+
+// ── Helpers ──────────────────────────────────────────────────
+
+function toError(error: unknown): Error {
+  if (error instanceof Error) return error;
+  return new Error(String(error));
 }
 
 // ── Global JS error handler ─────────────────────────────────
 
 /**
  * Attach a global handler for uncaught JS errors + unhandled promise rejections.
- * Call once in root layout.
+ * Sentry's init already does this, but we add context tags.
  */
 export function installGlobalErrorHandler(): void {
-  // Unhandled promise rejections
   const originalHandler = (globalThis as any).onunhandledrejection;
   (globalThis as any).onunhandledrejection = (event: any) => {
     reportError(event?.reason ?? 'Unhandled promise rejection', 'high', 'unhandledRejection');
     originalHandler?.(event);
   };
 
-  // Global JS errors (React Native)
   const originalErrorHandler = ErrorUtils?.getGlobalHandler?.();
   ErrorUtils?.setGlobalHandler?.((error: Error, isFatal?: boolean) => {
     reportError(error, isFatal ? 'critical' : 'high', 'globalHandler');
