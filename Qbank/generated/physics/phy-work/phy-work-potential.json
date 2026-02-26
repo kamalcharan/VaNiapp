@@ -301,7 +301,7 @@
     "difficulty": "medium",
     "question_text": "In a roller coaster, a cart starts from rest at the top of a hill of height 45 m. Ignoring friction, the speed of the cart at the bottom of the hill is: (g = 10 m/s²)",
     "explanation": "By conservation of mechanical energy: mgh = ½mv². Solving: v² = 2gh = 2 × 10 × 45 = 900. Therefore v = √900 = 30 m/s. All gravitational PE at the top converts to KE at the bottom.",
-    "correct_answer": "A",
+    "correct_answer": "D",
     "concept_tags": ["roller-coaster", "conservation-of-mechanical-energy", "gravitational-PE-to-KE"],
     "topic": "Potential Energy and Conservation of Energy",
     "subject": "physics",
@@ -309,24 +309,24 @@
     "bloom_level": "apply",
     "exam_suitability": ["NEET"],
     "options": [
-      {"key": "A", "text": "30 m/s", "is_correct": true},
-      {"key": "B", "text": "45 m/s", "is_correct": false},
-      {"key": "C", "text": "15 m/s", "is_correct": false},
-      {"key": "D", "text": "20 m/s", "is_correct": false}
+      {"key": "A", "text": "45 m/s", "is_correct": false},
+      {"key": "B", "text": "15 m/s", "is_correct": false},
+      {"key": "C", "text": "20 m/s", "is_correct": false},
+      {"key": "D", "text": "30 m/s", "is_correct": true}
     ],
     "elimination_hints": [
       {
-        "option_key": "B",
+        "option_key": "A",
         "hint": "45 m/s equals the height numerically and has no physical basis here. From v² = 2gh = 2 × 10 × 45 = 900, v = 30 m/s, not 45 m/s.",
         "misconception": "Confusing the numerical value of height with the speed, without applying the correct energy formula."
       },
       {
-        "option_key": "C",
+        "option_key": "B",
         "hint": "15 m/s would correspond to v² = 225, meaning 2gh = 225, so h ≈ 11.25 m, which is not the given height of 45 m. Recompute: v = √(2 × 10 × 45) = √900 = 30 m/s.",
         "misconception": "Halving the speed or applying √(gh) instead of √(2gh)."
       },
       {
-        "option_key": "D",
+        "option_key": "C",
         "hint": "20 m/s corresponds to v² = 400, meaning h = 400/20 = 20 m, not 45 m. The height is 45 m, giving v = √(2 × 10 × 45) = 30 m/s.",
         "misconception": "Using v = √(gh) instead of v = √(2gh), missing the factor of 2 from the kinetic energy formula."
       }

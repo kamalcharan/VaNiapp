@@ -1,0 +1,742 @@
+[
+  {
+    "id": "phy-work-energy-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A force of 10 N acts on a body and displaces it by 5 m in the direction of the force. The work done by the force is:",
+    "explanation": "Work done by a constant force is given by W = F × d × cos θ. Here, F = 10 N, d = 5 m, and θ = 0° (force and displacement are in the same direction), so cos 0° = 1. Therefore, W = 10 × 5 × 1 = 50 J. Work is a scalar quantity measured in joules (J).",
+    "correct_answer": "A",
+    "concept_tags": ["work-definition", "constant-force", "W=Fd-costheta"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "50 J", "is_correct": true},
+      {"key": "B", "text": "2 J", "is_correct": false},
+      {"key": "C", "text": "15 J", "is_correct": false},
+      {"key": "D", "text": "0 J", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "2 J would result from dividing 10 by 5, not multiplying. Work done is the product F × d, not the ratio.",
+        "misconception": "Dividing force by displacement instead of multiplying."
+      },
+      {
+        "option_key": "C",
+        "hint": "15 J would result from adding F + d = 10 + 5 = 15. Work is not the sum of force and displacement.",
+        "misconception": "Adding force and displacement values instead of multiplying."
+      },
+      {
+        "option_key": "D",
+        "hint": "Zero work occurs only when the force is perpendicular to displacement (θ = 90°) or when displacement is zero. Here, the force is along the displacement, so work is non-zero.",
+        "misconception": "Confusing zero work condition; zero work requires θ = 90°, not θ = 0°."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The kinetic energy of a body of mass 4 kg moving with a velocity of 6 m/s is:",
+    "explanation": "Kinetic energy is given by KE = ½mv². Here, m = 4 kg and v = 6 m/s. So KE = ½ × 4 × 6² = ½ × 4 × 36 = 72 J. Kinetic energy is always positive since it depends on the square of velocity and mass is always positive.",
+    "correct_answer": "B",
+    "concept_tags": ["kinetic-energy", "KE-formula", "KE=half-mv-squared"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "24 J", "is_correct": false},
+      {"key": "B", "text": "72 J", "is_correct": true},
+      {"key": "C", "text": "144 J", "is_correct": false},
+      {"key": "D", "text": "48 J", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "24 J comes from ½ × 4 × 6 × 2 = 24 or simply ½mv without squaring v. Remember to square the velocity in KE = ½mv².",
+        "misconception": "Forgetting to square the velocity; using v instead of v²."
+      },
+      {
+        "option_key": "C",
+        "hint": "144 J = ½ × 4 × 36 × 2 = mv² without the ½ factor. The correct formula is KE = ½mv², not mv².",
+        "misconception": "Omitting the ½ factor in the kinetic energy formula."
+      },
+      {
+        "option_key": "D",
+        "hint": "48 J = ½ × 4 × 6² / (½) × (½) — this does not correspond to a standard formula. The correct result using KE = ½mv² is 72 J.",
+        "misconception": "Arithmetic error in computing ½ × 4 × 36."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A coolie carries a load of 50 kg on his head and walks 20 m on a horizontal road. The work done by gravity on the load is:",
+    "explanation": "Work done by gravity W = mgh, where h is the vertical displacement. Since the coolie walks on a horizontal road, the vertical displacement of the load is zero (h = 0). Therefore, W = mgh = 50 × 10 × 0 = 0 J. Gravity acts vertically downward, while displacement is horizontal; hence θ = 90° and cos 90° = 0, giving W = Fd cos θ = 0.",
+    "correct_answer": "C",
+    "concept_tags": ["work-done-by-gravity", "zero-work", "horizontal-motion"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "9800 J", "is_correct": false},
+      {"key": "B", "text": "1000 J", "is_correct": false},
+      {"key": "C", "text": "0 J", "is_correct": true},
+      {"key": "D", "text": "−9800 J", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "9800 J = 50 × 9.8 × 20 treats the horizontal distance as a vertical displacement. Gravity does work only when there is a vertical component of displacement.",
+        "misconception": "Using horizontal displacement instead of vertical displacement in W = mgh."
+      },
+      {
+        "option_key": "B",
+        "hint": "1000 J = 50 × 10 × 2, using an arbitrary value. Work done by gravity depends on vertical displacement, which is zero here.",
+        "misconception": "Incorrectly associating horizontal distance with height in the gravity work formula."
+      },
+      {
+        "option_key": "D",
+        "hint": "Negative work by gravity occurs when an object moves upward (opposite to gravity). On a horizontal path, gravity does zero work, not negative work.",
+        "misconception": "Confusing the sign convention; negative work requires a component of displacement opposing gravity."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The dimensional formula for work (or energy) is:",
+    "explanation": "Work = Force × Displacement = [MLT⁻²] × [L] = [ML²T⁻²]. This is the same dimensional formula as energy (since work and energy are equivalent by the work-energy theorem). The SI unit derived from this dimension is joule (J) = kg·m²·s⁻².",
+    "correct_answer": "D",
+    "concept_tags": ["dimensions-of-work", "dimensional-analysis", "units-of-energy"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "[MLT⁻²]", "is_correct": false},
+      {"key": "B", "text": "[ML²T⁻¹]", "is_correct": false},
+      {"key": "C", "text": "[M²L²T⁻²]", "is_correct": false},
+      {"key": "D", "text": "[ML²T⁻²]", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "[MLT⁻²] is the dimensional formula for force (F = ma), not work. Work = Force × Distance adds one more length dimension [L].",
+        "misconception": "Confusing the dimensions of force with those of work."
+      },
+      {
+        "option_key": "B",
+        "hint": "[ML²T⁻¹] is the dimensional formula for angular momentum or Planck's constant, not work. The time exponent for work is −2, not −1.",
+        "misconception": "Confusing work dimensions with angular momentum dimensions."
+      },
+      {
+        "option_key": "C",
+        "hint": "[M²L²T⁻²] has an incorrect mass exponent. Work depends linearly on mass (through force = ma), so the mass exponent should be 1, not 2.",
+        "misconception": "Incorrectly squaring the mass dimension."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A block of mass 2 kg starts from rest and slides down a frictionless inclined plane of height 5 m. Using g = 10 m/s², the speed of the block at the bottom of the incline is:",
+    "explanation": "Applying the work-energy theorem: Net work done = Change in KE. The only force doing work is gravity (normal force does no work as it is perpendicular to motion). Work done by gravity = mgh = 2 × 10 × 5 = 100 J. This equals the gain in KE: ½mv² = 100 J → v² = 100 × 2/2 = 100 → v = 10 m/s. Alternatively, using energy conservation: mgh = ½mv², v = √(2gh) = √(2 × 10 × 5) = √100 = 10 m/s.",
+    "correct_answer": "B",
+    "concept_tags": ["work-energy-theorem", "work-done-by-gravity", "inclined-plane"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "5 m/s", "is_correct": false},
+      {"key": "B", "text": "10 m/s", "is_correct": true},
+      {"key": "C", "text": "√50 m/s ≈ 7.07 m/s", "is_correct": false},
+      {"key": "D", "text": "20 m/s", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "5 m/s would result from v = √(gh) = √(10 × 5) = √50, which omits the factor of 2 in v = √(2gh). The correct formula from work-energy theorem gives v = √(2gh).",
+        "misconception": "Forgetting the factor of 2 in v = √(2gh) derived from ½mv² = mgh."
+      },
+      {
+        "option_key": "C",
+        "hint": "√50 ≈ 7.07 m/s = √(gh) = √(10 × 5), again missing the factor of 2. v = √(2 × 10 × 5) = √100 = 10 m/s.",
+        "misconception": "Using v = √(gh) instead of v = √(2gh)."
+      },
+      {
+        "option_key": "D",
+        "hint": "20 m/s = 2 × g × h / v, which has incorrect units and logic. The correct application of ½mv² = mgh gives v = 10 m/s.",
+        "misconception": "Incorrectly applying kinematics or energy equations leading to v = 2gh."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A force F = (3x² + 2) N acts along the x-axis on a particle. The work done in moving the particle from x = 0 to x = 2 m is:",
+    "explanation": "For a variable force, work done is W = ∫F dx. Here, W = ∫₀² (3x² + 2) dx = [x³ + 2x]₀² = (2³ + 2×2) − (0 + 0) = (8 + 4) − 0 = 12 J. The integration of a variable force over displacement gives the exact work done, which cannot be approximated by F × d with a constant force value.",
+    "correct_answer": "C",
+    "concept_tags": ["variable-force", "work-by-variable-force", "integration"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "8 J", "is_correct": false},
+      {"key": "B", "text": "10 J", "is_correct": false},
+      {"key": "C", "text": "12 J", "is_correct": true},
+      {"key": "D", "text": "16 J", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "8 J = ∫₀² 3x² dx = [x³]₀² = 8, which ignores the constant term (+2) in the force expression. The full integral is ∫(3x² + 2)dx = x³ + 2x.",
+        "misconception": "Integrating only the variable part of the force and ignoring the constant term."
+      },
+      {
+        "option_key": "B",
+        "hint": "10 J might come from F(1) × 2 = (3 + 2) × 2 = 10, using the midpoint value of force with the displacement. This is not the correct way to find work for a variable force; integration is needed.",
+        "misconception": "Using the force at a specific point multiplied by total displacement instead of integrating."
+      },
+      {
+        "option_key": "D",
+        "hint": "16 J = F(2) × 2 = (12 + 2) × 2 = 28 J is not 16 either; 16 J might arise from an arithmetic error. The correct integral gives [x³ + 2x]₀² = 8 + 4 = 12 J.",
+        "misconception": "Arithmetic error during integration or using endpoint force value incorrectly."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A spring of spring constant k = 200 N/m is compressed by 0.1 m from its natural length. The work done by the spring force during this compression is:",
+    "explanation": "Work done by the spring force when compressed by x is W_spring = −½kx². The spring force is a restoring force opposing the compression. W_spring = −½ × 200 × (0.1)² = −½ × 200 × 0.01 = −1 J. Alternatively, the work done ON the spring (by external force) is +½kx² = +1 J, but the work done BY the spring force itself is negative during compression.",
+    "correct_answer": "D",
+    "concept_tags": ["spring-force", "work-done-by-spring", "Hooke's-law", "elastic-PE"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "+2 J", "is_correct": false},
+      {"key": "B", "text": "+1 J", "is_correct": false},
+      {"key": "C", "text": "0 J", "is_correct": false},
+      {"key": "D", "text": "−1 J", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "+2 J = kx² = 200 × 0.01 without the ½ factor and with wrong sign. Work done by spring = −½kx² = −1 J during compression.",
+        "misconception": "Missing the ½ factor and confusing the sign of work done by the spring force."
+      },
+      {
+        "option_key": "B",
+        "hint": "+1 J is the work done ON the spring (by external agent), not BY the spring force. During compression, the spring force opposes displacement, so the work done by the spring is negative: −½kx² = −1 J.",
+        "misconception": "Confusing work done by the spring force with work done on the spring."
+      },
+      {
+        "option_key": "C",
+        "hint": "Zero work would require either zero force or zero displacement, or force perpendicular to displacement. None of these apply here. The spring force acts along the direction of compression.",
+        "misconception": "Incorrectly assuming spring does no work during compression."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The force-displacement graph for a particle moving along the x-axis is a straight line passing through the origin with slope 4 N/m. The work done in displacing the particle from x = 0 to x = 5 m is:",
+    "explanation": "From the force-displacement graph, work done = area under the F-x curve. Since the graph is a straight line through the origin with slope 4 N/m, it represents F = 4x. At x = 5 m, F = 4 × 5 = 20 N. The area under this line from x = 0 to x = 5 m is a triangle: W = ½ × base × height = ½ × 5 × 20 = 50 J. This also equals ∫₀⁵ 4x dx = [2x²]₀⁵ = 2 × 25 = 50 J.",
+    "correct_answer": "A",
+    "concept_tags": ["force-displacement-graph", "area-under-curve", "variable-force"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "50 J", "is_correct": true},
+      {"key": "B", "text": "100 J", "is_correct": false},
+      {"key": "C", "text": "20 J", "is_correct": false},
+      {"key": "D", "text": "25 J", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "100 J = F(5) × 5 = 20 × 5 = 100 J treats F as constant at its endpoint value and computes a rectangle area. For a linear F-x graph, the area is a triangle (½ × base × height), giving 50 J.",
+        "misconception": "Computing rectangular area under a triangular (linear) F-x graph."
+      },
+      {
+        "option_key": "C",
+        "hint": "20 J = F at x = 5 m alone; this is force (in Newtons), not work. Work requires integrating force over displacement.",
+        "misconception": "Confusing the value of force at the endpoint with the work done."
+      },
+      {
+        "option_key": "D",
+        "hint": "25 J = ½ × 5² × 2 = ½ × kx² with k = 2, which incorrectly applies a spring-like formula. The slope here is 4 N/m, so the area = ½ × 4 × 5² = 50 J.",
+        "misconception": "Arithmetic error or using slope × ½x² with wrong slope value."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A body of mass 5 kg is moving with velocity 4 m/s. A net force acts on it and its velocity increases to 6 m/s. The work done by the net force is:",
+    "explanation": "By the work-energy theorem, work done by net force = change in kinetic energy = KE_final − KE_initial. KE_initial = ½ × 5 × 4² = ½ × 5 × 16 = 40 J. KE_final = ½ × 5 × 6² = ½ × 5 × 36 = 90 J. W_net = ΔKE = 90 − 40 = 50 J. The work-energy theorem states that the net work done on a body equals the change in its kinetic energy.",
+    "correct_answer": "B",
+    "concept_tags": ["work-energy-theorem", "change-in-KE", "net-work"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "25 J", "is_correct": false},
+      {"key": "B", "text": "50 J", "is_correct": true},
+      {"key": "C", "text": "90 J", "is_correct": false},
+      {"key": "D", "text": "130 J", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "25 J = ½ × 5 × (6 − 4)² = ½ × 5 × 4 = 10 J, or possibly ½m(Δv)². The work-energy theorem requires ΔKE = ½mv_f² − ½mv_i², not ½m(v_f − v_i)².",
+        "misconception": "Incorrectly computing ½m(v_f − v_i)² instead of ½mv_f² − ½mv_i²."
+      },
+      {
+        "option_key": "C",
+        "hint": "90 J is only the final kinetic energy. The work done by the net force equals the CHANGE in KE, i.e., KE_final − KE_initial = 90 − 40 = 50 J.",
+        "misconception": "Using final KE alone instead of change in KE (final minus initial)."
+      },
+      {
+        "option_key": "D",
+        "hint": "130 J = KE_final + KE_initial = 90 + 40 = 130, which adds instead of subtracts. Work done = ΔKE = KE_final − KE_initial.",
+        "misconception": "Adding initial and final KE instead of finding their difference."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A force F = 10 N acts on a body at an angle of 60° to the direction of motion. If the body moves 4 m, the work done by the force is:",
+    "explanation": "Work done by a constant force W = F × d × cos θ. Here, F = 10 N, d = 4 m, and θ = 60°. W = 10 × 4 × cos 60° = 10 × 4 × 0.5 = 20 J. The cosine factor accounts for the component of force along the displacement. Only the component of force parallel to displacement contributes to work.",
+    "correct_answer": "C",
+    "concept_tags": ["work-at-angle", "W=Fd-costheta", "component-of-force"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "40 J", "is_correct": false},
+      {"key": "B", "text": "34.6 J", "is_correct": false},
+      {"key": "C", "text": "20 J", "is_correct": true},
+      {"key": "D", "text": "10√3 J ≈ 17.3 J", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "40 J = F × d = 10 × 4 without the cos θ factor. This gives work only when force and displacement are parallel (θ = 0°). Here θ = 60°, so multiply by cos 60° = 0.5.",
+        "misconception": "Ignoring the angle between force and displacement; forgetting the cos θ factor."
+      },
+      {
+        "option_key": "B",
+        "hint": "34.6 J ≈ 10 × 4 × cos 30° = 40 × (√3/2). This uses cos 30° instead of cos 60°. The angle given is 60°, so use cos 60° = 0.5.",
+        "misconception": "Using cos 30° instead of cos 60°, confusing the angle or its complement."
+      },
+      {
+        "option_key": "D",
+        "hint": "10√3 J ≈ 17.3 J = 10 × 4 × sin 60° / 2, which uses sin instead of cos, or some other combination. Work uses the cosine of the angle between F and d, giving 10 × 4 × cos 60° = 20 J.",
+        "misconception": "Using sin θ instead of cos θ in the work formula."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A particle of mass m moves along the x-axis under a force F = −kx (k > 0). It starts from rest at x = A. What is the kinetic energy of the particle when it reaches x = 0?",
+    "explanation": "Using the work-energy theorem: W_net = ΔKE. The particle starts from rest (KE_i = 0) at x = A and moves to x = 0. Work done by the force F = −kx: W = ∫_A^0 (−kx) dx = −k [x²/2]_A^0 = −k(0 − A²/2) = kA²/2. By work-energy theorem: KE_f = W = kA²/2 = ½kA². This is the elastic potential energy converted to kinetic energy, consistent with SHM where at the equilibrium position (x = 0), all potential energy converts to kinetic energy.",
+    "correct_answer": "A",
+    "concept_tags": ["work-energy-theorem", "spring-like-force", "SHM-energy", "variable-force"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "½kA²", "is_correct": true},
+      {"key": "B", "text": "kA²", "is_correct": false},
+      {"key": "C", "text": "¼kA²", "is_correct": false},
+      {"key": "D", "text": "2kA²", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "kA² omits the ½ factor. Work done by F = −kx from A to 0 is ∫_A^0 (−kx)dx = ½kA², not kA². The missing ½ comes from the integration of a linear force.",
+        "misconception": "Treating the force as constant (F = kA throughout) instead of integrating the variable force F = −kx."
+      },
+      {
+        "option_key": "C",
+        "hint": "¼kA² would result from integrating only over half the range or making an error in limits. The correct integral ∫_A^0 (−kx)dx = [−kx²/2]_A^0 = kA²/2 = ½kA².",
+        "misconception": "Arithmetic error in evaluating the definite integral, losing a factor of 2."
+      },
+      {
+        "option_key": "D",
+        "hint": "2kA² is four times the correct answer. There is no physical process here that could give this result. The work-energy theorem gives KE = W = ½kA².",
+        "misconception": "Incorrectly squaring or doubling intermediate results in the integration."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A body of mass 2 kg is projected vertically upward with a velocity of 20 m/s. The work done by gravity by the time the body reaches maximum height is: (g = 10 m/s²)",
+    "explanation": "At maximum height, the body momentarily comes to rest (v = 0). Using the work-energy theorem: W_net = ΔKE = KE_final − KE_initial = 0 − ½ × 2 × 20² = −400 J. Since gravity is the only force doing work (air resistance neglected), W_gravity = −400 J. Alternatively: maximum height h = v²/(2g) = 400/20 = 20 m. W_gravity = −mgh = −2 × 10 × 20 = −400 J. The work done by gravity is negative because gravity (downward) opposes the upward displacement.",
+    "correct_answer": "D",
+    "concept_tags": ["work-done-by-gravity", "negative-work", "work-energy-theorem", "projectile"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "+400 J", "is_correct": false},
+      {"key": "B", "text": "+200 J", "is_correct": false},
+      {"key": "C", "text": "−200 J", "is_correct": false},
+      {"key": "D", "text": "−400 J", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "+400 J has the correct magnitude but wrong sign. Gravity acts downward while the body moves upward, so the work done by gravity is negative. W = mgh × cos 180° = −mgh = −400 J.",
+        "misconception": "Ignoring the sign convention; work done against a force (opposing direction) is always negative."
+      },
+      {
+        "option_key": "B",
+        "hint": "+200 J = ½ × 2 × 20² / 2 = 200, which may arise from using ½mv² with an extra division by 2. The correct initial KE = ½ × 2 × 400 = 400 J, and the sign must be negative.",
+        "misconception": "Arithmetic error in computing KE, and sign error."
+      },
+      {
+        "option_key": "C",
+        "hint": "−200 J is half the correct answer. h = v²/(2g) = 400/20 = 20 m, and W = −mgh = −2 × 10 × 20 = −400 J. Using h = 10 m (v²/(2g²) or similar error) gives −200 J.",
+        "misconception": "Incorrectly computing maximum height using h = v/g instead of v²/(2g)."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "**Assertion (A):** The work done by the normal force on a body moving on a horizontal surface is always zero.\n\n**Reasoning (R):** The normal force acts perpendicular to the surface, and for horizontal motion, the displacement is along the surface; hence the angle between normal force and displacement is 90°.",
+    "explanation": "Assertion A is correct: for a body moving on a horizontal surface, the normal force acts vertically upward (perpendicular to the surface) while the displacement is horizontal. Thus the angle between them is 90° and W = F × d × cos 90° = 0. Reasoning R is also correct and provides the precise physical explanation — the normal force is always perpendicular to the displacement for horizontal surface motion, so cos 90° = 0 makes work zero. R is the correct explanation of A.",
+    "correct_answer": "A",
+    "concept_tags": ["normal-force", "zero-work", "perpendicular-force"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Option B requires both A and R to be true but R not explaining A. Here, R directly explains why work by normal force is zero (angle = 90° → cos 90° = 0), so R IS the correct explanation of A.",
+        "misconception": "Failing to recognise that R gives the direct causal reason for A."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C would require R to be incorrect. But R correctly states that normal force is perpendicular to displacement on a horizontal surface, making the angle 90°. R is correct.",
+        "misconception": "Doubting the correctness of R, which accurately describes the geometry of normal force and displacement."
+      },
+      {
+        "option_key": "D",
+        "hint": "Option D would require A to be incorrect. But it is indeed true that normal force does zero work on horizontal motion. A is correct.",
+        "misconception": "Thinking normal force might sometimes do non-zero work on a horizontal surface under standard conditions."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "**Assertion (A):** If the speed of a body doubles, its kinetic energy becomes four times.\n\n**Reasoning (R):** By the work-energy theorem, the net work done on a body equals the change in kinetic energy, and kinetic energy is directly proportional to the square of speed.",
+    "explanation": "Assertion A is correct: KE = ½mv². If v → 2v, then KE_new = ½m(2v)² = ½m × 4v² = 4 × ½mv² = 4 × KE_old. So KE becomes 4 times. Reasoning R is also correct: the work-energy theorem (W_net = ΔKE) and KE ∝ v² are both accurate statements. However, R does not directly explain WHY doubling speed quadruples KE. The specific explanation of A is that KE ∝ v² (squaring the factor of 2 gives 4), which is only partially captured in R. The work-energy theorem stated in R is an additional true fact but is not the core explanation for the quadrupling. Hence, both A and R are correct but R is NOT the correct (complete direct) explanation of A — the explanation of A is purely KE ∝ v², while R mentions both KE ∝ v² and the work-energy theorem as a combined statement, making R not a focused explanation of A.",
+    "correct_answer": "B",
+    "concept_tags": ["kinetic-energy", "KE-proportional-to-v-squared", "work-energy-theorem"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": true},
+      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
+      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "While R does contain KE ∝ v², it is bundled with the work-energy theorem which is not directly the explanation for why doubling v quadruples KE. R does not cleanly explain A; it provides associated but not directly causal reasoning.",
+        "misconception": "Accepting a partially relevant reasoning statement as a complete correct explanation."
+      },
+      {
+        "option_key": "C",
+        "hint": "R is indeed correct — both the work-energy theorem (W_net = ΔKE) and KE ∝ v² are valid physics. Option C would require R to be incorrect, which it is not.",
+        "misconception": "Incorrectly judging the work-energy theorem or KE ∝ v² to be wrong statements."
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correctly stated: doubling speed quadruples KE since KE = ½mv² and (2v)² = 4v². Option D would require A to be incorrect.",
+        "misconception": "Miscalculating: thinking KE doubles (proportional to v) rather than quadruples (proportional to v²)."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the following physical situations in Column I with the nature/sign of work done in Column II:\n\n**Column I**\nP. A person pushes a wall but it does not move\nQ. A ball falls freely under gravity\nR. A man carries a heavy box horizontally at constant velocity\nS. A planet moves in its elliptical orbit (consider gravitational force by sun)\n\n**Column II**\n1. Positive work\n2. Negative work\n3. Zero work\n4. Work done varies (can be positive or negative)",
+    "explanation": "P → 3 (Zero work): Displacement is zero since the wall does not move. W = F × 0 = 0. Q → 1 (Positive work): Gravity (downward) acts in the same direction as displacement (downward), so θ = 0° and W = mgh > 0. R → 3 (Zero work): The applied force on the box is upward (to support its weight), while displacement is horizontal. The angle between them is 90°, so W = 0. Also, the net work is zero as KE is constant (constant velocity). S → 4 (Work varies): In an elliptical orbit, the component of gravitational force along displacement changes. When moving away from the sun, gravity does negative work; when moving toward the sun, gravity does positive work. Correct match: P-3, Q-1, R-3, S-4.",
+    "correct_answer": "C",
+    "concept_tags": ["positive-negative-zero-work", "work-by-gravity", "work-done-situations"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "P-3, Q-1, R-2, S-4", "is_correct": false},
+      {"key": "B", "text": "P-3, Q-1, R-1, S-3", "is_correct": false},
+      {"key": "C", "text": "P-3, Q-1, R-3, S-4", "is_correct": true},
+      {"key": "D", "text": "P-2, Q-1, R-3, S-4", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Option A incorrectly assigns R → 2 (negative work). The man carries the box horizontally; the supporting force is vertical, displacement is horizontal (θ = 90°), so work = 0, not negative.",
+        "misconception": "Thinking that carrying a heavy load requires work against gravity in a horizontal displacement scenario."
+      },
+      {
+        "option_key": "B",
+        "hint": "Option B incorrectly assigns R → 1 (positive work) and S → 3 (zero work). For R, force is perpendicular to displacement (zero work). For S, in an elliptical orbit the gravitational force component along displacement changes sign, so work varies.",
+        "misconception": "Confusing effort with work for R; and assuming circular orbit conditions (constant zero work) for an elliptical orbit."
+      },
+      {
+        "option_key": "D",
+        "hint": "Option D incorrectly assigns P → 2 (negative work). Since the wall does not move, displacement is zero and work done = F × 0 = 0, regardless of force magnitude or direction.",
+        "misconception": "Assuming that applying force on an immovable wall constitutes negative work because the person tires."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match Column I (physical quantities/expressions) with Column II (their values or meanings):\n\n**Column I**\nP. Work done by friction on a sliding block on a rough surface\nQ. Work done by tension in a string on a body moving in a vertical circle\nR. Kinetic energy of a particle executing SHM at mean position with amplitude A, mass m, angular frequency ω\nS. Net work done on a body moving with uniform velocity\n\n**Column II**\n1. Zero\n2. ½mω²A²\n3. Negative\n4. Can be positive, negative, or zero depending on configuration",
+    "explanation": "P → 3 (Negative): Friction opposes relative motion; hence friction force and displacement are anti-parallel (θ = 180°), so work done by friction is always negative. Q → 4 (Can be positive, negative, or zero): Tension acts toward the centre (centripetal), while velocity (and thus displacement) is tangential. In a vertical circle, the angle between tension and displacement element changes continuously — when moving upward, tangential motion may have a component along or against tension in different configurations. Actually for circular motion, tension is always perpendicular to instantaneous displacement, so W_tension = 0. Reconsidering: Q → 1 (Zero) since tension is always centripetal (perpendicular to velocity in circular motion). R → 2 (½mω²A²): At mean position, all energy is kinetic: KE_max = ½mω²A². S → 1 (Zero): For uniform velocity, net force = 0, so net work = ΔKE = 0. Correct match: P-3, Q-1, R-2, S-1.",
+    "correct_answer": "D",
+    "concept_tags": ["friction-work", "tension-circular-motion", "SHM-KE", "uniform-velocity"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "P-3, Q-4, R-2, S-1", "is_correct": false},
+      {"key": "B", "text": "P-1, Q-1, R-2, S-3", "is_correct": false},
+      {"key": "C", "text": "P-3, Q-1, R-1, S-2", "is_correct": false},
+      {"key": "D", "text": "P-3, Q-1, R-2, S-1", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Option A assigns Q → 4 (variable), but tension in a circular motion is always perpendicular to the instantaneous velocity (tangential displacement), making it always zero, not variable. So Q → 1.",
+        "misconception": "Thinking tension can do variable work in circular motion; tension is always centripetal (perpendicular to velocity)."
+      },
+      {
+        "option_key": "B",
+        "hint": "Option B assigns P → 1 (zero), which is incorrect. Friction opposes motion, so the angle between friction force and displacement is 180°, giving negative work, not zero.",
+        "misconception": "Confusing static friction (which can do zero work on a stationary object) with kinetic friction on a sliding block."
+      },
+      {
+        "option_key": "C",
+        "hint": "Option C assigns R → 1 (zero), but at the mean position in SHM all energy is kinetic: KE = ½mω²A². It also assigns S → 2, but for uniform velocity ΔKE = 0, so net work = 0, not ½mω²A².",
+        "misconception": "Confusing SHM energy at mean position with zero, and misassigning net work for uniform velocity."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The work done by a force is a scalar quantity even though force and displacement are both vector quantities.",
+    "explanation": "True. Work is defined as the dot product (scalar product) of force and displacement vectors: W = F⃗ · d⃗ = F d cos θ. The dot product of two vectors always yields a scalar. Therefore, although both force (F⃗) and displacement (d⃗) are vectors, their dot product — work — is a scalar quantity having only magnitude (with a positive or negative sign) but no direction. This is why work is classified as a scalar.",
+    "correct_answer": "A",
+    "concept_tags": ["scalar-quantity", "dot-product", "work-definition"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "False would imply work is a vector, but the dot product W = F⃗ · d⃗ gives a scalar result with no directional property. Work can be positive or negative but that sign does not represent a direction.",
+        "misconception": "Thinking that because F and d are vectors, their product must also be a vector."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable (---). The statement is definitively True, as work = F⃗ · d⃗ is a scalar dot product.",
+        "misconception": "N/A — this is a placeholder option."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable (---). Work as a scalar is a fundamental definition in physics.",
+        "misconception": "N/A — this is a placeholder option."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "Kinetic energy of a body can be negative.",
+    "explanation": "False. Kinetic energy is given by KE = ½mv². Since mass m is always positive and v² (the square of velocity) is always non-negative (zero or positive), KE is always greater than or equal to zero. KE = 0 only when v = 0 (body at rest). A body can never have negative kinetic energy. Note: potential energy can be negative (as in gravitational PE taking a reference point), but kinetic energy is always non-negative.",
+    "correct_answer": "B",
+    "concept_tags": ["kinetic-energy", "non-negative-KE", "KE=half-mv-squared"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": false},
+      {"key": "B", "text": "False", "is_correct": true},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "True would imply KE can be negative. But KE = ½mv² ≥ 0 always, since m > 0 and v² ≥ 0. There is no scenario in classical mechanics where a body has negative kinetic energy.",
+        "misconception": "Confusing kinetic energy with work done (which can be negative) or with potential energy (which can be negative)."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable (---). The statement is definitively False since KE = ½mv² cannot be negative.",
+        "misconception": "N/A — this is a placeholder option."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable (---). KE is always non-negative, making the statement False.",
+        "misconception": "N/A — this is a placeholder option."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-19",
+    "question_type": "fill_in_the_blank",
+    "difficulty": "medium",
+    "question_text": "According to the work-energy theorem, the net work done on a body of mass 3 kg which accelerates from 2 m/s to 6 m/s is ________ J.",
+    "explanation": "The work-energy theorem states: W_net = ΔKE = KE_final − KE_initial = ½mv_f² − ½mv_i². Here, m = 3 kg, v_i = 2 m/s, v_f = 6 m/s. KE_initial = ½ × 3 × 2² = ½ × 3 × 4 = 6 J. KE_final = ½ × 3 × 6² = ½ × 3 × 36 = 54 J. W_net = 54 − 6 = 48 J. The work-energy theorem is one of the most powerful tools in mechanics for finding work without knowing individual forces.",
+    "correct_answer": "C",
+    "concept_tags": ["work-energy-theorem", "net-work", "change-in-KE"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "54 J", "is_correct": false},
+      {"key": "B", "text": "6 J", "is_correct": false},
+      {"key": "C", "text": "48 J", "is_correct": true},
+      {"key": "D", "text": "60 J", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "54 J is only the final kinetic energy. The net work done equals the CHANGE in KE = KE_final − KE_initial = 54 − 6 = 48 J, not just KE_final.",
+        "misconception": "Using final KE alone instead of the change in KE."
+      },
+      {
+        "option_key": "B",
+        "hint": "6 J is the initial kinetic energy. Net work = ΔKE = KE_final − KE_initial = 54 − 6 = 48 J, which is the difference, not the initial value alone.",
+        "misconception": "Using initial KE alone as the net work done."
+      },
+      {
+        "option_key": "D",
+        "hint": "60 J = 54 + 6 = KE_final + KE_initial, which adds instead of subtracts. The work-energy theorem requires ΔKE = KE_final − KE_initial = 48 J.",
+        "misconception": "Adding initial and final kinetic energies instead of computing their difference."
+      }
+    ]
+  },
+  {
+    "id": "phy-work-energy-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "**Scenario:** A rescue team uses a motor to lift a 500 kg load from the ground to the top of a 10 m tall building. During the lift, the cable exerts a constant upward force of 6000 N on the load (taking g = 10 m/s²).\n\n**Question:** Using the work-energy theorem, what is the kinetic energy of the load when it reaches the top of the building, assuming it starts from rest?",
+    "explanation": "The load starts from rest (KE_i = 0). Two forces act on the load: the cable tension (T = 6000 N upward) and gravity (W = mg = 500 × 10 = 5000 N downward). Both forces act over a displacement of 10 m (upward). Work done by tension: W_T = 6000 × 10 × cos 0° = 60000 J. Work done by gravity: W_g = 5000 × 10 × cos 180° = −50000 J. Net work done: W_net = W_T + W_g = 60000 − 50000 = 10000 J. By the work-energy theorem: KE_final = KE_initial + W_net = 0 + 10000 = 10000 J. The load gains 10000 J of kinetic energy, meaning it is still moving when it reaches the top.",
+    "correct_answer": "D",
+    "concept_tags": ["work-energy-theorem", "net-work", "multiple-forces", "scenario"],
+    "topic": "Work-Energy Theorem and Kinetic Energy",
+    "subject": "physics",
+    "chapter": "Work, Energy and Power",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      {"key": "A", "text": "0 J (the load reaches the top with zero kinetic energy)", "is_correct": false},
+      {"key": "B", "text": "60000 J", "is_correct": false},
+      {"key": "C", "text": "50000 J", "is_correct": false},
+      {"key": "D", "text": "10000 J", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Zero KE at the top would mean the net work is zero, which requires T = mg = 5000 N. But T = 6000 N > mg = 5000 N, so there is a net upward force doing net positive work (10000 J), giving the load non-zero kinetic energy at the top.",
+        "misconception": "Assuming the load barely makes it to the top (like minimum-speed problems), ignoring that T > mg gives net positive work."
+      },
+      {
+        "option_key": "B",
+        "hint": "60000 J is only the work done by the cable tension. The work-energy theorem requires considering ALL forces: W_net = W_tension + W_gravity = 60000 − 50000 = 10000 J.",
+        "misconception": "Considering only the work done by the applied/tension force and ignoring the negative work done by gravity."
+      },
+      {
+        "option_key": "C",
+        "hint": "50000 J is the magnitude of work done by gravity (or the work needed to lift the load against gravity at minimum — i.e., at zero final KE). Net work = 60000 − 50000 = 10000 J is the actual KE gained.",
+        "misconception": "Using only the work done against gravity (= mgh = 50000 J) as the kinetic energy, ignoring the extra work by the tension beyond what gravity needs."
+      }
+    ]
+  }
+]
