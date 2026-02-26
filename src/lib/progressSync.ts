@@ -62,7 +62,15 @@ export async function pullRemoteProgress(): Promise<void> {
 
   const state = store.getState();
   const localChapters = state.strength.chapters;
-  const merged: Record<string, ChapterStrengthData> = { ...localChapters };
+  // Deep-clone local chapters to avoid frozen Immer references
+  const merged: Record<string, ChapterStrengthData> = {};
+  for (const [k, v] of Object.entries(localChapters)) {
+    merged[k] = {
+      ...v,
+      questionResults: { ...(v.questionResults ?? {}) },
+      attemptedIds: [...(v.attemptedIds ?? [])],
+    };
+  }
 
   for (const row of data) {
     const local = localChapters[row.chapter_id];

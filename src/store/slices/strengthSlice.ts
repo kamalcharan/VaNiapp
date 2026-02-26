@@ -138,22 +138,24 @@ const strengthSlice = createSlice({
       const incoming = action.payload;
       const migrated: Record<string, ChapterStrengthData> = {};
 
-      for (const [key, data] of Object.entries(incoming.chapters)) {
+      for (const [key, rawData] of Object.entries(incoming.chapters)) {
         const newKey = LEGACY_CHAPTER_MAP[key] ?? key;
 
-        // Migrate old format: if questionResults doesn't exist, build from attemptedIds
-        if (!data.questionResults) {
-          const results: Record<string, boolean> = {};
+        // Deep-clone to avoid mutating frozen Immer state from Redux
+        const data: ChapterStrengthData = {
+          ...rawData,
+          questionResults: { ...(rawData.questionResults ?? {}) },
+          attemptedIds: [...(rawData.attemptedIds ?? [])],
+        };
+
+        // Migrate old format: if questionResults is empty, build from attemptedIds
+        if (Object.keys(data.questionResults).length === 0 && data.attemptedIds.length > 0) {
           // Best guess: distribute correctCount across attemptedIds
           // (can't know which specific questions were correct from old data)
-          const ids = data.attemptedIds ?? [];
           const correctCount = data.correctCount ?? 0;
-          const total = ids.length;
-          for (let i = 0; i < total; i++) {
-            // Mark the first N as correct proportionally
-            results[ids[i]] = i < correctCount;
+          for (let i = 0; i < data.attemptedIds.length; i++) {
+            data.questionResults[data.attemptedIds[i]] = i < correctCount;
           }
-          data.questionResults = results;
         }
 
         if (newKey !== key && migrated[newKey]) {
