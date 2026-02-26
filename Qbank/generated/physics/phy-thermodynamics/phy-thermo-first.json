@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-thermo-first-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "According to the first law of thermodynamics, if 200 J of heat is supplied to a system and the system does 50 J of work, the increase in internal energy of the system is:",
+    "explanation": "By the first law of thermodynamics, Q = ΔU + W. Here Q = 200 J and W = 50 J. Therefore, ΔU = Q − W = 200 − 50 = 150 J. The internal energy of the system increases by 150 J.",
+    "correct_answer": "A",
+    "concept_tags": ["first law of thermodynamics", "internal energy", "heat and work"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "150 J", "is_correct": true },
+      { "key": "B", "text": "250 J", "is_correct": false },
+      { "key": "C", "text": "200 J", "is_correct": false },
+      { "key": "D", "text": "100 J", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "250 J would result from adding Q and W instead of subtracting. The first law is ΔU = Q − W, not Q + W.", "misconception": "Adding heat and work instead of subtracting work from heat" },
+      { "option_key": "C", "hint": "200 J equals the heat supplied, but some of this energy was used to do work. The internal energy increase must be less than the heat input.", "misconception": "Ignoring the work done by the system" },
+      { "option_key": "D", "hint": "100 J does not follow from Q − W = 200 − 50. Check the arithmetic carefully.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In an isochoric (constant volume) process, the work done by the gas is:",
+    "explanation": "In an isochoric process, the volume remains constant, so ΔV = 0. Since work done by the gas is W = PΔV, and ΔV = 0, the work done W = 0. All the heat added goes into changing the internal energy: Q = ΔU.",
+    "correct_answer": "D",
+    "concept_tags": ["isochoric process", "zero work", "constant volume"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "PΔV", "is_correct": false },
+      { "key": "B", "text": "nRT ln(V₂/V₁)", "is_correct": false },
+      { "key": "C", "text": "nCᵥΔT", "is_correct": false },
+      { "key": "D", "text": "Zero", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "PΔV is the general expression for work, but in an isochoric process ΔV = 0, so PΔV = 0.", "misconception": "Not recognizing that ΔV = 0 in an isochoric process" },
+      { "option_key": "B", "hint": "nRT ln(V₂/V₁) is the work done in an isothermal process, not an isochoric process.", "misconception": "Confusing isothermal work formula with isochoric process" },
+      { "option_key": "C", "hint": "nCᵥΔT represents the change in internal energy (or heat added at constant volume), not the work done.", "misconception": "Confusing internal energy change with work done" }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Internal energy of an ideal gas is a:",
+    "explanation": "Internal energy is a state function, which means it depends only on the current state of the system (described by state variables like temperature and pressure) and not on the path taken to reach that state. For an ideal gas, internal energy depends only on temperature.",
+    "correct_answer": "B",
+    "concept_tags": ["internal energy", "state function", "path function"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Path function", "is_correct": false },
+      { "key": "B", "text": "State function", "is_correct": true },
+      { "key": "C", "text": "Both state and path function", "is_correct": false },
+      { "key": "D", "text": "Neither state nor path function", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Heat and work are path functions, but internal energy depends only on the state of the system, not on the process used to reach that state.", "misconception": "Confusing internal energy with heat or work" },
+      { "option_key": "C", "hint": "A quantity cannot be both a state function and a path function simultaneously. These are mutually exclusive categories.", "misconception": null },
+      { "option_key": "D", "hint": "Internal energy is well-defined for any equilibrium state and has a unique value for each state, making it a state function.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two moles of an ideal gas are compressed isothermally at 300 K from a volume of 10 L to 5 L. The work done on the gas is approximately (R = 8.314 J mol⁻¹ K⁻¹, ln 2 = 0.693):",
+    "explanation": "For an isothermal process, W = nRT ln(V₂/V₁). Here n = 2, T = 300 K, V₂/V₁ = 5/10 = 0.5. So W = 2 × 8.314 × 300 × ln(0.5) = 4988.4 × (−0.693) = −3457 J ≈ −3456 J. This is work done BY the gas. Work done ON the gas = +3456 J ≈ 3.46 kJ.",
+    "correct_answer": "C",
+    "concept_tags": ["isothermal process", "work done", "compression", "ideal gas"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "−3456 J", "is_correct": false },
+      { "key": "B", "text": "1728 J", "is_correct": false },
+      { "key": "C", "text": "3456 J", "is_correct": true },
+      { "key": "D", "text": "6912 J", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "−3456 J is the work done BY the gas during compression. The question asks for work done ON the gas, which has the opposite sign.", "misconception": "Confusing work done by the gas with work done on the gas" },
+      { "option_key": "B", "hint": "1728 J would result from using only 1 mole instead of 2 moles in the calculation.", "misconception": "Using wrong number of moles" },
+      { "option_key": "D", "hint": "6912 J would result from incorrectly doubling the answer, possibly by using ln 4 instead of ln 2.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In an adiabatic process for an ideal gas, which of the following is true?",
+    "explanation": "In an adiabatic process, no heat is exchanged with the surroundings (Q = 0). By the first law, ΔU = Q − W = −W. If the gas expands (W > 0), ΔU < 0 and the temperature decreases. If the gas is compressed (W < 0), ΔU > 0 and the temperature increases. The relation PVᵞ = constant holds throughout the process.",
+    "correct_answer": "A",
+    "concept_tags": ["adiabatic process", "PV gamma constant", "no heat exchange"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "PVᵞ = constant", "is_correct": true },
+      { "key": "B", "text": "PV = constant", "is_correct": false },
+      { "key": "C", "text": "Temperature remains constant", "is_correct": false },
+      { "key": "D", "text": "Work done by the gas is zero", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "PV = constant (Boyle's law) applies to an isothermal process, not an adiabatic process. The adiabatic relation involves the exponent γ.", "misconception": "Confusing isothermal and adiabatic process equations" },
+      { "option_key": "C", "hint": "Temperature remains constant in an isothermal process, not in an adiabatic process. In adiabatic expansion, the gas cools down.", "misconception": "Confusing adiabatic with isothermal process" },
+      { "option_key": "D", "hint": "Work done is zero in an isochoric (constant volume) process, not in an adiabatic process. In adiabatic expansion or compression, work is nonzero.", "misconception": "Confusing adiabatic with isochoric process" }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An ideal gas expands isobarically at a pressure of 2 × 10⁵ Pa. If the volume changes from 2 × 10⁻³ m³ to 5 × 10⁻³ m³, the work done by the gas is:",
+    "explanation": "In an isobaric (constant pressure) process, W = PΔV = P(V₂ − V₁) = 2 × 10⁵ × (5 × 10⁻³ − 2 × 10⁻³) = 2 × 10⁵ × 3 × 10⁻³ = 600 J.",
+    "correct_answer": "D",
+    "concept_tags": ["isobaric process", "work done", "PΔV"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1000 J", "is_correct": false },
+      { "key": "B", "text": "300 J", "is_correct": false },
+      { "key": "C", "text": "200 J", "is_correct": false },
+      { "key": "D", "text": "600 J", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1000 J would result from using V₂ = 5 × 10⁻³ directly instead of the change in volume ΔV = V₂ − V₁ = 3 × 10⁻³ m³.", "misconception": "Using final volume instead of change in volume" },
+      { "option_key": "B", "hint": "300 J would result from using half the correct pressure or making a factor-of-2 error in the calculation.", "misconception": null },
+      { "option_key": "C", "hint": "200 J does not match P × ΔV with the given values. Recheck that ΔV = 3 × 10⁻³ m³.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For an ideal gas, Cₚ − Cᵥ equals:",
+    "explanation": "For an ideal gas, the difference between the molar specific heat at constant pressure (Cₚ) and the molar specific heat at constant volume (Cᵥ) is always equal to the universal gas constant R. This is known as Mayer's relation: Cₚ − Cᵥ = R. This arises because at constant pressure, additional energy is needed for the gas to do expansion work (PΔV = nRΔT).",
+    "correct_answer": "B",
+    "concept_tags": ["Mayer relation", "specific heats", "Cp minus Cv", "gas constant"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "2R", "is_correct": false },
+      { "key": "B", "text": "R", "is_correct": true },
+      { "key": "C", "text": "R/2", "is_correct": false },
+      { "key": "D", "text": "γR", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Mayer's relation gives Cₚ − Cᵥ = R, not 2R. The factor of 2 does not appear in this derivation.", "misconception": "Incorrect recall of Mayer's relation" },
+      { "option_key": "C", "hint": "R/2 is the contribution per degree of freedom to Cᵥ, not the difference Cₚ − Cᵥ.", "misconception": "Confusing degree of freedom contribution with Mayer's relation" },
+      { "option_key": "D", "hint": "γR would give Cₚ (since Cₚ = γCᵥ and Cᵥ = R/(γ−1), so Cₚ = γR/(γ−1)), not the difference Cₚ − Cᵥ.", "misconception": "Confusing Cₚ with Cₚ − Cᵥ" }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a cyclic process, the gas returns to its initial state. The change in internal energy and the relation between heat absorbed (Q) and work done (W) are:",
+    "explanation": "In a cyclic process, the system returns to its initial state. Since internal energy is a state function, ΔU = 0 for a complete cycle. By the first law, Q = ΔU + W = 0 + W, so Q = W. The net heat absorbed equals the net work done by the gas in a complete cycle.",
+    "correct_answer": "C",
+    "concept_tags": ["cyclic process", "state function", "internal energy", "Q equals W"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "ΔU = 0, Q = 0", "is_correct": false },
+      { "key": "B", "text": "ΔU ≠ 0, Q = W", "is_correct": false },
+      { "key": "C", "text": "ΔU = 0, Q = W", "is_correct": true },
+      { "key": "D", "text": "ΔU = 0, W = 0", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "While ΔU = 0 is correct, Q = 0 would also require W = 0, which is not generally true for a cyclic process. The enclosed area on a PV diagram represents nonzero net work.", "misconception": "Assuming both Q and W are zero in a cyclic process" },
+      { "option_key": "B", "hint": "Internal energy is a state function, so when the system returns to its initial state, ΔU must be zero.", "misconception": "Not recognizing internal energy as a state function" },
+      { "option_key": "D", "hint": "In a cyclic process on a PV diagram, the enclosed area represents nonzero net work. W = 0 only if the forward and return paths coincide.", "misconception": "Assuming work is zero in a cyclic process" }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "One mole of an ideal monoatomic gas (γ = 5/3) at temperature 300 K is adiabatically compressed to half its original volume. The final temperature of the gas is approximately:",
+    "explanation": "For an adiabatic process, TV^(γ−1) = constant. So T₁V₁^(γ−1) = T₂V₂^(γ−1). Here γ − 1 = 2/3, V₂ = V₁/2. Therefore T₂ = T₁ × (V₁/V₂)^(γ−1) = 300 × (2)^(2/3). Now 2^(2/3) = (2^2)^(1/3) = 4^(1/3) ≈ 1.587. So T₂ ≈ 300 × 1.587 ≈ 476 K.",
+    "correct_answer": "D",
+    "concept_tags": ["adiabatic process", "TV gamma-1 constant", "monoatomic gas", "temperature change"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "150 K", "is_correct": false },
+      { "key": "B", "text": "600 K", "is_correct": false },
+      { "key": "C", "text": "300 K", "is_correct": false },
+      { "key": "D", "text": "476 K", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "150 K would mean the temperature halved, which would apply only if temperature were directly proportional to volume. In adiabatic compression, the temperature increases.", "misconception": "Assuming T is proportional to V in adiabatic process" },
+      { "option_key": "B", "hint": "600 K assumes the temperature doubles when volume halves, which would hold for an isobaric process (T ∝ V), but this is an adiabatic process with γ = 5/3.", "misconception": "Applying isobaric relation to adiabatic process" },
+      { "option_key": "C", "hint": "300 K would mean no temperature change, which occurs in an isothermal process, not an adiabatic one. Adiabatic compression raises the temperature.", "misconception": "Confusing adiabatic with isothermal process" }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-10",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An ideal gas is taken through a cyclic process. In process A→B, the gas absorbs 600 J of heat and does 200 J of work. In process B→C, 400 J of heat is rejected by the gas and 100 J of work is done on the gas. In process C→A, 200 J of work is done on the gas. The heat exchanged in process C→A is:",
+    "explanation": "For the complete cycle, ΔU = 0, so Q_net = W_net. Process A→B: Q₁ = +600 J, W₁ = +200 J. Process B→C: Q₂ = −400 J, W₂ = −100 J (work done on gas). Process C→A: W₃ = −200 J (work done on gas), Q₃ = ? Net work: W_net = 200 + (−100) + (−200) = −100 J. Since Q_net = W_net for a cycle: Q₁ + Q₂ + Q₃ = −100. So 600 + (−400) + Q₃ = −100, giving Q₃ = −100 − 200 = −300 J. The gas rejects 300 J of heat during C→A.",
+    "correct_answer": "A",
+    "concept_tags": ["cyclic process", "first law", "net heat equals net work", "state function"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "−300 J (rejected)", "is_correct": true },
+      { "key": "B", "text": "−200 J (rejected)", "is_correct": false },
+      { "key": "C", "text": "+100 J (absorbed)", "is_correct": false },
+      { "key": "D", "text": "−100 J (rejected)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "−200 J equals the work done on the gas during C→A, but Q₃ ≠ W₃ unless ΔU_CA = 0. The heat must satisfy the cyclic constraint Q_net = W_net.", "misconception": "Equating heat to work for an individual process without checking ΔU" },
+      { "option_key": "C", "hint": "+100 J would make Q_net = 600 − 400 + 100 = 300 J, but W_net = −100 J. For a cycle, Q_net must equal W_net.", "misconception": "Incorrect application of cyclic process constraint" },
+      { "option_key": "D", "hint": "−100 J would give Q_net = 600 − 400 − 100 = 100 J, which does not equal W_net = −100 J.", "misconception": "Arithmetic error in applying the first law to the cycle" }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "One mole of an ideal diatomic gas (γ = 7/5) initially at 27°C and 1 atm undergoes adiabatic compression until the pressure becomes 32 atm. The final temperature of the gas is (given 2^(2/7) ≈ 1.219 and 32^(2/7) = 4):",
+    "explanation": "For an adiabatic process, T₁^γ P₁^(1−γ) = T₂^γ P₂^(1−γ), which gives T₂/T₁ = (P₂/P₁)^((γ−1)/γ). Here γ = 7/5, so (γ−1)/γ = (2/5)/(7/5) = 2/7. T₁ = 27 + 273 = 300 K, P₂/P₁ = 32. Therefore T₂ = 300 × (32)^(2/7) = 300 × 4 = 1200 K = 927°C.",
+    "correct_answer": "B",
+    "concept_tags": ["adiabatic process", "diatomic gas", "temperature-pressure relation", "gamma"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "600 K", "is_correct": false },
+      { "key": "B", "text": "1200 K", "is_correct": true },
+      { "key": "C", "text": "927 K", "is_correct": false },
+      { "key": "D", "text": "2400 K", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "600 K results from using (γ−1)/γ = 1/5 instead of the correct value 2/7, or from an incorrect calculation of 32^(2/7).", "misconception": "Incorrect exponent in the adiabatic temperature-pressure relation" },
+      { "option_key": "C", "hint": "927 corresponds to the final temperature in °C (1200 K = 927°C). The question asks for the answer in kelvin, and options are in kelvin.", "misconception": "Forgetting to convert the final answer or mixing up K and °C" },
+      { "option_key": "D", "hint": "2400 K would result from using 32^(2/7) = 8 instead of the correct value of 4.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An ideal monoatomic gas (n = 2 mol, Cᵥ = 3R/2) at 400 K absorbs 5000 J of heat at constant pressure. The work done by the gas and the rise in temperature are respectively (R = 8.314 J mol⁻¹ K⁻¹):",
+    "explanation": "For a monoatomic ideal gas, Cₚ = Cᵥ + R = 3R/2 + R = 5R/2. At constant pressure, Q = nCₚΔT, so ΔT = Q/(nCₚ) = 5000/(2 × 5 × 8.314/2) = 5000/(5 × 8.314) = 5000/41.57 ≈ 120.3 K ≈ 120 K. Work done W = nRΔT = 2 × 8.314 × 120.3 ≈ 2000 J. Alternatively, W = Q × (R/Cₚ) = 5000 × (R/(5R/2)) = 5000 × 2/5 = 2000 J.",
+    "correct_answer": "C",
+    "concept_tags": ["isobaric process", "specific heats", "monoatomic gas", "work done", "Mayer relation"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "W = 5000 J, ΔT = 200 K", "is_correct": false },
+      { "key": "B", "text": "W = 3000 J, ΔT = 80 K", "is_correct": false },
+      { "key": "C", "text": "W = 2000 J, ΔT = 120 K", "is_correct": true },
+      { "key": "D", "text": "W = 1000 J, ΔT = 240 K", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "W = 5000 J would mean all the heat goes into work, leaving no change in internal energy. At constant pressure, only a fraction (R/Cₚ = 2/5) of heat goes to work.", "misconception": "Assuming all heat converts to work at constant pressure" },
+      { "option_key": "B", "hint": "W = 3000 J would imply W/Q = 3/5, but for a monoatomic gas at constant pressure, W/Q = R/Cₚ = 2/5.", "misconception": "Using wrong ratio of Cᵥ/Cₚ instead of R/Cₚ" },
+      { "option_key": "D", "hint": "ΔT = 240 K would result from using Cᵥ instead of Cₚ in Q = nCΔT. At constant pressure, the appropriate specific heat is Cₚ, not Cᵥ.", "misconception": "Using Cᵥ instead of Cₚ for isobaric process" }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): In an adiabatic expansion of an ideal gas, the temperature of the gas decreases.\nReason (R): In an adiabatic process, no heat is exchanged with the surroundings, so the gas does work at the expense of its internal energy.",
+    "explanation": "Both the assertion and the reason are correct, and the reason is the correct explanation of the assertion. In an adiabatic expansion, Q = 0. By the first law, ΔU = Q − W = −W. Since work done by the gas during expansion is positive (W > 0), ΔU < 0, meaning the internal energy decreases. For an ideal gas, internal energy depends only on temperature, so a decrease in internal energy means a decrease in temperature.",
+    "correct_answer": "A",
+    "concept_tags": ["adiabatic expansion", "temperature decrease", "internal energy", "first law"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The reason directly explains why the temperature drops: with Q = 0, the work comes from internal energy, reducing it and hence the temperature. This is exactly the causal mechanism.", "misconception": "Failing to see the direct causal link between the reason and assertion" },
+      { "option_key": "C", "hint": "The reason is scientifically accurate. In an adiabatic process, Q = 0 by definition, and the gas indeed does work at the expense of internal energy.", "misconception": null },
+      { "option_key": "D", "hint": "The assertion is correct. Adiabatic expansion always leads to cooling for an ideal gas, as confirmed by TVᵞ⁻¹ = constant.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): In an isothermal expansion of an ideal gas, the heat absorbed by the gas is completely converted into work.\nReason (R): In an isothermal process, the pressure of an ideal gas remains constant.",
+    "explanation": "The assertion is correct. In an isothermal process for an ideal gas, ΔT = 0, so ΔU = nCᵥΔT = 0. By the first law, Q = ΔU + W = 0 + W = W. Thus, all the heat absorbed is converted into work. The reason is incorrect. In an isothermal process, the temperature remains constant, not the pressure. As the gas expands isothermally, the pressure decreases (PV = nRT = constant, so P ∝ 1/V). Constant pressure defines an isobaric process, not an isothermal one.",
+    "correct_answer": "C",
+    "concept_tags": ["isothermal process", "internal energy", "heat to work conversion", "ideal gas"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The reason claims pressure remains constant in an isothermal process, which is false. In isothermal expansion, pressure decreases as volume increases (Boyle's law: PV = constant).", "misconception": "Confusing isothermal (constant T) with isobaric (constant P)" },
+      { "option_key": "B", "hint": "The reason is factually incorrect — pressure does not remain constant in an isothermal process. It changes according to P = nRT/V.", "misconception": null },
+      { "option_key": "D", "hint": "The assertion is correct. For an ideal gas in isothermal expansion, ΔU = 0 (since T is constant), so by the first law Q = W.", "misconception": "Not recognizing that ΔU = 0 for isothermal process of ideal gas" }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the thermodynamic processes (Column I) with the condition that defines them (Column II):\n\nColumn I:\nA. Isothermal process\nB. Adiabatic process\nC. Isobaric process\nD. Isochoric process\n\nColumn II:\n1. ΔV = 0\n2. ΔT = 0\n3. ΔP = 0\n4. Q = 0",
+    "explanation": "A-2: Isothermal means constant temperature, so ΔT = 0. B-4: Adiabatic means no heat exchange, so Q = 0. C-3: Isobaric means constant pressure, so ΔP = 0. D-1: Isochoric means constant volume, so ΔV = 0.",
+    "correct_answer": "D",
+    "concept_tags": ["isothermal", "adiabatic", "isobaric", "isochoric", "thermodynamic processes"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-2, B-1, C-3, D-4", "is_correct": false },
+      { "key": "B", "text": "A-4, B-2, C-3, D-1", "is_correct": false },
+      { "key": "C", "text": "A-2, B-4, C-1, D-3", "is_correct": false },
+      { "key": "D", "text": "A-2, B-4, C-3, D-1", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This pairs adiabatic (B) with ΔV = 0, which defines an isochoric process, not an adiabatic one. Adiabatic is defined by Q = 0.", "misconception": "Confusing isochoric condition with adiabatic condition" },
+      { "option_key": "B", "hint": "This pairs isothermal (A) with Q = 0, which is the adiabatic condition. Isothermal means ΔT = 0, not Q = 0.", "misconception": "Confusing isothermal and adiabatic definitions" },
+      { "option_key": "C", "hint": "This pairs isobaric (C) with ΔV = 0 and isochoric (D) with ΔP = 0. These are swapped: isobaric means ΔP = 0 and isochoric means ΔV = 0.", "misconception": "Swapping the definitions of isobaric and isochoric" }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the thermodynamic processes (Column I) with the expression for work done by an ideal gas (Column II):\n\nColumn I:\nA. Isothermal expansion from V₁ to V₂\nB. Isobaric expansion at pressure P\nC. Adiabatic expansion\nD. Isochoric process\n\nColumn II:\n1. Zero\n2. PΔV = P(V₂ − V₁)\n3. nRT ln(V₂/V₁)\n4. nCᵥ(T₁ − T₂)",
+    "explanation": "A-3: In isothermal expansion, W = nRT ln(V₂/V₁). B-2: In isobaric expansion, W = PΔV = P(V₂ − V₁). C-4: In adiabatic expansion, Q = 0 and ΔU = −W, so W = −ΔU = −nCᵥ(T₂ − T₁) = nCᵥ(T₁ − T₂). D-1: In isochoric process, ΔV = 0, so W = 0.",
+    "correct_answer": "C",
+    "concept_tags": ["work done", "isothermal", "adiabatic", "isobaric", "isochoric", "ideal gas"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-2, C-1, D-4", "is_correct": false },
+      { "key": "B", "text": "A-3, B-4, C-2, D-1", "is_correct": false },
+      { "key": "C", "text": "A-3, B-2, C-4, D-1", "is_correct": true },
+      { "key": "D", "text": "A-4, B-2, C-3, D-1", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This assigns W = 0 to the adiabatic process. In an adiabatic process, work is nonzero and equals nCᵥ(T₁ − T₂) for expansion. W = 0 applies to the isochoric process.", "misconception": "Confusing adiabatic (Q = 0) with isochoric (W = 0)" },
+      { "option_key": "B", "hint": "This assigns PΔV to the adiabatic process and nCᵥ(T₁ − T₂) to isobaric. While PΔV is true for isobaric and nCᵥ(T₁ − T₂) is for adiabatic, the assignments here are swapped.", "misconception": "Swapping isobaric and adiabatic work expressions" },
+      { "option_key": "D", "hint": "This assigns nCᵥ(T₁ − T₂) to isothermal expansion. For an isothermal process ΔT = 0, so this expression would give zero, which contradicts the nonzero work in isothermal expansion.", "misconception": "Applying adiabatic work formula to isothermal process" }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The work done by a gas in a thermodynamic process is equal to the area under the PV curve.",
+    "explanation": "This statement is TRUE. In a PV diagram, the work done by the gas during any process is represented by the area under the curve between the initial and final volumes. Mathematically, W = ∫PdV, which is the area under the P-V curve.",
+    "correct_answer": "A",
+    "concept_tags": ["PV diagram", "work done", "area under curve"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Work done by a gas is defined as W = ∫PdV, which geometrically equals the area under the PV curve. This is a fundamental result in thermodynamics.", "misconception": "Not recognizing the geometric interpretation of work on a PV diagram" },
+      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "In an isothermal process involving an ideal gas, the internal energy of the gas changes.",
+    "explanation": "This statement is FALSE. For an ideal gas, the internal energy depends only on temperature: U = nCᵥT. In an isothermal process, the temperature remains constant (ΔT = 0), so the internal energy does not change (ΔU = 0). All the heat absorbed by the gas is converted entirely into work.",
+    "correct_answer": "B",
+    "concept_tags": ["isothermal process", "internal energy", "ideal gas", "temperature dependence"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "For an ideal gas, internal energy is a function of temperature only. Since temperature is constant in an isothermal process, ΔU = 0.", "misconception": "Thinking internal energy changes whenever heat is added or work is done" },
+      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-19",
+    "question_type": "fill_in_the_blanks",
+    "difficulty": "medium",
+    "question_text": "For an ideal gas, the ratio of specific heats γ = Cₚ/Cᵥ for a diatomic gas at moderate temperatures (with only translational and rotational degrees of freedom) is _____.",
+    "explanation": "A diatomic gas at moderate temperatures has 5 degrees of freedom (3 translational + 2 rotational). Therefore Cᵥ = (5/2)R and Cₚ = Cᵥ + R = (7/2)R. The ratio γ = Cₚ/Cᵥ = (7/2)R ÷ (5/2)R = 7/5 = 1.4.",
+    "correct_answer": "B",
+    "concept_tags": ["gamma", "specific heat ratio", "diatomic gas", "degrees of freedom"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "5/3", "is_correct": false },
+      { "key": "B", "text": "7/5", "is_correct": true },
+      { "key": "C", "text": "9/7", "is_correct": false },
+      { "key": "D", "text": "4/3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "γ = 5/3 applies to a monoatomic gas (3 degrees of freedom), not a diatomic gas.", "misconception": "Confusing monoatomic and diatomic values of γ" },
+      { "option_key": "C", "hint": "γ = 9/7 corresponds to 7 degrees of freedom (including vibrational), which occurs at very high temperatures for diatomic gases, not at moderate temperatures.", "misconception": "Including vibrational degrees of freedom at moderate temperatures" },
+      { "option_key": "D", "hint": "γ = 4/3 corresponds to 6 degrees of freedom, which does not match the standard count for any common gas type at moderate temperatures.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermo-first-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A sealed container holds 3 moles of an ideal monoatomic gas (Cᵥ = 3R/2) at 300 K. The gas is heated at constant volume until its temperature reaches 500 K, and then allowed to expand at constant pressure until its temperature reaches 700 K.\n\nWhat is the total work done by the gas during the entire process? (R = 8.314 J mol⁻¹ K⁻¹)",
+    "explanation": "Step 1 — Isochoric heating (300 K → 500 K): At constant volume, W₁ = 0. Step 2 — Isobaric expansion (500 K → 700 K): At constant pressure, W₂ = nRΔT = 3 × 8.314 × (700 − 500) = 3 × 8.314 × 200 = 4988.4 J ≈ 4988 J. Total work = W₁ + W₂ = 0 + 4988.4 ≈ 4988 J.",
+    "correct_answer": "C",
+    "concept_tags": ["isochoric process", "isobaric process", "work done", "combined processes", "monoatomic gas"],
+    "topic": "First Law of Thermodynamics and Thermodynamic Processes",
+    "subject": "physics",
+    "chapter": "Thermodynamics",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "9977 J", "is_correct": false },
+      { "key": "B", "text": "2494 J", "is_correct": false },
+      { "key": "C", "text": "4988 J", "is_correct": true },
+      { "key": "D", "text": "14965 J", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "9977 J would result from using the total temperature change (700 − 300 = 400 K) in W = nRΔT. But the isochoric step contributes zero work, so only the isobaric step (ΔT = 200 K) contributes.", "misconception": "Applying isobaric work formula to both steps including the isochoric step" },
+      { "option_key": "B", "hint": "2494 J would result from using only 1.5 moles or half the correct temperature change.", "misconception": null },
+      { "option_key": "D", "hint": "14965 J would result from using nCₚΔT for the total temperature change, confusing heat absorbed with work done.", "misconception": "Confusing heat absorbed (Q = nCₚΔT) with work done (W = nRΔT) in isobaric process" }
+    ]
+  }
+]

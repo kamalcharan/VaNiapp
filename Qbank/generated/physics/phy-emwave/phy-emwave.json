@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-emwave-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Electromagnetic waves are produced by:",
+    "explanation": "Electromagnetic waves are produced by accelerating (or oscillating) charges. A charge at rest produces only an electrostatic field, and a charge in uniform motion produces both electric and magnetic fields but no radiation. Only when a charge accelerates does it radiate energy in the form of electromagnetic waves, as described by Maxwell's theory.",
+    "correct_answer": "D",
+    "concept_tags": ["em-wave-production", "accelerating-charge", "maxwell-theory"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A stationary charge", "is_correct": false },
+      { "key": "B", "text": "A charge moving with constant velocity", "is_correct": false },
+      { "key": "C", "text": "A static magnetic field", "is_correct": false },
+      { "key": "D", "text": "An accelerating charge", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A stationary charge produces only a static electric field (Coulomb field). It does not radiate electromagnetic waves.", "misconception": "Thinking any charge produces EM waves" },
+      { "option_key": "B", "hint": "A charge moving with constant velocity produces a steady magnetic field in addition to its electric field, but does not radiate EM waves. Radiation requires acceleration.", "misconception": "Confusing steady current's magnetic field with EM radiation" },
+      { "option_key": "C", "hint": "A static magnetic field stores energy but does not propagate as an electromagnetic wave. Time-varying fields are needed for wave propagation.", "misconception": "Confusing static fields with electromagnetic radiation" }
+    ]
+  },
+  {
+    "id": "phy-emwave-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In an electromagnetic wave, the electric field vector E and the magnetic field vector B are:",
+    "explanation": "Electromagnetic waves are transverse waves in which the electric field E and the magnetic field B oscillate perpendicular to each other and both are perpendicular to the direction of propagation. If the wave travels along the z-axis, E might oscillate along the x-axis and B along the y-axis. This mutual perpendicularity is a fundamental property of EM waves.",
+    "correct_answer": "B",
+    "concept_tags": ["transverse-wave", "E-perpendicular-B", "wave-propagation"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Parallel to each other and parallel to the direction of propagation", "is_correct": false },
+      { "key": "B", "text": "Perpendicular to each other and perpendicular to the direction of propagation", "is_correct": true },
+      { "key": "C", "text": "Parallel to each other but perpendicular to the direction of propagation", "is_correct": false },
+      { "key": "D", "text": "Perpendicular to each other but parallel to the direction of propagation", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "If E and B were parallel to the direction of propagation, the wave would be longitudinal, not transverse. EM waves are strictly transverse.", "misconception": "Confusing EM waves with longitudinal waves like sound" },
+      { "option_key": "C", "hint": "E and B are never parallel to each other in a plane EM wave. They are always mutually perpendicular, forming a right-handed coordinate system with the propagation direction.", "misconception": "Thinking E and B oscillate in the same plane" },
+      { "option_key": "D", "hint": "Neither E nor B is parallel to the direction of propagation. Both oscillate perpendicular to the propagation direction, making EM waves transverse.", "misconception": "Thinking one of the field vectors points along the direction of travel" }
+    ]
+  },
+  {
+    "id": "phy-emwave-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The speed of electromagnetic waves in vacuum is given by:",
+    "explanation": "Maxwell showed that the speed of electromagnetic waves in vacuum is c = 1/√(μ₀ε₀), where μ₀ is the permeability of free space and ε₀ is the permittivity of free space. Substituting the known values of μ₀ and ε₀ yields c ≈ 3 × 10⁸ m/s, which matches the experimentally measured speed of light, confirming that light is an electromagnetic wave.",
+    "correct_answer": "A",
+    "concept_tags": ["speed-of-light", "mu-epsilon", "maxwell-relation"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "c = 1/√(μ₀ε₀)", "is_correct": true },
+      { "key": "B", "text": "c = √(μ₀ε₀)", "is_correct": false },
+      { "key": "C", "text": "c = μ₀ε₀", "is_correct": false },
+      { "key": "D", "text": "c = 1/(μ₀ε₀)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "√(μ₀ε₀) has dimensions of s/m (inverse of speed). The correct expression is the reciprocal: 1/√(μ₀ε₀), which has dimensions of m/s.", "misconception": "Inverting the formula for the speed of light" },
+      { "option_key": "C", "hint": "μ₀ε₀ has dimensions of 1/c² (s²/m²), not m/s. The speed of light involves the square root and reciprocal of this product.", "misconception": "Not applying the square root in Maxwell's velocity relation" },
+      { "option_key": "D", "hint": "1/(μ₀ε₀) has dimensions of m²/s², which is the square of speed (c²), not c itself. The correct formula has a square root.", "misconception": "Forgetting to take the square root, giving c² instead of c" }
+    ]
+  },
+  {
+    "id": "phy-emwave-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Maxwell's displacement current arises due to:",
+    "explanation": "Maxwell introduced the concept of displacement current to account for the continuity of current in circuits containing capacitors. The displacement current is not a flow of actual charges but is proportional to the rate of change of electric flux (dΦE/dt) between the capacitor plates. It is given by Id = ε₀(dΦE/dt). This term was added to Ampere's law to make it consistent with the continuity equation and led to the prediction of electromagnetic waves.",
+    "correct_answer": "C",
+    "concept_tags": ["displacement-current", "changing-electric-flux", "maxwell-correction"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Flow of electrons between capacitor plates", "is_correct": false },
+      { "key": "B", "text": "A changing magnetic flux", "is_correct": false },
+      { "key": "C", "text": "A time-varying electric field (changing electric flux)", "is_correct": true },
+      { "key": "D", "text": "A steady electric field between the plates", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "No actual electrons flow across the gap between capacitor plates (the dielectric or vacuum prevents this). The displacement current exists even in vacuum — it is due to the changing electric field, not charge flow.", "misconception": "Thinking displacement current involves actual charge transport" },
+      { "option_key": "B", "hint": "A changing magnetic flux produces an induced EMF (Faraday's law), not displacement current. Displacement current specifically involves a time-varying electric field.", "misconception": "Confusing Faraday's law with Maxwell's displacement current concept" },
+      { "option_key": "D", "hint": "A steady (constant) electric field has dE/dt = 0, which means zero displacement current. The field must be changing with time to produce displacement current.", "misconception": "Not recognizing that displacement current requires a time-varying field" }
+    ]
+  },
+  {
+    "id": "phy-emwave-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A parallel plate capacitor with plate area A and plate separation d is being charged by a constant current I. The displacement current in the region between the plates is:",
+    "explanation": "The displacement current Id = ε₀(dΦE/dt). The electric field between the plates is E = Q/(ε₀A), so the electric flux ΦE = EA = Q/ε₀. Therefore, dΦE/dt = (1/ε₀)(dQ/dt) = I/ε₀. Thus Id = ε₀ × (I/ε₀) = I. The displacement current between the plates is exactly equal to the conduction current I in the connecting wires, ensuring continuity of current in the circuit.",
+    "correct_answer": "D",
+    "concept_tags": ["displacement-current", "capacitor-charging", "current-continuity"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Zero", "is_correct": false },
+      { "key": "B", "text": "I × (d/A)", "is_correct": false },
+      { "key": "C", "text": "ε₀ × I × A", "is_correct": false },
+      { "key": "D", "text": "I (equal to the conduction current)", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "If displacement current were zero between the plates, Ampere's circuital law would give different results depending on the chosen surface. Maxwell showed that displacement current bridges this gap.", "misconception": "Thinking no current exists between the capacitor plates" },
+      { "option_key": "B", "hint": "The displacement current does not depend on the plate separation d. It equals the conduction current regardless of plate geometry, ensuring current continuity.", "misconception": "Incorrectly introducing geometric factors into the displacement current" },
+      { "option_key": "C", "hint": "ε₀ × I × A has incorrect dimensions (A·m²·s⁴/kg·m³ = not ampere). The displacement current must have units of ampere, and it simply equals I.", "misconception": "Incorrectly multiplying by ε₀ and area" }
+    ]
+  },
+  {
+    "id": "phy-emwave-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which of the following electromagnetic waves has the highest frequency?",
+    "explanation": "The electromagnetic spectrum in order of increasing frequency is: radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, gamma rays. Gamma rays have the highest frequency (and shortest wavelength) in the electromagnetic spectrum, typically with frequencies above 3 × 10¹⁹ Hz. They are produced by nuclear reactions and radioactive decay.",
+    "correct_answer": "A",
+    "concept_tags": ["em-spectrum", "frequency-order", "gamma-rays"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Gamma rays", "is_correct": true },
+      { "key": "B", "text": "X-rays", "is_correct": false },
+      { "key": "C", "text": "Ultraviolet rays", "is_correct": false },
+      { "key": "D", "text": "Microwaves", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "X-rays have very high frequency but gamma rays have even higher frequency. Gamma rays sit at the extreme high-frequency end of the EM spectrum.", "misconception": "Placing X-rays at the highest frequency end of the spectrum" },
+      { "option_key": "C", "hint": "Ultraviolet rays have higher frequency than visible light but lower frequency than X-rays and gamma rays.", "misconception": "Not knowing the complete ordering of the EM spectrum" },
+      { "option_key": "D", "hint": "Microwaves have relatively low frequency, between radio waves and infrared. They are far below gamma rays in frequency.", "misconception": "Confusing the position of microwaves in the EM spectrum" }
+    ]
+  },
+  {
+    "id": "phy-emwave-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The ratio of the amplitudes of the electric and magnetic fields (E₀/B₀) in an electromagnetic wave travelling in vacuum is equal to:",
+    "explanation": "In an electromagnetic wave in vacuum, the electric and magnetic field amplitudes are related by E₀/B₀ = c = 3 × 10⁸ m/s. This follows from Maxwell's equations and means that E₀ is much larger in magnitude than B₀ in SI units. At any instant, E = cB for the wave fields. The ratio has dimensions of velocity.",
+    "correct_answer": "B",
+    "concept_tags": ["E-B-ratio", "speed-of-light", "em-wave-properties"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1", "is_correct": false },
+      { "key": "B", "text": "c (speed of light in vacuum)", "is_correct": true },
+      { "key": "C", "text": "1/c", "is_correct": false },
+      { "key": "D", "text": "c²", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "E₀ and B₀ have different units (V/m and T respectively), so their ratio cannot be a dimensionless number like 1. The ratio E₀/B₀ has dimensions of m/s.", "misconception": "Assuming E and B have equal magnitudes in all unit systems" },
+      { "option_key": "C", "hint": "1/c = B₀/E₀, which is the reciprocal of the correct ratio. If you write B₀ = E₀/c, then E₀/B₀ = c, not 1/c.", "misconception": "Inverting the E-B amplitude relationship" },
+      { "option_key": "D", "hint": "c² has dimensions of m²/s², whereas E₀/B₀ has dimensions of m/s. The ratio is c, not c².", "misconception": "Confusing the E/B ratio with the expression for c² = 1/(μ₀ε₀)" }
+    ]
+  },
+  {
+    "id": "phy-emwave-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which of the following electromagnetic radiations is used in RADAR systems?",
+    "explanation": "RADAR (Radio Detection and Ranging) systems use microwaves because of their short wavelength (compared to radio waves) which allows them to detect smaller objects and provide better angular resolution. Microwaves can penetrate fog, rain, and clouds to some extent, making them ideal for detecting aircraft and ships. Typical RADAR frequencies range from about 1 GHz to 300 GHz.",
+    "correct_answer": "C",
+    "concept_tags": ["microwaves", "radar", "em-wave-applications"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Infrared radiation", "is_correct": false },
+      { "key": "B", "text": "Ultraviolet radiation", "is_correct": false },
+      { "key": "C", "text": "Microwaves", "is_correct": true },
+      { "key": "D", "text": "Gamma rays", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Infrared radiation is primarily used for thermal imaging, remote controls, and night vision. It is not used in RADAR systems.", "misconception": "Confusing infrared detection with RADAR detection" },
+      { "option_key": "B", "hint": "Ultraviolet radiation is absorbed by the atmosphere over long distances and is used in sterilisation, not RADAR.", "misconception": "Not distinguishing between different EM wave applications" },
+      { "option_key": "D", "hint": "Gamma rays are extremely high-energy radiation from nuclear processes. They are not used in RADAR; they are used in medical imaging (PET scans) and cancer treatment.", "misconception": "Confusing gamma ray applications with RADAR technology" }
+    ]
+  },
+  {
+    "id": "phy-emwave-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The energy density (energy per unit volume) in an electromagnetic wave is equally divided between:",
+    "explanation": "In an electromagnetic wave, the energy is equally shared between the electric and magnetic fields. The energy density of the electric field is uE = ½ε₀E² and that of the magnetic field is uB = B²/(2μ₀). Using E = cB and c = 1/√(μ₀ε₀), one can show that uE = uB at every point. The total energy density is u = ε₀E² = B²/μ₀.",
+    "correct_answer": "D",
+    "concept_tags": ["energy-density", "electric-field-energy", "magnetic-field-energy"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "The kinetic and potential energies", "is_correct": false },
+      { "key": "B", "text": "The gravitational and electric fields", "is_correct": false },
+      { "key": "C", "text": "The amplitude and wavelength components", "is_correct": false },
+      { "key": "D", "text": "The electric and magnetic fields", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Kinetic and potential energy are concepts for mechanical waves and particles. EM waves carry energy in their electric and magnetic fields, not as kinetic/potential energy.", "misconception": "Applying mechanical wave energy concepts to electromagnetic waves" },
+      { "option_key": "B", "hint": "Gravitational fields are unrelated to electromagnetic wave energy. The energy in EM waves is stored only in the oscillating electric and magnetic fields.", "misconception": "Mixing gravitational and electromagnetic concepts" },
+      { "option_key": "C", "hint": "Amplitude and wavelength are properties that describe the wave, not energy reservoirs. Energy is stored in the electric and magnetic field components.", "misconception": "Confusing wave parameters with energy storage mechanisms" }
+    ]
+  },
+  {
+    "id": "phy-emwave-10",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A parallel plate capacitor with circular plates of radius R is being charged such that the electric field between the plates changes at the rate dE/dt. The magnetic field at a distance r (r < R) from the axis between the plates is:",
+    "explanation": "Using the Ampere-Maxwell law: ∮B·dl = μ₀ε₀(dΦE/dt) for the region between the plates where there is no conduction current. For a circular Amperian loop of radius r (r < R), the symmetry gives B(2πr) = μ₀ε₀(πr²)(dE/dt). Therefore B = ½μ₀ε₀r(dE/dt). The magnetic field increases linearly with distance from the axis inside the capacitor, similar to the magnetic field inside a current-carrying conductor.",
+    "correct_answer": "D",
+    "concept_tags": ["ampere-maxwell-law", "displacement-current", "magnetic-field-capacitor"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "μ₀ε₀R(dE/dt)/2", "is_correct": false },
+      { "key": "B", "text": "μ₀ε₀R²(dE/dt)/(2r)", "is_correct": false },
+      { "key": "C", "text": "μ₀ε₀r²(dE/dt)/(2R)", "is_correct": false },
+      { "key": "D", "text": "μ₀ε₀r(dE/dt)/2", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This expression uses R instead of r. For r < R, the enclosed flux depends on the area πr², not πR². The magnetic field at distance r depends on r, not R.", "misconception": "Using the full plate radius instead of the Amperian loop radius" },
+      { "option_key": "B", "hint": "This expression (proportional to R²/r) describes the magnetic field for r > R (outside the plate region), not for r < R. Inside, B is proportional to r.", "misconception": "Applying the formula for the region outside the plates to the inside region" },
+      { "option_key": "C", "hint": "This has an extra factor of r/R compared to the correct answer. The Amperian loop area πr² divided by 2πr gives r/2, not r²/(2R).", "misconception": "Incorrectly normalizing by the plate radius R" }
+    ]
+  },
+  {
+    "id": "phy-emwave-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An electromagnetic wave of frequency 10 MHz propagates in vacuum. The wavelength and the magnitude of the magnetic field amplitude, given that the electric field amplitude is 60 V/m, are respectively:",
+    "explanation": "Wavelength λ = c/f = (3 × 10⁸)/(10 × 10⁶) = 30 m. The magnetic field amplitude B₀ = E₀/c = 60/(3 × 10⁸) = 2 × 10⁻⁷ T = 200 nT. This illustrates that for EM waves, the magnetic field amplitude in SI units is much smaller than the electric field amplitude, related by the factor 1/c.",
+    "correct_answer": "B",
+    "concept_tags": ["wavelength-calculation", "E-B-ratio", "frequency-wavelength"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "30 m and 2 × 10⁻⁶ T", "is_correct": false },
+      { "key": "B", "text": "30 m and 2 × 10⁻⁷ T", "is_correct": true },
+      { "key": "C", "text": "300 m and 2 × 10⁻⁷ T", "is_correct": false },
+      { "key": "D", "text": "3 m and 2 × 10⁻⁸ T", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The wavelength 30 m is correct, but 2 × 10⁻⁶ T is off by a factor of 10. B₀ = 60/(3 × 10⁸) = 2 × 10⁻⁷ T. Check the power of 10 carefully.", "misconception": "Error in power-of-ten calculation for B₀" },
+      { "option_key": "C", "hint": "300 m would correspond to a frequency of 1 MHz, not 10 MHz. λ = c/f = 3 × 10⁸/10⁷ = 30 m.", "misconception": "Using 10⁶ instead of 10⁷ for the frequency in Hz" },
+      { "option_key": "D", "hint": "3 m corresponds to f = 100 MHz and 2 × 10⁻⁸ T is also incorrect. Both values are off by a factor of 10 from the correct answer.", "misconception": "Misplacing the decimal in both wavelength and magnetic field calculations" }
+    ]
+  },
+  {
+    "id": "phy-emwave-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The electric field of an electromagnetic wave in vacuum is E = 6 sin(10⁷t + kx) ĵ V/m. The value of wave vector k and the direction of propagation are, respectively:",
+    "explanation": "From the wave equation E = E₀sin(ωt + kx), ω = 10⁷ rad/s. Since c = ω/k, we get k = ω/c = 10⁷/(3 × 10⁸) = 1/30 rad/m ≈ 0.033 rad/m. The phase (ωt + kx) with a positive sign for both ω and k indicates the wave propagates in the negative x-direction (−x̂). This is because for a wave travelling in the −x direction, the phase is (ωt + kx), while for +x direction it would be (ωt − kx).",
+    "correct_answer": "C",
+    "concept_tags": ["wave-vector", "propagation-direction", "wave-equation"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "k = 1/30 rad/m, along +x direction", "is_correct": false },
+      { "key": "B", "text": "k = 30 rad/m, along −x direction", "is_correct": false },
+      { "key": "C", "text": "k = 1/30 rad/m, along −x direction", "is_correct": true },
+      { "key": "D", "text": "k = 10⁷ rad/m, along +x direction", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "While k = 1/30 rad/m is correct, the +kx term in the phase indicates wave propagation in the −x direction, not +x. The form sin(ωt + kx) travels in the −x̂ direction.", "misconception": "Not recognizing that sin(ωt + kx) represents a wave moving in the −x direction" },
+      { "option_key": "B", "hint": "k = 30 rad/m is incorrect; k = ω/c = 10⁷/(3 × 10⁸) = 1/30 rad/m. The direction (−x) is correct, though.", "misconception": "Inverting the k = ω/c formula to get k = c/ω" },
+      { "option_key": "D", "hint": "k = 10⁷ rad/m confuses the angular frequency ω with the wave vector k. Also, the propagation direction is −x, not +x.", "misconception": "Confusing angular frequency ω with wave number k" }
+    ]
+  },
+  {
+    "id": "phy-emwave-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Electromagnetic waves carry energy and momentum even though they have no mass.\nReason (R): The energy of an electromagnetic wave is shared equally between its oscillating electric and magnetic fields.",
+    "explanation": "Both the assertion and the reason are correct. EM waves carry energy (described by the Poynting vector S = E × B/μ₀) and momentum (p = U/c for energy U) despite being massless. The reason is also true: the average energy density of the electric field (½ε₀E₀²) equals that of the magnetic field (B₀²/(2μ₀)). However, the reason explains only the energy distribution, not why EM waves carry momentum. The momentum arises from the electromagnetic field itself and is related to energy by p = U/c, which is not addressed by the equal energy sharing. Therefore, R is correct but does not fully explain A (specifically the momentum part).",
+    "correct_answer": "B",
+    "concept_tags": ["em-wave-energy", "em-wave-momentum", "energy-density-equipartition"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": true },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "While both statements are true, the reason only explains energy sharing between E and B fields. It does not explain why massless EM waves carry momentum, which is a key part of the assertion.", "misconception": "Assuming any correct reason that mentions energy automatically explains momentum" },
+      { "option_key": "C", "hint": "The reason is a correct statement. The energy density of the electric field (½ε₀E²) indeed equals the energy density of the magnetic field (B²/(2μ₀)) in an EM wave.", "misconception": "Thinking energy is not equally distributed between E and B fields" },
+      { "option_key": "D", "hint": "The assertion is correct: EM waves do carry both energy and momentum despite having no rest mass. This is experimentally verified by radiation pressure.", "misconception": "Thinking massless entities cannot carry momentum" }
+    ]
+  },
+  {
+    "id": "phy-emwave-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): Maxwell modified Ampere's circuital law by introducing displacement current to make it consistent with the law of conservation of charge.\nReason (R): The conduction current alone was insufficient to explain the magnetic field in the region between the plates of a charging capacitor.",
+    "explanation": "Both A and R are correct, and R is the correct explanation of A. The original Ampere's law (∮B·dl = μ₀Ic) failed when applied to a surface passing through the gap of a charging capacitor, where no conduction current flows, yet a magnetic field exists. This inconsistency violated the continuity equation (charge conservation). Maxwell resolved this by adding the displacement current term Id = ε₀(dΦE/dt) to Ampere's law, giving the Ampere-Maxwell law: ∮B·dl = μ₀(Ic + Id). The reason correctly identifies the specific physical situation that necessitated this modification.",
+    "correct_answer": "A",
+    "concept_tags": ["maxwell-modification", "ampere-law", "displacement-current", "charge-conservation"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The reason directly explains the assertion. The charging capacitor scenario in R is exactly the physical situation that exposed the inconsistency in Ampere's law and motivated Maxwell's correction described in A.", "misconception": "Not seeing the causal link between the capacitor problem and the modification of Ampere's law" },
+      { "option_key": "C", "hint": "The reason is correct: conduction current is indeed zero between capacitor plates during charging, yet a time-varying electric field (and hence a magnetic field) exists there.", "misconception": "Thinking conduction current flows between capacitor plates" },
+      { "option_key": "D", "hint": "The assertion is correct: Maxwell's addition of displacement current to Ampere's law was specifically motivated by ensuring consistency with charge conservation.", "misconception": "Not understanding Maxwell's historical contribution to electromagnetism" }
+    ]
+  },
+  {
+    "id": "phy-emwave-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the following types of electromagnetic radiation (Column-I) with their primary applications (Column-II):\n\nColumn-I:\nA. Infrared radiation\nB. X-rays\nC. Ultraviolet radiation\nD. Microwaves\n\nColumn-II:\n1. Cooking in microwave ovens and RADAR\n2. Medical imaging of bones and crystallography\n3. Sterilisation of water and LASIK eye surgery\n4. Night vision devices and TV remote controls",
+    "explanation": "Infrared radiation is used in night vision equipment and TV remote controls (A→4). X-rays penetrate soft tissue but are absorbed by bones, making them ideal for medical imaging; they are also used in crystal structure determination via X-ray diffraction (B→2). Ultraviolet radiation has germicidal properties for water purification and is used in LASIK eye surgery (C→3). Microwaves are used in microwave ovens for heating food and in RADAR systems for detection and ranging (D→1).",
+    "correct_answer": "B",
+    "concept_tags": ["em-spectrum-applications", "infrared", "x-rays", "ultraviolet", "microwaves"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-4, B-3, C-2, D-1", "is_correct": false },
+      { "key": "B", "text": "A-4, B-2, C-3, D-1", "is_correct": true },
+      { "key": "C", "text": "A-1, B-2, C-4, D-3", "is_correct": false },
+      { "key": "D", "text": "A-2, B-4, C-1, D-3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This swaps X-rays and UV. X-rays are used for bone imaging (not UV), and UV is used for sterilisation (not X-rays for LASIK).", "misconception": "Confusing the medical applications of X-rays and UV" },
+      { "option_key": "C", "hint": "This assigns microwave oven use to infrared and remote controls to UV. Infrared is used in remote controls, and microwaves in ovens.", "misconception": "Mixing up infrared and microwave applications" },
+      { "option_key": "D", "hint": "This assigns bone imaging to infrared, which is incorrect. Infrared cannot penetrate the body to image bones; that requires X-rays.", "misconception": "Thinking infrared radiation can be used for medical bone imaging" }
+    ]
+  },
+  {
+    "id": "phy-emwave-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the following electromagnetic radiations (Column-I) with their correct source/production mechanism (Column-II):\n\nColumn-I:\nA. Radio waves\nB. X-rays\nC. Gamma rays\nD. Infrared radiation\n\nColumn-II:\n1. Vibrations of atoms and molecules (thermal agitation)\n2. Nuclear transitions and radioactive decay\n3. Oscillating electrons in an LC circuit / antenna\n4. Deceleration of high-speed electrons striking a metal target",
+    "explanation": "Radio waves are produced by oscillating charges in LC circuits connected to antennas (A→3). X-rays are produced when fast-moving electrons are suddenly decelerated upon striking a dense metal target (Bremsstrahlung) or by inner shell electronic transitions (B→4). Gamma rays originate from transitions within the atomic nucleus and radioactive decay processes (C→2). Infrared radiation is emitted by all warm bodies due to thermal vibrations of their atoms and molecules (D→1).",
+    "correct_answer": "C",
+    "concept_tags": ["em-wave-sources", "radio-production", "x-ray-production", "gamma-production", "infrared-production"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-2, C-4, D-1", "is_correct": false },
+      { "key": "B", "text": "A-4, B-3, C-2, D-1", "is_correct": false },
+      { "key": "C", "text": "A-3, B-4, C-2, D-1", "is_correct": true },
+      { "key": "D", "text": "A-3, B-4, C-1, D-2", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This swaps X-ray and gamma ray sources. X-rays come from deceleration of electrons (Bremsstrahlung), not nuclear transitions. Gamma rays come from nuclear processes.", "misconception": "Confusing X-ray and gamma ray production mechanisms" },
+      { "option_key": "B", "hint": "This assigns electron deceleration to radio waves and LC circuits to X-rays, both of which are incorrect. Radio waves use LC oscillators, and X-rays use electron bombardment.", "misconception": "Reversing the production mechanisms of radio waves and X-rays" },
+      { "option_key": "D", "hint": "This assigns thermal vibrations to gamma rays and nuclear decay to infrared. Gamma rays are nuclear in origin, and infrared is thermal.", "misconception": "Swapping infrared and gamma ray sources" }
+    ]
+  },
+  {
+    "id": "phy-emwave-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "All electromagnetic waves travel with the same speed in vacuum, regardless of their frequency or wavelength.",
+    "explanation": "This statement is TRUE. In vacuum, all electromagnetic waves — from radio waves to gamma rays — travel at the same speed c = 3 × 10⁸ m/s = 1/√(μ₀ε₀). The speed depends only on the properties of free space (μ₀ and ε₀) and is independent of frequency, wavelength, or amplitude. This is a fundamental property that distinguishes vacuum propagation from propagation in a medium, where the speed may vary with frequency (dispersion).",
+    "correct_answer": "A",
+    "concept_tags": ["speed-of-light", "vacuum-propagation", "frequency-independence"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "In vacuum, there is no dispersion. All EM waves travel at c = 1/√(μ₀ε₀) regardless of frequency. Speed variation with frequency occurs only in material media.", "misconception": "Confusing propagation in a medium (where speed varies with frequency) with propagation in vacuum" },
+      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-emwave-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "Electromagnetic waves are longitudinal waves, similar to sound waves.",
+    "explanation": "This statement is FALSE. Electromagnetic waves are transverse waves, not longitudinal. In EM waves, the electric field E and the magnetic field B oscillate perpendicular to the direction of wave propagation. Sound waves in air are longitudinal (particles oscillate parallel to the propagation direction), but EM waves have a fundamentally different nature. The transverse nature of EM waves is confirmed by the phenomenon of polarisation.",
+    "correct_answer": "B",
+    "concept_tags": ["transverse-wave", "longitudinal-wave", "polarisation"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "EM waves are transverse, not longitudinal. The E and B vectors oscillate perpendicular to the propagation direction. Polarisation of light is direct evidence of the transverse nature.", "misconception": "Confusing electromagnetic waves with sound waves; both are waves but of fundamentally different types" },
+      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-emwave-19",
+    "question_type": "fill_in_blanks",
+    "difficulty": "medium",
+    "question_text": "Maxwell's modification of Ampere's circuital law introduces a term called displacement current, given by Id = ε₀(dΦE/dt). In the modified law, the total current enclosed is the sum of _____ current and _____ current.",
+    "explanation": "Maxwell's modified Ampere's circuital law is ∮B·dl = μ₀(Ic + Id), where Ic is the conduction current (due to actual flow of charges) and Id = ε₀(dΦE/dt) is the displacement current (due to the time-varying electric field). The conduction current represents the physical movement of charge carriers through conductors, while the displacement current exists even in vacuum or dielectric regions where the electric field is changing with time.",
+    "correct_answer": "A",
+    "concept_tags": ["ampere-maxwell-law", "conduction-current", "displacement-current"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "conduction; displacement", "is_correct": true },
+      { "key": "B", "text": "conduction; induction", "is_correct": false },
+      { "key": "C", "text": "convection; displacement", "is_correct": false },
+      { "key": "D", "text": "eddy; displacement", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Induction current is the current induced by a changing magnetic flux (Faraday's law). Maxwell's addition to Ampere's law was specifically the displacement current, not induction current.", "misconception": "Confusing displacement current with induced (Faraday) current" },
+      { "option_key": "C", "hint": "Convection current refers to charge transport by bulk motion of a fluid. The standard form of the Ampere-Maxwell law uses conduction current (flow through conductors), not convection current.", "misconception": "Confusing conduction current with convection current" },
+      { "option_key": "D", "hint": "Eddy currents are induced circular currents in conductors due to changing magnetic flux. They are not part of the Ampere-Maxwell law formulation.", "misconception": "Confusing eddy currents with the conduction current in Ampere's law" }
+    ]
+  },
+  {
+    "id": "phy-emwave-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A scientist is studying different regions of the electromagnetic spectrum for a research project. She needs to select appropriate EM radiation for the following task: detecting fractures in the internal bone structure of a patient without surgery.\n\nShe also notes that the wavelength of the radiation used should be comparable to interatomic spacing in crystals (about 10⁻¹⁰ m) so that the same radiation can also be used for crystal structure analysis.\n\nThe most suitable electromagnetic radiation for both purposes is:",
+    "explanation": "X-rays are the correct choice for both applications. X-rays have wavelengths in the range of 10⁻⁸ m to 10⁻¹² m, with typical medical X-rays around 10⁻¹⁰ m. They can penetrate soft tissue but are absorbed by dense structures like bones, making them ideal for detecting bone fractures. Additionally, since their wavelength is comparable to interatomic spacings in crystals (~10⁻¹⁰ m or 1 Angstrom), they undergo diffraction when passing through crystalline materials, enabling crystal structure determination (X-ray crystallography). No other region of the EM spectrum satisfies both requirements simultaneously.",
+    "correct_answer": "C",
+    "concept_tags": ["x-rays", "medical-imaging", "crystallography", "em-spectrum-applications"],
+    "topic": "Electromagnetic Spectrum, Properties, and Displacement Current",
+    "subject": "physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Ultraviolet radiation", "is_correct": false },
+      { "key": "B", "text": "Gamma rays", "is_correct": false },
+      { "key": "C", "text": "X-rays", "is_correct": true },
+      { "key": "D", "text": "Infrared radiation", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "UV radiation has wavelengths of 10⁻⁸ to 4 × 10⁻⁷ m, which is generally too large for crystal diffraction at interatomic spacings. UV also does not penetrate the body sufficiently to image bones.", "misconception": "Thinking UV radiation can penetrate the body to image bones" },
+      { "option_key": "B", "hint": "While gamma rays can penetrate the body, their wavelengths (< 10⁻¹² m) are much smaller than interatomic spacings, making them less suitable for standard crystal diffraction. They also pose significantly higher radiation hazards.", "misconception": "Thinking gamma rays are routinely used for bone imaging and crystallography" },
+      { "option_key": "D", "hint": "Infrared radiation has wavelengths of 7 × 10⁻⁷ to 10⁻³ m, far too large for crystal diffraction and unable to penetrate the body to image bones.", "misconception": "Not recognising that infrared cannot penetrate body tissues to reveal bone structure" }
+    ]
+  }
+]

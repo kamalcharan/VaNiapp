@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-thermal-expansion-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A metal rod of length 1 m is heated from 20°C to 120°C. If the coefficient of linear expansion of the metal is 1.2 × 10⁻⁵ °C⁻¹, the increase in length of the rod is:",
+    "explanation": "Using the formula ΔL = αLΔT, where α = 1.2 × 10⁻⁵ °C⁻¹, L = 1 m, and ΔT = 120 − 20 = 100°C. Therefore ΔL = 1.2 × 10⁻⁵ × 1 × 100 = 1.2 × 10⁻³ m = 1.2 mm.",
+    "correct_answer": "B",
+    "concept_tags": ["linear expansion", "coefficient of linear expansion", "ΔL = αLΔT"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.12 mm", "is_correct": false },
+      { "key": "B", "text": "1.2 mm", "is_correct": true },
+      { "key": "C", "text": "12 mm", "is_correct": false },
+      { "key": "D", "text": "0.012 mm", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0.12 mm results from using ΔT = 10°C instead of 100°C. The temperature rise is from 20°C to 120°C, giving ΔT = 100°C.", "misconception": "Incorrect calculation of temperature change" },
+      { "option_key": "C", "hint": "12 mm results from using α = 1.2 × 10⁻⁴ instead of 1.2 × 10⁻⁵. Check the power of ten in the coefficient.", "misconception": "Error in reading the order of magnitude of α" },
+      { "option_key": "D", "hint": "0.012 mm results from using ΔT = 1°C. The actual temperature change is 100°C.", "misconception": "Using unit temperature change instead of actual ΔT" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "If the coefficient of linear expansion of a solid is α, then the coefficient of volume expansion γ is approximately:",
+    "explanation": "For an isotropic solid, the coefficient of volume expansion γ is related to the coefficient of linear expansion α by the relation γ = 3α. This follows because when a cube of side L is heated, each side expands by ΔL = αLΔT, and the new volume is L³(1 + αΔT)³ ≈ L³(1 + 3αΔT) for small αΔT, giving γ = 3α.",
+    "correct_answer": "C",
+    "concept_tags": ["volume expansion", "linear expansion", "γ = 3α"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "α", "is_correct": false },
+      { "key": "B", "text": "2α", "is_correct": false },
+      { "key": "C", "text": "3α", "is_correct": true },
+      { "key": "D", "text": "α/3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "α is the coefficient of linear expansion, not volume expansion. Volume involves three dimensions, so the coefficient is multiplied accordingly.", "misconception": "Assuming linear and volume expansion coefficients are the same" },
+      { "option_key": "B", "hint": "2α is the coefficient of area (superficial) expansion (β = 2α), not volume expansion. Volume expansion involves three dimensions, not two.", "misconception": "Confusing area expansion coefficient with volume expansion coefficient" },
+      { "option_key": "D", "hint": "α/3 is the inverse relation. If γ = 3α, then α = γ/3, not γ = α/3.", "misconception": "Inverting the relationship between α and γ" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Water exhibits anomalous expansion between:",
+    "explanation": "Water shows anomalous (unusual) expansion between 0°C and 4°C. In this temperature range, water contracts instead of expanding when heated. Water has its maximum density at 4°C. Below 4°C, water expands on cooling, which is why ice floats on water.",
+    "correct_answer": "D",
+    "concept_tags": ["anomalous expansion of water", "maximum density at 4°C", "unusual behaviour"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0°C and 100°C", "is_correct": false },
+      { "key": "B", "text": "4°C and 10°C", "is_correct": false },
+      { "key": "C", "text": "−4°C and 0°C", "is_correct": false },
+      { "key": "D", "text": "0°C and 4°C", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Between 0°C and 100°C is the entire liquid range of water. Anomalous expansion occurs only in a narrow range near 0°C to 4°C.", "misconception": "Thinking anomalous expansion occurs over the entire liquid range" },
+      { "option_key": "B", "hint": "Above 4°C, water expands normally when heated. The anomalous behaviour occurs below 4°C where water contracts on heating.", "misconception": "Placing the anomalous range above the density maximum" },
+      { "option_key": "C", "hint": "Below 0°C, water is in the solid state (ice) under normal pressure. Anomalous expansion of liquid water occurs between 0°C and 4°C.", "misconception": "Confusing the sub-zero range with the anomalous expansion range" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of specific heat capacity is:",
+    "explanation": "Specific heat capacity is defined as the amount of heat required to raise the temperature of 1 kg of a substance by 1 K (or 1°C). From Q = mcΔT, we get c = Q/(mΔT). The SI unit of heat is joule (J), mass is kilogram (kg), and temperature is kelvin (K). Therefore, the SI unit of specific heat capacity is J kg⁻¹ K⁻¹.",
+    "correct_answer": "A",
+    "concept_tags": ["specific heat capacity", "SI units", "calorimetry"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "J kg⁻¹ K⁻¹", "is_correct": true },
+      { "key": "B", "text": "J mol⁻¹ K⁻¹", "is_correct": false },
+      { "key": "C", "text": "J K⁻¹", "is_correct": false },
+      { "key": "D", "text": "cal g⁻¹ °C⁻¹", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "J mol⁻¹ K⁻¹ is the unit of molar specific heat capacity, not specific heat capacity. Specific heat is defined per unit mass (kg), not per mole.", "misconception": "Confusing specific heat capacity with molar specific heat capacity" },
+      { "option_key": "C", "hint": "J K⁻¹ is the unit of heat capacity (of an entire object), not specific heat capacity. Specific heat capacity is per unit mass.", "misconception": "Confusing heat capacity with specific heat capacity" },
+      { "option_key": "D", "hint": "cal g⁻¹ °C⁻¹ is a CGS unit, not an SI unit. The SI system uses joules, kilograms, and kelvin.", "misconception": "Confusing CGS units with SI units" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A steel rail is 10 m long at 20°C. If the coefficient of linear expansion of steel is 1.1 × 10⁻⁵ °C⁻¹, the thermal stress developed in the rail when the temperature rises to 50°C and the rail is prevented from expanding is (Young's modulus of steel Y = 2 × 10¹¹ Pa):",
+    "explanation": "When a rod is prevented from expanding, it develops thermal stress. The thermal strain is ε = αΔT = 1.1 × 10⁻⁵ × (50 − 20) = 1.1 × 10⁻⁵ × 30 = 3.3 × 10⁻⁴. The thermal stress is σ = Yε = YαΔT = 2 × 10¹¹ × 3.3 × 10⁻⁴ = 6.6 × 10⁷ Pa = 66 MPa.",
+    "correct_answer": "B",
+    "concept_tags": ["thermal stress", "Young's modulus", "prevented expansion", "linear expansion"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "3.3 × 10⁷ Pa", "is_correct": false },
+      { "key": "B", "text": "6.6 × 10⁷ Pa", "is_correct": true },
+      { "key": "C", "text": "2.2 × 10⁸ Pa", "is_correct": false },
+      { "key": "D", "text": "6.6 × 10⁶ Pa", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "3.3 × 10⁷ Pa results from using Y = 1 × 10¹¹ Pa instead of 2 × 10¹¹ Pa, or equivalently missing the factor of 2.", "misconception": "Using wrong value of Young's modulus" },
+      { "option_key": "C", "hint": "2.2 × 10⁸ Pa results from using ΔT = 100°C instead of 30°C. The temperature rise is only from 20°C to 50°C.", "misconception": "Incorrect temperature change calculation" },
+      { "option_key": "D", "hint": "6.6 × 10⁶ Pa is off by a factor of 10, likely from using α = 1.1 × 10⁻⁶ instead of 1.1 × 10⁻⁵.", "misconception": "Error in the order of magnitude of the expansion coefficient" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A metal plate has a circular hole of diameter 2 cm at 20°C. If the coefficient of linear expansion of the metal is 2 × 10⁻⁵ °C⁻¹, the diameter of the hole when the plate is heated to 220°C is:",
+    "explanation": "When a plate with a hole is heated, the hole expands as if it were filled with the same material. The diameter of the hole expands like a linear dimension: d₂ = d₁(1 + αΔT) = 2(1 + 2 × 10⁻⁵ × 200) = 2(1 + 4 × 10⁻³) = 2 × 1.004 = 2.008 cm.",
+    "correct_answer": "C",
+    "concept_tags": ["hole expansion", "linear expansion", "thermal expansion of cavity"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1.992 cm", "is_correct": false },
+      { "key": "B", "text": "2.016 cm", "is_correct": false },
+      { "key": "C", "text": "2.008 cm", "is_correct": true },
+      { "key": "D", "text": "2.004 cm", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1.992 cm implies the hole shrinks on heating. This is a common misconception. The hole expands along with the plate, just as it would if the hole were filled with the same metal.", "misconception": "Thinking that a hole shrinks when a plate is heated" },
+      { "option_key": "B", "hint": "2.016 cm results from using the area expansion coefficient (β = 2α) for the diameter instead of the linear expansion coefficient α.", "misconception": "Using area expansion coefficient for a linear dimension" },
+      { "option_key": "D", "hint": "2.004 cm results from using ΔT = 100°C instead of the correct ΔT = 220 − 20 = 200°C.", "misconception": "Incorrect temperature difference" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A 200 g copper block at 150°C is placed in 300 g of water at 25°C. If the specific heat of copper is 0.39 J g⁻¹ °C⁻¹ and that of water is 4.18 J g⁻¹ °C⁻¹, the equilibrium temperature of the mixture is approximately:",
+    "explanation": "By the principle of calorimetry, heat lost by copper = heat gained by water. m_Cu × c_Cu × (T_Cu − T) = m_w × c_w × (T − T_w). Substituting: 200 × 0.39 × (150 − T) = 300 × 4.18 × (T − 25). So 78(150 − T) = 1254(T − 25). Expanding: 11700 − 78T = 1254T − 31350. Therefore 11700 + 31350 = 1254T + 78T, giving 43050 = 1332T, so T = 43050/1332 ≈ 32.3°C.",
+    "correct_answer": "D",
+    "concept_tags": ["principle of calorimetry", "heat exchange", "specific heat", "equilibrium temperature"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "87.5°C", "is_correct": false },
+      { "key": "B", "text": "55°C", "is_correct": false },
+      { "key": "C", "text": "45°C", "is_correct": false },
+      { "key": "D", "text": "32.3°C", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "87.5°C is close to the average of 150°C and 25°C, but water has a much higher specific heat and larger mass, so it absorbs heat with a small temperature rise. The final temperature must be much closer to the initial water temperature.", "misconception": "Taking a simple average of the two temperatures" },
+      { "option_key": "B", "hint": "55°C overestimates the final temperature. Since the water has both a larger mass and a much higher specific heat than copper, the equilibrium temperature should be closer to 25°C than to 150°C.", "misconception": "Underestimating the effect of water's high specific heat capacity" },
+      { "option_key": "C", "hint": "45°C is too high. Substituting T = 45 gives heat lost by copper = 78 × 105 = 8190 J and heat gained by water = 1254 × 20 = 25080 J. These are not equal, so 45°C is not the equilibrium.", "misconception": "Arithmetic error in solving the calorimetry equation" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a bimetallic strip made of brass and iron, when the strip is heated, it bends with brass on the outer side. This is because:",
+    "explanation": "A bimetallic strip consists of two metals bonded together. When heated, each metal expands by a different amount depending on its coefficient of linear expansion. Brass has a higher coefficient of linear expansion than iron. Therefore, brass expands more than iron for the same temperature rise. Since both strips are bonded, the greater expansion of brass forces the strip to curve with brass on the outer (convex) side and iron on the inner (concave) side.",
+    "correct_answer": "A",
+    "concept_tags": ["bimetallic strip", "differential expansion", "coefficient of linear expansion"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Brass has a higher coefficient of linear expansion than iron", "is_correct": true },
+      { "key": "B", "text": "Iron has a higher coefficient of linear expansion than brass", "is_correct": false },
+      { "key": "C", "text": "Both metals expand equally but brass is more ductile", "is_correct": false },
+      { "key": "D", "text": "Brass has a higher melting point than iron", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "If iron had a higher expansion coefficient, it would be on the outer side of the bend, not brass. The metal with higher expansion always goes to the outer (convex) side.", "misconception": "Reversing which metal has the higher expansion coefficient" },
+      { "option_key": "C", "hint": "Ductility refers to the ability of a material to deform without fracture. Bending of a bimetallic strip is caused by differential thermal expansion, not ductility.", "misconception": "Confusing ductility with thermal expansion" },
+      { "option_key": "D", "hint": "Melting point has no role in the bending of a bimetallic strip. The bending depends solely on the difference in coefficients of linear expansion.", "misconception": "Confusing melting point with thermal expansion behaviour" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "How much heat is required to convert 5 kg of ice at 0°C into water at 0°C? (Latent heat of fusion of ice Lf = 3.34 × 10⁵ J kg⁻¹)",
+    "explanation": "During a phase change from ice to water at 0°C, the temperature remains constant and the heat required is Q = mLf. Here m = 5 kg and Lf = 3.34 × 10⁵ J kg⁻¹. Therefore Q = 5 × 3.34 × 10⁵ = 16.7 × 10⁵ = 1.67 × 10⁶ J = 1670 kJ.",
+    "correct_answer": "D",
+    "concept_tags": ["latent heat of fusion", "change of state", "ice to water", "phase transition"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "334 kJ", "is_correct": false },
+      { "key": "B", "text": "835 kJ", "is_correct": false },
+      { "key": "C", "text": "3340 kJ", "is_correct": false },
+      { "key": "D", "text": "1670 kJ", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "334 kJ corresponds to the heat required for only 1 kg of ice, not 5 kg. You need to multiply by the total mass.", "misconception": "Forgetting to multiply by the mass" },
+      { "option_key": "B", "hint": "835 kJ corresponds to 2.5 kg, as if the mass were halved. The full 5 kg must be used.", "misconception": "Using half the given mass" },
+      { "option_key": "C", "hint": "3340 kJ would result from using 10 kg instead of 5 kg, or doubling the latent heat value.", "misconception": "Doubling the mass or latent heat erroneously" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-10",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A copper rod and a steel rod of equal length and equal cross-sectional area are joined end to end. The free end of copper is at 100°C and the free end of steel is at 0°C. If the thermal conductivities of copper and steel are 400 W m⁻¹ K⁻¹ and 50 W m⁻¹ K⁻¹ respectively, the temperature at the junction in the steady state is approximately:",
+    "explanation": "In the steady state, the rate of heat flow through both rods is the same. For the copper rod: Q/t = K_Cu × A × (100 − T)/L. For the steel rod: Q/t = K_St × A × (T − 0)/L. Since Q/t is the same and A and L are equal, K_Cu(100 − T) = K_St × T. Substituting: 400(100 − T) = 50T. So 40000 − 400T = 50T, giving 40000 = 450T, thus T = 40000/450 ≈ 88.9°C.",
+    "correct_answer": "A",
+    "concept_tags": ["thermal conductivity", "steady state", "heat conduction", "composite rod"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "88.9°C", "is_correct": true },
+      { "key": "B", "text": "50°C", "is_correct": false },
+      { "key": "C", "text": "11.1°C", "is_correct": false },
+      { "key": "D", "text": "75°C", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "50°C would be the junction temperature if both rods had equal thermal conductivity. Since copper conducts much better, most of the temperature drop occurs across the steel rod, making the junction temperature much closer to 100°C.", "misconception": "Assuming the junction is at the average temperature regardless of conductivity" },
+      { "option_key": "C", "hint": "11.1°C results from swapping the conductivities of copper and steel in the calculation, placing the larger temperature drop across the copper rod instead of the steel rod.", "misconception": "Swapping the thermal conductivity values of the two materials" },
+      { "option_key": "D", "hint": "75°C would be the answer if the ratio of conductivities were 3:1 instead of 8:1. The actual ratio K_Cu/K_St = 400/50 = 8.", "misconception": "Using an incorrect ratio of thermal conductivities" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A pendulum clock gives correct time at 20°C. The coefficient of linear expansion of the pendulum material is 1.85 × 10⁻⁵ °C⁻¹. If the clock is used at 40°C, how much time does it lose or gain per day?",
+    "explanation": "The time period of a pendulum is T = 2π√(L/g). When the temperature increases, the pendulum length increases, so the time period increases, and the clock runs slow (loses time). The fractional change in time period is ΔT/T = (1/2)(ΔL/L) = (1/2)αΔθ = (1/2) × 1.85 × 10⁻⁵ × 20 = 1.85 × 10⁻⁴. Time lost per day = (ΔT/T) × 86400 s = 1.85 × 10⁻⁴ × 86400 ≈ 15.98 s ≈ 16 s. The clock loses about 16 seconds per day.",
+    "correct_answer": "B",
+    "concept_tags": ["pendulum clock", "linear expansion", "time period", "fractional change"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Gains 16 s per day", "is_correct": false },
+      { "key": "B", "text": "Loses 16 s per day", "is_correct": true },
+      { "key": "C", "text": "Loses 32 s per day", "is_correct": false },
+      { "key": "D", "text": "Gains 8 s per day", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "When the temperature increases, the pendulum becomes longer and swings slower, so the clock loses time, not gains. The clock would gain time only if the temperature decreased.", "misconception": "Reversing the effect of temperature increase on clock speed" },
+      { "option_key": "C", "hint": "32 s results from omitting the factor of 1/2 in the relation ΔT/T = (1/2)αΔθ. The time period depends on √L, which introduces the 1/2 factor.", "misconception": "Forgetting the factor of 1/2 from the square root dependence" },
+      { "option_key": "D", "hint": "8 s would result from using ΔT/T = (1/4)αΔθ or using ΔT = 10°C instead of 20°C.", "misconception": "Incorrect temperature change or wrong fractional factor" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-12",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An iron sphere of mass 0.5 kg at 80°C is dropped into 0.2 kg of water at 20°C in a calorimeter of water equivalent 0.02 kg. If the specific heat of iron is 470 J kg⁻¹ °C⁻¹ and that of water is 4200 J kg⁻¹ °C⁻¹, the final temperature of the mixture is approximately:",
+    "explanation": "By the principle of calorimetry: heat lost by iron = heat gained by water + heat gained by calorimeter. m_Fe × c_Fe × (80 − T) = (m_w + w) × c_w × (T − 20), where w = water equivalent of calorimeter = 0.02 kg. So 0.5 × 470 × (80 − T) = (0.2 + 0.02) × 4200 × (T − 20). This gives 235(80 − T) = 924(T − 20). Expanding: 18800 − 235T = 924T − 18480. Therefore 18800 + 18480 = 924T + 235T, so 37280 = 1159T, giving T = 37280/1159 ≈ 32.2°C.",
+    "correct_answer": "C",
+    "concept_tags": ["calorimetry", "water equivalent", "heat exchange", "specific heat"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "50°C", "is_correct": false },
+      { "key": "B", "text": "40°C", "is_correct": false },
+      { "key": "C", "text": "32.2°C", "is_correct": true },
+      { "key": "D", "text": "25°C", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "50°C is the simple average of 80°C and 20°C. The large specific heat of water means it changes temperature very little, so the equilibrium temperature is much closer to the initial water temperature.", "misconception": "Taking a simple average of temperatures" },
+      { "option_key": "B", "hint": "40°C overestimates the final temperature. Water has a much higher specific heat than iron and also has comparable thermal capacity in this problem, pulling the equilibrium temperature closer to 20°C.", "misconception": "Underestimating the thermal capacity of water" },
+      { "option_key": "D", "hint": "25°C underestimates the final temperature. The iron sphere does release significant heat (235 × 60 ≈ 14100 J), which raises the water temperature by more than 5°C.", "misconception": "Underestimating the heat contribution from the iron sphere" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): A bimetallic strip bends on heating due to unequal linear expansion of the two metals.\nReason (R): The coefficient of linear expansion is different for different metals.",
+    "explanation": "Both the assertion and the reason are correct, and the reason correctly explains the assertion. A bimetallic strip consists of two different metals bonded together. Since different metals have different coefficients of linear expansion (as stated in R), they expand by different amounts for the same temperature change. This differential expansion causes the strip to bend, with the metal having the higher expansion coefficient on the convex side. Thus, R is the direct explanation for A.",
+    "correct_answer": "A",
+    "concept_tags": ["bimetallic strip", "linear expansion", "differential expansion", "coefficient of expansion"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The reason directly explains the assertion. The bimetallic strip bends precisely because the two metals have different coefficients of linear expansion. There is a clear causal connection.", "misconception": "Failing to recognise the direct causal link between different expansion coefficients and bending" },
+      { "option_key": "C", "hint": "The reason is factually correct. It is well established that different metals have different thermal expansion coefficients — for example, α for brass is about 19 × 10⁻⁶ °C⁻¹ and for iron about 12 × 10⁻⁶ °C⁻¹.", "misconception": "Thinking all metals expand equally" },
+      { "option_key": "D", "hint": "The assertion is correct. Bimetallic strips do bend on heating due to unequal expansion, and this is a well-known principle used in thermostats and thermometers.", "misconception": "Denying the bending behaviour of bimetallic strips" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): During the change of state from ice at 0°C to water at 0°C, the temperature of the system remains constant even though heat is being supplied.\nReason (R): The heat supplied during the change of state is used to increase the kinetic energy of the molecules.",
+    "explanation": "The assertion is correct. During a phase transition (melting), the temperature remains constant because the supplied heat is used to overcome intermolecular forces, not to increase kinetic energy. The reason is incorrect because it states that the heat increases the kinetic energy of molecules — this is wrong. During a change of state, the supplied heat (latent heat) goes into increasing the potential energy of molecules by breaking or weakening intermolecular bonds. Kinetic energy (and hence temperature) remains unchanged during the phase transition.",
+    "correct_answer": "C",
+    "concept_tags": ["latent heat", "change of state", "kinetic energy", "potential energy", "phase transition"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The reason claims that heat increases kinetic energy during the change of state. If kinetic energy increased, the temperature would also increase (since temperature is proportional to average kinetic energy), contradicting the assertion.", "misconception": "Not recognising that increased kinetic energy would raise the temperature" },
+      { "option_key": "B", "hint": "The reason is factually incorrect. During a phase change, the heat supplied increases the potential energy (breaking bonds), not the kinetic energy. An incorrect statement cannot serve as any kind of explanation.", "misconception": "Confusing potential energy change with kinetic energy change during phase transitions" },
+      { "option_key": "D", "hint": "The assertion is correct and well established. Temperature remains constant during melting and boiling because the heat goes into changing the phase, not raising the temperature.", "misconception": "Incorrectly believing temperature must change whenever heat is supplied" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the physical quantities related to thermal expansion (Column I) with their correct relations (Column II):\n\nColumn I:\nA. Linear expansion coefficient (α)\nB. Area expansion coefficient (β)\nC. Volume expansion coefficient (γ)\nD. Thermal stress\n\nColumn II:\n1. 3α\n2. YαΔT\n3. ΔL/(LΔT)\n4. 2α",
+    "explanation": "A-3: The coefficient of linear expansion is defined as α = ΔL/(LΔT). B-4: The area expansion coefficient β = 2α for isotropic materials. C-1: The volume expansion coefficient γ = 3α for isotropic materials. D-2: Thermal stress developed when expansion is prevented is σ = YαΔT, where Y is Young's modulus.",
+    "correct_answer": "D",
+    "concept_tags": ["linear expansion", "area expansion", "volume expansion", "thermal stress", "expansion coefficients"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-1, C-4, D-2", "is_correct": false },
+      { "key": "B", "text": "A-4, B-3, C-1, D-2", "is_correct": false },
+      { "key": "C", "text": "A-3, B-4, C-2, D-1", "is_correct": false },
+      { "key": "D", "text": "A-3, B-4, C-1, D-2", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This pairs β (area expansion) with 3α and γ (volume expansion) with 2α. The correct relations are β = 2α and γ = 3α — these are swapped in this option.", "misconception": "Swapping the multipliers for area and volume expansion" },
+      { "option_key": "B", "hint": "This assigns 2α to the linear expansion coefficient, which is incorrect. α is defined as ΔL/(LΔT), not 2α. The factor of 2 applies to area expansion.", "misconception": "Confusing the definition of α with the relation β = 2α" },
+      { "option_key": "C", "hint": "This assigns YαΔT to the volume expansion coefficient and 3α to thermal stress. Thermal stress is σ = YαΔT, and γ = 3α, not the other way around.", "misconception": "Swapping volume expansion coefficient with thermal stress formula" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the thermal phenomena (Column I) with their characteristic features (Column II):\n\nColumn I:\nA. Anomalous expansion of water\nB. Latent heat of vaporisation of water\nC. Latent heat of fusion of ice\nD. Specific heat capacity of water\n\nColumn II:\n1. 4186 J kg⁻¹ K⁻¹\n2. Maximum density at 4°C\n3. 3.34 × 10⁵ J kg⁻¹\n4. 22.6 × 10⁵ J kg⁻¹",
+    "explanation": "A-2: The anomalous expansion of water is characterised by water having its maximum density at 4°C; below this temperature, water expands instead of contracting. B-4: The latent heat of vaporisation of water is 22.6 × 10⁵ J kg⁻¹ (= 2260 kJ kg⁻¹), the energy needed to convert 1 kg of water at 100°C to steam at 100°C. C-3: The latent heat of fusion of ice is 3.34 × 10⁵ J kg⁻¹ (= 334 kJ kg⁻¹), the energy to melt 1 kg of ice at 0°C. D-1: The specific heat capacity of water is 4186 J kg⁻¹ K⁻¹, the highest among common substances.",
+    "correct_answer": "B",
+    "concept_tags": ["anomalous expansion", "latent heat", "specific heat of water", "standard values"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-2, B-3, C-4, D-1", "is_correct": false },
+      { "key": "B", "text": "A-2, B-4, C-3, D-1", "is_correct": true },
+      { "key": "C", "text": "A-1, B-4, C-3, D-2", "is_correct": false },
+      { "key": "D", "text": "A-2, B-4, C-1, D-3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This swaps the latent heats of vaporisation and fusion. The latent heat of vaporisation (22.6 × 10⁵ J kg⁻¹) is much larger than the latent heat of fusion (3.34 × 10⁵ J kg⁻¹) because breaking all intermolecular bonds in vaporisation requires more energy than merely rearranging them in melting.", "misconception": "Swapping values of latent heat of fusion and vaporisation" },
+      { "option_key": "C", "hint": "This pairs anomalous expansion with 4186 J kg⁻¹ K⁻¹ (specific heat of water) and specific heat with maximum density at 4°C. These are clearly interchanged.", "misconception": "Mixing up the characteristic feature of anomalous expansion with specific heat value" },
+      { "option_key": "D", "hint": "This assigns 4186 J kg⁻¹ K⁻¹ to the latent heat of fusion and 3.34 × 10⁵ J kg⁻¹ to the specific heat of water. The specific heat is per degree temperature change, while latent heat is for the entire phase transition — their magnitudes differ by orders.", "misconception": "Confusing specific heat capacity with latent heat of fusion" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The coefficient of area (superficial) expansion of a solid is approximately twice its coefficient of linear expansion (β ≈ 2α).",
+    "explanation": "This statement is TRUE. For an isotropic solid, if the coefficient of linear expansion is α, then the coefficient of area expansion β ≈ 2α. This can be derived by considering a square plate of side L. When heated by ΔT, each side becomes L(1 + αΔT). The new area is L²(1 + αΔT)² ≈ L²(1 + 2αΔT) for small αΔT, giving β = 2α.",
+    "correct_answer": "A",
+    "concept_tags": ["area expansion", "superficial expansion", "β = 2α", "linear expansion"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The relation β = 2α is a standard result in thermal expansion for isotropic solids. Area involves two linear dimensions, each expanding by a factor (1 + αΔT), leading to β ≈ 2α.", "misconception": "Not recognising the standard relation between area and linear expansion coefficients" },
+      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "When a metal plate with a hole is heated uniformly, the size of the hole decreases.",
+    "explanation": "This statement is FALSE. When a metal plate with a hole is heated, the hole expands just like every other dimension of the plate. The hole behaves as if it were filled with the same metal. Every linear dimension of the plate, including the diameter of the hole, increases by the same fractional amount (αΔT). This is a common misconception — students often think the surrounding metal expands inward, but in reality the entire plate scales up uniformly.",
+    "correct_answer": "B",
+    "concept_tags": ["hole expansion", "thermal expansion of cavities", "uniform expansion"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A common misconception is that the expanding metal fills in the hole. In reality, uniform heating scales up all dimensions equally, including the hole diameter. Think of it as a photograph being enlarged — the hole also gets bigger.", "misconception": "Thinking the hole shrinks as surrounding metal expands inward" },
+      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-19",
+    "question_type": "fill_in_the_blanks",
+    "difficulty": "medium",
+    "question_text": "The heat required to raise the temperature of 2 kg of water from 30°C to 80°C is _____ kJ. (Specific heat capacity of water = 4200 J kg⁻¹ °C⁻¹)",
+    "explanation": "Using Q = mcΔT, where m = 2 kg, c = 4200 J kg⁻¹ °C⁻¹, and ΔT = 80 − 30 = 50°C. Therefore Q = 2 × 4200 × 50 = 420000 J = 420 kJ.",
+    "correct_answer": "D",
+    "concept_tags": ["specific heat", "calorimetry", "Q = mcΔT", "heat calculation"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "210 kJ", "is_correct": false },
+      { "key": "B", "text": "840 kJ", "is_correct": false },
+      { "key": "C", "text": "336 kJ", "is_correct": false },
+      { "key": "D", "text": "420 kJ", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "210 kJ results from using m = 1 kg instead of 2 kg, or ΔT = 25°C instead of 50°C. Check that you used the correct mass and temperature difference.", "misconception": "Using half the mass or half the temperature change" },
+      { "option_key": "B", "hint": "840 kJ results from using ΔT = 100°C instead of 50°C, possibly by treating the temperatures as absolute temperature changes.", "misconception": "Using twice the correct temperature difference" },
+      { "option_key": "C", "hint": "336 kJ results from using ΔT = 80 − 30 = 50 but with c = 3360 J kg⁻¹ °C⁻¹, an incorrect specific heat value. The specific heat of water is 4200 J kg⁻¹ °C⁻¹.", "misconception": "Using incorrect specific heat value for water" }
+    ]
+  },
+  {
+    "id": "phy-thermal-expansion-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A physics student performs a calorimetry experiment. She places 50 g of ice at 0°C into 200 g of water at 40°C in a perfectly insulated container. After thermal equilibrium is reached, she observes that all the ice has melted.\n\nGiven: Specific heat capacity of water = 4.2 J g⁻¹ °C⁻¹, Latent heat of fusion of ice = 336 J g⁻¹.\n\nWhat is the final equilibrium temperature of the mixture?",
+    "explanation": "Let the final temperature be T °C. Heat gained by ice = heat to melt ice + heat to warm the melted water = m_ice × L_f + m_ice × c_w × (T − 0) = 50 × 336 + 50 × 4.2 × T = 16800 + 210T. Heat lost by warm water = m_w × c_w × (40 − T) = 200 × 4.2 × (40 − T) = 840(40 − T) = 33600 − 840T. Setting heat gained = heat lost: 16800 + 210T = 33600 − 840T. So 210T + 840T = 33600 − 16800, giving 1050T = 16800, thus T = 16800/1050 = 16°C.",
+    "correct_answer": "C",
+    "concept_tags": ["calorimetry", "latent heat of fusion", "principle of heat exchange", "ice-water mixture", "change of state"],
+    "topic": "Thermal Expansion and Calorimetry",
+    "subject": "physics",
+    "chapter": "Thermal Properties of Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0°C", "is_correct": false },
+      { "key": "B", "text": "8°C", "is_correct": false },
+      { "key": "C", "text": "16°C", "is_correct": true },
+      { "key": "D", "text": "24°C", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0°C would be the answer only if the warm water does not have enough heat to melt all the ice. Here, heat available from water cooling to 0°C = 200 × 4.2 × 40 = 33600 J, and heat needed to melt all ice = 50 × 336 = 16800 J. Since 33600 > 16800, all ice melts and the final temperature is above 0°C.", "misconception": "Not checking whether sufficient heat is available to melt all the ice" },
+      { "option_key": "B", "hint": "8°C results from neglecting the latent heat or making an error in the heat balance equation. Verify that the equation includes both the melting term (m × Lf) and the warming term (m × c × T).", "misconception": "Omitting the latent heat term for ice melting" },
+      { "option_key": "D", "hint": "24°C overestimates the final temperature, likely by forgetting to include the latent heat of fusion. The large latent heat of ice significantly lowers the equilibrium temperature.", "misconception": "Ignoring the latent heat of fusion and only considering sensible heat" }
+    ]
+  }
+]

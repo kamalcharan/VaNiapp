@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-ac-transformer-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "At resonance in a series LCR circuit, the impedance of the circuit is equal to:",
+    "explanation": "At resonance, the inductive reactance (XL) equals the capacitive reactance (XC), so they cancel each other. The impedance Z = √(R² + (XL − XC)²) reduces to Z = R. The circuit behaves as a purely resistive circuit at the resonant frequency.",
+    "correct_answer": "B",
+    "concept_tags": ["resonance", "LCR-circuit", "impedance", "resistance"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "XL − XC", "is_correct": false },
+      { "key": "B", "text": "R", "is_correct": true },
+      { "key": "C", "text": "√(R² + XL²)", "is_correct": false },
+      { "key": "D", "text": "Zero", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "At resonance XL = XC, so XL − XC = 0. This would give zero impedance, which is not correct since resistance R is still present.", "misconception": "Forgetting that R remains even when reactances cancel" },
+      { "option_key": "C", "hint": "This expression ignores the capacitive reactance. At resonance, XL and XC cancel, leaving only R, not √(R² + XL²).", "misconception": "Using the formula for an RL circuit instead of a resonant LCR circuit" },
+      { "option_key": "D", "hint": "Zero impedance would mean infinite current, which is physically impossible. The resistance R always contributes to impedance.", "misconception": "Thinking total impedance becomes zero when reactances cancel" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The resonant angular frequency of a series LCR circuit with L = 0.5 H and C = 2 μF is:",
+    "explanation": "The resonant angular frequency is ω₀ = 1/√(LC) = 1/√(0.5 × 2 × 10⁻⁶) = 1/√(10⁻⁶) = 1/10⁻³ = 1000 rad/s. At this frequency, the inductive and capacitive reactances are equal and the circuit draws maximum current.",
+    "correct_answer": "C",
+    "concept_tags": ["resonant-frequency", "inductance", "capacitance", "LCR-circuit"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "500 rad/s", "is_correct": false },
+      { "key": "B", "text": "100 rad/s", "is_correct": false },
+      { "key": "C", "text": "1000 rad/s", "is_correct": true },
+      { "key": "D", "text": "2000 rad/s", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "500 rad/s might result from incorrectly using ω₀ = 1/(2√(LC)) or a calculation error. The correct formula gives 1/√(10⁻⁶) = 10³.", "misconception": "Introducing an extra factor of 2 in the resonance formula" },
+      { "option_key": "B", "hint": "100 rad/s is too small. Check the unit conversion: C = 2 μF = 2 × 10⁻⁶ F, and √(0.5 × 2 × 10⁻⁶) = 10⁻³.", "misconception": "Error in converting microfarads to farads" },
+      { "option_key": "D", "hint": "2000 rad/s would result from using ω₀ = 2/√(LC) or a similar error. The correct value is 1/√(LC) = 1000 rad/s.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In a step-up transformer, the voltage in the secondary coil compared to the primary coil is:",
+    "explanation": "A step-up transformer increases voltage from primary to secondary. The turns ratio Ns/Np > 1, so by the transformer equation Vs/Vp = Ns/Np, the secondary voltage is greater than the primary voltage. Correspondingly, the secondary current is less than the primary current (for an ideal transformer, VsIs = VpIp).",
+    "correct_answer": "A",
+    "concept_tags": ["step-up-transformer", "voltage", "turns-ratio"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Higher", "is_correct": true },
+      { "key": "B", "text": "Lower", "is_correct": false },
+      { "key": "C", "text": "Same", "is_correct": false },
+      { "key": "D", "text": "Zero", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Lower voltage in the secondary would describe a step-down transformer, not a step-up transformer.", "misconception": "Confusing step-up and step-down transformers" },
+      { "option_key": "C", "hint": "If the voltages were the same, the turns ratio would be 1:1, which is neither a step-up nor a step-down transformer.", "misconception": "Thinking a transformer always gives the same output voltage" },
+      { "option_key": "D", "hint": "Zero secondary voltage would mean no energy transfer at all, which defeats the purpose of a transformer.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The quality factor (Q-factor) of a series LCR resonant circuit is given by:",
+    "explanation": "The quality factor Q = ω₀L/R = (1/R)√(L/C). It measures the sharpness of the resonance curve. A higher Q means a sharper peak and a narrower bandwidth. The Q-factor can also be written as Q = 1/(ω₀CR), since ω₀ = 1/√(LC), giving ω₀L = L/√(LC) = √(L/C).",
+    "correct_answer": "D",
+    "concept_tags": ["quality-factor", "resonance", "sharpness", "bandwidth"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "R/(ω₀L)", "is_correct": false },
+      { "key": "B", "text": "ω₀CR", "is_correct": false },
+      { "key": "C", "text": "R√(LC)", "is_correct": false },
+      { "key": "D", "text": "ω₀L/R", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "R/(ω₀L) is the reciprocal of the Q-factor. A higher R would increase this expression, but physically a higher R makes resonance less sharp, so Q should decrease with R.", "misconception": "Inverting the Q-factor formula" },
+      { "option_key": "B", "hint": "ω₀CR is also the reciprocal of Q. Since Q = 1/(ω₀CR), this expression equals 1/Q, not Q.", "misconception": "Confusing Q with 1/Q" },
+      { "option_key": "C", "hint": "R√(LC) has dimensions of time, not a dimensionless quantity. The Q-factor must be dimensionless.", "misconception": "Incorrectly combining variables without dimensional analysis" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The power factor of a series LCR circuit at resonance is:",
+    "explanation": "The power factor cos φ = R/Z. At resonance, XL = XC, so Z = R. Therefore, cos φ = R/R = 1, and the phase angle φ = 0°. This means voltage and current are in phase, and the circuit draws maximum power P = VrmsIrms.",
+    "correct_answer": "A",
+    "concept_tags": ["power-factor", "resonance", "phase-angle", "impedance"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1", "is_correct": true },
+      { "key": "B", "text": "0", "is_correct": false },
+      { "key": "C", "text": "0.5", "is_correct": false },
+      { "key": "D", "text": "Infinity", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "A power factor of 0 occurs when the circuit is purely reactive (φ = 90°). At resonance, the reactive components cancel, so the power factor cannot be zero.", "misconception": "Confusing resonance condition with purely reactive circuit" },
+      { "option_key": "C", "hint": "A power factor of 0.5 would mean φ = 60°, which occurs only at specific off-resonance frequencies, not at resonance.", "misconception": null },
+      { "option_key": "D", "hint": "The power factor cos φ is bounded between 0 and 1, so it can never be infinity.", "misconception": "Confusing power factor with Q-factor or impedance" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An ideal transformer has 200 turns in the primary and 1000 turns in the secondary. If the primary voltage is 220 V, the secondary voltage is:",
+    "explanation": "For an ideal transformer, Vs/Vp = Ns/Np. Therefore Vs = Vp × (Ns/Np) = 220 × (1000/200) = 220 × 5 = 1100 V. Since Ns > Np, this is a step-up transformer that increases voltage by a factor of 5.",
+    "correct_answer": "D",
+    "concept_tags": ["transformer", "turns-ratio", "voltage-transformation", "ideal-transformer"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "44 V", "is_correct": false },
+      { "key": "B", "text": "220 V", "is_correct": false },
+      { "key": "C", "text": "550 V", "is_correct": false },
+      { "key": "D", "text": "1100 V", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "44 V = 220/5 would result from using the inverted ratio Np/Ns instead of Ns/Np. Since Ns > Np, the voltage must increase, not decrease.", "misconception": "Using the inverse turns ratio for voltage" },
+      { "option_key": "B", "hint": "220 V would mean no voltage change, implying a 1:1 turns ratio. But Ns/Np = 1000/200 = 5, so voltage must change.", "misconception": "Ignoring the turns ratio entirely" },
+      { "option_key": "C", "hint": "550 V = 220 × 2.5 would result from using Ns/Np = 1000/400 or another calculation error. The correct ratio is 1000/200 = 5.", "misconception": "Arithmetic error in the turns ratio calculation" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a purely inductive AC circuit, the wattless component of current is:",
+    "explanation": "In a purely inductive circuit, the phase angle φ = 90° (current lags voltage by π/2). The wattless (reactive) component of current = I sin φ = I sin 90° = I. Since all the current is wattless, no power is dissipated. The power consumed P = VrmsIrms cos 90° = 0.",
+    "correct_answer": "B",
+    "concept_tags": ["wattless-current", "purely-inductive", "phase-angle", "reactive-component"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Zero", "is_correct": false },
+      { "key": "B", "text": "Equal to the total current I", "is_correct": true },
+      { "key": "C", "text": "I/√2", "is_correct": false },
+      { "key": "D", "text": "I/2", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Zero wattless current would mean all current is power-producing (φ = 0°), which describes a purely resistive circuit, not a purely inductive one.", "misconception": "Confusing wattless component with the power-producing component" },
+      { "option_key": "C", "hint": "I/√2 as the wattless component would imply φ = 45°, which is not the case for a purely inductive circuit where φ = 90°.", "misconception": null },
+      { "option_key": "D", "hint": "I/2 as the wattless component would imply sin φ = 0.5, i.e., φ = 30°. In a purely inductive circuit, φ = 90° and sin φ = 1.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Electrical power is transmitted over long distances at high voltage because:",
+    "explanation": "Power loss in transmission lines is P_loss = I²R. For a given power P = VI, increasing voltage V allows a proportional decrease in current I (since I = P/V). Since power loss depends on I², doubling voltage reduces current by half and losses by a factor of 4. Hence, high-voltage transmission minimises resistive losses.",
+    "correct_answer": "C",
+    "concept_tags": ["power-transmission", "high-voltage", "power-loss", "current-reduction"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "It increases the total power delivered", "is_correct": false },
+      { "key": "B", "text": "It reduces the resistance of the transmission line", "is_correct": false },
+      { "key": "C", "text": "It reduces the current, thereby reducing I²R losses", "is_correct": true },
+      { "key": "D", "text": "It makes the power factor of the line equal to 1", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The total power generated at the source remains the same; only the fraction lost in transmission decreases. High voltage does not create more power.", "misconception": "Thinking high voltage creates additional power" },
+      { "option_key": "B", "hint": "Resistance depends on the wire material, length, and cross-section. Increasing voltage does not change the physical resistance of the line.", "misconception": "Confusing the effect of voltage on current with a change in resistance" },
+      { "option_key": "D", "hint": "Power factor depends on the load characteristics, not on the transmission voltage. High voltage transmission does not automatically correct power factor.", "misconception": "Confusing voltage level with power factor correction" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A series LCR circuit has L = 10 mH, C = 10 μF, and R = 10 Ω. The quality factor (Q) of the circuit is:",
+    "explanation": "First find ω₀ = 1/√(LC) = 1/√(10 × 10⁻³ × 10 × 10⁻⁶) = 1/√(10⁻⁷) = 1/(10⁻³·⁵) = √10 × 10³ ≈ 3162 rad/s. Alternatively, Q = (1/R)√(L/C) = (1/10)√(10 × 10⁻³/(10 × 10⁻⁶)) = (1/10)√(10³) = (1/10) × 31.62 ≈ 3.16. Rounding, Q ≈ √10 ≈ 3.16.",
+    "correct_answer": "C",
+    "concept_tags": ["quality-factor", "LCR-circuit", "resonance", "numerical"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1", "is_correct": false },
+      { "key": "B", "text": "10", "is_correct": false },
+      { "key": "C", "text": "√10 ≈ 3.16", "is_correct": true },
+      { "key": "D", "text": "100", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Q = 1 would require √(L/C) = R = 10, i.e., L/C = 100. But L/C = 10⁻² / 10⁻⁵ = 10³, so √(L/C) = √1000 ≈ 31.6, and Q = 31.6/10 ≈ 3.16.", "misconception": "Errors in unit conversion of L and C" },
+      { "option_key": "B", "hint": "Q = 10 would require √(L/C)/R = 10, i.e., √(L/C) = 100. But √(L/C) = √(10³) ≈ 31.6.", "misconception": "Incorrectly computing the ratio L/C" },
+      { "option_key": "D", "hint": "Q = 100 is far too large for these values. With R = 10 Ω, Q = ω₀L/R = 3162 × 0.01/10 ≈ 3.16.", "misconception": "Forgetting to convert millihenry and microfarad to SI units" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-10",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An ideal transformer steps down voltage from 2200 V to 220 V. If the secondary coil has 50 turns, and the power delivered to a load of 44 Ω connected across the secondary is:",
+    "explanation": "Secondary voltage Vs = 220 V. The current in the secondary Is = Vs/R_load = 220/44 = 5 A. Power delivered to the load P = Vs × Is = 220 × 5 = 1100 W. Alternatively, P = Vs²/R_load = (220)²/44 = 48400/44 = 1100 W. For the ideal transformer, this equals the power drawn from the primary.",
+    "correct_answer": "B",
+    "concept_tags": ["ideal-transformer", "power", "step-down", "load-resistance"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "550 W", "is_correct": false },
+      { "key": "B", "text": "1100 W", "is_correct": true },
+      { "key": "C", "text": "2200 W", "is_correct": false },
+      { "key": "D", "text": "110 W", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "550 W might result from using P = Vs²/(2R) or halving the correct answer. The correct formula is P = Vs²/R = (220)²/44 = 1100 W.", "misconception": "Introducing an unnecessary factor of 2 in the power formula" },
+      { "option_key": "C", "hint": "2200 W could result from using the primary voltage (2200 V) with the secondary load resistance, which is incorrect since the load is connected across the secondary.", "misconception": "Using primary voltage with secondary load resistance" },
+      { "option_key": "D", "hint": "110 W = 220²/440, which uses an incorrect load resistance. The given load is 44 Ω, not 440 Ω.", "misconception": "Decimal error in the load resistance" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In a series LCR circuit, L = 0.1 H, C = 10 μF, and R = 5 Ω. The bandwidth (Δω) of the resonant circuit is:",
+    "explanation": "The bandwidth of a series LCR resonant circuit is Δω = R/L. Substituting values: Δω = 5/0.1 = 50 rad/s. The bandwidth is independent of capacitance and depends only on R and L. A smaller bandwidth (larger Q) indicates a sharper resonance peak. Here Q = ω₀L/R = (1/√(LC)) × L/R = (1000 × 0.1)/5 = 20, and Δω = ω₀/Q = 1000/20 = 50 rad/s, confirming the result.",
+    "correct_answer": "A",
+    "concept_tags": ["bandwidth", "resonance", "sharpness", "LCR-circuit"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "50 rad/s", "is_correct": true },
+      { "key": "B", "text": "500 rad/s", "is_correct": false },
+      { "key": "C", "text": "100 rad/s", "is_correct": false },
+      { "key": "D", "text": "1000 rad/s", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "500 rad/s might result from using Δω = R/L with L in mH instead of H. Ensure L = 0.1 H, then Δω = 5/0.1 = 50 rad/s.", "misconception": "Unit conversion error with inductance" },
+      { "option_key": "C", "hint": "100 rad/s could come from incorrectly using Δω = 2R/L. The correct formula is Δω = R/L = 50 rad/s.", "misconception": "Introducing a spurious factor of 2 in the bandwidth formula" },
+      { "option_key": "D", "hint": "1000 rad/s is the resonant frequency ω₀ = 1/√(LC), not the bandwidth. Bandwidth Δω = R/L = 50 rad/s is much smaller than ω₀.", "misconception": "Confusing resonant frequency with bandwidth" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A power station delivers 500 kW of power at 10,000 V to a distant town through cables of total resistance 20 Ω. If the voltage is stepped up to 100,000 V before transmission, the ratio of power loss at 100,000 V to power loss at 10,000 V is:",
+    "explanation": "At 10,000 V: I₁ = P/V₁ = 500 × 10³/10⁴ = 50 A, so P_loss₁ = I₁²R = 50² × 20 = 50,000 W. At 100,000 V: I₂ = P/V₂ = 500 × 10³/10⁵ = 5 A, so P_loss₂ = I₂²R = 5² × 20 = 500 W. Ratio = P_loss₂/P_loss₁ = 500/50,000 = 1/100. Stepping up voltage by 10 times reduces losses by 10² = 100 times.",
+    "correct_answer": "D",
+    "concept_tags": ["power-loss", "transmission", "high-voltage", "current-reduction", "numerical"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1 : 10", "is_correct": false },
+      { "key": "B", "text": "1 : 1000", "is_correct": false },
+      { "key": "C", "text": "1 : 10,000", "is_correct": false },
+      { "key": "D", "text": "1 : 100", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1:10 would be correct if power loss were proportional to I (first power), but P_loss = I²R, so the ratio goes as the square of the voltage ratio.", "misconception": "Using P_loss ∝ I instead of P_loss ∝ I²" },
+      { "option_key": "B", "hint": "1:1000 would result from cubing the voltage ratio (10³). Since P_loss ∝ 1/V², the ratio is (V₁/V₂)² = (10)² = 100.", "misconception": "Using an incorrect power law for the voltage dependence" },
+      { "option_key": "C", "hint": "1:10,000 = 1/10⁴ corresponds to the fourth power of the voltage ratio, which is not the correct relationship. The correct law gives 1/10² = 1/100.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): At resonance in a series LCR circuit, the current in the circuit is maximum.\nReason (R): At resonance, the impedance of the circuit is minimum and equals the resistance R.",
+    "explanation": "Both A and R are correct, and R correctly explains A. At resonance, XL = XC, so the impedance Z = √(R² + (XL − XC)²) = R, which is the minimum possible value of impedance. Since I = V/Z, the minimum impedance leads to maximum current. Thus the reason directly explains the assertion.",
+    "correct_answer": "A",
+    "concept_tags": ["resonance", "maximum-current", "minimum-impedance", "LCR-circuit"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The fact that impedance is minimum (Z = R) is exactly why current is maximum (I = V/Z). The reason is the direct cause of the assertion.", "misconception": "Failing to see the direct causal link between minimum impedance and maximum current" },
+      { "option_key": "C", "hint": "The reason is correct: at resonance XL = XC, so Z = √(R² + 0) = R, which is indeed the minimum impedance.", "misconception": "Thinking impedance does not reduce to R at resonance" },
+      { "option_key": "D", "hint": "The assertion is correct: since Z is minimum at resonance, I = V/Z is indeed maximum at that frequency.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): A transformer cannot work with direct current (DC).\nReason (R): A transformer operates on the principle of mutual induction, which requires a changing magnetic flux.",
+    "explanation": "Both A and R are correct, and R is the correct explanation of A. A transformer works on Faraday's law of electromagnetic induction: an EMF is induced in the secondary only when the magnetic flux through it changes. DC produces a steady current and hence a constant magnetic flux, which cannot induce any EMF in the secondary coil. Therefore, transformers inherently require alternating current.",
+    "correct_answer": "A",
+    "concept_tags": ["transformer", "mutual-induction", "DC", "changing-flux", "Faraday-law"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The requirement for changing flux (R) is precisely the reason DC cannot work in a transformer (A). Steady DC means no flux change, no induced EMF, so R directly explains A.", "misconception": "Not recognising that mutual induction requires time-varying flux as the root cause" },
+      { "option_key": "C", "hint": "The reason is factually correct: mutual induction does require a changing magnetic flux according to Faraday's law.", "misconception": "Thinking a constant flux can still induce EMF" },
+      { "option_key": "D", "hint": "The assertion is correct: connecting DC to a transformer primary produces constant flux, yielding zero secondary EMF (except transiently at switch-on).", "misconception": "Believing a transformer can operate continuously on DC" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the following AC circuit parameters (Column-I) with their expressions (Column-II):\n\nColumn-I:\nA. Resonant frequency\nB. Power factor\nC. Quality factor\nD. Impedance at resonance\n\nColumn-II:\n1. R/Z\n2. 1/√(LC)\n3. ω₀L/R\n4. R",
+    "explanation": "Resonant angular frequency ω₀ = 1/√(LC), so A→2. Power factor cos φ = R/Z, so B→1. Quality factor Q = ω₀L/R, so C→3. At resonance, impedance Z = R, so D→4. Each expression follows from the standard series LCR circuit analysis.",
+    "correct_answer": "C",
+    "concept_tags": ["resonant-frequency", "power-factor", "quality-factor", "impedance", "matching"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-2, B-3, C-1, D-4", "is_correct": false },
+      { "key": "B", "text": "A-4, B-1, C-3, D-2", "is_correct": false },
+      { "key": "C", "text": "A-2, B-1, C-3, D-4", "is_correct": true },
+      { "key": "D", "text": "A-3, B-2, C-4, D-1", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This assigns R/Z to the Q-factor and ω₀L/R to power factor. Power factor is cos φ = R/Z (B→1), not ω₀L/R. The Q-factor is ω₀L/R (C→3).", "misconception": "Swapping the expressions for power factor and quality factor" },
+      { "option_key": "B", "hint": "This assigns R to resonant frequency and 1/√(LC) to impedance at resonance. Resonant frequency is 1/√(LC), and impedance at resonance is R.", "misconception": "Swapping resonant frequency and impedance at resonance" },
+      { "option_key": "D", "hint": "This completely scrambles the matching. Resonant frequency is 1/√(LC) (→2), not ω₀L/R (→3).", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the following types of energy losses in a transformer (Column-I) with their descriptions/remedies (Column-II):\n\nColumn-I:\nA. Copper loss\nB. Eddy current loss\nC. Hysteresis loss\nD. Flux leakage\n\nColumn-II:\n1. Reduced by using a laminated core\n2. Reduced by using soft iron core with narrow hysteresis loop\n3. Caused by I²R heating of the windings\n4. Reduced by winding coils over one another",
+    "explanation": "Copper loss is due to I²R heating in the windings (A→3). Eddy current loss is reduced by using a laminated core that interrupts eddy current paths (B→1). Hysteresis loss is reduced by using a soft iron core with a narrow hysteresis loop (C→2). Flux leakage is reduced by winding the primary and secondary coils over one another to maximise coupling (D→4).",
+    "correct_answer": "B",
+    "concept_tags": ["transformer-losses", "copper-loss", "eddy-currents", "hysteresis", "flux-leakage"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-2, C-1, D-4", "is_correct": false },
+      { "key": "B", "text": "A-3, B-1, C-2, D-4", "is_correct": true },
+      { "key": "C", "text": "A-1, B-3, C-4, D-2", "is_correct": false },
+      { "key": "D", "text": "A-4, B-1, C-2, D-3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This swaps eddy current loss and hysteresis loss remedies. Lamination (1) reduces eddy currents (B), and soft iron with narrow hysteresis loop (2) reduces hysteresis loss (C).", "misconception": "Confusing the remedies for eddy current and hysteresis losses" },
+      { "option_key": "C", "hint": "This assigns lamination to copper loss and I²R heating to eddy currents. Copper loss is due to I²R in windings (→3), and lamination reduces eddy currents (→1).", "misconception": "Mixing up the causes and remedies of different transformer losses" },
+      { "option_key": "D", "hint": "This assigns winding over one another to copper loss and I²R heating to flux leakage. Winding coils together reduces flux leakage (D→4), and I²R heating is copper loss (A→3).", "misconception": "Reversing copper loss and flux leakage descriptions" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "In an ideal transformer, the input power is equal to the output power.",
+    "explanation": "This statement is TRUE. An ideal transformer has no energy losses (no copper loss, no iron loss, no flux leakage). By conservation of energy, the power input to the primary coil equals the power output from the secondary coil: VpIp = VsIs. This is the fundamental assumption of an ideal transformer.",
+    "correct_answer": "A",
+    "concept_tags": ["ideal-transformer", "power-conservation", "input-output-power"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "In an ideal transformer, there are no energy losses. Conservation of energy demands that input power equals output power: VpIp = VsIs.", "misconception": "Thinking that voltage transformation implies power transformation, or confusing real transformers with ideal ones" },
+      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The power factor of a purely capacitive AC circuit is 1.",
+    "explanation": "This statement is FALSE. In a purely capacitive circuit, the current leads the voltage by 90° (φ = 90°). The power factor cos φ = cos 90° = 0, not 1. A power factor of 1 occurs only in a purely resistive circuit or at resonance in a series LCR circuit. In a purely capacitive circuit, no real power is dissipated.",
+    "correct_answer": "B",
+    "concept_tags": ["power-factor", "purely-capacitive", "phase-angle", "wattless-current"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A purely capacitive circuit has a phase angle of 90° between voltage and current. Power factor = cos 90° = 0, not 1. Only a purely resistive circuit has power factor 1.", "misconception": "Confusing purely capacitive circuit behaviour with purely resistive circuit behaviour" },
+      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-19",
+    "question_type": "fill_in_blanks",
+    "difficulty": "medium",
+    "question_text": "In an LC oscillating circuit with inductance L = 0.5 H and capacitance C = 8 μF, the angular frequency of oscillation is _____ rad/s.",
+    "explanation": "The angular frequency of LC oscillations is ω = 1/√(LC) = 1/√(0.5 × 8 × 10⁻⁶) = 1/√(4 × 10⁻⁶) = 1/(2 × 10⁻³) = 500 rad/s. This is the natural frequency at which the energy oscillates between the inductor (magnetic energy) and capacitor (electric energy).",
+    "correct_answer": "D",
+    "concept_tags": ["LC-oscillation", "angular-frequency", "inductance", "capacitance", "numerical"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "250", "is_correct": false },
+      { "key": "B", "text": "1000", "is_correct": false },
+      { "key": "C", "text": "50", "is_correct": false },
+      { "key": "D", "text": "500", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "250 rad/s would result from using ω = 1/(2√(LC)) instead of the correct ω = 1/√(LC). There is no factor of 2 in the angular frequency formula.", "misconception": "Confusing angular frequency ω with frequency f (ω = 2πf, but ω = 1/√(LC), not 1/(2√(LC)))" },
+      { "option_key": "B", "hint": "1000 rad/s could result from a unit conversion error, such as using C = 4 μF instead of 8 μF. Double-check: LC = 0.5 × 8 × 10⁻⁶ = 4 × 10⁻⁶.", "misconception": "Arithmetic error in computing LC product" },
+      { "option_key": "C", "hint": "50 rad/s is too small by a factor of 10. Verify: 1/√(4 × 10⁻⁶) = 1/(2 × 10⁻³) = 500, not 50.", "misconception": "Error in evaluating the square root of 10⁻⁶" }
+    ]
+  },
+  {
+    "id": "phy-ac-transformer-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A small town receives electrical power from a power plant 10 km away. The power plant generates 100 kW at 500 V. The two-wire transmission line has a total resistance of 4 Ω. An engineer proposes using a step-up transformer at the plant to raise the voltage to 5000 V before transmission and a step-down transformer at the town to bring it back to 500 V.\n\nWhat is the power loss in the transmission line WITHOUT the transformer?",
+    "explanation": "Without the transformer, V = 500 V and P = 100 kW = 100,000 W. The current in the transmission line I = P/V = 100,000/500 = 200 A. Power loss P_loss = I²R = (200)² × 4 = 40,000 × 4 = 160,000 W = 160 kW. This is more than the generated power, meaning essentially all power (and more from the source trying to maintain 100 kW delivery) would be lost. With the transformer at 5000 V: I = 100,000/5000 = 20 A, P_loss = (20)² × 4 = 1600 W = 1.6 kW, a massive reduction.",
+    "correct_answer": "C",
+    "concept_tags": ["power-transmission", "power-loss", "transformer", "high-voltage", "scenario", "numerical"],
+    "topic": "Resonance, Power Factor, and Transformers",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "40 kW", "is_correct": false },
+      { "key": "B", "text": "80 kW", "is_correct": false },
+      { "key": "C", "text": "160 kW", "is_correct": true },
+      { "key": "D", "text": "1.6 kW", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "40 kW corresponds to I²R with I = 100 A, which would mean P/V = 100,000/1000. The actual current at 500 V is I = 100,000/500 = 200 A.", "misconception": "Using an incorrect voltage to calculate the transmission current" },
+      { "option_key": "B", "hint": "80 kW = (200)² × 2 would result from using only half the total line resistance (one wire instead of both). The total two-wire resistance is 4 Ω.", "misconception": "Using only one-way resistance instead of total line resistance" },
+      { "option_key": "D", "hint": "1.6 kW is the power loss AFTER stepping up to 5000 V (I = 20 A, P_loss = 400 × 4 = 1600 W). The question asks for loss WITHOUT the transformer.", "misconception": "Calculating the loss with the transformer instead of without it" }
+    ]
+  }
+]

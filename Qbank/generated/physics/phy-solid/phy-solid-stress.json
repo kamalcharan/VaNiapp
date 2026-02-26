@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-solid-stress-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Stress is defined as:",
+    "explanation": "Stress is defined as the restoring force per unit area developed inside a body when it is subjected to a deforming force. Mathematically, Stress = F/A, where F is the applied force and A is the cross-sectional area over which the force acts. Its SI unit is N/m² or Pascal (Pa).",
+    "correct_answer": "C",
+    "concept_tags": ["stress definition", "restoring force per unit area"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Applied force multiplied by area", "is_correct": false },
+      { "key": "B", "text": "Change in length per unit original length", "is_correct": false },
+      { "key": "C", "text": "Restoring force per unit area", "is_correct": true },
+      { "key": "D", "text": "Ratio of change in volume to original volume", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Force multiplied by area has dimensions of N⋅m², which does not match the dimensions of stress (N/m²). Stress involves division by area, not multiplication.", "misconception": "Confusing multiplication with division in the stress formula" },
+      { "option_key": "B", "hint": "Change in length per unit original length is the definition of longitudinal strain, not stress. Strain is dimensionless whereas stress has units of pressure.", "misconception": "Confusing stress with strain" },
+      { "option_key": "D", "hint": "The ratio of change in volume to original volume is the definition of volumetric strain, not stress.", "misconception": "Confusing stress with volumetric strain" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of strain is:",
+    "explanation": "Strain is defined as the ratio of change in dimension to the original dimension. Since it is a ratio of two quantities having the same dimensions (e.g., length/length for longitudinal strain), strain is a dimensionless quantity and has no unit.",
+    "correct_answer": "B",
+    "concept_tags": ["strain", "dimensionless quantity", "SI units"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "N/m²", "is_correct": false },
+      { "key": "B", "text": "It is dimensionless (no unit)", "is_correct": true },
+      { "key": "C", "text": "Pascal", "is_correct": false },
+      { "key": "D", "text": "N/m", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "N/m² (Pascal) is the SI unit of stress, not strain. Strain is a pure ratio and has no dimensions.", "misconception": "Confusing units of stress with units of strain" },
+      { "option_key": "C", "hint": "Pascal is the SI unit of pressure and stress, not strain. Since strain is a ratio of like quantities, it has no unit.", "misconception": "Confusing stress and strain units" },
+      { "option_key": "D", "hint": "N/m represents force per unit length (surface tension), not strain. Strain is dimensionless.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "When equal and opposite forces are applied perpendicular to the cross-sectional area of a cylinder on its two ends, the stress developed is called:",
+    "explanation": "When equal and opposite forces act perpendicular (normal) to the cross-sectional area of a body, trying to compress or elongate it, the stress developed is called normal stress. If the forces pull the body (elongation), it is tensile stress, and if they push (compression), it is compressive stress. Since the forces are along the axis and perpendicular to the cross-section, this is specifically tensile or compressive stress — a type of normal stress.",
+    "correct_answer": "A",
+    "concept_tags": ["tensile stress", "compressive stress", "normal stress"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Tensile or compressive stress", "is_correct": true },
+      { "key": "B", "text": "Shearing stress", "is_correct": false },
+      { "key": "C", "text": "Hydraulic stress", "is_correct": false },
+      { "key": "D", "text": "Thermal stress", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Shearing stress arises when the applied force is tangential (parallel) to the surface, not perpendicular to it.", "misconception": "Confusing normal stress with shearing stress" },
+      { "option_key": "C", "hint": "Hydraulic stress occurs when a body is submerged in a fluid and pressure is applied uniformly from all sides, not by two opposing forces on the ends.", "misconception": "Confusing uniaxial stress with volumetric/hydraulic stress" },
+      { "option_key": "D", "hint": "Thermal stress arises due to change in temperature when expansion or contraction is constrained, not from externally applied mechanical forces.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A steel wire of length 2 m and cross-sectional area 1 mm² is stretched by a force of 200 N. If the Young's modulus of steel is 2 × 10¹¹ N/m², the elongation of the wire is:",
+    "explanation": "Using the formula: Y = Stress/Strain = (F/A)/(ΔL/L). Rearranging: ΔL = FL/(AY). Here F = 200 N, L = 2 m, A = 1 mm² = 1 × 10⁻⁶ m², Y = 2 × 10¹¹ N/m². So ΔL = (200 × 2)/(1 × 10⁻⁶ × 2 × 10¹¹) = 400/(2 × 10⁵) = 2 × 10⁻³ m = 2 mm.",
+    "correct_answer": "D",
+    "concept_tags": ["Young's modulus", "elongation", "stress-strain relation"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.2 mm", "is_correct": false },
+      { "key": "B", "text": "0.5 mm", "is_correct": false },
+      { "key": "C", "text": "1 mm", "is_correct": false },
+      { "key": "D", "text": "2 mm", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0.2 mm would result from an extra factor of 10 in the denominator. Check the unit conversion: 1 mm² = 10⁻⁶ m², not 10⁻⁵ m².", "misconception": "Incorrect unit conversion of mm² to m²" },
+      { "option_key": "B", "hint": "0.5 mm comes from incorrectly using ΔL = F/(AY) without multiplying by the original length L.", "misconception": "Forgetting to include original length in the elongation formula" },
+      { "option_key": "C", "hint": "1 mm would result from using L = 1 m instead of L = 2 m in the formula.", "misconception": "Misreading the given length of the wire" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two wires of the same material have lengths in the ratio 1:2 and diameters in the ratio 2:1. If both are subjected to the same force, the ratio of their elongations is:",
+    "explanation": "Elongation ΔL = FL/(AY). For same material, Y is the same, and same force F. Area A = πd²/4, so A is proportional to d². Thus ΔL ∝ L/d². For wire 1: ΔL₁ ∝ L₁/d₁². For wire 2: ΔL₂ ∝ L₂/d₂². ΔL₁/ΔL₂ = (L₁/L₂) × (d₂/d₁)² = (1/2) × (1/2)² = (1/2) × (1/4) = 1/8. So ΔL₁ : ΔL₂ = 1 : 8.",
+    "correct_answer": "C",
+    "concept_tags": ["Young's modulus", "elongation ratio", "wire comparison"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1 : 2", "is_correct": false },
+      { "key": "B", "text": "1 : 4", "is_correct": false },
+      { "key": "C", "text": "1 : 8", "is_correct": true },
+      { "key": "D", "text": "1 : 16", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1 : 2 only accounts for the length ratio and ignores the effect of different diameters on the cross-sectional area.", "misconception": "Ignoring the dependence of elongation on cross-sectional area" },
+      { "option_key": "B", "hint": "1 : 4 would result if you considered the area ratio but forgot the length ratio, or used diameter ratio linearly instead of squaring it.", "misconception": "Not squaring the diameter ratio when calculating area" },
+      { "option_key": "D", "hint": "1 : 16 would result from cubing the diameter ratio or incorrectly combining the ratios. Elongation depends on L/d², not L/d³.", "misconception": "Incorrect power of diameter in the formula" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Hooke's law is valid:",
+    "explanation": "Hooke's law states that stress is directly proportional to strain. This linear relationship holds only within the elastic limit (also called the proportional limit). Beyond the elastic limit, the stress-strain relationship becomes non-linear, and Hooke's law no longer applies.",
+    "correct_answer": "B",
+    "concept_tags": ["Hooke's law", "elastic limit", "proportional limit"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Up to the breaking point", "is_correct": false },
+      { "key": "B", "text": "Only within the elastic limit", "is_correct": true },
+      { "key": "C", "text": "For all values of stress and strain", "is_correct": false },
+      { "key": "D", "text": "Only in the plastic region", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Beyond the elastic limit, the material undergoes plastic deformation where stress is not proportional to strain. Hooke's law fails well before the breaking point.", "misconception": "Assuming Hooke's law applies throughout the entire stress-strain curve" },
+      { "option_key": "C", "hint": "No material obeys Hooke's law for all values. At high stress, materials enter the plastic region where the proportionality breaks down.", "misconception": "Treating Hooke's law as universally valid" },
+      { "option_key": "D", "hint": "In the plastic region, permanent deformation occurs and the stress-strain relationship is non-linear. Hooke's law specifically applies to the elastic region.", "misconception": "Confusing elastic and plastic regions" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A copper wire of cross-sectional area 2 × 10⁻⁶ m² is subjected to a tensile stress of 5 × 10⁷ N/m². The force applied on the wire is:",
+    "explanation": "Stress = Force/Area, so Force = Stress × Area. F = 5 × 10⁷ × 2 × 10⁻⁶ = 10 × 10¹ = 100 N.",
+    "correct_answer": "A",
+    "concept_tags": ["stress", "force", "cross-sectional area"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "100 N", "is_correct": true },
+      { "key": "B", "text": "50 N", "is_correct": false },
+      { "key": "C", "text": "200 N", "is_correct": false },
+      { "key": "D", "text": "10 N", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "50 N would result from dividing stress by area instead of multiplying. Remember, Force = Stress × Area.", "misconception": "Using F = Stress/Area instead of F = Stress × Area" },
+      { "option_key": "C", "hint": "200 N is double the correct answer. Check the powers of 10 carefully: 10⁷ × 10⁻⁶ = 10¹, and 5 × 2 × 10¹ = 100, not 200.", "misconception": "Arithmetic error in multiplication" },
+      { "option_key": "D", "hint": "10 N would result from an error in handling powers of 10. Verify: 5 × 10⁷ × 2 × 10⁻⁶ = 10 × 10¹ = 100 N.", "misconception": "Incorrect exponent arithmetic" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "On a stress-strain curve for a ductile material, the point beyond which the material does not return to its original shape when the load is removed is called the:",
+    "explanation": "The elastic limit (or yield point) is the maximum stress up to which the body regains its original shape after the removal of the deforming force. Beyond this point, the deformation becomes permanent (plastic). The yield point specifically marks the beginning of plastic deformation. In a typical stress-strain curve, the yield point is where the material transitions from elastic to plastic behaviour.",
+    "correct_answer": "D",
+    "concept_tags": ["elastic limit", "yield point", "stress-strain curve", "plastic deformation"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Proportional limit", "is_correct": false },
+      { "key": "B", "text": "Breaking point", "is_correct": false },
+      { "key": "C", "text": "Ultimate tensile strength point", "is_correct": false },
+      { "key": "D", "text": "Yield point (elastic limit)", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The proportional limit is where stress ceases to be proportional to strain, but the material may still behave elastically slightly beyond this point.", "misconception": "Confusing proportional limit with elastic limit" },
+      { "option_key": "B", "hint": "The breaking point is where the material actually fractures. The material enters plastic deformation well before it breaks.", "misconception": "Confusing onset of plastic deformation with fracture" },
+      { "option_key": "C", "hint": "The ultimate tensile strength point is the maximum stress the material can withstand. It occurs after the yield point in the plastic region.", "misconception": "Confusing ultimate strength with elastic limit" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A wire of length 1 m is stretched by 0.01 m. If the wire obeys Hooke's law and has a Young's modulus of 2 × 10¹¹ N/m² and cross-sectional area of 10⁻⁶ m², the energy stored per unit volume of the wire is:",
+    "explanation": "Strain = ΔL/L = 0.01/1 = 0.01. Stress = Y × Strain = 2 × 10¹¹ × 0.01 = 2 × 10⁹ N/m². Energy stored per unit volume = ½ × Stress × Strain = ½ × 2 × 10⁹ × 0.01 = 1 × 10⁷ J/m³ = 10⁷ J/m³.",
+    "correct_answer": "C",
+    "concept_tags": ["elastic potential energy", "energy density", "Hooke's law"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "5 × 10⁶ J/m³", "is_correct": false },
+      { "key": "B", "text": "2 × 10⁷ J/m³", "is_correct": false },
+      { "key": "C", "text": "10⁷ J/m³", "is_correct": true },
+      { "key": "D", "text": "10⁹ J/m³", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "5 × 10⁶ J/m³ is half the correct value, possibly from an extra factor of 2 error. Check: ½ × 2 × 10⁹ × 10⁻² = 10⁷.", "misconception": "Arithmetic error in power of ten calculation" },
+      { "option_key": "B", "hint": "2 × 10⁷ J/m³ would result from omitting the factor of ½ in the energy density formula u = ½ × stress × strain.", "misconception": "Forgetting the factor of ½ in elastic energy density" },
+      { "option_key": "D", "hint": "10⁹ J/m³ is the value of stress itself, not energy density. Energy per unit volume = ½ × stress × strain, which is much smaller than the stress.", "misconception": "Confusing stress with energy per unit volume" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Shearing strain is defined as:",
+    "explanation": "Shearing strain is defined as the angle θ (in radians) through which a face originally perpendicular to the fixed face is turned. It can also be expressed as the ratio of the lateral displacement (Δx) of one face to the perpendicular distance (L) between the fixed and displaced faces: θ = Δx/L. It is measured in radians and is dimensionless.",
+    "correct_answer": "B",
+    "concept_tags": ["shearing strain", "angular displacement", "shear deformation"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Ratio of change in volume to original volume", "is_correct": false },
+      { "key": "B", "text": "Angle of deformation (ratio of lateral displacement to perpendicular distance)", "is_correct": true },
+      { "key": "C", "text": "Ratio of change in length to original length", "is_correct": false },
+      { "key": "D", "text": "Force per unit area tangential to the surface", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The ratio of change in volume to original volume defines volumetric strain, which occurs under hydraulic stress, not shearing.", "misconception": "Confusing volumetric strain with shearing strain" },
+      { "option_key": "C", "hint": "The ratio of change in length to original length is longitudinal (tensile) strain, not shearing strain.", "misconception": "Confusing longitudinal strain with shearing strain" },
+      { "option_key": "D", "hint": "Force per unit area tangential to the surface is the definition of shearing stress, not shearing strain.", "misconception": "Confusing shearing stress with shearing strain" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A rubber cord of length L, cross-sectional area A, and Young's modulus Y is stretched so that its length doubles. Assuming Hooke's law holds, the work done in stretching the cord is:",
+    "explanation": "When the cord doubles in length, the extension ΔL = L. The work done in stretching a wire obeying Hooke's law is W = ½ × (YA/L) × (ΔL)² = ½ × (YA/L) × L² = ½ × YAL. Here, the wire behaves like a spring with spring constant k = YA/L.",
+    "correct_answer": "A",
+    "concept_tags": ["elastic potential energy", "Young's modulus", "work done in stretching"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "YAL/2", "is_correct": true },
+      { "key": "B", "text": "YAL", "is_correct": false },
+      { "key": "C", "text": "2YAL", "is_correct": false },
+      { "key": "D", "text": "YAL/4", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "YAL omits the factor of ½. The elastic potential energy stored is W = ½ × F × ΔL, and the factor of ½ comes from the force increasing linearly from 0 to its maximum.", "misconception": "Forgetting the factor of ½ in work done against a variable force" },
+      { "option_key": "C", "hint": "2YAL is four times the correct answer. This would require a much larger extension or an error in applying the formula.", "misconception": "Incorrect substitution of extension value" },
+      { "option_key": "D", "hint": "YAL/4 would result from using ΔL = L/2 instead of the correct extension ΔL = L (since the cord doubles in length).", "misconception": "Incorrectly interpreting 'length doubles' as extension being half the length" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A steel wire and a copper wire of the same length and same cross-sectional area are connected end to end and the combination is subjected to a tensile force. If Y_steel = 2 × 10¹¹ N/m² and Y_copper = 1.2 × 10¹¹ N/m², the ratio of the elongation in the steel wire to that in the copper wire is:",
+    "explanation": "When wires are connected in series and pulled, the same force F acts through both wires. For each wire: ΔL = FL/(AY). Since L and A are the same for both, ΔL ∝ 1/Y. Therefore ΔL_steel/ΔL_copper = Y_copper/Y_steel = 1.2 × 10¹¹ / 2 × 10¹¹ = 1.2/2 = 3/5. The ratio is 3 : 5.",
+    "correct_answer": "D",
+    "concept_tags": ["Young's modulus comparison", "series combination of wires", "elongation ratio"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "5 : 3", "is_correct": false },
+      { "key": "B", "text": "2 : 1.2", "is_correct": false },
+      { "key": "C", "text": "1 : 1", "is_correct": false },
+      { "key": "D", "text": "3 : 5", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "5 : 3 is the inverse of the correct ratio. Elongation is inversely proportional to Y, so the wire with higher Y (steel) elongates less, not more.", "misconception": "Taking elongation as directly proportional to Young's modulus" },
+      { "option_key": "B", "hint": "While 2 : 1.2 is the ratio of Young's moduli, elongation is inversely proportional to Y. The elongation ratio should be Y_copper : Y_steel = 1.2 : 2 = 3 : 5.", "misconception": "Using the Y ratio directly instead of inversely" },
+      { "option_key": "C", "hint": "1 : 1 would only be true if both wires had the same Young's modulus, which they do not.", "misconception": "Ignoring the difference in elastic moduli" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Steel is more elastic than rubber.\nReason (R): For the same strain, the stress developed in steel is much larger than in rubber, meaning steel has a higher Young's modulus.",
+    "explanation": "Elasticity is measured by the modulus of elasticity (Young's modulus), not by how much a material can stretch. Steel has a Young's modulus of about 2 × 10¹¹ N/m² while rubber has about 5 × 10⁶ N/m². A higher modulus means greater resistance to deformation and a stronger restoring tendency per unit strain, making steel more elastic. The Reason correctly explains why steel is more elastic — for the same strain, steel develops much higher stress. Both A and R are true, and R is the correct explanation of A.",
+    "correct_answer": "D",
+    "concept_tags": ["elasticity comparison", "Young's modulus", "steel vs rubber"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are true but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "A is true but R is false", "is_correct": false },
+      { "key": "C", "text": "A is false but R is true", "is_correct": false },
+      { "key": "D", "text": "Both A and R are true and R is the correct explanation of A", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The Reason directly explains the Assertion — steel is more elastic precisely because it has a higher Young's modulus, which is what the Reason states.", "misconception": "Not recognizing that Young's modulus is the measure of elasticity" },
+      { "option_key": "B", "hint": "The Reason is factually correct: steel does develop much higher stress than rubber for the same strain, and its Young's modulus is indeed much higher.", "misconception": null },
+      { "option_key": "C", "hint": "The Assertion is true. Elasticity is quantified by modulus, not stretchability. Steel resists deformation more strongly and returns to its original shape more precisely.", "misconception": "Thinking that being more stretchable means being more elastic" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The stress-strain curve for a brittle material shows little or no plastic deformation before fracture.\nReason (R): Brittle materials have a very low Young's modulus compared to ductile materials.",
+    "explanation": "The Assertion is true: brittle materials (like cast iron, glass, ceramics) fracture shortly after the elastic limit with minimal or no plastic deformation — their stress-strain curves show a nearly straight line followed by sudden fracture. However, the Reason is false. Brittle materials do not necessarily have low Young's modulus. For example, glass and ceramics often have high Young's modulus values. The brittleness is due to the inability of atoms/molecules to slip past each other (no dislocation movement), not due to a low modulus.",
+    "correct_answer": "B",
+    "concept_tags": ["brittle material", "plastic deformation", "stress-strain curve", "fracture"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are true and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "A is true but R is false", "is_correct": true },
+      { "key": "C", "text": "A is false but R is true", "is_correct": false },
+      { "key": "D", "text": "Both A and R are true but R is NOT the correct explanation of A", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The Reason is factually incorrect. Brittle materials do not have low Young's modulus; many brittle materials like ceramics have very high Young's modulus values.", "misconception": "Assuming brittleness correlates with low Young's modulus" },
+      { "option_key": "C", "hint": "The Assertion is true. Brittle materials are well known to fracture with little plastic deformation — this is the defining characteristic of brittleness.", "misconception": "Confusing brittleness with ductility" },
+      { "option_key": "D", "hint": "The Reason is false, not merely an incorrect explanation. Brittle materials can have high Young's modulus — brittleness relates to lack of plastic flow, not to stiffness.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following types of stress/strain with their descriptions:\n\nColumn-I:\n(P) Tensile stress\n(Q) Shearing strain\n(R) Volumetric strain\n(S) Compressive stress\n\nColumn-II:\n(1) Ratio of change in volume to original volume\n(2) Restoring force per unit area when the body is being pulled\n(3) Angle of deformation measured in radians\n(4) Restoring force per unit area when the body is being compressed",
+    "explanation": "Tensile stress (P) is the restoring force per unit area when a body is being stretched or pulled → (2). Shearing strain (Q) is defined as the angle of deformation (tan θ ≈ θ in radians for small angles) → (3). Volumetric strain (R) is the ratio of change in volume to original volume (ΔV/V) → (1). Compressive stress (S) is the restoring force per unit area when the body is being compressed → (4). So the correct matching is P→2, Q→3, R→1, S→4.",
+    "correct_answer": "C",
+    "concept_tags": ["tensile stress", "shearing strain", "volumetric strain", "compressive stress"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "P→2, Q→1, R→3, S→4", "is_correct": false },
+      { "key": "B", "text": "P→4, Q→3, R→1, S→2", "is_correct": false },
+      { "key": "C", "text": "P→2, Q→3, R→1, S→4", "is_correct": true },
+      { "key": "D", "text": "P→3, Q→2, R→4, S→1", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This option incorrectly matches shearing strain (Q) with the volumetric description (1). Shearing strain is the angle of deformation, not a volume ratio.", "misconception": "Confusing shearing strain with volumetric strain" },
+      { "option_key": "B", "hint": "This option swaps tensile stress and compressive stress. Tensile stress corresponds to pulling (2), and compressive stress corresponds to compression (4).", "misconception": "Swapping definitions of tensile and compressive stress" },
+      { "option_key": "D", "hint": "This option assigns stress quantities to strain descriptions and vice versa. Tensile stress is force per unit area, not an angle.", "misconception": "Mixing up stress and strain definitions entirely" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following regions/points on a typical stress-strain curve for a ductile material with their characteristics:\n\nColumn-I:\n(P) Proportional limit\n(Q) Yield point\n(R) Ultimate tensile strength\n(S) Fracture point\n\nColumn-II:\n(1) Maximum stress the material can withstand; neck formation begins\n(2) Point beyond which stress is no longer proportional to strain\n(3) The point at which the material physically breaks apart\n(4) Onset of permanent (plastic) deformation",
+    "explanation": "The proportional limit (P) is the point up to which stress is directly proportional to strain (Hooke's law holds) — beyond this, proportionality is lost → (2). The yield point (Q) marks the onset of permanent/plastic deformation; beyond this, the body does not fully return to its original shape → (4). The ultimate tensile strength (R) is the maximum stress the material can sustain before necking begins → (1). The fracture point (S) is where the material ultimately breaks → (3). Correct matching: P→2, Q→4, R→1, S→3.",
+    "correct_answer": "D",
+    "concept_tags": ["stress-strain curve", "proportional limit", "yield point", "ultimate tensile strength", "fracture point"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "P→1, Q→2, R→4, S→3", "is_correct": false },
+      { "key": "B", "text": "P→2, Q→4, R→3, S→1", "is_correct": false },
+      { "key": "C", "text": "P→4, Q→2, R→1, S→3", "is_correct": false },
+      { "key": "D", "text": "P→2, Q→4, R→1, S→3", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This option assigns maximum stress (1) to the proportional limit, but the proportional limit is where linearity ends, not where stress is maximum.", "misconception": "Confusing proportional limit with ultimate tensile strength" },
+      { "option_key": "B", "hint": "This option swaps the ultimate tensile strength (R) with the fracture point (S). The maximum stress occurs at the UTS, and the material breaks at the fracture point — these are distinct points.", "misconception": "Confusing fracture point with ultimate tensile strength" },
+      { "option_key": "C", "hint": "This option assigns plastic deformation onset (4) to the proportional limit, but plastic deformation begins at the yield point, not at the proportional limit.", "misconception": "Confusing proportional limit with yield point" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Within the elastic limit, the ratio of stress to strain is a constant for a given material. This constant is called the modulus of elasticity.",
+    "explanation": "This statement is TRUE. According to Hooke's law, within the elastic limit, stress is directly proportional to strain: Stress ∝ Strain, or Stress = E × Strain, where E is the modulus of elasticity. The value of E depends on the material and the type of stress applied (Young's modulus for tensile/compressive, shear modulus for shearing, bulk modulus for volumetric).",
+    "correct_answer": "A",
+    "concept_tags": ["Hooke's law", "modulus of elasticity", "elastic limit"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The statement is a direct expression of Hooke's law. Within the elastic limit, stress/strain = constant, which is indeed the modulus of elasticity.", "misconception": "Not recognizing Hooke's law in verbal form" },
+      { "option_key": "C", "hint": "This option is not applicable for this question.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for this question.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Rubber is more elastic than steel because rubber can be stretched more than steel.",
+    "explanation": "This statement is FALSE. Elasticity is not about how much a material can be stretched; it is about how well a material resists deformation and returns to its original shape. Elasticity is measured by the modulus of elasticity (Young's modulus). Steel has a much higher Young's modulus (~2 × 10¹¹ N/m²) than rubber (~5 × 10⁶ N/m²), making steel more elastic than rubber despite rubber being more stretchable.",
+    "correct_answer": "B",
+    "concept_tags": ["elasticity", "Young's modulus", "steel vs rubber", "common misconception"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Stretchability does not determine elasticity. Elasticity is measured by modulus of elasticity, and steel has a far higher modulus than rubber.", "misconception": "Equating stretchability with elasticity" },
+      { "option_key": "C", "hint": "This option is not applicable for this question.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for this question.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "A wire of length 3 m and diameter 2 mm is stretched by 3 mm under a load of 9.42 kN. The Young's modulus of the material of the wire is ________ × 10¹⁰ N/m². (Use π = 3.14)",
+    "explanation": "Given: L = 3 m, d = 2 mm → r = 1 mm = 10⁻³ m, ΔL = 3 mm = 3 × 10⁻³ m, F = 9.42 kN = 9420 N. Area A = πr² = 3.14 × (10⁻³)² = 3.14 × 10⁻⁶ m². Young's modulus Y = FL/(AΔL) = (9420 × 3)/(3.14 × 10⁻⁶ × 3 × 10⁻³) = 28260/(9.42 × 10⁻⁹) = 28260/9.42 × 10⁹ = 3000 × 10⁹ = 3 × 10¹² N/m². Wait, let me recalculate. Y = FL/(AΔL) = (9420 × 3)/(3.14 × 10⁻⁶ × 3 × 10⁻³) = 28260/(9.42 × 10⁻⁹) = 3 × 10¹² N/m² = 300 × 10¹⁰ N/m². Hmm, let me recheck. F = 9.42 × 10³ N. Y = (9.42 × 10³ × 3)/(3.14 × 10⁻⁶ × 3 × 10⁻³) = (28.26 × 10³)/(9.42 × 10⁻⁹) = 3 × 10¹² N/m² = 30 × 10¹⁰ N/m². So the answer is 30 × 10¹⁰ N/m².",
+    "correct_answer": "C",
+    "concept_tags": ["Young's modulus calculation", "stress", "strain", "wire stretching"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "10", "is_correct": false },
+      { "key": "B", "text": "20", "is_correct": false },
+      { "key": "C", "text": "30", "is_correct": true },
+      { "key": "D", "text": "15", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "10 × 10¹⁰ would result from using the diameter instead of the radius in the area formula, making A too large by a factor of 4, and thus Y too small by a factor of ~3.", "misconception": "Using diameter in place of radius for area calculation" },
+      { "option_key": "B", "hint": "20 × 10¹⁰ could result from an error in computing the force or length product. Check: FL = 9420 × 3 = 28260, and AΔL = 9.42 × 10⁻⁹.", "misconception": "Arithmetic error in numerator or denominator" },
+      { "option_key": "D", "hint": "15 × 10¹⁰ would result from using ΔL = 6 mm instead of 3 mm or halving the force. Verify all given values carefully.", "misconception": "Misreading the given elongation value" }
+    ]
+  },
+  {
+    "id": "phy-solid-stress-20",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "In a materials testing laboratory, a cylindrical steel rod of diameter 10 mm and length 0.5 m is subjected to a gradually increasing tensile load. The Young's modulus of the steel is 2 × 10¹¹ N/m². At a certain instant, the rod has elongated by 0.25 mm. Assuming the rod is still in the elastic region, what is the tensile stress developed in the rod at this instant?",
+    "explanation": "First, calculate the strain: Strain = ΔL/L = 0.25 × 10⁻³ / 0.5 = 5 × 10⁻⁴. Using Hooke's law: Stress = Y × Strain = 2 × 10¹¹ × 5 × 10⁻⁴ = 10 × 10⁷ = 10⁸ N/m² = 100 MPa. Note: The diameter is given but is not needed here since we can directly compute stress from Y and strain. The cross-sectional area would be needed only to find the force.",
+    "correct_answer": "A",
+    "concept_tags": ["Hooke's law", "tensile stress", "Young's modulus", "strain calculation", "elastic region"],
+    "topic": "Stress, Strain, and Hooke's Law",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "10⁸ N/m² (100 MPa)", "is_correct": true },
+      { "key": "B", "text": "5 × 10⁷ N/m² (50 MPa)", "is_correct": false },
+      { "key": "C", "text": "2 × 10⁸ N/m² (200 MPa)", "is_correct": false },
+      { "key": "D", "text": "4 × 10⁸ N/m² (400 MPa)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "5 × 10⁷ N/m² would result from using ΔL/L = 0.25/0.5 = 0.5 without converting mm to m first, then dividing by an extra factor. The correct strain is 5 × 10⁻⁴, not 2.5 × 10⁻⁴.", "misconception": "Unit conversion error in computing strain" },
+      { "option_key": "C", "hint": "2 × 10⁸ N/m² would result from using strain = 10⁻³ instead of 5 × 10⁻⁴, perhaps by dividing 0.25 mm by 0.25 m instead of 0.5 m.", "misconception": "Incorrect value of original length in strain calculation" },
+      { "option_key": "D", "hint": "4 × 10⁸ N/m² is four times the correct answer, possibly from computing strain as 2 × 10⁻³ by dividing 0.25 mm by 0.125 m or a similar error.", "misconception": "Major arithmetic error in strain calculation" }
+    ]
+  }
+]

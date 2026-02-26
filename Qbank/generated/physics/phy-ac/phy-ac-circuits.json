@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-ac-circuits-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The peak value of an AC voltage is 340 V. Its RMS value is approximately:",
+    "explanation": "The RMS (root mean square) value of an AC voltage is related to the peak value by Vrms = V₀/√2 = 340/√2 = 340/1.414 ≈ 240 V. The RMS value is the effective value of AC that produces the same heating effect as an equivalent DC voltage.",
+    "correct_answer": "B",
+    "concept_tags": ["rms-value", "peak-value", "ac-voltage"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "170 V", "is_correct": false },
+      { "key": "B", "text": "240 V", "is_correct": true },
+      { "key": "C", "text": "340 V", "is_correct": false },
+      { "key": "D", "text": "480 V", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "170 V would result from dividing by 2 instead of √2. The RMS value is V₀/√2, not V₀/2.", "misconception": "Dividing peak value by 2 instead of √2" },
+      { "option_key": "C", "hint": "340 V is the peak value itself. The RMS value is always less than the peak value by a factor of √2.", "misconception": "Confusing peak value with RMS value" },
+      { "option_key": "D", "hint": "480 V would result from multiplying by √2 instead of dividing. RMS is always smaller than the peak value for a sinusoidal signal.", "misconception": "Multiplying by √2 instead of dividing" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In a pure capacitive AC circuit, the current:",
+    "explanation": "In a pure capacitive circuit, the current leads the voltage by π/2 (90°). This is because the capacitor charges and discharges, and the current is maximum when the voltage across the capacitor is zero and vice versa. Mathematically, if V = V₀sinωt, then I = I₀sin(ωt + π/2).",
+    "correct_answer": "C",
+    "concept_tags": ["pure-capacitive-circuit", "phase-relation", "leading-current"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Lags the voltage by π/2", "is_correct": false },
+      { "key": "B", "text": "Is in phase with the voltage", "is_correct": false },
+      { "key": "C", "text": "Leads the voltage by π/2", "is_correct": true },
+      { "key": "D", "text": "Leads the voltage by π", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Current lagging by π/2 occurs in a pure inductive circuit, not a capacitive one. Remember: in a capacitor, current leads (CIVIL mnemonic — C: I before V).", "misconception": "Confusing capacitive and inductive phase relationships" },
+      { "option_key": "B", "hint": "Current and voltage are in phase only in a purely resistive circuit. Capacitors always introduce a phase difference.", "misconception": "Thinking capacitors behave like resistors for phase" },
+      { "option_key": "D", "hint": "A phase difference of π (180°) does not occur in standard R, L, or C circuits. The maximum phase difference in pure L or C circuits is π/2.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The inductive reactance of a coil of inductance 0.5 H at a frequency of 100 Hz is:",
+    "explanation": "Inductive reactance XL = ωL = 2πfL = 2π × 100 × 0.5 = 100π ≈ 314 Ω. Inductive reactance increases linearly with both frequency and inductance. At higher frequencies, the inductor opposes current more strongly.",
+    "correct_answer": "A",
+    "concept_tags": ["inductive-reactance", "frequency", "inductance"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "100π Ω", "is_correct": true },
+      { "key": "B", "text": "50π Ω", "is_correct": false },
+      { "key": "C", "text": "200π Ω", "is_correct": false },
+      { "key": "D", "text": "π/100 Ω", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "50π Ω would result from using XL = πfL instead of 2πfL. The angular frequency ω = 2πf, so XL = 2πfL.", "misconception": "Forgetting the factor of 2 in ω = 2πf" },
+      { "option_key": "C", "hint": "200π Ω would result from using L = 1 H instead of 0.5 H. Check the given inductance value carefully.", "misconception": "Misreading the inductance value" },
+      { "option_key": "D", "hint": "π/100 Ω corresponds to XC = 1/(ωC), not XL = ωL. Inductive reactance is directly proportional to ω, not inversely.", "misconception": "Confusing inductive reactance formula with capacitive reactance formula" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The capacitive reactance of a 10 μF capacitor at an angular frequency of 1000 rad/s is:",
+    "explanation": "Capacitive reactance XC = 1/(ωC) = 1/(1000 × 10 × 10⁻⁶) = 1/(10⁻²) = 100 Ω. Capacitive reactance is inversely proportional to both frequency and capacitance. At higher frequencies, a capacitor offers less opposition to current flow.",
+    "correct_answer": "D",
+    "concept_tags": ["capacitive-reactance", "angular-frequency", "capacitance"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "10 Ω", "is_correct": false },
+      { "key": "B", "text": "1000 Ω", "is_correct": false },
+      { "key": "C", "text": "10⁻² Ω", "is_correct": false },
+      { "key": "D", "text": "100 Ω", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "10 Ω results from incorrectly computing 1/(1000 × 10⁻⁶) without properly accounting for the μF to F conversion: 10 μF = 10 × 10⁻⁶ F.", "misconception": "Dropping the factor of 10 in the capacitance value" },
+      { "option_key": "B", "hint": "1000 Ω results from using XC = 1/C instead of 1/(ωC). The angular frequency must be included in the denominator.", "misconception": "Forgetting to include angular frequency in the capacitive reactance formula" },
+      { "option_key": "C", "hint": "10⁻² Ω would be ωC, not 1/(ωC). Capacitive reactance is the reciprocal of ωC.", "misconception": "Using ωC instead of 1/(ωC)" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a series LCR circuit, R = 30 Ω, XL = 70 Ω, and XC = 30 Ω. The impedance of the circuit is:",
+    "explanation": "The impedance of a series LCR circuit is Z = √(R² + (XL − XC)²) = √(30² + (70 − 30)²) = √(900 + 1600) = √2500 = 50 Ω. The net reactance (XL − XC) = 40 Ω is inductive since XL > XC.",
+    "correct_answer": "B",
+    "concept_tags": ["impedance", "LCR-series", "reactance"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "130 Ω", "is_correct": false },
+      { "key": "B", "text": "50 Ω", "is_correct": true },
+      { "key": "C", "text": "40 Ω", "is_correct": false },
+      { "key": "D", "text": "70 Ω", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "130 Ω = 30 + 70 + 30 results from simply adding all three values. In AC circuits, impedances add as vectors, not arithmetically.", "misconception": "Adding R, XL, and XC directly instead of using the impedance formula" },
+      { "option_key": "C", "hint": "40 Ω is the net reactance (XL − XC) alone. The impedance must also include the resistance R using Z = √(R² + (XL − XC)²).", "misconception": "Forgetting to include resistance in the impedance calculation" },
+      { "option_key": "D", "hint": "70 Ω is just XL. Impedance is not equal to any single component but is calculated from the combined effect of R, XL, and XC.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An AC voltage V = 200sin(100πt) volt is applied across a pure resistor of 100 Ω. The RMS value of current in the circuit is:",
+    "explanation": "From V = 200sin(100πt), the peak voltage V₀ = 200 V. The RMS voltage Vrms = V₀/√2 = 200/√2 = 100√2 V. In a purely resistive circuit, Irms = Vrms/R = 100√2/100 = √2 A ≈ 1.41 A. Since V and I are in phase in a pure resistor, Ohm's law applies directly to RMS values.",
+    "correct_answer": "A",
+    "concept_tags": ["rms-current", "pure-resistive-circuit", "peak-voltage"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "√2 A", "is_correct": true },
+      { "key": "B", "text": "2 A", "is_correct": false },
+      { "key": "C", "text": "1 A", "is_correct": false },
+      { "key": "D", "text": "2√2 A", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "2 A = V₀/R = 200/100 is the peak current I₀, not the RMS current. The RMS current is I₀/√2 = 2/√2 = √2 A.", "misconception": "Using peak voltage directly to find RMS current without dividing by √2" },
+      { "option_key": "C", "hint": "1 A would result from incorrectly dividing V₀ by (√2 × R) and then dividing again by √2. The correct calculation uses Vrms/R = (V₀/√2)/R.", "misconception": null },
+      { "option_key": "D", "hint": "2√2 A would result from multiplying V₀/R by √2 instead of dividing. RMS values are always smaller than peak values.", "misconception": "Multiplying by √2 instead of dividing to get RMS value" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The power factor of a series LCR circuit at resonance is:",
+    "explanation": "At resonance in a series LCR circuit, XL = XC, so the net reactance is zero. The impedance Z = R (purely resistive). The phase angle φ = tan⁻¹((XL − XC)/R) = tan⁻¹(0) = 0. Therefore, the power factor cosφ = cos0° = 1. Maximum power is dissipated at resonance.",
+    "correct_answer": "C",
+    "concept_tags": ["power-factor", "resonance", "LCR-series", "phase-angle"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0", "is_correct": false },
+      { "key": "B", "text": "0.5", "is_correct": false },
+      { "key": "C", "text": "1", "is_correct": true },
+      { "key": "D", "text": "∞", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Power factor = 0 occurs in a purely reactive (L or C only) circuit where φ = 90°. At resonance, the circuit is effectively resistive and φ = 0°.", "misconception": "Confusing resonance condition with purely reactive circuit" },
+      { "option_key": "B", "hint": "Power factor = 0.5 corresponds to φ = 60°, which does not occur at resonance. At resonance, XL = XC gives φ = 0° and cosφ = 1.", "misconception": null },
+      { "option_key": "D", "hint": "The power factor cosφ is bounded between 0 and 1 and can never be infinity. It equals 1 at resonance.", "misconception": "Confusing power factor with some other unbounded quantity" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a series LCR circuit, R = 40 Ω, L = 0.5 H, and C = 50 μF. The phase angle between voltage and current at an angular frequency ω = 100 rad/s is:",
+    "explanation": "XL = ωL = 100 × 0.5 = 50 Ω. XC = 1/(ωC) = 1/(100 × 50 × 10⁻⁶) = 1/(5 × 10⁻³) = 200 Ω. Net reactance = XL − XC = 50 − 200 = −150 Ω. tanφ = (XL − XC)/R = −150/40 = −3.75. Since XC > XL, the circuit is capacitive and the current leads the voltage. φ = tan⁻¹(−3.75) ≈ −75°. The magnitude of the phase angle is approximately 75°.",
+    "correct_answer": "D",
+    "concept_tags": ["phase-angle", "LCR-series", "inductive-reactance", "capacitive-reactance"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0° — the circuit is at resonance", "is_correct": false },
+      { "key": "B", "text": "45° — the circuit is inductive", "is_correct": false },
+      { "key": "C", "text": "90° — the circuit is purely capacitive", "is_correct": false },
+      { "key": "D", "text": "About 75° — the circuit is capacitive", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Resonance requires XL = XC. Here XL = 50 Ω and XC = 200 Ω, so the circuit is far from resonance.", "misconception": "Assuming any LCR circuit is at resonance" },
+      { "option_key": "B", "hint": "Since XC (200 Ω) > XL (50 Ω), the circuit is capacitive (current leads voltage), not inductive.", "misconception": "Confusing which reactance dominates; when XC > XL the circuit is capacitive" },
+      { "option_key": "C", "hint": "A phase angle of exactly 90° occurs only in a purely reactive circuit with R = 0. Here R = 40 Ω, so the phase angle is less than 90°.", "misconception": "Ignoring the effect of resistance on the phase angle" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The average power dissipated in a pure inductor connected to an AC source is:",
+    "explanation": "In a pure inductor, the current lags the voltage by π/2, so the phase angle φ = π/2. The average power P = VrmsIrmscosφ = VrmsIrmscos(π/2) = 0. An ideal inductor stores energy in its magnetic field during one quarter cycle and returns it during the next, resulting in zero net power dissipation.",
+    "correct_answer": "B",
+    "concept_tags": ["average-power", "pure-inductor", "wattless-current", "power-factor"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "VrmsIrms", "is_correct": false },
+      { "key": "B", "text": "Zero", "is_correct": true },
+      { "key": "C", "text": "Vrms²/XL", "is_correct": false },
+      { "key": "D", "text": "½VrmsIrms", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "VrmsIrms is the apparent power. Real (average) power = VrmsIrmscosφ, and cosφ = 0 for a pure inductor.", "misconception": "Confusing apparent power with average (real) power" },
+      { "option_key": "C", "hint": "Vrms²/XL is the reactive power expression. It does not represent actual energy dissipated; a pure inductor dissipates no net energy.", "misconception": "Treating reactive power as real power" },
+      { "option_key": "D", "hint": "½VrmsIrms does not correspond to any standard AC power formula. The average power in a pure inductor is strictly zero.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-10",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A series LCR circuit with R = 10 Ω, L = 0.1 H, and C = 100 μF is connected to an AC source of 220 V (RMS) at the resonant frequency. The current in the circuit and voltage across the capacitor are, respectively:",
+    "explanation": "Resonant angular frequency ω₀ = 1/√(LC) = 1/√(0.1 × 100 × 10⁻⁶) = 1/√(10⁻⁵) = 1/(√10 × 10⁻³) = 10³/√10 ≈ 316.2 rad/s. At resonance, Z = R = 10 Ω, so Irms = Vrms/R = 220/10 = 22 A. XC = 1/(ω₀C) = 1/(316.2 × 10⁻⁴) ≈ 31.62 Ω. Voltage across capacitor VC = Irms × XC = 22 × 31.62 ≈ 696 V ≈ 700 V. The voltage across the capacitor can exceed the source voltage, which is a key feature of resonance called voltage magnification (Q-factor effect).",
+    "correct_answer": "C",
+    "concept_tags": ["resonance", "LCR-series", "voltage-magnification", "Q-factor"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "22 A and 220 V", "is_correct": false },
+      { "key": "B", "text": "22 A and 70 V", "is_correct": false },
+      { "key": "C", "text": "22 A and approximately 700 V", "is_correct": true },
+      { "key": "D", "text": "2.2 A and approximately 70 V", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "While 22 A is correct, 220 V is the source voltage, not the voltage across the capacitor. At resonance, VC = IrmsXC, which can be much larger than the source voltage.", "misconception": "Assuming the voltage across each component equals the source voltage at resonance" },
+      { "option_key": "B", "hint": "70 V would require XC ≈ 3.2 Ω, which does not match the given L and C values. Calculate XC = 1/(ω₀C) carefully.", "misconception": null },
+      { "option_key": "D", "hint": "2.2 A would imply Z = 100 Ω, but at resonance Z = R = 10 Ω. The impedance at resonance equals the resistance alone.", "misconception": "Incorrectly calculating impedance at resonance" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In a series LCR circuit, R = 100 Ω, L = 1/π H, and C = 10/π μF. The circuit is connected to a 220 V, 50 Hz AC source. The average power consumed in the circuit is:",
+    "explanation": "ω = 2πf = 2π × 50 = 100π rad/s. XL = ωL = 100π × (1/π) = 100 Ω. XC = 1/(ωC) = 1/(100π × 10/(π × 10⁶)) = 1/(100π × 10⁻⁵/π) = 1/(10⁻³) = 1000 Ω. Z = √(R² + (XL − XC)²) = √(100² + (100 − 1000)²) = √(10000 + 810000) = √820000 ≈ 905.5 Ω. Irms = 220/905.5 ≈ 0.243 A. Power factor cosφ = R/Z = 100/905.5 ≈ 0.1104. Average power P = Vrms × Irms × cosφ = 220 × 0.243 × 0.1104 ≈ 5.9 W. Alternatively, P = Irms²R = (0.243)² × 100 ≈ 5.9 W. The large net reactance makes the circuit predominantly capacitive with very low power factor.",
+    "correct_answer": "A",
+    "concept_tags": ["average-power", "LCR-series", "impedance", "power-factor"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Approximately 5.9 W", "is_correct": true },
+      { "key": "B", "text": "Approximately 484 W", "is_correct": false },
+      { "key": "C", "text": "Approximately 242 W", "is_correct": false },
+      { "key": "D", "text": "Approximately 53.5 W", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "484 W = 220²/100 assumes Z = R, which only holds at resonance. Here XL ≠ XC, so Z is much larger than R.", "misconception": "Using P = V²/R without considering that Z ≠ R in a non-resonant LCR circuit" },
+      { "option_key": "C", "hint": "242 W = 484/2 may result from a partial correction but still ignores the large impedance. The correct power accounts for Z ≈ 905 Ω.", "misconception": null },
+      { "option_key": "D", "hint": "53.5 W would require a much smaller impedance. With (XL − XC) = −900 Ω, the impedance is about 905 Ω, giving a very small current.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A coil of resistance 20 Ω and inductance 0.2 H is connected in series with a capacitor of 100 μF across a 200 V, 50 Hz AC source. The current in the circuit is approximately:",
+    "explanation": "ω = 2πf = 2π × 50 = 100π rad/s ≈ 314.16 rad/s. XL = ωL = 314.16 × 0.2 = 62.83 Ω. XC = 1/(ωC) = 1/(314.16 × 100 × 10⁻⁶) = 1/(0.03142) = 31.83 Ω. Net reactance = XL − XC = 62.83 − 31.83 = 31.0 Ω. Z = √(R² + (XL − XC)²) = √(400 + 961) = √1361 ≈ 36.9 Ω. Irms = Vrms/Z = 200/36.9 ≈ 5.42 A. The circuit is predominantly inductive since XL > XC.",
+    "correct_answer": "D",
+    "concept_tags": ["LCR-series", "impedance", "rms-current", "numerical-problem"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "2 A", "is_correct": false },
+      { "key": "B", "text": "10 A", "is_correct": false },
+      { "key": "C", "text": "3.2 A", "is_correct": false },
+      { "key": "D", "text": "5.4 A", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "2 A would require Z = 100 Ω, but the actual impedance is about 36.9 Ω. Check the reactance calculations carefully.", "misconception": null },
+      { "option_key": "B", "hint": "10 A = 200/20 would be correct only if there were no reactance (Z = R). The inductive and capacitive reactances contribute to Z.", "misconception": "Using only resistance to calculate current, ignoring reactances" },
+      { "option_key": "C", "hint": "3.2 A would result from incorrectly adding XL and XC (Z = √(400 + (62.83 + 31.83)²) instead of subtracting them. In a series LCR circuit, the net reactance is XL − XC.", "misconception": "Adding XL and XC instead of subtracting to find net reactance" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): At resonance in a series LCR circuit, the voltage across the inductor and capacitor may individually be much greater than the applied voltage.\nReason (R): At resonance, XL = XC, and the voltages across L and C are equal in magnitude but opposite in phase, so they cancel each other.",
+    "explanation": "Both A and R are correct, and R correctly explains A. At resonance, Irms = V/R, and since R can be small, the current can be large. The voltage across the inductor VL = IrmsXL and across the capacitor VC = IrmsXC can each be much larger than the applied voltage V (this is voltage magnification, quantified by the quality factor Q = ωL/R). These voltages are equal in magnitude (since XL = XC) but 180° out of phase, so they cancel in the total voltage sum, leaving only VR = V. This is why the applied voltage appears entirely across R at resonance.",
+    "correct_answer": "A",
+    "concept_tags": ["resonance", "voltage-magnification", "Q-factor", "phasor-cancellation"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The reason directly explains the assertion: because VL and VC cancel (R), the source voltage appears across R only, allowing a large current that drives large individual voltages across L and C (A).", "misconception": "Not recognizing the causal link between phasor cancellation and voltage magnification" },
+      { "option_key": "C", "hint": "The reason is correct: at resonance XL = XC, and the voltages VL and VC are 180° out of phase and cancel exactly.", "misconception": null },
+      { "option_key": "D", "hint": "The assertion is correct: voltage magnification at resonance is a well-established phenomenon. The Q-factor determines how many times VL or VC exceeds the source voltage.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The inductive reactance of a coil increases with increase in frequency of the AC source.\nReason (R): Inductive reactance is inversely proportional to the angular frequency (XL = 1/ωL).",
+    "explanation": "The assertion is correct: inductive reactance XL = ωL = 2πfL, which increases linearly with frequency. However, the reason is incorrect: XL is directly proportional to ω (XL = ωL), not inversely proportional. The formula stated in the reason, XL = 1/(ωL), is wrong — that expression resembles the capacitive reactance formula XC = 1/(ωC). Therefore, A is correct but R is incorrect.",
+    "correct_answer": "C",
+    "concept_tags": ["inductive-reactance", "frequency-dependence", "reactance-formula"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The reason states XL = 1/(ωL), which is incorrect. The correct formula is XL = ωL. Since R is wrong, A and R cannot both be correct.", "misconception": "Not verifying the formula given in the reason statement" },
+      { "option_key": "B", "hint": "The reason is factually incorrect (XL = ωL, not 1/(ωL)), so option B which states both are correct does not apply.", "misconception": "Accepting an incorrect formula as correct without checking" },
+      { "option_key": "D", "hint": "The assertion is correct: XL = ωL = 2πfL clearly shows that XL increases with frequency. The assertion cannot be incorrect.", "misconception": "Confusing inductive reactance behaviour with capacitive reactance behaviour" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the following AC circuit elements (Column-I) with the phase relationship between current and voltage (Column-II):\n\nColumn-I:\nA. Pure resistor\nB. Pure inductor\nC. Pure capacitor\nD. Series LCR at resonance\n\nColumn-II:\n1. Current leads voltage by π/2\n2. Current lags voltage by π/2\n3. Current and voltage are in phase\n4. Current and voltage are in phase (Z = R)",
+    "explanation": "In a pure resistor, voltage and current are in phase (A→3). In a pure inductor, current lags voltage by π/2 (B→2). In a pure capacitor, current leads voltage by π/2 (C→1). At resonance in a series LCR circuit, XL = XC, so the net reactance is zero, the impedance equals R, and current is in phase with voltage (D→4). Both A and D have in-phase current and voltage, but D specifically notes Z = R.",
+    "correct_answer": "B",
+    "concept_tags": ["phase-relationship", "pure-R", "pure-L", "pure-C", "LCR-resonance"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-1, C-2, D-4", "is_correct": false },
+      { "key": "B", "text": "A-3, B-2, C-1, D-4", "is_correct": true },
+      { "key": "C", "text": "A-1, B-2, C-3, D-4", "is_correct": false },
+      { "key": "D", "text": "A-4, B-1, C-2, D-3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This swaps inductor and capacitor. Remember CIVIL: in C, I leads V; in L, I lags V. So inductor → current lags (2), capacitor → current leads (1).", "misconception": "Confusing which element causes current to lead vs lag" },
+      { "option_key": "C", "hint": "This assigns current leads voltage to a pure resistor, which is incorrect. In a resistor, V and I are always in phase.", "misconception": "Thinking a resistor introduces a phase shift" },
+      { "option_key": "D", "hint": "This assigns the resonance condition (Z = R) to the pure resistor and the simple in-phase condition to resonance. While both are in phase, the labeling must match.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the following quantities (Column-I) with their correct expressions in a series LCR AC circuit (Column-II):\n\nColumn-I:\nA. Impedance\nB. Resonant angular frequency\nC. Power factor\nD. Quality factor\n\nColumn-II:\n1. R/Z\n2. √(R² + (XL − XC)²)\n3. 1/√(LC)\n4. ω₀L/R",
+    "explanation": "Impedance Z = √(R² + (XL − XC)²) (A→2). Resonant angular frequency ω₀ = 1/√(LC), where XL = XC (B→3). Power factor cosφ = R/Z, which determines the fraction of apparent power that is real power (C→1). Quality factor Q = ω₀L/R, which measures the sharpness of resonance and the voltage magnification (D→4).",
+    "correct_answer": "D",
+    "concept_tags": ["impedance", "resonant-frequency", "power-factor", "quality-factor"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-2, B-4, C-1, D-3", "is_correct": false },
+      { "key": "B", "text": "A-1, B-3, C-2, D-4", "is_correct": false },
+      { "key": "C", "text": "A-2, B-3, C-4, D-1", "is_correct": false },
+      { "key": "D", "text": "A-2, B-3, C-1, D-4", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This swaps resonant frequency and quality factor. ω₀ = 1/√(LC) (not ω₀L/R), and Q = ω₀L/R (not 1/√(LC)).", "misconception": "Confusing the expressions for resonant frequency and Q-factor" },
+      { "option_key": "B", "hint": "This assigns R/Z to impedance and √(R² + (XL − XC)²) to power factor. R/Z is a dimensionless ratio (power factor), while the impedance formula has units of ohms.", "misconception": "Swapping impedance and power factor expressions" },
+      { "option_key": "C", "hint": "This assigns ω₀L/R to power factor and R/Z to quality factor. Power factor is R/Z (dimensionless, ≤ 1), and Q-factor is ω₀L/R.", "misconception": "Interchanging power factor and quality factor" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "In an AC circuit, the RMS value of voltage is always less than its peak value.",
+    "explanation": "This statement is TRUE. For a sinusoidal AC voltage, Vrms = V₀/√2 ≈ 0.707V₀. Since 1/√2 < 1, the RMS value is always less than the peak value. The RMS value represents the equivalent DC value that would deliver the same power to a resistor.",
+    "correct_answer": "A",
+    "concept_tags": ["rms-value", "peak-value", "ac-voltage"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The RMS value equals V₀/√2 ≈ 0.707V₀, which is clearly less than V₀. This holds for all sinusoidal AC signals.", "misconception": "Thinking RMS and peak values are equal or that RMS can exceed peak" },
+      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The impedance of a series LCR circuit is always greater than the resistance R in the circuit.",
+    "explanation": "This statement is FALSE. The impedance Z = √(R² + (XL − XC)²). At resonance, XL = XC, so (XL − XC) = 0 and Z = R. Thus the impedance equals R at resonance, and it is not always greater than R. For all other frequencies, Z > R, but the word 'always' makes the statement false.",
+    "correct_answer": "B",
+    "concept_tags": ["impedance", "LCR-series", "resonance"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "At resonance, XL = XC and the impedance Z = √(R² + 0) = R, not greater than R. The statement fails at the resonant frequency.", "misconception": "Forgetting the special case of resonance where impedance equals resistance" },
+      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-19",
+    "question_type": "fill_in_blanks",
+    "difficulty": "medium",
+    "question_text": "In a series LCR circuit, the phase angle between the applied voltage and current is given by tanφ = _____.",
+    "explanation": "In a series LCR circuit, the phase angle φ between the voltage and current is given by tanφ = (XL − XC)/R, where XL = ωL is the inductive reactance, XC = 1/(ωC) is the capacitive reactance, and R is the resistance. If XL > XC, the circuit is inductive and current lags voltage (φ > 0). If XC > XL, the circuit is capacitive and current leads voltage (φ < 0).",
+    "correct_answer": "C",
+    "concept_tags": ["phase-angle", "LCR-series", "reactance", "impedance-triangle"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "(XL + XC)/R", "is_correct": false },
+      { "key": "B", "text": "R/(XL − XC)", "is_correct": false },
+      { "key": "C", "text": "(XL − XC)/R", "is_correct": true },
+      { "key": "D", "text": "(XL − XC) × R", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Adding XL and XC is incorrect because inductive and capacitive reactances oppose each other in a series circuit. The net reactance is their difference, not sum.", "misconception": "Adding reactances instead of subtracting in a series LCR circuit" },
+      { "option_key": "B", "hint": "R/(XL − XC) is the reciprocal of the correct expression. tanφ = (XL − XC)/R, not R/(XL − XC). This inverted form equals 1/tanφ = cotφ.", "misconception": "Inverting the phase angle formula" },
+      { "option_key": "D", "hint": "Multiplying (XL − XC) by R is dimensionally incorrect. tanφ is dimensionless, requiring a ratio of quantities with the same units.", "misconception": "Multiplying instead of dividing reactance by resistance" }
+    ]
+  },
+  {
+    "id": "phy-ac-circuits-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A student connects a 100 Ω resistor, a 0.5 H inductor, and a capacitor of unknown capacitance C in series with a 220 V, 50 Hz AC source. She observes that the circuit draws the maximum possible current from the source.\n\nBased on this observation, the value of the capacitor C and the current drawn are, respectively:",
+    "explanation": "Maximum current occurs at resonance, where XL = XC. First, XL = ωL = 2π × 50 × 0.5 = 50π Ω ≈ 157.08 Ω. At resonance, XC = XL, so 1/(ωC) = 50π. Therefore C = 1/(ω × 50π) = 1/(100π × 50π) = 1/(5000π²) F = 10⁶/(5000π²) μF ≈ 20.3 μF. At resonance, Z = R = 100 Ω, so Irms = 220/100 = 2.2 A. The maximum current condition uniquely identifies the resonant frequency and allows determination of the unknown capacitance.",
+    "correct_answer": "D",
+    "concept_tags": ["resonance", "LCR-series", "capacitance-calculation", "maximum-current"],
+    "topic": "AC Circuits (R, L, C, LCR Series)",
+    "subject": "physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "C ≈ 10 μF and I = 1.1 A", "is_correct": false },
+      { "key": "B", "text": "C ≈ 50 μF and I = 2.2 A", "is_correct": false },
+      { "key": "C", "text": "C ≈ 20.3 μF and I = 1.4 A", "is_correct": false },
+      { "key": "D", "text": "C ≈ 20.3 μF and I = 2.2 A", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "With C = 10 μF, XC = 1/(100π × 10⁻⁵) ≈ 318 Ω ≠ XL ≈ 157 Ω, so resonance does not occur. Also, 1.1 A = 220/200 suggests Z = 200 Ω, not Z = R = 100 Ω.", "misconception": "Incorrectly calculating the resonant capacitance" },
+      { "option_key": "B", "hint": "With C = 50 μF, XC = 1/(100π × 5 × 10⁻⁵) ≈ 63.7 Ω ≠ XL ≈ 157 Ω. The resonance condition XL = XC requires C ≈ 20.3 μF.", "misconception": null },
+      { "option_key": "C", "hint": "While C ≈ 20.3 μF is correct for resonance, at resonance Z = R = 100 Ω, giving I = 220/100 = 2.2 A, not 1.4 A.", "misconception": "Calculating current with impedance greater than R at resonance" }
+    ]
+  }
+]

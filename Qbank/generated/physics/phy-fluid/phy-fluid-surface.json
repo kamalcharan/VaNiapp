@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-fluid-surface-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of surface tension is:",
+    "explanation": "Surface tension is defined as force per unit length. Its SI unit is N/m (newton per metre). This can also be expressed as J/m² (joule per square metre) since surface tension is numerically equal to surface energy per unit area.",
+    "correct_answer": "A",
+    "concept_tags": ["surface tension", "SI units", "force per unit length"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "N/m", "is_correct": true },
+      { "key": "B", "text": "N/m²", "is_correct": false },
+      { "key": "C", "text": "N·m", "is_correct": false },
+      { "key": "D", "text": "N·m²", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "N/m² is the unit of pressure (pascal), not surface tension. Surface tension is force per unit length, not force per unit area.", "misconception": "Confusing surface tension with pressure" },
+      { "option_key": "C", "hint": "N·m is the unit of torque or energy (joule). Surface tension involves division by length, not multiplication.", "misconception": "Confusing surface tension with torque or energy" },
+      { "option_key": "D", "hint": "N·m² does not correspond to any standard physical quantity related to surface tension.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "When a liquid drop breaks into smaller droplets, the surface energy of the system:",
+    "explanation": "When a single large drop breaks into many smaller droplets, the total surface area increases because smaller spheres collectively have a greater total surface area than one large sphere of the same total volume. Since surface energy = surface tension x area, the total surface energy increases.",
+    "correct_answer": "B",
+    "concept_tags": ["surface energy", "liquid drops", "surface area"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Decreases", "is_correct": false },
+      { "key": "B", "text": "Increases", "is_correct": true },
+      { "key": "C", "text": "Remains the same", "is_correct": false },
+      { "key": "D", "text": "First increases then decreases", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Surface energy decreases when smaller drops merge into a larger one, not when a drop breaks apart. Breaking increases total surface area.", "misconception": "Confusing the direction of the process — merging vs. breaking" },
+      { "option_key": "C", "hint": "The total volume is conserved but the total surface area is not. Smaller droplets collectively have a larger total surface area, so surface energy changes.", "misconception": "Assuming conservation of surface area when volume is conserved" },
+      { "option_key": "D", "hint": "There is no intermediate stage where surface energy first increases and then decreases. The fragmentation process uniformly increases total surface area.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The angle of contact for a liquid that completely wets the surface of a solid is:",
+    "explanation": "When a liquid completely wets a solid surface, it spreads out as much as possible. This happens when the adhesive forces between the liquid and solid are much stronger than the cohesive forces within the liquid. In this case, the angle of contact is 0°. For example, water on clean glass has an angle of contact very close to 0°.",
+    "correct_answer": "C",
+    "concept_tags": ["angle of contact", "wetting", "adhesive force", "cohesive force"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "90°", "is_correct": false },
+      { "key": "B", "text": "180°", "is_correct": false },
+      { "key": "C", "text": "0°", "is_correct": true },
+      { "key": "D", "text": "45°", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "An angle of contact of 90° is the boundary between wetting and non-wetting behaviour. A liquid that completely wets the surface must have an angle less than 90°, in fact 0°.", "misconception": "Confusing partial wetting with complete wetting" },
+      { "option_key": "B", "hint": "An angle of contact of 180° means the liquid does not wet the surface at all (complete non-wetting), which is the opposite of the given condition.", "misconception": "Confusing complete wetting with complete non-wetting" },
+      { "option_key": "D", "hint": "45° represents partial wetting. Complete wetting means the liquid spreads entirely over the surface, corresponding to 0°.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The excess pressure inside a soap bubble of radius R is (T = surface tension of the soap solution):",
+    "explanation": "A soap bubble has two free surfaces (inner and outer) because it is a thin film of liquid enclosing air. Each surface contributes a pressure excess of 2T/R. Therefore, the total excess pressure inside a soap bubble is 2T/R + 2T/R = 4T/R. This is different from a liquid drop, which has only one free surface and an excess pressure of 2T/R.",
+    "correct_answer": "D",
+    "concept_tags": ["excess pressure", "soap bubble", "two free surfaces", "surface tension"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "T/R", "is_correct": false },
+      { "key": "B", "text": "T/2R", "is_correct": false },
+      { "key": "C", "text": "2T/R", "is_correct": false },
+      { "key": "D", "text": "4T/R", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "T/R does not account for the correct factor in the Young-Laplace equation. Even for a single surface, the excess pressure is 2T/R, not T/R.", "misconception": "Using an incorrect form of the Young-Laplace equation" },
+      { "option_key": "B", "hint": "T/2R is much too small. The excess pressure must account for the curvature and the number of surfaces correctly.", "misconception": null },
+      { "option_key": "C", "hint": "2T/R is the excess pressure inside a liquid drop (single free surface). A soap bubble has two free surfaces, so the excess pressure is doubled to 4T/R.", "misconception": "Confusing a soap bubble (two surfaces) with a liquid drop (one surface)" }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A capillary tube of radius r is dipped in a liquid of surface tension T, density ρ, and angle of contact θ. The height to which the liquid rises in the tube is (g = acceleration due to gravity):",
+    "explanation": "The capillary rise formula is derived by balancing the upward component of the surface tension force along the contact perimeter with the weight of the liquid column. The upward force is 2πrT cos θ, and the weight of the liquid column is πr²hρg. Setting these equal: 2πrT cos θ = πr²hρg, which gives h = 2T cos θ / (ρgr).",
+    "correct_answer": "A",
+    "concept_tags": ["capillary rise", "surface tension", "angle of contact", "density"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "2T cos θ / (ρgr)", "is_correct": true },
+      { "key": "B", "text": "2T / (ρgr cos θ)", "is_correct": false },
+      { "key": "C", "text": "T cos θ / (ρgr)", "is_correct": false },
+      { "key": "D", "text": "4T cos θ / (ρgr)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "cos θ should appear in the numerator because the vertical component of the surface tension force is T cos θ. Placing cos θ in the denominator reverses its role.", "misconception": "Incorrectly placing cos θ in the denominator instead of the numerator" },
+      { "option_key": "C", "hint": "The factor of 2 is essential. It arises from the ratio of the perimeter (2πr) to the cross-sectional area (πr²) of the capillary. The correct formula has 2T, not T.", "misconception": "Missing the factor of 2 in the capillary rise formula" },
+      { "option_key": "D", "hint": "4T/R applies to excess pressure in a soap bubble. The capillary rise formula involves 2T, not 4T.", "misconception": "Confusing the soap bubble pressure formula with the capillary rise formula" }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A glass capillary tube of inner radius 0.5 mm is dipped vertically in water (T = 0.07 N/m, θ ≈ 0°, ρ = 1000 kg/m³). The height to which water rises in the tube is approximately (g = 10 m/s²):",
+    "explanation": "Using the capillary rise formula: h = 2T cos θ / (ρgr). Here T = 0.07 N/m, cos 0° = 1, ρ = 1000 kg/m³, g = 10 m/s², r = 0.5 mm = 5 × 10⁻⁴ m. So h = (2 × 0.07 × 1) / (1000 × 10 × 5 × 10⁻⁴) = 0.14 / 5 = 0.028 m = 2.8 cm.",
+    "correct_answer": "B",
+    "concept_tags": ["capillary rise", "numerical calculation", "water in glass"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1.4 cm", "is_correct": false },
+      { "key": "B", "text": "2.8 cm", "is_correct": true },
+      { "key": "C", "text": "5.6 cm", "is_correct": false },
+      { "key": "D", "text": "0.7 cm", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1.4 cm would result from using 2r (diameter) instead of r (radius) in the formula, or from missing the factor of 2 in the numerator.", "misconception": "Using diameter instead of radius in the capillary rise formula" },
+      { "option_key": "C", "hint": "5.6 cm is exactly double the correct answer. Check whether the radius was halved incorrectly (using 0.25 mm instead of 0.5 mm).", "misconception": "Confusing radius with half the radius or making a factor-of-2 error" },
+      { "option_key": "D", "hint": "0.7 cm is too small. This would result from an error with powers of 10 in the calculation, such as using r = 5 × 10⁻³ m instead of 5 × 10⁻⁴ m.", "misconception": "Unit conversion error for radius from mm to m" }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When a detergent is dissolved in water, the angle of contact of the solution with a greasy surface:",
+    "explanation": "Detergents are surfactants that reduce the surface tension of water. When surface tension decreases, the adhesive forces between the liquid and the solid become relatively stronger compared to cohesive forces within the liquid. This causes the liquid to spread more over the surface, which means the angle of contact decreases. This is why detergent solutions can wet and clean greasy surfaces more effectively than pure water.",
+    "correct_answer": "C",
+    "concept_tags": ["detergent action", "angle of contact", "surface tension reduction", "wetting"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Increases", "is_correct": false },
+      { "key": "B", "text": "Remains unchanged", "is_correct": false },
+      { "key": "C", "text": "Decreases", "is_correct": true },
+      { "key": "D", "text": "Becomes exactly 90°", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "An increase in the angle of contact would mean the liquid wets the surface less, which contradicts the purpose of detergents. Detergents help the liquid spread over surfaces.", "misconception": "Thinking detergents make the liquid bead up more" },
+      { "option_key": "B", "hint": "Detergents significantly alter the surface tension and hence the wetting properties. The angle of contact cannot remain unchanged.", "misconception": "Ignoring the effect of surfactants on surface tension" },
+      { "option_key": "D", "hint": "There is no reason for the angle of contact to become exactly 90°. The reduction in surface tension causes the angle to decrease below its original value.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two soap bubbles of radii R₁ and R₂ (R₁ > R₂) are connected by a tube. Air will flow:",
+    "explanation": "The excess pressure inside a soap bubble is 4T/R. Since R₁ > R₂, the excess pressure inside the smaller bubble (4T/R₂) is greater than that inside the larger bubble (4T/R₁). Air flows from higher pressure to lower pressure, so air flows from the smaller bubble to the larger bubble. This causes the smaller bubble to shrink and the larger bubble to grow.",
+    "correct_answer": "D",
+    "concept_tags": ["excess pressure", "soap bubble", "pressure difference", "air flow"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "From the larger bubble to the smaller bubble", "is_correct": false },
+      { "key": "B", "text": "No flow occurs as pressures are equal", "is_correct": false },
+      { "key": "C", "text": "Alternately between the two bubbles", "is_correct": false },
+      { "key": "D", "text": "From the smaller bubble to the larger bubble", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The larger bubble has a lower excess pressure (4T/R₁ < 4T/R₂ since R₁ > R₂). Air flows from high to low pressure, i.e., from the smaller to the larger bubble.", "misconception": "Thinking that the larger bubble has more pressure because it is bigger" },
+      { "option_key": "B", "hint": "The pressures are not equal because the radii are different. Excess pressure is inversely proportional to the radius (P ∝ 1/R).", "misconception": "Ignoring the relationship between bubble radius and excess pressure" },
+      { "option_key": "C", "hint": "There is a steady pressure difference between the two bubbles, so the flow is unidirectional from the smaller to the larger bubble until equilibrium is reached.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The surface tension of a liquid generally _____ with an increase in temperature.",
+    "explanation": "Surface tension arises due to cohesive forces between liquid molecules. As temperature increases, the kinetic energy of molecules increases, which weakens the intermolecular cohesive forces. This causes the surface tension to decrease. At the critical temperature, the surface tension of a liquid becomes zero as the distinction between liquid and vapour phases vanishes.",
+    "correct_answer": "B",
+    "concept_tags": ["temperature dependence", "surface tension", "cohesive forces", "critical temperature"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Increases", "is_correct": false },
+      { "key": "B", "text": "Decreases", "is_correct": true },
+      { "key": "C", "text": "Remains constant", "is_correct": false },
+      { "key": "D", "text": "First decreases then increases", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Increased temperature weakens cohesive forces between molecules because their kinetic energy increases, making them less bound to each other. This reduces surface tension.", "misconception": "Thinking higher temperature increases intermolecular forces" },
+      { "option_key": "C", "hint": "Surface tension is temperature-dependent. It decreases continuously with temperature and becomes zero at the critical temperature.", "misconception": "Assuming surface tension is a material constant independent of temperature" },
+      { "option_key": "D", "hint": "Surface tension decreases monotonically with temperature. There is no reversal in this trend.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-10",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A large liquid drop of radius R breaks into 27 identical smaller drops. The ratio of the total surface energy of the 27 smaller drops to the surface energy of the original drop is:",
+    "explanation": "Volume is conserved: (4/3)πR³ = 27 × (4/3)πr³, which gives R³ = 27r³, so r = R/3. Surface area of the original drop = 4πR². Total surface area of 27 small drops = 27 × 4πr² = 27 × 4π(R/3)² = 27 × 4πR²/9 = 3 × 4πR² = 12πR². Ratio of surface energies = 12πR² / 4πR² = 3.",
+    "correct_answer": "C",
+    "concept_tags": ["surface energy", "drop fragmentation", "volume conservation", "surface area ratio"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1", "is_correct": false },
+      { "key": "B", "text": "27", "is_correct": false },
+      { "key": "C", "text": "3", "is_correct": true },
+      { "key": "D", "text": "9", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A ratio of 1 would mean no change in surface energy, but breaking a drop into smaller drops always increases the total surface area and hence the surface energy.", "misconception": "Assuming surface energy is conserved during fragmentation" },
+      { "option_key": "B", "hint": "27 is the number of drops, not the ratio. The total surface area does not scale linearly with the number of drops because each small drop has a smaller surface area.", "misconception": "Multiplying by the number of drops without accounting for reduced radius" },
+      { "option_key": "D", "hint": "9 would be the ratio if R/r = 3 were applied to area as (R/r)² without dividing by the number of drops. The correct ratio is n^(1/3) = 27^(1/3) = 3.", "misconception": "Incorrectly computing the surface area ratio" }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A capillary tube is dipped in water and the water rises to a height h. If the same capillary tube is dipped in a liquid of surface tension T/3, density ρ/2, and angle of contact 60° (water has T surface tension, density ρ, and angle of contact 0°), the rise of the liquid in the capillary is:",
+    "explanation": "For water: h = 2T cos 0° / (ρgr) = 2T / (ρgr). For the liquid: h' = 2(T/3) cos 60° / ((ρ/2)gr) = 2(T/3)(1/2) / ((ρ/2)gr) = (T/3) / ((ρ/2)gr) = 2T / (3ρgr). Thus h'/h = [2T/(3ρgr)] / [2T/(ρgr)] = 1/3. So h' = h/3. But let me recalculate more carefully: h' = 2 × (T/3) × cos 60° / ((ρ/2) × g × r) = 2 × (T/3) × (1/2) / ((ρ/2) × g × r) = (T/3) / (ρgr/2) = 2T/(3ρgr). And h = 2T/(ρgr). Therefore h'/h = [2T/(3ρgr)] / [2T/(ρgr)] = 1/3. Hence h' = h/3.",
+    "correct_answer": "D",
+    "concept_tags": ["capillary rise", "comparison", "surface tension", "density", "angle of contact"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "h", "is_correct": false },
+      { "key": "B", "text": "2h/3", "is_correct": false },
+      { "key": "C", "text": "3h", "is_correct": false },
+      { "key": "D", "text": "h/3", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "h would mean identical capillary rise, which requires identical values of T cos θ / ρ. Here the liquid has different surface tension, density, and angle of contact.", "misconception": "Ignoring the effect of changed parameters on capillary rise" },
+      { "option_key": "B", "hint": "2h/3 would result from ignoring the cos 60° = 1/2 factor. All three parameters (T, ρ, θ) must be substituted correctly.", "misconception": "Forgetting to include the angle of contact in the calculation" },
+      { "option_key": "C", "hint": "3h is the inverse of the correct answer. The lower surface tension and non-zero angle of contact reduce the capillary rise, not increase it.", "misconception": "Inverting the ratio of capillary rise" }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The work done in blowing a soap bubble from a radius of 2 cm to 6 cm is (surface tension of soap solution T = 0.03 N/m):",
+    "explanation": "A soap bubble has two surfaces. The work done equals the surface tension multiplied by the change in total surface area. Initial total surface area = 2 × 4π(0.02)² = 8π × 4 × 10⁻⁴ m². Final total surface area = 2 × 4π(0.06)² = 8π × 36 × 10⁻⁴ m². Change in area = 8π × (36 - 4) × 10⁻⁴ = 8π × 32 × 10⁻⁴ m². Work = T × ΔA = 0.03 × 8π × 32 × 10⁻⁴ = 0.03 × 256π × 10⁻⁴ = 7.68π × 10⁻⁴ J = 7.68 × 3.14159 × 10⁻⁴ ≈ 2.41 × 10⁻³ J ≈ 0.384π × 10⁻² J. Let me express more cleanly: W = T × 2 × 4π(R₂² - R₁²) = 0.03 × 8π × (0.0036 - 0.0004) = 0.03 × 8π × 0.0032 = 0.03 × 0.02560π = 7.68π × 10⁻⁴ J ≈ 2.41 × 10⁻³ J ≈ 0.24π × 10⁻² J.",
+    "correct_answer": "D",
+    "concept_tags": ["work done", "soap bubble", "surface energy", "two surfaces", "area change"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.96π × 10⁻⁴ J", "is_correct": false },
+      { "key": "B", "text": "3.84π × 10⁻⁴ J", "is_correct": false },
+      { "key": "C", "text": "3.84π × 10⁻³ J", "is_correct": false },
+      { "key": "D", "text": "7.68π × 10⁻⁴ J", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0.96π × 10⁻⁴ J results from using the single surface area change and also making a factor error. Remember a soap bubble has two free surfaces.", "misconception": "Using single surface area and making additional calculation errors" },
+      { "option_key": "B", "hint": "3.84π × 10⁻⁴ J would result from using only one free surface (factor of 4π instead of 8π). A soap bubble has inner and outer surfaces, so the total area change must be doubled.", "misconception": "Forgetting that a soap bubble has two free surfaces" },
+      { "option_key": "C", "hint": "3.84π × 10⁻³ J is too large by a factor of 5 compared to the correct answer. Check the arithmetic carefully with proper unit conversion.", "misconception": "Arithmetic or unit conversion error" }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Small insects can walk on the surface of water without sinking.\nReason (R): The surface of water behaves like a stretched elastic membrane due to surface tension, which can support small weights.",
+    "explanation": "Both the assertion and the reason are correct, and the reason is the correct explanation of the assertion. Surface tension causes the water surface to behave like a taut membrane. When a small insect stands on water, the surface tension force along the deformed surface provides an upward component that balances the insect's weight, preventing it from sinking. The insect's weight must be small enough to be supported by this surface tension force.",
+    "correct_answer": "A",
+    "concept_tags": ["surface tension", "insects on water", "stretched membrane", "applications"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The reason directly explains why the insect can walk on water: the membrane-like behaviour of the surface due to surface tension provides the supporting force. This is exactly the causal mechanism.", "misconception": "Failing to recognize the direct causal link between surface tension and the insect's ability to walk on water" },
+      { "option_key": "C", "hint": "The reason is scientifically accurate. Surface tension does cause the water surface to behave like a stretched membrane, and this is well-established in fluid mechanics.", "misconception": "Thinking that the stretched membrane analogy is incorrect" },
+      { "option_key": "D", "hint": "The assertion is a well-known observable phenomenon. Insects like water striders routinely walk on water surfaces.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): When temperature increases, the height of liquid rise in a capillary tube decreases.\nReason (R): Surface tension of a liquid decreases with increase in temperature because the cohesive forces between molecules weaken.",
+    "explanation": "Both the assertion and the reason are true, but the reason is not the complete and direct explanation of the assertion. While it is true that surface tension decreases with temperature (Reason is correct), the capillary rise h = 2T cos θ / (ρgr) also depends on the density ρ of the liquid, which decreases with temperature. The decrease in capillary height is primarily due to the decrease in surface tension, but the reason does not mention the capillary rise formula or the role of other parameters. Both statements are independently correct, but the reason only partially explains the assertion — it explains why T decreases but does not directly show how this leads to decreased capillary rise through the formula.",
+    "correct_answer": "B",
+    "concept_tags": ["capillary rise", "temperature dependence", "surface tension", "cohesive forces"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": true },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "While both statements are correct, the reason only explains why surface tension decreases — it does not directly address capillary rise or the formula h = 2T cos θ / (ρgr). The decrease in density with temperature also affects h, so the reason is incomplete as an explanation.", "misconception": "Assuming any related correct statement automatically serves as a complete explanation" },
+      { "option_key": "C", "hint": "The reason is scientifically correct. Surface tension does decrease with temperature because increased molecular kinetic energy weakens cohesive forces.", "misconception": "Thinking the temperature-surface tension relationship is incorrect" },
+      { "option_key": "D", "hint": "The assertion is correct. From h = 2T cos θ / (ρgr), since T decreases with temperature, h decreases. This is experimentally verified.", "misconception": "Thinking capillary rise increases with temperature" }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the physical situations (Column I) with the excess pressure inside the curved surface (Column II):\n\nColumn I:\nA. Liquid drop of radius R\nB. Soap bubble of radius R\nC. Air bubble inside a liquid, of radius R\nD. Flat liquid surface\n\nColumn II:\n1. 4T/R\n2. 2T/R\n3. Zero\n4. 2T/R",
+    "explanation": "A-2: A liquid drop has one free surface, so the excess pressure is 2T/R. B-1: A soap bubble has two free surfaces (inner and outer), so the excess pressure is 4T/R. C-4: An air bubble inside a liquid has one liquid-air interface, giving excess pressure 2T/R. D-3: A flat surface has infinite radius of curvature, so the excess pressure is zero.",
+    "correct_answer": "C",
+    "concept_tags": ["excess pressure", "liquid drop", "soap bubble", "air bubble", "flat surface"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-1, B-2, C-4, D-3", "is_correct": false },
+      { "key": "B", "text": "A-2, B-1, C-3, D-4", "is_correct": false },
+      { "key": "C", "text": "A-2, B-1, C-4, D-3", "is_correct": true },
+      { "key": "D", "text": "A-4, B-1, C-2, D-3", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This assigns 4T/R to a liquid drop, but a liquid drop has only one free surface. The excess pressure for a single surface is 2T/R. The factor 4T/R applies to soap bubbles.", "misconception": "Confusing the number of free surfaces in a drop versus a bubble" },
+      { "option_key": "B", "hint": "This assigns zero excess pressure to the air bubble inside liquid. An air bubble inside liquid has a curved liquid-air interface with excess pressure 2T/R, not zero.", "misconception": "Thinking an air bubble inside liquid has no excess pressure" },
+      { "option_key": "D", "hint": "This assigns the same excess pressure (2T/R from item 4) to the liquid drop as it assigns 2T/R (from item 2) to the air bubble, but swaps them from item numbers. The matching A-4 and C-2 gives the same values but is not the standard matching. More importantly, A should match item 2, not item 4.", "misconception": "Misordering the matched items" }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the phenomena (Column I) with the underlying principle or property (Column II):\n\nColumn I:\nA. Rise of water in a capillary tube\nB. Spherical shape of small raindrops\nC. Cleaning action of detergent\nD. Mercury depressed in a glass capillary\n\nColumn II:\n1. Reduction of surface tension and angle of contact\n2. Surface tension minimises surface area for a given volume\n3. Adhesive force greater than cohesive force with acute angle of contact\n4. Cohesive force greater than adhesive force with obtuse angle of contact",
+    "explanation": "A-3: Water rises in a glass capillary because the adhesive force between water and glass is greater than the cohesive force in water, and the angle of contact is acute (nearly 0°). B-2: Raindrops become spherical because surface tension minimises the surface area for a given volume, and a sphere has the smallest surface area for a given volume. C-1: Detergents clean by reducing the surface tension and angle of contact, allowing the solution to spread and penetrate grease. D-4: Mercury is depressed in glass because cohesive forces in mercury dominate over adhesive forces with glass, giving an obtuse angle of contact.",
+    "correct_answer": "D",
+    "concept_tags": ["capillary rise", "spherical drops", "detergent action", "mercury depression", "cohesive and adhesive forces"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-1, C-2, D-4", "is_correct": false },
+      { "key": "B", "text": "A-2, B-3, C-1, D-4", "is_correct": false },
+      { "key": "C", "text": "A-3, B-2, C-4, D-1", "is_correct": false },
+      { "key": "D", "text": "A-3, B-2, C-1, D-4", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This matches spherical raindrops (B) with reduction of surface tension, which describes detergent action. Raindrops are spherical because surface tension minimises surface area for a given volume.", "misconception": "Confusing the principle behind spherical drop formation with detergent action" },
+      { "option_key": "B", "hint": "This matches capillary rise (A) with surface area minimisation and raindrops (B) with adhesive > cohesive forces. Capillary rise is due to adhesive forces, not area minimisation.", "misconception": "Swapping the principles governing capillary rise and spherical drop formation" },
+      { "option_key": "C", "hint": "This matches detergent cleaning (C) with cohesive > adhesive forces and mercury depression (D) with surface tension reduction. These are swapped: detergents reduce surface tension, while mercury depression is due to dominant cohesive forces.", "misconception": "Swapping the explanations for detergent action and mercury depression" }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "Surface tension acts tangentially to the liquid surface at every point along the line of contact.",
+    "explanation": "This statement is TRUE. Surface tension is defined as the force per unit length acting in the plane of the liquid surface perpendicular to any line drawn on the surface. It always acts tangentially to the surface and perpendicular to the line along which it is measured. This tangential nature is what causes the surface to behave like a stretched elastic membrane.",
+    "correct_answer": "A",
+    "concept_tags": ["surface tension", "direction of force", "tangential force"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Surface tension is by definition a tangential force. It acts in the plane of the liquid surface, not perpendicular to it. This is a fundamental property of surface tension.", "misconception": "Thinking surface tension acts normal to the surface rather than tangentially" },
+      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The excess pressure inside a soap bubble is inversely proportional to the square of its radius.",
+    "explanation": "This statement is FALSE. The excess pressure inside a soap bubble is given by ΔP = 4T/R, which shows that the excess pressure is inversely proportional to the first power of the radius (ΔP ∝ 1/R), not the square of the radius (not ΔP ∝ 1/R²). If the radius is doubled, the excess pressure is halved, not reduced to one-fourth.",
+    "correct_answer": "B",
+    "concept_tags": ["excess pressure", "soap bubble", "inverse proportionality", "radius dependence"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The formula for excess pressure in a soap bubble is 4T/R, not 4T/R². The pressure is inversely proportional to R, not R².", "misconception": "Confusing inverse proportionality with inverse square proportionality" },
+      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-19",
+    "question_type": "fill_in_the_blanks",
+    "difficulty": "medium",
+    "question_text": "The height to which a liquid rises in a capillary tube is inversely proportional to the _____ of the tube.",
+    "explanation": "From the capillary rise formula, h = 2T cos θ / (ρgr), we can see that h is inversely proportional to r (the radius of the capillary tube). If the radius of the tube is doubled, the height of the liquid column is halved. This is why very narrow tubes show greater capillary rise than wider ones.",
+    "correct_answer": "A",
+    "concept_tags": ["capillary rise", "inverse proportionality", "radius of tube"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "radius", "is_correct": true },
+      { "key": "B", "text": "square of the radius", "is_correct": false },
+      { "key": "C", "text": "length", "is_correct": false },
+      { "key": "D", "text": "square root of the radius", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The formula h = 2T cos θ / (ρgr) shows h ∝ 1/r, not h ∝ 1/r². The radius appears to the first power in the denominator.", "misconception": "Confusing inverse proportionality with inverse square proportionality" },
+      { "option_key": "C", "hint": "The length of the capillary tube does not appear in the capillary rise formula. The rise depends on the radius, not the length of the tube (provided the tube is long enough).", "misconception": "Thinking the tube length affects capillary rise" },
+      { "option_key": "D", "hint": "The capillary rise formula contains r in the denominator, not √r. There is no square root relationship.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-fluid-surface-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "A scientist is studying capillary action using two glass tubes of inner radii r₁ = 0.3 mm and r₂ = 0.6 mm, both dipped vertically in the same beaker of water (surface tension T = 0.072 N/m, density ρ = 1000 kg/m³, angle of contact θ ≈ 0°, g = 10 m/s²).\n\nThe difference in the heights of water in the two capillary tubes is:",
+    "explanation": "Using h = 2T cos θ / (ρgr) with cos 0° = 1: For tube 1: h₁ = 2 × 0.072 / (1000 × 10 × 3 × 10⁻⁴) = 0.144 / 3 = 0.048 m = 4.8 cm. For tube 2: h₂ = 2 × 0.072 / (1000 × 10 × 6 × 10⁻⁴) = 0.144 / 6 = 0.024 m = 2.4 cm. Difference = h₁ − h₂ = 4.8 − 2.4 = 2.4 cm.",
+    "correct_answer": "C",
+    "concept_tags": ["capillary rise", "numerical comparison", "radius dependence", "water in glass"],
+    "topic": "Surface Tension and Capillarity",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Fluids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1.2 cm", "is_correct": false },
+      { "key": "B", "text": "4.8 cm", "is_correct": false },
+      { "key": "C", "text": "2.4 cm", "is_correct": true },
+      { "key": "D", "text": "7.2 cm", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1.2 cm is half the correct difference. Check whether you used the correct radii (0.3 mm and 0.6 mm) and converted them properly to metres.", "misconception": "Unit conversion error or factor-of-2 mistake in calculation" },
+      { "option_key": "B", "hint": "4.8 cm is the height of water in the narrower tube (r₁ = 0.3 mm), not the difference between the two heights. You need to subtract h₂ from h₁.", "misconception": "Reporting the rise in one tube instead of the difference" },
+      { "option_key": "D", "hint": "7.2 cm is the sum of the two heights (4.8 + 2.4), not the difference. The question asks for how much higher the water stands in one tube compared to the other.", "misconception": "Adding the heights instead of subtracting them" }
+    ]
+  }
+]

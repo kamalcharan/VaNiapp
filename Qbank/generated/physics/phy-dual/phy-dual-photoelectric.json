@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-dual-photoelectric-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The photoelectric effect was first experimentally observed by:",
+    "explanation": "Heinrich Hertz first observed the photoelectric effect in 1887 while working on electromagnetic waves. He noticed that ultraviolet light falling on a metallic surface facilitated the production of sparks. Later, Phillip Lenard studied the phenomenon in detail.",
+    "correct_answer": "A",
+    "concept_tags": ["photoelectric-effect", "hertz-observation", "history"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Heinrich Hertz", "is_correct": true },
+      { "key": "B", "text": "Albert Einstein", "is_correct": false },
+      { "key": "C", "text": "Max Planck", "is_correct": false },
+      { "key": "D", "text": "Phillip Lenard", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Einstein provided the theoretical explanation of the photoelectric effect in 1905, but he did not first observe it experimentally.", "misconception": "Confusing the theoretical explanation with experimental discovery" },
+      { "option_key": "C", "hint": "Max Planck proposed the quantum theory of radiation but did not discover the photoelectric effect.", "misconception": "Confusing Planck's quantum hypothesis with photoelectric effect discovery" },
+      { "option_key": "D", "hint": "Lenard performed detailed experiments on the photoelectric effect after Hertz's initial observation, but he was not the first to observe it.", "misconception": "Confusing Lenard's detailed study with the original observation" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-02",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The work function of a metal is 4.0 eV. What is the threshold frequency for photoelectric emission from this metal? (Given: h = 6.63 x 10⁻³⁴ J·s, 1 eV = 1.6 x 10⁻¹⁹ J)",
+    "explanation": "The work function is related to the threshold frequency by \u03c6 = h\u03bd\u2080. Therefore, \u03bd\u2080 = \u03c6/h = (4.0 x 1.6 x 10\u207b\u00b9\u2079)/(6.63 x 10\u207b\u00b3\u2074) = (6.4 x 10\u207b\u00b9\u2079)/(6.63 x 10\u207b\u00b3\u2074) = 9.65 x 10\u00b9\u2074 Hz \u2248 9.7 x 10\u00b9\u2074 Hz.",
+    "correct_answer": "C",
+    "concept_tags": ["work-function", "threshold-frequency", "numerical"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "4.8 x 10\u00b9\u2074 Hz", "is_correct": false },
+      { "key": "B", "text": "7.2 x 10\u00b9\u2074 Hz", "is_correct": false },
+      { "key": "C", "text": "9.7 x 10\u00b9\u2074 Hz", "is_correct": true },
+      { "key": "D", "text": "1.5 x 10\u00b9\u2075 Hz", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This value is roughly half the correct answer. Ensure you are correctly converting eV to joules: 4.0 eV = 4.0 x 1.6 x 10\u207b\u00b9\u2079 J.", "misconception": "Using incorrect conversion factor for eV to joules" },
+      { "option_key": "B", "hint": "Check your arithmetic. The numerator should be 6.4 x 10\u207b\u00b9\u2079 J divided by 6.63 x 10\u207b\u00b3\u2074 J\u00b7s.", "misconception": "Arithmetic error in division" },
+      { "option_key": "D", "hint": "This is too high. Recheck: \u03bd\u2080 = (6.4 x 10\u207b\u00b9\u2079)/(6.63 x 10\u207b\u00b3\u2074) \u2248 9.7 x 10\u00b9\u2074 Hz, not 10\u00b9\u2075.", "misconception": "Error in handling powers of 10" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In the photoelectric effect, increasing the intensity of incident light (above threshold frequency) causes:",
+    "explanation": "When the frequency of incident light is above the threshold frequency, increasing the intensity increases the number of photons striking the surface per second. This increases the number of photoelectrons emitted per second, i.e., the photocurrent increases. However, the maximum kinetic energy of individual photoelectrons remains unchanged because it depends on the frequency, not the intensity.",
+    "correct_answer": "B",
+    "concept_tags": ["intensity", "photocurrent", "kinetic-energy", "photoelectric-effect"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Increase in maximum kinetic energy of photoelectrons", "is_correct": false },
+      { "key": "B", "text": "Increase in photocurrent but no change in maximum kinetic energy", "is_correct": true },
+      { "key": "C", "text": "Increase in both photocurrent and maximum kinetic energy", "is_correct": false },
+      { "key": "D", "text": "No change in photocurrent or kinetic energy", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Maximum kinetic energy depends on the frequency of incident light, not its intensity. Einstein's equation: KE_max = h\u03bd \u2212 \u03c6.", "misconception": "Believing intensity affects maximum kinetic energy" },
+      { "option_key": "C", "hint": "While photocurrent does increase with intensity, the maximum kinetic energy is independent of intensity and depends only on frequency.", "misconception": "Applying classical wave theory to photoelectric effect" },
+      { "option_key": "D", "hint": "More photons per second (higher intensity) means more photoelectrons per second, so photocurrent must increase.", "misconception": "Not understanding the relationship between intensity and photon number" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The photoelectric effect supports the:",
+    "explanation": "The photoelectric effect cannot be explained by the classical wave theory of light. It provides strong evidence for the particle (quantum) nature of light. Einstein explained it by treating light as composed of discrete packets of energy called photons, each with energy E = h\u03bd.",
+    "correct_answer": "D",
+    "concept_tags": ["particle-nature", "wave-theory", "photon-model", "quantum-theory"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Wave nature of light", "is_correct": false },
+      { "key": "B", "text": "Electromagnetic theory of light", "is_correct": false },
+      { "key": "C", "text": "Transverse nature of light", "is_correct": false },
+      { "key": "D", "text": "Quantum (particle) nature of light", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The wave theory of light fails to explain the photoelectric effect, particularly the dependence of KE_max on frequency and the instantaneous nature of emission.", "misconception": "Confusing which experiments support wave vs particle nature" },
+      { "option_key": "B", "hint": "Maxwell's electromagnetic theory predicts that energy of emitted electrons should depend on intensity, which contradicts experimental observations.", "misconception": "Confusing electromagnetic wave theory with quantum explanation" },
+      { "option_key": "C", "hint": "The transverse nature of light is demonstrated by polarization experiments, not by the photoelectric effect.", "misconception": "Confusing different properties of light demonstrated by different experiments" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Light of wavelength 400 nm falls on a metal surface with work function 2.0 eV. The maximum kinetic energy of the emitted photoelectrons is: (Given: h = 6.63 x 10\u207b\u00b3\u2074 J\u00b7s, c = 3 x 10\u2078 m/s, 1 eV = 1.6 x 10\u207b\u00b9\u2079 J)",
+    "explanation": "Energy of incident photon: E = hc/\u03bb = (6.63 x 10\u207b\u00b3\u2074 x 3 x 10\u2078)/(400 x 10\u207b\u2079) = (19.89 x 10\u207b\u00b2\u2076)/(4 x 10\u207b\u2077) = 4.97 x 10\u207b\u00b9\u2079 J = 4.97 x 10\u207b\u00b9\u2079 / 1.6 x 10\u207b\u00b9\u2079 = 3.1 eV. Using Einstein's equation: KE_max = h\u03bd \u2212 \u03c6 = 3.1 \u2212 2.0 = 1.1 eV.",
+    "correct_answer": "A",
+    "concept_tags": ["einstein-equation", "kinetic-energy", "wavelength", "work-function", "numerical"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1.1 eV", "is_correct": true },
+      { "key": "B", "text": "2.0 eV", "is_correct": false },
+      { "key": "C", "text": "3.1 eV", "is_correct": false },
+      { "key": "D", "text": "5.1 eV", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "2.0 eV is the work function itself, not the maximum kinetic energy. KE_max = photon energy \u2212 work function.", "misconception": "Confusing work function with kinetic energy" },
+      { "option_key": "C", "hint": "3.1 eV is the total energy of the incident photon. You must subtract the work function to get KE_max.", "misconception": "Forgetting to subtract the work function from photon energy" },
+      { "option_key": "D", "hint": "5.1 eV would result from adding the photon energy and work function instead of subtracting. KE_max = E \u2212 \u03c6, not E + \u03c6.", "misconception": "Adding work function instead of subtracting" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The stopping potential for photoelectrons emitted from a surface illuminated by light of wavelength 4000 \u00c5 is 1.2 V. What is the stopping potential when the wavelength is changed to 3000 \u00c5? (Given: hc = 12400 eV\u00b7\u00c5)",
+    "explanation": "For \u03bb\u2081 = 4000 \u00c5: eV\u2080\u2081 = hc/\u03bb\u2081 \u2212 \u03c6. So \u03c6 = hc/\u03bb\u2081 \u2212 eV\u2080\u2081 = 12400/4000 \u2212 1.2 = 3.1 \u2212 1.2 = 1.9 eV. For \u03bb\u2082 = 3000 \u00c5: eV\u2080\u2082 = hc/\u03bb\u2082 \u2212 \u03c6 = 12400/3000 \u2212 1.9 = 4.13 \u2212 1.9 = 2.23 V \u2248 2.2 V.",
+    "correct_answer": "C",
+    "concept_tags": ["stopping-potential", "wavelength", "work-function", "einstein-equation", "numerical"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1.6 V", "is_correct": false },
+      { "key": "B", "text": "1.9 V", "is_correct": false },
+      { "key": "C", "text": "2.2 V", "is_correct": true },
+      { "key": "D", "text": "3.1 V", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This would imply the stopping potential scales linearly with the ratio of wavelengths, which is incorrect. You must first find the work function.", "misconception": "Assuming stopping potential is inversely proportional to wavelength without accounting for work function" },
+      { "option_key": "B", "hint": "1.9 eV is the work function of the metal, not the stopping potential for 3000 \u00c5 light.", "misconception": "Confusing work function with stopping potential" },
+      { "option_key": "D", "hint": "3.1 eV is the photon energy for 4000 \u00c5 light. For 3000 \u00c5, photon energy is 4.13 eV, and you must subtract the work function.", "misconception": "Forgetting to subtract work function from photon energy" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In the graph of stopping potential (V\u2080) versus frequency (\u03bd) for the photoelectric effect, the slope of the line gives:",
+    "explanation": "From Einstein's equation: eV\u2080 = h\u03bd \u2212 \u03c6, which can be rewritten as V\u2080 = (h/e)\u03bd \u2212 \u03c6/e. This is of the form y = mx + c, where the slope m = h/e. The slope is the ratio of Planck's constant to the electronic charge, and is the same for all metals.",
+    "correct_answer": "B",
+    "concept_tags": ["stopping-potential", "frequency", "graph", "planck-constant", "electronic-charge"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Planck's constant (h)", "is_correct": false },
+      { "key": "B", "text": "h/e (ratio of Planck's constant to electronic charge)", "is_correct": true },
+      { "key": "C", "text": "Work function (\u03c6)", "is_correct": false },
+      { "key": "D", "text": "Charge of electron (e)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The equation is V\u2080 = (h/e)\u03bd \u2212 \u03c6/e. The slope of V\u2080 vs \u03bd is h/e, not h alone. If the y-axis were KE_max, then the slope would be h.", "misconception": "Confusing the V\u2080 vs \u03bd graph with the KE_max vs \u03bd graph" },
+      { "option_key": "C", "hint": "The work function determines the y-intercept (\u2212\u03c6/e) and the x-intercept (threshold frequency), not the slope.", "misconception": "Confusing slope with intercept" },
+      { "option_key": "D", "hint": "The electronic charge appears in the denominator of the slope (h/e), but is not the slope itself.", "misconception": "Incomplete analysis of the equation" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-08",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The threshold wavelength for a metal surface is 5200 \u00c5. The maximum kinetic energy of photoelectrons emitted when light of wavelength 3800 \u00c5 is incident on it is approximately: (Given: hc = 12400 eV\u00b7\u00c5)",
+    "explanation": "Work function \u03c6 = hc/\u03bb\u2080 = 12400/5200 = 2.385 eV. Photon energy E = hc/\u03bb = 12400/3800 = 3.263 eV. KE_max = E \u2212 \u03c6 = 3.263 \u2212 2.385 = 0.878 eV \u2248 0.88 eV.",
+    "correct_answer": "D",
+    "concept_tags": ["threshold-wavelength", "work-function", "kinetic-energy", "einstein-equation", "numerical"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.24 eV", "is_correct": false },
+      { "key": "B", "text": "0.53 eV", "is_correct": false },
+      { "key": "C", "text": "1.20 eV", "is_correct": false },
+      { "key": "D", "text": "0.88 eV", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This is too small. Recheck: KE_max = hc(1/\u03bb \u2212 1/\u03bb\u2080) = 12400(1/3800 \u2212 1/5200).", "misconception": "Arithmetic error in calculation" },
+      { "option_key": "B", "hint": "Verify your calculation. The photon energy is 12400/3800 = 3.26 eV and work function is 12400/5200 = 2.38 eV.", "misconception": "Computational error" },
+      { "option_key": "C", "hint": "1.20 eV is too large. Ensure you are correctly computing the difference of the two energy values.", "misconception": "Error in subtraction of photon energy and work function" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which of the following observations about the photoelectric effect could NOT be explained by the classical wave theory of light?",
+    "explanation": "The classical wave theory predicts that energy of a wave is proportional to its intensity, so increasing intensity should increase the kinetic energy of emitted electrons. However, experiments show that the maximum kinetic energy of photoelectrons depends on frequency, not intensity. This was a key failure of wave theory. Additionally, wave theory could not explain the instantaneous emission (no time lag) or the existence of a threshold frequency.",
+    "correct_answer": "A",
+    "concept_tags": ["wave-theory-failure", "frequency-dependence", "intensity-independence", "threshold-frequency"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Maximum kinetic energy of photoelectrons is independent of intensity and depends only on frequency", "is_correct": true },
+      { "key": "B", "text": "Light can transfer energy to matter", "is_correct": false },
+      { "key": "C", "text": "Light is an electromagnetic wave", "is_correct": false },
+      { "key": "D", "text": "Photocurrent increases with increase in intensity of light", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Wave theory does predict energy transfer from light to matter. This is not the problematic observation.", "misconception": null },
+      { "option_key": "C", "hint": "The electromagnetic nature of light is a prediction of wave theory itself, so it does not contradict wave theory.", "misconception": null },
+      { "option_key": "D", "hint": "The dependence of photocurrent on intensity is actually consistent with wave theory, since more energy per second should release more electrons.", "misconception": "Thinking that the intensity-photocurrent relationship contradicts wave theory" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The momentum of a photon of wavelength 6600 \u00c5 is: (Given: h = 6.6 x 10\u207b\u00b3\u2074 J\u00b7s)",
+    "explanation": "The momentum of a photon is given by p = h/\u03bb. Here, \u03bb = 6600 \u00c5 = 6600 x 10\u207b\u00b9\u2070 m = 6.6 x 10\u207b\u2077 m. Therefore, p = 6.6 x 10\u207b\u00b3\u2074 / 6.6 x 10\u207b\u2077 = 1.0 x 10\u207b\u00b2\u2077 kg\u00b7m/s.",
+    "correct_answer": "C",
+    "concept_tags": ["photon-momentum", "wavelength", "de-broglie", "numerical"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1.0 x 10\u207b\u00b2\u2079 kg\u00b7m/s", "is_correct": false },
+      { "key": "B", "text": "1.0 x 10\u207b\u00b2\u2078 kg\u00b7m/s", "is_correct": false },
+      { "key": "C", "text": "1.0 x 10\u207b\u00b2\u2077 kg\u00b7m/s", "is_correct": true },
+      { "key": "D", "text": "1.0 x 10\u207b\u00b2\u2076 kg\u00b7m/s", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This is off by a factor of 100. Convert wavelength correctly: 6600 \u00c5 = 6.6 x 10\u207b\u2077 m, not 6.6 x 10\u207b\u2079 m.", "misconception": "Incorrect unit conversion from angstroms to metres" },
+      { "option_key": "B", "hint": "Check the exponent arithmetic: 10\u207b\u00b3\u2074 / 10\u207b\u2077 = 10\u207b\u00b2\u2077, not 10\u207b\u00b2\u2078.", "misconception": "Error in exponent subtraction" },
+      { "option_key": "D", "hint": "This is 10 times too large. Verify: h/\u03bb = 6.6 x 10\u207b\u00b3\u2074 / 6.6 x 10\u207b\u2077 = 10\u207b\u00b2\u2077.", "misconception": "Error in division of powers of 10" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "When light of frequency 2\u03bd\u2080 is incident on a metal surface (threshold frequency \u03bd\u2080), the maximum velocity of emitted photoelectrons is v\u2081. When the frequency is increased to 5\u03bd\u2080, the maximum velocity becomes v\u2082. The ratio v\u2081 : v\u2082 is:",
+    "explanation": "From Einstein's equation: \u00bdmv\u00b2 = h\u03bd \u2212 h\u03bd\u2080. For frequency 2\u03bd\u2080: \u00bdmv\u2081\u00b2 = h(2\u03bd\u2080) \u2212 h\u03bd\u2080 = h\u03bd\u2080. For frequency 5\u03bd\u2080: \u00bdmv\u2082\u00b2 = h(5\u03bd\u2080) \u2212 h\u03bd\u2080 = 4h\u03bd\u2080. Dividing: v\u2081\u00b2/v\u2082\u00b2 = h\u03bd\u2080/4h\u03bd\u2080 = 1/4. Therefore v\u2081/v\u2082 = 1/2, so v\u2081 : v\u2082 = 1 : 2.",
+    "correct_answer": "B",
+    "concept_tags": ["einstein-equation", "velocity-ratio", "threshold-frequency", "kinetic-energy"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1 : \u221a2", "is_correct": false },
+      { "key": "B", "text": "1 : 2", "is_correct": true },
+      { "key": "C", "text": "2 : 5", "is_correct": false },
+      { "key": "D", "text": "1 : \u221a5", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1 : \u221a2 would mean the KE ratio is 1 : 2, but the actual KE ratio is h\u03bd\u2080 : 4h\u03bd\u2080 = 1 : 4.", "misconception": "Error in computing kinetic energy difference from threshold" },
+      { "option_key": "C", "hint": "This ratio comes from assuming v is proportional to frequency, i.e., v \u221d \u03bd. However, KE = h(\u03bd \u2212 \u03bd\u2080), so v\u00b2 \u221d (\u03bd \u2212 \u03bd\u2080).", "misconception": "Assuming velocity is directly proportional to frequency" },
+      { "option_key": "D", "hint": "This would give a KE ratio of 1 : 5, which would be the case only if the work function were zero.", "misconception": "Neglecting the work function in Einstein's equation" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In a photoelectric experiment, the graph of stopping potential (V\u2080) versus frequency (\u03bd) for two metals A and B are straight lines as shown. If the work functions of A and B are \u03c6_A and \u03c6_B respectively, and threshold frequencies are \u03bd_A and \u03bd_B, then which of the following is correct? (Given that \u03bd_A > \u03bd_B)",
+    "explanation": "In the V\u2080 vs \u03bd graph, V\u2080 = (h/e)\u03bd \u2212 \u03c6/e. The slope h/e is the same for all metals (universal constant). If \u03bd_A > \u03bd_B, it means the x-intercept of A is to the right of B. Since the threshold frequency \u03bd\u2080 = \u03c6/h, a higher threshold frequency means a higher work function. Therefore \u03c6_A > \u03c6_B. The slopes are the same for both metals.",
+    "correct_answer": "D",
+    "concept_tags": ["stopping-potential-graph", "work-function", "threshold-frequency", "slope"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "\u03c6_A < \u03c6_B and the slopes are different", "is_correct": false },
+      { "key": "B", "text": "\u03c6_A > \u03c6_B and the slope of A is greater than B", "is_correct": false },
+      { "key": "C", "text": "\u03c6_A < \u03c6_B and the slopes are equal", "is_correct": false },
+      { "key": "D", "text": "\u03c6_A > \u03c6_B and the slopes are equal", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Since \u03bd_A > \u03bd_B and \u03c6 = h\u03bd\u2080, a higher threshold frequency means a higher work function, so \u03c6_A > \u03c6_B.", "misconception": "Inverse relationship assumed between threshold frequency and work function" },
+      { "option_key": "B", "hint": "The slope of V\u2080 vs \u03bd is h/e, which is a universal constant independent of the metal. Both lines have the same slope.", "misconception": "Thinking the slope of V\u2080 vs \u03bd depends on the metal" },
+      { "option_key": "C", "hint": "While the slopes being equal is correct, \u03c6_A > \u03c6_B (not less) because \u03bd_A > \u03bd_B and \u03c6 = h\u03bd\u2080.", "misconception": "Incorrectly relating threshold frequency to work function" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The photoelectric effect is an instantaneous process with no measurable time lag between incidence of light and emission of photoelectrons.\nReason (R): In the photon model, a single photon transfers its entire energy to a single electron in a single event.",
+    "explanation": "Both the assertion and reason are correct, and the reason is the correct explanation of the assertion. In the photon model, the energy transfer is a single quantum event where one photon interacts with one electron. The electron receives the photon's entire energy at once, and if this energy exceeds the work function, the electron is emitted immediately (within about 10\u207b\u2079 s). This explains why there is no measurable time lag, unlike what wave theory would predict (where energy accumulates gradually).",
+    "correct_answer": "A",
+    "concept_tags": ["instantaneous-emission", "photon-model", "time-lag", "wave-theory-failure"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The reason directly explains the assertion. The instantaneous nature is a direct consequence of the one-photon-one-electron interaction described in R.", "misconception": "Failing to see the causal link between photon-electron interaction and instantaneous emission" },
+      { "option_key": "C", "hint": "The reason is a correct statement of the photon model. A single photon does transfer all its energy to a single electron.", "misconception": "Doubting the validity of the photon model description" },
+      { "option_key": "D", "hint": "The assertion is experimentally verified. Photoelectric emission occurs within 10\u207b\u2079 s of light incidence, which is essentially instantaneous.", "misconception": "Believing that photoelectric emission requires a time lag" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): When ultraviolet light is incident on a photosensitive material, the stopping potential increases linearly with the increase in frequency of incident radiation.\nReason (R): The maximum kinetic energy of photoelectrons is directly proportional to the frequency of incident radiation.",
+    "explanation": "The assertion is correct: from eV\u2080 = h\u03bd \u2212 \u03c6, the stopping potential V\u2080 = (h/e)\u03bd \u2212 \u03c6/e, which is a linear function of \u03bd with a positive slope h/e. The reason states that KE_max is directly proportional to \u03bd, which is incorrect. KE_max = h\u03bd \u2212 \u03c6, which is a linear function of \u03bd but not directly proportional (direct proportionality would require the y-intercept to be zero, i.e., \u03c6 = 0). Therefore A is correct but R is incorrect.",
+    "correct_answer": "C",
+    "concept_tags": ["stopping-potential", "frequency", "proportionality", "einstein-equation", "linear-relationship"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The reason is incorrect. KE_max = h\u03bd \u2212 \u03c6 is a linear function but NOT directly proportional (proportional means passing through origin).", "misconception": "Confusing linear relationship with direct proportionality" },
+      { "option_key": "B", "hint": "The reason is factually incorrect because 'directly proportional' implies KE_max \u221d \u03bd (passes through origin), but the graph has a non-zero intercept (\u2212\u03c6).", "misconception": "Not distinguishing between linear dependence and direct proportionality" },
+      { "option_key": "D", "hint": "The assertion is correct. V\u2080 = (h/e)\u03bd \u2212 \u03c6/e is indeed a linear function of \u03bd, confirming that V\u2080 increases linearly with \u03bd.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the physical quantities in Column I with their dependence in the photoelectric effect in Column II:\n\nColumn I:\nA. Maximum kinetic energy of photoelectrons\nB. Photocurrent (saturation)\nC. Stopping potential\nD. Threshold frequency\n\nColumn II:\n1. Depends on work function of metal only\n2. Depends on frequency of incident light and work function\n3. Depends on intensity of incident light\n4. Equals (h/e) times frequency minus (\u03c6/e)",
+    "explanation": "Maximum kinetic energy KE_max = h\u03bd \u2212 \u03c6, which depends on frequency and work function (A-2). Saturation photocurrent depends on the number of photons incident per second, which is proportional to intensity (B-3). Stopping potential V\u2080 = (h/e)\u03bd \u2212 \u03c6/e (C-4). Threshold frequency \u03bd\u2080 = \u03c6/h depends only on the work function (D-1).",
+    "correct_answer": "B",
+    "concept_tags": ["kinetic-energy", "photocurrent", "stopping-potential", "threshold-frequency", "work-function"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-2, C-4, D-1", "is_correct": false },
+      { "key": "B", "text": "A-2, B-3, C-4, D-1", "is_correct": true },
+      { "key": "C", "text": "A-4, B-3, C-2, D-1", "is_correct": false },
+      { "key": "D", "text": "A-2, B-1, C-3, D-4", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A-3 is wrong. Maximum kinetic energy does not depend on intensity; it depends on frequency and work function.", "misconception": "Thinking KE_max depends on intensity (classical wave theory error)" },
+      { "option_key": "C", "hint": "A-4 describes stopping potential (V\u2080 = (h/e)\u03bd \u2212 \u03c6/e), not KE_max. KE_max = h\u03bd \u2212 \u03c6 matches description 2.", "misconception": "Confusing the expressions for KE_max and stopping potential" },
+      { "option_key": "D", "hint": "B-1 is wrong. Photocurrent depends on intensity (number of photons), not just the work function. C-3 is also wrong; stopping potential does not depend on intensity.", "misconception": "Interchanging the dependencies of photocurrent and stopping potential" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the experimental observation in Column I with the correct explanation in Column II:\n\nColumn I:\nA. No photoelectric emission below threshold frequency\nB. Photoelectric emission is instantaneous\nC. KE_max is independent of intensity\nD. Photocurrent is proportional to intensity\n\nColumn II:\n1. Each photon interacts with one electron; energy transfer is a single quantum event\n2. One photon can eject at most one electron; more photons per second means more electrons\n3. Photon energy (h\u03bd) must be at least equal to the work function\n4. KE_max = h\u03bd \u2212 \u03c6 does not contain intensity; it depends only on \u03bd and \u03c6",
+    "explanation": "No emission below threshold frequency occurs because the photon energy must equal or exceed the work function (A-3). Instantaneous emission is because each photon transfers its energy in a single quantum event (B-1). KE_max is independent of intensity because Einstein's equation KE_max = h\u03bd \u2212 \u03c6 has no intensity term (C-4). Photocurrent is proportional to intensity because more photons per second yield more ejected electrons (D-2).",
+    "correct_answer": "A",
+    "concept_tags": ["threshold-frequency", "instantaneous-emission", "intensity-independence", "photocurrent", "photon-model"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-1, C-4, D-2", "is_correct": true },
+      { "key": "B", "text": "A-1, B-3, C-4, D-2", "is_correct": false },
+      { "key": "C", "text": "A-3, B-2, C-1, D-4", "is_correct": false },
+      { "key": "D", "text": "A-4, B-1, C-3, D-2", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "A-1 is wrong. The single quantum event (1) explains instantaneous emission, not the threshold condition. The threshold condition requires photon energy \u2265 work function (3).", "misconception": "Confusing the explanation for threshold frequency with that for instantaneous emission" },
+      { "option_key": "C", "hint": "B-2 is wrong. The statement about more photons meaning more electrons (2) explains photocurrent proportionality, not instantaneous emission. B should match with 1.", "misconception": "Confusing photon-number argument with single-event energy transfer argument" },
+      { "option_key": "D", "hint": "A-4 is wrong. The absence of intensity in Einstein's equation (4) explains why KE_max is intensity-independent, not why there is a threshold frequency.", "misconception": "Misassigning the intensity-independence explanation to the threshold condition" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The energy of a photon is given by E = h\u03bd, where h is Planck's constant and \u03bd is the frequency of the radiation.",
+    "explanation": "This is a true statement. The energy of a photon is given by Planck-Einstein relation E = h\u03bd, where h = 6.63 x 10\u207b\u00b3\u2074 J\u00b7s is Planck's constant and \u03bd is the frequency of the electromagnetic radiation. This is one of the fundamental equations of quantum physics.",
+    "correct_answer": "A",
+    "concept_tags": ["photon-energy", "planck-constant", "frequency", "quantum-theory"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "E = h\u03bd is the correct Planck-Einstein relation for the energy of a photon. This is a fundamental equation in quantum physics.", "misconception": "Doubting the basic Planck-Einstein relation" },
+      { "option_key": "C", "hint": "This is a placeholder option and not a valid choice.", "misconception": null },
+      { "option_key": "D", "hint": "This is a placeholder option and not a valid choice.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "In the photoelectric effect, the maximum kinetic energy of emitted photoelectrons increases with increase in the intensity of incident light (keeping frequency constant).",
+    "explanation": "This statement is false. The maximum kinetic energy of emitted photoelectrons depends only on the frequency of the incident light and the work function of the metal (KE_max = h\u03bd \u2212 \u03c6). Increasing the intensity at constant frequency increases the number of photoelectrons emitted per second (photocurrent), but does not change the maximum kinetic energy of individual photoelectrons.",
+    "correct_answer": "B",
+    "concept_tags": ["intensity", "kinetic-energy", "frequency", "photoelectric-effect"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This is the prediction of classical wave theory, which was shown to be incorrect. KE_max depends on frequency, not intensity.", "misconception": "Applying classical wave theory prediction to the photoelectric effect" },
+      { "option_key": "C", "hint": "This is a placeholder option and not a valid choice.", "misconception": null },
+      { "option_key": "D", "hint": "This is a placeholder option and not a valid choice.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-19",
+    "question_type": "fill_in_blanks",
+    "difficulty": "medium",
+    "question_text": "A photon of energy 4.25 eV is incident on a metal surface having work function 3.75 eV. The stopping potential for the most energetic photoelectrons is _____ V.",
+    "explanation": "Using Einstein's photoelectric equation: eV\u2080 = h\u03bd \u2212 \u03c6. Here, photon energy h\u03bd = 4.25 eV and work function \u03c6 = 3.75 eV. Therefore, eV\u2080 = 4.25 \u2212 3.75 = 0.50 eV. Since eV\u2080 is in eV and V\u2080 is in volts, V\u2080 = 0.50 V.",
+    "correct_answer": "B",
+    "concept_tags": ["stopping-potential", "einstein-equation", "work-function", "numerical"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.25", "is_correct": false },
+      { "key": "B", "text": "0.50", "is_correct": true },
+      { "key": "C", "text": "3.75", "is_correct": false },
+      { "key": "D", "text": "4.25", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0.25 V is not the correct difference. V\u2080 = (4.25 \u2212 3.75)/e = 0.50 V.", "misconception": "Arithmetic error in subtraction" },
+      { "option_key": "C", "hint": "3.75 V is the work function expressed in eV. The stopping potential is the excess energy above the work function, not the work function itself.", "misconception": "Confusing work function with stopping potential" },
+      { "option_key": "D", "hint": "4.25 is the total photon energy in eV. The stopping potential corresponds to the kinetic energy, which is the photon energy minus the work function.", "misconception": "Using total photon energy as stopping potential without subtracting work function" }
+    ]
+  },
+  {
+    "id": "phy-dual-photoelectric-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "In a laboratory experiment, a student illuminates a clean caesium surface (\u03c6 = 2.14 eV) with monochromatic light from a mercury lamp. She measures the photocurrent using a sensitive ammeter and applies a retarding potential using a variable voltage source. When the wavelength of light used is 4358 \u00c5, the photocurrent drops to zero at a certain retarding potential.\n\nWhat is the stopping potential measured by the student? (Given: hc = 12400 eV\u00b7\u00c5)",
+    "explanation": "Energy of incident photon: E = hc/\u03bb = 12400/4358 = 2.846 eV. Using Einstein's equation: eV\u2080 = E \u2212 \u03c6 = 2.846 \u2212 2.14 = 0.706 eV. Therefore, the stopping potential V\u2080 \u2248 0.71 V.",
+    "correct_answer": "D",
+    "concept_tags": ["stopping-potential", "caesium", "mercury-lamp", "einstein-equation", "numerical", "scenario"],
+    "topic": "Photoelectric Effect and Einstein's Equation",
+    "subject": "physics",
+    "chapter": "Dual Nature of Radiation and Matter",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.35 V", "is_correct": false },
+      { "key": "B", "text": "1.14 V", "is_correct": false },
+      { "key": "C", "text": "2.14 V", "is_correct": false },
+      { "key": "D", "text": "0.71 V", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0.35 V is approximately half the correct value. Recheck: E = 12400/4358 = 2.846 eV, then V\u2080 = 2.846 \u2212 2.14 = 0.71 V.", "misconception": "Arithmetic error in computing photon energy or the difference" },
+      { "option_key": "B", "hint": "1.14 V does not correspond to the correct calculation. Ensure you are using \u03bb = 4358 \u00c5 and \u03c6 = 2.14 eV correctly.", "misconception": "Using incorrect wavelength or work function value" },
+      { "option_key": "C", "hint": "2.14 V equals the work function in eV. The stopping potential is the photon energy minus the work function, not the work function itself.", "misconception": "Confusing work function with stopping potential" }
+    ]
+  }
+]

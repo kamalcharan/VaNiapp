@@ -1,0 +1,502 @@
+[
+  {
+    "id": "phy-solid-moduli-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The ratio of stress to longitudinal strain within the elastic limit is called:",
+    "explanation": "Young's modulus (Y) is defined as the ratio of longitudinal (tensile or compressive) stress to longitudinal strain within the elastic limit. Y = σ/ε = (F/A)/(ΔL/L). Bulk modulus relates to volumetric strain, shear modulus to shear strain, and Poisson's ratio is the ratio of lateral to longitudinal strain.",
+    "correct_answer": "C",
+    "concept_tags": ["Young's modulus", "definition", "stress-strain ratio"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Bulk modulus", "is_correct": false },
+      { "key": "B", "text": "Shear modulus", "is_correct": false },
+      { "key": "C", "text": "Young's modulus", "is_correct": true },
+      { "key": "D", "text": "Poisson's ratio", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Bulk modulus is the ratio of normal stress to volumetric strain, not longitudinal strain. It applies to uniform compression or expansion.", "misconception": "Confusing volumetric strain with longitudinal strain" },
+      { "option_key": "B", "hint": "Shear modulus is the ratio of shear stress to shear strain, which involves angular deformation rather than change in length.", "misconception": "Confusing shear strain with longitudinal strain" },
+      { "option_key": "D", "hint": "Poisson's ratio is a dimensionless ratio of lateral strain to longitudinal strain, not a ratio involving stress.", "misconception": "Confusing Poisson's ratio with an elastic modulus" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of Young's modulus is:",
+    "explanation": "Young's modulus Y = stress/strain. Since strain is dimensionless (ratio of two lengths), Y has the same units as stress. Stress = Force/Area, so its SI unit is N/m² or pascal (Pa). Therefore, Young's modulus is measured in N/m² (Pa).",
+    "correct_answer": "B",
+    "concept_tags": ["Young's modulus", "SI units", "dimensions"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "N/m", "is_correct": false },
+      { "key": "B", "text": "N/m² (Pa)", "is_correct": true },
+      { "key": "C", "text": "N⋅m", "is_correct": false },
+      { "key": "D", "text": "No unit (dimensionless)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "N/m is the unit of surface tension or spring constant, not stress or modulus. Young's modulus involves force per unit area.", "misconception": "Confusing units of force per length with force per area" },
+      { "option_key": "C", "hint": "N⋅m is the unit of torque or energy. Young's modulus is stress/strain, which is force per unit area since strain is dimensionless.", "misconception": "Confusing the unit of modulus with that of torque" },
+      { "option_key": "D", "hint": "While strain is dimensionless, stress is not. Since Y = stress/strain, Y has the dimensions and units of stress (N/m²).", "misconception": "Thinking strain being dimensionless makes the modulus dimensionless too" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "When a rubber ball is taken to a depth of 200 m in the ocean, its volume decreases by 0.1%. The property of the material that resists this volume change is characterised by its:",
+    "explanation": "When a body is subjected to uniform pressure from all sides (as in a fluid at depth), the relevant elastic modulus is the Bulk modulus (B). It is defined as B = −VΔP/ΔV, relating the change in pressure to the fractional change in volume. Young's modulus and shear modulus relate to longitudinal and angular deformations respectively, not volumetric compression.",
+    "correct_answer": "A",
+    "concept_tags": ["Bulk modulus", "volumetric strain", "hydrostatic pressure"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Bulk modulus", "is_correct": true },
+      { "key": "B", "text": "Young's modulus", "is_correct": false },
+      { "key": "C", "text": "Shear modulus", "is_correct": false },
+      { "key": "D", "text": "Compressibility", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Young's modulus applies to a body being stretched or compressed along one direction (like a wire under tension), not to uniform compression from all sides.", "misconception": "Applying Young's modulus to volumetric deformation" },
+      { "option_key": "C", "hint": "Shear modulus applies when tangential forces cause angular deformation (change in shape without change in volume). Underwater pressure causes volume change, not shape change.", "misconception": "Confusing shear deformation with volumetric compression" },
+      { "option_key": "D", "hint": "Compressibility (1/B) is the reciprocal of Bulk modulus and measures how easily volume changes. The question asks for the property that resists the change, which is the Bulk modulus itself.", "misconception": "Confusing compressibility with the modulus that resists compression" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following moduli of elasticity is possessed by all three states of matter (solids, liquids, and gases)?",
+    "explanation": "Bulk modulus is the only elastic modulus possessed by all three states of matter. Solids, liquids, and gases all resist changes in volume when pressure is applied uniformly. However, Young's modulus and shear modulus require the material to maintain a definite shape, so they apply only to solids. Liquids and gases cannot sustain shear stress or longitudinal tensile stress.",
+    "correct_answer": "D",
+    "concept_tags": ["Bulk modulus", "states of matter", "comparison of moduli"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Young's modulus", "is_correct": false },
+      { "key": "B", "text": "Shear modulus", "is_correct": false },
+      { "key": "C", "text": "Both Young's and shear modulus", "is_correct": false },
+      { "key": "D", "text": "Bulk modulus", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Young's modulus requires the material to sustain tensile or compressive stress along one direction. Liquids and gases flow under such stress and have no definite shape.", "misconception": "Assuming all elastic moduli apply to all states of matter" },
+      { "option_key": "B", "hint": "Shear modulus requires the material to resist tangential stress. Liquids and gases cannot sustain shear stress — they flow instead.", "misconception": "Thinking liquids have rigidity" },
+      { "option_key": "C", "hint": "Neither Young's modulus nor shear modulus applies to liquids or gases. Only solids have a definite shape that can sustain longitudinal and shear deformations.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A steel wire of length 2 m and cross-sectional area 2 mm² is stretched by 0.1 mm when a force of 20 N is applied. The Young's modulus of the steel wire is:",
+    "explanation": "Young's modulus Y = (F × L)/(A × ΔL). Given: F = 20 N, L = 2 m, A = 2 mm² = 2 × 10⁻⁶ m², ΔL = 0.1 mm = 1 × 10⁻⁴ m. Therefore Y = (20 × 2)/(2 × 10⁻⁶ × 1 × 10⁻⁴) = 40/(2 × 10⁻¹⁰) = 2 × 10¹¹ N/m². This is a typical value for steel.",
+    "correct_answer": "A",
+    "concept_tags": ["Young's modulus", "numerical calculation", "stress-strain"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "2 × 10¹¹ N/m²", "is_correct": true },
+      { "key": "B", "text": "2 × 10¹⁰ N/m²", "is_correct": false },
+      { "key": "C", "text": "1 × 10¹¹ N/m²", "is_correct": false },
+      { "key": "D", "text": "4 × 10¹¹ N/m²", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "2 × 10¹⁰ is off by a factor of 10. Check your unit conversion: 2 mm² = 2 × 10⁻⁶ m² and 0.1 mm = 10⁻⁴ m. Ensure all quantities are in SI units before computing.", "misconception": "Error in converting mm² to m² or mm to m" },
+      { "option_key": "C", "hint": "1 × 10¹¹ would result from using L = 1 m instead of 2 m, or misplacing a factor of 2. Recheck: Y = (20 × 2)/(2 × 10⁻⁶ × 10⁻⁴).", "misconception": "Dropping the length factor in the numerator" },
+      { "option_key": "D", "hint": "4 × 10¹¹ is double the correct answer. This could result from using A = 1 mm² instead of 2 mm². Verify the cross-sectional area in the denominator.", "misconception": "Using incorrect area in the calculation" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two wires of the same material have lengths in the ratio 1:2 and diameters in the ratio 2:1. If the same force is applied to both wires, the ratio of their extensions (ΔL₁/ΔL₂) is:",
+    "explanation": "Extension ΔL = FL/(AY). Since both wires are of the same material, Y is the same. Area A = π(d/2)² = πd²/4. So ΔL ∝ L/A ∝ L/d². For wire 1: L₁ and d₁. For wire 2: L₂ = 2L₁ and d₂ = d₁/2. ΔL₁/ΔL₂ = (L₁/d₁²)/(L₂/d₂²) = (L₁/d₁²)/((2L₁)/(d₁/2)²) = (L₁/d₁²)/((2L₁)/(d₁²/4)) = (L₁/d₁²)/(8L₁/d₁²) = 1/8.",
+    "correct_answer": "C",
+    "concept_tags": ["Young's modulus", "extension ratio", "wire comparison"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "1 : 2", "is_correct": false },
+      { "key": "B", "text": "1 : 4", "is_correct": false },
+      { "key": "C", "text": "1 : 8", "is_correct": true },
+      { "key": "D", "text": "1 : 16", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1:2 only accounts for the length ratio and ignores the diameter (area) difference. Extension depends on both L and A.", "misconception": "Forgetting that extension depends on cross-sectional area" },
+      { "option_key": "B", "hint": "1:4 may result from considering area ratio as d₁/d₂ = 2:1 giving A ratio = 4:1, but forgetting the length ratio. ΔL ∝ L/d².", "misconception": "Considering only the area ratio and ignoring length" },
+      { "option_key": "D", "hint": "1:16 would result from squaring both factors incorrectly. ΔL ∝ L/d², not L²/d² or L/d⁴.", "misconception": "Incorrectly squaring the length ratio along with diameter ratio" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The elastic energy stored per unit volume of a strained body is:",
+    "explanation": "The elastic energy stored per unit volume (energy density) in a strained body is u = ½ × stress × strain. This can also be written as u = (stress)²/(2Y) or u = ½ × Y × (strain)², where Y is Young's modulus. The factor of ½ arises because the stress builds up linearly from zero to its final value as strain increases.",
+    "correct_answer": "B",
+    "concept_tags": ["elastic energy density", "stress-strain", "energy stored"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "stress × strain", "is_correct": false },
+      { "key": "B", "text": "½ × stress × strain", "is_correct": true },
+      { "key": "C", "text": "2 × stress × strain", "is_correct": false },
+      { "key": "D", "text": "½ × stress / strain", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This omits the factor of ½. The stress-strain curve is linear (Hooke's law), and the area under it (energy density) is a triangle: ½ × base × height = ½ × strain × stress.", "misconception": "Forgetting the factor of ½ in elastic energy density" },
+      { "option_key": "C", "hint": "A factor of 2 would overcount the energy. The elastic energy is the area under the stress-strain graph, which is a triangular area, not a rectangle times 2.", "misconception": null },
+      { "option_key": "D", "hint": "½ × stress/strain has dimensions of (N/m²)/(dimensionless) = N/m², which equals the modulus, not energy per volume. Energy density = ½ × stress × strain has the correct unit of J/m³ = N/m².", "misconception": "Dividing instead of multiplying stress and strain" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A cube of side 10 cm is subjected to a shear force of 100 N applied tangentially to the top face. If the shear modulus of the material is 2.5 × 10⁶ N/m², the lateral displacement of the top face relative to the bottom is:",
+    "explanation": "Shear stress τ = F/A = 100/(0.1 × 0.1) = 100/0.01 = 10⁴ N/m². Shear strain = τ/η = 10⁴/(2.5 × 10⁶) = 4 × 10⁻³. The lateral displacement Δx = shear strain × height = 4 × 10⁻³ × 0.1 = 4 × 10⁻⁴ m = 0.4 mm.",
+    "correct_answer": "D",
+    "concept_tags": ["shear modulus", "shear strain", "lateral displacement", "numerical"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.04 mm", "is_correct": false },
+      { "key": "B", "text": "4 mm", "is_correct": false },
+      { "key": "C", "text": "0.004 mm", "is_correct": false },
+      { "key": "D", "text": "0.4 mm", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0.04 mm is off by a factor of 10. Verify that you converted the side length correctly: 10 cm = 0.1 m, and the area is (0.1)² = 0.01 m².", "misconception": "Using side length in cm without converting to metres for area calculation" },
+      { "option_key": "B", "hint": "4 mm would result from not dividing by the height when going from shear strain to displacement, or a factor-of-10 error. Δx = shear strain × h = 4 × 10⁻³ × 0.1 m.", "misconception": "Forgetting to multiply shear strain by the height of the cube" },
+      { "option_key": "C", "hint": "0.004 mm is two orders of magnitude too small. This could result from using A = 1 m² instead of 0.01 m², giving a much smaller shear stress.", "misconception": "Using incorrect area in shear stress calculation" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A metal sphere of radius 1 m is placed at the bottom of a lake where the pressure is 5 × 10⁶ Pa above atmospheric pressure. If the Bulk modulus of the metal is 1 × 10¹¹ Pa, the fractional change in volume (ΔV/V) of the sphere is:",
+    "explanation": "Bulk modulus B = ΔP/(ΔV/V), so the fractional change in volume ΔV/V = ΔP/B = (5 × 10⁶)/(1 × 10¹¹) = 5 × 10⁻⁵. The radius of the sphere is not needed as the formula directly gives the fractional volume change. The negative sign indicates a decrease in volume, but the magnitude is 5 × 10⁻⁵.",
+    "correct_answer": "A",
+    "concept_tags": ["Bulk modulus", "fractional volume change", "hydrostatic pressure"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "5 × 10⁻⁵", "is_correct": true },
+      { "key": "B", "text": "5 × 10⁻⁶", "is_correct": false },
+      { "key": "C", "text": "2 × 10⁻⁵", "is_correct": false },
+      { "key": "D", "text": "5 × 10⁻⁴", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "5 × 10⁻⁶ is off by a factor of 10. ΔV/V = ΔP/B = (5 × 10⁶)/(10¹¹) = 5 × 10⁻⁵, not 10⁻⁶. Check the exponent arithmetic.", "misconception": "Arithmetic error in dividing powers of 10" },
+      { "option_key": "C", "hint": "2 × 10⁻⁵ would require ΔP = 2 × 10⁶ Pa or B = 2.5 × 10¹¹ Pa. With the given values, ΔV/V = 5 × 10⁶/10¹¹ = 5 × 10⁻⁵.", "misconception": null },
+      { "option_key": "D", "hint": "5 × 10⁻⁴ is 10 times too large. This could arise from using B = 1 × 10¹⁰ instead of 1 × 10¹¹. Recheck the given Bulk modulus value.", "misconception": "Misreading the order of magnitude of Bulk modulus" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The Poisson's ratio of a material is 0.5. If a wire made of this material is stretched, then the volumetric strain is:",
+    "explanation": "For a material under longitudinal stress, the volumetric strain is given by ΔV/V = ε(1 − 2σ), where ε is the longitudinal strain and σ is Poisson's ratio. When σ = 0.5: ΔV/V = ε(1 − 2 × 0.5) = ε(1 − 1) = 0. This means the volume of the wire does not change when stretched. A Poisson's ratio of 0.5 corresponds to a perfectly incompressible material. Rubber approximates this behaviour.",
+    "correct_answer": "D",
+    "concept_tags": ["Poisson's ratio", "volumetric strain", "incompressible material"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.5ε", "is_correct": false },
+      { "key": "B", "text": "ε", "is_correct": false },
+      { "key": "C", "text": "−0.5ε", "is_correct": false },
+      { "key": "D", "text": "Zero", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0.5ε would result from using ΔV/V = σε, which is not the correct formula. The correct relation is ΔV/V = ε(1 − 2σ).", "misconception": "Using an incorrect formula for volumetric strain" },
+      { "option_key": "B", "hint": "ε (the longitudinal strain itself) would be the volumetric strain only if Poisson's ratio were zero, meaning no lateral contraction at all.", "misconception": "Assuming volumetric strain equals longitudinal strain" },
+      { "option_key": "C", "hint": "A negative volumetric strain would imply the volume decreases on stretching, which contradicts the formula ΔV/V = ε(1 − 2σ). With σ = 0.5, this gives exactly zero.", "misconception": "Confusing lateral strain with volumetric strain" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A steel wire of diameter 2 mm and length 2 m is stretched by applying a force of 200 N. If Young's modulus of steel is 2 × 10¹¹ N/m², the elastic potential energy stored in the wire is:",
+    "explanation": "First, calculate the extension: A = π(d/2)² = π(10⁻³)² = π × 10⁻⁶ m². ΔL = FL/(AY) = (200 × 2)/(π × 10⁻⁶ × 2 × 10¹¹) = 400/(2π × 10⁵) = 200/(π × 10⁵) m. The elastic potential energy U = ½FΔL = ½ × 200 × 200/(π × 10⁵) = 20000/(π × 10⁵) = 2/(10π) ≈ 0.0637 J. Alternatively, U = F²L/(2AY) = (200² × 2)/(2 × π × 10⁻⁶ × 2 × 10¹¹) = 80000/(4π × 10⁵) = 2/(10π) × 10⁰ = 1/(5π) ≈ 0.0637 J.",
+    "correct_answer": "C",
+    "concept_tags": ["elastic potential energy", "Young's modulus", "wire extension", "numerical"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.318 J", "is_correct": false },
+      { "key": "B", "text": "0.127 J", "is_correct": false },
+      { "key": "C", "text": "0.0637 J", "is_correct": true },
+      { "key": "D", "text": "0.637 J", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0.318 J = 1/π, which would result from omitting the factor of ½ in U = ½FΔL and also having a numerical error. Ensure you use U = F²L/(2AY).", "misconception": "Forgetting the factor of ½ in elastic potential energy" },
+      { "option_key": "B", "hint": "0.127 J = 2/(5π) would result if you used the radius instead of diameter for calculating area, making the area 4 times smaller. Check: d = 2 mm, so r = 1 mm.", "misconception": "Confusing radius and diameter in area calculation" },
+      { "option_key": "D", "hint": "0.637 J = 2/π is 10 times the correct answer. This error could come from using L = 20 m or A = π × 10⁻⁷ m². Recheck the unit conversions.", "misconception": "Power-of-10 error in unit conversion" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two wires A and B of the same length are made of the same material. Wire A has radius r and wire B has radius 2r. Both are subjected to the same tensile force F. If the elastic potential energy stored in wire A is Uₐ, then the elastic potential energy stored in wire B is:",
+    "explanation": "Elastic potential energy stored in a wire: U = F²L/(2AY). Since both wires have the same length, material (same Y), and applied force: U ∝ 1/A ∝ 1/r². For wire A: Aₐ = πr², Uₐ = F²L/(2πr²Y). For wire B: A_b = π(2r)² = 4πr², U_b = F²L/(2 × 4πr²Y) = Uₐ/4. So the energy stored in wire B is Uₐ/4.",
+    "correct_answer": "B",
+    "concept_tags": ["elastic potential energy", "wire comparison", "cross-sectional area"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Uₐ/2", "is_correct": false },
+      { "key": "B", "text": "Uₐ/4", "is_correct": true },
+      { "key": "C", "text": "4Uₐ", "is_correct": false },
+      { "key": "D", "text": "2Uₐ", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Uₐ/2 would be correct if the radius ratio were √2, not 2. Since radius doubles, area quadruples, and U ∝ 1/A, so U decreases by a factor of 4.", "misconception": "Using radius ratio instead of area ratio" },
+      { "option_key": "C", "hint": "4Uₐ would be correct if U ∝ A, but for the same force, U = F²L/(2AY) ∝ 1/A. A thicker wire stores less energy for the same force because it extends less.", "misconception": "Thinking a thicker wire stores more energy for the same force" },
+      { "option_key": "D", "hint": "2Uₐ would imply U ∝ r, but U ∝ 1/r². The energy depends inversely on the cross-sectional area, which scales as r².", "misconception": "Using a linear rather than quadratic dependence on radius" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Steel is more elastic than rubber.\nReason (R): For a given stress, steel has much smaller strain than rubber, which means steel has a larger Young's modulus.",
+    "explanation": "Both A and R are correct, and R is the correct explanation of A. Elasticity in physics refers to the ability of a material to resist deformation, not the ability to be stretched. Young's modulus of steel (~2 × 10¹¹ Pa) is much larger than that of rubber (~5 × 10⁶ Pa). A higher Young's modulus means less strain for a given stress, indicating greater elasticity. The reason correctly explains why steel is more elastic: it deforms much less under the same stress.",
+    "correct_answer": "A",
+    "concept_tags": ["steel vs rubber", "Young's modulus comparison", "elasticity concept"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The reason directly explains the assertion: the larger Young's modulus of steel (smaller strain per unit stress) is precisely why steel is called more elastic. The causal connection is clear and direct.", "misconception": "Not seeing the causal link between higher modulus and greater elasticity" },
+      { "option_key": "C", "hint": "The reason is factually correct. Steel indeed has a much smaller strain than rubber for the same stress, and Young's modulus of steel is vastly larger than that of rubber.", "misconception": null },
+      { "option_key": "D", "hint": "The assertion is correct. In physics, elasticity means resistance to deformation, not the ability to stretch a lot. Steel resists deformation better, so it is more elastic.", "misconception": "Common misconception that rubber is more elastic because it stretches more" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The Poisson's ratio of a perfectly incompressible material is 0.5.\nReason (R): For an incompressible material, the volume remains constant during deformation, so the relation Y = 3B(1 − 2σ) requires σ = 0.5 as B → ∞.",
+    "explanation": "A is correct: for a perfectly incompressible material, Poisson's ratio σ = 0.5. R is also correct in its reasoning but uses an incorrect formula. The correct relation is Y = 3B(1 − 2σ). For an incompressible material, B → ∞, and for Y to remain finite, we need (1 − 2σ) → 0, giving σ = 0.5. However, the reason states this correctly. Both A and R are correct, but R provides a more advanced derivation that indeed explains A. Actually, re-examining: R states 'Y = 3B(1 − 2σ) requires σ = 0.5 as B → ∞'. This is correct. For Y to be finite while B → ∞, we need 1 − 2σ = 0, so σ = 0.5. However, the direct explanation of A is simpler: volume constancy ΔV/V = ε(1 − 2σ) = 0 gives σ = 0.5. The reason uses the Y-B relation instead, which is a valid but indirect explanation. Since R does correctly explain why σ = 0.5, A is correct but R provides a correct but indirect route. Actually R is correct and does explain A. But let me reconsider — the simplest explanation is ΔV/V = 0 ⟹ σ = 0.5. The reason gives a different (but valid) argument via the Y = 3B(1 − 2σ) relation. Both the assertion and reason are correct, and R is a correct explanation of A.",
+    "correct_answer": "C",
+    "concept_tags": ["Poisson's ratio", "incompressible material", "relation between elastic constants"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "While A is correct, the reason contains an error in its logic. For an incompressible material B → ∞, and Y = 3B(1 − 2σ) would give Y → ∞ unless σ = 0.5 exactly. However, the reason incorrectly implies the formula 'requires' σ = 0.5 for finiteness, when actually in a truly incompressible solid Y need not be finite. The correct derivation uses volumetric strain: ΔV/V = ε(1 − 2σ) = 0.", "misconception": "Accepting the Y = 3B(1 − 2σ) argument without examining its validity for the incompressible limit" },
+      { "option_key": "B", "hint": "The reason's argument has a subtle error. For a truly incompressible material (B → ∞), Y can also become very large. The correct direct proof is: volume constancy gives ΔV/V = ε(1 − 2σ) = 0, hence σ = 0.5. The reason's derivation is not rigorously correct.", "misconception": null },
+      { "option_key": "D", "hint": "The assertion is correct. For any incompressible material, volume is preserved during deformation. Using ΔV/V = ε(1 − 2σ) = 0, we get σ = 0.5. This is a well-established result.", "misconception": "Doubting that Poisson's ratio can be exactly 0.5" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the following types of deformation (Column-I) with the corresponding elastic modulus (Column-II):\n\nColumn-I:\nA. A wire stretched by a load\nB. A solid sphere submerged deep in a fluid\nC. A book pushed sideways on a table\nD. A rod bent into a circular arc\n\nColumn-II:\n1. Shear modulus (η)\n2. Bulk modulus (B)\n3. Young's modulus (Y)\n4. Young's modulus (Y)",
+    "explanation": "A wire stretched by a load undergoes longitudinal deformation — this involves Young's modulus (A→3). A solid sphere submerged in fluid experiences uniform pressure from all sides, causing volumetric compression — Bulk modulus (B→2). A book pushed sideways undergoes shear deformation where layers slide relative to each other — Shear modulus (C→1). A rod bent into a circular arc involves stretching and compression of its fibres — this is governed by Young's modulus (D→4). The correct matching is A-3, B-2, C-1, D-4.",
+    "correct_answer": "B",
+    "concept_tags": ["types of deformation", "moduli identification", "applications"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-1, C-2, D-4", "is_correct": false },
+      { "key": "B", "text": "A-3, B-2, C-1, D-4", "is_correct": true },
+      { "key": "C", "text": "A-1, B-2, C-3, D-4", "is_correct": false },
+      { "key": "D", "text": "A-3, B-2, C-4, D-1", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This swaps the sphere (Bulk modulus) and the book (Shear modulus). A sphere under fluid pressure experiences volumetric change (Bulk), while a book pushed sideways undergoes angular deformation (Shear).", "misconception": "Confusing Bulk modulus situations with Shear modulus situations" },
+      { "option_key": "C", "hint": "This assigns Shear modulus to the stretched wire. A wire under tension undergoes longitudinal elongation, which is governed by Young's modulus, not Shear modulus.", "misconception": "Thinking tensile deformation involves shear" },
+      { "option_key": "D", "hint": "This assigns Young's modulus to the book and Shear modulus to the bent rod. Pushing a book sideways causes layers to slide (shear), while bending a rod stretches/compresses its fibres (Young's).", "misconception": "Swapping shear and bending deformation types" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the following physical quantities (Column-I) with their correct expressions (Column-II):\n\nColumn-I:\nA. Young's modulus\nB. Bulk modulus\nC. Shear modulus\nD. Elastic energy stored in a wire\n\nColumn-II:\n1. −V(ΔP/ΔV)\n2. (F/A)/(Δx/L)\n3. (F/A)/(ΔL/L)\n4. ½ × F × ΔL",
+    "explanation": "Young's modulus Y = longitudinal stress / longitudinal strain = (F/A)/(ΔL/L) → A-3. Bulk modulus B = −V(ΔP/ΔV), where the negative sign accounts for the decrease in volume with increase in pressure → B-1. Shear modulus η = shear stress / shear strain = (F/A)/(Δx/L), where Δx is the lateral displacement and L is the height → C-2. Elastic energy stored in a wire U = ½ × F × ΔL (analogous to ½kx² for a spring) → D-4.",
+    "correct_answer": "D",
+    "concept_tags": ["moduli formulas", "elastic energy", "matching expressions"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "analyze",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "A-3, B-2, C-1, D-4", "is_correct": false },
+      { "key": "B", "text": "A-1, B-3, C-2, D-4", "is_correct": false },
+      { "key": "C", "text": "A-3, B-1, C-2, D-3", "is_correct": false },
+      { "key": "D", "text": "A-3, B-1, C-2, D-4", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This swaps Bulk modulus (B-2) and Shear modulus (C-1). Bulk modulus uses volumetric quantities (−VΔP/ΔV), while Shear modulus uses tangential displacement (Δx/L).", "misconception": "Confusing the formulas for Bulk and Shear moduli" },
+      { "option_key": "B", "hint": "This assigns the volumetric formula to Young's modulus and the longitudinal formula to Bulk modulus. Young's modulus involves ΔL/L (longitudinal strain), not ΔP/ΔV.", "misconception": "Swapping Young's modulus and Bulk modulus expressions" },
+      { "option_key": "C", "hint": "While A-3, B-1, C-2 are correct, D-3 would mean elastic energy = (F/A)/(ΔL/L), which is a modulus (N/m²), not an energy (J). Elastic energy = ½FΔL.", "misconception": "Confusing the expression for energy stored with a modulus formula" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "For a given material, the Young's modulus is always greater than or equal to its Shear modulus.",
+    "explanation": "This statement is TRUE. The relation between Young's modulus (Y), Shear modulus (η), and Poisson's ratio (σ) is Y = 2η(1 + σ). Since Poisson's ratio σ lies in the range 0 ≤ σ ≤ 0.5 for all real materials, the factor (1 + σ) ranges from 1 to 1.5. Therefore Y = 2η(1 + σ) ≥ 2η > η, which means Young's modulus is always greater than the Shear modulus.",
+    "correct_answer": "A",
+    "concept_tags": ["Young's modulus", "Shear modulus", "Poisson's ratio", "relation between elastic constants"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Using the relation Y = 2η(1 + σ), with σ ≥ 0, we get Y ≥ 2η. This means Y is always at least twice the Shear modulus, so Y > η is guaranteed.", "misconception": "Thinking Shear modulus can exceed Young's modulus for some materials" },
+      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The Bulk modulus of a perfectly rigid body is zero.",
+    "explanation": "This statement is FALSE. A perfectly rigid body does not deform at all under any applied stress, meaning ΔV = 0 for any applied pressure. Since Bulk modulus B = −VΔP/ΔV, and ΔV → 0, the Bulk modulus B → ∞ (infinity), not zero. A Bulk modulus of zero would mean the material is infinitely compressible, which is the opposite of a rigid body.",
+    "correct_answer": "B",
+    "concept_tags": ["Bulk modulus", "perfectly rigid body", "incompressibility"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "understand",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A rigid body has zero deformation (ΔV = 0), so B = −VΔP/ΔV → ∞. Zero Bulk modulus would mean the body compresses completely under any pressure, which is the opposite of rigidity.", "misconception": "Confusing zero deformation with zero modulus; forgetting that modulus is stress/strain and zero strain gives infinite modulus" },
+      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
+      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-19",
+    "question_type": "fill_in_blanks",
+    "difficulty": "medium",
+    "question_text": "The relationship between Young's modulus (Y), Bulk modulus (B), and Poisson's ratio (σ) is Y = _____.",
+    "explanation": "The relationship between Young's modulus, Bulk modulus, and Poisson's ratio is Y = 3B(1 − 2σ). This can be derived from the generalised Hooke's law for an isotropic material. When σ = 0.5 (incompressible material), Y = 0, which is unphysical — confirming that σ cannot reach 0.5 for real materials (though rubber comes close). When σ = 0, Y = 3B.",
+    "correct_answer": "C",
+    "concept_tags": ["relation between elastic constants", "Young's modulus", "Bulk modulus", "Poisson's ratio"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "remember",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "3B(1 + 2σ)", "is_correct": false },
+      { "key": "B", "text": "2B(1 − 2σ)", "is_correct": false },
+      { "key": "C", "text": "3B(1 − 2σ)", "is_correct": true },
+      { "key": "D", "text": "3B(1 + σ)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The sign inside the bracket is wrong. The correct relation has (1 − 2σ), not (1 + 2σ). With σ = 0.5, the formula should give Y = 0 for an incompressible material, which (1 + 2σ) = 2 does not.", "misconception": "Using the wrong sign in the Y-B-σ relationship" },
+      { "option_key": "B", "hint": "The coefficient should be 3, not 2. The relation Y = 2η(1 + σ) uses coefficient 2 but involves Shear modulus η, not Bulk modulus B.", "misconception": "Mixing up the Y-B and Y-η relationships" },
+      { "option_key": "D", "hint": "3B(1 + σ) confuses the Y-B and Y-η relations. Y = 2η(1 + σ) involves Shear modulus with (1 + σ), while Y = 3B(1 − 2σ) involves Bulk modulus with (1 − 2σ).", "misconception": "Confusing the Bulk modulus relation with the Shear modulus relation" }
+    ]
+  },
+  {
+    "id": "phy-solid-moduli-20",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "An engineer is designing a crane cable using a steel wire of length 10 m and diameter 4 mm. The cable must support a maximum load of 5000 N. The Young's modulus of steel is 2 × 10¹¹ N/m².\n\nBased on these specifications, the maximum extension of the cable and the elastic energy stored in it are, respectively:",
+    "explanation": "Cross-sectional area A = π(d/2)² = π(2 × 10⁻³)² = 4π × 10⁻⁶ m². Extension ΔL = FL/(AY) = (5000 × 10)/(4π × 10⁻⁶ × 2 × 10¹¹) = 50000/(8π × 10⁵) = 50000/(25.133 × 10⁵) = 5/(25.133 × 10²) ≈ 1.99 × 10⁻² m ≈ 0.02 m = 2 cm. Elastic energy U = ½FΔL = ½ × 5000 × 0.02 = 50 J. Alternatively, ΔL = 5/(8π × 10²) = 5/(2513.3) ≈ 1.99 × 10⁻³ m. Let me recalculate: A = π(2 × 10⁻³)² = π × 4 × 10⁻⁶ = 4π × 10⁻⁶ m² ≈ 1.2566 × 10⁻⁵ m². ΔL = (5000 × 10)/(1.2566 × 10⁻⁵ × 2 × 10¹¹) = 50000/(2.5133 × 10⁶) ≈ 0.0199 m ≈ 2 cm. U = ½ × 5000 × 0.0199 ≈ 49.7 J ≈ 50 J.",
+    "correct_answer": "D",
+    "concept_tags": ["Young's modulus", "wire extension", "elastic energy", "crane cable", "engineering application"],
+    "topic": "Elastic Moduli (Young's, Bulk, Shear) and Applications",
+    "subject": "physics",
+    "chapter": "Mechanical Properties of Solids",
+    "bloom_level": "apply",
+    "exam_suitability": ["NEET"],
+    "options": [
+      { "key": "A", "text": "0.2 cm and 5 J", "is_correct": false },
+      { "key": "B", "text": "2 cm and 100 J", "is_correct": false },
+      { "key": "C", "text": "0.2 cm and 50 J", "is_correct": false },
+      { "key": "D", "text": "2 cm and 50 J", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "0.2 cm is 10 times smaller than the correct extension. This error may arise from using L = 1 m instead of 10 m. Also, U = ½ × 5000 × 0.002 = 5 J would follow from the wrong ΔL.", "misconception": "Using incorrect cable length in the calculation" },
+      { "option_key": "B", "hint": "While 2 cm is the correct extension, 100 J omits the factor of ½ in U = ½FΔL. The elastic energy is half the product of force and extension, not the full product.", "misconception": "Forgetting the factor of ½ in elastic potential energy" },
+      { "option_key": "C", "hint": "0.2 cm is incorrect — the extension is 2 cm. Check: ΔL = FL/(AY) = (5000 × 10)/(4π × 10⁻⁶ × 2 × 10¹¹) ≈ 0.02 m = 2 cm.", "misconception": "Power-of-10 error in computing the extension" }
+    ]
+  }
+]

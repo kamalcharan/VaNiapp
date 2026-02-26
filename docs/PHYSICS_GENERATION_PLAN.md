@@ -96,14 +96,14 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B01 | `phy-world` | Nature of Physical Laws, Fundamental Forces, and Scientific Method | 20 | PENDING |
+| B01 | `phy-world` | Nature of Physical Laws, Fundamental Forces, and Scientific Method | 20 | DONE |
 | | | **Chapter 1 Total** | **20** | |
 
 ### Chapter 2: Units and Measurements (`phy-units`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B02 | `phy-units-dimensions` | Units, Dimensions, and Dimensional Analysis | 20 | PENDING |
+| B02 | `phy-units-dimensions` | Units, Dimensions, and Dimensional Analysis | 20 | DONE |
 | B03 | `phy-units-errors` | Errors in Measurement and Significant Figures | 20 | DONE |
 | | | **Chapter 2 Total** | **40** | |
 
@@ -112,7 +112,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
 | B04 | `phy-motion1d-kinematics` | Kinematic Equations and Uniform Acceleration | 20 | DONE |
-| B05 | `phy-motion1d-graphs` | Position-Time and Velocity-Time Graphs | 20 | PENDING |
+| B05 | `phy-motion1d-graphs` | Position-Time and Velocity-Time Graphs | 20 | DONE |
 | | | **Chapter 3 Total** | **40** | |
 
 ### Chapter 4: Motion in a Plane (`phy-motion2d`) — 3 batches
@@ -170,25 +170,25 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B21 | `phy-solid-stress` | Stress, Strain, and Hooke's Law | 20 | PENDING |
-| B22 | `phy-solid-moduli` | Elastic Moduli (Young's, Bulk, Shear) and Applications | 20 | PENDING |
+| B21 | `phy-solid-stress` | Stress, Strain, and Hooke's Law | 20 | DONE |
+| B22 | `phy-solid-moduli` | Elastic Moduli (Young's, Bulk, Shear) and Applications | 20 | DONE |
 | | | **Chapter 9 Total** | **40** | |
 
 ### Chapter 10: Mechanical Properties of Fluids (`phy-fluid`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B23 | `phy-fluid-pressure` | Pressure, Pascal's Law, and Hydraulic Machines | 20 | PENDING |
-| B24 | `phy-fluid-bernoulli` | Bernoulli's Principle and Viscosity | 20 | PENDING |
-| B25 | `phy-fluid-surface` | Surface Tension and Capillarity | 20 | PENDING |
+| B23 | `phy-fluid-pressure` | Pressure, Pascal's Law, and Hydraulic Machines | 20 | DONE |
+| B24 | `phy-fluid-bernoulli` | Bernoulli's Principle and Viscosity | 20 | DONE |
+| B25 | `phy-fluid-surface` | Surface Tension and Capillarity | 20 | DONE |
 | | | **Chapter 10 Total** | **60** | |
 
 ### Chapter 11: Thermal Properties of Matter (`phy-thermal`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B26 | `phy-thermal-expansion` | Thermal Expansion and Calorimetry | 20 | PENDING |
-| B27 | `phy-thermal-transfer` | Heat Transfer (Conduction, Convection, Radiation) | 20 | PENDING |
+| B26 | `phy-thermal-expansion` | Thermal Expansion and Calorimetry | 20 | DONE |
+| B27 | `phy-thermal-transfer` | Heat Transfer (Conduction, Convection, Radiation) | 20 | DONE |
 | | | **Chapter 11 Total** | **40** | |
 
 ---
@@ -201,16 +201,16 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B28 | `phy-thermo-first` | First Law of Thermodynamics and Thermodynamic Processes | 20 | PENDING |
-| B29 | `phy-thermo-second` | Second Law, Carnot Engine, and Refrigerators | 20 | PENDING |
+| B28 | `phy-thermo-first` | First Law of Thermodynamics and Thermodynamic Processes | 20 | DONE |
+| B29 | `phy-thermo-second` | Second Law, Carnot Engine, and Refrigerators | 20 | DONE |
 | | | **Chapter 12 Total** | **40** | |
 
 ### Chapter 13: Kinetic Theory (`phy-kinetic`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B30 | `phy-kinetic-gas` | Kinetic Theory of Ideal Gas and Pressure | 20 | PENDING |
-| B31 | `phy-kinetic-speed` | RMS Speed, Mean Free Path, and Degrees of Freedom | 20 | PENDING |
+| B30 | `phy-kinetic-gas` | Kinetic Theory of Ideal Gas and Pressure | 20 | DONE |
+| B31 | `phy-kinetic-speed` | RMS Speed, Mean Free Path, and Degrees of Freedom | 20 | DONE |
 | | | **Chapter 13 Total** | **40** | |
 
 ---
@@ -223,18 +223,18 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B32 | `phy-osc-shm` | Simple Harmonic Motion (Kinematics and Dynamics) | 20 | PENDING |
-| B33 | `phy-osc-energy` | Energy in SHM and Oscillating Systems | 20 | PENDING |
-| B34 | `phy-osc-pendulum` | Simple Pendulum and Damped/Forced Oscillations | 20 | PENDING |
+| B32 | `phy-osc-shm` | Simple Harmonic Motion (Kinematics and Dynamics) | 20 | DONE |
+| B33 | `phy-osc-energy` | Energy in SHM and Oscillating Systems | 20 | DONE |
+| B34 | `phy-osc-pendulum` | Simple Pendulum and Damped/Forced Oscillations | 20 | DONE |
 | | | **Chapter 14 Total** | **60** | |
 
 ### Chapter 15: Waves (`phy-waves`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B35 | `phy-wave-types` | Wave Types, Transverse and Longitudinal Waves | 20 | PENDING |
-| B36 | `phy-wave-standing` | Standing Waves, Harmonics, and Resonance | 20 | PENDING |
-| B37 | `phy-wave-doppler` | Beats, Doppler Effect, and Sound Waves | 20 | PENDING |
+| B35 | `phy-wave-types` | Wave Types, Transverse and Longitudinal Waves | 20 | DONE |
+| B36 | `phy-wave-standing` | Standing Waves, Harmonics, and Resonance | 20 | DONE |
+| B37 | `phy-wave-doppler` | Beats, Doppler Effect, and Sound Waves | 20 | DONE |
 | | | **Chapter 15 Total** | **60** | |
 
 ---
@@ -286,17 +286,17 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B47 | `phy-magmov-force` | Force on Moving Charge and Current-Carrying Conductor | 20 | PENDING |
-| B48 | `phy-magmov-biot` | Biot-Savart Law and Ampere's Law | 20 | PENDING |
-| B49 | `phy-magmov-devices` | Cyclotron, Galvanometer, and Solenoid | 20 | PENDING |
+| B47 | `phy-magmov-force` | Force on Moving Charge and Current-Carrying Conductor | 20 | DONE |
+| B48 | `phy-magmov-biot` | Biot-Savart Law and Ampere's Law | 20 | DONE |
+| B49 | `phy-magmov-devices` | Cyclotron, Galvanometer, and Solenoid | 20 | DONE |
 | | | **Chapter 19 Total** | **60** | |
 
 ### Chapter 20: Magnetism and Matter (`phy-magmat`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B50 | `phy-magmat-dipole` | Magnetic Dipole, Bar Magnet, and Earth's Magnetism | 20 | PENDING |
-| B51 | `phy-magmat-materials` | Dia-, Para-, and Ferromagnetic Materials | 20 | PENDING |
+| B50 | `phy-magmat-dipole` | Magnetic Dipole, Bar Magnet, and Earth's Magnetism | 20 | DONE |
+| B51 | `phy-magmat-materials` | Dia-, Para-, and Ferromagnetic Materials | 20 | DONE |
 | | | **Chapter 20 Total** | **40** | |
 
 ---
@@ -309,23 +309,23 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B52 | `phy-emi-faraday` | Faraday's Law and Lenz's Law | 20 | PENDING |
-| B53 | `phy-emi-inductance` | Self and Mutual Inductance, Eddy Currents | 20 | PENDING |
+| B52 | `phy-emi-faraday` | Faraday's Law and Lenz's Law | 20 | DONE |
+| B53 | `phy-emi-inductance` | Self and Mutual Inductance, Eddy Currents | 20 | DONE |
 | | | **Chapter 21 Total** | **40** | |
 
 ### Chapter 22: Alternating Current (`phy-ac`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B54 | `phy-ac-circuits` | AC Circuits (R, L, C, LCR Series) | 20 | PENDING |
-| B55 | `phy-ac-transformer` | Resonance, Power Factor, and Transformers | 20 | PENDING |
+| B54 | `phy-ac-circuits` | AC Circuits (R, L, C, LCR Series) | 20 | DONE |
+| B55 | `phy-ac-transformer` | Resonance, Power Factor, and Transformers | 20 | DONE |
 | | | **Chapter 22 Total** | **40** | |
 
 ### Chapter 23: Electromagnetic Waves (`phy-emwave`) — 1 batch
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B56 | `phy-emwave` | Electromagnetic Spectrum, Properties, and Displacement Current | 20 | PENDING |
+| B56 | `phy-emwave` | Electromagnetic Spectrum, Properties, and Displacement Current | 20 | DONE |
 | | | **Chapter 23 Total** | **20** | |
 
 ---
@@ -347,9 +347,9 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B60 | `phy-waveopt-interference` | Young's Double Slit Experiment and Interference | 20 | PENDING |
-| B61 | `phy-waveopt-diffraction` | Diffraction and Resolving Power | 20 | PENDING |
-| B62 | `phy-waveopt-polarisation` | Polarisation (Malus's Law, Brewster's Angle) | 20 | PENDING |
+| B60 | `phy-waveopt-interference` | Young's Double Slit Experiment and Interference | 20 | DONE |
+| B61 | `phy-waveopt-diffraction` | Diffraction and Resolving Power | 20 | DONE |
+| B62 | `phy-waveopt-polarisation` | Polarisation (Malus's Law, Brewster's Angle) | 20 | DONE |
 | | | **Chapter 25 Total** | **60** | |
 
 ---
@@ -362,33 +362,33 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B63 | `phy-dual-photoelectric` | Photoelectric Effect and Einstein's Equation | 20 | PENDING |
-| B64 | `phy-dual-debroglie` | de Broglie Wavelength and Davisson-Germer Experiment | 20 | PENDING |
+| B63 | `phy-dual-photoelectric` | Photoelectric Effect and Einstein's Equation | 20 | DONE |
+| B64 | `phy-dual-debroglie` | de Broglie Wavelength and Davisson-Germer Experiment | 20 | DONE |
 | | | **Chapter 26 Total** | **40** | |
 
 ### Chapter 27: Atoms (`phy-atoms`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B65 | `phy-atom-bohr` | Bohr Model and Hydrogen Spectrum | 20 | PENDING |
-| B66 | `phy-atom-spectra` | Spectral Series and Energy Levels | 20 | PENDING |
+| B65 | `phy-atom-bohr` | Bohr Model and Hydrogen Spectrum | 20 | DONE |
+| B66 | `phy-atom-spectra` | Spectral Series and Energy Levels | 20 | DONE |
 | | | **Chapter 27 Total** | **40** | |
 
 ### Chapter 28: Nuclei (`phy-nuclei`) — 2 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B67 | `phy-nuclei-properties` | Nuclear Properties, Size, and Binding Energy | 20 | PENDING |
-| B68 | `phy-nuclei-decay` | Radioactivity, Nuclear Fission, and Fusion | 20 | PENDING |
+| B67 | `phy-nuclei-properties` | Nuclear Properties, Size, and Binding Energy | 20 | DONE |
+| B68 | `phy-nuclei-decay` | Radioactivity, Nuclear Fission, and Fusion | 20 | DONE |
 | | | **Chapter 28 Total** | **40** | |
 
 ### Chapter 29: Semiconductor Electronics (`phy-semi`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B69 | `phy-semi-pn` | p-n Junction Diode and Characteristics | 20 | PENDING |
-| B70 | `phy-semi-diode` | Diode Applications (Rectifier, Zener, LED, Photodiode) | 20 | PENDING |
-| B71 | `phy-semi-transistor` | Transistor, Logic Gates, and Amplifiers | 20 | PENDING |
+| B69 | `phy-semi-pn` | p-n Junction Diode and Characteristics | 20 | DONE |
+| B70 | `phy-semi-diode` | Diode Applications (Rectifier, Zener, LED, Photodiode) | 20 | DONE |
+| B71 | `phy-semi-transistor` | Transistor, Logic Gates, and Amplifiers | 20 | DONE |
 | | | **Chapter 29 Total** | **60** | |
 
 ---
@@ -600,33 +600,33 @@ Commit and push.
 
 | Chapter | Topics | Qs Target | Qs Done | % |
 |---------|--------|-----------|---------|---|
-| Ch1 Physical World | 1 | 20 | 0 | 0% |
-| Ch2 Units and Measurements | 2 | 40 | 20 | 50% |
-| Ch3 Motion in a Straight Line | 2 | 40 | 20 | 50% |
+| Ch1 Physical World | 1 | 20 | 20 | 100% |
+| Ch2 Units and Measurements | 2 | 40 | 40 | 100% |
+| Ch3 Motion in a Straight Line | 2 | 40 | 40 | 100% |
 | Ch4 Motion in a Plane | 3 | 60 | 60 | 100% |
 | Ch5 Laws of Motion | 3 | 60 | 60 | 100% |
 | Ch6 Work, Energy and Power | 3 | 60 | 60 | 100% |
 | Ch7 Rotational Motion | 3 | 60 | 60 | 100% |
 | Ch8 Gravitation | 3 | 60 | 60 | 100% |
-| Ch9 Mech Properties of Solids | 2 | 40 | 0 | 0% |
-| Ch10 Mech Properties of Fluids | 3 | 60 | 0 | 0% |
-| Ch11 Thermal Properties | 2 | 40 | 0 | 0% |
-| Ch12 Thermodynamics | 2 | 40 | 0 | 0% |
-| Ch13 Kinetic Theory | 2 | 40 | 0 | 0% |
-| Ch14 Oscillations | 3 | 60 | 0 | 0% |
-| Ch15 Waves | 3 | 60 | 0 | 0% |
+| Ch9 Mech Properties of Solids | 2 | 40 | 40 | 100% |
+| Ch10 Mech Properties of Fluids | 3 | 60 | 60 | 100% |
+| Ch11 Thermal Properties | 2 | 40 | 40 | 100% |
+| Ch12 Thermodynamics | 2 | 40 | 40 | 100% |
+| Ch13 Kinetic Theory | 2 | 40 | 40 | 100% |
+| Ch14 Oscillations | 3 | 60 | 60 | 100% |
+| Ch15 Waves | 3 | 60 | 60 | 100% |
 | Ch16 Electric Charges and Fields | 3 | 60 | 60 | 100% |
 | Ch17 Electrostatic Potential | 3 | 60 | 60 | 100% |
 | Ch18 Current Electricity | 3 | 60 | 60 | 100% |
-| Ch19 Moving Charges & Magnetism | 3 | 60 | 0 | 0% |
-| Ch20 Magnetism and Matter | 2 | 40 | 0 | 0% |
-| Ch21 Electromagnetic Induction | 2 | 40 | 0 | 0% |
-| Ch22 Alternating Current | 2 | 40 | 0 | 0% |
-| Ch23 Electromagnetic Waves | 1 | 20 | 0 | 0% |
+| Ch19 Moving Charges & Magnetism | 3 | 60 | 60 | 100% |
+| Ch20 Magnetism and Matter | 2 | 40 | 40 | 100% |
+| Ch21 Electromagnetic Induction | 2 | 40 | 40 | 100% |
+| Ch22 Alternating Current | 2 | 40 | 40 | 100% |
+| Ch23 Electromagnetic Waves | 1 | 20 | 20 | 100% |
 | Ch24 Ray Optics | 3 | 60 | 60 | 100% |
-| Ch25 Wave Optics | 3 | 60 | 0 | 0% |
-| Ch26 Dual Nature | 2 | 40 | 0 | 0% |
-| Ch27 Atoms | 2 | 40 | 0 | 0% |
-| Ch28 Nuclei | 2 | 40 | 0 | 0% |
-| Ch29 Semiconductor Electronics | 3 | 60 | 0 | 0% |
-| **TOTAL** | **71** | **1,420** | **560** | **39%** |
+| Ch25 Wave Optics | 3 | 60 | 60 | 100% |
+| Ch26 Dual Nature | 2 | 40 | 40 | 100% |
+| Ch27 Atoms | 2 | 40 | 40 | 100% |
+| Ch28 Nuclei | 2 | 40 | 40 | 100% |
+| Ch29 Semiconductor Electronics | 3 | 60 | 60 | 100% |
+| **TOTAL** | **71** | **1,420** | **1,420** | **100%** |
