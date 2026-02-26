@@ -60,14 +60,18 @@ export function MatchTheFollowingQuestion({
 
   const isConfirmed = selectedOptionId !== null;
 
+  // Guard against missing payload data
+  const columnA = payload.columnA ?? [];
+  const columnB = payload.columnB ?? [];
+
   // Shuffled Column B items (stable across re-renders)
-  const shuffledB = useMemo(() => shuffleArray(payload.columnB), [payload.columnB]);
+  const shuffledB = useMemo(() => shuffleArray(columnB), [columnB]);
 
   // Derived: unpaired B items
   const pairedBIds = new Set(Object.values(pairs));
   const unpairedB = shuffledB.filter((b) => !pairedBIds.has(b.id));
 
-  const allPaired = Object.keys(pairs).length === payload.columnA.length;
+  const allPaired = Object.keys(pairs).length === columnA.length;
 
   // When showing feedback, derive pairs from selected option
   const displayPairs = useMemo(() => {
@@ -211,19 +215,19 @@ export function MatchTheFollowingQuestion({
 
   // ── Helpers ──
   const colorForA = (aId: string): string => {
-    const idx = payload.columnA.findIndex((a) => a.id === aId);
+    const idx = columnA.findIndex((a) => a.id === aId);
     return PAIR_COLORS[idx % PAIR_COLORS.length];
   };
 
   const bLabel = (bId: string): string => {
-    const idx = payload.columnB.findIndex((b) => b.id === bId);
+    const idx = columnB.findIndex((b) => b.id === bId);
     return String.fromCharCode(97 + idx);
   };
 
   // ── Render drop slot ──
   const renderSlot = (aId: string) => {
     const bId = displayPairs[aId];
-    const bItem = bId ? payload.columnB.find((b) => b.id === bId) : null;
+    const bItem = bId ? columnB.find((b) => b.id === bId) : null;
     const pColor = colorForA(aId);
 
     let slotBg = 'transparent';
@@ -337,8 +341,8 @@ export function MatchTheFollowingQuestion({
           { backgroundColor: colors.surface, borderColor: colors.surfaceBorder },
         ]}
       >
-        {payload.columnA.map((aItem, idx) => {
-          const isLast = idx === payload.columnA.length - 1;
+        {columnA.map((aItem, idx) => {
+          const isLast = idx === columnA.length - 1;
           return (
             <View key={aItem.id}>
               <View style={styles.matchRow}>
@@ -456,9 +460,9 @@ export function MatchTheFollowingQuestion({
           <Text style={[styles.correctionTitle, { color: '#16A34A' }]}>
             Correct matching:
           </Text>
-          {payload.columnA.map((a, idx) => {
+          {columnA.map((a, idx) => {
             const correctBId = payload.correctMapping[a.id];
-            const bItem = payload.columnB.find((b) => b.id === correctBId);
+            const bItem = columnB.find((b) => b.id === correctBId);
             const aText = language === 'te' ? a.textTe : a.text;
             const bText = bItem
               ? language === 'te'

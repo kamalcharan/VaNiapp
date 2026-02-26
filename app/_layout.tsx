@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo, useCallback, createContext, useContext, useRef } from 'react';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import { View, ActivityIndicator } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   useFonts,
   PlusJakartaSans_300Light,
@@ -260,25 +261,27 @@ export default function RootLayout() {
     segments[0] !== 'setup';
 
   return (
-    <ErrorBoundary>
-      <ReduxProvider store={store}>
-        <AuthContext.Provider value={authState}>
-          <OnboardingGateContext.Provider value={gateValue}>
-            <ThemeContext.Provider value={themeValue}>
-              <ToastProvider>
-                {isAuthLoading ? (
-                  <View style={{ flex: 1, backgroundColor: '#fdfcf0', justifyContent: 'center', alignItems: 'center' }}>
-                    <ActivityIndicator size="large" color="#2563EB" />
-                  </View>
-                ) : (
-                  <Slot />
-                )}
-                <GlobalMusicOverlay />
-              </ToastProvider>
-            </ThemeContext.Provider>
-          </OnboardingGateContext.Provider>
-        </AuthContext.Provider>
-      </ReduxProvider>
-    </ErrorBoundary>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ErrorBoundary>
+        <ReduxProvider store={store}>
+          <AuthContext.Provider value={authState}>
+            <OnboardingGateContext.Provider value={gateValue}>
+              <ThemeContext.Provider value={themeValue}>
+                <ToastProvider>
+                  {isAuthLoading ? (
+                    <View style={{ flex: 1, backgroundColor: '#fdfcf0', justifyContent: 'center', alignItems: 'center' }}>
+                      <ActivityIndicator size="large" color="#2563EB" />
+                    </View>
+                  ) : (
+                    <Slot />
+                  )}
+                  <GlobalMusicOverlay />
+                </ToastProvider>
+              </ThemeContext.Provider>
+            </OnboardingGateContext.Provider>
+          </AuthContext.Provider>
+        </ReduxProvider>
+      </ErrorBoundary>
+    </GestureHandlerRootView>
   );
 }
