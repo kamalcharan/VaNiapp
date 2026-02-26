@@ -8,8 +8,8 @@
  *   RAZORPAY_KEY_ID
  *   RAZORPAY_KEY_SECRET
  *
- * Deploy:
- *   supabase functions deploy create-order
+ * Deploy (--no-verify-jwt because the runtime rejects ES256 auth tokens):
+ *   supabase functions deploy create-order --no-verify-jwt
  *   supabase secrets set RAZORPAY_KEY_ID=rzp_test_xxx RAZORPAY_KEY_SECRET=xxx
  */
 
@@ -28,10 +28,23 @@ serve(async (req) => {
   }
 
   try {
-    // Verify the user is authenticated
+    // Verify the user via Supabase Auth (instead of relying on runtime JWT check)
     const authHeader = req.headers.get('Authorization');
     if (!authHeader) {
       return new Response(JSON.stringify({ error: 'Missing auth header' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const supabase = createClient(supabaseUrl, serviceRoleKey);
+
+    const token = authHeader.replace('Bearer ', '');
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+    if (authError || !user) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
         status: 401,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
