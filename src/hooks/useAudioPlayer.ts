@@ -10,7 +10,7 @@ import { pause, play, setTrack, skipNext, skipPrev, stopMusic } from '../store/s
  * Call this once in a screen that needs music playback (e.g. practice-question).
  *
  * Uses a single persistent AudioPlayer; swaps tracks via replace().
- * Compatible with expo-audio 0.3.x (SDK 54).
+ * Compatible with expo-audio 1.1.x (SDK 54).
  */
 export function useAudioPlayer() {
   const dispatch = useDispatch();
@@ -63,8 +63,8 @@ export function useAudioPlayer() {
       if (isPlaying) {
         playerRef.current.play();
       }
-    } catch {
-      console.warn(`Failed to load track: ${track.title}`);
+    } catch (err) {
+      console.warn(`Failed to load track: ${track.title}`, err);
     }
   }, [currentTrackIndex]);
 
