@@ -8,8 +8,9 @@ import {
   Animated,
   Easing,
   ActivityIndicator,
-  Share,
+  Linking,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
@@ -27,8 +28,9 @@ import {
   getUserSubjectIds,
   updateProfile,
   signOut,
-  generateReferralCode,
+  // generateReferralCode,
   joinWithReferralCode,
+  shareInviteMessage,
   MedProfile,
 } from '../../src/lib/database';
 import { getSubjects, getLanguages, CatalogSubject, CatalogLanguage } from '../../src/lib/catalog';
@@ -70,10 +72,10 @@ export default function ProfileScreen() {
   const [saving, setSaving] = useState(false);
   const [logoutDialog, setLogoutDialog] = useState(false);
   const [subjectDialog, setSubjectDialog] = useState(false);
-  const [referralCode, setReferralCode] = useState<string | null>(null);
+  // const [referralCode, setReferralCode] = useState<string | null>(null);
   const [planDisplayName, setPlanDisplayName] = useState<string | null>(null);
   const [joinCode, setJoinCode] = useState('');
-  const [generatingCode, setGeneratingCode] = useState(false);
+  // const [generatingCode, setGeneratingCode] = useState(false);
   const [pendingExamChange, setPendingExamChange] = useState<ExamType | null>(null);
 
   const EXAM_OPTIONS: { id: ExamType; label: string; emoji: string }[] = [
@@ -219,28 +221,21 @@ export default function ProfileScreen() {
     await signOut();
   };
 
-  const handleGenerateCode = async () => {
-    setGeneratingCode(true);
-    try {
-      const code = await generateReferralCode();
-      setReferralCode(code);
-    } catch {
-      toast.show('error', 'Could not generate code');
-    } finally {
-      setGeneratingCode(false);
-    }
-  };
+  // const handleGenerateCode = async () => {
+  //   setGeneratingCode(true);
+  //   try {
+  //     const code = await generateReferralCode();
+  //     setReferralCode(code);
+  //   } catch {
+  //     toast.show('error', 'Could not generate code');
+  //   } finally {
+  //     setGeneratingCode(false);
+  //   }
+  // };
 
   const handleShareInvite = async () => {
-    if (!referralCode) {
-      await handleGenerateCode();
-    }
-    const examText = profile?.exam === 'BOTH' ? 'NEET & CUET' : profile?.exam || 'exams';
-    const code = referralCode || 'VaNi';
     try {
-      await Share.share({
-        message: `Hey! I'm prepping for ${examText} on VaNi. Join my study gang!\n\nUse code: ${code}\n\nDownload VaNi and let's study together.`,
-      });
+      await shareInviteMessage(profile?.exam ?? null);
     } catch {
       // share dismissed
     }
@@ -300,11 +295,15 @@ export default function ProfileScreen() {
   return (
     <DotGridBackground>
       <SafeAreaView style={styles.container} edges={['top']}>
-        <Animated.ScrollView
+        <Animated.View
+          style={{ flex: 1, opacity: fadeIn, transform: [{ translateY: slideUp }] }}
+        >
+        <KeyboardAwareScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scroll}
           keyboardShouldPersistTaps="handled"
-          style={{ opacity: fadeIn, transform: [{ translateY: slideUp }] }}
+          enableOnAndroid
+          extraScrollHeight={120}
         >
           {/* Header */}
           <View style={styles.header}>
@@ -798,15 +797,15 @@ export default function ProfileScreen() {
               <Text style={{ color: colors.textTertiary }}>{'\u203A'}</Text>
             </Pressable>
 
-            {/* Your referral code */}
-            {referralCode && (
+            {/* Referral code display — commented out while codes are disabled */}
+            {/* {referralCode && (
               <View style={[styles.codeDisplay, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
                 <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Your code</Text>
                 <Text style={[Typography.h2, { color: colors.primary, letterSpacing: 3 }]}>
                   {referralCode}
                 </Text>
               </View>
-            )}
+            )} */}
 
             <View style={[styles.divider, { backgroundColor: colors.surfaceBorder, marginVertical: Spacing.sm }]} />
 
@@ -854,6 +853,30 @@ export default function ProfileScreen() {
               <HandwrittenText variant="handSm">VaNi v1.0.0</HandwrittenText>
               <HandwrittenText variant="handSm">My Exam. My Way.</HandwrittenText>
             </View>
+            <View style={[styles.companyDivider, { backgroundColor: colors.surfaceBorder }]} />
+            <View style={styles.companyInfo}>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary, textAlign: 'center' }]}>
+                A product by
+              </Text>
+              <Text style={[Typography.body, { color: colors.text, textAlign: 'center', fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
+                Vikuna Technologies
+              </Text>
+              <View style={styles.companyLinks}>
+                <Pressable onPress={() => Linking.openURL('mailto:connect@vikuna.io')}>
+                  <Text style={[Typography.bodySm, { color: colors.primary }]}>
+                    connect@vikuna.io
+                  </Text>
+                </Pressable>
+                <Pressable onPress={() => Linking.openURL('https://www.vikuna.io')}>
+                  <Text style={[Typography.bodySm, { color: colors.primary }]}>
+                    www.vikuna.io
+                  </Text>
+                </Pressable>
+              </View>
+              <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center', fontSize: 11 }]}>
+                For support or enquiries, email us!
+              </Text>
+            </View>
           </StickyNote>
 
           {/* Sign Out */}
@@ -868,14 +891,15 @@ export default function ProfileScreen() {
 
           {/* About VaNi */}
           <Pressable
-            style={styles.aboutLink}
+            style={[styles.aboutLink, { backgroundColor: colors.primaryLight, borderRadius: BorderRadius.round, paddingHorizontal: Spacing.lg }]}
             onPress={() => router.push('/about-vani')}
           >
-            <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
+            <Text style={[Typography.bodySm, { color: colors.primary, fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
               About VaNi
             </Text>
           </Pressable>
-        </Animated.ScrollView>
+        </KeyboardAwareScrollView>
+        </Animated.View>
       </SafeAreaView>
 
       {/* Logout Confirmation */}
@@ -1046,7 +1070,22 @@ const styles = StyleSheet.create({
   },
   aboutLink: {
     alignItems: 'center',
-    paddingVertical: Spacing.md,
+    alignSelf: 'center',
+    paddingVertical: Spacing.sm,
+  },
+  companyDivider: {
+    height: 1,
+    alignSelf: 'stretch',
+    marginVertical: Spacing.md,
+  },
+  companyInfo: {
+    alignItems: 'center',
+    gap: 4,
+  },
+  companyLinks: {
+    alignItems: 'center',
+    gap: 2,
+    marginTop: 4,
   },
   statusBadge: {
     paddingHorizontal: Spacing.md,

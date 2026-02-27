@@ -5,12 +5,12 @@ import {
   TextInput,
   StyleSheet,
   Pressable,
-  ScrollView,
   Animated,
   Easing,
   Modal,
   FlatList,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
@@ -110,10 +110,12 @@ export default function ProfileDetailsScreen() {
             transform: [{ translateY: slideUp }],
           }}
         >
-          <ScrollView
+          <KeyboardAwareScrollView
             contentContainerStyle={styles.scroll}
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
+            enableOnAndroid
+            extraScrollHeight={120}
           >
             {/* Header */}
             <View style={styles.header}>
@@ -266,7 +268,7 @@ export default function ProfileDetailsScreen() {
                 disabled={!canContinue}
               />
             </View>
-          </ScrollView>
+          </KeyboardAwareScrollView>
         </Animated.View>
 
         {/* Country Code Modal */}

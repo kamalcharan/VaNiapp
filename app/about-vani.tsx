@@ -7,6 +7,7 @@ import {
   Pressable,
   Animated,
   Easing,
+  Linking,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -78,7 +79,9 @@ const VANI_SCREENS = [
     subtitle: "Your AI companion, always here",
     body: "Remember - tap the VaNi button anytime you need help. I'm always just a tap away!",
     emoji: '🎉',
-    highlight: null,
+    highlight: {
+      type: 'company',
+    },
   },
 ];
 
@@ -317,6 +320,34 @@ export default function AboutVaniScreen() {
             <HandwrittenText variant="handSm" color={colors.textSecondary}>
               Long-press to eliminate!
             </HandwrittenText>
+          </View>
+        );
+
+      case 'company':
+        return (
+          <View style={styles.companyContainer}>
+            <View style={[styles.companyDivider, { backgroundColor: colors.surfaceBorder }]} />
+            <Text style={[Typography.bodySm, { color: colors.textSecondary, textAlign: 'center' }]}>
+              A product by
+            </Text>
+            <Text style={[Typography.h3, { color: colors.text, textAlign: 'center' }]}>
+              Vikuna Technologies
+            </Text>
+            <View style={styles.companyLinks}>
+              <Pressable onPress={() => Linking.openURL('mailto:connect@vikuna.io')}>
+                <Text style={[Typography.bodySm, { color: colors.primary }]}>
+                  connect@vikuna.io
+                </Text>
+              </Pressable>
+              <Pressable onPress={() => Linking.openURL('https://www.vikuna.io')}>
+                <Text style={[Typography.bodySm, { color: colors.primary }]}>
+                  www.vikuna.io
+                </Text>
+              </Pressable>
+            </View>
+            <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center', fontSize: 11 }]}>
+              For support or enquiries, email us!
+            </Text>
           </View>
         );
 
@@ -562,6 +593,21 @@ const styles = StyleSheet.create({
   dot: {
     height: 8,
     borderRadius: 4,
+  },
+  companyContainer: {
+    marginTop: Spacing.lg,
+    alignItems: 'center',
+    gap: Spacing.sm,
+    width: '100%',
+  },
+  companyDivider: {
+    width: 40,
+    height: 1,
+    marginBottom: Spacing.xs,
+  },
+  companyLinks: {
+    alignItems: 'center',
+    gap: 4,
   },
   footer: {
     marginTop: 'auto',

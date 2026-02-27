@@ -322,6 +322,10 @@ export default function SubjectDetailScreen() {
                   </View>
                 </View>
 
+                <Text style={[Typography.bodySm, { color: colors.textTertiary, fontSize: 10, marginTop: 2 }]}>
+                  acc = % correct answers {'·'} covered = % of question bank attempted
+                </Text>
+
                 {/* Subject progress bar */}
                 <View style={[styles.progressBarBg, { backgroundColor: colors.surfaceBorder }]}>
                   <View

@@ -6,7 +6,6 @@ import {
   Pressable,
   Animated,
   Easing,
-  Share,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -18,9 +17,10 @@ import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing } from '../../src/constants/theme';
-import { getProfile, getUserSubjectIds, generateReferralCode, MedProfile } from '../../src/lib/database';
+import { getProfile, getUserSubjectIds, shareInviteMessage, MedProfile } from '../../src/lib/database';
 import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
+import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
 import { RootState } from '../../src/store';
 import * as Haptics from 'expo-haptics';
 import { useTrial } from '../../src/hooks/useTrial';
@@ -112,9 +112,9 @@ export default function DashboardScreen() {
           .map((id) => subjects.find((s) => s.id === id))
           .filter(Boolean) as CatalogSubject[];
 
-        // Create journey data from actual strength data in Redux
+        // Create journey data from actual strength data in Redux,
+        // reusing evaluateSubjectStrength() so numbers match subject detail screen.
         const journeys: SubjectJourney[] = matched.map((subject) => {
-          // Find all chapters for this subject in strength data
           const subjectChapters = Object.values(strengthChapters).filter(
             (ch) => ch.subjectId === subject.id,
           );
@@ -122,37 +122,20 @@ export default function DashboardScreen() {
             (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
           ).length;
 
-          // Calculate subject-level strength (weighted average)
-          let level: StrengthLevel = 'just-started';
-          if (subjectChapters.length > 0) {
-            const totalQ = subjectChapters.reduce((s, c) => s + c.totalInBank, 0);
-            const totalCorrect = subjectChapters.reduce((s, c) => s + c.correctCount, 0);
-            const totalAnswered = subjectChapters.reduce((s, c) => s + c.totalAnswered, 0);
-            const totalAttempted = subjectChapters.reduce((s, c) => s + c.attemptedIds.length, 0);
-            const coverage = totalQ > 0 ? (totalAttempted / totalQ) * 100 : 0;
-            const accuracy = totalAnswered > 0 ? (totalCorrect / totalAnswered) * 100 : 0;
-
-            if (coverage >= 60 && accuracy >= 70) level = 'strong';
-            else if (coverage >= 40 && accuracy >= 55) level = 'on-track';
-            else if (coverage >= 20 && accuracy >= 40) level = 'getting-there';
-            else if (coverage >= 20 && accuracy < 40) level = 'needs-focus';
-          }
-
-          const subjectAccuracy = subjectChapters.length > 0
-            ? (() => {
-                const totalAnswered = subjectChapters.reduce((s, c) => s + c.totalAnswered, 0);
-                const totalCorrect = subjectChapters.reduce((s, c) => s + c.correctCount, 0);
-                return totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
-              })()
-            : 0;
+          const evalData = subjectChapters.map((ch) => ({
+            coverage: ch.coverage,
+            accuracy: ch.accuracy,
+            totalInBank: ch.totalInBank,
+          }));
+          const strength = evaluateSubjectStrength(evalData);
 
           return {
             subject,
-            strengthLevel: level,
-            accuracy: subjectAccuracy,
+            strengthLevel: strength.level,
+            accuracy: Math.round(strength.accuracy),
             chaptersCompleted,
             totalChapters: 10,
-            vaniMessage: getVaniMessage(level),
+            vaniMessage: getVaniMessage(strength.level),
           };
         });
 
@@ -174,11 +157,7 @@ export default function DashboardScreen() {
   const handleInviteGang = async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     try {
-      const code = await generateReferralCode();
-      const examText = profile?.exam === 'BOTH' ? 'NEET & CUET' : profile?.exam || 'exams';
-      await Share.share({
-        message: `Hey! I'm prepping for ${examText} on VaNi. Join my study gang!\n\nUse my code: ${code}\n\nDownload VaNi and let's crack it together!`,
-      });
+      await shareInviteMessage(profile?.exam ?? null);
     } catch {
       // share dismissed or failed
     }

@@ -292,36 +292,89 @@ export async function signOut(): Promise<void> {
 
 // ── Referral codes ───────────────────────────────────────────
 
-/** Generate a 6-char referral code for the current user. */
-export async function generateReferralCode(): Promise<string> {
-  if (!supabase) throw new Error('Supabase is not configured.');
+// /** Generate a 6-char referral code for the current user. */
+// export async function generateReferralCode(): Promise<string> {
+//   if (!supabase) throw new Error('Supabase is not configured.');
+//
+//   const { data: { user } } = await supabase.auth.getUser();
+//   if (!user) throw new Error('Not authenticated.');
+//
+//   // Check if user already has a code
+//   const { data: existing } = await supabase
+//     .from('med_referral_codes')
+//     .select('code')
+//     .eq('user_id', user.id)
+//     .limit(1)
+//     .single();
+//
+//   if (existing?.code) return existing.code;
+//
+//   // Generate a random 6-char alphanumeric code
+//   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no 0/O/1/I confusion
+//   let code = '';
+//   for (let i = 0; i < 6; i++) {
+//     code += chars[Math.floor(Math.random() * chars.length)];
+//   }
+//
+//   const { error } = await supabase
+//     .from('med_referral_codes')
+//     .insert({ user_id: user.id, code });
+//
+//   if (error) throw error;
+//   return code;
+// }
 
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error('Not authenticated.');
+// ── Download URLs (for invite share messages) ────────────────
 
-  // Check if user already has a code
-  const { data: existing } = await supabase
-    .from('med_referral_codes')
-    .select('code')
-    .eq('user_id', user.id)
+export interface DownloadUrls {
+  android: string | null;
+  ios: string | null;
+}
+
+/**
+ * Fetch the tinyurl (preferred) or full download URL for each platform
+ * from the currently-active row in med_app_versions.
+ */
+export async function getDownloadUrls(): Promise<DownloadUrls> {
+  if (!supabase) return { android: null, ios: null };
+
+  const { data } = await supabase
+    .from('med_app_versions')
+    .select('android_download_tinyurl, android_download_url, ios_download_tinyurl, ios_download_url, download_url')
+    .eq('status', 'active')
     .limit(1)
     .single();
 
-  if (existing?.code) return existing.code;
+  if (!data) return { android: null, ios: null };
 
-  // Generate a random 6-char alphanumeric code
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no 0/O/1/I confusion
-  let code = '';
-  for (let i = 0; i < 6; i++) {
-    code += chars[Math.floor(Math.random() * chars.length)];
+  return {
+    android: data.android_download_tinyurl || data.android_download_url || null,
+    ios: data.ios_download_tinyurl || data.ios_download_url || null,
+  };
+}
+
+/**
+ * Build the invite share message with platform download links and fire the
+ * native share sheet. Called from invite-gang, profile, and dashboard.
+ */
+export async function shareInviteMessage(exam: string | null): Promise<void> {
+  const { Share } = require('react-native');
+
+  const examLabel = exam === 'BOTH' ? 'NEET & CUET' : exam || 'exams';
+  const urls = await getDownloadUrls();
+
+  let message = `Hey! I'm prepping for ${examLabel} on VaNi. Let's study together!`;
+
+  // Append whichever platform links exist
+  const links: string[] = [];
+  if (urls.android) links.push(`Android: ${urls.android}`);
+  if (urls.ios) links.push(`iOS: ${urls.ios}`);
+
+  if (links.length > 0) {
+    message += '\n\nDownload VaNi:\n' + links.join('\n');
   }
 
-  const { error } = await supabase
-    .from('med_referral_codes')
-    .insert({ user_id: user.id, code });
-
-  if (error) throw error;
-  return code;
+  await Share.share({ message });
 }
 
 /** Join using someone else's referral code. */
