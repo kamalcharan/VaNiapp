@@ -18,7 +18,7 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing } from '../../src/constants/theme';
 import { getProfile, getUserSubjectIds, shareInviteMessage, MedProfile } from '../../src/lib/database';
-import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
+import { getSubjects, getChapters, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
 import { RootState } from '../../src/store';
@@ -112,32 +112,43 @@ export default function DashboardScreen() {
           .map((id) => subjects.find((s) => s.id === id))
           .filter(Boolean) as CatalogSubject[];
 
-        // Create journey data from actual strength data in Redux,
-        // reusing evaluateSubjectStrength() so numbers match subject detail screen.
-        const journeys: SubjectJourney[] = matched.map((subject) => {
-          const subjectChapters = Object.values(strengthChapters).filter(
-            (ch) => ch.subjectId === subject.id,
-          );
-          const chaptersCompleted = subjectChapters.filter(
-            (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
-          ).length;
+        // Create journey data using ALL catalog chapters per subject
+        // (same as subject detail screen) so numbers match exactly.
+        const examFilter = prof?.exam === 'BOTH' ? undefined : (prof?.exam ?? undefined);
+        const journeys: SubjectJourney[] = await Promise.all(
+          matched.map(async (subject) => {
+            const catalogChapters = await getChapters(subject.id, examFilter);
 
-          const evalData = subjectChapters.map((ch) => ({
-            coverage: ch.coverage,
-            accuracy: ch.accuracy,
-            totalInBank: ch.totalInBank,
-          }));
-          const strength = evaluateSubjectStrength(evalData);
+            // Merge catalog chapters with Redux strength data —
+            // unpracticed chapters get {coverage: 0, accuracy: 0}.
+            const evalData = catalogChapters.map((ch) => {
+              const data = strengthChapters[ch.id];
+              return {
+                coverage: data?.coverage ?? 0,
+                accuracy: data?.accuracy ?? 0,
+                totalInBank: data?.totalInBank ?? ch.avg_questions ?? 25,
+              };
+            });
 
-          return {
-            subject,
-            strengthLevel: strength.level,
-            accuracy: Math.round(strength.accuracy),
-            chaptersCompleted,
-            totalChapters: 10,
-            vaniMessage: getVaniMessage(strength.level),
-          };
-        });
+            const strength = evaluateSubjectStrength(evalData);
+
+            const practicedChapters = catalogChapters
+              .map((ch) => strengthChapters[ch.id])
+              .filter(Boolean);
+            const chaptersCompleted = practicedChapters.filter(
+              (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
+            ).length;
+
+            return {
+              subject,
+              strengthLevel: strength.level,
+              accuracy: Math.round(strength.accuracy),
+              chaptersCompleted,
+              totalChapters: catalogChapters.length,
+              vaniMessage: getVaniMessage(strength.level),
+            };
+          }),
+        );
 
         setSubjectJourneys(journeys);
       }
@@ -364,19 +375,30 @@ export default function DashboardScreen() {
 
                           {/* Accuracy — only if they've practiced */}
                           {journey.accuracy > 0 && (
-                            <Text
-                              style={[
-                                Typography.bodySm,
-                                {
-                                  color: journey.accuracy >= 70 ? '#22C55E' : journey.accuracy >= 40 ? '#F59E0B' : '#EF4444',
+                            <View style={{ alignItems: 'center', marginTop: Spacing.xs }}>
+                              <Text
+                                style={[
+                                  Typography.bodySm,
+                                  {
+                                    color: journey.accuracy >= 70 ? '#22C55E' : journey.accuracy >= 40 ? '#F59E0B' : '#EF4444',
+                                    textAlign: 'center',
+                                    fontWeight: '600',
+                                  },
+                                ]}
+                              >
+                                {journey.accuracy}% accuracy
+                              </Text>
+                              <Text
+                                style={{
+                                  color: colors.textTertiary,
+                                  fontSize: 9,
                                   textAlign: 'center',
-                                  fontWeight: '600',
-                                  marginTop: Spacing.xs,
-                                },
-                              ]}
-                            >
-                              {journey.accuracy}% accuracy
-                            </Text>
+                                  marginTop: 1,
+                                }}
+                              >
+                                across all chapters
+                              </Text>
+                            </View>
                           )}
 
                           {/* VaNi Message */}
