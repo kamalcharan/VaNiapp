@@ -7,6 +7,7 @@ export interface UpdateInfo {
   latestVersion: string;
   releaseNotes: string | null;
   downloadUrl: string | null;
+  isSkippable: boolean;
 }
 
 /**
@@ -26,7 +27,7 @@ export function useForceUpdate(): UpdateInfo | null {
     (async () => {
       const { data, error } = await supabase
         .from('med_app_versions')
-        .select('version, release_notes, download_url, android_download_url, android_download_tinyurl, ios_download_url, ios_download_tinyurl')
+        .select('version, release_notes, download_url, android_download_url, android_download_tinyurl, ios_download_url, ios_download_tinyurl, is_skippable')
         .eq('status', 'active')
         .limit(1)
         .single();
@@ -46,6 +47,7 @@ export function useForceUpdate(): UpdateInfo | null {
         latestVersion: data.version,
         releaseNotes: data.release_notes,
         downloadUrl,
+        isSkippable: data.is_skippable ?? false,
       });
     })();
   }, []);

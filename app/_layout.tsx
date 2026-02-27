@@ -61,6 +61,7 @@ export default function RootLayout() {
 
   // Check for app updates (platform-aware)
   const pendingUpdate = useForceUpdate();
+  const [updateSkipped, setUpdateSkipped] = useState(false);
 
   // Track previous user ID to detect user switches
   const prevUserId = useRef<string | null>(null);
@@ -281,7 +282,12 @@ export default function RootLayout() {
                     <Slot />
                   )}
                   <GlobalMusicOverlay />
-                  {pendingUpdate && <ForceUpdateModal update={pendingUpdate} />}
+                  {pendingUpdate && !updateSkipped && (
+                    <ForceUpdateModal
+                      update={pendingUpdate}
+                      onSkip={() => setUpdateSkipped(true)}
+                    />
+                  )}
                 </ToastProvider>
               </ThemeContext.Provider>
             </OnboardingGateContext.Provider>

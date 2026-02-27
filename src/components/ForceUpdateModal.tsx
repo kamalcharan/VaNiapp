@@ -18,9 +18,10 @@ const SCREEN_W = Dimensions.get('window').width;
 
 interface ForceUpdateModalProps {
   update: UpdateInfo;
+  onSkip?: () => void;
 }
 
-export function ForceUpdateModal({ update }: ForceUpdateModalProps) {
+export function ForceUpdateModal({ update, onSkip }: ForceUpdateModalProps) {
   const { colors } = useTheme();
   const scale = useRef(new Animated.Value(0.85)).current;
   const opacity = useRef(new Animated.Value(0)).current;
@@ -100,6 +101,14 @@ export function ForceUpdateModal({ update }: ForceUpdateModalProps) {
                 Update link not available yet — check back soon!
               </Text>
             )}
+
+            {update.isSkippable && onSkip && (
+              <Pressable onPress={onSkip} style={styles.skipBtn}>
+                <Text style={[styles.btnText, { color: colors.textTertiary }]}>
+                  Skip for now
+                </Text>
+              </Pressable>
+            )}
           </View>
         </Animated.View>
       </Animated.View>
@@ -148,5 +157,11 @@ const styles = StyleSheet.create({
   btnText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 15,
+  },
+  skipBtn: {
+    paddingVertical: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: Spacing.xs,
   },
 });
