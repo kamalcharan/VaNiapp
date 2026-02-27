@@ -6,7 +6,6 @@ import {
   Pressable,
   Animated,
   Easing,
-  Share,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -18,7 +17,7 @@ import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing } from '../../src/constants/theme';
-import { getProfile, getUserSubjectIds, generateReferralCode, MedProfile } from '../../src/lib/database';
+import { getProfile, getUserSubjectIds, shareInviteMessage, MedProfile } from '../../src/lib/database';
 import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
 import { RootState } from '../../src/store';
@@ -174,11 +173,7 @@ export default function DashboardScreen() {
   const handleInviteGang = async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     try {
-      const code = await generateReferralCode();
-      const examText = profile?.exam === 'BOTH' ? 'NEET & CUET' : profile?.exam || 'exams';
-      await Share.share({
-        message: `Hey! I'm prepping for ${examText} on VaNi. Join my study gang!\n\nUse my code: ${code}\n\nDownload VaNi and let's crack it together!`,
-      });
+      await shareInviteMessage(profile?.exam ?? null);
     } catch {
       // share dismissed or failed
     }

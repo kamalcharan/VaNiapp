@@ -5,7 +5,6 @@ import {
   TextInput,
   StyleSheet,
   Pressable,
-  Share,
   Animated,
   Easing,
   ActivityIndicator,
@@ -24,7 +23,7 @@ import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { useOnboarding } from './_layout';
 import { useOnboardingGate } from '../_layout';
 import { useToast } from '../../src/components/ui/Toast';
-import { completeOnboarding, joinWithReferralCode } from '../../src/lib/database';
+import { completeOnboarding, joinWithReferralCode, shareInviteMessage } from '../../src/lib/database';
 import type { ExamType } from '../../src/types';
 
 // ── Perks ────────────────────────────────────────────────────
@@ -54,13 +53,7 @@ export default function InviteGangScreen() {
   const handleShare = async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     try {
-      const examLabel =
-        data.exam === 'BOTH'
-          ? 'NEET & CUET'
-          : data.exam || 'exams';
-      await Share.share({
-        message: `Hey! I'm prepping for ${examLabel} on VaNi. Let's study together!\n\nDownload VaNi and join me.`,
-      });
+      await shareInviteMessage(data.exam);
     } catch {
       // share dismissed
     }
