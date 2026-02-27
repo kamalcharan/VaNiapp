@@ -33,6 +33,8 @@ import { pullRemoteProgress } from '../src/lib/progressSync';
 import { getActiveSubscription } from '../src/lib/payments';
 import { reportError, installGlobalErrorHandler, initSentry, setSentryUser, setCurrentScreen } from '../src/lib/errorReporting';
 import { ErrorBoundary } from '../src/components/ErrorBoundary';
+import { useForceUpdate } from '../src/hooks/useForceUpdate';
+import { ForceUpdateModal } from '../src/components/ForceUpdateModal';
 
 // Initialize Sentry before anything else renders
 initSentry();
@@ -56,6 +58,9 @@ export default function RootLayout() {
   const [showSplash, setShowSplash] = useState(true);
   const [authState, setAuthState] = useState<AuthState>(initialAuthState);
   const [onboardingDone, setOnboardingDone] = useState<boolean | null>(null);
+
+  // Check for app updates (platform-aware)
+  const pendingUpdate = useForceUpdate();
 
   // Track previous user ID to detect user switches
   const prevUserId = useRef<string | null>(null);
@@ -276,6 +281,7 @@ export default function RootLayout() {
                     <Slot />
                   )}
                   <GlobalMusicOverlay />
+                  {pendingUpdate && <ForceUpdateModal update={pendingUpdate} />}
                 </ToastProvider>
               </ThemeContext.Provider>
             </OnboardingGateContext.Provider>
