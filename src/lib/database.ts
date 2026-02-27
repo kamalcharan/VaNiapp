@@ -348,8 +348,8 @@ export async function getDownloadUrls(): Promise<DownloadUrls> {
   if (!data) return { android: null, ios: null };
 
   return {
-    android: data.android_download_tinyurl || data.android_download_url || data.download_url || null,
-    ios: data.ios_download_tinyurl || data.ios_download_url || data.download_url || null,
+    android: data.android_download_tinyurl || data.android_download_url || null,
+    ios: data.ios_download_tinyurl || data.ios_download_url || null,
   };
 }
 
