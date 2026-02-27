@@ -10,7 +10,7 @@ import {
   TextInput,
   Pressable,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
@@ -268,7 +268,8 @@ export default function SignInScreen() {
         <KeyboardAwareScrollView
           contentContainerStyle={styles.scrollContent}
           keyboardShouldPersistTaps="handled"
-          extraHeight={120}
+          enableOnAndroid
+          extraScrollHeight={120}
         >
             <Animated.View
               style={[

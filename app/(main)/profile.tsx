@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
   Share,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
@@ -308,7 +308,8 @@ export default function ProfileScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scroll}
           keyboardShouldPersistTaps="handled"
-          extraHeight={120}
+          enableOnAndroid
+          extraScrollHeight={120}
         >
           {/* Header */}
           <View style={styles.header}>
