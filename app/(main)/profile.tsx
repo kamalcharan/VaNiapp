@@ -8,6 +8,7 @@ import {
   Animated,
   Easing,
   ActivityIndicator,
+  Linking,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useRouter } from 'expo-router';
@@ -852,6 +853,30 @@ export default function ProfileScreen() {
               <HandwrittenText variant="handSm">VaNi v1.0.0</HandwrittenText>
               <HandwrittenText variant="handSm">My Exam. My Way.</HandwrittenText>
             </View>
+            <View style={[styles.companyDivider, { backgroundColor: colors.surfaceBorder }]} />
+            <View style={styles.companyInfo}>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary, textAlign: 'center' }]}>
+                A product by
+              </Text>
+              <Text style={[Typography.body, { color: colors.text, textAlign: 'center', fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
+                Vikuna Technologies
+              </Text>
+              <View style={styles.companyLinks}>
+                <Pressable onPress={() => Linking.openURL('mailto:connect@vikuna.io')}>
+                  <Text style={[Typography.bodySm, { color: colors.primary }]}>
+                    connect@vikuna.io
+                  </Text>
+                </Pressable>
+                <Pressable onPress={() => Linking.openURL('https://www.vikuna.io')}>
+                  <Text style={[Typography.bodySm, { color: colors.primary }]}>
+                    www.vikuna.io
+                  </Text>
+                </Pressable>
+              </View>
+              <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center', fontSize: 11 }]}>
+                For support or enquiries, email us!
+              </Text>
+            </View>
           </StickyNote>
 
           {/* Sign Out */}
@@ -866,10 +891,10 @@ export default function ProfileScreen() {
 
           {/* About VaNi */}
           <Pressable
-            style={styles.aboutLink}
+            style={[styles.aboutLink, { backgroundColor: colors.primaryLight, borderRadius: BorderRadius.round, paddingHorizontal: Spacing.lg }]}
             onPress={() => router.push('/about-vani')}
           >
-            <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
+            <Text style={[Typography.bodySm, { color: colors.primary, fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
               About VaNi
             </Text>
           </Pressable>
@@ -1045,7 +1070,22 @@ const styles = StyleSheet.create({
   },
   aboutLink: {
     alignItems: 'center',
-    paddingVertical: Spacing.md,
+    alignSelf: 'center',
+    paddingVertical: Spacing.sm,
+  },
+  companyDivider: {
+    height: 1,
+    alignSelf: 'stretch',
+    marginVertical: Spacing.md,
+  },
+  companyInfo: {
+    alignItems: 'center',
+    gap: 4,
+  },
+  companyLinks: {
+    alignItems: 'center',
+    gap: 2,
+    marginTop: 4,
   },
   statusBadge: {
     paddingHorizontal: Spacing.md,
