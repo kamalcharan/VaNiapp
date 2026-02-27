@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   Share,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
@@ -300,11 +301,14 @@ export default function ProfileScreen() {
   return (
     <DotGridBackground>
       <SafeAreaView style={styles.container} edges={['top']}>
-        <Animated.ScrollView
+        <Animated.View
+          style={{ flex: 1, opacity: fadeIn, transform: [{ translateY: slideUp }] }}
+        >
+        <KeyboardAwareScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scroll}
           keyboardShouldPersistTaps="handled"
-          style={{ opacity: fadeIn, transform: [{ translateY: slideUp }] }}
+          extraHeight={120}
         >
           {/* Header */}
           <View style={styles.header}>
@@ -875,7 +879,8 @@ export default function ProfileScreen() {
               About VaNi
             </Text>
           </Pressable>
-        </Animated.ScrollView>
+        </KeyboardAwareScrollView>
+        </Animated.View>
       </SafeAreaView>
 
       {/* Logout Confirmation */}

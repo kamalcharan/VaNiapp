@@ -9,10 +9,8 @@ import {
   ActivityIndicator,
   TextInput,
   Pressable,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
@@ -147,7 +145,7 @@ export default function SignInScreen() {
     return (
       <DotGridBackground>
         <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-          <ScrollView
+          <KeyboardAwareScrollView
             contentContainerStyle={styles.scrollContent}
             keyboardShouldPersistTaps="handled"
           >
@@ -257,7 +255,7 @@ export default function SignInScreen() {
                 </View>
               </JournalCard>
             </Animated.View>
-          </ScrollView>
+          </KeyboardAwareScrollView>
         </SafeAreaView>
       </DotGridBackground>
     );
@@ -267,14 +265,11 @@ export default function SignInScreen() {
   return (
     <DotGridBackground>
       <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-        <KeyboardAvoidingView
-          style={styles.flex}
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        <KeyboardAwareScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          extraHeight={120}
         >
-          <ScrollView
-            contentContainerStyle={styles.scrollContent}
-            keyboardShouldPersistTaps="handled"
-          >
             <Animated.View
               style={[
                 styles.content,
@@ -471,8 +466,7 @@ export default function SignInScreen() {
                 Your data stays yours. Always.
               </HandwrittenText>
             </Animated.View>
-          </ScrollView>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
       </SafeAreaView>
     </DotGridBackground>
   );
@@ -480,9 +474,6 @@ export default function SignInScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  flex: {
     flex: 1,
   },
   scrollContent: {
