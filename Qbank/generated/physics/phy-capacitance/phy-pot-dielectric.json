@@ -6,22 +6,57 @@
     "question_text": "Three capacitors of capacitances 2 μF, 3 μF, and 6 μF are connected in parallel. The equivalent capacitance of the combination is:",
     "explanation": "For capacitors connected in parallel, the equivalent capacitance is the sum of individual capacitances: C_eq = C₁ + C₂ + C₃ = 2 + 3 + 6 = 11 μF. In a parallel combination, the total capacitance is always greater than the largest individual capacitance.",
     "correct_answer": "C",
-    "concept_tags": ["parallel combination", "equivalent capacitance", "addition"],
+    "concept_tags": [
+      "parallel combination",
+      "equivalent capacitance",
+      "addition"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "1 μF", "is_correct": false },
-      { "key": "B", "text": "6 μF", "is_correct": false },
-      { "key": "C", "text": "11 μF", "is_correct": true },
-      { "key": "D", "text": "36 μF", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1 μF",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "6 μF",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "11 μF",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "36 μF",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "1 μF is the equivalent capacitance for a series combination (1/C = 1/2 + 1/3 + 1/6 = 1), not a parallel one.", "misconception": "Using series formula instead of parallel formula" },
-      { "option_key": "B", "hint": "6 μF is just the largest individual capacitance. In parallel, the total is always greater than any single capacitor.", "misconception": null },
-      { "option_key": "D", "hint": "36 μF would result from multiplying the capacitances instead of adding them.", "misconception": "Multiplying instead of adding in parallel combination" }
+      {
+        "option_key": "A",
+        "hint": "1 μF is the equivalent capacitance for a series combination (1/C = 1/2 + 1/3 + 1/6 = 1), not a parallel one.",
+        "misconception": "Using series formula instead of parallel formula"
+      },
+      {
+        "option_key": "B",
+        "hint": "6 μF is just the largest individual capacitance. In parallel, the total is always greater than any single capacitor.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "36 μF would result from multiplying the capacitances instead of adding them.",
+        "misconception": "Multiplying instead of adding in parallel combination"
+      }
     ]
   },
   {
@@ -31,22 +66,57 @@
     "question_text": "Two capacitors of 4 μF and 4 μF are connected in series. The equivalent capacitance is:",
     "explanation": "For two capacitors in series: 1/C_eq = 1/C₁ + 1/C₂ = 1/4 + 1/4 = 2/4 = 1/2. So C_eq = 2 μF. For two equal capacitors in series, the equivalent capacitance is always half of each individual capacitance.",
     "correct_answer": "B",
-    "concept_tags": ["series combination", "equivalent capacitance", "equal capacitors"],
+    "concept_tags": [
+      "series combination",
+      "equivalent capacitance",
+      "equal capacitors"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "8 μF", "is_correct": false },
-      { "key": "B", "text": "2 μF", "is_correct": true },
-      { "key": "C", "text": "4 μF", "is_correct": false },
-      { "key": "D", "text": "16 μF", "is_correct": false }
+      {
+        "key": "A",
+        "text": "8 μF",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 μF",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "4 μF",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "16 μF",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "8 μF is the result of adding the capacitances directly. This is the parallel combination formula, not the series one.", "misconception": "Using parallel formula (addition) for series combination" },
-      { "option_key": "C", "hint": "4 μF is the individual capacitance. In series, the equivalent is always less than the smallest individual capacitance.", "misconception": null },
-      { "option_key": "D", "hint": "16 μF has no physical basis from the correct series or parallel formulas for these values.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "8 μF is the result of adding the capacitances directly. This is the parallel combination formula, not the series one.",
+        "misconception": "Using parallel formula (addition) for series combination"
+      },
+      {
+        "option_key": "C",
+        "hint": "4 μF is the individual capacitance. In series, the equivalent is always less than the smallest individual capacitance.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "16 μF has no physical basis from the correct series or parallel formulas for these values.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -56,22 +126,57 @@
     "question_text": "In a series combination of capacitors, which quantity remains the same across all capacitors?",
     "explanation": "In a series combination of capacitors, the same charge Q flows through each capacitor because they share the same current path. The charge on each capacitor is the same, while the voltage divides among them inversely proportional to their capacitances.",
     "correct_answer": "A",
-    "concept_tags": ["series combination", "charge conservation", "constant charge"],
+    "concept_tags": [
+      "series combination",
+      "charge conservation",
+      "constant charge"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Charge", "is_correct": true },
-      { "key": "B", "text": "Potential difference", "is_correct": false },
-      { "key": "C", "text": "Energy stored", "is_correct": false },
-      { "key": "D", "text": "Electric field", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Charge",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Potential difference",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Energy stored",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Electric field",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "In series, the total voltage divides among the capacitors. Each capacitor has V = Q/C, which differs if capacitances differ.", "misconception": "Confusing series with parallel where voltage is constant" },
-      { "option_key": "C", "hint": "Energy stored U = Q²/(2C) differs for capacitors of different capacitances even though Q is the same.", "misconception": null },
-      { "option_key": "D", "hint": "Electric field depends on plate separation and voltage, which vary between capacitors in series if they have different dimensions.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "In series, the total voltage divides among the capacitors. Each capacitor has V = Q/C, which differs if capacitances differ.",
+        "misconception": "Confusing series with parallel where voltage is constant"
+      },
+      {
+        "option_key": "C",
+        "hint": "Energy stored U = Q²/(2C) differs for capacitors of different capacitances even though Q is the same.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Electric field depends on plate separation and voltage, which vary between capacitors in series if they have different dimensions.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -81,22 +186,57 @@
     "question_text": "Three capacitors of capacitances 2 μF, 3 μF, and 4 μF are connected in a triangular (delta) configuration between three terminals A, B, and C (2 μF between A-B, 3 μF between B-C, 4 μF between A-C). The equivalent capacitance between terminals A and B is:",
     "explanation": "In the delta configuration, the 3 μF (B-C) and 4 μF (A-C) are in series between A and B (through C): C_series = (3 × 4)/(3 + 4) = 12/7 μF. This series combination is in parallel with the 2 μF (directly between A-B): C_eq = 2 + 12/7 = 14/7 + 12/7 = 26/7 μF ≈ 3.71 μF.",
     "correct_answer": "D",
-    "concept_tags": ["delta configuration", "series-parallel reduction", "equivalent capacitance"],
+    "concept_tags": [
+      "delta configuration",
+      "series-parallel reduction",
+      "equivalent capacitance"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "9 μF", "is_correct": false },
-      { "key": "B", "text": "12/7 μF", "is_correct": false },
-      { "key": "C", "text": "2 μF", "is_correct": false },
-      { "key": "D", "text": "26/7 μF", "is_correct": true }
+      {
+        "key": "A",
+        "text": "9 μF",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "12/7 μF",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2 μF",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "26/7 μF",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "9 μF = 2 + 3 + 4 would result from adding all three capacitances, treating them as if all were in parallel between A and B.", "misconception": "Adding all capacitances regardless of configuration" },
-      { "option_key": "B", "hint": "12/7 μF is only the series combination of the 3 μF and 4 μF through terminal C. The 2 μF directly between A and B must be added in parallel.", "misconception": "Forgetting the direct path capacitor between the terminals" },
-      { "option_key": "C", "hint": "2 μF is only the direct capacitor between A and B. The path through C also contributes to the equivalent capacitance.", "misconception": "Ignoring the series path through the third terminal" }
+      {
+        "option_key": "A",
+        "hint": "9 μF = 2 + 3 + 4 would result from adding all three capacitances, treating them as if all were in parallel between A and B.",
+        "misconception": "Adding all capacitances regardless of configuration"
+      },
+      {
+        "option_key": "B",
+        "hint": "12/7 μF is only the series combination of the 3 μF and 4 μF through terminal C. The 2 μF directly between A and B must be added in parallel.",
+        "misconception": "Forgetting the direct path capacitor between the terminals"
+      },
+      {
+        "option_key": "C",
+        "hint": "2 μF is only the direct capacitor between A and B. The path through C also contributes to the equivalent capacitance.",
+        "misconception": "Ignoring the series path through the third terminal"
+      }
     ]
   },
   {
@@ -106,22 +246,57 @@
     "question_text": "Three capacitors of 3 μF, 6 μF, and 6 μF are connected in series. The equivalent capacitance of the combination is:",
     "explanation": "For series combination: 1/C_eq = 1/3 + 1/6 + 1/6 = 2/6 + 1/6 + 1/6 = 4/6 = 2/3. Therefore C_eq = 3/2 = 1.5 μF. In series, the equivalent capacitance is always less than the smallest individual capacitor.",
     "correct_answer": "C",
-    "concept_tags": ["series combination", "equivalent capacitance", "reciprocal addition"],
+    "concept_tags": [
+      "series combination",
+      "equivalent capacitance",
+      "reciprocal addition"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "15 μF", "is_correct": false },
-      { "key": "B", "text": "2 μF", "is_correct": false },
-      { "key": "C", "text": "1.5 μF", "is_correct": true },
-      { "key": "D", "text": "3 μF", "is_correct": false }
+      {
+        "key": "A",
+        "text": "15 μF",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 μF",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1.5 μF",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "3 μF",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "15 μF = 3 + 6 + 6 is the parallel combination, not the series combination.", "misconception": "Using parallel formula instead of series formula" },
-      { "option_key": "B", "hint": "2 μF would result from an error in the reciprocal addition. Check: 1/3 + 1/6 + 1/6 = 4/6, giving C_eq = 6/4 = 1.5 μF.", "misconception": null },
-      { "option_key": "D", "hint": "3 μF is the smallest individual capacitance. The series equivalent must be less than this value.", "misconception": "Thinking the equivalent equals the smallest capacitor" }
+      {
+        "option_key": "A",
+        "hint": "15 μF = 3 + 6 + 6 is the parallel combination, not the series combination.",
+        "misconception": "Using parallel formula instead of series formula"
+      },
+      {
+        "option_key": "B",
+        "hint": "2 μF would result from an error in the reciprocal addition. Check: 1/3 + 1/6 + 1/6 = 4/6, giving C_eq = 6/4 = 1.5 μF.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "3 μF is the smallest individual capacitance. The series equivalent must be less than this value.",
+        "misconception": "Thinking the equivalent equals the smallest capacitor"
+      }
     ]
   },
   {
@@ -131,22 +306,57 @@
     "question_text": "A 4 μF capacitor is charged to 100 V and a 2 μF capacitor is charged to 200 V. They are then connected with plates of opposite polarity together. The common potential after connection is:",
     "explanation": "Q₁ = C₁V₁ = 4 × 100 = 400 μC, Q₂ = C₂V₂ = 2 × 200 = 400 μC. Since opposite plates are connected, the charges oppose each other: Q_net = Q₁ − Q₂ = 400 − 400 = 0 μC. Common potential V = Q_net/(C₁ + C₂) = 0/(4 + 2) = 0 V.",
     "correct_answer": "A",
-    "concept_tags": ["charge redistribution", "opposite polarity", "common potential"],
+    "concept_tags": [
+      "charge redistribution",
+      "opposite polarity",
+      "common potential"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "0 V", "is_correct": true },
-      { "key": "B", "text": "50 V", "is_correct": false },
-      { "key": "C", "text": "100 V", "is_correct": false },
-      { "key": "D", "text": "200/3 V", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0 V",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "50 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "100 V",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "200/3 V",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "50 V would result from averaging the voltages, which is not how charge redistribution works.", "misconception": null },
-      { "option_key": "C", "hint": "100 V would result from ignoring the opposite polarity connection and just using the first capacitor's voltage.", "misconception": null },
-      { "option_key": "D", "hint": "200/3 V would be the common potential if the capacitors were connected with same polarity (Q_total = 800 μC, V = 800/6).", "misconception": "Forgetting to account for opposite polarity connection" }
+      {
+        "option_key": "B",
+        "hint": "50 V would result from averaging the voltages, which is not how charge redistribution works.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "100 V would result from ignoring the opposite polarity connection and just using the first capacitor's voltage.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "200/3 V would be the common potential if the capacitors were connected with same polarity (Q_total = 800 μC, V = 800/6).",
+        "misconception": "Forgetting to account for opposite polarity connection"
+      }
     ]
   },
   {
@@ -156,22 +366,57 @@
     "question_text": "A capacitor of 5 μF is charged to 100 V using a battery. The battery is then disconnected and a dielectric slab of dielectric constant K = 5 is inserted to completely fill the space between the plates. The final voltage across the capacitor is:",
     "explanation": "When the battery is disconnected, the charge Q remains constant. Q = CV = 5 × 10⁻⁶ × 100 = 500 μC. After inserting the dielectric, C' = KC = 5 × 5 = 25 μF. New voltage V' = Q/C' = 500/25 = 20 V. The voltage decreases by a factor of K.",
     "correct_answer": "B",
-    "concept_tags": ["dielectric insertion", "battery disconnected", "voltage change"],
+    "concept_tags": [
+      "dielectric insertion",
+      "battery disconnected",
+      "voltage change"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "100 V", "is_correct": false },
-      { "key": "B", "text": "20 V", "is_correct": true },
-      { "key": "C", "text": "500 V", "is_correct": false },
-      { "key": "D", "text": "50 V", "is_correct": false }
+      {
+        "key": "A",
+        "text": "100 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "20 V",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "500 V",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "50 V",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "100 V would be the voltage only if the battery were still connected. With battery disconnected, Q is constant and V changes.", "misconception": "Confusing battery-connected and battery-disconnected scenarios" },
-      { "option_key": "C", "hint": "500 V = KV would mean voltage increases with dielectric, which contradicts the physics. The dielectric reduces the field and hence the voltage.", "misconception": "Multiplying voltage by K instead of dividing" },
-      { "option_key": "D", "hint": "50 V = V/2 would result from using K = 2 instead of K = 5.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "100 V would be the voltage only if the battery were still connected. With battery disconnected, Q is constant and V changes.",
+        "misconception": "Confusing battery-connected and battery-disconnected scenarios"
+      },
+      {
+        "option_key": "C",
+        "hint": "500 V = KV would mean voltage increases with dielectric, which contradicts the physics. The dielectric reduces the field and hence the voltage.",
+        "misconception": "Multiplying voltage by K instead of dividing"
+      },
+      {
+        "option_key": "D",
+        "hint": "50 V = V/2 would result from using K = 2 instead of K = 5.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -181,22 +426,57 @@
     "question_text": "A parallel plate capacitor of capacitance C is connected to a battery of EMF V. With the battery still connected, a dielectric slab of dielectric constant K is inserted between the plates. The charge on the capacitor becomes:",
     "explanation": "When the battery remains connected, the voltage V across the capacitor stays constant. The new capacitance is C' = KC. The new charge Q' = C'V = KCV = KQ, where Q = CV was the original charge. So the charge increases by a factor K.",
     "correct_answer": "D",
-    "concept_tags": ["battery connected", "dielectric insertion", "charge increase"],
+    "concept_tags": [
+      "battery connected",
+      "dielectric insertion",
+      "charge increase"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Q/K", "is_correct": false },
-      { "key": "B", "text": "Q", "is_correct": false },
-      { "key": "C", "text": "Q/K²", "is_correct": false },
-      { "key": "D", "text": "KQ", "is_correct": true }
+      {
+        "key": "A",
+        "text": "Q/K",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Q",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Q/K²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "KQ",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Q/K would be the new charge if Q were constant and V changed — but with the battery connected, V is constant and Q changes.", "misconception": "Applying battery-disconnected logic to a battery-connected situation" },
-      { "option_key": "B", "hint": "Q unchanged would imply the dielectric has no effect on charge, but with V constant and C increasing, Q = CV must increase.", "misconception": "Thinking charge remains constant with battery connected" },
-      { "option_key": "C", "hint": "Q/K² does not follow from any standard capacitor-dielectric relationship.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Q/K would be the new charge if Q were constant and V changed — but with the battery connected, V is constant and Q changes.",
+        "misconception": "Applying battery-disconnected logic to a battery-connected situation"
+      },
+      {
+        "option_key": "B",
+        "hint": "Q unchanged would imply the dielectric has no effect on charge, but with V constant and C increasing, Q = CV must increase.",
+        "misconception": "Thinking charge remains constant with battery connected"
+      },
+      {
+        "option_key": "C",
+        "hint": "Q/K² does not follow from any standard capacitor-dielectric relationship.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -206,22 +486,57 @@
     "question_text": "Two capacitors C₁ = 3 μF and C₂ = 6 μF are connected in series across a 120 V supply. The voltage across the 3 μF capacitor is:",
     "explanation": "In series, the charge on both capacitors is the same. C_eq = C₁C₂/(C₁ + C₂) = 3 × 6/(3 + 6) = 18/9 = 2 μF. Total charge Q = C_eq × V = 2 × 120 = 240 μC. Voltage across C₁: V₁ = Q/C₁ = 240/3 = 80 V.",
     "correct_answer": "C",
-    "concept_tags": ["series combination", "voltage division", "charge equality"],
+    "concept_tags": [
+      "series combination",
+      "voltage division",
+      "charge equality"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "40 V", "is_correct": false },
-      { "key": "B", "text": "60 V", "is_correct": false },
-      { "key": "C", "text": "80 V", "is_correct": true },
-      { "key": "D", "text": "120 V", "is_correct": false }
+      {
+        "key": "A",
+        "text": "40 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "60 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "80 V",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "120 V",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "40 V is the voltage across the 6 μF capacitor (V₂ = Q/C₂ = 240/6 = 40 V), not the 3 μF one.", "misconception": "Swapping voltage assignments between capacitors" },
-      { "option_key": "B", "hint": "60 V would result from dividing the total voltage equally, which only applies when both capacitors are equal.", "misconception": "Assuming equal voltage division in series regardless of capacitance values" },
-      { "option_key": "D", "hint": "120 V is the total supply voltage. In series, this divides between the two capacitors.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "40 V is the voltage across the 6 μF capacitor (V₂ = Q/C₂ = 240/6 = 40 V), not the 3 μF one.",
+        "misconception": "Swapping voltage assignments between capacitors"
+      },
+      {
+        "option_key": "B",
+        "hint": "60 V would result from dividing the total voltage equally, which only applies when both capacitors are equal.",
+        "misconception": "Assuming equal voltage division in series regardless of capacitance values"
+      },
+      {
+        "option_key": "D",
+        "hint": "120 V is the total supply voltage. In series, this divides between the two capacitors.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -231,22 +546,57 @@
     "question_text": "A capacitor of capacitance C charged to voltage V is disconnected from the battery. A dielectric of constant K is now fully inserted. The energy stored in the capacitor after inserting the dielectric is:",
     "explanation": "With battery disconnected, Q is constant. Original energy U = ½CV² = Q²/(2C). After dielectric: C' = KC, Q' = Q (constant). New energy U' = Q²/(2C') = Q²/(2KC) = U/K. The energy decreases by factor K because the dielectric is pulled in by the electric field, doing negative work on the external agent (or the field does positive work on the dielectric).",
     "correct_answer": "B",
-    "concept_tags": ["energy change", "dielectric insertion", "battery disconnected"],
+    "concept_tags": [
+      "energy change",
+      "dielectric insertion",
+      "battery disconnected"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "½KCV²", "is_correct": false },
-      { "key": "B", "text": "CV²/(2K)", "is_correct": true },
-      { "key": "C", "text": "½CV²", "is_correct": false },
-      { "key": "D", "text": "½K²CV²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "½KCV²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "CV²/(2K)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "½CV²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "½K²CV²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "½KCV² would be the energy if the battery remained connected (V constant, C → KC). With battery disconnected, Q is constant, not V.", "misconception": "Applying battery-connected energy formula to a disconnected scenario" },
-      { "option_key": "C", "hint": "½CV² is the original energy. Energy must change when a dielectric is inserted because either V or Q changes.", "misconception": "Thinking energy remains unchanged with dielectric insertion" },
-      { "option_key": "D", "hint": "½K²CV² would result from squaring the dielectric constant, which has no basis in the correct energy formula.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "½KCV² would be the energy if the battery remained connected (V constant, C → KC). With battery disconnected, Q is constant, not V.",
+        "misconception": "Applying battery-connected energy formula to a disconnected scenario"
+      },
+      {
+        "option_key": "C",
+        "hint": "½CV² is the original energy. Energy must change when a dielectric is inserted because either V or Q changes.",
+        "misconception": "Thinking energy remains unchanged with dielectric insertion"
+      },
+      {
+        "option_key": "D",
+        "hint": "½K²CV² would result from squaring the dielectric constant, which has no basis in the correct energy formula.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -256,22 +606,57 @@
     "question_text": "Five capacitors, each of capacitance C, are connected as shown: C₁ and C₂ are in series, C₃ and C₄ are in series, and both series pairs are connected in parallel with each other and with C₅. The equivalent capacitance between the terminals is:",
     "explanation": "C₁ and C₂ in series: C_s1 = C/2. C₃ and C₄ in series: C_s2 = C/2. Now C_s1, C_s2, and C₅ are all in parallel: C_eq = C/2 + C/2 + C = 2C.",
     "correct_answer": "D",
-    "concept_tags": ["series-parallel combination", "equivalent capacitance", "mixed network"],
+    "concept_tags": [
+      "series-parallel combination",
+      "equivalent capacitance",
+      "mixed network"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "C/5", "is_correct": false },
-      { "key": "B", "text": "5C", "is_correct": false },
-      { "key": "C", "text": "C", "is_correct": false },
-      { "key": "D", "text": "2C", "is_correct": true }
+      {
+        "key": "A",
+        "text": "C/5",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "5C",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "C",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2C",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "C/5 would be the result if all five capacitors were in series, which is not the given configuration.", "misconception": "Treating a mixed series-parallel network as purely series" },
-      { "option_key": "B", "hint": "5C would be the result if all five capacitors were in parallel, which is not the given configuration.", "misconception": "Treating a mixed network as purely parallel" },
-      { "option_key": "C", "hint": "C would be the answer only if C₅ were absent and only the two series pairs were in parallel (C/2 + C/2 = C).", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "C/5 would be the result if all five capacitors were in series, which is not the given configuration.",
+        "misconception": "Treating a mixed series-parallel network as purely series"
+      },
+      {
+        "option_key": "B",
+        "hint": "5C would be the result if all five capacitors were in parallel, which is not the given configuration.",
+        "misconception": "Treating a mixed network as purely parallel"
+      },
+      {
+        "option_key": "C",
+        "hint": "C would be the answer only if C₅ were absent and only the two series pairs were in parallel (C/2 + C/2 = C).",
+        "misconception": null
+      }
     ]
   },
   {
@@ -281,22 +666,57 @@
     "question_text": "A capacitor of 12 μF charged to 500 V is connected in parallel with an uncharged capacitor of 4 μF. The energy loss during the redistribution of charge is:",
     "explanation": "Initial charge Q = 12 × 500 = 6000 μC. Common potential V' = Q/(C₁ + C₂) = 6000/16 = 375 V. Initial energy Uᵢ = ½ × 12 × 10⁻⁶ × 500² = 1.5 J. Final energy Uf = ½ × 16 × 10⁻⁶ × 375² = ½ × 16 × 10⁻⁶ × 140625 = 1.125 J. Energy loss = 1.5 − 1.125 = 0.375 J.",
     "correct_answer": "B",
-    "concept_tags": ["energy loss", "charge redistribution", "parallel connection"],
+    "concept_tags": [
+      "energy loss",
+      "charge redistribution",
+      "parallel connection"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "1.5 J", "is_correct": false },
-      { "key": "B", "text": "0.375 J", "is_correct": true },
-      { "key": "C", "text": "1.125 J", "is_correct": false },
-      { "key": "D", "text": "0.75 J", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1.5 J",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.375 J",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1.125 J",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.75 J",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "1.5 J is the total initial energy stored, not the energy lost. A significant fraction of this energy remains stored in the combined system.", "misconception": "Thinking all initial energy is dissipated" },
-      { "option_key": "C", "hint": "1.125 J is the final energy stored in the combined capacitor system, not the energy lost.", "misconception": "Confusing final stored energy with energy loss" },
-      { "option_key": "D", "hint": "0.75 J = half the initial energy. The actual fraction lost depends on the ratio C₁C₂/(C₁+C₂)², not simply ½.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "1.5 J is the total initial energy stored, not the energy lost. A significant fraction of this energy remains stored in the combined system.",
+        "misconception": "Thinking all initial energy is dissipated"
+      },
+      {
+        "option_key": "C",
+        "hint": "1.125 J is the final energy stored in the combined capacitor system, not the energy lost.",
+        "misconception": "Confusing final stored energy with energy loss"
+      },
+      {
+        "option_key": "D",
+        "hint": "0.75 J = half the initial energy. The actual fraction lost depends on the ratio C₁C₂/(C₁+C₂)², not simply ½.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -306,22 +726,57 @@
     "question_text": "Assertion (A): In a series combination of capacitors, the capacitor with the smallest capacitance has the largest potential difference across it.\nReason (R): In a series combination, the charge on each capacitor is the same.",
     "explanation": "Both A and R are correct, and R explains A. In series, each capacitor has the same charge Q. Since V = Q/C, the capacitor with the smallest C will have the largest V. The constant charge condition (R) directly leads to the inverse relationship between V and C, explaining why the smallest capacitor has the largest voltage (A).",
     "correct_answer": "A",
-    "concept_tags": ["series combination", "voltage distribution", "charge conservation"],
+    "concept_tags": [
+      "series combination",
+      "voltage distribution",
+      "charge conservation"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "R directly explains A: since Q is the same for all capacitors in series, V = Q/C is largest for the smallest C.", "misconception": "Not recognizing that equal charge is the fundamental cause of unequal voltage distribution" },
-      { "option_key": "C", "hint": "R is correct — charge conservation in a series circuit ensures the same charge appears on each capacitor.", "misconception": null },
-      { "option_key": "D", "hint": "A is correct — it follows directly from V = Q/C with Q being constant in series.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "R directly explains A: since Q is the same for all capacitors in series, V = Q/C is largest for the smallest C.",
+        "misconception": "Not recognizing that equal charge is the fundamental cause of unequal voltage distribution"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct — charge conservation in a series circuit ensures the same charge appears on each capacitor.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — it follows directly from V = Q/C with Q being constant in series.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -331,22 +786,57 @@
     "question_text": "Assertion (A): When a dielectric slab is inserted between the plates of a charged capacitor connected to a battery, the energy stored in the capacitor increases.\nReason (R): The insertion of a dielectric slab decreases the electric field between the plates.",
     "explanation": "A is correct: with battery connected, V is constant and C increases to KC, so U = ½CV² increases to ½KCV². R is incorrect in this context: when the battery is connected, the voltage is maintained constant, so E = V/d remains the same (the battery supplies additional charge to maintain V). The electric field does not decrease when the battery stays connected.",
     "correct_answer": "C",
-    "concept_tags": ["dielectric with battery", "energy increase", "electric field"],
+    "concept_tags": [
+      "dielectric with battery",
+      "energy increase",
+      "electric field"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "R is incorrect when the battery is connected. The battery maintains constant V, so E = V/d stays the same — the field does not decrease.", "misconception": "Assuming the electric field always decreases with dielectric, regardless of battery connection" },
-      { "option_key": "B", "hint": "R is actually incorrect in this scenario. When the battery is connected, V is constant, so E = V/d is unchanged.", "misconception": null },
-      { "option_key": "D", "hint": "A is correct — with battery connected, V is constant and C increases by K, so energy U = ½CV² increases by factor K.", "misconception": "Confusing battery-connected and disconnected energy behavior" }
+      {
+        "option_key": "A",
+        "hint": "R is incorrect when the battery is connected. The battery maintains constant V, so E = V/d stays the same — the field does not decrease.",
+        "misconception": "Assuming the electric field always decreases with dielectric, regardless of battery connection"
+      },
+      {
+        "option_key": "B",
+        "hint": "R is actually incorrect in this scenario. When the battery is connected, V is constant, so E = V/d is unchanged.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — with battery connected, V is constant and C increases by K, so energy U = ½CV² increases by factor K.",
+        "misconception": "Confusing battery-connected and disconnected energy behavior"
+      }
     ]
   },
   {
@@ -356,22 +846,57 @@
     "question_text": "Match the following capacitor combinations (Column I) with their equivalent capacitance (Column II). Each capacitor has capacitance C.\n\nColumn I:\nA. Two capacitors in series\nB. Two capacitors in parallel\nC. Three capacitors in series\nD. Three capacitors in parallel\n\nColumn II:\n1. C/2\n2. 2C\n3. C/3\n4. 3C",
     "explanation": "Two in series: C_eq = C/2 (A→1). Two in parallel: C_eq = 2C (B→2). Three in series: C_eq = C/3 (C→3). Three in parallel: C_eq = 3C (D→4).",
     "correct_answer": "B",
-    "concept_tags": ["series combination", "parallel combination", "equivalent capacitance"],
+    "concept_tags": [
+      "series combination",
+      "parallel combination",
+      "equivalent capacitance"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "A-2, B-1, C-4, D-3", "is_correct": false },
-      { "key": "B", "text": "A-1, B-2, C-3, D-4", "is_correct": true },
-      { "key": "C", "text": "A-3, B-4, C-1, D-2", "is_correct": false },
-      { "key": "D", "text": "A-1, B-4, C-3, D-2", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-2, B-1, C-4, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-4, C-1, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-1, B-4, C-3, D-2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "A-2 gives 2C for two capacitors in series, but series combination always gives less than individual capacitance, not more.", "misconception": "Swapping series and parallel formulas" },
-      { "option_key": "C", "hint": "A-3 gives C/3 for two capacitors in series, but the correct formula gives C/2, not C/3.", "misconception": null },
-      { "option_key": "D", "hint": "B-4 gives 3C for two in parallel, but two identical capacitors in parallel give 2C, not 3C.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "A-2 gives 2C for two capacitors in series, but series combination always gives less than individual capacitance, not more.",
+        "misconception": "Swapping series and parallel formulas"
+      },
+      {
+        "option_key": "C",
+        "hint": "A-3 gives C/3 for two capacitors in series, but the correct formula gives C/2, not C/3.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "B-4 gives 3C for two in parallel, but two identical capacitors in parallel give 2C, not 3C.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -381,22 +906,57 @@
     "question_text": "A parallel plate capacitor of capacitance C is charged to voltage V. Match the following operations (Column I) with their effects on energy stored (Column II):\n\nColumn I:\nA. Battery connected, dielectric K inserted\nB. Battery disconnected, dielectric K inserted\nC. Battery disconnected, plate separation doubled\nD. Battery connected, plate separation halved\n\nColumn II:\n1. Energy becomes U/K\n2. Energy becomes KU\n3. Energy becomes 2U\n4. Energy becomes 2U",
     "explanation": "Battery connected, dielectric inserted: V constant, C → KC, U = ½CV² → ½KCV² = KU (A→2). Battery disconnected, dielectric inserted: Q constant, C → KC, U = Q²/(2C) → Q²/(2KC) = U/K (B→1). Battery disconnected, separation doubled: Q constant, C → C/2, U = Q²/(2C) → Q²/(2·C/2) = Q²/C = 2U (C→3). Battery connected, separation halved: V constant, C → 2C, U = ½CV² → ½(2C)V² = 2U (D→4).",
     "correct_answer": "D",
-    "concept_tags": ["energy changes", "battery connected vs disconnected", "dielectric and separation"],
+    "concept_tags": [
+      "energy changes",
+      "battery connected vs disconnected",
+      "dielectric and separation"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "A-1, B-2, C-3, D-4", "is_correct": false },
-      { "key": "B", "text": "A-2, B-1, C-4, D-3", "is_correct": false },
-      { "key": "C", "text": "A-3, B-4, C-2, D-1", "is_correct": false },
-      { "key": "D", "text": "A-2, B-1, C-3, D-4", "is_correct": true }
+      {
+        "key": "A",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-1, C-4, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-4, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "A-1 gives U/K for battery connected with dielectric. But with battery connected, V is constant and C increases, so energy increases to KU.", "misconception": "Confusing battery-connected and battery-disconnected energy changes" },
-      { "option_key": "B", "hint": "C-4 and D-3 swap the energy doubling scenarios. Check which variable (Q or V) is constant in each case.", "misconception": null },
-      { "option_key": "C", "hint": "A-3 and B-4 do not correspond to any standard result for dielectric insertion scenarios.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "A-1 gives U/K for battery connected with dielectric. But with battery connected, V is constant and C increases, so energy increases to KU.",
+        "misconception": "Confusing battery-connected and battery-disconnected energy changes"
+      },
+      {
+        "option_key": "B",
+        "hint": "C-4 and D-3 swap the energy doubling scenarios. Check which variable (Q or V) is constant in each case.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "A-3 and B-4 do not correspond to any standard result for dielectric insertion scenarios.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -406,22 +966,57 @@
     "question_text": "The equivalent capacitance of capacitors connected in parallel is always greater than the largest individual capacitance in the combination.",
     "explanation": "This statement is TRUE. In a parallel combination, C_eq = C₁ + C₂ + C₃ + ... Since each capacitance is positive, the sum is always greater than any individual term. This is because parallel connection provides more surface area for charge storage.",
     "correct_answer": "A",
-    "concept_tags": ["parallel combination", "equivalent capacitance", "property"],
+    "concept_tags": [
+      "parallel combination",
+      "equivalent capacitance",
+      "property"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Since C_eq = C₁ + C₂ + ... and all terms are positive, the sum must exceed any individual term. The statement is true.", "misconception": "Confusing parallel combination property with series (where C_eq < smallest C)" },
-      { "option_key": "C", "hint": "This option is not applicable for true/false questions.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for true/false questions.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "Since C_eq = C₁ + C₂ + ... and all terms are positive, the sum must exceed any individual term. The statement is true.",
+        "misconception": "Confusing parallel combination property with series (where C_eq < smallest C)"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -431,22 +1026,57 @@
     "question_text": "When a dielectric slab is removed from a charged capacitor that is still connected to a battery, the charge on the capacitor increases.",
     "explanation": "This statement is FALSE. When the dielectric is removed with the battery connected, the capacitance decreases from KC to C (since C = ε₀A/d). With V constant (battery connected), Q = CV decreases as C decreases. The charge decreases, not increases.",
     "correct_answer": "B",
-    "concept_tags": ["dielectric removal", "battery connected", "charge change"],
+    "concept_tags": [
+      "dielectric removal",
+      "battery connected",
+      "charge change"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Removing the dielectric decreases C. With battery connected (V constant), Q = CV also decreases. The charge does not increase.", "misconception": "Thinking dielectric removal increases charge when battery is connected" },
-      { "option_key": "C", "hint": "This option is not applicable for true/false questions.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for true/false questions.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Removing the dielectric decreases C. With battery connected (V constant), Q = CV also decreases. The charge does not increase.",
+        "misconception": "Thinking dielectric removal increases charge when battery is connected"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -456,22 +1086,57 @@
     "question_text": "A 6 μF capacitor and a 3 μF capacitor are connected in series across a 180 V supply. The charge on each capacitor is _____ μC.",
     "explanation": "For series combination, C_eq = (6 × 3)/(6 + 3) = 18/9 = 2 μF. The charge on each capacitor in series is the same and equals Q = C_eq × V = 2 × 180 = 360 μC.",
     "correct_answer": "C",
-    "concept_tags": ["series combination", "charge calculation", "equal charge"],
+    "concept_tags": [
+      "series combination",
+      "charge calculation",
+      "equal charge"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "180", "is_correct": false },
-      { "key": "B", "text": "540", "is_correct": false },
-      { "key": "C", "text": "360", "is_correct": true },
-      { "key": "D", "text": "1080", "is_correct": false }
+      {
+        "key": "A",
+        "text": "180",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "540",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "360",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1080",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "180 μC would result from using C_eq = 1 μF, which is not the correct series equivalent of 6 μF and 3 μF.", "misconception": null },
-      { "option_key": "B", "hint": "540 μC would result from using C_eq = 3 μF instead of 2 μF, indicating an error in the series formula.", "misconception": null },
-      { "option_key": "D", "hint": "1080 μC = 6 × 180, which would be the charge if only the 6 μF capacitor were directly connected to 180 V without the series combination.", "misconception": "Using individual capacitance instead of equivalent capacitance" }
+      {
+        "option_key": "A",
+        "hint": "180 μC would result from using C_eq = 1 μF, which is not the correct series equivalent of 6 μF and 3 μF.",
+        "misconception": null
+      },
+      {
+        "option_key": "B",
+        "hint": "540 μC would result from using C_eq = 3 μF instead of 2 μF, indicating an error in the series formula.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "1080 μC = 6 × 180, which would be the charge if only the 6 μF capacitor were directly connected to 180 V without the series combination.",
+        "misconception": "Using individual capacitance instead of equivalent capacitance"
+      }
     ]
   },
   {
@@ -481,22 +1146,57 @@
     "question_text": "A physics teacher demonstrates charge redistribution using two capacitors. She charges a 10 μF capacitor to 300 V using a battery and then disconnects it. She then connects this charged capacitor to an uncharged 20 μF capacitor.\n\nThe common potential and the ratio of final energies stored in the 10 μF and 20 μF capacitors are:",
     "explanation": "Initial charge Q = 10 × 300 = 3000 μC. Common potential V' = Q/(C₁ + C₂) = 3000/(10 + 20) = 100 V. Energy in 10 μF: U₁ = ½ × 10 × 10⁻⁶ × 100² = 50 mJ. Energy in 20 μF: U₂ = ½ × 20 × 10⁻⁶ × 100² = 100 mJ. Ratio U₁:U₂ = 50:100 = 1:2. Alternatively, since V is the same for both, U ∝ C, so U₁/U₂ = C₁/C₂ = 10/20 = 1/2.",
     "correct_answer": "D",
-    "concept_tags": ["charge redistribution", "common potential", "energy ratio"],
+    "concept_tags": [
+      "charge redistribution",
+      "common potential",
+      "energy ratio"
+    ],
     "topic": "Combination of Capacitors and Dielectrics",
     "subject": "physics",
     "chapter": "Electrostatic Potential and Capacitance",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "150 V and ratio 1:1", "is_correct": false },
-      { "key": "B", "text": "100 V and ratio 2:1", "is_correct": false },
-      { "key": "C", "text": "200 V and ratio 1:2", "is_correct": false },
-      { "key": "D", "text": "100 V and ratio 1:2", "is_correct": true }
+      {
+        "key": "A",
+        "text": "150 V and ratio 1:1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "100 V and ratio 2:1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "200 V and ratio 1:2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "100 V and ratio 1:2",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "150 V would be the common potential if both capacitors were equal (10 μF each). With unequal capacitors, V' = Q/(C₁ + C₂) = 3000/30 = 100 V.", "misconception": "Averaging the voltage instead of using charge conservation" },
-      { "option_key": "B", "hint": "The common potential of 100 V is correct, but the ratio 2:1 is inverted. Since both have the same voltage, the energy ratio equals the capacitance ratio C₁:C₂ = 1:2.", "misconception": "Inverting the energy ratio" },
-      { "option_key": "C", "hint": "200 V is incorrect. By charge conservation, V' = 3000/30 = 100 V, not 200 V.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "150 V would be the common potential if both capacitors were equal (10 μF each). With unequal capacitors, V' = Q/(C₁ + C₂) = 3000/30 = 100 V.",
+        "misconception": "Averaging the voltage instead of using charge conservation"
+      },
+      {
+        "option_key": "B",
+        "hint": "The common potential of 100 V is correct, but the ratio 2:1 is inverted. Since both have the same voltage, the energy ratio equals the capacitance ratio C₁:C₂ = 1:2.",
+        "misconception": "Inverting the energy ratio"
+      },
+      {
+        "option_key": "C",
+        "hint": "200 V is incorrect. By charge conservation, V' = 3000/30 = 100 V, not 200 V.",
+        "misconception": null
+      }
     ]
   }
 ]

@@ -6,22 +6,58 @@
     "question_text": "According to Ohm's law, the current flowing through a conductor is:",
     "explanation": "Ohm's law states that V = IR, which means I = V/R. The current through a conductor is directly proportional to the potential difference across its ends and inversely proportional to its resistance, provided physical conditions like temperature remain constant.",
     "correct_answer": "B",
-    "concept_tags": ["ohms-law", "current", "voltage", "resistance"],
+    "concept_tags": [
+      "ohms-law",
+      "current",
+      "voltage",
+      "resistance"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Directly proportional to resistance", "is_correct": false },
-      { "key": "B", "text": "Directly proportional to potential difference and inversely proportional to resistance", "is_correct": true },
-      { "key": "C", "text": "Inversely proportional to potential difference", "is_correct": false },
-      { "key": "D", "text": "Independent of potential difference", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Directly proportional to resistance",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Directly proportional to potential difference and inversely proportional to resistance",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Inversely proportional to potential difference",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Independent of potential difference",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "If current were directly proportional to resistance, increasing resistance would increase current, which contradicts Ohm's law (I = V/R).", "misconception": "Confusing direct and inverse proportionality with resistance" },
-      { "option_key": "C", "hint": "Current is directly (not inversely) proportional to potential difference. Doubling V doubles I when R is constant.", "misconception": "Reversing the proportionality relationship with voltage" },
-      { "option_key": "D", "hint": "Current depends on potential difference; without a potential difference, no current flows through the conductor.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "If current were directly proportional to resistance, increasing resistance would increase current, which contradicts Ohm's law (I = V/R).",
+        "misconception": "Confusing direct and inverse proportionality with resistance"
+      },
+      {
+        "option_key": "C",
+        "hint": "Current is directly (not inversely) proportional to potential difference. Doubling V doubles I when R is constant.",
+        "misconception": "Reversing the proportionality relationship with voltage"
+      },
+      {
+        "option_key": "D",
+        "hint": "Current depends on potential difference; without a potential difference, no current flows through the conductor.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -31,22 +67,57 @@
     "question_text": "The SI unit of electrical resistivity is:",
     "explanation": "Resistivity ρ is defined by R = ρl/A, so ρ = RA/l. The unit of resistance is ohm (Ω), area is m², and length is m. Therefore, the unit of resistivity is Ω·m² / m = Ω·m.",
     "correct_answer": "C",
-    "concept_tags": ["resistivity", "SI-units", "resistance"],
+    "concept_tags": [
+      "resistivity",
+      "SI-units",
+      "resistance"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Ω/m", "is_correct": false },
-      { "key": "B", "text": "Ω/m²", "is_correct": false },
-      { "key": "C", "text": "Ω·m", "is_correct": true },
-      { "key": "D", "text": "Ω·m²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Ω/m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Ω/m²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Ω·m",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Ω·m²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Ω/m would imply resistivity decreases with length, but from ρ = RA/l the correct dimensional analysis gives Ω·m.", "misconception": "Incorrectly dividing by length instead of multiplying" },
-      { "option_key": "B", "hint": "Ω/m² does not follow from ρ = RA/l. The area appears in the numerator, not the denominator of ρ.", "misconception": null },
-      { "option_key": "D", "hint": "Ω·m² has an extra power of length. Dimensional analysis of ρ = RA/l gives Ω·m, not Ω·m².", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Ω/m would imply resistivity decreases with length, but from ρ = RA/l the correct dimensional analysis gives Ω·m.",
+        "misconception": "Incorrectly dividing by length instead of multiplying"
+      },
+      {
+        "option_key": "B",
+        "hint": "Ω/m² does not follow from ρ = RA/l. The area appears in the numerator, not the denominator of ρ.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Ω·m² has an extra power of length. Dimensional analysis of ρ = RA/l gives Ω·m, not Ω·m².",
+        "misconception": null
+      }
     ]
   },
   {
@@ -56,22 +127,57 @@
     "question_text": "The drift velocity of free electrons in a conductor is of the order of:",
     "explanation": "The drift velocity of electrons in a metallic conductor carrying typical current is very small, of the order of 10⁻⁴ m/s (about 0.1 mm/s). This is because although electrons move randomly at high thermal speeds (~10⁶ m/s), the net drift due to the electric field is extremely slow.",
     "correct_answer": "A",
-    "concept_tags": ["drift-velocity", "free-electrons", "conductor"],
+    "concept_tags": [
+      "drift-velocity",
+      "free-electrons",
+      "conductor"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "10⁻⁴ m/s", "is_correct": true },
-      { "key": "B", "text": "10⁻¹⁰ m/s", "is_correct": false },
-      { "key": "C", "text": "3 × 10⁸ m/s", "is_correct": false },
-      { "key": "D", "text": "10⁶ m/s", "is_correct": false }
+      {
+        "key": "A",
+        "text": "10⁻⁴ m/s",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "10⁻¹⁰ m/s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3 × 10⁸ m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "10⁶ m/s",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "10⁻¹⁰ m/s is far too small even for drift velocity. Typical drift velocities are around 10⁻⁴ m/s.", "misconception": null },
-      { "option_key": "C", "hint": "3 × 10⁸ m/s is the speed of light (speed of the electric signal), not the drift speed of electrons.", "misconception": "Confusing signal propagation speed with electron drift velocity" },
-      { "option_key": "D", "hint": "10⁶ m/s is close to the thermal (random) speed of electrons, not their drift velocity in an applied field.", "misconception": "Confusing thermal velocity with drift velocity" }
+      {
+        "option_key": "B",
+        "hint": "10⁻¹⁰ m/s is far too small even for drift velocity. Typical drift velocities are around 10⁻⁴ m/s.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "3 × 10⁸ m/s is the speed of light (speed of the electric signal), not the drift speed of electrons.",
+        "misconception": "Confusing signal propagation speed with electron drift velocity"
+      },
+      {
+        "option_key": "D",
+        "hint": "10⁶ m/s is close to the thermal (random) speed of electrons, not their drift velocity in an applied field.",
+        "misconception": "Confusing thermal velocity with drift velocity"
+      }
     ]
   },
   {
@@ -81,22 +187,57 @@
     "question_text": "The reciprocal of resistivity is called:",
     "explanation": "Conductivity (σ) is defined as the reciprocal of resistivity (ρ), i.e., σ = 1/ρ. Its SI unit is Ω⁻¹m⁻¹ or S/m (siemens per metre). It measures how easily a material allows current to flow through it.",
     "correct_answer": "D",
-    "concept_tags": ["conductivity", "resistivity", "reciprocal"],
+    "concept_tags": [
+      "conductivity",
+      "resistivity",
+      "reciprocal"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Conductance", "is_correct": false },
-      { "key": "B", "text": "Susceptance", "is_correct": false },
-      { "key": "C", "text": "Reluctance", "is_correct": false },
-      { "key": "D", "text": "Conductivity", "is_correct": true }
+      {
+        "key": "A",
+        "text": "Conductance",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Susceptance",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Reluctance",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Conductivity",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Conductance (G = 1/R) is the reciprocal of resistance, not resistivity. Conductivity is the reciprocal of resistivity.", "misconception": "Confusing conductance (1/R) with conductivity (1/ρ)" },
-      { "option_key": "B", "hint": "Susceptance is the imaginary part of admittance in AC circuits and is unrelated to the reciprocal of resistivity.", "misconception": null },
-      { "option_key": "C", "hint": "Reluctance is a quantity in magnetic circuits (analogous to resistance) and has no relation to the reciprocal of resistivity.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Conductance (G = 1/R) is the reciprocal of resistance, not resistivity. Conductivity is the reciprocal of resistivity.",
+        "misconception": "Confusing conductance (1/R) with conductivity (1/ρ)"
+      },
+      {
+        "option_key": "B",
+        "hint": "Susceptance is the imaginary part of admittance in AC circuits and is unrelated to the reciprocal of resistivity.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "Reluctance is a quantity in magnetic circuits (analogous to resistance) and has no relation to the reciprocal of resistivity.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -106,22 +247,58 @@
     "question_text": "A wire of resistance 12 Ω is stretched uniformly until its length becomes three times the original length. The new resistance of the wire is:",
     "explanation": "When a wire is stretched, its volume remains constant: A₁l₁ = A₂l₂. If l₂ = 3l₁, then A₂ = A₁/3. Using R = ρl/A, the new resistance R₂ = ρ(3l₁)/(A₁/3) = 9ρl₁/A₁ = 9R₁ = 9 × 12 = 108 Ω. When length increases n times, resistance increases n² times.",
     "correct_answer": "D",
-    "concept_tags": ["resistance", "stretching-wire", "resistivity", "volume-conservation"],
+    "concept_tags": [
+      "resistance",
+      "stretching-wire",
+      "resistivity",
+      "volume-conservation"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "36 Ω", "is_correct": false },
-      { "key": "B", "text": "4 Ω", "is_correct": false },
-      { "key": "C", "text": "48 Ω", "is_correct": false },
-      { "key": "D", "text": "108 Ω", "is_correct": true }
+      {
+        "key": "A",
+        "text": "36 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "48 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "108 Ω",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "36 Ω = 3 × 12 would result if only the length change were considered without accounting for the decrease in cross-sectional area.", "misconception": "Forgetting that stretching also reduces the cross-sectional area" },
-      { "option_key": "B", "hint": "4 Ω = 12/3 would result from incorrectly dividing by the stretch factor instead of multiplying by its square.", "misconception": "Thinking resistance decreases when wire is stretched" },
-      { "option_key": "C", "hint": "48 Ω does not correspond to any correct application of R = ρl/A with volume conservation.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "36 Ω = 3 × 12 would result if only the length change were considered without accounting for the decrease in cross-sectional area.",
+        "misconception": "Forgetting that stretching also reduces the cross-sectional area"
+      },
+      {
+        "option_key": "B",
+        "hint": "4 Ω = 12/3 would result from incorrectly dividing by the stretch factor instead of multiplying by its square.",
+        "misconception": "Thinking resistance decreases when wire is stretched"
+      },
+      {
+        "option_key": "C",
+        "hint": "48 Ω does not correspond to any correct application of R = ρl/A with volume conservation.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -131,22 +308,57 @@
     "question_text": "The current density in a copper wire of cross-sectional area 2 × 10⁻⁶ m² carrying a current of 4 A is:",
     "explanation": "Current density J = I/A = 4 / (2 × 10⁻⁶) = 2 × 10⁶ A/m². Current density is a vector quantity that gives the amount of current flowing per unit cross-sectional area perpendicular to the flow direction.",
     "correct_answer": "B",
-    "concept_tags": ["current-density", "cross-sectional-area", "current"],
+    "concept_tags": [
+      "current-density",
+      "cross-sectional-area",
+      "current"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "8 × 10⁻⁶ A/m²", "is_correct": false },
-      { "key": "B", "text": "2 × 10⁶ A/m²", "is_correct": true },
-      { "key": "C", "text": "2 × 10⁻⁶ A/m²", "is_correct": false },
-      { "key": "D", "text": "8 × 10⁶ A/m²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "8 × 10⁻⁶ A/m²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 × 10⁶ A/m²",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2 × 10⁻⁶ A/m²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "8 × 10⁶ A/m²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "8 × 10⁻⁶ A/m² results from multiplying I and A instead of dividing. J = I/A, not I × A.", "misconception": "Multiplying current and area instead of dividing" },
-      { "option_key": "C", "hint": "2 × 10⁻⁶ is the value of the area itself, not the current density. J = 4/(2×10⁻⁶) = 2×10⁶.", "misconception": null },
-      { "option_key": "D", "hint": "8 × 10⁶ would result from incorrectly using J = I × A × some factor. The correct calculation gives 2 × 10⁶.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "8 × 10⁻⁶ A/m² results from multiplying I and A instead of dividing. J = I/A, not I × A.",
+        "misconception": "Multiplying current and area instead of dividing"
+      },
+      {
+        "option_key": "C",
+        "hint": "2 × 10⁻⁶ is the value of the area itself, not the current density. J = 4/(2×10⁻⁶) = 2×10⁶.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "8 × 10⁶ would result from incorrectly using J = I × A × some factor. The correct calculation gives 2 × 10⁶.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -156,22 +368,57 @@
     "question_text": "A wire of resistance R is cut into 4 equal parts and all parts are connected in parallel. The equivalent resistance of the combination is:",
     "explanation": "When a wire of resistance R is cut into 4 equal parts, each part has resistance R/4. When four resistances each of R/4 are connected in parallel, the equivalent resistance is (R/4)/4 = R/16. In general, cutting a wire into n equal parts and connecting them in parallel gives R/n².",
     "correct_answer": "A",
-    "concept_tags": ["resistance", "parallel-combination", "equivalent-resistance"],
+    "concept_tags": [
+      "resistance",
+      "parallel-combination",
+      "equivalent-resistance"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "R/16", "is_correct": true },
-      { "key": "B", "text": "R/4", "is_correct": false },
-      { "key": "C", "text": "4R", "is_correct": false },
-      { "key": "D", "text": "R/8", "is_correct": false }
+      {
+        "key": "A",
+        "text": "R/16",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "R/4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4R",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "R/8",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "R/4 is the resistance of each individual piece. Connecting them in parallel further reduces the total resistance to R/16.", "misconception": "Forgetting to calculate the parallel combination after cutting" },
-      { "option_key": "C", "hint": "4R would be the result of connecting four resistances of R in series, not parallel pieces of a cut wire.", "misconception": "Confusing series and parallel combinations" },
-      { "option_key": "D", "hint": "R/8 would result if only 2 pieces were connected in parallel (each R/4, giving R/8 for two in parallel), not all four.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "R/4 is the resistance of each individual piece. Connecting them in parallel further reduces the total resistance to R/16.",
+        "misconception": "Forgetting to calculate the parallel combination after cutting"
+      },
+      {
+        "option_key": "C",
+        "hint": "4R would be the result of connecting four resistances of R in series, not parallel pieces of a cut wire.",
+        "misconception": "Confusing series and parallel combinations"
+      },
+      {
+        "option_key": "D",
+        "hint": "R/8 would result if only 2 pieces were connected in parallel (each R/4, giving R/8 for two in parallel), not all four.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -181,22 +428,57 @@
     "question_text": "The mobility of charge carriers in a conductor is defined as:",
     "explanation": "Mobility (μ) of a charge carrier is defined as the magnitude of drift velocity per unit electric field, i.e., μ = vd/E. Its SI unit is m²/(V·s). Mobility indicates how quickly a charge carrier can move through a material under the influence of an electric field.",
     "correct_answer": "C",
-    "concept_tags": ["mobility", "drift-velocity", "electric-field"],
+    "concept_tags": [
+      "mobility",
+      "drift-velocity",
+      "electric-field"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Drift velocity per unit current", "is_correct": false },
-      { "key": "B", "text": "Current density per unit electric field", "is_correct": false },
-      { "key": "C", "text": "Drift velocity per unit electric field", "is_correct": true },
-      { "key": "D", "text": "Electric field per unit drift velocity", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Drift velocity per unit current",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Current density per unit electric field",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Drift velocity per unit electric field",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Electric field per unit drift velocity",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Mobility relates drift velocity to electric field, not to current. μ = vd/E, and current does not appear in the definition.", "misconception": null },
-      { "option_key": "B", "hint": "Current density per unit electric field gives conductivity (σ = J/E), not mobility.", "misconception": "Confusing conductivity with mobility" },
-      { "option_key": "D", "hint": "E/vd is the inverse of mobility. Mobility is vd/E, not E/vd.", "misconception": "Inverting the definition of mobility" }
+      {
+        "option_key": "A",
+        "hint": "Mobility relates drift velocity to electric field, not to current. μ = vd/E, and current does not appear in the definition.",
+        "misconception": null
+      },
+      {
+        "option_key": "B",
+        "hint": "Current density per unit electric field gives conductivity (σ = J/E), not mobility.",
+        "misconception": "Confusing conductivity with mobility"
+      },
+      {
+        "option_key": "D",
+        "hint": "E/vd is the inverse of mobility. Mobility is vd/E, not E/vd.",
+        "misconception": "Inverting the definition of mobility"
+      }
     ]
   },
   {
@@ -206,22 +488,58 @@
     "question_text": "Two wires A and B of the same material have lengths in the ratio 1:2 and diameters in the ratio 2:1. The ratio of their resistances R_A : R_B is:",
     "explanation": "R = ρl/A = ρl/(πd²/4). So R ∝ l/d². For wire A: R_A ∝ 1/4 and for wire B: R_B ∝ 2/1 = 2. Therefore R_A/R_B = (1/4)/2 = 1/8. Wire B has 8 times the resistance of wire A due to being longer and thinner.",
     "correct_answer": "A",
-    "concept_tags": ["resistance", "length", "diameter", "cross-section"],
+    "concept_tags": [
+      "resistance",
+      "length",
+      "diameter",
+      "cross-section"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "1 : 8", "is_correct": true },
-      { "key": "B", "text": "1 : 4", "is_correct": false },
-      { "key": "C", "text": "1 : 2", "is_correct": false },
-      { "key": "D", "text": "2 : 1", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1 : 8",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1 : 4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1 : 2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2 : 1",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "1:4 would result from using R ∝ l/d instead of R ∝ l/d², ignoring that area depends on the square of the diameter.", "misconception": "Forgetting to square the diameter ratio in resistance calculation" },
-      { "option_key": "C", "hint": "1:2 only considers the length ratio and completely ignores the difference in diameters.", "misconception": "Ignoring the effect of cross-sectional area on resistance" },
-      { "option_key": "D", "hint": "2:1 reverses the ratio. Wire A has a larger cross-section and shorter length, so it has less resistance, not more.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "1:4 would result from using R ∝ l/d instead of R ∝ l/d², ignoring that area depends on the square of the diameter.",
+        "misconception": "Forgetting to square the diameter ratio in resistance calculation"
+      },
+      {
+        "option_key": "C",
+        "hint": "1:2 only considers the length ratio and completely ignores the difference in diameters.",
+        "misconception": "Ignoring the effect of cross-sectional area on resistance"
+      },
+      {
+        "option_key": "D",
+        "hint": "2:1 reverses the ratio. Wire A has a larger cross-section and shorter length, so it has less resistance, not more.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -231,22 +549,57 @@
     "question_text": "In a colour code of carbon resistors, a resistor has bands: brown, black, red, and gold. The value of the resistance is:",
     "explanation": "In the colour code, brown = 1, black = 0, red = multiplier 10² = 100, and gold = ±5% tolerance. The resistance value = 10 × 100 = 1000 Ω = 1 kΩ with ±5% tolerance. The first two bands give the significant digits and the third band gives the multiplier.",
     "correct_answer": "D",
-    "concept_tags": ["colour-code", "carbon-resistor", "resistance-value"],
+    "concept_tags": [
+      "colour-code",
+      "carbon-resistor",
+      "resistance-value"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "100 Ω ± 5%", "is_correct": false },
-      { "key": "B", "text": "10 kΩ ± 5%", "is_correct": false },
-      { "key": "C", "text": "1 kΩ ± 10%", "is_correct": false },
-      { "key": "D", "text": "1 kΩ ± 5%", "is_correct": true }
+      {
+        "key": "A",
+        "text": "100 Ω ± 5%",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "10 kΩ ± 5%",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1 kΩ ± 10%",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1 kΩ ± 5%",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "100 Ω would require the multiplier band to be brown (10¹), not red (10²). The correct value is 10 × 10² = 1000 Ω.", "misconception": "Misreading the multiplier band" },
-      { "option_key": "B", "hint": "10 kΩ = 10,000 Ω would require the multiplier to be 10³ (orange), not 10² (red).", "misconception": null },
-      { "option_key": "C", "hint": "The tolerance for gold is ±5%, not ±10%. Silver gives ±10% tolerance.", "misconception": "Confusing gold (±5%) with silver (±10%) tolerance band" }
+      {
+        "option_key": "A",
+        "hint": "100 Ω would require the multiplier band to be brown (10¹), not red (10²). The correct value is 10 × 10² = 1000 Ω.",
+        "misconception": "Misreading the multiplier band"
+      },
+      {
+        "option_key": "B",
+        "hint": "10 kΩ = 10,000 Ω would require the multiplier to be 10³ (orange), not 10² (red).",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "The tolerance for gold is ±5%, not ±10%. Silver gives ±10% tolerance.",
+        "misconception": "Confusing gold (±5%) with silver (±10%) tolerance band"
+      }
     ]
   },
   {
@@ -256,22 +609,57 @@
     "question_text": "A cylindrical conductor of length l and radius r has resistance R. If it is reshaped into a conductor of length 2l, what is the ratio of the new resistance to the original resistance?",
     "explanation": "Volume is conserved: πr²l = πr'²(2l), giving r'² = r²/2. The new resistance R' = ρ(2l)/(πr²/2) = 4ρl/(πr²) = 4R. Since resistance R = ρl/A, doubling length while conserving volume halves the area, making the new resistance 4 times the original.",
     "correct_answer": "C",
-    "concept_tags": ["resistance", "reshaping-conductor", "volume-conservation"],
+    "concept_tags": [
+      "resistance",
+      "reshaping-conductor",
+      "volume-conservation"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "1 : 1", "is_correct": false },
-      { "key": "B", "text": "2 : 1", "is_correct": false },
-      { "key": "C", "text": "4 : 1", "is_correct": true },
-      { "key": "D", "text": "8 : 1", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1 : 1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 : 1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4 : 1",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "8 : 1",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "1:1 would only be true if both length and area remain unchanged. Reshaping changes both dimensions.", "misconception": "Thinking reshaping does not change resistance" },
-      { "option_key": "B", "hint": "2:1 considers only the length doubling (R ∝ l) but ignores the halving of cross-sectional area due to volume conservation.", "misconception": "Forgetting to account for area change when volume is conserved" },
-      { "option_key": "D", "hint": "8:1 would apply if length were tripled (R ∝ n²), not doubled. For doubling, R' = 2² × R = 4R.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "1:1 would only be true if both length and area remain unchanged. Reshaping changes both dimensions.",
+        "misconception": "Thinking reshaping does not change resistance"
+      },
+      {
+        "option_key": "B",
+        "hint": "2:1 considers only the length doubling (R ∝ l) but ignores the halving of cross-sectional area due to volume conservation.",
+        "misconception": "Forgetting to account for area change when volume is conserved"
+      },
+      {
+        "option_key": "D",
+        "hint": "8:1 would apply if length were tripled (R ∝ n²), not doubled. For doubling, R' = 2² × R = 4R.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -281,22 +669,58 @@
     "question_text": "A copper wire of cross-sectional area 2 mm² carries a current of 10 A. If the number density of free electrons is 8 × 10²⁸ per m³, the drift velocity of electrons is approximately:",
     "explanation": "Using I = nAevd, we get vd = I/(nAe) = 10/(8 × 10²⁸ × 2 × 10⁻⁶ × 1.6 × 10⁻¹⁹) = 10/(8 × 2 × 1.6 × 10³) = 10/25600 ≈ 3.9 × 10⁻⁴ m/s ≈ 0.4 mm/s. This demonstrates that despite large current, electron drift velocity is very small.",
     "correct_answer": "B",
-    "concept_tags": ["drift-velocity", "current", "number-density", "electron-charge"],
+    "concept_tags": [
+      "drift-velocity",
+      "current",
+      "number-density",
+      "electron-charge"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "3.9 × 10⁻² m/s", "is_correct": false },
-      { "key": "B", "text": "3.9 × 10⁻⁴ m/s", "is_correct": true },
-      { "key": "C", "text": "3.9 × 10⁻⁶ m/s", "is_correct": false },
-      { "key": "D", "text": "3.9 × 10⁻¹ m/s", "is_correct": false }
+      {
+        "key": "A",
+        "text": "3.9 × 10⁻² m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3.9 × 10⁻⁴ m/s",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "3.9 × 10⁻⁶ m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3.9 × 10⁻¹ m/s",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "3.9 × 10⁻² m/s is 100 times too large, likely from an error in unit conversion of the area (using m² instead of mm²).", "misconception": "Forgetting to convert mm² to m²" },
-      { "option_key": "C", "hint": "3.9 × 10⁻⁶ m/s is 100 times too small, possibly from an extra factor error in the calculation.", "misconception": null },
-      { "option_key": "D", "hint": "3.9 × 10⁻¹ m/s is unrealistically large for drift velocity in a conductor. Typical drift velocities are of the order 10⁻⁴ m/s.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "3.9 × 10⁻² m/s is 100 times too large, likely from an error in unit conversion of the area (using m² instead of mm²).",
+        "misconception": "Forgetting to convert mm² to m²"
+      },
+      {
+        "option_key": "C",
+        "hint": "3.9 × 10⁻⁶ m/s is 100 times too small, possibly from an extra factor error in the calculation.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "3.9 × 10⁻¹ m/s is unrealistically large for drift velocity in a conductor. Typical drift velocities are of the order 10⁻⁴ m/s.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -306,22 +730,58 @@
     "question_text": "Assertion (A): The resistance of a metallic conductor increases with increase in temperature.\nReason (R): With increase in temperature, the average relaxation time of free electrons in the conductor decreases.",
     "explanation": "Both the assertion and reason are correct. When temperature increases, lattice ions vibrate more vigorously, leading to more frequent collisions with free electrons. This decreases the relaxation time (τ). Since R = ml/(ne²τA), a decrease in τ directly causes an increase in resistance. Thus R is the correct explanation of A.",
     "correct_answer": "A",
-    "concept_tags": ["temperature-dependence", "resistance", "relaxation-time", "metallic-conductor"],
+    "concept_tags": [
+      "temperature-dependence",
+      "resistance",
+      "relaxation-time",
+      "metallic-conductor"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The decrease in relaxation time directly explains the increase in resistance through R ∝ 1/τ, so R is indeed the correct explanation of A.", "misconception": "Failing to see the direct causal link between relaxation time and resistance" },
-      { "option_key": "C", "hint": "The reason is correct: increased lattice vibrations at higher temperatures do decrease the average relaxation time.", "misconception": null },
-      { "option_key": "D", "hint": "The assertion is correct: metals have a positive temperature coefficient of resistance, so their resistance increases with temperature.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The decrease in relaxation time directly explains the increase in resistance through R ∝ 1/τ, so R is indeed the correct explanation of A.",
+        "misconception": "Failing to see the direct causal link between relaxation time and resistance"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is correct: increased lattice vibrations at higher temperatures do decrease the average relaxation time.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct: metals have a positive temperature coefficient of resistance, so their resistance increases with temperature.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -331,22 +791,58 @@
     "question_text": "Assertion (A): Resistivity of a semiconductor decreases with increase in temperature.\nReason (R): The number density of charge carriers in a semiconductor increases exponentially with temperature.",
     "explanation": "Both the assertion and reason are correct. In semiconductors, increasing temperature provides thermal energy that breaks covalent bonds, creating more electron-hole pairs. The number of charge carriers increases exponentially with temperature (n ∝ e^(-Eg/2kT)). Since ρ = 1/(neμ), the massive increase in n more than compensates for any decrease in mobility, causing resistivity to decrease. The reason correctly explains the assertion.",
     "correct_answer": "A",
-    "concept_tags": ["semiconductor", "resistivity", "temperature-dependence", "charge-carriers"],
+    "concept_tags": [
+      "semiconductor",
+      "resistivity",
+      "temperature-dependence",
+      "charge-carriers"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The increase in charge carriers is the primary reason for decreased resistivity in semiconductors, so R directly explains A.", "misconception": "Not recognizing that carrier concentration is the dominant factor controlling semiconductor resistivity" },
-      { "option_key": "C", "hint": "The reason is correct: carrier concentration in semiconductors follows n ∝ e^(-Eg/2kT), which is an exponential increase with temperature.", "misconception": null },
-      { "option_key": "D", "hint": "The assertion is correct: semiconductors have a negative temperature coefficient of resistance, meaning resistivity decreases as temperature rises.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The increase in charge carriers is the primary reason for decreased resistivity in semiconductors, so R directly explains A.",
+        "misconception": "Not recognizing that carrier concentration is the dominant factor controlling semiconductor resistivity"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is correct: carrier concentration in semiconductors follows n ∝ e^(-Eg/2kT), which is an exponential increase with temperature.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct: semiconductors have a negative temperature coefficient of resistance, meaning resistivity decreases as temperature rises.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -356,22 +852,59 @@
     "question_text": "Match the following physical quantities (Column-I) with their SI units (Column-II):\n\nColumn-I:\nA. Resistivity\nB. Conductivity\nC. Current density\nD. Mobility\n\nColumn-II:\n1. A/m²\n2. m²/(V·s)\n3. Ω·m\n4. S/m",
     "explanation": "Resistivity (ρ) has SI unit Ω·m (A→3). Conductivity (σ = 1/ρ) has SI unit S/m or Ω⁻¹m⁻¹ (B→4). Current density (J = I/A) has SI unit A/m² (C→1). Mobility (μ = vd/E) has SI unit m²/(V·s) (D→2). Each quantity's unit follows directly from its defining equation.",
     "correct_answer": "B",
-    "concept_tags": ["SI-units", "resistivity", "conductivity", "current-density", "mobility"],
+    "concept_tags": [
+      "SI-units",
+      "resistivity",
+      "conductivity",
+      "current-density",
+      "mobility"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "A-3, B-1, C-4, D-2", "is_correct": false },
-      { "key": "B", "text": "A-3, B-4, C-1, D-2", "is_correct": true },
-      { "key": "C", "text": "A-4, B-3, C-2, D-1", "is_correct": false },
-      { "key": "D", "text": "A-1, B-2, C-3, D-4", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-3, B-1, C-4, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-3, B-4, C-1, D-2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-3, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This swaps the units of conductivity (S/m) and current density (A/m²). Conductivity is B→4 (S/m), not B→1.", "misconception": "Confusing units of conductivity and current density" },
-      { "option_key": "C", "hint": "This assigns Ω·m to conductivity and S/m to resistivity, which reverses them. Resistivity is Ω·m and conductivity is S/m.", "misconception": "Swapping resistivity and conductivity units" },
-      { "option_key": "D", "hint": "This completely scrambles all matchings. For instance, resistivity has units Ω·m (3), not A/m² (1).", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "This swaps the units of conductivity (S/m) and current density (A/m²). Conductivity is B→4 (S/m), not B→1.",
+        "misconception": "Confusing units of conductivity and current density"
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns Ω·m to conductivity and S/m to resistivity, which reverses them. Resistivity is Ω·m and conductivity is S/m.",
+        "misconception": "Swapping resistivity and conductivity units"
+      },
+      {
+        "option_key": "D",
+        "hint": "This completely scrambles all matchings. For instance, resistivity has units Ω·m (3), not A/m² (1).",
+        "misconception": null
+      }
     ]
   },
   {
@@ -381,22 +914,59 @@
     "question_text": "Match the following materials (Column-I) with their typical resistivity range at room temperature (Column-II):\n\nColumn-I:\nA. Copper (metal)\nB. Germanium (semiconductor)\nC. Glass (insulator)\nD. Nichrome (alloy)\n\nColumn-II:\n1. ~10¹⁰ – 10¹⁴ Ω·m\n2. ~10⁻⁸ Ω·m\n3. ~10⁻⁶ Ω·m\n4. ~0.1 – 1 Ω·m",
     "explanation": "Copper is a good metal with very low resistivity ~10⁻⁸ Ω·m (A→2). Germanium is a semiconductor with moderate resistivity ~0.1–1 Ω·m (B→4). Glass is an insulator with very high resistivity ~10¹⁰–10¹⁴ Ω·m (C→1). Nichrome is a resistive alloy with resistivity ~10⁻⁶ Ω·m (D→3). The range spans over 22 orders of magnitude from metals to insulators.",
     "correct_answer": "C",
-    "concept_tags": ["resistivity", "metals", "semiconductors", "insulators", "alloys"],
+    "concept_tags": [
+      "resistivity",
+      "metals",
+      "semiconductors",
+      "insulators",
+      "alloys"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "A-2, B-3, C-1, D-4", "is_correct": false },
-      { "key": "B", "text": "A-3, B-4, C-1, D-2", "is_correct": false },
-      { "key": "C", "text": "A-2, B-4, C-1, D-3", "is_correct": true },
-      { "key": "D", "text": "A-2, B-1, C-4, D-3", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-3, B-4, C-1, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-4, C-1, D-3",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-1, C-4, D-3",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This swaps Germanium and Nichrome. Germanium (~0.1–1 Ω·m) has much higher resistivity than Nichrome (~10⁻⁶ Ω·m).", "misconception": "Thinking alloys have higher resistivity than semiconductors" },
-      { "option_key": "B", "hint": "This assigns ~10⁻⁶ Ω·m to copper and ~10⁻⁸ Ω·m to nichrome. Copper has lower resistivity than nichrome alloy.", "misconception": "Confusing resistivity of pure metals with alloys" },
-      { "option_key": "D", "hint": "This assigns insulator-range resistivity to germanium and semiconductor-range to glass, which is reversed.", "misconception": "Confusing semiconductor and insulator resistivity ranges" }
+      {
+        "option_key": "A",
+        "hint": "This swaps Germanium and Nichrome. Germanium (~0.1–1 Ω·m) has much higher resistivity than Nichrome (~10⁻⁶ Ω·m).",
+        "misconception": "Thinking alloys have higher resistivity than semiconductors"
+      },
+      {
+        "option_key": "B",
+        "hint": "This assigns ~10⁻⁶ Ω·m to copper and ~10⁻⁸ Ω·m to nichrome. Copper has lower resistivity than nichrome alloy.",
+        "misconception": "Confusing resistivity of pure metals with alloys"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns insulator-range resistivity to germanium and semiconductor-range to glass, which is reversed.",
+        "misconception": "Confusing semiconductor and insulator resistivity ranges"
+      }
     ]
   },
   {
@@ -406,22 +976,57 @@
     "question_text": "The resistivity of a material depends on its dimensions (length and cross-sectional area).",
     "explanation": "This statement is FALSE. Resistivity (ρ) is an intrinsic property of the material and does not depend on the dimensions of the conductor. It depends on the nature of the material and temperature. Resistance (R = ρl/A) depends on dimensions, but resistivity itself is independent of length and area.",
     "correct_answer": "B",
-    "concept_tags": ["resistivity", "intrinsic-property", "dimensions"],
+    "concept_tags": [
+      "resistivity",
+      "intrinsic-property",
+      "dimensions"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Resistivity is a material property that does not change with the dimensions of the conductor. Only resistance depends on length and area.", "misconception": "Confusing resistance (depends on dimensions) with resistivity (intrinsic material property)" },
-      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Resistivity is a material property that does not change with the dimensions of the conductor. Only resistance depends on length and area.",
+        "misconception": "Confusing resistance (depends on dimensions) with resistivity (intrinsic material property)"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -431,22 +1036,58 @@
     "question_text": "Ohm's law is valid only when the physical conditions such as temperature remain constant.",
     "explanation": "This statement is TRUE. Ohm's law (V = IR with constant R) holds only when physical conditions like temperature, pressure, and mechanical strain remain constant. If temperature changes, the resistance of the conductor changes, and the V-I relationship may no longer be linear.",
     "correct_answer": "A",
-    "concept_tags": ["ohms-law", "validity", "temperature", "physical-conditions"],
+    "concept_tags": [
+      "ohms-law",
+      "validity",
+      "temperature",
+      "physical-conditions"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Ohm's law is not universally valid under all conditions. It requires constant physical conditions, especially temperature, to hold.", "misconception": "Thinking Ohm's law is universally valid regardless of conditions" },
-      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "Ohm's law is not universally valid under all conditions. It requires constant physical conditions, especially temperature, to hold.",
+        "misconception": "Thinking Ohm's law is universally valid regardless of conditions"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -456,22 +1097,58 @@
     "question_text": "The relation between current I, number density of electrons n, charge of electron e, cross-sectional area A, and drift velocity vd is I = _____.",
     "explanation": "The current in a conductor is given by I = neAvd, where n is the number density of free electrons, e is the electronic charge, A is the cross-sectional area, and vd is the drift velocity. This relation is derived by calculating the total charge crossing a cross-section per unit time.",
     "correct_answer": "C",
-    "concept_tags": ["drift-velocity", "current", "number-density", "cross-section"],
+    "concept_tags": [
+      "drift-velocity",
+      "current",
+      "number-density",
+      "cross-section"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "neA/vd", "is_correct": false },
-      { "key": "B", "text": "nevd/A", "is_correct": false },
-      { "key": "C", "text": "neAvd", "is_correct": true },
-      { "key": "D", "text": "ne/(Avd)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "neA/vd",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "nevd/A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "neAvd",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "ne/(Avd)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Dividing by vd would mean increasing drift velocity decreases current, which contradicts the fact that faster drift produces more current.", "misconception": "Inverting the relationship between drift velocity and current" },
-      { "option_key": "B", "hint": "Dividing by A would mean a thinner wire carries more current for the same drift velocity, which is incorrect.", "misconception": "Incorrectly placing area in the denominator" },
-      { "option_key": "D", "hint": "This expression has both A and vd in the denominator, which would incorrectly suggest current decreases with both area and drift velocity.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Dividing by vd would mean increasing drift velocity decreases current, which contradicts the fact that faster drift produces more current.",
+        "misconception": "Inverting the relationship between drift velocity and current"
+      },
+      {
+        "option_key": "B",
+        "hint": "Dividing by A would mean a thinner wire carries more current for the same drift velocity, which is incorrect.",
+        "misconception": "Incorrectly placing area in the denominator"
+      },
+      {
+        "option_key": "D",
+        "hint": "This expression has both A and vd in the denominator, which would incorrectly suggest current decreases with both area and drift velocity.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -481,22 +1158,58 @@
     "question_text": "A physics student measures the V-I characteristics of a device and obtains the following data: at V = 2 V, I = 20 mA; at V = 4 V, I = 40 mA; at V = 6 V, I = 80 mA; at V = 8 V, I = 160 mA. The student claims the device obeys Ohm's law throughout the entire range.\n\nWhich of the following is the correct conclusion?",
     "explanation": "For an ohmic device, V/I must remain constant. For V = 2V: R = 100 Ω; V = 4V: R = 100 Ω; V = 6V: R = 75 Ω; V = 8V: R = 50 Ω. The resistance is constant only up to 4V, after which it decreases. Therefore, the device obeys Ohm's law only up to 4V and is non-ohmic beyond that.",
     "correct_answer": "D",
-    "concept_tags": ["ohms-law", "V-I-characteristics", "ohmic-device", "non-ohmic"],
+    "concept_tags": [
+      "ohms-law",
+      "V-I-characteristics",
+      "ohmic-device",
+      "non-ohmic"
+    ],
     "topic": "Ohm's Law, Resistance, and Resistivity",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "The device obeys Ohm's law throughout the range", "is_correct": false },
-      { "key": "B", "text": "The device does not obey Ohm's law at any point", "is_correct": false },
-      { "key": "C", "text": "The device is ohmic only above 4 V", "is_correct": false },
-      { "key": "D", "text": "The device is ohmic only up to 4 V and non-ohmic beyond that", "is_correct": true }
+      {
+        "key": "A",
+        "text": "The device obeys Ohm's law throughout the range",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The device does not obey Ohm's law at any point",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The device is ohmic only above 4 V",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The device is ohmic only up to 4 V and non-ohmic beyond that",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "At 6 V and 8 V, the V/I ratio changes (R decreases from 100 Ω to 75 Ω and 50 Ω), so the device does not obey Ohm's law throughout.", "misconception": "Not checking whether V/I remains constant across all data points" },
-      { "option_key": "B", "hint": "At 2 V and 4 V, V/I = 100 Ω in both cases, showing linear behaviour and Ohm's law compliance in that range.", "misconception": null },
-      { "option_key": "C", "hint": "Above 4 V, the current increases faster than voltage (V/I decreases), which is non-ohmic behaviour, not ohmic.", "misconception": "Confusing ohmic and non-ohmic regions" }
+      {
+        "option_key": "A",
+        "hint": "At 6 V and 8 V, the V/I ratio changes (R decreases from 100 Ω to 75 Ω and 50 Ω), so the device does not obey Ohm's law throughout.",
+        "misconception": "Not checking whether V/I remains constant across all data points"
+      },
+      {
+        "option_key": "B",
+        "hint": "At 2 V and 4 V, V/I = 100 Ω in both cases, showing linear behaviour and Ohm's law compliance in that range.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "Above 4 V, the current increases faster than voltage (V/I decreases), which is non-ohmic behaviour, not ohmic.",
+        "misconception": "Confusing ohmic and non-ohmic regions"
+      }
     ]
   }
 ]
