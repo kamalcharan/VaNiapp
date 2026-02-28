@@ -6,22 +6,57 @@
     "question_text": "Kirchhoff's junction rule is based on the conservation of:",
     "explanation": "Kirchhoff's junction rule (or current rule) states that the algebraic sum of currents at any junction is zero (ΣI = 0). This means the total current entering a junction equals the total current leaving it, which is a direct consequence of conservation of electric charge.",
     "correct_answer": "A",
-    "concept_tags": ["kirchhoff-junction-rule", "conservation-of-charge", "current"],
+    "concept_tags": [
+      "kirchhoff-junction-rule",
+      "conservation-of-charge",
+      "current"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Charge", "is_correct": true },
-      { "key": "B", "text": "Energy", "is_correct": false },
-      { "key": "C", "text": "Momentum", "is_correct": false },
-      { "key": "D", "text": "Mass", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Charge",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Energy",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Momentum",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Mass",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Conservation of energy is the basis of Kirchhoff's loop rule (voltage rule), not the junction rule.", "misconception": "Confusing the physical basis of the junction rule with the loop rule" },
-      { "option_key": "C", "hint": "Conservation of momentum applies to mechanics (collisions, etc.), not to current flow at a junction.", "misconception": null },
-      { "option_key": "D", "hint": "Conservation of mass is relevant in chemical reactions and fluid flow, not in the context of electrical current at a junction.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "Conservation of energy is the basis of Kirchhoff's loop rule (voltage rule), not the junction rule.",
+        "misconception": "Confusing the physical basis of the junction rule with the loop rule"
+      },
+      {
+        "option_key": "C",
+        "hint": "Conservation of momentum applies to mechanics (collisions, etc.), not to current flow at a junction.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Conservation of mass is relevant in chemical reactions and fluid flow, not in the context of electrical current at a junction.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -31,22 +66,56 @@
     "question_text": "Three resistors of 2 Ω, 3 Ω, and 6 Ω are connected in parallel. The equivalent resistance of the combination is:",
     "explanation": "For parallel resistors: 1/Req = 1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 6/6 = 1. Therefore Req = 1 Ω. The equivalent resistance of a parallel combination is always less than the smallest individual resistance.",
     "correct_answer": "B",
-    "concept_tags": ["parallel-combination", "equivalent-resistance"],
+    "concept_tags": [
+      "parallel-combination",
+      "equivalent-resistance"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "11 Ω", "is_correct": false },
-      { "key": "B", "text": "1 Ω", "is_correct": true },
-      { "key": "C", "text": "3.67 Ω", "is_correct": false },
-      { "key": "D", "text": "0.5 Ω", "is_correct": false }
+      {
+        "key": "A",
+        "text": "11 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "3.67 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.5 Ω",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "11 Ω = 2 + 3 + 6 would be the result if the resistors were connected in series, not parallel.", "misconception": "Using series formula instead of parallel formula" },
-      { "option_key": "C", "hint": "3.67 Ω is the arithmetic mean of the three resistances, which is not how equivalent resistance is calculated.", "misconception": null },
-      { "option_key": "D", "hint": "The equivalent resistance of this parallel combination is 1 Ω, not 0.5 Ω. Check the calculation: 1/2 + 1/3 + 1/6 = 1.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "11 Ω = 2 + 3 + 6 would be the result if the resistors were connected in series, not parallel.",
+        "misconception": "Using series formula instead of parallel formula"
+      },
+      {
+        "option_key": "C",
+        "hint": "3.67 Ω is the arithmetic mean of the three resistances, which is not how equivalent resistance is calculated.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The equivalent resistance of this parallel combination is 1 Ω, not 0.5 Ω. Check the calculation: 1/2 + 1/3 + 1/6 = 1.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -56,22 +125,58 @@
     "question_text": "The terminal voltage of a cell is less than its EMF when it is:",
     "explanation": "When a cell supplies current (discharging), the terminal voltage V = E - Ir, where E is the EMF, I is the current, and r is the internal resistance. Due to the voltage drop Ir across the internal resistance, the terminal voltage is always less than the EMF during discharge.",
     "correct_answer": "C",
-    "concept_tags": ["EMF", "terminal-voltage", "internal-resistance", "discharging"],
+    "concept_tags": [
+      "EMF",
+      "terminal-voltage",
+      "internal-resistance",
+      "discharging"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "In open circuit", "is_correct": false },
-      { "key": "B", "text": "Being charged by an external source", "is_correct": false },
-      { "key": "C", "text": "Supplying current to an external resistance", "is_correct": true },
-      { "key": "D", "text": "Not connected to any circuit", "is_correct": false }
+      {
+        "key": "A",
+        "text": "In open circuit",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Being charged by an external source",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Supplying current to an external resistance",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Not connected to any circuit",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "In open circuit, no current flows (I = 0), so V = E - 0 = E. The terminal voltage equals the EMF.", "misconception": "Thinking terminal voltage differs from EMF even in open circuit" },
-      { "option_key": "B", "hint": "During charging, V = E + Ir, so the terminal voltage is actually greater than the EMF, not less.", "misconception": "Confusing charging and discharging conditions" },
-      { "option_key": "D", "hint": "When not connected to any circuit, it is the same as open circuit where V = E (no current flows).", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "In open circuit, no current flows (I = 0), so V = E - 0 = E. The terminal voltage equals the EMF.",
+        "misconception": "Thinking terminal voltage differs from EMF even in open circuit"
+      },
+      {
+        "option_key": "B",
+        "hint": "During charging, V = E + Ir, so the terminal voltage is actually greater than the EMF, not less.",
+        "misconception": "Confusing charging and discharging conditions"
+      },
+      {
+        "option_key": "D",
+        "hint": "When not connected to any circuit, it is the same as open circuit where V = E (no current flows).",
+        "misconception": null
+      }
     ]
   },
   {
@@ -81,22 +186,57 @@
     "question_text": "Kirchhoff's loop rule (voltage rule) states that the algebraic sum of potential differences in a closed loop is:",
     "explanation": "Kirchhoff's loop rule states that the algebraic sum of all potential differences (voltage drops and rises) around any closed loop in a circuit is zero (ΣV = 0). This is based on the conservation of energy: the energy gained per unit charge by EMF sources equals the energy lost per unit charge across resistances in a complete loop.",
     "correct_answer": "D",
-    "concept_tags": ["kirchhoff-loop-rule", "conservation-of-energy", "potential-difference"],
+    "concept_tags": [
+      "kirchhoff-loop-rule",
+      "conservation-of-energy",
+      "potential-difference"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Equal to the total EMF in the circuit", "is_correct": false },
-      { "key": "B", "text": "Equal to the total resistance", "is_correct": false },
-      { "key": "C", "text": "Maximum at the junction", "is_correct": false },
-      { "key": "D", "text": "Zero", "is_correct": true }
+      {
+        "key": "A",
+        "text": "Equal to the total EMF in the circuit",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Equal to the total resistance",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Maximum at the junction",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The loop rule states ΣV = 0 around a closed loop, meaning all EMFs and IR drops together sum to zero, not that the sum equals the total EMF.", "misconception": "Confusing the loop equation with one side of the equation" },
-      { "option_key": "B", "hint": "The loop rule deals with voltages (potential differences), not resistances. Total resistance is not a quantity that potential differences sum to.", "misconception": null },
-      { "option_key": "C", "hint": "The loop rule applies around a complete closed loop, not at a junction. The junction rule deals with currents at a node.", "misconception": "Confusing the loop rule with the junction rule" }
+      {
+        "option_key": "A",
+        "hint": "The loop rule states ΣV = 0 around a closed loop, meaning all EMFs and IR drops together sum to zero, not that the sum equals the total EMF.",
+        "misconception": "Confusing the loop equation with one side of the equation"
+      },
+      {
+        "option_key": "B",
+        "hint": "The loop rule deals with voltages (potential differences), not resistances. Total resistance is not a quantity that potential differences sum to.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "The loop rule applies around a complete closed loop, not at a junction. The junction rule deals with currents at a node.",
+        "misconception": "Confusing the loop rule with the junction rule"
+      }
     ]
   },
   {
@@ -106,22 +246,58 @@
     "question_text": "A cell of EMF 2 V and internal resistance 0.5 Ω is connected to an external resistance of 1.5 Ω. The current in the circuit and the terminal voltage of the cell are:",
     "explanation": "Total resistance = R + r = 1.5 + 0.5 = 2 Ω. Current I = E/(R + r) = 2/2 = 1 A. Terminal voltage V = E - Ir = 2 - 1(0.5) = 1.5 V. Alternatively, V = IR = 1 × 1.5 = 1.5 V. The terminal voltage is less than the EMF due to internal resistance drop.",
     "correct_answer": "C",
-    "concept_tags": ["EMF", "internal-resistance", "terminal-voltage", "current"],
+    "concept_tags": [
+      "EMF",
+      "internal-resistance",
+      "terminal-voltage",
+      "current"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "I = 2 A, V = 1 V", "is_correct": false },
-      { "key": "B", "text": "I = 1 A, V = 2 V", "is_correct": false },
-      { "key": "C", "text": "I = 1 A, V = 1.5 V", "is_correct": true },
-      { "key": "D", "text": "I = 0.5 A, V = 1.75 V", "is_correct": false }
+      {
+        "key": "A",
+        "text": "I = 2 A, V = 1 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "I = 1 A, V = 2 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "I = 1 A, V = 1.5 V",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "I = 0.5 A, V = 1.75 V",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "I = 2 A would result from using only internal resistance (I = E/r = 2/0.5 = 4) or another error. The correct total resistance is 2 Ω giving I = 1 A.", "misconception": "Forgetting to include both internal and external resistance in total resistance" },
-      { "option_key": "B", "hint": "V = 2 V would mean the terminal voltage equals the EMF, which only occurs in open circuit (I = 0). With I = 1 A, V = E - Ir = 1.5 V.", "misconception": "Ignoring the voltage drop across internal resistance" },
-      { "option_key": "D", "hint": "I = 0.5 A would require a total resistance of 4 Ω, but R + r = 1.5 + 0.5 = 2 Ω. The correct current is 1 A.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "I = 2 A would result from using only internal resistance (I = E/r = 2/0.5 = 4) or another error. The correct total resistance is 2 Ω giving I = 1 A.",
+        "misconception": "Forgetting to include both internal and external resistance in total resistance"
+      },
+      {
+        "option_key": "B",
+        "hint": "V = 2 V would mean the terminal voltage equals the EMF, which only occurs in open circuit (I = 0). With I = 1 A, V = E - Ir = 1.5 V.",
+        "misconception": "Ignoring the voltage drop across internal resistance"
+      },
+      {
+        "option_key": "D",
+        "hint": "I = 0.5 A would require a total resistance of 4 Ω, but R + r = 1.5 + 0.5 = 2 Ω. The correct current is 1 A.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -131,22 +307,57 @@
     "question_text": "Two resistors of 4 Ω and 12 Ω are connected in parallel, and this combination is connected in series with a 3 Ω resistor. The total equivalent resistance is:",
     "explanation": "Parallel combination of 4 Ω and 12 Ω: 1/Rp = 1/4 + 1/12 = 3/12 + 1/12 = 4/12, so Rp = 3 Ω. This is in series with 3 Ω, so total Req = 3 + 3 = 6 Ω. In series combinations, resistances add directly.",
     "correct_answer": "B",
-    "concept_tags": ["series-parallel", "equivalent-resistance", "combination-circuits"],
+    "concept_tags": [
+      "series-parallel",
+      "equivalent-resistance",
+      "combination-circuits"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "3 Ω", "is_correct": false },
-      { "key": "B", "text": "6 Ω", "is_correct": true },
-      { "key": "C", "text": "19 Ω", "is_correct": false },
-      { "key": "D", "text": "9 Ω", "is_correct": false }
+      {
+        "key": "A",
+        "text": "3 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "6 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "19 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "9 Ω",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "3 Ω is only the equivalent of the parallel combination (4 Ω ∥ 12 Ω). You must add the series 3 Ω resistor to get the total.", "misconception": "Forgetting to add the series resistance to the parallel combination" },
-      { "option_key": "C", "hint": "19 Ω = 4 + 12 + 3 would be the result of adding all three resistors in series, ignoring the parallel connection.", "misconception": "Treating all resistors as being in series" },
-      { "option_key": "D", "hint": "9 Ω does not match any correct combination. The parallel equivalent is 3 Ω, and adding 3 Ω in series gives 6 Ω.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "3 Ω is only the equivalent of the parallel combination (4 Ω ∥ 12 Ω). You must add the series 3 Ω resistor to get the total.",
+        "misconception": "Forgetting to add the series resistance to the parallel combination"
+      },
+      {
+        "option_key": "C",
+        "hint": "19 Ω = 4 + 12 + 3 would be the result of adding all three resistors in series, ignoring the parallel connection.",
+        "misconception": "Treating all resistors as being in series"
+      },
+      {
+        "option_key": "D",
+        "hint": "9 Ω does not match any correct combination. The parallel equivalent is 3 Ω, and adding 3 Ω in series gives 6 Ω.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -156,22 +367,58 @@
     "question_text": "When n identical cells each of EMF E and internal resistance r are connected in series, the total EMF and total internal resistance of the combination are:",
     "explanation": "When n identical cells are connected in series, the EMFs add up and the internal resistances also add up. Total EMF = nE and total internal resistance = nr. This is because in series, the same current flows through each cell and the potential differences across them add up.",
     "correct_answer": "A",
-    "concept_tags": ["cells-in-series", "EMF", "internal-resistance", "grouping-of-cells"],
+    "concept_tags": [
+      "cells-in-series",
+      "EMF",
+      "internal-resistance",
+      "grouping-of-cells"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "nE, nr", "is_correct": true },
-      { "key": "B", "text": "nE, r/n", "is_correct": false },
-      { "key": "C", "text": "E, nr", "is_correct": false },
-      { "key": "D", "text": "E, r/n", "is_correct": false }
+      {
+        "key": "A",
+        "text": "nE, nr",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "nE, r/n",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "E, nr",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "E, r/n",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "r/n is the total internal resistance for parallel connection, not series. In series, internal resistances add to give nr.", "misconception": "Mixing up series and parallel formulas for internal resistance" },
-      { "option_key": "C", "hint": "Total EMF in series is nE, not E. The EMF remains E only in parallel connection of identical cells.", "misconception": "Confusing series grouping with parallel grouping of cells" },
-      { "option_key": "D", "hint": "This gives the result for parallel combination (EMF = E, internal resistance = r/n), not series.", "misconception": "Applying parallel cell formulas to series connection" }
+      {
+        "option_key": "B",
+        "hint": "r/n is the total internal resistance for parallel connection, not series. In series, internal resistances add to give nr.",
+        "misconception": "Mixing up series and parallel formulas for internal resistance"
+      },
+      {
+        "option_key": "C",
+        "hint": "Total EMF in series is nE, not E. The EMF remains E only in parallel connection of identical cells.",
+        "misconception": "Confusing series grouping with parallel grouping of cells"
+      },
+      {
+        "option_key": "D",
+        "hint": "This gives the result for parallel combination (EMF = E, internal resistance = r/n), not series.",
+        "misconception": "Applying parallel cell formulas to series connection"
+      }
     ]
   },
   {
@@ -181,22 +428,57 @@
     "question_text": "In a circuit, five currents I₁ = 3 A, I₂ = 5 A, I₃ = 2 A flow into a junction, while I₄ = 4 A flows out. By Kirchhoff's junction rule, the fifth current I₅ flowing out of the junction is:",
     "explanation": "By Kirchhoff's junction rule, the sum of currents entering a junction equals the sum of currents leaving it. Currents in: 3 + 5 + 2 = 10 A. Currents out: 4 + I₅. Therefore, 10 = 4 + I₅, giving I₅ = 6 A flowing out of the junction.",
     "correct_answer": "D",
-    "concept_tags": ["kirchhoff-junction-rule", "current-conservation", "node-analysis"],
+    "concept_tags": [
+      "kirchhoff-junction-rule",
+      "current-conservation",
+      "node-analysis"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "2 A", "is_correct": false },
-      { "key": "B", "text": "4 A", "is_correct": false },
-      { "key": "C", "text": "10 A", "is_correct": false },
-      { "key": "D", "text": "6 A", "is_correct": true }
+      {
+        "key": "A",
+        "text": "2 A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4 A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "10 A",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "6 A",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "2 A does not satisfy the junction rule. Total current in = 10 A, total current out must also be 10 A: 4 + I₅ = 10, so I₅ = 6 A.", "misconception": null },
-      { "option_key": "B", "hint": "4 A flowing out would give total outgoing current = 4 + 4 = 8 A, which does not equal the incoming 10 A.", "misconception": null },
-      { "option_key": "C", "hint": "10 A is the total current flowing into the junction, not the unknown outgoing current. I₅ = 10 - 4 = 6 A.", "misconception": "Confusing total incoming current with the unknown outgoing current" }
+      {
+        "option_key": "A",
+        "hint": "2 A does not satisfy the junction rule. Total current in = 10 A, total current out must also be 10 A: 4 + I₅ = 10, so I₅ = 6 A.",
+        "misconception": null
+      },
+      {
+        "option_key": "B",
+        "hint": "4 A flowing out would give total outgoing current = 4 + 4 = 8 A, which does not equal the incoming 10 A.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "10 A is the total current flowing into the junction, not the unknown outgoing current. I₅ = 10 - 4 = 6 A.",
+        "misconception": "Confusing total incoming current with the unknown outgoing current"
+      }
     ]
   },
   {
@@ -206,22 +488,57 @@
     "question_text": "A cell of EMF 1.5 V and internal resistance 1 Ω supplies maximum power to an external resistance R. The value of R is:",
     "explanation": "Maximum power is transferred to the external resistance when R equals the internal resistance of the source, i.e., R = r. This is the maximum power transfer theorem. Here r = 1 Ω, so R = 1 Ω for maximum power transfer. At this condition, the efficiency is 50%.",
     "correct_answer": "B",
-    "concept_tags": ["maximum-power-transfer", "internal-resistance", "external-resistance"],
+    "concept_tags": [
+      "maximum-power-transfer",
+      "internal-resistance",
+      "external-resistance"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "0.5 Ω", "is_correct": false },
-      { "key": "B", "text": "1 Ω", "is_correct": true },
-      { "key": "C", "text": "1.5 Ω", "is_correct": false },
-      { "key": "D", "text": "3 Ω", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.5 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1.5 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3 Ω",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "For maximum power transfer, R must equal r (not r/2). With R = 0.5 Ω, the power to R is not maximized.", "misconception": null },
-      { "option_key": "C", "hint": "1.5 V is the EMF, not the required external resistance. For max power, R = r = 1 Ω.", "misconception": "Confusing the EMF value with the required resistance" },
-      { "option_key": "D", "hint": "R = 3 Ω is three times the internal resistance. Maximum power transfer requires R = r = 1 Ω, not R = 3r.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "For maximum power transfer, R must equal r (not r/2). With R = 0.5 Ω, the power to R is not maximized.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "1.5 V is the EMF, not the required external resistance. For max power, R = r = 1 Ω.",
+        "misconception": "Confusing the EMF value with the required resistance"
+      },
+      {
+        "option_key": "D",
+        "hint": "R = 3 Ω is three times the internal resistance. Maximum power transfer requires R = r = 1 Ω, not R = 3r.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -231,22 +548,58 @@
     "question_text": "When n identical cells each of EMF E and internal resistance r are connected in parallel across an external resistance R, the current through R is:",
     "explanation": "When n identical cells are connected in parallel, the effective EMF remains E (same as one cell) and the effective internal resistance becomes r/n. The current through the external resistance R is I = E/(R + r/n) = nE/(nR + r). This arrangement is useful when internal resistance is much larger than external resistance.",
     "correct_answer": "C",
-    "concept_tags": ["cells-in-parallel", "EMF", "internal-resistance", "current"],
+    "concept_tags": [
+      "cells-in-parallel",
+      "EMF",
+      "internal-resistance",
+      "current"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "nE/(R + nr)", "is_correct": false },
-      { "key": "B", "text": "E/(R + nr)", "is_correct": false },
-      { "key": "C", "text": "nE/(nR + r)", "is_correct": true },
-      { "key": "D", "text": "nE/(R + r)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "nE/(R + nr)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "E/(R + nr)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "nE/(nR + r)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "nE/(R + r)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "nE/(R + nr) corresponds to n cells in series (EMF = nE, internal resistance = nr), not parallel.", "misconception": "Applying series cell formula instead of parallel" },
-      { "option_key": "B", "hint": "E/(R + nr) incorrectly adds internal resistances in series while keeping single cell EMF, which is not any standard configuration.", "misconception": null },
-      { "option_key": "D", "hint": "nE/(R + r) does not correctly account for the reduction in internal resistance. In parallel, internal resistance becomes r/n.", "misconception": "Not reducing the internal resistance correctly for parallel cells" }
+      {
+        "option_key": "A",
+        "hint": "nE/(R + nr) corresponds to n cells in series (EMF = nE, internal resistance = nr), not parallel.",
+        "misconception": "Applying series cell formula instead of parallel"
+      },
+      {
+        "option_key": "B",
+        "hint": "E/(R + nr) incorrectly adds internal resistances in series while keeping single cell EMF, which is not any standard configuration.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "nE/(R + r) does not correctly account for the reduction in internal resistance. In parallel, internal resistance becomes r/n.",
+        "misconception": "Not reducing the internal resistance correctly for parallel cells"
+      }
     ]
   },
   {
@@ -256,22 +609,58 @@
     "question_text": "In the circuit shown, two cells of EMF E₁ = 6 V (r₁ = 1 Ω) and E₂ = 4 V (r₂ = 1 Ω) are connected in opposition (opposing polarities) across an external resistance of 8 Ω. The current in the circuit is:",
     "explanation": "When two cells are connected in opposition, the effective EMF is the difference of the two EMFs: E_eff = E₁ - E₂ = 6 - 4 = 2 V. The internal resistances add up (since current passes through both): total internal resistance = r₁ + r₂ = 1 + 1 = 2 Ω. Current I = E_eff/(R + r₁ + r₂) = 2/(8 + 2) = 0.2 A.",
     "correct_answer": "A",
-    "concept_tags": ["cells-in-opposition", "EMF", "internal-resistance", "current"],
+    "concept_tags": [
+      "cells-in-opposition",
+      "EMF",
+      "internal-resistance",
+      "current"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "0.2 A", "is_correct": true },
-      { "key": "B", "text": "1 A", "is_correct": false },
-      { "key": "C", "text": "0.5 A", "is_correct": false },
-      { "key": "D", "text": "2 A", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.2 A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1 A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.5 A",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2 A",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "1 A would result from using E₁ + E₂ = 10 V in series aiding (I = 10/10 = 1 A), but the cells are in opposition so E_eff = 2 V.", "misconception": "Adding EMFs instead of subtracting for cells in opposition" },
-      { "option_key": "C", "hint": "0.5 A would result from using E_eff = 2 V but forgetting one internal resistance: I = 2/(3+1) = 0.5, which is incorrect.", "misconception": null },
-      { "option_key": "D", "hint": "2 A would result from ignoring the external resistance entirely: I = 2/1 = 2 A, which is incorrect.", "misconception": "Forgetting to include the external resistance" }
+      {
+        "option_key": "B",
+        "hint": "1 A would result from using E₁ + E₂ = 10 V in series aiding (I = 10/10 = 1 A), but the cells are in opposition so E_eff = 2 V.",
+        "misconception": "Adding EMFs instead of subtracting for cells in opposition"
+      },
+      {
+        "option_key": "C",
+        "hint": "0.5 A would result from using E_eff = 2 V but forgetting one internal resistance: I = 2/(3+1) = 0.5, which is incorrect.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "2 A would result from ignoring the external resistance entirely: I = 2/1 = 2 A, which is incorrect.",
+        "misconception": "Forgetting to include the external resistance"
+      }
     ]
   },
   {
@@ -281,22 +670,58 @@
     "question_text": "A 12 V battery with internal resistance 2 Ω is connected across a combination where a 6 Ω and a 3 Ω resistor are in parallel, and this parallel combination is in series with a 4 Ω resistor. The current drawn from the battery is:",
     "explanation": "Parallel combination: 1/Rp = 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2, so Rp = 2 Ω. Total external resistance = 2 + 4 = 6 Ω. Total resistance including internal = 6 + 2 = 8 Ω. Current I = 12/8 = 1.5 A.",
     "correct_answer": "B",
-    "concept_tags": ["series-parallel", "internal-resistance", "battery", "circuit-analysis"],
+    "concept_tags": [
+      "series-parallel",
+      "internal-resistance",
+      "battery",
+      "circuit-analysis"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "1 A", "is_correct": false },
-      { "key": "B", "text": "1.5 A", "is_correct": true },
-      { "key": "C", "text": "2 A", "is_correct": false },
-      { "key": "D", "text": "3 A", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1 A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.5 A",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2 A",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3 A",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "1 A would require total resistance of 12 Ω. The total resistance is 8 Ω (2 Ω parallel + 4 Ω series + 2 Ω internal).", "misconception": null },
-      { "option_key": "C", "hint": "2 A would result from ignoring the internal resistance: I = 12/6 = 2 A. The internal resistance must be included.", "misconception": "Forgetting to include internal resistance of the battery" },
-      { "option_key": "D", "hint": "3 A would result from ignoring both the series resistor and internal resistance, using only the parallel combination.", "misconception": "Ignoring series elements in the circuit" }
+      {
+        "option_key": "A",
+        "hint": "1 A would require total resistance of 12 Ω. The total resistance is 8 Ω (2 Ω parallel + 4 Ω series + 2 Ω internal).",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "2 A would result from ignoring the internal resistance: I = 12/6 = 2 A. The internal resistance must be included.",
+        "misconception": "Forgetting to include internal resistance of the battery"
+      },
+      {
+        "option_key": "D",
+        "hint": "3 A would result from ignoring both the series resistor and internal resistance, using only the parallel combination.",
+        "misconception": "Ignoring series elements in the circuit"
+      }
     ]
   },
   {
@@ -306,22 +731,57 @@
     "question_text": "Assertion (A): The equivalent resistance of resistors connected in parallel is always less than the smallest individual resistance.\nReason (R): In a parallel combination, the reciprocal of equivalent resistance equals the sum of reciprocals of individual resistances.",
     "explanation": "Both statements are correct. For n resistors in parallel, 1/Req = 1/R₁ + 1/R₂ + ... + 1/Rn. Since each term on the right is positive, 1/Req > 1/Ri for any individual resistor Ri, which means Req < Ri. The mathematical relationship in R directly leads to and explains the physical fact stated in A.",
     "correct_answer": "A",
-    "concept_tags": ["parallel-combination", "equivalent-resistance", "mathematical-proof"],
+    "concept_tags": [
+      "parallel-combination",
+      "equivalent-resistance",
+      "mathematical-proof"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The reciprocal formula (R) directly proves why Req is always less than each Ri (A). Since 1/Req > 1/Ri for every i, R provides the mathematical explanation for A.", "misconception": "Not recognizing the direct causal connection between the formula and the property" },
-      { "option_key": "C", "hint": "The reason is the correct formula for parallel resistance: 1/Req = Σ(1/Ri). This is a standard result.", "misconception": null },
-      { "option_key": "D", "hint": "The assertion is correct. For example, 2 Ω ∥ 3 Ω = 6/5 = 1.2 Ω, which is less than 2 Ω (the smallest).", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The reciprocal formula (R) directly proves why Req is always less than each Ri (A). Since 1/Req > 1/Ri for every i, R provides the mathematical explanation for A.",
+        "misconception": "Not recognizing the direct causal connection between the formula and the property"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is the correct formula for parallel resistance: 1/Req = Σ(1/Ri). This is a standard result.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. For example, 2 Ω ∥ 3 Ω = 6/5 = 1.2 Ω, which is less than 2 Ω (the smallest).",
+        "misconception": null
+      }
     ]
   },
   {
@@ -331,22 +791,58 @@
     "question_text": "Assertion (A): When identical cells are connected in parallel, the arrangement is preferred when the external resistance is much smaller than the internal resistance.\nReason (R): Connecting cells in parallel increases the total EMF of the combination.",
     "explanation": "The assertion is correct. For parallel cells (effective EMF = E, internal resistance = r/n), current I = E/(R + r/n). When R << r, parallel connection gives I ≈ nE/r, which is n times the current from a single cell. However, the reason is incorrect: connecting identical cells in parallel does not increase the EMF; it remains E. The total EMF stays the same as one cell; only the internal resistance is reduced.",
     "correct_answer": "C",
-    "concept_tags": ["cells-in-parallel", "EMF", "internal-resistance", "preferred-connection"],
+    "concept_tags": [
+      "cells-in-parallel",
+      "EMF",
+      "internal-resistance",
+      "preferred-connection"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The reason is factually incorrect. Parallel connection of identical cells does NOT increase total EMF; it remains E. Only series connection increases EMF to nE.", "misconception": "Believing parallel cells increase EMF" },
-      { "option_key": "B", "hint": "The reason is incorrect (EMF does not increase in parallel), so option B, which states both are correct, cannot be right.", "misconception": null },
-      { "option_key": "D", "hint": "The assertion is correct: parallel grouping is preferred when R << r, as it maximizes current by reducing effective internal resistance to r/n.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "The reason is factually incorrect. Parallel connection of identical cells does NOT increase total EMF; it remains E. Only series connection increases EMF to nE.",
+        "misconception": "Believing parallel cells increase EMF"
+      },
+      {
+        "option_key": "B",
+        "hint": "The reason is incorrect (EMF does not increase in parallel), so option B, which states both are correct, cannot be right.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct: parallel grouping is preferred when R << r, as it maximizes current by reducing effective internal resistance to r/n.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -356,22 +852,57 @@
     "question_text": "Match the circuit configuration (Column-I) with the corresponding equivalent resistance (Column-II) for identical resistors each of resistance R:\n\nColumn-I:\nA. Two resistors in series\nB. Two resistors in parallel\nC. Three resistors in series\nD. Three resistors in parallel\n\nColumn-II:\n1. R/2\n2. R/3\n3. 2R\n4. 3R",
     "explanation": "Two in series: R + R = 2R (A→3). Two in parallel: R × R/(R + R) = R/2 (B→1). Three in series: R + R + R = 3R (C→4). Three in parallel: 1/Req = 3/R, so Req = R/3 (D→2). Series adds resistances; parallel reduces the effective resistance.",
     "correct_answer": "D",
-    "concept_tags": ["series-combination", "parallel-combination", "equivalent-resistance"],
+    "concept_tags": [
+      "series-combination",
+      "parallel-combination",
+      "equivalent-resistance"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "A-3, B-2, C-4, D-1", "is_correct": false },
-      { "key": "B", "text": "A-1, B-3, C-2, D-4", "is_correct": false },
-      { "key": "C", "text": "A-4, B-1, C-3, D-2", "is_correct": false },
-      { "key": "D", "text": "A-3, B-1, C-4, D-2", "is_correct": true }
+      {
+        "key": "A",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-1, B-3, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-1, C-3, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-1, C-4, D-2",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This assigns R/2 to two in parallel and R/3 to three in parallel but swaps them with B and D. Two in parallel = R/2 (1), not R/3 (2).", "misconception": null },
-      { "option_key": "B", "hint": "This completely reverses series and parallel results. Two in series = 2R (3), not R/2 (1).", "misconception": "Confusing series and parallel formulas" },
-      { "option_key": "C", "hint": "This assigns 3R to two in series (incorrect, should be 2R) and 2R to three in series (incorrect, should be 3R).", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "This assigns R/2 to two in parallel and R/3 to three in parallel but swaps them with B and D. Two in parallel = R/2 (1), not R/3 (2).",
+        "misconception": null
+      },
+      {
+        "option_key": "B",
+        "hint": "This completely reverses series and parallel results. Two in series = 2R (3), not R/2 (1).",
+        "misconception": "Confusing series and parallel formulas"
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns 3R to two in series (incorrect, should be 2R) and 2R to three in series (incorrect, should be 3R).",
+        "misconception": null
+      }
     ]
   },
   {
@@ -381,22 +912,58 @@
     "question_text": "Match the following circuit conditions (Column-I) with the correct expression for current or voltage (Column-II):\n\nColumn-I:\nA. Current through external resistance R with cell (E, r)\nB. Terminal voltage during discharging\nC. Maximum current from a cell (short circuit)\nD. Condition for maximum power in external resistance\n\nColumn-II:\n1. R = r\n2. E - Ir\n3. E/r\n4. E/(R + r)",
     "explanation": "Current through external R: I = E/(R + r) (A→4). Terminal voltage during discharge: V = E - Ir (B→2). Short circuit current (R = 0): I = E/r (C→3). Maximum power transfer condition: R = r (D→1). These are fundamental relations in DC circuit analysis.",
     "correct_answer": "C",
-    "concept_tags": ["cell-equations", "terminal-voltage", "short-circuit", "maximum-power-transfer"],
+    "concept_tags": [
+      "cell-equations",
+      "terminal-voltage",
+      "short-circuit",
+      "maximum-power-transfer"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "A-4, B-3, C-2, D-1", "is_correct": false },
-      { "key": "B", "text": "A-2, B-4, C-1, D-3", "is_correct": false },
-      { "key": "C", "text": "A-4, B-2, C-3, D-1", "is_correct": true },
-      { "key": "D", "text": "A-3, B-2, C-4, D-1", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-4, B-3, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-4, C-1, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-2, C-3, D-1",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This swaps terminal voltage (E - Ir) with short circuit current (E/r). Terminal voltage is E - Ir (2), not E/r (3).", "misconception": "Confusing terminal voltage expression with short circuit current" },
-      { "option_key": "B", "hint": "This assigns E - Ir to current and E/(R+r) to terminal voltage, which are reversed.", "misconception": "Swapping the formulas for current and terminal voltage" },
-      { "option_key": "D", "hint": "This assigns E/r (short circuit current) to the normal current through R. Normal current is E/(R+r), not E/r.", "misconception": "Confusing short circuit current with normal circuit current" }
+      {
+        "option_key": "A",
+        "hint": "This swaps terminal voltage (E - Ir) with short circuit current (E/r). Terminal voltage is E - Ir (2), not E/r (3).",
+        "misconception": "Confusing terminal voltage expression with short circuit current"
+      },
+      {
+        "option_key": "B",
+        "hint": "This assigns E - Ir to current and E/(R+r) to terminal voltage, which are reversed.",
+        "misconception": "Swapping the formulas for current and terminal voltage"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns E/r (short circuit current) to the normal current through R. Normal current is E/(R+r), not E/r.",
+        "misconception": "Confusing short circuit current with normal circuit current"
+      }
     ]
   },
   {
@@ -406,22 +973,57 @@
     "question_text": "In a series combination of resistors, the same current flows through each resistor.",
     "explanation": "This statement is TRUE. In a series combination, there is only one path for the current to flow. Since charge is conserved and there is no branching, the same current passes through every resistor in the series connection. The voltage, however, divides across the resistors.",
     "correct_answer": "A",
-    "concept_tags": ["series-combination", "current", "charge-conservation"],
+    "concept_tags": [
+      "series-combination",
+      "current",
+      "charge-conservation"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "In series connection, there is only one path for current flow, so the current must be the same through all resistors by conservation of charge.", "misconception": "Confusing series property (same current) with parallel property (same voltage)" },
-      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "In series connection, there is only one path for current flow, so the current must be the same through all resistors by conservation of charge.",
+        "misconception": "Confusing series property (same current) with parallel property (same voltage)"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -431,22 +1033,58 @@
     "question_text": "The EMF of a cell depends on the external resistance connected to it.",
     "explanation": "This statement is FALSE. The EMF of a cell is a property of the cell itself (determined by the electrochemistry of the electrodes and electrolyte) and does not depend on the external resistance. It is the terminal voltage (V = E - Ir) that depends on the external circuit. EMF remains constant regardless of external connections.",
     "correct_answer": "B",
-    "concept_tags": ["EMF", "cell", "external-resistance", "intrinsic-property"],
+    "concept_tags": [
+      "EMF",
+      "cell",
+      "external-resistance",
+      "intrinsic-property"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "EMF is determined by the chemistry of the cell and is independent of the external circuit. Only terminal voltage changes with external resistance.", "misconception": "Confusing EMF with terminal voltage" },
-      { "option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "EMF is determined by the chemistry of the cell and is independent of the external circuit. Only terminal voltage changes with external resistance.",
+        "misconception": "Confusing EMF with terminal voltage"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -456,22 +1094,58 @@
     "question_text": "If n identical cells each of EMF E and internal resistance r are connected in series across an external resistance R, the current flowing in the circuit is I = _____.",
     "explanation": "When n identical cells are connected in series, the total EMF adds up to nE and the total internal resistance is nr (internal resistances in series add). The current through the circuit with external resistance R is I = nE/(R + nr). This is the standard formula for n cells in series.",
     "correct_answer": "D",
-    "concept_tags": ["cells-in-series", "current", "EMF", "internal-resistance"],
+    "concept_tags": [
+      "cells-in-series",
+      "current",
+      "EMF",
+      "internal-resistance"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "E/(R + nr)", "is_correct": false },
-      { "key": "B", "text": "nE/(R + r)", "is_correct": false },
-      { "key": "C", "text": "nE/(nR + r)", "is_correct": false },
-      { "key": "D", "text": "nE/(R + nr)", "is_correct": true }
+      {
+        "key": "A",
+        "text": "E/(R + nr)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "nE/(R + r)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "nE/(nR + r)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "nE/(R + nr)",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The EMF in the numerator should be nE (sum of all EMFs in series), not just E from a single cell.", "misconception": "Forgetting to multiply EMF by the number of cells in series" },
-      { "option_key": "B", "hint": "The internal resistance in the denominator should be nr (all internal resistances in series add), not just r.", "misconception": "Forgetting that internal resistances also add in series" },
-      { "option_key": "C", "hint": "nE/(nR + r) is the formula for n cells in parallel, not series. In series, internal resistances add to nr.", "misconception": "Confusing the series and parallel cell formulas" }
+      {
+        "option_key": "A",
+        "hint": "The EMF in the numerator should be nE (sum of all EMFs in series), not just E from a single cell.",
+        "misconception": "Forgetting to multiply EMF by the number of cells in series"
+      },
+      {
+        "option_key": "B",
+        "hint": "The internal resistance in the denominator should be nr (all internal resistances in series add), not just r.",
+        "misconception": "Forgetting that internal resistances also add in series"
+      },
+      {
+        "option_key": "C",
+        "hint": "nE/(nR + r) is the formula for n cells in parallel, not series. In series, internal resistances add to nr.",
+        "misconception": "Confusing the series and parallel cell formulas"
+      }
     ]
   },
   {
@@ -481,22 +1155,58 @@
     "question_text": "A student connects 3 identical cells, each of EMF 1.5 V and internal resistance 0.5 Ω, in series with an external resistance of 4.5 Ω. She then rearranges the same 3 cells in parallel across the same external resistance.\n\nWhat is the ratio of current in the series arrangement to the current in the parallel arrangement?",
     "explanation": "Series: I₁ = nE/(R + nr) = 3(1.5)/(4.5 + 3×0.5) = 4.5/6 = 0.75 A. Parallel: I₂ = nE/(nR + r) = 3(1.5)/(3×4.5 + 0.5) = 4.5/14 ≈ 0.321 A. Ratio I₁/I₂ = 0.75/0.321 = (4.5/6)/(4.5/14) = 14/6 = 7/3. The series arrangement gives more current because the external resistance is larger than the internal resistance.",
     "correct_answer": "C",
-    "concept_tags": ["cells-in-series", "cells-in-parallel", "current-comparison", "grouping-of-cells"],
+    "concept_tags": [
+      "cells-in-series",
+      "cells-in-parallel",
+      "current-comparison",
+      "grouping-of-cells"
+    ],
     "topic": "Kirchhoff's Laws and Circuit Analysis",
     "subject": "physics",
     "chapter": "Current Electricity",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "1 : 1", "is_correct": false },
-      { "key": "B", "text": "3 : 1", "is_correct": false },
-      { "key": "C", "text": "7 : 3", "is_correct": true },
-      { "key": "D", "text": "3 : 7", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1 : 1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 : 1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "7 : 3",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "3 : 7",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "1:1 would only be true if internal resistance were zero. With non-zero internal resistance, series and parallel give different currents.", "misconception": "Ignoring the effect of internal resistance on current" },
-      { "option_key": "B", "hint": "3:1 would be the ratio if only EMFs mattered (3E vs E), but the total resistance is different in each configuration.", "misconception": "Considering only EMF and ignoring total resistance differences" },
-      { "option_key": "D", "hint": "3:7 is the inverse of the correct ratio. Series gives more current here because R > r, making series grouping more advantageous.", "misconception": "Reversing the ratio" }
+      {
+        "option_key": "A",
+        "hint": "1:1 would only be true if internal resistance were zero. With non-zero internal resistance, series and parallel give different currents.",
+        "misconception": "Ignoring the effect of internal resistance on current"
+      },
+      {
+        "option_key": "B",
+        "hint": "3:1 would be the ratio if only EMFs mattered (3E vs E), but the total resistance is different in each configuration.",
+        "misconception": "Considering only EMF and ignoring total resistance differences"
+      },
+      {
+        "option_key": "D",
+        "hint": "3:7 is the inverse of the correct ratio. Series gives more current here because R > r, making series grouping more advantageous.",
+        "misconception": "Reversing the ratio"
+      }
     ]
   }
 ]

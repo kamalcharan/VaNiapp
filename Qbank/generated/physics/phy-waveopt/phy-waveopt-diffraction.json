@@ -4,24 +4,59 @@
     "question_type": "mcq",
     "difficulty": "easy",
     "question_text": "In single slit diffraction, the condition for the first minimum is:",
-    "explanation": "In single slit Fraunhofer diffraction, destructive interference (minima) occurs when the path difference between the extreme rays from the slit equals an integral multiple of the wavelength. The condition for the nth minimum is a sin \u03b8 = n\u03bb. For the first minimum, n = 1, so a sin \u03b8 = \u03bb.",
+    "explanation": "In single slit Fraunhofer diffraction, destructive interference (minima) occurs when the path difference between the extreme rays from the slit equals an integral multiple of the wavelength. The condition for the nth minimum is a sin θ = nλ. For the first minimum, n = 1, so a sin θ = λ.",
     "correct_answer": "A",
-    "concept_tags": ["single-slit-diffraction", "minima-condition", "path-difference"],
+    "concept_tags": [
+      "single-slit-diffraction",
+      "minima-condition",
+      "path-difference"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "a sin \u03b8 = \u03bb", "is_correct": true },
-      { "key": "B", "text": "a sin \u03b8 = \u03bb/2", "is_correct": false },
-      { "key": "C", "text": "a sin \u03b8 = 2\u03bb", "is_correct": false },
-      { "key": "D", "text": "a sin \u03b8 = 3\u03bb/2", "is_correct": false }
+      {
+        "key": "A",
+        "text": "a sin θ = λ",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "a sin θ = λ/2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "a sin θ = 2λ",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "a sin θ = 3λ/2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "a sin \u03b8 = \u03bb/2 does not correspond to either a maximum or minimum in single slit diffraction. The minima occur at whole multiples of \u03bb.", "misconception": "Confusing single slit diffraction minima with double slit interference conditions" },
-      { "option_key": "C", "hint": "a sin \u03b8 = 2\u03bb gives the second minimum (n = 2), not the first.", "misconception": "Using wrong order number for the first minimum" },
-      { "option_key": "D", "hint": "a sin \u03b8 = 3\u03bb/2 approximately corresponds to a secondary maximum, not the first minimum.", "misconception": "Confusing the condition for secondary maxima with minima" }
+      {
+        "option_key": "B",
+        "hint": "a sin θ = λ/2 does not correspond to either a maximum or minimum in single slit diffraction. The minima occur at whole multiples of λ.",
+        "misconception": "Confusing single slit diffraction minima with double slit interference conditions"
+      },
+      {
+        "option_key": "C",
+        "hint": "a sin θ = 2λ gives the second minimum (n = 2), not the first.",
+        "misconception": "Using wrong order number for the first minimum"
+      },
+      {
+        "option_key": "D",
+        "hint": "a sin θ = 3λ/2 approximately corresponds to a secondary maximum, not the first minimum.",
+        "misconception": "Confusing the condition for secondary maxima with minima"
+      }
     ]
   },
   {
@@ -29,24 +64,59 @@
     "question_type": "mcq",
     "difficulty": "easy",
     "question_text": "The angular width of the central maximum in a single slit Fraunhofer diffraction pattern is:",
-    "explanation": "In single slit Fraunhofer diffraction, the first minimum on either side occurs at sin \u03b8 = \u03bb/a. For small angles, \u03b8 \u2248 \u03bb/a. Since the central maximum extends from the first minimum on one side to the first minimum on the other side, the total angular width of the central maximum is 2\u03b8 = 2\u03bb/a.",
+    "explanation": "In single slit Fraunhofer diffraction, the first minimum on either side occurs at sin θ = λ/a. For small angles, θ ≈ λ/a. Since the central maximum extends from the first minimum on one side to the first minimum on the other side, the total angular width of the central maximum is 2θ = 2λ/a.",
     "correct_answer": "B",
-    "concept_tags": ["central-maximum", "angular-width", "single-slit-diffraction"],
+    "concept_tags": [
+      "central-maximum",
+      "angular-width",
+      "single-slit-diffraction"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "\u03bb/a", "is_correct": false },
-      { "key": "B", "text": "2\u03bb/a", "is_correct": true },
-      { "key": "C", "text": "\u03bb/2a", "is_correct": false },
-      { "key": "D", "text": "3\u03bb/a", "is_correct": false }
+      {
+        "key": "A",
+        "text": "λ/a",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2λ/a",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "λ/2a",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3λ/a",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "\u03bb/a gives the angular half-width (from the centre to the first minimum on one side), not the full angular width.", "misconception": "Confusing half angular width with full angular width of central maximum" },
-      { "option_key": "C", "hint": "\u03bb/2a is half the angular half-width and has no standard significance in the diffraction pattern.", "misconception": "Incorrectly halving the angular width formula" },
-      { "option_key": "D", "hint": "3\u03bb/a does not correspond to the angular width of the central maximum. The central maximum spans only 2\u03bb/a.", "misconception": "Using the wrong multiple of \u03bb/a" }
+      {
+        "option_key": "A",
+        "hint": "λ/a gives the angular half-width (from the centre to the first minimum on one side), not the full angular width.",
+        "misconception": "Confusing half angular width with full angular width of central maximum"
+      },
+      {
+        "option_key": "C",
+        "hint": "λ/2a is half the angular half-width and has no standard significance in the diffraction pattern.",
+        "misconception": "Incorrectly halving the angular width formula"
+      },
+      {
+        "option_key": "D",
+        "hint": "3λ/a does not correspond to the angular width of the central maximum. The central maximum spans only 2λ/a.",
+        "misconception": "Using the wrong multiple of λ/a"
+      }
     ]
   },
   {
@@ -56,22 +126,57 @@
     "question_text": "According to Rayleigh's criterion, two point sources are just resolved when the central maximum of one falls on the:",
     "explanation": "Rayleigh's criterion for the limit of resolution states that two point sources are just resolved when the central maximum of the diffraction pattern of one source falls on the first minimum of the diffraction pattern of the other. This provides a practical definition of the minimum angular separation for resolution.",
     "correct_answer": "C",
-    "concept_tags": ["rayleigh-criterion", "resolving-power", "limit-of-resolution"],
+    "concept_tags": [
+      "rayleigh-criterion",
+      "resolving-power",
+      "limit-of-resolution"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Central maximum of the other", "is_correct": false },
-      { "key": "B", "text": "Second minimum of the other", "is_correct": false },
-      { "key": "C", "text": "First minimum of the other", "is_correct": true },
-      { "key": "D", "text": "First secondary maximum of the other", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Central maximum of the other",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Second minimum of the other",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "First minimum of the other",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "First secondary maximum of the other",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "If the central maxima of both patterns coincide, the two sources would appear as one and would be completely unresolved.", "misconception": "Thinking coincident maxima means just resolved" },
-      { "option_key": "B", "hint": "If the central maximum falls on the second minimum, the sources are well resolved (over-resolved), not just resolved.", "misconception": "Confusing well-resolved with just-resolved condition" },
-      { "option_key": "D", "hint": "The first secondary maximum is farther than the first minimum. This would give an over-resolved condition, not just resolved.", "misconception": "Confusing the positions of secondary maxima and minima" }
+      {
+        "option_key": "A",
+        "hint": "If the central maxima of both patterns coincide, the two sources would appear as one and would be completely unresolved.",
+        "misconception": "Thinking coincident maxima means just resolved"
+      },
+      {
+        "option_key": "B",
+        "hint": "If the central maximum falls on the second minimum, the sources are well resolved (over-resolved), not just resolved.",
+        "misconception": "Confusing well-resolved with just-resolved condition"
+      },
+      {
+        "option_key": "D",
+        "hint": "The first secondary maximum is farther than the first minimum. This would give an over-resolved condition, not just resolved.",
+        "misconception": "Confusing the positions of secondary maxima and minima"
+      }
     ]
   },
   {
@@ -81,47 +186,117 @@
     "question_text": "In Fraunhofer diffraction, the source of light and the screen are effectively at:",
     "explanation": "In Fraunhofer diffraction, both the source and the screen are effectively at infinite distance from the diffracting aperture. This is achieved in practice by using a collimating lens to produce parallel light from the source and a converging lens to focus the diffracted light onto the screen. In contrast, in Fresnel diffraction, either the source or the screen (or both) are at finite distances.",
     "correct_answer": "D",
-    "concept_tags": ["fraunhofer-diffraction", "fresnel-diffraction", "parallel-rays"],
+    "concept_tags": [
+      "fraunhofer-diffraction",
+      "fresnel-diffraction",
+      "parallel-rays"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Finite distance from the slit", "is_correct": false },
-      { "key": "B", "text": "The focus of the lens", "is_correct": false },
-      { "key": "C", "text": "Very close to the slit", "is_correct": false },
-      { "key": "D", "text": "Infinite distance from the slit", "is_correct": true }
+      {
+        "key": "A",
+        "text": "Finite distance from the slit",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The focus of the lens",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Very close to the slit",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Infinite distance from the slit",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Finite distance from the slit describes Fresnel diffraction, not Fraunhofer diffraction.", "misconception": "Confusing Fresnel diffraction conditions with Fraunhofer diffraction" },
-      { "option_key": "B", "hint": "While lenses are used in the experimental setup, the condition is about the effective distance of the source and screen, which must be infinite.", "misconception": "Confusing the experimental setup with the defining condition" },
-      { "option_key": "C", "hint": "Placing the source very close to the slit would produce near-field (Fresnel) diffraction, not Fraunhofer diffraction.", "misconception": "Confusing near-field with far-field diffraction" }
+      {
+        "option_key": "A",
+        "hint": "Finite distance from the slit describes Fresnel diffraction, not Fraunhofer diffraction.",
+        "misconception": "Confusing Fresnel diffraction conditions with Fraunhofer diffraction"
+      },
+      {
+        "option_key": "B",
+        "hint": "While lenses are used in the experimental setup, the condition is about the effective distance of the source and screen, which must be infinite.",
+        "misconception": "Confusing the experimental setup with the defining condition"
+      },
+      {
+        "option_key": "C",
+        "hint": "Placing the source very close to the slit would produce near-field (Fresnel) diffraction, not Fraunhofer diffraction.",
+        "misconception": "Confusing near-field with far-field diffraction"
+      }
     ]
   },
   {
     "id": "phy-waveopt-diffraction-05",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A single slit of width 0.1 mm is illuminated by a parallel beam of light of wavelength 6000 \u00c5. The angular width of the central maximum on a screen is:",
-    "explanation": "The angular width of the central maximum in single slit diffraction is 2\u03b8 = 2\u03bb/a (for small angles). Given: a = 0.1 mm = 0.1 \u00d7 10\u207b\u00b3 m = 10\u207b\u2074 m and \u03bb = 6000 \u00c5 = 6 \u00d7 10\u207b\u2077 m. Angular width = 2\u03bb/a = 2 \u00d7 6 \u00d7 10\u207b\u2077 / 10\u207b\u2074 = 12 \u00d7 10\u207b\u00b3 rad = 1.2 \u00d7 10\u207b\u00b2 rad.",
+    "question_text": "A single slit of width 0.1 mm is illuminated by a parallel beam of light of wavelength 6000 Å. The angular width of the central maximum on a screen is:",
+    "explanation": "The angular width of the central maximum in single slit diffraction is 2θ = 2λ/a (for small angles). Given: a = 0.1 mm = 0.1 × 10⁻³ m = 10⁻⁴ m and λ = 6000 Å = 6 × 10⁻⁷ m. Angular width = 2λ/a = 2 × 6 × 10⁻⁷ / 10⁻⁴ = 12 × 10⁻³ rad = 1.2 × 10⁻² rad.",
     "correct_answer": "C",
-    "concept_tags": ["angular-width", "central-maximum", "numerical-problem"],
+    "concept_tags": [
+      "angular-width",
+      "central-maximum",
+      "numerical-problem"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "6 \u00d7 10\u207b\u00b3 rad", "is_correct": false },
-      { "key": "B", "text": "1.2 \u00d7 10\u207b\u00b3 rad", "is_correct": false },
-      { "key": "C", "text": "1.2 \u00d7 10\u207b\u00b2 rad", "is_correct": true },
-      { "key": "D", "text": "6 \u00d7 10\u207b\u00b2 rad", "is_correct": false }
+      {
+        "key": "A",
+        "text": "6 × 10⁻³ rad",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.2 × 10⁻³ rad",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1.2 × 10⁻² rad",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "6 × 10⁻² rad",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "6 \u00d7 10\u207b\u00b3 rad is the half angular width (\u03bb/a), not the full angular width of the central maximum.", "misconception": "Forgetting to multiply by 2 for the full angular width" },
-      { "option_key": "B", "hint": "This is off by a factor of 10. Check your unit conversion of slit width carefully.", "misconception": "Error in converting mm to metres" },
-      { "option_key": "D", "hint": "This value is too large. Recheck the calculation: 2 \u00d7 6 \u00d7 10\u207b\u2077 / 10\u207b\u2074 = 1.2 \u00d7 10\u207b\u00b2, not 6 \u00d7 10\u207b\u00b2.", "misconception": "Arithmetic error in the calculation" }
+      {
+        "option_key": "A",
+        "hint": "6 × 10⁻³ rad is the half angular width (λ/a), not the full angular width of the central maximum.",
+        "misconception": "Forgetting to multiply by 2 for the full angular width"
+      },
+      {
+        "option_key": "B",
+        "hint": "This is off by a factor of 10. Check your unit conversion of slit width carefully.",
+        "misconception": "Error in converting mm to metres"
+      },
+      {
+        "option_key": "D",
+        "hint": "This value is too large. Recheck the calculation: 2 × 6 × 10⁻⁷ / 10⁻⁴ = 1.2 × 10⁻², not 6 × 10⁻².",
+        "misconception": "Arithmetic error in the calculation"
+      }
     ]
   },
   {
@@ -129,24 +304,59 @@
     "question_type": "mcq",
     "difficulty": "medium",
     "question_text": "If the width of the slit in a single slit diffraction experiment is doubled, the width of the central maximum:",
-    "explanation": "The angular width of the central maximum is 2\u03bb/a. If the slit width 'a' is doubled, the angular width becomes 2\u03bb/(2a) = \u03bb/a, which is half the original angular width. Since the linear width on the screen is proportional to the angular width (linear width = 2\u03bbD/a, where D is the distance to the screen), the width of the central maximum is halved when the slit width is doubled.",
+    "explanation": "The angular width of the central maximum is 2λ/a. If the slit width 'a' is doubled, the angular width becomes 2λ/(2a) = λ/a, which is half the original angular width. Since the linear width on the screen is proportional to the angular width (linear width = 2λD/a, where D is the distance to the screen), the width of the central maximum is halved when the slit width is doubled.",
     "correct_answer": "B",
-    "concept_tags": ["slit-width-effect", "central-maximum", "diffraction-pattern"],
+    "concept_tags": [
+      "slit-width-effect",
+      "central-maximum",
+      "diffraction-pattern"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Becomes doubled", "is_correct": false },
-      { "key": "B", "text": "Becomes halved", "is_correct": true },
-      { "key": "C", "text": "Remains unchanged", "is_correct": false },
-      { "key": "D", "text": "Becomes one-fourth", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Becomes doubled",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Becomes halved",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Remains unchanged",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Becomes one-fourth",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The width of the central maximum is inversely proportional to the slit width. Doubling the slit width decreases, not increases, the central maximum width.", "misconception": "Thinking slit width and central maximum width are directly proportional" },
-      { "option_key": "C", "hint": "The angular width 2\u03bb/a clearly depends on 'a'. Changing the slit width must change the pattern.", "misconception": "Ignoring the dependence of diffraction pattern on slit width" },
-      { "option_key": "D", "hint": "The width is inversely proportional to 'a' (not to a\u00b2), so doubling 'a' halves the width, not quarters it.", "misconception": "Confusing inverse proportionality with inverse square relationship" }
+      {
+        "option_key": "A",
+        "hint": "The width of the central maximum is inversely proportional to the slit width. Doubling the slit width decreases, not increases, the central maximum width.",
+        "misconception": "Thinking slit width and central maximum width are directly proportional"
+      },
+      {
+        "option_key": "C",
+        "hint": "The angular width 2λ/a clearly depends on 'a'. Changing the slit width must change the pattern.",
+        "misconception": "Ignoring the dependence of diffraction pattern on slit width"
+      },
+      {
+        "option_key": "D",
+        "hint": "The width is inversely proportional to 'a' (not to a²), so doubling 'a' halves the width, not quarters it.",
+        "misconception": "Confusing inverse proportionality with inverse square relationship"
+      }
     ]
   },
   {
@@ -154,49 +364,119 @@
     "question_type": "mcq",
     "difficulty": "medium",
     "question_text": "The resolving power of a telescope can be increased by:",
-    "explanation": "The minimum angular separation that a telescope can resolve is given by \u03b8 = 1.22\u03bb/D, where D is the diameter of the objective lens (or mirror). Resolving power is the reciprocal of this: RP = D/(1.22\u03bb). Therefore, increasing the diameter of the objective lens increases the resolving power. Using light of shorter wavelength also increases resolving power.",
+    "explanation": "The minimum angular separation that a telescope can resolve is given by θ = 1.22λ/D, where D is the diameter of the objective lens (or mirror). Resolving power is the reciprocal of this: RP = D/(1.22λ). Therefore, increasing the diameter of the objective lens increases the resolving power. Using light of shorter wavelength also increases resolving power.",
     "correct_answer": "A",
-    "concept_tags": ["resolving-power-telescope", "objective-diameter", "rayleigh-criterion"],
+    "concept_tags": [
+      "resolving-power-telescope",
+      "objective-diameter",
+      "rayleigh-criterion"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Increasing the diameter of the objective lens", "is_correct": true },
-      { "key": "B", "text": "Increasing the focal length of the objective lens", "is_correct": false },
-      { "key": "C", "text": "Increasing the focal length of the eyepiece", "is_correct": false },
-      { "key": "D", "text": "Increasing the wavelength of light used", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Increasing the diameter of the objective lens",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Increasing the focal length of the objective lens",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Increasing the focal length of the eyepiece",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Increasing the wavelength of light used",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The resolving power formula \u03b8 = 1.22\u03bb/D depends on the diameter, not the focal length. Focal length affects magnifying power, not resolving power.", "misconception": "Confusing resolving power with magnifying power of a telescope" },
-      { "option_key": "C", "hint": "The eyepiece focal length affects magnification, not the ability to resolve two closely spaced objects.", "misconception": "Mixing up the roles of eyepiece and objective in resolution" },
-      { "option_key": "D", "hint": "Since \u03b8 = 1.22\u03bb/D, increasing \u03bb increases the minimum resolvable angle, which means the resolving power decreases.", "misconception": "Thinking larger wavelength gives better resolution" }
+      {
+        "option_key": "B",
+        "hint": "The resolving power formula θ = 1.22λ/D depends on the diameter, not the focal length. Focal length affects magnifying power, not resolving power.",
+        "misconception": "Confusing resolving power with magnifying power of a telescope"
+      },
+      {
+        "option_key": "C",
+        "hint": "The eyepiece focal length affects magnification, not the ability to resolve two closely spaced objects.",
+        "misconception": "Mixing up the roles of eyepiece and objective in resolution"
+      },
+      {
+        "option_key": "D",
+        "hint": "Since θ = 1.22λ/D, increasing λ increases the minimum resolvable angle, which means the resolving power decreases.",
+        "misconception": "Thinking larger wavelength gives better resolution"
+      }
     ]
   },
   {
     "id": "phy-waveopt-diffraction-08",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "In a single slit diffraction pattern, the intensity of the central maximum is I\u2080. The intensity at the first secondary maximum is approximately:",
-    "explanation": "In single slit diffraction, the intensity distribution is I = I\u2080 [sin(\u03b2/2)/(\u03b2/2)]\u00b2, where \u03b2 = (2\u03c0a sin\u03b8)/\u03bb. The first secondary maximum occurs approximately at \u03b2/2 \u2248 3\u03c0/2. The intensity at this point is I = I\u2080 [sin(3\u03c0/2)/(3\u03c0/2)]\u00b2 = I\u2080 [1/(3\u03c0/2)]\u00b2 = I\u2080 \u00d7 4/(9\u03c0\u00b2) \u2248 I\u2080/22. This is approximately 4.5% of the central maximum intensity.",
+    "question_text": "In a single slit diffraction pattern, the intensity of the central maximum is I₀. The intensity at the first secondary maximum is approximately:",
+    "explanation": "In single slit diffraction, the intensity distribution is I = I₀ [sin(β/2)/(β/2)]², where β = (2πa sinθ)/λ. The first secondary maximum occurs approximately at β/2 ≈ 3π/2. The intensity at this point is I = I₀ [sin(3π/2)/(3π/2)]² = I₀ [1/(3π/2)]² = I₀ × 4/(9π²) ≈ I₀/22. This is approximately 4.5% of the central maximum intensity.",
     "correct_answer": "D",
-    "concept_tags": ["intensity-distribution", "secondary-maxima", "single-slit-diffraction"],
+    "concept_tags": [
+      "intensity-distribution",
+      "secondary-maxima",
+      "single-slit-diffraction"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "I\u2080/2", "is_correct": false },
-      { "key": "B", "text": "I\u2080/4", "is_correct": false },
-      { "key": "C", "text": "I\u2080/9", "is_correct": false },
-      { "key": "D", "text": "I\u2080/22 (approximately)", "is_correct": true }
+      {
+        "key": "A",
+        "text": "I₀/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "I₀/4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "I₀/9",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "I₀/22 (approximately)",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "I\u2080/2 would mean the secondary maxima are very bright. In reality, the secondary maxima are much fainter than the central maximum.", "misconception": "Underestimating how rapidly intensity falls off in diffraction" },
-      { "option_key": "B", "hint": "I\u2080/4 is still too high. The intensity at secondary maxima follows the [sin(x)/x]\u00b2 function which drops off steeply.", "misconception": "Using incorrect formula for secondary maxima intensity" },
-      { "option_key": "C", "hint": "I\u2080/9 is close but incorrect. The exact value involves \u03c0\u00b2 in the denominator: 4/(9\u03c0\u00b2) \u2248 1/22.", "misconception": "Forgetting the \u03c0\u00b2 factor in the intensity formula" }
+      {
+        "option_key": "A",
+        "hint": "I₀/2 would mean the secondary maxima are very bright. In reality, the secondary maxima are much fainter than the central maximum.",
+        "misconception": "Underestimating how rapidly intensity falls off in diffraction"
+      },
+      {
+        "option_key": "B",
+        "hint": "I₀/4 is still too high. The intensity at secondary maxima follows the [sin(x)/x]² function which drops off steeply.",
+        "misconception": "Using incorrect formula for secondary maxima intensity"
+      },
+      {
+        "option_key": "C",
+        "hint": "I₀/9 is close but incorrect. The exact value involves π² in the denominator: 4/(9π²) ≈ 1/22.",
+        "misconception": "Forgetting the π² factor in the intensity formula"
+      }
     ]
   },
   {
@@ -204,124 +484,299 @@
     "question_type": "mcq",
     "difficulty": "medium",
     "question_text": "The resolving power of a microscope is given by:",
-    "explanation": "The resolving power of a microscope is the reciprocal of the minimum distance between two point objects that can be just resolved. Using Abbe's theory, the minimum resolvable distance is d_min = \u03bb/(2n sin\u03b8), where n sin\u03b8 is the numerical aperture (NA) of the objective. Therefore, resolving power = 1/d_min = 2n sin\u03b8/\u03bb. Higher numerical aperture and shorter wavelength improve the resolving power.",
+    "explanation": "The resolving power of a microscope is the reciprocal of the minimum distance between two point objects that can be just resolved. Using Abbe's theory, the minimum resolvable distance is d_min = λ/(2n sinθ), where n sinθ is the numerical aperture (NA) of the objective. Therefore, resolving power = 1/d_min = 2n sinθ/λ. Higher numerical aperture and shorter wavelength improve the resolving power.",
     "correct_answer": "C",
-    "concept_tags": ["resolving-power-microscope", "numerical-aperture", "limit-of-resolution"],
+    "concept_tags": [
+      "resolving-power-microscope",
+      "numerical-aperture",
+      "limit-of-resolution"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "D/(1.22\u03bb)", "is_correct": false },
-      { "key": "B", "text": "\u03bb/(2n sin\u03b8)", "is_correct": false },
-      { "key": "C", "text": "2n sin\u03b8/\u03bb", "is_correct": true },
-      { "key": "D", "text": "1.22\u03bb/D", "is_correct": false }
+      {
+        "key": "A",
+        "text": "D/(1.22λ)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "λ/(2n sinθ)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2n sinθ/λ",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1.22λ/D",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "D/(1.22\u03bb) is the resolving power of a telescope, not a microscope. Telescope resolution depends on the objective diameter D.", "misconception": "Confusing telescope resolving power formula with microscope" },
-      { "option_key": "B", "hint": "\u03bb/(2n sin\u03b8) is the limit of resolution (minimum resolvable distance), not the resolving power itself. Resolving power is the reciprocal of this.", "misconception": "Confusing limit of resolution with resolving power" },
-      { "option_key": "D", "hint": "1.22\u03bb/D is the limit of resolution of a telescope (minimum resolvable angle), not the resolving power of a microscope.", "misconception": "Mixing up telescope and microscope resolution formulae" }
+      {
+        "option_key": "A",
+        "hint": "D/(1.22λ) is the resolving power of a telescope, not a microscope. Telescope resolution depends on the objective diameter D.",
+        "misconception": "Confusing telescope resolving power formula with microscope"
+      },
+      {
+        "option_key": "B",
+        "hint": "λ/(2n sinθ) is the limit of resolution (minimum resolvable distance), not the resolving power itself. Resolving power is the reciprocal of this.",
+        "misconception": "Confusing limit of resolution with resolving power"
+      },
+      {
+        "option_key": "D",
+        "hint": "1.22λ/D is the limit of resolution of a telescope (minimum resolvable angle), not the resolving power of a microscope.",
+        "misconception": "Mixing up telescope and microscope resolution formulae"
+      }
     ]
   },
   {
     "id": "phy-waveopt-diffraction-10",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "A diffraction grating has 5000 lines per cm. The angular separation between the first order maxima of two spectral lines of wavelengths 5890 \u00c5 and 5896 \u00c5 is approximately:",
-    "explanation": "The grating equation is d sin\u03b8 = n\u03bb. The grating spacing d = 1/5000 cm = 2 \u00d7 10\u207b\u2074 cm = 2 \u00d7 10\u207b\u2076 m. For first order (n = 1): sin\u03b8\u2081 = \u03bb\u2081/d = 5890 \u00d7 10\u207b\u00b9\u2070 / (2 \u00d7 10\u207b\u2076) = 0.2945 and sin\u03b8\u2082 = 5896 \u00d7 10\u207b\u00b9\u2070 / (2 \u00d7 10\u207b\u2076) = 0.2948. The angular separation d\u03b8 \u2248 (d(sin\u03b8))/cos\u03b8. Since \u0394(sin\u03b8) = 3 \u00d7 10\u207b\u2074 and cos\u03b8 \u2248 cos(17.1\u00b0) \u2248 0.9554, we get d\u03b8 \u2248 3 \u00d7 10\u207b\u2074/0.9554 \u2248 3.14 \u00d7 10\u207b\u2074 rad \u2248 0.01\u00b0. So approximately 0.01\u00b0.",
+    "question_text": "A diffraction grating has 5000 lines per cm. The angular separation between the first order maxima of two spectral lines of wavelengths 5890 Å and 5896 Å is approximately:",
+    "explanation": "The grating equation is d sinθ = nλ. The grating spacing d = 1/5000 cm = 2 × 10⁻⁴ cm = 2 × 10⁻⁶ m. For first order (n = 1): sinθ₁ = λ₁/d = 5890 × 10⁻¹⁰ / (2 × 10⁻⁶) = 0.2945 and sinθ₂ = 5896 × 10⁻¹⁰ / (2 × 10⁻⁶) = 0.2948. The angular separation dθ ≈ (d(sinθ))/cosθ. Since Δ(sinθ) = 3 × 10⁻⁴ and cosθ ≈ cos(17.1°) ≈ 0.9554, we get dθ ≈ 3 × 10⁻⁴/0.9554 ≈ 3.14 × 10⁻⁴ rad ≈ 0.01°. So approximately 0.01°.",
     "correct_answer": "B",
-    "concept_tags": ["diffraction-grating", "angular-separation", "spectral-lines"],
+    "concept_tags": [
+      "diffraction-grating",
+      "angular-separation",
+      "spectral-lines"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "0.1\u00b0", "is_correct": false },
-      { "key": "B", "text": "0.01\u00b0", "is_correct": true },
-      { "key": "C", "text": "1\u00b0", "is_correct": false },
-      { "key": "D", "text": "0.001\u00b0", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.1°",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.01°",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1°",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.001°",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "0.1\u00b0 is ten times too large. The wavelength difference is only 6 \u00c5, which produces a very small angular separation in first order.", "misconception": "Error in order of magnitude calculation" },
-      { "option_key": "C", "hint": "1\u00b0 is far too large for such a small wavelength difference of just 6 \u00c5.", "misconception": "Gross overestimation of angular separation" },
-      { "option_key": "D", "hint": "0.001\u00b0 is ten times too small. Recheck the calculation of sin\u03b8 difference and the conversion to degrees.", "misconception": "Error in unit conversion from radians to degrees" }
+      {
+        "option_key": "A",
+        "hint": "0.1° is ten times too large. The wavelength difference is only 6 Å, which produces a very small angular separation in first order.",
+        "misconception": "Error in order of magnitude calculation"
+      },
+      {
+        "option_key": "C",
+        "hint": "1° is far too large for such a small wavelength difference of just 6 Å.",
+        "misconception": "Gross overestimation of angular separation"
+      },
+      {
+        "option_key": "D",
+        "hint": "0.001° is ten times too small. Recheck the calculation of sinθ difference and the conversion to degrees.",
+        "misconception": "Error in unit conversion from radians to degrees"
+      }
     ]
   },
   {
     "id": "phy-waveopt-diffraction-11",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "A telescope has an objective lens of diameter 200 cm. The minimum angular separation between two stars that can just be resolved by this telescope, for light of wavelength 5500 \u00c5, is approximately:",
-    "explanation": "By Rayleigh's criterion, the minimum angular separation \u03b8 = 1.22\u03bb/D. Given: \u03bb = 5500 \u00c5 = 5.5 \u00d7 10\u207b\u2077 m and D = 200 cm = 2 m. Therefore, \u03b8 = 1.22 \u00d7 5.5 \u00d7 10\u207b\u2077 / 2 = 1.22 \u00d7 2.75 \u00d7 10\u207b\u2077 = 3.355 \u00d7 10\u207b\u2077 rad \u2248 3.36 \u00d7 10\u207b\u2077 rad.",
+    "question_text": "A telescope has an objective lens of diameter 200 cm. The minimum angular separation between two stars that can just be resolved by this telescope, for light of wavelength 5500 Å, is approximately:",
+    "explanation": "By Rayleigh's criterion, the minimum angular separation θ = 1.22λ/D. Given: λ = 5500 Å = 5.5 × 10⁻⁷ m and D = 200 cm = 2 m. Therefore, θ = 1.22 × 5.5 × 10⁻⁷ / 2 = 1.22 × 2.75 × 10⁻⁷ = 3.355 × 10⁻⁷ rad ≈ 3.36 × 10⁻⁷ rad.",
     "correct_answer": "A",
-    "concept_tags": ["rayleigh-criterion", "telescope-resolution", "numerical-problem"],
+    "concept_tags": [
+      "rayleigh-criterion",
+      "telescope-resolution",
+      "numerical-problem"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "3.36 \u00d7 10\u207b\u2077 rad", "is_correct": true },
-      { "key": "B", "text": "6.72 \u00d7 10\u207b\u2077 rad", "is_correct": false },
-      { "key": "C", "text": "3.36 \u00d7 10\u207b\u2075 rad", "is_correct": false },
-      { "key": "D", "text": "1.68 \u00d7 10\u207b\u2077 rad", "is_correct": false }
+      {
+        "key": "A",
+        "text": "3.36 × 10⁻⁷ rad",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "6.72 × 10⁻⁷ rad",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3.36 × 10⁻⁵ rad",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.68 × 10⁻⁷ rad",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "6.72 \u00d7 10\u207b\u2077 rad is double the correct answer. You may have used D = 1 m instead of D = 2 m.", "misconception": "Incorrect unit conversion of diameter from cm to m" },
-      { "option_key": "C", "hint": "This answer is 100 times too large. Check your unit conversion of the wavelength from angstrom to metres.", "misconception": "Error in converting angstroms to metres" },
-      { "option_key": "D", "hint": "1.68 \u00d7 10\u207b\u2077 is half the correct answer. You may have used D = 4 m or missed the factor 1.22.", "misconception": "Computational error with the 1.22 factor" }
+      {
+        "option_key": "B",
+        "hint": "6.72 × 10⁻⁷ rad is double the correct answer. You may have used D = 1 m instead of D = 2 m.",
+        "misconception": "Incorrect unit conversion of diameter from cm to m"
+      },
+      {
+        "option_key": "C",
+        "hint": "This answer is 100 times too large. Check your unit conversion of the wavelength from angstrom to metres.",
+        "misconception": "Error in converting angstroms to metres"
+      },
+      {
+        "option_key": "D",
+        "hint": "1.68 × 10⁻⁷ is half the correct answer. You may have used D = 4 m or missed the factor 1.22.",
+        "misconception": "Computational error with the 1.22 factor"
+      }
     ]
   },
   {
     "id": "phy-waveopt-diffraction-12",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "A diffraction grating has 6000 lines/cm. The maximum number of orders visible with light of wavelength 5000 \u00c5 is:",
-    "explanation": "The grating equation is d sin\u03b8 = n\u03bb. The maximum order occurs when sin\u03b8 = 1 (i.e., \u03b8 = 90\u00b0). The grating spacing d = 1/6000 cm = 1.667 \u00d7 10\u207b\u2074 cm = 1.667 \u00d7 10\u207b\u2076 m. Maximum order n_max = d/\u03bb = 1.667 \u00d7 10\u207b\u2076 / (5 \u00d7 10\u207b\u2077) = 3.33. Since n must be an integer, the maximum order is n = 3. Counting both sides of the central maximum and the central maximum itself, the total number of orders visible is 2 \u00d7 3 + 1 = 7. However, when asking for the maximum order number, it is 3.",
+    "question_text": "A diffraction grating has 6000 lines/cm. The maximum number of orders visible with light of wavelength 5000 Å is:",
+    "explanation": "The grating equation is d sinθ = nλ. The maximum order occurs when sinθ = 1 (i.e., θ = 90°). The grating spacing d = 1/6000 cm = 1.667 × 10⁻⁴ cm = 1.667 × 10⁻⁶ m. Maximum order n_max = d/λ = 1.667 × 10⁻⁶ / (5 × 10⁻⁷) = 3.33. Since n must be an integer, the maximum order is n = 3. Counting both sides of the central maximum and the central maximum itself, the total number of orders visible is 2 × 3 + 1 = 7. However, when asking for the maximum order number, it is 3.",
     "correct_answer": "D",
-    "concept_tags": ["diffraction-grating", "maximum-order", "grating-equation"],
+    "concept_tags": [
+      "diffraction-grating",
+      "maximum-order",
+      "grating-equation"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "5", "is_correct": false },
-      { "key": "B", "text": "4", "is_correct": false },
-      { "key": "C", "text": "2", "is_correct": false },
-      { "key": "D", "text": "3", "is_correct": true }
+      {
+        "key": "A",
+        "text": "5",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "n_max = d/\u03bb = 3.33, so n cannot exceed 3. A value of 5 would require sin\u03b8 > 1, which is impossible.", "misconception": "Forgetting that sin\u03b8 cannot exceed 1" },
-      { "option_key": "B", "hint": "n = 4 would require sin\u03b8 = 4\u03bb/d = 4/3.33 = 1.2, which exceeds 1 and is physically impossible.", "misconception": "Rounding up instead of down for maximum integer order" },
-      { "option_key": "C", "hint": "n = 2 is an underestimate. Since d/\u03bb = 3.33, the third order (n = 3) is still possible as sin\u03b8 = 0.9 < 1.", "misconception": "Incorrectly computing d/\u03bb or taking too conservative an estimate" }
+      {
+        "option_key": "A",
+        "hint": "n_max = d/λ = 3.33, so n cannot exceed 3. A value of 5 would require sinθ > 1, which is impossible.",
+        "misconception": "Forgetting that sinθ cannot exceed 1"
+      },
+      {
+        "option_key": "B",
+        "hint": "n = 4 would require sinθ = 4λ/d = 4/3.33 = 1.2, which exceeds 1 and is physically impossible.",
+        "misconception": "Rounding up instead of down for maximum integer order"
+      },
+      {
+        "option_key": "C",
+        "hint": "n = 2 is an underestimate. Since d/λ = 3.33, the third order (n = 3) is still possible as sinθ = 0.9 < 1.",
+        "misconception": "Incorrectly computing d/λ or taking too conservative an estimate"
+      }
     ]
   },
   {
     "id": "phy-waveopt-diffraction-13",
     "question_type": "assertion_reasoning",
     "difficulty": "medium",
-    "question_text": "Assertion (A): The resolving power of a telescope increases with increase in the diameter of its objective lens.\nReason (R): The limit of resolution of a telescope is given by \u03b8 = 1.22\u03bb/D, where D is the diameter of the objective.",
-    "explanation": "The assertion is correct: increasing the diameter D of the objective lens decreases the minimum resolvable angle \u03b8 = 1.22\u03bb/D, which means the telescope can resolve finer angular details, i.e., its resolving power increases. The reason is also correct: the formula \u03b8 = 1.22\u03bb/D is indeed Rayleigh's criterion for the limit of resolution of a telescope. Moreover, the reason correctly explains why the assertion is true \u2014 as D increases, \u03b8 decreases, so resolving power (which is 1/\u03b8 or D/1.22\u03bb) increases.",
+    "question_text": "Assertion (A): The resolving power of a telescope increases with increase in the diameter of its objective lens.\nReason (R): The limit of resolution of a telescope is given by θ = 1.22λ/D, where D is the diameter of the objective.",
+    "explanation": "The assertion is correct: increasing the diameter D of the objective lens decreases the minimum resolvable angle θ = 1.22λ/D, which means the telescope can resolve finer angular details, i.e., its resolving power increases. The reason is also correct: the formula θ = 1.22λ/D is indeed Rayleigh's criterion for the limit of resolution of a telescope. Moreover, the reason correctly explains why the assertion is true — as D increases, θ decreases, so resolving power (which is 1/θ or D/1.22λ) increases.",
     "correct_answer": "A",
-    "concept_tags": ["resolving-power-telescope", "rayleigh-criterion", "objective-diameter"],
+    "concept_tags": [
+      "resolving-power-telescope",
+      "rayleigh-criterion",
+      "objective-diameter"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The reason directly explains the assertion: since \u03b8 = 1.22\u03bb/D, increasing D decreases \u03b8, hence increasing resolving power. The reason IS the explanation.", "misconception": "Failing to recognise the direct causal link between the formula and the assertion" },
-      { "option_key": "C", "hint": "The formula \u03b8 = 1.22\u03bb/D is a well-established result (Rayleigh's criterion) and is correct.", "misconception": "Doubting the validity of Rayleigh's criterion" },
-      { "option_key": "D", "hint": "The assertion is a well-known fact: larger telescope objectives provide better angular resolution.", "misconception": "Confusing resolving power with magnifying power" }
+      {
+        "option_key": "B",
+        "hint": "The reason directly explains the assertion: since θ = 1.22λ/D, increasing D decreases θ, hence increasing resolving power. The reason IS the explanation.",
+        "misconception": "Failing to recognise the direct causal link between the formula and the assertion"
+      },
+      {
+        "option_key": "C",
+        "hint": "The formula θ = 1.22λ/D is a well-established result (Rayleigh's criterion) and is correct.",
+        "misconception": "Doubting the validity of Rayleigh's criterion"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is a well-known fact: larger telescope objectives provide better angular resolution.",
+        "misconception": "Confusing resolving power with magnifying power"
+      }
     ]
   },
   {
@@ -329,74 +784,179 @@
     "question_type": "assertion_reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): In a single slit diffraction experiment, if the slit width is made very large compared to the wavelength, the diffraction pattern disappears and the screen is uniformly illuminated.\nReason (R): Diffraction effects are significant only when the size of the obstacle or aperture is comparable to the wavelength of light.",
-    "explanation": "The assertion is correct: when the slit width 'a' is much larger than the wavelength \u03bb (a >> \u03bb), the angular width of the central maximum 2\u03bb/a becomes extremely small, essentially approaching zero. The diffraction fringes become so narrow and closely spaced that they are unobservable, and the light appears to travel in straight lines producing a uniformly illuminated region behind the slit (geometric shadow limit). The reason is also correct: diffraction is most prominent when the aperture size is of the order of the wavelength. Furthermore, the reason correctly explains the assertion \u2014 when 'a' >> \u03bb, the aperture is no longer comparable to the wavelength, so diffraction effects become negligible.",
+    "explanation": "The assertion is correct: when the slit width 'a' is much larger than the wavelength λ (a >> λ), the angular width of the central maximum 2λ/a becomes extremely small, essentially approaching zero. The diffraction fringes become so narrow and closely spaced that they are unobservable, and the light appears to travel in straight lines producing a uniformly illuminated region behind the slit (geometric shadow limit). The reason is also correct: diffraction is most prominent when the aperture size is of the order of the wavelength. Furthermore, the reason correctly explains the assertion — when 'a' >> λ, the aperture is no longer comparable to the wavelength, so diffraction effects become negligible.",
     "correct_answer": "A",
-    "concept_tags": ["slit-width-effect", "diffraction-condition", "wavelength-comparison"],
+    "concept_tags": [
+      "slit-width-effect",
+      "diffraction-condition",
+      "wavelength-comparison"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The reason explains exactly why the diffraction pattern disappears: when the slit is much larger than \u03bb, the aperture size is no longer comparable to the wavelength, making diffraction negligible. This is a direct explanation.", "misconception": "Not seeing the direct causal connection between the two statements" },
-      { "option_key": "C", "hint": "The reason is a well-established principle in wave optics and is correct. Diffraction is indeed most noticeable when aperture size is comparable to wavelength.", "misconception": "Incorrectly rejecting a fundamental diffraction principle" },
-      { "option_key": "D", "hint": "The assertion is correct. In the limit a >> \u03bb, the angular spread 2\u03bb/a \u2192 0, and the pattern merges into uniform illumination.", "misconception": "Thinking diffraction always occurs regardless of slit width to wavelength ratio" }
+      {
+        "option_key": "B",
+        "hint": "The reason explains exactly why the diffraction pattern disappears: when the slit is much larger than λ, the aperture size is no longer comparable to the wavelength, making diffraction negligible. This is a direct explanation.",
+        "misconception": "Not seeing the direct causal connection between the two statements"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is a well-established principle in wave optics and is correct. Diffraction is indeed most noticeable when aperture size is comparable to wavelength.",
+        "misconception": "Incorrectly rejecting a fundamental diffraction principle"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. In the limit a >> λ, the angular spread 2λ/a → 0, and the pattern merges into uniform illumination.",
+        "misconception": "Thinking diffraction always occurs regardless of slit width to wavelength ratio"
+      }
     ]
   },
   {
     "id": "phy-waveopt-diffraction-15",
     "question_type": "match_the_following",
     "difficulty": "medium",
-    "question_text": "Match Column I with Column II:\n\nColumn I:\nA. Resolving power of telescope\nB. Limit of resolution of microscope\nC. Angular width of central maximum (single slit)\nD. Condition for nth minimum (single slit)\n\nColumn II:\n1. a sin \u03b8 = n\u03bb\n2. D/(1.22\u03bb)\n3. \u03bb/(2n sin\u03b8)\n4. 2\u03bb/a",
-    "explanation": "A-2: The resolving power of a telescope is D/(1.22\u03bb), where D is the objective diameter. B-3: The limit of resolution of a microscope is d_min = \u03bb/(2n sin\u03b8), where n sin\u03b8 is the numerical aperture. C-4: The angular width of the central maximum in single slit diffraction is 2\u03bb/a. D-1: The condition for the nth minimum in single slit diffraction is a sin \u03b8 = n\u03bb.",
+    "question_text": "Match Column I with Column II:\n\nColumn I:\nA. Resolving power of telescope\nB. Limit of resolution of microscope\nC. Angular width of central maximum (single slit)\nD. Condition for nth minimum (single slit)\n\nColumn II:\n1. a sin θ = nλ\n2. D/(1.22λ)\n3. λ/(2n sinθ)\n4. 2λ/a",
+    "explanation": "A-2: The resolving power of a telescope is D/(1.22λ), where D is the objective diameter. B-3: The limit of resolution of a microscope is d_min = λ/(2n sinθ), where n sinθ is the numerical aperture. C-4: The angular width of the central maximum in single slit diffraction is 2λ/a. D-1: The condition for the nth minimum in single slit diffraction is a sin θ = nλ.",
     "correct_answer": "B",
-    "concept_tags": ["resolving-power", "diffraction-formulae", "matching-type"],
+    "concept_tags": [
+      "resolving-power",
+      "diffraction-formulae",
+      "matching-type"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "A-2, B-4, C-3, D-1", "is_correct": false },
-      { "key": "B", "text": "A-2, B-3, C-4, D-1", "is_correct": true },
-      { "key": "C", "text": "A-3, B-2, C-1, D-4", "is_correct": false },
-      { "key": "D", "text": "A-4, B-1, C-2, D-3", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-2, B-4, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-3, C-4, D-1",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-2, C-1, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-4, B-1, C-2, D-3",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This incorrectly matches B (microscope limit of resolution) with 4 (2\u03bb/a). The formula 2\u03bb/a is the angular width of the central maximum, not the microscope resolution.", "misconception": "Confusing diffraction angular width formula with microscope resolution" },
-      { "option_key": "C", "hint": "A-3 would mean the telescope resolving power is \u03bb/(2n sin\u03b8), which is actually the microscope's limit of resolution formula.", "misconception": "Swapping telescope and microscope formulae" },
-      { "option_key": "D", "hint": "This matching is entirely wrong. A-4 would assign the angular width formula to telescope resolving power.", "misconception": "Randomly assigning formulae without understanding their physical meaning" }
+      {
+        "option_key": "A",
+        "hint": "This incorrectly matches B (microscope limit of resolution) with 4 (2λ/a). The formula 2λ/a is the angular width of the central maximum, not the microscope resolution.",
+        "misconception": "Confusing diffraction angular width formula with microscope resolution"
+      },
+      {
+        "option_key": "C",
+        "hint": "A-3 would mean the telescope resolving power is λ/(2n sinθ), which is actually the microscope's limit of resolution formula.",
+        "misconception": "Swapping telescope and microscope formulae"
+      },
+      {
+        "option_key": "D",
+        "hint": "This matching is entirely wrong. A-4 would assign the angular width formula to telescope resolving power.",
+        "misconception": "Randomly assigning formulae without understanding their physical meaning"
+      }
     ]
   },
   {
     "id": "phy-waveopt-diffraction-16",
     "question_type": "match_the_following",
     "difficulty": "hard",
-    "question_text": "Match Column I with Column II:\n\nColumn I:\nA. Fresnel diffraction\nB. Fraunhofer diffraction\nC. Diffraction grating resolving power\nD. Width of central maximum on screen (single slit)\n\nColumn II:\n1. 2\u03bbD/a (where D is slit-to-screen distance)\n2. nN (where n is order and N is total number of slits)\n3. Source and screen at infinite distance\n4. Source or screen at finite distance",
-    "explanation": "A-4: In Fresnel diffraction, either the source or the screen (or both) is at a finite distance from the diffracting element. B-3: In Fraunhofer diffraction, both source and screen are effectively at infinite distance (parallel incident rays and observation at infinity or focal plane of lens). C-2: The resolving power of a diffraction grating is nN, where n is the order of diffraction and N is the total number of slits. D-1: The linear width of the central maximum on the screen in single slit diffraction is 2\u03bbD/a, where D is the distance from the slit to the screen.",
+    "question_text": "Match Column I with Column II:\n\nColumn I:\nA. Fresnel diffraction\nB. Fraunhofer diffraction\nC. Diffraction grating resolving power\nD. Width of central maximum on screen (single slit)\n\nColumn II:\n1. 2λD/a (where D is slit-to-screen distance)\n2. nN (where n is order and N is total number of slits)\n3. Source and screen at infinite distance\n4. Source or screen at finite distance",
+    "explanation": "A-4: In Fresnel diffraction, either the source or the screen (or both) is at a finite distance from the diffracting element. B-3: In Fraunhofer diffraction, both source and screen are effectively at infinite distance (parallel incident rays and observation at infinity or focal plane of lens). C-2: The resolving power of a diffraction grating is nN, where n is the order of diffraction and N is the total number of slits. D-1: The linear width of the central maximum on the screen in single slit diffraction is 2λD/a, where D is the distance from the slit to the screen.",
     "correct_answer": "C",
-    "concept_tags": ["fresnel-fraunhofer-comparison", "grating-resolving-power", "central-maximum-width"],
+    "concept_tags": [
+      "fresnel-fraunhofer-comparison",
+      "grating-resolving-power",
+      "central-maximum-width"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "A-3, B-4, C-2, D-1", "is_correct": false },
-      { "key": "B", "text": "A-4, B-3, C-1, D-2", "is_correct": false },
-      { "key": "C", "text": "A-4, B-3, C-2, D-1", "is_correct": true },
-      { "key": "D", "text": "A-3, B-4, C-1, D-2", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-3, B-4, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-4, B-3, C-1, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-3, C-2, D-1",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-4, C-1, D-2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "A-3 says Fresnel diffraction has source at infinite distance, but that describes Fraunhofer diffraction. Fresnel involves finite distances.", "misconception": "Swapping Fresnel and Fraunhofer diffraction conditions" },
-      { "option_key": "B", "hint": "C-1 would mean grating resolving power is 2\u03bbD/a, which is actually the linear width of the central maximum, not resolving power.", "misconception": "Confusing the linear width formula with resolving power" },
-      { "option_key": "D", "hint": "This swaps Fresnel and Fraunhofer conditions and also swaps the resolving power and width formulae.", "misconception": "Multiple misidentifications of Fresnel/Fraunhofer and grating properties" }
+      {
+        "option_key": "A",
+        "hint": "A-3 says Fresnel diffraction has source at infinite distance, but that describes Fraunhofer diffraction. Fresnel involves finite distances.",
+        "misconception": "Swapping Fresnel and Fraunhofer diffraction conditions"
+      },
+      {
+        "option_key": "B",
+        "hint": "C-1 would mean grating resolving power is 2λD/a, which is actually the linear width of the central maximum, not resolving power.",
+        "misconception": "Confusing the linear width formula with resolving power"
+      },
+      {
+        "option_key": "D",
+        "hint": "This swaps Fresnel and Fraunhofer conditions and also swaps the resolving power and width formulae.",
+        "misconception": "Multiple misidentifications of Fresnel/Fraunhofer and grating properties"
+      }
     ]
   },
   {
@@ -404,24 +964,59 @@
     "question_type": "true_false",
     "difficulty": "easy",
     "question_text": "In single slit diffraction, the central maximum is twice as wide as the secondary maxima.",
-    "explanation": "This statement is TRUE. In single slit Fraunhofer diffraction, the minima occur at angles given by a sin\u03b8 = n\u03bb (n = \u00b11, \u00b12, ...). The central maximum extends from the first minimum on one side (\u03b8 = -\u03bb/a) to the first minimum on the other side (\u03b8 = +\u03bb/a), giving an angular width of 2\u03bb/a. Each secondary maximum has an angular width of approximately \u03bb/a (the spacing between consecutive minima). Therefore, the central maximum is twice the width of any secondary maximum.",
+    "explanation": "This statement is TRUE. In single slit Fraunhofer diffraction, the minima occur at angles given by a sinθ = nλ (n = ±1, ±2, ...). The central maximum extends from the first minimum on one side (θ = -λ/a) to the first minimum on the other side (θ = +λ/a), giving an angular width of 2λ/a. Each secondary maximum has an angular width of approximately λ/a (the spacing between consecutive minima). Therefore, the central maximum is twice the width of any secondary maximum.",
     "correct_answer": "A",
-    "concept_tags": ["central-maximum", "secondary-maxima", "angular-width"],
+    "concept_tags": [
+      "central-maximum",
+      "secondary-maxima",
+      "angular-width"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The central maximum spans from -\u03bb/a to +\u03bb/a (width = 2\u03bb/a), while each secondary maximum spans about \u03bb/a. The ratio is indeed 2:1.", "misconception": "Thinking all maxima in diffraction have equal width" },
-      { "option_key": "C", "hint": "This is a placeholder option.", "misconception": null },
-      { "option_key": "D", "hint": "This is a placeholder option.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The central maximum spans from -λ/a to +λ/a (width = 2λ/a), while each secondary maximum spans about λ/a. The ratio is indeed 2:1.",
+        "misconception": "Thinking all maxima in diffraction have equal width"
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a placeholder option.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a placeholder option.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -429,24 +1024,59 @@
     "question_type": "true_false",
     "difficulty": "easy",
     "question_text": "The resolving power of a microscope increases when the wavelength of light used is increased.",
-    "explanation": "This statement is FALSE. The resolving power of a microscope is given by RP = 2n sin\u03b8/\u03bb, where n sin\u03b8 is the numerical aperture. Since \u03bb appears in the denominator, increasing the wavelength decreases the resolving power. To increase the resolving power of a microscope, one should use light of shorter wavelength (such as ultraviolet light or electron beams in electron microscopes).",
+    "explanation": "This statement is FALSE. The resolving power of a microscope is given by RP = 2n sinθ/λ, where n sinθ is the numerical aperture. Since λ appears in the denominator, increasing the wavelength decreases the resolving power. To increase the resolving power of a microscope, one should use light of shorter wavelength (such as ultraviolet light or electron beams in electron microscopes).",
     "correct_answer": "B",
-    "concept_tags": ["resolving-power-microscope", "wavelength-effect", "inverse-relationship"],
+    "concept_tags": [
+      "resolving-power-microscope",
+      "wavelength-effect",
+      "inverse-relationship"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Since RP = 2n sin\u03b8/\u03bb, increasing \u03bb makes the denominator larger, reducing resolving power. Shorter wavelengths improve resolution.", "misconception": "Thinking wavelength and resolving power are directly proportional" },
-      { "option_key": "C", "hint": "This is a placeholder option.", "misconception": null },
-      { "option_key": "D", "hint": "This is a placeholder option.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Since RP = 2n sinθ/λ, increasing λ makes the denominator larger, reducing resolving power. Shorter wavelengths improve resolution.",
+        "misconception": "Thinking wavelength and resolving power are directly proportional"
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a placeholder option.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a placeholder option.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -454,49 +1084,120 @@
     "question_type": "fill_in_the_blanks",
     "difficulty": "medium",
     "question_text": "The resolving power of a diffraction grating in the nth order with a total of N slits is given by RP = _____.",
-    "explanation": "The resolving power of a diffraction grating is defined as RP = \u03bb/\u0394\u03bb, where \u0394\u03bb is the minimum resolvable wavelength difference. According to the Rayleigh criterion applied to a diffraction grating, the resolving power equals the product of the order of diffraction (n) and the total number of slits (N): RP = nN. This means higher order diffraction and more slits both improve the ability to distinguish closely spaced spectral lines.",
+    "explanation": "The resolving power of a diffraction grating is defined as RP = λ/Δλ, where Δλ is the minimum resolvable wavelength difference. According to the Rayleigh criterion applied to a diffraction grating, the resolving power equals the product of the order of diffraction (n) and the total number of slits (N): RP = nN. This means higher order diffraction and more slits both improve the ability to distinguish closely spaced spectral lines.",
     "correct_answer": "D",
-    "concept_tags": ["diffraction-grating", "resolving-power-grating", "chromatic-resolving-power"],
+    "concept_tags": [
+      "diffraction-grating",
+      "resolving-power-grating",
+      "chromatic-resolving-power"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "N/n", "is_correct": false },
-      { "key": "B", "text": "n/N", "is_correct": false },
-      { "key": "C", "text": "(n + N)", "is_correct": false },
-      { "key": "D", "text": "nN", "is_correct": true }
+      {
+        "key": "A",
+        "text": "N/n",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "n/N",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "(n + N)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "nN",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "N/n would mean resolving power decreases with higher order, which contradicts the fact that higher order gives better spectral resolution.", "misconception": "Inverting the relationship between order number and resolving power" },
-      { "option_key": "B", "hint": "n/N would give a very small number for large N, but more slits should increase (not decrease) resolving power.", "misconception": "Swapping numerator and denominator" },
-      { "option_key": "C", "hint": "The resolving power is a product, not a sum. The formula RP = nN is derived from the condition for just resolving two wavelengths.", "misconception": "Confusing multiplication with addition in the formula" }
+      {
+        "option_key": "A",
+        "hint": "N/n would mean resolving power decreases with higher order, which contradicts the fact that higher order gives better spectral resolution.",
+        "misconception": "Inverting the relationship between order number and resolving power"
+      },
+      {
+        "option_key": "B",
+        "hint": "n/N would give a very small number for large N, but more slits should increase (not decrease) resolving power.",
+        "misconception": "Swapping numerator and denominator"
+      },
+      {
+        "option_key": "C",
+        "hint": "The resolving power is a product, not a sum. The formula RP = nN is derived from the condition for just resolving two wavelengths.",
+        "misconception": "Confusing multiplication with addition in the formula"
+      }
     ]
   },
   {
     "id": "phy-waveopt-diffraction-20",
     "question_type": "scenario_based",
     "difficulty": "medium",
-    "question_text": "An astronomer is observing binary stars (two stars very close together) using two telescopes: Telescope P with an objective diameter of 100 cm and Telescope Q with an objective diameter of 50 cm. Both observations are made using light of wavelength 5500 \u00c5. If Telescope P can just resolve the two stars, what can be said about the observation through Telescope Q?",
-    "explanation": "The minimum angular separation that can be resolved is \u03b8 = 1.22\u03bb/D. For Telescope P: \u03b8_P = 1.22 \u00d7 5.5 \u00d7 10\u207b\u2077 / 1.0 = 6.71 \u00d7 10\u207b\u2077 rad. For Telescope Q: \u03b8_Q = 1.22 \u00d7 5.5 \u00d7 10\u207b\u2077 / 0.5 = 1.342 \u00d7 10\u207b\u2076 rad. Since Q has half the diameter, its limit of resolution is twice that of P. If Telescope P just resolves the two stars (their angular separation equals \u03b8_P), then Telescope Q cannot resolve them because its limit of resolution \u03b8_Q = 2\u03b8_P is larger than the actual angular separation of the stars. The two stars would appear as a single unresolved image through Telescope Q.",
+    "question_text": "An astronomer is observing binary stars (two stars very close together) using two telescopes: Telescope P with an objective diameter of 100 cm and Telescope Q with an objective diameter of 50 cm. Both observations are made using light of wavelength 5500 Å. If Telescope P can just resolve the two stars, what can be said about the observation through Telescope Q?",
+    "explanation": "The minimum angular separation that can be resolved is θ = 1.22λ/D. For Telescope P: θ_P = 1.22 × 5.5 × 10⁻⁷ / 1.0 = 6.71 × 10⁻⁷ rad. For Telescope Q: θ_Q = 1.22 × 5.5 × 10⁻⁷ / 0.5 = 1.342 × 10⁻⁶ rad. Since Q has half the diameter, its limit of resolution is twice that of P. If Telescope P just resolves the two stars (their angular separation equals θ_P), then Telescope Q cannot resolve them because its limit of resolution θ_Q = 2θ_P is larger than the actual angular separation of the stars. The two stars would appear as a single unresolved image through Telescope Q.",
     "correct_answer": "C",
-    "concept_tags": ["rayleigh-criterion", "telescope-resolution", "scenario-based", "binary-stars"],
+    "concept_tags": [
+      "rayleigh-criterion",
+      "telescope-resolution",
+      "scenario-based",
+      "binary-stars"
+    ],
     "topic": "Diffraction and Resolving Power",
     "subject": "physics",
     "chapter": "Wave Optics",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
     "options": [
-      { "key": "A", "text": "Telescope Q will also just resolve the two stars", "is_correct": false },
-      { "key": "B", "text": "Telescope Q will resolve the stars more clearly than Telescope P", "is_correct": false },
-      { "key": "C", "text": "Telescope Q will not be able to resolve the two stars", "is_correct": true },
-      { "key": "D", "text": "The resolving power of both telescopes is the same since they use the same wavelength", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Telescope Q will also just resolve the two stars",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Telescope Q will resolve the stars more clearly than Telescope P",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Telescope Q will not be able to resolve the two stars",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "The resolving power of both telescopes is the same since they use the same wavelength",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Telescope Q has a smaller objective (50 cm vs 100 cm), so its limit of resolution \u03b8 = 1.22\u03bb/D is larger. It cannot match Telescope P's resolving ability.", "misconception": "Ignoring the effect of objective diameter on resolution" },
-      { "option_key": "B", "hint": "A smaller objective diameter gives worse (not better) resolution. Telescope Q's minimum resolvable angle is double that of Telescope P.", "misconception": "Thinking smaller telescopes have better resolution" },
-      { "option_key": "D", "hint": "Resolving power depends on both \u03bb and D. Although the wavelength is the same, the different diameters give different resolving powers: RP = D/(1.22\u03bb).", "misconception": "Thinking resolving power depends only on wavelength" }
+      {
+        "option_key": "A",
+        "hint": "Telescope Q has a smaller objective (50 cm vs 100 cm), so its limit of resolution θ = 1.22λ/D is larger. It cannot match Telescope P's resolving ability.",
+        "misconception": "Ignoring the effect of objective diameter on resolution"
+      },
+      {
+        "option_key": "B",
+        "hint": "A smaller objective diameter gives worse (not better) resolution. Telescope Q's minimum resolvable angle is double that of Telescope P.",
+        "misconception": "Thinking smaller telescopes have better resolution"
+      },
+      {
+        "option_key": "D",
+        "hint": "Resolving power depends on both λ and D. Although the wavelength is the same, the different diameters give different resolving powers: RP = D/(1.22λ).",
+        "misconception": "Thinking resolving power depends only on wavelength"
+      }
     ]
   }
 ]
