@@ -1,0 +1,1210 @@
+[
+  {
+    "id": "cuet-phy-semi-pn-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In a p-n junction diode under forward bias, the width of the depletion region:",
+    "explanation": "When a p-n junction is forward biased (positive terminal connected to p-side), the applied voltage opposes the built-in potential barrier. This reduces the electric field in the depletion region, allowing majority carriers (holes from p-side and electrons from n-side) to diffuse across the junction. As a result, the depletion region width decreases. Conversely, under reverse bias, the depletion region widens because the applied voltage adds to the built-in potential.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "forward-bias",
+      "depletion-region",
+      "barrier-potential",
+      "p-n-junction"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Decreases",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Increases",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Remains unchanged",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "First increases then decreases",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The depletion region increases under reverse bias, not forward bias. Forward bias reduces the barrier potential, narrowing the depletion region.",
+        "misconception": "Confusing forward bias with reverse bias effects on the depletion region"
+      },
+      {
+        "option_key": "C",
+        "hint": "The depletion width is sensitive to applied voltage. An external bias always alters the effective potential across the junction, thereby changing the depletion width.",
+        "misconception": "Assuming the depletion region is fixed regardless of external bias"
+      },
+      {
+        "option_key": "D",
+        "hint": "There is no two-step behavior in forward bias. The depletion region monotonically decreases as forward voltage increases.",
+        "misconception": "Incorrectly assuming a non-monotonic response to forward bias"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In a p-type semiconductor, the majority charge carriers are:",
+    "explanation": "A p-type semiconductor is formed by doping a pure (intrinsic) semiconductor like silicon with a trivalent impurity (e.g., boron, aluminium, gallium, indium). Each trivalent atom accepts an electron from a neighbouring silicon atom, creating a hole. Therefore, holes become the majority carriers and electrons remain the minority carriers in a p-type semiconductor.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "p-type-semiconductor",
+      "majority-carriers",
+      "holes",
+      "trivalent-doping"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Electrons",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Holes",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Protons",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Neutrons",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Electrons are the majority carriers in an n-type semiconductor, not in p-type. The 'p' in p-type stands for positive (holes).",
+        "misconception": "Confusing n-type and p-type majority carriers"
+      },
+      {
+        "option_key": "C",
+        "hint": "Protons are subatomic particles bound in the nucleus. They do not act as charge carriers in semiconductors.",
+        "misconception": "Confusing mobile charge carriers in a crystal with nuclear particles"
+      },
+      {
+        "option_key": "D",
+        "hint": "Neutrons are electrically neutral nuclear particles. They cannot serve as charge carriers in any material.",
+        "misconception": "Confusing charge carriers with nuclear constituents"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The barrier potential of a silicon p-n junction diode at room temperature is approximately:",
+    "explanation": "The barrier potential (also called built-in potential or contact potential) depends on the semiconductor material. For silicon (Si) at room temperature, the barrier potential is approximately 0.7 V. For germanium (Ge), it is approximately 0.3 V. This potential arises due to the diffusion of majority carriers across the junction during its formation, creating an electric field in the depletion region.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "barrier-potential",
+      "silicon",
+      "built-in-potential",
+      "p-n-junction"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.1 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.3 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.7 V",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1.5 V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0.1 V is too low for any standard semiconductor junction. Even germanium has a barrier potential of about 0.3 V.",
+        "misconception": "Underestimating the barrier potential of semiconductor junctions"
+      },
+      {
+        "option_key": "B",
+        "hint": "0.3 V is the barrier potential for a germanium diode, not a silicon diode. Silicon has a wider band gap and hence a higher barrier potential.",
+        "misconception": "Confusing silicon barrier potential with germanium barrier potential"
+      },
+      {
+        "option_key": "D",
+        "hint": "1.5 V is far too high for a single p-n junction. This value is closer to the voltage of a dry cell battery, not a diode barrier potential.",
+        "misconception": "Overestimating the built-in potential of a silicon junction"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The energy band gap of silicon at room temperature is approximately:",
+    "explanation": "The energy band gap (forbidden gap) of silicon at room temperature is approximately 1.1 eV. For germanium, it is about 0.67 eV. The band gap determines many electrical and optical properties of a semiconductor. Materials with a band gap of 0 eV are conductors, those with a small gap (< 3 eV) are semiconductors, and those with a large gap (> 3 eV) are insulators.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "energy-band-gap",
+      "silicon",
+      "forbidden-gap",
+      "semiconductor"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.01 eV",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.67 eV",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "5.5 eV",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.1 eV",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0.01 eV is far too small and would make the material behave almost like a conductor at room temperature.",
+        "misconception": "Confusing the band gap of semiconductors with metals which have overlapping bands"
+      },
+      {
+        "option_key": "B",
+        "hint": "0.67 eV is the band gap of germanium, not silicon. Silicon has a wider band gap than germanium.",
+        "misconception": "Confusing the band gap values of silicon and germanium"
+      },
+      {
+        "option_key": "C",
+        "hint": "5.5 eV is the band gap of diamond, which is an insulator. Semiconductors have band gaps typically between 0.5 eV and 3 eV.",
+        "misconception": "Confusing semiconductor band gap with insulator band gap"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In the V-I characteristics of a p-n junction diode, the forward current increases sharply after the applied voltage exceeds:",
+    "explanation": "In the forward-biased V-I characteristics, the current is negligible until the applied voltage overcomes the barrier potential (also called the knee voltage or cut-in voltage). For silicon, this is approximately 0.7 V and for germanium approximately 0.3 V. Beyond this threshold, the current increases approximately exponentially with voltage, as described by the Shockley diode equation: I = I₀(e^(eV/kT) − 1).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "V-I-characteristics",
+      "knee-voltage",
+      "cut-in-voltage",
+      "forward-bias",
+      "silicon-diode"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The barrier potential (knee voltage) of the diode",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "The breakdown voltage of the diode",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zero applied voltage",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The reverse saturation current value",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Breakdown voltage is a reverse-bias phenomenon where large reverse current flows. The sharp rise in forward current occurs at the knee voltage, not at breakdown.",
+        "misconception": "Confusing forward knee voltage with reverse breakdown voltage"
+      },
+      {
+        "option_key": "C",
+        "hint": "At zero applied voltage, the junction is in thermal equilibrium and no net current flows. The sharp rise occurs only after the barrier potential is overcome.",
+        "misconception": "Assuming current rises sharply from zero voltage"
+      },
+      {
+        "option_key": "D",
+        "hint": "The reverse saturation current I₀ is a tiny current in reverse bias. It is not a voltage threshold that triggers forward current increase.",
+        "misconception": "Confusing reverse saturation current with forward bias voltage threshold"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When a p-n junction is formed, the diffusion current flows:",
+    "explanation": "When a p-n junction is formed, majority carriers on each side tend to diffuse across the junction due to the concentration gradient. Holes from the p-side (higher concentration) diffuse to the n-side, and electrons from the n-side (higher concentration) diffuse to the p-side. The conventional current (direction of positive charge movement) due to this diffusion is from the p-side to the n-side. This diffusion exposes immobile ions in the depletion region, creating an electric field that drives a drift current in the opposite direction. At equilibrium, the diffusion and drift currents balance each other.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "diffusion-current",
+      "p-n-junction-formation",
+      "majority-carriers",
+      "concentration-gradient"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "From n-side to p-side",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "From p-side to n-side",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Equally in both directions",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Only within the depletion region",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The drift current (due to the built-in electric field) flows from n-side to p-side. The diffusion current flows in the opposite direction: p-side to n-side.",
+        "misconception": "Confusing the direction of diffusion current with drift current"
+      },
+      {
+        "option_key": "C",
+        "hint": "Diffusion is directional—majority carriers move from high to low concentration. Holes diffuse p→n and electrons n→p, both contributing to conventional current from p to n.",
+        "misconception": "Assuming diffusion current has no net direction"
+      },
+      {
+        "option_key": "D",
+        "hint": "Diffusion current involves majority carriers crossing the junction. It is not confined to the depletion region; carriers diffuse from the bulk regions toward and across the junction.",
+        "misconception": "Incorrectly restricting diffusion current to the depletion region only"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a reverse-biased p-n junction, the current is mainly due to:",
+    "explanation": "In reverse bias, the applied voltage increases the barrier potential, preventing majority carriers from crossing the junction. However, minority carriers (electrons in the p-side and holes in the n-side) that are thermally generated near the depletion region are swept across by the electric field, producing a small reverse saturation current. This current is nearly independent of the applied reverse voltage and depends primarily on temperature, as it originates from thermally generated electron-hole pairs.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "reverse-bias",
+      "minority-carriers",
+      "reverse-saturation-current",
+      "thermal-generation"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Majority carriers from both sides",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Only holes from the n-side",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Minority carriers drifting across the junction",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Free electrons from the external circuit entering the depletion region",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Majority carriers are repelled by the increased barrier in reverse bias. They cannot cross the junction; hence they do not contribute to reverse current.",
+        "misconception": "Assuming majority carriers can overcome the enhanced barrier in reverse bias"
+      },
+      {
+        "option_key": "B",
+        "hint": "While holes in the n-side (minority carriers) do contribute, electrons in the p-side (also minority carriers) contribute equally. The current is due to all minority carriers, not just holes.",
+        "misconception": "Considering only one type of minority carrier in reverse bias current"
+      },
+      {
+        "option_key": "D",
+        "hint": "External circuit electrons enter at the terminal contacts, not directly into the depletion region. The reverse current through the junction is due to internally generated minority carriers.",
+        "misconception": "Confusing internal junction current with external circuit electron flow"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The depletion region in a p-n junction is formed due to:",
+    "explanation": "When a p-n junction is formed, electrons from the n-side and holes from the p-side diffuse across the junction due to their concentration gradients. As they recombine near the junction, they leave behind uncompensated immobile ions: negative acceptor ions (NA⁻) on the p-side and positive donor ions (ND⁺) on the n-side. This region of immobile ions, devoid of free charge carriers, is the depletion region. The immobile ions create an internal electric field directed from n to p, which opposes further diffusion.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "depletion-region",
+      "immobile-ions",
+      "diffusion",
+      "recombination",
+      "p-n-junction-formation"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Accumulation of free electrons and holes at the junction",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "External voltage applied across the junction",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Thermal generation of electron-hole pairs at the junction",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Diffusion and recombination of majority carriers leaving behind immobile ions",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The depletion region is characterized by the absence of free carriers, not their accumulation. Free carriers recombine and leave behind only immobile ions.",
+        "misconception": "Thinking the depletion region has accumulated free carriers"
+      },
+      {
+        "option_key": "B",
+        "hint": "The depletion region forms naturally during p-n junction fabrication without any external voltage. External voltage only modifies the width of the existing depletion region.",
+        "misconception": "Assuming external voltage is needed to form the depletion region"
+      },
+      {
+        "option_key": "C",
+        "hint": "Thermal generation of electron-hole pairs occurs everywhere in the semiconductor. It does not cause the formation of the depletion region; diffusion and recombination of majority carriers does.",
+        "misconception": "Confusing thermal generation with the diffusion process that creates the depletion region"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The dynamic (AC) resistance of a forward-biased silicon diode at room temperature carrying a current of 10 mA is approximately:",
+    "explanation": "The dynamic resistance of a diode is given by r = kT/(eI) = V_T/I, where V_T is the thermal voltage. At room temperature (T ≈ 300 K), V_T = kT/e ≈ 26 mV. For a forward current I = 10 mA: r = 26 mV / 10 mA = 2.6 Ω. This is the small-signal resistance that determines how the diode responds to small AC signals superimposed on the DC bias.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "dynamic-resistance",
+      "thermal-voltage",
+      "forward-bias",
+      "AC-resistance"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.26 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2.6 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "26 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "260 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0.26 Ω would result if you used 2.6 mV instead of 26 mV for the thermal voltage. At room temperature V_T ≈ 26 mV, giving r = 26/10 = 2.6 Ω.",
+        "misconception": "Using an incorrect value for the thermal voltage"
+      },
+      {
+        "option_key": "C",
+        "hint": "26 Ω would result from using I = 1 mA instead of 10 mA. Check: r = 26 mV / 10 mA = 2.6 Ω.",
+        "misconception": "Using 1 mA instead of the given 10 mA current"
+      },
+      {
+        "option_key": "D",
+        "hint": "260 Ω would result from using I = 0.1 mA. With I = 10 mA: r = V_T/I = 26 mV / 10 mA = 2.6 Ω.",
+        "misconception": "Incorrect conversion of current units leading to a much higher resistance"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In an n-type semiconductor, the Fermi level lies:",
+    "explanation": "In an n-type semiconductor, pentavalent donor impurities introduce additional energy levels (donor levels) just below the conduction band. Since donors provide extra electrons, the probability of finding electrons near the conduction band increases. The Fermi level, which represents the energy at which the probability of electron occupancy is 1/2, shifts upward from the middle of the band gap and lies closer to the conduction band. In a p-type semiconductor, the Fermi level shifts closer to the valence band.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "fermi-level",
+      "n-type-semiconductor",
+      "donor-levels",
+      "energy-bands"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Closer to the conduction band",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Closer to the valence band",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Exactly at the centre of the forbidden gap",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Inside the valence band",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Fermi level lies closer to the valence band in a p-type semiconductor, not in an n-type. For n-type, excess electrons shift the Fermi level toward the conduction band.",
+        "misconception": "Confusing the Fermi level position in n-type and p-type semiconductors"
+      },
+      {
+        "option_key": "C",
+        "hint": "The Fermi level lies at the centre of the band gap only in an intrinsic (pure) semiconductor. Doping shifts the Fermi level toward the band of the majority carrier.",
+        "misconception": "Applying intrinsic semiconductor properties to extrinsic semiconductors"
+      },
+      {
+        "option_key": "D",
+        "hint": "The Fermi level inside the valence band would imply a heavily p-doped semiconductor or a metal. In an n-type semiconductor, it shifts toward the conduction band.",
+        "misconception": "Incorrectly placing the Fermi level of an n-type semiconductor in the valence band"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A silicon p-n junction diode has a reverse saturation current of 10 μA at 27°C. If the diode is forward biased with a voltage of 0.6 V, the forward current is approximately (given: e = 1.6 × 10⁻¹⁹ C, k = 1.38 × 10⁻²³ J/K):",
+    "explanation": "Using the Shockley diode equation: I = I₀(e^(eV/kT) − 1). At T = 27°C = 300 K, the thermal voltage V_T = kT/e = (1.38 × 10⁻²³ × 300)/(1.6 × 10⁻¹⁹) ≈ 0.026 V = 26 mV. The exponent eV/kT = 0.6/0.026 ≈ 23.08. So e^(23.08) ≈ 1.06 × 10¹⁰. Since this is much greater than 1, I ≈ I₀ × e^(eV/kT) = 10 × 10⁻⁶ × 1.06 × 10¹⁰ ≈ 1.06 × 10⁵ μA ≈ 106 mA ≈ 0.1 A. Among the options, approximately 0.1 A is the closest.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "shockley-equation",
+      "forward-current",
+      "thermal-voltage",
+      "exponential-dependence"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "10 μA",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "10 mA",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Approximately 0.1 A",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Approximately 10 A",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "10 μA is the reverse saturation current I₀. The forward current at 0.6 V is many orders of magnitude higher due to the exponential factor e^(eV/kT) ≈ 10¹⁰.",
+        "misconception": "Forgetting the exponential amplification of current in forward bias"
+      },
+      {
+        "option_key": "B",
+        "hint": "10 mA would require the exponential factor to be about 10³, which corresponds to V ≈ 0.18 V. At 0.6 V, the factor is approximately 10¹⁰, giving a much larger current.",
+        "misconception": "Underestimating the exponential growth of diode current with voltage"
+      },
+      {
+        "option_key": "D",
+        "hint": "10 A would require the exponential factor to be about 10⁶ times the correct value. The calculation gives e^(23) ≈ 10¹⁰, so I ≈ 10⁻⁵ × 10¹⁰ = 10⁵ μA ≈ 0.1 A.",
+        "misconception": "Errors in computing the exponential or unit conversion"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In a p-n junction, the depletion region extends more into the lightly doped side. If the doping concentration on the n-side is 10 times that on the p-side, the ratio of the depletion width on the p-side (xₚ) to that on the n-side (xₙ) is:",
+    "explanation": "The charge neutrality condition for the depletion region requires that the total charge on each side be equal: NA × xₚ = ND × xₙ, where NA and ND are the acceptor and donor concentrations, and xₚ and xₙ are the depletion widths on the p-side and n-side respectively. Given ND = 10 NA, we get: NA × xₚ = 10 NA × xₙ, which simplifies to xₚ/xₙ = 10. The depletion region extends 10 times more into the lightly doped p-side.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "depletion-width",
+      "doping-concentration",
+      "charge-neutrality",
+      "asymmetric-junction"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 : 10",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1 : 1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "5 : 1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "10 : 1",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1:10 implies the depletion region extends more into the heavily doped n-side, which is the opposite of what happens. The depletion region extends more into the lightly doped side.",
+        "misconception": "Reversing the relationship between doping concentration and depletion width"
+      },
+      {
+        "option_key": "B",
+        "hint": "A 1:1 ratio would mean equal extension on both sides, which only occurs when both sides have equal doping. With unequal doping, the depletion region is asymmetric.",
+        "misconception": "Assuming equal depletion widths regardless of doping asymmetry"
+      },
+      {
+        "option_key": "C",
+        "hint": "5:1 does not satisfy the charge neutrality condition NA × xₚ = ND × xₙ. With ND = 10 NA, the correct ratio is xₚ/xₙ = 10.",
+        "misconception": "Incorrectly applying the charge neutrality condition or averaging the doping ratio"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The reverse saturation current of a p-n junction diode increases with increase in temperature.\n\nReason (R): With increase in temperature, the generation of electron-hole pairs increases, which enhances the minority carrier concentration on both sides of the junction.",
+    "explanation": "The Assertion is true: the reverse saturation current I₀ increases with temperature. I₀ depends on the minority carrier concentration, which is thermally generated. The Reason is also true: higher temperature provides more thermal energy, increasing the rate of electron-hole pair generation, thereby increasing minority carrier concentration. Since the reverse current is due to minority carriers drifting across the junction under the influence of the internal electric field, increased minority carriers directly increase I₀. The Reason correctly explains the Assertion.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "reverse-saturation-current",
+      "temperature-dependence",
+      "minority-carriers",
+      "thermal-generation"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly addresses why reverse saturation current increases: more thermal generation means more minority carriers, which directly causes the increase in I₀. So R is indeed the correct explanation.",
+        "misconception": "Failing to see the causal link between minority carrier generation and reverse saturation current"
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct—thermal energy does increase electron-hole pair generation at higher temperatures. Both statements are true.",
+        "misconception": "Incorrectly evaluating the truth of the Reason statement"
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is true—reverse saturation current is well known to increase roughly by a factor of 2 for every 10°C rise in temperature.",
+        "misconception": "Incorrectly believing reverse saturation current is temperature-independent"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): In a p-n junction diode, the electric field in the depletion region is directed from the n-side to the p-side.\n\nReason (R): The depletion region on the n-side has exposed positive donor ions, and the depletion region on the p-side has exposed negative acceptor ions.",
+    "explanation": "The Assertion is true: the built-in electric field in the depletion region points from the n-side (positive ions) to the p-side (negative ions). The Reason is also true: during junction formation, diffusion of majority carriers leaves behind immobile positive donor ions (ND⁺) on the n-side and negative acceptor ions (NA⁻) on the p-side. These immobile ions create a charge distribution that produces the electric field directed from the positive charges (n-side) to the negative charges (p-side). The Reason correctly explains the Assertion.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "electric-field",
+      "depletion-region",
+      "immobile-ions",
+      "built-in-field",
+      "donor-acceptor-ions"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains the origin of the electric field: positive ions on the n-side and negative ions on the p-side create an electric field pointing from n to p. This is exactly why the Assertion is true.",
+        "misconception": "Not recognizing that the immobile ion distribution is the direct cause of the built-in electric field"
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct. After diffusion and recombination, donors on the n-side lose their extra electrons (becoming ND⁺) and acceptors on the p-side gain electrons (becoming NA⁻).",
+        "misconception": "Incorrectly believing that donor ions are negative or acceptor ions are positive"
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. Electric field lines point from positive to negative charges, i.e., from the positively charged n-side of the depletion region to the negatively charged p-side.",
+        "misconception": "Reversing the direction of the built-in electric field in the depletion region"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the following terms (Column I) with their correct descriptions (Column II):\n\nColumn I:\n(P) Intrinsic semiconductor\n(Q) n-type semiconductor\n(R) p-type semiconductor\n(S) Depletion region\n\nColumn II:\n(1) Region devoid of free charge carriers near the junction\n(2) Doped with pentavalent impurity; electrons are majority carriers\n(3) Pure semiconductor with equal electron and hole concentrations\n(4) Doped with trivalent impurity; holes are majority carriers",
+    "explanation": "(P) Intrinsic semiconductor → (3): An intrinsic semiconductor is a pure semiconductor (e.g., pure Si or Ge) with no intentional doping. In it, electron concentration equals hole concentration (nₑ = nₕ = nᵢ). (Q) n-type semiconductor → (2): Doped with pentavalent impurities (P, As, Sb) that donate extra electrons, making electrons the majority carriers. (R) p-type semiconductor → (4): Doped with trivalent impurities (B, Al, Ga, In) that accept electrons creating holes, making holes the majority carriers. (S) Depletion region → (1): The narrow region near the p-n junction devoid of free mobile charge carriers, containing only immobile donor and acceptor ions.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "intrinsic-semiconductor",
+      "n-type",
+      "p-type",
+      "depletion-region",
+      "doping"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→3, Q→4, R→2, S→1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→3, Q→2, R→4, S→1",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "P→1, Q→2, R→4, S→3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P→3, Q→2, R→1, S→4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This option swaps n-type and p-type descriptions. n-type is doped with pentavalent impurity (electrons majority), p-type with trivalent impurity (holes majority).",
+        "misconception": "Confusing n-type and p-type doping and their majority carriers"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option incorrectly matches intrinsic semiconductor with the depletion region description and vice versa. An intrinsic semiconductor is a pure semiconductor, not a depletion region.",
+        "misconception": "Confusing intrinsic semiconductor with the depletion region concept"
+      },
+      {
+        "option_key": "D",
+        "hint": "This option matches p-type semiconductor with the depletion region description, which is incorrect. p-type semiconductor is doped with trivalent impurity.",
+        "misconception": "Incorrectly associating p-type semiconductor with the depletion region"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the following bias conditions (Column I) with their effects on a p-n junction diode (Column II):\n\nColumn I:\n(P) Forward bias with V > V_knee\n(Q) Forward bias with V < V_knee\n(R) Reverse bias with V < V_breakdown\n(S) Reverse bias with V ≥ V_breakdown\n\nColumn II:\n(1) Very small current flows; depletion region widens; only minority carriers drift across\n(2) Large current flows exponentially; depletion region is very narrow; low dynamic resistance\n(3) Negligible current flows; depletion region slightly reduced but barrier not fully overcome\n(4) Sudden large reverse current flows; can permanently damage the diode if uncontrolled",
+    "explanation": "(P) Forward bias with V > V_knee → (2): Once the applied forward voltage exceeds the knee voltage (~0.7 V for Si), the barrier is effectively overcome, and current increases exponentially. The depletion region becomes very narrow and dynamic resistance is low. (Q) Forward bias with V < V_knee → (3): Below the knee voltage, the applied voltage partially reduces the barrier but not enough for significant current flow. Only a negligible current flows. (R) Reverse bias with V < V_breakdown → (1): In normal reverse bias, the depletion region widens, and only a small reverse saturation current due to minority carriers flows. (S) Reverse bias with V ≥ V_breakdown → (4): At breakdown voltage, either Zener effect or avalanche multiplication causes a sudden dramatic increase in reverse current, which can damage the diode if not limited by an external resistance.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "forward-bias",
+      "reverse-bias",
+      "knee-voltage",
+      "breakdown-voltage",
+      "V-I-characteristics"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→2, Q→1, R→3, S→4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→4, Q→3, R→1, S→2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P→2, Q→3, R→1, S→4",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "P→3, Q→2, R→4, S→1",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This swaps Q and R. Forward bias below knee voltage gives negligible current (not minority carrier drift), while reverse bias below breakdown gives small current due to minority carriers.",
+        "misconception": "Confusing the behavior of sub-threshold forward bias with normal reverse bias"
+      },
+      {
+        "option_key": "B",
+        "hint": "This assigns breakdown behavior to forward bias above knee voltage, which is incorrect. Forward bias above knee voltage gives large exponential current, not breakdown.",
+        "misconception": "Confusing forward conduction with reverse breakdown"
+      },
+      {
+        "option_key": "D",
+        "hint": "This completely reverses the forward and reverse bias effects. Forward bias above knee gives large current, not negligible current.",
+        "misconception": "Fundamentally reversing forward and reverse bias behaviors"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "In a p-n junction at thermal equilibrium (no external bias), the net current through the junction is zero because the diffusion current is exactly balanced by the drift current.",
+    "explanation": "This statement is TRUE. When a p-n junction is formed and reaches thermal equilibrium (no external voltage applied), majority carriers diffuse across the junction due to concentration gradients, creating a diffusion current. Simultaneously, the electric field in the depletion region (created by immobile ions) sweeps minority carriers across, producing a drift current in the opposite direction. At equilibrium, these two currents are exactly equal and opposite, resulting in zero net current through the junction. This is the fundamental equilibrium condition of a p-n junction.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "thermal-equilibrium",
+      "diffusion-current",
+      "drift-current",
+      "zero-net-current",
+      "p-n-junction"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement is correct. At thermal equilibrium, diffusion and drift currents must balance (Kirchhoff's current law for zero external voltage). A non-zero net current would violate thermodynamic equilibrium.",
+        "misconception": "Thinking that a built-in potential drives a continuous net current at equilibrium"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "In a p-type semiconductor, the majority carriers are electrons and the minority carriers are holes.",
+    "explanation": "This statement is FALSE. In a p-type semiconductor, the majority carriers are holes (created by trivalent acceptor impurities such as B, Al, Ga, In) and the minority carriers are electrons. The statement has the carriers reversed. The 'p' in p-type stands for positive, referring to the positive holes that are the majority carriers. Electrons, being thermally generated in smaller numbers, are the minority carriers in p-type material.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "p-type-semiconductor",
+      "majority-carriers",
+      "minority-carriers",
+      "holes",
+      "electrons"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The statement reverses the carrier types. In p-type semiconductors, holes are majority carriers and electrons are minority carriers, not the other way around.",
+        "misconception": "Confusing majority and minority carriers in p-type semiconductors"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-19",
+    "question_type": "fill_in_the_blanks",
+    "difficulty": "medium",
+    "question_text": "When a p-n junction diode is reverse biased beyond a critical voltage called the ________ voltage, a sudden and large increase in current occurs due to either Zener effect or avalanche multiplication.",
+    "explanation": "The correct answer is 'breakdown' voltage. When the reverse bias voltage applied across a p-n junction diode exceeds a certain critical value called the breakdown voltage, the reverse current increases dramatically. This can occur through two mechanisms: (1) Zener breakdown — occurs in heavily doped, narrow-junction diodes (typically V_breakdown < 6 V) where the intense electric field directly ionizes atoms by pulling electrons from covalent bonds (quantum mechanical tunneling); (2) Avalanche breakdown — occurs in lightly doped, wider-junction diodes (typically V_breakdown > 6 V) where accelerated carriers gain enough kinetic energy to knock out additional carriers through impact ionization, creating a chain reaction.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "breakdown-voltage",
+      "zener-breakdown",
+      "avalanche-breakdown",
+      "reverse-bias"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "knee",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "threshold",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "breakdown",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "saturation",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Knee voltage (cut-in voltage) refers to the forward bias voltage at which current begins to rise sharply. The question describes a reverse-bias phenomenon.",
+        "misconception": "Confusing forward knee voltage with reverse breakdown voltage"
+      },
+      {
+        "option_key": "B",
+        "hint": "Threshold voltage is a general term often used in transistors (e.g., MOSFETs). In the context of a diode's reverse bias large current surge, the correct term is breakdown voltage.",
+        "misconception": "Using the wrong technical term for the reverse bias critical voltage"
+      },
+      {
+        "option_key": "D",
+        "hint": "Saturation refers to the small, nearly constant reverse current before breakdown, not the voltage at which the sudden current surge occurs.",
+        "misconception": "Confusing reverse saturation current region with the breakdown phenomenon"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-semi-pn-20",
+    "question_type": "scenario_based",
+    "difficulty": "hard",
+    "question_text": "A student sets up a circuit to study the V-I characteristics of a silicon p-n junction diode. She connects a variable DC power supply, a series resistance of 1 kΩ, and an ammeter in series with the diode, and a voltmeter in parallel with the diode. When the applied EMF from the power supply is 5 V in forward bias configuration, the voltmeter across the diode reads 0.7 V. What is the current through the diode as indicated by the ammeter?",
+    "explanation": "In the forward-biased circuit, the total EMF (5 V) is distributed across the series resistance and the diode. The voltage across the series resistance R is: V_R = EMF − V_diode = 5 V − 0.7 V = 4.3 V. Using Ohm's law, the current through the circuit (and hence through the diode, since they are in series) is: I = V_R / R = 4.3 V / 1000 Ω = 4.3 × 10⁻³ A = 4.3 mA. The series resistance serves as a current-limiting resistor to protect the diode from excessive current.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "forward-bias-circuit",
+      "series-resistance",
+      "ohms-law",
+      "V-I-characteristics",
+      "current-calculation"
+    ],
+    "topic": "p-n Junction Diode and Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Electronic Devices",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "5.0 mA",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.7 mA",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "5.7 mA",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4.3 mA",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "5.0 mA would result from using I = EMF/R = 5/1000, ignoring the 0.7 V drop across the diode. The voltage across the resistor is EMF − V_diode = 4.3 V, not 5 V.",
+        "misconception": "Neglecting the voltage drop across the forward-biased diode"
+      },
+      {
+        "option_key": "B",
+        "hint": "0.7 mA would result from using I = V_diode/R = 0.7/1000. The current is determined by the voltage across the resistor, not the voltage across the diode.",
+        "misconception": "Using the diode voltage instead of the resistor voltage to calculate current"
+      },
+      {
+        "option_key": "C",
+        "hint": "5.7 mA would result from incorrectly adding EMF and V_diode (5 + 0.7 = 5.7 V) and dividing by R. The correct voltage across R is EMF − V_diode = 4.3 V.",
+        "misconception": "Adding instead of subtracting the diode voltage drop from the supply EMF"
+      }
+    ]
+  }
+]
