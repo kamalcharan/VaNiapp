@@ -1,0 +1,542 @@
+[
+  {
+    "id": "cuet-phy-elec-coulomb-21",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Two glass rods, each rubbed with silk, are brought close to each other. They will:",
+    "explanation": "Both glass rods acquire the same type of positive charge when rubbed with silk. Like charges repel each other, so the two rods will repel.",
+    "correct_answer": "B",
+    "concept_tags": ["like-charges", "charging-by-friction", "repulsion"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Properties of electric charge",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Attract each other", "is_correct": false},
+      {"key": "B", "text": "Repel each other", "is_correct": true},
+      {"key": "C", "text": "First attract then repel", "is_correct": false},
+      {"key": "D", "text": "Have no effect on each other", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Attraction occurs between unlike charges. Both rods rubbed with silk acquire the same sign (positive), so they cannot attract.", "misconception": "Confusing like and unlike charge interactions"},
+      {"option_key": "C", "hint": "There is no mechanism for alternating attraction and repulsion between static charges of the same sign.", "misconception": null},
+      {"option_key": "D", "hint": "Charged bodies always exert electrostatic forces on each other — they cannot be neutral to one another.", "misconception": "Thinking charged bodies may not interact"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-22",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The dimensional formula of permittivity of free space (ε₀) is:",
+    "explanation": "From Coulomb's law, F = q₁q₂/(4πε₀r²), we get ε₀ = q₁q₂/(4πFr²). Dimensions: [A²T²]/([MLT⁻²][L²]) = [M⁻¹L⁻³T⁴A²]. This can also be derived from ε₀ = 1/(μ₀c²).",
+    "correct_answer": "C",
+    "concept_tags": ["permittivity", "dimensional-analysis", "SI-units"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Coulomb's constant and permittivity",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "[ML³T⁻⁴A⁻²]", "is_correct": false},
+      {"key": "B", "text": "[M⁻¹L⁻³T³A²]", "is_correct": false},
+      {"key": "C", "text": "[M⁻¹L⁻³T⁴A²]", "is_correct": true},
+      {"key": "D", "text": "[MLT⁻²A⁻²]", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This has positive powers of M and L, which would give units of energy × length. Permittivity has inverse mass and inverse length cubed.", "misconception": "Inverting the formula — using dimensions of 1/ε₀ instead of ε₀"},
+      {"option_key": "B", "hint": "The time exponent should be T⁴, not T³. This comes from charge² = (AT)² = A²T² in the numerator.", "misconception": "Forgetting that charge = current × time, so q² contributes T² not T"},
+      {"option_key": "D", "hint": "These are the dimensions of force/current², not permittivity. Permittivity has negative powers of M.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-23",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "When a glass rod is rubbed with silk, the rod becomes positively charged because:",
+    "explanation": "During rubbing, electrons (not protons) are transferred from the glass rod to the silk. The rod loses electrons and becomes positively charged, while the silk gains those electrons and becomes negatively charged. Protons, being bound in the nucleus, do not transfer.",
+    "correct_answer": "A",
+    "concept_tags": ["charging-by-friction", "electron-transfer", "triboelectric"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Methods of charging",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Electrons are transferred from the rod to the silk", "is_correct": true},
+      {"key": "B", "text": "Protons are transferred from the silk to the rod", "is_correct": false},
+      {"key": "C", "text": "Protons are created on the rod", "is_correct": false},
+      {"key": "D", "text": "Neutrons are removed from the rod", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Protons are tightly bound in the nucleus and cannot be transferred by rubbing. Only electrons, which are in outer shells, can move.", "misconception": "Thinking protons can be transferred between materials"},
+      {"option_key": "C", "hint": "Charge is conserved — it cannot be created or destroyed. Rubbing only transfers existing charges.", "misconception": "Thinking charge can be created from nothing"},
+      {"option_key": "D", "hint": "Neutrons carry no charge, so removing them would not make the rod positively charged.", "misconception": "Confusing the role of neutrons in charge"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-24",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In pair production, a gamma ray photon creates an electron-positron pair. This process demonstrates:",
+    "explanation": "In pair production, a photon (zero charge) creates an electron (−e) and a positron (+e). The total charge before (0) equals total charge after (−e + e = 0). This perfectly demonstrates conservation of electric charge. Energy conservation (E = mc²) is also demonstrated, but the question is about charge.",
+    "correct_answer": "D",
+    "concept_tags": ["conservation-of-charge", "pair-production", "fundamental-laws"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Conservation of charge",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Charge can be created from energy", "is_correct": false},
+      {"key": "B", "text": "Charge quantization only", "is_correct": false},
+      {"key": "C", "text": "Violation of charge conservation", "is_correct": false},
+      {"key": "D", "text": "Conservation of electric charge", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Although energy converts to mass, the net charge created is zero (e⁺ and e⁻ cancel). Charge itself is not 'created from energy'.", "misconception": "Thinking pair production creates net charge"},
+      {"option_key": "B", "hint": "While the created charges are quantized (±e), the key principle demonstrated is conservation — total charge remains zero.", "misconception": "Focusing on quantization rather than conservation"},
+      {"option_key": "C", "hint": "Pair production is fully consistent with charge conservation: 0 → (+e) + (−e) = 0.", "misconception": "Thinking charge conservation is violated because charges 'appear'"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-25",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The number of electrons present in −1 C of charge is approximately:",
+    "explanation": "Number of electrons = Total charge / Charge per electron = 1 / (1.6 × 10⁻¹⁹) = 6.25 × 10¹⁸. This is an enormously large number, showing that the coulomb is a very large unit of charge compared to the elementary charge.",
+    "correct_answer": "A",
+    "concept_tags": ["quantization", "electron-count", "coulomb"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Quantization of charge",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "6.25 × 10¹⁸", "is_correct": true},
+      {"key": "B", "text": "6.25 × 10²⁰", "is_correct": false},
+      {"key": "C", "text": "1.6 × 10¹⁹", "is_correct": false},
+      {"key": "D", "text": "1.6 × 10⁻¹⁹", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "6.25 × 10²⁰ is 100 times too large. The calculation is 1/(1.6 × 10⁻¹⁹) = 6.25 × 10¹⁸, not 10²⁰.", "misconception": "Error in handling the exponent during division"},
+      {"option_key": "C", "hint": "1.6 × 10¹⁹ is the reciprocal written incorrectly. The answer should be 1/e, not just the inverse of the exponent.", "misconception": "Confusing 1/e with just flipping the sign of the exponent"},
+      {"option_key": "D", "hint": "1.6 × 10⁻¹⁹ is the charge of a single electron, not the number of electrons in 1 C.", "misconception": "Confusing the question — charge of electron vs number of electrons"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-26",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If each of two point charges is doubled and the distance between them is halved, the electrostatic force between them becomes:",
+    "explanation": "Original force: F = kq₁q₂/r². New force: F' = k(2q₁)(2q₂)/(r/2)² = k × 4q₁q₂ / (r²/4) = 16 × kq₁q₂/r² = 16F. The force increases by a factor of 16.",
+    "correct_answer": "C",
+    "concept_tags": ["coulomb-law", "proportionality", "numerical"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Coulomb's law applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "4F", "is_correct": false},
+      {"key": "B", "text": "8F", "is_correct": false},
+      {"key": "C", "text": "16F", "is_correct": true},
+      {"key": "D", "text": "32F", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "4F accounts for doubling both charges (2×2=4) but ignores the effect of halving the distance, which adds another factor of 4.", "misconception": "Forgetting the distance factor"},
+      {"option_key": "B", "hint": "8F might come from 2×2×2=8, but halving distance gives 1/(1/2)²=4, not 2. Total should be 4×4=16.", "misconception": "Treating distance halving as a factor of 2 instead of 4"},
+      {"option_key": "D", "hint": "32F would require an extra factor of 2 beyond 16 — there's no physical reason for this.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-27",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two point charges attract each other with force F at a certain distance. If the magnitude of one charge is doubled and the distance is tripled, the new force is:",
+    "explanation": "Original: F = kq₁q₂/r². New: F' = k(2q₁)q₂/(3r)² = 2kq₁q₂/9r² = 2F/9. Doubling one charge doubles the force, tripling the distance reduces it by 9, net effect is 2/9.",
+    "correct_answer": "B",
+    "concept_tags": ["coulomb-law", "inverse-square", "proportionality"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Coulomb's law applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "2F/3", "is_correct": false},
+      {"key": "B", "text": "2F/9", "is_correct": true},
+      {"key": "C", "text": "F/9", "is_correct": false},
+      {"key": "D", "text": "F/3", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "2F/3 results from dividing by 3 (first power) instead of 3² = 9. Coulomb's law has inverse square dependence.", "misconception": "Using inverse distance instead of inverse square distance"},
+      {"option_key": "C", "hint": "F/9 accounts for tripling the distance but forgets that one charge was also doubled, which should multiply by 2.", "misconception": "Ignoring the change in charge magnitude"},
+      {"option_key": "D", "hint": "F/3 uses neither the correct distance factor (should be 9, not 3) nor accounts for the charge doubling properly.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-28",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The dielectric constant (relative permittivity) of a perfect conductor is:",
+    "explanation": "Inside a perfect conductor, the electric field is always zero. Since K = E_vacuum/E_medium, for the field to be zero inside the conductor, K must be infinite. Alternatively, a conductor can be thought of as a medium that completely screens the electric field, requiring K → ∞.",
+    "correct_answer": "D",
+    "concept_tags": ["dielectric-constant", "conductor", "permittivity"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Dielectrics and conductors",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Zero", "is_correct": false},
+      {"key": "B", "text": "1", "is_correct": false},
+      {"key": "C", "text": "Negative", "is_correct": false},
+      {"key": "D", "text": "Infinity", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "K = 0 would mean ε = 0, which would imply infinite electric field inside the medium — the opposite of what happens in a conductor.", "misconception": "Confusing zero field inside conductor with zero dielectric constant"},
+      {"option_key": "B", "hint": "K = 1 corresponds to vacuum/air. A conductor has much stronger polarisation response than vacuum.", "misconception": "Thinking conductor behaves like vacuum"},
+      {"option_key": "C", "hint": "Dielectric constant is always positive. A negative value would imply the medium reverses the field direction, which doesn't happen with normal conductors.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-29",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "1000 small identical drops, each carrying a charge q and having radius r, coalesce to form a single large drop. The surface charge density of the large drop compared to a small drop is:",
+    "explanation": "Volume is conserved: (4/3)πR³ = 1000 × (4/3)πr³, so R = 10r. Total charge Q = 1000q. Surface charge density: σ_small = q/(4πr²), σ_large = 1000q/(4π(10r)²) = 1000q/(400πr²) = 10q/(4πr²) = 10σ_small. So σ_large = 10σ_small = N^(1/3) × σ_small.",
+    "correct_answer": "A",
+    "concept_tags": ["charge-density", "drop-coalescence", "surface-charge"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Charge redistribution",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "10 times", "is_correct": true},
+      {"key": "B", "text": "100 times", "is_correct": false},
+      {"key": "C", "text": "1000 times", "is_correct": false},
+      {"key": "D", "text": "Same as before", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "100 times would result from using R = 10r in σ = Q/(4πR) instead of Q/(4πR²) — forgetting to square the radius.", "misconception": "Using surface area formula incorrectly"},
+      {"option_key": "C", "hint": "1000 times would mean σ_large = Nσ_small, which ignores that the larger drop also has a much larger surface area (100× the small drop).", "misconception": "Dividing total charge by small drop surface area instead of large drop surface area"},
+      {"option_key": "D", "hint": "The surface area increases by 100× while charge increases by 1000×, so the charge per unit area must increase.", "misconception": "Thinking surface charge density is conserved during coalescence"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-30",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two identical charged pith balls, each of mass m, are suspended from a common point by light insulating threads of length l. If each ball carries charge q, the separation x between the balls in equilibrium (for small angles) is proportional to:",
+    "explanation": "At equilibrium: electrostatic repulsion = horizontal component of tension. kq²/x² = mg × (x/2l) [since tanθ ≈ sinθ = (x/2)/l for small angles]. Rearranging: x³ = 2kq²l/(mg). Therefore x ∝ q^(2/3). The separation depends on charge raised to the 2/3 power.",
+    "correct_answer": "B",
+    "concept_tags": ["equilibrium", "pith-balls", "coulomb-law"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Coulomb's law in equilibrium",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "q^(1/2)", "is_correct": false},
+      {"key": "B", "text": "q^(2/3)", "is_correct": true},
+      {"key": "C", "text": "q", "is_correct": false},
+      {"key": "D", "text": "q²", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "q^(1/2) would arise from x² ∝ q, which doesn't follow from the equilibrium condition. The correct relation gives x³ ∝ q².", "misconception": "Incorrect power from the equilibrium equation"},
+      {"option_key": "C", "hint": "Linear dependence (x ∝ q) would mean x³ ∝ q³, i.e., x³ ∝ q³ — but the equilibrium gives x³ ∝ q².", "misconception": "Assuming direct proportionality without solving"},
+      {"option_key": "D", "hint": "x ∝ q² would mean x³ ∝ q⁶, but the equilibrium gives x³ ∝ q² — the exponent is far too large.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-31",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The force of attraction between an alpha particle (charge +2e) and an electron (charge −e) separated by distance r is:",
+    "explanation": "Using Coulomb's law: F = k|q₁||q₂|/r² = k(2e)(e)/r² = 2ke²/r². Since the charges are opposite in sign, the force is attractive. The alpha particle has charge +2e because it contains 2 protons.",
+    "correct_answer": "D",
+    "concept_tags": ["coulomb-law", "alpha-particle", "electron"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Coulomb's law applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "ke²/r²", "is_correct": false},
+      {"key": "B", "text": "4ke²/r²", "is_correct": false},
+      {"key": "C", "text": "ke²/2r²", "is_correct": false},
+      {"key": "D", "text": "2ke²/r²", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "ke²/r² is the force between two singly charged particles (like proton-electron). The alpha particle has charge 2e, not e.", "misconception": "Forgetting that alpha particle has charge 2e"},
+      {"option_key": "B", "hint": "4ke²/r² would apply if BOTH particles had charge 2e. Only the alpha particle has 2e; the electron has e.", "misconception": "Using 2e for both charges"},
+      {"option_key": "C", "hint": "This is half the correct answer. There is no factor of 1/2 in Coulomb's law — F = kq₁q₂/r².", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-32",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In the CGS (Gaussian) system of units, the value of the Coulomb constant k in the formula F = kq₁q₂/r² is:",
+    "explanation": "In the CGS Gaussian system, electrostatic units are defined such that k = 1 (dimensionless). The force between two charges of 1 statcoulomb each, placed 1 cm apart, is 1 dyne. This is a defining property of the Gaussian unit system, unlike SI where k = 9 × 10⁹ N·m²/C².",
+    "correct_answer": "C",
+    "concept_tags": ["CGS-system", "coulomb-constant", "unit-systems"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Coulomb's constant in different systems",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "9 × 10⁹", "is_correct": false},
+      {"key": "B", "text": "1/(4π)", "is_correct": false},
+      {"key": "C", "text": "1", "is_correct": true},
+      {"key": "D", "text": "4π", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "9 × 10⁹ is the value of k in SI units (N·m²/C²). In CGS, the unit system is defined to make k = 1.", "misconception": "Using SI value in CGS system"},
+      {"option_key": "B", "hint": "1/(4π) appears in the SI expression k = 1/(4πε₀), but in CGS Gaussian units, the 4π is absorbed differently.", "misconception": "Mixing SI and CGS conventions"},
+      {"option_key": "D", "hint": "4π appears in the Heaviside-Lorentz system, not in the Gaussian CGS system.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-33",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A charge −q is placed at a point on the line joining two charges +Q and +4Q, separated by distance 3d. For the charge −q to be in equilibrium, it should be placed at a distance from +Q equal to:",
+    "explanation": "Let −q be at distance x from +Q (and 3d−x from +4Q). For equilibrium of −q, the forces from +Q and +4Q must be equal and opposite: kQq/x² = k(4Q)q/(3d−x)². This gives (3d−x)² = 4x², so 3d−x = 2x (taking positive root), hence x = d. So −q must be placed at distance d from +Q.",
+    "correct_answer": "C",
+    "concept_tags": ["equilibrium", "coulomb-law", "charge-placement"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Equilibrium of charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "d/2", "is_correct": false},
+      {"key": "B", "text": "3d/2", "is_correct": false},
+      {"key": "C", "text": "d", "is_correct": true},
+      {"key": "D", "text": "2d", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "At d/2, the ratio of distances is (d/2)² vs (5d/2)² = 1:25, but charge ratio is 1:4. These don't balance: 1/1 ≠ 4/25.", "misconception": "Guessing midpoint of the smaller charge side"},
+      {"option_key": "B", "hint": "3d/2 is the midpoint. At midpoint, forces are kQ/(3d/2)² and k(4Q)/(3d/2)², giving a ratio 1:4 — not equal.", "misconception": "Assuming equilibrium is at the midpoint"},
+      {"option_key": "D", "hint": "At 2d from +Q, distance from +4Q is d. Force ratio = Q/4 ÷ 4Q/1 = 1:16 — far from equilibrium.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-34",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A proton and an alpha particle are placed at the same distance r from a large positive charge Q. The ratio of the electrostatic force on the proton to that on the alpha particle is:",
+    "explanation": "Force on proton: Fp = kQe/r². Force on alpha particle: Fα = kQ(2e)/r² = 2kQe/r². Ratio: Fp/Fα = (kQe/r²)/(2kQe/r²) = 1/2. The alpha particle experiences twice the force because it has twice the charge.",
+    "correct_answer": "A",
+    "concept_tags": ["coulomb-law", "proton-alpha", "force-ratio"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Force between charged particles",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "1 : 2", "is_correct": true},
+      {"key": "B", "text": "2 : 1", "is_correct": false},
+      {"key": "C", "text": "1 : 4", "is_correct": false},
+      {"key": "D", "text": "4 : 1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "2:1 reverses the ratio. The alpha particle (2e charge) experiences more force than the proton (e charge), not less.", "misconception": "Inverting proton-to-alpha force ratio"},
+      {"option_key": "C", "hint": "1:4 would apply if the alpha particle had charge 4e, but it has only 2e (2 protons, 2 neutrons).", "misconception": "Using mass number 4 instead of atomic number 2 for the charge"},
+      {"option_key": "D", "hint": "4:1 would mean the proton experiences 4× more force, which contradicts the fact that force ∝ charge and alpha has more charge.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-35",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The force between two charges in vacuum is 16 N. If the space is filled with a liquid of dielectric constant 4 and the distance is also doubled, the new force is:",
+    "explanation": "Original: F = kq₁q₂/d² = 16 N. With dielectric K = 4 and distance 2d: F' = kq₁q₂/(K × (2d)²) = kq₁q₂/(4 × 4d²) = F/16 = 16/16 = 1 N. The dielectric reduces force by 4× and doubling distance reduces it by 4×, giving a total reduction of 16×.",
+    "correct_answer": "D",
+    "concept_tags": ["dielectric", "distance-effect", "combined-factors"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Coulomb's law in medium",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "4 N", "is_correct": false},
+      {"key": "B", "text": "2 N", "is_correct": false},
+      {"key": "C", "text": "0.25 N", "is_correct": false},
+      {"key": "D", "text": "1 N", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "4 N only accounts for the dielectric (16/4=4) but ignores that the distance was also doubled (which reduces force by another 4×).", "misconception": "Forgetting the distance change"},
+      {"option_key": "B", "hint": "2 N doesn't correspond to any correct combination of the two factors (K=4 and distance doubling=4×).", "misconception": null},
+      {"option_key": "C", "hint": "0.25 N would result from dividing by 64 (K²×4), but the dielectric appears to the first power, not squared.", "misconception": "Squaring the dielectric constant"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-36",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A charge Q is uniformly distributed along a semi-circular arc of radius R. The magnitude of the electric field at the centre of curvature is:",
+    "explanation": "Linear charge density λ = Q/(πR). Consider a small element dθ at angle θ from the axis of symmetry. Its field at centre: dE = kλRdθ/R² = kλdθ/R. By symmetry, only the component along the axis of symmetry (perpendicular bisector of the diameter) survives. E = ∫₀^π (kλ/R)sinθ dθ = (kλ/R)[-cosθ]₀^π = 2kλ/R = 2k(Q/πR)/R = 2kQ/(πR²).",
+    "correct_answer": "C",
+    "concept_tags": ["continuous-distribution", "semi-circular-arc", "integration"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Continuous charge distributions",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "kQ/R²", "is_correct": false},
+      {"key": "B", "text": "kQ/(πR²)", "is_correct": false},
+      {"key": "C", "text": "2kQ/(πR²)", "is_correct": true},
+      {"key": "D", "text": "Zero", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "kQ/R² treats the entire semi-circular charge as a point charge at distance R, ignoring the angular distribution.", "misconception": "Treating distributed charge as a point charge"},
+      {"option_key": "B", "hint": "kQ/(πR²) is missing the factor of 2 that comes from the integration of sinθ over 0 to π: ∫sinθ dθ = 2.", "misconception": "Integration error — forgetting the factor of 2"},
+      {"option_key": "D", "hint": "Zero would be the field at the centre of a full circle, not a semi-circle. The semi-circle has a net field along its symmetry axis.", "misconception": "Confusing semi-circular arc with full circular arc"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-37",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two isolated conducting spheres of radii R and 2R carry charges Q and 2Q respectively. They are connected by a thin conducting wire and then disconnected. The charge on the smaller sphere after disconnection is:",
+    "explanation": "When connected, charge flows until both spheres reach the same potential. Total charge = Q + 2Q = 3Q. At equal potential: V₁ = V₂ → kq₁/R = kq₂/(2R) → q₂ = 2q₁. With q₁ + q₂ = 3Q: q₁ + 2q₁ = 3Q → q₁ = Q. The smaller sphere ends up with charge Q (same as its original charge, coincidentally).",
+    "correct_answer": "A",
+    "concept_tags": ["conducting-spheres", "charge-sharing", "equal-potential"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Charge redistribution between conductors",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Q", "is_correct": true},
+      {"key": "B", "text": "3Q/2", "is_correct": false},
+      {"key": "C", "text": "2Q", "is_correct": false},
+      {"key": "D", "text": "Q/2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "3Q/2 assumes equal charge on each sphere, but connected conductors equalise potential, not charge. Charge distributes proportional to radius.", "misconception": "Assuming equal charge instead of equal potential"},
+      {"option_key": "C", "hint": "2Q on the smaller sphere would leave Q on the larger, giving V_small/V_large = (2Q/R)/(Q/2R) = 4, violating equal potential.", "misconception": null},
+      {"option_key": "D", "hint": "Q/2 on smaller means 5Q/2 on larger. V_small/V_large = (Q/2R)/(5Q/4R) = 2/5, not equal.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-38",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Three charges are placed on the x-axis: +q at x = 0, −2q at x = a, and +q at x = 2a. This charge configuration is called:",
+    "explanation": "Total charge = q − 2q + q = 0 (not a monopole). Dipole moment = q(0) + (−2q)(a) + q(2a) = −2qa + 2qa = 0 (not a dipole). Since both monopole and dipole moments vanish, this is a linear electric quadrupole. The electric field of a quadrupole falls off as 1/r⁴ at large distances — faster than both monopole (1/r²) and dipole (1/r³).",
+    "correct_answer": "B",
+    "concept_tags": ["quadrupole", "multipole-expansion", "charge-configuration"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Charge distributions and multipoles",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "An electric dipole", "is_correct": false},
+      {"key": "B", "text": "A linear electric quadrupole", "is_correct": true},
+      {"key": "C", "text": "A monopole", "is_correct": false},
+      {"key": "D", "text": "A neutral system with no multipole moment", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "A dipole requires a non-zero dipole moment (p = Σq_i×r_i ≠ 0). Here p = q(0) + (−2q)(a) + q(2a) = 0.", "misconception": "Not checking whether the dipole moment actually vanishes"},
+      {"option_key": "C", "hint": "A monopole would have non-zero total charge. Here Q_total = q − 2q + q = 0.", "misconception": "Not computing total charge"},
+      {"option_key": "D", "hint": "While both monopole and dipole moments are zero, the quadrupole moment is non-zero. The system is not 'moment-free'.", "misconception": "Thinking zero monopole and dipole means no multipole at all"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-39",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two equal positive charges Q are fixed at positions (0, +a) and (0, −a). A small positive test charge q₀ is placed at (x, 0) where x >> a. The approximate force on q₀ is:",
+    "explanation": "Each charge Q is at distance √(x² + a²) ≈ x (since x >> a). The x-components of both forces add up (by symmetry), while y-components cancel. Each contributes Fx = kQq₀/(x² + a²) × x/√(x² + a²) ≈ kQq₀/x². Total: F ≈ 2kQq₀/x². At large distances, the two charges act like a single charge 2Q at the origin.",
+    "correct_answer": "D",
+    "concept_tags": ["superposition", "far-field-approximation", "two-charges"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Superposition principle",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "kQq₀/x²", "is_correct": false},
+      {"key": "B", "text": "Zero", "is_correct": false},
+      {"key": "C", "text": "4kQq₀/x²", "is_correct": false},
+      {"key": "D", "text": "2kQq₀/x²", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This is the force from only one of the two charges. Since both charges contribute equally at large distance, the total is 2× this.", "misconception": "Counting only one source charge"},
+      {"option_key": "B", "hint": "The forces do not cancel — the y-components cancel by symmetry, but the x-components add up.", "misconception": "Thinking the two equal charges cancel each other's force on the test charge"},
+      {"option_key": "C", "hint": "4kQq₀/x² would apply if each charge were 2Q, but each is Q, contributing kQq₀/x² each, totalling 2kQq₀/x².", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-40",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A thin rod of length L carries a total charge Q uniformly distributed. The ratio of the electric field at a point on the perpendicular bisector at distance L from the centre to the field of a point charge Q at the same distance is approximately:",
+    "explanation": "For a finite rod at perpendicular distance d from centre: E_rod = kQ/(d√(d² + L²/4)). At d = L: E_rod = kQ/(L√(L² + L²/4)) = kQ/(L × L√(5/4)) = kQ/(L² × √5/2) = 2kQ/(√5 L²). Point charge field: E_point = kQ/L². Ratio: E_rod/E_point = 2/√5 ≈ 0.894.",
+    "correct_answer": "C",
+    "concept_tags": ["finite-rod", "perpendicular-bisector", "field-comparison"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Continuous charge distributions",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Exactly 1", "is_correct": false},
+      {"key": "B", "text": "Greater than 1", "is_correct": false},
+      {"key": "C", "text": "Less than 1 (approximately 2/√5)", "is_correct": true},
+      {"key": "D", "text": "Zero", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "The rod field is less than a point charge field at the same distance because the charge is spread out — parts of the rod are farther away.", "misconception": "Treating the rod as a point charge"},
+      {"option_key": "B", "hint": "The rod cannot produce a stronger field than a point charge of the same total charge at the same distance — spreading charge out always reduces the field at a given point.", "misconception": "Thinking distributed charge gives stronger field"},
+      {"option_key": "D", "hint": "The field at a finite distance from a charged rod is never zero (symmetry only cancels the parallel component, not the perpendicular one).", "misconception": null}
+    ]
+  }
+]

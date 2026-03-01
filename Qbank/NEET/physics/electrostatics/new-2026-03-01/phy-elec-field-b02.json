@@ -1,0 +1,1242 @@
+[
+  {
+    "id": "phy-elec-field-01",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The electric field at a point is defined as:",
+    "explanation": "Electric field E at a point is defined as the force F experienced by a unit positive test charge q₀ placed at that point: E = F/q₀. The test charge must be vanishingly small so it doesn't disturb the source charge distribution. The field is a vector quantity with SI unit N/C or V/m.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "electric-field-definition",
+      "test-charge",
+      "vector"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Definition of electric field",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Force experienced by any charge at that point",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Force per unit positive test charge at that point",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Work done per unit charge",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Charge per unit area",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The force depends on the magnitude of the test charge. The field is force per UNIT charge, making it independent of the test charge.",
+        "misconception": "Confusing total force with field (force per unit charge)"
+      },
+      {
+        "option_key": "C",
+        "hint": "Work done per unit charge is the definition of electric potential (V), not electric field (E).",
+        "misconception": "Confusing electric field with electric potential"
+      },
+      {
+        "option_key": "D",
+        "hint": "Charge per unit area is the definition of surface charge density (σ), not electric field.",
+        "misconception": "Confusing electric field with charge density"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-02",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Electric field lines start from:",
+    "explanation": "Electric field lines originate from positive charges and terminate on negative charges. They represent the direction of force that a positive test charge would experience. If there are no negative charges nearby, field lines extend to infinity.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "field-lines",
+      "positive-charge",
+      "negative-charge"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Properties of field lines",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Positive charges and end on negative charges",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Negative charges and end on positive charges",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Any charge and form closed loops",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Regions of low field and end at regions of high field",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "This is the reverse of the convention. Field lines indicate the direction a positive test charge would move — away from positive, toward negative.",
+        "misconception": "Reversing the direction convention for field lines"
+      },
+      {
+        "option_key": "C",
+        "hint": "Electrostatic field lines never form closed loops — that's a property of magnetic field lines. Electric field is conservative.",
+        "misconception": "Confusing electric field lines with magnetic field lines"
+      },
+      {
+        "option_key": "D",
+        "hint": "Field lines originate and terminate on charges, not on regions of different field strength.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-03",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of electric field intensity is equivalent to:",
+    "explanation": "Electric field E = F/q has SI unit N/C (newton per coulomb). Since work = force × distance, and potential V = W/q, we get V = Ed, so E = V/d, giving units V/m (volt per metre). Both N/C and V/m are equivalent and interchangeable.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "SI-units",
+      "electric-field",
+      "equivalence"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Units of electric field",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "N/C only",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "V/m only",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Both N/C and V/m",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "J/C",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "While N/C is correct, V/m is also a valid unit for electric field (E = −dV/dr). The question asks about equivalence.",
+        "misconception": "Not knowing that N/C = V/m"
+      },
+      {
+        "option_key": "B",
+        "hint": "V/m is correct but N/C is equally valid. E = F/q gives N/C directly.",
+        "misconception": "Thinking only the potential-based unit is valid"
+      },
+      {
+        "option_key": "D",
+        "hint": "J/C is the unit of electric potential (V), not electric field. E has an additional 1/m factor.",
+        "misconception": "Confusing potential (J/C = V) with field (V/m)"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-04",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Two electric field lines can never cross each other because:",
+    "explanation": "If two field lines crossed, there would be two different directions of electric field at the crossing point, which is impossible — the electric field at any point has a unique direction. This is because the field is a well-defined vector function of position.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "field-lines-properties",
+      "uniqueness",
+      "vector-field"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Properties of field lines",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Field lines are always straight",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Field lines carry energy",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Charges would cancel at the crossing point",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The electric field at a point must have a unique direction",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Field lines are NOT always straight — they curve around charge distributions. This is not the reason they can't cross.",
+        "misconception": "Thinking field lines are always straight"
+      },
+      {
+        "option_key": "B",
+        "hint": "Whether field lines carry energy is irrelevant to why they can't cross. The reason is about direction uniqueness.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "Field lines don't represent charges — they represent the direction and strength of the field. There's no charge at a crossing point.",
+        "misconception": "Confusing field lines with charges"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-05",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The electric field due to a point charge q at distance r from it varies as:",
+    "explanation": "From Coulomb's law, E = kq/r² = q/(4πε₀r²). The field follows an inverse square law — it decreases as the square of the distance from the charge. At twice the distance, the field is one-fourth.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "inverse-square",
+      "point-charge-field",
+      "distance-dependence"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Field due to a point charge",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1/r²",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1/r",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1/r³",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "r²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "1/r dependence applies to the electric field of an infinitely long line charge, not a point charge.",
+        "misconception": "Confusing point charge field with line charge field"
+      },
+      {
+        "option_key": "C",
+        "hint": "1/r³ dependence applies to the electric field of a dipole at large distances, not a single point charge.",
+        "misconception": "Confusing point charge field with dipole field"
+      },
+      {
+        "option_key": "D",
+        "hint": "r² would mean the field increases with distance, which contradicts the fact that the field weakens as you move away from a charge.",
+        "misconception": "Inverting the relationship — confusing direct with inverse"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-06",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two point charges +q and −q are placed at equal distances from a point P. The electric field at P is:",
+    "explanation": "This depends on the geometry. If P is on the perpendicular bisector of the line joining the charges: the field components along the bisector cancel, and the net field points from +q toward −q (parallel to the line joining the charges). If P is on the line joining them between the charges: both fields point toward −q and add up. In general, the field is NOT zero because the fields from opposite charges don't cancel (they point in the same general direction at most points).",
+    "correct_answer": "B",
+    "concept_tags": [
+      "superposition",
+      "opposite-charges",
+      "field-direction"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Superposition of electric fields",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Always zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Non-zero and depends on the position of P",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Always directed perpendicular to the line joining the charges",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Always equal to 2kq/r²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The fields from +q and −q at most points do NOT cancel because they generally point in similar directions (both have a component toward −q).",
+        "misconception": "Assuming equal and opposite charges always produce zero field everywhere"
+      },
+      {
+        "option_key": "C",
+        "hint": "This is true only on the perpendicular bisector. At other points (e.g., on the line joining the charges), the field is along that line.",
+        "misconception": "Overgeneralising a result valid only on the bisector"
+      },
+      {
+        "option_key": "D",
+        "hint": "The field magnitude varies with position and direction relative to the charges. 2kq/r² is not a universal expression.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-07",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electric field at the midpoint of two equal positive charges +Q separated by distance 2d is:",
+    "explanation": "At the midpoint, each charge is at distance d. The field from the left charge points rightward (away from +Q), and the field from the right charge points leftward (away from +Q). Both have equal magnitude kQ/d². Since they point in opposite directions, they cancel: E_net = 0.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "midpoint-field",
+      "like-charges",
+      "cancellation"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Field due to multiple charges",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2kQ/d², directed toward one charge",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kQ/d², perpendicular to the line joining them",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zero",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4kQ/d², directed along the line joining them",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The two fields are equal in magnitude but opposite in direction (both point away from their respective +Q source). They cancel perfectly at the midpoint.",
+        "misconception": "Adding magnitudes instead of considering vector directions"
+      },
+      {
+        "option_key": "B",
+        "hint": "There is no physical reason for a perpendicular field at the midpoint of two charges on a line. By symmetry, any net field must be along the line.",
+        "misconception": "Assuming field direction without analysis"
+      },
+      {
+        "option_key": "D",
+        "hint": "4kQ/d² would require the fields to add (same direction), but they point in opposite directions from the midpoint.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-08",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The number of electric field lines emerging from a charge of +1 C in vacuum is:",
+    "explanation": "By Gauss's law, the total electric flux from a charge q is Φ = q/ε₀. For q = 1 C: Φ = 1/(8.85 × 10⁻¹²) = 1.13 × 10¹¹ N·m²/C. If we associate one field line per unit flux, the number of lines is q/ε₀ ≈ 1.13 × 10¹¹. This is conventionally written as 1/ε₀.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "field-lines-number",
+      "gauss-law",
+      "flux"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Quantitative field line concept",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4π",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "9 × 10⁹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1/ε₀ ≈ 1.13 × 10¹¹",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1 field line for 1 C of charge would be far too few. The number is proportional to q/ε₀, which is a very large number.",
+        "misconception": "Thinking one line per coulomb"
+      },
+      {
+        "option_key": "B",
+        "hint": "4π appears in the factor 4πε₀ in Coulomb's law, but the number of field lines from 1 C is 1/ε₀, not 4π.",
+        "misconception": "Confusing 4π factor with the field line count"
+      },
+      {
+        "option_key": "C",
+        "hint": "9 × 10⁹ is the Coulomb constant k = 1/(4πε₀), not 1/ε₀. The number of lines is 1/ε₀ = 4πk ≈ 1.13 × 10¹¹.",
+        "misconception": "Using k instead of 1/ε₀"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-09",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An electron is placed in a uniform electric field of 2 × 10⁴ N/C directed upward. The force on the electron is:",
+    "explanation": "Force on charge q in field E: F = qE. For electron: F = eE = 1.6 × 10⁻¹⁹ × 2 × 10⁴ = 3.2 × 10⁻¹⁵ N. Since the electron is negative, the force is opposite to the field direction — i.e., downward. The force direction is opposite to E for negative charges.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "force-on-charge",
+      "uniform-field",
+      "electron"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Force on a charge in electric field",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "3.2 × 10⁻¹⁵ N, directed downward",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "3.2 × 10⁻¹⁵ N, directed upward",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1.6 × 10⁻¹⁵ N, directed downward",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3.2 × 10⁻¹⁵ N, perpendicular to the field",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The magnitude is correct but the direction is wrong. Electrons (negative charge) experience force opposite to the electric field direction.",
+        "misconception": "Forgetting that negative charges move opposite to the field"
+      },
+      {
+        "option_key": "C",
+        "hint": "The direction is correct (downward) but the magnitude is halved. F = eE = 1.6×10⁻¹⁹ × 2×10⁴ = 3.2×10⁻¹⁵ N, not 1.6.",
+        "misconception": "Arithmetic error in force calculation"
+      },
+      {
+        "option_key": "D",
+        "hint": "The electric force on a charge always acts along the electric field (or opposite to it for negative charges), never perpendicular.",
+        "misconception": "Confusing electric force with magnetic force (which is perpendicular)"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-10",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electric field inside a uniformly charged thin spherical shell is:",
+    "explanation": "By Gauss's law, choosing a Gaussian surface inside the shell: the enclosed charge is zero (all charge is on the shell). Therefore, ∮E·dA = q_enc/ε₀ = 0, giving E = 0 everywhere inside. This is a fundamental result — a uniformly charged shell creates no field in its interior.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "spherical-shell",
+      "gauss-law",
+      "zero-field"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Field of symmetric charge distributions",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "kQ/R², directed radially outward",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Zero everywhere",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "kQ/r², where r is distance from centre",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Proportional to r (increases linearly from centre)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "kQ/R² is the field at the surface of the shell (r = R), not inside it.",
+        "misconception": "Using the surface field value for interior points"
+      },
+      {
+        "option_key": "C",
+        "hint": "kQ/r² is the field outside the shell (r > R). Inside (r < R), the enclosed charge is zero.",
+        "misconception": "Confusing the outside field formula with the interior"
+      },
+      {
+        "option_key": "D",
+        "hint": "Linear increase with r describes the field inside a uniformly charged solid sphere, not a hollow shell.",
+        "misconception": "Confusing solid sphere with hollow shell"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-11",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a region where the electric field is uniform, the field lines are:",
+    "explanation": "In a uniform electric field, the magnitude and direction of E are the same everywhere. Therefore, field lines must be equidistant (same density = same magnitude) and parallel (same direction). They are straight lines with equal spacing.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "uniform-field",
+      "field-lines",
+      "parallel-lines"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Properties of field lines",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Converging toward a point",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Diverging from a point",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Curved lines of varying spacing",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Parallel, equally spaced straight lines",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Converging lines indicate increasing field strength in that direction, which contradicts the definition of a uniform field.",
+        "misconception": "Confusing uniform field with the field near a negative charge"
+      },
+      {
+        "option_key": "B",
+        "hint": "Diverging lines indicate a positive point charge source. Uniform field doesn't diverge.",
+        "misconception": "Confusing uniform field with radial field"
+      },
+      {
+        "option_key": "C",
+        "hint": "Curved lines with varying spacing represent a non-uniform field (like near a charge or dipole).",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-12",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electric field on the axis of a uniformly charged disc of radius R and surface charge density σ, at a distance x from the centre (where x << R), is approximately:",
+    "explanation": "The exact field on the axis of a charged disc is E = (σ/2ε₀)[1 − x/√(x² + R²)]. When x << R: √(x² + R²) ≈ R, so E ≈ (σ/2ε₀)[1 − x/R] ≈ σ/2ε₀ (since x/R → 0). This is the same as the field due to an infinite plane sheet of charge, which makes sense — close to the disc, it looks like an infinite plane.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "charged-disc",
+      "infinite-plane-limit",
+      "surface-charge"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Field of continuous distributions",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "σ/ε₀",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "σx/(2ε₀R)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "σ/(2ε₀)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "σ/ε₀ is the field between two infinite parallel plates (complete enclosure), not on one side of a single disc.",
+        "misconception": "Confusing single plane field with two-plate field"
+      },
+      {
+        "option_key": "B",
+        "hint": "This expression goes to zero as x → 0, but the field near an infinite plane is constant (σ/2ε₀), not zero.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The field at any finite distance from a charged disc is non-zero. It approaches σ/2ε₀ as x → 0.",
+        "misconception": "Thinking the field is zero on the surface of the disc"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-13",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A proton is released from rest in a uniform electric field of magnitude 8 × 10⁴ V/m. The acceleration of the proton is (mass of proton = 1.67 × 10⁻²⁷ kg):",
+    "explanation": "Force on proton: F = eE = 1.6 × 10⁻¹⁹ × 8 × 10⁴ = 1.28 × 10⁻¹⁴ N. Acceleration: a = F/m = 1.28 × 10⁻¹⁴ / 1.67 × 10⁻²⁷ = 7.66 × 10¹² m/s². The proton accelerates in the direction of the field (since it's positive).",
+    "correct_answer": "B",
+    "concept_tags": [
+      "proton-acceleration",
+      "uniform-field",
+      "newton-second-law"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Motion of charges in electric fields",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "7.66 × 10¹⁰ m/s²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "7.66 × 10¹² m/s²",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1.28 × 10⁻¹⁴ m/s²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "7.66 × 10¹⁵ m/s²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "10¹⁰ is two orders of magnitude too small. Check: 10⁻¹⁴/10⁻²⁷ = 10¹³, so the order should be ~10¹².",
+        "misconception": "Exponent arithmetic error"
+      },
+      {
+        "option_key": "C",
+        "hint": "1.28 × 10⁻¹⁴ N is the force, not the acceleration. You need to divide by mass.",
+        "misconception": "Reporting force instead of acceleration"
+      },
+      {
+        "option_key": "D",
+        "hint": "10¹⁵ is three orders too large — possibly from using electron mass instead of proton mass.",
+        "misconception": "Using electron mass instead of proton mass"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-14",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The electric field at a point on the equatorial line of a short electric dipole at distance r (r >> 2a) from the centre is E₁. If the point is now moved to the same distance r on the axial line, the electric field E₂ is:",
+    "explanation": "For a short dipole at large distance r: Equatorial field E₁ = kp/r³. Axial field E₂ = 2kp/r³. Therefore E₂ = 2E₁. The axial field is always twice the equatorial field at the same distance from a dipole.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "dipole-field",
+      "axial-equatorial",
+      "ratio"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Dipole field comparison",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "E₁/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "E₁",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2E₁",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4E₁",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "E₁/2 reverses the ratio. The axial field is stronger than equatorial, not weaker.",
+        "misconception": "Inverting the axial-to-equatorial ratio"
+      },
+      {
+        "option_key": "B",
+        "hint": "Equal fields would mean the axial and equatorial expressions are the same, but E_axial has a factor of 2 that E_equatorial doesn't.",
+        "misconception": "Assuming the field is the same in all directions at a given r"
+      },
+      {
+        "option_key": "D",
+        "hint": "A factor of 4 would apply if the distance were halved (since E ∝ 1/r³), not for a change from equatorial to axial at the same r.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-15",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An electric dipole is placed in a non-uniform electric field. The dipole will experience:",
+    "explanation": "In a non-uniform field, the forces on the two charges of the dipole are unequal (since E differs at their positions). This produces both a net torque (trying to align the dipole with the field) AND a net translational force (since F₊ ≠ F₋). In contrast, a uniform field produces only torque (no net force). The dipole moves toward the region of stronger field.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dipole-in-field",
+      "non-uniform-field",
+      "torque-and-force"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Dipole in external field",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both a net force and a net torque",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Only a net torque, no net force",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Only a net force, no net torque",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Neither net force nor net torque",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "'Only torque, no force' is true for a UNIFORM field. In a non-uniform field, the unequal forces on the two charges create a net translational force as well.",
+        "misconception": "Applying the uniform-field result to a non-uniform field"
+      },
+      {
+        "option_key": "C",
+        "hint": "The torque is always present (unless the dipole is already aligned with the field). There's no scenario where there's force but no torque in a non-uniform field.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A dipole in any external field (uniform or not) experiences at least a torque (unless aligned). In non-uniform fields, it also has a net force.",
+        "misconception": "Thinking a dipole doesn't interact with external fields"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-16",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The electric field inside a uniformly charged solid non-conducting sphere of radius R and total charge Q, at a distance r from the centre (r < R), is:",
+    "explanation": "Using Gauss's law with a spherical Gaussian surface of radius r inside the sphere: q_enc = Q(r³/R³) (charge enclosed proportional to volume). By Gauss's law: E × 4πr² = Q(r³/R³)/ε₀. Solving: E = Qr/(4πε₀R³) = kQr/R³. The field increases linearly from centre to surface.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "solid-sphere",
+      "gauss-law",
+      "linear-field"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Gauss's law applications",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "kQ/r²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kQ/R²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "kQr/R³",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "kQ/r² is the field OUTSIDE the sphere (r > R). Inside, only the enclosed charge contributes, which is less than Q.",
+        "misconception": "Using total charge Q instead of enclosed charge for interior points"
+      },
+      {
+        "option_key": "B",
+        "hint": "kQ/R² is the field at the surface (r = R). Inside, the field varies linearly with r, it's not constant.",
+        "misconception": "Using surface value for all interior points"
+      },
+      {
+        "option_key": "C",
+        "hint": "Zero field inside applies to a conducting sphere or a hollow shell, not a solid non-conducting sphere with uniform volume charge.",
+        "misconception": "Confusing non-conducting solid sphere with conducting sphere or shell"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-17",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The torque experienced by an electric dipole of moment p placed in a uniform electric field E at angle θ to the field is maximum when θ equals:",
+    "explanation": "Torque τ = pE sinθ. This is maximum when sinθ = 1, i.e., θ = 90°. When the dipole is perpendicular to the field, the torque is maximum (τ_max = pE). At θ = 0° (aligned) or θ = 180° (anti-aligned), the torque is zero.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "dipole-torque",
+      "maximum-torque",
+      "angle"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Dipole in uniform field",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0°",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "90°",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "180°",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "45°",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "At θ = 0°, the dipole is aligned with the field and sin0° = 0, so the torque is zero (stable equilibrium).",
+        "misconception": "Confusing equilibrium position with maximum torque position"
+      },
+      {
+        "option_key": "C",
+        "hint": "At θ = 180°, sin180° = 0, so the torque is again zero (unstable equilibrium). Maximum torque requires sinθ = 1.",
+        "misconception": "Confusing unstable equilibrium with maximum torque"
+      },
+      {
+        "option_key": "D",
+        "hint": "At 45°, sin45° = 1/√2, which gives τ = pE/√2 — this is about 71% of maximum, not the maximum itself.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-18",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The electric field due to an infinitely long straight wire with uniform linear charge density λ at perpendicular distance r from the wire is:",
+    "explanation": "Using Gauss's law with a cylindrical Gaussian surface of radius r and length l: E × 2πrl = λl/ε₀. Solving: E = λ/(2πε₀r). The field is directed radially outward (for positive λ) and falls off as 1/r — slower than the 1/r² of a point charge.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "infinite-wire",
+      "gauss-law",
+      "linear-charge-density"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Field of symmetric distributions",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "λ/(2πε₀r)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "λ/(4πε₀r²)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "λ/(ε₀r)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "λ/(4πε₀r)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "This has 1/r² dependence (like a point charge) and uses 4πε₀ in the denominator. The wire field has 1/r dependence and 2πε₀.",
+        "misconception": "Applying point charge formula to a line charge"
+      },
+      {
+        "option_key": "C",
+        "hint": "λ/ε₀r is missing the factor of 2π from the cylindrical Gaussian surface area (2πrl).",
+        "misconception": "Incorrect Gaussian surface area calculation"
+      },
+      {
+        "option_key": "D",
+        "hint": "4πε₀r uses the wrong geometric factor. For cylindrical symmetry, the surface area gives 2πrl, leading to 2πε₀ in the denominator.",
+        "misconception": "Using the spherical factor 4πε₀ for a cylindrical problem"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-19",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The electric field at a point on the surface of a charged conductor is perpendicular to the surface.\nReason (R): If there were a tangential component of the field, the free charges on the conductor surface would move, contradicting electrostatic equilibrium.",
+    "explanation": "Both A and R are correct, and R is the correct explanation of A. In electrostatic equilibrium, charges on a conductor are stationary. If E had a tangential component at the surface, it would exert a force on the free charges, causing them to move — violating the assumption of static equilibrium. Therefore, E must be perpendicular to the surface.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "conductor-surface",
+      "perpendicular-field",
+      "equilibrium"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Conductors in electrostatic equilibrium",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R directly explains A — the absence of tangential force (which would move charges) is exactly why the field must be perpendicular.",
+        "misconception": "Not recognising the causal connection between charge motion and field direction"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is factually correct — free charges would indeed move if there were a tangential field component.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — electric field is always perpendicular to a conductor surface in electrostatic equilibrium.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-field-20",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The density of electric field lines is proportional to the magnitude of the electric field at that point.\nReason (R): Electric field lines are drawn such that the number of lines per unit cross-sectional area is proportional to E.",
+    "explanation": "Both A and R are correct, and R correctly explains A. By convention, field lines are drawn so that the number of lines crossing a unit area perpendicular to the lines equals the field magnitude. This is why regions of closely spaced lines have stronger fields, and widely spaced lines indicate weaker fields.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "field-line-density",
+      "field-magnitude",
+      "convention"
+    ],
+    "topic": "Electric Field and Field Lines",
+    "subtopic": "Field line interpretation",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R is precisely the convention that makes A true — the density of field lines represents field strength because they are drawn that way. R explains A.",
+        "misconception": "Not seeing that R is the definition that makes A true"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct — this is the standard convention for drawing field lines in physics.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — field line density does represent field magnitude. This is how field maps work.",
+        "misconception": null
+      }
+    ]
+  }
+]
