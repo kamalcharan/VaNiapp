@@ -1,0 +1,1221 @@
+[
+  {
+    "id": "phy-elec-potential-n01",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The electric potential due to a positive point charge:",
+    "explanation": "V = kq/r. For a positive charge (q > 0), V is positive at all points and decreases with increasing distance, approaching zero at infinity. It never becomes negative or zero at a finite distance.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "potential-sign",
+      "point-charge",
+      "distance-dependence"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential due to a point charge",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Is always negative",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Is always positive and decreases with distance",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Can be positive or negative depending on distance",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Is zero at all points",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Negative potential occurs for negative charges. For positive q, V = kq/r is always positive.",
+        "misconception": "Confusing sign of potential with sign of charge"
+      },
+      {
+        "option_key": "C",
+        "hint": "V = kq/r with positive q is always positive regardless of r. It only changes in magnitude, not sign.",
+        "misconception": "Thinking distance can change the sign of potential"
+      },
+      {
+        "option_key": "D",
+        "hint": "V = 0 only at r → ∞. At any finite distance, a point charge creates a non-zero potential.",
+        "misconception": "Confusing zero field line with zero potential"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n02",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Equipotential surfaces due to a uniform electric field are:",
+    "explanation": "In a uniform field E along x, V = −Ex + constant. Surfaces of constant V require x = constant, which are planes perpendicular to E. These planes are equally spaced (for equal voltage intervals) and always perpendicular to the field lines.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "equipotential",
+      "uniform-field",
+      "plane-surfaces"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Equipotential surfaces",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Planes perpendicular to the field direction",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Concentric spheres",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Planes parallel to the field direction",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Concentric cylinders",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Concentric spheres are equipotential surfaces for a point charge, not for a uniform field.",
+        "misconception": "Confusing point charge geometry with uniform field geometry"
+      },
+      {
+        "option_key": "C",
+        "hint": "Parallel to the field means along the field direction, where potential changes. Equipotential must be perpendicular to E.",
+        "misconception": "Confusing parallel with perpendicular"
+      },
+      {
+        "option_key": "D",
+        "hint": "Concentric cylinders are equipotential surfaces for an infinite line charge, not a uniform field.",
+        "misconception": "Confusing line charge geometry with uniform field"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n03",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The work done in moving a unit positive charge from point A to point B in an electric field is equal to:",
+    "explanation": "Work done per unit charge in moving from A to B is the potential difference: W/q = V_A − V_B. So for a unit positive charge (q = 1), W = V_A − V_B. The work is positive when moving from higher to lower potential (field does work), and negative when moving against the field.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "work-done",
+      "potential-difference",
+      "unit-charge"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential difference and work",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "V_B − V_A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "V_A × V_B",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "V_A − V_B",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "V_A + V_B",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "V_B − V_A gives work done against the field (or the negative of work done by the field). The work done by the field is V_A − V_B.",
+        "misconception": "Reversing the sign convention for work"
+      },
+      {
+        "option_key": "B",
+        "hint": "Product of potentials has no physical meaning in this context. Work involves the difference, not the product.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Sum of potentials has no physical meaning for work calculation. Work = potential difference = V_A − V_B.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n04",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The electric potential at the centre of a uniformly charged conducting spherical shell of radius R and charge Q is:",
+    "explanation": "For a conducting shell, V at any point inside or on the surface = kQ/R (constant). At the centre, V = kQ/R, not zero. The electric field is zero inside, but the potential is constant and equals the surface potential.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "conducting-shell",
+      "potential-inside",
+      "constant-potential"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential of a charged shell",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kQ/R²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Infinity",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "kQ/R",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "E = 0 inside, but V ≠ 0. The potential inside is constant and equal to the surface value kQ/R. Don't confuse zero field with zero potential.",
+        "misconception": "Thinking zero electric field means zero potential"
+      },
+      {
+        "option_key": "B",
+        "hint": "kQ/R² has dimensions of electric field (N/C), not potential (V). Potential is kQ/R.",
+        "misconception": "Confusing field formula with potential formula"
+      },
+      {
+        "option_key": "C",
+        "hint": "Potential is infinite only at the location of a true point charge (r = 0). A shell has charge distributed on its surface, not at the centre.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n05",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electric potential V in a region is given by V = 3x² + 4y − 2z (in volts, distances in metres). The electric field at the origin is:",
+    "explanation": "E = −∇V. E_x = −∂V/∂x = −6x. E_y = −∂V/∂y = −4. E_z = −∂V/∂z = +2. At origin (x=0, y=0, z=0): E = (0, −4, 2) V/m. Magnitude = √(0 + 16 + 4) = √20 = 2√5 V/m.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "gradient",
+      "electric-field-from-potential",
+      "partial-derivatives"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Relation between E and V",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "(0, 4, −2) V/m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "(0, −4, 2) V/m",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "(6, −4, 2) V/m",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "(0, −4, −2) V/m",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "You forgot the negative sign: E = −∇V, not +∇V. The correct y-component is −(+4) = −4, not +4.",
+        "misconception": "Forgetting the negative sign in E = −∇V"
+      },
+      {
+        "option_key": "C",
+        "hint": "E_x = −6x, and at the origin x = 0, so E_x = 0, not 6.",
+        "misconception": "Evaluating the derivative but not substituting x = 0"
+      },
+      {
+        "option_key": "D",
+        "hint": "E_z = −∂V/∂z = −(−2) = +2, not −2. The derivative of −2z with respect to z is −2, and E_z = −(−2) = +2.",
+        "misconception": "Sign error in double negative"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n06",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two point charges +q and −2q are separated by distance d. The point on the line joining them where the electric potential is zero (other than at infinity) lies:",
+    "explanation": "Let the zero-potential point be at distance x from +q (towards −2q). Then kq/x − 2kq/(d−x) = 0, giving d − x = 2x, so x = d/3. This point lies between the charges at distance d/3 from +q. There's also an external zero-potential point, but between the charges is the standard answer for the 'other than infinity' condition.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "zero-potential",
+      "superposition",
+      "two-charges"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential due to charge system",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Between the charges, at distance d/3 from +q",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Between the charges, at the midpoint",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Outside the charges, beyond −2q",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "There is no such point",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "At the midpoint, V = kq/(d/2) − 2kq/(d/2) = 2kq/d − 4kq/d = −2kq/d ≠ 0. The unequal charges make the midpoint non-zero.",
+        "misconception": "Assuming zero potential at midpoint for unequal charges"
+      },
+      {
+        "option_key": "C",
+        "hint": "There is also a zero-potential point outside (beyond +q, at distance d from +q), but the question asks for the point on the line, and the primary solution between the charges is d/3.",
+        "misconception": "Selecting the external solution without checking the internal one"
+      },
+      {
+        "option_key": "D",
+        "hint": "Zero potential points always exist between unequal opposite-sign charges. Since potential is scalar, it smoothly transitions from positive (near +q) to negative (near −2q).",
+        "misconception": "Thinking zero potential is impossible with unequal charges"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n07",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electrostatic potential energy of a system of three point charges q, 2q, and 3q placed at the vertices of an equilateral triangle of side a is:",
+    "explanation": "U = k[q₁q₂/r₁₂ + q₂q₃/r₂₃ + q₁q₃/r₁₃]. All distances = a. U = k[(q)(2q)/a + (2q)(3q)/a + (q)(3q)/a] = k[2q² + 6q² + 3q²]/a = 11kq²/a.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "potential-energy",
+      "three-charges",
+      "triangle"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential energy of charge system",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "6kq²/a",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "9kq²/a",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "11kq²/a",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "12kq²/a",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "6kq²/a counts only one pair (2q × 3q). You need all three pairs: q·2q + 2q·3q + q·3q = 2 + 6 + 3 = 11.",
+        "misconception": "Counting only the largest pair interaction"
+      },
+      {
+        "option_key": "B",
+        "hint": "9kq²/a would arise from (1+2)(1+2) type error. The correct pairwise sum is 2 + 6 + 3 = 11.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "12kq²/a could come from (q + 2q + 3q)²/(2a) = 36kq²/(2a). But potential energy is not calculated using total charge squared.",
+        "misconception": "Using (total charge)² formula instead of pairwise sum"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n08",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If the electric field in a region is zero, the electric potential in that region must be:",
+    "explanation": "E = −dV/dr. If E = 0 everywhere in a region, then dV/dr = 0, meaning V is constant throughout. The constant can be any value (positive, negative, or zero), but it must be the same at all points in the region.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "zero-field",
+      "constant-potential",
+      "E-V-relation"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Relation between E and V",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero everywhere",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Varying linearly with distance",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Maximum at some point",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Constant (but not necessarily zero)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Zero is one possible constant, but not the only one. Inside a charged conductor, E = 0 but V = kQ/R ≠ 0.",
+        "misconception": "Thinking zero field implies zero potential"
+      },
+      {
+        "option_key": "B",
+        "hint": "If V varied linearly, then E = −dV/dr would be a non-zero constant, contradicting E = 0.",
+        "misconception": "Confusing constant field with zero field"
+      },
+      {
+        "option_key": "C",
+        "hint": "A maximum implies V changes on either side, which requires a non-zero gradient (field).",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n09",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The potential at a point P due to an electric dipole of moment p at distance r (r >> 2a) making angle θ with the dipole axis is:",
+    "explanation": "The potential due to a dipole at a general point is V = kp cosθ/r². On the axial line (θ = 0°), V = kp/r². On the equatorial line (θ = 90°), V = 0. The potential follows an inverse-square law with distance (not inverse cube like the field).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dipole-potential",
+      "angular-dependence",
+      "inverse-square"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential due to a dipole",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "kp cosθ/r²",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "kp sinθ/r²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "kp cosθ/r³",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "kp/r²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "sinθ would give zero on the axial line (θ = 0°) and maximum on the equatorial line — the exact opposite of what happens. Dipole potential uses cosθ.",
+        "misconception": "Confusing cosθ with sinθ in dipole potential formula"
+      },
+      {
+        "option_key": "C",
+        "hint": "1/r³ is the distance dependence of the dipole electric field, not the potential. Potential falls off as 1/r².",
+        "misconception": "Confusing dipole field dependence with potential dependence"
+      },
+      {
+        "option_key": "D",
+        "hint": "This omits the angular (cosθ) dependence. The dipole potential is not the same at all angles — it's zero on the equatorial line.",
+        "misconception": "Forgetting angular dependence of dipole potential"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n10",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The potential at a point on the surface of a uniformly charged non-conducting solid sphere of radius R and total charge Q is V₀. The potential at a point at distance R/2 from the centre is:",
+    "explanation": "Outside and on surface: V₀ = kQ/R. Inside (r < R): V = kQ(3R² − r²)/(2R³). At r = R/2: V = kQ(3R² − R²/4)/(2R³) = kQ(11R²/4)/(2R³) = 11kQ/(8R) = 11V₀/8. The potential inside a solid sphere is higher than the surface potential.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "solid-sphere-potential",
+      "inside-potential",
+      "non-conductor"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential inside a solid sphere",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "V₀/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "V₀",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3V₀/2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "11V₀/8",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "V₀/2 would apply if V ∝ r (linear decrease), but the potential inside a solid sphere follows V = kQ(3R² − r²)/(2R³), not a linear law.",
+        "misconception": "Assuming potential decreases linearly inside a solid sphere"
+      },
+      {
+        "option_key": "B",
+        "hint": "V = V₀ would mean constant potential inside (as in a shell). For a solid sphere, the potential increases from surface toward the centre.",
+        "misconception": "Confusing solid sphere with hollow shell"
+      },
+      {
+        "option_key": "C",
+        "hint": "3V₀/2 is the potential at the centre (r = 0): V = kQ × 3R²/(2R³) = 3kQ/(2R) = 3V₀/2. At r = R/2, it's less than this.",
+        "misconception": "Using the centre value instead of calculating at r = R/2"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n11",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two concentric metallic shells of radii R and 2R carry charges Q and −2Q respectively. The potential at distance r = 3R from the centre is:",
+    "explanation": "For r > 2R (outside both shells), both shells act as point charges at the centre. V = k(Q + (−2Q))/(3R) = k(−Q)/(3R) = −kQ/(3R). The potential depends on the total enclosed charge.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "concentric-shells",
+      "superposition",
+      "external-potential"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential of concentric shells",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "kQ/(3R)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "−kQ/(3R)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "−3kQ/(2R)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This ignores the −2Q on the outer shell. The net charge is Q + (−2Q) = −Q, not +Q.",
+        "misconception": "Considering only the inner shell's charge"
+      },
+      {
+        "option_key": "C",
+        "hint": "−3kQ/(2R) might come from incorrectly adding potentials. At r = 3R: V = kQ/(3R) + k(−2Q)/(3R) = −kQ/(3R).",
+        "misconception": "Using different distances for the two shells at an external point"
+      },
+      {
+        "option_key": "D",
+        "hint": "Zero potential would require Q_net = 0, but Q + (−2Q) = −Q ≠ 0.",
+        "misconception": "Thinking opposite charges on concentric shells cancel the potential"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n12",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A charge Q is distributed uniformly on a ring of radius R. A point charge −q is moved from infinity to the centre of the ring. The work done by the external agent is:",
+    "explanation": "V at centre of ring = kQ/R (all charge elements on the ring are at distance R from the centre). Work done by external agent = Change in PE = (−q)(V_centre − V_∞) = (−q)(kQ/R − 0) = −kQq/R. The negative sign means the external agent does negative work (the field does positive work pulling −q toward the positive ring).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "ring-potential",
+      "work-by-external-agent",
+      "centre-potential"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Work and potential energy",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "kQq/R",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kQq/R²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "−kQq/R",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Positive work would mean the agent pushes against the field. But −q is attracted to the positive ring, so the field does the work and the agent does negative work.",
+        "misconception": "Getting the sign wrong — confusing work by field with work against field"
+      },
+      {
+        "option_key": "B",
+        "hint": "kQq/R² has dimensions of force, not energy. Work = charge × potential, not charge × field.",
+        "misconception": "Confusing potential (kQ/R) with field (kQ/R²)"
+      },
+      {
+        "option_key": "D",
+        "hint": "Zero work implies no change in PE, but moving from infinity (V = 0) to the centre (V = kQ/R) definitely changes PE.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n13",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two identical conducting spheres of radius R are separated by a large distance. Sphere A has charge 6Q and sphere B has charge −2Q. They are connected by a thin wire and then disconnected. The charge on each sphere after disconnection is:",
+    "explanation": "When connected, charge redistributes until both spheres reach the same potential. Since the spheres are identical (same R and far apart), the total charge (6Q + (−2Q) = 4Q) divides equally: each gets 2Q. Final: A = 2Q, B = 2Q.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "charge-sharing",
+      "equal-potential",
+      "identical-conductors"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Charge redistribution on conductors",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2Q on each",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "3Q on A and Q on B",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4Q on A and 0 on B",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "6Q on A and −2Q on B (unchanged)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Unequal charge on identical spheres means unequal potentials (V = kQ/R). For identical spheres, equal potential requires equal charge.",
+        "misconception": "Thinking charge distributes in the original ratio"
+      },
+      {
+        "option_key": "C",
+        "hint": "Total charge is 4Q, but it must divide equally between identical spheres. 4Q + 0 gives different potentials.",
+        "misconception": "Thinking one sphere takes all the charge"
+      },
+      {
+        "option_key": "D",
+        "hint": "When connected by wire, charge flows until potentials equalize. The charges definitely change.",
+        "misconception": "Thinking the wire has no effect"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n14",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): No work is done in moving a charge along an equipotential surface.\nReason (R): The electric field is always perpendicular to the equipotential surface.",
+    "explanation": "Both A and R are true, and R correctly explains A. Since E ⊥ equipotential surface, the component of E along the surface is zero. Therefore, force on charge along the surface is zero, and work W = F·d = 0. The perpendicularity is what ensures zero work.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "equipotential",
+      "zero-work",
+      "perpendicular-field"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Equipotential surfaces",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R directly explains A: because E is perpendicular to the surface, the force component along the surface is zero, hence zero work.",
+        "misconception": "Not connecting the perpendicularity with zero work"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct — E is always perpendicular to equipotential surfaces. This is a fundamental property derived from E = −∇V.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — since potential is constant on an equipotential surface, ΔV = 0, so W = qΔV = 0.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n15",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The potential at the centre of a uniformly charged non-conducting solid sphere is 1.5 times the potential at its surface.\nReason (R): The electric field inside a uniformly charged solid sphere is proportional to the distance from the centre.",
+    "explanation": "Both A and R are true, and R is the correct explanation of A. V_centre = 3kQ/(2R) = 1.5 × kQ/R = 1.5 V_surface (A is true). R is true: E_inside = ρr/(3ε₀) ∝ r. R explains A because integrating this linear field from surface to centre gives the extra potential: V_centre − V_surface = ∫₀ᴿ E dr = kQ/(2R), leading to V_centre = 3kQ/(2R).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "solid-sphere",
+      "centre-potential",
+      "linear-field"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential inside solid sphere",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R explains A directly — the 1.5 factor arises from integrating E ∝ r from the surface inward. The linear field profile is the reason for the specific ratio.",
+        "misconception": "Not recognizing that the field profile determines the potential profile"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct — inside a uniformly charged solid sphere, E = ρr/(3ε₀), which is indeed proportional to r.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — V_centre = kQ(3R²)/(2R³) = 3kQ/(2R) = 1.5 × kQ/R = 1.5 V_surface.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n16",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Electric potential is a scalar quantity.",
+    "explanation": "TRUE. Electric potential V = W/q (work per unit charge) is a scalar. Unlike the electric field (which is a vector), potential has no direction — it has only magnitude (positive, negative, or zero). The scalar nature makes superposition of potentials simpler than superposition of fields.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "potential-scalar",
+      "scalar-quantity"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Nature of electric potential",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Potential is defined as work/charge (W/q), both of which are scalars. A scalar divided by a scalar is a scalar, not a vector.",
+        "misconception": "Confusing electric potential (scalar) with electric field (vector)"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n17",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The electric potential decreases along the direction of the electric field.",
+    "explanation": "TRUE. E = −dV/dr implies that V decreases in the direction of E. The electric field points from higher potential to lower potential. This is analogous to a ball rolling downhill — the gravitational field points in the direction of decreasing gravitational potential.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "potential-decrease",
+      "field-direction",
+      "gradient"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "E-V relationship",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "From E = −dV/dr, if E > 0 in some direction, then dV/dr < 0 in that direction, meaning V decreases. The statement is true.",
+        "misconception": "Forgetting the negative sign in E = −dV/dr"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n18",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The potential at the centre of a uniformly charged ring of total charge Q and radius R is _____.",
+    "explanation": "Every point on the ring is at distance R from the centre (by the definition of a ring). Since potential is a scalar, V = kQ/R (no vector cancellation). This is the same as the potential at distance R from a point charge Q, because all charge elements are equidistant from the centre.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "ring-potential",
+      "centre",
+      "scalar-addition"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential due to continuous distribution",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kQ/R",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "kQ/R²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2kQ/R",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The electric field at the centre of a ring is zero (by symmetry), but the potential is not. Don't confuse E = 0 with V = 0.",
+        "misconception": "Thinking zero field at centre means zero potential"
+      },
+      {
+        "option_key": "C",
+        "hint": "kQ/R² has dimensions of electric field, not potential. Potential = kQ/R.",
+        "misconception": "Confusing field and potential formulas"
+      },
+      {
+        "option_key": "D",
+        "hint": "There is no factor of 2. Each charge element dq at distance R contributes k·dq/R, and summing gives kQ/R.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n19",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "An electron (charge = −1.6 × 10⁻¹⁹ C, mass = 9.1 × 10⁻³¹ kg) is accelerated from rest through a potential difference of 100 V. Calculate its final kinetic energy and speed.",
+    "explanation": "KE = |q|ΔV = 1.6 × 10⁻¹⁹ × 100 = 1.6 × 10⁻¹⁷ J = 100 eV. Speed: ½mv² = KE, so v = √(2KE/m) = √(2 × 1.6 × 10⁻¹⁷ / 9.1 × 10⁻³¹) = √(3.516 × 10¹³) = 5.93 × 10⁶ m/s.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "electron-acceleration",
+      "kinetic-energy",
+      "potential-difference"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Motion in electric potential",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "KE = 1.6 × 10⁻¹⁷ J; v = 5.93 × 10⁵ m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "KE = 1.6 × 10⁻¹⁹ J; v = 5.93 × 10⁶ m/s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "KE = 1.6 × 10⁻¹⁷ J; v = 5.93 × 10⁷ m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "KE = 1.6 × 10⁻¹⁷ J; v = 5.93 × 10⁶ m/s",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The KE is correct but the speed is off by a factor of 10. Check: v = √(2 × 1.6 × 10⁻¹⁷/9.1 × 10⁻³¹) ≈ 5.93 × 10⁶, not 10⁵.",
+        "misconception": "Error in square root calculation"
+      },
+      {
+        "option_key": "B",
+        "hint": "KE = qV = 1.6 × 10⁻¹⁹ × 100 = 1.6 × 10⁻¹⁷ J, not 10⁻¹⁹ J. You forgot to multiply by the potential difference.",
+        "misconception": "Using the charge value directly as KE without multiplying by V"
+      },
+      {
+        "option_key": "C",
+        "hint": "v = 5.93 × 10⁷ m/s is about 20% of the speed of light, which is too high for 100V acceleration. Check the exponent in the square root.",
+        "misconception": "Error in exponent during square root calculation"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-potential-n20",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following in order of increasing electric potential (lowest first) for a positive point charge Q placed at the origin:\n\n1. A point at distance 4R from Q\n2. A point at distance R from Q\n3. A point at distance 2R from Q\n4. A point at infinity",
+    "explanation": "V = kQ/r for positive Q. V(∞) = 0 (lowest). V(4R) = kQ/(4R). V(2R) = kQ/(2R). V(R) = kQ/R (highest). Increasing order: 0 < kQ/(4R) < kQ/(2R) < kQ/R. So: 4 (infinity) → 1 (4R) → 3 (2R) → 2 (R).",
+    "correct_answer": "B",
+    "concept_tags": [
+      "potential-ordering",
+      "distance-dependence",
+      "positive-charge"
+    ],
+    "topic": "Electric Potential and Potential Energy",
+    "subtopic": "Potential variation with distance",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2 → 3 → 1 → 4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4 → 1 → 3 → 2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "4 → 3 → 1 → 2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1 → 3 → 2 → 4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This gives decreasing order (highest to lowest), not increasing. Point 2 (distance R) has the highest potential.",
+        "misconception": "Reversing the required order"
+      },
+      {
+        "option_key": "C",
+        "hint": "This swaps items 1 (4R) and 3 (2R). Since V ∝ 1/r, the closer point (2R) has higher potential than the farther point (4R).",
+        "misconception": "Confusing which distance gives higher potential"
+      },
+      {
+        "option_key": "D",
+        "hint": "This starts with 4R and ends with infinity (V = 0), but infinity has the lowest potential for a positive charge, so it should come first.",
+        "misconception": "Forgetting that V = 0 at infinity is the minimum for positive charge"
+      }
+    ]
+  }
+]

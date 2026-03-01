@@ -1,0 +1,1209 @@
+[
+  {
+    "id": "phy-elec-coulomb-41",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "easy",
+    "question_text": "The diagram shows four arrangements of two charges. In which arrangement is the electrostatic force between the charges repulsive?\n\n(A) +q ←→ −q\n(B) +q ←→ +q\n(C) −q ←→ +q\n(D) −q ←→ −2q (with one charge having larger magnitude)",
+    "image_uri": "diagrams/cuet-phy-elec-coulomb-41.png",
+    "image_alt": "Four charge pair arrangements: (A) positive-negative, (B) positive-positive, (C) negative-positive, (D) negative-negative with different magnitudes",
+    "explanation": "Repulsive force occurs between like charges. Arrangement B (+q and +q) has two positive charges — they repel. Arrangement D (−q and −2q) also has like charges (both negative) — they also repel. But among the options, B is the straightforward like-charge case. Arrangements A and C have unlike charges and attract.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "like-charges",
+      "repulsion",
+      "attraction"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Nature of electrostatic force",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Arrangement A only",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Arrangements B and D",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Arrangement C only",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "All four arrangements",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Arrangement A has +q and −q (unlike charges) — they attract, not repel.",
+        "misconception": "Confusing attraction with repulsion for unlike charges"
+      },
+      {
+        "option_key": "C",
+        "hint": "Arrangement C has −q and +q (unlike charges) — this is identical in nature to A, both attract.",
+        "misconception": "Not recognising that the order doesn't matter — unlike charges always attract"
+      },
+      {
+        "option_key": "D",
+        "hint": "Arrangements A and C have unlike charges, which attract — not all four are repulsive.",
+        "misconception": "Thinking all charged bodies repel"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-42",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The diagram shows a graph of electrostatic force F versus distance r between two point charges. Which curve correctly represents Coulomb's law?\n\nCurve P: F decreases linearly with r\nCurve Q: F decreases as 1/r²  (hyperbolic)\nCurve R: F decreases as 1/r (slower hyperbola)\nCurve S: F remains constant",
+    "image_uri": "diagrams/cuet-phy-elec-coulomb-42.png",
+    "image_alt": "Graph with four curves: P (linear decrease), Q (steep 1/r² hyperbola), R (gradual 1/r hyperbola), S (horizontal line)",
+    "explanation": "Coulomb's law states F = kq₁q₂/r², so F ∝ 1/r². This is represented by Curve Q — a steep hyperbolic decay. At small r, the force is very large; it drops rapidly and approaches zero at large r. The 1/r² curve is steeper than 1/r at small distances.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "inverse-square-law",
+      "graphical-representation",
+      "force-distance"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Coulomb's law graphical analysis",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Curve Q",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Curve P",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Curve R",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Curve S",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Curve P shows a linear decrease, meaning F ∝ (constant − r). Coulomb's law is not linear — it's inverse square.",
+        "misconception": "Thinking force decreases linearly with distance"
+      },
+      {
+        "option_key": "C",
+        "hint": "Curve R (1/r) represents electric potential V = kq/r, not force. Force falls faster (as 1/r²).",
+        "misconception": "Confusing force (1/r²) with potential (1/r)"
+      },
+      {
+        "option_key": "D",
+        "hint": "Curve S (constant force) would mean force doesn't depend on distance, contradicting Coulomb's law completely.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-43",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The figure shows four charges placed at the corners of a square of side a: +q at A (top-left), +q at B (top-right), −q at C (bottom-right), −q at D (bottom-left). What is the direction of the net force on the charge at A?",
+    "image_uri": "diagrams/cuet-phy-elec-coulomb-43.png",
+    "image_alt": "Square ABCD with +q at A (top-left), +q at B (top-right), -q at C (bottom-right), -q at D (bottom-left)",
+    "explanation": "Forces on +q at A: From +q at B (distance a, repulsive → pushes A leftward). From −q at C (distance a√2, attractive → pulls A toward C, i.e., diagonally toward bottom-right). From −q at D (distance a, attractive → pulls A downward). The leftward push from B and downward pull from D combine. Adding the diagonal pull toward C, the net force points approximately toward D (downward and slightly right), i.e., parallel to the side AD directed downward.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "vector-addition",
+      "square-configuration",
+      "net-force"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Superposition of forces",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Horizontally toward B",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Along the diagonal AC, toward C",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Parallel to AD, directed from A toward D",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Zero — forces cancel by symmetry",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The force from +q at B is repulsive (pushes A away from B, i.e., leftward), not toward B.",
+        "misconception": "Confusing attraction and repulsion directions"
+      },
+      {
+        "option_key": "B",
+        "hint": "While there is a component toward C, the forces from B and D also contribute. The net direction is along AD, not along the diagonal.",
+        "misconception": "Considering only the diagonal force and ignoring edge forces"
+      },
+      {
+        "option_key": "D",
+        "hint": "The configuration is NOT symmetric about charge A — there's +q on one side and −q on the other. Forces don't cancel.",
+        "misconception": "Incorrectly assuming symmetry at a corner of a non-uniform charge distribution"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-44",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "The figure shows a log-log plot (log F vs log r) for the electrostatic force between two point charges. The graph is a straight line with slope −2 and y-intercept log(kq₁q₂). If the experimental data shows a slope of −2.05 ± 0.03, what can be concluded?",
+    "image_uri": "diagrams/cuet-phy-elec-coulomb-44.png",
+    "image_alt": "Log-log plot showing log F on y-axis vs log r on x-axis, with a straight line of negative slope. Experimental points shown with error bars, slope = -2.05 ± 0.03",
+    "explanation": "Taking log of F = kq₁q₂/rⁿ gives log F = log(kq₁q₂) − n × log r. A log-log plot gives a straight line with slope −n. The theoretical value is n = 2 (inverse square law). The experimental slope of −2.05 ± 0.03 includes n = 2 within the error range (2.05 − 0.03 = 2.02 and 2.05 + 0.03 = 2.08), so the data is consistent with the inverse square law within experimental uncertainty.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "log-log-plot",
+      "experimental-verification",
+      "inverse-square"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Experimental verification of Coulomb's law",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Coulomb's law is definitively disproved",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The force follows an inverse cube law",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The experiment has no errors",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The data is consistent with Coulomb's inverse square law within experimental uncertainty",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A slope of −2.05 ± 0.03 is very close to −2 and includes −2 within 2σ. Experimental uncertainty must be considered before claiming a law is disproved.",
+        "misconception": "Ignoring experimental uncertainty when comparing with theory"
+      },
+      {
+        "option_key": "B",
+        "hint": "An inverse cube law would give slope −3, which is far outside the measured range of −2.05 ± 0.03.",
+        "misconception": "Confusing the measured slope with a completely different power law"
+      },
+      {
+        "option_key": "C",
+        "hint": "Every experiment has some uncertainty. The ±0.03 explicitly states the error range.",
+        "misconception": "Thinking a small deviation means zero error rather than acknowledging uncertainty"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-45",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The electrostatic force between two point charges is a central force.\nReason (R): The force acts along the line joining the two charges and depends only on the distance between them.",
+    "explanation": "A central force is one that acts along the line joining two particles and depends only on the scalar distance between them. Coulomb's force F = kq₁q₂r̂/r² satisfies both conditions — it acts along r̂ (the unit vector from one charge to the other) and depends only on r. The reason correctly states both defining properties of a central force, making it the correct explanation of the assertion.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "central-force",
+      "coulomb-law",
+      "force-properties"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Properties of Coulomb's force",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The two properties mentioned in R (acts along joining line + depends only on distance) are the defining properties of a central force. R directly defines and explains why A is true.",
+        "misconception": "Not recognising that R states the exact definition of a central force"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is a correct statement — Coulomb's force does indeed act along the line joining charges and depends only on r.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — Coulomb's force is indeed a central force, which is why angular momentum is conserved in classical electron orbits.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-46",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): A sensitive gold-leaf electroscope can detect charge quantization at macroscopic scales.\nReason (R): The elementary charge e = 1.6 × 10⁻¹⁹ C is extremely small compared to charges typically encountered in daily life.",
+    "explanation": "A is FALSE: at macroscopic scales, charges are so large (of order μC or more) that the discrete nature (quantization) of charge is not observable — charge appears continuous. R is TRUE: e is indeed extremely small compared to macroscopic charges, which is precisely why quantization is undetectable at large scales. Since A is incorrect and R is correct, the answer is D.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "quantization",
+      "macroscopic-charge",
+      "gold-leaf-electroscope"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Quantization of charge",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The assertion is incorrect — quantization cannot be detected at macroscopic scales because the elementary charge is too small relative to everyday charges.",
+        "misconception": "Thinking quantization is easily observable with a gold-leaf electroscope"
+      },
+      {
+        "option_key": "B",
+        "hint": "A is false, not true. A gold-leaf electroscope cannot detect individual electron charges.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "R is actually correct — e = 1.6 × 10⁻¹⁹ C is indeed extremely small compared to typical macroscopic charges.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-47",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): Coulomb's force between two charges obeys Newton's third law.\nReason (R): The force exerted by charge q₁ on q₂ is equal in magnitude and opposite in direction to the force exerted by q₂ on q₁.",
+    "explanation": "Both A and R are correct. F₁₂ = kq₁q₂r̂₁₂/r² and F₂₁ = kq₁q₂r̂₂₁/r² = −F₁₂. This satisfies Newton's third law (action = −reaction). R correctly states this property and directly explains A.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "newton-third-law",
+      "action-reaction",
+      "coulomb-law"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Properties of Coulomb's force",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R is the exact statement of Newton's third law applied to Coulomb forces. Since A says Coulomb's force obeys Newton's third law, R is by definition the correct explanation.",
+        "misconception": "Not seeing that R is just the restatement of Newton's third law for this specific case"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is factually correct — by Coulomb's law, F₁₂ = −F₂₁ always holds.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — Coulomb's force is a conservative, central force that obeys Newton's third law.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-48",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): Coulomb's law accurately predicts the force between two charged bodies of any shape and size.\nReason (R): Coulomb's law is derived for point charges and works accurately only when the size of the charged bodies is much smaller than the distance between them.",
+    "explanation": "A is FALSE: Coulomb's law in its standard form F = kq₁q₂/r² is strictly valid only for point charges (or when bodies are very small compared to separation). For extended bodies, charge distribution matters and the simple formula is inadequate. R is TRUE: it correctly states the limitation. Since A is wrong and R is right, the answer is D.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "coulomb-law-limitations",
+      "point-charge-approximation"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Validity conditions of Coulomb's law",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A is false — Coulomb's law does not work for bodies of any shape/size. For large or close conductors, charge redistribution invalidates the point-charge formula.",
+        "misconception": "Thinking Coulomb's law applies universally to all shapes"
+      },
+      {
+        "option_key": "B",
+        "hint": "A is false, so this option cannot be correct.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "R is factually correct — it accurately describes the point-charge requirement of Coulomb's law.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-49",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Electric charge is an additive quantity — the total charge of a system is the algebraic sum of all individual charges.",
+    "explanation": "This is TRUE. Additivity of charge means the total charge of a system equals the algebraic (not absolute) sum of all charges. For example, if a system has charges +5 μC and −3 μC, the total charge is +2 μC. This property, along with conservation and quantization, is a fundamental property of electric charge.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "additivity",
+      "charge-properties",
+      "algebraic-sum"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Properties of electric charge",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Additivity of charge is a well-established property. Unlike some quantities (like mass in relativity), charge adds algebraically in all situations.",
+        "misconception": "Confusing additivity of charge with non-additive quantities"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-50",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The electrostatic force between two charges is independent of the presence of other charges nearby (superposition principle).",
+    "explanation": "This is TRUE. The superposition principle states that the force between any two charges is given by Coulomb's law regardless of the presence of other charges. The net force on a charge is the vector sum of individual pair-wise forces. Each pair interaction is unaffected by the existence of third charges.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "superposition",
+      "independent-interaction",
+      "pair-force"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Superposition principle",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The superposition principle is a cornerstone of classical electrostatics. The Coulomb force between any pair depends only on those two charges and their separation.",
+        "misconception": "Thinking nearby charges modify the force between a specific pair"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-51",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The force between two point charges depends on the nature of the medium between them — it decreases when a dielectric is placed between them but increases when they are in vacuum.",
+    "explanation": "This is partially misleading but essentially FALSE as stated. The statement implies the force 'increases in vacuum' as if vacuum makes it stronger than some baseline — but vacuum IS the reference (maximum force). The force in any medium is F/K where K ≥ 1. The statement's implication that force 'increases' in vacuum is incorrect framing. The correct statement: force is maximum in vacuum and decreases in any dielectric medium.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "dielectric-effect",
+      "medium-dependence",
+      "vacuum"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Coulomb's law in different media",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The phrasing 'increases in vacuum' is misleading. Force is maximum in vacuum — it doesn't 'increase' because vacuum is already the reference state (K=1). Any medium only reduces the force.",
+        "misconception": "Thinking vacuum actively increases the force rather than being the baseline"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-52",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Quarks, which have charges of ±e/3 and ±2e/3, violate the principle of quantization of electric charge.",
+    "explanation": "This is FALSE. Quarks do carry fractional charges (e/3 and 2e/3), but they never exist as free particles — they are always confined within hadrons (protons, neutrons, mesons) due to quark confinement. The principle of quantization of charge states that all freely observed charges are integral multiples of e. Quarks do not violate this because they are never observed in isolation.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "quarks",
+      "quantization",
+      "confinement"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Quantization of charge",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Quarks are always confined inside hadrons and never exist freely. The quantization principle applies to freely observable charge, not to quarks inside composite particles.",
+        "misconception": "Thinking quark charges violate quantization because they are fractional"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-53",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the charging method in Column I with its key characteristic in Column II:\n\nColumn I:\nA. Charging by friction\nB. Charging by conduction\nC. Charging by induction\nD. Charging by a Van de Graaff generator\n\nColumn II:\n1. Charge accumulation on a hollow sphere using a belt\n2. Both bodies acquire equal and opposite charges\n3. The charged body transfers charge to the uncharged body on contact\n4. The charged body induces charge separation without contact",
+    "explanation": "Friction (A) involves rubbing two bodies — both acquire equal and opposite charges → A-2. Conduction (B) involves touching a charged body to an uncharged one — charge flows on contact → B-3. Induction (C) involves bringing a charged body near an uncharged conductor without contact → C-4. Van de Graaff generator (D) uses a moving belt to accumulate charge on a hollow metal sphere → D-1.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "charging-methods",
+      "friction",
+      "conduction",
+      "induction"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Methods of charging",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-4, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-3, C-4, D-1",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-4, B-3, C-2, D-1",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This assigns 'charge transfer on contact' (3) to friction and 'equal and opposite charges' (2) to conduction. In friction, both bodies get equal opposite charges; conduction involves contact transfer.",
+        "misconception": "Swapping friction and conduction characteristics"
+      },
+      {
+        "option_key": "B",
+        "hint": "This assigns 'no contact' (4) to conduction, but conduction requires physical contact.",
+        "misconception": "Confusing conduction (contact required) with induction (no contact)"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns 'no contact' (4) to friction, but friction requires vigorous rubbing (contact).",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-54",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the physical situation in Column I with the correct force expression in Column II:\n\nColumn I:\nA. Two charges q in vacuum at distance d\nB. Two charges q in medium (K=4) at distance d\nC. Two charges q in vacuum at distance 2d\nD. Charges 2q and q in vacuum at distance d\n\nColumn II:\n1. kq²/(4d²)\n2. 2kq²/d²\n3. kq²/(4d²)\n4. kq²/d²",
+    "explanation": "A: F = kq²/d² → A-4. B: F = kq²/(Kd²) = kq²/(4d²) → B-1 (or B-3, since items 1 and 3 are identical). C: F = kq²/(2d)² = kq²/(4d²) → C-3 (or C-1). D: F = k(2q)(q)/d² = 2kq²/d² → D-2. Note: items 1 and 3 have the same expression, so B and C both map to kq²/(4d²).",
+    "correct_answer": "B",
+    "concept_tags": [
+      "coulomb-law-variations",
+      "dielectric",
+      "distance-scaling"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Coulomb's law applications",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-4, B-2, C-1, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-4, B-1, C-3, D-2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-4, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-4, B-3, C-2, D-1",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This assigns 2kq²/d² to situation B (medium K=4), but a medium reduces the force, so B cannot give the largest force expression.",
+        "misconception": "Thinking a dielectric increases the force"
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns kq²/d² (full vacuum force) to two charges q in vacuum at 2d — but doubling distance reduces force by 4.",
+        "misconception": "Ignoring the effect of doubling the distance"
+      },
+      {
+        "option_key": "D",
+        "hint": "This maps D (charges 2q and q) to kq²/(4d²), but the product 2q×q = 2q² gives 2kq²/d², not kq²/4d².",
+        "misconception": "Not computing the charge product correctly"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-55",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "fill-in-blanks",
+    "difficulty": "easy",
+    "question_text": "The minimum charge that can exist independently in nature is called the _____ charge, and its value is approximately _____.",
+    "explanation": "The minimum independently existing charge is the elementary charge (e), with value approximately 1.6 × 10⁻¹⁹ C. This was first accurately measured by Robert Millikan in his oil-drop experiment (1909). All observable charges are integral multiples of this fundamental unit.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "elementary-charge",
+      "millikan-experiment"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Quantization of charge",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "unit; 1 coulomb",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "fractional; 1.6 × 10⁻²⁰ C",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "atomic; 9.1 × 10⁻³¹ kg",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "elementary; 1.6 × 10⁻¹⁹ C",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1 coulomb is a macroscopic unit of charge (≈6.25 × 10¹⁸ electron charges), far too large to be the minimum charge.",
+        "misconception": "Confusing the SI unit with the fundamental minimum"
+      },
+      {
+        "option_key": "B",
+        "hint": "1.6 × 10⁻²⁰ C is ten times smaller than the actual elementary charge. Also, charge is not called 'fractional charge'.",
+        "misconception": "Incorrect value of elementary charge"
+      },
+      {
+        "option_key": "C",
+        "hint": "9.1 × 10⁻³¹ kg is the mass of an electron, not a charge. The units are wrong (kg vs C).",
+        "misconception": "Confusing electron mass with electron charge"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-56",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The electrostatic force between two charges of 1 C each placed 1 m apart in vacuum is approximately _____ N.",
+    "explanation": "F = kq₁q₂/r² = 9 × 10⁹ × 1 × 1 / 1² = 9 × 10⁹ N. This enormous force (about 9 billion newtons!) shows that 1 C is an extremely large amount of charge. For reference, this force is roughly equal to the weight of one million tonnes.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "coulomb-law",
+      "numerical",
+      "force-magnitude"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Magnitude of electrostatic force",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "9 × 10⁶",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "9 × 10¹²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "9 × 10⁹",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1.6 × 10⁻¹⁹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "9 × 10⁶ is three orders of magnitude too small. The Coulomb constant k = 9 × 10⁹, and with unit charges at 1 m, F = k directly.",
+        "misconception": "Using wrong exponent for Coulomb's constant"
+      },
+      {
+        "option_key": "B",
+        "hint": "9 × 10¹² is three orders too large. Since both charges are 1 C and distance is 1 m, F simply equals k = 9 × 10⁹.",
+        "misconception": "Adding extra factors beyond the formula"
+      },
+      {
+        "option_key": "D",
+        "hint": "1.6 × 10⁻¹⁹ is the value of the elementary charge in coulombs, not a force value.",
+        "misconception": "Confusing charge with force"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-57",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A student performs Millikan's oil drop experiment. She observes a tiny oil drop of mass 4.9 × 10⁻¹⁵ kg suspended motionless between two horizontal plates separated by 2 cm, with a potential difference of 980 V applied between them. Taking g = 9.8 m/s², the charge on the oil drop is approximately:",
+    "explanation": "For the drop to be stationary, the upward electric force must balance gravity: qE = mg. Electric field E = V/d = 980/0.02 = 49000 V/m. Charge q = mg/E = (4.9 × 10⁻¹⁵ × 9.8) / 49000 = 48.02 × 10⁻¹⁵ / 49000 = 9.8 × 10⁻¹⁹ C. This is approximately 6e (6 × 1.6 × 10⁻¹⁹ = 9.6 × 10⁻¹⁹ C), confirming quantization — the charge is an integer multiple of e.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "millikan-experiment",
+      "charge-quantization",
+      "force-balance"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Millikan's oil drop experiment",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "9.8 × 10⁻¹⁹ C (≈ 6e)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1.6 × 10⁻¹⁹ C (= e)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4.9 × 10⁻¹⁹ C (≈ 3e)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3.2 × 10⁻¹⁸ C (= 20e)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "1.6 × 10⁻¹⁹ C (single electron charge) would require a much lighter drop or much stronger field to achieve equilibrium with the given values.",
+        "misconception": "Assuming the drop carries only one electron charge without calculating"
+      },
+      {
+        "option_key": "C",
+        "hint": "4.9 × 10⁻¹⁹ is half the correct answer — likely from a factor-of-2 error in the calculation (perhaps using d = 4 cm instead of 2 cm).",
+        "misconception": "Error in the plate separation value"
+      },
+      {
+        "option_key": "D",
+        "hint": "3.2 × 10⁻¹⁸ is about 3× too large — possibly from using E = V (not V/d) or a unit conversion error.",
+        "misconception": "Forgetting to divide voltage by distance to get electric field"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-58",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "In an advanced electrostatics lab, two identical insulating spheres A and B carry charges +6Q and −2Q respectively. They are touched together, separated, and then sphere B is touched to an identical uncharged sphere C. After all separations, the charges on A, B, and C respectively are:",
+    "explanation": "Step 1: A (+6Q) and B (−2Q) touch → total = 4Q, each gets +2Q. After separation: A = +2Q, B = +2Q. Step 2: B (+2Q) touches C (0) → total = 2Q, each gets +Q. After separation: B = +Q, C = +Q. Final: A = +2Q, B = +Q, C = +Q.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "charge-sharing",
+      "multiple-steps",
+      "conductors"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Charge redistribution",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "+2Q, +2Q, 0",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "+3Q, +Q/2, +Q/2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "+4Q/3, +4Q/3, +4Q/3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "+2Q, +Q, +Q",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This only accounts for step 1 (A and B sharing charge) but ignores step 2 (B touching C).",
+        "misconception": "Forgetting the second touching step"
+      },
+      {
+        "option_key": "B",
+        "hint": "+3Q total ≠ 4Q total. The total charge must be conserved at +6Q + (−2Q) = +4Q throughout.",
+        "misconception": "Arithmetic error in charge conservation"
+      },
+      {
+        "option_key": "C",
+        "hint": "This assumes all three spheres share charge equally, but A was separated before B touched C. A doesn't participate in the second sharing.",
+        "misconception": "Assuming all three spheres share charge simultaneously"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-59",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following steps of charging a metal sphere by induction in the correct sequence:\n\n1. Ground the sphere (connect to earth)\n2. Bring a positively charged rod near the sphere (without touching)\n3. Remove the grounding connection\n4. Remove the charged rod\n5. Negative charge remains on the sphere",
+    "explanation": "Correct sequence: First bring the charged rod near (2) → this induces charge separation. Then ground the sphere (1) → positive charges flow to earth, leaving excess negative. Remove ground (3) → excess negative charge is trapped. Remove the rod (4) → negative charge redistributes uniformly. Result: sphere is negatively charged (5).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "induction-charging",
+      "sequence",
+      "grounding"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Charging by induction",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 → 2 → 3 → 4 → 5",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 → 3 → 1 → 4 → 5",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2 → 1 → 3 → 4 → 5",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1 → 2 → 4 → 3 → 5",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Grounding first (step 1) without the charged rod nearby has no effect — there's no induced charge to drain. The rod must be brought close first.",
+        "misconception": "Grounding before bringing the inducing charge"
+      },
+      {
+        "option_key": "B",
+        "hint": "Removing ground (step 3) before connecting it (step 1) is illogical. You must ground first, then remove the ground.",
+        "misconception": "Mixing up the order of grounding and ungrounding"
+      },
+      {
+        "option_key": "D",
+        "hint": "Removing the rod (step 4) before removing the ground (step 3) would allow the trapped negative charge to flow back to earth, leaving the sphere uncharged.",
+        "misconception": "Not realising that the ground must be removed BEFORE the rod"
+      }
+    ]
+  },
+  {
+    "id": "phy-elec-coulomb-60",
+    "chapter_id": "phy-electrostatics",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "Arrange the following discoveries/developments in the history of electrostatics in chronological order:\n\n1. Millikan's oil drop experiment (precise measurement of e)\n2. Coulomb's torsion balance experiment\n3. Benjamin Franklin's kite experiment\n4. Discovery of the electron by J.J. Thomson",
+    "explanation": "Chronological order: Benjamin Franklin's kite experiment (1752) → Coulomb's torsion balance (1785) → J.J. Thomson discovers the electron (1897) → Millikan's oil drop experiment (1909). So the sequence is 3 → 2 → 4 → 1.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "history-of-physics",
+      "chronological-order",
+      "electrostatics"
+    ],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subtopic": "Historical development",
+    "subject": "physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2 → 3 → 4 → 1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 → 2 → 4 → 1",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "3 → 2 → 1 → 4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1 → 4 → 2 → 3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Coulomb's experiment (1785) came after Franklin's (1752), not before. Franklin predated Coulomb by about 33 years.",
+        "misconception": "Placing Coulomb before Franklin"
+      },
+      {
+        "option_key": "C",
+        "hint": "Millikan (1909) came after Thomson (1897), not before. Millikan measured the charge of the electron that Thomson had discovered.",
+        "misconception": "Thinking Millikan's experiment preceded Thomson's discovery of the electron"
+      },
+      {
+        "option_key": "D",
+        "hint": "This puts the most recent (Millikan, 1909) first and the earliest (Franklin, 1752) last — completely reversed chronology.",
+        "misconception": null
+      }
+    ]
+  }
+]
