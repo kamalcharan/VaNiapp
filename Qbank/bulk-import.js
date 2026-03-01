@@ -14,12 +14,12 @@
  * Reads Supabase creds from Qbank/config.json
  * Scans Qbank/generated/, Qbank/CUET/, Qbank/NEET/ for JSON files
  * Validates IDs, checks for duplicates in DB, inserts new questions only
- * Supports diagram-based questions with image_uri → stored in payload
+ * Supports diagram-based questions: auto-uploads local images to Supabase Storage
  */
 
 import { createClient } from '@supabase/supabase-js';
 import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
-import { join, basename, relative } from 'path';
+import { join, basename, relative, extname, dirname as pathDirname } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -33,6 +33,8 @@ const GENERATED_DIR = join(__dirname, 'generated');
 const CUET_DIR = join(__dirname, 'CUET');
 const NEET_DIR = join(__dirname, 'NEET');
 const CONFIG_PATH = join(__dirname, 'config.json');
+
+const STORAGE_BUCKET = 'question-images';
 
 // Subject folder → subject_id mapping
 const SUBJECT_MAP = {
@@ -94,21 +96,113 @@ function scanJsonFiles(baseDir, subjectFilter, chapterFilter) {
 
     for (const chapter of chapters) {
       const chapterDir = join(subjectDir, chapter);
-      const jsonFiles = readdirSync(chapterDir).filter((f) => f.endsWith('.json'));
 
-      for (const file of jsonFiles) {
-        files.push({
-          path: join(chapterDir, file),
-          subject,
-          chapter,
-          filename: file,
-          relPath: relative(baseDir, join(chapterDir, file)),
-        });
-      }
+      // Collect JSON files from chapter dir AND any subdirectories (e.g., new-2026-03-01/)
+      const collectJsons = (dir) => {
+        const entries = readdirSync(dir);
+        for (const entry of entries) {
+          const fullPath = join(dir, entry);
+          if (statSync(fullPath).isDirectory()) {
+            // Recurse into subfolders like new-{date}/ or diagrams/ (skip diagrams)
+            if (entry !== 'diagrams') collectJsons(fullPath);
+          } else if (entry.endsWith('.json')) {
+            files.push({
+              path: fullPath,
+              dir: dir, // directory containing this JSON (for resolving relative image paths)
+              subject,
+              chapter,
+              filename: entry,
+              relPath: relative(baseDir, fullPath),
+            });
+          }
+        }
+      };
+
+      collectJsons(chapterDir);
     }
   }
 
   return files;
+}
+
+// ============================================================================
+// IMAGE UPLOAD — Upload local diagram images to Supabase Storage
+// ============================================================================
+async function uploadDiagramImage(supabase, localImagePath, storagePath) {
+  if (!existsSync(localImagePath)) {
+    return { error: `File not found: ${localImagePath}` };
+  }
+
+  const fileBuffer = readFileSync(localImagePath);
+  const ext = extname(localImagePath).toLowerCase();
+  const mimeTypes = {
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.svg': 'image/svg+xml',
+    '.webp': 'image/webp',
+    '.gif': 'image/gif',
+  };
+  const contentType = mimeTypes[ext] || 'image/png';
+
+  const { data, error } = await supabase.storage
+    .from(STORAGE_BUCKET)
+    .upload(storagePath, fileBuffer, {
+      contentType,
+      upsert: true, // overwrite if exists (safe for re-imports)
+    });
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  // Build public URL
+  const { data: urlData } = supabase.storage
+    .from(STORAGE_BUCKET)
+    .getPublicUrl(storagePath);
+
+  return { url: urlData.publicUrl };
+}
+
+/**
+ * For each question with a local image_uri, upload to Storage and replace with public URL.
+ * Local path convention: relative to JSON file dir, e.g., "diagrams/question-id.png"
+ */
+async function resolveImageUris(supabase, questions, dryRun) {
+  let uploadCount = 0;
+  let uploadErrors = 0;
+
+  for (const q of questions) {
+    if (!q.image_uri) continue;
+
+    // Already an HTTP URL — nothing to do
+    if (q.image_uri.startsWith('http://') || q.image_uri.startsWith('https://')) continue;
+
+    // Local file path — resolve relative to the JSON file's directory
+    const jsonDir = q._dir || '.';
+    const localImagePath = join(jsonDir, q.image_uri);
+
+    // Storage path: {subject}/{chapter}/{filename}
+    const imageFilename = basename(q.image_uri);
+    const storagePath = `${q._subject}/${q._chapter}/${imageFilename}`;
+
+    if (dryRun) {
+      log(`  Would upload: ${q.image_uri} → ${STORAGE_BUCKET}/${storagePath}`);
+      uploadCount++;
+      continue;
+    }
+
+    const result = await uploadDiagramImage(supabase, localImagePath, storagePath);
+    if (result.error) {
+      log(`  Image upload failed for ${q.id}: ${result.error}`, 'fail');
+      uploadErrors++;
+    } else {
+      q.image_uri = result.url; // Replace local path with public URL
+      uploadCount++;
+    }
+  }
+
+  return { uploadCount, uploadErrors };
 }
 
 function validateQuestion(q, fileInfo, index) {
@@ -205,6 +299,7 @@ async function main() {
       // Attach file metadata to each question
       questions.forEach((q) => {
         q._file = file.relPath;
+        q._dir = file.dir; // directory of the JSON file (for resolving relative image paths)
         q._subject = file.subject;
         q._chapter = file.chapter;
       });
@@ -267,14 +362,22 @@ async function main() {
 
   if (newQuestions.length === 0) {
     log('Nothing new to insert. All questions already in DB.', 'ok');
-    printSummary(fileResults, allQuestions.length, 0, skippedCount, 0);
+    printSummary(fileResults, allQuestions.length, 0, skippedCount, 0, 0);
     process.exit(0);
   }
 
+  // Upload diagram images (local paths → Supabase Storage public URLs)
+  const diagramQuestions = newQuestions.filter((q) => q.image_uri && !q.image_uri.startsWith('http'));
+  if (diagramQuestions.length > 0) {
+    log(`\nFound ${diagramQuestions.length} diagram question(s) with local images — uploading to Storage...`);
+    const { uploadCount, uploadErrors } = await resolveImageUris(supabase, newQuestions, dryRun);
+    log(`Images uploaded: ${uploadCount}, errors: ${uploadErrors}`, uploadErrors > 0 ? 'warn' : 'ok');
+  }
+
   if (dryRun) {
-    log('DRY RUN complete. Would insert these questions:', 'warn');
+    log('\nDRY RUN complete. Would insert these questions:', 'warn');
     newQuestions.forEach((q) => log(`  [${q.id}] ${q.question_text?.substring(0, 60)}...`));
-    printSummary(fileResults, allQuestions.length, 0, skippedCount, 0);
+    printSummary(fileResults, allQuestions.length, 0, skippedCount, 0, diagramQuestions.length);
     process.exit(0);
   }
 
@@ -354,7 +457,7 @@ async function main() {
   }
 
   log(`\nInsert complete: ${insertedCount} inserted, ${errorCount} errors`, insertedCount > 0 ? 'ok' : 'fail');
-  printSummary(fileResults, allQuestions.length, insertedCount, skippedCount, errorCount);
+  printSummary(fileResults, allQuestions.length, insertedCount, skippedCount, errorCount, diagramQuestions.length);
 }
 
 // ============================================================================
@@ -371,7 +474,7 @@ function resolveChapterId(subject, chapterFolder) {
 // ============================================================================
 // SUMMARY
 // ============================================================================
-function printSummary(fileResults, total, inserted, skipped, errors) {
+function printSummary(fileResults, total, inserted, skipped, errors, diagramsUploaded = 0) {
   console.log('\n\x1b[1m========================================\x1b[0m');
   console.log('\x1b[1m  Summary\x1b[0m');
   console.log('\x1b[1m========================================\x1b[0m\n');
@@ -388,6 +491,7 @@ function printSummary(fileResults, total, inserted, skipped, errors) {
   console.log(`  Questions loaded:  ${total}`);
   console.log(`  Already in DB:     ${skipped} (skipped)`);
   console.log(`  Newly inserted:    \x1b[32m${inserted}\x1b[0m`);
+  if (diagramsUploaded > 0) console.log(`  Diagrams uploaded: \x1b[35m${diagramsUploaded}\x1b[0m`);
   if (errors > 0) console.log(`  Errors:            \x1b[31m${errors}\x1b[0m`);
   console.log('');
 }
