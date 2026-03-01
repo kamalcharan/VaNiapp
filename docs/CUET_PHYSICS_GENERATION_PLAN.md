@@ -13,12 +13,15 @@
 Qbank/
 ├── NEET/                          ← All NEET questions
 │   └── physics/
-│       ├── electrostatics/        ← New NEET copies go here
+│       ├── electrostatics/
+│       │   └── new-2026-03-01/    ← Date subfolder — user knows these need importing
 │       ├── current-electricity/
 │       └── ...
 ├── CUET/                          ← All CUET questions
 │   └── physics/
-│       ├── electrostatics/        ← Copied + new CUET questions
+│       ├── electrostatics/
+│       │   ├── *-copied.json      ← Copied from NEET (already known)
+│       │   └── new-2026-03-01/    ← Freshly generated — needs importing
 │       ├── current-electricity/
 │       ├── communication/         ← CUET-only chapter
 │       └── ...
@@ -231,13 +234,15 @@ Read: Existing NEET JSON for the corresponding topic (to avoid duplicate stems)
 
 ### Step 3: Save CUET JSON
 ```
-Write to: Qbank/CUET/physics/{chapter-slug}/{topic_id}.json
+Write to: Qbank/CUET/physics/{chapter-slug}/new-YYYY-MM-DD/{topic_id}.json
 ```
+Use `new-{date}` subfolder so the user can tell which JSONs are freshly generated and need importing.
 
 ### Step 4: Save NEET Copy
 ```
-Write to: Qbank/NEET/physics/{neet-chapter}/{topic_id}.json
+Write to: Qbank/NEET/physics/{neet-chapter}/new-YYYY-MM-DD/{topic_id}.json
 ```
+Use `new-{date}` subfolder so the user can tell which JSONs are freshly generated and need importing.
 
 **Skip NEET copy for Communication Systems (B45-B47) — CUET-only chapter.**
 
