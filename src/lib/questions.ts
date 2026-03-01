@@ -31,6 +31,8 @@ interface DbQuestion {
   explanation: string | null;
   explanation_te: string | null;
   correct_answer: string;
+  image_url: string | null;
+  image_alt: string | null;
   payload: Record<string, unknown> | null;
   med_question_options: DbOption[];
   med_elimination_hints: DbEliminationHint[];
@@ -73,7 +75,7 @@ export async function fetchQuestionsByChapter(
       .select(
         `id, subject_id, chapter_id, question_type, difficulty,
          question_text, question_text_te, explanation, explanation_te,
-         correct_answer, payload,
+         correct_answer, image_url, image_alt, payload,
          med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
          med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`,
       )
@@ -271,8 +273,8 @@ function buildPayload(
     case 'diagram-based':
       return {
         type: 'diagram-based',
-        imageUri: (raw.image_uri as string) || '',
-        imageAlt: (raw.image_alt as string) || '',
+        imageUri: row.image_url || (raw.image_uri as string) || '',
+        imageAlt: row.image_alt || (raw.image_alt as string) || '',
         options,
         correctOptionId,
       };
