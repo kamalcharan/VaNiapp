@@ -1,0 +1,1227 @@
+[
+  {
+    "id": "cuet-phy-emi-faraday-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Magnetic flux through a surface of area A placed in a uniform magnetic field B making an angle θ with the area vector is:",
+    "explanation": "Magnetic flux is defined as Φ = B·A = BA cosθ, where θ is the angle between the magnetic field vector B and the area vector A (the outward normal to the surface). This is a scalar quantity and its SI unit is weber (Wb). When θ = 0°, the flux is maximum (Φ = BA), and when θ = 90°, the flux is zero.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "magnetic-flux",
+      "definition",
+      "area-vector"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "BA cosθ",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "BA sinθ",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "BA tanθ",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "BA/cosθ",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "BA sinθ would give the component of B parallel to the surface, not the flux through it. Flux uses the dot product (cosθ), not the cross product (sinθ).",
+        "misconception": "Confusing dot product with cross product"
+      },
+      {
+        "option_key": "C",
+        "hint": "tanθ = sinθ/cosθ has no relevance to the definition of magnetic flux. Flux is a dot product: Φ = B·A = BA cosθ.",
+        "misconception": "Incorrect trigonometric function in flux formula"
+      },
+      {
+        "option_key": "D",
+        "hint": "BA/cosθ = BA secθ would give an infinite value at θ = 90°, which is physically meaningless for flux. The correct formula uses cosθ in the numerator.",
+        "misconception": "Inverting the angular dependence"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "According to Faraday's law of electromagnetic induction, the magnitude of the induced EMF in a circuit is equal to:",
+    "explanation": "Faraday's law states that the induced EMF is equal to the negative rate of change of magnetic flux linkage through the circuit: ε = -dΦ/dt. The magnitude of the induced EMF equals the rate of change of magnetic flux, |ε| = |dΦ/dt|. The negative sign is a consequence of Lenz's law.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "faraday-law",
+      "induced-emf",
+      "flux-change"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The magnetic flux through the circuit",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The rate of change of magnetic flux through the circuit",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "The product of magnetic flux and time",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The square of the magnetic flux through the circuit",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A constant magnetic flux (however large) produces zero induced EMF. It is the change of flux with time that induces an EMF, not the flux itself.",
+        "misconception": "Thinking flux alone induces EMF rather than its rate of change"
+      },
+      {
+        "option_key": "C",
+        "hint": "The product Φ × t has SI units of Wb·s, which is not the unit of EMF (volt). The EMF is Φ divided by t (rate of change), not multiplied.",
+        "misconception": "Reversing the relationship between flux and time"
+      },
+      {
+        "option_key": "D",
+        "hint": "There is no square dependence in Faraday's law. The EMF is linearly proportional to dΦ/dt.",
+        "misconception": "Incorrectly assuming a squared relationship"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of magnetic flux is:",
+    "explanation": "The SI unit of magnetic flux is weber (Wb). Since Φ = BA, we have 1 Wb = 1 T·m². Also, from Faraday's law ε = -dΦ/dt, we get 1 Wb = 1 V·s. The unit is named after Wilhelm Eduard Weber.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "magnetic-flux",
+      "SI-unit",
+      "weber"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Tesla (T)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Henry (H)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Weber (Wb)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Volt (V)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Tesla is the unit of magnetic field (B), not magnetic flux (Φ). Flux = B × Area, so its unit is T·m² = Wb.",
+        "misconception": "Confusing magnetic field with magnetic flux"
+      },
+      {
+        "option_key": "B",
+        "hint": "Henry is the unit of inductance (L), not magnetic flux. Inductance relates flux linkage to current: L = NΦ/I.",
+        "misconception": "Confusing inductance with flux"
+      },
+      {
+        "option_key": "D",
+        "hint": "Volt is the unit of EMF or potential difference. From Faraday's law, EMF = dΦ/dt, so Wb = V·s, not V.",
+        "misconception": "Confusing EMF with flux"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-04",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A conducting circular loop of radius r and resistance R is placed with its plane perpendicular to a spatially uniform magnetic field. The magnetic field varies with time as B = B₀e⁻ᵗ/τ. The total charge that flows through the loop from t = 0 to t = ∞ is:",
+    "explanation": "Using q = NΔΦ/R (with N = 1 for a single loop): At t = 0, Φ₀ = B₀πr². At t = ∞, B → 0, so Φ_∞ = 0. The total change in flux is ΔΦ = Φ₀ - Φ_∞ = B₀πr². Therefore, q = ΔΦ/R = B₀πr²/R. The key insight is that total charge depends only on total flux change and resistance, not on how the flux varies with time (exponential decay here).",
+    "correct_answer": "D",
+    "concept_tags": [
+      "induced-charge",
+      "exponential-field",
+      "flux-change",
+      "time-independent-charge"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "B₀πr²τ/R",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "B₀πr²/(Rτ)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "B₀πr²R",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "B₀πr²/R",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The presence of τ suggests you are calculating ∫(EMF)dt with an extra time constant. Induced charge q = ΔΦ/R is independent of the time constant τ. The total flux change is B₀πr².",
+        "misconception": "Including the time constant in the charge formula, confusing charge with integrated EMF×time"
+      },
+      {
+        "option_key": "B",
+        "hint": "B₀πr²/(Rτ) has units of C/s = A, which is a current, not a charge. The charge q = ΔΦ/R = B₀πr²/R has units of Wb/Ω = C.",
+        "misconception": "Dividing by τ gives current, not charge; dimensional error"
+      },
+      {
+        "option_key": "C",
+        "hint": "B₀πr²R has dimensions of Wb·Ω, which is not the unit of charge. The correct formula divides by R: q = ΔΦ/R.",
+        "misconception": "Multiplying by resistance instead of dividing"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A coil of 100 turns and area 0.02 m² is placed in a magnetic field of 0.5 T with its plane perpendicular to the field. If the coil is removed from the field in 0.1 s, the average EMF induced in the coil is:",
+    "explanation": "When the plane of the coil is perpendicular to the field, the area vector is parallel to B, so θ = 0° and initial flux Φ₁ = NBA = 100 × 0.5 × 0.02 = 1 Wb. Final flux Φ₂ = 0 (coil removed). Average EMF = NΔΦ/Δt = |Φ₁ - Φ₂|/Δt = 1/0.1 = 10 V. Note: NΔΦ is already accounted for since Φ₁ includes N.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "faraday-law",
+      "average-emf",
+      "coil-removal",
+      "numerical-problem"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "10 V",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "100 V",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.1 V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1 V would be obtained if you forgot the number of turns. The total flux linkage is NΦ = 100 × 0.5 × 0.02 = 1 Wb, and dividing by 0.1 s gives 10 V.",
+        "misconception": "Forgetting to include number of turns or dividing by time"
+      },
+      {
+        "option_key": "C",
+        "hint": "100 V would result from using Δt = 0.01 s instead of 0.1 s, or an extra factor of N. Check: ε = NΔΦ/Δt = 1/0.1 = 10 V.",
+        "misconception": "Using wrong time interval or double-counting turns"
+      },
+      {
+        "option_key": "D",
+        "hint": "0.1 V is far too small. The flux change NΔΦ = 1 Wb over 0.1 s gives 10 V, not 0.1 V.",
+        "misconception": "Multiplying by time instead of dividing"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A metallic rod of length 1 m moves with a velocity of 5 m/s perpendicular to a uniform magnetic field of 0.4 T. The motional EMF induced across the ends of the rod is:",
+    "explanation": "The motional EMF for a conducting rod of length l moving with velocity v perpendicular to a magnetic field B is given by ε = Bvl. Substituting: ε = 0.4 × 5 × 1 = 2 V. This EMF arises because the free charges in the rod experience a Lorentz force (F = qv × B), which separates positive and negative charges to opposite ends.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "motional-emf",
+      "conducting-rod",
+      "lorentz-force",
+      "numerical-problem"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.2 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.4 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2 V",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "20 V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0.2 V would result from dividing B by v instead of multiplying. The formula is ε = Bvl = 0.4 × 5 × 1 = 2 V.",
+        "misconception": "Using division instead of multiplication in Bvl"
+      },
+      {
+        "option_key": "B",
+        "hint": "0.4 V equals the magnetic field value alone. You must multiply B × v × l = 0.4 × 5 × 1 = 2 V.",
+        "misconception": "Forgetting to include velocity in the calculation"
+      },
+      {
+        "option_key": "D",
+        "hint": "20 V is 10 times too large. Check that you used l = 1 m, not 10 m. ε = 0.4 × 5 × 1 = 2 V.",
+        "misconception": "Using incorrect length of the rod"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A circular coil of 50 turns and radius 0.1 m is placed with its plane perpendicular to a magnetic field. If the field increases uniformly from 0.2 T to 0.8 T in 0.2 s, the magnitude of the induced EMF is:",
+    "explanation": "The induced EMF is given by ε = N × dΦ/dt = N × A × dB/dt. Here N = 50, A = πr² = π(0.1)² = 0.01π m², and dB/dt = (0.8 - 0.2)/0.2 = 3 T/s. Therefore, ε = 50 × 0.01π × 3 = 1.5π ≈ 4.71 V. Rounding appropriately, ε ≈ 4.71 V.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "faraday-law",
+      "changing-field",
+      "circular-coil",
+      "numerical-problem"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1.5π V ≈ 4.71 V",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "0.5π V ≈ 1.57 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3π V ≈ 9.42 V",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.15π V ≈ 0.47 V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "0.5π V would result from using ΔB = 0.2 T (perhaps only the initial field) instead of ΔB = 0.6 T, or forgetting one factor. ε = 50 × 0.01π × 3 = 1.5π V.",
+        "misconception": "Using incorrect change in magnetic field"
+      },
+      {
+        "option_key": "C",
+        "hint": "3π V is double the correct answer. Check: dB/dt = 0.6/0.2 = 3, and N × A = 50 × 0.01π = 0.5π. So ε = 0.5π × 3 = 1.5π V, not 3π V.",
+        "misconception": "Doubling the number of turns or area"
+      },
+      {
+        "option_key": "D",
+        "hint": "0.15π V is 10 times too small. Verify A = π(0.1)² = 0.01π, not 0.001π. Also N = 50, so NAdB/dt = 50 × 0.01π × 3 = 1.5π V.",
+        "misconception": "Error in computing the area of the coil"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A rectangular coil of N turns rotates with angular velocity ω in a uniform magnetic field B. If the area of the coil is A, the maximum EMF induced in the coil is:",
+    "explanation": "For a coil rotating in a uniform magnetic field, the flux at time t is Φ = NBA cosωt. By Faraday's law, ε = -dΦ/dt = NBAω sinωt. The maximum value of sinωt is 1, so the peak EMF is ε₀ = NBAω. This is the working principle of an AC generator.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "rotating-coil",
+      "ac-generator",
+      "peak-emf",
+      "sinusoidal-emf"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "NBA",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "NBAω cosωt",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "NBA/ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "NBAω",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "NBA is the maximum flux linkage, not the maximum EMF. EMF is the rate of change of flux: ε = -dΦ/dt, which introduces the factor ω. Maximum EMF = NBAω.",
+        "misconception": "Confusing maximum flux with maximum EMF"
+      },
+      {
+        "option_key": "B",
+        "hint": "NBAω cosωt represents a time-varying EMF, not the maximum EMF. The question asks for the peak (maximum) value, which is NBAω (when sinωt = 1, not cosωt).",
+        "misconception": "Giving the instantaneous value instead of the maximum, with wrong phase"
+      },
+      {
+        "option_key": "C",
+        "hint": "NBA/ω has incorrect dimensions. EMF = NBAω, not NBA/ω. Dividing by ω would give units of V·s², which is not EMF.",
+        "misconception": "Inverting the relationship between EMF and angular velocity"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A north pole of a bar magnet is moved towards a closed circular coil. The direction of the induced current in the coil, as seen from the magnet side, is:",
+    "explanation": "By Lenz's law, the induced current must oppose the increase in magnetic flux caused by the approaching north pole. To oppose the increase, the coil must create a magnetic field opposing the magnet's field, i.e., the coil's face nearest to the magnet must act as a north pole. Using the right-hand rule, when viewed from the magnet side, the current flows anticlockwise to produce a north pole facing the magnet.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "lenz-law",
+      "bar-magnet",
+      "induced-current-direction",
+      "right-hand-rule"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Clockwise",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Anticlockwise",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "No current is induced",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Alternating direction",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A clockwise current (viewed from the magnet side) would create a south pole facing the magnet, attracting it and aiding the flux increase. This violates Lenz's law.",
+        "misconception": "Getting the polarity wrong when applying Lenz's law"
+      },
+      {
+        "option_key": "C",
+        "hint": "Since the flux through the coil is changing (magnet is approaching), Faraday's law guarantees an induced EMF and hence a current in the closed coil.",
+        "misconception": "Thinking no current flows in changing flux conditions"
+      },
+      {
+        "option_key": "D",
+        "hint": "An alternating current would occur only if the magnet oscillates back and forth. A magnet steadily approaching induces a steady current in one direction.",
+        "misconception": "Confusing steady motion with oscillatory motion"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The magnetic flux through a coil of 10 turns changes from 0.1 Wb to 0.04 Wb in 0.03 s. The induced charge in the coil, if the resistance of the coil is 2 Ω, is:",
+    "explanation": "The induced charge is given by q = NΔΦ/R (independent of time). Here N = 10, ΔΦ = |0.04 - 0.1| = 0.06 Wb, R = 2 Ω. Therefore q = 10 × 0.06/2 = 0.6/2 = 0.3 C. Note that the induced charge depends only on the total change in flux, not on how quickly it changes.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "induced-charge",
+      "flux-change",
+      "resistance",
+      "numerical-problem"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.3 C",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "0.03 C",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3 C",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.6 C",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "0.03 C likely results from dividing by the time as well. Induced charge q = NΔΦ/R does not depend on time. q = 10 × 0.06/2 = 0.3 C.",
+        "misconception": "Including time in the induced charge formula"
+      },
+      {
+        "option_key": "C",
+        "hint": "3 C is 10 times too large. Recheck: ΔΦ = 0.06 Wb (not 0.6 Wb). q = 10 × 0.06/2 = 0.3 C.",
+        "misconception": "Error in calculating the change in flux"
+      },
+      {
+        "option_key": "D",
+        "hint": "0.6 C results from forgetting to divide by the resistance R. The formula is q = NΔΦ/R, not q = NΔΦ. So q = 0.6/2 = 0.3 C.",
+        "misconception": "Forgetting resistance in the induced charge formula"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A conducting rod of length l rotates about one end with a uniform angular velocity ω in a uniform magnetic field B perpendicular to the plane of rotation. The EMF induced across the ends of the rod is:",
+    "explanation": "Consider a small element dr at distance r from the pivot. Its linear velocity is v = ωr. The motional EMF across this element is dε = Bv dr = Bωr dr. Integrating from 0 to l: ε = ∫₀ˡ Bωr dr = Bω[r²/2]₀ˡ = Bωl²/2. Alternatively, the rod sweeps an area at rate dA/dt = ½l²ω (like a sector of a circle), so ε = B × dA/dt = ½Bωl².",
+    "correct_answer": "C",
+    "concept_tags": [
+      "rotating-rod",
+      "motional-emf",
+      "integration",
+      "angular-velocity"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Bωl",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Bωl²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "½Bωl²",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "2Bωl²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Bωl has incorrect dimensions for an EMF in this context. It misses a factor of l. The integration of Bωr from 0 to l gives Bωl²/2.",
+        "misconception": "Using v = ωl for the entire rod instead of integrating"
+      },
+      {
+        "option_key": "B",
+        "hint": "Bωl² is missing the factor of ½ from the integration. The integral ∫₀ˡ Bωr dr = Bω(l²/2), not Bωl².",
+        "misconception": "Forgetting the ½ factor from integration"
+      },
+      {
+        "option_key": "D",
+        "hint": "2Bωl² is four times the correct answer. The area swept per second is ½l²ω (half the product), not 2l²ω.",
+        "misconception": "Incorrect geometric factor for swept area"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A coil of 200 turns and area 0.04 m² is rotating at 50 revolutions per second about an axis perpendicular to a uniform magnetic field of 0.1 T. The peak value of the induced EMF is approximately:",
+    "explanation": "The peak EMF for a rotating coil is ε₀ = NBAω. Here N = 200, B = 0.1 T, A = 0.04 m², and ω = 2πf = 2π × 50 = 100π rad/s. Therefore ε₀ = 200 × 0.1 × 0.04 × 100π = 200 × 0.004 × 100π = 0.8 × 100π = 80π ≈ 251.3 V.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "rotating-coil",
+      "peak-emf",
+      "ac-generator",
+      "numerical-problem"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "40π V ≈ 125.7 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "8π V ≈ 25.1 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "400π V ≈ 1256.6 V",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "80π V ≈ 251.3 V",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "40π V results from using ω = 50 rad/s instead of 2π × 50 = 100π rad/s. Remember to convert revolutions per second to radians per second.",
+        "misconception": "Forgetting to convert revolutions to radians"
+      },
+      {
+        "option_key": "B",
+        "hint": "8π V is 10 times too small. Check N × B × A = 200 × 0.1 × 0.04 = 0.8, and ε₀ = 0.8 × 100π = 80π V.",
+        "misconception": "Error in multiplying the numerical factors"
+      },
+      {
+        "option_key": "C",
+        "hint": "400π V is 5 times too large. Verify A = 0.04 m², not 0.2 m². ε₀ = 200 × 0.1 × 0.04 × 100π = 80π V.",
+        "misconception": "Using incorrect area value"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): When a bar magnet is dropped through a closed metallic ring held horizontally, it decelerates while entering and accelerates while leaving the ring. Reason (R): According to Lenz's law, the induced current in the ring always opposes the change in flux, creating a force that opposes the relative motion of the magnet.",
+    "explanation": "Both Assertion and Reason are correct, and R is the correct explanation of A. As the magnet enters, the flux increases, so by Lenz's law the induced current creates a repulsive force that decelerates the magnet. As it leaves, the flux decreases, and the induced current creates an attractive force (opposing the departure), which again decelerates the magnet. However, gravity is still accelerating it downward. The net effect during exit is that the magnet still decelerates compared to free fall (i.e., it experiences a retarding force), though the wording says 'accelerates while leaving' which would make the assertion partially incorrect. Actually, re-examining: the magnet decelerates both while entering and leaving relative to free fall. The assertion says it 'accelerates while leaving' which is incorrect -- it is still retarded. Wait: the assertion as stated says 'decelerates while entering and accelerates while leaving.' This is incorrect because Lenz's law opposes relative motion in both cases. So the assertion is wrong. Let me reconsider: Actually, during entry the repulsive force opposes downward motion (deceleration), and during exit the attractive force also opposes downward motion (deceleration). So the magnet decelerates in both phases. The Assertion claims it accelerates while leaving, which is incorrect. The Reason is correct. Hence the answer is D.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "lenz-law",
+      "bar-magnet",
+      "metallic-ring",
+      "deceleration",
+      "assertion-reasoning"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The Assertion claims the magnet accelerates while leaving the ring. However, by Lenz's law, the induced current opposes the departure (creates an attractive force), so the magnet is also retarded (decelerated relative to free fall) while leaving.",
+        "misconception": "Thinking Lenz's law only opposes entry, not exit"
+      },
+      {
+        "option_key": "B",
+        "hint": "The Assertion itself is incorrect. The magnet does not accelerate while leaving; it decelerates in both phases (entering and leaving) due to Lenz's law.",
+        "misconception": "Accepting an incorrect assertion"
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is a correct statement of Lenz's law. The induced current does oppose the change in flux and creates a force opposing relative motion. It is the Assertion that is flawed.",
+        "misconception": "Incorrectly judging Lenz's law statement as false"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The EMF induced in a coil is independent of the resistance of the coil, but the induced current depends on the resistance. Reason (R): According to Faraday's law, the induced EMF depends only on the rate of change of magnetic flux linkage, and the current is determined by Ohm's law as I = EMF/R.",
+    "explanation": "Both A and R are correct, and R is the correct explanation of A. Faraday's law gives ε = -NdΦ/dt, which depends only on N, B, A, and how fast they change -- not on R. The current is then I = ε/R by Ohm's law, which does depend on R. The Reason directly explains why the EMF is independent of R (Faraday's law does not contain R) and why the current depends on R (Ohm's law).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "faraday-law",
+      "ohm-law",
+      "induced-emf",
+      "induced-current",
+      "resistance",
+      "assertion-reasoning"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains both parts of the Assertion: Faraday's law (no R in ε formula) explains why EMF is R-independent, and Ohm's law (I = ε/R) explains why current depends on R. This is a direct causal explanation.",
+        "misconception": "Failing to see the direct explanatory link between reason and assertion"
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is entirely correct. Faraday's law indeed gives EMF = -NdΦ/dt (no R), and Ohm's law gives I = EMF/R. Both are fundamental, well-established laws.",
+        "misconception": "Incorrectly thinking Faraday's law involves resistance"
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. EMF = -NdΦ/dt does not contain R, confirming EMF is independent of resistance. Current I = ε/R clearly depends on R.",
+        "misconception": "Thinking induced EMF depends on coil resistance"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match Column I with Column II:\n\nColumn I:\n(P) Magnetic flux\n(Q) Faraday's law (magnitude)\n(R) Motional EMF of a straight rod\n(S) Induced charge\n\nColumn II:\n(1) Bvl\n(2) BA cosθ\n(3) NΔΦ/R\n(4) NdΦ/dt",
+    "explanation": "P-2: Magnetic flux Φ = BA cosθ, where θ is the angle between B and the area vector. Q-4: Faraday's law gives |ε| = NdΦ/dt. R-1: Motional EMF for a rod of length l moving with velocity v in field B is ε = Bvl. S-3: Induced charge q = NΔΦ/R, which is independent of the rate of flux change. The correct matching is P-2, Q-4, R-1, S-3.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "magnetic-flux",
+      "faraday-law",
+      "motional-emf",
+      "induced-charge",
+      "match-the-following"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P-2, Q-1, R-4, S-3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P-2, Q-4, R-1, S-3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "P-4, Q-2, R-3, S-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P-1, Q-3, R-2, S-4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Q-1 assigns Bvl to Faraday's law, but Bvl is the motional EMF formula for a rod. Faraday's law gives ε = NdΦ/dt (option 4).",
+        "misconception": "Confusing motional EMF formula with general Faraday's law"
+      },
+      {
+        "option_key": "C",
+        "hint": "P-4 assigns NdΦ/dt to magnetic flux, but flux is Φ = BA cosθ. NdΦ/dt is the induced EMF, not the flux itself.",
+        "misconception": "Confusing the definition of flux with the rate of change of flux"
+      },
+      {
+        "option_key": "D",
+        "hint": "Every match in this option is incorrect. P-1 assigns Bvl to flux, Q-3 assigns NΔΦ/R to Faraday's law. These are completely mismatched.",
+        "misconception": "Random matching without understanding the formulas"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match Column I (Physical situations) with Column II (Induced EMF expressions):\n\nColumn I:\n(P) Coil of N turns, area A, rotating at ω in field B (peak EMF)\n(Q) Rod of length l rotating about one end at ω in perpendicular field B\n(R) Rod of length l moving with velocity v at angle θ to field B, perpendicular to rod\n(S) Coil of N turns in a field changing at rate dB/dt, area A perpendicular to field\n\nColumn II:\n(1) NBAω\n(2) ½Bωl²\n(3) Bvl sinθ\n(4) NA(dB/dt)",
+    "explanation": "P-1: For a rotating coil, peak EMF = NBAω. Q-2: A rod rotating about one end sweeps area at rate ½l²ω, giving EMF = ½Bωl². R-3: When velocity makes angle θ with B, only the perpendicular component v sinθ contributes to motional EMF: ε = Bvl sinθ. S-4: With B changing in time and coil plane perpendicular to B, ε = NA(dB/dt). The correct matching is P-1, Q-2, R-3, S-4.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "rotating-coil",
+      "rotating-rod",
+      "motional-emf",
+      "changing-field",
+      "match-the-following"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P-1, Q-3, R-2, S-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P-2, Q-1, R-4, S-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P-1, Q-2, R-3, S-4",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "P-4, Q-2, R-1, S-3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Q-3 assigns Bvl sinθ to the rotating rod, but Bvl sinθ is for linear motion at an angle. The rotating rod gives ½Bωl² from integration, not Bvl sinθ.",
+        "misconception": "Confusing linear motional EMF with rotating rod EMF"
+      },
+      {
+        "option_key": "B",
+        "hint": "P-2 assigns ½Bωl² to the rotating coil, but that formula applies to a rotating rod. The rotating coil peak EMF is NBAω.",
+        "misconception": "Swapping rotating coil and rotating rod formulas"
+      },
+      {
+        "option_key": "D",
+        "hint": "P-4 assigns NA(dB/dt) to a rotating coil, but in a rotating coil B is constant and the angle changes. NA(dB/dt) applies when B itself is time-varying.",
+        "misconception": "Confusing rotating coil scenario with time-varying field scenario"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The negative sign in Faraday's law (ε = -dΦ/dt) represents Lenz's law, indicating that the induced EMF opposes the change in magnetic flux.",
+    "explanation": "This is TRUE. The negative sign in Faraday's law ε = -dΦ/dt is the mathematical expression of Lenz's law. It signifies that the induced EMF (and hence the induced current in a closed circuit) acts in such a direction as to oppose the change in magnetic flux that produces it. If flux is increasing, the induced EMF drives a current whose magnetic field opposes the increase; if flux is decreasing, the induced EMF drives a current whose field supports the decreasing flux.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "faraday-law",
+      "lenz-law",
+      "negative-sign",
+      "flux-opposition"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement is a standard NCERT fact. The negative sign in ε = -dΦ/dt is indeed the mathematical representation of Lenz's law, expressing opposition to flux change.",
+        "misconception": "Thinking the negative sign has a different physical meaning or is merely a convention"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for this question.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for this question.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "A conducting rod moving parallel to a uniform magnetic field will have a motional EMF induced across its ends.",
+    "explanation": "This is FALSE. For a motional EMF to be induced across a conducting rod, the rod must have a component of velocity perpendicular to the magnetic field AND the rod's length must also be perpendicular to the field. The motional EMF is ε = (v × B)·l. If the rod moves parallel to B, then v × B = 0, and no EMF is induced. The Lorentz force on the charges (F = qv × B) is zero when v is parallel to B.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "motional-emf",
+      "parallel-motion",
+      "lorentz-force",
+      "zero-emf"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "When the rod moves parallel to B, the cross product v × B = 0, so the Lorentz force on the charges is zero. No charge separation occurs, and no EMF is induced.",
+        "misconception": "Thinking any motion in a magnetic field induces EMF"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for this question.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for this question.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "A coil of 500 turns and area 0.01 m² rotates at 3000 revolutions per minute about an axis perpendicular to a uniform magnetic field of 0.2 T. The peak EMF induced in the coil is _____ V. (Express in terms of π)",
+    "explanation": "The peak EMF is ε₀ = NBAω. Here N = 500, B = 0.2 T, A = 0.01 m², and ω = 2πf = 2π × (3000/60) = 2π × 50 = 100π rad/s. Therefore ε₀ = 500 × 0.2 × 0.01 × 100π = 500 × 0.002 × 100π = 1 × 100π = 100π V ≈ 314.2 V.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "rotating-coil",
+      "peak-emf",
+      "ac-generator",
+      "rpm-conversion",
+      "numerical-problem"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "50π",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "200π",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "10π",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "100π",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "50π results from using ω = 50π instead of 100π. Remember ω = 2πf, not πf. With f = 50 Hz, ω = 100π rad/s.",
+        "misconception": "Missing the factor of 2 in ω = 2πf"
+      },
+      {
+        "option_key": "B",
+        "hint": "200π is double the correct answer. Check N × B × A = 500 × 0.2 × 0.01 = 1, so ε₀ = 1 × 100π = 100π, not 200π.",
+        "misconception": "Doubling one of the given values"
+      },
+      {
+        "option_key": "C",
+        "hint": "10π is 10 times too small. Verify: f = 3000/60 = 50 Hz, ω = 100π, and NBA = 1, so ε₀ = 100π V.",
+        "misconception": "Arithmetic error in computing NBA or ω"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-faraday-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A simple AC generator consists of a rectangular coil of 100 turns, each of area 0.05 m², rotating at 60 revolutions per second in a uniform magnetic field of 0.5 T. The coil is connected to an external resistance of 500 Ω, and the internal resistance of the coil is negligible.\n\nWhat is the peak value of the induced EMF, and what is the peak current through the external resistance?",
+    "explanation": "Peak EMF: ε₀ = NBAω. Here N = 100, B = 0.5 T, A = 0.05 m², and ω = 2πf = 2π × 60 = 120π rad/s. So ε₀ = 100 × 0.5 × 0.05 × 120π = 100 × 0.025 × 120π = 2.5 × 120π = 300π ≈ 942.5 V. Peak current: I₀ = ε₀/R = 300π/500 = 0.6π ≈ 1.885 A. Since internal resistance is negligible, the total resistance is just 500 Ω.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "ac-generator",
+      "peak-emf",
+      "peak-current",
+      "ohm-law",
+      "scenario-based",
+      "numerical-problem"
+    ],
+    "topic": "Faraday's Law and Lenz's Law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction and AC",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ε₀ = 150π V, I₀ = 0.3π A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ε₀ = 300π V, I₀ = 0.6π A",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "ε₀ = 300π V, I₀ = 6π A",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ε₀ = 600π V, I₀ = 1.2π A",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "150π V is half the correct EMF. This would result from using ω = 60π instead of 120π. Remember ω = 2πf = 2π × 60 = 120π, not πf.",
+        "misconception": "Forgetting the factor of 2 when converting frequency to angular velocity"
+      },
+      {
+        "option_key": "C",
+        "hint": "The EMF is correct (300π V), but the current 6π A would imply R = 50 Ω instead of 500 Ω. I₀ = 300π/500 = 0.6π A.",
+        "misconception": "Using incorrect resistance value"
+      },
+      {
+        "option_key": "D",
+        "hint": "600π V is double the correct EMF. Check: NBA = 100 × 0.5 × 0.05 = 2.5, and ε₀ = 2.5 × 120π = 300π, not 600π.",
+        "misconception": "Doubling one of the parameters in the calculation"
+      }
+    ]
+  }
+]
