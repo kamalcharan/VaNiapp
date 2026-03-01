@@ -2,7 +2,7 @@
 
 > **Created:** 2026-03-01
 > **Strategy:** Dual output (CUET + NEET) — one effort upgrades both exam banks
-> **Target:** 20 questions per topic, ~940 new + ~680 copied = ~1,620 total
+> **Target:** 40 questions per topic, ~1,880 new + ~680 copied = ~2,560 total
 
 ---
 
@@ -13,12 +13,15 @@
 Qbank/
 ├── NEET/                          ← All NEET questions
 │   └── physics/
-│       ├── electrostatics/        ← New NEET copies go here
+│       ├── electrostatics/
+│       │   └── new-2026-03-01/    ← Date subfolder — user knows these need importing
 │       ├── current-electricity/
 │       └── ...
 ├── CUET/                          ← All CUET questions
 │   └── physics/
-│       ├── electrostatics/        ← Copied + new CUET questions
+│       ├── electrostatics/
+│       │   ├── *-copied.json      ← Copied from NEET (already known)
+│       │   └── new-2026-03-01/    ← Freshly generated — needs importing
 │       ├── current-electricity/
 │       ├── communication/         ← CUET-only chapter
 │       └── ...
@@ -32,7 +35,7 @@ Qbank/
 - These instantly populate CUET Physics bank
 
 ### Step B: Generate NEW Questions (Dual Output)
-- Generate 20 new Qs per CUET topic
+- Generate 40 new Qs per CUET topic
 - Save each batch as TWO files:
   - `Qbank/CUET/physics/{chapter}/{topic_id}.json` (CUET version)
   - `Qbank/NEET/physics/{chapter}/{topic_id}.json` (NEET version)
@@ -61,24 +64,33 @@ Qbank/
 
 ## New Question Generation — Batch Registry
 
-### CUET Topics → New Questions (47 topics × 20 Qs = 940 new Qs)
+### CUET Topics → New Questions (47 topics × 40 Qs = 1,880 new Qs)
 
-**Question type mix per 20-question batch (CUET pattern):**
-| Type | Count | Difficulty Split |
-|------|-------|------------------|
-| MCQ | 14 | 4 easy, 7 medium, 3 hard |
-| Assertion-Reasoning | 2 | 1 medium, 1 hard |
-| True-False | 2 | 1 easy (TRUE, answer=A), 1 easy (FALSE, answer=B) |
-| Fill-in-Blanks | 1 | medium |
-| Scenario-Based | 1 | medium |
-| **Total** | **20** | **6E / 10M / 4H** |
+**Question type mix per 40-question batch (CUET pattern):**
+| Type | Count | % | Difficulty Split |
+|------|-------|---|------------------|
+| MCQ | 20 | 50% | 5 easy, 10 medium, 5 hard |
+| Diagram-Based | 4 | 10% | 1 easy, 2 medium, 1 hard |
+| Assertion-Reasoning | 4 | 10% | 2 medium, 2 hard |
+| Match-the-Following | 2 | 5% | 1 medium, 1 hard |
+| True-False | 4 | 10% | 2 easy (TRUE), 2 easy (FALSE) |
+| Fill-in-Blanks | 2 | 5% | 1 easy, 1 medium |
+| Scenario-Based | 2 | 5% | 1 medium, 1 hard |
+| Logical-Sequence | 2 | 5% | 1 medium, 1 hard |
+| **Total** | **40** | **100%** | **12E / 18M / 10H** |
 
 **True-False rules:**
-- One TRUE question (correct_answer = "A", option A = "True", option B = "False")
-- One FALSE question (correct_answer = "B", option A = "True", option B = "False")
+- Two TRUE questions (correct_answer = "A", option A = "True", option B = "False")
+- Two FALSE questions (correct_answer = "B", option A = "True", option B = "False")
 - Options C and D must be `"---"` (dummy placeholders)
 
-**Answer key balance:** A ≤ 6, B ≤ 6, C ≤ 6, D ≤ 6 (no letter > 6 out of 20)
+**Diagram-Based rules:**
+- Include `image_uri` field with planned path: `question-images/{subject}/{chapter}/{question-id}.png`
+- Include `image_alt` field describing what the diagram shows
+- Diagrams uploaded separately to Supabase Storage bucket `question-images`
+- App renders via `DiagramBasedQuestion.tsx` component
+
+**Answer key balance:** A ≤ 12, B ≤ 12, C ≤ 12, D ≤ 12 (no letter > 12 out of 40)
 
 ---
 
@@ -87,117 +99,117 @@ NEET equivalent: `phy-electrostatics` + `phy-capacitance` (6 existing files = 12
 
 | Batch | Topic ID | Topic Name | NEET Copy Folder | Qs | Status |
 |-------|----------|------------|------------------|-----|--------|
-| B01 | `cuet-phy-elec-coulomb` | Coulomb's Law and Electric Charges | `phy-electrostatics/` | 20 | PENDING |
-| B02 | `cuet-phy-elec-field` | Electric Field and Field Lines | `phy-electrostatics/` | 20 | PENDING |
-| B03 | `cuet-phy-elec-dipole` | Electric Dipole | `phy-electrostatics/` | 20 | PENDING |
-| B04 | `cuet-phy-elec-gauss` | Gauss's Theorem and Applications | `phy-electrostatics/` | 20 | PENDING |
-| B05 | `cuet-phy-elec-potential` | Electric Potential and Potential Energy | `phy-capacitance/` | 20 | PENDING |
-| B06 | `cuet-phy-elec-capacitor` | Capacitors and Dielectrics | `phy-capacitance/` | 20 | PENDING |
-| | | **Chapter 1 Total** | | **120** | |
+| B01 | `cuet-phy-elec-coulomb` | Coulomb's Law and Electric Charges | `phy-electrostatics/` | 40 | PENDING |
+| B02 | `cuet-phy-elec-field` | Electric Field and Field Lines | `phy-electrostatics/` | 40 | PENDING |
+| B03 | `cuet-phy-elec-dipole` | Electric Dipole | `phy-electrostatics/` | 40 | PENDING |
+| B04 | `cuet-phy-elec-gauss` | Gauss's Theorem and Applications | `phy-electrostatics/` | 40 | PENDING |
+| B05 | `cuet-phy-elec-potential` | Electric Potential and Potential Energy | `phy-capacitance/` | 40 | PENDING |
+| B06 | `cuet-phy-elec-capacitor` | Capacitors and Dielectrics | `phy-capacitance/` | 40 | PENDING |
+| | | **Chapter 1 Total** | | **240** | |
 
 ### Chapter 2: Current Electricity (`cuet-phy-current-electricity`) — 5 topics
 NEET equivalent: `phy-current` (3 existing files = 60 Qs already)
 
 | Batch | Topic ID | Topic Name | NEET Copy Folder | Qs | Status |
 |-------|----------|------------|------------------|-----|--------|
-| B07 | `cuet-phy-curr-ohm` | Ohm's Law and Resistance | `phy-current/` | 20 | PENDING |
-| B08 | `cuet-phy-curr-drift` | Drift Velocity and Mobility | `phy-current/` | 20 | PENDING |
-| B09 | `cuet-phy-curr-kirchhoff` | Kirchhoff's Laws | `phy-current/` | 20 | PENDING |
-| B10 | `cuet-phy-curr-wheatstone` | Wheatstone Bridge and Meter Bridge | `phy-current/` | 20 | PENDING |
-| B11 | `cuet-phy-curr-potentiometer` | Potentiometer | `phy-current/` | 20 | PENDING |
-| | | **Chapter 2 Total** | | **100** | |
+| B07 | `cuet-phy-curr-ohm` | Ohm's Law and Resistance | `phy-current/` | 40 | PENDING |
+| B08 | `cuet-phy-curr-drift` | Drift Velocity and Mobility | `phy-current/` | 40 | PENDING |
+| B09 | `cuet-phy-curr-kirchhoff` | Kirchhoff's Laws | `phy-current/` | 40 | PENDING |
+| B10 | `cuet-phy-curr-wheatstone` | Wheatstone Bridge and Meter Bridge | `phy-current/` | 40 | PENDING |
+| B11 | `cuet-phy-curr-potentiometer` | Potentiometer | `phy-current/` | 40 | PENDING |
+| | | **Chapter 2 Total** | | **200** | |
 
 ### Chapter 3: Magnetic Effects (`cuet-phy-magnetic-effects`) — 6 topics
 NEET equivalent: `phy-magmov` + `phy-magmat` (5 existing files = 100 Qs already)
 
 | Batch | Topic ID | Topic Name | NEET Copy Folder | Qs | Status |
 |-------|----------|------------|------------------|-----|--------|
-| B12 | `cuet-phy-mag-biot` | Biot-Savart Law | `phy-magmov/` | 20 | PENDING |
-| B13 | `cuet-phy-mag-ampere` | Ampere's Circuital Law | `phy-magmov/` | 20 | PENDING |
-| B14 | `cuet-phy-mag-force` | Force on Moving Charge and Conductor | `phy-magmov/` | 20 | PENDING |
-| B15 | `cuet-phy-mag-galvanometer` | Galvanometer, Ammeter, and Voltmeter | `phy-magmov/` | 20 | PENDING |
-| B16 | `cuet-phy-mag-bar` | Bar Magnet and Earth's Magnetism | `phy-magmat/` | 20 | PENDING |
-| B17 | `cuet-phy-mag-properties` | Magnetic Properties of Materials | `phy-magmat/` | 20 | PENDING |
-| | | **Chapter 3 Total** | | **120** | |
+| B12 | `cuet-phy-mag-biot` | Biot-Savart Law | `phy-magmov/` | 40 | PENDING |
+| B13 | `cuet-phy-mag-ampere` | Ampere's Circuital Law | `phy-magmov/` | 40 | PENDING |
+| B14 | `cuet-phy-mag-force` | Force on Moving Charge and Conductor | `phy-magmov/` | 40 | PENDING |
+| B15 | `cuet-phy-mag-galvanometer` | Galvanometer, Ammeter, and Voltmeter | `phy-magmov/` | 40 | PENDING |
+| B16 | `cuet-phy-mag-bar` | Bar Magnet and Earth's Magnetism | `phy-magmat/` | 40 | PENDING |
+| B17 | `cuet-phy-mag-properties` | Magnetic Properties of Materials | `phy-magmat/` | 40 | PENDING |
+| | | **Chapter 3 Total** | | **240** | |
 
 ### Chapter 4: EM Induction and AC (`cuet-phy-em-induction`) — 5 topics
 NEET equivalent: `phy-emi` + `phy-ac` (4 existing files = 80 Qs already)
 
 | Batch | Topic ID | Topic Name | NEET Copy Folder | Qs | Status |
 |-------|----------|------------|------------------|-----|--------|
-| B18 | `cuet-phy-emi-faraday` | Faraday's Law and Lenz's Law | `phy-emi/` | 20 | PENDING |
-| B19 | `cuet-phy-emi-motional` | Motional EMF and Eddy Currents | `phy-emi/` | 20 | PENDING |
-| B20 | `cuet-phy-emi-inductance` | Self and Mutual Inductance | `phy-emi/` | 20 | PENDING |
-| B21 | `cuet-phy-emi-ac` | AC Circuits (LCR, Resonance) | `phy-ac/` | 20 | PENDING |
-| B22 | `cuet-phy-emi-transformer` | Transformers and Power Transmission | `phy-ac/` | 20 | PENDING |
-| | | **Chapter 4 Total** | | **100** | |
+| B18 | `cuet-phy-emi-faraday` | Faraday's Law and Lenz's Law | `phy-emi/` | 40 | PENDING |
+| B19 | `cuet-phy-emi-motional` | Motional EMF and Eddy Currents | `phy-emi/` | 40 | PENDING |
+| B20 | `cuet-phy-emi-inductance` | Self and Mutual Inductance | `phy-emi/` | 40 | PENDING |
+| B21 | `cuet-phy-emi-ac` | AC Circuits (LCR, Resonance) | `phy-ac/` | 40 | PENDING |
+| B22 | `cuet-phy-emi-transformer` | Transformers and Power Transmission | `phy-ac/` | 40 | PENDING |
+| | | **Chapter 4 Total** | | **200** | |
 
 ### Chapter 5: Electromagnetic Waves (`cuet-phy-em-waves`) — 3 topics
 NEET equivalent: `phy-emwave` (1 existing file = 20 Qs already)
 
 | Batch | Topic ID | Topic Name | NEET Copy Folder | Qs | Status |
 |-------|----------|------------|------------------|-----|--------|
-| B23 | `cuet-phy-emw-displacement` | Displacement Current and Maxwell's Equations | `phy-emwave/` | 20 | PENDING |
-| B24 | `cuet-phy-emw-spectrum` | Electromagnetic Spectrum | `phy-emwave/` | 20 | PENDING |
-| B25 | `cuet-phy-emw-properties` | Properties and Applications of EM Waves | `phy-emwave/` | 20 | PENDING |
-| | | **Chapter 5 Total** | | **60** | |
+| B23 | `cuet-phy-emw-displacement` | Displacement Current and Maxwell's Equations | `phy-emwave/` | 40 | PENDING |
+| B24 | `cuet-phy-emw-spectrum` | Electromagnetic Spectrum | `phy-emwave/` | 40 | PENDING |
+| B25 | `cuet-phy-emw-properties` | Properties and Applications of EM Waves | `phy-emwave/` | 40 | PENDING |
+| | | **Chapter 5 Total** | | **120** | |
 
 ### Chapter 6: Optics (`cuet-phy-optics`) — 6 topics
 NEET equivalent: `phy-rayopt` + `phy-waveopt` (6 existing files = 120 Qs already)
 
 | Batch | Topic ID | Topic Name | NEET Copy Folder | Qs | Status |
 |-------|----------|------------|------------------|-----|--------|
-| B26 | `cuet-phy-opt-reflection` | Reflection and Refraction at Surfaces | `phy-rayopt/` | 20 | PENDING |
-| B27 | `cuet-phy-opt-lens` | Thin Lens Formula and Lens Maker's Equation | `phy-rayopt/` | 20 | PENDING |
-| B28 | `cuet-phy-opt-prism` | Prism and Dispersion | `phy-rayopt/` | 20 | PENDING |
-| B29 | `cuet-phy-opt-instruments` | Optical Instruments (Microscope, Telescope) | `phy-rayopt/` | 20 | PENDING |
-| B30 | `cuet-phy-opt-wave` | Wave Optics (Interference and Diffraction) | `phy-waveopt/` | 20 | PENDING |
-| B31 | `cuet-phy-opt-polarisation` | Polarisation | `phy-waveopt/` | 20 | PENDING |
-| | | **Chapter 6 Total** | | **120** | |
+| B26 | `cuet-phy-opt-reflection` | Reflection and Refraction at Surfaces | `phy-rayopt/` | 40 | PENDING |
+| B27 | `cuet-phy-opt-lens` | Thin Lens Formula and Lens Maker's Equation | `phy-rayopt/` | 40 | PENDING |
+| B28 | `cuet-phy-opt-prism` | Prism and Dispersion | `phy-rayopt/` | 40 | PENDING |
+| B29 | `cuet-phy-opt-instruments` | Optical Instruments (Microscope, Telescope) | `phy-rayopt/` | 40 | PENDING |
+| B30 | `cuet-phy-opt-wave` | Wave Optics (Interference and Diffraction) | `phy-waveopt/` | 40 | PENDING |
+| B31 | `cuet-phy-opt-polarisation` | Polarisation | `phy-waveopt/` | 40 | PENDING |
+| | | **Chapter 6 Total** | | **240** | |
 
 ### Chapter 7: Dual Nature (`cuet-phy-dual-nature`) — 3 topics
 NEET equivalent: `phy-dual` (2 existing files = 40 Qs already)
 
 | Batch | Topic ID | Topic Name | NEET Copy Folder | Qs | Status |
 |-------|----------|------------|------------------|-----|--------|
-| B32 | `cuet-phy-dual-photoelectric` | Photoelectric Effect and Einstein's Equation | `phy-dual/` | 20 | PENDING |
-| B33 | `cuet-phy-dual-photon` | Photon and Particle Nature of Light | `phy-dual/` | 20 | PENDING |
-| B34 | `cuet-phy-dual-debroglie` | de Broglie Hypothesis and Matter Waves | `phy-dual/` | 20 | PENDING |
-| | | **Chapter 7 Total** | | **60** | |
+| B32 | `cuet-phy-dual-photoelectric` | Photoelectric Effect and Einstein's Equation | `phy-dual/` | 40 | PENDING |
+| B33 | `cuet-phy-dual-photon` | Photon and Particle Nature of Light | `phy-dual/` | 40 | PENDING |
+| B34 | `cuet-phy-dual-debroglie` | de Broglie Hypothesis and Matter Waves | `phy-dual/` | 40 | PENDING |
+| | | **Chapter 7 Total** | | **120** | |
 
 ### Chapter 8: Atoms and Nuclei (`cuet-phy-atoms-nuclei`) — 5 topics
 NEET equivalent: `phy-atoms` + `phy-nuclei` (4 existing files = 80 Qs already)
 
 | Batch | Topic ID | Topic Name | NEET Copy Folder | Qs | Status |
 |-------|----------|------------|------------------|-----|--------|
-| B35 | `cuet-phy-atom-rutherford` | Rutherford's Model and Alpha Scattering | `phy-atoms/` | 20 | PENDING |
-| B36 | `cuet-phy-atom-bohr` | Bohr Model and Hydrogen Spectrum | `phy-atoms/` | 20 | PENDING |
-| B37 | `cuet-phy-atom-nucleus` | Nuclear Structure, Size, and Binding Energy | `phy-nuclei/` | 20 | PENDING |
-| B38 | `cuet-phy-atom-radioactivity` | Radioactivity and Decay Laws | `phy-nuclei/` | 20 | PENDING |
-| B39 | `cuet-phy-atom-fission-fusion` | Nuclear Fission and Fusion | `phy-nuclei/` | 20 | PENDING |
-| | | **Chapter 8 Total** | | **100** | |
+| B35 | `cuet-phy-atom-rutherford` | Rutherford's Model and Alpha Scattering | `phy-atoms/` | 40 | PENDING |
+| B36 | `cuet-phy-atom-bohr` | Bohr Model and Hydrogen Spectrum | `phy-atoms/` | 40 | PENDING |
+| B37 | `cuet-phy-atom-nucleus` | Nuclear Structure, Size, and Binding Energy | `phy-nuclei/` | 40 | PENDING |
+| B38 | `cuet-phy-atom-radioactivity` | Radioactivity and Decay Laws | `phy-nuclei/` | 40 | PENDING |
+| B39 | `cuet-phy-atom-fission-fusion` | Nuclear Fission and Fusion | `phy-nuclei/` | 40 | PENDING |
+| | | **Chapter 8 Total** | | **200** | |
 
 ### Chapter 9: Electronic Devices (`cuet-phy-electronic-devices`) — 5 topics
 NEET equivalent: `phy-semi` (3 existing files = 60 Qs already)
 
 | Batch | Topic ID | Topic Name | NEET Copy Folder | Qs | Status |
 |-------|----------|------------|------------------|-----|--------|
-| B40 | `cuet-phy-elec-semiconductor` | Semiconductors (Intrinsic and Extrinsic) | `phy-semi/` | 20 | PENDING |
-| B41 | `cuet-phy-elec-pn-junction` | p-n Junction Diode and Rectifier | `phy-semi/` | 20 | PENDING |
-| B42 | `cuet-phy-elec-special-diodes` | Zener Diode, LED, Photodiode, Solar Cell | `phy-semi/` | 20 | PENDING |
-| B43 | `cuet-phy-elec-transistor` | Transistor and its Applications | `phy-semi/` | 20 | PENDING |
-| B44 | `cuet-phy-elec-logic` | Logic Gates (AND, OR, NOT, NAND, NOR) | `phy-semi/` | 20 | PENDING |
-| | | **Chapter 9 Total** | | **100** | |
+| B40 | `cuet-phy-elec-semiconductor` | Semiconductors (Intrinsic and Extrinsic) | `phy-semi/` | 40 | PENDING |
+| B41 | `cuet-phy-elec-pn-junction` | p-n Junction Diode and Rectifier | `phy-semi/` | 40 | PENDING |
+| B42 | `cuet-phy-elec-special-diodes` | Zener Diode, LED, Photodiode, Solar Cell | `phy-semi/` | 40 | PENDING |
+| B43 | `cuet-phy-elec-transistor` | Transistor and its Applications | `phy-semi/` | 40 | PENDING |
+| B44 | `cuet-phy-elec-logic` | Logic Gates (AND, OR, NOT, NAND, NOR) | `phy-semi/` | 40 | PENDING |
+| | | **Chapter 9 Total** | | **200** | |
 
 ### Chapter 10: Communication Systems (`cuet-phy-communication`) — 3 topics
 **CUET-ONLY** — No NEET equivalent (no existing Qs to copy)
 
 | Batch | Topic ID | Topic Name | NEET Copy Folder | Qs | Status |
 |-------|----------|------------|------------------|-----|--------|
-| B45 | `cuet-phy-comm-elements` | Elements of Communication System | N/A | 20 | PENDING |
-| B46 | `cuet-phy-comm-bandwidth` | Bandwidth and Signal Propagation | N/A | 20 | PENDING |
-| B47 | `cuet-phy-comm-modulation` | Modulation (AM and FM) | N/A | 20 | PENDING |
-| | | **Chapter 10 Total** | | **60** | |
+| B45 | `cuet-phy-comm-elements` | Elements of Communication System | N/A | 40 | PENDING |
+| B46 | `cuet-phy-comm-bandwidth` | Bandwidth and Signal Propagation | N/A | 40 | PENDING |
+| B47 | `cuet-phy-comm-modulation` | Modulation (AM and FM) | N/A | 40 | PENDING |
+| | | **Chapter 10 Total** | | **120** | |
 
 ---
 
@@ -231,13 +243,15 @@ Read: Existing NEET JSON for the corresponding topic (to avoid duplicate stems)
 
 ### Step 3: Save CUET JSON
 ```
-Write to: Qbank/CUET/physics/{chapter-slug}/{topic_id}.json
+Write to: Qbank/CUET/physics/{chapter-slug}/new-YYYY-MM-DD/{topic_id}.json
 ```
+Use `new-{date}` subfolder so the user can tell which JSONs are freshly generated and need importing.
 
 ### Step 4: Save NEET Copy
 ```
-Write to: Qbank/NEET/physics/{neet-chapter}/{topic_id}.json
+Write to: Qbank/NEET/physics/{neet-chapter}/new-YYYY-MM-DD/{topic_id}.json
 ```
+Use `new-{date}` subfolder so the user can tell which JSONs are freshly generated and need importing.
 
 **Skip NEET copy for Communication Systems (B45-B47) — CUET-only chapter.**
 
@@ -247,7 +261,7 @@ Change batch status from `PENDING` → `DONE`
 ### Step 6: Commit & Push
 ```bash
 git add Qbank/CUET/physics/ Qbank/NEET/physics/ docs/CUET_PHYSICS_GENERATION_PLAN.md
-git commit -m "CUET Phy Q-gen B{XX}: {topic_name} (20 questions, dual NEET+CUET)"
+git commit -m "CUET Phy Q-gen B{XX}: {topic_name} (40 questions, dual NEET+CUET)"
 git push
 ```
 
@@ -311,7 +325,7 @@ For each of the 34 existing NEET JSON files:
 ```
 Read docs/CUET_PHYSICS_GENERATION_PLAN.md and docs/QBANK_AGENT.md.
 Find the next PENDING batches in the Batch Registry.
-Generate up to 10 batches (200 questions), following the Per-Batch Execution Protocol.
+Generate up to 5 batches (200 questions), following the Per-Batch Execution Protocol.
 Use Qbank/generated/physics/phy-electrostatics/phy-elec-coulomb.json as the reference JSON format.
 Each question must have a unique "id" field: {topic_id}-{nn} (e.g. cuet-phy-elec-coulomb-01).
 Before generating, read the corresponding NEET JSON files to avoid duplicate question stems.
@@ -321,18 +335,31 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 ---
 
+## Grand Total
+
+| Source | Questions |
+|--------|-----------|
+| Copied from NEET (34 files) | 680 |
+| New generation (47 batches × 40) | 1,880 |
+| **Total CUET Physics** | **2,560** |
+| **New NEET copies (44 batches × 40)** | **1,760** |
+
+**Sessions needed:** ~10 sessions (47 batches ÷ ~5 per session)
+
+---
+
 ## Progress Tracker
 
 | Chapter | Topics | New Qs | Copied Qs | Total | % |
 |---------|--------|--------|-----------|-------|---|
-| Ch1 Electrostatics | 6 | 0/120 | 0/120 | 0/240 | 0% |
-| Ch2 Current Electricity | 5 | 0/100 | 0/60 | 0/160 | 0% |
-| Ch3 Magnetic Effects | 6 | 0/120 | 0/100 | 0/220 | 0% |
-| Ch4 EM Induction & AC | 5 | 0/100 | 0/80 | 0/180 | 0% |
-| Ch5 EM Waves | 3 | 0/60 | 0/20 | 0/80 | 0% |
-| Ch6 Optics | 6 | 0/120 | 0/120 | 0/240 | 0% |
-| Ch7 Dual Nature | 3 | 0/60 | 0/40 | 0/100 | 0% |
-| Ch8 Atoms & Nuclei | 5 | 0/100 | 0/80 | 0/180 | 0% |
-| Ch9 Electronic Devices | 5 | 0/100 | 0/60 | 0/160 | 0% |
-| Ch10 Communication | 3 | 0/60 | N/A | 0/60 | 0% |
-| **TOTAL** | **47** | **0/940** | **0/680** | **0/1,620** | **0%** |
+| Ch1 Electrostatics | 6 | 0/240 | 120/120 | 120/360 | 33% |
+| Ch2 Current Electricity | 5 | 0/200 | 60/60 | 60/260 | 23% |
+| Ch3 Magnetic Effects | 6 | 0/240 | 100/100 | 100/340 | 29% |
+| Ch4 EM Induction & AC | 5 | 0/200 | 80/80 | 80/280 | 29% |
+| Ch5 EM Waves | 3 | 0/120 | 20/20 | 20/140 | 14% |
+| Ch6 Optics | 6 | 0/240 | 120/120 | 120/360 | 33% |
+| Ch7 Dual Nature | 3 | 0/120 | 40/40 | 40/160 | 25% |
+| Ch8 Atoms & Nuclei | 5 | 0/200 | 80/80 | 80/280 | 29% |
+| Ch9 Electronic Devices | 5 | 0/200 | 60/60 | 60/260 | 23% |
+| Ch10 Communication | 3 | 0/120 | N/A | 0/120 | 0% |
+| **TOTAL** | **47** | **0/1,880** | **680/680** | **680/2,560** | **27%** |
