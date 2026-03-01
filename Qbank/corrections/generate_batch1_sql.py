@@ -138,6 +138,32 @@ def main():
     lines.append("BEGIN;")
     lines.append("")
 
+    # Step 1: Create missing CUET topics (FK requires them)
+    lines.append("-- ==========================================================================")
+    lines.append("-- STEP 1: Create missing CUET topics in med_topics")
+    lines.append("-- ==========================================================================")
+    lines.append("")
+    lines.append("""INSERT INTO med_topics (id, chapter_id, name, sort_order, is_important) VALUES
+('cuet-phy-atom-bohr',          'cuet-phy-atoms-nuclei', 'Bohr Model and Hydrogen Spectrum',              1, true),
+('cuet-phy-atom-rutherford',    'cuet-phy-atoms-nuclei', 'Rutherford Model and Alpha Scattering',         2, true),
+('cuet-phy-atom-radioactivity', 'cuet-phy-atoms-nuclei', 'Radioactivity and Decay Laws',                  3, true),
+('cuet-phy-atom-nucleus',       'cuet-phy-atoms-nuclei', 'Nuclear Structure, Size, and Binding Energy',   4, true),
+('cuet-phy-atom-fission-fusion','cuet-phy-atoms-nuclei', 'Nuclear Fission and Fusion',                    5, true)
+ON CONFLICT (id) DO NOTHING;""")
+    lines.append("")
+    lines.append("""INSERT INTO med_topics (id, chapter_id, name, sort_order, is_important) VALUES
+('cuet-phy-curr-ohm',           'cuet-phy-current-electricity', 'Ohm''s Law and Resistance',              1, true),
+('cuet-phy-curr-drift',         'cuet-phy-current-electricity', 'Drift Velocity and Mobility',            2, true),
+('cuet-phy-curr-kirchhoff',     'cuet-phy-current-electricity', 'Kirchhoff''s Laws',                      3, true),
+('cuet-phy-curr-wheatstone',    'cuet-phy-current-electricity', 'Wheatstone Bridge and Meter Bridge',     4, true),
+('cuet-phy-curr-potentiometer', 'cuet-phy-current-electricity', 'Potentiometer',                          5, true)
+ON CONFLICT (id) DO NOTHING;""")
+    lines.append("")
+    lines.append("-- ==========================================================================")
+    lines.append("-- STEP 2: Insert correction questions")
+    lines.append("-- ==========================================================================")
+    lines.append("")
+
     count = 0
     for file_key, questions in REPLACEMENT_QUESTIONS.items():
         lines.append(f"-- ── {file_key} ({'─' * (60 - len(file_key))})")
