@@ -103,7 +103,7 @@ NEET equivalent: `phy-electrostatics` + `phy-capacitance` (6 existing files = 12
 | B02 | `cuet-phy-elec-field` | Electric Field and Field Lines | `phy-electrostatics/` | 40 | DONE (20 MCQ) |
 | B03 | `cuet-phy-elec-dipole` | Electric Dipole | `phy-electrostatics/` | 20 | DONE |
 | B04 | `cuet-phy-elec-gauss` | Gauss's Theorem and Applications | `phy-electrostatics/` | 20 | DONE |
-| B05 | `cuet-phy-elec-potential` | Electric Potential and Potential Energy | `phy-capacitance/` | 40 | PENDING |
+| B05 | `cuet-phy-elec-potential` | Electric Potential and Potential Energy | `phy-capacitance/` | 20 | DONE |
 | B06 | `cuet-phy-elec-capacitor` | Capacitors and Dielectrics | `phy-capacitance/` | 40 | PENDING |
 | | | **Chapter 1 Total** | | **240** | |
 
@@ -352,7 +352,7 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Chapter | Topics | New Qs | Copied Qs | Total | % |
 |---------|--------|--------|-----------|-------|---|
-| Ch1 Electrostatics | 6 | 80/240 | 120/120 | 200/360 | 56% |
+| Ch1 Electrostatics | 6 | 100/240 | 120/120 | 220/360 | 61% |
 | Ch2 Current Electricity | 5 | 0/200 | 60/60 | 60/260 | 23% |
 | Ch3 Magnetic Effects | 6 | 0/240 | 100/100 | 100/340 | 29% |
 | Ch4 EM Induction & AC | 5 | 0/200 | 80/80 | 80/280 | 29% |
@@ -362,4 +362,4 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 | Ch8 Atoms & Nuclei | 5 | 0/200 | 80/80 | 80/280 | 29% |
 | Ch9 Electronic Devices | 5 | 0/200 | 60/60 | 60/260 | 23% |
 | Ch10 Communication | 3 | 0/120 | N/A | 0/120 | 0% |
-| **TOTAL** | **47** | **80/1,880** | **680/680** | **760/2,560** | **30%** |
+| **TOTAL** | **47** | **100/1,880** | **680/680** | **780/2,560** | **30%** |

@@ -20,10 +20,10 @@ Read the following files first:
 
 | Subject | Target | Existing (Copied) | New Generated | Total | Remaining | % Done |
 |---------|--------|-------------------|---------------|-------|-----------|--------|
-| **Physics** | 2,560 | 680 | 100 | 780 | 1,780 | 30% |
+| **Physics** | 2,560 | 680 | 120 | 800 | 1,760 | 31% |
 | **Chemistry** | TBD | 0 | 0 | 0 | TBD | 0% |
 | **Biology** | TBD | 0 | 0 | 0 | TBD | 0% |
-| **TOTAL** | ~2,560+ | 680 | 100 | 780 | ~1,780+ | — |
+| **TOTAL** | ~2,560+ | 680 | 120 | 800 | ~1,760+ | — |
 
 ### NEET Question Bank — All Subjects (Qbank/generated/)
 
@@ -39,7 +39,7 @@ Read the following files first:
 
 | # | Chapter | Copied | New | Total | Target | Status |
 |---|---------|--------|-----|-------|--------|--------|
-| 1 | Electrostatics (6 topics: B01-B06) | 120 | 100 | 220 | 360 | 61% |
+| 1 | Electrostatics (6 topics: B01-B06) | 120 | 120 | 240 | 360 | 67% |
 | 2 | Current Electricity (5 topics: B07-B11) | 60 | 0 | 60 | 260 | 23% |
 | 3 | Magnetic Effects (6 topics: B12-B17) | 100 | 0 | 100 | 340 | 29% |
 | 4 | EM Induction & AC (5 topics: B18-B22) | 80 | 0 | 80 | 280 | 29% |
