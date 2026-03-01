@@ -14,12 +14,12 @@
  * Reads Supabase creds from Qbank/config.json
  * Scans Qbank/generated/, Qbank/CUET/, Qbank/NEET/ for JSON files
  * Validates IDs, checks for duplicates in DB, inserts new questions only
- * Supports diagram-based questions with image_uri → stored in payload
+ * Supports diagram-based questions: auto-uploads local images to Supabase Storage
  */
 
 import { createClient } from '@supabase/supabase-js';
 import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
-import { join, basename, relative } from 'path';
+import { join, basename, relative, extname, dirname as pathDirname } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -33,6 +33,8 @@ const GENERATED_DIR = join(__dirname, 'generated');
 const CUET_DIR = join(__dirname, 'CUET');
 const NEET_DIR = join(__dirname, 'NEET');
 const CONFIG_PATH = join(__dirname, 'config.json');
+
+const STORAGE_BUCKET = 'question-images';
 
 // Subject folder → subject_id mapping
 const SUBJECT_MAP = {
@@ -94,21 +96,113 @@ function scanJsonFiles(baseDir, subjectFilter, chapterFilter) {
 
     for (const chapter of chapters) {
       const chapterDir = join(subjectDir, chapter);
-      const jsonFiles = readdirSync(chapterDir).filter((f) => f.endsWith('.json'));
 
-      for (const file of jsonFiles) {
-        files.push({
-          path: join(chapterDir, file),
-          subject,
-          chapter,
-          filename: file,
-          relPath: relative(baseDir, join(chapterDir, file)),
-        });
-      }
+      // Collect JSON files from chapter dir AND any subdirectories (e.g., new-2026-03-01/)
+      const collectJsons = (dir) => {
+        const entries = readdirSync(dir);
+        for (const entry of entries) {
+          const fullPath = join(dir, entry);
+          if (statSync(fullPath).isDirectory()) {
+            // Recurse into subfolders like new-{date}/ or diagrams/ (skip diagrams)
+            if (entry !== 'diagrams') collectJsons(fullPath);
+          } else if (entry.endsWith('.json')) {
+            files.push({
+              path: fullPath,
+              dir: dir, // directory containing this JSON (for resolving relative image paths)
+              subject,
+              chapter,
+              filename: entry,
+              relPath: relative(baseDir, fullPath),
+            });
+          }
+        }
+      };
+
+      collectJsons(chapterDir);
     }
   }
 
   return files;
+}
+
+// ============================================================================
+// IMAGE UPLOAD — Upload local diagram images to Supabase Storage
+// ============================================================================
+async function uploadDiagramImage(supabase, localImagePath, storagePath) {
+  if (!existsSync(localImagePath)) {
+    return { error: `File not found: ${localImagePath}` };
+  }
+
+  const fileBuffer = readFileSync(localImagePath);
+  const ext = extname(localImagePath).toLowerCase();
+  const mimeTypes = {
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.svg': 'image/svg+xml',
+    '.webp': 'image/webp',
+    '.gif': 'image/gif',
+  };
+  const contentType = mimeTypes[ext] || 'image/png';
+
+  const { data, error } = await supabase.storage
+    .from(STORAGE_BUCKET)
+    .upload(storagePath, fileBuffer, {
+      contentType,
+      upsert: true, // overwrite if exists (safe for re-imports)
+    });
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  // Build public URL
+  const { data: urlData } = supabase.storage
+    .from(STORAGE_BUCKET)
+    .getPublicUrl(storagePath);
+
+  return { url: urlData.publicUrl };
+}
+
+/**
+ * For each question with a local image_uri, upload to Storage and replace with public URL.
+ * Local path convention: relative to JSON file dir, e.g., "diagrams/question-id.png"
+ */
+async function resolveImageUris(supabase, questions, dryRun) {
+  let uploadCount = 0;
+  let uploadErrors = 0;
+
+  for (const q of questions) {
+    if (!q.image_uri) continue;
+
+    // Already an HTTP URL — nothing to do
+    if (q.image_uri.startsWith('http://') || q.image_uri.startsWith('https://')) continue;
+
+    // Local file path — resolve relative to the JSON file's directory
+    const jsonDir = q._dir || '.';
+    const localImagePath = join(jsonDir, q.image_uri);
+
+    // Storage path: {subject}/{chapter}/{filename}
+    const imageFilename = basename(q.image_uri);
+    const storagePath = `${q._subject}/${q._chapter}/${imageFilename}`;
+
+    if (dryRun) {
+      log(`  Would upload: ${q.image_uri} → ${STORAGE_BUCKET}/${storagePath}`);
+      uploadCount++;
+      continue;
+    }
+
+    const result = await uploadDiagramImage(supabase, localImagePath, storagePath);
+    if (result.error) {
+      log(`  Image upload failed for ${q.id}: ${result.error}`, 'fail');
+      uploadErrors++;
+    } else {
+      q.image_uri = result.url; // Replace local path with public URL
+      uploadCount++;
+    }
+  }
+
+  return { uploadCount, uploadErrors };
 }
 
 function validateQuestion(q, fileInfo, index) {
@@ -165,6 +259,8 @@ async function main() {
   for (const { dir, label } of scanDirs) {
     if (existsSync(dir)) {
       const found = scanJsonFiles(dir, subjectFilter, chapterFilter);
+      // Tag each file with its source (cuet, neet, generated) for chapter_id resolution
+      found.forEach((f) => (f.source = label.toLowerCase()));
       log(`[${label}] Found ${found.length} JSON files`);
       files.push(...found);
     }
@@ -205,6 +301,8 @@ async function main() {
       // Attach file metadata to each question
       questions.forEach((q) => {
         q._file = file.relPath;
+        q._dir = file.dir; // directory of the JSON file (for resolving relative image paths)
+        q._source = file.source; // cuet, neet, or generated
         q._subject = file.subject;
         q._chapter = file.chapter;
       });
@@ -267,14 +365,22 @@ async function main() {
 
   if (newQuestions.length === 0) {
     log('Nothing new to insert. All questions already in DB.', 'ok');
-    printSummary(fileResults, allQuestions.length, 0, skippedCount, 0);
+    printSummary(fileResults, allQuestions.length, 0, skippedCount, 0, 0);
     process.exit(0);
   }
 
+  // Upload diagram images (local paths → Supabase Storage public URLs)
+  const diagramQuestions = newQuestions.filter((q) => q.image_uri && !q.image_uri.startsWith('http'));
+  if (diagramQuestions.length > 0) {
+    log(`\nFound ${diagramQuestions.length} diagram question(s) with local images — uploading to Storage...`);
+    const { uploadCount, uploadErrors } = await resolveImageUris(supabase, newQuestions, dryRun);
+    log(`Images uploaded: ${uploadCount}, errors: ${uploadErrors}`, uploadErrors > 0 ? 'warn' : 'ok');
+  }
+
   if (dryRun) {
-    log('DRY RUN complete. Would insert these questions:', 'warn');
+    log('\nDRY RUN complete. Would insert these questions:', 'warn');
     newQuestions.forEach((q) => log(`  [${q.id}] ${q.question_text?.substring(0, 60)}...`));
-    printSummary(fileResults, allQuestions.length, 0, skippedCount, 0);
+    printSummary(fileResults, allQuestions.length, 0, skippedCount, 0, diagramQuestions.length);
     process.exit(0);
   }
 
@@ -291,7 +397,7 @@ async function main() {
         .from('med_questions')
         .insert({
           subject_id: subjectId,
-          chapter_id: resolveChapterId(q._subject, q._chapter),
+          chapter_id: q.chapter_id || resolveChapterId(q._source, q._subject, q._chapter),
           question_type: q.question_type || 'mcq',
           difficulty: q.difficulty || 'medium',
           question_text: q.question_text,
@@ -354,24 +460,179 @@ async function main() {
   }
 
   log(`\nInsert complete: ${insertedCount} inserted, ${errorCount} errors`, insertedCount > 0 ? 'ok' : 'fail');
-  printSummary(fileResults, allQuestions.length, insertedCount, skippedCount, errorCount);
+  printSummary(fileResults, allQuestions.length, insertedCount, skippedCount, errorCount, diagramQuestions.length);
 }
 
 // ============================================================================
 // CHAPTER ID RESOLVER
 // ============================================================================
-// Maps subject/chapter folder names to DB chapter IDs
-// Update this mapping as you add more chapters to the DB
-function resolveChapterId(subject, chapterFolder) {
-  // Convention: {subject_short}-{chapter_folder}
-  // e.g., zoo + animal-kingdom → zoo-animal-kingdom
+// Maps (source, subject, chapterFolder) → DB chapter_id
+// If JSON has explicit chapter_id field, that takes priority (see insert logic)
+
+// CUET chapter folder → DB chapter_id
+const CUET_CHAPTER_MAP = {
+  // Physics (cuet-physics subject)
+  'physics/electrostatics': 'cuet-phy-electrostatics',
+  'physics/current-electricity': 'cuet-phy-current-electricity',
+  'physics/magnetic-effects': 'cuet-phy-magnetic-effects',
+  'physics/em-induction': 'cuet-phy-em-induction',
+  'physics/em-waves': 'cuet-phy-em-waves',
+  'physics/optics': 'cuet-phy-optics',
+  'physics/dual-nature': 'cuet-phy-dual-nature',
+  'physics/atoms-nuclei': 'cuet-phy-atoms-nuclei',
+  'physics/electronic-devices': 'cuet-phy-electronic-devices',
+  'physics/communication': 'cuet-phy-communication',
+  // Chemistry (cuet-chemistry subject)
+  'chemistry/solutions': 'cuet-chem-solutions',
+  'chemistry/electrochemistry': 'cuet-chem-electrochemistry',
+  'chemistry/kinetics': 'cuet-chem-kinetics',
+  'chemistry/d-f-block': 'cuet-chem-d-f-block',
+  'chemistry/coordination': 'cuet-chem-coordination',
+  'chemistry/haloalkanes': 'cuet-chem-haloalkanes',
+  'chemistry/alcohols-phenols': 'cuet-chem-alcohols-phenols',
+  'chemistry/aldehydes-ketones': 'cuet-chem-aldehydes-ketones',
+  'chemistry/amines': 'cuet-chem-amines',
+  'chemistry/biomolecules': 'cuet-chem-biomolecules',
+  // Biology (biology subject)
+  'biology/sexual-repro-plants': 'cuet-bio-sexual-repro-plants',
+  'biology/human-repro': 'cuet-bio-human-repro',
+  'biology/repro-health': 'cuet-bio-repro-health',
+  'biology/inheritance': 'cuet-bio-inheritance',
+  'biology/molecular-inheritance': 'cuet-bio-molecular-inheritance',
+  'biology/evolution': 'cuet-bio-evolution',
+  'biology/human-health': 'cuet-bio-human-health',
+  'biology/microbes-welfare': 'cuet-bio-microbes-welfare',
+  'biology/biotech-principles': 'cuet-bio-biotech-principles',
+  'biology/biotech-applications': 'cuet-bio-biotech-applications',
+  'biology/organisms-populations': 'cuet-bio-organisms-populations',
+  'biology/ecosystem': 'cuet-bio-ecosystem',
+  'biology/biodiversity': 'cuet-bio-biodiversity',
+};
+
+// NEET/generated physics folder → DB chapter_id (folder names don't match DB IDs)
+const NEET_PHYSICS_CHAPTER_MAP = {
+  'phy-electrostatics': 'phy-electrostatics',
+  'phy-capacitance': 'phy-electrostatics',  // capacitance topics are under electrostatics chapter
+  'phy-current': 'phy-current-electricity',
+  'phy-magmov': 'phy-magnetic-effects',
+  'phy-magmat': 'phy-magnetic-effects',
+  'phy-emi': 'phy-em-induction',
+  'phy-ac': 'phy-em-induction',
+  'phy-emwave': 'phy-em-waves',
+  'phy-rayopt': 'phy-optics',
+  'phy-waveopt': 'phy-optics',
+  'phy-dual': 'phy-dual-nature',
+  'phy-atoms': 'phy-atoms-nuclei',
+  'phy-nuclei': 'phy-atoms-nuclei',
+  'phy-semi': 'phy-electronic-devices',
+  'phy-units': 'phy-units-measurement',
+  'phy-world': 'phy-units-measurement',
+  'phy-motion1d': 'phy-kinematics',
+  'phy-motion2d': 'phy-kinematics',
+  'phy-newton': 'phy-laws-of-motion',
+  'phy-energy': 'phy-work-energy-power',
+  'phy-rotation': 'phy-rotational-motion',
+  'phy-gravitation': 'phy-gravitation',
+  'phy-solid': 'phy-properties-matter',
+  'phy-fluid': 'phy-properties-matter',
+  'phy-thermal': 'phy-thermodynamics',
+  'phy-thermodynamics': 'phy-thermodynamics',
+  'phy-kinetic': 'phy-kinetic-theory',
+  'phy-oscillations': 'phy-oscillations-waves',
+  'phy-waves': 'phy-oscillations-waves',
+};
+
+function resolveChapterId(source, subject, chapterFolder) {
+  // 1) CUET source — use CUET mapping
+  if (source === 'cuet') {
+    const key = `${subject}/${chapterFolder}`;
+    if (CUET_CHAPTER_MAP[key]) return CUET_CHAPTER_MAP[key];
+    log(`  No CUET chapter mapping for "${key}" — using fallback`, 'warn');
+  }
+
+  // 2) NEET/generated physics — folder names don't match DB
+  if (subject === 'physics' && NEET_PHYSICS_CHAPTER_MAP[chapterFolder]) {
+    return NEET_PHYSICS_CHAPTER_MAP[chapterFolder];
+  }
+
+  // 3) NEET/generated botany — mixed folder naming
+  if (subject === 'bot') {
+    const NEET_BOT_CHAPTER_MAP = {
+      'anatomy': 'bot-anatomy-flowering',
+      'bot-biodiversity': 'bot-biodiversity',
+      'bot-cell-division': 'bot-cell-cycle',
+      'bot-cell': 'bot-cell-unit',
+      'bot-ecology-pop': 'bot-organisms-populations',
+      'bot-ecosystem': 'bot-ecosystem',
+      'bot-environment': 'bot-biodiversity', // environment topics under biodiversity
+      'bot-living-world': 'bot-living-world',
+      'bot-mineral': 'bot-mineral-nutrition',
+      'bot-respiration': 'bot-respiration',
+      'bot-transport': 'bot-transport-plants',
+      'classification': 'bot-biological-classification',
+      'growth': 'bot-plant-growth',
+      'inheritance': 'bot-inheritance',
+      'molecular': 'bot-molecular-inheritance',
+      'morphology': 'bot-morphology-flowering',
+      'photosynthesis': 'bot-photosynthesis',
+      'plant-kingdom': 'bot-plant-kingdom',
+      'reproduction': 'bot-sexual-reproduction',
+      'microbes': 'bot-microbes-welfare',
+    };
+    if (NEET_BOT_CHAPTER_MAP[chapterFolder]) return NEET_BOT_CHAPTER_MAP[chapterFolder];
+  }
+
+  // 4) NEET/generated chemistry — folders use chem- prefix
+  if (subject === 'chem') {
+    const NEET_CHEM_CHAPTER_MAP = {
+      'chem-alcohols': 'chem-alcohols-ethers',
+      'chem-amines': 'chem-amines',
+      'chem-atom': 'chem-atomic-structure',
+      'chem-basic': 'chem-basic-concepts',
+      'chem-biomolecules': 'chem-biomolecules',
+      'chem-bonding': 'chem-chemical-bonding',
+      'chem-carbonyl': 'chem-aldehydes-ketones',
+      'chem-coordination': 'chem-coordination',
+      'chem-dblock': 'chem-d-f-block',
+      'chem-electrochem': 'chem-electrochemistry',
+      'chem-environment': 'chem-environment',
+      'chem-equilibrium': 'chem-equilibrium',
+      'chem-everyday': 'chem-everyday',
+      'chem-haloalkanes': 'chem-haloalkanes',
+      'chem-hydrocarbons': 'chem-hydrocarbons',
+      'chem-hydrogen': 'chem-hydrogen',
+      'chem-kinetics': 'chem-kinetics',
+      'chem-metallurgy': 'chem-metallurgy',
+      'chem-organic-basics': 'chem-organic-basics',
+      'chem-pblock11': 'chem-p-block',
+      'chem-pblock12': 'chem-p-block',
+      'chem-periodic': 'chem-periodicity',
+      'chem-polymers': 'chem-polymers',
+      'chem-redox': 'chem-redox',
+      'chem-sblock': 'chem-s-block',
+      'chem-solid': 'chem-states-matter',
+      'chem-solutions': 'chem-solutions',
+      'chem-states': 'chem-states-matter',
+      'chem-surface': 'chem-surface',
+      'chem-thermo': 'chem-thermodynamics',
+    };
+    if (NEET_CHEM_CHAPTER_MAP[chapterFolder]) return NEET_CHEM_CHAPTER_MAP[chapterFolder];
+  }
+
+  // 5) Zoology — folders already match DB pattern (zoo + animal-kingdom → zoo-animal-kingdom)
+  if (subject === 'zoo') {
+    return `zoo-${chapterFolder}`;
+  }
+
+  // 6) Fallback — warn and use best guess
+  log(`  No chapter mapping for subject="${subject}" folder="${chapterFolder}" — using fallback`, 'warn');
   return `${subject}-${chapterFolder}`;
 }
 
 // ============================================================================
 // SUMMARY
 // ============================================================================
-function printSummary(fileResults, total, inserted, skipped, errors) {
+function printSummary(fileResults, total, inserted, skipped, errors, diagramsUploaded = 0) {
   console.log('\n\x1b[1m========================================\x1b[0m');
   console.log('\x1b[1m  Summary\x1b[0m');
   console.log('\x1b[1m========================================\x1b[0m\n');
@@ -388,6 +649,7 @@ function printSummary(fileResults, total, inserted, skipped, errors) {
   console.log(`  Questions loaded:  ${total}`);
   console.log(`  Already in DB:     ${skipped} (skipped)`);
   console.log(`  Newly inserted:    \x1b[32m${inserted}\x1b[0m`);
+  if (diagramsUploaded > 0) console.log(`  Diagrams uploaded: \x1b[35m${diagramsUploaded}\x1b[0m`);
   if (errors > 0) console.log(`  Errors:            \x1b[31m${errors}\x1b[0m`);
   console.log('');
 }
