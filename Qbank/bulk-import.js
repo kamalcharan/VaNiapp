@@ -3,14 +3,18 @@
  * Qbank Bulk Import — Scan generated JSON files and insert into Supabase
  *
  * Usage:
- *   node Qbank/bulk-import.js                     # Scan all subjects
- *   node Qbank/bulk-import.js --subject zoo        # Scan only zoology
- *   node Qbank/bulk-import.js --dry-run            # Preview without inserting
+ *   node Qbank/bulk-import.js                             # Scan all sources (generated + CUET + NEET)
+ *   node Qbank/bulk-import.js --source cuet               # Scan only Qbank/CUET/
+ *   node Qbank/bulk-import.js --source neet               # Scan only Qbank/NEET/
+ *   node Qbank/bulk-import.js --source generated          # Scan only Qbank/generated/ (legacy)
+ *   node Qbank/bulk-import.js --subject physics           # Filter by subject
+ *   node Qbank/bulk-import.js --source cuet --dry-run     # Preview CUET import
  *   node Qbank/bulk-import.js --subject zoo --chapter biomolecules
  *
  * Reads Supabase creds from Qbank/config.json
- * Scans Qbank/generated/{subject}/{chapter}/*.json
+ * Scans Qbank/generated/, Qbank/CUET/, Qbank/NEET/ for JSON files
  * Validates IDs, checks for duplicates in DB, inserts new questions only
+ * Supports diagram-based questions with image_uri → stored in payload
  */
 
 import { createClient } from '@supabase/supabase-js';
@@ -26,6 +30,8 @@ const __dirname = dirname(__filename);
 // CONFIG
 // ============================================================================
 const GENERATED_DIR = join(__dirname, 'generated');
+const CUET_DIR = join(__dirname, 'CUET');
+const NEET_DIR = join(__dirname, 'NEET');
 const CONFIG_PATH = join(__dirname, 'config.json');
 
 // Subject folder → subject_id mapping
@@ -34,6 +40,9 @@ const SUBJECT_MAP = {
   botany: 'botany',
   physics: 'physics',
   chemistry: 'chemistry',
+  'cuet-physics': 'cuet-physics',
+  'cuet-chemistry': 'cuet-chemistry',
+  'cuet-biology': 'cuet-biology',
 };
 
 // ============================================================================
@@ -115,7 +124,7 @@ function validateQuestion(q, fileInfo, index) {
   }
 
   // Validate ID format: should start with topic_id prefix
-  if (id && !id.startsWith('zoo-') && !id.startsWith('bot-') && !id.startsWith('phy-') && !id.startsWith('chem-')) {
+  if (id && !id.startsWith('zoo-') && !id.startsWith('bot-') && !id.startsWith('phy-') && !id.startsWith('chem-') && !id.startsWith('cuet-')) {
     errors.push(`Q${index + 1}: ID "${id}" doesn't follow expected prefix pattern`);
   }
 
@@ -130,8 +139,10 @@ async function main() {
   const dryRun = args.includes('--dry-run');
   const subjectIdx = args.indexOf('--subject');
   const chapterIdx = args.indexOf('--chapter');
+  const sourceIdx = args.indexOf('--source');
   const subjectFilter = subjectIdx !== -1 ? args[subjectIdx + 1] : null;
   const chapterFilter = chapterIdx !== -1 ? args[chapterIdx + 1] : null;
+  const sourceFilter = sourceIdx !== -1 ? args[sourceIdx + 1] : null; // 'cuet', 'neet', or 'generated'
 
   console.log('\n\x1b[1m========================================\x1b[0m');
   console.log('\x1b[1m  Qbank Bulk Import\x1b[0m');
@@ -144,8 +155,21 @@ async function main() {
   const supabase = createClient(config.supabase.url, config.supabase.anonKey);
   log(`Connected to Supabase: ${config.supabase.url}`);
 
-  // Scan files
-  const files = scanJsonFiles(GENERATED_DIR, subjectFilter, chapterFilter);
+  // Scan files from selected source(s)
+  let files = [];
+  const scanDirs = [];
+  if (!sourceFilter || sourceFilter === 'generated') scanDirs.push({ dir: GENERATED_DIR, label: 'generated' });
+  if (!sourceFilter || sourceFilter === 'cuet') scanDirs.push({ dir: CUET_DIR, label: 'CUET' });
+  if (!sourceFilter || sourceFilter === 'neet') scanDirs.push({ dir: NEET_DIR, label: 'NEET' });
+
+  for (const { dir, label } of scanDirs) {
+    if (existsSync(dir)) {
+      const found = scanJsonFiles(dir, subjectFilter, chapterFilter);
+      log(`[${label}] Found ${found.length} JSON files`);
+      files.push(...found);
+    }
+  }
+
   if (files.length === 0) {
     log('No JSON files found to import', 'warn');
     process.exit(0);
@@ -282,6 +306,9 @@ async function main() {
             subtopic: q.subtopic,
             bloom_level: q.bloom_level,
             source: 'bulk-import',
+            // Diagram-based question fields
+            ...(q.image_uri && { image_uri: q.image_uri }),
+            ...(q.image_alt && { image_alt: q.image_alt }),
           },
         })
         .select()
