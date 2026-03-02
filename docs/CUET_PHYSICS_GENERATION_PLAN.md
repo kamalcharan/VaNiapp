@@ -88,7 +88,22 @@ Qbank/
 - Include `image_uri` field with planned path: `question-images/{subject}/{chapter}/{question-id}.png`
 - Include `image_alt` field describing what the diagram shows
 - Diagrams uploaded separately to Supabase Storage bucket `question-images`
-- App renders via `DiagramBasedQuestion.tsx` component
+- App renders via `DiagramBasedQuestion.tsx` — shows DIAGRAM card with image, MCQ options below
+- App checks `imageUri.startsWith('http')` — after upload, payload sync SQL sets the full URL
+- **DO NOT skip image_uri/image_alt** — without them, the question renders with an empty placeholder
+
+**Scenario-Based rules:**
+- Include separate `scenario` field containing ONLY the context paragraph (3-5 sentences)
+- `question_text` contains ONLY the specific question being asked
+- App renders via `ScenarioBasedQuestion.tsx` — shows SCENARIO card, then MCQ options
+- **DO NOT put scenario in question_text** — it causes duplication (same text in scenario card AND question stem)
+
+**Logical-Sequence rules:**
+- Include `items` array: `[{"id": "1", "text": "Step A"}, {"id": "2", "text": "Step B"}, ...]`
+- Include `correct_order` array: `["2", "1", "4", "3"]` (item IDs in correct order)
+- App renders via `LogicalSequenceQuestion.tsx` — shows items labeled P, Q, R, S..., then ordering options
+- Options should be different orderings: `"P → Q → R → S"`, `"Q → P → S → R"`, etc.
+- **DO NOT skip items/correct_order** — without them, the items card renders empty
 
 **Answer key balance:** A ≤ 12, B ≤ 12, C ≤ 12, D ≤ 12 (no letter > 12 out of 40)
 

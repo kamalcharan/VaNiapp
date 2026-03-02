@@ -67,10 +67,19 @@ def build_payload(q):
         "options": q.get("options", []),
         "elimination_hints": q.get("elimination_hints", []),
     }
+    # diagram-based fields
     if q.get("image_uri"):
         payload["image_uri"] = q["image_uri"]
     if q.get("image_alt"):
         payload["image_alt"] = q["image_alt"]
+    # scenario-based: separate scenario from question_text
+    if q.get("scenario"):
+        payload["scenario"] = q["scenario"]
+    # logical-sequence: items array + correct_order
+    if q.get("items"):
+        payload["items"] = q["items"]
+    if q.get("correct_order"):
+        payload["correct_order"] = q["correct_order"]
     return payload
 
 

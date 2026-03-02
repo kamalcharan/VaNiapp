@@ -67,10 +67,19 @@ def build_payload(q):
         "options": q.get("options", []),
         "elimination_hints": q.get("elimination_hints", []),
     }
+    # diagram-based fields
     if q.get("image_uri"):
         payload["image_uri"] = q["image_uri"]
     if q.get("image_alt"):
         payload["image_alt"] = q["image_alt"]
+    # scenario-based: separate scenario from question_text
+    if q.get("scenario"):
+        payload["scenario"] = q["scenario"]
+    # logical-sequence: items array + correct_order
+    if q.get("items"):
+        payload["items"] = q["items"]
+    if q.get("correct_order"):
+        payload["correct_order"] = q["correct_order"]
     return payload
 
 
@@ -194,6 +203,43 @@ ON CONFLICT (id) DO NOTHING;""")
             count += 1
 
     lines.append(f"-- Total: {count} questions inserted")
+    lines.append("")
+
+    # Step 3: Backfill options and hints from payload JSONB
+    lines.append("-- ==========================================================================")
+    lines.append("-- STEP 3: Populate med_question_options from payload.options")
+    lines.append("-- ==========================================================================")
+    lines.append("")
+    lines.append("""INSERT INTO med_question_options (question_id, option_key, option_text, is_correct, sort_order)
+SELECT
+  q.id,
+  opt->>'key',
+  opt->>'text',
+  (opt->>'is_correct')::boolean,
+  (idx - 1)::int
+FROM med_questions q,
+     jsonb_array_elements(q.payload->'options') WITH ORDINALITY AS t(opt, idx)
+WHERE q.source = 'correction-batch-3'
+  AND NOT EXISTS (SELECT 1 FROM med_question_options o WHERE o.question_id = q.id);""")
+    lines.append("")
+
+    lines.append("-- ==========================================================================")
+    lines.append("-- STEP 4: Populate med_elimination_hints from payload.elimination_hints")
+    lines.append("-- ==========================================================================")
+    lines.append("")
+    lines.append("""INSERT INTO med_elimination_hints (question_id, option_key, hint_text, misconception)
+SELECT
+  q.id,
+  hint->>'option_key',
+  hint->>'hint',
+  hint->>'misconception'
+FROM med_questions q,
+     jsonb_array_elements(q.payload->'elimination_hints') WITH ORDINALITY AS t(hint, idx)
+WHERE q.source = 'correction-batch-3'
+  AND (hint->>'hint') IS NOT NULL AND (hint->>'hint') != ''
+  AND NOT EXISTS (SELECT 1 FROM med_elimination_hints h WHERE h.question_id = q.id);""")
+    lines.append("")
+
     lines.append("COMMIT;")
     lines.append("")
 

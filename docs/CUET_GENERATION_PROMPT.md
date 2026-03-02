@@ -93,7 +93,131 @@ Read the following files first:
 4. **Chapter IDs must match DB** — see mapping below
 5. **No duplicate question stems** — read existing NEET JSONs for that chapter first
 6. **Every question must have `elimination_hints`** — mandatory for VaNi app
-7. **Follow type mix** — MCQ 20, Diagram 4, AR 4, TF 4, Match 2, FIB 2, Scenario 2, Sequence 2
+7. **Follow type mix EXACTLY** — see strict breakdown below
+8. **Every special type must include its required payload fields** — see type-specific rules below
+
+---
+
+## STRICT TYPE MIX (per 40-question batch)
+
+> **This is non-negotiable. Every batch MUST have exactly these counts.**
+> Previous batches were missing diagram-based, scenario-based, and logical-sequence
+> questions — that required 3 correction batches of 93 questions to fix. Never again.
+
+| Type | Count | Difficulty Split |
+|------|-------|------------------|
+| MCQ | 20 | 5 easy, 10 medium, 5 hard |
+| **Diagram-Based** | **4** | 1 easy, 2 medium, 1 hard |
+| Assertion-Reasoning | 4 | 2 medium, 2 hard |
+| True-False | 4 | 2 TRUE easy, 2 FALSE easy |
+| Match-the-Following | 2 | 1 medium, 1 hard |
+| Fill-in-Blanks | 2 | 1 easy, 1 medium |
+| **Scenario-Based** | **2** | 1 medium, 1 hard |
+| **Logical-Sequence** | **2** | 1 medium, 1 hard |
+| **Total** | **40** | 12E / 18M / 10H |
+
+### Validation before saving — count ALL types:
+```
+MCQ=20  Diagram=4  AR=4  TF=4  MTF=2  FIB=2  Scenario=2  Sequence=2  → Total=40
+```
+**If any count is wrong, FIX IT before saving. Do NOT save a batch with missing types.**
+
+---
+
+## TYPE-SPECIFIC JSON RULES (Critical for App Rendering)
+
+> The VaNi app has dedicated components for each question type.
+> Each type reads specific payload fields. Missing fields = broken rendering.
+
+### 1. Diagram-Based (`question_type: "diagram-based"`)
+
+The app renders a **DIAGRAM** card with an image, then MCQ options below.
+
+**Required extra fields:**
+```json
+{
+  "question_type": "diagram-based",
+  "image_uri": "question-images/cuet-physics/electrostatics/cuet-phy-elec-coulomb-d01.png",
+  "image_alt": "Electric field lines between two positive charges showing repulsion pattern",
+  "question_text": "The diagram shows electric field lines between two charges. What type of charges are shown?"
+}
+```
+
+**Rules:**
+- `image_uri` — path where the diagram PNG will be stored in Supabase Storage. Convention: `question-images/{subject}/{chapter-slug}/{question-id}.png`
+- `image_alt` — concise description of what the diagram depicts (used as placeholder text + accessibility)
+- Diagrams are generated separately (matplotlib) and uploaded via upload script
+- The app checks `imageUri.startsWith('http')` — after upload, the payload sync SQL sets the full URL
+- `question_text` should describe the diagram context and ask the actual question
+- **DO NOT skip image_uri/image_alt** — without them, the question renders as an empty placeholder box
+
+### 2. Scenario-Based (`question_type: "scenario-based"`)
+
+The app renders a **SCENARIO** card with context text, then "Based on the above scenario, select the correct answer:", then MCQ options.
+
+**Required extra field:**
+```json
+{
+  "question_type": "scenario-based",
+  "scenario": "A physics student measures the potential difference across a 5Ω resistor carrying 2A current. She then connects a voltmeter (internal resistance 1000Ω) across it and notes the reading.",
+  "question_text": "What is the approximate percentage error in the voltmeter reading compared to the true potential difference?"
+}
+```
+
+**Rules:**
+- `scenario` — a separate field containing ONLY the context/situation paragraph (3-5 sentences)
+- `question_text` — contains ONLY the specific question being asked (what the student sees above the options)
+- **DO NOT put the scenario inside question_text** — the app reads `payload.scenario` for the SCENARIO card and `question_text` for the question stem. If scenario is missing, the question_text gets duplicated in both places
+- Scenarios should be practical, real-world, or exam-style case studies
+- The question should require analysis of the given scenario to answer
+
+### 3. Logical-Sequence (`question_type: "logical-sequence"`)
+
+The app renders an **ARRANGE IN CORRECT ORDER** card with items labeled P, Q, R, S..., then MCQ options with different orderings.
+
+**Required extra fields:**
+```json
+{
+  "question_type": "logical-sequence",
+  "items": [
+    { "id": "1", "text": "Light enters the glass slab" },
+    { "id": "2", "text": "Refraction occurs at the first surface" },
+    { "id": "3", "text": "Light travels through the medium" },
+    { "id": "4", "text": "Refraction occurs at the second surface" }
+  ],
+  "correct_order": ["1", "2", "3", "4"],
+  "question_text": "Arrange the following steps in the correct order when light passes through a glass slab:"
+}
+```
+
+**Rules:**
+- `items` — array of `{id, text}` objects. The app labels them P, Q, R, S... in the card
+- `correct_order` — array of item IDs in the correct sequence
+- `question_text` — the instruction text shown above the items card
+- Options A-D should be different orderings like: `"P → Q → R → S"`, `"Q → P → S → R"`, etc.
+- **DO NOT skip the items array** — without it, the "ARRANGE IN CORRECT ORDER" card renders empty
+
+### 4. True-False (`question_type: "true-false"`)
+
+**Rules:**
+- Options must be exactly: A = "True", B = "False", C = "---", D = "---"
+- C and D are dummy placeholders (the app may hide them)
+- Two TRUE questions (`correct_answer: "A"`) and two FALSE questions (`correct_answer: "B"`) per batch
+- The statement being evaluated goes in `question_text`
+
+### 5. Assertion-Reasoning (`question_type: "assertion-reasoning"`)
+
+**Rules:**
+- `question_text` must contain: `Assertion (A): ... \nReason (R): ...`
+- The app parses this to display Assertion and Reason in separate styled cards
+- Use standard NEET options: "Both A and R are true and R explains A", etc.
+
+### 6. Match-the-Following (`question_type: "match-the-following"`)
+
+**Rules:**
+- `question_text` must contain `Column I: ... Column II: ...` format
+- Items labeled as `(P)`, `(Q)`, `(R)` in Column I and `(i)`, `(ii)`, `(iii)` in Column II
+- Options should be mappings like: `"P-ii, Q-iii, R-i, S-iv"`
 
 ---
 
@@ -271,8 +395,28 @@ Qbank/NEET/{subject}/{chapter-folder}/new-YYYY-MM-DD/{topic_id}.json
 **For diagram-based questions, add:**
 ```json
 {
-  "image_uri": "diagrams/cuet-phy-elec-coulomb-21.png",
-  "image_alt": "Description of what the diagram shows"
+  "image_uri": "question-images/cuet-physics/electrostatics/cuet-phy-elec-coulomb-d01.png",
+  "image_alt": "Electric field lines radiating outward from a positive point charge"
+}
+```
+
+**For scenario-based questions, add:**
+```json
+{
+  "scenario": "A 3-5 sentence real-world or exam-style situation that the student must analyze"
+}
+```
+
+**For logical-sequence questions, add:**
+```json
+{
+  "items": [
+    { "id": "1", "text": "Step or event A" },
+    { "id": "2", "text": "Step or event B" },
+    { "id": "3", "text": "Step or event C" },
+    { "id": "4", "text": "Step or event D" }
+  ],
+  "correct_order": ["2", "1", "4", "3"]
 }
 ```
 
@@ -286,6 +430,10 @@ Qbank/NEET/{subject}/{chapter-folder}/new-YYYY-MM-DD/{topic_id}.json
 - Do NOT duplicate question stems from existing JSONs — read them first
 - Do NOT skip the NEET copy (except for CUET-only chapters like Communication Systems)
 - Do NOT mix up CUET and NEET chapter_ids — they are DIFFERENT
+- **Do NOT save a batch with missing question types** — count MCQ/Diagram/AR/TF/MTF/FIB/Scenario/Sequence before saving
+- **Do NOT omit `image_uri`/`image_alt`** for diagram-based questions
+- **Do NOT omit `scenario`** for scenario-based questions (putting scenario in question_text causes duplication)
+- **Do NOT omit `items`/`correct_order`** for logical-sequence questions (the items card renders empty without them)
 
 ---
 

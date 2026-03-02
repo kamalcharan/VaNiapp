@@ -323,6 +323,30 @@ async function updateGenerationJob(jobId, updates) {
   return data;
 }
 
+/**
+ * Build the JSONB payload for a question during import.
+ * Includes type-specific fields that the app components need.
+ */
+function buildImportPayload(q) {
+  const payload = {
+    subtopic: q.subtopic || '',
+    bloom_level: q.bloom_level || 'understand',
+    topic_name: q.topic || '',
+    question_id: q.id || '',
+    options: q.options || [],
+    elimination_hints: q.elimination_hints || [],
+  };
+  // diagram-based: image path + alt text
+  if (q.image_uri) payload.image_uri = q.image_uri;
+  if (q.image_alt) payload.image_alt = q.image_alt;
+  // scenario-based: separate scenario text
+  if (q.scenario) payload.scenario = q.scenario;
+  // logical-sequence: items array + correct ordering
+  if (q.items) payload.items = q.items;
+  if (q.correct_order) payload.correct_order = q.correct_order;
+  return payload;
+}
+
 async function insertQuestions(questions) {
   if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   const { data, error } = await SUPABASE
@@ -389,11 +413,7 @@ async function insertJobQuestionsToDb(job) {
         strength_required: 'just-started',
         question_text: q.question_text,
         explanation: q.explanation,
-        payload: {
-          subtopic: q.subtopic,
-          bloom_level: q.bloom_level,
-          topic_name: q.topic
-        },
+        payload: buildImportPayload(q),
         correct_answer: q.correct_answer,
         source: 'gemini',
         generation_job_id: job.id,
@@ -495,11 +515,7 @@ async function insertApprovedQuestionsToDb(job, approvedQuestions) {
         strength_required: 'just-started',
         question_text: q.question_text,
         explanation: q.explanation,
-        payload: {
-          subtopic: q.subtopic,
-          bloom_level: q.bloom_level,
-          topic_name: q.topic
-        },
+        payload: buildImportPayload(q),
         correct_answer: q.correct_answer,
         source: 'gemini',
         generation_job_id: job.id,
@@ -956,13 +972,13 @@ function buildQuestionGenerationPrompt(params) {
 
   const typeInstructions = {
     'mcq': 'Multiple Choice Question with 4 options (A, B, C, D)',
-    'true-false': 'True/False statement',
-    'assertion-reasoning': 'Assertion-Reasoning format with Assertion (A) and Reason (R) - use standard NEET options',
-    'match-the-following': 'Match the Following with Column A and Column B items (4-5 items each)',
+    'true-false': 'True/False statement — options must be: A="True", B="False", C="---", D="---"',
+    'assertion-reasoning': 'Assertion-Reasoning format — question_text must contain "Assertion (A): ... \\nReason (R): ..." — use standard NEET options about A and R relationship',
+    'match-the-following': 'Match the Following — question_text must contain "Column I: ... Column II: ..." with labeled items (P), (Q), (R) and (i), (ii), (iii)',
     'fill-in-blanks': 'Fill in the Blanks with one or more blanks (provide answer in correct_answer)',
-    'diagram-based': 'Diagram-based question - describe the diagram/figure clearly, then ask question about it',
-    'logical-sequence': 'Logical Sequence - arrange steps/events/processes in correct order',
-    'scenario-based': 'Scenario/Case-based question - present a situation/case study, then ask analytical questions'
+    'diagram-based': 'Diagram-based question — MUST include "image_uri" (storage path like "question-images/{subject}/{chapter}/{id}.png") and "image_alt" (description of diagram). question_text describes what to observe in the diagram and asks the question',
+    'logical-sequence': 'Logical Sequence — MUST include "items" array [{id, text}] for the steps/events and "correct_order" array of item IDs in correct sequence. Options should be different orderings like "P → Q → R → S"',
+    'scenario-based': 'Scenario/Case-based — MUST include separate "scenario" field (3-5 sentence context paragraph). question_text contains ONLY the specific question. Do NOT put the scenario inside question_text'
   };
 
   const selectedTypes = questionTypes.map(t => `- ${typeInstructions[t] || t}`).join('\n');
@@ -1045,9 +1061,15 @@ IMPORTANT GUIDELINES:
 4. Distractors (wrong options) should be plausible, not obviously wrong
 5. Explanations should be educational, helping students learn
 6. Cover different topics from the list provided
-7. For assertion-reasoning: use standard format with options about A and R relationship
-8. For match-the-following: provide clear matching pairs
+7. For assertion-reasoning: question_text MUST contain "Assertion (A): ... \\nReason (R): ..."
+8. For match-the-following: question_text MUST contain "Column I: ... Column II: ..." with labeled items
 9. Match the difficulty and style expected in ${examName} exams
+
+TYPE-SPECIFIC REQUIRED FIELDS (the app will break without these):
+- diagram-based: MUST include "image_uri" (e.g. "question-images/physics/electrostatics/q-d01.png") and "image_alt" (description)
+- scenario-based: MUST include separate "scenario" field (context paragraph). DO NOT put scenario in question_text
+- logical-sequence: MUST include "items" array [{id:"1", text:"Step A"}, ...] and "correct_order" array ["2","1","4","3"]
+- true-false: Options MUST be A="True", B="False", C="---", D="---"
 
 Generate exactly ${count} questions from "${chapter.name}" ONLY. Output ONLY the JSON array, no additional text.`;
 
