@@ -251,28 +251,28 @@ Mark each batch DONE after saving. Commit and push after all batches are complet
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B66 | `bot-eco-structure` | Ecosystem Structure and Function | 20 | PENDING |
-| B67 | `bot-eco-productivity` | Productivity and Decomposition | 20 | PENDING |
-| B68 | `bot-eco-energy` | Energy Flow and Ecological Pyramids | 20 | PENDING |
-| B69 | `bot-eco-cycles` | Nutrient Cycling and Ecological Succession | 20 | PENDING |
+| B66 | `bot-eco-structure` | Ecosystem Structure and Function | 20 | DONE |
+| B67 | `bot-eco-productivity` | Productivity and Decomposition | 20 | DONE |
+| B68 | `bot-eco-energy` | Energy Flow and Ecological Pyramids | 20 | DONE |
+| B69 | `bot-eco-cycles` | Nutrient Cycling and Ecological Succession | 20 | DONE |
 | | | **Chapter 17 Total** | **80** | |
 
 ### Chapter 18: Biodiversity and Conservation (`bot-biodiversity`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B70 | `bot-bio-diversity` | Biodiversity Concepts and Patterns | 20 | PENDING |
-| B71 | `bot-bio-loss` | Biodiversity Loss and Causes | 20 | PENDING |
-| B72 | `bot-bio-conservation` | Conservation Strategies (In-situ and Ex-situ) | 20 | PENDING |
+| B70 | `bot-bio-diversity` | Biodiversity Concepts and Patterns | 20 | DONE |
+| B71 | `bot-bio-loss` | Biodiversity Loss and Causes | 20 | DONE |
+| B72 | `bot-bio-conservation` | Conservation Strategies (In-situ and Ex-situ) | 20 | DONE |
 | | | **Chapter 18 Total** | **60** | |
 
 ### Chapter 19: Environmental Issues (`bot-environment`) — 3 batches
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B73 | `bot-env-pollution` | Air and Water Pollution | 20 | PENDING |
-| B74 | `bot-env-waste` | Solid Waste, Agrochemicals, and Radioactive Waste | 20 | PENDING |
-| B75 | `bot-env-global` | Deforestation, Ozone Depletion, and Global Warming | 20 | PENDING |
+| B73 | `bot-env-pollution` | Air and Water Pollution | 20 | DONE |
+| B74 | `bot-env-waste` | Solid Waste, Agrochemicals, and Radioactive Waste | 20 | DONE |
+| B75 | `bot-env-global` | Deforestation, Ozone Depletion, and Global Warming | 20 | DONE |
 | | | **Chapter 19 Total** | **60** | |
 
 ---
@@ -481,7 +481,7 @@ Commit and push.
 | Ch14 Inheritance | 5 | 100 | 100 | 100% |
 | Ch15 Molecular Inheritance | 5 | 100 | 100 | 100% |
 | Ch16 Organisms & Populations | 3 | 60 | 60 | 100% |
-| Ch17 Ecosystem | 4 | 80 | 0 | 0% |
-| Ch18 Biodiversity | 3 | 60 | 0 | 0% |
-| Ch19 Environmental Issues | 3 | 60 | 0 | 0% |
-| **TOTAL** | **75** | **1,500** | **1,300** | **87%** |
+| Ch17 Ecosystem | 4 | 80 | 80 | 100% |
+| Ch18 Biodiversity | 3 | 60 | 60 | 100% |
+| Ch19 Environmental Issues | 3 | 60 | 60 | 100% |
+| **TOTAL** | **75** | **1,500** | **1,500** | **100%** |

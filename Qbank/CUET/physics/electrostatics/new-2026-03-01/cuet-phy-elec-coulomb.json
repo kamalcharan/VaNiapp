@@ -1,0 +1,498 @@
+[
+  {
+    "id": "cuet-phy-elec-coulomb-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following is the smallest unit of charge found in nature (free state)?",
+    "explanation": "The smallest unit of free charge in nature is the electronic charge, e = 1.6 × 10⁻¹⁹ C. Quarks carry fractional charges (e/3, 2e/3) but they do not exist in free state — they are always confined within hadrons. Hence, the electron charge is the smallest free charge.",
+    "correct_answer": "C",
+    "concept_tags": ["quantization-of-charge", "electronic-charge"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "1 coulomb", "is_correct": false },
+      { "key": "B", "text": "1 microcoulomb", "is_correct": false },
+      { "key": "C", "text": "1.6 × 10⁻¹⁹ C", "is_correct": true },
+      { "key": "D", "text": "1.6 × 10⁻²⁰ C", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1 coulomb is a macroscopic unit — it equals ~6.25 × 10¹⁸ electron charges, far too large to be the smallest.", "misconception": "Thinking the SI unit itself is the smallest charge" },
+      { "option_key": "B", "hint": "1 μC = 10⁻⁶ C is still billions of electron charges, not the fundamental unit.", "misconception": null },
+      { "option_key": "D", "hint": "This value doesn't correspond to any fundamental charge — the correct value is 1.6 × 10⁻¹⁹ C, not 10⁻²⁰.", "misconception": "Confusion in the power of ten" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Charge is a scalar quantity. This means:",
+    "explanation": "Being a scalar quantity means charge has only magnitude (positive or negative) and no direction. Charges add algebraically — for example, +3 μC and −5 μC give a net charge of −2 μC. Unlike vectors, charges do not require direction for their complete specification.",
+    "correct_answer": "A",
+    "concept_tags": ["charge-properties", "scalar-quantity"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "Charges add algebraically", "is_correct": true },
+      { "key": "B", "text": "Charges add by parallelogram law", "is_correct": false },
+      { "key": "C", "text": "Charge depends on the frame of reference", "is_correct": false },
+      { "key": "D", "text": "Charge cannot be negative", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Parallelogram law applies to vector quantities like force and velocity, not to scalar quantities like charge.", "misconception": "Confusing scalar and vector addition rules" },
+      { "option_key": "C", "hint": "Charge is invariant — it does not change with frame of reference. This is a fundamental property of charge, not a consequence of being scalar.", "misconception": "Confusing charge invariance with relativistic effects" },
+      { "option_key": "D", "hint": "Charge can absolutely be negative (electrons carry negative charge). Scalars can have negative values — temperature can be negative too.", "misconception": "Thinking scalars must be positive" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A body has a charge of −3.2 × 10⁻¹⁸ C. The number of excess electrons on the body is:",
+    "explanation": "Number of excess electrons = Total charge / Charge of one electron = (3.2 × 10⁻¹⁸) / (1.6 × 10⁻¹⁹) = 20. The negative sign indicates excess electrons. So the body has 20 excess electrons.",
+    "correct_answer": "B",
+    "concept_tags": ["quantization", "electron-count"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "10", "is_correct": false },
+      { "key": "B", "text": "20", "is_correct": true },
+      { "key": "C", "text": "30", "is_correct": false },
+      { "key": "D", "text": "200", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "10 × 1.6 × 10⁻¹⁹ = 1.6 × 10⁻¹⁸ C, which doesn't match the given charge of 3.2 × 10⁻¹⁸ C.", "misconception": "Arithmetic error in division" },
+      { "option_key": "C", "hint": "30 × 1.6 × 10⁻¹⁹ = 4.8 × 10⁻¹⁸ C, which exceeds the given charge.", "misconception": null },
+      { "option_key": "D", "hint": "200 would give 200 × 1.6 × 10⁻¹⁹ = 3.2 × 10⁻¹⁷ C — an order of magnitude too large.", "misconception": "Error in handling powers of 10" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In the process of charging by induction, the total charge of the system:",
+    "explanation": "Charging by induction does not involve transfer of charge from the charging body. The induced body's charges get redistributed, and when grounded, opposite charges flow in/out. The charging body retains its original charge throughout. The total charge of the complete system remains conserved.",
+    "correct_answer": "D",
+    "concept_tags": ["charging-by-induction", "conservation-of-charge"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "Increases", "is_correct": false },
+      { "key": "B", "text": "Decreases", "is_correct": false },
+      { "key": "C", "text": "Becomes zero", "is_correct": false },
+      { "key": "D", "text": "Remains conserved", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Charge cannot be created — the law of conservation of charge prohibits any increase in total charge.", "misconception": "Thinking induction creates new charges" },
+      { "option_key": "B", "hint": "Charge is never destroyed in any process. The total charge of the universe is constant.", "misconception": "Confusing redistribution with destruction" },
+      { "option_key": "C", "hint": "Total charge becoming zero would violate conservation — if the charging body had charge Q, it still has Q after induction.", "misconception": "Thinking induced charges cancel the source charge" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two identical metallic spheres carrying charges of +40 μC and −10 μC are brought into contact and then separated. The charge on each sphere after separation is:",
+    "explanation": "When two identical conducting spheres are brought into contact, the total charge distributes equally. Total charge = +40 + (−10) = +30 μC. Since the spheres are identical, each gets 30/2 = +15 μC after separation.",
+    "correct_answer": "C",
+    "concept_tags": ["charge-sharing", "conservation-of-charge", "conductors"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "+20 μC", "is_correct": false },
+      { "key": "B", "text": "+25 μC", "is_correct": false },
+      { "key": "C", "text": "+15 μC", "is_correct": true },
+      { "key": "D", "text": "+30 μC", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "+20 μC would mean the average of absolute values (40+10)/2, ignoring that charges are algebraically added (signs matter).", "misconception": "Averaging absolute values instead of algebraic sum" },
+      { "option_key": "B", "hint": "+25 μC each would give a total of +50 μC, violating charge conservation (total is only +30 μC).", "misconception": null },
+      { "option_key": "D", "hint": "+30 μC on each sphere would give a total of +60 μC, double the actual total charge — charge is not doubled upon contact.", "misconception": "Forgetting to divide the total equally" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The ratio of the electrostatic force to the gravitational force between an electron and a proton is of the order of:",
+    "explanation": "Electrostatic force: Fe = ke²/r². Gravitational force: Fg = Gmemp/r². The ratio Fe/Fg = ke²/(Gmemp) ≈ (9×10⁹)(1.6×10⁻¹⁹)²/[(6.67×10⁻¹¹)(9.1×10⁻³¹)(1.67×10⁻²⁷)] ≈ 2.3×10³⁹. This shows electrostatic force is enormously stronger than gravity at the atomic scale.",
+    "correct_answer": "D",
+    "concept_tags": ["coulomb-vs-gravity", "force-comparison"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "10⁹", "is_correct": false },
+      { "key": "B", "text": "10¹⁸", "is_correct": false },
+      { "key": "C", "text": "10²⁷", "is_correct": false },
+      { "key": "D", "text": "10³⁹", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "10⁹ is far too small — this would mean the two forces are relatively close, but electrostatic force is overwhelmingly stronger.", "misconception": "Confusing the magnitude of k itself with the force ratio" },
+      { "option_key": "B", "hint": "10¹⁸ is still about 21 orders of magnitude too small. The actual ratio involves masses in the denominator which are extremely tiny.", "misconception": null },
+      { "option_key": "C", "hint": "10²⁷ is closer but still ~12 orders too small. The product memp in the denominator is ~10⁻⁵⁸, which pushes the ratio much higher.", "misconception": null }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two charges Q₁ and Q₂ are separated by a distance d. A third charge Q₃ is placed between them on the line joining them such that the system is in equilibrium. The ratio Q₁/Q₂ must be:",
+    "explanation": "For equilibrium, Q₃ must be between Q₁ and Q₂ (so they must be like charges). If Q₃ is at distance x from Q₁, then kQ₁Q₃/x² = kQ₂Q₃/(d−x)². This gives Q₁/Q₂ = x²/(d−x)². The ratio depends on x, but importantly Q₁/Q₂ must be positive (both same sign). The exact ratio is determined by the position of Q₃.",
+    "correct_answer": "A",
+    "concept_tags": ["equilibrium", "coulomb-law", "charge-configuration"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "Positive (both charges must have the same sign)", "is_correct": true },
+      { "key": "B", "text": "Negative (charges must have opposite signs)", "is_correct": false },
+      { "key": "C", "text": "Equal to 1 (charges must be equal)", "is_correct": false },
+      { "key": "D", "text": "Can be any value (no restriction)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "If Q₁ and Q₂ have opposite signs, they attract each other. No position of Q₃ between them can balance both forces — it would be pushed toward one side.", "misconception": "Not considering force directions for unlike charges" },
+      { "option_key": "C", "hint": "Q₁ and Q₂ need not be equal — they just need to be the same sign. Unequal like charges can still have an equilibrium point (just not at the midpoint).", "misconception": "Assuming equilibrium requires equal charges" },
+      { "option_key": "D", "hint": "There is definitely a restriction — opposite charges cannot produce equilibrium for a charge placed between them.", "misconception": "Ignoring the direction of forces in equilibrium analysis" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A charge q is placed at the centre of a line joining two equal charges Q. The system of three charges will be in equilibrium if q equals:",
+    "explanation": "For the charge Q at one end to be in equilibrium: Force due to the other Q (repulsive) = Force due to q (attractive, so q must be negative). kQ²/(2a)² = kqQ/a² → Q/4 = q → q = −Q/4. The negative sign is essential because q must attract Q to counterbalance the repulsion from the other Q.",
+    "correct_answer": "B",
+    "concept_tags": ["equilibrium", "three-charge-system"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "−Q/2", "is_correct": false },
+      { "key": "B", "text": "−Q/4", "is_correct": true },
+      { "key": "C", "text": "+Q/4", "is_correct": false },
+      { "key": "D", "text": "+Q/2", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "−Q/2 would make the attractive force on Q from q twice as large as needed, since kQ(Q/2)/a² ≠ kQ²/4a².", "misconception": "Error in setting up force balance — not accounting for the 2a distance properly" },
+      { "option_key": "C", "hint": "A positive charge at the centre would repel both Q charges outward, adding to the instability rather than creating equilibrium.", "misconception": "Forgetting that q must attract Q to counter the repulsion" },
+      { "option_key": "D", "hint": "+Q/2 at the centre would push both Q charges apart — equilibrium requires an attractive (negative) charge at the centre.", "misconception": null }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The force between two charges in vacuum is F. If the entire space between them is filled with a medium of relative permittivity εᵣ = 4, the new force is:",
+    "explanation": "In a dielectric medium, the force between charges becomes F' = F/εᵣ. Here εᵣ = 4, so F' = F/4. The dielectric reduces the electrostatic force because the medium gets polarised and partially cancels the applied field.",
+    "correct_answer": "A",
+    "concept_tags": ["dielectric-medium", "permittivity", "force-reduction"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "F/4", "is_correct": true },
+      { "key": "B", "text": "4F", "is_correct": false },
+      { "key": "C", "text": "F/16", "is_correct": false },
+      { "key": "D", "text": "16F", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The dielectric reduces the force, not increases it. Multiplying by εᵣ would mean the medium strengthens the force, which is incorrect.", "misconception": "Confusing whether εᵣ goes in numerator or denominator" },
+      { "option_key": "C", "hint": "F/16 would apply if the force were divided by εᵣ² = 16, but Coulomb's law divides by εᵣ (first power), not εᵣ².", "misconception": "Incorrectly squaring the dielectric constant" },
+      { "option_key": "D", "hint": "16F is εᵣ² times the original force — both the direction (increase) and the power are wrong.", "misconception": null }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A charge Q is divided into two parts q and (Q − q). For the electrostatic force between them to be maximum when placed at a fixed distance, q should be:",
+    "explanation": "Force F = kq(Q−q)/r² = k(qQ − q²)/r². For maximum F, dF/dq = 0 → Q − 2q = 0 → q = Q/2. So the force is maximum when the charge is divided equally. Second derivative d²F/dq² = −2k/r² < 0, confirming maximum.",
+    "correct_answer": "C",
+    "concept_tags": ["optimization", "coulomb-force", "maxima"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "Q/4", "is_correct": false },
+      { "key": "B", "text": "Q/3", "is_correct": false },
+      { "key": "C", "text": "Q/2", "is_correct": true },
+      { "key": "D", "text": "Q", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "With q = Q/4, the product q(Q−q) = Q/4 × 3Q/4 = 3Q²/16 = 0.1875Q². This is less than the maximum possible value.", "misconception": null },
+      { "option_key": "B", "hint": "With q = Q/3, the product = Q/3 × 2Q/3 = 2Q²/9 ≈ 0.222Q², still less than the maximum of Q²/4 = 0.25Q².", "misconception": null },
+      { "option_key": "D", "hint": "If q = Q, then the other part is Q − Q = 0, giving zero force. This is actually the minimum, not maximum.", "misconception": "Not realizing that giving all charge to one part leaves nothing for the other" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-11",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two point charges +4q and +q are placed at a distance L apart. The null point (where the net electric field is zero) lies:",
+    "explanation": "The null point lies between the charges on the line joining them, closer to the smaller charge. Let it be at distance x from +q. At null point: kq/x² = k(4q)/(L−x)² → (L−x)² = 4x² → L−x = 2x → x = L/3. So the null point is at L/3 from +q (or 2L/3 from +4q).",
+    "correct_answer": "B",
+    "concept_tags": ["null-point", "electric-field", "superposition"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "At L/2 from +4q (midpoint)", "is_correct": false },
+      { "key": "B", "text": "At L/3 from +q", "is_correct": true },
+      { "key": "C", "text": "At L/3 from +4q", "is_correct": false },
+      { "key": "D", "text": "Outside the charges, beyond +q", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The midpoint would only be the null point if both charges were equal. Since 4q > q, the null point shifts toward the weaker charge.", "misconception": "Assuming null point is always at the midpoint" },
+      { "option_key": "C", "hint": "L/3 from the larger charge (+4q) means 2L/3 from +q. At this point, the stronger charge is closer, making its field dominant — not a null point.", "misconception": "Placing the null point closer to the larger charge instead of the smaller" },
+      { "option_key": "D", "hint": "For two like charges, the null point always lies between them. It lies outside only when charges have opposite signs.", "misconception": "Confusing null point location for like vs unlike charges" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Five equal charges q are placed at the five vertices of a regular pentagon of side a. The magnitude of the net force on any one charge is:",
+    "explanation": "By symmetry, if we place charges at all 5 vertices of a regular pentagon, the net force on any charge is zero (the forces from the other 4 charges cancel out by symmetry). Wait — this is only true for a charge at the centre. For a charge at a vertex, the forces from the other 4 vertices do NOT cancel. Let me reconsider.\n\nActually, for N equal charges at vertices of a regular N-gon, the net force on each charge points radially outward (away from the centre) by symmetry. The magnitude requires computing vector sums. For a regular pentagon with side a, the distances from one vertex to the others are a (for adjacent) and a×(1+√5)/2 (the golden ratio, for non-adjacent vertices). The net force is: F = kq²/a² × [2cos(36°) + 2cos(72°)/(φ²)] summed appropriately, where φ is the golden ratio. The result is kq²/a² × (1/4)×(5+√5)×(1+2/√5). This simplifies but the key concept is symmetry and superposition.",
+    "correct_answer": "A",
+    "concept_tags": ["superposition", "symmetry", "pentagon"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "The net force is directed radially outward from the centre of the pentagon", "is_correct": true },
+      { "key": "B", "text": "The net force is zero due to symmetry", "is_correct": false },
+      { "key": "C", "text": "The net force is directed tangentially along the side", "is_correct": false },
+      { "key": "D", "text": "The net force is directed toward the centre of the pentagon", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Zero net force occurs only for a charge at the centre of a symmetric arrangement, not at a vertex. Each vertex charge is pushed outward by all other like charges.", "misconception": "Confusing the symmetry argument for a centre charge with a vertex charge" },
+      { "option_key": "C", "hint": "By the symmetry of the regular pentagon, the net force must lie along the line from the vertex to the centre — there's no preferred tangential direction.", "misconception": "Not recognising that symmetry constrains the force direction to be radial" },
+      { "option_key": "D", "hint": "All charges are positive (like charges), so they repel. The net force must push the charge away from the group, i.e., radially outward, not inward.", "misconception": "Thinking the force is attractive toward the centre" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-13",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two identical small conducting spheres have charges +3Q and −Q. They are first touched together and then separated by a distance d. The force between them after separation, compared to the initial force (at the same distance d), is:",
+    "explanation": "Initial force: F₁ = k(3Q)(Q)/d² = 3kQ²/d² (attractive). After touching: total charge = 3Q + (−Q) = 2Q, shared equally → each gets +Q. New force: F₂ = k(Q)(Q)/d² = kQ²/d² (repulsive). Ratio: F₂/F₁ = 1/3. Also, the force changed from attractive to repulsive.",
+    "correct_answer": "D",
+    "concept_tags": ["charge-sharing", "force-comparison", "attraction-repulsion"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "Same magnitude and same nature", "is_correct": false },
+      { "key": "B", "text": "1/3 of initial magnitude and same nature (attractive)", "is_correct": false },
+      { "key": "C", "text": "3 times the initial magnitude and repulsive", "is_correct": false },
+      { "key": "D", "text": "1/3 of initial magnitude and opposite nature (now repulsive)", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The charges change from (+3Q, −Q) to (+Q, +Q). Both the product of charges and the sign change, so the force cannot remain the same.", "misconception": "Thinking charge sharing doesn't affect the force" },
+      { "option_key": "B", "hint": "The magnitude ratio (1/3) is correct, but the nature changes — initially opposite charges (attractive) become same charges (repulsive) after contact.", "misconception": "Calculating magnitude correctly but forgetting to check if nature changes" },
+      { "option_key": "C", "hint": "Q²/d² is 1/3 of 3Q²/d², not 3 times. The force decreases, it doesn't triple.", "misconception": "Inverting the ratio" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-14",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Eight identical point charges q are placed at the eight corners of a cube of side a. The electrostatic force on any one charge due to the remaining seven is:",
+    "explanation": "Consider one corner charge. The 7 other charges are at distances: 3 face-diagonal neighbours at a√2, 3 edge neighbours at a, and 1 body-diagonal neighbour at a√3. By symmetry, the net force on the corner charge is directed along the body diagonal (away from the cube centre). The magnitude requires vector addition of all 7 forces along this direction using direction cosines.",
+    "correct_answer": "C",
+    "concept_tags": ["cube-symmetry", "superposition", "three-dimensions"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "7kq²/a² directed toward the centre", "is_correct": false },
+      { "key": "B", "text": "Zero, by symmetry", "is_correct": false },
+      { "key": "C", "text": "Directed along the body diagonal, away from the centre", "is_correct": true },
+      { "key": "D", "text": "Directed along the edge of the cube", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The charges are all positive (like charges), so they repel — the force must be away from the cube, not toward the centre.", "misconception": "Getting the direction wrong for repulsive forces" },
+      { "option_key": "B", "hint": "The corner charge is NOT at the centre of the arrangement. The 7 other charges are NOT symmetrically distributed around a corner — there are more charges on one side.", "misconception": "Incorrectly applying symmetry — symmetry only gives zero at the centre" },
+      { "option_key": "D", "hint": "The cubic symmetry at a corner has three-fold symmetry about the body diagonal, so the net force must lie along this diagonal, not along any single edge.", "misconception": "Not recognising the 3-fold rotational symmetry about the body diagonal" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-15",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): A charged body can attract an uncharged body.\nReason (R): When a charged body is brought near an uncharged body, it induces opposite charge on the nearer surface of the uncharged body.",
+    "explanation": "The assertion is true — a charged body (say positively charged) brought near an uncharged conductor induces negative charge on the nearer surface and positive charge on the far surface. The attractive force on the nearer induced charge is stronger than the repulsive force on the farther induced charge (since force ∝ 1/r²). So there is a net attraction. The reason correctly explains this mechanism. Both A and R are true, and R is the correct explanation of A.",
+    "correct_answer": "A",
+    "concept_tags": ["induction", "attraction-uncharged-body"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The induced opposite charge on the nearer surface is precisely the mechanism that causes attraction — R directly explains A.", "misconception": "Thinking the reason is unrelated to the assertion" },
+      { "option_key": "C", "hint": "The reason is factually correct — induction does create opposite charges on the nearer surface. This is a well-established phenomenon.", "misconception": "Doubting the mechanism of electrostatic induction" },
+      { "option_key": "D", "hint": "The assertion is definitely correct — it's a commonly observed phenomenon. Rub a comb on hair and it attracts paper bits (which are uncharged).", "misconception": "Thinking only charged bodies can be attracted" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-16",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): Coulomb's law and Newton's law of gravitation have the same mathematical form (inverse square law), but the electrostatic force can be both attractive and repulsive.\nReason (R): Electric charge comes in two types (positive and negative) whereas mass is always positive.",
+    "explanation": "Assertion is true: both F = kq₁q₂/r² and F = Gm₁m₂/r² follow the inverse square law, but gravity is always attractive while electrostatic force can be attractive (unlike charges) or repulsive (like charges). Reason is also true: the existence of two types of charge (+ and −) allows for both attraction and repulsion, while mass being always positive means gravity can only be attractive. R correctly explains why electrostatic force has dual nature while gravity doesn't.",
+    "correct_answer": "A",
+    "concept_tags": ["coulomb-vs-gravity", "charge-types", "force-nature"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
+      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "The existence of two charge types is exactly what causes the electrostatic force to be either attractive or repulsive — R directly explains the dual nature mentioned in A.", "misconception": "Missing the causal connection between charge duality and force nature" },
+      { "option_key": "C", "hint": "The reason is factually correct — charge has two types (positive and negative) while mass is always positive. This is basic physics.", "misconception": null },
+      { "option_key": "D", "hint": "The assertion is factually correct — both laws follow inverse square dependence, and electrostatic force can be attractive or repulsive unlike gravity.", "misconception": null }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The total charge of an isolated system is always conserved, regardless of the interactions within the system.",
+    "explanation": "This is TRUE. Conservation of charge is a fundamental law of physics. In any isolated system, the total electric charge remains constant — charges can be transferred, redistributed, or created in pairs (particle-antiparticle), but the algebraic sum never changes. This has been verified in countless experiments and is as fundamental as conservation of energy.",
+    "correct_answer": "A",
+    "concept_tags": ["conservation-of-charge", "fundamental-law"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Conservation of charge is one of the most rigorously tested laws in physics. No experiment has ever found a violation.", "misconception": "Thinking charge conservation can be violated in nuclear reactions or pair production" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Coulomb's law can be applied directly to calculate the force between two charged conducting spheres of finite radius placed close together.",
+    "explanation": "This is FALSE. Coulomb's law in its standard form F = kq₁q₂/r² applies to point charges. For conducting spheres placed close together, the charge distribution on each sphere gets distorted (induced redistribution) — it is no longer uniform. The charges concentrate on the nearer surfaces (for opposite charges) or redistribute unevenly. To find the exact force, one must account for this non-uniform distribution, not simply use Coulomb's law with centre-to-centre distance.",
+    "correct_answer": "B",
+    "concept_tags": ["coulomb-law-limitations", "finite-size-effects"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true },
+      { "key": "C", "text": "---", "is_correct": false },
+      { "key": "D", "text": "---", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Coulomb's law assumes point charges. For finite-sized conductors placed close together, charge redistribution occurs on the surfaces, making the point-charge approximation invalid.", "misconception": "Assuming Coulomb's law works for all charge geometries without modification" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The charge on a body is always an integral multiple of _____, which is known as the quantization of electric charge.",
+    "explanation": "The quantization of electric charge states that the charge on any body is always q = ne, where n is an integer and e = 1.6 × 10⁻¹⁹ C is the elementary charge. This means charge cannot exist in fractions of e (in free state). Robert Millikan's oil drop experiment provided the first precise measurement of e.",
+    "correct_answer": "D",
+    "concept_tags": ["quantization", "elementary-charge", "millikan"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "1 coulomb", "is_correct": false },
+      { "key": "B", "text": "1 ampere-second", "is_correct": false },
+      { "key": "C", "text": "1.6 × 10⁻²⁰ C", "is_correct": false },
+      { "key": "D", "text": "1.6 × 10⁻¹⁹ C (the elementary charge e)", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "1 coulomb is far too large to be the quantum of charge — it contains ~6.25 × 10¹⁸ elementary charges.", "misconception": "Confusing the SI unit with the fundamental quantum" },
+      { "option_key": "B", "hint": "While 1 ampere-second equals 1 coulomb dimensionally, this is the same as option A — it's the SI unit, not the quantum.", "misconception": null },
+      { "option_key": "C", "hint": "The correct value is 1.6 × 10⁻¹⁹ C, not 10⁻²⁰. This is one order of magnitude too small.", "misconception": "Error in the exponent" }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-coulomb-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "In a laboratory experiment, a student uses a Coulomb's torsion balance to measure the force between two charged pith balls. When the distance between the balls is halved (keeping charges the same), the student observes that the torsion angle quadruples. However, when the student inserts a glass slab (dielectric constant K = 5) between the two balls at the original distance, the torsion angle becomes 1/5th of the original. Based on these observations, which conclusion is correct?",
+    "explanation": "When distance is halved: F' = kq₁q₂/(d/2)² = 4kq₁q₂/d² = 4F. The force quadruples, so the torsion angle quadruples — consistent with inverse square law. When a dielectric (K = 5) is inserted: F'' = kq₁q₂/(Kd²) = F/5. The force becomes 1/5th — consistent with the dielectric reducing the force by factor K. Both observations confirm Coulomb's law: inverse square dependence on distance and linear dependence on dielectric constant.",
+    "correct_answer": "B",
+    "concept_tags": ["coulomb-torsion-balance", "inverse-square", "dielectric"],
+    "topic": "Coulomb's Law and Electric Charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      { "key": "A", "text": "Only the inverse square law is verified; the dielectric result is anomalous", "is_correct": false },
+      { "key": "B", "text": "Both observations are consistent with Coulomb's law — F ∝ 1/r² and F ∝ 1/K", "is_correct": true },
+      { "key": "C", "text": "The dielectric should have increased the force, not decreased it", "is_correct": false },
+      { "key": "D", "text": "The force should have become 1/25th with the dielectric, not 1/5th", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "The dielectric result (F/K) is a standard prediction of Coulomb's law — it is not anomalous but expected.", "misconception": "Not knowing how dielectrics affect Coulomb's law" },
+      { "option_key": "C", "hint": "Dielectrics always reduce electrostatic force between charges. The polarised medium partially screens the charges, weakening the interaction.", "misconception": "Confusing the effect of a dielectric — it reduces, not increases, the force" },
+      { "option_key": "D", "hint": "1/25 would mean dividing by K² = 25, but Coulomb's law divides by K (first power), not K².", "misconception": "Incorrectly squaring the dielectric constant K" }
+    ]
+  }
+]

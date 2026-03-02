@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "cuet-phy-pot-capacitor-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The capacitance of a parallel plate capacitor is given by C = ε₀A/d. If the area of each plate is doubled, the capacitance:",
+    "explanation": "Since C = ε₀A/d, the capacitance is directly proportional to the area A of the plates. If A is doubled, C also doubles. This is because a larger plate area can store more charge for the same potential difference.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "parallel plate capacitor",
+      "capacitance formula",
+      "plate area"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Remains the same",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Becomes double",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Becomes half",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Becomes four times",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Capacitance depends on plate area, so changing the area will change the capacitance.",
+        "misconception": "Thinking capacitance is independent of plate geometry"
+      },
+      {
+        "option_key": "C",
+        "hint": "Capacitance is directly proportional to A, not inversely proportional. Doubling A increases C.",
+        "misconception": "Confusing direct and inverse proportionality"
+      },
+      {
+        "option_key": "D",
+        "hint": "Four times would occur if C ∝ A², but C is linearly proportional to A.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of capacitance is:",
+    "explanation": "The SI unit of capacitance is the farad (F), named after Michael Faraday. One farad is defined as the capacitance when one coulomb of charge produces a potential difference of one volt, i.e., 1 F = 1 C/V.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "capacitance",
+      "SI unit",
+      "farad"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Farad (F)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Coulomb (C)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Volt (V)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Henry (H)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Coulomb is the unit of electric charge, not capacitance. Capacitance = charge/voltage.",
+        "misconception": "Confusing charge with capacitance"
+      },
+      {
+        "option_key": "C",
+        "hint": "Volt is the unit of electric potential or potential difference, not capacitance.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Henry is the unit of inductance (used in electromagnetic induction), not capacitance.",
+        "misconception": "Confusing capacitance with inductance"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The capacitance of a parallel plate capacitor does NOT depend on:",
+    "explanation": "The capacitance of a parallel plate capacitor is C = ε₀A/d (or C = κε₀A/d with a dielectric). It depends on plate area A, separation d, and the dielectric constant κ, but not on the charge stored on the plates or the potential difference applied.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "parallel plate capacitor",
+      "capacitance factors",
+      "charge independence"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Area of the plates",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Distance between the plates",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Nature of the dielectric medium",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Charge on the plates",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "C = ε₀A/d clearly shows capacitance is directly proportional to plate area A.",
+        "misconception": null
+      },
+      {
+        "option_key": "B",
+        "hint": "C = ε₀A/d shows capacitance is inversely proportional to plate separation d.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "When a dielectric is inserted, C = κε₀A/d, showing that the dielectric constant κ affects capacitance.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-04",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A parallel plate capacitor of plate area A has two dielectric slabs of equal thickness d/2 each, with dielectric constants K₁ = 2 and K₂ = 4, placed one over the other between the plates (filling the entire gap of separation d). The effective capacitance is:",
+    "explanation": "Two dielectric slabs stacked along the field direction behave as two capacitors in series. C₁ = K₁ε₀A/(d/2) = 2K₁ε₀A/d and C₂ = K₂ε₀A/(d/2) = 2K₂ε₀A/d. Series: 1/C = 1/C₁ + 1/C₂ = d/(2K₁ε₀A) + d/(2K₂ε₀A) = d(K₁+K₂)/(2K₁K₂ε₀A). So C = 2K₁K₂ε₀A/[d(K₁+K₂)] = 2×2×4×ε₀A/(d×6) = 16ε₀A/(6d) = 8ε₀A/(3d).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "dielectric slabs in series",
+      "effective capacitance",
+      "composite dielectric"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "6ε₀A/d",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3ε₀A/d",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "8ε₀A/(3d)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4ε₀A/(3d)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "6ε₀A/d = (K₁+K₂)ε₀A/d, which would result from adding the dielectric constants. This is the parallel formula, not series.",
+        "misconception": "Using parallel combination formula for dielectrics stacked along the field"
+      },
+      {
+        "option_key": "B",
+        "hint": "3ε₀A/d = (K₁+K₂)ε₀A/(2d), which incorrectly averages the dielectric constants.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "4ε₀A/(3d) is half the correct answer, likely from forgetting to account for the factor of 2 from each half-thickness slab.",
+        "misconception": "Not doubling the individual capacitances for half-thickness slabs"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A parallel plate capacitor has a capacitance of 10 μF. If a dielectric of dielectric constant K = 4 is inserted between the plates completely, the new capacitance becomes:",
+    "explanation": "When a dielectric of dielectric constant K is completely inserted between the plates, the new capacitance becomes C' = KC. Here C = 10 μF and K = 4, so C' = 4 × 10 = 40 μF. The dielectric increases capacitance by reducing the effective electric field between the plates.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "dielectric",
+      "capacitance increase",
+      "dielectric constant"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2.5 μF",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "10 μF",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "14 μF",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "40 μF",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "2.5 μF = 10/4, which would result from dividing by K instead of multiplying. Dielectric increases capacitance.",
+        "misconception": "Dividing by dielectric constant instead of multiplying"
+      },
+      {
+        "option_key": "B",
+        "hint": "10 μF is the original capacitance. Inserting a dielectric always increases the capacitance of a parallel plate capacitor.",
+        "misconception": "Thinking dielectric does not change capacitance"
+      },
+      {
+        "option_key": "C",
+        "hint": "14 μF = 10 + 4, which would result from adding K to C instead of multiplying.",
+        "misconception": "Adding dielectric constant to capacitance"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A capacitor of capacitance 6 μF is charged to a potential of 100 V. The energy stored in the capacitor is:",
+    "explanation": "The energy stored in a capacitor is U = ½CV². Here C = 6 μF = 6 × 10⁻⁶ F and V = 100 V. So U = ½ × 6 × 10⁻⁶ × (100)² = ½ × 6 × 10⁻⁶ × 10⁴ = ½ × 6 × 10⁻² = 0.03 J = 3 × 10⁻² J.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "energy stored",
+      "capacitor",
+      "numerical calculation"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "6 × 10⁻² J",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 × 10⁻² J",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "3 × 10⁻⁴ J",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "6 × 10⁻⁴ J",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "6 × 10⁻² J results from forgetting the factor of ½ in the energy formula U = ½CV².",
+        "misconception": "Forgetting the ½ factor in energy formula"
+      },
+      {
+        "option_key": "C",
+        "hint": "3 × 10⁻⁴ J is 100 times too small, likely from using V = 10 V instead of V = 100 V or squaring incorrectly.",
+        "misconception": "Error in squaring the voltage"
+      },
+      {
+        "option_key": "D",
+        "hint": "6 × 10⁻⁴ J combines both errors: wrong power of ten and missing the ½ factor.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The capacitance of an isolated spherical conductor of radius R is:",
+    "explanation": "For an isolated spherical conductor, the potential at its surface is V = kQ/R = Q/(4πε₀R). Since C = Q/V, we get C = Q/(Q/4πε₀R) = 4πε₀R. The capacitance of a spherical conductor depends linearly on its radius.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "spherical conductor",
+      "capacitance",
+      "isolated sphere"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "4πε₀R",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "4πε₀R²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ε₀R",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4πε₀/R",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "4πε₀R² has an extra factor of R. Capacitance is linearly proportional to the radius, not to R².",
+        "misconception": "Confusing area dependence with radius dependence"
+      },
+      {
+        "option_key": "C",
+        "hint": "ε₀R is missing the 4π factor that comes from the Coulomb constant k = 1/(4πε₀).",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "4πε₀/R would make capacitance decrease with increasing radius, which contradicts the physical expectation that larger conductors have greater capacitance.",
+        "misconception": "Inverting the radius dependence"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A parallel plate capacitor with plate area A and separation d is charged to potential V. The electric field between the plates is E. If the separation is reduced to d/2 while the capacitor remains connected to the battery, the electric field becomes:",
+    "explanation": "When the capacitor remains connected to the battery, the potential difference V across the plates stays constant. The electric field E = V/d. When separation becomes d/2, E' = V/(d/2) = 2V/d = 2E. The electric field doubles.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "electric field",
+      "parallel plate capacitor",
+      "battery connected"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "E/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "E",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2E",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4E",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "E/2 would be the result if the charge remained constant (battery disconnected) and separation was doubled, not halved.",
+        "misconception": null
+      },
+      {
+        "option_key": "B",
+        "hint": "The field does not remain E. With battery connected, V is constant, and since E = V/d, halving d doubles E.",
+        "misconception": "Thinking electric field is independent of plate separation"
+      },
+      {
+        "option_key": "D",
+        "hint": "4E would require the separation to be reduced to d/4, not d/2.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The energy density (energy per unit volume) of the electric field between the plates of a parallel plate capacitor is:",
+    "explanation": "The energy density of the electric field is u = ½ε₀E², where E is the electric field strength. This can be derived from U = ½CV² for a parallel plate capacitor with C = ε₀A/d, V = Ed, and volume = Ad.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "energy density",
+      "electric field",
+      "capacitor"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ε₀E²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "½ε₀E²",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "½ε₀E",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ε₀E²/4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "ε₀E² is twice the correct value. The ½ factor arises naturally from the integration of work done to build up the field.",
+        "misconception": "Forgetting the factor of ½ in energy density"
+      },
+      {
+        "option_key": "C",
+        "hint": "½ε₀E has incorrect dimensions. Energy density has dimensions of J/m³, which requires E² (not E).",
+        "misconception": "Not squaring the electric field"
+      },
+      {
+        "option_key": "D",
+        "hint": "ε₀E²/4 has an incorrect numerical coefficient. The correct factor is ½, not ¼.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A capacitor is charged to 200 V and then disconnected from the battery. If the separation between the plates is doubled, the potential difference across the capacitor becomes:",
+    "explanation": "When disconnected from the battery, the charge Q remains constant. Original: C = ε₀A/d, Q = CV = ε₀AV/d. When d → 2d: C' = ε₀A/(2d) = C/2. Since Q is constant: V' = Q/C' = Q/(C/2) = 2Q/C = 2V = 2 × 200 = 400 V.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "battery disconnected",
+      "plate separation",
+      "potential change"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "100 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "200 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "50 V",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "400 V",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "100 V would occur if the battery were connected (V constant) and you calculated something else, or if charge changed. Here charge is constant.",
+        "misconception": "Applying battery-connected logic to a disconnected scenario"
+      },
+      {
+        "option_key": "B",
+        "hint": "200 V would mean no change. But since Q is constant and C halves, V must double.",
+        "misconception": "Thinking potential stays the same when battery is disconnected"
+      },
+      {
+        "option_key": "C",
+        "hint": "50 V would result if both C and V decreased, but with constant Q and halved C, V must increase.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A parallel plate capacitor with air has capacitance C. A dielectric slab of dielectric constant K and thickness equal to half the plate separation is inserted between the plates. The new capacitance is:",
+    "explanation": "With a dielectric slab of thickness t = d/2 and air gap of d/2, the system is equivalent to two capacitors in series: one with dielectric (C₁ = Kε₀A/(d/2) = 2Kε₀A/d = 2KC) and one with air (C₂ = ε₀A/(d/2) = 2ε₀A/d = 2C). Series combination: 1/C' = 1/C₁ + 1/C₂ = 1/(2KC) + 1/(2C) = (1 + K)/(2KC). So C' = 2KC/(K + 1).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "partial dielectric",
+      "series combination",
+      "capacitance calculation"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2KC/(K + 1)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "KC/(K + 1)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "(K + 1)C/2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2C/(K + 1)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "KC/(K + 1) is half the correct answer. This would result from not accounting for the factor of 2 that comes from each half-thickness capacitor.",
+        "misconception": "Not doubling the individual capacitances for half-thickness slabs"
+      },
+      {
+        "option_key": "C",
+        "hint": "(K + 1)C/2 would arise from a parallel combination rather than series, which is incorrect for slabs stacked along the field direction.",
+        "misconception": "Using parallel formula instead of series for dielectric layers"
+      },
+      {
+        "option_key": "D",
+        "hint": "2C/(K + 1) is missing the K factor in the numerator, implying an incorrect treatment of the dielectric portion.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A capacitor of capacitance C₁ = 4 μF charged to V₁ = 50 V is connected to an uncharged capacitor of capacitance C₂ = 2 μF. The energy loss during charge sharing is:",
+    "explanation": "Initial charge Q = C₁V₁ = 4 × 50 = 200 μC. Common potential V = Q/(C₁ + C₂) = 200/(4 + 2) = 100/3 V. Initial energy Uᵢ = ½C₁V₁² = ½ × 4 × 10⁻⁶ × 2500 = 5 × 10⁻³ J. Final energy Uf = ½(C₁ + C₂)V² = ½ × 6 × 10⁻⁶ × (100/3)² = ½ × 6 × 10⁻⁶ × 10000/9 = 10/3 × 10⁻³ J. Loss = Uᵢ − Uf = 5 × 10⁻³ − 10/3 × 10⁻³ = 5/3 × 10⁻³ J ≈ 1.67 × 10⁻³ J.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "charge sharing",
+      "energy loss",
+      "common potential"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "5 × 10⁻³ J",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3.33 × 10⁻³ J",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1.67 × 10⁻³ J",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "2.5 × 10⁻³ J",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "5 × 10⁻³ J is the total initial energy, not the energy lost. Energy is conserved partially — some remains in the system.",
+        "misconception": "Thinking all initial energy is lost during charge sharing"
+      },
+      {
+        "option_key": "B",
+        "hint": "3.33 × 10⁻³ J is the final energy stored in the combined system, not the energy lost.",
+        "misconception": "Confusing final energy with energy loss"
+      },
+      {
+        "option_key": "D",
+        "hint": "2.5 × 10⁻³ J = half the initial energy. The actual loss fraction depends on the capacitance ratio C₁C₂/(C₁+C₂)².",
+        "misconception": "Assuming half the energy is always lost"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The capacitance of a parallel plate capacitor increases when a dielectric slab is introduced between its plates.\nReason (R): The dielectric reduces the effective electric field between the plates, thereby reducing the potential difference for the same charge.",
+    "explanation": "Both assertion and reason are correct, and R is the correct explanation of A. The dielectric gets polarized and creates an opposing field that reduces the net electric field between the plates. Since V = Ed, the potential difference decreases for the same charge. Since C = Q/V, a decreased V for the same Q means increased C.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dielectric effect",
+      "capacitance increase",
+      "electric field reduction"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R directly explains A. The reduction in electric field reduces V for the same Q, which by C = Q/V gives a higher capacitance.",
+        "misconception": "Not seeing the causal chain: reduced E → reduced V → increased C"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct — the dielectric does reduce the effective electric field due to polarization of the dielectric material.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — it is a well-established fact that inserting a dielectric increases capacitance by a factor K.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-14",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): When a charged capacitor is disconnected from the battery and the plate separation is increased, the energy stored in the capacitor increases.\nReason (R): When the battery is disconnected, the charge on the capacitor plates remains constant.",
+    "explanation": "Both A and R are correct, and R explains A. With battery disconnected, Q is constant (R is correct). Energy U = Q²/(2C). When plate separation increases, C = ε₀A/d decreases. Since Q is constant and C decreases, U = Q²/(2C) increases (A is correct). The constant charge (R) is the reason why increasing separation leads to increased energy.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "battery disconnected",
+      "energy change",
+      "plate separation"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The fact that Q is constant (R) is precisely what determines how energy changes. With Q constant, U = Q²/(2C), so reducing C increases U.",
+        "misconception": "Not recognizing that constant charge is the key condition determining energy behavior"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct — when the battery is disconnected, there is no path for charge to flow, so Q stays constant.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — with Q constant and C decreasing, U = Q²/(2C) must increase. The extra energy comes from the work done in pulling the plates apart against electrostatic attraction.",
+        "misconception": "Thinking energy decreases when plates are separated"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-15",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match the following expressions (Column I) with the corresponding physical quantities (Column II):\n\nColumn I:\nA. C = Q/V\nB. U = ½CV²\nC. C = ε₀A/d\nD. C = 4πε₀R\n\nColumn II:\n1. Energy stored in a capacitor\n2. Capacitance of a parallel plate capacitor\n3. General definition of capacitance\n4. Capacitance of an isolated spherical conductor",
+    "explanation": "C = Q/V is the general definition of capacitance (A→3). U = ½CV² is the energy stored in a capacitor (B→1). C = ε₀A/d is the capacitance of a parallel plate capacitor (C→2). C = 4πε₀R is the capacitance of an isolated spherical conductor (D→4).",
+    "correct_answer": "B",
+    "concept_tags": [
+      "capacitance formulas",
+      "matching",
+      "definitions"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-1, B-3, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-3, B-1, C-2, D-4",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-1, D-4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A-1 would match C = Q/V with energy, but C = Q/V is the definition of capacitance, not an energy expression.",
+        "misconception": "Confusing definition of capacitance with energy formula"
+      },
+      {
+        "option_key": "C",
+        "hint": "A-2 would match C = Q/V with parallel plate capacitor. While C = Q/V applies to all capacitors, ε₀A/d is specific to parallel plate geometry.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "B-2 and C-1 are swapped. U = ½CV² is an energy expression (should match 1), not a parallel plate formula.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-16",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "For a parallel plate capacitor charged to voltage V and then disconnected from the battery, match the changes in Column I with the effects in Column II when plate separation is doubled:\n\nColumn I:\nA. Capacitance\nB. Charge on plates\nC. Potential difference\nD. Energy stored\n\nColumn II:\n1. Doubles\n2. Remains constant\n3. Halves\n4. Doubles",
+    "explanation": "When battery is disconnected and d is doubled: Capacitance C = ε₀A/d halves (A→3). Charge Q remains constant as no charge can flow (B→2). Potential difference V = Q/C doubles since C halves (C→1 or C→4, both say 'Doubles'). Energy U = Q²/(2C) doubles since C halves (D→1 or D→4). The correct matching is A-3, B-2, C-1, D-4.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "battery disconnected",
+      "plate separation change",
+      "capacitor properties"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-3, B-1, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-1, D-4",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A-1 implies capacitance doubles when separation doubles, but C = ε₀A/d shows C is inversely proportional to d, so C halves.",
+        "misconception": "Thinking capacitance increases with plate separation"
+      },
+      {
+        "option_key": "B",
+        "hint": "B-1 implies charge doubles, but with the battery disconnected, there is no source of additional charge. Charge must remain constant.",
+        "misconception": "Thinking charge changes without a battery connected"
+      },
+      {
+        "option_key": "C",
+        "hint": "A-2 implies capacitance stays the same, but changing the plate separation directly changes the capacitance.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The capacitance of a parallel plate capacitor increases when the distance between the plates is decreased.",
+    "explanation": "This statement is TRUE. The capacitance of a parallel plate capacitor is C = ε₀A/d. Since C is inversely proportional to d (the plate separation), decreasing d increases C.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "parallel plate capacitor",
+      "plate separation",
+      "capacitance"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Since C = ε₀A/d, capacitance is inversely proportional to d. Decreasing d increases C, so the statement is true.",
+        "misconception": "Confusing direct and inverse proportionality in C = ε₀A/d"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-18",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "The energy stored in a capacitor is directly proportional to the square of the charge and also directly proportional to the capacitance.",
+    "explanation": "This statement is FALSE. While U = Q²/(2C) shows energy is proportional to Q², it also shows energy is inversely proportional to C (not directly proportional). Alternatively, U = ½CV² shows energy is proportional to C only when V is constant.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "energy stored",
+      "capacitor",
+      "proportionality"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "U = Q²/(2C) shows that for a given charge, energy is inversely proportional to capacitance, not directly proportional.",
+        "misconception": "Confusing the different forms of the energy formula without recognizing which variables are held constant"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-19",
+    "question_type": "fill_in_the_blank",
+    "difficulty": "medium",
+    "question_text": "A parallel plate capacitor has plates of area 100 cm² separated by a distance of 1 mm. The capacitance of this capacitor is _____ pF. (Take ε₀ = 8.85 × 10⁻¹² F/m)",
+    "explanation": "C = ε₀A/d = 8.85 × 10⁻¹² × 100 × 10⁻⁴ / (1 × 10⁻³) = 8.85 × 10⁻¹² × 10⁻² / 10⁻³ = 8.85 × 10⁻¹² × 10 = 8.85 × 10⁻¹¹ F = 88.5 × 10⁻¹² F = 88.5 pF.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "parallel plate capacitor",
+      "numerical calculation",
+      "capacitance"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "8.85",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "885",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "88.5",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "0.885",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "8.85 pF would result from using A = 10 cm² or an incorrect unit conversion for the area.",
+        "misconception": "Error in converting cm² to m²"
+      },
+      {
+        "option_key": "B",
+        "hint": "885 pF is ten times too large, possibly from using d = 0.1 mm instead of 1 mm.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "0.885 pF is 100 times too small, likely from a double error in unit conversion.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-pot-capacitor-20",
+    "question_type": "scenario",
+    "difficulty": "medium",
+    "question_text": "A student connects a 10 μF capacitor to a 12 V battery and fully charges it. She then disconnects the battery and connects this charged capacitor to an identical uncharged 10 μF capacitor.\n\nThe final voltage across each capacitor and the total energy lost in the process are:",
+    "explanation": "Initial charge Q = CV = 10 × 10⁻⁶ × 12 = 120 μC. After connecting to an identical uncharged capacitor, charge is shared equally. Common voltage V' = Q/(C₁ + C₂) = 120/(10 + 10) = 6 V. Initial energy = ½ × 10 × 10⁻⁶ × 144 = 720 μJ. Final energy = ½ × 20 × 10⁻⁶ × 36 = 360 μJ. Energy lost = 720 − 360 = 360 μJ.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "charge sharing",
+      "common potential",
+      "energy loss"
+    ],
+    "topic": "Capacitors and Capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "12 V across each, no energy lost",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "6 V across each, 720 μJ lost",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "6 V across each, no energy lost",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "6 V across each, 360 μJ lost",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The voltage cannot remain 12 V because charge is shared between two capacitors. By charge conservation, the common voltage must be lower.",
+        "misconception": "Thinking voltage remains constant during charge sharing"
+      },
+      {
+        "option_key": "B",
+        "hint": "720 μJ is the total initial energy. Not all of it is lost — 360 μJ remains stored in the two capacitors.",
+        "misconception": "Thinking all energy is dissipated during charge redistribution"
+      },
+      {
+        "option_key": "C",
+        "hint": "Energy cannot be fully conserved when charge flows between capacitors at different potentials. The energy difference is dissipated as heat.",
+        "misconception": "Ignoring energy loss during charge redistribution"
+      }
+    ]
+  }
+]

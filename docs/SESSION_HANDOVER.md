@@ -15,7 +15,7 @@ Generate NEET-level questions for **ALL 4 subjects** (Zoology first, then Physic
 1. **Generate chapter-by-chapter** — output one JSON array per chapter
 2. **Question count per chapter** = based on NEET weightage (see tables below)
 3. **Topic coverage** — every topic in a chapter MUST have at least 1 question
-4. **Question type mix**: MCQ ~60%, Assertion-Reasoning ~15%, Match-the-Following ~10%, rest ~15% (true-false, scenario, fill-blanks, sequence, diagram)
+4. **Question type mix per 40 Qs**: MCQ 20, Diagram 4, AR 4, TF 4, MTF 2, FIB 2, Scenario 2, Sequence 2 — **count all types before saving, no missing types allowed**
 5. **Difficulty mix**: Easy 30%, Medium 50%, Hard 20%
 6. **Every question MUST have `elimination_hints`** — this is VaNi's key differentiator
 7. **Bloom levels**: remember, understand, apply, analyze (match difficulty)
@@ -66,6 +66,12 @@ Generate NEET-level questions for **ALL 4 subjects** (Zoology first, then Physic
 ```
 
 **Note**: `elimination_hints` only covers the WRONG options (3 hints for 4-option questions).
+
+**Extra fields for special types (MANDATORY — app breaks without them):**
+- **diagram-based**: Add `"image_uri": "question-images/{subject}/{chapter}/{id}.png"` and `"image_alt": "description"`
+- **scenario-based**: Add `"scenario": "3-5 sentence context paragraph"` (separate from question_text)
+- **logical-sequence**: Add `"items": [{"id":"1","text":"Step A"}, ...]` and `"correct_order": ["2","1","4","3"]`
+- **true-false**: Options must be: A="True", B="False", C="---", D="---"
 
 ---
 
@@ -211,3 +217,5 @@ Topics: GMO, Bt Crops, Gene Therapy, Transgenic Animals
 - Do NOT repeat the Animal Kingdom questions (Chapter 1) — already generated
 - Do NOT generate questions without elimination_hints — they are mandatory
 - Do NOT use topics/subtopics that don't exist in the migration seed data
+- Do NOT save a batch with missing question types — count all 8 types before saving
+- Do NOT omit image_uri/image_alt for diagram-based, scenario for scenario-based, or items/correct_order for logical-sequence
