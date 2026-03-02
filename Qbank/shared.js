@@ -1264,7 +1264,8 @@ function renderNavHeader() {
     { id: 'insert', label: 'Insert', icon: '💾', adminOnly: true },
     { id: 'import', label: 'Import', icon: '📥', adminOnly: true },
     { id: 'bulkinsert', label: 'Bulk Insert', icon: '📦', adminOnly: true },
-    { id: 'translate', label: 'Translate', icon: '🌐', adminOnly: true }
+    { id: 'translate', label: 'Translate', icon: '🌐', adminOnly: true },
+    { id: 'explore', label: 'Explore', icon: '🔍', adminOnly: false }
   ];
 
   const visibleItems = navItems.filter(item => !item.adminOnly || isAdminUser);
@@ -1397,6 +1398,464 @@ function parseJsonResponse(text) {
 }
 
 // ============================================================================
+// QUALITY CHECKER — language-aware validators
+// ============================================================================
+
+// Issue type definitions (severity is the default; can be overridden)
+const QUALITY_ISSUE_TYPES = {
+  // Data integrity — critical issues that break the question
+  EMPTY_QUESTION_TEXT:    { severity: 'high',   label: 'Empty question text' },
+  QUESTION_TOO_SHORT:    { severity: 'high',   label: 'Question text too short' },
+  EMPTY_OPTIONS:          { severity: 'high',   label: 'No answer options' },
+  EMPTY_OPTION_TEXT:      { severity: 'high',   label: 'Option has empty text' },
+  FEW_OPTIONS:            { severity: 'medium', label: 'Less than 4 options' },
+  NO_CORRECT_ANSWER:      { severity: 'high',   label: 'No correct answer marked' },
+  MULTIPLE_CORRECT:       { severity: 'medium', label: 'Multiple correct answers' },
+  CORRECT_ID_MISMATCH:   { severity: 'high',   label: 'Correct answer key invalid' },
+  DUPLICATE_OPTIONS:      { severity: 'high',   label: 'Duplicate option text' },
+
+  // Type-specific — checks content in both question_text and payload
+  IMAGE_URI_EMPTY:        { severity: 'high',   label: 'Diagram has no image' },
+  ASSERTION_MALFORMED:    { severity: 'high',   label: 'Missing assertion or reason' },
+  MTF_MALFORMED:          { severity: 'medium', label: 'Match columns not detected' },
+  BLANKS_NO_BLANKS:       { severity: 'high',   label: 'Fill-in-blanks has no ___' },
+
+  // Content quality
+  EMPTY_EXPLANATION:      { severity: 'medium', label: 'No explanation' },
+  NO_ELIMINATION_HINTS:   { severity: 'low',    label: 'No elimination hints' },
+
+  // Translation (parameterized via details.language)
+  MISSING_TRANSLATION:    { severity: 'low',    label: 'Missing translation' },
+
+  // User-reported
+  USER_REPORTED:          { severity: 'medium', label: 'User reported issue' },
+
+  // Runtime auto-detected (source: 'auto')
+  IMAGE_LOAD_FAILED:      { severity: 'high',   label: 'Image failed to load' },
+};
+
+/**
+ * Derive column suffix from language id.
+ * Convention: language id 'te' → column suffix '_te', 'hi' → '_hi', etc.
+ * This means adding a new language to med_languages automatically enables
+ * translation quality checks — no code changes needed.
+ */
+function getLanguageSuffix(langId) {
+  return '_' + langId;
+}
+
+// Translatable fields on med_questions
+const QUESTION_TRANSLATABLE_FIELDS = ['question_text', 'explanation'];
+// Translatable fields on med_question_options
+const OPTION_TRANSLATABLE_FIELDS = ['option_text'];
+// Translatable fields on med_elimination_hints
+const HINT_TRANSLATABLE_FIELDS = ['hint_text', 'misconception'];
+
+// Payload fields that need translation per question type
+// Only checked if the English field actually exists in payload (rich payload pattern)
+const PAYLOAD_TRANSLATABLE_FIELDS = {
+  'assertion-reasoning': ['assertion', 'reason'],
+  'scenario-based':      ['scenario'],
+  'true-false':          ['statement'],
+  'fill-in-blanks':     ['text_with_blanks'],
+  'match-the-following': [],
+  'logical-sequence':    [],
+};
+
+/**
+ * Fetch active languages (non-English) from med_languages.
+ * These are the languages we need translations for.
+ */
+let _cachedLanguages = null;
+async function fetchActiveLanguages() {
+  if (_cachedLanguages) return _cachedLanguages;
+  if (!SUPABASE) return [];
+
+  const { data, error } = await SUPABASE
+    .from('med_languages')
+    .select('id, label, native, emoji')
+    .eq('is_active', true)
+    .neq('id', 'en')
+    .order('sort_order');
+
+  if (error) {
+    console.error('[quality] Failed to fetch languages:', error);
+    return [];
+  }
+
+  _cachedLanguages = data || [];
+  return _cachedLanguages;
+}
+
+/**
+ * Run all quality validators on a set of questions.
+ * Returns an array of issue objects ready for DB insert.
+ *
+ * @param {Array} questions - Full question rows with options and hints
+ * @param {Array} languages - Active languages from fetchActiveLanguages()
+ * @param {string} chapterId - The chapter being scanned
+ * @returns {Array} issues
+ */
+function runQualityValidators(questions, languages, chapterId) {
+  const issues = [];
+
+  for (const q of questions) {
+    const opts = q.options || q.med_question_options || [];
+    const hints = q.hints || q.med_elimination_hints || [];
+    const qText = (q.question_text || '').trim();
+    const payload = q.payload || {};
+
+    // ── Data integrity ──────────────────────────────────────
+    if (!qText) {
+      issues.push(makeIssue(q, chapterId, 'EMPTY_QUESTION_TEXT'));
+    } else if (qText.length < 15) {
+      issues.push(makeIssue(q, chapterId, 'QUESTION_TOO_SHORT', { length: qText.length }));
+    }
+
+    if (opts.length === 0 && q.question_type !== 'true-false') {
+      issues.push(makeIssue(q, chapterId, 'EMPTY_OPTIONS'));
+    } else if (opts.length > 0 && opts.length < 4 && q.question_type !== 'true-false') {
+      issues.push(makeIssue(q, chapterId, 'FEW_OPTIONS', { optionCount: opts.length }));
+    }
+
+    if (opts.length > 0) {
+      // Check for empty option text
+      const emptyOpts = opts.filter(o => {
+        const text = (o.option_text || o.text || '').trim();
+        return !text;
+      });
+      if (emptyOpts.length > 0) {
+        issues.push(makeIssue(q, chapterId, 'EMPTY_OPTION_TEXT', {
+          emptyKeys: emptyOpts.map(o => o.option_key || o.key)
+        }));
+      }
+
+      const correctOpts = opts.filter(o => o.is_correct);
+      if (correctOpts.length === 0 && q.question_type !== 'true-false') {
+        issues.push(makeIssue(q, chapterId, 'NO_CORRECT_ANSWER'));
+      } else if (correctOpts.length > 1 && q.question_type === 'mcq') {
+        issues.push(makeIssue(q, chapterId, 'MULTIPLE_CORRECT', {
+          correctKeys: correctOpts.map(o => o.option_key || o.key)
+        }));
+      }
+
+      // Check correct_answer key matches an option
+      if (q.correct_answer && opts.length > 0) {
+        const keys = opts.map(o => o.option_key || o.key);
+        if (!keys.includes(q.correct_answer)) {
+          issues.push(makeIssue(q, chapterId, 'CORRECT_ID_MISMATCH', {
+            correct_answer: q.correct_answer,
+            available_keys: keys
+          }));
+        }
+      }
+
+      // Duplicate option texts
+      const texts = opts.map(o => (o.option_text || o.text || '').trim().toLowerCase()).filter(Boolean);
+      const dupes = texts.filter((t, i) => texts.indexOf(t) !== i);
+      if (dupes.length > 0) {
+        issues.push(makeIssue(q, chapterId, 'DUPLICATE_OPTIONS', { duplicates: [...new Set(dupes)] }));
+      }
+    }
+
+    // ── Type-specific ───────────────────────────────────────
+    // Checks handle BOTH data patterns:
+    //   Lean payload: content in question_text, payload = metadata only
+    //   Rich payload: content in payload fields (CUET-style)
+
+    switch (q.question_type) {
+      case 'diagram-based': {
+        const uri = payload.image_uri || payload.imageUri || q.image_url || '';
+        if (!uri) {
+          issues.push(makeIssue(q, chapterId, 'IMAGE_URI_EMPTY'));
+        }
+        break;
+      }
+      case 'assertion-reasoning': {
+        // Rich payload: payload.assertion + payload.reason
+        // Lean payload: "Assertion (A): ...\nReason (R): ..." in question_text
+        const hasPayloadAR = (payload.assertion || '').trim() && (payload.reason || '').trim();
+        const hasTextAssertion = /assertion\s*\(?a\)?/i.test(qText);
+        const hasTextReason = /reason\s*\(?r\)?/i.test(qText);
+        const hasTextAR = hasTextAssertion && hasTextReason;
+
+        if (!hasPayloadAR && !hasTextAR) {
+          issues.push(makeIssue(q, chapterId, 'ASSERTION_MALFORMED', {
+            hasAssertion: hasPayloadAR || hasTextAssertion,
+            hasReason: hasPayloadAR || hasTextReason
+          }));
+        }
+        break;
+      }
+      case 'match-the-following': {
+        // Rich payload: payload.column_a + payload.column_b
+        // Lean payload: "Column A | Column B" or matching list in question_text
+        const hasPayloadCols = (Array.isArray(payload.column_a || payload.columnA) &&
+          (payload.column_a || payload.columnA).length > 0);
+        const hasTextCols = /column\s*[ab]|match.*following/i.test(qText);
+
+        if (!hasPayloadCols && !hasTextCols) {
+          issues.push(makeIssue(q, chapterId, 'MTF_MALFORMED'));
+        }
+        break;
+      }
+      case 'fill-in-blanks': {
+        const blanksText = payload.text_with_blanks || payload.textWithBlanks || qText;
+        if (!blanksText.includes('___') && !blanksText.includes('______')) {
+          issues.push(makeIssue(q, chapterId, 'BLANKS_NO_BLANKS'));
+        }
+        break;
+      }
+      // scenario-based and logical-sequence: content is always in question_text
+      // No special payload check needed — question_text emptiness already caught above
+    }
+
+    // ── Content quality ─────────────────────────────────────
+    if (!q.explanation || q.explanation.trim() === '') {
+      issues.push(makeIssue(q, chapterId, 'EMPTY_EXPLANATION'));
+    }
+
+    if (hints.length === 0) {
+      issues.push(makeIssue(q, chapterId, 'NO_ELIMINATION_HINTS'));
+    }
+
+    // ── Translation checks (per active language) ────────────
+    for (const lang of languages) {
+      const suffix = getLanguageSuffix(lang.id);
+
+      const missingFields = [];
+
+      // Check question-level translatable fields
+      for (const field of QUESTION_TRANSLATABLE_FIELDS) {
+        const colName = field + suffix;
+        const value = q[colName];
+        // Only flag if English field exists and translation is missing
+        if (q[field] && q[field].trim() && (!value || !value.trim())) {
+          missingFields.push(field);
+        }
+      }
+
+      // Check options
+      if (opts.length > 0) {
+        const optsNeedingTranslation = opts.filter(o => {
+          const engText = o.option_text || o.text || '';
+          const teText = o['option_text' + suffix] || o['text' + suffix] || '';
+          return engText.trim() && !teText.trim();
+        });
+        if (optsNeedingTranslation.length > 0) {
+          missingFields.push(`options[${optsNeedingTranslation.map(o => o.option_key || o.key).join(',')}]`);
+        }
+      }
+
+      // Check hints
+      if (hints.length > 0) {
+        const hintsNeedingTranslation = hints.filter(h => {
+          const engText = h.hint_text || '';
+          const teText = h['hint_text' + suffix] || '';
+          return engText.trim() && !teText.trim();
+        });
+        if (hintsNeedingTranslation.length > 0) {
+          missingFields.push(`hints[${hintsNeedingTranslation.map(h => h.option_key).join(',')}]`);
+        }
+      }
+
+      // Check payload-level translatable fields
+      const payloadFields = PAYLOAD_TRANSLATABLE_FIELDS[q.question_type] || [];
+      for (const field of payloadFields) {
+        const engValue = payload[field] || '';
+        const teKey = field + suffix;
+        const teValue = payload[teKey] || '';
+        if (engValue.trim() && !teValue.trim()) {
+          missingFields.push('payload.' + field);
+        }
+      }
+
+      if (missingFields.length > 0) {
+        issues.push(makeIssue(q, chapterId, 'MISSING_TRANSLATION', {
+          language: lang.id,
+          languageLabel: lang.label,
+          fields: missingFields
+        }));
+      }
+    }
+  }
+
+  return issues;
+}
+
+/**
+ * Build an issue object ready for DB insert.
+ */
+function makeIssue(question, chapterId, issueType, details = {}) {
+  const typeDef = QUALITY_ISSUE_TYPES[issueType] || { severity: 'medium', label: issueType };
+  return {
+    question_id: question.id,
+    chapter_id: chapterId,
+    issue_type: issueType,
+    severity: typeDef.severity,
+    source: 'explore',
+    details: details,
+    status: 'open'
+  };
+}
+
+/**
+ * Fetch full question data for a chapter (with options + hints) for scanning.
+ */
+async function fetchQuestionsForScan(chapterId) {
+  if (!SUPABASE) return [];
+
+  const { data, error } = await SUPABASE
+    .from('med_questions')
+    .select(`
+      id, subject_id, chapter_id, question_type, difficulty, status,
+      question_text, question_text_te, explanation, explanation_te,
+      correct_answer, payload, image_url, concept_tags,
+      med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
+      med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)
+    `)
+    .eq('chapter_id', chapterId)
+    .in('status', ['active', 'draft']);
+
+  if (error) {
+    console.error('[quality] Failed to fetch questions for scan:', error);
+    return [];
+  }
+
+  return data || [];
+}
+
+/**
+ * Save quality issues to DB (insert, skip duplicates).
+ * Returns { saved, skipped, savedIssues } where savedIssues has DB ids.
+ */
+async function saveQualityIssues(issues) {
+  if (!SUPABASE || issues.length === 0) return { saved: 0, skipped: 0, savedIssues: [] };
+
+  let saved = 0;
+  let skipped = 0;
+  const savedIssues = [];
+
+  for (const issue of issues) {
+    const { data, error } = await SUPABASE
+      .from('med_quality_issues')
+      .insert(issue)
+      .select()
+      .single();
+
+    if (error) {
+      if (error.code === '23505') {
+        skipped++;
+      } else {
+        console.error('[quality] Error saving issue:', error);
+        skipped++;
+      }
+    } else {
+      saved++;
+      if (data) savedIssues.push(data);
+    }
+  }
+
+  return { saved, skipped, savedIssues };
+}
+
+/**
+ * Fetch existing quality issues for a chapter.
+ */
+async function fetchQualityIssues(chapterId, options = {}) {
+  if (!SUPABASE) return [];
+
+  let query = SUPABASE
+    .from('med_quality_issues')
+    .select('*')
+    .eq('chapter_id', chapterId)
+    .order('severity', { ascending: true })
+    .order('created_at', { ascending: false });
+
+  if (options.status) {
+    query = query.eq('status', options.status);
+  }
+  if (options.issueType) {
+    query = query.eq('issue_type', options.issueType);
+  }
+
+  const { data, error } = await query;
+  if (error) {
+    console.error('[quality] Failed to fetch issues:', error);
+    return [];
+  }
+  return data || [];
+}
+
+/**
+ * Resolve a quality issue.
+ */
+async function resolveQualityIssue(issueId, resolution = 'resolved') {
+  if (!SUPABASE) return null;
+
+  const { data, error } = await SUPABASE
+    .from('med_quality_issues')
+    .update({
+      status: resolution,
+      resolved_at: new Date().toISOString()
+    })
+    .eq('id', issueId)
+    .select()
+    .single();
+
+  if (error) {
+    console.error('[quality] Failed to resolve issue:', error);
+    return null;
+  }
+  return data;
+}
+
+/**
+ * Fetch open quality issue summary (counts by severity + affected chapters).
+ * Lightweight query for dashboard cards.
+ */
+async function fetchQualityIssueSummary() {
+  if (!SUPABASE) return { total: 0, high: 0, medium: 0, low: 0, chapters: 0 };
+
+  const { data, error } = await SUPABASE
+    .from('med_quality_issues')
+    .select('severity, chapter_id')
+    .eq('status', 'open');
+
+  if (error) {
+    console.error('[quality] Failed to fetch issue summary:', error);
+    return { total: 0, high: 0, medium: 0, low: 0, chapters: 0 };
+  }
+
+  const issues = data || [];
+  return {
+    total: issues.length,
+    high: issues.filter(i => i.severity === 'high').length,
+    medium: issues.filter(i => i.severity === 'medium').length,
+    low: issues.filter(i => i.severity === 'low').length,
+    chapters: new Set(issues.map(i => i.chapter_id)).size
+  };
+}
+
+/**
+ * Clear all open explore-sourced issues for a chapter (before re-scan).
+ */
+async function clearExploreIssues(chapterId) {
+  if (!SUPABASE) return;
+
+  const { error } = await SUPABASE
+    .from('med_quality_issues')
+    .delete()
+    .eq('chapter_id', chapterId)
+    .eq('source', 'explore')
+    .eq('status', 'open');
+
+  if (error) {
+    console.error('[quality] Failed to clear explore issues:', error);
+  }
+}
+
+// ============================================================================
 // EXPORT FOR USE IN HTML
 // ============================================================================
 window.Qbank = {
@@ -1464,6 +1923,17 @@ window.Qbank = {
   getStatusBadge,
   getQuestionTypeBadge,
   renderNavHeader,
+
+  // Quality checker
+  QUALITY_ISSUE_TYPES,
+  fetchActiveLanguages,
+  runQualityValidators,
+  fetchQuestionsForScan,
+  saveQualityIssues,
+  fetchQualityIssues,
+  fetchQualityIssueSummary,
+  resolveQualityIssue,
+  clearExploreIssues,
 
   // State access
   get config() { return CONFIG; },

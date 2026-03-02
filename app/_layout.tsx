@@ -281,7 +281,7 @@ export default function RootLayout() {
                   ) : (
                     <Slot />
                   )}
-                  <GlobalMusicOverlay />
+                  {authState.status === 'authenticated' && <GlobalMusicOverlay />}
                   {pendingUpdate && !updateSkipped && (
                     <ForceUpdateModal
                       update={pendingUpdate}

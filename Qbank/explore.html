@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore - Quality Scanner - Qbank Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    /* ── Filters bar ─────────────────────────────────── */
+    .explore-filters {
+      display: flex;
+      gap: 16px;
+      align-items: flex-end;
+      padding: 20px;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .explore-filters .form-group { margin: 0; flex: 1; min-width: 180px; }
+
+    /* ── Summary cards ───────────────────────────────── */
+    .explore-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .summary-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
+    .summary-card .value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .summary-card .label {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      margin-top: 6px;
+    }
+    .summary-card.clean { border-left: 4px solid var(--success); }
+    .summary-card.high  { border-left: 4px solid var(--error); }
+    .summary-card.med   { border-left: 4px solid var(--warning); }
+    .summary-card.low   { border-left: 4px solid var(--info); }
+
+    /* ── Translation coverage ────────────────────────── */
+    .lang-coverage {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .lang-coverage h3 { margin: 0 0 16px; font-size: 1rem; }
+    .lang-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .lang-row:last-child { margin-bottom: 0; }
+    .lang-label {
+      font-weight: 600;
+      min-width: 100px;
+      font-size: 0.9rem;
+    }
+    .lang-bar-wrap {
+      flex: 1;
+      height: 24px;
+      background: var(--gray-100);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .lang-bar-fill {
+      height: 100%;
+      border-radius: 12px;
+      transition: width 0.6s ease;
+      min-width: 2px;
+    }
+    .lang-bar-fill.good { background: var(--success); }
+    .lang-bar-fill.partial { background: var(--warning); }
+    .lang-bar-fill.none { background: var(--gray-300); }
+    .lang-pct {
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-width: 70px;
+      text-align: right;
+    }
+    .lang-status-tag {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    /* ── Issue list ───────────────────────────────────── */
+    .issue-group {
+      margin-bottom: 16px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      background: white;
+      overflow: hidden;
+    }
+    .issue-group-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      user-select: none;
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .issue-group-header:hover { background: var(--gray-100); }
+    .issue-group.collapsed .issue-group-items { display: none; }
+    .issue-group.collapsed .issue-group-header { border-bottom: none; }
+    .issue-group-chevron { transition: transform 0.2s; font-size: 0.7rem; color: var(--gray-400); }
+    .issue-group.collapsed .issue-group-chevron { transform: rotate(-90deg); }
+    .issue-group-count {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    .issue-group-count.high { background: var(--error-light); color: #991b1b; }
+    .issue-group-count.medium { background: var(--warning-light); color: #92400e; }
+    .issue-group-count.low { background: var(--info-light); color: #1e40af; }
+
+    .issue-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 0.85rem;
+    }
+    .issue-item:last-child { border-bottom: none; }
+    .issue-item:hover { background: var(--gray-50); }
+    .issue-item.resolved { opacity: 0.45; text-decoration: line-through; }
+    .issue-sev {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .issue-sev.high { background: var(--error); }
+    .issue-sev.medium { background: var(--warning); }
+    .issue-sev.low { background: var(--info); }
+    .issue-body { flex: 1; min-width: 0; line-height: 1.4; }
+    .issue-qid {
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: var(--gray-400);
+      cursor: pointer;
+    }
+    .issue-qid:hover { color: var(--primary); text-decoration: underline; }
+    .issue-body .q-preview {
+      color: var(--gray-500);
+      font-size: 0.8rem;
+      margin-top: 2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 500px;
+    }
+    .issue-detail {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      margin-top: 2px;
+    }
+    .issue-actions {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+      align-items: center;
+    }
+    .btn-resolve {
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--gray-300);
+      background: white;
+      cursor: pointer;
+      color: var(--gray-600);
+      white-space: nowrap;
+    }
+    .btn-resolve:hover { background: var(--success-light); border-color: var(--success); color: #065f46; }
+    .btn-copy-group {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--gray-300);
+      background: white;
+      cursor: pointer;
+      color: var(--gray-500);
+      white-space: nowrap;
+    }
+    .btn-copy-group:hover { background: var(--gray-100); color: var(--gray-700); }
+
+    .issue-source {
+      font-size: 0.65rem;
+      padding: 1px 6px;
+      border-radius: 8px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .issue-source.scan { background: #EDE9FE; color: #6D28D9; }
+    .issue-source.user { background: #FEF3C7; color: #92400E; }
+    .issue-source.auto { background: #DBEAFE; color: #1E40AF; }
+
+    .db-issues-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #FFF7ED;
+      border: 1px solid #FED7AA;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      color: #9A3412;
+      margin-bottom: 16px;
+    }
+    .db-issues-hint button {
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px solid #F97316;
+      background: white;
+      color: #EA580C;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .db-issues-hint button:hover { background: #FFF7ED; }
+
+    /* ── Scan progress ───────────────────────────────── */
+    .scan-progress {
+      text-align: center;
+      padding: 40px;
+    }
+    .scan-progress .loader-spinner { margin: 0 auto 16px; }
+
+    /* ── Empty state ─────────────────────────────────── */
+    .explore-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--gray-500);
+    }
+    .explore-empty .icon { font-size: 3rem; margin-bottom: 12px; }
+
+    @media (max-width: 768px) {
+      .explore-summary { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-icon">🔍</span>
+          Explore — Quality Scanner
+        </h1>
+        <p class="page-subtitle">Proactively scan chapters for data issues, missing translations, and content gaps</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="explore-filters">
+        <div class="form-group">
+          <label class="form-label">Exam</label>
+          <select id="examFilter" class="form-select">
+            <option value="NEET">NEET</option>
+            <option value="CUET">CUET</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <select id="subjectFilter" class="form-select">
+            <option value="">Select subject...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Chapter</label>
+          <select id="chapterFilter" class="form-select" disabled>
+            <option value="">Select subject first</option>
+          </select>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-primary" id="scanBtn" onclick="startScan()" disabled>
+            🔍 Scan Chapter
+          </button>
+          <button class="btn btn-secondary" id="loadDbBtnTop" onclick="loadSavedIssues()" disabled>
+            📥 Saved Issues
+          </button>
+        </div>
+      </div>
+
+      <!-- Results container (hidden until scan) -->
+      <div id="resultsContainer" style="display: none;">
+
+        <!-- Summary cards -->
+        <div class="explore-summary" id="summaryCards"></div>
+
+        <!-- Translation coverage -->
+        <div class="lang-coverage" id="langCoverage" style="display: none;">
+          <h3>🌐 Translation Coverage</h3>
+          <div id="langBars"></div>
+        </div>
+
+        <!-- DB issues hint (shown when auto/user issues exist) -->
+        <div id="dbIssuesHint" class="db-issues-hint" style="display: none;">
+          <span id="dbHintText"></span>
+          <button onclick="loadSavedIssues()">View Saved Issues</button>
+        </div>
+
+        <!-- Action bar -->
+        <div style="display: flex; gap: 8px; margin-bottom: 16px; justify-content: flex-end;">
+          <button class="btn btn-sm btn-secondary" onclick="startScan()" id="rescanBtn">Re-scan</button>
+          <button class="btn btn-sm btn-success" id="saveBtn" onclick="saveIssuesToDb()" style="display: none;">
+            Save Issues to DB
+          </button>
+        </div>
+
+        <!-- Issues list -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title" id="issuesTitle">Issues</h3>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-sm" onclick="filterIssues('all')" id="filterAll">All</button>
+              <button class="btn btn-sm" onclick="filterIssues('high')" id="filterHigh" style="color: #991b1b;">High</button>
+              <button class="btn btn-sm" onclick="filterIssues('medium')" id="filterMed" style="color: #92400e;">Medium</button>
+              <button class="btn btn-sm" onclick="filterIssues('low')" id="filterLow" style="color: #1e40af;">Low</button>
+            </div>
+          </div>
+          <div class="card-body" id="issuesContainer">
+            <div class="explore-empty">
+              <div class="icon">📋</div>
+              <p>Select a chapter and click Scan to check quality.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty state before first scan -->
+      <div id="preResults">
+        <div class="explore-empty">
+          <div class="icon">🔍</div>
+          <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px;">Select a chapter to explore</p>
+          <p>The quality scanner will check for:</p>
+          <div style="text-align: left; display: inline-block; margin-top: 12px; font-size: 0.9rem; color: var(--gray-600);">
+            <p>• <strong>Data integrity</strong> — empty options, missing correct answers, duplicates</p>
+            <p>• <strong>Type-specific</strong> — broken images, empty scenarios, MTF column issues</p>
+            <p>• <strong>Content quality</strong> — missing explanations, no elimination hints</p>
+            <p>• <strong>Translations</strong> — missing translations for all active languages</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    let subjects = [];
+    let chapters = [];
+    let currentIssues = [];
+    let currentFilter = 'all';
+    let activeLanguages = [];
+    let scannedQuestions = [];
+    let savedToDb = false;          // Track if current issues were saved
+    let dbIssueMap = new Map();     // questionId+issueType → DB id
+    let dbIssuesLoaded = false;     // Track if DB issues are merged in
+    let viewMode = 'scan';          // 'scan' or 'saved'
+
+    async function init() {
+      const user = await Qbank.requireAuth();
+      if (!user) return;
+      Qbank.renderNavHeader();
+
+      // Read URL params (for deep-linking from subject.html)
+      const params = new URLSearchParams(window.location.search);
+      const urlExam = params.get('exam');
+      const urlSubject = params.get('subject');
+      const urlChapter = params.get('chapter');
+
+      if (urlExam) {
+        document.getElementById('examFilter').value = urlExam.toUpperCase();
+      }
+
+      // Load subjects for the selected exam
+      await onExamChange();
+
+      if (urlSubject) {
+        document.getElementById('subjectFilter').value = urlSubject.toUpperCase();
+        await onSubjectChange();
+
+        if (urlChapter) {
+          document.getElementById('chapterFilter').value = urlChapter;
+          document.getElementById('scanBtn').disabled = false;
+          // Auto-scan if all params provided
+          startScan();
+        }
+      }
+
+      // Listeners
+      document.getElementById('examFilter').addEventListener('change', onExamChange);
+      document.getElementById('subjectFilter').addEventListener('change', onSubjectChange);
+      document.getElementById('chapterFilter').addEventListener('change', onChapterChange);
+    }
+
+    async function onExamChange() {
+      const examId = document.getElementById('examFilter').value;
+      const subjectSelect = document.getElementById('subjectFilter');
+      const examSubjects = Qbank.getExamSubjects(examId);
+
+      subjectSelect.innerHTML = '<option value="">Select subject...</option>';
+      examSubjects.forEach(sid => {
+        const meta = Qbank.getSubjectMeta(sid);
+        const opt = document.createElement('option');
+        opt.value = sid;
+        opt.textContent = `${meta.emoji} ${meta.name}`;
+        subjectSelect.appendChild(opt);
+      });
+
+      // Reset chapter
+      const chapterSelect = document.getElementById('chapterFilter');
+      chapterSelect.innerHTML = '<option value="">Select subject first</option>';
+      chapterSelect.disabled = true;
+      document.getElementById('scanBtn').disabled = true;
+    }
+
+    async function onSubjectChange() {
+      const subjectId = document.getElementById('subjectFilter').value;
+      const chapterSelect = document.getElementById('chapterFilter');
+
+      if (!subjectId) {
+        chapterSelect.innerHTML = '<option value="">Select subject first</option>';
+        chapterSelect.disabled = true;
+        document.getElementById('scanBtn').disabled = true;
+        return;
+      }
+
+      chapters = await Qbank.fetchChapters(subjectId);
+
+      chapterSelect.innerHTML = '<option value="">Select chapter...</option>';
+      // Add "All chapters" option
+      const allOpt = document.createElement('option');
+      allOpt.value = '__ALL__';
+      allOpt.textContent = `📋 All chapters (${chapters.length})`;
+      chapterSelect.appendChild(allOpt);
+
+      chapters.forEach(ch => {
+        const opt = document.createElement('option');
+        opt.value = ch.id;
+        opt.textContent = `${ch.chapter_number || '-'}. ${ch.name}`;
+        chapterSelect.appendChild(opt);
+      });
+      chapterSelect.disabled = false;
+    }
+
+    function onChapterChange() {
+      const chapterId = document.getElementById('chapterFilter').value;
+      document.getElementById('scanBtn').disabled = !chapterId;
+      document.getElementById('loadDbBtnTop').disabled = !chapterId;
+    }
+
+    // ========================================================================
+    // SCAN
+    // ========================================================================
+    async function startScan() {
+      const chapterValue = document.getElementById('chapterFilter').value;
+      if (!chapterValue) return;
+
+      const chaptersToScan = chapterValue === '__ALL__'
+        ? chapters
+        : chapters.filter(c => c.id === chapterValue);
+
+      document.getElementById('preResults').style.display = 'none';
+      document.getElementById('resultsContainer').style.display = 'block';
+
+      const container = document.getElementById('issuesContainer');
+      container.innerHTML = `
+        <div class="scan-progress">
+          <div class="loader-spinner"></div>
+          <h3>Scanning ${chaptersToScan.length} chapter${chaptersToScan.length > 1 ? 's' : ''}...</h3>
+          <p id="scanStatus" style="color: var(--gray-500);">Loading questions & languages...</p>
+          <div class="progress-bar" style="max-width: 400px; margin: 16px auto;">
+            <div class="progress-fill" id="scanProgressBar" style="width: 10%; transition: width 0.3s;"></div>
+          </div>
+        </div>`;
+
+      // Fetch active languages
+      activeLanguages = await Qbank.fetchActiveLanguages();
+
+      const progressBar = document.getElementById('scanProgressBar');
+      const statusEl = document.getElementById('scanStatus');
+      let allIssues = [];
+      let allQuestions = [];
+
+      for (let i = 0; i < chaptersToScan.length; i++) {
+        const ch = chaptersToScan[i];
+        const pct = Math.round(((i + 1) / chaptersToScan.length) * 100);
+        progressBar.style.width = pct + '%';
+        statusEl.textContent = `Scanning: ${ch.name} (${i + 1}/${chaptersToScan.length})`;
+
+        const questions = await Qbank.fetchQuestionsForScan(ch.id);
+        allQuestions.push(...questions);
+
+        const issues = Qbank.runQualityValidators(questions, activeLanguages, ch.id);
+        allIssues.push(...issues);
+      }
+
+      scannedQuestions = allQuestions;
+      currentIssues = allIssues;
+      currentFilter = 'all';
+      savedToDb = false;
+      dbIssueMap.clear();
+
+      renderSummary(allQuestions, allIssues);
+      renderLanguageCoverage(allQuestions);
+      renderIssues(allIssues);
+
+      // Show save button if there are issues
+      document.getElementById('saveBtn').style.display =
+        allIssues.length > 0 ? 'inline-flex' : 'none';
+
+      // Check for existing auto/user reported issues in DB
+      checkForDbIssues(chaptersToScan.map(c => c.id));
+    }
+
+    // ========================================================================
+    // RENDER SUMMARY
+    // ========================================================================
+    function renderSummary(questions, issues) {
+      const total = questions.length;
+      const high = issues.filter(i => i.severity === 'high').length;
+      const med = issues.filter(i => i.severity === 'medium').length;
+      const low = issues.filter(i => i.severity === 'low').length;
+      const clean = total - new Set(issues.map(i => i.question_id)).size;
+
+      const chapterName = document.getElementById('chapterFilter')
+        .selectedOptions[0]?.textContent || 'Chapter';
+
+      document.getElementById('summaryCards').innerHTML = `
+        <div class="summary-card">
+          <div class="value">${total}</div>
+          <div class="label">Questions Scanned</div>
+        </div>
+        <div class="summary-card clean">
+          <div class="value" style="color: var(--success);">${clean}</div>
+          <div class="label">Clean (no issues)</div>
+        </div>
+        <div class="summary-card high">
+          <div class="value" style="color: var(--error);">${high}</div>
+          <div class="label">High Severity</div>
+        </div>
+        <div class="summary-card med">
+          <div class="value" style="color: var(--warning);">${med}</div>
+          <div class="label">Medium Severity</div>
+        </div>
+        <div class="summary-card low">
+          <div class="value" style="color: var(--info);">${low}</div>
+          <div class="label">Low Severity</div>
+        </div>
+      `;
+
+      document.getElementById('issuesTitle').textContent =
+        `Issues (${issues.length}) — ${chapterName}`;
+    }
+
+    // ========================================================================
+    // RENDER LANGUAGE COVERAGE
+    // ========================================================================
+    function renderLanguageCoverage(questions) {
+      if (activeLanguages.length === 0 || questions.length === 0) {
+        document.getElementById('langCoverage').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('langCoverage').style.display = 'block';
+      const barsEl = document.getElementById('langBars');
+
+      const html = activeLanguages.map(lang => {
+        const suffix = '_' + lang.id; // Derive suffix from language id
+        // Count questions with translation
+        const translated = questions.filter(q => {
+          const field = 'question_text' + suffix;
+          return q[field] && q[field].trim();
+        }).length;
+
+        const pct = questions.length > 0 ? Math.round((translated / questions.length) * 100) : 0;
+        const barClass = pct >= 80 ? 'good' : pct > 0 ? 'partial' : 'none';
+        const statusTag = pct === 100 ? '<span class="lang-status-tag" style="background: #d1fae5; color: #065f46;">Complete</span>'
+          : pct === 0 ? '<span class="lang-status-tag" style="background: var(--gray-100); color: var(--gray-600);">Not started</span>'
+          : '<span class="lang-status-tag" style="background: #fef3c7; color: #92400e;">In progress</span>';
+
+        return `
+          <div class="lang-row">
+            <span class="lang-label">${lang.emoji || ''} ${lang.label}</span>
+            <div class="lang-bar-wrap">
+              <div class="lang-bar-fill ${barClass}" style="width: ${pct}%;"></div>
+            </div>
+            <span class="lang-pct">${translated}/${questions.length} (${pct}%)</span>
+            ${statusTag}
+          </div>
+        `;
+      }).join('');
+
+      barsEl.innerHTML = html;
+    }
+
+    // ========================================================================
+    // RENDER ISSUES
+    // ========================================================================
+    function renderIssues(issues) {
+      const container = document.getElementById('issuesContainer');
+
+      // Exclude resolved issues from display
+      const active = issues.filter(i => i.status !== 'resolved');
+      const filtered = currentFilter === 'all'
+        ? active
+        : active.filter(i => i.severity === currentFilter);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="explore-empty">
+            <div class="icon">${currentFilter === 'all' ? '✅' : '🔍'}</div>
+            <p>${currentFilter === 'all'
+              ? 'No issues found! This chapter looks great.'
+              : `No ${currentFilter} severity issues.`}</p>
+          </div>`;
+        return;
+      }
+
+      // Group by issue_type (not label — so each actual type is one group)
+      const groups = {};
+      for (const issue of filtered) {
+        const key = issue.issue_type + (issue.details?.language || '');
+        if (!groups[key]) {
+          groups[key] = {
+            severity: issue.severity,
+            issueType: issue.issue_type,
+            label: getIssueLabel(issue),
+            issues: []
+          };
+        }
+        groups[key].issues.push(issue);
+      }
+
+      // Sort groups: high first, then medium, then low; then by count descending
+      const sevOrder = { high: 0, medium: 1, low: 2 };
+      const sorted = Object.entries(groups).sort((a, b) => {
+        const sevDiff = sevOrder[a[1].severity] - sevOrder[b[1].severity];
+        if (sevDiff !== 0) return sevDiff;
+        return b[1].issues.length - a[1].issues.length;
+      });
+
+      // Store groups data for copy feature
+      window._issueGroups = {};
+      for (const [key, group] of sorted) {
+        window._issueGroups[key] = group;
+      }
+
+      container.innerHTML = sorted.map(([key, group]) => `
+        <div class="issue-group" data-type="${group.issueType}" data-group-key="${key}">
+          <div class="issue-group-header">
+            <span class="issue-group-chevron" onclick="this.parentElement.parentElement.classList.toggle('collapsed')">▼</span>
+            <span onclick="this.parentElement.parentElement.classList.toggle('collapsed')">${getIssueIcon(group.severity)}</span>
+            <span onclick="this.parentElement.parentElement.classList.toggle('collapsed')" style="flex:1">${group.label}</span>
+            <span class="issue-group-count ${group.severity}">${group.issues.length}</span>
+            <button class="btn-copy-group" onclick="event.stopPropagation(); copyGroupIssues('${key}')" title="Copy all ${group.issues.length} issues">
+              📋 Copy
+            </button>
+            <span style="font-size: 0.7rem; color: var(--gray-400);">
+              ${group.severity.toUpperCase()}
+            </span>
+          </div>
+          <div class="issue-group-items">
+            ${group.issues.map(issue => renderIssueItem(issue)).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderIssueItem(issue) {
+      const q = scannedQuestions.find(q => q.id === issue.question_id);
+      const preview = q ? Qbank.escapeHtml((q.question_text || '').substring(0, 80)) : '';
+      const detail = getIssueDetail(issue);
+      const shortId = issue.question_id.substring(0, 8);
+      const isResolved = issue.status === 'resolved';
+      const source = issue.source || 'explore';
+      const sourceLabel = source === 'auto' ? 'Auto' : source === 'user' ? 'User' : 'Scan';
+      const sourceClass = source === 'auto' ? 'auto' : source === 'user' ? 'user' : 'scan';
+
+      return `
+        <div class="issue-item${isResolved ? ' resolved' : ''}" data-qid="${issue.question_id}">
+          <div class="issue-sev ${issue.severity}"></div>
+          <div class="issue-body">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="issue-qid" onclick="copyQuestionId('${issue.question_id}')" title="Click to copy full ID: ${issue.question_id}">
+                #${shortId}
+              </span>
+              ${q ? `<span class="badge badge-type">${Qbank.getQuestionTypeBadge(q.question_type)}</span>` : ''}
+              ${source !== 'explore' ? `<span class="issue-source ${sourceClass}">${sourceLabel}</span>` : ''}
+            </div>
+            ${detail ? `<div class="issue-detail">${detail}</div>` : ''}
+            ${issue.source === 'user' && issue.details?.reportType ? `<div class="issue-detail">Report: ${issue.details.reportType}${issue.details.description ? ' — ' + Qbank.escapeHtml(issue.details.description) : ''}</div>` : ''}
+            <div class="q-preview">${preview}${preview.length >= 80 ? '...' : ''}</div>
+          </div>
+          <div class="issue-actions">
+            ${!isResolved ? `
+              <button class="btn-resolve" onclick="resolveIssue('${issue.question_id}', '${issue.issue_type}', this)" title="Mark as resolved">
+                Resolve
+              </button>
+            ` : '<span style="font-size: 0.7rem; color: var(--success);">Resolved</span>'}
+          </div>
+        </div>
+      `;
+    }
+
+    function getIssueLabel(issue) {
+      const typeDef = Qbank.QUALITY_ISSUE_TYPES[issue.issue_type];
+      if (issue.issue_type === 'MISSING_TRANSLATION' && issue.details?.languageLabel) {
+        return `Missing ${issue.details.languageLabel} Translation`;
+      }
+      return typeDef?.label || issue.issue_type;
+    }
+
+    function getIssueDetail(issue) {
+      if (issue.issue_type === 'MISSING_TRANSLATION' && issue.details?.fields) {
+        return `Fields: ${issue.details.fields.join(', ')}`;
+      }
+      if (issue.issue_type === 'FEW_OPTIONS') {
+        return `Only ${issue.details?.optionCount || '?'} options (need 4)`;
+      }
+      if (issue.issue_type === 'CORRECT_ID_MISMATCH') {
+        return `Answer "${issue.details?.correct_answer}" not in options [${(issue.details?.available_keys || []).join(', ')}]`;
+      }
+      if (issue.issue_type === 'DUPLICATE_OPTIONS') {
+        return `Duplicated: "${(issue.details?.duplicates || []).join('", "')}"`;
+      }
+      if (issue.issue_type === 'ASSERTION_MALFORMED') {
+        const parts = [];
+        if (!issue.details?.hasAssertion) parts.push('assertion');
+        if (!issue.details?.hasReason) parts.push('reason');
+        return `Missing: ${parts.join(', ')}`;
+      }
+      if (issue.issue_type === 'EMPTY_OPTION_TEXT') {
+        return `Empty options: [${(issue.details?.emptyKeys || []).join(', ')}]`;
+      }
+      if (issue.issue_type === 'MULTIPLE_CORRECT') {
+        return `Multiple correct: [${(issue.details?.correctKeys || []).join(', ')}]`;
+      }
+      if (issue.issue_type === 'QUESTION_TOO_SHORT') {
+        return `Only ${issue.details?.length || 0} characters`;
+      }
+      if (issue.issue_type === 'IMAGE_LOAD_FAILED') {
+        return `Image URI: ${issue.details?.imageUri || 'unknown'}`;
+      }
+      if (issue.issue_type === 'USER_REPORTED' && issue.details?.reportType) {
+        return `${issue.details.reportType}${issue.details.description ? ': ' + issue.details.description : ''}`;
+      }
+      return '';
+    }
+
+    function getIssueIcon(severity) {
+      if (severity === 'high') return '🔴';
+      if (severity === 'medium') return '🟡';
+      return '🔵';
+    }
+
+    function filterIssues(severity) {
+      currentFilter = severity;
+
+      // Update button states
+      ['All', 'High', 'Med', 'Low'].forEach(id => {
+        const btn = document.getElementById('filter' + id);
+        if (btn) btn.style.fontWeight = '';
+      });
+      const activeBtn = document.getElementById('filter' + severity.charAt(0).toUpperCase() + severity.slice(1));
+      if (activeBtn) activeBtn.style.fontWeight = '700';
+      if (severity === 'all') document.getElementById('filterAll').style.fontWeight = '700';
+
+      renderIssues(currentIssues);
+    }
+
+    // ========================================================================
+    // COPY QUESTION ID
+    // ========================================================================
+    function copyQuestionId(qid) {
+      navigator.clipboard.writeText(qid).then(() => {
+        Qbank.showToast('Question ID copied', 'info');
+      });
+    }
+
+    function copyGroupIssues(groupKey) {
+      const group = window._issueGroups?.[groupKey];
+      if (!group || !group.issues.length) return;
+
+      const lines = [`${group.label} (${group.severity.toUpperCase()}) — ${group.issues.length} issues\n`];
+
+      for (const issue of group.issues) {
+        const q = scannedQuestions.find(sq => sq.id === issue.question_id);
+        const preview = q ? (q.question_text || '').substring(0, 100).replace(/\n/g, ' ') : '';
+        const detail = getIssueDetail(issue);
+        let line = `${issue.question_id}`;
+        if (q) line += `  [${q.question_type}]`;
+        if (detail) line += `  ${detail}`;
+        if (preview) line += `\n   ${preview}${preview.length >= 100 ? '...' : ''}`;
+        lines.push(line);
+      }
+
+      const text = lines.join('\n');
+      navigator.clipboard.writeText(text).then(() => {
+        Qbank.showToast(`Copied ${group.issues.length} issues`, 'success');
+      });
+    }
+
+    // ========================================================================
+    // RESOLVE ISSUE
+    // ========================================================================
+    async function resolveIssue(questionId, issueType, btnEl) {
+      // Find the issue in our local array
+      const issue = currentIssues.find(i =>
+        i.question_id === questionId && i.issue_type === issueType && i.status !== 'resolved'
+      );
+      if (!issue) return;
+
+      btnEl.disabled = true;
+      btnEl.textContent = '...';
+
+      // If saved to DB, resolve in DB too
+      const dbKey = questionId + '|' + issueType;
+      const dbId = issue._dbId || dbIssueMap.get(dbKey);
+      if (dbId) {
+        await Qbank.resolveQualityIssue(dbId);
+      }
+
+      // Mark resolved locally
+      issue.status = 'resolved';
+
+      // Update the item visually
+      const itemEl = btnEl.closest('.issue-item');
+      if (itemEl) {
+        itemEl.classList.add('resolved');
+        btnEl.outerHTML = '<span style="font-size: 0.7rem; color: var(--success);">Resolved</span>';
+      }
+
+      // Update group count
+      const groupEl = itemEl?.closest('.issue-group');
+      if (groupEl) {
+        const countEl = groupEl.querySelector('.issue-group-count');
+        const remaining = groupEl.querySelectorAll('.issue-item:not(.resolved)').length;
+        if (countEl) countEl.textContent = remaining;
+        if (remaining === 0) {
+          groupEl.style.opacity = '0.4';
+        }
+      }
+
+      // Update summary counts
+      renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    // ========================================================================
+    // SAVE ISSUES TO DB
+    // ========================================================================
+    async function saveIssuesToDb() {
+      const openIssues = currentIssues.filter(i => i.status !== 'resolved');
+      if (openIssues.length === 0) {
+        Qbank.showToast('No issues to save', 'info');
+        return;
+      }
+
+      const btn = document.getElementById('saveBtn');
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+
+      // Clear previous explore issues for these chapters first
+      const chapterIds = [...new Set(openIssues.map(i => i.chapter_id))];
+      for (const chId of chapterIds) {
+        await Qbank.clearExploreIssues(chId);
+      }
+
+      const result = await Qbank.saveQualityIssues(openIssues);
+
+      // Map saved issues back so Resolve can use DB ids
+      if (result.savedIssues) {
+        for (const si of result.savedIssues) {
+          dbIssueMap.set(si.question_id + '|' + si.issue_type, si.id);
+        }
+      }
+      savedToDb = true;
+
+      Qbank.showToast(
+        `Saved ${result.saved} issues (${result.skipped} already existed)`,
+        result.saved > 0 ? 'success' : 'info'
+      );
+
+      btn.disabled = false;
+      btn.textContent = 'Save Issues to DB';
+    }
+
+    // ========================================================================
+    // CHECK FOR DB ISSUES (auto + user reported)
+    // ========================================================================
+    async function checkForDbIssues(chapterIds) {
+      const hint = document.getElementById('dbIssuesHint');
+      hint.style.display = 'none';
+      dbIssuesLoaded = false;
+
+      let totalDbIssues = 0;
+      let autoCount = 0;
+      let userCount = 0;
+
+      for (const chId of chapterIds) {
+        const issues = await Qbank.fetchQualityIssues(chId, { status: 'open' });
+        // Count only auto and user source issues (not explore — those are from scans)
+        for (const i of issues) {
+          if (i.source === 'auto') { totalDbIssues++; autoCount++; }
+          if (i.source === 'user') { totalDbIssues++; userCount++; }
+        }
+      }
+
+      if (totalDbIssues > 0) {
+        const parts = [];
+        if (autoCount > 0) parts.push(`${autoCount} auto-detected`);
+        if (userCount > 0) parts.push(`${userCount} user-reported`);
+        document.getElementById('dbHintText').textContent =
+          `${parts.join(' and ')} issue${totalDbIssues > 1 ? 's' : ''} found in database`;
+        hint.style.display = 'flex';
+      }
+    }
+
+    // ========================================================================
+    // LOAD SAVED ISSUES FROM DB
+    // ========================================================================
+    async function loadSavedIssues() {
+      const chapterValue = document.getElementById('chapterFilter').value;
+      if (!chapterValue) {
+        Qbank.showToast('Select a chapter first', 'info');
+        return;
+      }
+
+      const chaptersToLoad = chapterValue === '__ALL__'
+        ? chapters
+        : chapters.filter(c => c.id === chapterValue);
+
+      document.getElementById('preResults').style.display = 'none';
+      document.getElementById('resultsContainer').style.display = 'block';
+
+      const container = document.getElementById('issuesContainer');
+      container.innerHTML = `
+        <div class="scan-progress">
+          <div class="loader-spinner"></div>
+          <h3>Loading saved issues...</h3>
+        </div>`;
+
+      let allDbIssues = [];
+      for (const ch of chaptersToLoad) {
+        const issues = await Qbank.fetchQualityIssues(ch.id, { status: 'open' });
+        allDbIssues.push(...issues);
+      }
+
+      // Map DB issues to the format our render functions expect
+      const mappedIssues = allDbIssues.map(i => ({
+        question_id: i.question_id,
+        chapter_id: i.chapter_id,
+        issue_type: i.issue_type,
+        severity: i.severity,
+        status: i.status,
+        source: i.source,
+        details: i.details || {},
+        _dbId: i.id,
+      }));
+
+      // Build dbIssueMap for resolve
+      dbIssueMap.clear();
+      for (const i of allDbIssues) {
+        dbIssueMap.set(i.question_id + '|' + i.issue_type, i.id);
+      }
+
+      // If we have scanned questions, reuse them; otherwise just show what we have
+      currentIssues = mappedIssues;
+      viewMode = 'saved';
+      dbIssuesLoaded = true;
+
+      // Hide the hint since we're now showing DB issues
+      document.getElementById('dbIssuesHint').style.display = 'none';
+
+      // Show summary for DB issues
+      const uniqueQuestions = new Set(mappedIssues.map(i => i.question_id)).size;
+      document.getElementById('summaryCards').innerHTML = `
+        <div class="summary-card">
+          <div class="value">${uniqueQuestions}</div>
+          <div class="label">Questions with Issues</div>
+        </div>
+        <div class="summary-card high">
+          <div class="value" style="color: var(--error);">${mappedIssues.filter(i => i.severity === 'high').length}</div>
+          <div class="label">High Severity</div>
+        </div>
+        <div class="summary-card med">
+          <div class="value" style="color: var(--warning);">${mappedIssues.filter(i => i.severity === 'medium').length}</div>
+          <div class="label">Medium Severity</div>
+        </div>
+        <div class="summary-card low">
+          <div class="value" style="color: var(--info);">${mappedIssues.filter(i => i.severity === 'low').length}</div>
+          <div class="label">Low Severity</div>
+        </div>
+      `;
+
+      const chapterName = document.getElementById('chapterFilter')
+        .selectedOptions[0]?.textContent || 'Chapter';
+      document.getElementById('issuesTitle').textContent =
+        `Saved Issues (${mappedIssues.length}) — ${chapterName}`;
+
+      // Hide language coverage and save btn for DB view
+      document.getElementById('langCoverage').style.display = 'none';
+      document.getElementById('saveBtn').style.display = 'none';
+
+      renderIssues(mappedIssues);
+    }
+
+    init();
+  </script>
+</body>
+</html>

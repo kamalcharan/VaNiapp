@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Pressable, Image, ActivityIndicator } from 'rea
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
 import { Option } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
+import { autoReportIssue } from '../../lib/qualityAutoDetect';
 
 interface DiagramBasedPayloadShape {
   type: 'diagram-based';
@@ -16,7 +17,7 @@ interface Props extends QuestionRendererProps {
   payload: DiagramBasedPayloadShape;
 }
 
-export function DiagramBasedQuestion({ language, selectedOptionId, showFeedback, onSelect, colors, payload }: Props) {
+export function DiagramBasedQuestion({ question, language, selectedOptionId, showFeedback, onSelect, colors, payload }: Props) {
   const [imageLoading, setImageLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
   const isCorrect = selectedOptionId === payload.correctOptionId;
@@ -52,7 +53,11 @@ export function DiagramBasedQuestion({ language, selectedOptionId, showFeedback,
               style={styles.diagramImage}
               resizeMode="contain"
               onLoadEnd={() => setImageLoading(false)}
-              onError={() => { setImageError(true); setImageLoading(false); }}
+              onError={() => {
+                setImageError(true);
+                setImageLoading(false);
+                autoReportIssue(question.id, 'IMAGE_LOAD_FAILED', { imageUri: payload.imageUri }, question.chapterId);
+              }}
               accessibilityLabel={payload.imageAlt || 'Diagram'}
             />
           </View>

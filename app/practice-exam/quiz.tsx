@@ -39,6 +39,7 @@ import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { recordDailyPractice } from '../../src/store/slices/streakSlice';
 import { syncChapterProgress } from '../../src/lib/progressSync';
 import { reportError } from '../../src/lib/errorReporting';
+import { ReportIssueSheet } from '../../src/components/exam/ReportIssueSheet';
 
 const SUBJECTS: { id: NeetSubjectId; emoji: string; short: string }[] = [
   { id: 'physics', emoji: '\u269B\uFE0F', short: 'PHY' },
@@ -83,6 +84,7 @@ export default function PracticeQuestionScreen() {
   const [activeSubject, setActiveSubject] = useState<NeetSubjectId>('physics');
   const [activeSection, setActiveSection] = useState<'A' | 'B'>('A');
   const [timeLeftMs, setTimeLeftMs] = useState(NEET_SCORING.timeLimitMs);
+  const [showReportSheet, setShowReportSheet] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Initialize session
@@ -661,6 +663,12 @@ export default function PracticeQuestionScreen() {
                 {isMarked ? 'Marked' : 'Mark for Review'}
               </Text>
             </Pressable>
+            <Pressable
+              onPress={() => setShowReportSheet(true)}
+              style={[styles.actionBtn, { borderColor: colors.surfaceBorder }]}
+            >
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>{'\u26A0\uFE0F'} Report</Text>
+            </Pressable>
           </View>
         </ScrollView>
 
@@ -688,6 +696,15 @@ export default function PracticeQuestionScreen() {
         </View>
       </SafeAreaView>
 
+      {/* Report Issue Sheet */}
+      {question && (
+        <ReportIssueSheet
+          visible={showReportSheet}
+          onClose={() => setShowReportSheet(false)}
+          questionId={question.id}
+          chapterId={question.chapterId}
+        />
+      )}
     </DotGridBackground>
   );
 }

@@ -25,6 +25,7 @@ import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
 import { AskVaniSheet } from '../../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
+import { ReportIssueSheet } from '../../src/components/exam/ReportIssueSheet';
 import { useToast } from '../../src/components/ui/Toast';
 import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
@@ -77,6 +78,7 @@ export default function QuickPracticeQuizScreen() {
   const [selectedConceptTag, setSelectedConceptTag] = useState('');
   const [showConfetti, setShowConfetti] = useState(false);
   const [answerStreak, setAnswerStreak] = useState(0);
+  const [showReportSheet, setShowReportSheet] = useState(false);
   const [timeLeftMs, setTimeLeftMs] = useState(QUICK_TIME_LIMIT_MS);
   const scrollRef = useRef<ScrollView>(null);
   const startTimeRef = useRef(Date.now());
@@ -373,6 +375,26 @@ export default function QuickPracticeQuizScreen() {
                   {isBookmarked ? '\uD83D\uDD16 Saved' : '\uD83D\uDCCC Save'}
                 </Text>
               </Pressable>
+              <Pressable
+                onPress={() => setShowReportSheet(true)}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                style={[
+                  styles.actionBadge,
+                  {
+                    backgroundColor: '#64748B15',
+                    borderColor: '#64748B40',
+                  },
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.actionBadgeText,
+                    { color: '#64748B' },
+                  ]}
+                >
+                  {'\u26A0\uFE0F'} Report
+                </Text>
+              </Pressable>
             </View>
           </View>
 
@@ -482,6 +504,15 @@ export default function QuickPracticeQuizScreen() {
         subjectId={question.subjectId as SubjectId}
         chapterId={question.chapterId}
         language={language}
+      />
+
+      {/* Report Issue Sheet */}
+      <ReportIssueSheet
+        visible={showReportSheet}
+        onClose={() => setShowReportSheet(false)}
+        questionId={question.id}
+        chapterId={question.chapterId}
+        onReported={() => toast.show('info', 'Report submitted')}
       />
     </DotGridBackground>
   );
