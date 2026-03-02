@@ -289,8 +289,8 @@ create table if not exists med_languages (
 );
 
 insert into med_languages (id, label, native, emoji, description, sort_order) values
-  ('en', 'English', 'English', '🇬🇧', 'Questions, explanations & UI in English', 1),
-  ('te', 'Telugu',  'తెలుగు',  '🇮🇳', 'Questions & explanations in Telugu, UI in English', 2)
+  ('en', 'English', 'English', 'Aa', 'Questions, explanations & UI in English', 1),
+  ('te', 'Telugu',  'తెలుగు',  'అ', 'Questions & explanations in Telugu, UI in English', 2)
 on conflict (id) do nothing;
 
 alter table med_languages enable row level security;
