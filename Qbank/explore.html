@@ -207,6 +207,41 @@
     }
     .btn-copy-group:hover { background: var(--gray-100); color: var(--gray-700); }
 
+    .issue-source {
+      font-size: 0.65rem;
+      padding: 1px 6px;
+      border-radius: 8px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .issue-source.scan { background: #EDE9FE; color: #6D28D9; }
+    .issue-source.user { background: #FEF3C7; color: #92400E; }
+    .issue-source.auto { background: #DBEAFE; color: #1E40AF; }
+
+    .db-issues-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #FFF7ED;
+      border: 1px solid #FED7AA;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      color: #9A3412;
+      margin-bottom: 16px;
+    }
+    .db-issues-hint button {
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px solid #F97316;
+      background: white;
+      color: #EA580C;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .db-issues-hint button:hover { background: #FFF7ED; }
+
     /* ── Scan progress ───────────────────────────────── */
     .scan-progress {
       text-align: center;
@@ -261,9 +296,12 @@
             <option value="">Select subject first</option>
           </select>
         </div>
-        <div>
+        <div style="display: flex; gap: 8px;">
           <button class="btn btn-primary" id="scanBtn" onclick="startScan()" disabled>
             🔍 Scan Chapter
+          </button>
+          <button class="btn btn-secondary" id="loadDbBtnTop" onclick="loadSavedIssues()" disabled>
+            📥 Saved Issues
           </button>
         </div>
       </div>
@@ -278,6 +316,12 @@
         <div class="lang-coverage" id="langCoverage" style="display: none;">
           <h3>🌐 Translation Coverage</h3>
           <div id="langBars"></div>
+        </div>
+
+        <!-- DB issues hint (shown when auto/user issues exist) -->
+        <div id="dbIssuesHint" class="db-issues-hint" style="display: none;">
+          <span id="dbHintText"></span>
+          <button onclick="loadSavedIssues()">View Saved Issues</button>
         </div>
 
         <!-- Action bar -->
@@ -336,6 +380,8 @@
     let scannedQuestions = [];
     let savedToDb = false;          // Track if current issues were saved
     let dbIssueMap = new Map();     // questionId+issueType → DB id
+    let dbIssuesLoaded = false;     // Track if DB issues are merged in
+    let viewMode = 'scan';          // 'scan' or 'saved'
 
     async function init() {
       const user = await Qbank.requireAuth();
@@ -426,6 +472,7 @@
     function onChapterChange() {
       const chapterId = document.getElementById('chapterFilter').value;
       document.getElementById('scanBtn').disabled = !chapterId;
+      document.getElementById('loadDbBtnTop').disabled = !chapterId;
     }
 
     // ========================================================================
@@ -487,6 +534,9 @@
       // Show save button if there are issues
       document.getElementById('saveBtn').style.display =
         allIssues.length > 0 ? 'inline-flex' : 'none';
+
+      // Check for existing auto/user reported issues in DB
+      checkForDbIssues(chaptersToScan.map(c => c.id));
     }
 
     // ========================================================================
@@ -649,6 +699,9 @@
       const detail = getIssueDetail(issue);
       const shortId = issue.question_id.substring(0, 8);
       const isResolved = issue.status === 'resolved';
+      const source = issue.source || 'explore';
+      const sourceLabel = source === 'auto' ? 'Auto' : source === 'user' ? 'User' : 'Scan';
+      const sourceClass = source === 'auto' ? 'auto' : source === 'user' ? 'user' : 'scan';
 
       return `
         <div class="issue-item${isResolved ? ' resolved' : ''}" data-qid="${issue.question_id}">
@@ -659,8 +712,10 @@
                 #${shortId}
               </span>
               ${q ? `<span class="badge badge-type">${Qbank.getQuestionTypeBadge(q.question_type)}</span>` : ''}
+              ${source !== 'explore' ? `<span class="issue-source ${sourceClass}">${sourceLabel}</span>` : ''}
             </div>
             ${detail ? `<div class="issue-detail">${detail}</div>` : ''}
+            ${issue.source === 'user' && issue.details?.reportType ? `<div class="issue-detail">Report: ${issue.details.reportType}${issue.details.description ? ' — ' + Qbank.escapeHtml(issue.details.description) : ''}</div>` : ''}
             <div class="q-preview">${preview}${preview.length >= 80 ? '...' : ''}</div>
           </div>
           <div class="issue-actions">
@@ -709,6 +764,12 @@
       }
       if (issue.issue_type === 'QUESTION_TOO_SHORT') {
         return `Only ${issue.details?.length || 0} characters`;
+      }
+      if (issue.issue_type === 'IMAGE_LOAD_FAILED') {
+        return `Image URI: ${issue.details?.imageUri || 'unknown'}`;
+      }
+      if (issue.issue_type === 'USER_REPORTED' && issue.details?.reportType) {
+        return `${issue.details.reportType}${issue.details.description ? ': ' + issue.details.description : ''}`;
       }
       return '';
     }
@@ -781,7 +842,7 @@
 
       // If saved to DB, resolve in DB too
       const dbKey = questionId + '|' + issueType;
-      const dbId = dbIssueMap.get(dbKey);
+      const dbId = issue._dbId || dbIssueMap.get(dbKey);
       if (dbId) {
         await Qbank.resolveQualityIssue(dbId);
       }
@@ -848,6 +909,126 @@
 
       btn.disabled = false;
       btn.textContent = 'Save Issues to DB';
+    }
+
+    // ========================================================================
+    // CHECK FOR DB ISSUES (auto + user reported)
+    // ========================================================================
+    async function checkForDbIssues(chapterIds) {
+      const hint = document.getElementById('dbIssuesHint');
+      hint.style.display = 'none';
+      dbIssuesLoaded = false;
+
+      let totalDbIssues = 0;
+      let autoCount = 0;
+      let userCount = 0;
+
+      for (const chId of chapterIds) {
+        const issues = await Qbank.fetchQualityIssues(chId, { status: 'open' });
+        // Count only auto and user source issues (not explore — those are from scans)
+        for (const i of issues) {
+          if (i.source === 'auto') { totalDbIssues++; autoCount++; }
+          if (i.source === 'user') { totalDbIssues++; userCount++; }
+        }
+      }
+
+      if (totalDbIssues > 0) {
+        const parts = [];
+        if (autoCount > 0) parts.push(`${autoCount} auto-detected`);
+        if (userCount > 0) parts.push(`${userCount} user-reported`);
+        document.getElementById('dbHintText').textContent =
+          `${parts.join(' and ')} issue${totalDbIssues > 1 ? 's' : ''} found in database`;
+        hint.style.display = 'flex';
+      }
+    }
+
+    // ========================================================================
+    // LOAD SAVED ISSUES FROM DB
+    // ========================================================================
+    async function loadSavedIssues() {
+      const chapterValue = document.getElementById('chapterFilter').value;
+      if (!chapterValue) {
+        Qbank.showToast('Select a chapter first', 'info');
+        return;
+      }
+
+      const chaptersToLoad = chapterValue === '__ALL__'
+        ? chapters
+        : chapters.filter(c => c.id === chapterValue);
+
+      document.getElementById('preResults').style.display = 'none';
+      document.getElementById('resultsContainer').style.display = 'block';
+
+      const container = document.getElementById('issuesContainer');
+      container.innerHTML = `
+        <div class="scan-progress">
+          <div class="loader-spinner"></div>
+          <h3>Loading saved issues...</h3>
+        </div>`;
+
+      let allDbIssues = [];
+      for (const ch of chaptersToLoad) {
+        const issues = await Qbank.fetchQualityIssues(ch.id, { status: 'open' });
+        allDbIssues.push(...issues);
+      }
+
+      // Map DB issues to the format our render functions expect
+      const mappedIssues = allDbIssues.map(i => ({
+        question_id: i.question_id,
+        chapter_id: i.chapter_id,
+        issue_type: i.issue_type,
+        severity: i.severity,
+        status: i.status,
+        source: i.source,
+        details: i.details || {},
+        _dbId: i.id,
+      }));
+
+      // Build dbIssueMap for resolve
+      dbIssueMap.clear();
+      for (const i of allDbIssues) {
+        dbIssueMap.set(i.question_id + '|' + i.issue_type, i.id);
+      }
+
+      // If we have scanned questions, reuse them; otherwise just show what we have
+      currentIssues = mappedIssues;
+      viewMode = 'saved';
+      dbIssuesLoaded = true;
+
+      // Hide the hint since we're now showing DB issues
+      document.getElementById('dbIssuesHint').style.display = 'none';
+
+      // Show summary for DB issues
+      const uniqueQuestions = new Set(mappedIssues.map(i => i.question_id)).size;
+      document.getElementById('summaryCards').innerHTML = `
+        <div class="summary-card">
+          <div class="value">${uniqueQuestions}</div>
+          <div class="label">Questions with Issues</div>
+        </div>
+        <div class="summary-card high">
+          <div class="value" style="color: var(--error);">${mappedIssues.filter(i => i.severity === 'high').length}</div>
+          <div class="label">High Severity</div>
+        </div>
+        <div class="summary-card med">
+          <div class="value" style="color: var(--warning);">${mappedIssues.filter(i => i.severity === 'medium').length}</div>
+          <div class="label">Medium Severity</div>
+        </div>
+        <div class="summary-card low">
+          <div class="value" style="color: var(--info);">${mappedIssues.filter(i => i.severity === 'low').length}</div>
+          <div class="label">Low Severity</div>
+        </div>
+      `;
+
+      const chapterName = document.getElementById('chapterFilter')
+        .selectedOptions[0]?.textContent || 'Chapter';
+      document.getElementById('issuesTitle').textContent =
+        `Saved Issues (${mappedIssues.length}) — ${chapterName}`;
+
+      // Hide language coverage and save btn for DB view
+      document.getElementById('langCoverage').style.display = 'none';
+      document.getElementById('saveBtn').style.display = 'none';
+
+      renderIssues(mappedIssues);
     }
 
     init();
