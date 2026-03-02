@@ -65,6 +65,19 @@
         </div>
       </div>
 
+      <!-- Quality Health Card -->
+      <div class="card" id="qualityHealthCard" style="margin-bottom: 24px; display: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px; padding: 16px 20px;">
+          <div id="qualityIcon" style="font-size: 2rem; flex-shrink: 0;">🔍</div>
+          <div style="flex: 1;">
+            <div style="font-weight: 600; font-size: 0.95rem;" id="qualityTitle">Quality Health</div>
+            <div style="font-size: 0.85rem; color: var(--gray-500); margin-top: 2px;" id="qualityDesc">Loading...</div>
+          </div>
+          <div style="display: flex; gap: 12px; flex-shrink: 0;" id="qualityCounts"></div>
+          <a href="./explore.html" class="btn btn-sm btn-secondary">Open Explorer</a>
+        </div>
+      </div>
+
       <!-- Subject Cards -->
       <div class="subject-cards-grid" id="subjectCardsGrid">
         <!-- Dynamically populated -->
@@ -162,15 +175,19 @@
       }
 
       // Load all data once
-      const [stats, jobs, chapters] = await Promise.all([
+      const [stats, jobs, chapters, qualitySummary] = await Promise.all([
         Qbank.getQuestionStats(),
         Qbank.fetchGenerationJobs(),
-        Qbank.fetchChapters()
+        Qbank.fetchChapters(),
+        Qbank.fetchQualityIssueSummary()
       ]);
 
       allStats = stats || [];
       allJobs = jobs || [];
       allChapters = chapters || [];
+
+      // Show quality health card
+      renderQualityHealth(qualitySummary);
 
       // Render for current exam
       renderDashboard();
@@ -181,6 +198,44 @@
       if (hour < 12) return 'Good morning';
       if (hour < 17) return 'Good afternoon';
       return 'Good evening';
+    }
+
+    // ========================================================================
+    // QUALITY HEALTH
+    // ========================================================================
+    function renderQualityHealth(summary) {
+      const card = document.getElementById('qualityHealthCard');
+      if (!summary || summary.total === 0) {
+        card.style.display = 'none';
+        return;
+      }
+
+      card.style.display = 'block';
+
+      const icon = document.getElementById('qualityIcon');
+      const title = document.getElementById('qualityTitle');
+      const desc = document.getElementById('qualityDesc');
+      const counts = document.getElementById('qualityCounts');
+
+      if (summary.high > 0) {
+        icon.textContent = '🔴';
+        card.style.borderLeft = '4px solid var(--error)';
+      } else if (summary.medium > 0) {
+        icon.textContent = '🟡';
+        card.style.borderLeft = '4px solid var(--warning)';
+      } else {
+        icon.textContent = '🔵';
+        card.style.borderLeft = '4px solid var(--info)';
+      }
+
+      title.textContent = `${summary.total} open quality issues`;
+      desc.textContent = `Across ${summary.chapters} chapter${summary.chapters !== 1 ? 's' : ''} — run the Explorer to scan more`;
+
+      counts.innerHTML = [
+        summary.high > 0 ? `<span style="font-size: 0.8rem; padding: 2px 10px; border-radius: 10px; background: var(--error-light); color: #991b1b; font-weight: 600;">${summary.high} high</span>` : '',
+        summary.medium > 0 ? `<span style="font-size: 0.8rem; padding: 2px 10px; border-radius: 10px; background: var(--warning-light); color: #92400e; font-weight: 600;">${summary.medium} med</span>` : '',
+        summary.low > 0 ? `<span style="font-size: 0.8rem; padding: 2px 10px; border-radius: 10px; background: var(--info-light); color: #1e40af; font-weight: 600;">${summary.low} low</span>` : '',
+      ].filter(Boolean).join('');
     }
 
     // ========================================================================
