@@ -271,7 +271,6 @@ function buildPayload(
       };
 
     case 'diagram-based':
-      console.log('[DIAG-DEBUG]', JSON.stringify({ db_image_url: row.image_url, payload_image_uri: raw.image_uri, question_id: raw.question_id }));
       return {
         type: 'diagram-based',
         imageUri: row.image_url || (raw.image_uri as string) || '',
