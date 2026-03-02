@@ -89,8 +89,8 @@ const FALLBACK_SUBJECTS: CatalogSubject[] = [
 ];
 
 const FALLBACK_LANGUAGES: CatalogLanguage[] = [
-  { id: 'en', label: 'English', native: 'English', emoji: '\uD83C\uDDEC\uD83C\uDDE7', description: 'Questions, explanations & UI in English', sort_order: 1 },
-  { id: 'te', label: 'Telugu', native: '\u0C24\u0C46\u0C32\u0C41\u0C17\u0C41', emoji: '\uD83C\uDDEE\uD83C\uDDF3', description: 'Questions & explanations in Telugu, UI in English', sort_order: 2 },
+  { id: 'en', label: 'English', native: 'English', emoji: 'Aa', description: 'Questions, explanations & UI in English', sort_order: 1 },
+  { id: 'te', label: 'Telugu', native: '\u0C24\u0C46\u0C32\u0C41\u0C17\u0C41', emoji: '\u0C05', description: 'Questions & explanations in Telugu, UI in English', sort_order: 2 },
 ];
 
 // ── In-memory cache ──────────────────────────────────────────
