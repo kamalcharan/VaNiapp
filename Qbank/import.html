@@ -476,6 +476,40 @@ Go to the Insert page to add these to the database.`);
           const q = parsedQuestions[i];
           try {
             // Insert question
+            // Build payload: metadata + type-specific fields the app reads
+            const payload = {
+              topic: q.topic,
+              subtopic: q.subtopic,
+              bloom_level: q.bloom_level,
+              exam_suitability: q.exam_suitability,
+              source: 'manual_import'
+            };
+            // Scenario-based: store scenario separately so the app doesn't duplicate question_text
+            if (q.scenario) payload.scenario = q.scenario;
+            if (q.scenario_te) payload.scenario_te = q.scenario_te;
+            // Fill-in-blanks: store text_with_blanks for the blanks card
+            if (q.text_with_blanks) payload.text_with_blanks = q.text_with_blanks;
+            if (q.text_with_blanks_te) payload.text_with_blanks_te = q.text_with_blanks_te;
+            // True-false: store correct_answer boolean for the TF component
+            if (q.question_type === 'true-false') {
+              payload.correct_answer = (q.correct_answer === 'A' || q.correct_answer === 'True' || q.correct_answer === 'true');
+            }
+            // Assertion-reasoning: store assertion + reason for styled cards
+            if (q.assertion) payload.assertion = q.assertion;
+            if (q.assertion_te) payload.assertion_te = q.assertion_te;
+            if (q.reason) payload.reason = q.reason;
+            if (q.reason_te) payload.reason_te = q.reason_te;
+            // Match-the-following: store columns and mapping
+            if (q.column_a) payload.column_a = q.column_a;
+            if (q.column_b) payload.column_b = q.column_b;
+            if (q.correct_mapping) payload.correct_mapping = q.correct_mapping;
+            // Logical-sequence: store items and correct_order
+            if (q.items) payload.items = q.items;
+            if (q.correct_order) payload.correct_order = q.correct_order;
+            // Diagram-based: image_uri goes to image_url column, image_alt to image_alt column
+            // but also store in payload for redundancy
+            if (q.image_uri) payload.image_uri = q.image_uri;
+
             const { data: insertedQ, error: qError } = await Qbank.supabase
               .from('med_questions')
               .insert({
@@ -486,15 +520,11 @@ Go to the Insert page to add these to the database.`);
                 question_text: q.question_text,
                 correct_answer: q.correct_answer,
                 explanation: q.explanation || '',
+                image_url: q.image_uri || null,
+                image_alt: q.image_alt || null,
                 status: 'active',
                 concept_tags: q.concept_tags || [],
-                payload: {
-                  topic: q.topic,
-                  subtopic: q.subtopic,
-                  bloom_level: q.bloom_level,
-                  exam_suitability: q.exam_suitability,
-                  source: 'manual_import'
-                }
+                payload: payload
               })
               .select()
               .single();
