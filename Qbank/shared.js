@@ -1408,12 +1408,15 @@ const QUALITY_ISSUE_TYPES = {
   USER_REPORTED:         { severity: 'medium', label: 'User reported issue' },
 };
 
-// Translation field mapping per language suffix
-// When a new language is added (e.g., 'hi'), add column suffix here
-const LANGUAGE_COLUMN_SUFFIXES = {
-  te: '_te',
-  // Future: hi: '_hi', ta: '_ta', kn: '_kn'
-};
+/**
+ * Derive column suffix from language id.
+ * Convention: language id 'te' → column suffix '_te', 'hi' → '_hi', etc.
+ * This means adding a new language to med_languages automatically enables
+ * translation quality checks — no code changes needed.
+ */
+function getLanguageSuffix(langId) {
+  return '_' + langId;
+}
 
 // Translatable fields on med_questions
 const QUESTION_TRANSLATABLE_FIELDS = ['question_text', 'explanation'];
@@ -1573,8 +1576,7 @@ function runQualityValidators(questions, languages, chapterId) {
 
     // ── Translation checks (per active language) ────────────
     for (const lang of languages) {
-      const suffix = LANGUAGE_COLUMN_SUFFIXES[lang.id];
-      if (!suffix) continue; // no column mapping yet for this language
+      const suffix = getLanguageSuffix(lang.id);
 
       const missingFields = [];
 

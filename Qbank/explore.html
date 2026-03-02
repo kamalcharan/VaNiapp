@@ -497,7 +497,7 @@
       const barsEl = document.getElementById('langBars');
 
       const html = activeLanguages.map(lang => {
-        const suffix = '_te'; // Currently all non-English use _te columns
+        const suffix = '_' + lang.id; // Derive suffix from language id
         // Count questions with translation
         const translated = questions.filter(q => {
           const field = 'question_text' + suffix;
