@@ -195,6 +195,17 @@
       white-space: nowrap;
     }
     .btn-resolve:hover { background: var(--success-light); border-color: var(--success); color: #065f46; }
+    .btn-copy-group {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--gray-300);
+      background: white;
+      cursor: pointer;
+      color: var(--gray-500);
+      white-space: nowrap;
+    }
+    .btn-copy-group:hover { background: var(--gray-100); color: var(--gray-700); }
 
     /* ── Scan progress ───────────────────────────────── */
     .scan-progress {
@@ -605,14 +616,23 @@
         return b[1].issues.length - a[1].issues.length;
       });
 
+      // Store groups data for copy feature
+      window._issueGroups = {};
+      for (const [key, group] of sorted) {
+        window._issueGroups[key] = group;
+      }
+
       container.innerHTML = sorted.map(([key, group]) => `
-        <div class="issue-group" data-type="${group.issueType}">
-          <div class="issue-group-header" onclick="this.parentElement.classList.toggle('collapsed')">
-            <span class="issue-group-chevron">▼</span>
-            <span>${getIssueIcon(group.severity)}</span>
-            <span>${group.label}</span>
+        <div class="issue-group" data-type="${group.issueType}" data-group-key="${key}">
+          <div class="issue-group-header">
+            <span class="issue-group-chevron" onclick="this.parentElement.parentElement.classList.toggle('collapsed')">▼</span>
+            <span onclick="this.parentElement.parentElement.classList.toggle('collapsed')">${getIssueIcon(group.severity)}</span>
+            <span onclick="this.parentElement.parentElement.classList.toggle('collapsed')" style="flex:1">${group.label}</span>
             <span class="issue-group-count ${group.severity}">${group.issues.length}</span>
-            <span style="margin-left: auto; font-size: 0.7rem; color: var(--gray-400);">
+            <button class="btn-copy-group" onclick="event.stopPropagation(); copyGroupIssues('${key}')" title="Copy all ${group.issues.length} issues">
+              📋 Copy
+            </button>
+            <span style="font-size: 0.7rem; color: var(--gray-400);">
               ${group.severity.toUpperCase()}
             </span>
           </div>
@@ -720,6 +740,29 @@
     function copyQuestionId(qid) {
       navigator.clipboard.writeText(qid).then(() => {
         Qbank.showToast('Question ID copied', 'info');
+      });
+    }
+
+    function copyGroupIssues(groupKey) {
+      const group = window._issueGroups?.[groupKey];
+      if (!group || !group.issues.length) return;
+
+      const lines = [`${group.label} (${group.severity.toUpperCase()}) — ${group.issues.length} issues\n`];
+
+      for (const issue of group.issues) {
+        const q = scannedQuestions.find(sq => sq.id === issue.question_id);
+        const preview = q ? (q.question_text || '').substring(0, 100).replace(/\n/g, ' ') : '';
+        const detail = getIssueDetail(issue);
+        let line = `${issue.question_id}`;
+        if (q) line += `  [${q.question_type}]`;
+        if (detail) line += `  ${detail}`;
+        if (preview) line += `\n   ${preview}${preview.length >= 100 ? '...' : ''}`;
+        lines.push(line);
+      }
+
+      const text = lines.join('\n');
+      navigator.clipboard.writeText(text).then(() => {
+        Qbank.showToast(`Copied ${group.issues.length} issues`, 'success');
       });
     }
 
