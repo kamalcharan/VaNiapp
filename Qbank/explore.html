@@ -618,11 +618,20 @@
       if (issue.issue_type === 'DUPLICATE_OPTIONS') {
         return `Duplicated: "${(issue.details?.duplicates || []).join('", "')}"`;
       }
-      if (issue.issue_type === 'EMPTY_ASSERTION') {
+      if (issue.issue_type === 'ASSERTION_MALFORMED') {
         const parts = [];
-        if (issue.details?.missingAssertion) parts.push('assertion');
-        if (issue.details?.missingReason) parts.push('reason');
+        if (!issue.details?.hasAssertion) parts.push('assertion');
+        if (!issue.details?.hasReason) parts.push('reason');
         return `Missing: ${parts.join(', ')}`;
+      }
+      if (issue.issue_type === 'EMPTY_OPTION_TEXT') {
+        return `Empty options: [${(issue.details?.emptyKeys || []).join(', ')}]`;
+      }
+      if (issue.issue_type === 'MULTIPLE_CORRECT') {
+        return `Multiple correct: [${(issue.details?.correctKeys || []).join(', ')}]`;
+      }
+      if (issue.issue_type === 'QUESTION_TOO_SHORT') {
+        return `Only ${issue.details?.length || 0} characters`;
       }
       return '';
     }

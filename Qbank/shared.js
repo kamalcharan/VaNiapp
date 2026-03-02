@@ -1381,31 +1381,32 @@ function parseJsonResponse(text) {
 
 // Issue type definitions (severity is the default; can be overridden)
 const QUALITY_ISSUE_TYPES = {
-  // Data integrity
-  EMPTY_QUESTION_TEXT:   { severity: 'high',   label: 'Empty question text' },
-  EMPTY_OPTIONS:         { severity: 'high',   label: 'No answer options' },
-  FEW_OPTIONS:           { severity: 'high',   label: 'Less than 4 options' },
-  NO_CORRECT_ANSWER:     { severity: 'high',   label: 'No correct answer marked' },
-  CORRECT_ID_MISMATCH:  { severity: 'high',   label: 'Correct answer key invalid' },
-  DUPLICATE_OPTIONS:     { severity: 'high',   label: 'Duplicate option text' },
+  // Data integrity — critical issues that break the question
+  EMPTY_QUESTION_TEXT:    { severity: 'high',   label: 'Empty question text' },
+  QUESTION_TOO_SHORT:    { severity: 'high',   label: 'Question text too short' },
+  EMPTY_OPTIONS:          { severity: 'high',   label: 'No answer options' },
+  EMPTY_OPTION_TEXT:      { severity: 'high',   label: 'Option has empty text' },
+  FEW_OPTIONS:            { severity: 'medium', label: 'Less than 4 options' },
+  NO_CORRECT_ANSWER:      { severity: 'high',   label: 'No correct answer marked' },
+  MULTIPLE_CORRECT:       { severity: 'medium', label: 'Multiple correct answers' },
+  CORRECT_ID_MISMATCH:   { severity: 'high',   label: 'Correct answer key invalid' },
+  DUPLICATE_OPTIONS:      { severity: 'high',   label: 'Duplicate option text' },
 
-  // Type-specific
-  IMAGE_URI_EMPTY:       { severity: 'high',   label: 'Image URI missing' },
-  EMPTY_SCENARIO:        { severity: 'high',   label: 'Empty scenario text' },
-  EMPTY_ASSERTION:       { severity: 'high',   label: 'Empty assertion or reason' },
-  MTF_MISSING_COLUMNS:   { severity: 'high',   label: 'Match columns missing' },
-  BLANKS_NO_BLANKS:      { severity: 'high',   label: 'Fill-in-blanks has no ___' },
-  SEQUENCE_EMPTY_ITEMS:  { severity: 'high',   label: 'Sequence has no items' },
+  // Type-specific — checks content in both question_text and payload
+  IMAGE_URI_EMPTY:        { severity: 'high',   label: 'Diagram has no image' },
+  ASSERTION_MALFORMED:    { severity: 'high',   label: 'Missing assertion or reason' },
+  MTF_MALFORMED:          { severity: 'medium', label: 'Match columns not detected' },
+  BLANKS_NO_BLANKS:       { severity: 'high',   label: 'Fill-in-blanks has no ___' },
 
   // Content quality
-  EMPTY_EXPLANATION:     { severity: 'medium', label: 'No explanation' },
-  NO_ELIMINATION_HINTS:  { severity: 'low',    label: 'No elimination hints' },
+  EMPTY_EXPLANATION:      { severity: 'medium', label: 'No explanation' },
+  NO_ELIMINATION_HINTS:   { severity: 'low',    label: 'No elimination hints' },
 
   // Translation (parameterized via details.language)
-  MISSING_TRANSLATION:   { severity: 'medium', label: 'Missing translation' },
+  MISSING_TRANSLATION:    { severity: 'low',    label: 'Missing translation' },
 
   // User-reported
-  USER_REPORTED:         { severity: 'medium', label: 'User reported issue' },
+  USER_REPORTED:          { severity: 'medium', label: 'User reported issue' },
 };
 
 /**
@@ -1426,13 +1427,14 @@ const OPTION_TRANSLATABLE_FIELDS = ['option_text'];
 const HINT_TRANSLATABLE_FIELDS = ['hint_text', 'misconception'];
 
 // Payload fields that need translation per question type
+// Only checked if the English field actually exists in payload (rich payload pattern)
 const PAYLOAD_TRANSLATABLE_FIELDS = {
   'assertion-reasoning': ['assertion', 'reason'],
   'scenario-based':      ['scenario'],
   'true-false':          ['statement'],
   'fill-in-blanks':     ['text_with_blanks'],
-  'match-the-following': [], // column items checked separately
-  'logical-sequence':    [], // items checked separately
+  'match-the-following': [],
+  'logical-sequence':    [],
 };
 
 /**
@@ -1475,10 +1477,14 @@ function runQualityValidators(questions, languages, chapterId) {
   for (const q of questions) {
     const opts = q.options || q.med_question_options || [];
     const hints = q.hints || q.med_elimination_hints || [];
+    const qText = (q.question_text || '').trim();
+    const payload = q.payload || {};
 
     // ── Data integrity ──────────────────────────────────────
-    if (!q.question_text || q.question_text.trim() === '') {
+    if (!qText) {
       issues.push(makeIssue(q, chapterId, 'EMPTY_QUESTION_TEXT'));
+    } else if (qText.length < 15) {
+      issues.push(makeIssue(q, chapterId, 'QUESTION_TOO_SHORT', { length: qText.length }));
     }
 
     if (opts.length === 0 && q.question_type !== 'true-false') {
@@ -1488,9 +1494,24 @@ function runQualityValidators(questions, languages, chapterId) {
     }
 
     if (opts.length > 0) {
-      const hasCorrect = opts.some(o => o.is_correct);
-      if (!hasCorrect && q.question_type !== 'true-false') {
+      // Check for empty option text
+      const emptyOpts = opts.filter(o => {
+        const text = (o.option_text || o.text || '').trim();
+        return !text;
+      });
+      if (emptyOpts.length > 0) {
+        issues.push(makeIssue(q, chapterId, 'EMPTY_OPTION_TEXT', {
+          emptyKeys: emptyOpts.map(o => o.option_key || o.key)
+        }));
+      }
+
+      const correctOpts = opts.filter(o => o.is_correct);
+      if (correctOpts.length === 0 && q.question_type !== 'true-false') {
         issues.push(makeIssue(q, chapterId, 'NO_CORRECT_ANSWER'));
+      } else if (correctOpts.length > 1 && q.question_type === 'mcq') {
+        issues.push(makeIssue(q, chapterId, 'MULTIPLE_CORRECT', {
+          correctKeys: correctOpts.map(o => o.option_key || o.key)
+        }));
       }
 
       // Check correct_answer key matches an option
@@ -1513,7 +1534,9 @@ function runQualityValidators(questions, languages, chapterId) {
     }
 
     // ── Type-specific ───────────────────────────────────────
-    const payload = q.payload || {};
+    // Checks handle BOTH data patterns:
+    //   Lean payload: content in question_text, payload = metadata only
+    //   Rich payload: content in payload fields (CUET-style)
 
     switch (q.question_type) {
       case 'diagram-based': {
@@ -1523,46 +1546,43 @@ function runQualityValidators(questions, languages, chapterId) {
         }
         break;
       }
-      case 'scenario-based': {
-        const scenario = payload.scenario || '';
-        if (!scenario.trim()) {
-          issues.push(makeIssue(q, chapterId, 'EMPTY_SCENARIO'));
-        }
-        break;
-      }
       case 'assertion-reasoning': {
-        const assertion = payload.assertion || '';
-        const reason = payload.reason || '';
-        if (!assertion.trim() || !reason.trim()) {
-          issues.push(makeIssue(q, chapterId, 'EMPTY_ASSERTION', {
-            missingAssertion: !assertion.trim(),
-            missingReason: !reason.trim()
+        // Rich payload: payload.assertion + payload.reason
+        // Lean payload: "Assertion (A): ...\nReason (R): ..." in question_text
+        const hasPayloadAR = (payload.assertion || '').trim() && (payload.reason || '').trim();
+        const hasTextAssertion = /assertion\s*\(?a\)?/i.test(qText);
+        const hasTextReason = /reason\s*\(?r\)?/i.test(qText);
+        const hasTextAR = hasTextAssertion && hasTextReason;
+
+        if (!hasPayloadAR && !hasTextAR) {
+          issues.push(makeIssue(q, chapterId, 'ASSERTION_MALFORMED', {
+            hasAssertion: hasPayloadAR || hasTextAssertion,
+            hasReason: hasPayloadAR || hasTextReason
           }));
         }
         break;
       }
       case 'match-the-following': {
-        const colA = payload.column_a || payload.columnA || [];
-        const colB = payload.column_b || payload.columnB || [];
-        if ((!Array.isArray(colA) || colA.length === 0) && (!Array.isArray(colB) || colB.length === 0)) {
-          issues.push(makeIssue(q, chapterId, 'MTF_MISSING_COLUMNS'));
+        // Rich payload: payload.column_a + payload.column_b
+        // Lean payload: "Column A | Column B" or matching list in question_text
+        const hasPayloadCols = (Array.isArray(payload.column_a || payload.columnA) &&
+          (payload.column_a || payload.columnA).length > 0);
+        const hasTextCols = /column\s*[ab]|match.*following/i.test(qText);
+
+        if (!hasPayloadCols && !hasTextCols) {
+          issues.push(makeIssue(q, chapterId, 'MTF_MALFORMED'));
         }
         break;
       }
       case 'fill-in-blanks': {
-        const blanksText = payload.text_with_blanks || payload.textWithBlanks || q.question_text || '';
-        if (!blanksText.includes('___') && !blanksText.includes('____')) {
+        const blanksText = payload.text_with_blanks || payload.textWithBlanks || qText;
+        if (!blanksText.includes('___') && !blanksText.includes('______')) {
           issues.push(makeIssue(q, chapterId, 'BLANKS_NO_BLANKS'));
         }
         break;
       }
-      case 'logical-sequence': {
-        const items = payload.items || [];
-        if (!Array.isArray(items) || items.length === 0) {
-          issues.push(makeIssue(q, chapterId, 'SEQUENCE_EMPTY_ITEMS'));
-        }
-        break;
-      }
+      // scenario-based and logical-sequence: content is always in question_text
+      // No special payload check needed — question_text emptiness already caught above
     }
 
     // ── Content quality ─────────────────────────────────────
