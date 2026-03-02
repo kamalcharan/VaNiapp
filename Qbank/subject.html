@@ -609,6 +609,12 @@
                 ${chReady > 0 ? `<span style="color: var(--success);">${chReady} ready</span>` : ''}
               </div>
               <div class="chapter-actions">
+                <a href="./explore.html?exam=${examId}&subject=${subjectId}&chapter=${ch.id}"
+                   class="btn btn-sm btn-secondary" onclick="event.stopPropagation();"
+                   title="Scan for quality issues"
+                   style="${counts.total === 0 ? 'display:none;' : ''}">
+                  🔍 Explore
+                </a>
                 <a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${ch.id}"
                    class="btn btn-sm btn-primary" onclick="event.stopPropagation();">
                   ${counts.total === 0 ? 'Generate First' : 'Generate More'}
