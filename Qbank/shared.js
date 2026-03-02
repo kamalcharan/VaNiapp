@@ -1723,25 +1723,24 @@ async function fetchQuestionsForScan(chapterId) {
 }
 
 /**
- * Save quality issues to DB (upsert — skips existing open issues).
+ * Save quality issues to DB (insert, skip duplicates).
+ * Returns { saved, skipped, savedIssues } where savedIssues has DB ids.
  */
 async function saveQualityIssues(issues) {
-  if (!SUPABASE || issues.length === 0) return { saved: 0, skipped: 0 };
+  if (!SUPABASE || issues.length === 0) return { saved: 0, skipped: 0, savedIssues: [] };
 
   let saved = 0;
   let skipped = 0;
+  const savedIssues = [];
 
-  // Insert one at a time to handle conflict gracefully
   for (const issue of issues) {
-    const { error } = await SUPABASE
+    const { data, error } = await SUPABASE
       .from('med_quality_issues')
-      .upsert(issue, {
-        onConflict: 'question_id,issue_type,md5(details::text)',
-        ignoreDuplicates: true
-      });
+      .insert(issue)
+      .select()
+      .single();
 
     if (error) {
-      // Unique constraint violation means already exists — skip
       if (error.code === '23505') {
         skipped++;
       } else {
@@ -1750,10 +1749,11 @@ async function saveQualityIssues(issues) {
       }
     } else {
       saved++;
+      if (data) savedIssues.push(data);
     }
   }
 
-  return { saved, skipped };
+  return { saved, skipped, savedIssues };
 }
 
 /**
