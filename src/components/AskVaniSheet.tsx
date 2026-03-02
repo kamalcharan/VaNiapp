@@ -376,7 +376,7 @@ export function AskVaniSheet({
             },
           ]}
         >
-          <Pressable onPress={() => {}}>
+          <Pressable onPress={() => {}} style={{ flex: 1 }}>
             {/* Handle bar */}
             <View style={styles.handleRow}>
               <View style={[styles.handle, { backgroundColor: colors.surfaceBorder }]} />
@@ -451,6 +451,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingBottom: 34,
+    overflow: 'hidden',
   },
   handleRow: {
     alignItems: 'center',
@@ -497,7 +498,7 @@ const chatStyles = StyleSheet.create({
     marginTop: -1,
   },
   chatScroll: {
-    maxHeight: SCREEN_HEIGHT * 0.45,
+    flex: 1,
     marginTop: Spacing.md,
   },
   chatContent: {
