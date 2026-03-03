@@ -413,10 +413,33 @@
         }
       }
 
+      // One-time data migration: fix kidney filtrate question with no options
+      runOneMigration();
+
       // Listeners
       document.getElementById('examFilter').addEventListener('change', onExamChange);
       document.getElementById('subjectFilter').addEventListener('change', onSubjectChange);
       document.getElementById('chapterFilter').addEventListener('change', onChapterChange);
+    }
+
+    async function runOneMigration() {
+      const QID = '62b7a358-196c-459f-b095-7dfbde4352ce';
+      const MIGRATION_KEY = 'migration_fix_' + QID;
+      if (localStorage.getItem(MIGRATION_KEY)) return; // already ran
+
+      const result = await Qbank.fixEmptyOptions(QID, [
+        { key: 'A', text: '180 litres' },
+        { key: 'B', text: '1.5 litres' },
+        { key: 'C', text: '18 litres' },
+        { key: 'D', text: '80 litres' }
+      ], 'A');
+
+      if (result.success) {
+        localStorage.setItem(MIGRATION_KEY, Date.now().toString());
+        console.log('[migration] Fixed kidney filtrate MCQ options');
+      } else {
+        console.warn('[migration] Failed to fix kidney filtrate MCQ:', result.error);
+      }
     }
 
     async function onExamChange() {
