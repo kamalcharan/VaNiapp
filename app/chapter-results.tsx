@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -14,9 +14,10 @@ import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
 import { getChapterById } from '../src/data/chapters';
 import { getV2QuestionsByChapter } from '../src/data/questions';
+import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter';
 import { RootState } from '../src/store';
-import { NeetSubjectId } from '../src/types';
+import { NeetSubjectId, QuestionV2 } from '../src/types';
 
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
@@ -40,6 +41,15 @@ export default function ChapterResultsScreen() {
     ? (quickSubjectId ? SUBJECT_META[quickSubjectId] : null)
     : (chapter ? SUBJECT_META[chapter.subjectId] : null);
   const questions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
+
+  // Fetch Supabase questions (cached from quiz session) for topic data
+  const [dbQuestions, setDbQuestions] = useState<QuestionV2[]>([]);
+  useEffect(() => {
+    if (!chapterId || isQuickMode) return;
+    fetchQuestionsByChapter(chapterId).then((result) => {
+      if (result.ok) setDbQuestions(result.questions);
+    });
+  }, [chapterId, isQuickMode]);
 
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
@@ -91,6 +101,27 @@ export default function ChapterResultsScreen() {
     }
     return Object.entries(stats).filter(([, v]) => v.total > 0);
   }, [lastSession, questions]);
+
+  // Topic breakdown (uses Supabase questions with topicId/topicName)
+  const topicStats = useMemo(() => {
+    if (!lastSession || !dbQuestions.length) return null;
+    const answeredIds = new Set(lastSession.answers.map((a) => a.questionId));
+    const stats: Record<string, { correct: number; total: number; name: string; nameTe: string }> = {};
+    for (const q of dbQuestions) {
+      if (!q.topicId || !q.topicName) continue;
+      if (!answeredIds.has(q.id)) continue;
+      if (!stats[q.topicId]) {
+        stats[q.topicId] = { correct: 0, total: 0, name: q.topicName, nameTe: q.topicNameTe || '' };
+      }
+      stats[q.topicId].total++;
+      const ans = lastSession.answers.find((a) => a.questionId === q.id);
+      if (ans?.selectedOptionId === getCorrectId(q)) {
+        stats[q.topicId].correct++;
+      }
+    }
+    const entries = Object.entries(stats).filter(([, v]) => v.total > 0);
+    return entries.length > 0 ? entries : null;
+  }, [lastSession, dbQuestions]);
 
   const getGrade = () => {
     if (percentage >= 90) return { label: 'Excellent!', emoji: '🌟', color: '#22C55E' };
@@ -234,6 +265,42 @@ export default function ChapterResultsScreen() {
             </JournalCard>
           )}
 
+          {/* Topic Breakdown */}
+          {topicStats && topicStats.length > 0 && (
+            <JournalCard delay={300}>
+              <Text style={[Typography.label, { color: colors.textTertiary, marginBottom: Spacing.md }]}>
+                TOPIC PERFORMANCE
+              </Text>
+              {topicStats
+                .sort(([, a], [, b]) => {
+                  const aPct = a.total > 0 ? a.correct / a.total : 0;
+                  const bPct = b.total > 0 ? b.correct / b.total : 0;
+                  return aPct - bPct;
+                })
+                .map(([topicId, stat]) => {
+                  const pct = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
+                  const barColor = pct >= 70 ? '#22C55E' : pct >= 40 ? '#F59E0B' : '#EF4444';
+                  const displayName = language === 'te' && stat.nameTe ? stat.nameTe : stat.name;
+                  return (
+                    <View key={topicId} style={styles.topicRow}>
+                      <View style={styles.topicHeader}>
+                        <Text style={[styles.topicName, { color: colors.text }]} numberOfLines={1}>
+                          {displayName}
+                        </Text>
+                        <Text style={[styles.topicAccuracy, { color: barColor }]}>{pct}%</Text>
+                      </View>
+                      <View style={styles.diffBarBg}>
+                        <View style={[styles.diffBarFill, { width: `${pct}%`, backgroundColor: barColor }]} />
+                      </View>
+                      <Text style={[styles.topicDetail, { color: colors.textTertiary }]}>
+                        {stat.correct}/{stat.total} correct
+                      </Text>
+                    </View>
+                  );
+                })}
+            </JournalCard>
+          )}
+
           {/* Motivational Note */}
           <StickyNote color="yellow" rotation={1} delay={300}>
             <Text style={[Typography.bodySm, { color: colors.text }]}>
@@ -359,6 +426,29 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 10,
     letterSpacing: 0.3,
+  },
+  topicRow: {
+    marginBottom: Spacing.sm,
+    gap: 3,
+  },
+  topicHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: Spacing.sm,
+  },
+  topicName: {
+    fontFamily: 'PlusJakartaSans_500Medium',
+    fontSize: 12,
+    flex: 1,
+  },
+  topicAccuracy: {
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
+    fontSize: 12,
+  },
+  topicDetail: {
+    fontFamily: 'PlusJakartaSans_400Regular',
+    fontSize: 10,
   },
   actions: {
     gap: Spacing.md,

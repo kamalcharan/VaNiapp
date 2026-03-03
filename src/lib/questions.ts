@@ -20,10 +20,16 @@ interface DbEliminationHint {
   misconception_te: string | null;
 }
 
+interface DbTopic {
+  name: string;
+  name_te: string | null;
+}
+
 interface DbQuestion {
   id: string;
   subject_id: string;
   chapter_id: string;
+  topic_id: string | null;
   question_type: string;
   difficulty: string;
   question_text: string;
@@ -34,6 +40,7 @@ interface DbQuestion {
   payload: Record<string, unknown> | null;
   med_question_options: DbOption[];
   med_elimination_hints: DbEliminationHint[];
+  med_topics: DbTopic | null;
 }
 
 // ── Result type ──────────────────────────────────────────────
@@ -71,11 +78,12 @@ export async function fetchQuestionsByChapter(
     const { data, error } = await supabase
       .from('med_questions')
       .select(
-        `id, subject_id, chapter_id, question_type, difficulty,
+        `id, subject_id, chapter_id, topic_id, question_type, difficulty,
          question_text, question_text_te, explanation, explanation_te,
          correct_answer, payload,
          med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
-         med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)`,
+         med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te),
+         med_topics!topic_id (name, name_te)`,
       )
       .eq('chapter_id', resolvedId)
       .eq('status', 'active')
@@ -162,6 +170,9 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     chapterId: row.chapter_id,
     subjectId: row.subject_id as QuestionV2['subjectId'],
     difficulty: row.difficulty as Difficulty,
+    topicId: row.topic_id || undefined,
+    topicName: row.med_topics?.name || undefined,
+    topicNameTe: row.med_topics?.name_te || undefined,
     text: displayText,
     textTe: row.question_text_te || '',
     explanation: row.explanation || '',
