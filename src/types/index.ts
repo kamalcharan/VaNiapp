@@ -365,6 +365,11 @@ export interface QuestionV2 {
   subjectId: SubjectId;
   difficulty: Difficulty;
 
+  // Topic (from med_topics via topic_id)
+  topicId?: string;
+  topicName?: string;
+  topicNameTe?: string;
+
   // Common fields (bilingual)
   text: string;
   textTe: string;
