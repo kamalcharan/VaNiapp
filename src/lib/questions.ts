@@ -166,14 +166,17 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     if (!displayText) displayText = 'Read the assertion and reason below and choose the correct option.';
   }
 
+  // Payload topic — bulk-import uses "topic", Gemini-generated uses "topic_name"
+  const payloadTopic = (raw.topic as string) || (raw.topic_name as string) || undefined;
+
   return {
     id: questionId,
     type: row.question_type as QuestionType,
     chapterId: row.chapter_id,
     subjectId: row.subject_id as QuestionV2['subjectId'],
     difficulty: row.difficulty as Difficulty,
-    topicId: row.topic_id || (raw.topic as string) || undefined,
-    topicName: row.med_topics?.name || (raw.topic as string) || undefined,
+    topicId: row.topic_id || payloadTopic,
+    topicName: row.med_topics?.name || payloadTopic,
     topicNameTe: row.med_topics?.name_te || undefined,
     text: displayText,
     textTe: row.question_text_te || '',
