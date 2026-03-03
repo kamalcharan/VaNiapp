@@ -9,6 +9,7 @@ import { JournalCard } from '../src/components/ui/JournalCard';
 import { StickyNote } from '../src/components/ui/StickyNote';
 import { HandwrittenText } from '../src/components/ui/HandwrittenText';
 import { PuffyButton } from '../src/components/ui/PuffyButton';
+import { TopicBreakdown, TopicStat } from '../src/components/TopicBreakdown';
 import { useTheme } from '../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
@@ -106,7 +107,7 @@ export default function ChapterResultsScreen() {
   const topicStats = useMemo(() => {
     if (!lastSession || !dbQuestions.length) return null;
     const answeredIds = new Set(lastSession.answers.map((a) => a.questionId));
-    const stats: Record<string, { correct: number; total: number; name: string; nameTe: string }> = {};
+    const stats: Record<string, TopicStat> = {};
     for (const q of dbQuestions) {
       if (!q.topicId || !q.topicName) continue;
       if (!answeredIds.has(q.id)) continue;
@@ -268,36 +269,7 @@ export default function ChapterResultsScreen() {
           {/* Topic Breakdown */}
           {topicStats && topicStats.length > 0 && (
             <JournalCard delay={300}>
-              <Text style={[Typography.label, { color: colors.textTertiary, marginBottom: Spacing.md }]}>
-                TOPIC PERFORMANCE
-              </Text>
-              {topicStats
-                .sort(([, a], [, b]) => {
-                  const aPct = a.total > 0 ? a.correct / a.total : 0;
-                  const bPct = b.total > 0 ? b.correct / b.total : 0;
-                  return aPct - bPct;
-                })
-                .map(([topicId, stat]) => {
-                  const pct = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
-                  const barColor = pct >= 70 ? '#22C55E' : pct >= 40 ? '#F59E0B' : '#EF4444';
-                  const displayName = language === 'te' && stat.nameTe ? stat.nameTe : stat.name;
-                  return (
-                    <View key={topicId} style={styles.topicRow}>
-                      <View style={styles.topicHeader}>
-                        <Text style={[styles.topicName, { color: colors.text }]} numberOfLines={1}>
-                          {displayName}
-                        </Text>
-                        <Text style={[styles.topicAccuracy, { color: barColor }]}>{pct}%</Text>
-                      </View>
-                      <View style={styles.diffBarBg}>
-                        <View style={[styles.diffBarFill, { width: `${pct}%`, backgroundColor: barColor }]} />
-                      </View>
-                      <Text style={[styles.topicDetail, { color: colors.textTertiary }]}>
-                        {stat.correct}/{stat.total} correct
-                      </Text>
-                    </View>
-                  );
-                })}
+              <TopicBreakdown topics={topicStats} language={language} label="TOPIC PERFORMANCE" />
             </JournalCard>
           )}
 
@@ -426,29 +398,6 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 10,
     letterSpacing: 0.3,
-  },
-  topicRow: {
-    marginBottom: Spacing.sm,
-    gap: 3,
-  },
-  topicHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: Spacing.sm,
-  },
-  topicName: {
-    fontFamily: 'PlusJakartaSans_500Medium',
-    fontSize: 12,
-    flex: 1,
-  },
-  topicAccuracy: {
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 12,
-  },
-  topicDetail: {
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 10,
   },
   actions: {
     gap: Spacing.md,
