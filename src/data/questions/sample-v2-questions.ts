@@ -853,7 +853,8 @@ export const sampleV2Questions: QuestionV2[] = [
   ...matchTheFollowingQuestions,
   ...fillInBlanksQuestions,
   ...scenarioBasedQuestions,
-  ...diagramBasedQuestions,
+  // diagramBasedQuestions excluded — placeholder:// images don't load in UI.
+  // Real diagram questions are served from Supabase (CUET) with proper HTTP URLs.
   ...logicalSequenceQuestions,
 ];
 
