@@ -22,7 +22,7 @@ import { useTheme } from '../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius, Shadows } from '../src/constants/theme';
 import { RootState } from '../src/store';
 import { store } from '../src/store';
-import { setPaid } from '../src/store/slices/trialSlice';
+import { setSubscription } from '../src/store/slices/trialSlice';
 import {
   type PlanId,
   type PriceBreakdown,
@@ -137,7 +137,10 @@ export default function UpgradeScreen() {
           amountPaidPaise: 0,
           gstPaise: 0,
         });
-        store.dispatch(setPaid(true));
+        store.dispatch(setSubscription({
+          plan: 'yearly',
+          expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+        }));
         router.replace({
           pathname: '/payment-success',
           params: { planName: 'Yearly' },
@@ -186,7 +189,14 @@ export default function UpgradeScreen() {
         amountPaidPaise: pricing.total * 100,
         gstPaise: pricing.gst * 100,
       });
-      store.dispatch(setPaid(true));
+      // Cache full subscription info so isPaid persists across app restarts
+      let expiresAt: string | null = null;
+      if (selectedPlan === 'monthly') {
+        expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+      } else if (selectedPlan === 'yearly') {
+        expiresAt = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
+      }
+      store.dispatch(setSubscription({ plan: selectedPlan, expiresAt }));
       router.replace({
         pathname: '/payment-success',
         params: { planName: plan?.name ?? selectedPlan },
