@@ -423,22 +423,52 @@
     }
 
     async function runOneMigration() {
-      const QID = '62b7a358-196c-459f-b095-7dfbde4352ce';
-      const MIGRATION_KEY = 'migration_fix_' + QID;
-      if (localStorage.getItem(MIGRATION_KEY)) return; // already ran
+      const MIGRATION_KEY = 'migration_v2_hints';
+      if (localStorage.getItem(MIGRATION_KEY)) return;
 
-      const result = await Qbank.fixEmptyOptions(QID, [
-        { key: 'A', text: '180 litres' },
-        { key: 'B', text: '1.5 litres' },
-        { key: 'C', text: '18 litres' },
-        { key: 'D', text: '80 litres' }
-      ], 'A');
+      const sb = Qbank.supabase;
+      if (!sb) return;
 
-      if (result.success) {
+      let ok = true;
+
+      // 1. Fix kidney filtrate MCQ — add options if missing
+      const { data: existingOpts } = await sb.from('med_question_options')
+        .select('option_key').eq('question_id', '62b7a358-196c-459f-b095-7dfbde4352ce');
+      if (!existingOpts || existingOpts.length === 0) {
+        const r = await Qbank.fixEmptyOptions('62b7a358-196c-459f-b095-7dfbde4352ce', [
+          { key: 'A', text: '180 litres' },
+          { key: 'B', text: '1.5 litres' },
+          { key: 'C', text: '18 litres' },
+          { key: 'D', text: '80 litres' }
+        ], 'A');
+        if (!r.success) ok = false;
+      }
+
+      // 2. Add elimination hints for 3 questions missing them
+      const hintsToInsert = [
+        // "Animals that can tolerate a wide range of salinity" — correct: Euryhaline
+        { question_id: 'adc13689-5c52-4994-9a32-b4e5898933e8', option_key: 'A', hint_text: 'Stenohaline organisms tolerate only a narrow range of salinity — the opposite of what is asked.', misconception: 'Confusing stenohaline (narrow) with euryhaline (wide) salinity tolerance.' },
+        { question_id: 'adc13689-5c52-4994-9a32-b4e5898933e8', option_key: 'C', hint_text: 'Catadromous refers to fish migrating from freshwater to sea for breeding (e.g., eels), not salinity tolerance.', misconception: 'Mixing up migration terms with osmoregulation terms.' },
+        { question_id: 'adc13689-5c52-4994-9a32-b4e5898933e8', option_key: 'D', hint_text: 'Anadromous refers to fish migrating from sea to freshwater for breeding (e.g., salmon), not salinity range.', misconception: 'Confusing breeding migration pattern with salinity tolerance.' },
+        // "Amount of filtrate formed per day" — correct: 180 litres (A)
+        { question_id: '62b7a358-196c-459f-b095-7dfbde4352ce', option_key: 'B', hint_text: '1.5 litres is the approximate daily urine output, not the total glomerular filtrate.', misconception: 'Confusing daily urine output (1.5L) with total glomerular filtrate (180L).' },
+        { question_id: '62b7a358-196c-459f-b095-7dfbde4352ce', option_key: 'C', hint_text: '18 litres is a common miscalculation — off by a factor of 10 from the actual value.', misconception: 'Incorrectly estimating GFR by a factor of 10.' },
+        { question_id: '62b7a358-196c-459f-b095-7dfbde4352ce', option_key: 'D', hint_text: '80 litres is not the standard value; GFR of ~125 mL/min gives ~180L/day.', misconception: 'Not applying the GFR calculation correctly (125 mL/min × 1440 min/day).' },
+        // T/F "Entamoeba histolytica affects respiratory tract" — correct: False (B)
+        { question_id: 'df3b0cbb-1e96-4384-ba19-86cd59b68b29', option_key: 'A', hint_text: 'E. histolytica causes amoebiasis affecting the large intestine (colon), not the respiratory tract.', misconception: 'Assuming any infectious agent can affect the respiratory system; E. histolytica is an intestinal parasite.' }
+      ];
+
+      for (const hint of hintsToInsert) {
+        const { data: existing } = await sb.from('med_elimination_hints')
+          .select('id').eq('question_id', hint.question_id).eq('option_key', hint.option_key).limit(1);
+        if (existing && existing.length > 0) continue;
+        const { error } = await sb.from('med_elimination_hints').insert(hint);
+        if (error) { console.warn('[migration] hint insert failed:', error); ok = false; }
+      }
+
+      if (ok) {
         localStorage.setItem(MIGRATION_KEY, Date.now().toString());
-        console.log('[migration] Fixed kidney filtrate MCQ options');
-      } else {
-        console.warn('[migration] Failed to fix kidney filtrate MCQ:', result.error);
+        console.log('[migration] All hints and options fixed');
       }
     }
 
