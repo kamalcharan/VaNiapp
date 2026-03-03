@@ -212,6 +212,7 @@
     let questions = [];
     let subjects = [];
     let chapters = [];
+    let chapterIssueCounts = {};  // chapterId → number of MISSING_TRANSLATION issues
 
     async function init() {
       const user = await Qbank.requireAuth(['admin']);
@@ -270,19 +271,56 @@
         return;
       }
 
-      // Load chapters for this subject
-      chapters = await Qbank.fetchChapters(subjectId);
+      // Load chapters + translation issue counts in parallel
+      const [chaptersData, issueCounts] = await Promise.all([
+        Qbank.fetchChapters(subjectId),
+        fetchTranslationIssueCounts(subjectId)
+      ]);
+      chapters = chaptersData;
+      chapterIssueCounts = issueCounts;
+
+      // Sort: chapters with most issues first, then by chapter number
+      const sorted = [...chapters].sort((a, b) => {
+        const aCount = chapterIssueCounts[a.id] || 0;
+        const bCount = chapterIssueCounts[b.id] || 0;
+        if (bCount !== aCount) return bCount - aCount;
+        return (a.chapter_number || 0) - (b.chapter_number || 0);
+      });
 
       chapterSelect.innerHTML = '<option value="">All Chapters</option>';
-      chapters.forEach(ch => {
+      sorted.forEach(ch => {
+        const issueCount = chapterIssueCounts[ch.id] || 0;
         const option = document.createElement('option');
         option.value = ch.id;
-        option.textContent = `${ch.chapter_number || '-'}. ${ch.name}`;
+        const badge = issueCount > 0 ? ` ⚠️ ${issueCount} need translation` : '';
+        option.textContent = `${ch.chapter_number || '-'}. ${ch.name}${badge}`;
         chapterSelect.appendChild(option);
       });
       chapterSelect.disabled = false;
 
       loadQuestions();
+    }
+
+    async function fetchTranslationIssueCounts(subjectId) {
+      if (!Qbank.supabase) return {};
+
+      // Count questions needing translation per chapter for this subject
+      const { data, error } = await Qbank.supabase
+        .from('med_questions')
+        .select('chapter_id')
+        .ilike('subject_id', subjectId)
+        .is('question_text_te', null);
+
+      if (error) {
+        console.error('Error fetching translation counts:', error);
+        return {};
+      }
+
+      const counts = {};
+      (data || []).forEach(q => {
+        counts[q.chapter_id] = (counts[q.chapter_id] || 0) + 1;
+      });
+      return counts;
     }
 
     async function loadQuestions() {
@@ -348,7 +386,7 @@
           </div>
           <div class="translation-body">
             <div class="translation-column">
-              <div class="lang-label">🇬🇧 English</div>
+              <div class="lang-label">Aa English</div>
               <p class="translation-text">${Qbank.escapeHtml(question.question_text)}</p>
               ${question.explanation ? `
                 <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--gray-200);">
@@ -358,7 +396,7 @@
               ` : ''}
             </div>
             <div class="translation-column">
-              <div class="lang-label">🇮🇳 Telugu</div>
+              <div class="lang-label">అ Telugu</div>
               <textarea
                 class="translation-input"
                 id="telugu-${question.id}"

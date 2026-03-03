@@ -1429,6 +1429,9 @@ const QUALITY_ISSUE_TYPES = {
 
   // User-reported
   USER_REPORTED:          { severity: 'medium', label: 'User reported issue' },
+
+  // Runtime auto-detected (source: 'auto')
+  IMAGE_LOAD_FAILED:      { severity: 'high',   label: 'Image failed to load' },
 };
 
 /**
@@ -1808,6 +1811,33 @@ async function resolveQualityIssue(issueId, resolution = 'resolved') {
 }
 
 /**
+ * Fetch open quality issue summary (counts by severity + affected chapters).
+ * Lightweight query for dashboard cards.
+ */
+async function fetchQualityIssueSummary() {
+  if (!SUPABASE) return { total: 0, high: 0, medium: 0, low: 0, chapters: 0 };
+
+  const { data, error } = await SUPABASE
+    .from('med_quality_issues')
+    .select('severity, chapter_id')
+    .eq('status', 'open');
+
+  if (error) {
+    console.error('[quality] Failed to fetch issue summary:', error);
+    return { total: 0, high: 0, medium: 0, low: 0, chapters: 0 };
+  }
+
+  const issues = data || [];
+  return {
+    total: issues.length,
+    high: issues.filter(i => i.severity === 'high').length,
+    medium: issues.filter(i => i.severity === 'medium').length,
+    low: issues.filter(i => i.severity === 'low').length,
+    chapters: new Set(issues.map(i => i.chapter_id)).size
+  };
+}
+
+/**
  * Clear all open explore-sourced issues for a chapter (before re-scan).
  */
 async function clearExploreIssues(chapterId) {
@@ -1901,6 +1931,7 @@ window.Qbank = {
   fetchQuestionsForScan,
   saveQualityIssues,
   fetchQualityIssues,
+  fetchQualityIssueSummary,
   resolveQualityIssue,
   clearExploreIssues,
 
