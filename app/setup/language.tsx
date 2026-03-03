@@ -28,6 +28,12 @@ import { getLanguages, CatalogLanguage } from '../../src/lib/catalog';
 
 const ACTIVE_LIGHT_BG = '#E8F0FE';
 
+/** Font-based glyphs for each language (never use country flags) */
+const LANG_GLYPH: Record<string, string> = {
+  en: 'Aa',
+  te: '\u0C05',   // అ
+};
+
 export default function LanguageScreen() {
   const { colors, mode } = useTheme();
   const router = useRouter();
@@ -153,7 +159,7 @@ export default function LanguageScreen() {
                       },
                     ]}
                   >
-                    <Text style={styles.langEmoji}>{lang.emoji}</Text>
+                    <Text style={styles.langEmoji}>{LANG_GLYPH[lang.id] || lang.emoji}</Text>
 
                     <View style={styles.langText}>
                       <View style={styles.langTitleRow}>
