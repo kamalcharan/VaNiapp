@@ -129,6 +129,11 @@ async function main() {
     process.exit(1);
   }
 
+  if (!serviceKey) {
+    console.warn('⚠️  WARNING: No serviceKey found — using anonKey.');
+    console.warn('   RLS may block UPDATE operations. Add serviceKey to config.json if updates fail.\n');
+  }
+
   const supabase = createClient(url, key);
 
   console.log(`\n🖼️  Universal Diagram Image Fixer${dryRun ? ' (DRY RUN)' : ''}`);
@@ -236,11 +241,12 @@ async function main() {
     const publicUrl = urlData.publicUrl;
     uploaded++;
 
-    // Update DB
-    const { error: updateError } = await supabase
+    // Update DB — use .select() to verify rows were actually affected
+    const { data: updateData, error: updateError } = await supabase
       .from('med_questions')
       .update({ image_url: publicUrl })
-      .eq('id', row.id);
+      .eq('id', row.id)
+      .select('id, image_url');
 
     if (updateError) {
       console.error(`  ❌ DB update failed ${qId}: ${updateError.message}`);
@@ -248,8 +254,23 @@ async function main() {
       continue;
     }
 
+    if (!updateData || updateData.length === 0) {
+      console.error(`  ❌ DB update returned 0 rows for ${qId} (id: ${row.id})`);
+      console.error(`     RLS is likely blocking UPDATE. Add serviceKey to Qbank/config.json.`);
+      errors++;
+      continue;
+    }
+
+    // Verify the URL was actually set
+    const savedUrl = updateData[0].image_url;
+    if (!savedUrl || !savedUrl.startsWith('http')) {
+      console.error(`  ❌ DB update wrote wrong value for ${qId}: "${savedUrl}"`);
+      errors++;
+      continue;
+    }
+
     updated++;
-    console.log(`  ✅ ${qId} → ${publicUrl}`);
+    console.log(`  ✅ ${qId} → ${savedUrl}`);
   }
 
   // Summary
