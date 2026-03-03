@@ -21,11 +21,12 @@ import { NeetSubjectId } from '../src/types';
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const { chapterId: rawChapterId, correct, total, timeUsedMs: timeParam } = useLocalSearchParams<{
+  const { chapterId: rawChapterId, correct, total, timeUsedMs: timeParam, skipped: skippedParam } = useLocalSearchParams<{
     chapterId: string;
     correct: string;
     total: string;
     timeUsedMs: string;
+    skipped: string;
   }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
 
@@ -42,7 +43,8 @@ export default function ChapterResultsScreen() {
 
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
-  const wrongNum = totalNum - correctNum;
+  const skippedNum = parseInt(skippedParam ?? '0', 10);
+  const wrongNum = totalNum - correctNum - skippedNum;
   const percentage = totalNum > 0 ? Math.round((correctNum / totalNum) * 100) : 0;
   const timeUsedMs = parseInt(timeParam ?? '0', 10);
 
@@ -152,6 +154,12 @@ export default function ChapterResultsScreen() {
                   <View style={[styles.dot, { backgroundColor: '#EF4444' }]} />
                   <Text style={[Typography.body, { color: colors.text }]}>{wrongNum} Wrong</Text>
                 </View>
+                {skippedNum > 0 && (
+                  <View style={styles.scoreItem}>
+                    <View style={[styles.dot, { backgroundColor: '#F59E0B' }]} />
+                    <Text style={[Typography.body, { color: colors.text }]}>{skippedNum} Skipped</Text>
+                  </View>
+                )}
                 <View style={styles.scoreItem}>
                   <View style={[styles.dot, { backgroundColor: '#64748B' }]} />
                   <Text style={[Typography.body, { color: colors.text }]}>{totalNum} Total</Text>

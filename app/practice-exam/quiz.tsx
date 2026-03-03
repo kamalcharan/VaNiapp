@@ -267,6 +267,13 @@ export default function PracticeQuestionScreen() {
     }
   }, [currentIndex, allQuestions]);
 
+  const handleReviewLater = useCallback(() => {
+    if (!question) return;
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    setMarked((prev) => ({ ...prev, [question.id]: true }));
+    handleNext();
+  }, [question, handleNext]);
+
   const handleSubmit = useCallback(
     (autoSubmit = false) => {
       const doSubmit = () => {
@@ -682,8 +689,19 @@ export default function PracticeQuestionScreen() {
           >
             <Text style={[styles.navBtnText, { color: colors.primary }]}>{'< Prev'}</Text>
           </Pressable>
-          <Pressable onPress={() => handleSubmit()} style={styles.submitBtn}>
-            <Text style={[Typography.button, { color: '#FFF' }]}>Submit Exam</Text>
+          <Pressable
+            onPress={handleReviewLater}
+            disabled={currentIndex === allQuestions.length - 1}
+            hitSlop={{ top: 12, bottom: 12, left: 16, right: 16 }}
+            style={[styles.reviewLaterBtn, {
+              borderColor: isMarked ? '#F59E0B' : colors.surfaceBorder,
+              backgroundColor: isMarked ? '#F59E0B15' : 'transparent',
+              opacity: currentIndex === allQuestions.length - 1 ? 0.3 : 1,
+            }]}
+          >
+            <Text style={[styles.reviewLaterText, { color: isMarked ? '#F59E0B' : colors.textSecondary }]}>
+              {isMarked ? '\uD83D\uDCCC Marked' : 'Review Later'}
+            </Text>
           </Pressable>
           <Pressable
             onPress={handleNext}
@@ -882,5 +900,15 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.xl,
     borderRadius: BorderRadius.lg,
+  },
+  reviewLaterBtn: {
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: BorderRadius.md,
+    borderWidth: 1,
+  },
+  reviewLaterText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 13,
   },
 });
