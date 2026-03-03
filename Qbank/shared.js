@@ -1519,8 +1519,10 @@ function runQualityValidators(questions, languages, chapterId) {
     }
 
     if (opts.length > 0) {
-      // Check for empty option text
+      // Check for empty option text — skip C & D for true-false (placeholder by design)
+      const isTFq = q.question_type === 'true-false';
       const emptyOpts = opts.filter(o => {
+        if (isTFq && ['C', 'D'].includes((o.option_key || o.key || '').toUpperCase())) return false;
         const text = (o.option_text || o.text || '').trim();
         return !text;
       });
