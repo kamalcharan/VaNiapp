@@ -1550,8 +1550,8 @@ function runQualityValidators(questions, languages, chapterId) {
         }
       }
 
-      // Duplicate option texts
-      const texts = opts.map(o => (o.option_text || o.text || '').trim().toLowerCase()).filter(Boolean);
+      // Duplicate option texts (case-sensitive — R vs r, M vs m matter in formulas)
+      const texts = opts.map(o => (o.option_text || o.text || '').trim()).filter(Boolean);
       const dupes = texts.filter((t, i) => texts.indexOf(t) !== i);
       if (dupes.length > 0) {
         issues.push(makeIssue(q, chapterId, 'DUPLICATE_OPTIONS', { duplicates: [...new Set(dupes)] }));
