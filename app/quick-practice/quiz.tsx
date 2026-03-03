@@ -79,6 +79,8 @@ export default function QuickPracticeQuizScreen() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [answerStreak, setAnswerStreak] = useState(0);
   const [showReportSheet, setShowReportSheet] = useState(false);
+  const [skippedIds, setSkippedIds] = useState<Set<string>>(new Set());
+  const [quizFinished, setQuizFinished] = useState(false);
   const [timeLeftMs, setTimeLeftMs] = useState(QUICK_TIME_LIMIT_MS);
   const scrollRef = useRef<ScrollView>(null);
   const startTimeRef = useRef(Date.now());
@@ -175,6 +177,7 @@ export default function QuickPracticeQuizScreen() {
 
   const finishQuiz = () => {
     quizCompletedRef.current = true;
+    setQuizFinished(true);
     if (timerRef.current) clearInterval(timerRef.current);
     const currentAnswers = { ...answers };
     if (question && selectedOptionId) {
@@ -187,6 +190,20 @@ export default function QuickPracticeQuizScreen() {
     }).length;
 
     const timeUsedMs = Date.now() - startTimeRef.current;
+
+    // Navigate FIRST — before Redux dispatches that trigger question recalculation
+    router.replace({
+      pathname: '/chapter-results',
+      params: {
+        chapterId: `quick-${subjectId}`,
+        correct: String(finalCorrect),
+        total: String(questions.length),
+        timeUsedMs: String(timeUsedMs),
+        skipped: String(skippedIds.size),
+      },
+    });
+
+    // Then dispatch Redux state updates (may cause re-renders, but quizFinished guards the UI)
     dispatch(
       completeChapterExam({
         correctCount: finalCorrect,
@@ -195,7 +212,6 @@ export default function QuickPracticeQuizScreen() {
       })
     );
 
-    // Record strength tracking per chapter
     const byChapter: Record<string, { questionId: string; correct: boolean }[]> = {};
     for (const [qId, optId] of Object.entries(currentAnswers)) {
       const q = questions.find((qq) => qq.id === qId);
@@ -214,23 +230,11 @@ export default function QuickPracticeQuizScreen() {
       );
     }
 
-    // Record daily practice streak
     dispatch(recordDailyPractice());
 
-    // Sync progress to Supabase in background
     for (const chapId of Object.keys(byChapter)) {
       syncChapterProgress(chapId).catch((e) => reportError(e, 'medium', 'QuickQuiz.syncProgress'));
     }
-
-    router.replace({
-      pathname: '/chapter-results',
-      params: {
-        chapterId: `quick-${subjectId}`,
-        correct: String(finalCorrect),
-        total: String(questions.length),
-        timeUsedMs: String(timeUsedMs),
-      },
-    });
   };
 
   const handleSelectOption = (optionId: string) => {
@@ -284,7 +288,35 @@ export default function QuickPracticeQuizScreen() {
     scrollRef.current?.scrollTo({ y: 0, animated: true });
   };
 
-  if (!question || !subjectMeta) return null;
+  const handleSkip = () => {
+    if (!question) return;
+    setSkippedIds((prev) => new Set(prev).add(question.id));
+
+    if (currentIndex >= questions.length - 1) {
+      finishQuiz();
+      return;
+    }
+
+    setCurrentIndex((prev) => prev + 1);
+    setSelectedOptionId(null);
+    setShowFeedback(false);
+    setShowVaniSheet(false);
+    setShowConceptSheet(false);
+    scrollRef.current?.scrollTo({ y: 0, animated: true });
+  };
+
+  if (quizFinished || !question || !subjectMeta) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 12 }}>
+            <Text style={{ fontSize: 32 }}>{'\u2728'}</Text>
+            <Text style={[Typography.h2, { color: colors.text }]}>Loading results...</Text>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
 
   const isLast = currentIndex >= questions.length - 1;
 
@@ -476,9 +508,15 @@ export default function QuickPracticeQuizScreen() {
               </Text>
             </Pressable>
           ) : (
-            <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
-              Tap an option to answer
-            </Text>
+            <Pressable
+              onPress={handleSkip}
+              hitSlop={{ top: 12, bottom: 12, left: 16, right: 16 }}
+              style={[styles.skipBtn, { borderColor: colors.surfaceBorder }]}
+            >
+              <Text style={[styles.skipBtnText, { color: colors.textTertiary }]}>
+                Skip {'>'}
+              </Text>
+            </Pressable>
           )}
         </View>
       </SafeAreaView>
@@ -644,5 +682,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#F59E0B',
     marginTop: 4,
+  },
+  skipBtn: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: BorderRadius.xl,
+    borderWidth: 1,
+  },
+  skipBtnText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 14,
   },
 });
