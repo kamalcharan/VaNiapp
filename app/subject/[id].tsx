@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,10 @@ import {
   ScrollView,
   Animated,
   Easing,
+  ActivityIndicator,
+  LayoutAnimation,
+  Platform,
+  UIManager,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -15,11 +19,13 @@ import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
+import { TopicBreakdown, TopicStat } from '../../src/components/TopicBreakdown';
 import { useTheme } from '../../src/hooks/useTheme';
 import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { getSubjects, getChapters, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
 import { getProfile } from '../../src/lib/database';
+import { fetchQuestionsByChapter } from '../../src/lib/questions';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
 // NEET_CHAPTERS fallback removed — chapters must come from DB
 import { RootState } from '../../src/store';
@@ -29,6 +35,11 @@ import {
   NEEDS_FOCUS_CONFIG,
   ExamType,
 } from '../../src/types';
+
+// Enable LayoutAnimation on Android
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 function getStrengthConfig(level: StrengthLevel) {
   if (level === 'needs-focus') return NEEDS_FOCUS_CONFIG;
@@ -98,6 +109,12 @@ export default function SubjectDetailScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [examFilter, setExamFilter] = useState<string | undefined>(undefined);
+  const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
+
+  // Expandable topic breakdown per chapter
+  const [expandedTopics, setExpandedTopics] = useState<Record<string, boolean>>({});
+  const [topicData, setTopicData] = useState<Record<string, Array<[string, TopicStat]>>>({});
+  const [topicLoading, setTopicLoading] = useState<Record<string, boolean>>({});
 
   // Redux strength data
   const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
@@ -225,6 +242,47 @@ export default function SubjectDetailScreen() {
   const handleStartChapter = (chapterId: string) => {
     router.push(`/chapter/${chapterId}`);
   };
+
+  // Toggle topic breakdown for a chapter — lazy-fetches questions on first expand
+  const toggleTopicBreakdown = useCallback(
+    async (chapterId: string) => {
+      const isExpanded = expandedTopics[chapterId];
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      setExpandedTopics((prev) => ({ ...prev, [chapterId]: !isExpanded }));
+
+      // If collapsing or already loaded, nothing more to do
+      if (isExpanded || topicData[chapterId]) return;
+
+      // Fetch questions from Supabase to get topic info
+      setTopicLoading((prev) => ({ ...prev, [chapterId]: true }));
+      const result = await fetchQuestionsByChapter(chapterId);
+      setTopicLoading((prev) => ({ ...prev, [chapterId]: false }));
+
+      if (!result.ok) return;
+
+      // Cross-reference with Redux questionResults
+      const chStrength = strengthChapters[chapterId];
+      const qResults = chStrength?.questionResults ?? {};
+      const stats: Record<string, TopicStat> = {};
+
+      for (const q of result.questions) {
+        if (!q.topicId || !q.topicName) continue;
+        // Only include questions the user has attempted
+        if (!(q.id in qResults)) continue;
+        if (!stats[q.topicId]) {
+          stats[q.topicId] = { correct: 0, total: 0, name: q.topicName, nameTe: q.topicNameTe || '' };
+        }
+        stats[q.topicId].total++;
+        if (qResults[q.id]) {
+          stats[q.topicId].correct++;
+        }
+      }
+
+      const entries = Object.entries(stats).filter(([, v]) => v.total > 0);
+      setTopicData((prev) => ({ ...prev, [chapterId]: entries }));
+    },
+    [expandedTopics, topicData, strengthChapters],
+  );
 
   if (!subject || isLoading) {
     return (
@@ -496,6 +554,32 @@ export default function SubjectDetailScreen() {
                           {getChapterCoaching(ca.strengthLevel, ca.accuracy, ca.chapter.name)}
                         </Text>
 
+                        {/* Expandable topic performance */}
+                        <Pressable
+                          onPress={() => toggleTopicBreakdown(ca.chapter.id)}
+                          style={[styles.topicToggle, { borderColor: colors.surfaceBorder }]}
+                        >
+                          <Text style={[styles.topicToggleText, { color: colors.textSecondary }]}>
+                            {expandedTopics[ca.chapter.id] ? 'Hide' : 'View'} topic performance
+                          </Text>
+                          <Text style={[styles.topicToggleArrow, { color: colors.textTertiary }]}>
+                            {expandedTopics[ca.chapter.id] ? '\u25B2' : '\u25BC'}
+                          </Text>
+                        </Pressable>
+                        {expandedTopics[ca.chapter.id] && (
+                          <View style={styles.topicExpandedSection}>
+                            {topicLoading[ca.chapter.id] ? (
+                              <ActivityIndicator size="small" color={subject.color} />
+                            ) : topicData[ca.chapter.id] && topicData[ca.chapter.id].length > 0 ? (
+                              <TopicBreakdown topics={topicData[ca.chapter.id]} language={language} />
+                            ) : (
+                              <Text style={[styles.topicEmptyText, { color: colors.textTertiary }]}>
+                                No topic data available yet
+                              </Text>
+                            )}
+                          </View>
+                        )}
+
                         {/* Action buttons */}
                         <View style={styles.chapterActions}>
                           {/* Practice again CTA for chapters with room to grow */}
@@ -728,6 +812,30 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontStyle: 'italic',
     lineHeight: 17,
+  },
+  topicToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  topicToggleText: {
+    fontFamily: 'PlusJakartaSans_500Medium',
+    fontSize: 11,
+  },
+  topicToggleArrow: {
+    fontSize: 8,
+  },
+  topicExpandedSection: {
+    paddingTop: Spacing.xs,
+  },
+  topicEmptyText: {
+    fontFamily: 'PlusJakartaSans_400Regular',
+    fontSize: 11,
+    fontStyle: 'italic',
   },
   chapterActions: {
     flexDirection: 'row',

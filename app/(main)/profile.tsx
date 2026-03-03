@@ -40,6 +40,12 @@ import { store, RootState } from '../../src/store';
 import { updateTargetYear, updateLanguage } from '../../src/store/slices/authSlice';
 import { getTargetYearOptions } from '../../src/constants/persona';
 import type { PlanId } from '../../src/constants/pricing';
+
+/** Font-based glyphs for each language (never use country flags) */
+const LANG_GLYPH: Record<string, string> = {
+  en: 'Aa',
+  te: '\u0C05',   // అ
+};
 import { getRazorpayConfig } from '../../src/lib/appConfig';
 
 const TARGET_YEAR_OPTIONS = getTargetYearOptions();
@@ -639,7 +645,7 @@ export default function ProfileScreen() {
                         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                       }}
                     >
-                      <Text style={{ fontSize: 16 }}>{lang.emoji}</Text>
+                      <Text style={{ fontSize: 16 }}>{LANG_GLYPH[lang.id] || lang.emoji}</Text>
                       <Text
                         style={[
                           Typography.bodySm,

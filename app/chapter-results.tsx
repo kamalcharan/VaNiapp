@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -9,23 +9,26 @@ import { JournalCard } from '../src/components/ui/JournalCard';
 import { StickyNote } from '../src/components/ui/StickyNote';
 import { HandwrittenText } from '../src/components/ui/HandwrittenText';
 import { PuffyButton } from '../src/components/ui/PuffyButton';
+import { TopicBreakdown, TopicStat } from '../src/components/TopicBreakdown';
 import { useTheme } from '../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
 import { getChapterById } from '../src/data/chapters';
 import { getV2QuestionsByChapter } from '../src/data/questions';
+import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter';
 import { RootState } from '../src/store';
-import { NeetSubjectId } from '../src/types';
+import { NeetSubjectId, QuestionV2 } from '../src/types';
 
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const { chapterId: rawChapterId, correct, total, timeUsedMs: timeParam } = useLocalSearchParams<{
+  const { chapterId: rawChapterId, correct, total, timeUsedMs: timeParam, skipped: skippedParam } = useLocalSearchParams<{
     chapterId: string;
     correct: string;
     total: string;
     timeUsedMs: string;
+    skipped: string;
   }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
 
@@ -40,9 +43,19 @@ export default function ChapterResultsScreen() {
     : (chapter ? SUBJECT_META[chapter.subjectId] : null);
   const questions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
 
+  // Fetch Supabase questions (cached from quiz session) for topic data
+  const [dbQuestions, setDbQuestions] = useState<QuestionV2[]>([]);
+  useEffect(() => {
+    if (!chapterId || isQuickMode) return;
+    fetchQuestionsByChapter(chapterId).then((result) => {
+      if (result.ok) setDbQuestions(result.questions);
+    });
+  }, [chapterId, isQuickMode]);
+
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
-  const wrongNum = totalNum - correctNum;
+  const skippedNum = parseInt(skippedParam ?? '0', 10);
+  const wrongNum = totalNum - correctNum - skippedNum;
   const percentage = totalNum > 0 ? Math.round((correctNum / totalNum) * 100) : 0;
   const timeUsedMs = parseInt(timeParam ?? '0', 10);
 
@@ -89,6 +102,27 @@ export default function ChapterResultsScreen() {
     }
     return Object.entries(stats).filter(([, v]) => v.total > 0);
   }, [lastSession, questions]);
+
+  // Topic breakdown (uses Supabase questions with topicId/topicName)
+  const topicStats = useMemo(() => {
+    if (!lastSession || !dbQuestions.length) return null;
+    const answeredIds = new Set(lastSession.answers.map((a) => a.questionId));
+    const stats: Record<string, TopicStat> = {};
+    for (const q of dbQuestions) {
+      if (!q.topicId || !q.topicName) continue;
+      if (!answeredIds.has(q.id)) continue;
+      if (!stats[q.topicId]) {
+        stats[q.topicId] = { correct: 0, total: 0, name: q.topicName, nameTe: q.topicNameTe || '' };
+      }
+      stats[q.topicId].total++;
+      const ans = lastSession.answers.find((a) => a.questionId === q.id);
+      if (ans?.selectedOptionId === getCorrectId(q)) {
+        stats[q.topicId].correct++;
+      }
+    }
+    const entries = Object.entries(stats).filter(([, v]) => v.total > 0);
+    return entries.length > 0 ? entries : null;
+  }, [lastSession, dbQuestions]);
 
   const getGrade = () => {
     if (percentage >= 90) return { label: 'Excellent!', emoji: '🌟', color: '#22C55E' };
@@ -152,6 +186,12 @@ export default function ChapterResultsScreen() {
                   <View style={[styles.dot, { backgroundColor: '#EF4444' }]} />
                   <Text style={[Typography.body, { color: colors.text }]}>{wrongNum} Wrong</Text>
                 </View>
+                {skippedNum > 0 && (
+                  <View style={styles.scoreItem}>
+                    <View style={[styles.dot, { backgroundColor: '#F59E0B' }]} />
+                    <Text style={[Typography.body, { color: colors.text }]}>{skippedNum} Skipped</Text>
+                  </View>
+                )}
                 <View style={styles.scoreItem}>
                   <View style={[styles.dot, { backgroundColor: '#64748B' }]} />
                   <Text style={[Typography.body, { color: colors.text }]}>{totalNum} Total</Text>
@@ -223,6 +263,13 @@ export default function ChapterResultsScreen() {
                   </View>
                 );
               })}
+            </JournalCard>
+          )}
+
+          {/* Topic Breakdown */}
+          {topicStats && topicStats.length > 0 && (
+            <JournalCard delay={300}>
+              <TopicBreakdown topics={topicStats} language={language} label="TOPIC PERFORMANCE" />
             </JournalCard>
           )}
 
