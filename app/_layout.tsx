@@ -166,15 +166,19 @@ export default function RootLayout() {
           }
           store.dispatch(seedQuestionsAnswered(profile.questions_answered ?? 0));
 
-          // Check for active subscription and set paid status
-          getActiveSubscription().then((sub) => {
+          // Check for active subscription BEFORE allowing dashboard render
+          // so isPaid is correct on first frame (avoids trial-banner flash)
+          try {
+            const sub = await getActiveSubscription();
             if (sub) {
               store.dispatch(setSubscription({
                 plan: sub.planType,
                 expiresAt: sub.expiresAt,
               }));
             }
-          }).catch((e) => reportError(e, 'medium', 'RootLayout.getSubscription'));
+          } catch (e) {
+            reportError(e, 'medium', 'RootLayout.getSubscription');
+          }
 
           // Pull remote progress into Redux (merges with local, remote wins if ahead)
           pullRemoteProgress().catch((e) => reportError(e, 'medium', 'RootLayout.pullProgress'));

@@ -40,6 +40,11 @@ CREATE POLICY "Users can insert own subscriptions"
   ON med_subscriptions FOR INSERT
   WITH CHECK (auth.uid() = user_id);
 
+CREATE POLICY "Users can update own subscriptions"
+  ON med_subscriptions FOR UPDATE
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+
 -- Indexes
 CREATE INDEX idx_med_subscriptions_user   ON med_subscriptions(user_id);
 CREATE INDEX idx_med_subscriptions_active ON med_subscriptions(user_id, status) WHERE status = 'active';
