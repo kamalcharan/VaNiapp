@@ -1551,10 +1551,12 @@ function runQualityValidators(questions, languages, chapterId) {
       }
 
       // Duplicate option texts (case-sensitive — R vs r, M vs m matter in formulas)
-      // For true-false, only check A & B — C and D are placeholder "—" by design
-      const textsToCheck = q.question_type === 'true-false'
-        ? opts.slice(0, 2).map(o => (o.option_text || o.text || '').trim()).filter(Boolean)
-        : opts.map(o => (o.option_text || o.text || '').trim()).filter(Boolean);
+      // For true-false, filter out placeholder "—" options (C & D) before checking
+      const isTF = q.question_type === 'true-false';
+      const textsToCheck = opts
+        .filter(o => !isTF || ['A', 'B'].includes((o.option_key || o.key || '').toUpperCase()))
+        .map(o => (o.option_text || o.text || '').trim())
+        .filter(Boolean);
       const dupes = textsToCheck.filter((t, i) => textsToCheck.indexOf(t) !== i);
       if (dupes.length > 0) {
         issues.push(makeIssue(q, chapterId, 'DUPLICATE_OPTIONS', { duplicates: [...new Set(dupes)] }));
