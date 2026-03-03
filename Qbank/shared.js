@@ -1966,6 +1966,51 @@ async function fixCorrectAnswerKeys(questions) {
 }
 
 // ============================================================================
+// AUTO-FIX: add missing options to a question
+// ============================================================================
+
+/**
+ * Insert options for a question that has none, and set correct_answer.
+ *
+ * @param {string} questionId
+ * @param {{ key: string, text: string }[]} options - e.g. [{key:'A', text:'180 litres'}, ...]
+ * @param {string} correctKey - e.g. 'A'
+ * @returns {{ success: boolean, error?: string }}
+ */
+async function fixEmptyOptions(questionId, options, correctKey) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
+
+  const optionRecords = options.map((opt, idx) => ({
+    question_id: questionId,
+    option_key: opt.key,
+    option_text: opt.text,
+    is_correct: opt.key === correctKey,
+    sort_order: idx
+  }));
+
+  const { error: optErr } = await SUPABASE
+    .from('med_question_options')
+    .insert(optionRecords);
+
+  if (optErr) {
+    console.error('[fix] Failed to insert options:', optErr);
+    return { success: false, error: optErr.message };
+  }
+
+  const { error: qErr } = await SUPABASE
+    .from('med_questions')
+    .update({ correct_answer: correctKey })
+    .eq('id', questionId);
+
+  if (qErr) {
+    console.error('[fix] Failed to update correct_answer:', qErr);
+    return { success: false, error: qErr.message };
+  }
+
+  return { success: true };
+}
+
+// ============================================================================
 // EXPORT FOR USE IN HTML
 // ============================================================================
 window.Qbank = {
@@ -2045,6 +2090,7 @@ window.Qbank = {
   resolveQualityIssue,
   clearExploreIssues,
   fixCorrectAnswerKeys,
+  fixEmptyOptions,
 
   // State access
   get config() { return CONFIG; },
