@@ -12,10 +12,9 @@
  */
 
 import { createClient } from '@supabase/supabase-js';
-import { readFileSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
+import { readFileSync, existsSync, readdirSync, statSync } from 'fs';
+import { join, dirname, sep } from 'path';
 import { fileURLToPath } from 'url';
-import { globSync } from 'glob';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -35,25 +34,50 @@ const PNG_SEARCH_DIRS = [
 ];
 
 /**
+ * Recursively find all .png files under a directory (pure Node.js, no glob).
+ */
+function findPngsRecursive(dir) {
+  const results = [];
+  if (!existsSync(dir)) return results;
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    try {
+      const st = statSync(full);
+      if (st.isDirectory() && entry !== 'node_modules' && entry !== '.git') {
+        results.push(...findPngsRecursive(full));
+      } else if (st.isFile() && entry.endsWith('.png')) {
+        results.push(full);
+      }
+    } catch { /* skip unreadable entries */ }
+  }
+  return results;
+}
+
+/**
  * Build an index of all PNGs on disk: filename → full path
  */
 function buildPngIndex() {
   const index = new Map();
+
+  // 1. Search known directories first (higher priority)
   for (const dir of PNG_SEARCH_DIRS) {
     if (!existsSync(dir)) continue;
-    const pngs = globSync('*.png', { cwd: dir });
-    for (const file of pngs) {
-      index.set(file, join(dir, file));
+    for (const entry of readdirSync(dir)) {
+      if (entry.endsWith('.png')) {
+        index.set(entry, join(dir, entry));
+      }
     }
   }
-  // Also search recursively in Qbank/ for any we missed
-  const allPngs = globSync('**/*.png', { cwd: join(__dirname, '..'), ignore: 'node_modules/**' });
-  for (const rel of allPngs) {
-    const file = rel.split('/').pop();
+
+  // 2. Also search recursively in Qbank/ for any we missed
+  const qbankRoot = join(__dirname, '..');
+  for (const fullPath of findPngsRecursive(qbankRoot)) {
+    const file = fullPath.split(sep).pop();
     if (!index.has(file)) {
-      index.set(file, join(__dirname, '..', rel));
+      index.set(file, fullPath);
     }
   }
+
   return index;
 }
 
