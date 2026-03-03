@@ -1544,11 +1544,24 @@ function runQualityValidators(questions, languages, chapterId) {
         const keys = opts.map(o => (o.option_key || o.key || '').toUpperCase());
         const caUpper = q.correct_answer.toUpperCase();
         if (!keys.includes(caUpper) || q.correct_answer.length > 2) {
-          // Try to resolve: maybe correct_answer holds option text, not key
+          // Try to resolve the correct key via multiple strategies:
+          // 1. Exact text match
           const textMatch = opts.find(o =>
             (o.option_text || o.text || '').trim().toLowerCase() === q.correct_answer.trim().toLowerCase()
           );
-          const resolvedKey = textMatch ? (textMatch.option_key || textMatch.key) : null;
+          // 2. Text contains / is contained in correct_answer
+          const partialMatch = !textMatch && opts.find(o => {
+            const oText = (o.option_text || o.text || '').trim().toLowerCase();
+            const caText = q.correct_answer.trim().toLowerCase();
+            return oText && caText && (oText.includes(caText) || caText.includes(oText));
+          });
+          // 3. is_correct flag on exactly one option
+          const correctFlagOpts = opts.filter(o => o.is_correct === true);
+          const flagMatch = !textMatch && !partialMatch && correctFlagOpts.length === 1
+            ? correctFlagOpts[0] : null;
+
+          const resolved = textMatch || partialMatch || flagMatch;
+          const resolvedKey = resolved ? (resolved.option_key || resolved.key) : null;
           issues.push(makeIssue(q, chapterId, 'CORRECT_ID_MISMATCH', {
             correct_answer: q.correct_answer,
             available_keys: keys,
@@ -1895,12 +1908,24 @@ async function fixCorrectAnswerKeys(questions) {
       continue;
     }
 
-    // Try to match by option text (case-insensitive, trimmed)
-    const match = opts.find(o => {
+    // Try multiple strategies to find the correct option:
+    // 1. Exact text match
+    const exactMatch = opts.find(o => {
       const text = (o.option_text || o.text || '').trim();
       return text.toLowerCase() === ca.toLowerCase();
     });
+    // 2. Partial text match (contains / is contained)
+    const partialMatch = !exactMatch && opts.find(o => {
+      const text = (o.option_text || o.text || '').trim().toLowerCase();
+      const caLower = ca.toLowerCase();
+      return text && caLower && (text.includes(caLower) || caLower.includes(text));
+    });
+    // 3. is_correct flag (exactly one option marked correct)
+    const correctFlagOpts = opts.filter(o => o.is_correct === true);
+    const flagMatch = !exactMatch && !partialMatch && correctFlagOpts.length === 1
+      ? correctFlagOpts[0] : null;
 
+    const match = exactMatch || partialMatch || flagMatch;
     if (!match) {
       results.skipped++;
       continue;
