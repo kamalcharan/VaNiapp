@@ -154,7 +154,9 @@ function dbToV2(row: DbQuestion): QuestionV2 {
 
   const payload = buildPayload(row, options, correctOptionId);
 
-  // Clean display text — strip embedded structured data that the component renders
+  // Clean display text — strip embedded structured data that the component renders.
+  // Each special type has its own card (scenario card, blanks card, etc.) so we
+  // minimise the question-box text to avoid duplication.
   let displayText = row.question_text;
   if (row.question_type === 'match-the-following') {
     displayText = displayText.replace(/\n*column\s*(?:i|I|1|a|A)\s*[:\-][\s\S]*/i, '').trim();
@@ -164,6 +166,37 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     displayText = displayText.replace(/\n*assertion\s*(?:\(A\))?\s*[:\-][\s\S]*/i, '').trim();
     displayText = displayText.replace(/:\s*$/, '').trim();
     if (!displayText) displayText = 'Read the assertion and reason below and choose the correct option.';
+  } else if (row.question_type === 'true-false') {
+    // TrueFalseQuestion renders its own STATEMENT card; avoid showing the same text twice
+    displayText = 'Is the following statement true or false?';
+  } else if (row.question_type === 'scenario-based') {
+    // ScenarioBasedQuestion renders a SCENARIO card from payload.scenario.
+    // If a separate question stem exists in payload, use it; otherwise use a generic prompt.
+    const scenarioPayload = (raw.scenario as string) || '';
+    if (scenarioPayload && scenarioPayload !== row.question_text) {
+      // payload.scenario is different from question_text → question_text IS the actual question stem
+      // Keep displayText as-is (it's the question, not the scenario)
+    } else {
+      // scenario fell back to question_text → both would show the same text
+      displayText = 'Based on the scenario below, select the correct answer.';
+    }
+  } else if (row.question_type === 'fill-in-blanks') {
+    // FillInBlanksQuestion renders a FILL IN THE BLANK(S) card with highlighted blanks.
+    // If payload has a separate text_with_blanks, keep the question_text for context.
+    const blanksPayload = (raw.text_with_blanks as string) || '';
+    if (blanksPayload && blanksPayload !== row.question_text) {
+      // Keep displayText as-is (it's a different instruction text)
+    } else {
+      displayText = 'Fill in the blank(s) in the statement below.';
+    }
+  } else if (row.question_type === 'diagram-based') {
+    // DiagramBasedQuestion renders its own diagram card
+    // question_text typically IS the question about the diagram — keep it
+  } else if (row.question_type === 'logical-sequence') {
+    // LogicalSequenceQuestion renders an ARRANGE card — keep instruction as displayText
+    if (!displayText || displayText === row.question_text) {
+      displayText = 'Arrange the following in the correct order.';
+    }
   }
 
   // Payload topic — bulk-import uses "topic", Gemini-generated uses "topic_name"
@@ -258,13 +291,23 @@ function buildPayload(
       return { type: 'mcq', options, correctOptionId };
     }
 
-    case 'true-false':
+    case 'true-false': {
+      // Determine correctAnswer from payload, or from the correct option text
+      let tfCorrect = false;
+      if (raw.correct_answer !== undefined && raw.correct_answer !== null) {
+        tfCorrect = raw.correct_answer === true || raw.correct_answer === 'true';
+      } else {
+        // Fallback: check if the correct option's text is "True"
+        const correctOpt = options.find((o) => o.id === correctOptionId);
+        tfCorrect = correctOpt?.text?.toLowerCase().trim() === 'true';
+      }
       return {
         type: 'true-false',
         statement: (raw.statement as string) || text,
         statementTe: (raw.statement_te as string) || '',
-        correctAnswer: raw.correct_answer === true || raw.correct_answer === 'true',
+        correctAnswer: tfCorrect,
       };
+    }
 
     case 'fill-in-blanks':
       return {
@@ -285,7 +328,6 @@ function buildPayload(
       };
 
     case 'diagram-based':
-      console.log('[DIAG-DEBUG]', JSON.stringify({ db_image_url: row.image_url, payload_image_uri: raw.image_uri, question_id: raw.question_id }));
       return {
         type: 'diagram-based',
         imageUri: row.image_url || (raw.image_uri as string) || '',

@@ -999,4 +999,190 @@ GROUP BY question_type, difficulty;
 
 ---
 
+## 13. LESSONS LEARNED — Generation Fault-Proofing Guide
+
+> **Why this section exists:** We spent significant time correcting generated questions across 4 subjects (~6,000+ questions). Every issue below actually happened in production. Future generation sessions MUST follow these rules to avoid repeating the same mistakes.
+
+---
+
+### 13.1 MANDATORY Payload Fields by Question Type
+
+Every type-specific field listed below **MUST** be present in the JSON payload. Without them, the app falls back to fragile regex parsing of `question_text`, which frequently fails on unusual formatting.
+
+| Question Type | Required Payload Fields | What Breaks Without Them |
+|---------------|------------------------|--------------------------|
+| `assertion-reasoning` | `assertion`, `reason` | App tries regex on question_text — fails on non-standard "Assertion (A):" formatting |
+| `match-the-following` | `column_a`, `column_b`, `correct_mapping` | Lost interactive column UI, falls back to plain MCQ buttons |
+| `fill-in-blanks` | `text_with_blanks` (with `______` markers) | Blank card duplicates the question header, no blanks rendered |
+| `logical-sequence` | `items` (array), `correct_order` (array) | ARRANGE card renders completely empty |
+| `diagram-based` | `image_uri`, `image_alt` | Empty placeholder where image should be |
+| `scenario-based` | `scenario` (DIFFERENT from `question_text`) | Scenario card shows nothing or duplicates the question stem |
+| `true-false` | Only 2 options: A="True", B="False" | Do NOT add C/D dummy options — breaks T/F toggle UI |
+
+**CRITICAL**: `scenario` field must contain a DIFFERENT narrative from `question_text`. If they're identical, the student sees the same text twice.
+
+---
+
+### 13.2 Field Name Standardization
+
+Generated questions used inconsistent JSON key naming which caused silent failures. Use **only** these canonical names:
+
+```
+CORRECT (use these)          WRONG (do NOT use)
+─────────────────────────    ─────────────────────────
+column_a                     columnA, col_a, Column_A
+column_b                     columnB, col_b, Column_B
+correct_mapping              correctMapping
+text_with_blanks             textWithBlanks, blanks_text
+correct_order                correctOrder
+image_uri                    imageUri, image_url
+image_alt                    imageAlt, alt_text
+assertion                    assertion_text
+reason                       reason_text
+scenario                     scenario_text
+```
+
+For options array:
+```
+CORRECT                      WRONG
+─────────────────────────    ─────────────────────────
+key                          option_key, id, label
+text                         option_text, value, content
+is_correct                   isCorrect, correct, is_answer
+```
+
+For elimination_hints array:
+```
+CORRECT                      WRONG
+─────────────────────────    ─────────────────────────
+option_key                   key, option_id
+hint                         hint_text, elimination
+misconception                misconception_text
+```
+
+---
+
+### 13.3 Question Type Naming (Exact Canonical Values)
+
+The DB trigger normalizes variants, but do NOT rely on it — use the exact canonical values:
+
+```
+CORRECT (canonical)          VARIANTS THAT CAUSED FAILURES
+─────────────────────────    ─────────────────────────
+mcq                          MCQ, multiple-choice
+assertion-reasoning          assertion_reasoning, AR
+match-the-following          match_following, match_the_following, MTF
+true-false                   true_false, TF
+fill-in-blanks               fill_in_blanks, fill-in-the-blanks, fill_in_the_blanks, fill_blanks
+diagram-based                diagram_based, diagram
+logical-sequence             logical_sequence, sequence
+scenario-based               scenario_based, scenario
+```
+
+---
+
+### 13.4 Elimination Hints Rules
+
+Every question **MUST** have `elimination_hints`. This is VaNi's key differentiator.
+
+- **4-option types** (mcq, assertion-reasoning, match-the-following, fill-in-blanks, scenario-based, logical-sequence, diagram-based): exactly **3 hints** (one per wrong option)
+- **true-false**: exactly **1 hint** (for the wrong option only)
+- Each hint must have: `option_key` matching the wrong option's `key`, `hint` explaining why it's wrong, `misconception` (the student error that leads to picking it, or `null`)
+- Do NOT include a hint for the correct option
+
+---
+
+### 13.5 Common Generation Mistakes (Actually Happened)
+
+#### Mistake 1: Hard-coding all questions as MCQ
+**What happened:** `dbToV2()` function was forcing `type: 'mcq'` on every question, ignoring the `question_type` field.
+**Impact:** All non-MCQ questions rendered as plain MCQ buttons — no special UI for match-the-following, assertion-reasoning, etc.
+**Prevention:** Always set `question_type` to the correct canonical value.
+
+#### Mistake 2: Putting structured data only in question_text
+**What happened:** Bulk import stored assertion/reason, column data, and scenarios only in `question_text` — not in the structured payload fields.
+**Impact:** App had to regex-parse question_text to extract structured data, which is fragile and fails on non-standard formatting.
+**Prevention:** Always populate BOTH `question_text` (for display fallback) AND structured payload fields.
+
+#### Mistake 3: Unresolvable chapter/topic IDs
+**What happened:** 69 question ID prefixes had no mapping in the chapter resolver, causing 6,976 questions to fail import.
+**Impact:** Foreign key violations prevented bulk insert.
+**Prevention:** Use only topic IDs that exist in `med_chapters` / `med_topics` tables. Verify with a SELECT query before generating.
+
+#### Mistake 4: Validator false positives
+**What happened:** Validators assumed "rich payload" format (structured JSON) but most generated questions used "lean payload" (content in question_text).
+**Impact:** Every assertion-reasoning question was flagged EMPTY_ASSERTION, every scenario question flagged EMPTY_SCENARIO — thousands of false positives.
+**Prevention:** Generate with rich payload (structured fields populated), so validators pass cleanly.
+
+#### Mistake 5: Fill-in-blanks without actual blanks
+**What happened:** Generated `text_with_blanks` field but didn't include `______` (3+ underscores) markers.
+**Impact:** Blank highlighting card rendered with no blanks visible.
+**Prevention:** Always use `______` (6 underscores) to mark the blank position in `text_with_blanks`.
+
+#### Mistake 6: Scenario-based with scenario = question_text
+**What happened:** The `scenario` field was an exact copy of `question_text`.
+**Impact:** Students see the same text displayed twice in the UI.
+**Prevention:** `scenario` = the case study/situation narrative. `question_text` = the actual question being asked about the scenario.
+
+---
+
+### 13.6 Production-Readiness Checklist (Run Before Saving Each Batch)
+
+```
+[ ] All 8 types present with correct counts per the mix spec
+[ ] Every question has elimination_hints (3 per 4-option types, 1 for true-false)
+[ ] Every scenario-based has `scenario` field DIFFERENT from `question_text`
+[ ] Every fill-in-blanks has `text_with_blanks` with ______ markers
+[ ] Every assertion-reasoning has separate `assertion` and `reason` fields
+[ ] Every match-the-following has `column_a`, `column_b`, `correct_mapping`
+[ ] Every logical-sequence has `items` array and `correct_order` array
+[ ] Every diagram-based has `image_uri` and `image_alt`
+[ ] Every true-false has exactly 2 options (A=True, B=False)
+[ ] correct_answer matches the option with is_correct=true
+[ ] No duplicate question stems vs existing JSONs
+[ ] question_type uses canonical values (hyphenated, not underscored)
+[ ] Field names use snake_case canonical names (NOT camelCase)
+[ ] Options use `key`, `text`, `is_correct` (NOT option_key/option_text)
+[ ] Elimination hints use `option_key`, `hint`, `misconception`
+[ ] Topic/chapter IDs exist in the DB (verified before generation)
+[ ] JSON is a plain array [...] with NO metadata wrapper
+```
+
+### 13.7 Severity Classification for Quality Issues
+
+When reviewing generated questions, prioritize by impact on student experience:
+
+| Severity | What It Means | Examples |
+|----------|---------------|---------|
+| **HIGH** | Question is broken/unsolvable | Empty question_text, no options, no correct answer, blank diagram, missing A/R fields |
+| **MEDIUM** | Question works but degraded | Few options (<4), multiple correct marked, missing columns in MTF |
+| **LOW** | Enhancement missing, question still functional | No elimination hints, no translation, no image alt-text |
+
+### 13.8 Diagram-Based Image Workflow
+
+Diagram-based questions require actual images. Two-step process:
+
+1. **During generation:** Set `image_uri` to a placeholder URL or descriptive path, and set `image_alt` to a detailed text description of what the diagram shows.
+2. **Before import:** Replace placeholder URIs with actual hosted image URLs (Supabase Storage or CDN).
+3. **Runtime safety:** If an image fails to load, the app auto-reports `IMAGE_LOAD_FAILED` without interrupting the student. But prevention is better — verify all URIs resolve before import.
+
+### 13.9 Translation Field Convention
+
+For bilingual questions (English + Telugu), every translatable field has a `_te` suffix companion:
+
+```
+question_text     → question_text_te
+explanation       → explanation_te
+assertion         → assertion_te
+reason            → reason_te
+scenario          → scenario_te
+text_with_blanks  → text_with_blanks_te
+hint              → hint_te (in elimination_hints)
+misconception     → misconception_te (in elimination_hints)
+```
+
+Translation fields are severity LOW if missing — students can still attempt in English. But they should be populated for Telugu-medium students.
+
+---
+
 *This document defines the question generation methodology for VaNi. It should be updated as we learn from actual usage and student feedback.*
