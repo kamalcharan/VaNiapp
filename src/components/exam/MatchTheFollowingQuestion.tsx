@@ -24,12 +24,12 @@ interface Props extends QuestionRendererProps {
   payload: MatchTheFollowingPayloadShape;
 }
 
-// Parse option text like "1-b, 2-c, 3-a" → { '1': 'b', '2': 'c', '3': 'a' }
+// Parse option text like "1-b, 2-c, 3-a" or "P→ii, Q–iii" → mapping object
 function parseOptionMapping(text: string): Record<string, string> {
   const mapping: Record<string, string> = {};
-  for (const part of text.split(',')) {
-    const [num, letter] = part.trim().split('-');
-    if (num && letter) mapping[num.trim()] = letter.trim();
+  for (const part of text.split(/[,;]\s*/)) {
+    const m = part.trim().match(/^([A-Za-z0-9]+)\s*[-–→]\s*\(?([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)?$/);
+    if (m) mapping[m[1].trim()] = m[2].trim();
   }
   return mapping;
 }
