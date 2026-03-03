@@ -710,7 +710,7 @@
   },
   {
     "id": "phy-wave-doppler-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): When a source of sound moves towards a stationary observer, the pitch of the sound heard by the observer increases. Reason (R): When the source approaches, the wavelength of the sound waves received by the observer decreases, causing the apparent frequency to increase.",
     "explanation": "Both the Assertion and Reason are correct, and the Reason is the correct explanation of the Assertion. When a source approaches, the wavefronts are compressed (wavelength decreases). Since v = f x lambda and v remains constant (determined by the medium), a decrease in wavelength results in an increase in frequency (and hence pitch). The Reason correctly explains the mechanism behind the Assertion.",
@@ -731,22 +731,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -770,7 +770,7 @@
   },
   {
     "id": "phy-wave-doppler-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): The Doppler effect formula for sound waves, f' = f(v +/- v_o)/(v -/+ v_s), cannot be directly applied to light waves. Reason (R): Sound waves require a material medium for propagation, making the Doppler effect asymmetric between source and observer motion, whereas light propagates without a medium and follows relativistic Doppler effect.",
     "explanation": "Both the Assertion and the Reason are correct, and the Reason correctly explains the Assertion. The classical Doppler formula for sound distinguishes between source motion and observer motion because sound has a preferred reference frame (the medium). For light, there is no medium (no ether), and special relativity shows that only relative velocity matters. Hence the classical sound Doppler formula cannot be directly used for light; the relativistic Doppler formula must be used instead.",
@@ -791,22 +791,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -830,7 +830,7 @@
   },
   {
     "id": "phy-wave-doppler-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following phenomena (Column I) with their descriptions (Column II):\n\nColumn I: (P) Beats (Q) Doppler effect (R) Echo (S) Reverberation\n\nColumn II: (1) Repeated reflection of sound causing prolonged persistence (2) Change in apparent frequency due to relative motion (3) Periodic variation in intensity due to superposition of waves with slightly different frequencies (4) Distinct repetition of sound due to reflection from a distant surface",
     "explanation": "P-Beats: Periodic variation in intensity due to superposition of waves with slightly different frequencies (3). Q-Doppler effect: Change in apparent frequency due to relative motion (2). R-Echo: Distinct repetition of sound due to reflection from a distant surface (4). S-Reverberation: Repeated reflection of sound causing prolonged persistence (1). Correct matching: P-3, Q-2, R-4, S-1.",
@@ -891,7 +891,7 @@
   },
   {
     "id": "phy-wave-doppler-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the physical situations (Column I) with the apparent frequency expressions (Column II) for a source of frequency f, speed of sound v, source speed v_s, and observer speed v_o:\n\nColumn I: (P) Source approaching stationary observer (Q) Observer receding from stationary source (R) Source and observer approaching each other (S) Source receding, observer approaching\n\nColumn II: (1) f(v + v_o)/(v + v_s) (2) f x v/(v - v_s) (3) f(v - v_o)/v (4) f(v + v_o)/(v - v_s)",
     "explanation": "P - Source approaching, observer stationary: v_o = 0, f' = fv/(v - v_s) matches (2). Q - Observer receding, source stationary: v_s = 0, f' = f(v - v_o)/v matches (3). R - Both approaching: f' = f(v + v_o)/(v - v_s) matches (4). S - Source receding, observer approaching: f' = f(v + v_o)/(v + v_s) matches (1). Correct matching: P-2, Q-3, R-4, S-1.",
@@ -951,7 +951,7 @@
   },
   {
     "id": "phy-wave-doppler-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The beat frequency produced by two sound waves is equal to the absolute difference of their frequencies.",
     "explanation": "This statement is TRUE. When two sound waves of frequencies f1 and f2 superpose, the resulting wave has a periodic variation in amplitude (and hence intensity) at a frequency equal to |f1 - f2|. This is the beat frequency. The phenomenon occurs because the waves alternately reinforce and cancel each other as they go in and out of phase.",
@@ -1000,7 +1000,7 @@
   },
   {
     "id": "phy-wave-doppler-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "When a source of sound moves away from a stationary observer, the apparent frequency heard by the observer is higher than the actual frequency.",
     "explanation": "This statement is FALSE. When a source moves away from a stationary observer, the wavelength of the sound waves increases (wavefronts are stretched). Since v = f x lambda and v remains constant, the increase in wavelength leads to a decrease in apparent frequency. The correct formula gives f' = fv/(v + v_s), which is less than f. The apparent frequency is lower, not higher.",
@@ -1049,7 +1049,7 @@
   },
   {
     "id": "phy-wave-doppler-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A source of sound is moving towards a stationary observer with a speed equal to half the speed of sound. If the actual frequency of the source is 300 Hz, the apparent frequency heard by the observer is ______ Hz.",
     "explanation": "Given: v_s = v/2, f = 300 Hz. Using the Doppler formula for source approaching: f' = f x v/(v - v_s) = 300 x v/(v - v/2) = 300 x v/(v/2) = 300 x 2 = 600 Hz. When the source speed is half the sound speed, the apparent frequency doubles.",
@@ -1109,7 +1109,7 @@
   },
   {
     "id": "phy-wave-doppler-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A train blowing a whistle of frequency 640 Hz approaches a railway platform at a speed of 36 km/h. A person standing on the platform hears the whistle as the train approaches, passes, and then recedes. The speed of sound in air is 340 m/s.\n\nWhat is the change in the apparent frequency heard by the person as the train crosses the platform?",
     "explanation": "First, convert the speed of the train: 36 km/h = 36 x (5/18) = 10 m/s. When the train approaches: f_approach = f x v/(v - v_s) = 640 x 340/(340 - 10) = 640 x 340/330 = 640 x 34/33 = 21760/33 = 659.4 Hz. When the train recedes: f_recede = f x v/(v + v_s) = 640 x 340/(340 + 10) = 640 x 340/350 = 640 x 34/35 = 21760/35 = 621.7 Hz. Change in apparent frequency = f_approach - f_recede = 659.4 - 621.7 = 37.7 Hz, approximately 38 Hz.",

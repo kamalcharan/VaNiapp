@@ -6,22 +6,56 @@
     "question_text": "Torque is defined as:",
     "explanation": "Torque (or moment of force) is defined as the cross product of the position vector r and the force vector F, i.e., τ = r × F. Its magnitude is rF sinθ, where θ is the angle between r and F. Torque is the rotational analogue of force in translational motion.",
     "correct_answer": "C",
-    "concept_tags": ["torque", "definition", "cross-product"],
+    "concept_tags": [
+      "torque",
+      "definition",
+      "cross-product"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "The dot product of position vector and force (r ⋅ F)", "is_correct": false },
-      { "key": "B", "text": "The product of mass and angular velocity (mω)", "is_correct": false },
-      { "key": "C", "text": "The cross product of position vector and force (r × F)", "is_correct": true },
-      { "key": "D", "text": "The product of force and angular displacement (Fθ)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "The dot product of position vector and force (r ⋅ F)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The product of mass and angular velocity (mω)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The cross product of position vector and force (r × F)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "The product of force and angular displacement (Fθ)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The dot product r ⋅ F gives a scalar quantity, but torque is a vector (axial vector).", "misconception": "Confusing dot product with cross product" },
-      { "option_key": "B", "hint": "mω has dimensions of kg⋅rad/s, which is related to angular momentum of a particle, not torque.", "misconception": "Confusing torque with angular momentum" },
-      { "option_key": "D", "hint": "Fθ has no standard physical meaning; work done in rotation involves torque times angular displacement, not force times angular displacement.", "misconception": "Mixing up the formula for rotational work" }
+      {
+        "option_key": "A",
+        "hint": "The dot product r ⋅ F gives a scalar quantity, but torque is a vector (axial vector).",
+        "misconception": "Confusing dot product with cross product"
+      },
+      {
+        "option_key": "B",
+        "hint": "mω has dimensions of kg⋅rad/s, which is related to angular momentum of a particle, not torque.",
+        "misconception": "Confusing torque with angular momentum"
+      },
+      {
+        "option_key": "D",
+        "hint": "Fθ has no standard physical meaning; work done in rotation involves torque times angular displacement, not force times angular displacement.",
+        "misconception": "Mixing up the formula for rotational work"
+      }
     ]
   },
   {
@@ -31,22 +65,56 @@
     "question_text": "The SI unit of angular momentum is:",
     "explanation": "Angular momentum L = Iω, where I has units of kg⋅m² and ω has units of rad/s (= s⁻¹). Therefore, L has units of kg⋅m²/s. Equivalently, since L = r × p, and momentum p has units of kg⋅m/s, L has units of kg⋅m²/s. This is also equivalent to J⋅s (joule-second).",
     "correct_answer": "B",
-    "concept_tags": ["angular-momentum", "units", "SI-system"],
+    "concept_tags": [
+      "angular-momentum",
+      "units",
+      "SI-system"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "kg⋅m/s", "is_correct": false },
-      { "key": "B", "text": "kg⋅m²/s", "is_correct": true },
-      { "key": "C", "text": "kg⋅m²/s²", "is_correct": false },
-      { "key": "D", "text": "kg⋅m/s²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "kg⋅m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kg⋅m²/s",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "kg⋅m²/s²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "kg⋅m/s²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "kg⋅m/s is the unit of linear momentum (p = mv), not angular momentum.", "misconception": "Confusing linear momentum with angular momentum" },
-      { "option_key": "C", "hint": "kg⋅m²/s² is the unit of energy (joule), not angular momentum.", "misconception": "Confusing angular momentum with energy" },
-      { "option_key": "D", "hint": "kg⋅m/s² is the unit of force (Newton), not angular momentum.", "misconception": "Confusing angular momentum with force" }
+      {
+        "option_key": "A",
+        "hint": "kg⋅m/s is the unit of linear momentum (p = mv), not angular momentum.",
+        "misconception": "Confusing linear momentum with angular momentum"
+      },
+      {
+        "option_key": "C",
+        "hint": "kg⋅m²/s² is the unit of energy (joule), not angular momentum.",
+        "misconception": "Confusing angular momentum with energy"
+      },
+      {
+        "option_key": "D",
+        "hint": "kg⋅m/s² is the unit of force (Newton), not angular momentum.",
+        "misconception": "Confusing angular momentum with force"
+      }
     ]
   },
   {
@@ -56,22 +124,56 @@
     "question_text": "The condition for pure rolling (rolling without slipping) of a circular body on a surface is:",
     "explanation": "For pure rolling, the velocity of the contact point with respect to the ground must be zero. This means the translational velocity of the centre v must equal Rω, where R is the radius and ω is the angular velocity. If v > Rω, the body skids forward; if v < Rω, the body skids backward.",
     "correct_answer": "A",
-    "concept_tags": ["rolling-motion", "pure-rolling", "condition"],
+    "concept_tags": [
+      "rolling-motion",
+      "pure-rolling",
+      "condition"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "v = Rω", "is_correct": true },
-      { "key": "B", "text": "v = R/ω", "is_correct": false },
-      { "key": "C", "text": "v = Rω²", "is_correct": false },
-      { "key": "D", "text": "v = R²ω", "is_correct": false }
+      {
+        "key": "A",
+        "text": "v = Rω",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "v = R/ω",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "v = Rω²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "v = R²ω",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "v = R/ω has dimensions of m²⋅s, which is not a valid velocity dimension.", "misconception": "Inverting ω in the rolling condition" },
-      { "option_key": "C", "hint": "v = Rω² has dimensions of m/s² (acceleration), not velocity.", "misconception": "Confusing the rolling condition with centripetal acceleration (Rω²)" },
-      { "option_key": "D", "hint": "v = R²ω has dimensions of m²⋅s⁻¹, which is not velocity.", "misconception": "Squaring the radius instead of using it linearly" }
+      {
+        "option_key": "B",
+        "hint": "v = R/ω has dimensions of m²⋅s, which is not a valid velocity dimension.",
+        "misconception": "Inverting ω in the rolling condition"
+      },
+      {
+        "option_key": "C",
+        "hint": "v = Rω² has dimensions of m/s² (acceleration), not velocity.",
+        "misconception": "Confusing the rolling condition with centripetal acceleration (Rω²)"
+      },
+      {
+        "option_key": "D",
+        "hint": "v = R²ω has dimensions of m²⋅s⁻¹, which is not velocity.",
+        "misconception": "Squaring the radius instead of using it linearly"
+      }
     ]
   },
   {
@@ -81,22 +183,57 @@
     "question_text": "The rotational analogue of Newton's second law (F = ma) is:",
     "explanation": "Just as force equals mass times linear acceleration (F = ma) in translational motion, in rotational motion the net torque equals the moment of inertia times the angular acceleration: τ = Iα. Here, τ is the rotational analogue of F, I is the analogue of mass m, and α is the analogue of linear acceleration a.",
     "correct_answer": "D",
-    "concept_tags": ["torque", "angular-acceleration", "newtons-second-law", "rotational-analogue"],
+    "concept_tags": [
+      "torque",
+      "angular-acceleration",
+      "newtons-second-law",
+      "rotational-analogue"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "L = Iω", "is_correct": false },
-      { "key": "B", "text": "KE = ½Iω²", "is_correct": false },
-      { "key": "C", "text": "W = τθ", "is_correct": false },
-      { "key": "D", "text": "τ = Iα", "is_correct": true }
+      {
+        "key": "A",
+        "text": "L = Iω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "KE = ½Iω²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "W = τθ",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "τ = Iα",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "L = Iω is the rotational analogue of p = mv (momentum), not Newton's second law.", "misconception": "Confusing the angular momentum formula with the torque equation" },
-      { "option_key": "B", "hint": "KE = ½Iω² is the rotational kinetic energy formula, analogous to ½mv², not F = ma.", "misconception": "Confusing rotational kinetic energy with the dynamical equation" },
-      { "option_key": "C", "hint": "W = τθ is the rotational work formula, analogous to W = Fs, not Newton's second law.", "misconception": "Confusing work done in rotation with the equation of motion" }
+      {
+        "option_key": "A",
+        "hint": "L = Iω is the rotational analogue of p = mv (momentum), not Newton's second law.",
+        "misconception": "Confusing the angular momentum formula with the torque equation"
+      },
+      {
+        "option_key": "B",
+        "hint": "KE = ½Iω² is the rotational kinetic energy formula, analogous to ½mv², not F = ma.",
+        "misconception": "Confusing rotational kinetic energy with the dynamical equation"
+      },
+      {
+        "option_key": "C",
+        "hint": "W = τθ is the rotational work formula, analogous to W = Fs, not Newton's second law.",
+        "misconception": "Confusing work done in rotation with the equation of motion"
+      }
     ]
   },
   {
@@ -106,22 +243,57 @@
     "question_text": "A uniform solid sphere rolls down an inclined plane without slipping. The ratio of its translational kinetic energy to its rotational kinetic energy is:",
     "explanation": "For a solid sphere, I = ⅖MR². In pure rolling, v = Rω. Translational KE = ½Mv² and rotational KE = ½Iω² = ½(⅖MR²)(v/R)² = ⅕Mv². The ratio is (½Mv²)/(⅕Mv²) = (1/2)/(1/5) = 5/2 = 5:2.",
     "correct_answer": "B",
-    "concept_tags": ["rolling-motion", "kinetic-energy", "solid-sphere", "energy-ratio"],
+    "concept_tags": [
+      "rolling-motion",
+      "kinetic-energy",
+      "solid-sphere",
+      "energy-ratio"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2 : 5", "is_correct": false },
-      { "key": "B", "text": "5 : 2", "is_correct": true },
-      { "key": "C", "text": "7 : 2", "is_correct": false },
-      { "key": "D", "text": "3 : 2", "is_correct": false }
+      {
+        "key": "A",
+        "text": "2 : 5",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "5 : 2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "7 : 2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3 : 2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "2:5 inverts the correct ratio; translational KE is always greater than rotational KE for a solid sphere.", "misconception": "Reversing the translational-to-rotational KE ratio" },
-      { "option_key": "C", "hint": "7:2 is the ratio of total KE to rotational KE, not translational to rotational.", "misconception": "Confusing total KE with translational KE" },
-      { "option_key": "D", "hint": "3:2 would apply to a different body geometry, not a solid sphere with I = ⅖MR².", "misconception": "Using an incorrect moment of inertia coefficient" }
+      {
+        "option_key": "A",
+        "hint": "2:5 inverts the correct ratio; translational KE is always greater than rotational KE for a solid sphere.",
+        "misconception": "Reversing the translational-to-rotational KE ratio"
+      },
+      {
+        "option_key": "C",
+        "hint": "7:2 is the ratio of total KE to rotational KE, not translational to rotational.",
+        "misconception": "Confusing total KE with translational KE"
+      },
+      {
+        "option_key": "D",
+        "hint": "3:2 would apply to a different body geometry, not a solid sphere with I = ⅖MR².",
+        "misconception": "Using an incorrect moment of inertia coefficient"
+      }
     ]
   },
   {
@@ -131,22 +303,56 @@
     "question_text": "A disc of moment of inertia I is rotating about its central axis with angular velocity ω. If a second identical disc (initially at rest) is placed on top of it and they reach a common angular velocity, the final angular velocity is:",
     "explanation": "By conservation of angular momentum (no external torque): L_initial = L_final. Iω = (I + I)ω_f = 2Iω_f. Therefore, ω_f = ω/2. Angular momentum is conserved, but kinetic energy is lost due to friction between the discs during the process.",
     "correct_answer": "C",
-    "concept_tags": ["angular-momentum", "conservation", "disc-coupling"],
+    "concept_tags": [
+      "angular-momentum",
+      "conservation",
+      "disc-coupling"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "ω", "is_correct": false },
-      { "key": "B", "text": "2ω", "is_correct": false },
-      { "key": "C", "text": "ω/2", "is_correct": true },
-      { "key": "D", "text": "ω/4", "is_correct": false }
+      {
+        "key": "A",
+        "text": "ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2ω",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ω/2",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "ω/4",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "If the final velocity remained ω, the total angular momentum would double (2Iω), violating conservation.", "misconception": "Ignoring the increase in moment of inertia when the second disc is added" },
-      { "option_key": "B", "hint": "2ω would quadruple the angular momentum, which is impossible without external torque.", "misconception": "Confusing energy conservation with angular momentum conservation" },
-      { "option_key": "D", "hint": "ω/4 would give total angular momentum of Iω/2, which is less than the initial Iω.", "misconception": "Over-estimating the loss in angular velocity" }
+      {
+        "option_key": "A",
+        "hint": "If the final velocity remained ω, the total angular momentum would double (2Iω), violating conservation.",
+        "misconception": "Ignoring the increase in moment of inertia when the second disc is added"
+      },
+      {
+        "option_key": "B",
+        "hint": "2ω would quadruple the angular momentum, which is impossible without external torque.",
+        "misconception": "Confusing energy conservation with angular momentum conservation"
+      },
+      {
+        "option_key": "D",
+        "hint": "ω/4 would give total angular momentum of Iω/2, which is less than the initial Iω.",
+        "misconception": "Over-estimating the loss in angular velocity"
+      }
     ]
   },
   {
@@ -156,22 +362,57 @@
     "question_text": "An ice skater spinning with arms extended has a moment of inertia of 6 kg⋅m² and angular velocity of 2 rad/s. She pulls her arms in, reducing her moment of inertia to 2 kg⋅m². Her new angular velocity is:",
     "explanation": "Using conservation of angular momentum (no external torque): I₁ω₁ = I₂ω₂. So 6 × 2 = 2 × ω₂, giving ω₂ = 12/2 = 6 rad/s. By pulling her arms in, the skater reduces her MOI and spins faster. This is a classic demonstration of angular momentum conservation.",
     "correct_answer": "D",
-    "concept_tags": ["angular-momentum", "conservation", "ice-skater", "variable-MOI"],
+    "concept_tags": [
+      "angular-momentum",
+      "conservation",
+      "ice-skater",
+      "variable-MOI"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2 rad/s", "is_correct": false },
-      { "key": "B", "text": "3 rad/s", "is_correct": false },
-      { "key": "C", "text": "4 rad/s", "is_correct": false },
-      { "key": "D", "text": "6 rad/s", "is_correct": true }
+      {
+        "key": "A",
+        "text": "2 rad/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 rad/s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4 rad/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "6 rad/s",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "2 rad/s is the initial angular velocity; if it remained unchanged, angular momentum would drop from 12 to 4 kg⋅m²/s.", "misconception": "Thinking angular velocity stays the same when MOI changes" },
-      { "option_key": "B", "hint": "3 rad/s gives L = 2 × 3 = 6 kg⋅m²/s, which is only half the initial angular momentum of 12 kg⋅m²/s.", "misconception": "Dividing MOI ratio incorrectly" },
-      { "option_key": "C", "hint": "4 rad/s gives L = 2 × 4 = 8 kg⋅m²/s, which does not equal the initial 12 kg⋅m²/s.", "misconception": "Arithmetic error in angular momentum conservation" }
+      {
+        "option_key": "A",
+        "hint": "2 rad/s is the initial angular velocity; if it remained unchanged, angular momentum would drop from 12 to 4 kg⋅m²/s.",
+        "misconception": "Thinking angular velocity stays the same when MOI changes"
+      },
+      {
+        "option_key": "B",
+        "hint": "3 rad/s gives L = 2 × 3 = 6 kg⋅m²/s, which is only half the initial angular momentum of 12 kg⋅m²/s.",
+        "misconception": "Dividing MOI ratio incorrectly"
+      },
+      {
+        "option_key": "C",
+        "hint": "4 rad/s gives L = 2 × 4 = 8 kg⋅m²/s, which does not equal the initial 12 kg⋅m²/s.",
+        "misconception": "Arithmetic error in angular momentum conservation"
+      }
     ]
   },
   {
@@ -181,22 +422,57 @@
     "question_text": "A force F = 5 N is applied tangentially at the rim of a disc of radius 0.4 m and moment of inertia 2 kg⋅m² about its central axis. The angular acceleration produced is:",
     "explanation": "Torque τ = F × R = 5 × 0.4 = 2 N⋅m. Using τ = Iα: 2 = 2 × α, so α = 1 rad/s². The force is tangential so the full force contributes to the torque (sinθ = sin90° = 1).",
     "correct_answer": "A",
-    "concept_tags": ["torque", "angular-acceleration", "disc", "numerical"],
+    "concept_tags": [
+      "torque",
+      "angular-acceleration",
+      "disc",
+      "numerical"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "1 rad/s²", "is_correct": true },
-      { "key": "B", "text": "2 rad/s²", "is_correct": false },
-      { "key": "C", "text": "0.5 rad/s²", "is_correct": false },
-      { "key": "D", "text": "4 rad/s²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1 rad/s²",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "2 rad/s²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.5 rad/s²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4 rad/s²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "2 rad/s² would require τ = 4 N⋅m, but the actual torque is only 2 N⋅m.", "misconception": "Dividing the force by the radius instead of multiplying" },
-      { "option_key": "C", "hint": "0.5 rad/s² results from using I = 4 kg⋅m² instead of the given 2 kg⋅m².", "misconception": "Doubling the moment of inertia" },
-      { "option_key": "D", "hint": "4 rad/s² would require τ = 8 N⋅m, far exceeding the actual torque.", "misconception": "Dividing force by MOI without computing torque first" }
+      {
+        "option_key": "B",
+        "hint": "2 rad/s² would require τ = 4 N⋅m, but the actual torque is only 2 N⋅m.",
+        "misconception": "Dividing the force by the radius instead of multiplying"
+      },
+      {
+        "option_key": "C",
+        "hint": "0.5 rad/s² results from using I = 4 kg⋅m² instead of the given 2 kg⋅m².",
+        "misconception": "Doubling the moment of inertia"
+      },
+      {
+        "option_key": "D",
+        "hint": "4 rad/s² would require τ = 8 N⋅m, far exceeding the actual torque.",
+        "misconception": "Dividing force by MOI without computing torque first"
+      }
     ]
   },
   {
@@ -206,22 +482,57 @@
     "question_text": "The total kinetic energy of a body rolling without slipping with velocity v on a horizontal surface can be expressed as KE = ½Mv²(1 + k²/R²), where k is the radius of gyration and R is the radius of the body. For a hollow sphere (thin spherical shell), this total KE is:",
     "explanation": "For a hollow sphere, I = ⅔MR², so k² = I/M = ⅔R² and k²/R² = ⅔. Total KE = ½Mv²(1 + ⅔) = ½Mv² × 5/3 = 5Mv²/6. This accounts for both the translational (½Mv²) and rotational (½Iω² = ⅓Mv²) contributions.",
     "correct_answer": "B",
-    "concept_tags": ["rolling-motion", "kinetic-energy", "hollow-sphere", "radius-of-gyration"],
+    "concept_tags": [
+      "rolling-motion",
+      "kinetic-energy",
+      "hollow-sphere",
+      "radius-of-gyration"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "7Mv²/10", "is_correct": false },
-      { "key": "B", "text": "5Mv²/6", "is_correct": true },
-      { "key": "C", "text": "Mv²", "is_correct": false },
-      { "key": "D", "text": "3Mv²/4", "is_correct": false }
+      {
+        "key": "A",
+        "text": "7Mv²/10",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "5Mv²/6",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Mv²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3Mv²/4",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "7Mv²/10 is the total KE for a solid sphere (k²/R² = 2/5), not a hollow sphere.", "misconception": "Confusing the solid sphere's KE with the hollow sphere's KE" },
-      { "option_key": "C", "hint": "Mv² would require k²/R² = 1, which corresponds to a ring or hollow cylinder, not a hollow sphere.", "misconception": "Using the ring's k²/R² value for the hollow sphere" },
-      { "option_key": "D", "hint": "3Mv²/4 would require k²/R² = ½, corresponding to a solid cylinder, not a hollow sphere.", "misconception": "Confusing the hollow sphere's MOI with that of a solid cylinder" }
+      {
+        "option_key": "A",
+        "hint": "7Mv²/10 is the total KE for a solid sphere (k²/R² = 2/5), not a hollow sphere.",
+        "misconception": "Confusing the solid sphere's KE with the hollow sphere's KE"
+      },
+      {
+        "option_key": "C",
+        "hint": "Mv² would require k²/R² = 1, which corresponds to a ring or hollow cylinder, not a hollow sphere.",
+        "misconception": "Using the ring's k²/R² value for the hollow sphere"
+      },
+      {
+        "option_key": "D",
+        "hint": "3Mv²/4 would require k²/R² = ½, corresponding to a solid cylinder, not a hollow sphere.",
+        "misconception": "Confusing the hollow sphere's MOI with that of a solid cylinder"
+      }
     ]
   },
   {
@@ -231,22 +542,57 @@
     "question_text": "A wheel of radius R rolls without slipping on a horizontal surface. If the velocity of the centre of the wheel is v, the velocity of the topmost point of the wheel relative to the ground is:",
     "explanation": "At the topmost point, the translational velocity (v, forward) and the rotational velocity (Rω = v, forward, in the same direction) add up. Therefore, the velocity of the topmost point = v + Rω = v + v = 2v. The bottommost point has zero velocity (contact point in pure rolling).",
     "correct_answer": "D",
-    "concept_tags": ["rolling-motion", "velocity", "topmost-point", "pure-rolling"],
+    "concept_tags": [
+      "rolling-motion",
+      "velocity",
+      "topmost-point",
+      "pure-rolling"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "v", "is_correct": false },
-      { "key": "B", "text": "Zero", "is_correct": false },
-      { "key": "C", "text": "√2 v", "is_correct": false },
-      { "key": "D", "text": "2v", "is_correct": true }
+      {
+        "key": "A",
+        "text": "v",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "√2 v",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2v",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "v is the velocity of the centre only; the topmost point has an additional rotational component in the same direction.", "misconception": "Ignoring the rotational contribution at the topmost point" },
-      { "option_key": "B", "hint": "Zero is the velocity of the bottommost (contact) point, not the topmost point.", "misconception": "Confusing the topmost point with the contact point" },
-      { "option_key": "C", "hint": "√2 v would be the velocity if the translational and rotational components were perpendicular, but at the top they are parallel.", "misconception": "Adding the velocity components vectorially at 90° instead of 0°" }
+      {
+        "option_key": "A",
+        "hint": "v is the velocity of the centre only; the topmost point has an additional rotational component in the same direction.",
+        "misconception": "Ignoring the rotational contribution at the topmost point"
+      },
+      {
+        "option_key": "B",
+        "hint": "Zero is the velocity of the bottommost (contact) point, not the topmost point.",
+        "misconception": "Confusing the topmost point with the contact point"
+      },
+      {
+        "option_key": "C",
+        "hint": "√2 v would be the velocity if the translational and rotational components were perpendicular, but at the top they are parallel.",
+        "misconception": "Adding the velocity components vectorially at 90° instead of 0°"
+      }
     ]
   },
   {
@@ -256,22 +602,57 @@
     "question_text": "A solid sphere, a hollow sphere, a solid cylinder, and a hollow cylinder, all of equal mass and radius, are released simultaneously from rest at the top of a rough inclined plane. Which one reaches the bottom first?",
     "explanation": "For rolling without slipping down an incline, the acceleration is a = g sinθ/(1 + k²/R²). The body with the smallest k²/R² has the largest acceleration and reaches the bottom first. Solid sphere: k²/R² = 2/5 = 0.4; Hollow sphere: 2/3 ≈ 0.67; Solid cylinder: 1/2 = 0.5; Hollow cylinder: 1. Since 0.4 is the smallest, the solid sphere reaches the bottom first.",
     "correct_answer": "A",
-    "concept_tags": ["rolling-motion", "inclined-plane", "acceleration", "comparison"],
+    "concept_tags": [
+      "rolling-motion",
+      "inclined-plane",
+      "acceleration",
+      "comparison"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Solid sphere", "is_correct": true },
-      { "key": "B", "text": "Hollow sphere", "is_correct": false },
-      { "key": "C", "text": "Solid cylinder", "is_correct": false },
-      { "key": "D", "text": "Hollow cylinder", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Solid sphere",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Hollow sphere",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Solid cylinder",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Hollow cylinder",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The hollow sphere has k²/R² = 2/3, which is greater than the solid sphere's 2/5, giving it a smaller acceleration.", "misconception": "Thinking a hollow sphere rolls faster due to less mass near the centre" },
-      { "option_key": "C", "hint": "The solid cylinder has k²/R² = 1/2, which exceeds the solid sphere's 2/5 and thus has less acceleration.", "misconception": "Assuming cylindrical geometry gives faster rolling than spherical" },
-      { "option_key": "D", "hint": "The hollow cylinder has the largest k²/R² = 1, so it has the smallest acceleration and reaches the bottom last.", "misconception": "Confusing the hollow cylinder with the fastest rolling body" }
+      {
+        "option_key": "B",
+        "hint": "The hollow sphere has k²/R² = 2/3, which is greater than the solid sphere's 2/5, giving it a smaller acceleration.",
+        "misconception": "Thinking a hollow sphere rolls faster due to less mass near the centre"
+      },
+      {
+        "option_key": "C",
+        "hint": "The solid cylinder has k²/R² = 1/2, which exceeds the solid sphere's 2/5 and thus has less acceleration.",
+        "misconception": "Assuming cylindrical geometry gives faster rolling than spherical"
+      },
+      {
+        "option_key": "D",
+        "hint": "The hollow cylinder has the largest k²/R² = 1, so it has the smallest acceleration and reaches the bottom last.",
+        "misconception": "Confusing the hollow cylinder with the fastest rolling body"
+      }
     ]
   },
   {
@@ -281,222 +662,540 @@
     "question_text": "A uniform rod of length L and mass M is pivoted at one end and released from a horizontal position. The angular velocity of the rod when it passes through the vertical position is:",
     "explanation": "Using energy conservation: the COM of the rod falls through a height L/2 (from horizontal to vertical). So Mg(L/2) = ½Iω², where I = ML²/3 (about the pivot at one end). Therefore: MgL/2 = ½(ML²/3)ω² = ML²ω²/6. Solving: ω² = 6g/2L × 1 = 3g/L, so ω = √(3g/L).",
     "correct_answer": "C",
-    "concept_tags": ["torque", "angular-velocity", "rod", "energy-conservation", "pivot"],
+    "concept_tags": [
+      "torque",
+      "angular-velocity",
+      "rod",
+      "energy-conservation",
+      "pivot"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "√(g/L)", "is_correct": false },
-      { "key": "B", "text": "√(2g/L)", "is_correct": false },
-      { "key": "C", "text": "√(3g/L)", "is_correct": true },
-      { "key": "D", "text": "√(6g/L)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "√(g/L)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "√(2g/L)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "√(3g/L)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "√(6g/L)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "√(g/L) results from incorrectly using the MOI as ML² instead of ML²/3.", "misconception": "Using incorrect moment of inertia for the rod about its end" },
-      { "option_key": "B", "hint": "√(2g/L) would apply if the height fallen were L (the full length), using an incorrect COM height.", "misconception": "Using the full rod length instead of L/2 for the COM height drop" },
-      { "option_key": "D", "hint": "√(6g/L) results from using L as the COM drop height and ML²/12 as the MOI.", "misconception": "Using the centre-axis MOI instead of the end-axis MOI" }
+      {
+        "option_key": "A",
+        "hint": "√(g/L) results from incorrectly using the MOI as ML² instead of ML²/3.",
+        "misconception": "Using incorrect moment of inertia for the rod about its end"
+      },
+      {
+        "option_key": "B",
+        "hint": "√(2g/L) would apply if the height fallen were L (the full length), using an incorrect COM height.",
+        "misconception": "Using the full rod length instead of L/2 for the COM height drop"
+      },
+      {
+        "option_key": "D",
+        "hint": "√(6g/L) results from using L as the COM drop height and ML²/12 as the MOI.",
+        "misconception": "Using the centre-axis MOI instead of the end-axis MOI"
+      }
     ]
   },
   {
     "id": "phy-rot-dynamics-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): When a spinning ice skater pulls her arms inward, her angular velocity increases.\nReason (R): Angular momentum is conserved when no external torque acts on the system.",
     "explanation": "The assertion is correct: the skater's angular velocity increases when she pulls in her arms because her moment of inertia decreases. The reason is also correct: in the absence of external torque, Iω = constant. Since R (conservation of angular momentum) directly explains why reducing I leads to an increase in ω (A), R is the correct explanation of A.",
     "correct_answer": "A",
-    "concept_tags": ["angular-momentum", "conservation", "ice-skater", "external-torque"],
+    "concept_tags": [
+      "angular-momentum",
+      "conservation",
+      "ice-skater",
+      "external-torque"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The conservation of angular momentum is precisely the principle that explains the skater's increased angular velocity, making R the correct explanation of A.", "misconception": "Not recognizing the direct causal connection between conservation law and the observed effect" },
-      { "option_key": "C", "hint": "The reason states a correct physical law; angular momentum conservation in the absence of external torque is well established.", "misconception": "Doubting the conservation of angular momentum" },
-      { "option_key": "D", "hint": "The assertion is experimentally verifiable and theoretically correct; pulling arms in always increases angular velocity for a spinning body.", "misconception": "Thinking the skater slows down when pulling arms in" }
+      {
+        "option_key": "B",
+        "hint": "The conservation of angular momentum is precisely the principle that explains the skater's increased angular velocity, making R the correct explanation of A.",
+        "misconception": "Not recognizing the direct causal connection between conservation law and the observed effect"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason states a correct physical law; angular momentum conservation in the absence of external torque is well established.",
+        "misconception": "Doubting the conservation of angular momentum"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is experimentally verifiable and theoretically correct; pulling arms in always increases angular velocity for a spinning body.",
+        "misconception": "Thinking the skater slows down when pulling arms in"
+      }
     ]
   },
   {
     "id": "phy-rot-dynamics-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): A solid sphere rolling without slipping on a rough inclined plane has both translational and rotational kinetic energy.\nReason (R): Friction is the cause of energy loss in pure rolling on an inclined plane.",
     "explanation": "The assertion is correct: a rolling sphere has both translational KE (½Mv²) and rotational KE (½Iω²). However, the reason is incorrect: in pure rolling (without slipping), the point of contact has zero relative velocity, so static friction does no work and there is no energy loss due to friction. The total mechanical energy is conserved in ideal pure rolling on an incline.",
     "correct_answer": "C",
-    "concept_tags": ["rolling-motion", "kinetic-energy", "friction", "pure-rolling", "energy-conservation"],
+    "concept_tags": [
+      "rolling-motion",
+      "kinetic-energy",
+      "friction",
+      "pure-rolling",
+      "energy-conservation"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "R is factually incorrect because static friction in pure rolling does no work and causes no energy loss.", "misconception": "Believing static friction dissipates energy in pure rolling" },
-      { "option_key": "B", "hint": "For this to be correct, both A and R must be true, but R is false since pure rolling involves static friction which does no work.", "misconception": "Confusing static friction (no work) with kinetic friction (does work)" },
-      { "option_key": "D", "hint": "The assertion is correct; any body performing rolling motion possesses both translational and rotational KE.", "misconception": "Thinking rolling bodies have only translational KE" }
+      {
+        "option_key": "A",
+        "hint": "R is factually incorrect because static friction in pure rolling does no work and causes no energy loss.",
+        "misconception": "Believing static friction dissipates energy in pure rolling"
+      },
+      {
+        "option_key": "B",
+        "hint": "For this to be correct, both A and R must be true, but R is false since pure rolling involves static friction which does no work.",
+        "misconception": "Confusing static friction (no work) with kinetic friction (does work)"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct; any body performing rolling motion possesses both translational and rotational KE.",
+        "misconception": "Thinking rolling bodies have only translational KE"
+      }
     ]
   },
   {
     "id": "phy-rot-dynamics-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following rotational quantities (Column I) with their translational analogues (Column II):\n\nColumn I:\nA. Torque (τ)\nB. Moment of inertia (I)\nC. Angular momentum (L)\nD. Angular velocity (ω)\n\nColumn II:\n1. Velocity (v)\n2. Force (F)\n3. Linear momentum (p)\n4. Mass (m)",
     "explanation": "Torque is the rotational analogue of force (A-2). Moment of inertia is the rotational analogue of mass (B-4). Angular momentum corresponds to linear momentum (C-3). Angular velocity corresponds to linear velocity (D-1). These analogies follow directly from comparing rotational and translational equations of motion.",
     "correct_answer": "B",
-    "concept_tags": ["rotational-analogues", "torque", "angular-momentum", "moment-of-inertia"],
+    "concept_tags": [
+      "rotational-analogues",
+      "torque",
+      "angular-momentum",
+      "moment-of-inertia"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-2, B-3, C-4, D-1", "is_correct": false },
-      { "key": "B", "text": "A-2, B-4, C-3, D-1", "is_correct": true },
-      { "key": "C", "text": "A-4, B-2, C-1, D-3", "is_correct": false },
-      { "key": "D", "text": "A-1, B-4, C-3, D-2", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-2, B-3, C-4, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-4, C-3, D-1",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-2, C-1, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-1, B-4, C-3, D-2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This assigns linear momentum (p) as the analogue of moment of inertia (I), but mass (m) is the correct analogue.", "misconception": "Confusing the analogue of MOI with that of angular momentum" },
-      { "option_key": "C", "hint": "This assigns mass (m) to torque and force (F) to MOI, which reverses the correct analogues for both.", "misconception": "Swapping the analogues for torque and moment of inertia" },
-      { "option_key": "D", "hint": "This assigns velocity to torque and force to angular velocity, which is incorrect for both.", "misconception": "Randomly assigning translational analogues" }
+      {
+        "option_key": "A",
+        "hint": "This assigns linear momentum (p) as the analogue of moment of inertia (I), but mass (m) is the correct analogue.",
+        "misconception": "Confusing the analogue of MOI with that of angular momentum"
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns mass (m) to torque and force (F) to MOI, which reverses the correct analogues for both.",
+        "misconception": "Swapping the analogues for torque and moment of inertia"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns velocity to torque and force to angular velocity, which is incorrect for both.",
+        "misconception": "Randomly assigning translational analogues"
+      }
     ]
   },
   {
     "id": "phy-rot-dynamics-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following rolling bodies (Column I) with their acceleration down a smooth inclined plane of angle θ (Column II), assuming pure rolling:\n\nColumn I:\nA. Ring (I = MR²)\nB. Solid cylinder (I = ½MR²)\nC. Solid sphere (I = ⅖MR²)\nD. Hollow sphere (I = ⅔MR²)\n\nColumn II:\n1. 5g sinθ/7\n2. g sinθ/2\n3. 2g sinθ/3\n4. 3g sinθ/5",
     "explanation": "Using a = g sinθ/(1 + k²/R²): Ring (k²/R² = 1): a = g sinθ/2 (A-2). Solid cylinder (k²/R² = 1/2): a = g sinθ/(3/2) = 2g sinθ/3 (B-3). Solid sphere (k²/R² = 2/5): a = g sinθ/(7/5) = 5g sinθ/7 (C-1). Hollow sphere (k²/R² = 2/3): a = g sinθ/(5/3) = 3g sinθ/5 (D-4).",
     "correct_answer": "D",
-    "concept_tags": ["rolling-motion", "inclined-plane", "acceleration", "standard-bodies"],
+    "concept_tags": [
+      "rolling-motion",
+      "inclined-plane",
+      "acceleration",
+      "standard-bodies"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-1, B-3, C-2, D-4", "is_correct": false },
-      { "key": "B", "text": "A-2, B-4, C-1, D-3", "is_correct": false },
-      { "key": "C", "text": "A-2, B-1, C-3, D-4", "is_correct": false },
-      { "key": "D", "text": "A-2, B-3, C-1, D-4", "is_correct": true }
+      {
+        "key": "A",
+        "text": "A-1, B-3, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-4, C-1, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Assigning 5g sinθ/7 to the ring is incorrect; the ring has the largest k²/R² and thus the smallest acceleration (g sinθ/2).", "misconception": "Mixing up which body has the largest and smallest acceleration" },
-      { "option_key": "B", "hint": "Assigning 3g sinθ/5 to the solid cylinder is incorrect; this value belongs to the hollow sphere.", "misconception": "Swapping the acceleration values of the solid cylinder and hollow sphere" },
-      { "option_key": "C", "hint": "Assigning 5g sinθ/7 to the solid cylinder and 2g sinθ/3 to the solid sphere is reversed.", "misconception": "Confusing the k²/R² values for the solid cylinder and solid sphere" }
+      {
+        "option_key": "A",
+        "hint": "Assigning 5g sinθ/7 to the ring is incorrect; the ring has the largest k²/R² and thus the smallest acceleration (g sinθ/2).",
+        "misconception": "Mixing up which body has the largest and smallest acceleration"
+      },
+      {
+        "option_key": "B",
+        "hint": "Assigning 3g sinθ/5 to the solid cylinder is incorrect; this value belongs to the hollow sphere.",
+        "misconception": "Swapping the acceleration values of the solid cylinder and hollow sphere"
+      },
+      {
+        "option_key": "C",
+        "hint": "Assigning 5g sinθ/7 to the solid cylinder and 2g sinθ/3 to the solid sphere is reversed.",
+        "misconception": "Confusing the k²/R² values for the solid cylinder and solid sphere"
+      }
     ]
   },
   {
     "id": "phy-rot-dynamics-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The angular momentum of a particle moving in a straight line about any point not on the line is constant if no external force acts on the particle.",
     "explanation": "This is true. For a particle moving in a straight line with constant velocity (no external force), the angular momentum about any external point is L = mvd, where d is the perpendicular distance from the point to the line of motion. Since m, v, and d all remain constant, L is constant. Alternatively, since net torque about the point is zero (force is zero), dL/dt = 0.",
     "correct_answer": "A",
-    "concept_tags": ["angular-momentum", "straight-line", "constant", "torque-zero"],
+    "concept_tags": [
+      "angular-momentum",
+      "straight-line",
+      "constant",
+      "torque-zero"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "With no external force, there is no torque about any point, so angular momentum must be conserved.", "misconception": "Thinking angular momentum changes for a particle in straight-line motion because the position vector changes direction" },
-      { "option_key": "C", "hint": "This option is not applicable for true/false questions.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for true/false questions.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "With no external force, there is no torque about any point, so angular momentum must be conserved.",
+        "misconception": "Thinking angular momentum changes for a particle in straight-line motion because the position vector changes direction"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-rot-dynamics-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In pure rolling on a horizontal surface, the friction force is always zero.",
     "explanation": "This statement is false. In pure rolling on a horizontal surface, friction may or may not be zero depending on whether there is an external force or torque causing acceleration. For a body rolling at constant velocity on a level surface, friction is zero. However, if an external force is applied (e.g., a push), static friction acts to maintain the rolling condition. Thus, friction is not always zero in pure rolling.",
     "correct_answer": "B",
-    "concept_tags": ["rolling-motion", "friction", "pure-rolling", "static-friction"],
+    "concept_tags": [
+      "rolling-motion",
+      "friction",
+      "pure-rolling",
+      "static-friction"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Static friction can be nonzero in pure rolling when an external force accelerates the body; friction is needed to maintain the rolling condition v = Rω.", "misconception": "Assuming zero velocity at the contact point means zero friction force" },
-      { "option_key": "C", "hint": "This option is not applicable for true/false questions.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for true/false questions.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Static friction can be nonzero in pure rolling when an external force accelerates the body; friction is needed to maintain the rolling condition v = Rω.",
+        "misconception": "Assuming zero velocity at the contact point means zero friction force"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-rot-dynamics-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A body rolling without slipping on a horizontal surface has total kinetic energy equal to the sum of translational and rotational kinetic energy. For a solid cylinder rolling with velocity v, the fraction of total kinetic energy that is rotational is _____.",
     "explanation": "For a solid cylinder, I = ½MR² and k²/R² = ½. Rotational KE = ½Iω² = ½(½MR²)(v/R)² = ¼Mv². Total KE = ½Mv² + ¼Mv² = ¾Mv². Fraction of rotational KE = (¼Mv²)/(¾Mv²) = 1/3. So one-third of the total kinetic energy is rotational.",
     "correct_answer": "B",
-    "concept_tags": ["rolling-motion", "kinetic-energy", "solid-cylinder", "energy-fraction"],
+    "concept_tags": [
+      "rolling-motion",
+      "kinetic-energy",
+      "solid-cylinder",
+      "energy-fraction"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "1/2", "is_correct": false },
-      { "key": "B", "text": "1/3", "is_correct": true },
-      { "key": "C", "text": "2/7", "is_correct": false },
-      { "key": "D", "text": "1/4", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1/3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2/7",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1/4",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "1/2 would mean rotational KE equals translational KE, which requires k²/R² = 1 (a ring), not ½ (a cylinder).", "misconception": "Using the ring's k²/R² value for the cylinder" },
-      { "option_key": "C", "hint": "2/7 is the rotational fraction for a solid sphere (k²/R² = 2/5), not a solid cylinder.", "misconception": "Confusing the solid cylinder with the solid sphere" },
-      { "option_key": "D", "hint": "1/4 would result from dividing rotational KE by translational KE (½:½Mv²) rather than by total KE.", "misconception": "Dividing rotational KE by translational KE instead of total KE" }
+      {
+        "option_key": "A",
+        "hint": "1/2 would mean rotational KE equals translational KE, which requires k²/R² = 1 (a ring), not ½ (a cylinder).",
+        "misconception": "Using the ring's k²/R² value for the cylinder"
+      },
+      {
+        "option_key": "C",
+        "hint": "2/7 is the rotational fraction for a solid sphere (k²/R² = 2/5), not a solid cylinder.",
+        "misconception": "Confusing the solid cylinder with the solid sphere"
+      },
+      {
+        "option_key": "D",
+        "hint": "1/4 would result from dividing rotational KE by translational KE (½:½Mv²) rather than by total KE.",
+        "misconception": "Dividing rotational KE by translational KE instead of total KE"
+      }
     ]
   },
   {
     "id": "phy-rot-dynamics-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A merry-go-round (uniform disc) of mass 200 kg and radius 3 m is spinning freely at 10 rpm. A child of mass 50 kg, initially standing at the centre, walks outward to the edge of the merry-go-round. Assume the merry-go-round is frictionless at its axle.\n\nWhat is the new angular velocity of the system when the child reaches the edge?",
     "explanation": "Initial MOI of disc = ½MR² = ½ × 200 × 9 = 900 kg⋅m². Child at centre contributes zero MOI. So I_initial = 900 kg⋅m². When the child is at the edge: I_child = mR² = 50 × 9 = 450 kg⋅m². I_final = 900 + 450 = 1350 kg⋅m². By conservation of angular momentum: I₁ω₁ = I₂ω₂. 900 × 10 = 1350 × ω₂. ω₂ = 9000/1350 = 6.67 rpm ≈ 20/3 rpm.",
     "correct_answer": "C",
-    "concept_tags": ["angular-momentum", "conservation", "merry-go-round", "variable-MOI", "numerical"],
+    "concept_tags": [
+      "angular-momentum",
+      "conservation",
+      "merry-go-round",
+      "variable-MOI",
+      "numerical"
+    ],
     "topic": "Torque, Angular Momentum, and Rolling Motion",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "10 rpm", "is_correct": false },
-      { "key": "B", "text": "8 rpm", "is_correct": false },
-      { "key": "C", "text": "20/3 rpm (≈ 6.67 rpm)", "is_correct": true },
-      { "key": "D", "text": "5 rpm", "is_correct": false }
+      {
+        "key": "A",
+        "text": "10 rpm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "8 rpm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "20/3 rpm (≈ 6.67 rpm)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "5 rpm",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "10 rpm is the initial angular velocity; the system must slow down when the child moves outward and increases the total MOI.", "misconception": "Ignoring the change in moment of inertia when the child moves" },
-      { "option_key": "B", "hint": "8 rpm would require I_final = 1125 kg⋅m², which does not match the correct calculation of 1350 kg⋅m².", "misconception": "Using an incorrect mass for the child or an incorrect formula for MOI" },
-      { "option_key": "D", "hint": "5 rpm would require I_final = 1800 kg⋅m², implying the child's MOI is 900 kg⋅m², which is incorrect for 50 kg at 3 m.", "misconception": "Doubling the child's contribution to the moment of inertia" }
+      {
+        "option_key": "A",
+        "hint": "10 rpm is the initial angular velocity; the system must slow down when the child moves outward and increases the total MOI.",
+        "misconception": "Ignoring the change in moment of inertia when the child moves"
+      },
+      {
+        "option_key": "B",
+        "hint": "8 rpm would require I_final = 1125 kg⋅m², which does not match the correct calculation of 1350 kg⋅m².",
+        "misconception": "Using an incorrect mass for the child or an incorrect formula for MOI"
+      },
+      {
+        "option_key": "D",
+        "hint": "5 rpm would require I_final = 1800 kg⋅m², implying the child's MOI is 900 kg⋅m², which is incorrect for 50 kg at 3 m.",
+        "misconception": "Doubling the child's contribution to the moment of inertia"
+      }
     ]
   }
 ]

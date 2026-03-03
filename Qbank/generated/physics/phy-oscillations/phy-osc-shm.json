@@ -6,22 +6,56 @@
     "question_text": "The restoring force in simple harmonic motion is proportional to:",
     "explanation": "By definition, SHM is the motion in which the restoring force (or acceleration) is directly proportional to the displacement from the mean position and is always directed towards it. Mathematically, F = -kx, where k is a positive constant. This linear dependence on displacement is the hallmark of SHM.",
     "correct_answer": "A",
-    "concept_tags": ["shm-definition", "restoring-force", "displacement-proportionality"],
+    "concept_tags": [
+      "shm-definition",
+      "restoring-force",
+      "displacement-proportionality"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Displacement from the mean position", "is_correct": true },
-      { "key": "B", "text": "Square of the displacement", "is_correct": false },
-      { "key": "C", "text": "Velocity of the particle", "is_correct": false },
-      { "key": "D", "text": "Acceleration of the particle", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Displacement from the mean position",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Square of the displacement",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Velocity of the particle",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Acceleration of the particle",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "If the force were proportional to x^2, the motion would not be simple harmonic. SHM requires a linear (first-power) dependence on displacement.", "misconception": "Confusing SHM with nonlinear restoring force" },
-      { "option_key": "C", "hint": "A force proportional to velocity is a damping force (like viscous drag), not a restoring force for SHM.", "misconception": "Confusing damping force with restoring force" },
-      { "option_key": "D", "hint": "Acceleration is the result of the restoring force (via Newton's second law), not what the restoring force is proportional to. The force is proportional to displacement.", "misconception": "Confusing cause and effect in Newton's second law" }
+      {
+        "option_key": "B",
+        "hint": "If the force were proportional to x^2, the motion would not be simple harmonic. SHM requires a linear (first-power) dependence on displacement.",
+        "misconception": "Confusing SHM with nonlinear restoring force"
+      },
+      {
+        "option_key": "C",
+        "hint": "A force proportional to velocity is a damping force (like viscous drag), not a restoring force for SHM.",
+        "misconception": "Confusing damping force with restoring force"
+      },
+      {
+        "option_key": "D",
+        "hint": "Acceleration is the result of the restoring force (via Newton's second law), not what the restoring force is proportional to. The force is proportional to displacement.",
+        "misconception": "Confusing cause and effect in Newton's second law"
+      }
     ]
   },
   {
@@ -31,22 +65,56 @@
     "question_text": "The time period of a spring-mass system with spring constant k and mass m is:",
     "explanation": "For a spring-mass system executing SHM, the angular frequency is omega = sqrt(k/m). The time period T = 2*pi/omega = 2*pi*sqrt(m/k). This is a fundamental formula that shows T is independent of amplitude and depends only on mass and spring constant.",
     "correct_answer": "B",
-    "concept_tags": ["spring-mass-system", "time-period", "spring-constant"],
+    "concept_tags": [
+      "spring-mass-system",
+      "time-period",
+      "spring-constant"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "T = 2*pi*sqrt(k/m)", "is_correct": false },
-      { "key": "B", "text": "T = 2*pi*sqrt(m/k)", "is_correct": true },
-      { "key": "C", "text": "T = 2*pi*sqrt(m*k)", "is_correct": false },
-      { "key": "D", "text": "T = (1/2*pi)*sqrt(m/k)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "T = 2*pi*sqrt(k/m)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "T = 2*pi*sqrt(m/k)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "T = 2*pi*sqrt(m*k)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "T = (1/2*pi)*sqrt(m/k)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This has m and k interchanged. A stiffer spring (larger k) should give a shorter time period, so k must be in the denominator inside the square root.", "misconception": "Interchanging mass and spring constant in the formula" },
-      { "option_key": "C", "hint": "The product m*k has dimensions kg^2*m/s^2 under the square root, which does not yield seconds. Dimensional analysis rules this out.", "misconception": "Incorrectly combining m and k" },
-      { "option_key": "D", "hint": "The factor is 2*pi, not 1/(2*pi). The formula T = 1/(2*pi)*sqrt(m/k) confuses the time period formula with the frequency formula f = (1/2*pi)*sqrt(k/m).", "misconception": "Confusing time period and frequency formulas" }
+      {
+        "option_key": "A",
+        "hint": "This has m and k interchanged. A stiffer spring (larger k) should give a shorter time period, so k must be in the denominator inside the square root.",
+        "misconception": "Interchanging mass and spring constant in the formula"
+      },
+      {
+        "option_key": "C",
+        "hint": "The product m*k has dimensions kg^2*m/s^2 under the square root, which does not yield seconds. Dimensional analysis rules this out.",
+        "misconception": "Incorrectly combining m and k"
+      },
+      {
+        "option_key": "D",
+        "hint": "The factor is 2*pi, not 1/(2*pi). The formula T = 1/(2*pi)*sqrt(m/k) confuses the time period formula with the frequency formula f = (1/2*pi)*sqrt(k/m).",
+        "misconception": "Confusing time period and frequency formulas"
+      }
     ]
   },
   {
@@ -56,22 +124,56 @@
     "question_text": "In SHM, the maximum velocity of a particle with amplitude A and angular frequency omega is:",
     "explanation": "The velocity in SHM is v = A*omega*cos(omega*t + phi). The maximum value of cos is 1, so the maximum velocity v_max = A*omega. This occurs when the particle passes through the mean position (x = 0), where all the energy is kinetic.",
     "correct_answer": "C",
-    "concept_tags": ["maximum-velocity", "amplitude", "angular-frequency"],
+    "concept_tags": [
+      "maximum-velocity",
+      "amplitude",
+      "angular-frequency"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A*omega^2", "is_correct": false },
-      { "key": "B", "text": "A^2*omega", "is_correct": false },
-      { "key": "C", "text": "A*omega", "is_correct": true },
-      { "key": "D", "text": "A/omega", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A*omega^2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A^2*omega",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A*omega",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A/omega",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "A*omega^2 is the maximum acceleration in SHM, not the maximum velocity. Velocity is the first derivative of displacement, not the second.", "misconception": "Confusing maximum velocity with maximum acceleration" },
-      { "option_key": "B", "hint": "A^2*omega has dimensions m^2/s, which is not the dimension of velocity (m/s). Dimensional analysis immediately eliminates this.", "misconception": "Incorrect dimensional formula" },
-      { "option_key": "D", "hint": "A/omega has dimensions m*s, which is not velocity. Also, increasing omega should increase v_max, not decrease it.", "misconception": "Inverting the relationship between velocity and angular frequency" }
+      {
+        "option_key": "A",
+        "hint": "A*omega^2 is the maximum acceleration in SHM, not the maximum velocity. Velocity is the first derivative of displacement, not the second.",
+        "misconception": "Confusing maximum velocity with maximum acceleration"
+      },
+      {
+        "option_key": "B",
+        "hint": "A^2*omega has dimensions m^2/s, which is not the dimension of velocity (m/s). Dimensional analysis immediately eliminates this.",
+        "misconception": "Incorrect dimensional formula"
+      },
+      {
+        "option_key": "D",
+        "hint": "A/omega has dimensions m*s, which is not velocity. Also, increasing omega should increase v_max, not decrease it.",
+        "misconception": "Inverting the relationship between velocity and angular frequency"
+      }
     ]
   },
   {
@@ -81,22 +183,56 @@
     "question_text": "A particle executing SHM has a time period of 4 s. The time taken by the particle to move from the mean position to half the amplitude is:",
     "explanation": "Using x = A*sin(omega*t), at x = A/2: A/2 = A*sin(omega*t), so sin(omega*t) = 1/2, giving omega*t = pi/6. Since omega = 2*pi/T = 2*pi/4 = pi/2 rad/s, we get (pi/2)*t = pi/6, so t = 1/3 s. The particle takes 1/3 s to travel from the mean position to half the amplitude.",
     "correct_answer": "D",
-    "concept_tags": ["time-period", "displacement-equation", "phase-calculation"],
+    "concept_tags": [
+      "time-period",
+      "displacement-equation",
+      "phase-calculation"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "1/2 s", "is_correct": false },
-      { "key": "B", "text": "2/3 s", "is_correct": false },
-      { "key": "C", "text": "1 s", "is_correct": false },
-      { "key": "D", "text": "1/3 s", "is_correct": true }
+      {
+        "key": "A",
+        "text": "1/2 s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2/3 s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1 s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1/3 s",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "1/2 s corresponds to T/8, which is the time to go from mean to A/sqrt(2), not A/2. The displacement in SHM is sinusoidal, not linear in time.", "misconception": "Assuming displacement is linearly proportional to time in SHM" },
-      { "option_key": "B", "hint": "2/3 s = T/6. This is the time to go from mean position to A*sin(pi/3) = A*sqrt(3)/2, not A/2.", "misconception": "Using wrong trigonometric value" },
-      { "option_key": "C", "hint": "1 s = T/4. In T/4, the particle reaches the extreme position (full amplitude A), not A/2.", "misconception": "Thinking the particle reaches half amplitude in one-quarter of the period" }
+      {
+        "option_key": "A",
+        "hint": "1/2 s corresponds to T/8, which is the time to go from mean to A/sqrt(2), not A/2. The displacement in SHM is sinusoidal, not linear in time.",
+        "misconception": "Assuming displacement is linearly proportional to time in SHM"
+      },
+      {
+        "option_key": "B",
+        "hint": "2/3 s = T/6. This is the time to go from mean position to A*sin(pi/3) = A*sqrt(3)/2, not A/2.",
+        "misconception": "Using wrong trigonometric value"
+      },
+      {
+        "option_key": "C",
+        "hint": "1 s = T/4. In T/4, the particle reaches the extreme position (full amplitude A), not A/2.",
+        "misconception": "Thinking the particle reaches half amplitude in one-quarter of the period"
+      }
     ]
   },
   {
@@ -106,22 +242,56 @@
     "question_text": "A body of mass 0.5 kg is attached to a spring of spring constant 200 N/m. If the body is displaced 0.05 m from its equilibrium position and released, the maximum velocity of the body is:",
     "explanation": "For a spring-mass system, omega = sqrt(k/m) = sqrt(200/0.5) = sqrt(400) = 20 rad/s. The maximum velocity v_max = A*omega = 0.05 x 20 = 1 m/s. This occurs at the mean position where all potential energy is converted to kinetic energy.",
     "correct_answer": "B",
-    "concept_tags": ["spring-mass-system", "maximum-velocity", "numerical-problem"],
+    "concept_tags": [
+      "spring-mass-system",
+      "maximum-velocity",
+      "numerical-problem"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "0.5 m/s", "is_correct": false },
-      { "key": "B", "text": "1 m/s", "is_correct": true },
-      { "key": "C", "text": "2 m/s", "is_correct": false },
-      { "key": "D", "text": "10 m/s", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.5 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1 m/s",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "10 m/s",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "0.5 m/s results from using omega = 10 rad/s (sqrt(200/2) perhaps). Recheck: omega = sqrt(k/m) = sqrt(200/0.5) = sqrt(400) = 20 rad/s.", "misconception": "Arithmetic error in computing angular frequency" },
-      { "option_key": "C", "hint": "2 m/s could result from doubling the amplitude or miscalculating omega. Verify: v_max = A*omega = 0.05 x 20 = 1 m/s.", "misconception": "Error in substitution of values" },
-      { "option_key": "D", "hint": "10 m/s is far too large. This might result from using k instead of sqrt(k/m) for omega. omega is not 200 rad/s.", "misconception": "Using spring constant directly as angular frequency" }
+      {
+        "option_key": "A",
+        "hint": "0.5 m/s results from using omega = 10 rad/s (sqrt(200/2) perhaps). Recheck: omega = sqrt(k/m) = sqrt(200/0.5) = sqrt(400) = 20 rad/s.",
+        "misconception": "Arithmetic error in computing angular frequency"
+      },
+      {
+        "option_key": "C",
+        "hint": "2 m/s could result from doubling the amplitude or miscalculating omega. Verify: v_max = A*omega = 0.05 x 20 = 1 m/s.",
+        "misconception": "Error in substitution of values"
+      },
+      {
+        "option_key": "D",
+        "hint": "10 m/s is far too large. This might result from using k instead of sqrt(k/m) for omega. omega is not 200 rad/s.",
+        "misconception": "Using spring constant directly as angular frequency"
+      }
     ]
   },
   {
@@ -131,22 +301,56 @@
     "question_text": "The velocity of a particle in SHM at a displacement x from the mean position is given by v = omega*sqrt(A^2 - x^2). At what displacement is the velocity half of its maximum value?",
     "explanation": "Maximum velocity v_max = A*omega (at x = 0). Setting v = v_max/2: omega*sqrt(A^2 - x^2) = A*omega/2. Squaring: A^2 - x^2 = A^2/4. So x^2 = 3*A^2/4, giving x = (sqrt(3)/2)*A = A*sqrt(3)/2.",
     "correct_answer": "C",
-    "concept_tags": ["velocity-displacement-relation", "maximum-velocity", "shm-kinematics"],
+    "concept_tags": [
+      "velocity-displacement-relation",
+      "maximum-velocity",
+      "shm-kinematics"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A/2", "is_correct": false },
-      { "key": "B", "text": "A/sqrt(2)", "is_correct": false },
-      { "key": "C", "text": "A*sqrt(3)/2", "is_correct": true },
-      { "key": "D", "text": "A/4", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A/sqrt(2)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A*sqrt(3)/2",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A/4",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "At x = A/2, v = omega*sqrt(A^2 - A^2/4) = omega*A*sqrt(3)/2, which is (sqrt(3)/2)*v_max, not v_max/2.", "misconception": "Assuming half displacement gives half velocity" },
-      { "option_key": "B", "hint": "At x = A/sqrt(2), v = omega*sqrt(A^2 - A^2/2) = omega*A/sqrt(2) = v_max/sqrt(2), not v_max/2.", "misconception": "Confusing v_max/sqrt(2) with v_max/2" },
-      { "option_key": "D", "hint": "At x = A/4, v = omega*sqrt(A^2 - A^2/16) = omega*A*sqrt(15)/4, which is about 0.97*v_max, much larger than v_max/2.", "misconception": "Incorrect algebraic manipulation" }
+      {
+        "option_key": "A",
+        "hint": "At x = A/2, v = omega*sqrt(A^2 - A^2/4) = omega*A*sqrt(3)/2, which is (sqrt(3)/2)*v_max, not v_max/2.",
+        "misconception": "Assuming half displacement gives half velocity"
+      },
+      {
+        "option_key": "B",
+        "hint": "At x = A/sqrt(2), v = omega*sqrt(A^2 - A^2/2) = omega*A/sqrt(2) = v_max/sqrt(2), not v_max/2.",
+        "misconception": "Confusing v_max/sqrt(2) with v_max/2"
+      },
+      {
+        "option_key": "D",
+        "hint": "At x = A/4, v = omega*sqrt(A^2 - A^2/16) = omega*A*sqrt(15)/4, which is about 0.97*v_max, much larger than v_max/2.",
+        "misconception": "Incorrect algebraic manipulation"
+      }
     ]
   },
   {
@@ -156,22 +360,56 @@
     "question_text": "A particle executes SHM with amplitude 4 cm and time period 2 s. The maximum acceleration of the particle is:",
     "explanation": "The maximum acceleration in SHM is a_max = omega^2*A. Here, omega = 2*pi/T = 2*pi/2 = pi rad/s and A = 4 cm = 0.04 m. So a_max = pi^2 x 0.04 = 0.04*pi^2 m/s^2. Converting: 0.04*pi^2 = 0.04 x 9.87 = 0.395 m/s^2, which is approximately 4*pi^2 cm/s^2.",
     "correct_answer": "A",
-    "concept_tags": ["maximum-acceleration", "numerical-problem", "angular-frequency"],
+    "concept_tags": [
+      "maximum-acceleration",
+      "numerical-problem",
+      "angular-frequency"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "4*pi^2 cm/s^2", "is_correct": true },
-      { "key": "B", "text": "2*pi^2 cm/s^2", "is_correct": false },
-      { "key": "C", "text": "8*pi^2 cm/s^2", "is_correct": false },
-      { "key": "D", "text": "pi^2 cm/s^2", "is_correct": false }
+      {
+        "key": "A",
+        "text": "4*pi^2 cm/s^2",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "2*pi^2 cm/s^2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "8*pi^2 cm/s^2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "pi^2 cm/s^2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "2*pi^2 results from using A = 2 cm instead of 4 cm, or omega = pi/sqrt(2). Recheck: omega = 2*pi/T = pi rad/s and A = 4 cm.", "misconception": "Using half the amplitude or incorrect angular frequency" },
-      { "option_key": "C", "hint": "8*pi^2 results from doubling the amplitude to 8 cm or using omega = sqrt(2)*pi. Verify your substitutions carefully.", "misconception": "Arithmetic error in multiplication" },
-      { "option_key": "D", "hint": "pi^2 cm/s^2 results from using A = 1 cm. The amplitude is 4 cm, so a_max = pi^2 x 4 = 4*pi^2 cm/s^2.", "misconception": "Forgetting to include the amplitude" }
+      {
+        "option_key": "B",
+        "hint": "2*pi^2 results from using A = 2 cm instead of 4 cm, or omega = pi/sqrt(2). Recheck: omega = 2*pi/T = pi rad/s and A = 4 cm.",
+        "misconception": "Using half the amplitude or incorrect angular frequency"
+      },
+      {
+        "option_key": "C",
+        "hint": "8*pi^2 results from doubling the amplitude to 8 cm or using omega = sqrt(2)*pi. Verify your substitutions carefully.",
+        "misconception": "Arithmetic error in multiplication"
+      },
+      {
+        "option_key": "D",
+        "hint": "pi^2 cm/s^2 results from using A = 1 cm. The amplitude is 4 cm, so a_max = pi^2 x 4 = 4*pi^2 cm/s^2.",
+        "misconception": "Forgetting to include the amplitude"
+      }
     ]
   },
   {
@@ -181,22 +419,56 @@
     "question_text": "Two springs of spring constants k_1 = 100 N/m and k_2 = 200 N/m are connected in parallel and a mass of 1 kg is attached. The time period of oscillation is:",
     "explanation": "When springs are connected in parallel, the effective spring constant k_eff = k_1 + k_2 = 100 + 200 = 300 N/m. Time period T = 2*pi*sqrt(m/k_eff) = 2*pi*sqrt(1/300) = 2*pi/(10*sqrt(3)) = pi*sqrt(3)/15 x 2 = (2*pi)/(sqrt(300)). Simplifying: T = 2*pi/sqrt(300) = 2*pi/(10*sqrt(3)) = pi/(5*sqrt(3)) = pi*sqrt(3)/15 s. This is approximately 0.36 s.",
     "correct_answer": "D",
-    "concept_tags": ["parallel-springs", "effective-spring-constant", "time-period"],
+    "concept_tags": [
+      "parallel-springs",
+      "effective-spring-constant",
+      "time-period"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2*pi/10 s", "is_correct": false },
-      { "key": "B", "text": "2*pi*sqrt(3)/10 s", "is_correct": false },
-      { "key": "C", "text": "pi/5 s", "is_correct": false },
-      { "key": "D", "text": "pi*sqrt(3)/15 s", "is_correct": true }
+      {
+        "key": "A",
+        "text": "2*pi/10 s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2*pi*sqrt(3)/10 s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "pi/5 s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "pi*sqrt(3)/15 s",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "2*pi/10 = pi/5 s would be the time period if k_eff = 100 N/m (using only k_1). For parallel combination, k_eff = k_1 + k_2 = 300 N/m.", "misconception": "Using only one spring constant instead of the parallel combination" },
-      { "option_key": "B", "hint": "Recheck: T = 2*pi*sqrt(1/300) = 2*pi/(sqrt(300)) = 2*pi/(10*sqrt(3)) = pi/(5*sqrt(3)). Rationalising: pi*sqrt(3)/15 s.", "misconception": "Error in simplification of the square root expression" },
-      { "option_key": "C", "hint": "pi/5 = 2*pi/10 corresponds to k = 100 N/m. The parallel combination gives k = 300 N/m, not 100 N/m.", "misconception": "Using series combination formula instead of parallel" }
+      {
+        "option_key": "A",
+        "hint": "2*pi/10 = pi/5 s would be the time period if k_eff = 100 N/m (using only k_1). For parallel combination, k_eff = k_1 + k_2 = 300 N/m.",
+        "misconception": "Using only one spring constant instead of the parallel combination"
+      },
+      {
+        "option_key": "B",
+        "hint": "Recheck: T = 2*pi*sqrt(1/300) = 2*pi/(sqrt(300)) = 2*pi/(10*sqrt(3)) = pi/(5*sqrt(3)). Rationalising: pi*sqrt(3)/15 s.",
+        "misconception": "Error in simplification of the square root expression"
+      },
+      {
+        "option_key": "C",
+        "hint": "pi/5 = 2*pi/10 corresponds to k = 100 N/m. The parallel combination gives k = 300 N/m, not 100 N/m.",
+        "misconception": "Using series combination formula instead of parallel"
+      }
     ]
   },
   {
@@ -206,22 +478,56 @@
     "question_text": "The displacement of a particle executing SHM is given by x = 5 sin(4*pi*t + pi/6) cm. The frequency of oscillation is:",
     "explanation": "Comparing x = 5 sin(4*pi*t + pi/6) with the standard form x = A sin(omega*t + phi), we get omega = 4*pi rad/s. The frequency f = omega/(2*pi) = 4*pi/(2*pi) = 2 Hz. The amplitude is 5 cm and the initial phase is pi/6.",
     "correct_answer": "B",
-    "concept_tags": ["displacement-equation", "frequency", "angular-frequency"],
+    "concept_tags": [
+      "displacement-equation",
+      "frequency",
+      "angular-frequency"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "4*pi Hz", "is_correct": false },
-      { "key": "B", "text": "2 Hz", "is_correct": true },
-      { "key": "C", "text": "4 Hz", "is_correct": false },
-      { "key": "D", "text": "pi Hz", "is_correct": false }
+      {
+        "key": "A",
+        "text": "4*pi Hz",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 Hz",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "4 Hz",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "pi Hz",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "4*pi is the angular frequency omega in rad/s, not the frequency in Hz. The frequency f = omega/(2*pi) = 4*pi/(2*pi) = 2 Hz.", "misconception": "Confusing angular frequency with frequency" },
-      { "option_key": "C", "hint": "4 Hz would result from dividing the coefficient of t by pi instead of 2*pi. The correct conversion is f = omega/(2*pi).", "misconception": "Dividing by pi instead of 2*pi to get frequency" },
-      { "option_key": "D", "hint": "pi Hz does not follow from the equation. omega = 4*pi, so f = 4*pi/(2*pi) = 2 Hz, a simple rational number.", "misconception": "Arithmetic error in division" }
+      {
+        "option_key": "A",
+        "hint": "4*pi is the angular frequency omega in rad/s, not the frequency in Hz. The frequency f = omega/(2*pi) = 4*pi/(2*pi) = 2 Hz.",
+        "misconception": "Confusing angular frequency with frequency"
+      },
+      {
+        "option_key": "C",
+        "hint": "4 Hz would result from dividing the coefficient of t by pi instead of 2*pi. The correct conversion is f = omega/(2*pi).",
+        "misconception": "Dividing by pi instead of 2*pi to get frequency"
+      },
+      {
+        "option_key": "D",
+        "hint": "pi Hz does not follow from the equation. omega = 4*pi, so f = 4*pi/(2*pi) = 2 Hz, a simple rational number.",
+        "misconception": "Arithmetic error in division"
+      }
     ]
   },
   {
@@ -231,22 +537,57 @@
     "question_text": "The phase difference between the displacement and velocity of a particle executing SHM is:",
     "explanation": "If displacement x = A sin(omega*t + phi), then velocity v = dx/dt = A*omega*cos(omega*t + phi) = A*omega*sin(omega*t + phi + pi/2). The velocity leads the displacement by a phase of pi/2 radians (90 degrees). This means velocity reaches its maximum one-quarter cycle before displacement reaches its maximum.",
     "correct_answer": "C",
-    "concept_tags": ["phase-difference", "displacement", "velocity", "shm-kinematics"],
+    "concept_tags": [
+      "phase-difference",
+      "displacement",
+      "velocity",
+      "shm-kinematics"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "0", "is_correct": false },
-      { "key": "B", "text": "pi", "is_correct": false },
-      { "key": "C", "text": "pi/2", "is_correct": true },
-      { "key": "D", "text": "2*pi", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "pi",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "pi/2",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "2*pi",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Zero phase difference would mean displacement and velocity are in phase, i.e., both reach maxima simultaneously. But in SHM, velocity is maximum at mean position while displacement is zero there.", "misconception": "Thinking displacement and velocity vary in phase" },
-      { "option_key": "B", "hint": "A phase difference of pi (180 degrees) exists between displacement and acceleration in SHM, not between displacement and velocity.", "misconception": "Confusing displacement-velocity phase difference with displacement-acceleration phase difference" },
-      { "option_key": "D", "hint": "A phase difference of 2*pi is equivalent to zero phase difference, meaning the quantities would be in phase. This is incorrect for displacement and velocity in SHM.", "misconception": "Not understanding that 2*pi corresponds to no phase difference" }
+      {
+        "option_key": "A",
+        "hint": "Zero phase difference would mean displacement and velocity are in phase, i.e., both reach maxima simultaneously. But in SHM, velocity is maximum at mean position while displacement is zero there.",
+        "misconception": "Thinking displacement and velocity vary in phase"
+      },
+      {
+        "option_key": "B",
+        "hint": "A phase difference of pi (180 degrees) exists between displacement and acceleration in SHM, not between displacement and velocity.",
+        "misconception": "Confusing displacement-velocity phase difference with displacement-acceleration phase difference"
+      },
+      {
+        "option_key": "D",
+        "hint": "A phase difference of 2*pi is equivalent to zero phase difference, meaning the quantities would be in phase. This is incorrect for displacement and velocity in SHM.",
+        "misconception": "Not understanding that 2*pi corresponds to no phase difference"
+      }
     ]
   },
   {
@@ -256,22 +597,56 @@
     "question_text": "A particle performs SHM with amplitude A. At what displacement from the mean position is the speed of the particle equal to half of the maximum speed?",
     "explanation": "The speed in SHM is v = omega*sqrt(A^2 - x^2) and v_max = A*omega. Setting v = v_max/2: omega*sqrt(A^2 - x^2) = A*omega/2. Squaring both sides: A^2 - x^2 = A^2/4. So x^2 = A^2 - A^2/4 = 3*A^2/4. Therefore x = A*sqrt(3)/2. This is the same result as Q06 but presented differently to test the concept from another angle.",
     "correct_answer": "D",
-    "concept_tags": ["velocity-displacement-relation", "speed-in-shm", "numerical-analysis"],
+    "concept_tags": [
+      "velocity-displacement-relation",
+      "speed-in-shm",
+      "numerical-analysis"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A/2", "is_correct": false },
-      { "key": "B", "text": "A*sqrt(2)/2", "is_correct": false },
-      { "key": "C", "text": "3*A/4", "is_correct": false },
-      { "key": "D", "text": "A*sqrt(3)/2", "is_correct": true }
+      {
+        "key": "A",
+        "text": "A/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A*sqrt(2)/2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3*A/4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A*sqrt(3)/2",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "At x = A/2, speed = omega*sqrt(A^2 - A^2/4) = omega*A*sqrt(3)/2 ≈ 0.866*v_max, which is much more than v_max/2.", "misconception": "Assuming velocity is linearly related to displacement" },
-      { "option_key": "B", "hint": "At x = A/sqrt(2), speed = omega*sqrt(A^2 - A^2/2) = omega*A/sqrt(2) ≈ 0.707*v_max. This is where KE equals PE, not where speed is half of v_max.", "misconception": "Confusing equal KE-PE condition with half-speed condition" },
-      { "option_key": "C", "hint": "3*A/4 is not the answer. Substituting: v = omega*sqrt(A^2 - 9*A^2/16) = omega*A*sqrt(7)/4 ≈ 0.66*v_max, which is not v_max/2.", "misconception": "Confusing the fraction of amplitude with fraction of speed" }
+      {
+        "option_key": "A",
+        "hint": "At x = A/2, speed = omega*sqrt(A^2 - A^2/4) = omega*A*sqrt(3)/2 ≈ 0.866*v_max, which is much more than v_max/2.",
+        "misconception": "Assuming velocity is linearly related to displacement"
+      },
+      {
+        "option_key": "B",
+        "hint": "At x = A/sqrt(2), speed = omega*sqrt(A^2 - A^2/2) = omega*A/sqrt(2) ≈ 0.707*v_max. This is where KE equals PE, not where speed is half of v_max.",
+        "misconception": "Confusing equal KE-PE condition with half-speed condition"
+      },
+      {
+        "option_key": "C",
+        "hint": "3*A/4 is not the answer. Substituting: v = omega*sqrt(A^2 - 9*A^2/16) = omega*A*sqrt(7)/4 ≈ 0.66*v_max, which is not v_max/2.",
+        "misconception": "Confusing the fraction of amplitude with fraction of speed"
+      }
     ]
   },
   {
@@ -281,222 +656,532 @@
     "question_text": "A particle executes SHM along the x-axis with amplitude 10 cm and time period 0.5 s. The acceleration of the particle at a displacement of 5 cm from the mean position is approximately:",
     "explanation": "In SHM, acceleration a = -omega^2*x. Here omega = 2*pi/T = 2*pi/0.5 = 4*pi rad/s. At x = 5 cm = 0.05 m: |a| = omega^2*x = (4*pi)^2 x 0.05 = 16*pi^2 x 0.05 = 0.8*pi^2 m/s^2. Since pi^2 ≈ 9.87, |a| ≈ 0.8 x 9.87 ≈ 7.9 m/s^2, approximately 8 m/s^2. The direction is towards the mean position.",
     "correct_answer": "A",
-    "concept_tags": ["acceleration-in-shm", "numerical-problem", "omega-squared-x"],
+    "concept_tags": [
+      "acceleration-in-shm",
+      "numerical-problem",
+      "omega-squared-x"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "0.8*pi^2 m/s^2 (approximately 7.9 m/s^2), directed towards the mean position", "is_correct": true },
-      { "key": "B", "text": "1.6*pi^2 m/s^2, directed towards the mean position", "is_correct": false },
-      { "key": "C", "text": "0.4*pi^2 m/s^2, directed away from the mean position", "is_correct": false },
-      { "key": "D", "text": "4*pi^2 m/s^2, directed towards the mean position", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.8*pi^2 m/s^2 (approximately 7.9 m/s^2), directed towards the mean position",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1.6*pi^2 m/s^2, directed towards the mean position",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.4*pi^2 m/s^2, directed away from the mean position",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4*pi^2 m/s^2, directed towards the mean position",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "1.6*pi^2 results from using x = 10 cm (the amplitude) instead of 5 cm. The question asks for acceleration at x = 5 cm, not at the extreme.", "misconception": "Using amplitude instead of the given displacement" },
-      { "option_key": "C", "hint": "0.4*pi^2 uses x = 2.5 cm or omega = 2*pi. Also, in SHM the acceleration is always directed towards the mean position, never away from it.", "misconception": "Incorrect direction of SHM acceleration" },
-      { "option_key": "D", "hint": "4*pi^2 would require x = 0.25 m = 25 cm, which exceeds the amplitude. Also check: omega^2 = 16*pi^2, and x = 0.05 m, so a = 16*pi^2 x 0.05 = 0.8*pi^2.", "misconception": "Unit conversion error" }
+      {
+        "option_key": "B",
+        "hint": "1.6*pi^2 results from using x = 10 cm (the amplitude) instead of 5 cm. The question asks for acceleration at x = 5 cm, not at the extreme.",
+        "misconception": "Using amplitude instead of the given displacement"
+      },
+      {
+        "option_key": "C",
+        "hint": "0.4*pi^2 uses x = 2.5 cm or omega = 2*pi. Also, in SHM the acceleration is always directed towards the mean position, never away from it.",
+        "misconception": "Incorrect direction of SHM acceleration"
+      },
+      {
+        "option_key": "D",
+        "hint": "4*pi^2 would require x = 0.25 m = 25 cm, which exceeds the amplitude. Also check: omega^2 = 16*pi^2, and x = 0.05 m, so a = 16*pi^2 x 0.05 = 0.8*pi^2.",
+        "misconception": "Unit conversion error"
+      }
     ]
   },
   {
     "id": "phy-osc-shm-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The time period of a spring-mass system performing SHM is independent of the amplitude of oscillation. Reason (R): In SHM, the restoring force is proportional to the displacement, and for a spring-mass system T = 2*pi*sqrt(m/k), which does not contain the amplitude.",
     "explanation": "Assertion is correct: the time period T = 2*pi*sqrt(m/k) depends only on mass m and spring constant k, and is independent of amplitude A. This is a characteristic property of SHM. Reason is also correct and correctly explains the assertion: since the restoring force is linear (F = -kx), the formula for T derived from Newton's second law yields T = 2*pi*sqrt(m/k), which does not involve A. The linear restoring force is the fundamental reason for the amplitude-independence of the period.",
     "correct_answer": "A",
-    "concept_tags": ["time-period", "amplitude-independence", "spring-mass-system", "isochronous-oscillation"],
+    "concept_tags": [
+      "time-period",
+      "amplitude-independence",
+      "spring-mass-system",
+      "isochronous-oscillation"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The reason directly explains the assertion. The fact that T = 2*pi*sqrt(m/k) (derived from the linear restoring force) does not contain A is precisely why T is independent of amplitude.", "misconception": "Failing to see the causal connection between the formula and amplitude-independence" },
-      { "option_key": "C", "hint": "The reason is factually correct. The restoring force in a spring is indeed F = -kx (proportional to displacement), and the time period formula T = 2*pi*sqrt(m/k) is a well-established result.", "misconception": "Doubting the restoring force proportionality or the time period formula" },
-      { "option_key": "D", "hint": "The assertion is correct. This amplitude-independence of the time period (isochronism) has been experimentally verified and is a defining feature of SHM.", "misconception": "Thinking that larger oscillations take longer" }
+      {
+        "option_key": "B",
+        "hint": "The reason directly explains the assertion. The fact that T = 2*pi*sqrt(m/k) (derived from the linear restoring force) does not contain A is precisely why T is independent of amplitude.",
+        "misconception": "Failing to see the causal connection between the formula and amplitude-independence"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is factually correct. The restoring force in a spring is indeed F = -kx (proportional to displacement), and the time period formula T = 2*pi*sqrt(m/k) is a well-established result.",
+        "misconception": "Doubting the restoring force proportionality or the time period formula"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. This amplitude-independence of the time period (isochronism) has been experimentally verified and is a defining feature of SHM.",
+        "misconception": "Thinking that larger oscillations take longer"
+      }
     ]
   },
   {
     "id": "phy-osc-shm-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): SHM can be regarded as the projection of uniform circular motion on a diameter of the circle. Reason (R): The displacement in SHM varies sinusoidally with time, and the projection of a particle moving uniformly on a circle onto a diameter also produces a sinusoidal variation.",
     "explanation": "Assertion is correct: if a particle moves with constant angular velocity omega on a circle of radius A, its projection on any diameter executes SHM with amplitude A and angular frequency omega. Reason is also correct: the projection x = A*cos(omega*t + phi) is a sinusoidal function, identical in form to the SHM displacement equation. The reason correctly explains the assertion because the mathematical equivalence of the two sinusoidal descriptions is exactly why SHM can be viewed as the projection of UCM.",
     "correct_answer": "A",
-    "concept_tags": ["ucm-projection", "shm-circular-motion-analogy", "sinusoidal-motion"],
+    "concept_tags": [
+      "ucm-projection",
+      "shm-circular-motion-analogy",
+      "sinusoidal-motion"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The reason directly explains the assertion. The sinusoidal nature of the projection is precisely the mathematical basis for why SHM is equivalent to the projection of UCM.", "misconception": "Not recognizing the direct causal link between sinusoidal projection and SHM equivalence" },
-      { "option_key": "C", "hint": "The reason is correct. The projection of a point on a circle moving at constant speed does produce sinusoidal variation, which can be verified using basic trigonometry.", "misconception": "Denying the sinusoidal nature of circular motion projection" },
-      { "option_key": "D", "hint": "The assertion is a well-known and fundamental concept in SHM theory. The SHM-UCM analogy is taught in all standard physics textbooks.", "misconception": "Rejecting the UCM-SHM analogy" }
+      {
+        "option_key": "B",
+        "hint": "The reason directly explains the assertion. The sinusoidal nature of the projection is precisely the mathematical basis for why SHM is equivalent to the projection of UCM.",
+        "misconception": "Not recognizing the direct causal link between sinusoidal projection and SHM equivalence"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is correct. The projection of a point on a circle moving at constant speed does produce sinusoidal variation, which can be verified using basic trigonometry.",
+        "misconception": "Denying the sinusoidal nature of circular motion projection"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is a well-known and fundamental concept in SHM theory. The SHM-UCM analogy is taught in all standard physics textbooks.",
+        "misconception": "Rejecting the UCM-SHM analogy"
+      }
     ]
   },
   {
     "id": "phy-osc-shm-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match Column I with Column II:\n\nColumn I:\nA. Displacement in SHM\nB. Velocity in SHM\nC. Acceleration in SHM\nD. Time period of spring-mass system\n\nColumn II:\n1. a = -omega^2*x\n2. T = 2*pi*sqrt(m/k)\n3. v = omega*sqrt(A^2 - x^2)\n4. x = A sin(omega*t + phi)",
     "explanation": "A. Displacement in SHM is described by x = A sin(omega*t + phi) (matches 4). B. Velocity in SHM is v = omega*sqrt(A^2 - x^2) (matches 3). C. Acceleration in SHM is a = -omega^2*x (matches 1). D. Time period of spring-mass system is T = 2*pi*sqrt(m/k) (matches 2). Correct matching: A-4, B-3, C-1, D-2.",
     "correct_answer": "B",
-    "concept_tags": ["shm-equations", "displacement", "velocity", "acceleration", "time-period"],
+    "concept_tags": [
+      "shm-equations",
+      "displacement",
+      "velocity",
+      "acceleration",
+      "time-period"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-4, B-1, C-3, D-2", "is_correct": false },
-      { "key": "B", "text": "A-4, B-3, C-1, D-2", "is_correct": true },
-      { "key": "C", "text": "A-3, B-4, C-2, D-1", "is_correct": false },
-      { "key": "D", "text": "A-1, B-4, C-3, D-2", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-4, B-1, C-3, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-4, B-3, C-1, D-2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-4, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-1, B-4, C-3, D-2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This swaps velocity and acceleration. The velocity expression involves sqrt(A^2 - x^2) (item 3), while acceleration is -omega^2*x (item 1), not the other way around.", "misconception": "Confusing velocity and acceleration expressions in SHM" },
-      { "option_key": "C", "hint": "This assigns the velocity formula (item 3) to displacement. Displacement is x = A sin(omega*t + phi) (item 4), a function of time, not of position.", "misconception": "Confusing the displacement equation with the velocity-displacement relation" },
-      { "option_key": "D", "hint": "This assigns the acceleration formula (item 1) to displacement. a = -omega^2*x describes how acceleration depends on displacement, not the displacement itself.", "misconception": "Misidentifying the acceleration equation as the displacement equation" }
+      {
+        "option_key": "A",
+        "hint": "This swaps velocity and acceleration. The velocity expression involves sqrt(A^2 - x^2) (item 3), while acceleration is -omega^2*x (item 1), not the other way around.",
+        "misconception": "Confusing velocity and acceleration expressions in SHM"
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns the velocity formula (item 3) to displacement. Displacement is x = A sin(omega*t + phi) (item 4), a function of time, not of position.",
+        "misconception": "Confusing the displacement equation with the velocity-displacement relation"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns the acceleration formula (item 1) to displacement. a = -omega^2*x describes how acceleration depends on displacement, not the displacement itself.",
+        "misconception": "Misidentifying the acceleration equation as the displacement equation"
+      }
     ]
   },
   {
     "id": "phy-osc-shm-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match Column I (Physical quantity at given position) with Column II (Value):\n\nColumn I:\nA. Velocity at mean position\nB. Acceleration at mean position\nC. Velocity at extreme position\nD. Acceleration at extreme position\n\nColumn II:\n1. Zero\n2. Maximum (= A*omega)\n3. Maximum (= omega^2*A)\n4. Zero",
     "explanation": "A. At the mean position (x = 0), velocity is maximum: v = omega*sqrt(A^2 - 0) = A*omega (matches 2). B. At the mean position, acceleration = -omega^2 x 0 = 0 (matches 4). C. At the extreme position (x = A), velocity = omega*sqrt(A^2 - A^2) = 0 (matches 1). D. At the extreme position, |acceleration| = omega^2*A, which is maximum (matches 3). Correct matching: A-2, B-4, C-1, D-3.",
     "correct_answer": "C",
-    "concept_tags": ["mean-position", "extreme-position", "velocity-acceleration-variation"],
+    "concept_tags": [
+      "mean-position",
+      "extreme-position",
+      "velocity-acceleration-variation"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-1, B-3, C-2, D-4", "is_correct": false },
-      { "key": "B", "text": "A-2, B-1, C-4, D-3", "is_correct": false },
-      { "key": "C", "text": "A-2, B-4, C-1, D-3", "is_correct": true },
-      { "key": "D", "text": "A-3, B-2, C-4, D-1", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-1, B-3, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-1, C-4, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-4, C-1, D-3",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This assigns zero velocity at the mean position. At the mean position, all energy is kinetic, so velocity is maximum (A*omega), not zero.", "misconception": "Confusing mean and extreme positions for velocity" },
-      { "option_key": "B", "hint": "B-1 assigns zero to acceleration at mean position (correct), but C-4 also assigns zero to velocity at extreme (should be item 1). Items 1 and 4 are both 'zero' but for different quantities. Also check the numbering carefully.", "misconception": "Incorrect pairing of the two zero-valued quantities" },
-      { "option_key": "D", "hint": "This assigns maximum acceleration (item 3) to velocity at mean position and maximum velocity (item 2) to acceleration at mean position, which is completely reversed.", "misconception": "Swapping velocity and acceleration roles at each position" }
+      {
+        "option_key": "A",
+        "hint": "This assigns zero velocity at the mean position. At the mean position, all energy is kinetic, so velocity is maximum (A*omega), not zero.",
+        "misconception": "Confusing mean and extreme positions for velocity"
+      },
+      {
+        "option_key": "B",
+        "hint": "B-1 assigns zero to acceleration at mean position (correct), but C-4 also assigns zero to velocity at extreme (should be item 1). Items 1 and 4 are both 'zero' but for different quantities. Also check the numbering carefully.",
+        "misconception": "Incorrect pairing of the two zero-valued quantities"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns maximum acceleration (item 3) to velocity at mean position and maximum velocity (item 2) to acceleration at mean position, which is completely reversed.",
+        "misconception": "Swapping velocity and acceleration roles at each position"
+      }
     ]
   },
   {
     "id": "phy-osc-shm-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The acceleration of a particle executing SHM is always directed towards the mean position.",
     "explanation": "This statement is TRUE. By definition, in SHM the acceleration a = -omega^2*x is always directed opposite to the displacement from the mean position, i.e., always towards the mean position. This is the defining characteristic of any restoring force that produces SHM. Whether the particle is moving towards or away from the mean position, the acceleration always points back to it.",
     "correct_answer": "A",
-    "concept_tags": ["shm-acceleration", "restoring-force", "direction-of-acceleration"],
+    "concept_tags": [
+      "shm-acceleration",
+      "restoring-force",
+      "direction-of-acceleration"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The formula a = -omega^2*x shows that acceleration is always opposite to displacement. Since displacement is measured from the mean position, acceleration always points towards it.", "misconception": "Thinking acceleration changes direction based on the direction of motion rather than the direction of displacement" },
-      { "option_key": "C", "hint": "This is not a valid option for this question.", "misconception": null },
-      { "option_key": "D", "hint": "This is not a valid option for this question.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The formula a = -omega^2*x shows that acceleration is always opposite to displacement. Since displacement is measured from the mean position, acceleration always points towards it.",
+        "misconception": "Thinking acceleration changes direction based on the direction of motion rather than the direction of displacement"
+      },
+      {
+        "option_key": "C",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-osc-shm-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The velocity of a particle in SHM is maximum at the extreme positions.",
     "explanation": "This statement is FALSE. In SHM, the velocity at the extreme positions is zero, not maximum. At the extreme positions (x = ±A), the particle momentarily stops before reversing direction. The velocity is maximum at the mean position (x = 0), where v_max = A*omega and all the energy is kinetic.",
     "correct_answer": "B",
-    "concept_tags": ["velocity-in-shm", "extreme-position", "mean-position"],
+    "concept_tags": [
+      "velocity-in-shm",
+      "extreme-position",
+      "mean-position"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "At extreme positions, the particle reverses direction, meaning it must momentarily have zero velocity. Using v = omega*sqrt(A^2 - x^2), at x = A we get v = 0. The velocity is maximum at the mean position.", "misconception": "Confusing the positions of maximum velocity and maximum displacement" },
-      { "option_key": "C", "hint": "This is not a valid option for this question.", "misconception": null },
-      { "option_key": "D", "hint": "This is not a valid option for this question.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "At extreme positions, the particle reverses direction, meaning it must momentarily have zero velocity. Using v = omega*sqrt(A^2 - x^2), at x = A we get v = 0. The velocity is maximum at the mean position.",
+        "misconception": "Confusing the positions of maximum velocity and maximum displacement"
+      },
+      {
+        "option_key": "C",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-osc-shm-19",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A particle executes SHM with amplitude 10 cm and angular frequency 10 rad/s. The velocity of the particle when its displacement is 6 cm from the mean position is _____ cm/s.",
     "explanation": "Using v = omega*sqrt(A^2 - x^2) = 10*sqrt(10^2 - 6^2) = 10*sqrt(100 - 36) = 10*sqrt(64) = 10 x 8 = 80 cm/s. Here we used A = 10 cm and x = 6 cm directly in cm to get the answer in cm/s.",
     "correct_answer": "D",
-    "concept_tags": ["velocity-displacement-relation", "numerical-problem", "shm-kinematics"],
+    "concept_tags": [
+      "velocity-displacement-relation",
+      "numerical-problem",
+      "shm-kinematics"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "60 cm/s", "is_correct": false },
-      { "key": "B", "text": "100 cm/s", "is_correct": false },
-      { "key": "C", "text": "40 cm/s", "is_correct": false },
-      { "key": "D", "text": "80 cm/s", "is_correct": true }
+      {
+        "key": "A",
+        "text": "60 cm/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "100 cm/s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "40 cm/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "80 cm/s",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "60 cm/s = omega*x = 10 x 6. This incorrectly multiplies omega by x instead of using the correct formula v = omega*sqrt(A^2 - x^2).", "misconception": "Using v = omega*x instead of the correct velocity-displacement relation" },
-      { "option_key": "B", "hint": "100 cm/s = A*omega = 10 x 10 is the maximum velocity. The particle is not at the mean position (x = 6 cm, not x = 0), so the velocity must be less than v_max.", "misconception": "Using maximum velocity formula at a non-zero displacement" },
-      { "option_key": "C", "hint": "40 cm/s could result from an arithmetic error such as sqrt(64) = 4 instead of 8, or using half the angular frequency.", "misconception": "Arithmetic error in square root calculation" }
+      {
+        "option_key": "A",
+        "hint": "60 cm/s = omega*x = 10 x 6. This incorrectly multiplies omega by x instead of using the correct formula v = omega*sqrt(A^2 - x^2).",
+        "misconception": "Using v = omega*x instead of the correct velocity-displacement relation"
+      },
+      {
+        "option_key": "B",
+        "hint": "100 cm/s = A*omega = 10 x 10 is the maximum velocity. The particle is not at the mean position (x = 6 cm, not x = 0), so the velocity must be less than v_max.",
+        "misconception": "Using maximum velocity formula at a non-zero displacement"
+      },
+      {
+        "option_key": "C",
+        "hint": "40 cm/s could result from an arithmetic error such as sqrt(64) = 4 instead of 8, or using half the angular frequency.",
+        "misconception": "Arithmetic error in square root calculation"
+      }
     ]
   },
   {
     "id": "phy-osc-shm-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A student sets up an experiment with a horizontal spring-mass system. A block of mass 2 kg is attached to a spring of spring constant 800 N/m on a frictionless surface. The block is pulled 3 cm from its equilibrium position and released from rest. While the block oscillates, the student measures the time for 10 complete oscillations. Based on this setup, what is the time period of oscillation and the maximum speed attained by the block?",
     "explanation": "For the spring-mass system: omega = sqrt(k/m) = sqrt(800/2) = sqrt(400) = 20 rad/s. Time period T = 2*pi/omega = 2*pi/20 = pi/10 s ≈ 0.314 s. Maximum speed v_max = A*omega = 0.03 x 20 = 0.6 m/s. The time for 10 oscillations would be 10T = pi s ≈ 3.14 s.",
     "correct_answer": "B",
-    "concept_tags": ["spring-mass-system", "time-period", "maximum-velocity", "scenario-problem"],
+    "concept_tags": [
+      "spring-mass-system",
+      "time-period",
+      "maximum-velocity",
+      "scenario-problem"
+    ],
     "topic": "Simple Harmonic Motion (Kinematics and Dynamics)",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "T = pi/10 s and v_max = 0.3 m/s", "is_correct": false },
-      { "key": "B", "text": "T = pi/10 s and v_max = 0.6 m/s", "is_correct": true },
-      { "key": "C", "text": "T = pi/5 s and v_max = 0.6 m/s", "is_correct": false },
-      { "key": "D", "text": "T = pi/20 s and v_max = 0.3 m/s", "is_correct": false }
+      {
+        "key": "A",
+        "text": "T = pi/10 s and v_max = 0.3 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "T = pi/10 s and v_max = 0.6 m/s",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "T = pi/5 s and v_max = 0.6 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "T = pi/20 s and v_max = 0.3 m/s",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The time period is correct (pi/10 s), but v_max = 0.3 m/s is wrong. v_max = A*omega = 0.03 x 20 = 0.6 m/s, not 0.3 m/s. Perhaps A was taken as 1.5 cm instead of 3 cm.", "misconception": "Halving the amplitude during calculation" },
-      { "option_key": "C", "hint": "T = pi/5 s would require omega = 10 rad/s, which means k/m = 100. But k/m = 800/2 = 400, giving omega = 20 rad/s and T = pi/10 s.", "misconception": "Taking square root of k/m incorrectly as 10 instead of 20" },
-      { "option_key": "D", "hint": "T = pi/20 s would require omega = 40 rad/s, which does not match the given values. Also, v_max = 0.03 x 20 = 0.6 m/s, not 0.3 m/s.", "misconception": "Doubling omega or halving the time period" }
+      {
+        "option_key": "A",
+        "hint": "The time period is correct (pi/10 s), but v_max = 0.3 m/s is wrong. v_max = A*omega = 0.03 x 20 = 0.6 m/s, not 0.3 m/s. Perhaps A was taken as 1.5 cm instead of 3 cm.",
+        "misconception": "Halving the amplitude during calculation"
+      },
+      {
+        "option_key": "C",
+        "hint": "T = pi/5 s would require omega = 10 rad/s, which means k/m = 100. But k/m = 800/2 = 400, giving omega = 20 rad/s and T = pi/10 s.",
+        "misconception": "Taking square root of k/m incorrectly as 10 instead of 20"
+      },
+      {
+        "option_key": "D",
+        "hint": "T = pi/20 s would require omega = 40 rad/s, which does not match the given values. Also, v_max = 0.03 x 20 = 0.6 m/s, not 0.3 m/s.",
+        "misconception": "Doubling omega or halving the time period"
+      }
     ]
   }
 ]

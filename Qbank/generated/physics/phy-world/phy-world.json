@@ -720,7 +720,7 @@
   },
   {
     "id": "phy-world-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The strong nuclear force is charge-independent; it acts equally between proton–proton, neutron–neutron, and proton–neutron pairs.\nReasoning (R): The strong nuclear force is mediated by gluons and acts on the colour charge of quarks, not on electric charge.",
     "explanation": "Both A and R are correct. The strong nuclear force does not distinguish between protons and neutrons — this property is called charge independence (or isospin symmetry). The reasoning correctly explains this: the strong force is mediated by gluons that interact with colour charge (a property of quarks), not electric charge. Since both protons and neutrons are made of quarks carrying colour charge, the strong interaction treats them equivalently. Thus R is the correct explanation of A.",
@@ -742,22 +742,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -781,7 +781,7 @@
   },
   {
     "id": "phy-world-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): The strong nuclear force between two protons decreases with distance following an inverse-square law, similar to the gravitational and electromagnetic forces.\nReasoning (R): The gravitational and electromagnetic forces both obey the inverse-square law because their mediating particles (graviton and photon) are massless.",
     "explanation": "Assertion A is INCORRECT. The strong nuclear force does NOT follow an inverse-square law. At very short distances (~10⁻¹⁵ m), it is extremely strong and attractive, but it falls off much more rapidly than 1/r² and becomes negligible beyond nuclear dimensions. In fact, at very short range the strong force between quarks exhibits 'asymptotic freedom' (weakens) and at larger separations shows 'confinement' (strengthens before the flux tube breaks). This behaviour is qualitatively different from the inverse-square law. Reasoning R is CORRECT: the gravitational and electromagnetic forces do obey the inverse-square law, and this is fundamentally because their mediating particles (graviton and photon) are massless, leading to a 1/r² potential in three spatial dimensions. Since A is incorrect and R is correct, the answer is D.",
@@ -803,22 +803,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": true
       }
     ],
@@ -842,7 +842,7 @@
   },
   {
     "id": "phy-world-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the physicists in Column I with their major contributions in Column II:\n\nColumn I:\n(P) Isaac Newton\n(Q) Michael Faraday\n(R) Albert Einstein\n(S) S. N. Bose\n\nColumn II:\n(1) Quantum statistics for bosons\n(2) Laws of motion and universal gravitation\n(3) General theory of relativity\n(4) Laws of electromagnetic induction",
     "explanation": "Isaac Newton formulated the three laws of motion and the law of universal gravitation → (2). Michael Faraday discovered electromagnetic induction and formulated Faraday's laws → (4). Albert Einstein developed the special and general theories of relativity → (3). S. N. Bose made foundational contributions to quantum statistics, leading to Bose-Einstein statistics for particles now called bosons → (1). Therefore: P→2, Q→4, R→3, S→1.",
@@ -903,7 +903,7 @@
   },
   {
     "id": "phy-world-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the fundamental forces in Column I with their mediating (exchange) particles in Column II:\n\nColumn I:\n(P) Strong nuclear force\n(Q) Electromagnetic force\n(R) Weak nuclear force\n(S) Gravitational force\n\nColumn II:\n(1) W and Z bosons\n(2) Graviton (hypothetical)\n(3) Photon\n(4) Gluon",
     "explanation": "The strong nuclear force is mediated by gluons → (4). The electromagnetic force is mediated by photons → (3). The weak nuclear force is mediated by W⁺, W⁻, and Z⁰ bosons → (1). The gravitational force is theoretically mediated by the graviton, which has not yet been experimentally detected → (2). Therefore: P→4, Q→3, R→1, S→2.",
@@ -965,7 +965,7 @@
   },
   {
     "id": "phy-world-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Conservation of angular momentum is a consequence of the isotropy of space (rotational symmetry).",
     "explanation": "This statement is TRUE. According to Noether's theorem, every continuous symmetry of a physical system corresponds to a conservation law. Isotropy of space means the laws of physics are the same in all directions (rotational invariance). This rotational symmetry directly leads to the conservation of angular momentum. Similarly, homogeneity of space leads to conservation of linear momentum, and homogeneity of time leads to conservation of energy.",
@@ -1026,7 +1026,7 @@
   },
   {
     "id": "phy-world-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The weak nuclear force has an infinite range, similar to the gravitational and electromagnetic forces.",
     "explanation": "This statement is FALSE. The weak nuclear force has a very short range, approximately 10⁻¹⁸ m (about 1/1000th of the diameter of a proton). This is because the mediating particles of the weak force — the W⁺, W⁻, and Z⁰ bosons — are very massive (~80–91 GeV/c²). The large mass of the exchange particles limits the range of the interaction according to the uncertainty principle. Only the gravitational and electromagnetic forces have infinite range because their mediating particles (graviton and photon, respectively) are massless.",
@@ -1086,7 +1086,7 @@
   },
   {
     "id": "phy-world-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "question_text": "The relative strength of the four fundamental forces in decreasing order is: Strong nuclear (1) > Electromagnetic (10⁻²) > Weak nuclear (10⁻¹³) > Gravitational (_____).",
     "difficulty": "medium",
     "explanation": "The four fundamental forces have vastly different strengths. Taking the strong nuclear force as the reference (relative strength = 1), the electromagnetic force is about 10⁻² (i.e., about 100 times weaker), the weak nuclear force is about 10⁻¹³, and the gravitational force is extraordinarily weak at about 10⁻³⁹. This enormous weakness of gravity compared to other forces is why it is negligible at subatomic scales but dominates at cosmic scales (because it is always attractive and non-cancelling).",
@@ -1146,7 +1146,7 @@
   },
   {
     "id": "phy-world-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A student is studying the fundamental forces acting inside an atomic nucleus. She notes that protons, being positively charged, should repel each other due to the electromagnetic force. Yet, nuclei with multiple protons are stable.\n\nGiven this context, which of the following best explains nuclear stability?",
     "explanation": "Inside the nucleus, protons do experience electromagnetic repulsion due to their positive charges. However, the strong nuclear force, which acts between all nucleons (protons and neutrons), is about 100 times stronger than the electromagnetic force at nuclear distances (~10⁻¹⁵ m). This strong attractive force overcomes the Coulomb repulsion and binds the nucleons together, making the nucleus stable. For very heavy nuclei (Z > 83), the cumulative long-range Coulomb repulsion eventually competes with the short-range strong force, leading to nuclear instability and radioactive decay.",

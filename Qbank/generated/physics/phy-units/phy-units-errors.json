@@ -6,17 +6,40 @@
     "question_text": "The least count of a vernier caliper is 0.1 mm. A student measures the diameter of a wire and records 2.3 mm. The absolute error in this reading cannot be less than:",
     "explanation": "The least count of an instrument defines the smallest measurement it can reliably make and is also the minimum possible absolute error in a single reading. For this vernier caliper with a least count of 0.1 mm, no single measurement can be trusted to better than ±0.1 mm. Even if the reading appears exact, the instrument cannot resolve differences smaller than its least count. Therefore, the absolute error is at least 0.1 mm.",
     "correct_answer": "A",
-    "concept_tags": ["least-count", "vernier-caliper", "absolute-error", "instrument-limitations"],
+    "concept_tags": [
+      "least-count",
+      "vernier-caliper",
+      "absolute-error",
+      "instrument-limitations"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "0.1 mm", "is_correct": true},
-      {"key": "B", "text": "0.01 mm", "is_correct": false},
-      {"key": "C", "text": "0.5 mm", "is_correct": false},
-      {"key": "D", "text": "1.0 mm", "is_correct": false}
+      {
+        "key": "A",
+        "text": "0.1 mm",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "0.01 mm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.5 mm",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.0 mm",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -43,17 +66,40 @@
     "question_text": "Which of the following is an example of a systematic error?",
     "explanation": "Systematic errors are those that consistently affect measurements in the same direction (always too high or always too low). A zero error in a screw gauge — where the instrument does not read zero when its jaws are fully closed — is a classic systematic error because it shifts every reading by the same fixed amount. Random errors, by contrast, fluctuate unpredictably in direction and magnitude from one reading to the next. Parallax errors can be either, but a fixed zero error is definitively systematic.",
     "correct_answer": "B",
-    "concept_tags": ["systematic-error", "zero-error", "screw-gauge", "types-of-errors"],
+    "concept_tags": [
+      "systematic-error",
+      "zero-error",
+      "screw-gauge",
+      "types-of-errors"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "Fluctuation in readings due to vibrations in the laboratory", "is_correct": false},
-      {"key": "B", "text": "A positive zero error in a screw gauge", "is_correct": true},
-      {"key": "C", "text": "Variation in readings taken by different observers", "is_correct": false},
-      {"key": "D", "text": "Random timing errors while using a stopwatch", "is_correct": false}
+      {
+        "key": "A",
+        "text": "Fluctuation in readings due to vibrations in the laboratory",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A positive zero error in a screw gauge",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Variation in readings taken by different observers",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Random timing errors while using a stopwatch",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -80,17 +126,40 @@
     "question_text": "A physical quantity X is calculated using the formula X = a²b / c. If the percentage errors in a, b, and c are 2%, 3%, and 4% respectively, what is the percentage error in X?",
     "explanation": "For a quantity expressed as a product/quotient of powers, the percentage error is the sum of the percentage errors weighted by their respective powers. Here X = a²b/c, so the percentage error in X = 2×(%error in a) + 1×(%error in b) + 1×(%error in c) = 2(2%) + 3% + 4% = 4% + 3% + 4% = 11%. Note that division contributes the same percentage error as multiplication — it is the absolute value of the power that matters.",
     "correct_answer": "C",
-    "concept_tags": ["error-propagation", "percentage-error", "product-quotient-rule", "powers"],
+    "concept_tags": [
+      "error-propagation",
+      "percentage-error",
+      "product-quotient-rule",
+      "powers"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "7%", "is_correct": false},
-      {"key": "B", "text": "9%", "is_correct": false},
-      {"key": "C", "text": "11%", "is_correct": true},
-      {"key": "D", "text": "13%", "is_correct": false}
+      {
+        "key": "A",
+        "text": "7%",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "9%",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "11%",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "13%",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -112,22 +181,45 @@
   },
   {
     "id": "phy-units-errors-04",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Accuracy refers to how close a measured value is to the true (accepted) value, while precision refers to how reproducible or consistent the measurements are with each other.",
     "explanation": "This statement is TRUE. Accuracy and precision are distinct concepts. Accuracy measures how close a result is to the true value — a highly accurate measurement has a small systematic error. Precision measures how repeatable the measurement is — a highly precise instrument gives very similar readings each time, regardless of whether they are close to the true value. A measurement can be precise but not accurate (e.g., a miscalibrated instrument giving consistent but wrong readings) or accurate but not precise (scattered results averaging to the true value).",
     "correct_answer": "A",
-    "concept_tags": ["accuracy", "precision", "systematic-error", "random-error"],
+    "concept_tags": [
+      "accuracy",
+      "precision",
+      "systematic-error",
+      "random-error"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "True", "is_correct": true},
-      {"key": "B", "text": "False", "is_correct": false},
-      {"key": "C", "text": "---", "is_correct": false},
-      {"key": "D", "text": "---", "is_correct": false}
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -154,17 +246,41 @@
     "question_text": "The pitch of a screw gauge is 0.5 mm and it has 50 divisions on the circular scale. A wire is measured and the main scale reads 2 mm while the 32nd division of the circular scale coincides with the reference line. If the instrument has a positive zero error of 2 divisions, what is the corrected diameter of the wire?",
     "explanation": "Least count = Pitch / Number of circular scale divisions = 0.5 mm / 50 = 0.01 mm. Raw reading = Main scale reading + (Circular scale reading × LC) = 2 mm + (32 × 0.01 mm) = 2 mm + 0.32 mm = 2.32 mm. For a positive zero error, the instrument reads more than the actual value, so we subtract the zero error. Zero error = +2 divisions × 0.01 mm/division = +0.02 mm. Corrected reading = 2.32 mm − 0.02 mm = 2.30 mm.",
     "correct_answer": "B",
-    "concept_tags": ["screw-gauge", "least-count", "zero-error", "positive-zero-error", "corrected-reading"],
+    "concept_tags": [
+      "screw-gauge",
+      "least-count",
+      "zero-error",
+      "positive-zero-error",
+      "corrected-reading"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "2.32 mm", "is_correct": false},
-      {"key": "B", "text": "2.30 mm", "is_correct": true},
-      {"key": "C", "text": "2.34 mm", "is_correct": false},
-      {"key": "D", "text": "2.28 mm", "is_correct": false}
+      {
+        "key": "A",
+        "text": "2.32 mm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2.30 mm",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2.34 mm",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2.28 mm",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -191,17 +307,40 @@
     "question_text": "The time period of a simple pendulum is measured five times and the values obtained are: 2.10 s, 2.08 s, 2.12 s, 2.09 s, and 2.11 s. What is the mean absolute error in the measurement?",
     "explanation": "Mean value = (2.10 + 2.08 + 2.12 + 2.09 + 2.11) / 5 = 10.50 / 5 = 2.10 s. Absolute deviations from mean: |2.10−2.10| = 0.00, |2.08−2.10| = 0.02, |2.12−2.10| = 0.02, |2.09−2.10| = 0.01, |2.11−2.10| = 0.01. Mean absolute error = (0.00 + 0.02 + 0.02 + 0.01 + 0.01) / 5 = 0.06 / 5 = 0.012 s ≈ 0.01 s.",
     "correct_answer": "D",
-    "concept_tags": ["mean-absolute-error", "repeated-measurements", "random-error", "arithmetic-mean"],
+    "concept_tags": [
+      "mean-absolute-error",
+      "repeated-measurements",
+      "random-error",
+      "arithmetic-mean"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "0.04 s", "is_correct": false},
-      {"key": "B", "text": "0.02 s", "is_correct": false},
-      {"key": "C", "text": "0.03 s", "is_correct": false},
-      {"key": "D", "text": "0.01 s", "is_correct": true}
+      {
+        "key": "A",
+        "text": "0.04 s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.02 s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.03 s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.01 s",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
       {
@@ -228,17 +367,40 @@
     "question_text": "The length and breadth of a rectangle are measured as (5.0 ± 0.2) cm and (3.0 ± 0.1) cm respectively. What is the percentage error in the area of the rectangle?",
     "explanation": "Area A = l × b. The relative error in area = (Δl/l) + (Δb/b) = (0.2/5.0) + (0.1/3.0) = 0.04 + 0.0333... = 0.0733... ≈ 7.33%. Percentage error in area = 7.33%. Among the options provided, the closest and correct answer is approximately 7.3%.",
     "correct_answer": "C",
-    "concept_tags": ["error-propagation", "percentage-error", "area", "product-rule"],
+    "concept_tags": [
+      "error-propagation",
+      "percentage-error",
+      "area",
+      "product-rule"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "4.0%", "is_correct": false},
-      {"key": "B", "text": "3.3%", "is_correct": false},
-      {"key": "C", "text": "7.3%", "is_correct": true},
-      {"key": "D", "text": "10%", "is_correct": false}
+      {
+        "key": "A",
+        "text": "4.0%",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3.3%",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "7.3%",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "10%",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -265,17 +427,40 @@
     "question_text": "In a vernier caliper, the main scale has divisions of 1 mm and the vernier scale has 10 divisions that together span 9 mm. What is the least count of this vernier caliper?",
     "explanation": "Least count (LC) of a vernier caliper = 1 MSD − 1 VSD, where MSD is main scale division and VSD is vernier scale division. Since 10 VSD = 9 MSD = 9 mm, 1 VSD = 0.9 mm. Therefore, LC = 1 mm − 0.9 mm = 0.1 mm. Alternatively, LC = Value of 1 MSD / Number of VSD divisions = 1 mm / 10 = 0.1 mm.",
     "correct_answer": "C",
-    "concept_tags": ["vernier-caliper", "least-count", "MSD", "VSD"],
+    "concept_tags": [
+      "vernier-caliper",
+      "least-count",
+      "MSD",
+      "VSD"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "0.01 mm", "is_correct": false},
-      {"key": "B", "text": "0.9 mm", "is_correct": false},
-      {"key": "C", "text": "0.1 mm", "is_correct": true},
-      {"key": "D", "text": "1 mm", "is_correct": false}
+      {
+        "key": "A",
+        "text": "0.01 mm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.9 mm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.1 mm",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1 mm",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -302,17 +487,40 @@
     "question_text": "Two resistors R₁ = (100 ± 3) Ω and R₂ = (200 ± 4) Ω are connected in series. The equivalent resistance and its absolute error are:",
     "explanation": "For resistors in series, R = R₁ + R₂. Therefore, R = 100 + 200 = 300 Ω. For addition/subtraction, absolute errors add: ΔR = ΔR₁ + ΔR₂ = 3 + 4 = 7 Ω. Therefore, the equivalent resistance = (300 ± 7) Ω.",
     "correct_answer": "D",
-    "concept_tags": ["error-propagation", "addition-of-errors", "series-resistance", "absolute-error"],
+    "concept_tags": [
+      "error-propagation",
+      "addition-of-errors",
+      "series-resistance",
+      "absolute-error"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "(300 ± 3.5) Ω", "is_correct": false},
-      {"key": "B", "text": "(300 ± 1) Ω", "is_correct": false},
-      {"key": "C", "text": "(300 ± 12) Ω", "is_correct": false},
-      {"key": "D", "text": "(300 ± 7) Ω", "is_correct": true}
+      {
+        "key": "A",
+        "text": "(300 ± 3.5) Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "(300 ± 1) Ω",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "(300 ± 12) Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "(300 ± 7) Ω",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
       {
@@ -339,17 +547,40 @@
     "question_text": "A screw gauge has a negative zero error of 3 divisions. If the pitch is 1 mm and there are 100 circular scale divisions, the least count is 0.01 mm. When measuring a sphere, the main scale reads 5 mm and the 47th circular scale division coincides with the reference line. The corrected diameter is:",
     "explanation": "Least count = 1 mm / 100 = 0.01 mm. Raw reading = 5 mm + (47 × 0.01 mm) = 5 mm + 0.47 mm = 5.47 mm. For a negative zero error, the instrument reads less than the actual value, so the zero error is subtracted (i.e., we add the magnitude): Zero error = −3 × 0.01 mm = −0.03 mm. Corrected reading = Raw reading − Zero error = 5.47 − (−0.03) = 5.47 + 0.03 = 5.50 mm.",
     "correct_answer": "C",
-    "concept_tags": ["screw-gauge", "negative-zero-error", "least-count", "corrected-reading"],
+    "concept_tags": [
+      "screw-gauge",
+      "negative-zero-error",
+      "least-count",
+      "corrected-reading"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "5.47 mm", "is_correct": false},
-      {"key": "B", "text": "5.44 mm", "is_correct": false},
-      {"key": "C", "text": "5.50 mm", "is_correct": true},
-      {"key": "D", "text": "5.42 mm", "is_correct": false}
+      {
+        "key": "A",
+        "text": "5.47 mm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "5.44 mm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "5.50 mm",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "5.42 mm",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -376,17 +607,40 @@
     "question_text": "The refractive index n of a glass slab is determined using the formula n = sin(i) / sin(r), where i = (45 ± 1)° and r = (30 ± 1)°. What is the percentage error in n? (Given: sin 45° = 0.707, sin 30° = 0.500, cos 45° ≈ 0.707, cos 30° ≈ 0.866)",
     "explanation": "n = sin(i) / sin(r). Taking logarithm and differentiating: Δn/n = |cos(i)/sin(i)| × Δi + |cos(r)/sin(r)| × Δr = |cot(i)| × Δi + |cot(r)| × Δr. Here Δi = Δr = 1° = π/180 rad ≈ 0.01745 rad. cot(45°) = cos(45°)/sin(45°) = 0.707/0.707 = 1.0; cot(30°) = cos(30°)/sin(30°) = 0.866/0.500 = 1.732. Δn/n = (1.0 × 0.01745) + (1.732 × 0.01745) = 0.01745 + 0.03022 = 0.04767. Percentage error = 4.767% ≈ 4.8%.",
     "correct_answer": "D",
-    "concept_tags": ["error-propagation", "trigonometric-functions", "refractive-index", "logarithmic-differentiation"],
+    "concept_tags": [
+      "error-propagation",
+      "trigonometric-functions",
+      "refractive-index",
+      "logarithmic-differentiation"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "2.0%", "is_correct": false},
-      {"key": "B", "text": "3.5%", "is_correct": false},
-      {"key": "C", "text": "6.2%", "is_correct": false},
-      {"key": "D", "text": "4.8%", "is_correct": true}
+      {
+        "key": "A",
+        "text": "2.0%",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3.5%",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "6.2%",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4.8%",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
       {
@@ -413,17 +667,40 @@
     "question_text": "The period of oscillation of a simple pendulum is T = 2π√(l/g). If the length l is measured with 2% error and the time period T is measured with 3% error, the percentage error in the determination of g is:",
     "explanation": "From T = 2π√(l/g), we get g = 4π²l / T². The percentage error in g: %Δg = %Δl + 2×%ΔT (since g ∝ l/T²). Note: π is a mathematical constant with no error. %Δg = 2% + 2×3% = 2% + 6% = 8%.",
     "correct_answer": "A",
-    "concept_tags": ["error-propagation", "pendulum", "gravitational-acceleration", "power-rule"],
+    "concept_tags": [
+      "error-propagation",
+      "pendulum",
+      "gravitational-acceleration",
+      "power-rule"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "8%", "is_correct": true},
-      {"key": "B", "text": "5%", "is_correct": false},
-      {"key": "C", "text": "7%", "is_correct": false},
-      {"key": "D", "text": "14%", "is_correct": false}
+      {
+        "key": "A",
+        "text": "8%",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "5%",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "7%",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "14%",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -445,22 +722,45 @@
   },
   {
     "id": "phy-units-errors-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): Repeating a measurement many times and taking the mean reduces the effect of random errors.\n\nReasoning (R): Random errors are equally likely to be positive or negative, so they tend to cancel when averaged over many readings.",
     "explanation": "Both the Assertion and Reasoning are correct, and the Reasoning correctly explains the Assertion. Random errors arise from unpredictable fluctuations (environmental noise, human reaction time, etc.) and have no consistent direction. They are equally likely to be positive (overestimates) or negative (underestimates). When multiple readings are averaged, the positive and negative deviations tend to cancel each other, making the mean progressively closer to the true value. This is the mathematical basis of why more repetitions reduce the mean error — specifically, the standard error of the mean decreases as 1/√n with the number of readings n.",
     "correct_answer": "A",
-    "concept_tags": ["random-error", "mean-value", "error-reduction", "statistical-averaging"],
+    "concept_tags": [
+      "random-error",
+      "mean-value",
+      "error-reduction",
+      "statistical-averaging"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true},
-      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
-      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
-      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -482,22 +782,46 @@
   },
   {
     "id": "phy-units-errors-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): Systematic errors cannot be reduced by taking multiple readings and averaging them.\n\nReasoning (R): Systematic errors shift all measurements in the same direction by the same amount, so averaging does not cancel the bias.",
     "explanation": "Both statements are correct and R is the correct explanation of A. Systematic errors (such as zero error, calibration error, or consistent environmental effects) affect every reading in the same way — they always add (or always subtract) the same offset. Unlike random errors which scatter symmetrically and cancel on averaging, systematic errors persist in every reading. Averaging 100 readings with a systematic error of +0.05 mm will give a mean that is still 0.05 mm too high. Systematic errors must be identified and corrected by calibration, changing the method, or correcting for the known bias — not by repetition.",
     "correct_answer": "A",
-    "concept_tags": ["systematic-error", "random-error", "averaging", "bias", "calibration"],
+    "concept_tags": [
+      "systematic-error",
+      "random-error",
+      "averaging",
+      "bias",
+      "calibration"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true},
-      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
-      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
-      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -519,22 +843,46 @@
   },
   {
     "id": "phy-units-errors-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following instruments/situations in Column I with the appropriate error type or quantity in Column II:\n\nColumn I:\n(P) Vernier caliper with 10 VSD = 9 MSD\n(Q) Screw gauge reading when jaws are closed shows 2 divisions above zero\n(R) Different students obtain different values each time they measure the same length\n(S) A measuring tape stretched due to temperature expansion\n\nColumn II:\n(1) Random error\n(2) Positive zero error\n(3) Systematic error\n(4) Least count = 0.1 mm",
     "explanation": "P matches with 4: A vernier caliper where 10 VSD = 9 MSD (each MSD = 1 mm) has LC = 1 mm / 10 = 0.1 mm. Q matches with 2: If the circular scale reads 2 divisions above the zero mark when the jaws are fully closed, the instrument has a positive zero error. R matches with 1: Different students getting different values each time is characteristic of random error — unpredictable, varying direction. S matches with 3: A stretched tape consistently gives readings that are all too small (the tape measures a larger length as shorter) — this is a systematic error affecting all measurements equally.",
     "correct_answer": "B",
-    "concept_tags": ["vernier-caliper", "zero-error", "random-error", "systematic-error", "least-count"],
+    "concept_tags": [
+      "vernier-caliper",
+      "zero-error",
+      "random-error",
+      "systematic-error",
+      "least-count"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "P-3, Q-2, R-1, S-4", "is_correct": false},
-      {"key": "B", "text": "P-4, Q-2, R-1, S-3", "is_correct": true},
-      {"key": "C", "text": "P-4, Q-3, R-2, S-1", "is_correct": false},
-      {"key": "D", "text": "P-1, Q-4, R-3, S-2", "is_correct": false}
+      {
+        "key": "A",
+        "text": "P-3, Q-2, R-1, S-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P-4, Q-2, R-1, S-3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "P-4, Q-3, R-2, S-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P-1, Q-4, R-3, S-2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -556,22 +904,46 @@
   },
   {
     "id": "phy-units-errors-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the physical quantity formula in Column I with the correct expression for its maximum percentage error in Column II:\n\nColumn I:\n(P) X = a³b² / √c\n(Q) X = a / (b − c), where b ≈ c\n(R) X = (a + b) / (a − b), where a ≈ b\n(S) X = √(a²+ b²)\n\nColumn II:\n(1) Percentage error becomes very large because denominator is near zero\n(2) 3(%Δa) + 2(%Δb) + ½(%Δc)\n(3) Percentage error is NOT simply %Δa + %Δb since the formula is not a simple product/quotient of powers\n(4) Same column applies to both (Q) and (R): error magnification when near-cancellation occurs in denominator",
     "explanation": "P matches with 2: For X = a³b²/c^(1/2), %ΔX = 3(%Δa) + 2(%Δb) + (1/2)(%Δc). Q matches with 1 (and 4): When b ≈ c, the denominator (b−c) is near zero, causing enormous magnification of errors — any small error in b or c creates a huge relative error in X. R also matches with 1 (and 4): Similarly, when a ≈ b, the denominator (a−b) ≈ 0, magnifying errors drastically. S matches with 3: X = √(a²+b²) is not a simple power-law product; the percentage error requires (ΔX/X) = √((aΔa)²+(bΔb)²) / √(a²+b²), which cannot be written as %Δa + %Δb. The most unambiguous unique matches are P→2 and S→3; Q and R both exhibit error magnification near cancellation (1/4 concept). The intended correct answer reflects P→2, Q→1, R→4, S→3.",
     "correct_answer": "D",
-    "concept_tags": ["error-propagation", "percentage-error", "near-cancellation", "power-law", "error-magnification"],
+    "concept_tags": [
+      "error-propagation",
+      "percentage-error",
+      "near-cancellation",
+      "power-law",
+      "error-magnification"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "P-1, Q-2, R-3, S-4", "is_correct": false},
-      {"key": "B", "text": "P-2, Q-3, R-1, S-4", "is_correct": false},
-      {"key": "C", "text": "P-3, Q-4, R-2, S-1", "is_correct": false},
-      {"key": "D", "text": "P-2, Q-1, R-4, S-3", "is_correct": true}
+      {
+        "key": "A",
+        "text": "P-1, Q-2, R-3, S-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P-2, Q-3, R-1, S-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P-3, Q-4, R-2, S-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P-2, Q-1, R-4, S-3",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
       {
@@ -593,22 +965,45 @@
   },
   {
     "id": "phy-units-errors-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The percentage error in a derived quantity can be reduced to zero by using infinitely precise instruments for each individual measurement.",
     "explanation": "This statement is FALSE. Even if random and instrumental errors could theoretically be made negligibly small, other sources of error — such as environmental fluctuations, model limitations, and quantum-mechanical uncertainty (at the fundamental level) — prevent any physical measurement from being perfectly error-free. More practically, the distinction between theoretical ideals and physical reality means that percentage error cannot truly reach zero. Additionally, systematic errors that are not identified and corrected persist regardless of instrument precision. The statement presents an ideal that cannot be achieved in practice.",
     "correct_answer": "B",
-    "concept_tags": ["percentage-error", "instrument-precision", "error-limits", "fundamental-uncertainty"],
+    "concept_tags": [
+      "percentage-error",
+      "instrument-precision",
+      "error-limits",
+      "fundamental-uncertainty"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "True", "is_correct": false},
-      {"key": "B", "text": "False", "is_correct": true},
-      {"key": "C", "text": "---", "is_correct": false},
-      {"key": "D", "text": "---", "is_correct": false}
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -630,22 +1025,46 @@
   },
   {
     "id": "phy-units-errors-18",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "In a vernier caliper measurement, the main scale reads 2.3 cm and the 7th vernier division coincides with a main scale division. If the least count of the vernier is 0.01 cm, the complete reading is ________ cm. If this reading is expressed with its absolute error equal to the least count, the result should be written as ________ cm.",
     "explanation": "Complete reading = Main scale reading + (Vernier scale reading × Least count) = 2.3 cm + (7 × 0.01 cm) = 2.3 + 0.07 = 2.37 cm. The absolute error associated with any measurement equals at least one least count. Therefore, the result is expressed as (2.37 ± 0.01) cm. This notation communicates both the measured value and the uncertainty in the final digit.",
     "correct_answer": "C",
-    "concept_tags": ["vernier-caliper", "reading", "least-count", "absolute-error", "significant-figures"],
+    "concept_tags": [
+      "vernier-caliper",
+      "reading",
+      "least-count",
+      "absolute-error",
+      "significant-figures"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "2.30 cm ; (2.30 ± 0.01) cm", "is_correct": false},
-      {"key": "B", "text": "2.37 cm ; (2.37 ± 0.10) cm", "is_correct": false},
-      {"key": "C", "text": "2.37 cm ; (2.37 ± 0.01) cm", "is_correct": true},
-      {"key": "D", "text": "2.70 cm ; (2.70 ± 0.01) cm", "is_correct": false}
+      {
+        "key": "A",
+        "text": "2.30 cm ; (2.30 ± 0.01) cm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2.37 cm ; (2.37 ± 0.10) cm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2.37 cm ; (2.37 ± 0.01) cm",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "2.70 cm ; (2.70 ± 0.01) cm",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -667,22 +1086,46 @@
   },
   {
     "id": "phy-units-errors-19",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A physics student is tasked with measuring the density of a cylindrical metal rod. She measures its mass as m = (50.0 ± 0.5) g, its length as L = (10.0 ± 0.1) cm, and its diameter as d = (2.00 ± 0.02) cm using a vernier caliper. The density is calculated using ρ = m / (π d² L / 4) = 4m / (πd²L).\n\nWhich of the following correctly represents the percentage error in the calculated density, and which variable contributes the most to the total error?",
     "explanation": "Percentage error in ρ = %Δm + 2×%Δd + %ΔL (since ρ ∝ m / d²L). %Δm = (0.5/50.0) × 100% = 1.0%; %Δd = (0.02/2.00) × 100% = 1.0%, contribution = 2×1.0% = 2.0%; %ΔL = (0.1/10.0) × 100% = 1.0%. Total %Δρ = 1.0% + 2.0% + 1.0% = 4.0%. The variable d (diameter) contributes the most (2%) because it appears with a power of 2 in the formula. π is a constant with no error.",
     "correct_answer": "B",
-    "concept_tags": ["error-propagation", "density", "percentage-error", "dominant-error", "cylinder"],
+    "concept_tags": [
+      "error-propagation",
+      "density",
+      "percentage-error",
+      "dominant-error",
+      "cylinder"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "Total percentage error = 3.0%; mass contributes the most", "is_correct": false},
-      {"key": "B", "text": "Total percentage error = 4.0%; diameter contributes the most", "is_correct": true},
-      {"key": "C", "text": "Total percentage error = 4.0%; length contributes the most", "is_correct": false},
-      {"key": "D", "text": "Total percentage error = 5.0%; diameter contributes the most", "is_correct": false}
+      {
+        "key": "A",
+        "text": "Total percentage error = 3.0%; mass contributes the most",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Total percentage error = 4.0%; diameter contributes the most",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Total percentage error = 4.0%; length contributes the most",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Total percentage error = 5.0%; diameter contributes the most",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
       {
@@ -709,17 +1152,40 @@
     "question_text": "Parallax error in reading a measurement instrument occurs when:",
     "explanation": "Parallax error occurs when the observer's eye is not positioned directly perpendicular (at right angles) to the scale at the point of measurement. When the eye is at an angle, the line of sight crosses the scale at a different division than the true reading, introducing an error. For example, when reading a thermometer, viewing from an angle makes the mercury level appear at a different graduation than the actual level directly in front. To avoid parallax, the eye must be level with the reading and directly in line with the scale markings.",
     "correct_answer": "D",
-    "concept_tags": ["parallax-error", "line-of-sight", "reading-instruments", "systematic-error"],
+    "concept_tags": [
+      "parallax-error",
+      "line-of-sight",
+      "reading-instruments",
+      "systematic-error"
+    ],
     "topic": "Errors in Measurement and Instruments",
     "subject": "physics",
     "chapter": "Units and Measurements",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      {"key": "A", "text": "The instrument has a zero error that has not been corrected", "is_correct": false},
-      {"key": "B", "text": "The measurement is repeated too many times", "is_correct": false},
-      {"key": "C", "text": "The least count of the instrument is too large", "is_correct": false},
-      {"key": "D", "text": "The observer's eye is not placed perpendicular to the scale during reading", "is_correct": true}
+      {
+        "key": "A",
+        "text": "The instrument has a zero error that has not been corrected",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The measurement is repeated too many times",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The least count of the instrument is too large",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The observer's eye is not placed perpendicular to the scale during reading",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
       {

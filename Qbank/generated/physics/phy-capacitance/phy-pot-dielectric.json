@@ -721,7 +721,7 @@
   },
   {
     "id": "phy-pot-dielectric-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): In a series combination of capacitors, the capacitor with the smallest capacitance has the largest potential difference across it.\nReason (R): In a series combination, the charge on each capacitor is the same.",
     "explanation": "Both A and R are correct, and R explains A. In series, each capacitor has the same charge Q. Since V = Q/C, the capacitor with the smallest C will have the largest V. The constant charge condition (R) directly leads to the inverse relationship between V and C, explaining why the smallest capacitor has the largest voltage (A).",
@@ -742,22 +742,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -781,7 +781,7 @@
   },
   {
     "id": "phy-pot-dielectric-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): When a dielectric slab is inserted between the plates of a charged capacitor connected to a battery, the energy stored in the capacitor increases.\nReason (R): The insertion of a dielectric slab decreases the electric field between the plates.",
     "explanation": "A is correct: with battery connected, V is constant and C increases to KC, so U = ½CV² increases to ½KCV². R is incorrect in this context: when the battery is connected, the voltage is maintained constant, so E = V/d remains the same (the battery supplies additional charge to maintain V). The electric field does not decrease when the battery stays connected.",
@@ -802,22 +802,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": true
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -841,7 +841,7 @@
   },
   {
     "id": "phy-pot-dielectric-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following capacitor combinations (Column I) with their equivalent capacitance (Column II). Each capacitor has capacitance C.\n\nColumn I:\nA. Two capacitors in series\nB. Two capacitors in parallel\nC. Three capacitors in series\nD. Three capacitors in parallel\n\nColumn II:\n1. C/2\n2. 2C\n3. C/3\n4. 3C",
     "explanation": "Two in series: C_eq = C/2 (A→1). Two in parallel: C_eq = 2C (B→2). Three in series: C_eq = C/3 (C→3). Three in parallel: C_eq = 3C (D→4).",
@@ -901,7 +901,7 @@
   },
   {
     "id": "phy-pot-dielectric-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "A parallel plate capacitor of capacitance C is charged to voltage V. Match the following operations (Column I) with their effects on energy stored (Column II):\n\nColumn I:\nA. Battery connected, dielectric K inserted\nB. Battery disconnected, dielectric K inserted\nC. Battery disconnected, plate separation doubled\nD. Battery connected, plate separation halved\n\nColumn II:\n1. Energy becomes U/K\n2. Energy becomes KU\n3. Energy becomes 2U\n4. Energy becomes 2U",
     "explanation": "Battery connected, dielectric inserted: V constant, C → KC, U = ½CV² → ½KCV² = KU (A→2). Battery disconnected, dielectric inserted: Q constant, C → KC, U = Q²/(2C) → Q²/(2KC) = U/K (B→1). Battery disconnected, separation doubled: Q constant, C → C/2, U = Q²/(2C) → Q²/(2·C/2) = Q²/C = 2U (C→3). Battery connected, separation halved: V constant, C → 2C, U = ½CV² → ½(2C)V² = 2U (D→4).",
@@ -961,7 +961,7 @@
   },
   {
     "id": "phy-pot-dielectric-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The equivalent capacitance of capacitors connected in parallel is always greater than the largest individual capacitance in the combination.",
     "explanation": "This statement is TRUE. In a parallel combination, C_eq = C₁ + C₂ + C₃ + ... Since each capacitance is positive, the sum is always greater than any individual term. This is because parallel connection provides more surface area for charge storage.",
@@ -1021,7 +1021,7 @@
   },
   {
     "id": "phy-pot-dielectric-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "When a dielectric slab is removed from a charged capacitor that is still connected to a battery, the charge on the capacitor increases.",
     "explanation": "This statement is FALSE. When the dielectric is removed with the battery connected, the capacitance decreases from KC to C (since C = ε₀A/d). With V constant (battery connected), Q = CV decreases as C decreases. The charge decreases, not increases.",
@@ -1081,7 +1081,7 @@
   },
   {
     "id": "phy-pot-dielectric-19",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A 6 μF capacitor and a 3 μF capacitor are connected in series across a 180 V supply. The charge on each capacitor is _____ μC.",
     "explanation": "For series combination, C_eq = (6 × 3)/(6 + 3) = 18/9 = 2 μF. The charge on each capacitor in series is the same and equals Q = C_eq × V = 2 × 180 = 360 μC.",
@@ -1141,7 +1141,7 @@
   },
   {
     "id": "phy-pot-dielectric-20",
-    "question_type": "scenario",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A physics teacher demonstrates charge redistribution using two capacitors. She charges a 10 μF capacitor to 300 V using a battery and then disconnects it. She then connects this charged capacitor to an uncharged 20 μF capacitor.\n\nThe common potential and the ratio of final energies stored in the 10 μF and 20 μF capacitors are:",
     "explanation": "Initial charge Q = 10 × 300 = 3000 μC. Common potential V' = Q/(C₁ + C₂) = 3000/(10 + 20) = 100 V. Energy in 10 μF: U₁ = ½ × 10 × 10⁻⁶ × 100² = 50 mJ. Energy in 20 μF: U₂ = ½ × 20 × 10⁻⁶ × 100² = 100 mJ. Ratio U₁:U₂ = 50:100 = 1:2. Alternatively, since V is the same for both, U ∝ C, so U₁/U₂ = C₁/C₂ = 10/20 = 1/2.",

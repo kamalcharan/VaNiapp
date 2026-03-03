@@ -3,25 +3,60 @@
     "id": "phy-fluid-pressure-01",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "The pressure at a depth h below the surface of a liquid of density \u03c1 is given by (P\u2080 is the atmospheric pressure and g is the acceleration due to gravity):",
-    "explanation": "The absolute pressure at a depth h in a fluid is given by P = P\u2080 + \u03c1gh, where P\u2080 is the atmospheric pressure acting on the free surface, \u03c1 is the density of the liquid, g is the acceleration due to gravity, and h is the depth below the surface. This is a fundamental result obtained by considering the weight of the fluid column above the point.",
+    "question_text": "The pressure at a depth h below the surface of a liquid of density ρ is given by (P₀ is the atmospheric pressure and g is the acceleration due to gravity):",
+    "explanation": "The absolute pressure at a depth h in a fluid is given by P = P₀ + ρgh, where P₀ is the atmospheric pressure acting on the free surface, ρ is the density of the liquid, g is the acceleration due to gravity, and h is the depth below the surface. This is a fundamental result obtained by considering the weight of the fluid column above the point.",
     "correct_answer": "A",
-    "concept_tags": ["pressure at depth", "hydrostatic pressure", "absolute pressure", "fluid column"],
+    "concept_tags": [
+      "pressure at depth",
+      "hydrostatic pressure",
+      "absolute pressure",
+      "fluid column"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "P\u2080 + \u03c1gh", "is_correct": true },
-      { "key": "B", "text": "\u03c1gh", "is_correct": false },
-      { "key": "C", "text": "P\u2080 \u2212 \u03c1gh", "is_correct": false },
-      { "key": "D", "text": "P\u2080/\u03c1gh", "is_correct": false }
+      {
+        "key": "A",
+        "text": "P₀ + ρgh",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "ρgh",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P₀ − ρgh",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P₀/ρgh",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "\u03c1gh represents only the gauge pressure due to the liquid column. The total absolute pressure must also include the atmospheric pressure P\u2080 acting on the free surface.", "misconception": "Confusing gauge pressure with absolute pressure" },
-      { "option_key": "C", "hint": "Pressure increases with depth, not decreases. Subtracting \u03c1gh from P\u2080 would imply pressure decreases as you go deeper, which contradicts the weight of the overlying fluid.", "misconception": "Incorrectly assuming pressure decreases with depth" },
-      { "option_key": "D", "hint": "Dividing P\u2080 by \u03c1gh is dimensionally inconsistent and has no physical basis. Pressure at depth is obtained by adding the hydrostatic contribution to the surface pressure.", "misconception": "Incorrect mathematical formulation of hydrostatic pressure" }
+      {
+        "option_key": "B",
+        "hint": "ρgh represents only the gauge pressure due to the liquid column. The total absolute pressure must also include the atmospheric pressure P₀ acting on the free surface.",
+        "misconception": "Confusing gauge pressure with absolute pressure"
+      },
+      {
+        "option_key": "C",
+        "hint": "Pressure increases with depth, not decreases. Subtracting ρgh from P₀ would imply pressure decreases as you go deeper, which contradicts the weight of the overlying fluid.",
+        "misconception": "Incorrectly assuming pressure decreases with depth"
+      },
+      {
+        "option_key": "D",
+        "hint": "Dividing P₀ by ρgh is dimensionally inconsistent and has no physical basis. Pressure at depth is obtained by adding the hydrostatic contribution to the surface pressure.",
+        "misconception": "Incorrect mathematical formulation of hydrostatic pressure"
+      }
     ]
   },
   {
@@ -31,22 +66,56 @@
     "question_text": "Pascal's law states that a pressure change applied to an enclosed fluid is:",
     "explanation": "Pascal's law states that any change in pressure applied to a confined (enclosed) fluid is transmitted undiminished to every point of the fluid and to the walls of the container. This principle is the foundation of hydraulic machines such as the hydraulic lift, hydraulic brake, and hydraulic press.",
     "correct_answer": "B",
-    "concept_tags": ["Pascal's law", "pressure transmission", "enclosed fluid"],
+    "concept_tags": [
+      "Pascal's law",
+      "pressure transmission",
+      "enclosed fluid"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Transmitted only to the bottom of the container", "is_correct": false },
-      { "key": "B", "text": "Transmitted undiminished to every part of the fluid", "is_correct": true },
-      { "key": "C", "text": "Transmitted only in the downward direction", "is_correct": false },
-      { "key": "D", "text": "Absorbed by the fluid and not transmitted", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Transmitted only to the bottom of the container",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Transmitted undiminished to every part of the fluid",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Transmitted only in the downward direction",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Absorbed by the fluid and not transmitted",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Pascal's law is not directional. The pressure change is transmitted to every point in the fluid, not just the bottom.", "misconception": "Thinking pressure transmission is limited to one direction" },
-      { "option_key": "C", "hint": "Pressure in a fluid acts in all directions at any point. Pascal's law applies equally in all directions, not just downward.", "misconception": "Confusing hydrostatic pressure variation with Pascal's law" },
-      { "option_key": "D", "hint": "Fluids are nearly incompressible, so they transmit pressure changes rather than absorbing them. This transmission is the basis of all hydraulic systems.", "misconception": "Misunderstanding the nature of pressure transmission in fluids" }
+      {
+        "option_key": "A",
+        "hint": "Pascal's law is not directional. The pressure change is transmitted to every point in the fluid, not just the bottom.",
+        "misconception": "Thinking pressure transmission is limited to one direction"
+      },
+      {
+        "option_key": "C",
+        "hint": "Pressure in a fluid acts in all directions at any point. Pascal's law applies equally in all directions, not just downward.",
+        "misconception": "Confusing hydrostatic pressure variation with Pascal's law"
+      },
+      {
+        "option_key": "D",
+        "hint": "Fluids are nearly incompressible, so they transmit pressure changes rather than absorbing them. This transmission is the basis of all hydraulic systems.",
+        "misconception": "Misunderstanding the nature of pressure transmission in fluids"
+      }
     ]
   },
   {
@@ -54,24 +123,59 @@
     "question_type": "mcq",
     "difficulty": "easy",
     "question_text": "The SI unit of pressure is:",
-    "explanation": "The SI unit of pressure is the pascal (Pa), named after Blaise Pascal. One pascal equals one newton per square metre (1 Pa = 1 N/m\u00b2). Other common units include atm (1 atm = 1.013 \u00d7 10\u2075 Pa), bar (1 bar = 10\u2075 Pa), and torr (1 torr = 133.3 Pa).",
+    "explanation": "The SI unit of pressure is the pascal (Pa), named after Blaise Pascal. One pascal equals one newton per square metre (1 Pa = 1 N/m²). Other common units include atm (1 atm = 1.013 × 10⁵ Pa), bar (1 bar = 10⁵ Pa), and torr (1 torr = 133.3 Pa).",
     "correct_answer": "C",
-    "concept_tags": ["SI units", "pressure", "pascal", "newton per square metre"],
+    "concept_tags": [
+      "SI units",
+      "pressure",
+      "pascal",
+      "newton per square metre"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Newton (N)", "is_correct": false },
-      { "key": "B", "text": "Newton metre (N\u00b7m)", "is_correct": false },
-      { "key": "C", "text": "Pascal (Pa)", "is_correct": true },
-      { "key": "D", "text": "Joule (J)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Newton (N)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Newton metre (N·m)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Pascal (Pa)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Joule (J)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Newton is the SI unit of force, not pressure. Pressure is force per unit area, so its unit must involve area in the denominator.", "misconception": "Confusing the unit of force with the unit of pressure" },
-      { "option_key": "B", "hint": "Newton metre (N\u00b7m) is the unit of torque or energy, not pressure. Pressure requires force divided by area, not force multiplied by distance.", "misconception": "Confusing torque or energy units with pressure units" },
-      { "option_key": "D", "hint": "Joule is the SI unit of energy or work, not pressure. While both involve newtons and metres, pressure is N/m\u00b2 whereas energy is N\u00b7m.", "misconception": "Confusing energy units with pressure units" }
+      {
+        "option_key": "A",
+        "hint": "Newton is the SI unit of force, not pressure. Pressure is force per unit area, so its unit must involve area in the denominator.",
+        "misconception": "Confusing the unit of force with the unit of pressure"
+      },
+      {
+        "option_key": "B",
+        "hint": "Newton metre (N·m) is the unit of torque or energy, not pressure. Pressure requires force divided by area, not force multiplied by distance.",
+        "misconception": "Confusing torque or energy units with pressure units"
+      },
+      {
+        "option_key": "D",
+        "hint": "Joule is the SI unit of energy or work, not pressure. While both involve newtons and metres, pressure is N/m² whereas energy is N·m.",
+        "misconception": "Confusing energy units with pressure units"
+      }
     ]
   },
   {
@@ -79,424 +183,1020 @@
     "question_type": "mcq",
     "difficulty": "easy",
     "question_text": "Gauge pressure at a point inside a liquid is defined as:",
-    "explanation": "Gauge pressure is the pressure above atmospheric pressure. It is the difference between the absolute pressure at that point and the atmospheric pressure: P_gauge = P_absolute \u2212 P_atm. For a point at depth h in a liquid, gauge pressure equals \u03c1gh. Gauge pressure can be negative (when absolute pressure is less than atmospheric), but inside a liquid at depth it is always positive.",
+    "explanation": "Gauge pressure is the pressure above atmospheric pressure. It is the difference between the absolute pressure at that point and the atmospheric pressure: P_gauge = P_absolute − P_atm. For a point at depth h in a liquid, gauge pressure equals ρgh. Gauge pressure can be negative (when absolute pressure is less than atmospheric), but inside a liquid at depth it is always positive.",
     "correct_answer": "D",
-    "concept_tags": ["gauge pressure", "absolute pressure", "atmospheric pressure"],
+    "concept_tags": [
+      "gauge pressure",
+      "absolute pressure",
+      "atmospheric pressure"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "The total pressure at that point including atmospheric pressure", "is_correct": false },
-      { "key": "B", "text": "The atmospheric pressure at the surface of the liquid", "is_correct": false },
-      { "key": "C", "text": "The sum of atmospheric pressure and hydrostatic pressure", "is_correct": false },
-      { "key": "D", "text": "The difference between the absolute pressure and the atmospheric pressure", "is_correct": true }
+      {
+        "key": "A",
+        "text": "The total pressure at that point including atmospheric pressure",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The atmospheric pressure at the surface of the liquid",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The sum of atmospheric pressure and hydrostatic pressure",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The difference between the absolute pressure and the atmospheric pressure",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The total pressure including atmospheric pressure is called absolute pressure, not gauge pressure. Gauge pressure specifically excludes the atmospheric component.", "misconception": "Confusing absolute pressure with gauge pressure" },
-      { "option_key": "B", "hint": "Atmospheric pressure at the surface is a fixed value (approximately 1.013 \u00d7 10\u2075 Pa at sea level) and does not describe the pressure due to the liquid column.", "misconception": "Confusing atmospheric pressure with gauge pressure" },
-      { "option_key": "C", "hint": "The sum of atmospheric pressure and hydrostatic pressure gives the absolute pressure (P\u2080 + \u03c1gh), not the gauge pressure. Gauge pressure is only the \u03c1gh part.", "misconception": "Confusing the definition of absolute pressure with gauge pressure" }
+      {
+        "option_key": "A",
+        "hint": "The total pressure including atmospheric pressure is called absolute pressure, not gauge pressure. Gauge pressure specifically excludes the atmospheric component.",
+        "misconception": "Confusing absolute pressure with gauge pressure"
+      },
+      {
+        "option_key": "B",
+        "hint": "Atmospheric pressure at the surface is a fixed value (approximately 1.013 × 10⁵ Pa at sea level) and does not describe the pressure due to the liquid column.",
+        "misconception": "Confusing atmospheric pressure with gauge pressure"
+      },
+      {
+        "option_key": "C",
+        "hint": "The sum of atmospheric pressure and hydrostatic pressure gives the absolute pressure (P₀ + ρgh), not the gauge pressure. Gauge pressure is only the ρgh part.",
+        "misconception": "Confusing the definition of absolute pressure with gauge pressure"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-05",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "In a hydraulic lift, the area of the smaller piston is 10 cm\u00b2 and the area of the larger piston is 1000 cm\u00b2. A force of 50 N is applied on the smaller piston. The maximum weight that can be lifted by the larger piston is:",
-    "explanation": "By Pascal's law, the pressure applied on the smaller piston is transmitted undiminished to the larger piston. Pressure on smaller piston: P = F\u2081/A\u2081 = 50/10 = 5 N/cm\u00b2. Force on larger piston: F\u2082 = P \u00d7 A\u2082 = 5 \u00d7 1000 = 5000 N. The mechanical advantage is A\u2082/A\u2081 = 1000/10 = 100. So the force is multiplied by 100: F\u2082 = 50 \u00d7 100 = 5000 N.",
+    "question_text": "In a hydraulic lift, the area of the smaller piston is 10 cm² and the area of the larger piston is 1000 cm². A force of 50 N is applied on the smaller piston. The maximum weight that can be lifted by the larger piston is:",
+    "explanation": "By Pascal's law, the pressure applied on the smaller piston is transmitted undiminished to the larger piston. Pressure on smaller piston: P = F₁/A₁ = 50/10 = 5 N/cm². Force on larger piston: F₂ = P × A₂ = 5 × 1000 = 5000 N. The mechanical advantage is A₂/A₁ = 1000/10 = 100. So the force is multiplied by 100: F₂ = 50 × 100 = 5000 N.",
     "correct_answer": "A",
-    "concept_tags": ["hydraulic lift", "Pascal's law", "mechanical advantage", "force multiplication"],
+    "concept_tags": [
+      "hydraulic lift",
+      "Pascal's law",
+      "mechanical advantage",
+      "force multiplication"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "5000 N", "is_correct": true },
-      { "key": "B", "text": "500 N", "is_correct": false },
-      { "key": "C", "text": "50000 N", "is_correct": false },
-      { "key": "D", "text": "50 N", "is_correct": false }
+      {
+        "key": "A",
+        "text": "5000 N",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "500 N",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "50000 N",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "50 N",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "500 N would result from a mechanical advantage of only 10. The correct ratio is A\u2082/A\u2081 = 1000/10 = 100, not 10.", "misconception": "Using the wrong area ratio or taking a square root of the area ratio" },
-      { "option_key": "C", "hint": "50000 N would require a mechanical advantage of 1000, which would mean the area ratio is 1000. Check the ratio: A\u2082/A\u2081 = 1000/10 = 100.", "misconception": "Multiplying the area ratio by an extra factor of 10" },
-      { "option_key": "D", "hint": "50 N equals the applied force with no multiplication. A hydraulic lift amplifies force by the ratio of piston areas, so the output force is much larger.", "misconception": "Ignoring the force multiplication principle of hydraulic machines" }
+      {
+        "option_key": "B",
+        "hint": "500 N would result from a mechanical advantage of only 10. The correct ratio is A₂/A₁ = 1000/10 = 100, not 10.",
+        "misconception": "Using the wrong area ratio or taking a square root of the area ratio"
+      },
+      {
+        "option_key": "C",
+        "hint": "50000 N would require a mechanical advantage of 1000, which would mean the area ratio is 1000. Check the ratio: A₂/A₁ = 1000/10 = 100.",
+        "misconception": "Multiplying the area ratio by an extra factor of 10"
+      },
+      {
+        "option_key": "D",
+        "hint": "50 N equals the applied force with no multiplication. A hydraulic lift amplifies force by the ratio of piston areas, so the output force is much larger.",
+        "misconception": "Ignoring the force multiplication principle of hydraulic machines"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-06",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A U-tube manometer contains mercury (\u03c1 = 13600 kg/m\u00b3). One end is connected to a gas supply and the other is open to the atmosphere. If the mercury level in the open arm is 20 cm higher than in the arm connected to the gas, the gauge pressure of the gas is (g = 10 m/s\u00b2):",
-    "explanation": "The mercury in the open arm is higher, meaning the gas pressure exceeds atmospheric pressure. The gauge pressure equals \u03c1gh, where h is the height difference. P_gauge = \u03c1gh = 13600 \u00d7 10 \u00d7 0.20 = 27200 Pa = 27.2 kPa. This is the pressure of the gas above atmospheric pressure.",
+    "question_text": "A U-tube manometer contains mercury (ρ = 13600 kg/m³). One end is connected to a gas supply and the other is open to the atmosphere. If the mercury level in the open arm is 20 cm higher than in the arm connected to the gas, the gauge pressure of the gas is (g = 10 m/s²):",
+    "explanation": "The mercury in the open arm is higher, meaning the gas pressure exceeds atmospheric pressure. The gauge pressure equals ρgh, where h is the height difference. P_gauge = ρgh = 13600 × 10 × 0.20 = 27200 Pa = 27.2 kPa. This is the pressure of the gas above atmospheric pressure.",
     "correct_answer": "B",
-    "concept_tags": ["U-tube manometer", "gauge pressure", "mercury column", "pressure measurement"],
+    "concept_tags": [
+      "U-tube manometer",
+      "gauge pressure",
+      "mercury column",
+      "pressure measurement"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "13600 Pa", "is_correct": false },
-      { "key": "B", "text": "27200 Pa", "is_correct": true },
-      { "key": "C", "text": "2720 Pa", "is_correct": false },
-      { "key": "D", "text": "136000 Pa", "is_correct": false }
+      {
+        "key": "A",
+        "text": "13600 Pa",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "27200 Pa",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2720 Pa",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "136000 Pa",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "13600 Pa would result from using h = 10 cm (0.10 m) instead of 20 cm (0.20 m), or from using g = 9.8 m/s\u00b2 with an incorrect height.", "misconception": "Using half the height difference in the calculation" },
-      { "option_key": "C", "hint": "2720 Pa results from forgetting to convert cm to m and using h = 20 instead of 0.20 with an error, or using g = 1 m/s\u00b2. Check unit conversion carefully: 20 cm = 0.20 m.", "misconception": "Unit conversion error between cm and m" },
-      { "option_key": "D", "hint": "136000 Pa would result from using h = 1 m instead of 0.20 m. The height difference is 20 cm = 0.20 m, not 1 m.", "misconception": "Not converting the height from cm to metres correctly" }
+      {
+        "option_key": "A",
+        "hint": "13600 Pa would result from using h = 10 cm (0.10 m) instead of 20 cm (0.20 m), or from using g = 9.8 m/s² with an incorrect height.",
+        "misconception": "Using half the height difference in the calculation"
+      },
+      {
+        "option_key": "C",
+        "hint": "2720 Pa results from forgetting to convert cm to m and using h = 20 instead of 0.20 with an error, or using g = 1 m/s². Check unit conversion carefully: 20 cm = 0.20 m.",
+        "misconception": "Unit conversion error between cm and m"
+      },
+      {
+        "option_key": "D",
+        "hint": "136000 Pa would result from using h = 1 m instead of 0.20 m. The height difference is 20 cm = 0.20 m, not 1 m.",
+        "misconception": "Not converting the height from cm to metres correctly"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-07",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "Two immiscible liquids of densities \u03c1\u2081 and \u03c1\u2082 (\u03c1\u2081 > \u03c1\u2082) are filled in a container. The lighter liquid of height h\u2082 floats on top of the denser liquid of height h\u2081. The pressure at the bottom of the container is (P\u2080 = atmospheric pressure):",
-    "explanation": "The pressure at the bottom is the sum of atmospheric pressure and the hydrostatic pressure contributions from both liquid columns. Starting from the top surface: P = P\u2080 + \u03c1\u2082gh\u2082 + \u03c1\u2081gh\u2081. The lighter liquid (\u03c1\u2082) sits on top and contributes \u03c1\u2082gh\u2082, while the denser liquid (\u03c1\u2081) below contributes \u03c1\u2081gh\u2081.",
+    "question_text": "Two immiscible liquids of densities ρ₁ and ρ₂ (ρ₁ > ρ₂) are filled in a container. The lighter liquid of height h₂ floats on top of the denser liquid of height h₁. The pressure at the bottom of the container is (P₀ = atmospheric pressure):",
+    "explanation": "The pressure at the bottom is the sum of atmospheric pressure and the hydrostatic pressure contributions from both liquid columns. Starting from the top surface: P = P₀ + ρ₂gh₂ + ρ₁gh₁. The lighter liquid (ρ₂) sits on top and contributes ρ₂gh₂, while the denser liquid (ρ₁) below contributes ρ₁gh₁.",
     "correct_answer": "C",
-    "concept_tags": ["hydrostatic pressure", "immiscible liquids", "pressure at depth", "layered fluids"],
+    "concept_tags": [
+      "hydrostatic pressure",
+      "immiscible liquids",
+      "pressure at depth",
+      "layered fluids"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "P\u2080 + \u03c1\u2081g(h\u2081 + h\u2082)", "is_correct": false },
-      { "key": "B", "text": "P\u2080 + \u03c1\u2082g(h\u2081 + h\u2082)", "is_correct": false },
-      { "key": "C", "text": "P\u2080 + \u03c1\u2081gh\u2081 + \u03c1\u2082gh\u2082", "is_correct": true },
-      { "key": "D", "text": "\u03c1\u2081gh\u2081 + \u03c1\u2082gh\u2082", "is_correct": false }
+      {
+        "key": "A",
+        "text": "P₀ + ρ₁g(h₁ + h₂)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P₀ + ρ₂g(h₁ + h₂)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P₀ + ρ₁gh₁ + ρ₂gh₂",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "ρ₁gh₁ + ρ₂gh₂",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Using \u03c1\u2081 for the total height (h\u2081 + h\u2082) ignores the fact that the two liquids have different densities. Each layer contributes its own \u03c1gh term.", "misconception": "Treating layered liquids as a single liquid of uniform density" },
-      { "option_key": "B", "hint": "Using \u03c1\u2082 for the entire column is incorrect. The denser liquid at the bottom has density \u03c1\u2081 and must be accounted for separately.", "misconception": "Using the lighter liquid density for the entire column" },
-      { "option_key": "D", "hint": "This expression omits the atmospheric pressure P\u2080. The absolute pressure at the bottom must include the atmospheric pressure acting on the top surface.", "misconception": "Forgetting to include atmospheric pressure in the total pressure" }
+      {
+        "option_key": "A",
+        "hint": "Using ρ₁ for the total height (h₁ + h₂) ignores the fact that the two liquids have different densities. Each layer contributes its own ρgh term.",
+        "misconception": "Treating layered liquids as a single liquid of uniform density"
+      },
+      {
+        "option_key": "B",
+        "hint": "Using ρ₂ for the entire column is incorrect. The denser liquid at the bottom has density ρ₁ and must be accounted for separately.",
+        "misconception": "Using the lighter liquid density for the entire column"
+      },
+      {
+        "option_key": "D",
+        "hint": "This expression omits the atmospheric pressure P₀. The absolute pressure at the bottom must include the atmospheric pressure acting on the top surface.",
+        "misconception": "Forgetting to include atmospheric pressure in the total pressure"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-08",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A hydraulic brake system has a master cylinder with piston area 5 cm\u00b2 and a wheel cylinder with piston area 20 cm\u00b2. If the driver applies a force of 100 N on the brake pedal, the braking force on the wheel is:",
-    "explanation": "By Pascal's law, the pressure is transmitted equally. P = F\u2081/A\u2081 = 100/5 = 20 N/cm\u00b2. The force on the wheel cylinder: F\u2082 = P \u00d7 A\u2082 = 20 \u00d7 20 = 400 N. Alternatively, F\u2082 = F\u2081 \u00d7 (A\u2082/A\u2081) = 100 \u00d7 (20/5) = 100 \u00d7 4 = 400 N.",
+    "question_text": "A hydraulic brake system has a master cylinder with piston area 5 cm² and a wheel cylinder with piston area 20 cm². If the driver applies a force of 100 N on the brake pedal, the braking force on the wheel is:",
+    "explanation": "By Pascal's law, the pressure is transmitted equally. P = F₁/A₁ = 100/5 = 20 N/cm². The force on the wheel cylinder: F₂ = P × A₂ = 20 × 20 = 400 N. Alternatively, F₂ = F₁ × (A₂/A₁) = 100 × (20/5) = 100 × 4 = 400 N.",
     "correct_answer": "D",
-    "concept_tags": ["hydraulic brake", "Pascal's law", "force multiplication", "piston area ratio"],
+    "concept_tags": [
+      "hydraulic brake",
+      "Pascal's law",
+      "force multiplication",
+      "piston area ratio"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "100 N", "is_correct": false },
-      { "key": "B", "text": "200 N", "is_correct": false },
-      { "key": "C", "text": "500 N", "is_correct": false },
-      { "key": "D", "text": "400 N", "is_correct": true }
+      {
+        "key": "A",
+        "text": "100 N",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "200 N",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "500 N",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "400 N",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "100 N equals the applied force with no amplification. A hydraulic brake multiplies force by the ratio of piston areas A\u2082/A\u2081 = 20/5 = 4.", "misconception": "Ignoring force multiplication in hydraulic systems" },
-      { "option_key": "B", "hint": "200 N would correspond to an area ratio of 2, but the actual ratio is A\u2082/A\u2081 = 20/5 = 4.", "misconception": "Incorrectly computing the area ratio" },
-      { "option_key": "C", "hint": "500 N would imply an area ratio of 5, but A\u2082/A\u2081 = 20/5 = 4, not 5.", "misconception": "Miscalculating the ratio of piston areas" }
+      {
+        "option_key": "A",
+        "hint": "100 N equals the applied force with no amplification. A hydraulic brake multiplies force by the ratio of piston areas A₂/A₁ = 20/5 = 4.",
+        "misconception": "Ignoring force multiplication in hydraulic systems"
+      },
+      {
+        "option_key": "B",
+        "hint": "200 N would correspond to an area ratio of 2, but the actual ratio is A₂/A₁ = 20/5 = 4.",
+        "misconception": "Incorrectly computing the area ratio"
+      },
+      {
+        "option_key": "C",
+        "hint": "500 N would imply an area ratio of 5, but A₂/A₁ = 20/5 = 4, not 5.",
+        "misconception": "Miscalculating the ratio of piston areas"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-09",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A diver is at a depth of 30 m below the surface of a lake. The density of lake water is 1000 kg/m\u00b3 and atmospheric pressure is 1.01 \u00d7 10\u2075 Pa. The absolute pressure experienced by the diver is (g = 9.8 m/s\u00b2):",
-    "explanation": "Absolute pressure = atmospheric pressure + hydrostatic pressure = P\u2080 + \u03c1gh = 1.01 \u00d7 10\u2075 + 1000 \u00d7 9.8 \u00d7 30 = 1.01 \u00d7 10\u2075 + 2.94 \u00d7 10\u2075 = 3.95 \u00d7 10\u2075 Pa. This is approximately 3.9 atm, showing that the pressure nearly quadruples at 30 m depth.",
+    "question_text": "A diver is at a depth of 30 m below the surface of a lake. The density of lake water is 1000 kg/m³ and atmospheric pressure is 1.01 × 10⁵ Pa. The absolute pressure experienced by the diver is (g = 9.8 m/s²):",
+    "explanation": "Absolute pressure = atmospheric pressure + hydrostatic pressure = P₀ + ρgh = 1.01 × 10⁵ + 1000 × 9.8 × 30 = 1.01 × 10⁵ + 2.94 × 10⁵ = 3.95 × 10⁵ Pa. This is approximately 3.9 atm, showing that the pressure nearly quadruples at 30 m depth.",
     "correct_answer": "D",
-    "concept_tags": ["absolute pressure", "hydrostatic pressure", "depth in liquid", "atmospheric pressure"],
+    "concept_tags": [
+      "absolute pressure",
+      "hydrostatic pressure",
+      "depth in liquid",
+      "atmospheric pressure"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2.94 \u00d7 10\u2075 Pa", "is_correct": false },
-      { "key": "B", "text": "1.01 \u00d7 10\u2075 Pa", "is_correct": false },
-      { "key": "C", "text": "4.96 \u00d7 10\u2075 Pa", "is_correct": false },
-      { "key": "D", "text": "3.95 \u00d7 10\u2075 Pa", "is_correct": true }
+      {
+        "key": "A",
+        "text": "2.94 × 10⁵ Pa",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.01 × 10⁵ Pa",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4.96 × 10⁵ Pa",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3.95 × 10⁵ Pa",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "2.94 \u00d7 10\u2075 Pa is only the gauge pressure (\u03c1gh). The absolute pressure must include atmospheric pressure as well: P = P\u2080 + \u03c1gh.", "misconception": "Giving gauge pressure instead of absolute pressure" },
-      { "option_key": "B", "hint": "1.01 \u00d7 10\u2075 Pa is just the atmospheric pressure at the surface. At 30 m depth, the hydrostatic pressure \u03c1gh must be added.", "misconception": "Ignoring the hydrostatic pressure contribution at depth" },
-      { "option_key": "C", "hint": "4.96 \u00d7 10\u2075 Pa likely results from a calculation error, perhaps using g = 10 m/s\u00b2 instead of 9.8 m/s\u00b2 and then adding incorrectly. With g = 9.8 m/s\u00b2, \u03c1gh = 2.94 \u00d7 10\u2075 Pa.", "misconception": "Arithmetic error in the final addition step" }
+      {
+        "option_key": "A",
+        "hint": "2.94 × 10⁵ Pa is only the gauge pressure (ρgh). The absolute pressure must include atmospheric pressure as well: P = P₀ + ρgh.",
+        "misconception": "Giving gauge pressure instead of absolute pressure"
+      },
+      {
+        "option_key": "B",
+        "hint": "1.01 × 10⁵ Pa is just the atmospheric pressure at the surface. At 30 m depth, the hydrostatic pressure ρgh must be added.",
+        "misconception": "Ignoring the hydrostatic pressure contribution at depth"
+      },
+      {
+        "option_key": "C",
+        "hint": "4.96 × 10⁵ Pa likely results from a calculation error, perhaps using g = 10 m/s² instead of 9.8 m/s² and then adding incorrectly. With g = 9.8 m/s², ρgh = 2.94 × 10⁵ Pa.",
+        "misconception": "Arithmetic error in the final addition step"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-10",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A closed container is completely filled with water. If the pressure at the surface of the water is increased by 2 \u00d7 10\u2074 Pa, then the pressure at the bottom of the container, which is 5 m below the surface, increases by:",
-    "explanation": "According to Pascal's law, any increase in pressure applied to an enclosed fluid is transmitted undiminished throughout the fluid. Therefore, if the surface pressure increases by 2 \u00d7 10\u2074 Pa, the pressure at the bottom also increases by exactly 2 \u00d7 10\u2074 Pa. The depth of the container does not affect the transmitted pressure change.",
+    "question_text": "A closed container is completely filled with water. If the pressure at the surface of the water is increased by 2 × 10⁴ Pa, then the pressure at the bottom of the container, which is 5 m below the surface, increases by:",
+    "explanation": "According to Pascal's law, any increase in pressure applied to an enclosed fluid is transmitted undiminished throughout the fluid. Therefore, if the surface pressure increases by 2 × 10⁴ Pa, the pressure at the bottom also increases by exactly 2 × 10⁴ Pa. The depth of the container does not affect the transmitted pressure change.",
     "correct_answer": "B",
-    "concept_tags": ["Pascal's law", "pressure transmission", "enclosed fluid", "pressure change"],
+    "concept_tags": [
+      "Pascal's law",
+      "pressure transmission",
+      "enclosed fluid",
+      "pressure change"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2 \u00d7 10\u2074 Pa + \u03c1gh", "is_correct": false },
-      { "key": "B", "text": "2 \u00d7 10\u2074 Pa", "is_correct": true },
-      { "key": "C", "text": "\u03c1gh only", "is_correct": false },
-      { "key": "D", "text": "2 \u00d7 10\u2074 Pa \u00d7 \u03c1gh", "is_correct": false }
+      {
+        "key": "A",
+        "text": "2 × 10⁴ Pa + ρgh",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 × 10⁴ Pa",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "ρgh only",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2 × 10⁴ Pa × ρgh",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The \u03c1gh term represents the existing hydrostatic pressure, not the change. Pascal's law says the increase in pressure is transmitted undiminished, so only the 2 \u00d7 10\u2074 Pa is added at every point.", "misconception": "Adding the hydrostatic pressure to the transmitted pressure change" },
-      { "option_key": "C", "hint": "\u03c1gh is the hydrostatic pressure that already existed before the surface pressure was increased. The question asks about the increase, which is due to the applied pressure change alone.", "misconception": "Confusing the existing hydrostatic pressure with the change in pressure" },
-      { "option_key": "D", "hint": "Multiplying the applied pressure by \u03c1gh has no physical basis and is dimensionally incorrect. Pascal's law states that the pressure increase is transmitted undiminished, meaning it is simply added (not multiplied).", "misconception": "Incorrectly assuming pressure change depends multiplicatively on depth" }
+      {
+        "option_key": "A",
+        "hint": "The ρgh term represents the existing hydrostatic pressure, not the change. Pascal's law says the increase in pressure is transmitted undiminished, so only the 2 × 10⁴ Pa is added at every point.",
+        "misconception": "Adding the hydrostatic pressure to the transmitted pressure change"
+      },
+      {
+        "option_key": "C",
+        "hint": "ρgh is the hydrostatic pressure that already existed before the surface pressure was increased. The question asks about the increase, which is due to the applied pressure change alone.",
+        "misconception": "Confusing the existing hydrostatic pressure with the change in pressure"
+      },
+      {
+        "option_key": "D",
+        "hint": "Multiplying the applied pressure by ρgh has no physical basis and is dimensionally incorrect. Pascal's law states that the pressure increase is transmitted undiminished, meaning it is simply added (not multiplied).",
+        "misconception": "Incorrectly assuming pressure change depends multiplicatively on depth"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-11",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "A U-tube contains two immiscible liquids: water (\u03c1_w = 1000 kg/m\u00b3) in the right arm and an unknown liquid in the left arm. In equilibrium, the water column in the right arm is 20 cm above the interface, while the unknown liquid column in the left arm is 25 cm above the interface. The density of the unknown liquid is:",
-    "explanation": "At the interface level (the common surface of the two liquids in the U-tube), the pressure must be equal in both arms. Equating pressures: \u03c1_unknown \u00d7 g \u00d7 h_unknown = \u03c1_w \u00d7 g \u00d7 h_w. Therefore \u03c1_unknown = \u03c1_w \u00d7 (h_w/h_unknown) = 1000 \u00d7 (20/25) = 1000 \u00d7 0.8 = 800 kg/m\u00b3. The unknown liquid is less dense than water, which is consistent with it forming a taller column.",
+    "question_text": "A U-tube contains two immiscible liquids: water (ρ_w = 1000 kg/m³) in the right arm and an unknown liquid in the left arm. In equilibrium, the water column in the right arm is 20 cm above the interface, while the unknown liquid column in the left arm is 25 cm above the interface. The density of the unknown liquid is:",
+    "explanation": "At the interface level (the common surface of the two liquids in the U-tube), the pressure must be equal in both arms. Equating pressures: ρ_unknown × g × h_unknown = ρ_w × g × h_w. Therefore ρ_unknown = ρ_w × (h_w/h_unknown) = 1000 × (20/25) = 1000 × 0.8 = 800 kg/m³. The unknown liquid is less dense than water, which is consistent with it forming a taller column.",
     "correct_answer": "C",
-    "concept_tags": ["U-tube", "immiscible liquids", "density measurement", "pressure balance"],
+    "concept_tags": [
+      "U-tube",
+      "immiscible liquids",
+      "density measurement",
+      "pressure balance"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "1250 kg/m\u00b3", "is_correct": false },
-      { "key": "B", "text": "1000 kg/m\u00b3", "is_correct": false },
-      { "key": "C", "text": "800 kg/m\u00b3", "is_correct": true },
-      { "key": "D", "text": "1200 kg/m\u00b3", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1250 kg/m³",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1000 kg/m³",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "800 kg/m³",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1200 kg/m³",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "1250 kg/m\u00b3 would result from inverting the height ratio: \u03c1 = 1000 \u00d7 (25/20). The correct relation is \u03c1_unknown = \u03c1_w \u00d7 (h_w/h_unknown), giving a density less than water since the unknown column is taller.", "misconception": "Inverting the height ratio in the density calculation" },
-      { "option_key": "B", "hint": "If both liquids had the same density, their columns above the interface would be equal. Since the unknown liquid column is taller (25 cm vs 20 cm), its density must be less than 1000 kg/m\u00b3.", "misconception": "Assuming both liquids have equal density despite unequal column heights" },
-      { "option_key": "D", "hint": "A density of 1200 kg/m\u00b3 would mean the unknown liquid is denser than water. If so, its column would be shorter, not taller, than the water column.", "misconception": "Not recognizing the inverse relationship between density and column height" }
+      {
+        "option_key": "A",
+        "hint": "1250 kg/m³ would result from inverting the height ratio: ρ = 1000 × (25/20). The correct relation is ρ_unknown = ρ_w × (h_w/h_unknown), giving a density less than water since the unknown column is taller.",
+        "misconception": "Inverting the height ratio in the density calculation"
+      },
+      {
+        "option_key": "B",
+        "hint": "If both liquids had the same density, their columns above the interface would be equal. Since the unknown liquid column is taller (25 cm vs 20 cm), its density must be less than 1000 kg/m³.",
+        "misconception": "Assuming both liquids have equal density despite unequal column heights"
+      },
+      {
+        "option_key": "D",
+        "hint": "A density of 1200 kg/m³ would mean the unknown liquid is denser than water. If so, its column would be shorter, not taller, than the water column.",
+        "misconception": "Not recognizing the inverse relationship between density and column height"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-12",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "A hydraulic press has a small piston of area 2 cm\u00b2 and a large piston of area 200 cm\u00b2. If the small piston is pushed down by 10 cm, the distance by which the large piston moves up is (assuming the fluid is incompressible):",
-    "explanation": "Since the fluid is incompressible, the volume displaced by the small piston must equal the volume gained by the large piston. Volume conservation: A\u2081 \u00d7 d\u2081 = A\u2082 \u00d7 d\u2082. Therefore d\u2082 = (A\u2081/A\u2082) \u00d7 d\u2081 = (2/200) \u00d7 10 = 0.1 cm = 1 mm. While the hydraulic press multiplies force by 100, it correspondingly reduces the displacement by the same factor, conserving energy (work input = work output in an ideal system).",
+    "question_text": "A hydraulic press has a small piston of area 2 cm² and a large piston of area 200 cm². If the small piston is pushed down by 10 cm, the distance by which the large piston moves up is (assuming the fluid is incompressible):",
+    "explanation": "Since the fluid is incompressible, the volume displaced by the small piston must equal the volume gained by the large piston. Volume conservation: A₁ × d₁ = A₂ × d₂. Therefore d₂ = (A₁/A₂) × d₁ = (2/200) × 10 = 0.1 cm = 1 mm. While the hydraulic press multiplies force by 100, it correspondingly reduces the displacement by the same factor, conserving energy (work input = work output in an ideal system).",
     "correct_answer": "A",
-    "concept_tags": ["hydraulic press", "volume conservation", "incompressible fluid", "displacement ratio"],
+    "concept_tags": [
+      "hydraulic press",
+      "volume conservation",
+      "incompressible fluid",
+      "displacement ratio"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "0.1 cm", "is_correct": true },
-      { "key": "B", "text": "1 cm", "is_correct": false },
-      { "key": "C", "text": "10 cm", "is_correct": false },
-      { "key": "D", "text": "100 cm", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.1 cm",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1 cm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "10 cm",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "100 cm",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "1 cm would result from using an area ratio of 10 instead of 100. The correct ratio is A\u2081/A\u2082 = 2/200 = 1/100.", "misconception": "Using the wrong area ratio" },
-      { "option_key": "C", "hint": "10 cm equals the input displacement. If the output piston moved the same distance, there would be no mechanical advantage, violating volume conservation with unequal piston areas.", "misconception": "Assuming equal displacement for unequal piston areas" },
-      { "option_key": "D", "hint": "100 cm implies the large piston moves more than the small piston, which would violate both volume conservation and energy conservation. The larger piston must move less.", "misconception": "Inverting the displacement relationship in hydraulic machines" }
+      {
+        "option_key": "B",
+        "hint": "1 cm would result from using an area ratio of 10 instead of 100. The correct ratio is A₁/A₂ = 2/200 = 1/100.",
+        "misconception": "Using the wrong area ratio"
+      },
+      {
+        "option_key": "C",
+        "hint": "10 cm equals the input displacement. If the output piston moved the same distance, there would be no mechanical advantage, violating volume conservation with unequal piston areas.",
+        "misconception": "Assuming equal displacement for unequal piston areas"
+      },
+      {
+        "option_key": "D",
+        "hint": "100 cm implies the large piston moves more than the small piston, which would violate both volume conservation and energy conservation. The larger piston must move less.",
+        "misconception": "Inverting the displacement relationship in hydraulic machines"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The pressure at the same horizontal level inside a connected body of a static fluid is always equal.\nReason (R): A static fluid cannot sustain a horizontal pressure difference because it would cause the fluid to flow, contradicting the condition of static equilibrium.",
     "explanation": "Both the assertion and the reason are correct, and the reason is the correct explanation of the assertion. In a static fluid, if there were a horizontal pressure difference at the same level, there would be a net horizontal force on the fluid, causing it to flow. Since the fluid is in static equilibrium (not flowing), the horizontal pressure at any given level must be equal. This principle is fundamental to the working of manometers and hydraulic devices.",
     "correct_answer": "A",
-    "concept_tags": ["hydrostatic equilibrium", "pressure at same level", "static fluid", "horizontal pressure"],
+    "concept_tags": [
+      "hydrostatic equilibrium",
+      "pressure at same level",
+      "static fluid",
+      "horizontal pressure"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The reason directly explains the assertion. The assertion states equal horizontal pressure, and the reason explains exactly why: a pressure difference would cause flow, violating static equilibrium. This is a direct causal link.", "misconception": "Failing to see the direct causal relationship between the reason and assertion" },
-      { "option_key": "C", "hint": "The reason is scientifically accurate. A fluid in static equilibrium cannot have a net horizontal force, so a horizontal pressure difference is impossible in a static fluid.", "misconception": "Thinking a static fluid can sustain horizontal pressure differences" },
-      { "option_key": "D", "hint": "The assertion is a well-established principle of fluid statics. Pressure at the same horizontal level in a connected static fluid is indeed equal.", "misconception": "Not recognizing a fundamental principle of hydrostatics" }
+      {
+        "option_key": "B",
+        "hint": "The reason directly explains the assertion. The assertion states equal horizontal pressure, and the reason explains exactly why: a pressure difference would cause flow, violating static equilibrium. This is a direct causal link.",
+        "misconception": "Failing to see the direct causal relationship between the reason and assertion"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is scientifically accurate. A fluid in static equilibrium cannot have a net horizontal force, so a horizontal pressure difference is impossible in a static fluid.",
+        "misconception": "Thinking a static fluid can sustain horizontal pressure differences"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is a well-established principle of fluid statics. Pressure at the same horizontal level in a connected static fluid is indeed equal.",
+        "misconception": "Not recognizing a fundamental principle of hydrostatics"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): In a hydraulic lift, the work done by the force on the small piston equals the work done by the large piston on the load (assuming ideal conditions).\nReason (R): A hydraulic lift multiplies force, so the output work is always greater than the input work.",
-    "explanation": "The assertion is correct. In an ideal hydraulic lift (no friction, incompressible fluid), energy is conserved, so the work done on the small piston (F\u2081 \u00d7 d\u2081) equals the work done by the large piston (F\u2082 \u00d7 d\u2082). While force is multiplied (F\u2082 > F\u2081), the displacement is correspondingly reduced (d\u2082 < d\u2081), keeping the work the same. The reason is incorrect because it violates the law of conservation of energy. A hydraulic lift multiplies force, not energy. The output work cannot exceed the input work.",
+    "explanation": "The assertion is correct. In an ideal hydraulic lift (no friction, incompressible fluid), energy is conserved, so the work done on the small piston (F₁ × d₁) equals the work done by the large piston (F₂ × d₂). While force is multiplied (F₂ > F₁), the displacement is correspondingly reduced (d₂ < d₁), keeping the work the same. The reason is incorrect because it violates the law of conservation of energy. A hydraulic lift multiplies force, not energy. The output work cannot exceed the input work.",
     "correct_answer": "C",
-    "concept_tags": ["hydraulic lift", "energy conservation", "work input output", "force multiplication"],
+    "concept_tags": [
+      "hydraulic lift",
+      "energy conservation",
+      "work input output",
+      "force multiplication"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The reason claims output work exceeds input work. This violates energy conservation and is therefore incorrect. A correct explanation cannot be based on a false physical principle.", "misconception": "Believing hydraulic machines create energy by multiplying force" },
-      { "option_key": "B", "hint": "For this option, both statements must be correct. The reason is factually wrong because it claims output work is greater than input work, violating energy conservation.", "misconception": "Not recognizing that work multiplication violates energy conservation" },
-      { "option_key": "D", "hint": "The assertion is correct. In ideal conditions, energy conservation demands that input work equals output work: F\u2081d\u2081 = F\u2082d\u2082. This is a fundamental principle.", "misconception": "Thinking a hydraulic lift does not conserve energy under ideal conditions" }
+      {
+        "option_key": "A",
+        "hint": "The reason claims output work exceeds input work. This violates energy conservation and is therefore incorrect. A correct explanation cannot be based on a false physical principle.",
+        "misconception": "Believing hydraulic machines create energy by multiplying force"
+      },
+      {
+        "option_key": "B",
+        "hint": "For this option, both statements must be correct. The reason is factually wrong because it claims output work is greater than input work, violating energy conservation.",
+        "misconception": "Not recognizing that work multiplication violates energy conservation"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. In ideal conditions, energy conservation demands that input work equals output work: F₁d₁ = F₂d₂. This is a fundamental principle.",
+        "misconception": "Thinking a hydraulic lift does not conserve energy under ideal conditions"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
-    "question_text": "Match the physical quantities (Column I) with their expressions or values (Column II):\n\nColumn I:\nA. Gauge pressure at depth h\nB. Absolute pressure at depth h\nC. Standard atmospheric pressure\nD. Pressure transmitted in hydraulic system\n\nColumn II:\n1. 1.013 \u00d7 10\u2075 Pa\n2. \u03c1gh\n3. P\u2080 + \u03c1gh\n4. F/A (applied force per unit area)",
-    "explanation": "A-2: Gauge pressure at depth h in a fluid is \u03c1gh, which is the pressure above atmospheric pressure. B-3: Absolute pressure at depth h is P\u2080 + \u03c1gh, the total pressure including atmospheric. C-1: Standard atmospheric pressure is defined as 1.013 \u00d7 10\u2075 Pa (= 1 atm). D-4: In a hydraulic system, the pressure transmitted through the fluid equals the applied force per unit area (F/A) on the piston, as per Pascal's law.",
+    "question_text": "Match the physical quantities (Column I) with their expressions or values (Column II):\n\nColumn I:\nA. Gauge pressure at depth h\nB. Absolute pressure at depth h\nC. Standard atmospheric pressure\nD. Pressure transmitted in hydraulic system\n\nColumn II:\n1. 1.013 × 10⁵ Pa\n2. ρgh\n3. P₀ + ρgh\n4. F/A (applied force per unit area)",
+    "explanation": "A-2: Gauge pressure at depth h in a fluid is ρgh, which is the pressure above atmospheric pressure. B-3: Absolute pressure at depth h is P₀ + ρgh, the total pressure including atmospheric. C-1: Standard atmospheric pressure is defined as 1.013 × 10⁵ Pa (= 1 atm). D-4: In a hydraulic system, the pressure transmitted through the fluid equals the applied force per unit area (F/A) on the piston, as per Pascal's law.",
     "correct_answer": "C",
-    "concept_tags": ["gauge pressure", "absolute pressure", "atmospheric pressure", "Pascal's law", "hydraulic system"],
+    "concept_tags": [
+      "gauge pressure",
+      "absolute pressure",
+      "atmospheric pressure",
+      "Pascal's law",
+      "hydraulic system"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-2, B-3, C-4, D-1", "is_correct": false },
-      { "key": "B", "text": "A-3, B-2, C-1, D-4", "is_correct": false },
-      { "key": "C", "text": "A-2, B-3, C-1, D-4", "is_correct": true },
-      { "key": "D", "text": "A-4, B-3, C-1, D-2", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-2, B-3, C-4, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-3, B-2, C-1, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-4, B-3, C-1, D-2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This pairs standard atmospheric pressure (C) with F/A and hydraulic pressure (D) with 1.013 \u00d7 10\u2075 Pa. These are swapped. Standard atmospheric pressure is a fixed value (1.013 \u00d7 10\u2075 Pa), while F/A describes the transmitted pressure in hydraulic systems.", "misconception": "Swapping the value of atmospheric pressure with the hydraulic pressure expression" },
-      { "option_key": "B", "hint": "This assigns P\u2080 + \u03c1gh to gauge pressure and \u03c1gh to absolute pressure. The absolute pressure is P\u2080 + \u03c1gh (includes atmospheric), while gauge pressure is only \u03c1gh.", "misconception": "Confusing gauge pressure with absolute pressure expressions" },
-      { "option_key": "D", "hint": "This assigns F/A to gauge pressure and \u03c1gh to hydraulic system pressure. Gauge pressure at depth h is \u03c1gh, while the pressure transmitted in hydraulic systems is F/A.", "misconception": "Mixing up gauge pressure expression with hydraulic pressure expression" }
+      {
+        "option_key": "A",
+        "hint": "This pairs standard atmospheric pressure (C) with F/A and hydraulic pressure (D) with 1.013 × 10⁵ Pa. These are swapped. Standard atmospheric pressure is a fixed value (1.013 × 10⁵ Pa), while F/A describes the transmitted pressure in hydraulic systems.",
+        "misconception": "Swapping the value of atmospheric pressure with the hydraulic pressure expression"
+      },
+      {
+        "option_key": "B",
+        "hint": "This assigns P₀ + ρgh to gauge pressure and ρgh to absolute pressure. The absolute pressure is P₀ + ρgh (includes atmospheric), while gauge pressure is only ρgh.",
+        "misconception": "Confusing gauge pressure with absolute pressure expressions"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns F/A to gauge pressure and ρgh to hydraulic system pressure. Gauge pressure at depth h is ρgh, while the pressure transmitted in hydraulic systems is F/A.",
+        "misconception": "Mixing up gauge pressure expression with hydraulic pressure expression"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
-    "question_text": "Match the scenarios (Column I) with the correct pressure values (Column II):\n(Given: \u03c1_water = 1000 kg/m\u00b3, \u03c1_mercury = 13600 kg/m\u00b3, g = 10 m/s\u00b2, P_atm = 1 \u00d7 10\u2075 Pa)\n\nColumn I:\nA. Gauge pressure at 5 m depth in water\nB. Absolute pressure at 5 m depth in water\nC. Height of water column equivalent to 1 atm\nD. Height of mercury column equivalent to 1 atm\n\nColumn II:\n1. 0.76 m\n2. 1.5 \u00d7 10\u2075 Pa\n3. 5 \u00d7 10\u2074 Pa\n4. 10 m",
-    "explanation": "A-3: Gauge pressure = \u03c1gh = 1000 \u00d7 10 \u00d7 5 = 5 \u00d7 10\u2074 Pa. B-2: Absolute pressure = P_atm + \u03c1gh = 1 \u00d7 10\u2075 + 5 \u00d7 10\u2074 = 1.5 \u00d7 10\u2075 Pa. C-4: For water column equivalent to 1 atm: h = P_atm/(\u03c1_w \u00d7 g) = 10\u2075/(1000 \u00d7 10) = 10 m. D-1: For mercury column equivalent to 1 atm: h = P_atm/(\u03c1_Hg \u00d7 g) = 10\u2075/(13600 \u00d7 10) \u2248 0.735 m \u2248 0.76 m (standard value).",
+    "question_text": "Match the scenarios (Column I) with the correct pressure values (Column II):\n(Given: ρ_water = 1000 kg/m³, ρ_mercury = 13600 kg/m³, g = 10 m/s², P_atm = 1 × 10⁵ Pa)\n\nColumn I:\nA. Gauge pressure at 5 m depth in water\nB. Absolute pressure at 5 m depth in water\nC. Height of water column equivalent to 1 atm\nD. Height of mercury column equivalent to 1 atm\n\nColumn II:\n1. 0.76 m\n2. 1.5 × 10⁵ Pa\n3. 5 × 10⁴ Pa\n4. 10 m",
+    "explanation": "A-3: Gauge pressure = ρgh = 1000 × 10 × 5 = 5 × 10⁴ Pa. B-2: Absolute pressure = P_atm + ρgh = 1 × 10⁵ + 5 × 10⁴ = 1.5 × 10⁵ Pa. C-4: For water column equivalent to 1 atm: h = P_atm/(ρ_w × g) = 10⁵/(1000 × 10) = 10 m. D-1: For mercury column equivalent to 1 atm: h = P_atm/(ρ_Hg × g) = 10⁵/(13600 × 10) ≈ 0.735 m ≈ 0.76 m (standard value).",
     "correct_answer": "D",
-    "concept_tags": ["gauge pressure", "absolute pressure", "water equivalent", "mercury barometer", "pressure calculation"],
+    "concept_tags": [
+      "gauge pressure",
+      "absolute pressure",
+      "water equivalent",
+      "mercury barometer",
+      "pressure calculation"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-3, B-2, C-1, D-4", "is_correct": false },
-      { "key": "B", "text": "A-2, B-3, C-4, D-1", "is_correct": false },
-      { "key": "C", "text": "A-3, B-2, C-4, D-1 but with different values", "is_correct": false },
-      { "key": "D", "text": "A-3, B-2, C-4, D-1", "is_correct": true }
+      {
+        "key": "A",
+        "text": "A-3, B-2, C-1, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-3, C-4, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-2, C-4, D-1 but with different values",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This pairs the water column height (C) with 0.76 m and mercury column height (D) with 10 m. These are swapped. Mercury is 13.6 times denser than water, so mercury needs a much shorter column (0.76 m) than water (10 m) to produce 1 atm.", "misconception": "Swapping the column heights of water and mercury for equivalent atmospheric pressure" },
-      { "option_key": "B", "hint": "This swaps gauge pressure (A) and absolute pressure (B). Gauge pressure is \u03c1gh = 5 \u00d7 10\u2074 Pa, while absolute pressure is P_atm + \u03c1gh = 1.5 \u00d7 10\u2075 Pa.", "misconception": "Confusing gauge and absolute pressure values" },
-      { "option_key": "C", "hint": "The matching A-3, B-2, C-4, D-1 is the same as option D. Verify the numerical values: gauge pressure = 5 \u00d7 10\u2074 Pa (3), absolute = 1.5 \u00d7 10\u2075 Pa (2), water column = 10 m (4), mercury column = 0.76 m (1).", "misconception": "Doubting the correct matching due to numerical confusion" }
+      {
+        "option_key": "A",
+        "hint": "This pairs the water column height (C) with 0.76 m and mercury column height (D) with 10 m. These are swapped. Mercury is 13.6 times denser than water, so mercury needs a much shorter column (0.76 m) than water (10 m) to produce 1 atm.",
+        "misconception": "Swapping the column heights of water and mercury for equivalent atmospheric pressure"
+      },
+      {
+        "option_key": "B",
+        "hint": "This swaps gauge pressure (A) and absolute pressure (B). Gauge pressure is ρgh = 5 × 10⁴ Pa, while absolute pressure is P_atm + ρgh = 1.5 × 10⁵ Pa.",
+        "misconception": "Confusing gauge and absolute pressure values"
+      },
+      {
+        "option_key": "C",
+        "hint": "The matching A-3, B-2, C-4, D-1 is the same as option D. Verify the numerical values: gauge pressure = 5 × 10⁴ Pa (3), absolute = 1.5 × 10⁵ Pa (2), water column = 10 m (4), mercury column = 0.76 m (1).",
+        "misconception": "Doubting the correct matching due to numerical confusion"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Pressure at a point inside a static fluid acts equally in all directions.",
     "explanation": "This statement is TRUE. In a static fluid, the pressure at any point is isotropic, meaning it has the same magnitude in all directions. This is a consequence of the fact that a fluid at rest cannot sustain shear stress. If the pressure were different in different directions, it would create a net force causing the fluid to flow, contradicting the static equilibrium condition. This property is central to Pascal's law.",
     "correct_answer": "A",
-    "concept_tags": ["isotropic pressure", "fluid statics", "Pascal's law", "pressure direction"],
+    "concept_tags": [
+      "isotropic pressure",
+      "fluid statics",
+      "Pascal's law",
+      "pressure direction"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Pressure is a scalar quantity and acts equally in all directions at a point in a static fluid. If pressure were directional, the fluid would experience unbalanced forces and begin to flow.", "misconception": "Thinking pressure in a fluid is directional like force" },
-      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "Pressure is a scalar quantity and acts equally in all directions at a point in a static fluid. If pressure were directional, the fluid would experience unbalanced forces and begin to flow.",
+        "misconception": "Thinking pressure in a fluid is directional like force"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The pressure at the bottom of a container filled with liquid depends on the shape of the container.",
-    "explanation": "This statement is FALSE. The pressure at the bottom of a container depends only on the height of the liquid column, the density of the liquid, and the acceleration due to gravity (P = P\u2080 + \u03c1gh). It does not depend on the shape of the container or the total volume of liquid. This is known as the hydrostatic paradox. Containers of different shapes but with the same liquid height exert the same pressure at the bottom.",
+    "explanation": "This statement is FALSE. The pressure at the bottom of a container depends only on the height of the liquid column, the density of the liquid, and the acceleration due to gravity (P = P₀ + ρgh). It does not depend on the shape of the container or the total volume of liquid. This is known as the hydrostatic paradox. Containers of different shapes but with the same liquid height exert the same pressure at the bottom.",
     "correct_answer": "B",
-    "concept_tags": ["hydrostatic paradox", "pressure at bottom", "container shape", "fluid pressure"],
+    "concept_tags": [
+      "hydrostatic paradox",
+      "pressure at bottom",
+      "container shape",
+      "fluid pressure"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This is a common misconception. The pressure formula P = P\u2080 + \u03c1gh depends only on the vertical height h of the liquid, not the shape or volume of the container. This result is called the hydrostatic paradox.", "misconception": "Believing that pressure at the bottom depends on the container shape or total liquid volume" },
-      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "This is a common misconception. The pressure formula P = P₀ + ρgh depends only on the vertical height h of the liquid, not the shape or volume of the container. This result is called the hydrostatic paradox.",
+        "misconception": "Believing that pressure at the bottom depends on the container shape or total liquid volume"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A mercury barometer at sea level shows a column height of 76 cm. If the same barometer is taken to a place where the atmospheric pressure is 0.5 atm, the height of the mercury column will be _____ cm.",
-    "explanation": "At sea level, 1 atm corresponds to a mercury column of 76 cm. Since the mercury column height is directly proportional to the atmospheric pressure (P = \u03c1gh), if the atmospheric pressure is halved to 0.5 atm, the mercury column height will also be halved: h = 76 \u00d7 0.5 = 38 cm.",
+    "explanation": "At sea level, 1 atm corresponds to a mercury column of 76 cm. Since the mercury column height is directly proportional to the atmospheric pressure (P = ρgh), if the atmospheric pressure is halved to 0.5 atm, the mercury column height will also be halved: h = 76 × 0.5 = 38 cm.",
     "correct_answer": "B",
-    "concept_tags": ["mercury barometer", "atmospheric pressure", "column height", "pressure measurement"],
+    "concept_tags": [
+      "mercury barometer",
+      "atmospheric pressure",
+      "column height",
+      "pressure measurement"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "76", "is_correct": false },
-      { "key": "B", "text": "38", "is_correct": true },
-      { "key": "C", "text": "152", "is_correct": false },
-      { "key": "D", "text": "19", "is_correct": false }
+      {
+        "key": "A",
+        "text": "76",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "38",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "152",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "19",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "76 cm corresponds to 1 atm (standard atmospheric pressure). At 0.5 atm, the mercury column must be proportionally shorter.", "misconception": "Assuming the mercury column height is independent of atmospheric pressure" },
-      { "option_key": "C", "hint": "152 cm would correspond to 2 atm, not 0.5 atm. If the pressure is halved, the column height is halved, not doubled.", "misconception": "Inverting the proportional relationship between pressure and column height" },
-      { "option_key": "D", "hint": "19 cm would correspond to 0.25 atm (76/4), not 0.5 atm. At 0.5 atm, the column is 76/2 = 38 cm.", "misconception": "Dividing by 4 instead of 2" }
+      {
+        "option_key": "A",
+        "hint": "76 cm corresponds to 1 atm (standard atmospheric pressure). At 0.5 atm, the mercury column must be proportionally shorter.",
+        "misconception": "Assuming the mercury column height is independent of atmospheric pressure"
+      },
+      {
+        "option_key": "C",
+        "hint": "152 cm would correspond to 2 atm, not 0.5 atm. If the pressure is halved, the column height is halved, not doubled.",
+        "misconception": "Inverting the proportional relationship between pressure and column height"
+      },
+      {
+        "option_key": "D",
+        "hint": "19 cm would correspond to 0.25 atm (76/4), not 0.5 atm. At 0.5 atm, the column is 76/2 = 38 cm.",
+        "misconception": "Dividing by 4 instead of 2"
+      }
     ]
   },
   {
     "id": "phy-fluid-pressure-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
-    "question_text": "A large water tank has a depth of 10 m. A horizontal pipe with a small valve is connected to the tank at a depth of 6 m below the water surface. The tank is open to the atmosphere. (\u03c1_water = 1000 kg/m\u00b3, g = 10 m/s\u00b2, P_atm = 1 \u00d7 10\u2075 Pa)\n\nWhat is the gauge pressure at the valve before it is opened?",
-    "explanation": "The gauge pressure at the valve is the pressure due to the water column above it, excluding atmospheric pressure. Since the valve is at a depth of 6 m below the water surface: P_gauge = \u03c1gh = 1000 \u00d7 10 \u00d7 6 = 60000 Pa = 6 \u00d7 10\u2074 Pa. Note that we use h = 6 m (the depth of the valve below the surface), not the total tank depth of 10 m. The atmospheric pressure acts on both the water surface and outside the valve, so it cancels when calculating gauge pressure.",
+    "question_text": "A large water tank has a depth of 10 m. A horizontal pipe with a small valve is connected to the tank at a depth of 6 m below the water surface. The tank is open to the atmosphere. (ρ_water = 1000 kg/m³, g = 10 m/s², P_atm = 1 × 10⁵ Pa)\n\nWhat is the gauge pressure at the valve before it is opened?",
+    "explanation": "The gauge pressure at the valve is the pressure due to the water column above it, excluding atmospheric pressure. Since the valve is at a depth of 6 m below the water surface: P_gauge = ρgh = 1000 × 10 × 6 = 60000 Pa = 6 × 10⁴ Pa. Note that we use h = 6 m (the depth of the valve below the surface), not the total tank depth of 10 m. The atmospheric pressure acts on both the water surface and outside the valve, so it cancels when calculating gauge pressure.",
     "correct_answer": "C",
-    "concept_tags": ["gauge pressure", "hydrostatic pressure", "depth in liquid", "water tank"],
+    "concept_tags": [
+      "gauge pressure",
+      "hydrostatic pressure",
+      "depth in liquid",
+      "water tank"
+    ],
     "topic": "Pressure, Pascal's Law, and Hydraulic Machines",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "1 \u00d7 10\u2075 Pa", "is_correct": false },
-      { "key": "B", "text": "1 \u00d7 10\u2074 Pa", "is_correct": false },
-      { "key": "C", "text": "6 \u00d7 10\u2074 Pa", "is_correct": true },
-      { "key": "D", "text": "1.6 \u00d7 10\u2075 Pa", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1 × 10⁵ Pa",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1 × 10⁴ Pa",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "6 × 10⁴ Pa",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1.6 × 10⁵ Pa",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "1 \u00d7 10\u2075 Pa is the atmospheric pressure, not the gauge pressure. The question asks for gauge pressure, which is \u03c1gh = 1000 \u00d7 10 \u00d7 6 = 6 \u00d7 10\u2074 Pa.", "misconception": "Giving atmospheric pressure instead of gauge pressure at the valve" },
-      { "option_key": "B", "hint": "1 \u00d7 10\u2074 Pa would correspond to a depth of only 1 m. The valve is at 6 m depth, so the gauge pressure is 6 times larger.", "misconception": "Using the wrong depth value in the calculation" },
-      { "option_key": "D", "hint": "1.6 \u00d7 10\u2075 Pa is the absolute pressure (P_atm + \u03c1gh = 10\u2075 + 6 \u00d7 10\u2074). The question asks for gauge pressure, which excludes atmospheric pressure.", "misconception": "Calculating absolute pressure when gauge pressure is asked" }
+      {
+        "option_key": "A",
+        "hint": "1 × 10⁵ Pa is the atmospheric pressure, not the gauge pressure. The question asks for gauge pressure, which is ρgh = 1000 × 10 × 6 = 6 × 10⁴ Pa.",
+        "misconception": "Giving atmospheric pressure instead of gauge pressure at the valve"
+      },
+      {
+        "option_key": "B",
+        "hint": "1 × 10⁴ Pa would correspond to a depth of only 1 m. The valve is at 6 m depth, so the gauge pressure is 6 times larger.",
+        "misconception": "Using the wrong depth value in the calculation"
+      },
+      {
+        "option_key": "D",
+        "hint": "1.6 × 10⁵ Pa is the absolute pressure (P_atm + ρgh = 10⁵ + 6 × 10⁴). The question asks for gauge pressure, which excludes atmospheric pressure.",
+        "misconception": "Calculating absolute pressure when gauge pressure is asked"
+      }
     ]
   }
 ]
