@@ -296,12 +296,15 @@
             <option value="">Select subject first</option>
           </select>
         </div>
-        <div style="display: flex; gap: 8px;">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
           <button class="btn btn-primary" id="scanBtn" onclick="startScan()" disabled>
             🔍 Scan Chapter
           </button>
           <button class="btn btn-secondary" id="loadDbBtnTop" onclick="loadSavedIssues()" disabled>
             📥 Saved Issues
+          </button>
+          <button class="btn btn-secondary" onclick="auditDiagramImages()" style="background:#8B5CF6;color:#fff;border:none;">
+            🖼️ Diagram Audit
           </button>
         </div>
       </div>
@@ -526,6 +529,129 @@
       const chapterId = document.getElementById('chapterFilter').value;
       document.getElementById('scanBtn').disabled = !chapterId;
       document.getElementById('loadDbBtnTop').disabled = !chapterId;
+    }
+
+    // ========================================================================
+    // DIAGRAM IMAGE AUDIT
+    // ========================================================================
+    async function auditDiagramImages() {
+      const sb = Qbank.supabase;
+      if (!sb) { alert('Supabase not initialized'); return; }
+
+      const resultsEl = document.getElementById('resultsContainer');
+      resultsEl.style.display = 'block';
+      resultsEl.innerHTML = '<div style="padding:20px;text-align:center;">⏳ Querying diagram questions from DB...</div>';
+
+      // Query ALL diagram-based questions from both NEET and CUET
+      const { data, error } = await sb
+        .from('med_questions')
+        .select('id, chapter_id, image_url, payload, status')
+        .eq('question_type', 'diagram-based')
+        .eq('status', 'active');
+
+      if (error) {
+        resultsEl.innerHTML = `<div style="padding:20px;color:red;">❌ Query failed: ${error.message}</div>`;
+        return;
+      }
+
+      // Categorize
+      const neet = data.filter(q => q.chapter_id && !q.chapter_id.startsWith('cuet-'));
+      const cuet = data.filter(q => q.chapter_id && q.chapter_id.startsWith('cuet-'));
+
+      const categorize = (q) => {
+        const imgUrl = q.image_url || (q.payload && q.payload.image_uri) || '';
+        if (!imgUrl) return 'empty';
+        if (imgUrl.startsWith('http')) return 'http';
+        if (imgUrl.startsWith('placeholder')) return 'placeholder';
+        return 'local-path';
+      };
+
+      const buildStats = (qs) => {
+        const stats = { total: qs.length, http: 0, empty: 0, placeholder: 0, 'local-path': 0, byChapter: {} };
+        for (const q of qs) {
+          const cat = categorize(q);
+          stats[cat]++;
+          const ch = q.chapter_id;
+          if (!stats.byChapter[ch]) stats.byChapter[ch] = { total: 0, http: 0, broken: 0, questions: [] };
+          stats.byChapter[ch].total++;
+          if (cat === 'http') stats.byChapter[ch].http++;
+          else stats.byChapter[ch].broken++;
+          stats.byChapter[ch].questions.push({ id: q.id, status: cat, url: q.image_url || (q.payload && q.payload.image_uri) || '' });
+        }
+        return stats;
+      };
+
+      const neetStats = buildStats(neet);
+      const cuetStats = buildStats(cuet);
+
+      const renderStats = (label, stats, color) => {
+        const brokenCount = stats.empty + stats.placeholder + stats['local-path'];
+        let html = `
+          <div style="border:2px solid ${color};border-radius:12px;padding:16px;margin-bottom:16px;">
+            <h3 style="margin:0 0 8px;color:${color};">${label}</h3>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;">
+              <div style="text-align:center;padding:8px;background:#f8f9fa;border-radius:8px;">
+                <div style="font-size:24px;font-weight:800;">${stats.total}</div>
+                <div style="font-size:11px;color:#666;">Total</div>
+              </div>
+              <div style="text-align:center;padding:8px;background:#22C55E18;border-radius:8px;">
+                <div style="font-size:24px;font-weight:800;color:#16A34A;">${stats.http}</div>
+                <div style="font-size:11px;color:#16A34A;">✅ Working (HTTP)</div>
+              </div>
+              <div style="text-align:center;padding:8px;background:#EF444418;border-radius:8px;">
+                <div style="font-size:24px;font-weight:800;color:#DC2626;">${brokenCount}</div>
+                <div style="font-size:11px;color:#DC2626;">❌ Broken</div>
+              </div>
+              <div style="text-align:center;padding:8px;background:#F59E0B18;border-radius:8px;">
+                <div style="font-size:24px;font-weight:800;color:#D97706;">${stats['local-path']}</div>
+                <div style="font-size:11px;color:#D97706;">📁 Local Path</div>
+              </div>
+            </div>`;
+
+        // Per-chapter breakdown
+        const chapters = Object.entries(stats.byChapter).sort((a,b) => a[0].localeCompare(b[0]));
+        if (chapters.length > 0) {
+          html += `<table style="width:100%;font-size:12px;border-collapse:collapse;">
+            <tr style="background:#f1f5f9;"><th style="padding:4px 8px;text-align:left;">Chapter</th><th>Total</th><th>✅ OK</th><th>❌ Broken</th><th>Details</th></tr>`;
+          for (const [ch, info] of chapters) {
+            const rowColor = info.broken > 0 ? '#FEF2F2' : '#F0FDF4';
+            const details = info.questions.map(q =>
+              `<span style="color:${q.status === 'http' ? '#16A34A' : '#DC2626'};font-size:10px;" title="${q.url}">${q.id} (${q.status})</span>`
+            ).join(', ');
+            html += `<tr style="background:${rowColor};border-bottom:1px solid #e2e8f0;">
+              <td style="padding:4px 8px;font-weight:600;">${ch}</td>
+              <td style="text-align:center;">${info.total}</td>
+              <td style="text-align:center;color:#16A34A;">${info.http}</td>
+              <td style="text-align:center;color:#DC2626;">${info.broken}</td>
+              <td style="padding:4px 8px;">${details}</td>
+            </tr>`;
+          }
+          html += '</table>';
+        }
+        html += '</div>';
+        return html;
+      };
+
+      resultsEl.innerHTML = `
+        <div style="padding:16px;">
+          <h2 style="margin:0 0 16px;">🖼️ Diagram-Based Question Image Audit</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;">
+            <div style="text-align:center;padding:16px;background:#f8f9fa;border-radius:12px;border:2px solid #e2e8f0;">
+              <div style="font-size:32px;font-weight:800;">${data.length}</div>
+              <div style="font-size:13px;color:#666;">Total Diagram Qs in DB</div>
+            </div>
+            <div style="text-align:center;padding:16px;background:#22C55E18;border-radius:12px;border:2px solid #22C55E;">
+              <div style="font-size:32px;font-weight:800;color:#16A34A;">${neetStats.http + cuetStats.http}</div>
+              <div style="font-size:13px;color:#16A34A;">✅ Images Working</div>
+            </div>
+            <div style="text-align:center;padding:16px;background:#EF444418;border-radius:12px;border:2px solid #EF4444;">
+              <div style="font-size:32px;font-weight:800;color:#DC2626;">${(neetStats.empty + neetStats.placeholder + neetStats['local-path']) + (cuetStats.empty + cuetStats.placeholder + cuetStats['local-path'])}</div>
+              <div style="font-size:13px;color:#DC2626;">❌ Images Broken</div>
+            </div>
+          </div>
+          ${renderStats('🩺 NEET Diagram Questions', neetStats, '#3B82F6')}
+          ${renderStats('🎓 CUET Diagram Questions', cuetStats, '#8B5CF6')}
+        </div>`;
     }
 
     // ========================================================================
