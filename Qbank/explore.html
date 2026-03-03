@@ -725,6 +725,12 @@
             <div class="q-preview">${preview}${preview.length >= 80 ? '...' : ''}</div>
           </div>
           <div class="issue-actions">
+            ${!isResolved && issue.issue_type === 'EMPTY_OPTIONS' ? `
+              <button class="btn-resolve" style="background: var(--success); color: #fff;"
+                onclick="openAddOptionsModal('${issue.question_id}')" title="Add options to this question">
+                + Options
+              </button>
+            ` : ''}
             ${!isResolved ? `
               <button class="btn-resolve" onclick="resolveIssue('${issue.question_id}', '${issue.issue_type}', this)" title="Mark as resolved">
                 Resolve
@@ -925,6 +931,65 @@
       // Re-render
       renderIssues(currentIssues);
       renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    // ========================================================================
+    // ADD OPTIONS MODAL (for EMPTY_OPTIONS fix)
+    // ========================================================================
+    function openAddOptionsModal(questionId) {
+      const q = scannedQuestions.find(sq => sq.id === questionId);
+      const preview = q ? Qbank.escapeHtml((q.question_text || '').substring(0, 120)) : questionId;
+
+      const content = `
+        <p style="margin-bottom: 12px; color: var(--gray-300); font-size: 0.85rem;">${preview}</p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          ${['A', 'B', 'C', 'D'].map(k => `
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <label style="display: flex; align-items: center; gap: 4px; min-width: 40px;">
+                <input type="radio" name="correctOpt" value="${k}" ${k === 'A' ? 'checked' : ''}>
+                <strong>${k}</strong>
+              </label>
+              <input type="text" id="opt${k}" placeholder="Option ${k} text"
+                style="flex: 1; padding: 6px 10px; border: 1px solid var(--gray-600); border-radius: 6px; background: var(--gray-800); color: var(--gray-100); font-size: 0.9rem;">
+            </div>
+          `).join('')}
+        </div>
+        <input type="hidden" id="fixQid" value="${questionId}">
+      `;
+
+      Qbank.createModal('Add Options', content, [
+        { label: 'Cancel', class: 'btn-secondary', onclick: "this.closest('.qbank-modal-overlay').remove()" },
+        { label: 'Save Options', class: 'btn-primary', onclick: 'saveAddedOptions()' }
+      ]);
+    }
+
+    async function saveAddedOptions() {
+      const qid = document.getElementById('fixQid').value;
+      const correctKey = document.querySelector('input[name="correctOpt"]:checked')?.value;
+      const options = ['A', 'B', 'C', 'D'].map(k => ({
+        key: k,
+        text: (document.getElementById('opt' + k)?.value || '').trim()
+      }));
+
+      // Validate
+      const empty = options.filter(o => !o.text);
+      if (empty.length > 0) {
+        Qbank.showToast(`Fill in all 4 options (${empty.map(o => o.key).join(', ')} empty)`, 'error');
+        return;
+      }
+
+      const result = await Qbank.fixEmptyOptions(qid, options, correctKey);
+      if (result.success) {
+        Qbank.showToast('Options added successfully', 'success');
+        // Mark issue resolved locally
+        const issue = currentIssues.find(i => i.question_id === qid && i.issue_type === 'EMPTY_OPTIONS');
+        if (issue) issue.status = 'resolved';
+        renderIssues(currentIssues);
+        renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+      } else {
+        Qbank.showToast('Failed: ' + (result.error || 'Unknown error'), 'error');
+      }
+      document.querySelector('.qbank-modal-overlay')?.remove();
     }
 
     // ========================================================================
