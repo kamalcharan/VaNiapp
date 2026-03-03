@@ -1551,8 +1551,11 @@ function runQualityValidators(questions, languages, chapterId) {
       }
 
       // Duplicate option texts (case-sensitive — R vs r, M vs m matter in formulas)
-      const texts = opts.map(o => (o.option_text || o.text || '').trim()).filter(Boolean);
-      const dupes = texts.filter((t, i) => texts.indexOf(t) !== i);
+      // For true-false, only check A & B — C and D are placeholder "—" by design
+      const textsToCheck = q.question_type === 'true-false'
+        ? opts.slice(0, 2).map(o => (o.option_text || o.text || '').trim()).filter(Boolean)
+        : opts.map(o => (o.option_text || o.text || '').trim()).filter(Boolean);
+      const dupes = textsToCheck.filter((t, i) => textsToCheck.indexOf(t) !== i);
       if (dupes.length > 0) {
         issues.push(makeIssue(q, chapterId, 'DUPLICATE_OPTIONS', { duplicates: [...new Set(dupes)] }));
       }
