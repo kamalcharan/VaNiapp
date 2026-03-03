@@ -735,7 +735,7 @@
   },
   {
     "id": "phy-dual-photoelectric-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The photoelectric effect is an instantaneous process with no measurable time lag between incidence of light and emission of photoelectrons.\nReason (R): In the photon model, a single photon transfers its entire energy to a single electron in a single event.",
     "explanation": "Both the assertion and reason are correct, and the reason is the correct explanation of the assertion. In the photon model, the energy transfer is a single quantum event where one photon interacts with one electron. The electron receives the photon's entire energy at once, and if this energy exceeds the work function, the electron is emitted immediately (within about 10⁻⁹ s). This explains why there is no measurable time lag, unlike what wave theory would predict (where energy accumulates gradually).",
@@ -796,7 +796,7 @@
   },
   {
     "id": "phy-dual-photoelectric-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): When ultraviolet light is incident on a photosensitive material, the stopping potential increases linearly with the increase in frequency of incident radiation.\nReason (R): The maximum kinetic energy of photoelectrons is directly proportional to the frequency of incident radiation.",
     "explanation": "The assertion is correct: from eV₀ = hν − φ, the stopping potential V₀ = (h/e)ν − φ/e, which is a linear function of ν with a positive slope h/e. The reason states that KE_max is directly proportional to ν, which is incorrect. KE_max = hν − φ, which is a linear function of ν but not directly proportional (direct proportionality would require the y-intercept to be zero, i.e., φ = 0). Therefore A is correct but R is incorrect.",
@@ -858,7 +858,7 @@
   },
   {
     "id": "phy-dual-photoelectric-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the physical quantities in Column I with their dependence in the photoelectric effect in Column II:\n\nColumn I:\nA. Maximum kinetic energy of photoelectrons\nB. Photocurrent (saturation)\nC. Stopping potential\nD. Threshold frequency\n\nColumn II:\n1. Depends on work function of metal only\n2. Depends on frequency of incident light and work function\n3. Depends on intensity of incident light\n4. Equals (h/e) times frequency minus (φ/e)",
     "explanation": "Maximum kinetic energy KE_max = hν − φ, which depends on frequency and work function (A-2). Saturation photocurrent depends on the number of photons incident per second, which is proportional to intensity (B-3). Stopping potential V₀ = (h/e)ν − φ/e (C-4). Threshold frequency ν₀ = φ/h depends only on the work function (D-1).",
@@ -920,7 +920,7 @@
   },
   {
     "id": "phy-dual-photoelectric-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the experimental observation in Column I with the correct explanation in Column II:\n\nColumn I:\nA. No photoelectric emission below threshold frequency\nB. Photoelectric emission is instantaneous\nC. KE_max is independent of intensity\nD. Photocurrent is proportional to intensity\n\nColumn II:\n1. Each photon interacts with one electron; energy transfer is a single quantum event\n2. One photon can eject at most one electron; more photons per second means more electrons\n3. Photon energy (hν) must be at least equal to the work function\n4. KE_max = hν − φ does not contain intensity; it depends only on ν and φ",
     "explanation": "No emission below threshold frequency occurs because the photon energy must equal or exceed the work function (A-3). Instantaneous emission is because each photon transfers its energy in a single quantum event (B-1). KE_max is independent of intensity because Einstein's equation KE_max = hν − φ has no intensity term (C-4). Photocurrent is proportional to intensity because more photons per second yield more ejected electrons (D-2).",
@@ -982,7 +982,7 @@
   },
   {
     "id": "phy-dual-photoelectric-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The energy of a photon is given by E = hν, where h is Planck's constant and ν is the frequency of the radiation.",
     "explanation": "This is a true statement. The energy of a photon is given by Planck-Einstein relation E = hν, where h = 6.63 x 10⁻³⁴ J·s is Planck's constant and ν is the frequency of the electromagnetic radiation. This is one of the fundamental equations of quantum physics.",
@@ -1043,7 +1043,7 @@
   },
   {
     "id": "phy-dual-photoelectric-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In the photoelectric effect, the maximum kinetic energy of emitted photoelectrons increases with increase in the intensity of incident light (keeping frequency constant).",
     "explanation": "This statement is false. The maximum kinetic energy of emitted photoelectrons depends only on the frequency of the incident light and the work function of the metal (KE_max = hν − φ). Increasing the intensity at constant frequency increases the number of photoelectrons emitted per second (photocurrent), but does not change the maximum kinetic energy of individual photoelectrons.",
@@ -1104,7 +1104,7 @@
   },
   {
     "id": "phy-dual-photoelectric-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A photon of energy 4.25 eV is incident on a metal surface having work function 3.75 eV. The stopping potential for the most energetic photoelectrons is _____ V.",
     "explanation": "Using Einstein's photoelectric equation: eV₀ = hν − φ. Here, photon energy hν = 4.25 eV and work function φ = 3.75 eV. Therefore, eV₀ = 4.25 − 3.75 = 0.50 eV. Since eV₀ is in eV and V₀ is in volts, V₀ = 0.50 V.",
@@ -1165,7 +1165,7 @@
   },
   {
     "id": "phy-dual-photoelectric-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "In a laboratory experiment, a student illuminates a clean caesium surface (φ = 2.14 eV) with monochromatic light from a mercury lamp. She measures the photocurrent using a sensitive ammeter and applies a retarding potential using a variable voltage source. When the wavelength of light used is 4358 Å, the photocurrent drops to zero at a certain retarding potential.\n\nWhat is the stopping potential measured by the student? (Given: hc = 12400 eV·Å)",
     "explanation": "Energy of incident photon: E = hc/λ = 12400/4358 = 2.846 eV. Using Einstein's equation: eV₀ = E − φ = 2.846 − 2.14 = 0.706 eV. Therefore, the stopping potential V₀ ≈ 0.71 V.",

@@ -725,7 +725,7 @@
   },
   {
     "id": "phy-magmov-devices-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The cyclotron frequency does not depend on the speed of the charged particle. Reason (R): In a cyclotron, as the particle gains speed, the radius of its circular path increases proportionally, keeping the time period constant.",
     "explanation": "Both the Assertion and Reason are correct, and the Reason correctly explains the Assertion. The cyclotron frequency f = qB/(2πm) is independent of speed. This is because when a particle gains energy and moves faster (v increases), it moves to a larger radius orbit (r = mv/(qB)), so r increases proportionally with v. Since T = 2πr/v = 2πm/(qB), the v cancels out, making the period constant. This is the fundamental principle that allows the cyclotron to use a fixed-frequency oscillating electric field.",
@@ -785,7 +785,7 @@
   },
   {
     "id": "phy-magmov-devices-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): Increasing the number of turns in a moving coil galvanometer always increases both its current sensitivity and voltage sensitivity. Reason (R): Current sensitivity is NAB/k and voltage sensitivity is NAB/(kG), and increasing N increases the resistance G of the coil.",
     "explanation": "The Assertion is incorrect. While increasing N does increase current sensitivity (Is = NAB/k), it also increases the coil resistance G (since G is proportional to N for a given wire). Voltage sensitivity Vs = NAB/(kG) = Is/G. As N increases, both NAB/k and G increase, and the net effect on Vs depends on the relative rates. In fact, since G is proportional to N (longer wire), Vs = NAB/(kG) may remain roughly constant or even decrease. So increasing N does NOT always increase voltage sensitivity. The Reason is correct: it correctly states both formulas and that increasing N increases G.",
@@ -846,7 +846,7 @@
   },
   {
     "id": "phy-magmov-devices-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match Column I with Column II:\n\nColumn I:\n(P) Cyclotron frequency\n(Q) Shunt resistance for ammeter\n(R) Series resistance for voltmeter\n(S) Current sensitivity of galvanometer\n\nColumn II:\n(1) NAB/k\n(2) V/Ig - G\n(3) qB/(2πm)\n(4) Ig·G/(I - Ig)",
     "explanation": "P-3: Cyclotron frequency f = qB/(2πm). Q-4: Shunt resistance S = Ig·G/(I - Ig) for converting galvanometer to ammeter. R-2: Series resistance R = V/Ig - G for converting galvanometer to voltmeter. S-1: Current sensitivity = NAB/k, which is the deflection per unit current in a galvanometer.",
@@ -908,7 +908,7 @@
   },
   {
     "id": "phy-magmov-devices-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match Column I with Column II:\n\nColumn I:\n(P) Magnetic field inside a long solenoid\n(Q) Magnetic field of a toroid (inside)\n(R) Cyclotron maximum KE\n(S) Deflecting torque in a galvanometer\n\nColumn II:\n(1) NIAB\n(2) μ₀nI (n = turns per unit length)\n(3) q²B²R²/(2m)\n(4) μ₀NI/(2πr)",
     "explanation": "P-2: The magnetic field inside a long solenoid is B = μ₀nI, where n is the number of turns per unit length. Q-4: Inside a toroid, B = μ₀NI/(2πr), where N is total turns and r is the radius of the toroidal path. R-3: Maximum kinetic energy from a cyclotron is q²B²R²/(2m). S-1: The deflecting torque on the coil in a galvanometer is τ = NIAB.",
@@ -970,7 +970,7 @@
   },
   {
     "id": "phy-magmov-devices-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The magnetic field inside a solenoid is uniform and parallel to the axis of the solenoid.",
     "explanation": "This statement is TRUE. Inside a long solenoid (ideal case), the magnetic field is uniform in both magnitude and direction. The field lines run parallel to the axis of the solenoid. This can be derived using Ampere's law, which gives B = μ₀nI inside the solenoid (where n = N/L is the number of turns per unit length). Outside the solenoid, the field is approximately zero.",
@@ -1020,7 +1020,7 @@
   },
   {
     "id": "phy-magmov-devices-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "A cyclotron can be used to accelerate electrons to high energies efficiently.",
     "explanation": "This statement is FALSE. A cyclotron cannot efficiently accelerate electrons because electrons have very small mass (9.1 x 10^-31 kg). Due to their low mass, electrons quickly reach relativistic speeds, at which point their mass increases significantly (relativistic mass increase). This causes the cyclotron frequency f = qB/(2πm) to decrease, and the particles go out of synchronization with the fixed-frequency oscillating electric field. This is a well-known limitation of the cyclotron.",
@@ -1071,7 +1071,7 @@
   },
   {
     "id": "phy-magmov-devices-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "In a moving coil galvanometer, a radial magnetic field is produced by using concave-shaped pole pieces and a _____ placed inside the coil.",
     "explanation": "A soft iron core is placed inside the coil of a moving coil galvanometer. The soft iron core, along with the concave-shaped (cylindrical) pole pieces of the permanent magnet, creates a radial magnetic field. In a radial field, the plane of the coil is always parallel to the magnetic field direction, so the torque τ = NIAB sin(90°) = NIAB for all angular positions. This ensures a linear relationship between the current and the deflection angle (θ ∝ I).",
@@ -1132,7 +1132,7 @@
   },
   {
     "id": "phy-magmov-devices-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "hard",
     "question_text": "A medical research lab uses a cyclotron to produce radioactive isotopes for PET (Positron Emission Tomography) scans. The cyclotron accelerates protons using a magnetic field of 2.0 T. The protons are extracted when they reach a radius of 0.4 m from the centre. If the cyclotron's oscillating electric field operates at a fixed frequency, what is the frequency of the oscillating electric field, and what is the kinetic energy of the extracted protons? (Given: mass of proton = 1.67 x 10^-27 kg, charge = 1.6 x 10^-19 C)",
     "explanation": "The cyclotron frequency f = qB/(2πm) = (1.6 x 10^-19 x 2.0)/(2π x 1.67 x 10^-27) = 3.2 x 10^-19 / (1.049 x 10^-26) = 3.05 x 10^7 Hz ≈ 30.5 MHz. The maximum kinetic energy KE = q²B²R²/(2m) = (1.6 x 10^-19)² x (2.0)² x (0.4)² / (2 x 1.67 x 10^-27) = (2.56 x 10^-38 x 4 x 0.16) / (3.34 x 10^-27) = 1.638 x 10^-38 / 3.34 x 10^-27 = 4.9 x 10^-12 J. Converting: 4.9 x 10^-12 / 1.6 x 10^-13 ≈ 30.6 MeV. So the frequency is approximately 30.5 MHz and KE is approximately 30.6 MeV.",

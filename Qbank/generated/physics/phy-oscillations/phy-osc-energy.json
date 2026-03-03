@@ -6,22 +6,56 @@
     "question_text": "The total energy of a particle executing simple harmonic motion is proportional to:",
     "explanation": "The total energy of a particle in SHM is E = (1/2)mw^2A^2 = (1/2)kA^2. Since the total energy depends on the square of the amplitude, E is proportional to A^2. The total energy remains constant throughout the motion and does not depend on displacement x.",
     "correct_answer": "C",
-    "concept_tags": ["total energy in SHM", "amplitude dependence", "energy conservation"],
+    "concept_tags": [
+      "total energy in SHM",
+      "amplitude dependence",
+      "energy conservation"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "The amplitude A", "is_correct": false },
-      { "key": "B", "text": "The displacement x", "is_correct": false },
-      { "key": "C", "text": "The square of the amplitude A^2", "is_correct": true },
-      { "key": "D", "text": "The square root of the amplitude sqrt(A)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "The amplitude A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The displacement x",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The square of the amplitude A^2",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "The square root of the amplitude sqrt(A)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The energy formula E = (1/2)kA^2 shows a squared dependence on amplitude, not a linear one.", "misconception": "Confusing energy dependence (proportional to A^2) with a linear relationship." },
-      { "option_key": "B", "hint": "Total energy is constant and does not change with displacement. Only KE and PE individually depend on x.", "misconception": "Confusing total energy with kinetic or potential energy, which vary with displacement." },
-      { "option_key": "D", "hint": "No energy formula in SHM involves the square root of amplitude. The dependence is on A^2, not sqrt(A).", "misconception": "Incorrectly recalling the power of amplitude in the energy expression." }
+      {
+        "option_key": "A",
+        "hint": "The energy formula E = (1/2)kA^2 shows a squared dependence on amplitude, not a linear one.",
+        "misconception": "Confusing energy dependence (proportional to A^2) with a linear relationship."
+      },
+      {
+        "option_key": "B",
+        "hint": "Total energy is constant and does not change with displacement. Only KE and PE individually depend on x.",
+        "misconception": "Confusing total energy with kinetic or potential energy, which vary with displacement."
+      },
+      {
+        "option_key": "D",
+        "hint": "No energy formula in SHM involves the square root of amplitude. The dependence is on A^2, not sqrt(A).",
+        "misconception": "Incorrectly recalling the power of amplitude in the energy expression."
+      }
     ]
   },
   {
@@ -31,22 +65,56 @@
     "question_text": "In SHM, kinetic energy and potential energy become equal when the displacement is:",
     "explanation": "In SHM, KE = (1/2)mw^2(A^2 - x^2) and PE = (1/2)mw^2x^2. Setting KE = PE gives A^2 - x^2 = x^2, which yields 2x^2 = A^2, so x = A/sqrt(2). At this displacement, KE = PE = E/2, where E is the total energy.",
     "correct_answer": "B",
-    "concept_tags": ["KE equals PE", "displacement in SHM", "energy partition"],
+    "concept_tags": [
+      "KE equals PE",
+      "displacement in SHM",
+      "energy partition"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A/2", "is_correct": false },
-      { "key": "B", "text": "A/sqrt(2)", "is_correct": true },
-      { "key": "C", "text": "A", "is_correct": false },
-      { "key": "D", "text": "A/4", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A/sqrt(2)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A/4",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "At x = A/2, PE = (1/4)E and KE = (3/4)E. These are not equal. The correct position is x = A/sqrt(2).", "misconception": "Assuming half the amplitude gives half the energy split, ignoring the quadratic dependence." },
-      { "option_key": "C", "hint": "At x = A (the extreme position), KE = 0 and PE = E. The particle is momentarily at rest, so KE and PE are not equal here.", "misconception": "Confusing the extreme position with the equal-energy position." },
-      { "option_key": "D", "hint": "At x = A/4, PE = E/16 and KE = 15E/16. These are far from equal.", "misconception": "Arbitrarily choosing a fraction without applying the energy equations." }
+      {
+        "option_key": "A",
+        "hint": "At x = A/2, PE = (1/4)E and KE = (3/4)E. These are not equal. The correct position is x = A/sqrt(2).",
+        "misconception": "Assuming half the amplitude gives half the energy split, ignoring the quadratic dependence."
+      },
+      {
+        "option_key": "C",
+        "hint": "At x = A (the extreme position), KE = 0 and PE = E. The particle is momentarily at rest, so KE and PE are not equal here.",
+        "misconception": "Confusing the extreme position with the equal-energy position."
+      },
+      {
+        "option_key": "D",
+        "hint": "At x = A/4, PE = E/16 and KE = 15E/16. These are far from equal.",
+        "misconception": "Arbitrarily choosing a fraction without applying the energy equations."
+      }
     ]
   },
   {
@@ -56,22 +124,56 @@
     "question_text": "At the mean position of SHM, the kinetic energy of the particle is:",
     "explanation": "At the mean position x = 0, the potential energy PE = (1/2)mw^2x^2 = 0 and the kinetic energy KE = (1/2)mw^2(A^2 - x^2) = (1/2)mw^2A^2 = E (total energy). The particle has maximum speed at the mean position and hence maximum kinetic energy, which equals the total energy.",
     "correct_answer": "D",
-    "concept_tags": ["kinetic energy", "mean position", "maximum KE"],
+    "concept_tags": [
+      "kinetic energy",
+      "mean position",
+      "maximum KE"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Zero", "is_correct": false },
-      { "key": "B", "text": "Half of total energy", "is_correct": false },
-      { "key": "C", "text": "One-fourth of total energy", "is_correct": false },
-      { "key": "D", "text": "Equal to total energy", "is_correct": true }
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Half of total energy",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "One-fourth of total energy",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Equal to total energy",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "KE is zero at the extreme positions (x = +/-A), not at the mean position. At the mean position, velocity is maximum.", "misconception": "Confusing mean position with extreme position." },
-      { "option_key": "B", "hint": "KE equals half the total energy at x = A/sqrt(2), not at the mean position. At x = 0, all energy is kinetic.", "misconception": "Confusing the equal-energy displacement with the mean position." },
-      { "option_key": "C", "hint": "There is no standard position in SHM where KE = E/4. At x = 0, PE = 0 and KE = E.", "misconception": "Incorrect recall of energy distribution in SHM." }
+      {
+        "option_key": "A",
+        "hint": "KE is zero at the extreme positions (x = +/-A), not at the mean position. At the mean position, velocity is maximum.",
+        "misconception": "Confusing mean position with extreme position."
+      },
+      {
+        "option_key": "B",
+        "hint": "KE equals half the total energy at x = A/sqrt(2), not at the mean position. At x = 0, all energy is kinetic.",
+        "misconception": "Confusing the equal-energy displacement with the mean position."
+      },
+      {
+        "option_key": "C",
+        "hint": "There is no standard position in SHM where KE = E/4. At x = 0, PE = 0 and KE = E.",
+        "misconception": "Incorrect recall of energy distribution in SHM."
+      }
     ]
   },
   {
@@ -81,22 +183,57 @@
     "question_text": "A particle executes SHM at frequency f. The kinetic energy of the particle oscillates with a frequency of:",
     "explanation": "In SHM with displacement x = Asin(2*pi*f*t), KE = (1/2)mw^2A^2cos^2(2*pi*f*t). Using the identity cos^2(theta) = (1 + cos2*theta)/2, KE = (1/4)mw^2A^2(1 + cos(4*pi*f*t)). The oscillating term has angular frequency 4*pi*f = 2*(2*pi*f), which corresponds to frequency 2f. This doubling occurs because KE depends on v^2, and squaring the sinusoidal velocity function doubles the frequency of oscillation.",
     "correct_answer": "A",
-    "concept_tags": ["frequency of energy oscillation", "double frequency", "KE oscillation", "trigonometric identity"],
+    "concept_tags": [
+      "frequency of energy oscillation",
+      "double frequency",
+      "KE oscillation",
+      "trigonometric identity"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2f (double the frequency of SHM)", "is_correct": true },
-      { "key": "B", "text": "f (same as the frequency of SHM)", "is_correct": false },
-      { "key": "C", "text": "f/2 (half the frequency of SHM)", "is_correct": false },
-      { "key": "D", "text": "4f (four times the frequency of SHM)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "2f (double the frequency of SHM)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "f (same as the frequency of SHM)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "f/2 (half the frequency of SHM)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4f (four times the frequency of SHM)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "KE depends on cos^2(wt), which when expanded gives a cos(2wt) term. The energy oscillates at double the displacement frequency.", "misconception": "Assuming energy oscillates at the same frequency as displacement." },
-      { "option_key": "C", "hint": "Energy oscillation is faster, not slower, than the displacement oscillation. KE reaches its maximum twice per cycle of SHM.", "misconception": "Incorrectly halving the frequency instead of doubling it." },
-      { "option_key": "D", "hint": "The squared trigonometric identity gives cos(2wt), not cos(4wt). The frequency doubles, it does not quadruple.", "misconception": "Over-counting the number of energy oscillations per SHM cycle." }
+      {
+        "option_key": "B",
+        "hint": "KE depends on cos^2(wt), which when expanded gives a cos(2wt) term. The energy oscillates at double the displacement frequency.",
+        "misconception": "Assuming energy oscillates at the same frequency as displacement."
+      },
+      {
+        "option_key": "C",
+        "hint": "Energy oscillation is faster, not slower, than the displacement oscillation. KE reaches its maximum twice per cycle of SHM.",
+        "misconception": "Incorrectly halving the frequency instead of doubling it."
+      },
+      {
+        "option_key": "D",
+        "hint": "The squared trigonometric identity gives cos(2wt), not cos(4wt). The frequency doubles, it does not quadruple.",
+        "misconception": "Over-counting the number of energy oscillations per SHM cycle."
+      }
     ]
   },
   {
@@ -106,22 +243,56 @@
     "question_text": "A particle of mass 0.2 kg executes SHM with amplitude 2 cm and angular frequency 50 rad/s. The maximum kinetic energy of the particle is:",
     "explanation": "The maximum KE equals the total energy: KE_max = E = (1/2)mw^2A^2 = (1/2)(0.2)(50)^2(0.02)^2 = (1/2)(0.2)(2500)(0.0004) = (1/2)(0.2) = 0.1 J. This maximum kinetic energy occurs at the mean position where the entire energy is kinetic.",
     "correct_answer": "B",
-    "concept_tags": ["maximum kinetic energy", "numerical calculation", "total energy"],
+    "concept_tags": [
+      "maximum kinetic energy",
+      "numerical calculation",
+      "total energy"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "0.05 J", "is_correct": false },
-      { "key": "B", "text": "0.1 J", "is_correct": true },
-      { "key": "C", "text": "0.5 J", "is_correct": false },
-      { "key": "D", "text": "1.0 J", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.05 J",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.1 J",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "0.5 J",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.0 J",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This is half the correct answer. Ensure you are using the formula (1/2)mw^2A^2 with correct unit conversion: A = 2 cm = 0.02 m.", "misconception": "Dropping the factor of (1/2) or making an arithmetic error." },
-      { "option_key": "C", "hint": "This is 5 times the correct answer. Check that the amplitude is converted from cm to m: 2 cm = 0.02 m, not 0.2 m.", "misconception": "Forgetting to convert amplitude from centimetres to metres." },
-      { "option_key": "D", "hint": "This is 10 times too large. Verify each step: (1/2)(0.2)(2500)(4 x 10^-4) = 0.1 J.", "misconception": "Unit conversion error or incorrect squaring of amplitude." }
+      {
+        "option_key": "A",
+        "hint": "This is half the correct answer. Ensure you are using the formula (1/2)mw^2A^2 with correct unit conversion: A = 2 cm = 0.02 m.",
+        "misconception": "Dropping the factor of (1/2) or making an arithmetic error."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is 5 times the correct answer. Check that the amplitude is converted from cm to m: 2 cm = 0.02 m, not 0.2 m.",
+        "misconception": "Forgetting to convert amplitude from centimetres to metres."
+      },
+      {
+        "option_key": "D",
+        "hint": "This is 10 times too large. Verify each step: (1/2)(0.2)(2500)(4 x 10^-4) = 0.1 J.",
+        "misconception": "Unit conversion error or incorrect squaring of amplitude."
+      }
     ]
   },
   {
@@ -131,22 +302,56 @@
     "question_text": "Two springs of spring constants k1 = 200 N/m and k2 = 300 N/m are connected in parallel and support a mass. The effective spring constant of the combination is:",
     "explanation": "For springs in parallel, the effective spring constant is the sum of individual spring constants: k_eff = k1 + k2 = 200 + 300 = 500 N/m. In a parallel combination, both springs share the same displacement but the forces add up, leading to a stiffer combined spring.",
     "correct_answer": "C",
-    "concept_tags": ["springs in parallel", "effective spring constant", "spring combination"],
+    "concept_tags": [
+      "springs in parallel",
+      "effective spring constant",
+      "spring combination"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "120 N/m", "is_correct": false },
-      { "key": "B", "text": "250 N/m", "is_correct": false },
-      { "key": "C", "text": "500 N/m", "is_correct": true },
-      { "key": "D", "text": "100 N/m", "is_correct": false }
+      {
+        "key": "A",
+        "text": "120 N/m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "250 N/m",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "500 N/m",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "100 N/m",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "120 N/m is the result using the series formula: k1*k2/(k1+k2) = 200*300/500 = 120 N/m. For parallel springs, the constants add directly.", "misconception": "Applying the series combination formula instead of the parallel formula." },
-      { "option_key": "B", "hint": "250 N/m is simply the average of the two constants. Parallel combination adds the spring constants, not averages them.", "misconception": "Taking the arithmetic mean of spring constants instead of their sum." },
-      { "option_key": "D", "hint": "100 N/m is less than either individual spring constant. A parallel combination always gives a stiffer spring (larger k_eff) than either component.", "misconception": "Confusing series and parallel spring formulas." }
+      {
+        "option_key": "A",
+        "hint": "120 N/m is the result using the series formula: k1*k2/(k1+k2) = 200*300/500 = 120 N/m. For parallel springs, the constants add directly.",
+        "misconception": "Applying the series combination formula instead of the parallel formula."
+      },
+      {
+        "option_key": "B",
+        "hint": "250 N/m is simply the average of the two constants. Parallel combination adds the spring constants, not averages them.",
+        "misconception": "Taking the arithmetic mean of spring constants instead of their sum."
+      },
+      {
+        "option_key": "D",
+        "hint": "100 N/m is less than either individual spring constant. A parallel combination always gives a stiffer spring (larger k_eff) than either component.",
+        "misconception": "Confusing series and parallel spring formulas."
+      }
     ]
   },
   {
@@ -156,22 +361,56 @@
     "question_text": "A block of mass m is connected to two springs of spring constants k1 and k2 in series. The time period of oscillation is:",
     "explanation": "For springs in series, 1/k_eff = 1/k1 + 1/k2, giving k_eff = k1*k2/(k1 + k2). The time period is T = 2*pi*sqrt(m/k_eff) = 2*pi*sqrt(m(k1 + k2)/(k1*k2)). This can be related to individual time periods as T^2 = T1^2 + T2^2, where T1 and T2 are the time periods with each spring alone.",
     "correct_answer": "A",
-    "concept_tags": ["springs in series", "time period", "effective spring constant"],
+    "concept_tags": [
+      "springs in series",
+      "time period",
+      "effective spring constant"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2*pi*sqrt(m(k1 + k2)/(k1*k2))", "is_correct": true },
-      { "key": "B", "text": "2*pi*sqrt(m/(k1 + k2))", "is_correct": false },
-      { "key": "C", "text": "2*pi*sqrt(m*k1*k2/(k1 + k2))", "is_correct": false },
-      { "key": "D", "text": "2*pi*sqrt(m/(k1*k2))", "is_correct": false }
+      {
+        "key": "A",
+        "text": "2*pi*sqrt(m(k1 + k2)/(k1*k2))",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "2*pi*sqrt(m/(k1 + k2))",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2*pi*sqrt(m*k1*k2/(k1 + k2))",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2*pi*sqrt(m/(k1*k2))",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "This uses k_eff = k1 + k2, which is the parallel combination formula. For series, k_eff = k1*k2/(k1 + k2).", "misconception": "Confusing series and parallel spring constant formulas." },
-      { "option_key": "C", "hint": "In T = 2*pi*sqrt(m/k_eff), mass m divides by k_eff. The expression m*k1*k2/(k1+k2) puts k_eff in the numerator, which is dimensionally incorrect for time period.", "misconception": "Placing the spring constant in the numerator instead of the denominator under the square root." },
-      { "option_key": "D", "hint": "k1*k2 alone is not the effective spring constant for any standard combination. The correct denominator must account for (k1 + k2).", "misconception": "Incorrectly simplifying the series combination formula." }
+      {
+        "option_key": "B",
+        "hint": "This uses k_eff = k1 + k2, which is the parallel combination formula. For series, k_eff = k1*k2/(k1 + k2).",
+        "misconception": "Confusing series and parallel spring constant formulas."
+      },
+      {
+        "option_key": "C",
+        "hint": "In T = 2*pi*sqrt(m/k_eff), mass m divides by k_eff. The expression m*k1*k2/(k1+k2) puts k_eff in the numerator, which is dimensionally incorrect for time period.",
+        "misconception": "Placing the spring constant in the numerator instead of the denominator under the square root."
+      },
+      {
+        "option_key": "D",
+        "hint": "k1*k2 alone is not the effective spring constant for any standard combination. The correct denominator must account for (k1 + k2).",
+        "misconception": "Incorrectly simplifying the series combination formula."
+      }
     ]
   },
   {
@@ -181,22 +420,56 @@
     "question_text": "The average kinetic energy of a particle performing SHM over one complete cycle is:",
     "explanation": "In SHM, the time-averaged KE over one complete cycle = (1/2) * (1/2)mw^2A^2 = E/2, where E is the total energy. Similarly, the time-averaged PE = E/2. This result follows from the time average of cos^2(wt) or sin^2(wt) being 1/2. Thus, on average, energy is equally shared between kinetic and potential forms.",
     "correct_answer": "D",
-    "concept_tags": ["average kinetic energy", "time average", "energy equipartition"],
+    "concept_tags": [
+      "average kinetic energy",
+      "time average",
+      "energy equipartition"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Zero", "is_correct": false },
-      { "key": "B", "text": "E (total energy)", "is_correct": false },
-      { "key": "C", "text": "E/4", "is_correct": false },
-      { "key": "D", "text": "E/2", "is_correct": true }
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "E (total energy)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "E/4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "E/2",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The average KE is zero only if the particle is always at rest. In SHM, the particle continuously moves, so the time-averaged KE is non-zero.", "misconception": "Confusing the average of a cos function (which is zero) with the average of cos^2 (which is 1/2)." },
-      { "option_key": "B", "hint": "KE equals E only at the mean position (instantaneously). The average over a full cycle must be less than the maximum value.", "misconception": "Using the maximum kinetic energy instead of the average." },
-      { "option_key": "C", "hint": "E/4 is not the correct time average. The average of cos^2(wt) over a full cycle is 1/2, which gives average KE = E/2, not E/4.", "misconception": "Incorrectly evaluating the time average of the squared trigonometric function." }
+      {
+        "option_key": "A",
+        "hint": "The average KE is zero only if the particle is always at rest. In SHM, the particle continuously moves, so the time-averaged KE is non-zero.",
+        "misconception": "Confusing the average of a cos function (which is zero) with the average of cos^2 (which is 1/2)."
+      },
+      {
+        "option_key": "B",
+        "hint": "KE equals E only at the mean position (instantaneously). The average over a full cycle must be less than the maximum value.",
+        "misconception": "Using the maximum kinetic energy instead of the average."
+      },
+      {
+        "option_key": "C",
+        "hint": "E/4 is not the correct time average. The average of cos^2(wt) over a full cycle is 1/2, which gives average KE = E/2, not E/4.",
+        "misconception": "Incorrectly evaluating the time average of the squared trigonometric function."
+      }
     ]
   },
   {
@@ -206,22 +479,56 @@
     "question_text": "If the amplitude of SHM is doubled while the frequency remains unchanged, the total energy becomes:",
     "explanation": "Total energy E = (1/2)mw^2A^2. Since w = 2*pi*f remains constant, E is proportional to A^2. If A is doubled, E becomes (2A)^2/(A)^2 = 4 times the original energy. Doubling the amplitude quadruples the energy because energy has a quadratic dependence on amplitude.",
     "correct_answer": "C",
-    "concept_tags": ["energy amplitude relation", "quadratic dependence", "total energy"],
+    "concept_tags": [
+      "energy amplitude relation",
+      "quadratic dependence",
+      "total energy"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Doubled", "is_correct": false },
-      { "key": "B", "text": "Halved", "is_correct": false },
-      { "key": "C", "text": "Four times the original", "is_correct": true },
-      { "key": "D", "text": "Eight times the original", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Doubled",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Halved",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Four times the original",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Eight times the original",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Energy is proportional to A^2, not A. Doubling amplitude gives (2)^2 = 4 times the energy, not 2 times.", "misconception": "Assuming a linear dependence of energy on amplitude." },
-      { "option_key": "B", "hint": "Increasing the amplitude increases the total energy. It cannot decrease when amplitude is doubled.", "misconception": "Confusing the effect on energy with some inverse relationship." },
-      { "option_key": "D", "hint": "Eight times would require a cubic dependence (2^3 = 8). Energy depends on A^2, giving 2^2 = 4 times.", "misconception": "Using an incorrect power law for the energy-amplitude relationship." }
+      {
+        "option_key": "A",
+        "hint": "Energy is proportional to A^2, not A. Doubling amplitude gives (2)^2 = 4 times the energy, not 2 times.",
+        "misconception": "Assuming a linear dependence of energy on amplitude."
+      },
+      {
+        "option_key": "B",
+        "hint": "Increasing the amplitude increases the total energy. It cannot decrease when amplitude is doubled.",
+        "misconception": "Confusing the effect on energy with some inverse relationship."
+      },
+      {
+        "option_key": "D",
+        "hint": "Eight times would require a cubic dependence (2^3 = 8). Energy depends on A^2, giving 2^2 = 4 times.",
+        "misconception": "Using an incorrect power law for the energy-amplitude relationship."
+      }
     ]
   },
   {
@@ -231,22 +538,56 @@
     "question_text": "A spring of force constant k is cut into two equal halves. The force constant of each half is:",
     "explanation": "When a spring of force constant k and natural length L is cut into two equal halves, each half has length L/2. Since the spring constant is inversely proportional to the natural length (k is proportional to 1/L), cutting the spring in half doubles the spring constant. Each half has force constant 2k. This is because a shorter spring is stiffer, requiring more force for the same extension.",
     "correct_answer": "A",
-    "concept_tags": ["spring cutting", "force constant", "spring stiffness"],
+    "concept_tags": [
+      "spring cutting",
+      "force constant",
+      "spring stiffness"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2k", "is_correct": true },
-      { "key": "B", "text": "k/2", "is_correct": false },
-      { "key": "C", "text": "k", "is_correct": false },
-      { "key": "D", "text": "4k", "is_correct": false }
+      {
+        "key": "A",
+        "text": "2k",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "k/2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "k",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4k",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "k/2 would mean the half-spring is softer, but a shorter spring is actually stiffer. Spring constant is inversely proportional to length.", "misconception": "Thinking that cutting a spring reduces its stiffness, similar to cutting a rope reduces its strength." },
-      { "option_key": "C", "hint": "The spring constant does change when a spring is cut. A half-length spring is stiffer than the original.", "misconception": "Assuming spring constant is an intrinsic property independent of length." },
-      { "option_key": "D", "hint": "4k would result if the spring were cut into four parts, not two. Cutting into n equal parts multiplies k by n.", "misconception": "Using the wrong factor for the number of parts." }
+      {
+        "option_key": "B",
+        "hint": "k/2 would mean the half-spring is softer, but a shorter spring is actually stiffer. Spring constant is inversely proportional to length.",
+        "misconception": "Thinking that cutting a spring reduces its stiffness, similar to cutting a rope reduces its strength."
+      },
+      {
+        "option_key": "C",
+        "hint": "The spring constant does change when a spring is cut. A half-length spring is stiffer than the original.",
+        "misconception": "Assuming spring constant is an intrinsic property independent of length."
+      },
+      {
+        "option_key": "D",
+        "hint": "4k would result if the spring were cut into four parts, not two. Cutting into n equal parts multiplies k by n.",
+        "misconception": "Using the wrong factor for the number of parts."
+      }
     ]
   },
   {
@@ -256,22 +597,56 @@
     "question_text": "A particle performs SHM with total energy E. At what displacement from the mean position is the potential energy 3/4 of the total energy?",
     "explanation": "PE = (1/2)mw^2x^2 and E = (1/2)mw^2A^2. Setting PE = (3/4)E gives (1/2)mw^2x^2 = (3/4)(1/2)mw^2A^2, so x^2 = (3/4)A^2, yielding x = (sqrt(3)/2)A. At this displacement, KE = E - PE = E/4, so the particle has 75% potential energy and 25% kinetic energy.",
     "correct_answer": "B",
-    "concept_tags": ["PE fraction", "displacement calculation", "energy ratio"],
+    "concept_tags": [
+      "PE fraction",
+      "displacement calculation",
+      "energy ratio"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A/2", "is_correct": false },
-      { "key": "B", "text": "(sqrt(3)/2)A", "is_correct": true },
-      { "key": "C", "text": "3A/4", "is_correct": false },
-      { "key": "D", "text": "A/sqrt(3)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "(sqrt(3)/2)A",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "3A/4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A/sqrt(3)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "At x = A/2, PE = (1/4)E, not (3/4)E. Since PE is proportional to x^2, at half the amplitude the PE is only one-quarter of the total.", "misconception": "Assuming PE is linearly proportional to x instead of x^2." },
-      { "option_key": "C", "hint": "At x = 3A/4, PE = (9/16)E, which is not 3/4 of E. The PE fraction (3/4) does not directly correspond to a displacement fraction of 3/4.", "misconception": "Directly equating the energy fraction with the displacement fraction." },
-      { "option_key": "D", "hint": "At x = A/sqrt(3), PE = E/3, not 3E/4. Verify by substituting: (A/sqrt(3))^2/A^2 = 1/3.", "misconception": "Inverting the fraction when solving for displacement." }
+      {
+        "option_key": "A",
+        "hint": "At x = A/2, PE = (1/4)E, not (3/4)E. Since PE is proportional to x^2, at half the amplitude the PE is only one-quarter of the total.",
+        "misconception": "Assuming PE is linearly proportional to x instead of x^2."
+      },
+      {
+        "option_key": "C",
+        "hint": "At x = 3A/4, PE = (9/16)E, which is not 3/4 of E. The PE fraction (3/4) does not directly correspond to a displacement fraction of 3/4.",
+        "misconception": "Directly equating the energy fraction with the displacement fraction."
+      },
+      {
+        "option_key": "D",
+        "hint": "At x = A/sqrt(3), PE = E/3, not 3E/4. Verify by substituting: (A/sqrt(3))^2/A^2 = 1/3.",
+        "misconception": "Inverting the fraction when solving for displacement."
+      }
     ]
   },
   {
@@ -281,222 +656,535 @@
     "question_text": "Two springs with spring constants k and 2k are connected in series and attached to a block of mass m on a smooth surface. The block is displaced slightly and released. The time period of oscillation is:",
     "explanation": "For springs in series: 1/k_eff = 1/k + 1/(2k) = (2 + 1)/(2k) = 3/(2k), so k_eff = 2k/3. The time period T = 2*pi*sqrt(m/k_eff) = 2*pi*sqrt(3m/(2k)). This shows that the series combination is softer (lower effective k) than either spring, resulting in a longer time period compared to using either spring alone.",
     "correct_answer": "D",
-    "concept_tags": ["series spring combination", "time period calculation", "effective spring constant"],
+    "concept_tags": [
+      "series spring combination",
+      "time period calculation",
+      "effective spring constant"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2*pi*sqrt(m/(3k))", "is_correct": false },
-      { "key": "B", "text": "2*pi*sqrt(2m/(3k))", "is_correct": false },
-      { "key": "C", "text": "2*pi*sqrt(m/(2k))", "is_correct": false },
-      { "key": "D", "text": "2*pi*sqrt(3m/(2k))", "is_correct": true }
+      {
+        "key": "A",
+        "text": "2*pi*sqrt(m/(3k))",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2*pi*sqrt(2m/(3k))",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2*pi*sqrt(m/(2k))",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2*pi*sqrt(3m/(2k))",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This uses k_eff = 3k, which would come from an incorrect addition 3k = k + 2k (parallel formula). For series, use the reciprocal formula.", "misconception": "Using the parallel combination rule instead of the series rule." },
-      { "option_key": "B", "hint": "This gives k_eff = 3k/(2) but the correct series result is k_eff = 2k/3. Check: 1/k + 1/(2k) = 3/(2k), so k_eff = 2k/3.", "misconception": "Inverting the fraction incorrectly when computing k_eff from the reciprocal sum." },
-      { "option_key": "C", "hint": "This uses k_eff = 2k, which is just the second spring's constant. The series combination must use both spring constants.", "misconception": "Using only one of the two spring constants in the calculation." }
+      {
+        "option_key": "A",
+        "hint": "This uses k_eff = 3k, which would come from an incorrect addition 3k = k + 2k (parallel formula). For series, use the reciprocal formula.",
+        "misconception": "Using the parallel combination rule instead of the series rule."
+      },
+      {
+        "option_key": "B",
+        "hint": "This gives k_eff = 3k/(2) but the correct series result is k_eff = 2k/3. Check: 1/k + 1/(2k) = 3/(2k), so k_eff = 2k/3.",
+        "misconception": "Inverting the fraction incorrectly when computing k_eff from the reciprocal sum."
+      },
+      {
+        "option_key": "C",
+        "hint": "This uses k_eff = 2k, which is just the second spring's constant. The series combination must use both spring constants.",
+        "misconception": "Using only one of the two spring constants in the calculation."
+      }
     ]
   },
   {
     "id": "phy-osc-energy-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The total mechanical energy of a particle in SHM remains constant.\nReason (R): In SHM, the restoring force is conservative.",
     "explanation": "Both the assertion and reason are correct, and the reason is the correct explanation for the assertion. In SHM, the restoring force F = -kx is conservative (derivable from a potential energy function). For a conservative force, the work-energy theorem guarantees that the total mechanical energy (KE + PE) is conserved. Since no non-conservative forces (like friction) act in ideal SHM, energy is continuously exchanged between kinetic and potential forms while the total remains constant.",
     "correct_answer": "A",
-    "concept_tags": ["energy conservation", "conservative force", "total energy constancy", "assertion reasoning"],
+    "concept_tags": [
+      "energy conservation",
+      "conservative force",
+      "total energy constancy",
+      "assertion reasoning"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The conservative nature of the restoring force directly implies energy conservation. A conservative force is precisely the condition needed for total mechanical energy to remain constant, so R does explain A.", "misconception": "Failing to recognise the direct causal link between conservative forces and energy conservation." },
-      { "option_key": "C", "hint": "The restoring force F = -kx is indeed conservative. It can be written as F = -dU/dx with U = (1/2)kx^2, confirming it derives from a potential.", "misconception": "Incorrectly classifying the spring force as non-conservative." },
-      { "option_key": "D", "hint": "The assertion is correct. Total energy E = (1/2)kA^2 is constant throughout SHM, as can be verified by differentiating and showing dE/dt = 0.", "misconception": "Thinking total energy in SHM varies with time." }
+      {
+        "option_key": "B",
+        "hint": "The conservative nature of the restoring force directly implies energy conservation. A conservative force is precisely the condition needed for total mechanical energy to remain constant, so R does explain A.",
+        "misconception": "Failing to recognise the direct causal link between conservative forces and energy conservation."
+      },
+      {
+        "option_key": "C",
+        "hint": "The restoring force F = -kx is indeed conservative. It can be written as F = -dU/dx with U = (1/2)kx^2, confirming it derives from a potential.",
+        "misconception": "Incorrectly classifying the spring force as non-conservative."
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. Total energy E = (1/2)kA^2 is constant throughout SHM, as can be verified by differentiating and showing dE/dt = 0.",
+        "misconception": "Thinking total energy in SHM varies with time."
+      }
     ]
   },
   {
     "id": "phy-osc-energy-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): The time-averaged kinetic energy and the time-averaged potential energy of a particle in SHM over a complete cycle are equal.\nReason (R): In SHM, kinetic energy and potential energy are always equal at every instant.",
     "explanation": "The assertion is correct: over a complete cycle, the average KE = E/2 and the average PE = E/2, so they are equal on average. However, the reason is incorrect. KE and PE are not equal at every instant. At the mean position KE = E and PE = 0, while at the extreme positions KE = 0 and PE = E. They are equal only at x = A/sqrt(2). Therefore, A is correct but R is incorrect.",
     "correct_answer": "C",
-    "concept_tags": ["time average energy", "instantaneous energy", "KE PE variation", "assertion reasoning"],
+    "concept_tags": [
+      "time average energy",
+      "instantaneous energy",
+      "KE PE variation",
+      "assertion reasoning"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The reason is factually wrong. KE and PE are not equal at every instant. At x = 0, KE = E and PE = 0. They vary continuously and are equal only at x = A/sqrt(2).", "misconception": "Confusing time-averaged equality with instantaneous equality of KE and PE." },
-      { "option_key": "B", "hint": "The reason is incorrect, not merely unrelated to the assertion. KE and PE change continuously and are equal only at specific displacements.", "misconception": "Accepting the reason as true without checking its validity." },
-      { "option_key": "D", "hint": "The assertion is correct. The time average of cos^2(wt) and sin^2(wt) over a full cycle are both 1/2, confirming average KE = average PE = E/2.", "misconception": "Doubting the well-established result that average KE = average PE in SHM." }
+      {
+        "option_key": "A",
+        "hint": "The reason is factually wrong. KE and PE are not equal at every instant. At x = 0, KE = E and PE = 0. They vary continuously and are equal only at x = A/sqrt(2).",
+        "misconception": "Confusing time-averaged equality with instantaneous equality of KE and PE."
+      },
+      {
+        "option_key": "B",
+        "hint": "The reason is incorrect, not merely unrelated to the assertion. KE and PE change continuously and are equal only at specific displacements.",
+        "misconception": "Accepting the reason as true without checking its validity."
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. The time average of cos^2(wt) and sin^2(wt) over a full cycle are both 1/2, confirming average KE = average PE = E/2.",
+        "misconception": "Doubting the well-established result that average KE = average PE in SHM."
+      }
     ]
   },
   {
     "id": "phy-osc-energy-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match Column-I with Column-II for a particle performing SHM with amplitude A and total energy E:\n\nColumn-I:\nA. Displacement x = 0\nB. Displacement x = A\nC. Displacement x = A/sqrt(2)\nD. Displacement x = A/2\n\nColumn-II:\n1. KE = 0, PE = E\n2. KE = E, PE = 0\n3. KE = E/2, PE = E/2\n4. KE = 3E/4, PE = E/4",
     "explanation": "At x = 0 (mean position): KE = E, PE = 0, matching (2). At x = A (extreme): KE = 0, PE = E, matching (1). At x = A/sqrt(2): PE = (1/2)mw^2(A/sqrt(2))^2 = E/2, and KE = E/2, matching (3). At x = A/2: PE = (1/2)mw^2(A/2)^2 = E/4, and KE = 3E/4, matching (4).",
     "correct_answer": "B",
-    "concept_tags": ["energy at various positions", "KE PE distribution", "match the following"],
+    "concept_tags": [
+      "energy at various positions",
+      "KE PE distribution",
+      "match the following"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-2, B-1, C-4, D-3", "is_correct": false },
-      { "key": "B", "text": "A-2, B-1, C-3, D-4", "is_correct": true },
-      { "key": "C", "text": "A-1, B-2, C-3, D-4", "is_correct": false },
-      { "key": "D", "text": "A-2, B-1, C-4, D-2", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-2, B-1, C-4, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-1, C-4, D-2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This swaps C and D matchings. At x = A/sqrt(2), PE = E/2 (equal partition), which is item 3, not 4. At x = A/2, PE = E/4, which is item 4.", "misconception": "Confusing the energy partition at A/sqrt(2) and A/2." },
-      { "option_key": "C", "hint": "This swaps A and B matchings. At x = 0 (mean position), the particle has maximum velocity, so KE = E and PE = 0 (item 2), not the reverse.", "misconception": "Reversing the energy distribution at mean and extreme positions." },
-      { "option_key": "D", "hint": "Item 2 is used twice (for both A and D), which is not valid in a one-to-one matching. Each item in Column-II matches exactly one item in Column-I.", "misconception": "Incorrectly repeating a match option." }
+      {
+        "option_key": "A",
+        "hint": "This swaps C and D matchings. At x = A/sqrt(2), PE = E/2 (equal partition), which is item 3, not 4. At x = A/2, PE = E/4, which is item 4.",
+        "misconception": "Confusing the energy partition at A/sqrt(2) and A/2."
+      },
+      {
+        "option_key": "C",
+        "hint": "This swaps A and B matchings. At x = 0 (mean position), the particle has maximum velocity, so KE = E and PE = 0 (item 2), not the reverse.",
+        "misconception": "Reversing the energy distribution at mean and extreme positions."
+      },
+      {
+        "option_key": "D",
+        "hint": "Item 2 is used twice (for both A and D), which is not valid in a one-to-one matching. Each item in Column-II matches exactly one item in Column-I.",
+        "misconception": "Incorrectly repeating a match option."
+      }
     ]
   },
   {
     "id": "phy-osc-energy-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match Column-I (Spring System) with Column-II (Effective Spring Constant):\n\nColumn-I:\nA. Two springs (k each) in parallel\nB. Two springs (k each) in series\nC. A spring of constant k cut into 3 equal parts, one part used\nD. Two springs (k each) in parallel, then in series with a third spring of constant k\n\nColumn-II:\n1. k/2\n2. 2k\n3. 3k\n4. 2k/3",
     "explanation": "A: Parallel springs: k_eff = k + k = 2k -> matches (2). B: Series springs: 1/k_eff = 1/k + 1/k = 2/k, so k_eff = k/2 -> matches (1). C: Cutting a spring into 3 equal parts multiplies k by 3, so each part has constant 3k -> matches (3). D: Two springs k in parallel give 2k; this in series with k gives 1/k_eff = 1/(2k) + 1/k = 3/(2k), so k_eff = 2k/3 -> matches (4).",
     "correct_answer": "D",
-    "concept_tags": ["spring combinations", "series parallel", "spring cutting", "effective constant", "match the following"],
+    "concept_tags": [
+      "spring combinations",
+      "series parallel",
+      "spring cutting",
+      "effective constant",
+      "match the following"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-2, B-1, C-4, D-3", "is_correct": false },
-      { "key": "B", "text": "A-1, B-2, C-3, D-4", "is_correct": false },
-      { "key": "C", "text": "A-2, B-1, C-3, D-2", "is_correct": false },
-      { "key": "D", "text": "A-2, B-1, C-3, D-4", "is_correct": true }
+      {
+        "key": "A",
+        "text": "A-2, B-1, C-4, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-1, C-3, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This matches C (cut spring part) with 4 (2k/3), but cutting a spring into 3 parts triples the spring constant to 3k, not 2k/3.", "misconception": "Confusing the effect of cutting a spring with a series combination result." },
-      { "option_key": "B", "hint": "This swaps A and B matchings. Parallel combination gives k + k = 2k (not k/2), and series gives k/2 (not 2k).", "misconception": "Interchanging the series and parallel combination rules." },
-      { "option_key": "C", "hint": "Item 2 (2k) is used for both A and D, but D should give 2k/3. Two springs in parallel (2k) in series with k gives 1/(2k) + 1/k = 3/(2k), so k_eff = 2k/3.", "misconception": "Forgetting to apply the series formula for the second stage of the combination." }
+      {
+        "option_key": "A",
+        "hint": "This matches C (cut spring part) with 4 (2k/3), but cutting a spring into 3 parts triples the spring constant to 3k, not 2k/3.",
+        "misconception": "Confusing the effect of cutting a spring with a series combination result."
+      },
+      {
+        "option_key": "B",
+        "hint": "This swaps A and B matchings. Parallel combination gives k + k = 2k (not k/2), and series gives k/2 (not 2k).",
+        "misconception": "Interchanging the series and parallel combination rules."
+      },
+      {
+        "option_key": "C",
+        "hint": "Item 2 (2k) is used for both A and D, but D should give 2k/3. Two springs in parallel (2k) in series with k gives 1/(2k) + 1/k = 3/(2k), so k_eff = 2k/3.",
+        "misconception": "Forgetting to apply the series formula for the second stage of the combination."
+      }
     ]
   },
   {
     "id": "phy-osc-energy-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The total energy of a particle executing SHM is independent of time and depends only on the amplitude and spring constant.",
     "explanation": "This statement is TRUE. The total energy E = (1/2)kA^2, which depends only on the spring constant k and amplitude A. Although KE and PE individually vary with time (and position), their sum remains constant at every instant. The total energy has no time-dependent term, confirming its constancy throughout the motion.",
     "correct_answer": "A",
-    "concept_tags": ["total energy", "time independence", "energy conservation in SHM"],
+    "concept_tags": [
+      "total energy",
+      "time independence",
+      "energy conservation in SHM"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The total energy E = (1/2)kA^2 contains no time variable. KE and PE oscillate with time, but their sum is always constant.", "misconception": "Confusing the variation of KE and PE with variation of total energy." },
-      { "option_key": "C", "hint": "This option is not applicable for true/false questions.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for true/false questions.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The total energy E = (1/2)kA^2 contains no time variable. KE and PE oscillate with time, but their sum is always constant.",
+        "misconception": "Confusing the variation of KE and PE with variation of total energy."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-osc-energy-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In SHM, the kinetic energy is maximum at the extreme positions.",
     "explanation": "This statement is FALSE. At the extreme positions (x = +/-A), the velocity of the particle is zero, so KE = (1/2)mv^2 = 0. The kinetic energy is maximum at the mean position (x = 0), where the velocity is maximum (v_max = wA). At the extremes, all the energy is in the form of potential energy.",
     "correct_answer": "B",
-    "concept_tags": ["kinetic energy", "extreme position", "mean position", "velocity in SHM"],
+    "concept_tags": [
+      "kinetic energy",
+      "extreme position",
+      "mean position",
+      "velocity in SHM"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "At extreme positions the particle momentarily stops (v = 0), so KE = 0. KE is maximum at the mean position where speed is greatest.", "misconception": "Confusing the position of maximum PE with maximum KE." },
-      { "option_key": "C", "hint": "This option is not applicable for true/false questions.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for true/false questions.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "At extreme positions the particle momentarily stops (v = 0), so KE = 0. KE is maximum at the mean position where speed is greatest.",
+        "misconception": "Confusing the position of maximum PE with maximum KE."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-osc-energy-19",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "For a body of mass m attached to a spring of force constant k executing SHM, the total energy of the system is E = (1/2)kA^2. If the amplitude is A and the angular frequency is w, then the velocity of the body at displacement x from the mean position is v = _____.",
     "explanation": "Using energy conservation: (1/2)mv^2 + (1/2)kx^2 = (1/2)kA^2. Solving for v: mv^2 = k(A^2 - x^2), so v^2 = (k/m)(A^2 - x^2) = w^2(A^2 - x^2), since w^2 = k/m. Therefore v = w*sqrt(A^2 - x^2). This velocity expression shows that v is maximum (= wA) at x = 0 and zero at x = A.",
     "correct_answer": "A",
-    "concept_tags": ["velocity in SHM", "energy conservation", "displacement dependence", "fill in the blank"],
+    "concept_tags": [
+      "velocity in SHM",
+      "energy conservation",
+      "displacement dependence",
+      "fill in the blank"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "w*sqrt(A^2 - x^2)", "is_correct": true },
-      { "key": "B", "text": "w*sqrt(A^2 + x^2)", "is_correct": false },
-      { "key": "C", "text": "w*(A^2 - x^2)", "is_correct": false },
-      { "key": "D", "text": "w*sqrt(x^2 - A^2)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "w*sqrt(A^2 - x^2)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "w*sqrt(A^2 + x^2)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "w*(A^2 - x^2)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "w*sqrt(x^2 - A^2)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "A plus sign would imply velocity increases without bound as x increases, which contradicts the fact that v = 0 at x = A.", "misconception": "Using incorrect sign in the energy conservation equation." },
-      { "option_key": "C", "hint": "This expression is missing the square root. Dimensionally, w*(A^2 - x^2) has units of m^2/s, not m/s.", "misconception": "Forgetting to take the square root when solving for velocity from the energy equation." },
-      { "option_key": "D", "hint": "For |x| < A, the term x^2 - A^2 is negative, making the square root undefined. The correct expression has A^2 - x^2.", "misconception": "Reversing the subtraction order, leading to imaginary values within the oscillation range." }
+      {
+        "option_key": "B",
+        "hint": "A plus sign would imply velocity increases without bound as x increases, which contradicts the fact that v = 0 at x = A.",
+        "misconception": "Using incorrect sign in the energy conservation equation."
+      },
+      {
+        "option_key": "C",
+        "hint": "This expression is missing the square root. Dimensionally, w*(A^2 - x^2) has units of m^2/s, not m/s.",
+        "misconception": "Forgetting to take the square root when solving for velocity from the energy equation."
+      },
+      {
+        "option_key": "D",
+        "hint": "For |x| < A, the term x^2 - A^2 is negative, making the square root undefined. The correct expression has A^2 - x^2.",
+        "misconception": "Reversing the subtraction order, leading to imaginary values within the oscillation range."
+      }
     ]
   },
   {
     "id": "phy-osc-energy-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A block of mass 0.5 kg is attached to a horizontal spring of spring constant 50 N/m on a frictionless surface. The block is pulled 10 cm from its equilibrium position and released from rest.\n\nWhat is the speed of the block when it passes through a point 6 cm from the equilibrium position?",
     "explanation": "Using energy conservation: (1/2)kA^2 = (1/2)kx^2 + (1/2)mv^2. Given k = 50 N/m, A = 0.10 m, x = 0.06 m, and m = 0.5 kg. Solving: (1/2)(50)(0.10)^2 = (1/2)(50)(0.06)^2 + (1/2)(0.5)v^2. This gives 0.25 = 0.09 + 0.25v^2, so 0.25v^2 = 0.16, v^2 = 0.64, and v = 0.8 m/s. Alternatively, v = w*sqrt(A^2 - x^2) = 10*sqrt(0.01 - 0.0036) = 10*sqrt(0.0064) = 10*0.08 = 0.8 m/s.",
     "correct_answer": "B",
-    "concept_tags": ["energy conservation", "speed calculation", "spring mass system", "scenario based"],
+    "concept_tags": [
+      "energy conservation",
+      "speed calculation",
+      "spring mass system",
+      "scenario based"
+    ],
     "topic": "Energy in SHM and Oscillating Systems",
     "subject": "physics",
     "chapter": "Oscillations",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "0.6 m/s", "is_correct": false },
-      { "key": "B", "text": "0.8 m/s", "is_correct": true },
-      { "key": "C", "text": "1.0 m/s", "is_correct": false },
-      { "key": "D", "text": "1.2 m/s", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.6 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.8 m/s",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1.0 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.2 m/s",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "0.6 m/s would result if you used the displacement (6 cm) as the speed-related quantity. Apply energy conservation carefully: v = sqrt(k/m)*sqrt(A^2 - x^2).", "misconception": "Confusing displacement x with velocity or using incorrect substitution." },
-      { "option_key": "C", "hint": "1.0 m/s is the maximum speed (at x = 0): v_max = wA = 10 * 0.1 = 1.0 m/s. At x = 6 cm, the speed must be less than the maximum.", "misconception": "Using the maximum speed formula instead of accounting for the displacement." },
-      { "option_key": "D", "hint": "1.2 m/s exceeds the maximum possible speed (1.0 m/s). The speed at any point in SHM cannot exceed v_max = wA.", "misconception": "Arithmetic error leading to a speed greater than the maximum possible value." }
+      {
+        "option_key": "A",
+        "hint": "0.6 m/s would result if you used the displacement (6 cm) as the speed-related quantity. Apply energy conservation carefully: v = sqrt(k/m)*sqrt(A^2 - x^2).",
+        "misconception": "Confusing displacement x with velocity or using incorrect substitution."
+      },
+      {
+        "option_key": "C",
+        "hint": "1.0 m/s is the maximum speed (at x = 0): v_max = wA = 10 * 0.1 = 1.0 m/s. At x = 6 cm, the speed must be less than the maximum.",
+        "misconception": "Using the maximum speed formula instead of accounting for the displacement."
+      },
+      {
+        "option_key": "D",
+        "hint": "1.2 m/s exceeds the maximum possible speed (1.0 m/s). The speed at any point in SHM cannot exceed v_max = wA.",
+        "misconception": "Arithmetic error leading to a speed greater than the maximum possible value."
+      }
     ]
   }
 ]

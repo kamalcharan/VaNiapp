@@ -735,7 +735,7 @@
   },
   {
     "id": "phy-semi-pn-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The reverse saturation current of a p-n junction diode increases with increase in temperature.\n\nReason (R): With increase in temperature, the generation of electron-hole pairs increases, which enhances the minority carrier concentration on both sides of the junction.",
     "explanation": "The Assertion is true: the reverse saturation current I₀ increases with temperature. I₀ depends on the minority carrier concentration, which is thermally generated. The Reason is also true: higher temperature provides more thermal energy, increasing the rate of electron-hole pair generation, thereby increasing minority carrier concentration. Since the reverse current is due to minority carriers drifting across the junction under the influence of the internal electric field, increased minority carriers directly increase I₀. The Reason correctly explains the Assertion.",
@@ -796,7 +796,7 @@
   },
   {
     "id": "phy-semi-pn-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): In a p-n junction diode, the electric field in the depletion region is directed from the n-side to the p-side.\n\nReason (R): The depletion region on the n-side has exposed positive donor ions, and the depletion region on the p-side has exposed negative acceptor ions.",
     "explanation": "The Assertion is true: the built-in electric field in the depletion region points from the n-side (positive ions) to the p-side (negative ions). The Reason is also true: during junction formation, diffusion of majority carriers leaves behind immobile positive donor ions (ND⁺) on the n-side and negative acceptor ions (NA⁻) on the p-side. These immobile ions create a charge distribution that produces the electric field directed from the positive charges (n-side) to the negative charges (p-side). The Reason correctly explains the Assertion.",
@@ -858,7 +858,7 @@
   },
   {
     "id": "phy-semi-pn-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following terms (Column I) with their correct descriptions (Column II):\n\nColumn I:\n(P) Intrinsic semiconductor\n(Q) n-type semiconductor\n(R) p-type semiconductor\n(S) Depletion region\n\nColumn II:\n(1) Region devoid of free charge carriers near the junction\n(2) Doped with pentavalent impurity; electrons are majority carriers\n(3) Pure semiconductor with equal electron and hole concentrations\n(4) Doped with trivalent impurity; holes are majority carriers",
     "explanation": "(P) Intrinsic semiconductor → (3): An intrinsic semiconductor is a pure semiconductor (e.g., pure Si or Ge) with no intentional doping. In it, electron concentration equals hole concentration (nₑ = nₕ = nᵢ). (Q) n-type semiconductor → (2): Doped with pentavalent impurities (P, As, Sb) that donate extra electrons, making electrons the majority carriers. (R) p-type semiconductor → (4): Doped with trivalent impurities (B, Al, Ga, In) that accept electrons creating holes, making holes the majority carriers. (S) Depletion region → (1): The narrow region near the p-n junction devoid of free mobile charge carriers, containing only immobile donor and acceptor ions.",
@@ -920,7 +920,7 @@
   },
   {
     "id": "phy-semi-pn-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following bias conditions (Column I) with their effects on a p-n junction diode (Column II):\n\nColumn I:\n(P) Forward bias with V > V_knee\n(Q) Forward bias with V < V_knee\n(R) Reverse bias with V < V_breakdown\n(S) Reverse bias with V ≥ V_breakdown\n\nColumn II:\n(1) Very small current flows; depletion region widens; only minority carriers drift across\n(2) Large current flows exponentially; depletion region is very narrow; low dynamic resistance\n(3) Negligible current flows; depletion region slightly reduced but barrier not fully overcome\n(4) Sudden large reverse current flows; can permanently damage the diode if uncontrolled",
     "explanation": "(P) Forward bias with V > V_knee → (2): Once the applied forward voltage exceeds the knee voltage (~0.7 V for Si), the barrier is effectively overcome, and current increases exponentially. The depletion region becomes very narrow and dynamic resistance is low. (Q) Forward bias with V < V_knee → (3): Below the knee voltage, the applied voltage partially reduces the barrier but not enough for significant current flow. Only a negligible current flows. (R) Reverse bias with V < V_breakdown → (1): In normal reverse bias, the depletion region widens, and only a small reverse saturation current due to minority carriers flows. (S) Reverse bias with V ≥ V_breakdown → (4): At breakdown voltage, either Zener effect or avalanche multiplication causes a sudden dramatic increase in reverse current, which can damage the diode if not limited by an external resistance.",
@@ -982,7 +982,7 @@
   },
   {
     "id": "phy-semi-pn-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In a p-n junction at thermal equilibrium (no external bias), the net current through the junction is zero because the diffusion current is exactly balanced by the drift current.",
     "explanation": "This statement is TRUE. When a p-n junction is formed and reaches thermal equilibrium (no external voltage applied), majority carriers diffuse across the junction due to concentration gradients, creating a diffusion current. Simultaneously, the electric field in the depletion region (created by immobile ions) sweeps minority carriers across, producing a drift current in the opposite direction. At equilibrium, these two currents are exactly equal and opposite, resulting in zero net current through the junction. This is the fundamental equilibrium condition of a p-n junction.",
@@ -1034,7 +1034,7 @@
   },
   {
     "id": "phy-semi-pn-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In a p-type semiconductor, the majority carriers are electrons and the minority carriers are holes.",
     "explanation": "This statement is FALSE. In a p-type semiconductor, the majority carriers are holes (created by trivalent acceptor impurities such as B, Al, Ga, In) and the minority carriers are electrons. The statement has the carriers reversed. The 'p' in p-type stands for positive, referring to the positive holes that are the majority carriers. Electrons, being thermally generated in smaller numbers, are the minority carriers in p-type material.",
@@ -1086,7 +1086,7 @@
   },
   {
     "id": "phy-semi-pn-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "When a p-n junction diode is reverse biased beyond a critical voltage called the ________ voltage, a sudden and large increase in current occurs due to either Zener effect or avalanche multiplication.",
     "explanation": "The correct answer is 'breakdown' voltage. When the reverse bias voltage applied across a p-n junction diode exceeds a certain critical value called the breakdown voltage, the reverse current increases dramatically. This can occur through two mechanisms: (1) Zener breakdown — occurs in heavily doped, narrow-junction diodes (typically V_breakdown < 6 V) where the intense electric field directly ionizes atoms by pulling electrons from covalent bonds (quantum mechanical tunneling); (2) Avalanche breakdown — occurs in lightly doped, wider-junction diodes (typically V_breakdown > 6 V) where accelerated carriers gain enough kinetic energy to knock out additional carriers through impact ionization, creating a chain reaction.",
@@ -1147,7 +1147,7 @@
   },
   {
     "id": "phy-semi-pn-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "hard",
     "question_text": "A student sets up a circuit to study the V-I characteristics of a silicon p-n junction diode. She connects a variable DC power supply, a series resistance of 1 kΩ, and an ammeter in series with the diode, and a voltmeter in parallel with the diode. When the applied EMF from the power supply is 5 V in forward bias configuration, the voltmeter across the diode reads 0.7 V. What is the current through the diode as indicated by the ammeter?",
     "explanation": "In the forward-biased circuit, the total EMF (5 V) is distributed across the series resistance and the diode. The voltage across the series resistance R is: V_R = EMF − V_diode = 5 V − 0.7 V = 4.3 V. Using Ohm's law, the current through the circuit (and hence through the diode, since they are in series) is: I = V_R / R = 4.3 V / 1000 Ω = 4.3 × 10⁻³ A = 4.3 mA. The series resistance serves as a current-limiting resistor to protect the diode from excessive current.",

@@ -6,22 +6,57 @@
     "question_text": "In a stationary (standing) wave, the distance between two consecutive nodes is:",
     "explanation": "In a standing wave, nodes are points of zero displacement and they are separated by a distance of lambda/2, where lambda is the wavelength. Similarly, consecutive antinodes are also lambda/2 apart. The distance between a node and an adjacent antinode is lambda/4.",
     "correct_answer": "A",
-    "concept_tags": ["standing-wave", "nodes", "wavelength", "node-spacing"],
+    "concept_tags": [
+      "standing-wave",
+      "nodes",
+      "wavelength",
+      "node-spacing"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "lambda/2", "is_correct": true },
-      { "key": "B", "text": "lambda", "is_correct": false },
-      { "key": "C", "text": "lambda/4", "is_correct": false },
-      { "key": "D", "text": "2*lambda", "is_correct": false }
+      {
+        "key": "A",
+        "text": "lambda/2",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "lambda",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "lambda/4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2*lambda",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "lambda is the distance between alternate nodes (i.e., separated by two half-wavelengths), not consecutive nodes.", "misconception": "Confusing the separation of alternate nodes with consecutive nodes" },
-      { "option_key": "C", "hint": "lambda/4 is the distance between a node and its nearest antinode, not between two consecutive nodes.", "misconception": "Confusing node-to-antinode distance with node-to-node distance" },
-      { "option_key": "D", "hint": "2*lambda would span four node-to-node intervals. The fundamental spacing between consecutive nodes is much smaller.", "misconception": "Incorrect wavelength relationship for standing waves" }
+      {
+        "option_key": "B",
+        "hint": "lambda is the distance between alternate nodes (i.e., separated by two half-wavelengths), not consecutive nodes.",
+        "misconception": "Confusing the separation of alternate nodes with consecutive nodes"
+      },
+      {
+        "option_key": "C",
+        "hint": "lambda/4 is the distance between a node and its nearest antinode, not between two consecutive nodes.",
+        "misconception": "Confusing node-to-antinode distance with node-to-node distance"
+      },
+      {
+        "option_key": "D",
+        "hint": "2*lambda would span four node-to-node intervals. The fundamental spacing between consecutive nodes is much smaller.",
+        "misconception": "Incorrect wavelength relationship for standing waves"
+      }
     ]
   },
   {
@@ -31,22 +66,56 @@
     "question_text": "A pipe closed at one end can produce:",
     "explanation": "A pipe closed at one end (closed pipe) always has a node at the closed end and an antinode at the open end. This boundary condition allows only odd harmonics to be produced: the fundamental (1st harmonic), 3rd harmonic, 5th harmonic, and so on. Even harmonics are absent in a closed pipe.",
     "correct_answer": "B",
-    "concept_tags": ["closed-pipe", "odd-harmonics", "boundary-conditions"],
+    "concept_tags": [
+      "closed-pipe",
+      "odd-harmonics",
+      "boundary-conditions"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "All harmonics", "is_correct": false },
-      { "key": "B", "text": "Only odd harmonics", "is_correct": true },
-      { "key": "C", "text": "Only even harmonics", "is_correct": false },
-      { "key": "D", "text": "Only the fundamental frequency", "is_correct": false }
+      {
+        "key": "A",
+        "text": "All harmonics",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Only odd harmonics",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Only even harmonics",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Only the fundamental frequency",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "All harmonics are produced by a pipe open at both ends or a string fixed at both ends, not a closed pipe. The closed end imposes a constraint that eliminates even harmonics.", "misconception": "Confusing open pipe harmonics with closed pipe harmonics" },
-      { "option_key": "C", "hint": "Even harmonics require symmetric boundary conditions (both ends identical). A closed pipe has asymmetric boundaries (one node, one antinode), which forbids even harmonics.", "misconception": "Reversing the harmonic series of a closed pipe" },
-      { "option_key": "D", "hint": "A closed pipe can produce higher harmonics (overtones) in addition to the fundamental; they are the 3rd, 5th, 7th harmonics, etc.", "misconception": "Thinking a closed pipe can only vibrate in its fundamental mode" }
+      {
+        "option_key": "A",
+        "hint": "All harmonics are produced by a pipe open at both ends or a string fixed at both ends, not a closed pipe. The closed end imposes a constraint that eliminates even harmonics.",
+        "misconception": "Confusing open pipe harmonics with closed pipe harmonics"
+      },
+      {
+        "option_key": "C",
+        "hint": "Even harmonics require symmetric boundary conditions (both ends identical). A closed pipe has asymmetric boundaries (one node, one antinode), which forbids even harmonics.",
+        "misconception": "Reversing the harmonic series of a closed pipe"
+      },
+      {
+        "option_key": "D",
+        "hint": "A closed pipe can produce higher harmonics (overtones) in addition to the fundamental; they are the 3rd, 5th, 7th harmonics, etc.",
+        "misconception": "Thinking a closed pipe can only vibrate in its fundamental mode"
+      }
     ]
   },
   {
@@ -56,22 +125,56 @@
     "question_text": "The equation of a standing wave is given by y = 2A sin(kx) cos(omega*t). The amplitude of the standing wave at a point x is:",
     "explanation": "In the standing wave equation y = 2A sin(kx) cos(omega*t), the term cos(omega*t) represents the time variation and sin(kx) represents the spatial variation. The amplitude at any point x is determined by the spatial factor: amplitude = 2A sin(kx). This amplitude varies from 0 (at nodes where kx = n*pi) to 2A (at antinodes where kx = (2n+1)*pi/2).",
     "correct_answer": "C",
-    "concept_tags": ["standing-wave-equation", "amplitude-variation", "nodes-antinodes"],
+    "concept_tags": [
+      "standing-wave-equation",
+      "amplitude-variation",
+      "nodes-antinodes"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2A", "is_correct": false },
-      { "key": "B", "text": "A sin(kx)", "is_correct": false },
-      { "key": "C", "text": "2A sin(kx)", "is_correct": true },
-      { "key": "D", "text": "2A cos(omega*t)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "2A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A sin(kx)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2A sin(kx)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "2A cos(omega*t)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "2A is the maximum possible amplitude (at antinodes), not the amplitude at an arbitrary point x. The amplitude varies with position in a standing wave.", "misconception": "Treating standing wave amplitude as constant like a progressive wave" },
-      { "option_key": "B", "hint": "The coefficient is 2A, not A. The factor of 2 arises from the superposition of two waves of amplitude A travelling in opposite directions.", "misconception": "Missing the factor of 2 from superposition" },
-      { "option_key": "D", "hint": "2A cos(omega*t) is the time-varying factor, not the amplitude. Amplitude is position-dependent and does not include the time term.", "misconception": "Confusing time variation with spatial amplitude" }
+      {
+        "option_key": "A",
+        "hint": "2A is the maximum possible amplitude (at antinodes), not the amplitude at an arbitrary point x. The amplitude varies with position in a standing wave.",
+        "misconception": "Treating standing wave amplitude as constant like a progressive wave"
+      },
+      {
+        "option_key": "B",
+        "hint": "The coefficient is 2A, not A. The factor of 2 arises from the superposition of two waves of amplitude A travelling in opposite directions.",
+        "misconception": "Missing the factor of 2 from superposition"
+      },
+      {
+        "option_key": "D",
+        "hint": "2A cos(omega*t) is the time-varying factor, not the amplitude. Amplitude is position-dependent and does not include the time term.",
+        "misconception": "Confusing time variation with spatial amplitude"
+      }
     ]
   },
   {
@@ -81,22 +184,56 @@
     "question_text": "A string of length 1 m is fixed at both ends. If the speed of transverse waves on the string is 100 m/s, the fundamental frequency of vibration is:",
     "explanation": "For a string fixed at both ends, the fundamental frequency is given by f_1 = v/(2L). Substituting v = 100 m/s and L = 1 m: f_1 = 100/(2 x 1) = 50 Hz. In the fundamental mode, the string vibrates with one loop (one antinode at the centre, nodes at both fixed ends).",
     "correct_answer": "D",
-    "concept_tags": ["fundamental-frequency", "string-fixed-both-ends", "harmonic-formula"],
+    "concept_tags": [
+      "fundamental-frequency",
+      "string-fixed-both-ends",
+      "harmonic-formula"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "25 Hz", "is_correct": false },
-      { "key": "B", "text": "100 Hz", "is_correct": false },
-      { "key": "C", "text": "200 Hz", "is_correct": false },
-      { "key": "D", "text": "50 Hz", "is_correct": true }
+      {
+        "key": "A",
+        "text": "25 Hz",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "100 Hz",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "200 Hz",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "50 Hz",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "25 Hz would result from using f = v/(4L), which is the formula for a closed pipe, not a string fixed at both ends.", "misconception": "Using the closed pipe formula for a string fixed at both ends" },
-      { "option_key": "B", "hint": "100 Hz would come from f = v/L, which misses the factor of 2 in the denominator. For the fundamental mode, exactly half a wavelength fits in the string length.", "misconception": "Forgetting the factor of 2 in the fundamental frequency formula" },
-      { "option_key": "C", "hint": "200 Hz = 2v/L, which corresponds to no standard formula. Recheck: for the fundamental, lambda = 2L so f = v/lambda = v/(2L).", "misconception": "Arithmetic or formula error" }
+      {
+        "option_key": "A",
+        "hint": "25 Hz would result from using f = v/(4L), which is the formula for a closed pipe, not a string fixed at both ends.",
+        "misconception": "Using the closed pipe formula for a string fixed at both ends"
+      },
+      {
+        "option_key": "B",
+        "hint": "100 Hz would come from f = v/L, which misses the factor of 2 in the denominator. For the fundamental mode, exactly half a wavelength fits in the string length.",
+        "misconception": "Forgetting the factor of 2 in the fundamental frequency formula"
+      },
+      {
+        "option_key": "C",
+        "hint": "200 Hz = 2v/L, which corresponds to no standard formula. Recheck: for the fundamental, lambda = 2L so f = v/lambda = v/(2L).",
+        "misconception": "Arithmetic or formula error"
+      }
     ]
   },
   {
@@ -106,22 +243,57 @@
     "question_text": "The second overtone of an open organ pipe has the same frequency as the first overtone of a closed organ pipe. If the length of the closed pipe is 30 cm, the length of the open pipe is:",
     "explanation": "For an open pipe, the n-th harmonic frequency is f_n = n*v/(2L_o). The second overtone of an open pipe is the 3rd harmonic: f = 3v/(2L_o). For a closed pipe, the n-th allowed harmonic is f_n = n*v/(4L_c) where n = 1, 3, 5... The first overtone of a closed pipe is the 3rd harmonic: f = 3v/(4L_c). Setting them equal: 3v/(2L_o) = 3v/(4L_c). This gives 1/(2L_o) = 1/(4L_c), so L_o = 2L_c = 2 x 30 = 60 cm.",
     "correct_answer": "A",
-    "concept_tags": ["open-pipe", "closed-pipe", "overtones", "harmonics-comparison"],
+    "concept_tags": [
+      "open-pipe",
+      "closed-pipe",
+      "overtones",
+      "harmonics-comparison"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "60 cm", "is_correct": true },
-      { "key": "B", "text": "40 cm", "is_correct": false },
-      { "key": "C", "text": "30 cm", "is_correct": false },
-      { "key": "D", "text": "20 cm", "is_correct": false }
+      {
+        "key": "A",
+        "text": "60 cm",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "40 cm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "30 cm",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "20 cm",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "40 cm results from incorrectly using the 2nd harmonic (instead of 3rd harmonic) as the first overtone for the closed pipe. In a closed pipe the first overtone is the 3rd harmonic, not the 2nd.", "misconception": "Confusing harmonic number with overtone number for closed pipes" },
-      { "option_key": "C", "hint": "30 cm means L_o = L_c. This would be true only if the harmonic numbers in both pipes were identical, which they are here (both 3rd), but the formulas differ (v/2L vs v/4L).", "misconception": "Ignoring the different denominator factors for open and closed pipes" },
-      { "option_key": "D", "hint": "20 cm would imply L_o = (2/3)L_c, which does not follow from equating the 3rd harmonics of both pipe types.", "misconception": "Arithmetic error in solving the equation" }
+      {
+        "option_key": "B",
+        "hint": "40 cm results from incorrectly using the 2nd harmonic (instead of 3rd harmonic) as the first overtone for the closed pipe. In a closed pipe the first overtone is the 3rd harmonic, not the 2nd.",
+        "misconception": "Confusing harmonic number with overtone number for closed pipes"
+      },
+      {
+        "option_key": "C",
+        "hint": "30 cm means L_o = L_c. This would be true only if the harmonic numbers in both pipes were identical, which they are here (both 3rd), but the formulas differ (v/2L vs v/4L).",
+        "misconception": "Ignoring the different denominator factors for open and closed pipes"
+      },
+      {
+        "option_key": "D",
+        "hint": "20 cm would imply L_o = (2/3)L_c, which does not follow from equating the 3rd harmonics of both pipe types.",
+        "misconception": "Arithmetic error in solving the equation"
+      }
     ]
   },
   {
@@ -131,22 +303,56 @@
     "question_text": "In a resonance tube experiment, the first and second resonance positions are found at 17 cm and 51 cm respectively. The wavelength of the sound wave is:",
     "explanation": "In a resonance tube (closed pipe), resonances occur at lengths L_1 = lambda/4 + e and L_2 = 3*lambda/4 + e, where e is the end correction. Subtracting: L_2 - L_1 = lambda/2. Therefore lambda = 2(L_2 - L_1) = 2(51 - 17) = 2 x 34 = 68 cm. This method conveniently eliminates the end correction.",
     "correct_answer": "D",
-    "concept_tags": ["resonance-tube", "end-correction", "wavelength-determination"],
+    "concept_tags": [
+      "resonance-tube",
+      "end-correction",
+      "wavelength-determination"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "34 cm", "is_correct": false },
-      { "key": "B", "text": "51 cm", "is_correct": false },
-      { "key": "C", "text": "102 cm", "is_correct": false },
-      { "key": "D", "text": "68 cm", "is_correct": true }
+      {
+        "key": "A",
+        "text": "34 cm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "51 cm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "102 cm",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "68 cm",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "34 cm is L_2 - L_1, which equals lambda/2. You need to multiply by 2 to get the full wavelength.", "misconception": "Forgetting to double the difference to obtain the full wavelength" },
-      { "option_key": "B", "hint": "51 cm is simply the second resonance length, not the wavelength. The wavelength must be derived from the difference between the two resonance positions.", "misconception": "Confusing resonance length with wavelength" },
-      { "option_key": "C", "hint": "102 cm = 2 x 51, which would come from incorrectly doubling the second resonance length. The correct formula uses the difference L_2 - L_1.", "misconception": "Using the wrong formula for wavelength from resonance tube data" }
+      {
+        "option_key": "A",
+        "hint": "34 cm is L_2 - L_1, which equals lambda/2. You need to multiply by 2 to get the full wavelength.",
+        "misconception": "Forgetting to double the difference to obtain the full wavelength"
+      },
+      {
+        "option_key": "B",
+        "hint": "51 cm is simply the second resonance length, not the wavelength. The wavelength must be derived from the difference between the two resonance positions.",
+        "misconception": "Confusing resonance length with wavelength"
+      },
+      {
+        "option_key": "C",
+        "hint": "102 cm = 2 x 51, which would come from incorrectly doubling the second resonance length. The correct formula uses the difference L_2 - L_1.",
+        "misconception": "Using the wrong formula for wavelength from resonance tube data"
+      }
     ]
   },
   {
@@ -156,22 +362,57 @@
     "question_text": "The fundamental frequency of a sonometer wire of length L, mass per unit length mu, and tension T is given by:",
     "explanation": "For a sonometer wire (string fixed at both ends), the fundamental frequency is f = (1/2L)*sqrt(T/mu), where T is the tension and mu is the mass per unit length (linear density). This follows from v = sqrt(T/mu) and the fundamental condition lambda = 2L, giving f = v/(2L) = (1/2L)*sqrt(T/mu). This is also known as the first law of transverse vibrations.",
     "correct_answer": "C",
-    "concept_tags": ["sonometer", "fundamental-frequency", "laws-of-vibration", "transverse-vibration"],
+    "concept_tags": [
+      "sonometer",
+      "fundamental-frequency",
+      "laws-of-vibration",
+      "transverse-vibration"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "f = (1/2L)*sqrt(mu/T)", "is_correct": false },
-      { "key": "B", "text": "f = (1/L)*sqrt(T/mu)", "is_correct": false },
-      { "key": "C", "text": "f = (1/2L)*sqrt(T/mu)", "is_correct": true },
-      { "key": "D", "text": "f = (2/L)*sqrt(T/mu)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "f = (1/2L)*sqrt(mu/T)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "f = (1/L)*sqrt(T/mu)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "f = (1/2L)*sqrt(T/mu)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "f = (2/L)*sqrt(T/mu)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This has T and mu interchanged under the square root. Since wave speed v = sqrt(T/mu), T must be in the numerator inside the square root.", "misconception": "Inverting the T/mu ratio in the wave speed formula" },
-      { "option_key": "B", "hint": "The factor should be 1/(2L), not 1/L. In the fundamental mode, the wavelength equals 2L (one complete loop), giving f = v/(2L).", "misconception": "Using lambda = L instead of lambda = 2L for the fundamental" },
-      { "option_key": "D", "hint": "2/L would correspond to a mode with very short wavelength. The fundamental has the lowest frequency, and f = v/(2L) = (1/2L)*sqrt(T/mu).", "misconception": "Incorrect formula for fundamental mode" }
+      {
+        "option_key": "A",
+        "hint": "This has T and mu interchanged under the square root. Since wave speed v = sqrt(T/mu), T must be in the numerator inside the square root.",
+        "misconception": "Inverting the T/mu ratio in the wave speed formula"
+      },
+      {
+        "option_key": "B",
+        "hint": "The factor should be 1/(2L), not 1/L. In the fundamental mode, the wavelength equals 2L (one complete loop), giving f = v/(2L).",
+        "misconception": "Using lambda = L instead of lambda = 2L for the fundamental"
+      },
+      {
+        "option_key": "D",
+        "hint": "2/L would correspond to a mode with very short wavelength. The fundamental has the lowest frequency, and f = v/(2L) = (1/2L)*sqrt(T/mu).",
+        "misconception": "Incorrect formula for fundamental mode"
+      }
     ]
   },
   {
@@ -181,22 +422,57 @@
     "question_text": "A stretched string is vibrating in its third harmonic. The number of nodes and antinodes formed are respectively:",
     "explanation": "For a string fixed at both ends vibrating in the n-th harmonic, the number of loops (antinodes) equals n and the number of nodes equals (n + 1). For the 3rd harmonic: antinodes = 3, nodes = 4. The nodes include the two fixed endpoints and two internal nodes.",
     "correct_answer": "B",
-    "concept_tags": ["harmonics", "nodes-antinodes", "string-vibration", "third-harmonic"],
+    "concept_tags": [
+      "harmonics",
+      "nodes-antinodes",
+      "string-vibration",
+      "third-harmonic"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "3 nodes and 4 antinodes", "is_correct": false },
-      { "key": "B", "text": "4 nodes and 3 antinodes", "is_correct": true },
-      { "key": "C", "text": "3 nodes and 3 antinodes", "is_correct": false },
-      { "key": "D", "text": "4 nodes and 4 antinodes", "is_correct": false }
+      {
+        "key": "A",
+        "text": "3 nodes and 4 antinodes",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4 nodes and 3 antinodes",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "3 nodes and 3 antinodes",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4 nodes and 4 antinodes",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This reverses nodes and antinodes. In the n-th harmonic, the string has (n+1) nodes and n antinodes, not the other way around.", "misconception": "Interchanging the count of nodes and antinodes" },
-      { "option_key": "C", "hint": "Equal numbers of nodes and antinodes is not possible for a string fixed at both ends. Since both ends must be nodes, there is always one more node than the number of antinodes.", "misconception": "Forgetting that fixed ends are always nodes" },
-      { "option_key": "D", "hint": "Equal numbers would require an antinode at an endpoint, which is impossible for a fixed end. Nodes always exceed antinodes by 1.", "misconception": "Not applying the boundary condition at fixed ends" }
+      {
+        "option_key": "A",
+        "hint": "This reverses nodes and antinodes. In the n-th harmonic, the string has (n+1) nodes and n antinodes, not the other way around.",
+        "misconception": "Interchanging the count of nodes and antinodes"
+      },
+      {
+        "option_key": "C",
+        "hint": "Equal numbers of nodes and antinodes is not possible for a string fixed at both ends. Since both ends must be nodes, there is always one more node than the number of antinodes.",
+        "misconception": "Forgetting that fixed ends are always nodes"
+      },
+      {
+        "option_key": "D",
+        "hint": "Equal numbers would require an antinode at an endpoint, which is impossible for a fixed end. Nodes always exceed antinodes by 1.",
+        "misconception": "Not applying the boundary condition at fixed ends"
+      }
     ]
   },
   {
@@ -206,22 +482,58 @@
     "question_text": "An open organ pipe of length L is in resonance with a tuning fork. If the pipe is now half-submerged in water (closed at water surface), the new resonant frequency compared to the original fundamental frequency is:",
     "explanation": "Originally, the open pipe has fundamental frequency f_open = v/(2L). When half-submerged, the water surface acts as a closed end. The effective length becomes L/2 and the pipe becomes a closed pipe. The fundamental frequency of this closed pipe is f_closed = v/(4 x L/2) = v/(2L) = f_open. Thus the new resonant frequency equals the original fundamental frequency. This is because the open pipe fundamental has lambda = 2L while the half-length closed pipe fundamental has lambda = 4(L/2) = 2L, giving the same frequency.",
     "correct_answer": "D",
-    "concept_tags": ["open-pipe", "closed-pipe", "resonance", "frequency-comparison", "pipe-immersion"],
+    "concept_tags": [
+      "open-pipe",
+      "closed-pipe",
+      "resonance",
+      "frequency-comparison",
+      "pipe-immersion"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Doubles", "is_correct": false },
-      { "key": "B", "text": "Becomes half", "is_correct": false },
-      { "key": "C", "text": "Becomes four times", "is_correct": false },
-      { "key": "D", "text": "Remains the same", "is_correct": true }
+      {
+        "key": "A",
+        "text": "Doubles",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Becomes half",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Becomes four times",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Remains the same",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Doubling would occur if only the length halved while the pipe type remained the same (open). But the pipe also changes from open to closed, which changes the formula from v/(2L) to v/(4L').", "misconception": "Not accounting for the change from open to closed pipe" },
-      { "option_key": "B", "hint": "Halving would occur if the effective length doubled or the formula changed unfavourably. Here the length halves AND the pipe type changes, and these two effects exactly compensate.", "misconception": "Applying only one of the two changes" },
-      { "option_key": "C", "hint": "A fourfold increase has no basis. The length halves (would double f for same pipe type) but the change to closed pipe (v/4L' instead of v/2L') halves it back.", "misconception": "Incorrectly combining the effects of length change and pipe type change" }
+      {
+        "option_key": "A",
+        "hint": "Doubling would occur if only the length halved while the pipe type remained the same (open). But the pipe also changes from open to closed, which changes the formula from v/(2L) to v/(4L').",
+        "misconception": "Not accounting for the change from open to closed pipe"
+      },
+      {
+        "option_key": "B",
+        "hint": "Halving would occur if the effective length doubled or the formula changed unfavourably. Here the length halves AND the pipe type changes, and these two effects exactly compensate.",
+        "misconception": "Applying only one of the two changes"
+      },
+      {
+        "option_key": "C",
+        "hint": "A fourfold increase has no basis. The length halves (would double f for same pipe type) but the change to closed pipe (v/4L' instead of v/2L') halves it back.",
+        "misconception": "Incorrectly combining the effects of length change and pipe type change"
+      }
     ]
   },
   {
@@ -231,22 +543,56 @@
     "question_text": "The frequency of the third overtone of a closed organ pipe is 770 Hz. The frequency of the first overtone of an open organ pipe of the same length is:",
     "explanation": "For a closed pipe, the allowed harmonics are 1, 3, 5, 7... The third overtone is the 7th harmonic: f = 7v/(4L) = 770 Hz. Therefore v/(4L) = 770/7 = 110 Hz, and v/L = 440 Hz. For an open pipe of the same length, the first overtone is the 2nd harmonic: f = 2v/(2L) = v/L = 440 Hz. Hence the first overtone of the open pipe is 440 Hz.",
     "correct_answer": "C",
-    "concept_tags": ["closed-pipe-overtones", "open-pipe-harmonics", "frequency-calculation"],
+    "concept_tags": [
+      "closed-pipe-overtones",
+      "open-pipe-harmonics",
+      "frequency-calculation"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "220 Hz", "is_correct": false },
-      { "key": "B", "text": "330 Hz", "is_correct": false },
-      { "key": "C", "text": "440 Hz", "is_correct": true },
-      { "key": "D", "text": "660 Hz", "is_correct": false }
+      {
+        "key": "A",
+        "text": "220 Hz",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "330 Hz",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "440 Hz",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "660 Hz",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "220 Hz = 2 x 110 Hz, which is the 2nd harmonic of the closed pipe's fundamental. But the 2nd harmonic does not exist in a closed pipe. The open pipe's first overtone = v/L = 4 x 110 = 440 Hz.", "misconception": "Using even harmonics for closed pipe or incorrect calculation" },
-      { "option_key": "B", "hint": "330 Hz = 3 x 110 Hz, which is the 3rd harmonic of the closed pipe (its first overtone), not the first overtone of the open pipe.", "misconception": "Confusing the closed pipe's overtone with the open pipe's overtone" },
-      { "option_key": "D", "hint": "660 Hz = 6 x 110 Hz = 3v/(2L), which is the 3rd harmonic (second overtone) of the open pipe, not its first overtone.", "misconception": "Confusing overtone numbers for the open pipe" }
+      {
+        "option_key": "A",
+        "hint": "220 Hz = 2 x 110 Hz, which is the 2nd harmonic of the closed pipe's fundamental. But the 2nd harmonic does not exist in a closed pipe. The open pipe's first overtone = v/L = 4 x 110 = 440 Hz.",
+        "misconception": "Using even harmonics for closed pipe or incorrect calculation"
+      },
+      {
+        "option_key": "B",
+        "hint": "330 Hz = 3 x 110 Hz, which is the 3rd harmonic of the closed pipe (its first overtone), not the first overtone of the open pipe.",
+        "misconception": "Confusing the closed pipe's overtone with the open pipe's overtone"
+      },
+      {
+        "option_key": "D",
+        "hint": "660 Hz = 6 x 110 Hz = 3v/(2L), which is the 3rd harmonic (second overtone) of the open pipe, not its first overtone.",
+        "misconception": "Confusing overtone numbers for the open pipe"
+      }
     ]
   },
   {
@@ -256,22 +602,57 @@
     "question_text": "In a resonance tube experiment, a tuning fork of frequency 480 Hz is used. The end correction is 1 cm. If the speed of sound is 336 m/s, the length of the air column at the first resonance is:",
     "explanation": "At first resonance in a resonance tube (closed pipe), L_1 + e = lambda/4, where e is the end correction. The wavelength lambda = v/f = 336/480 = 0.7 m = 70 cm. Therefore L_1 + e = 70/4 = 17.5 cm. Given e = 1 cm, L_1 = 17.5 - 1 = 16.5 cm.",
     "correct_answer": "D",
-    "concept_tags": ["resonance-tube", "end-correction", "first-resonance", "numerical"],
+    "concept_tags": [
+      "resonance-tube",
+      "end-correction",
+      "first-resonance",
+      "numerical"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "17.5 cm", "is_correct": false },
-      { "key": "B", "text": "18.5 cm", "is_correct": false },
-      { "key": "C", "text": "15.5 cm", "is_correct": false },
-      { "key": "D", "text": "16.5 cm", "is_correct": true }
+      {
+        "key": "A",
+        "text": "17.5 cm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "18.5 cm",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "15.5 cm",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "16.5 cm",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "17.5 cm is lambda/4, which includes the end correction. The actual air column length L_1 = lambda/4 - e = 17.5 - 1 = 16.5 cm.", "misconception": "Forgetting to subtract the end correction from lambda/4" },
-      { "option_key": "B", "hint": "18.5 cm = lambda/4 + e, which adds the end correction instead of subtracting it. The correct relation is L_1 = lambda/4 - e.", "misconception": "Adding end correction instead of subtracting" },
-      { "option_key": "C", "hint": "15.5 cm results from subtracting 2 cm (double the end correction) instead of 1 cm. Only one end correction applies at the open end.", "misconception": "Applying end correction twice" }
+      {
+        "option_key": "A",
+        "hint": "17.5 cm is lambda/4, which includes the end correction. The actual air column length L_1 = lambda/4 - e = 17.5 - 1 = 16.5 cm.",
+        "misconception": "Forgetting to subtract the end correction from lambda/4"
+      },
+      {
+        "option_key": "B",
+        "hint": "18.5 cm = lambda/4 + e, which adds the end correction instead of subtracting it. The correct relation is L_1 = lambda/4 - e.",
+        "misconception": "Adding end correction instead of subtracting"
+      },
+      {
+        "option_key": "C",
+        "hint": "15.5 cm results from subtracting 2 cm (double the end correction) instead of 1 cm. Only one end correction applies at the open end.",
+        "misconception": "Applying end correction twice"
+      }
     ]
   },
   {
@@ -281,222 +662,538 @@
     "question_text": "A sonometer wire of length 100 cm is in unison with a tuning fork. When the length is shortened by 10 cm, it produces 5 beats per second with the fork. The frequency of the tuning fork is:",
     "explanation": "Let the frequency of the tuning fork be f. For a sonometer wire with constant tension and linear density, f is inversely proportional to length: f = v/(2L). When L_1 = 100 cm, the wire is in unison with the fork: f = v/(2 x 100). When L_2 = 90 cm, the new frequency f' = v/(2 x 90). Since f' > f (shorter wire gives higher frequency), the beat frequency = f' - f = 5. Now f'/f = L_1/L_2 = 100/90 = 10/9. So f' = (10/9)f. Therefore (10/9)f - f = f/9 = 5, giving f = 45 Hz.",
     "correct_answer": "C",
-    "concept_tags": ["sonometer", "beats", "frequency-calculation", "inverse-proportionality"],
+    "concept_tags": [
+      "sonometer",
+      "beats",
+      "frequency-calculation",
+      "inverse-proportionality"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "50 Hz", "is_correct": false },
-      { "key": "B", "text": "40 Hz", "is_correct": false },
-      { "key": "C", "text": "45 Hz", "is_correct": true },
-      { "key": "D", "text": "55 Hz", "is_correct": false }
+      {
+        "key": "A",
+        "text": "50 Hz",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "40 Hz",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "45 Hz",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "55 Hz",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "50 Hz would require f/9 to be something other than 5. If f = 50, then f' = 500/9 ≈ 55.56, giving beats = 5.56, not exactly 5.", "misconception": "Rounding error or incorrect ratio setup" },
-      { "option_key": "B", "hint": "If f = 40, then f' = 400/9 ≈ 44.4, giving beats = 4.4, not 5. The calculation does not yield a beat frequency of 5.", "misconception": "Incorrect algebraic manipulation" },
-      { "option_key": "D", "hint": "If f = 55, then f' = 550/9 ≈ 61.1, giving beats ≈ 6.1, not 5. Verify by solving f/9 = 5 directly.", "misconception": "Arithmetic error" }
+      {
+        "option_key": "A",
+        "hint": "50 Hz would require f/9 to be something other than 5. If f = 50, then f' = 500/9 ≈ 55.56, giving beats = 5.56, not exactly 5.",
+        "misconception": "Rounding error or incorrect ratio setup"
+      },
+      {
+        "option_key": "B",
+        "hint": "If f = 40, then f' = 400/9 ≈ 44.4, giving beats = 4.4, not 5. The calculation does not yield a beat frequency of 5.",
+        "misconception": "Incorrect algebraic manipulation"
+      },
+      {
+        "option_key": "D",
+        "hint": "If f = 55, then f' = 550/9 ≈ 61.1, giving beats ≈ 6.1, not 5. Verify by solving f/9 = 5 directly.",
+        "misconception": "Arithmetic error"
+      }
     ]
   },
   {
     "id": "phy-wave-standing-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): In a standing wave, energy is not transported from one point to another.\nReason (R): A standing wave is formed by the superposition of two identical progressive waves travelling in opposite directions.",
     "explanation": "The Assertion is correct: in a standing wave, there is no net energy transfer along the medium because the energy transported by one progressive wave in one direction is exactly cancelled by the energy transported by the other wave in the opposite direction. The Reason is also correct and is the correct explanation of the Assertion. It is precisely because a standing wave results from two identical waves travelling in opposite directions that the net energy flow is zero.",
     "correct_answer": "A",
-    "concept_tags": ["standing-wave-energy", "superposition", "energy-transport", "progressive-waves"],
+    "concept_tags": [
+      "standing-wave-energy",
+      "superposition",
+      "energy-transport",
+      "progressive-waves"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The reason directly explains the assertion. The zero net energy transport is a direct consequence of two identical waves carrying equal energy in opposite directions, resulting in cancellation of energy flow.", "misconception": "Failing to see the causal link between opposite wave superposition and zero energy transport" },
-      { "option_key": "C", "hint": "The reason is factually correct. Standing waves are indeed formed by the superposition of two identical waves moving in opposite directions. This is the standard definition.", "misconception": "Thinking standing waves arise from a single wave" },
-      { "option_key": "D", "hint": "The assertion is correct. In a pure standing wave, nodes never transmit energy past them, so there is no net energy propagation along the medium.", "misconception": "Confusing standing waves with progressive waves regarding energy transfer" }
+      {
+        "option_key": "B",
+        "hint": "The reason directly explains the assertion. The zero net energy transport is a direct consequence of two identical waves carrying equal energy in opposite directions, resulting in cancellation of energy flow.",
+        "misconception": "Failing to see the causal link between opposite wave superposition and zero energy transport"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is factually correct. Standing waves are indeed formed by the superposition of two identical waves moving in opposite directions. This is the standard definition.",
+        "misconception": "Thinking standing waves arise from a single wave"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. In a pure standing wave, nodes never transmit energy past them, so there is no net energy propagation along the medium.",
+        "misconception": "Confusing standing waves with progressive waves regarding energy transfer"
+      }
     ]
   },
   {
     "id": "phy-wave-standing-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): The fundamental frequency of an open organ pipe is twice the fundamental frequency of a closed organ pipe of the same length.\nReason (R): In an open pipe, all harmonics are present, while in a closed pipe, only odd harmonics are present.",
     "explanation": "The Assertion is correct: for an open pipe, f_open = v/(2L), and for a closed pipe, f_closed = v/(4L). Therefore f_open = 2 x f_closed. The Reason is also correct: an open pipe supports all harmonics (1, 2, 3, ...) while a closed pipe supports only odd harmonics (1, 3, 5, ...). However, the Reason does NOT correctly explain the Assertion. The fact that open pipes have all harmonics and closed pipes have only odd harmonics describes the overtone structure, but it does not explain WHY the fundamental frequencies differ by a factor of 2. The actual explanation is the different boundary conditions: an open pipe has antinodes at both ends (lambda = 2L), while a closed pipe has a node at one end and antinode at the other (lambda = 4L).",
     "correct_answer": "B",
-    "concept_tags": ["open-pipe", "closed-pipe", "fundamental-frequency", "harmonic-series", "boundary-conditions"],
+    "concept_tags": [
+      "open-pipe",
+      "closed-pipe",
+      "fundamental-frequency",
+      "harmonic-series",
+      "boundary-conditions"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": true },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Although both statements are true, the reason describes the overtone structure (which harmonics are present), not why the fundamental frequencies differ. The fundamental frequency ratio depends on boundary conditions (lambda = 2L vs lambda = 4L), not on the presence of odd vs all harmonics.", "misconception": "Confusing the overtone structure with the cause of different fundamental frequencies" },
-      { "option_key": "C", "hint": "The reason is factually correct. It is well established that open pipes produce all harmonics while closed pipes produce only odd harmonics.", "misconception": "Thinking the harmonic series description is incorrect" },
-      { "option_key": "D", "hint": "The assertion is correct. f_open = v/(2L) = 2 x v/(4L) = 2 x f_closed for pipes of the same length.", "misconception": "Incorrectly computing the fundamental frequency ratio" }
+      {
+        "option_key": "A",
+        "hint": "Although both statements are true, the reason describes the overtone structure (which harmonics are present), not why the fundamental frequencies differ. The fundamental frequency ratio depends on boundary conditions (lambda = 2L vs lambda = 4L), not on the presence of odd vs all harmonics.",
+        "misconception": "Confusing the overtone structure with the cause of different fundamental frequencies"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is factually correct. It is well established that open pipes produce all harmonics while closed pipes produce only odd harmonics.",
+        "misconception": "Thinking the harmonic series description is incorrect"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. f_open = v/(2L) = 2 x v/(4L) = 2 x f_closed for pipes of the same length.",
+        "misconception": "Incorrectly computing the fundamental frequency ratio"
+      }
     ]
   },
   {
     "id": "phy-wave-standing-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match Column I with Column II:\n\nColumn I:\nA. String fixed at both ends (fundamental)\nB. Open pipe (fundamental)\nC. Closed pipe (fundamental)\nD. String fixed at both ends (2nd harmonic)\n\nColumn II:\n1. lambda = 4L\n2. lambda = 2L\n3. lambda = L\n4. lambda = 2L",
     "explanation": "A. String fixed at both ends (fundamental): In the fundamental mode, the string has one loop with nodes at both ends, so L = lambda/2, giving lambda = 2L (matches 2). B. Open pipe (fundamental): Antinodes at both ends, one loop, L = lambda/2, so lambda = 2L (matches 4). C. Closed pipe (fundamental): Node at closed end, antinode at open end, L = lambda/4, so lambda = 4L (matches 1). D. String fixed at both ends (2nd harmonic): Two loops, L = lambda, so lambda = L (matches 3). Correct matching: A-2, B-4, C-1, D-3.",
     "correct_answer": "C",
-    "concept_tags": ["wavelength-modes", "boundary-conditions", "fundamental-harmonics", "pipe-string-comparison"],
+    "concept_tags": [
+      "wavelength-modes",
+      "boundary-conditions",
+      "fundamental-harmonics",
+      "pipe-string-comparison"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-1, B-2, C-3, D-4", "is_correct": false },
-      { "key": "B", "text": "A-2, B-4, C-3, D-1", "is_correct": false },
-      { "key": "C", "text": "A-2, B-4, C-1, D-3", "is_correct": true },
-      { "key": "D", "text": "A-4, B-2, C-1, D-3", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-4, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-4, C-1, D-3",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-4, B-2, C-1, D-3",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "A-1 assigns lambda = 4L to a string fixed at both ends in fundamental mode, which is incorrect. A string fixed at both ends has nodes at both ends giving lambda = 2L, not 4L. lambda = 4L is for a closed pipe.", "misconception": "Confusing string boundary conditions with closed pipe boundary conditions" },
-      { "option_key": "B", "hint": "C-3 assigns lambda = L to the closed pipe fundamental. For a closed pipe, L = lambda/4, so lambda = 4L, not L. lambda = L applies to the 2nd harmonic of a string.", "misconception": "Confusing closed pipe fundamental wavelength with a higher harmonic" },
-      { "option_key": "D", "hint": "A-4 and B-2 interchange the assignments. Both the string fundamental and open pipe fundamental have lambda = 2L, but note that items 2 and 4 in Column II both say lambda = 2L; A matches 2 and B matches 4.", "misconception": "Interchanging the matching of string and open pipe despite both having lambda = 2L" }
+      {
+        "option_key": "A",
+        "hint": "A-1 assigns lambda = 4L to a string fixed at both ends in fundamental mode, which is incorrect. A string fixed at both ends has nodes at both ends giving lambda = 2L, not 4L. lambda = 4L is for a closed pipe.",
+        "misconception": "Confusing string boundary conditions with closed pipe boundary conditions"
+      },
+      {
+        "option_key": "B",
+        "hint": "C-3 assigns lambda = L to the closed pipe fundamental. For a closed pipe, L = lambda/4, so lambda = 4L, not L. lambda = L applies to the 2nd harmonic of a string.",
+        "misconception": "Confusing closed pipe fundamental wavelength with a higher harmonic"
+      },
+      {
+        "option_key": "D",
+        "hint": "A-4 and B-2 interchange the assignments. Both the string fundamental and open pipe fundamental have lambda = 2L, but note that items 2 and 4 in Column II both say lambda = 2L; A matches 2 and B matches 4.",
+        "misconception": "Interchanging the matching of string and open pipe despite both having lambda = 2L"
+      }
     ]
   },
   {
     "id": "phy-wave-standing-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match Column I with Column II:\n\nColumn I:\nA. Sonometer — law of length\nB. Sonometer — law of tension\nC. Sonometer — law of mass\nD. End correction in a pipe\n\nColumn II:\n1. f is proportional to sqrt(T)\n2. f is inversely proportional to L\n3. f is inversely proportional to sqrt(mu)\n4. e = 0.6r (where r is the radius of the pipe)",
     "explanation": "A. Law of length: For constant tension and linear density, f = v/(2L) shows that f is inversely proportional to L (matches 2). B. Law of tension: For constant length and linear density, f = (1/2L)*sqrt(T/mu) shows that f is proportional to sqrt(T) (matches 1). C. Law of mass (linear density): For constant length and tension, f is inversely proportional to sqrt(mu) (matches 3). D. End correction in a pipe: The end correction is approximately e = 0.6r for an unflanged pipe, where r is the radius of the pipe (matches 4). Correct matching: A-2, B-1, C-3, D-4.",
     "correct_answer": "D",
-    "concept_tags": ["sonometer-laws", "law-of-length", "law-of-tension", "law-of-mass", "end-correction"],
+    "concept_tags": [
+      "sonometer-laws",
+      "law-of-length",
+      "law-of-tension",
+      "law-of-mass",
+      "end-correction"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-1, B-2, C-3, D-4", "is_correct": false },
-      { "key": "B", "text": "A-2, B-3, C-1, D-4", "is_correct": false },
-      { "key": "C", "text": "A-3, B-1, C-2, D-4", "is_correct": false },
-      { "key": "D", "text": "A-2, B-1, C-3, D-4", "is_correct": true }
+      {
+        "key": "A",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-1, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "A-1 assigns f proportional to sqrt(T) to the law of length, which is incorrect. The law of length states f is inversely proportional to L (match 2), not related to tension.", "misconception": "Confusing the law of length with the law of tension" },
-      { "option_key": "B", "hint": "B-3 assigns f inversely proportional to sqrt(mu) to the law of tension. The law of tension describes the dependence of f on sqrt(T), not on sqrt(mu).", "misconception": "Interchanging the laws of tension and mass" },
-      { "option_key": "C", "hint": "A-3 and C-2 are reversed. The law of length gives f inversely proportional to L (match 2), while the law of mass gives f inversely proportional to sqrt(mu) (match 3).", "misconception": "Swapping length and mass law descriptions" }
+      {
+        "option_key": "A",
+        "hint": "A-1 assigns f proportional to sqrt(T) to the law of length, which is incorrect. The law of length states f is inversely proportional to L (match 2), not related to tension.",
+        "misconception": "Confusing the law of length with the law of tension"
+      },
+      {
+        "option_key": "B",
+        "hint": "B-3 assigns f inversely proportional to sqrt(mu) to the law of tension. The law of tension describes the dependence of f on sqrt(T), not on sqrt(mu).",
+        "misconception": "Interchanging the laws of tension and mass"
+      },
+      {
+        "option_key": "C",
+        "hint": "A-3 and C-2 are reversed. The law of length gives f inversely proportional to L (match 2), while the law of mass gives f inversely proportional to sqrt(mu) (match 3).",
+        "misconception": "Swapping length and mass law descriptions"
+      }
     ]
   },
   {
     "id": "phy-wave-standing-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In a standing wave, all particles between two consecutive nodes vibrate in the same phase.",
     "explanation": "This statement is TRUE. In a standing wave, all particles between two consecutive nodes are part of the same loop and vibrate in phase with each other — they all reach their maximum displacement at the same time and pass through the mean position at the same time. However, their amplitudes differ depending on their position. Particles in adjacent loops (separated by a node) vibrate in opposite phase.",
     "correct_answer": "A",
-    "concept_tags": ["standing-wave-phase", "nodes", "in-phase-vibration"],
+    "concept_tags": [
+      "standing-wave-phase",
+      "nodes",
+      "in-phase-vibration"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Particles between two consecutive nodes do vibrate in the same phase. The phase difference across a node (between adjacent loops) is pi, but within a single loop, all particles share the same phase.", "misconception": "Confusing phase variation within a loop with phase reversal across a node" },
-      { "option_key": "C", "hint": "This is not a valid option for this question.", "misconception": null },
-      { "option_key": "D", "hint": "This is not a valid option for this question.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "Particles between two consecutive nodes do vibrate in the same phase. The phase difference across a node (between adjacent loops) is pi, but within a single loop, all particles share the same phase.",
+        "misconception": "Confusing phase variation within a loop with phase reversal across a node"
+      },
+      {
+        "option_key": "C",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-wave-standing-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The frequency of the second overtone of an open organ pipe is four times its fundamental frequency.",
     "explanation": "This statement is FALSE. For an open organ pipe, all harmonics are present. The fundamental is the 1st harmonic (f), the first overtone is the 2nd harmonic (2f), and the second overtone is the 3rd harmonic (3f). Therefore, the second overtone is THREE times the fundamental frequency, not four times. Four times the fundamental would be the 4th harmonic (third overtone).",
     "correct_answer": "B",
-    "concept_tags": ["open-pipe", "overtones", "harmonics", "frequency-ratio"],
+    "concept_tags": [
+      "open-pipe",
+      "overtones",
+      "harmonics",
+      "frequency-ratio"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The second overtone of an open pipe is the 3rd harmonic, which is 3f (not 4f). Remember: for an open pipe, the n-th overtone is the (n+1)-th harmonic.", "misconception": "Confusing overtone number with harmonic number or miscounting overtones" },
-      { "option_key": "C", "hint": "This is not a valid option for this question.", "misconception": null },
-      { "option_key": "D", "hint": "This is not a valid option for this question.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "The second overtone of an open pipe is the 3rd harmonic, which is 3f (not 4f). Remember: for an open pipe, the n-th overtone is the (n+1)-th harmonic.",
+        "misconception": "Confusing overtone number with harmonic number or miscounting overtones"
+      },
+      {
+        "option_key": "C",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-wave-standing-19",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A closed organ pipe has a fundamental frequency of 250 Hz. The frequency of its second overtone is _____ Hz.",
     "explanation": "For a closed organ pipe, only odd harmonics are present. The fundamental (1st harmonic) frequency is f_1 = v/(4L) = 250 Hz. The harmonics are: 1st harmonic = f, 3rd harmonic = 3f (1st overtone), 5th harmonic = 5f (2nd overtone). Therefore, the second overtone = 5f = 5 x 250 = 1250 Hz.",
     "correct_answer": "A",
-    "concept_tags": ["closed-pipe", "overtones", "odd-harmonics", "frequency-calculation"],
+    "concept_tags": [
+      "closed-pipe",
+      "overtones",
+      "odd-harmonics",
+      "frequency-calculation"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "1250", "is_correct": true },
-      { "key": "B", "text": "750", "is_correct": false },
-      { "key": "C", "text": "1000", "is_correct": false },
-      { "key": "D", "text": "500", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1250",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "750",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1000",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "500",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "750 Hz = 3 x 250 Hz, which is the 3rd harmonic or the 1st overtone of the closed pipe, not the 2nd overtone.", "misconception": "Confusing the 1st overtone (3rd harmonic) with the 2nd overtone (5th harmonic)" },
-      { "option_key": "C", "hint": "1000 Hz = 4 x 250 Hz. The 4th harmonic does not exist in a closed pipe because only odd harmonics (1, 3, 5, 7...) are allowed.", "misconception": "Forgetting that even harmonics are absent in a closed pipe" },
-      { "option_key": "D", "hint": "500 Hz = 2 x 250 Hz corresponds to the 2nd harmonic, which is absent in a closed pipe. Only odd multiples of the fundamental are produced.", "misconception": "Applying open pipe harmonic series to a closed pipe" }
+      {
+        "option_key": "B",
+        "hint": "750 Hz = 3 x 250 Hz, which is the 3rd harmonic or the 1st overtone of the closed pipe, not the 2nd overtone.",
+        "misconception": "Confusing the 1st overtone (3rd harmonic) with the 2nd overtone (5th harmonic)"
+      },
+      {
+        "option_key": "C",
+        "hint": "1000 Hz = 4 x 250 Hz. The 4th harmonic does not exist in a closed pipe because only odd harmonics (1, 3, 5, 7...) are allowed.",
+        "misconception": "Forgetting that even harmonics are absent in a closed pipe"
+      },
+      {
+        "option_key": "D",
+        "hint": "500 Hz = 2 x 250 Hz corresponds to the 2nd harmonic, which is absent in a closed pipe. Only odd multiples of the fundamental are produced.",
+        "misconception": "Applying open pipe harmonic series to a closed pipe"
+      }
     ]
   },
   {
     "id": "phy-wave-standing-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A student sets up a resonance tube experiment using a tuning fork of frequency 512 Hz. She finds that the first resonance occurs when the water level is 16.0 cm from the open end, and the second resonance occurs at 49.2 cm from the open end. Based on this data, the speed of sound in air and the end correction are respectively:",
     "explanation": "In a resonance tube experiment: At the first resonance, L_1 + e = lambda/4 ... (1). At the second resonance, L_2 + e = 3*lambda/4 ... (2). Subtracting (1) from (2): L_2 - L_1 = lambda/2. Therefore lambda = 2(L_2 - L_1) = 2(49.2 - 16.0) = 2 x 33.2 = 66.4 cm = 0.664 m. Speed of sound v = f x lambda = 512 x 0.664 = 340 m/s (approximately). From equation (1): e = lambda/4 - L_1 = 66.4/4 - 16.0 = 16.6 - 16.0 = 0.6 cm. Therefore the speed of sound is approximately 340 m/s and the end correction is 0.6 cm.",
     "correct_answer": "B",
-    "concept_tags": ["resonance-tube-experiment", "speed-of-sound", "end-correction", "numerical"],
+    "concept_tags": [
+      "resonance-tube-experiment",
+      "speed-of-sound",
+      "end-correction",
+      "numerical"
+    ],
     "topic": "Standing Waves, Harmonics, and Resonance",
     "subject": "physics",
     "chapter": "Waves",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "v = 332 m/s, e = 1.0 cm", "is_correct": false },
-      { "key": "B", "text": "v = 340 m/s, e = 0.6 cm", "is_correct": true },
-      { "key": "C", "text": "v = 350 m/s, e = 0.8 cm", "is_correct": false },
-      { "key": "D", "text": "v = 328 m/s, e = 1.2 cm", "is_correct": false }
+      {
+        "key": "A",
+        "text": "v = 332 m/s, e = 1.0 cm",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "v = 340 m/s, e = 0.6 cm",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "v = 350 m/s, e = 0.8 cm",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "v = 328 m/s, e = 1.2 cm",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "lambda = 2(49.2 - 16.0) = 66.4 cm, so v = 512 x 0.664 = 339.97 ≈ 340 m/s, not 332 m/s. Also, e = 16.6 - 16.0 = 0.6 cm, not 1.0 cm.", "misconception": "Arithmetic error in calculating wavelength or speed" },
-      { "option_key": "C", "hint": "350 m/s would require lambda = 350/512 = 0.684 m = 68.4 cm, but the measured lambda = 66.4 cm. Recheck your subtraction L_2 - L_1.", "misconception": "Error in calculating the wavelength from resonance lengths" },
-      { "option_key": "D", "hint": "328 m/s is too low and e = 1.2 cm is too high. These values are inconsistent with the measured resonance positions. Use lambda = 2(L_2 - L_1) carefully.", "misconception": "Using incorrect formula or misreading the resonance positions" }
+      {
+        "option_key": "A",
+        "hint": "lambda = 2(49.2 - 16.0) = 66.4 cm, so v = 512 x 0.664 = 339.97 ≈ 340 m/s, not 332 m/s. Also, e = 16.6 - 16.0 = 0.6 cm, not 1.0 cm.",
+        "misconception": "Arithmetic error in calculating wavelength or speed"
+      },
+      {
+        "option_key": "C",
+        "hint": "350 m/s would require lambda = 350/512 = 0.684 m = 68.4 cm, but the measured lambda = 66.4 cm. Recheck your subtraction L_2 - L_1.",
+        "misconception": "Error in calculating the wavelength from resonance lengths"
+      },
+      {
+        "option_key": "D",
+        "hint": "328 m/s is too low and e = 1.2 cm is too high. These values are inconsistent with the measured resonance positions. Use lambda = 2(L_2 - L_1) carefully.",
+        "misconception": "Using incorrect formula or misreading the resonance positions"
+      }
     ]
   }
 ]

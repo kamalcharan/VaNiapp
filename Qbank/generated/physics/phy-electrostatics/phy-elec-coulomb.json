@@ -721,7 +721,7 @@
   },
   {
     "id": "phy-elec-coulomb-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The electric field due to a point charge is spherically symmetric.\nReason (R): The magnitude of Coulomb force depends only on the distance between the charges and not on the direction.",
     "explanation": "The assertion is correct because the field E = kq/r² depends only on r, making it the same in all directions at a given distance. The reason is also correct and directly explains the assertion: since the force (and hence the field) depends only on distance r and not on direction, the field is spherically symmetric.",
@@ -781,7 +781,7 @@
   },
   {
     "id": "phy-elec-coulomb-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): If the distance between two point charges is halved, the force between them becomes four times.\nReason (R): Electrostatic force is inversely proportional to the square of the distance between charges.",
     "explanation": "The assertion is correct: if r becomes r/2, then F' = kq₁q₂/(r/2)² = 4kq₁q₂/r² = 4F. The reason is also correct and is the direct explanation. Because F ∝ 1/r², halving r increases F by a factor of (1/0.5)² = 4.",
@@ -841,7 +841,7 @@
   },
   {
     "id": "phy-elec-coulomb-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following quantities in Column I with their SI units in Column II:\n\nColumn I:\nA. Electric charge\nB. Electric field\nC. Permittivity of free space (ε₀)\nD. Coulomb constant (k)\n\nColumn II:\n1. N·m²/C²\n2. C²/(N·m²)\n3. N/C\n4. C (coulomb)",
     "explanation": "Electric charge is measured in coulombs (C) → A-4. Electric field has units N/C → B-3. Permittivity ε₀ has units C²/(N·m²) → C-2. The Coulomb constant k = 1/(4πε₀) has units N·m²/C² → D-1.",
@@ -902,7 +902,7 @@
   },
   {
     "id": "phy-elec-coulomb-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the charge distributions in Column I with their electric field expressions at the specified point in Column II:\n\nColumn I:\nA. Point charge q at distance r\nB. Infinite line charge (λ) at perpendicular distance r\nC. Uniformly charged ring (Q, radius R) at centre\nD. Electric dipole (moment p) on axial line at large distance r\n\nColumn II:\n1. Zero\n2. kq/r²\n3. 2kp/r³\n4. λ/(2πε₀r)",
     "explanation": "Point charge field at distance r is kq/r² → A-2. Infinite line charge field at perpendicular distance r is λ/(2πε₀r) → B-4. The field at the centre of a uniformly charged ring is zero by symmetry → C-1. The dipole axial field at large r is 2kp/r³ → D-3.",
@@ -963,7 +963,7 @@
   },
   {
     "id": "phy-elec-coulomb-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Coulomb's law obeys the principle of superposition, meaning the force on a charge due to multiple charges is the vector sum of the individual forces.",
     "explanation": "This statement is TRUE. The superposition principle is a fundamental property of electrostatics. The total force on a charge is the vector sum of forces exerted by each individual charge independently, unaffected by the presence of other charges.",
@@ -1023,7 +1023,7 @@
   },
   {
     "id": "phy-elec-coulomb-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The electric field inside a uniformly charged solid non-conducting sphere is zero at all points.",
     "explanation": "This statement is FALSE. The electric field inside a uniformly charged solid non-conducting sphere is not zero; it increases linearly from the centre to the surface as E = kQr/R³ (where r is the distance from the centre and R is the radius). It is inside a hollow conducting sphere that the field is zero.",
@@ -1083,7 +1083,7 @@
   },
   {
     "id": "phy-elec-coulomb-19",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "The ratio of the electric field on the axial line to the electric field on the equatorial line of an electric dipole at the same large distance r is _____.",
     "explanation": "At a large distance r, the axial field of a dipole is E_axial = 2kp/r³ and the equatorial field is E_equatorial = kp/r³. Therefore, the ratio E_axial/E_equatorial = (2kp/r³)/(kp/r³) = 2. This ratio of 2:1 is a standard result for dipole fields.",
@@ -1143,7 +1143,7 @@
   },
   {
     "id": "phy-elec-coulomb-20",
-    "question_type": "scenario",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A physics student sets up an experiment with two small charged spheres, each carrying a charge of +4 μC, fixed on an insulating stand. The spheres are placed 30 cm apart in air. The student then inserts a glass slab of dielectric constant K = 4 between the two spheres, completely filling the space between them.\n\nWhat is the electrostatic force between the spheres after the glass slab is inserted?",
     "explanation": "Without dielectric: F = kq₁q₂/r² = 9 × 10⁹ × (4 × 10⁻⁶)² / (0.3)² = 9 × 10⁹ × 16 × 10⁻¹² / 0.09 = 1.6 N. With dielectric (K = 4): F' = F/K = 1.6/4 = 0.4 N. The dielectric reduces the force by a factor equal to the dielectric constant.",

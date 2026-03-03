@@ -721,7 +721,7 @@
   },
   {
     "id": "phy-elec-gauss-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The electric flux through a closed surface does not change when the shape of the surface is changed, keeping the enclosed charge the same.\nReason (R): According to Gauss's law, electric flux through a closed surface depends only on the net charge enclosed, not on the shape or size of the surface.",
     "explanation": "The assertion is correct: Gauss's law states φ = q_enclosed/ε₀, which depends only on the enclosed charge. The reason is also correct and directly explains the assertion. Since flux equals q/ε₀ regardless of surface geometry, changing the shape while keeping the same enclosed charge leaves the flux unchanged.",
@@ -781,7 +781,7 @@
   },
   {
     "id": "phy-elec-gauss-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): The electric field inside a hollow conducting sphere is zero even if there is an external electric field.\nReason (R): A conductor has free electrons that rearrange themselves on the surface to cancel the external field inside.",
     "explanation": "The assertion is correct: the field inside a hollow conductor is zero in electrostatic equilibrium, even in the presence of an external field (electrostatic shielding). The reason is also correct and explains the assertion: free electrons on the conductor surface redistribute to create an induced surface charge that exactly cancels the external field within the cavity.",
@@ -841,7 +841,7 @@
   },
   {
     "id": "phy-elec-gauss-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the charge distributions in Column I with the distance dependence of the electric field in Column II:\n\nColumn I:\nA. Point charge\nB. Infinite line charge\nC. Infinite plane sheet\nD. Inside a uniformly charged solid sphere\n\nColumn II:\n1. E is independent of distance\n2. E ∝ 1/r²\n3. E ∝ 1/r\n4. E ∝ r",
     "explanation": "Point charge: E = kq/r² → A-2. Infinite line charge: E = λ/(2πε₀r) → B-3. Infinite plane sheet: E = σ/(2ε₀), independent of distance → C-1. Inside solid sphere: E = kQr/R³ → D-4.",
@@ -901,7 +901,7 @@
   },
   {
     "id": "phy-elec-gauss-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the Gaussian surface choices in Column I with their corresponding charge distribution applications in Column II:\n\nColumn I:\nA. Spherical Gaussian surface\nB. Cylindrical Gaussian surface (axis along the charge)\nC. Cylindrical Gaussian surface (pillbox straddling the surface)\nD. Any arbitrary closed surface\n\nColumn II:\n1. Infinite plane sheet of charge\n2. Uniformly charged sphere (solid or hollow)\n3. Infinitely long straight charged wire\n4. Verifying Gauss's law for net enclosed charge",
     "explanation": "A spherical Gaussian surface exploits the spherical symmetry of a charged sphere → A-2. A coaxial cylinder exploits the cylindrical symmetry of an infinite wire → B-3. A pillbox straddles an infinite plane sheet to find its field → C-1. Any arbitrary closed surface can verify Gauss's law for enclosed charge → D-4.",
@@ -961,7 +961,7 @@
   },
   {
     "id": "phy-elec-gauss-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Gauss's law is applicable to any closed surface, regardless of its shape, as long as the surface is closed.",
     "explanation": "This statement is TRUE. Gauss's law (∮E·dA = q_enclosed/ε₀) is valid for any closed surface (Gaussian surface), irrespective of its shape or size. However, to simplify calculations, we choose surfaces that exploit the symmetry of the charge distribution.",
@@ -1021,7 +1021,7 @@
   },
   {
     "id": "phy-elec-gauss-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "If the net electric flux through a closed surface is zero, it necessarily means that no charge exists inside the surface.",
     "explanation": "This statement is FALSE. Zero net flux means the net enclosed charge is zero, but this does not mean no charges exist inside. Equal amounts of positive and negative charge can be enclosed, with their effects cancelling to give zero net flux. For example, a dipole inside a closed surface gives zero net flux.",
@@ -1081,7 +1081,7 @@
   },
   {
     "id": "phy-elec-gauss-19",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "The ratio of the electric field just outside a uniformly charged conducting sphere to the field just outside an infinite plane sheet, both having the same surface charge density σ, is _____.",
     "explanation": "The field just outside a conducting sphere is E_sphere = σ/ε₀ (using Gauss's law with a pillbox at the surface). The field due to an infinite plane sheet is E_sheet = σ/(2ε₀). The ratio is (σ/ε₀) / (σ/2ε₀) = 2. The conductor surface field is twice that of a single infinite sheet because the conductor has field only on one side.",
@@ -1141,7 +1141,7 @@
   },
   {
     "id": "phy-elec-gauss-20",
-    "question_type": "scenario",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A physicist constructs a hollow metallic sphere of radius 15 cm and places a charge of +8 μC at its centre using an insulating support. She then measures the electric field at various distances from the centre.\n\nWhat is the electric field at a distance of 10 cm from the centre (inside the sphere)?",
     "explanation": "This is a hollow conducting sphere with a charge at its centre. By Gauss's law, using a spherical Gaussian surface of radius r = 10 cm (inside the metallic shell), the enclosed charge is +8 μC (the charge at the centre). Wait — but the inner surface of the conductor will have −8 μC induced on it, and the Gaussian surface at r = 10 cm encloses only the +8 μC point charge (the inner surface is at R = 15 cm). So E = kQ/r² = 9 × 10⁹ × 8 × 10⁻⁶/(0.1)² = 72 × 10³/0.01 = 7.2 × 10⁶ N/C.",

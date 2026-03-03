@@ -711,7 +711,7 @@
   },
   {
     "id": "phy-motion1d-graphs-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The slope of a displacement-time (s-t) graph gives the velocity of the object.\n\nReason (R): Velocity is defined as the rate of change of displacement with respect to time (v = ds/dt).",
     "explanation": "The slope of the s-t graph at any point is ds/dt, which is the instantaneous velocity by definition. The Assertion is correct because the slope of the displacement-time graph directly yields velocity. The Reason is also correct and provides the precise mathematical definition that explains why the slope equals velocity. R is the correct explanation of A.",
@@ -770,7 +770,7 @@
   },
   {
     "id": "phy-motion1d-graphs-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): For a body thrown vertically upward, the time of ascent equals the time of descent (ignoring air resistance).\n\nReason (R): This is because the acceleration due to gravity acts equally and in the same direction during both ascent and descent, making the motion symmetric about the highest point.",
     "explanation": "The Assertion is correct: by symmetry of kinematics under constant acceleration, time of ascent = time of descent = u/g. The Reason is also correct: gravity is constant (magnitude and direction) throughout the flight, making the equations of motion symmetric. However, the phrase 'same direction during both ascent and descent' in R is technically accurate (gravity always acts downward), and this symmetry indeed causes equal times. R is the correct explanation of A.",
@@ -829,7 +829,7 @@
   },
   {
     "id": "phy-motion1d-graphs-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following graphical features (Column I) with the physical quantities they represent (Column II):\n\nColumn I:\n(P) Slope of displacement-time (s-t) graph\n(Q) Area under velocity-time (v-t) graph\n(R) Slope of velocity-time (v-t) graph\n(S) Area under acceleration-time (a-t) graph\n\nColumn II:\n(1) Acceleration\n(2) Change in velocity\n(3) Displacement\n(4) Velocity",
     "explanation": "P → (4): Slope of s-t graph = ds/dt = velocity. Q → (3): Area under v-t graph = ∫v dt = displacement. R → (1): Slope of v-t graph = dv/dt = acceleration. S → (2): Area under a-t graph = ∫a dt = change in velocity (Δv). These four relationships are the backbone of graphical analysis in kinematics.",
@@ -890,7 +890,7 @@
   },
   {
     "id": "phy-motion1d-graphs-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following equations/conditions (Column I) with the corresponding physical situations (Column II):\n\nColumn I:\n(P) v² = 2gH\n(Q) T = 2u/g\n(R) s_n = a(2n−1)/2\n(S) v_rel = v₁ + v₂\n\nColumn II:\n(1) Total time of flight for vertical throw upward\n(2) Distance covered in nth second from rest\n(3) Final velocity of a body dropped from height H\n(4) Relative velocity of two bodies moving in opposite directions",
     "explanation": "P → (3): A body dropped from height H gains velocity v where v² = u² + 2gH with u = 0, giving v² = 2gH. Q → (1): Total time of flight = 2u/g for vertical projection upward. R → (2): nth second distance for body starting from rest (u=0): s_n = 0 + a(2n−1)/2 = a(2n−1)/2. S → (4): For two bodies moving in opposite directions, relative velocity = v₁ + v₂.",
@@ -950,7 +950,7 @@
   },
   {
     "id": "phy-motion1d-graphs-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "A body undergoing uniform acceleration has a constant rate of change of velocity.",
     "explanation": "Uniform acceleration means acceleration is constant (a = constant). Acceleration is defined as the rate of change of velocity (a = dv/dt). Therefore, if acceleration is constant, the rate of change of velocity is constant. This statement is TRUE.",
@@ -1009,7 +1009,7 @@
   },
   {
     "id": "phy-motion1d-graphs-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The stopping distance of a vehicle is directly proportional to its initial speed.",
     "explanation": "The stopping distance is given by s = u²/(2a), where u is the initial speed and a is the deceleration. This shows that stopping distance is proportional to u² (the square of initial speed), NOT to u directly. Doubling the speed quadruples the stopping distance. Therefore, the statement is FALSE.",
@@ -1068,7 +1068,7 @@
   },
   {
     "id": "phy-motion1d-graphs-19",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A ball is dropped from rest. Using the formula for distance covered in the nth second (s_n = u + a(n − ½)), the distance covered by the ball in the 4th second of free fall is _______ m. (Take g = 10 m/s²)",
     "explanation": "Using the nth second formula: s_n = u + g(n − ½). Here u = 0 (dropped from rest), g = 10 m/s², n = 4. s₄ = 0 + 10(4 − ½) = 10 × 3.5 = 35 m. This confirms the odd-number pattern: distances in successive seconds are in ratio 1:3:5:7, so s₄ = 7 × (½ × g × 1²) = 7 × 5 = 35 m.",
@@ -1127,7 +1127,7 @@
   },
   {
     "id": "phy-motion1d-graphs-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A traffic accident investigator finds skid marks of 50 m on a road. The coefficient of friction between the tyres and the road gives a deceleration of 5 m/s² for any vehicle. Traffic rules state the speed limit on this road is 60 km/h. The investigator needs to determine whether the vehicle was speeding before braking.\n\nWhat was the speed of the vehicle just before it applied the brakes?",
     "explanation": "Using v² = u² + 2as with v = 0 (vehicle stopped), a = −5 m/s², s = 50 m: 0 = u² + 2(−5)(50) → u² = 500 → u = √500 ≈ 22.36 m/s. Converting: 22.36 × (18/5) = 22.36 × 3.6 ≈ 80.5 km/h. Since 80.5 km/h > 60 km/h speed limit, the vehicle was indeed speeding. This real-world application demonstrates the importance of the stopping distance formula in forensic analysis.",

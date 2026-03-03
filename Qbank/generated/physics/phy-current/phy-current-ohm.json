@@ -725,7 +725,7 @@
   },
   {
     "id": "phy-current-ohm-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The resistance of a metallic conductor increases with increase in temperature.\nReason (R): With increase in temperature, the average relaxation time of free electrons in the conductor decreases.",
     "explanation": "Both the assertion and reason are correct. When temperature increases, lattice ions vibrate more vigorously, leading to more frequent collisions with free electrons. This decreases the relaxation time (τ). Since R = ml/(ne²τA), a decrease in τ directly causes an increase in resistance. Thus R is the correct explanation of A.",
@@ -786,7 +786,7 @@
   },
   {
     "id": "phy-current-ohm-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): Resistivity of a semiconductor decreases with increase in temperature.\nReason (R): The number density of charge carriers in a semiconductor increases exponentially with temperature.",
     "explanation": "Both the assertion and reason are correct. In semiconductors, increasing temperature provides thermal energy that breaks covalent bonds, creating more electron-hole pairs. The number of charge carriers increases exponentially with temperature (n ∝ e^(-Eg/2kT)). Since ρ = 1/(neμ), the massive increase in n more than compensates for any decrease in mobility, causing resistivity to decrease. The reason correctly explains the assertion.",
@@ -847,7 +847,7 @@
   },
   {
     "id": "phy-current-ohm-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following physical quantities (Column-I) with their SI units (Column-II):\n\nColumn-I:\nA. Resistivity\nB. Conductivity\nC. Current density\nD. Mobility\n\nColumn-II:\n1. A/m²\n2. m²/(V·s)\n3. Ω·m\n4. S/m",
     "explanation": "Resistivity (ρ) has SI unit Ω·m (A→3). Conductivity (σ = 1/ρ) has SI unit S/m or Ω⁻¹m⁻¹ (B→4). Current density (J = I/A) has SI unit A/m² (C→1). Mobility (μ = vd/E) has SI unit m²/(V·s) (D→2). Each quantity's unit follows directly from its defining equation.",
@@ -909,7 +909,7 @@
   },
   {
     "id": "phy-current-ohm-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following materials (Column-I) with their typical resistivity range at room temperature (Column-II):\n\nColumn-I:\nA. Copper (metal)\nB. Germanium (semiconductor)\nC. Glass (insulator)\nD. Nichrome (alloy)\n\nColumn-II:\n1. ~10¹⁰ – 10¹⁴ Ω·m\n2. ~10⁻⁸ Ω·m\n3. ~10⁻⁶ Ω·m\n4. ~0.1 – 1 Ω·m",
     "explanation": "Copper is a good metal with very low resistivity ~10⁻⁸ Ω·m (A→2). Germanium is a semiconductor with moderate resistivity ~0.1–1 Ω·m (B→4). Glass is an insulator with very high resistivity ~10¹⁰–10¹⁴ Ω·m (C→1). Nichrome is a resistive alloy with resistivity ~10⁻⁶ Ω·m (D→3). The range spans over 22 orders of magnitude from metals to insulators.",
@@ -971,7 +971,7 @@
   },
   {
     "id": "phy-current-ohm-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The resistivity of a material depends on its dimensions (length and cross-sectional area).",
     "explanation": "This statement is FALSE. Resistivity (ρ) is an intrinsic property of the material and does not depend on the dimensions of the conductor. It depends on the nature of the material and temperature. Resistance (R = ρl/A) depends on dimensions, but resistivity itself is independent of length and area.",
@@ -1031,7 +1031,7 @@
   },
   {
     "id": "phy-current-ohm-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Ohm's law is valid only when the physical conditions such as temperature remain constant.",
     "explanation": "This statement is TRUE. Ohm's law (V = IR with constant R) holds only when physical conditions like temperature, pressure, and mechanical strain remain constant. If temperature changes, the resistance of the conductor changes, and the V-I relationship may no longer be linear.",
@@ -1092,7 +1092,7 @@
   },
   {
     "id": "phy-current-ohm-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "The relation between current I, number density of electrons n, charge of electron e, cross-sectional area A, and drift velocity vd is I = _____.",
     "explanation": "The current in a conductor is given by I = neAvd, where n is the number density of free electrons, e is the electronic charge, A is the cross-sectional area, and vd is the drift velocity. This relation is derived by calculating the total charge crossing a cross-section per unit time.",
@@ -1153,7 +1153,7 @@
   },
   {
     "id": "phy-current-ohm-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A physics student measures the V-I characteristics of a device and obtains the following data: at V = 2 V, I = 20 mA; at V = 4 V, I = 40 mA; at V = 6 V, I = 80 mA; at V = 8 V, I = 160 mA. The student claims the device obeys Ohm's law throughout the entire range.\n\nWhich of the following is the correct conclusion?",
     "explanation": "For an ohmic device, V/I must remain constant. For V = 2V: R = 100 Ω; V = 4V: R = 100 Ω; V = 6V: R = 75 Ω; V = 8V: R = 50 Ω. The resistance is constant only up to 4V, after which it decreases. Therefore, the device obeys Ohm's law only up to 4V and is non-ohmic beyond that.",

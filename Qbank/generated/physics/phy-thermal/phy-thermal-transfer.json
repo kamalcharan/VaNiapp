@@ -6,22 +6,57 @@
     "question_text": "Which of the following modes of heat transfer does not require a material medium?",
     "explanation": "Radiation is the only mode of heat transfer that does not require a material medium. It occurs through electromagnetic waves, which can travel through a vacuum (e.g., heat from the Sun reaching the Earth). Conduction and convection both require a material medium — conduction works through molecular vibrations and free electron movement in solids, while convection involves bulk movement of a fluid.",
     "correct_answer": "C",
-    "concept_tags": ["radiation", "modes of heat transfer", "electromagnetic waves", "vacuum"],
+    "concept_tags": [
+      "radiation",
+      "modes of heat transfer",
+      "electromagnetic waves",
+      "vacuum"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Conduction", "is_correct": false },
-      { "key": "B", "text": "Convection", "is_correct": false },
-      { "key": "C", "text": "Radiation", "is_correct": true },
-      { "key": "D", "text": "Both conduction and convection", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Conduction",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Convection",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Radiation",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Both conduction and convection",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Conduction requires direct molecular contact and works through vibrations of neighbouring molecules. It cannot occur in a vacuum.", "misconception": "Confusing conduction with radiation" },
-      { "option_key": "B", "hint": "Convection requires bulk movement of a fluid (liquid or gas). It cannot occur in the absence of a medium.", "misconception": "Confusing convection with radiation" },
-      { "option_key": "D", "hint": "Both conduction and convection require a material medium. Only one mode of heat transfer can propagate through a vacuum.", "misconception": "Thinking multiple modes of heat transfer can work without a medium" }
+      {
+        "option_key": "A",
+        "hint": "Conduction requires direct molecular contact and works through vibrations of neighbouring molecules. It cannot occur in a vacuum.",
+        "misconception": "Confusing conduction with radiation"
+      },
+      {
+        "option_key": "B",
+        "hint": "Convection requires bulk movement of a fluid (liquid or gas). It cannot occur in the absence of a medium.",
+        "misconception": "Confusing convection with radiation"
+      },
+      {
+        "option_key": "D",
+        "hint": "Both conduction and convection require a material medium. Only one mode of heat transfer can propagate through a vacuum.",
+        "misconception": "Thinking multiple modes of heat transfer can work without a medium"
+      }
     ]
   },
   {
@@ -31,22 +66,56 @@
     "question_text": "The SI unit of thermal conductivity (K) is:",
     "explanation": "From the conduction formula Q/t = KA(T₁ − T₂)/L, we can derive the units of K. Rearranging, K = QL/[At(T₁ − T₂)]. The units are: [J × m] / [m² × s × K] = J/(m·s·K) = W/(m·K) = W m⁻¹ K⁻¹. This is also commonly written as W m⁻¹ °C⁻¹ since the size of one kelvin equals one degree Celsius.",
     "correct_answer": "B",
-    "concept_tags": ["thermal conductivity", "SI units", "conduction formula"],
+    "concept_tags": [
+      "thermal conductivity",
+      "SI units",
+      "conduction formula"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "W m⁻² K⁻¹", "is_correct": false },
-      { "key": "B", "text": "W m⁻¹ K⁻¹", "is_correct": true },
-      { "key": "C", "text": "J m⁻¹ K⁻¹", "is_correct": false },
-      { "key": "D", "text": "W m² K⁻¹", "is_correct": false }
+      {
+        "key": "A",
+        "text": "W m⁻² K⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "W m⁻¹ K⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "J m⁻¹ K⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "W m² K⁻¹",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "W m⁻² K⁻¹ has one too many inverse length dimensions. From Q/t = KA(ΔT)/L, K = (Q/t)L/(AΔT), giving W·m/(m²·K) = W m⁻¹ K⁻¹.", "misconception": "Omitting the length L in the dimensional analysis" },
-      { "option_key": "C", "hint": "J m⁻¹ K⁻¹ is missing the time dimension. Thermal conductivity involves power (energy per unit time), not just energy.", "misconception": "Using energy instead of power in the unit derivation" },
-      { "option_key": "D", "hint": "W m² K⁻¹ has the length dimension inverted. The correct derivation gives m in the numerator after simplification, yielding m⁻¹ not m².", "misconception": "Inverting the area and length terms in the formula" }
+      {
+        "option_key": "A",
+        "hint": "W m⁻² K⁻¹ has one too many inverse length dimensions. From Q/t = KA(ΔT)/L, K = (Q/t)L/(AΔT), giving W·m/(m²·K) = W m⁻¹ K⁻¹.",
+        "misconception": "Omitting the length L in the dimensional analysis"
+      },
+      {
+        "option_key": "C",
+        "hint": "J m⁻¹ K⁻¹ is missing the time dimension. Thermal conductivity involves power (energy per unit time), not just energy.",
+        "misconception": "Using energy instead of power in the unit derivation"
+      },
+      {
+        "option_key": "D",
+        "hint": "W m² K⁻¹ has the length dimension inverted. The correct derivation gives m in the numerator after simplification, yielding m⁻¹ not m².",
+        "misconception": "Inverting the area and length terms in the formula"
+      }
     ]
   },
   {
@@ -56,22 +125,57 @@
     "question_text": "Sea breeze and land breeze are examples of:",
     "explanation": "Sea breeze and land breeze are classic examples of natural convection. During the day, the land heats up faster than the sea, causing the air above the land to rise. Cooler air from the sea moves in to replace it, creating a sea breeze. At night, the land cools faster, and the reverse process creates a land breeze. This circulation is driven by density differences caused by temperature gradients — the hallmark of natural convection.",
     "correct_answer": "A",
-    "concept_tags": ["natural convection", "sea breeze", "land breeze", "density driven flow"],
+    "concept_tags": [
+      "natural convection",
+      "sea breeze",
+      "land breeze",
+      "density driven flow"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Natural convection", "is_correct": true },
-      { "key": "B", "text": "Forced convection", "is_correct": false },
-      { "key": "C", "text": "Conduction", "is_correct": false },
-      { "key": "D", "text": "Radiation", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Natural convection",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Forced convection",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Conduction",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Radiation",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "Forced convection requires an external agent (like a fan or pump) to drive the fluid motion. Sea and land breezes arise spontaneously from temperature-induced density differences, not from any external mechanical device.", "misconception": "Confusing natural convection with forced convection" },
-      { "option_key": "C", "hint": "Conduction transfers heat through molecular contact within a substance without bulk movement. Breezes involve large-scale air movement, which is convection.", "misconception": "Confusing conduction with convection" },
-      { "option_key": "D", "hint": "While radiation from the Sun causes the initial heating, the breeze phenomenon itself is the bulk movement of air — a convective process, not radiative.", "misconception": "Attributing the air circulation mechanism to radiation" }
+      {
+        "option_key": "B",
+        "hint": "Forced convection requires an external agent (like a fan or pump) to drive the fluid motion. Sea and land breezes arise spontaneously from temperature-induced density differences, not from any external mechanical device.",
+        "misconception": "Confusing natural convection with forced convection"
+      },
+      {
+        "option_key": "C",
+        "hint": "Conduction transfers heat through molecular contact within a substance without bulk movement. Breezes involve large-scale air movement, which is convection.",
+        "misconception": "Confusing conduction with convection"
+      },
+      {
+        "option_key": "D",
+        "hint": "While radiation from the Sun causes the initial heating, the breeze phenomenon itself is the bulk movement of air — a convective process, not radiative.",
+        "misconception": "Attributing the air circulation mechanism to radiation"
+      }
     ]
   },
   {
@@ -81,22 +185,57 @@
     "question_text": "Two rods of the same length and cross-sectional area are made of materials with thermal conductivities K₁ and K₂ respectively. If they are connected in series between temperatures T₁ and T₂ (T₁ > T₂), the temperature at the junction in steady state is:",
     "explanation": "In steady state, the rate of heat flow through both rods must be equal. For the first rod: Q/t = K₁A(T₁ − T)/(L), and for the second rod: Q/t = K₂A(T − T₂)/(L). Equating: K₁(T₁ − T) = K₂(T − T₂). Expanding: K₁T₁ − K₁T = K₂T − K₂T₂. Rearranging: K₁T₁ + K₂T₂ = T(K₁ + K₂). Therefore T = (K₁T₁ + K₂T₂)/(K₁ + K₂).",
     "correct_answer": "D",
-    "concept_tags": ["thermal conductivity", "series combination", "steady state", "junction temperature"],
+    "concept_tags": [
+      "thermal conductivity",
+      "series combination",
+      "steady state",
+      "junction temperature"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "(T₁ + T₂)/2", "is_correct": false },
-      { "key": "B", "text": "(K₁T₁ − K₂T₂)/(K₁ − K₂)", "is_correct": false },
-      { "key": "C", "text": "(K₂T₁ + K₁T₂)/(K₁ + K₂)", "is_correct": false },
-      { "key": "D", "text": "(K₁T₁ + K₂T₂)/(K₁ + K₂)", "is_correct": true }
+      {
+        "key": "A",
+        "text": "(T₁ + T₂)/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "(K₁T₁ − K₂T₂)/(K₁ − K₂)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "(K₂T₁ + K₁T₂)/(K₁ + K₂)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "(K₁T₁ + K₂T₂)/(K₁ + K₂)",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "(T₁ + T₂)/2 would be the junction temperature only if K₁ = K₂. In general, the junction temperature depends on the thermal conductivities of both rods.", "misconception": "Assuming equal thermal conductivities for both rods" },
-      { "option_key": "B", "hint": "The expression involves subtraction, but equating heat flow rates gives K₁(T₁ − T) = K₂(T − T₂), which leads to addition in both numerator and denominator.", "misconception": "Algebraic error in solving the steady-state heat equation" },
-      { "option_key": "C", "hint": "This expression swaps K₁ and K₂ in the numerator. The correct derivation gives K₁T₁ + K₂T₂, not K₂T₁ + K₁T₂. Each conductivity pairs with the temperature of the end it faces.", "misconception": "Swapping the thermal conductivity values for the two rods" }
+      {
+        "option_key": "A",
+        "hint": "(T₁ + T₂)/2 would be the junction temperature only if K₁ = K₂. In general, the junction temperature depends on the thermal conductivities of both rods.",
+        "misconception": "Assuming equal thermal conductivities for both rods"
+      },
+      {
+        "option_key": "B",
+        "hint": "The expression involves subtraction, but equating heat flow rates gives K₁(T₁ − T) = K₂(T − T₂), which leads to addition in both numerator and denominator.",
+        "misconception": "Algebraic error in solving the steady-state heat equation"
+      },
+      {
+        "option_key": "C",
+        "hint": "This expression swaps K₁ and K₂ in the numerator. The correct derivation gives K₁T₁ + K₂T₂, not K₂T₁ + K₁T₂. Each conductivity pairs with the temperature of the end it faces.",
+        "misconception": "Swapping the thermal conductivity values for the two rods"
+      }
     ]
   },
   {
@@ -106,22 +245,57 @@
     "question_text": "According to Wien's displacement law, the wavelength corresponding to maximum intensity of radiation emitted by a black body is inversely proportional to its absolute temperature. If the surface temperature of the Sun is 6000 K and the wavelength of maximum intensity is λₘ, then the wavelength of maximum intensity for a star at 3000 K is:",
     "explanation": "Wien's displacement law states that λₘT = constant (b = 2.898 × 10⁻³ m·K). Therefore λₘ ∝ 1/T. For the Sun: λ_Sun × 6000 = b. For the star: λ_star × 3000 = b. Dividing: λ_star/λ_Sun = 6000/3000 = 2. Thus λ_star = 2λₘ. When the temperature halves, the peak wavelength doubles.",
     "correct_answer": "C",
-    "concept_tags": ["Wien's displacement law", "black body radiation", "peak wavelength", "temperature dependence"],
+    "concept_tags": [
+      "Wien's displacement law",
+      "black body radiation",
+      "peak wavelength",
+      "temperature dependence"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "λₘ/2", "is_correct": false },
-      { "key": "B", "text": "λₘ", "is_correct": false },
-      { "key": "C", "text": "2λₘ", "is_correct": true },
-      { "key": "D", "text": "4λₘ", "is_correct": false }
+      {
+        "key": "A",
+        "text": "λₘ/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "λₘ",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2λₘ",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4λₘ",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "λₘ/2 would result from using λₘ ∝ T (direct proportionality), but Wien's law states λₘ ∝ 1/T (inverse proportionality).", "misconception": "Using direct proportionality instead of inverse proportionality in Wien's law" },
-      { "option_key": "B", "hint": "λₘ would mean the peak wavelength is unchanged, implying no temperature dependence. Wien's law clearly shows λₘ depends on temperature.", "misconception": "Ignoring the temperature dependence of peak wavelength" },
-      { "option_key": "D", "hint": "4λₘ would result from using λₘ ∝ 1/T² (inverse square relationship), but Wien's law gives a simple inverse relationship λₘ ∝ 1/T.", "misconception": "Confusing Wien's law with Stefan-Boltzmann law's T⁴ dependence" }
+      {
+        "option_key": "A",
+        "hint": "λₘ/2 would result from using λₘ ∝ T (direct proportionality), but Wien's law states λₘ ∝ 1/T (inverse proportionality).",
+        "misconception": "Using direct proportionality instead of inverse proportionality in Wien's law"
+      },
+      {
+        "option_key": "B",
+        "hint": "λₘ would mean the peak wavelength is unchanged, implying no temperature dependence. Wien's law clearly shows λₘ depends on temperature.",
+        "misconception": "Ignoring the temperature dependence of peak wavelength"
+      },
+      {
+        "option_key": "D",
+        "hint": "4λₘ would result from using λₘ ∝ 1/T² (inverse square relationship), but Wien's law gives a simple inverse relationship λₘ ∝ 1/T.",
+        "misconception": "Confusing Wien's law with Stefan-Boltzmann law's T⁴ dependence"
+      }
     ]
   },
   {
@@ -131,22 +305,57 @@
     "question_text": "A black body at temperature T radiates energy at the rate of E. If the temperature is increased to 2T, the rate of energy radiation becomes:",
     "explanation": "According to the Stefan-Boltzmann law, the power radiated by a black body is P = σAT⁴, where σ is the Stefan-Boltzmann constant and A is the surface area. Therefore E ∝ T⁴. When temperature is doubled to 2T: E' = σA(2T)⁴ = σA × 16T⁴ = 16σAT⁴ = 16E. The radiation rate increases by a factor of 16.",
     "correct_answer": "D",
-    "concept_tags": ["Stefan-Boltzmann law", "black body radiation", "temperature dependence", "T⁴ law"],
+    "concept_tags": [
+      "Stefan-Boltzmann law",
+      "black body radiation",
+      "temperature dependence",
+      "T⁴ law"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2E", "is_correct": false },
-      { "key": "B", "text": "4E", "is_correct": false },
-      { "key": "C", "text": "8E", "is_correct": false },
-      { "key": "D", "text": "16E", "is_correct": true }
+      {
+        "key": "A",
+        "text": "2E",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4E",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "8E",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "16E",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "2E implies E ∝ T (linear dependence), but the Stefan-Boltzmann law gives E ∝ T⁴, not E ∝ T.", "misconception": "Using linear temperature dependence instead of T⁴" },
-      { "option_key": "B", "hint": "4E implies E ∝ T² (quadratic dependence), but the correct power law is T⁴, so doubling T gives 2⁴ = 16 times, not 2² = 4 times.", "misconception": "Using T² instead of T⁴ in Stefan-Boltzmann law" },
-      { "option_key": "C", "hint": "8E implies E ∝ T³ (cubic dependence), but the Stefan-Boltzmann law clearly states E ∝ T⁴.", "misconception": "Using incorrect power of temperature" }
+      {
+        "option_key": "A",
+        "hint": "2E implies E ∝ T (linear dependence), but the Stefan-Boltzmann law gives E ∝ T⁴, not E ∝ T.",
+        "misconception": "Using linear temperature dependence instead of T⁴"
+      },
+      {
+        "option_key": "B",
+        "hint": "4E implies E ∝ T² (quadratic dependence), but the correct power law is T⁴, so doubling T gives 2⁴ = 16 times, not 2² = 4 times.",
+        "misconception": "Using T² instead of T⁴ in Stefan-Boltzmann law"
+      },
+      {
+        "option_key": "C",
+        "hint": "8E implies E ∝ T³ (cubic dependence), but the Stefan-Boltzmann law clearly states E ∝ T⁴.",
+        "misconception": "Using incorrect power of temperature"
+      }
     ]
   },
   {
@@ -156,22 +365,57 @@
     "question_text": "According to Newton's law of cooling, the rate of cooling of a body is proportional to the difference in temperature between the body and its surroundings. A body cools from 80°C to 70°C in 5 minutes when the surrounding temperature is 30°C. The time taken to cool from 70°C to 60°C in the same surroundings is:",
     "explanation": "Using Newton's law of cooling in the approximate form: (T₁ − T₂)/t = k[(T₁ + T₂)/2 − T₀]. For cooling from 80°C to 70°C: (80 − 70)/5 = k[(80 + 70)/2 − 30] = k[75 − 30] = 45k. So 2 = 45k, giving k = 2/45. For cooling from 70°C to 60°C: (70 − 60)/t = k[(70 + 60)/2 − 30] = k[65 − 30] = 35k = 35 × 2/45 = 70/45 = 14/9. Therefore 10/t = 14/9, giving t = 90/14 = 45/7 ≈ 6.43 minutes. Among the options, approximately 7 minutes is closest.",
     "correct_answer": "B",
-    "concept_tags": ["Newton's law of cooling", "rate of cooling", "temperature difference", "surroundings"],
+    "concept_tags": [
+      "Newton's law of cooling",
+      "rate of cooling",
+      "temperature difference",
+      "surroundings"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "5 minutes", "is_correct": false },
-      { "key": "B", "text": "45/7 minutes", "is_correct": true },
-      { "key": "C", "text": "10 minutes", "is_correct": false },
-      { "key": "D", "text": "3.5 minutes", "is_correct": false }
+      {
+        "key": "A",
+        "text": "5 minutes",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "45/7 minutes",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "10 minutes",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3.5 minutes",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "5 minutes would imply the same cooling time for both intervals. But the temperature difference from the surroundings is smaller in the 70-60°C range (average 65°C vs 75°C), so the rate of cooling is slower and it takes longer.", "misconception": "Assuming constant cooling rate regardless of temperature difference with surroundings" },
-      { "option_key": "C", "hint": "10 minutes is too large. While the cooling is slower, the ratio of average excess temperatures is 45:35, not 1:2.", "misconception": "Overestimating the effect of reduced temperature difference" },
-      { "option_key": "D", "hint": "3.5 minutes would imply faster cooling at a lower temperature, which contradicts Newton's law of cooling — the rate decreases as the temperature approaches that of the surroundings.", "misconception": "Thinking the cooling rate increases as temperature decreases" }
+      {
+        "option_key": "A",
+        "hint": "5 minutes would imply the same cooling time for both intervals. But the temperature difference from the surroundings is smaller in the 70-60°C range (average 65°C vs 75°C), so the rate of cooling is slower and it takes longer.",
+        "misconception": "Assuming constant cooling rate regardless of temperature difference with surroundings"
+      },
+      {
+        "option_key": "C",
+        "hint": "10 minutes is too large. While the cooling is slower, the ratio of average excess temperatures is 45:35, not 1:2.",
+        "misconception": "Overestimating the effect of reduced temperature difference"
+      },
+      {
+        "option_key": "D",
+        "hint": "3.5 minutes would imply faster cooling at a lower temperature, which contradicts Newton's law of cooling — the rate decreases as the temperature approaches that of the surroundings.",
+        "misconception": "Thinking the cooling rate increases as temperature decreases"
+      }
     ]
   },
   {
@@ -181,22 +425,57 @@
     "question_text": "Kirchhoff's law of thermal radiation states that at any given temperature and wavelength, the ratio of emissive power to absorptive power is the same for all bodies and is equal to the emissive power of a:",
     "explanation": "Kirchhoff's law states that at thermal equilibrium, for any body at a given temperature and wavelength, the ratio of spectral emissive power (eλ) to spectral absorptive power (aλ) is a constant equal to the emissive power of a perfect black body (Eλ) at the same temperature: eλ/aλ = Eλ. This means good absorbers are also good emitters, and vice versa. A black body, having absorptive power = 1, has the maximum emissive power at any temperature.",
     "correct_answer": "A",
-    "concept_tags": ["Kirchhoff's law", "emissive power", "absorptive power", "black body"],
+    "concept_tags": [
+      "Kirchhoff's law",
+      "emissive power",
+      "absorptive power",
+      "black body"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Perfect black body", "is_correct": true },
-      { "key": "B", "text": "Perfect reflector", "is_correct": false },
-      { "key": "C", "text": "Grey body", "is_correct": false },
-      { "key": "D", "text": "Transparent body", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Perfect black body",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Perfect reflector",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Grey body",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Transparent body",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "A perfect reflector reflects all incident radiation and absorbs none (absorptive power = 0). By Kirchhoff's law, it would also emit nothing, so it cannot serve as the reference standard.", "misconception": "Confusing a perfect reflector with a perfect absorber/emitter" },
-      { "option_key": "C", "hint": "A grey body has emissivity less than 1 and constant across all wavelengths. Kirchhoff's law references the maximum emissive power, which belongs to a black body (emissivity = 1).", "misconception": "Confusing grey body with black body" },
-      { "option_key": "D", "hint": "A transparent body transmits radiation rather than absorbing or emitting it efficiently. It does not serve as the reference in Kirchhoff's law.", "misconception": "Confusing transmission with emission" }
+      {
+        "option_key": "B",
+        "hint": "A perfect reflector reflects all incident radiation and absorbs none (absorptive power = 0). By Kirchhoff's law, it would also emit nothing, so it cannot serve as the reference standard.",
+        "misconception": "Confusing a perfect reflector with a perfect absorber/emitter"
+      },
+      {
+        "option_key": "C",
+        "hint": "A grey body has emissivity less than 1 and constant across all wavelengths. Kirchhoff's law references the maximum emissive power, which belongs to a black body (emissivity = 1).",
+        "misconception": "Confusing grey body with black body"
+      },
+      {
+        "option_key": "D",
+        "hint": "A transparent body transmits radiation rather than absorbing or emitting it efficiently. It does not serve as the reference in Kirchhoff's law.",
+        "misconception": "Confusing transmission with emission"
+      }
     ]
   },
   {
@@ -206,22 +485,57 @@
     "question_text": "A wall has two layers of different materials. Layer 1 has thickness L₁ = 0.1 m and thermal conductivity K₁ = 0.5 W m⁻¹ K⁻¹. Layer 2 has thickness L₂ = 0.2 m and thermal conductivity K₂ = 1.0 W m⁻¹ K⁻¹. The effective thermal conductivity of the composite wall for heat flow perpendicular to the layers is:",
     "explanation": "For layers in series (heat flow perpendicular to layers), the effective thermal resistance is the sum of individual resistances. R = R₁ + R₂ = L₁/(K₁A) + L₂/(K₂A). For the composite wall of total thickness L = L₁ + L₂ = 0.3 m: L/(K_eff × A) = L₁/(K₁A) + L₂/(K₂A). So L/K_eff = L₁/K₁ + L₂/K₂ = 0.1/0.5 + 0.2/1.0 = 0.2 + 0.2 = 0.4. Therefore K_eff = L/0.4 = 0.3/0.4 = 0.75 W m⁻¹ K⁻¹.",
     "correct_answer": "B",
-    "concept_tags": ["thermal resistance", "series combination", "composite wall", "effective thermal conductivity"],
+    "concept_tags": [
+      "thermal resistance",
+      "series combination",
+      "composite wall",
+      "effective thermal conductivity"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "0.50 W m⁻¹ K⁻¹", "is_correct": false },
-      { "key": "B", "text": "0.75 W m⁻¹ K⁻¹", "is_correct": true },
-      { "key": "C", "text": "1.00 W m⁻¹ K⁻¹", "is_correct": false },
-      { "key": "D", "text": "1.50 W m⁻¹ K⁻¹", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.50 W m⁻¹ K⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.75 W m⁻¹ K⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1.00 W m⁻¹ K⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.50 W m⁻¹ K⁻¹",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "0.50 W m⁻¹ K⁻¹ equals K₁ alone. The effective conductivity of the composite wall must account for both layers and lies between K₁ and K₂ for a series combination, but is not simply K₁.", "misconception": "Using the conductivity of only one layer" },
-      { "option_key": "C", "hint": "1.00 W m⁻¹ K⁻¹ is the simple arithmetic mean of K₁ and K₂, but series combination does not use arithmetic averaging of conductivities directly. The thermal resistances add.", "misconception": "Taking arithmetic mean of conductivities instead of using thermal resistance in series" },
-      { "option_key": "D", "hint": "1.50 W m⁻¹ K⁻¹ equals K₁ + K₂, which would apply if the conductivities simply added. In series, resistances add (not conductivities), leading to a lower effective value.", "misconception": "Adding conductivities directly as if they were in parallel" }
+      {
+        "option_key": "A",
+        "hint": "0.50 W m⁻¹ K⁻¹ equals K₁ alone. The effective conductivity of the composite wall must account for both layers and lies between K₁ and K₂ for a series combination, but is not simply K₁.",
+        "misconception": "Using the conductivity of only one layer"
+      },
+      {
+        "option_key": "C",
+        "hint": "1.00 W m⁻¹ K⁻¹ is the simple arithmetic mean of K₁ and K₂, but series combination does not use arithmetic averaging of conductivities directly. The thermal resistances add.",
+        "misconception": "Taking arithmetic mean of conductivities instead of using thermal resistance in series"
+      },
+      {
+        "option_key": "D",
+        "hint": "1.50 W m⁻¹ K⁻¹ equals K₁ + K₂, which would apply if the conductivities simply added. In series, resistances add (not conductivities), leading to a lower effective value.",
+        "misconception": "Adding conductivities directly as if they were in parallel"
+      }
     ]
   },
   {
@@ -231,22 +545,57 @@
     "question_text": "A body at temperature T is kept in surroundings at temperature T₀ (T > T₀). The net rate of loss of heat by radiation from the body per unit area is (where ε is the emissivity of the body and σ is the Stefan-Boltzmann constant):",
     "explanation": "According to the Stefan-Boltzmann law, the power emitted per unit area by the body is εσT⁴, and the power absorbed per unit area from the surroundings is εσT₀⁴ (by Kirchhoff's law, absorptivity equals emissivity at thermal equilibrium). The net rate of heat loss per unit area is therefore εσ(T⁴ − T₀⁴). This is the generalized Stefan-Boltzmann law for a non-black body in surroundings at temperature T₀.",
     "correct_answer": "D",
-    "concept_tags": ["Stefan-Boltzmann law", "net radiation", "emissivity", "surroundings temperature"],
+    "concept_tags": [
+      "Stefan-Boltzmann law",
+      "net radiation",
+      "emissivity",
+      "surroundings temperature"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "εσ(T⁴ + T₀⁴)", "is_correct": false },
-      { "key": "B", "text": "σ(T⁴ − T₀⁴)", "is_correct": false },
-      { "key": "C", "text": "εσT⁴", "is_correct": false },
-      { "key": "D", "text": "εσ(T⁴ − T₀⁴)", "is_correct": true }
+      {
+        "key": "A",
+        "text": "εσ(T⁴ + T₀⁴)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "σ(T⁴ − T₀⁴)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "εσT⁴",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "εσ(T⁴ − T₀⁴)",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Adding T⁴ and T₀⁴ would give the total of emitted and absorbed power, not the net loss. The net heat loss requires subtracting the absorbed power from the emitted power.", "misconception": "Adding emitted and absorbed radiation instead of subtracting" },
-      { "option_key": "B", "hint": "This expression omits the emissivity ε. For a non-black body, the emitted power is εσT⁴ (not σT⁴), and the absorbed power is εσT₀⁴. The emissivity factor must appear.", "misconception": "Ignoring the emissivity of the body and treating it as a black body" },
-      { "option_key": "C", "hint": "εσT⁴ gives only the total power emitted by the body, not the net heat loss. The body also absorbs radiation from the surroundings at rate εσT₀⁴, which must be subtracted.", "misconception": "Forgetting that the body absorbs radiation from its surroundings" }
+      {
+        "option_key": "A",
+        "hint": "Adding T⁴ and T₀⁴ would give the total of emitted and absorbed power, not the net loss. The net heat loss requires subtracting the absorbed power from the emitted power.",
+        "misconception": "Adding emitted and absorbed radiation instead of subtracting"
+      },
+      {
+        "option_key": "B",
+        "hint": "This expression omits the emissivity ε. For a non-black body, the emitted power is εσT⁴ (not σT⁴), and the absorbed power is εσT₀⁴. The emissivity factor must appear.",
+        "misconception": "Ignoring the emissivity of the body and treating it as a black body"
+      },
+      {
+        "option_key": "C",
+        "hint": "εσT⁴ gives only the total power emitted by the body, not the net heat loss. The body also absorbs radiation from the surroundings at rate εσT₀⁴, which must be subtracted.",
+        "misconception": "Forgetting that the body absorbs radiation from its surroundings"
+      }
     ]
   },
   {
@@ -256,22 +605,57 @@
     "question_text": "A solid sphere of radius R, density ρ, and specific heat capacity c, initially at temperature T₀, is placed in surroundings at temperature Tₛ (T₀ > Tₛ). According to Newton's law of cooling, if the heat transfer coefficient is h, the initial rate of temperature decrease of the sphere is:",
     "explanation": "Newton's law of cooling gives: rate of heat loss = hA(T₀ − Tₛ), where A = 4πR² is the surface area. The mass of the sphere is m = ρ × (4/3)πR³. The rate of temperature decrease is: dT/dt = hA(T₀ − Tₛ)/(mc) = h × 4πR² × (T₀ − Tₛ) / [ρ × (4/3)πR³ × c] = 3h(T₀ − Tₛ)/(ρRc). Note the factor of 3 arises from the surface-area-to-volume ratio of a sphere (3/R).",
     "correct_answer": "C",
-    "concept_tags": ["Newton's law of cooling", "sphere", "surface area to volume ratio", "rate of cooling"],
+    "concept_tags": [
+      "Newton's law of cooling",
+      "sphere",
+      "surface area to volume ratio",
+      "rate of cooling"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "h(T₀ − Tₛ)/(ρRc)", "is_correct": false },
-      { "key": "B", "text": "3h(T₀ − Tₛ)/(4ρRc)", "is_correct": false },
-      { "key": "C", "text": "3h(T₀ − Tₛ)/(ρRc)", "is_correct": true },
-      { "key": "D", "text": "4h(T₀ − Tₛ)/(3ρRc)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "h(T₀ − Tₛ)/(ρRc)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3h(T₀ − Tₛ)/(4ρRc)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3h(T₀ − Tₛ)/(ρRc)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4h(T₀ − Tₛ)/(3ρRc)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This expression is missing the factor of 3 that comes from the surface-area-to-volume ratio of a sphere: A/V = 4πR²/[(4/3)πR³] = 3/R.", "misconception": "Not correctly computing the surface-area-to-volume ratio for a sphere" },
-      { "option_key": "B", "hint": "The factor 3/4 would result from inverting the volume fraction incorrectly. The volume of the sphere is (4/3)πR³, so 4πR²/[(4/3)πR³] = 3/R, not (3/4)/R.", "misconception": "Making an error in simplifying the ratio of surface area to volume" },
-      { "option_key": "D", "hint": "The factor 4/3 comes from keeping 4πR² and (4/3)πR³ separately without simplifying. Proper cancellation yields 4/(4/3) = 3, not 4/3.", "misconception": "Incomplete algebraic simplification of the area-to-volume ratio" }
+      {
+        "option_key": "A",
+        "hint": "This expression is missing the factor of 3 that comes from the surface-area-to-volume ratio of a sphere: A/V = 4πR²/[(4/3)πR³] = 3/R.",
+        "misconception": "Not correctly computing the surface-area-to-volume ratio for a sphere"
+      },
+      {
+        "option_key": "B",
+        "hint": "The factor 3/4 would result from inverting the volume fraction incorrectly. The volume of the sphere is (4/3)πR³, so 4πR²/[(4/3)πR³] = 3/R, not (3/4)/R.",
+        "misconception": "Making an error in simplifying the ratio of surface area to volume"
+      },
+      {
+        "option_key": "D",
+        "hint": "The factor 4/3 comes from keeping 4πR² and (4/3)πR³ separately without simplifying. Proper cancellation yields 4/(4/3) = 3, not 4/3.",
+        "misconception": "Incomplete algebraic simplification of the area-to-volume ratio"
+      }
     ]
   },
   {
@@ -281,222 +665,541 @@
     "question_text": "Two identical spherical bodies A and B have emissivities 0.2 and 0.8 respectively. They are placed in a dark, evacuated enclosure and are allowed to cool from the same initial temperature. If the surrounding temperature is much lower than the body temperature, then:",
     "explanation": "In a dark, evacuated enclosure, the only mode of heat transfer is radiation. The rate of radiative heat loss is P = εσAT⁴, where ε is emissivity. Since both bodies are identical in size, mass, and specific heat, the body with higher emissivity (B, ε = 0.8) loses heat faster than A (ε = 0.2). Therefore B cools at a faster rate. By Kirchhoff's law, a good emitter is also a good absorber, but in cooling (net emission), higher emissivity means faster energy loss.",
     "correct_answer": "A",
-    "concept_tags": ["emissivity", "Stefan-Boltzmann law", "radiative cooling", "Kirchhoff's law"],
+    "concept_tags": [
+      "emissivity",
+      "Stefan-Boltzmann law",
+      "radiative cooling",
+      "Kirchhoff's law"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "B cools at a faster rate than A", "is_correct": true },
-      { "key": "B", "text": "A cools at a faster rate than B", "is_correct": false },
-      { "key": "C", "text": "Both cool at the same rate", "is_correct": false },
-      { "key": "D", "text": "The cooling rate depends only on surface area and not on emissivity", "is_correct": false }
+      {
+        "key": "A",
+        "text": "B cools at a faster rate than A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "A cools at a faster rate than B",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Both cool at the same rate",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The cooling rate depends only on surface area and not on emissivity",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "A has lower emissivity (0.2) so it emits less radiation per unit time. A lower emission rate means slower cooling, not faster.", "misconception": "Thinking low emissivity means faster radiative cooling" },
-      { "option_key": "C", "hint": "The cooling rate depends on emissivity (P = εσAT⁴). Since A and B have different emissivities, they cannot cool at the same rate.", "misconception": "Ignoring the role of emissivity in radiative heat transfer" },
-      { "option_key": "D", "hint": "The Stefan-Boltzmann law explicitly includes emissivity: P = εσAT⁴. While surface area matters, emissivity is equally important in determining radiative heat loss.", "misconception": "Neglecting emissivity in the Stefan-Boltzmann equation" }
+      {
+        "option_key": "B",
+        "hint": "A has lower emissivity (0.2) so it emits less radiation per unit time. A lower emission rate means slower cooling, not faster.",
+        "misconception": "Thinking low emissivity means faster radiative cooling"
+      },
+      {
+        "option_key": "C",
+        "hint": "The cooling rate depends on emissivity (P = εσAT⁴). Since A and B have different emissivities, they cannot cool at the same rate.",
+        "misconception": "Ignoring the role of emissivity in radiative heat transfer"
+      },
+      {
+        "option_key": "D",
+        "hint": "The Stefan-Boltzmann law explicitly includes emissivity: P = εσAT⁴. While surface area matters, emissivity is equally important in determining radiative heat loss.",
+        "misconception": "Neglecting emissivity in the Stefan-Boltzmann equation"
+      }
     ]
   },
   {
     "id": "phy-thermal-transfer-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): A good absorber of radiation is also a good emitter at the same temperature.\nReason (R): According to Kirchhoff's law of thermal radiation, the ratio of emissive power to absorptive power for any body at a given temperature equals the emissive power of a perfect black body at that temperature.",
     "explanation": "Both the assertion and the reason are correct, and the reason is the correct explanation of the assertion. By Kirchhoff's law, eλ/aλ = Eλ (black body). If a body has high absorptive power (aλ close to 1), its emissive power eλ must also be correspondingly high to maintain this universal ratio. This directly proves that a good absorber must be a good emitter at the same temperature.",
     "correct_answer": "A",
-    "concept_tags": ["Kirchhoff's law", "emissive power", "absorptive power", "black body", "good absorber good emitter"],
+    "concept_tags": [
+      "Kirchhoff's law",
+      "emissive power",
+      "absorptive power",
+      "black body",
+      "good absorber good emitter"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The reason (Kirchhoff's law) directly leads to the conclusion that good absorbers are good emitters. Since eλ/aλ = constant, a higher aλ necessitates a higher eλ. The reason is the precise explanation.", "misconception": "Not recognizing the direct causal link between Kirchhoff's law and the absorber-emitter relationship" },
-      { "option_key": "C", "hint": "The reason is a correct statement of Kirchhoff's law, which is a well-established principle in thermal physics.", "misconception": "Thinking Kirchhoff's law is incorrectly stated" },
-      { "option_key": "D", "hint": "The assertion is correct and well-established. Good absorbers are indeed good emitters — this is a direct consequence of Kirchhoff's law.", "misconception": "Thinking absorbers and emitters are unrelated properties" }
+      {
+        "option_key": "B",
+        "hint": "The reason (Kirchhoff's law) directly leads to the conclusion that good absorbers are good emitters. Since eλ/aλ = constant, a higher aλ necessitates a higher eλ. The reason is the precise explanation.",
+        "misconception": "Not recognizing the direct causal link between Kirchhoff's law and the absorber-emitter relationship"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is a correct statement of Kirchhoff's law, which is a well-established principle in thermal physics.",
+        "misconception": "Thinking Kirchhoff's law is incorrectly stated"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct and well-established. Good absorbers are indeed good emitters — this is a direct consequence of Kirchhoff's law.",
+        "misconception": "Thinking absorbers and emitters are unrelated properties"
+      }
     ]
   },
   {
     "id": "phy-thermal-transfer-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): A polished metal surface is a poor absorber and a poor emitter of thermal radiation.\nReason (R): The emissive power of a body is inversely proportional to its absorptive power.",
     "explanation": "The assertion is correct. A polished metal surface has high reflectivity, so it absorbs very little thermal radiation (poor absorber). By Kirchhoff's law, since it is a poor absorber, it is also a poor emitter. The reason is incorrect. According to Kirchhoff's law, eλ/aλ = Eλ(T), which means the emissive power is directly proportional to the absorptive power (for a given temperature and wavelength), not inversely proportional. If absorptive power increases, emissive power also increases.",
     "correct_answer": "C",
-    "concept_tags": ["emissivity", "absorptivity", "polished surface", "Kirchhoff's law", "reflection"],
+    "concept_tags": [
+      "emissivity",
+      "absorptivity",
+      "polished surface",
+      "Kirchhoff's law",
+      "reflection"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "For this to be correct, both statements must be true. But the reason claims emissive power is inversely proportional to absorptive power, which contradicts Kirchhoff's law where they are directly proportional (eλ = aλ × Eλ).", "misconception": "Thinking emissive and absorptive powers are inversely related" },
-      { "option_key": "B", "hint": "This option requires the reason to be correct. The reason incorrectly states an inverse relationship between emissive and absorptive powers, making this option invalid.", "misconception": "Not checking the validity of the reason statement independently" },
-      { "option_key": "D", "hint": "The assertion is experimentally verified and theoretically sound. Polished metals are indeed poor absorbers and poor emitters because of their high reflectivity.", "misconception": "Not knowing that highly reflective surfaces are poor emitters" }
+      {
+        "option_key": "A",
+        "hint": "For this to be correct, both statements must be true. But the reason claims emissive power is inversely proportional to absorptive power, which contradicts Kirchhoff's law where they are directly proportional (eλ = aλ × Eλ).",
+        "misconception": "Thinking emissive and absorptive powers are inversely related"
+      },
+      {
+        "option_key": "B",
+        "hint": "This option requires the reason to be correct. The reason incorrectly states an inverse relationship between emissive and absorptive powers, making this option invalid.",
+        "misconception": "Not checking the validity of the reason statement independently"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is experimentally verified and theoretically sound. Polished metals are indeed poor absorbers and poor emitters because of their high reflectivity.",
+        "misconception": "Not knowing that highly reflective surfaces are poor emitters"
+      }
     ]
   },
   {
     "id": "phy-thermal-transfer-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the heat transfer phenomena (Column I) with their defining characteristics (Column II):\n\nColumn I:\nA. Conduction\nB. Natural convection\nC. Forced convection\nD. Radiation\n\nColumn II:\n1. Heat transfer through electromagnetic waves without any medium\n2. Heat transfer due to density differences caused by temperature gradients in a fluid\n3. Heat transfer through molecular vibrations and free electron movement without bulk motion\n4. Heat transfer in a fluid driven by an external agency like a fan or pump",
     "explanation": "A-3: Conduction is heat transfer through molecular vibrations and free electron drift without bulk movement of the medium. B-2: Natural convection occurs when temperature differences create density variations in a fluid, causing buoyancy-driven flow. C-4: Forced convection involves fluid motion driven by an external agency such as a fan, pump, or blower. D-1: Radiation transfers heat through electromagnetic waves and requires no material medium.",
     "correct_answer": "B",
-    "concept_tags": ["conduction", "convection", "radiation", "modes of heat transfer", "definitions"],
+    "concept_tags": [
+      "conduction",
+      "convection",
+      "radiation",
+      "modes of heat transfer",
+      "definitions"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-3, B-4, C-2, D-1", "is_correct": false },
-      { "key": "B", "text": "A-3, B-2, C-4, D-1", "is_correct": true },
-      { "key": "C", "text": "A-1, B-2, C-4, D-3", "is_correct": false },
-      { "key": "D", "text": "A-3, B-2, C-1, D-4", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-3, B-4, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-1, B-2, C-4, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-1, D-4",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This swaps natural convection (B) with forced convection (C). Natural convection is driven by density differences (buoyancy), not by external agencies. External agencies define forced convection.", "misconception": "Confusing natural and forced convection" },
-      { "option_key": "C", "hint": "This pairs conduction (A) with electromagnetic waves, which is actually the characteristic of radiation. Conduction requires molecular contact and vibrations.", "misconception": "Confusing conduction with radiation" },
-      { "option_key": "D", "hint": "This pairs forced convection (C) with electromagnetic waves and radiation (D) with external agency. Radiation needs no medium and uses EM waves; forced convection uses external mechanical means.", "misconception": "Swapping the characteristics of radiation and forced convection" }
+      {
+        "option_key": "A",
+        "hint": "This swaps natural convection (B) with forced convection (C). Natural convection is driven by density differences (buoyancy), not by external agencies. External agencies define forced convection.",
+        "misconception": "Confusing natural and forced convection"
+      },
+      {
+        "option_key": "C",
+        "hint": "This pairs conduction (A) with electromagnetic waves, which is actually the characteristic of radiation. Conduction requires molecular contact and vibrations.",
+        "misconception": "Confusing conduction with radiation"
+      },
+      {
+        "option_key": "D",
+        "hint": "This pairs forced convection (C) with electromagnetic waves and radiation (D) with external agency. Radiation needs no medium and uses EM waves; forced convection uses external mechanical means.",
+        "misconception": "Swapping the characteristics of radiation and forced convection"
+      }
     ]
   },
   {
     "id": "phy-thermal-transfer-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the laws/formulas (Column I) with their mathematical expressions (Column II):\n\nColumn I:\nA. Fourier's law of heat conduction\nB. Stefan-Boltzmann law\nC. Wien's displacement law\nD. Newton's law of cooling\n\nColumn II:\n1. dT/dt = −k(T − Tₛ)\n2. Q/t = KA(T₁ − T₂)/L\n3. E = σT⁴\n4. λₘT = b (constant)",
     "explanation": "A-2: Fourier's law of heat conduction states Q/t = KA(T₁ − T₂)/L, relating heat flow rate to the temperature gradient, area, and thermal conductivity. B-3: The Stefan-Boltzmann law gives the total energy radiated per unit area as E = σT⁴. C-4: Wien's displacement law states λₘT = b, where b is Wien's constant (2.898 × 10⁻³ m·K). D-1: Newton's law of cooling gives the rate of temperature change as dT/dt = −k(T − Tₛ), proportional to the temperature excess.",
     "correct_answer": "D",
-    "concept_tags": ["Fourier's law", "Stefan-Boltzmann law", "Wien's law", "Newton's law of cooling", "mathematical expressions"],
+    "concept_tags": [
+      "Fourier's law",
+      "Stefan-Boltzmann law",
+      "Wien's law",
+      "Newton's law of cooling",
+      "mathematical expressions"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-2, B-4, C-3, D-1", "is_correct": false },
-      { "key": "B", "text": "A-1, B-3, C-4, D-2", "is_correct": false },
-      { "key": "C", "text": "A-2, B-3, C-1, D-4", "is_correct": false },
-      { "key": "D", "text": "A-2, B-3, C-4, D-1", "is_correct": true }
+      {
+        "key": "A",
+        "text": "A-2, B-4, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-1, B-3, C-4, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-3, C-4, D-1",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This assigns λₘT = b to the Stefan-Boltzmann law and E = σT⁴ to Wien's law. Stefan-Boltzmann deals with total emissive power (E = σT⁴), while Wien's law relates peak wavelength to temperature (λₘT = b).", "misconception": "Swapping Stefan-Boltzmann law and Wien's displacement law" },
-      { "option_key": "B", "hint": "This pairs Fourier's law (A) with Newton's law of cooling expression and Newton's law (D) with the conduction formula. Fourier's law is about steady-state heat conduction (Q/t = KA ΔT/L), not exponential cooling.", "misconception": "Confusing Fourier's law of conduction with Newton's law of cooling" },
-      { "option_key": "C", "hint": "This assigns dT/dt = −k(T − Tₛ) to Wien's law and λₘT = b to Newton's law of cooling. Wien's law involves peak wavelength, while Newton's law involves rate of temperature change.", "misconception": "Mixing up Wien's displacement law with Newton's law of cooling" }
+      {
+        "option_key": "A",
+        "hint": "This assigns λₘT = b to the Stefan-Boltzmann law and E = σT⁴ to Wien's law. Stefan-Boltzmann deals with total emissive power (E = σT⁴), while Wien's law relates peak wavelength to temperature (λₘT = b).",
+        "misconception": "Swapping Stefan-Boltzmann law and Wien's displacement law"
+      },
+      {
+        "option_key": "B",
+        "hint": "This pairs Fourier's law (A) with Newton's law of cooling expression and Newton's law (D) with the conduction formula. Fourier's law is about steady-state heat conduction (Q/t = KA ΔT/L), not exponential cooling.",
+        "misconception": "Confusing Fourier's law of conduction with Newton's law of cooling"
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns dT/dt = −k(T − Tₛ) to Wien's law and λₘT = b to Newton's law of cooling. Wien's law involves peak wavelength, while Newton's law involves rate of temperature change.",
+        "misconception": "Mixing up Wien's displacement law with Newton's law of cooling"
+      }
     ]
   },
   {
     "id": "phy-thermal-transfer-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "A perfect black body absorbs all the radiation incident on it, regardless of wavelength or angle of incidence.",
     "explanation": "This statement is TRUE. By definition, a perfect black body is an idealized object that absorbs all electromagnetic radiation falling on it, irrespective of wavelength, frequency, or angle of incidence. Its absorptance is 1 (or 100%) at all wavelengths. No radiation is reflected or transmitted. This is the defining property that makes it a theoretical reference standard in thermal radiation studies.",
     "correct_answer": "A",
-    "concept_tags": ["black body", "perfect absorber", "absorptance", "thermal radiation"],
+    "concept_tags": [
+      "black body",
+      "perfect absorber",
+      "absorptance",
+      "thermal radiation"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The definition of a perfect black body is precisely that it absorbs all incident radiation at every wavelength and angle. This is a fundamental concept in thermal physics.", "misconception": "Not knowing the definition of a perfect black body" },
-      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The definition of a perfect black body is precisely that it absorbs all incident radiation at every wavelength and angle. This is a fundamental concept in thermal physics.",
+        "misconception": "Not knowing the definition of a perfect black body"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-thermal-transfer-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In the process of heat conduction through a uniform rod in steady state, the temperature at every point of the rod increases with time.",
     "explanation": "This statement is FALSE. In the steady state of heat conduction, the temperature at each point of the rod remains constant with time — it does not change. A temperature gradient exists along the rod (temperature varies from one end to the other), but at any fixed point, the temperature does not vary with time. The rate of heat entering any section equals the rate of heat leaving it, so there is no net accumulation of thermal energy at any point.",
     "correct_answer": "B",
-    "concept_tags": ["steady state", "conduction", "temperature gradient", "constant temperature"],
+    "concept_tags": [
+      "steady state",
+      "conduction",
+      "temperature gradient",
+      "constant temperature"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Steady state means thermal equilibrium has been established in the rod. The temperature distribution is fixed — no point changes temperature over time, even though different points may be at different temperatures.", "misconception": "Confusing steady state (temperature constant in time) with uniform temperature (same temperature everywhere)" },
-      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "Steady state means thermal equilibrium has been established in the rod. The temperature distribution is fixed — no point changes temperature over time, even though different points may be at different temperatures.",
+        "misconception": "Confusing steady state (temperature constant in time) with uniform temperature (same temperature everywhere)"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-thermal-transfer-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "According to the Stefan-Boltzmann law, the total energy radiated per unit time per unit area by a black body is proportional to the _____ power of its absolute temperature.",
     "explanation": "The Stefan-Boltzmann law states that the total power radiated per unit area (emissive power) of a black body is E = σT⁴, where σ is the Stefan-Boltzmann constant (5.67 × 10⁻⁸ W m⁻² K⁻⁴). The energy radiated is proportional to the fourth power of the absolute temperature. This T⁴ dependence means that even a modest increase in temperature leads to a dramatic increase in radiated energy.",
     "correct_answer": "C",
-    "concept_tags": ["Stefan-Boltzmann law", "T⁴ dependence", "black body radiation", "emissive power"],
+    "concept_tags": [
+      "Stefan-Boltzmann law",
+      "T⁴ dependence",
+      "black body radiation",
+      "emissive power"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Second", "is_correct": false },
-      { "key": "B", "text": "Third", "is_correct": false },
-      { "key": "C", "text": "Fourth", "is_correct": true },
-      { "key": "D", "text": "Fifth", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Second",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Third",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Fourth",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Fifth",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "T² dependence is not part of any standard radiation law. The Stefan-Boltzmann law specifically involves T⁴.", "misconception": "Confusing the power index in the Stefan-Boltzmann law" },
-      { "option_key": "B", "hint": "T³ does not appear in the Stefan-Boltzmann law. The correct exponent is 4, as derived from the integration of Planck's radiation law over all wavelengths.", "misconception": "Incorrectly recalling the exponent in the radiation law" },
-      { "option_key": "D", "hint": "T⁵ is not the correct power. The Stefan-Boltzmann law gives E = σT⁴ (fourth power), which can be derived from fundamental quantum statistical mechanics.", "misconception": "Overestimating the temperature exponent" }
+      {
+        "option_key": "A",
+        "hint": "T² dependence is not part of any standard radiation law. The Stefan-Boltzmann law specifically involves T⁴.",
+        "misconception": "Confusing the power index in the Stefan-Boltzmann law"
+      },
+      {
+        "option_key": "B",
+        "hint": "T³ does not appear in the Stefan-Boltzmann law. The correct exponent is 4, as derived from the integration of Planck's radiation law over all wavelengths.",
+        "misconception": "Incorrectly recalling the exponent in the radiation law"
+      },
+      {
+        "option_key": "D",
+        "hint": "T⁵ is not the correct power. The Stefan-Boltzmann law gives E = σT⁴ (fourth power), which can be derived from fundamental quantum statistical mechanics.",
+        "misconception": "Overestimating the temperature exponent"
+      }
     ]
   },
   {
     "id": "phy-thermal-transfer-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A metallic rod of length 1 m and cross-sectional area 5 × 10⁻⁴ m² has its two ends maintained at 100°C and 0°C respectively. The thermal conductivity of the metal is 400 W m⁻¹ K⁻¹. In the steady state, the rod is perfectly insulated on its lateral surface so that heat flows only along its length.\n\nWhat is the rate of heat transfer through the rod?",
     "explanation": "Using Fourier's law of heat conduction: Q/t = KA(T₁ − T₂)/L. Here K = 400 W m⁻¹ K⁻¹, A = 5 × 10⁻⁴ m², T₁ − T₂ = 100 − 0 = 100°C = 100 K, and L = 1 m. Therefore: Q/t = 400 × 5 × 10⁻⁴ × 100 / 1 = 400 × 0.05 = 20 W. The rate of heat transfer through the rod is 20 W.",
     "correct_answer": "B",
-    "concept_tags": ["Fourier's law", "thermal conductivity", "steady state conduction", "heat flow rate"],
+    "concept_tags": [
+      "Fourier's law",
+      "thermal conductivity",
+      "steady state conduction",
+      "heat flow rate"
+    ],
     "topic": "Heat Transfer (Conduction, Convection, Radiation)",
     "subject": "physics",
     "chapter": "Thermal Properties of Matter",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "10 W", "is_correct": false },
-      { "key": "B", "text": "20 W", "is_correct": true },
-      { "key": "C", "text": "40 W", "is_correct": false },
-      { "key": "D", "text": "200 W", "is_correct": false }
+      {
+        "key": "A",
+        "text": "10 W",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "20 W",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "40 W",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "200 W",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "10 W would result from using A = 5 × 10⁻⁴ as 2.5 × 10⁻⁴ or from halving the temperature difference. Check: 400 × 5 × 10⁻⁴ × 100 / 1 = 20 W.", "misconception": "Arithmetic error in computing the product of K, A, and ΔT" },
-      { "option_key": "C", "hint": "40 W would result from doubling the answer, possibly by using the cross-sectional area as 10⁻³ m² instead of 5 × 10⁻⁴ m².", "misconception": "Using incorrect cross-sectional area in the calculation" },
-      { "option_key": "D", "hint": "200 W would result from omitting the area (effectively treating A = 1 m²): 400 × 1 × 100/1 = 40000 or from some other computational error. Careful substitution gives 20 W.", "misconception": "Not properly accounting for the cross-sectional area" }
+      {
+        "option_key": "A",
+        "hint": "10 W would result from using A = 5 × 10⁻⁴ as 2.5 × 10⁻⁴ or from halving the temperature difference. Check: 400 × 5 × 10⁻⁴ × 100 / 1 = 20 W.",
+        "misconception": "Arithmetic error in computing the product of K, A, and ΔT"
+      },
+      {
+        "option_key": "C",
+        "hint": "40 W would result from doubling the answer, possibly by using the cross-sectional area as 10⁻³ m² instead of 5 × 10⁻⁴ m².",
+        "misconception": "Using incorrect cross-sectional area in the calculation"
+      },
+      {
+        "option_key": "D",
+        "hint": "200 W would result from omitting the area (effectively treating A = 1 m²): 400 × 1 × 100/1 = 40000 or from some other computational error. Careful substitution gives 20 W.",
+        "misconception": "Not properly accounting for the cross-sectional area"
+      }
     ]
   }
 ]

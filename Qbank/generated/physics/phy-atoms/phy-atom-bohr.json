@@ -721,7 +721,7 @@
   },
   {
     "id": "phy-atom-bohr-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The Bohr model successfully explains the spectra of hydrogen and hydrogen-like atoms but fails for multi-electron atoms.\nReason (R): The Bohr model does not account for electron-electron interactions and treats the problem as a single-electron system.",
     "explanation": "The Assertion is correct — the Bohr model works well for single-electron systems (H, He⁺, Li²⁺, etc.) but fails for multi-electron atoms like helium. The Reason is also correct and correctly explains why: the Bohr model considers only the Coulomb interaction between the nucleus and one electron, ignoring electron-electron repulsion. In multi-electron atoms, inter-electronic repulsion significantly affects energy levels, and the Bohr model has no provision for this. Hence both A and R are correct, and R is the correct explanation of A.",
@@ -781,7 +781,7 @@
   },
   {
     "id": "phy-atom-bohr-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): In the Bohr model, the electron in a hydrogen atom does not radiate energy while revolving in a stationary orbit, even though it is an accelerating charge.\nReason (R): According to classical electromagnetic theory, an accelerating charged particle always radiates energy.",
     "explanation": "The Assertion is correct — Bohr's second postulate explicitly states that electrons in stationary orbits do not radiate energy despite undergoing centripetal acceleration. This was a revolutionary departure from classical theory. The Reason is also correct — classical electromagnetic theory (Larmor formula) does predict that accelerating charges radiate energy. However, the Reason actually contradicts (or at least does not explain) the Assertion. Bohr's postulate was introduced precisely to override this classical prediction. The Reason explains why the Bohr model had to introduce this postulate, but it does not explain why the electron does not radiate — it merely states the classical expectation. Both statements are true but R does not correctly explain A; rather, A is a postulate that overrides the classical prediction in R.",
@@ -842,7 +842,7 @@
   },
   {
     "id": "phy-atom-bohr-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match Column I (Spectral series) with Column II (Lower energy level n₁):\n\nColumn I: (P) Lyman series, (Q) Balmer series, (R) Paschen series, (S) Brackett series\n\nColumn II: (1) n₁ = 3, (2) n₁ = 1, (3) n₁ = 4, (4) n₁ = 2",
     "explanation": "The spectral series of hydrogen are named after their discoverers and are defined by the lower energy level: Lyman series has n₁ = 1 (UV region), Balmer series has n₁ = 2 (visible region), Paschen series has n₁ = 3 (IR region), Brackett series has n₁ = 4 (IR region). Therefore: P→2, Q→4, R→1, S→3.",
@@ -902,7 +902,7 @@
   },
   {
     "id": "phy-atom-bohr-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match Column I (Physical quantity in Bohr model) with Column II (Dependence on principal quantum number n for hydrogen atom):\n\nColumn I: (P) Orbital radius, (Q) Electron speed, (R) Total energy, (S) Time period of revolution\n\nColumn II: (1) Proportional to n³, (2) Proportional to n², (3) Inversely proportional to n², (4) Inversely proportional to n",
     "explanation": "In the Bohr model for hydrogen (Z = 1): Orbital radius rₙ ∝ n² (P→2). Electron speed vₙ ∝ 1/n (Q→4). Total energy Eₙ = −13.6/n² ∝ −1/n², so |Eₙ| ∝ 1/n² (R→3). Time period Tₙ = 2πrₙ/vₙ ∝ n²/(1/n) = n³ (S→1). Therefore the correct matching is P→2, Q→4, R→3, S→1.",
@@ -962,7 +962,7 @@
   },
   {
     "id": "phy-atom-bohr-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In Bohr's model of the hydrogen atom, the frequency of radiation emitted when an electron jumps from a higher orbit to a lower orbit equals the difference in energy of the two orbits divided by Planck's constant.",
     "explanation": "This is TRUE. According to Bohr's frequency condition (third postulate), when an electron transitions from a higher energy level E₂ to a lower energy level E₁, a photon is emitted with frequency ν = (E₂ − E₁)/h, where h is Planck's constant. This is a direct statement of energy conservation: the photon carries away the exact energy difference between the two levels.",
@@ -1012,7 +1012,7 @@
   },
   {
     "id": "phy-atom-bohr-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In the Bohr model, the electron in a hydrogen atom can revolve in any orbit as long as its energy is negative.",
     "explanation": "This is FALSE. In the Bohr model, the electron cannot revolve in any arbitrary orbit. It can only exist in specific quantized orbits where the angular momentum is an integral multiple of h/2π (i.e., L = nh/2π where n = 1, 2, 3, ...). This quantization condition restricts the electron to only certain discrete orbits, not all orbits with negative energy.",
@@ -1062,7 +1062,7 @@
   },
   {
     "id": "phy-atom-bohr-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "The maximum number of spectral lines that can be emitted when a hydrogen atom in the 5th excited state de-excites to the ground state is _____.",
     "explanation": "The 5th excited state corresponds to n = 6 (since the ground state is n = 1, the first excited state is n = 2, and so on). The number of spectral lines emitted when an atom de-excites from level n to the ground state is n(n−1)/2 = 6(6−1)/2 = 6 × 5/2 = 15. These arise from all possible downward transitions between levels 6, 5, 4, 3, 2, and 1.",
@@ -1122,7 +1122,7 @@
   },
   {
     "id": "phy-atom-bohr-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "hard",
     "question_text": "A research team is studying a distant star's atmosphere by analyzing its absorption spectrum. They observe a series of dark lines corresponding to the Balmer series of hydrogen. The wavelength of the line corresponding to the transition from n = 4 to n = 2 is measured to be 486.1 nm. Using the Rydberg formula, if the Rydberg constant R = 1.097 × 10⁷ m⁻¹, calculate the wavelength of the Balmer series limit (n = ∞ to n = 2) and identify its spectral region.",
     "explanation": "The Balmer series limit corresponds to the transition from n₂ = ∞ to n₁ = 2. Using the Rydberg formula: 1/λ = R(1/n₁² − 1/n₂²) = R(1/4 − 1/∞) = R/4. Therefore λ = 4/R = 4/(1.097 × 10⁷) = 3.646 × 10⁻⁷ m = 364.6 nm. This wavelength (364.6 nm) lies in the ultraviolet region of the electromagnetic spectrum, just below the visible violet limit (~380 nm). The Balmer series limit marks the shortest wavelength (highest energy) transition in the Balmer series.",

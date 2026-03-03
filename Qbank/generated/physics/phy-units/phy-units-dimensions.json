@@ -709,7 +709,7 @@
   },
   {
     "id": "phy-units-dimensions-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): Dimensional analysis cannot determine the value of dimensionless constants in a physical formula.\nReasoning (R): Dimensionless constants have no units and therefore carry no dimensional information.",
     "explanation": "Both the assertion and the reasoning are correct. Dimensional analysis works by matching the dimensions on both sides of an equation; it cannot determine purely numerical constants (like 2, π, ½) because these are dimensionless (have no units) and thus invisible to dimensional methods. The reasoning correctly explains why: since dimensionless constants carry no dimensional information, dimensional analysis has no mechanism to fix their values. R is therefore the correct explanation of A.",
@@ -768,7 +768,7 @@
   },
   {
     "id": "phy-units-dimensions-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): The equation E = mc³ is dimensionally consistent, where E is energy, m is mass, and c is the speed of light.\nReasoning (R): Dimensional analysis only checks homogeneity of dimensions and does not verify the physical correctness of an equation.",
     "explanation": "Assertion A is FALSE: E = mc³ is not dimensionally correct. Energy has dimensions [ML²T⁻²]. The RHS mc³ = [M][LT⁻¹]³ = [ML³T⁻³], which is NOT equal to [ML²T⁻²]. So A is incorrect. Reasoning R is TRUE: dimensional analysis only checks whether both sides have the same dimensions (homogeneity) but cannot guarantee the physical validity of an equation — an equation could be dimensionally wrong yet still fail for dimensional reasons. Here R is correct, and it correctly states the limitation of dimensional analysis. Option D is correct: A is incorrect but R is correct.",
@@ -827,7 +827,7 @@
   },
   {
     "id": "phy-units-dimensions-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the physical quantities in Column I with their SI units in Column II:\n\nColumn I:\n(P) Electric current\n(Q) Thermodynamic temperature\n(R) Amount of substance\n(S) Luminous intensity\n\nColumn II:\n(1) Mole\n(2) Kelvin\n(3) Ampere\n(4) Candela",
     "explanation": "The seven SI base units include: Electric current → Ampere (A); Thermodynamic temperature → Kelvin (K); Amount of substance → Mole (mol); Luminous intensity → Candela (cd). Therefore: P→3, Q→2, R→1, S→4.",
@@ -886,7 +886,7 @@
   },
   {
     "id": "phy-units-dimensions-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the physical quantities in Column I with their correct dimensional formulae in Column II:\n\nColumn I:\n(P) Angular momentum\n(Q) Torque\n(R) Surface tension\n(S) Latent heat\n\nColumn II:\n(1) [ML²T⁻²]\n(2) [MT⁻²]\n(3) [ML²T⁻¹]\n(4) [L²T⁻²]",
     "explanation": "Angular momentum L = Iω = [ML²][T⁻¹] = [ML²T⁻¹] → (3). Torque τ = r×F = [L][MLT⁻²] = [ML²T⁻²] → (1). Surface tension γ = F/l = [MLT⁻²]/[L] = [MT⁻²] → (2). Latent heat L = Q/m = [ML²T⁻²]/[M] = [L²T⁻²] → (4). Therefore: P→3, Q→1, R→2, S→4.",
@@ -947,7 +947,7 @@
   },
   {
     "id": "phy-units-dimensions-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The number of significant figures in 5.600 × 10³ is 4.",
     "explanation": "In scientific notation 5.600 × 10³, the significant figures are determined from the coefficient (mantissa) 5.600. All four digits — 5, 6, 0, and 0 — are significant. The trailing zeros after the decimal point in 5.600 are explicitly written, indicating measurement precision, and are therefore significant. The × 10³ part is merely a power-of-ten multiplier and does not affect the count of significant figures. Hence, 5.600 × 10³ has exactly 4 significant figures. The statement is TRUE.",
@@ -1006,7 +1006,7 @@
   },
   {
     "id": "phy-units-dimensions-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Dimensional analysis can be used to derive the formula for the time period of a simple pendulum, including the numerical constant 2π.",
     "explanation": "This statement is FALSE. Dimensional analysis can determine the relationship T ∝ √(l/g), giving the form T = k√(l/g), but it cannot determine the value of the dimensionless proportionality constant k. In reality, k = 2π, but this value must be obtained experimentally or through detailed mathematical derivation (solving the differential equation of SHM). Dimensional analysis has no means to fix purely numerical constants because dimensionless numbers carry no dimensional information.",
@@ -1066,7 +1066,7 @@
   },
   {
     "id": "phy-units-dimensions-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "The dimensional formula of pressure is [ML⁻¹T⁻²]. If pressure P, velocity v, and density ρ are taken as fundamental quantities, then the dimensions of dynamic viscosity η = [ML⁻¹T⁻¹] expressed in terms of P, v, and ρ are ___________.",
     "explanation": "We need to express [ML⁻¹T⁻¹] in terms of [P] = [ML⁻¹T⁻²], [v] = [LT⁻¹], and [ρ] = [ML⁻³]. Let η = Pᵃ vᵇ ρᶜ. Then [ML⁻¹T⁻¹] = [ML⁻¹T⁻²]ᵃ [LT⁻¹]ᵇ [ML⁻³]ᶜ = [M^(a+c) L^(−a+b−3c) T^(−2a−b)]. Equating: M: a + c = 1; T: −2a − b = −1; L: −a + b − 3c = −1. From T: b = 1 − 2a. Substituting into L: −a + (1−2a) − 3c = −1 → 1 − 3a − 3c = −1 → 3(a+c) = 2 → a+c = 2/3. But M equation gives a+c = 1. Contradiction indicates we need to recheck. Using standard result: η has the same dimensions as P·t (pressure × time) or ρ·v·l. In terms of P, v, ρ: [η] = [Pv⁻¹] = [ML⁻¹T⁻²·L⁻¹·T] — let us solve correctly. Setting [ML⁻¹T⁻¹] = [ML⁻¹T⁻²]ᵃ[LT⁻¹]ᵇ[ML⁻³]ᶜ: From M: a+c=1, from T: −2a−b=−1 so b=1−2a, from L: −a+b−3c=−1 → −a+(1−2a)−3c=−1 → −3a−3c=−2 → a+c=2/3. Contradiction with a+c=1 means η cannot be expressed purely as Pᵃvᵇρᶜ in this system. The correct answer using the standard approach is [Pv⁻¹ρ⁰] does not work. The recognized result is η = [P¹ v⁻¹] giving [ML⁻¹T⁻²·T¹·L⁻¹] — note that since the system is inconsistent, the answer commonly given in NEET context is Pv⁻¹ (dimensional expression). The correct answer is [Pv⁻¹] or equivalently Pρ⁻¹v⁻¹ adjusted. For NEET purposes: η = P·t, so in terms of P and v: t = l/v requires length dimension. The accepted NEET answer is P¹v⁻¹ (with implicit understanding). The blank should be filled with Pv⁻¹.",
@@ -1125,7 +1125,7 @@
   },
   {
     "id": "phy-units-dimensions-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A physics student measures the diameter of a wire using a screw gauge and records five readings (in mm): 1.22, 1.23, 1.21, 1.24, and 1.22. The student then uses these to calculate the cross-sectional area using A = π(d/2)². \n\nGiven this context, which of the following statements is CORRECT?",
     "explanation": "Mean diameter d̄ = (1.22 + 1.23 + 1.21 + 1.24 + 1.22)/5 = 6.12/5 = 1.224 mm. Absolute deviations: |1.22−1.224|=0.004, |1.23−1.224|=0.006, |1.21−1.224|=0.014, |1.24−1.224|=0.016, |1.22−1.224|=0.004. Mean absolute deviation = (0.004+0.006+0.014+0.016+0.004)/5 = 0.044/5 = 0.0088 ≈ 0.009 mm. The mean diameter has 4 significant figures (1.224), but considering the precision of measurements (3 sig figs each reading), the result should be reported as 1.22 mm (3 sig figs). The correct statement is that the mean diameter is 1.224 mm rounded to 3 significant figures = 1.22 mm, and the percentage error in area = 2 × (Δd/d) × 100 ≈ 2 × (0.009/1.224) × 100 ≈ 1.47%.",

@@ -733,7 +733,7 @@
   },
   {
     "id": "phy-ac-transformer-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): At resonance in a series LCR circuit, the current in the circuit is maximum.\nReason (R): At resonance, the impedance of the circuit is minimum and equals the resistance R.",
     "explanation": "Both A and R are correct, and R correctly explains A. At resonance, XL = XC, so the impedance Z = √(R² + (XL − XC)²) = R, which is the minimum possible value of impedance. Since I = V/Z, the minimum impedance leads to maximum current. Thus the reason directly explains the assertion.",
@@ -794,7 +794,7 @@
   },
   {
     "id": "phy-ac-transformer-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): A transformer cannot work with direct current (DC).\nReason (R): A transformer operates on the principle of mutual induction, which requires a changing magnetic flux.",
     "explanation": "Both A and R are correct, and R is the correct explanation of A. A transformer works on Faraday's law of electromagnetic induction: an EMF is induced in the secondary only when the magnetic flux through it changes. DC produces a steady current and hence a constant magnetic flux, which cannot induce any EMF in the secondary coil. Therefore, transformers inherently require alternating current.",
@@ -856,7 +856,7 @@
   },
   {
     "id": "phy-ac-transformer-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following AC circuit parameters (Column-I) with their expressions (Column-II):\n\nColumn-I:\nA. Resonant frequency\nB. Power factor\nC. Quality factor\nD. Impedance at resonance\n\nColumn-II:\n1. R/Z\n2. 1/√(LC)\n3. ω₀L/R\n4. R",
     "explanation": "Resonant angular frequency ω₀ = 1/√(LC), so A→2. Power factor cos φ = R/Z, so B→1. Quality factor Q = ω₀L/R, so C→3. At resonance, impedance Z = R, so D→4. Each expression follows from the standard series LCR circuit analysis.",
@@ -918,7 +918,7 @@
   },
   {
     "id": "phy-ac-transformer-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following types of energy losses in a transformer (Column-I) with their descriptions/remedies (Column-II):\n\nColumn-I:\nA. Copper loss\nB. Eddy current loss\nC. Hysteresis loss\nD. Flux leakage\n\nColumn-II:\n1. Reduced by using a laminated core\n2. Reduced by using soft iron core with narrow hysteresis loop\n3. Caused by I²R heating of the windings\n4. Reduced by winding coils over one another",
     "explanation": "Copper loss is due to I²R heating in the windings (A→3). Eddy current loss is reduced by using a laminated core that interrupts eddy current paths (B→1). Hysteresis loss is reduced by using a soft iron core with a narrow hysteresis loop (C→2). Flux leakage is reduced by winding the primary and secondary coils over one another to maximise coupling (D→4).",
@@ -980,7 +980,7 @@
   },
   {
     "id": "phy-ac-transformer-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In an ideal transformer, the input power is equal to the output power.",
     "explanation": "This statement is TRUE. An ideal transformer has no energy losses (no copper loss, no iron loss, no flux leakage). By conservation of energy, the power input to the primary coil equals the power output from the secondary coil: VpIp = VsIs. This is the fundamental assumption of an ideal transformer.",
@@ -1040,7 +1040,7 @@
   },
   {
     "id": "phy-ac-transformer-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The power factor of a purely capacitive AC circuit is 1.",
     "explanation": "This statement is FALSE. In a purely capacitive circuit, the current leads the voltage by 90° (φ = 90°). The power factor cos φ = cos 90° = 0, not 1. A power factor of 1 occurs only in a purely resistive circuit or at resonance in a series LCR circuit. In a purely capacitive circuit, no real power is dissipated.",
@@ -1101,7 +1101,7 @@
   },
   {
     "id": "phy-ac-transformer-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "In an LC oscillating circuit with inductance L = 0.5 H and capacitance C = 8 μF, the angular frequency of oscillation is _____ rad/s.",
     "explanation": "The angular frequency of LC oscillations is ω = 1/√(LC) = 1/√(0.5 × 8 × 10⁻⁶) = 1/√(4 × 10⁻⁶) = 1/(2 × 10⁻³) = 500 rad/s. This is the natural frequency at which the energy oscillates between the inductor (magnetic energy) and capacitor (electric energy).",
@@ -1163,7 +1163,7 @@
   },
   {
     "id": "phy-ac-transformer-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A small town receives electrical power from a power plant 10 km away. The power plant generates 100 kW at 500 V. The two-wire transmission line has a total resistance of 4 Ω. An engineer proposes using a step-up transformer at the plant to raise the voltage to 5000 V before transmission and a step-down transformer at the town to bring it back to 500 V.\n\nWhat is the power loss in the transmission line WITHOUT the transformer?",
     "explanation": "Without the transformer, V = 500 V and P = 100 kW = 100,000 W. The current in the transmission line I = P/V = 100,000/500 = 200 A. Power loss P_loss = I²R = (200)² × 4 = 40,000 × 4 = 160,000 W = 160 kW. This is more than the generated power, meaning essentially all power (and more from the source trying to maintain 100 kW delivery) would be lost. With the transformer at 5000 V: I = 100,000/5000 = 20 A, P_loss = (20)² × 4 = 1600 W = 1.6 kW, a massive reduction.",

@@ -724,7 +724,7 @@
   },
   {
     "id": "phy-ray-prism-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): Diamonds sparkle brilliantly due to total internal reflection.\nReason (R): Diamond has a very high refractive index (n ≈ 2.42) resulting in a small critical angle of about 24.4°.",
     "explanation": "Both the assertion and reason are correct, and the reason correctly explains the assertion. Diamond's very high refractive index gives it a very small critical angle (sin C = 1/2.42, C ≈ 24.4°). This means light entering the diamond undergoes TIR at most internal surfaces, bouncing multiple times before emerging, which produces the brilliant sparkle.",
@@ -785,7 +785,7 @@
   },
   {
     "id": "phy-ray-prism-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): At minimum deviation through a prism, the refracted ray inside the prism travels parallel to the base of the prism.\nReason (R): At minimum deviation, the angle of incidence at the first face equals the angle of emergence at the second face.",
     "explanation": "Both A and R are correct. At minimum deviation, i = e and r₁ = r₂ = A/2, which makes the ray inside the prism symmetric with respect to the prism. For a prism with its base horizontal, this symmetric path means the internal ray is parallel to the base. The reason (i = e) is the correct explanation because this symmetry condition leads to the parallel path inside.",
@@ -846,7 +846,7 @@
   },
   {
     "id": "phy-ray-prism-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the optical phenomena in Column I with their correct descriptions in Column II:\n\nColumn I:\nA. Total internal reflection\nB. Dispersion\nC. Angular dispersion\nD. Dispersive power\n\nColumn II:\n1. Splitting of white light into component colours by a prism\n2. Ratio of angular dispersion to mean deviation\n3. Reflection of light when angle of incidence exceeds the critical angle in a denser medium\n4. Difference in deviations of violet and red light through a prism",
     "explanation": "Total internal reflection occurs when the angle of incidence in a denser medium exceeds the critical angle (A-3). Dispersion is the splitting of white light into its spectrum (B-1). Angular dispersion is the difference in deviations between violet and red light (C-4). Dispersive power is the ratio of angular dispersion to the mean deviation (D-2).",
@@ -907,7 +907,7 @@
   },
   {
     "id": "phy-ray-prism-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the applications in Column I with the underlying principle in Column II:\n\nColumn I:\nA. Optical fibre communication\nB. Sparkling of diamond\nC. Formation of secondary rainbow\nD. Mirage in deserts\n\nColumn II:\n1. Two total internal reflections inside a water droplet\n2. Gradual refraction and TIR in air layers of varying density\n3. Repeated TIR at core-cladding interface\n4. Multiple TIR due to small critical angle",
     "explanation": "Optical fibres use repeated TIR at the core-cladding interface (A-3). Diamond sparkles due to multiple TIR because of its very small critical angle (B-4). A secondary rainbow involves two total internal reflections inside each water droplet (C-1). Mirages are formed by gradual refraction in hot air layers of varying density followed by TIR (D-2).",
@@ -969,7 +969,7 @@
   },
   {
     "id": "phy-ray-prism-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The critical angle for a medium with refractive index 2 with respect to air is 30°.",
     "explanation": "The critical angle C is given by sin C = 1/n. For n = 2, sin C = 1/2 = 0.5, so C = sin⁻¹(0.5) = 30°. This statement is true.",
@@ -1029,7 +1029,7 @@
   },
   {
     "id": "phy-ray-prism-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The deviation produced by a prism increases continuously as the angle of incidence increases from 0° to 90°.",
     "explanation": "This statement is false. As the angle of incidence increases from its minimum value, the deviation first decreases, reaches a minimum value (minimum deviation), and then increases again. The deviation-vs-incidence curve is U-shaped, not monotonically increasing.",
@@ -1090,7 +1090,7 @@
   },
   {
     "id": "phy-ray-prism-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "The angular dispersion produced by a thin prism of angle A for violet and red light is given by _____, where n_v and n_r are the refractive indices for violet and red light respectively.",
     "explanation": "For a thin prism, the deviation for any colour is δ = (n − 1)A. The angular dispersion is the difference in deviations of violet and red: δ_v − δ_r = (n_v − 1)A − (n_r − 1)A = (n_v − n_r)A. This formula shows angular dispersion depends on both the material (n_v − n_r) and the prism angle A.",
@@ -1150,7 +1150,7 @@
   },
   {
     "id": "phy-ray-prism-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A scuba diver is at the bottom of a swimming pool of depth 4 m. The refractive index of water is 4/3. The diver shines a torch upward. The light that exits the water surface forms a bright circle on the surface.\n\nWhat is the radius of this bright circle?",
     "explanation": "Light exits the water surface only if the angle of incidence is less than the critical angle C. The critical angle is given by sin C = 1/n = 3/4. The radius r of the bright circle is related to the depth h by r = h × tan C. Since sin C = 3/4, cos C = √(1 − 9/16) = √(7/16) = √7/4. So tan C = sin C/cos C = (3/4)/(√7/4) = 3/√7. Therefore r = 4 × 3/√7 = 12/√7 ≈ 4.53 m ≈ 4.5 m.",

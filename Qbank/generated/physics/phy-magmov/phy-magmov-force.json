@@ -729,7 +729,7 @@
   },
   {
     "id": "phy-magmov-force-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The kinetic energy of a charged particle moving in a uniform magnetic field remains constant.\nReason (R): The magnetic force on a moving charge is always perpendicular to its velocity.",
     "explanation": "The assertion is correct: since the magnetic force does no work, the kinetic energy (and hence the speed) of the charged particle remains unchanged. The reason is also correct: F = qv × B is always perpendicular to v by the nature of the cross product. Furthermore, the reason correctly explains the assertion — it is precisely because the force is perpendicular to velocity that no work is done (W = F · ds = 0 when F ⊥ v), and therefore kinetic energy is conserved.",
@@ -790,7 +790,7 @@
   },
   {
     "id": "phy-magmov-force-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): A current-carrying closed loop placed in a uniform magnetic field experiences a net force of zero.\nReason (R): The force on a current-carrying conductor in a magnetic field is given by F = I(L × B), where L is the length vector of the conductor.",
     "explanation": "The assertion is correct: for a closed loop in a uniform magnetic field, the net force is the vector sum of forces on all elements, which equals I(∮dL) × B = I × 0 × B = 0, since the line integral of dL around a closed loop is zero. The reason is also correct: F = I(L × B) is indeed the expression for force on a straight current-carrying conductor. However, the reason by itself does not directly explain why the net force on a closed loop is zero — one also needs the fact that ∮dL = 0 for a closed loop in a uniform field. So R is not the complete explanation of A.",
@@ -851,7 +851,7 @@
   },
   {
     "id": "phy-magmov-force-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match Column I with Column II:\n\nColumn I:\n(P) Charged particle moving parallel to B\n(Q) Charged particle moving perpendicular to B\n(R) Charged particle moving at angle θ (0° < θ < 90°) to B\n(S) Charged particle at rest in B\n\nColumn II:\n(1) Helical path\n(2) Circular path\n(3) Straight line (no force)\n(4) No motion",
     "explanation": "P → 3: When velocity is parallel to B, sinθ = 0, so F = 0 and the particle continues in a straight line. Q → 2: When velocity is perpendicular to B, the constant perpendicular force causes circular motion. R → 1: When velocity has both parallel and perpendicular components to B, the perpendicular component causes circular motion while the parallel component causes linear drift, resulting in a helical path. S → 4: A stationary charge (v = 0) experiences no magnetic force and remains at rest.",
@@ -912,7 +912,7 @@
   },
   {
     "id": "phy-magmov-force-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match Column I with Column II:\n\nColumn I:\n(P) SI unit of magnetic field\n(Q) Force between two parallel conductors carrying 1 A each, separated by 1 m, per unit length\n(R) Radius of circular path of charge q, mass m, speed v in field B\n(S) Condition for a charged particle to pass undeflected through crossed E and B fields\n\nColumn II:\n(1) mv/(qB)\n(2) 2 × 10⁻⁷ N/m\n(3) v = E/B\n(4) Tesla (T)",
     "explanation": "P → 4: The SI unit of magnetic field is Tesla (T). Q → 2: Using F/L = μ₀I₁I₂/(2πd) with I₁ = I₂ = 1 A, d = 1 m: F/L = (4π × 10⁻⁷ × 1 × 1)/(2π × 1) = 2 × 10⁻⁷ N/m. This is the basis for the definition of the ampere. R → 1: The radius of circular motion is r = mv/(qB), obtained by equating qvB = mv²/r. S → 3: In a velocity selector, qE = qvB gives v = E/B.",
@@ -974,7 +974,7 @@
   },
   {
     "id": "phy-magmov-force-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The direction of force on a current-carrying conductor placed in a magnetic field can be determined using Fleming's left-hand rule.",
     "explanation": "This statement is TRUE. Fleming's left-hand rule states: if the forefinger points in the direction of the magnetic field (B), the middle finger points in the direction of current (I), then the thumb gives the direction of force (F) on the conductor. This rule is specifically used for determining the direction of force on a current-carrying conductor in a magnetic field (motor rule).",
@@ -1034,7 +1034,7 @@
   },
   {
     "id": "phy-magmov-force-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "A magnetic field can change the speed of a charged particle moving through it.",
     "explanation": "This statement is FALSE. The magnetic force on a charged particle is F = qv × B, which is always perpendicular to the velocity. A perpendicular force changes only the direction of velocity, not its magnitude (speed). Since no work is done by the magnetic force (W = F · ds = 0 when F ⊥ ds), the kinetic energy and hence the speed remain constant.",
@@ -1095,7 +1095,7 @@
   },
   {
     "id": "phy-magmov-force-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "One ampere is defined as that steady current which, when flowing through each of two infinitely long, straight, parallel conductors placed 1 m apart in vacuum, produces a force per unit length of _____ N/m between them.",
     "explanation": "The SI definition of one ampere is based on the force between two parallel current-carrying conductors. Using F/L = μ₀I₁I₂/(2πd), with I₁ = I₂ = 1 A and d = 1 m: F/L = (4π × 10⁻⁷ × 1 × 1)/(2π × 1) = 2 × 10⁻⁷ N/m. This value defines the ampere in the SI system.",
@@ -1156,7 +1156,7 @@
   },
   {
     "id": "phy-magmov-force-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "In a mass spectrometer, singly ionized ions of two isotopes of an element (masses m₁ = 20 u and m₂ = 22 u, where 1 u = 1.66 × 10⁻²⁷ kg) are accelerated through a potential difference of 10 kV and then enter a uniform magnetic field of 0.2 T perpendicular to their velocity. The ions travel in semicircular paths and strike a photographic plate. What is the separation between the two lines formed on the photographic plate?",
     "explanation": "After acceleration, KE = qV, so v = √(2qV/m). The radius of the semicircular path is r = mv/(qB) = (m/(qB))√(2qV/m) = √(2mV/q)/B. The separation on the plate equals the difference in diameters: Δx = 2r₂ − 2r₁ = (2/B)√(2V/q)(√m₂ − √m₁). With q = 1.6 × 10⁻¹⁹ C, V = 10⁴ V, B = 0.2 T: √(2V/q) = √(2 × 10⁴/(1.6 × 10⁻¹⁹)) = √(1.25 × 10²³) = 1.118 × 10¹¹·⁵. Computing: r = √(2mV/q)/B. For m₁ = 20 × 1.66 × 10⁻²⁷ = 3.32 × 10⁻²⁶ kg: r₁ = √(2 × 3.32 × 10⁻²⁶ × 10⁴/1.6 × 10⁻¹⁹)/0.2 = √(4.15 × 10⁻³)/0.2 = 0.0644/0.2 = 0.322 m. For m₂ = 22 × 1.66 × 10⁻²⁷ = 3.652 × 10⁻²⁶ kg: r₂ = √(2 × 3.652 × 10⁻²⁶ × 10⁴/1.6 × 10⁻¹⁹)/0.2 = √(4.565 × 10⁻³)/0.2 = 0.0676/0.2 = 0.338 m. Separation = 2(r₂ − r₁) = 2(0.338 − 0.322) = 2 × 0.016 = 0.032 m ≈ 3.2 cm.",
