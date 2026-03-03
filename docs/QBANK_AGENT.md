@@ -364,18 +364,41 @@ GUIDELINES:
 - Mix of true and false (roughly 50-50)
 - For false statements, the error should be subtle for hard difficulty
 
-OUTPUT SCHEMA:
+OUTPUT SCHEMA (must match bulkinsert format):
 {
   "questions": [
     {
-      "statement": "The statement to evaluate.",
-      "correctAnswer": true,
-      "explanation": "This is true because... The key concept here is...",
-      "topics": ["topic-1"],
-      "cognitiveLevel": "recall"
+      "id": "{subject}-{topic}-{seq}",
+      "question_type": "true-false",
+      "difficulty": "easy",
+      "question_text": "Statement: The statement to evaluate.",
+      "correct_answer": "A",
+      "explanation": "This is true because...",
+      "topic": "Topic Name",
+      "subject": "{subject}",
+      "chapter": "{chapter_name}",
+      "bloom_level": "remember",
+      "exam_suitability": ["NEET"],
+      "options": [
+        { "key": "A", "text": "True", "is_correct": true },
+        { "key": "B", "text": "False", "is_correct": false }
+      ],
+      "elimination_hints": [
+        {
+          "option_key": "B",
+          "hint": "Why the wrong option is wrong...",
+          "misconception": "Common student error that leads to this choice."
+        }
+      ]
     }
   ]
 }
+
+RULES:
+- `correct_answer`: "A" for TRUE statements, "B" for FALSE statements
+- Options MUST be exactly 2: A = "True", B = "False" (no C/D dummies)
+- `elimination_hints`: exactly 1 hint for the wrong option (B if true, A if false)
+- Two TRUE and two FALSE per batch (roughly 50-50 mix)
 ```
 
 ### 4.6 Fill-in-Blanks Prompt Template
