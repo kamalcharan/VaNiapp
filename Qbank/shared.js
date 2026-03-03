@@ -1589,10 +1589,10 @@ function runQualityValidators(questions, languages, chapterId) {
       }
       case 'match-the-following': {
         // Rich payload: payload.column_a + payload.column_b
-        // Lean payload: "Column A | Column B" or matching list in question_text
+        // Lean payload: "Column A/B" or "Column I/II" or "Column-I/-II" or "Column 1/2" in question_text
         const hasPayloadCols = (Array.isArray(payload.column_a || payload.columnA) &&
           (payload.column_a || payload.columnA).length > 0);
-        const hasTextCols = /column\s*[ab]|match.*following/i.test(qText);
+        const hasTextCols = /column\s*[-_]?\s*[abI12]|match.*(?:following|column)/i.test(qText);
 
         if (!hasPayloadCols && !hasTextCols) {
           issues.push(makeIssue(q, chapterId, 'MTF_MALFORMED'));
