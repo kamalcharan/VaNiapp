@@ -1541,11 +1541,18 @@ function runQualityValidators(questions, languages, chapterId) {
 
       // Check correct_answer key matches an option
       if (q.correct_answer && opts.length > 0) {
-        const keys = opts.map(o => o.option_key || o.key);
-        if (!keys.includes(q.correct_answer)) {
+        const keys = opts.map(o => (o.option_key || o.key || '').toUpperCase());
+        const caUpper = q.correct_answer.toUpperCase();
+        if (!keys.includes(caUpper) || q.correct_answer.length > 2) {
+          // Try to resolve: maybe correct_answer holds option text, not key
+          const textMatch = opts.find(o =>
+            (o.option_text || o.text || '').trim().toLowerCase() === q.correct_answer.trim().toLowerCase()
+          );
+          const resolvedKey = textMatch ? (textMatch.option_key || textMatch.key) : null;
           issues.push(makeIssue(q, chapterId, 'CORRECT_ID_MISMATCH', {
             correct_answer: q.correct_answer,
-            available_keys: keys
+            available_keys: keys,
+            resolvedKey  // non-null means auto-fixable
           }));
         }
       }
@@ -1861,6 +1868,77 @@ async function clearExploreIssues(chapterId) {
 }
 
 // ============================================================================
+// AUTO-FIX: correct_answer text → option key
+// ============================================================================
+
+/**
+ * For questions where correct_answer stores option text instead of the key,
+ * find the matching option and update the DB to use the key (A/B/C/D).
+ *
+ * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
+ * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
+ */
+async function fixCorrectAnswerKeys(questions) {
+  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  for (const q of questions) {
+    const opts = q.options || q.med_question_options || [];
+    const ca = (q.correct_answer || '').trim();
+    if (!ca || !opts.length) { results.skipped++; continue; }
+
+    // Already a valid key — skip
+    const keys = opts.map(o => (o.option_key || o.key || '').toUpperCase());
+    if (keys.includes(ca.toUpperCase()) && ca.length <= 2) {
+      results.skipped++;
+      continue;
+    }
+
+    // Try to match by option text (case-insensitive, trimmed)
+    const match = opts.find(o => {
+      const text = (o.option_text || o.text || '').trim();
+      return text.toLowerCase() === ca.toLowerCase();
+    });
+
+    if (!match) {
+      results.skipped++;
+      continue;
+    }
+
+    const correctKey = (match.option_key || match.key || '').toUpperCase();
+
+    // Also set is_correct on the matching option (and clear others)
+    const optionUpdates = opts.map(o => {
+      const k = (o.option_key || o.key || '').toUpperCase();
+      return SUPABASE
+        .from('med_question_options')
+        .update({ is_correct: k === correctKey })
+        .eq('question_id', q.id)
+        .eq('option_key', o.option_key || o.key);
+    });
+
+    const { error } = await SUPABASE
+      .from('med_questions')
+      .update({ correct_answer: correctKey })
+      .eq('id', q.id);
+
+    if (error) {
+      console.error(`[fix] Failed to update ${q.id}:`, error);
+      results.errors++;
+      results.details.push({ id: q.id, status: 'error', error: error.message });
+    } else {
+      // Fire option updates (best-effort)
+      await Promise.all(optionUpdates);
+      results.fixed++;
+      results.details.push({ id: q.id, status: 'fixed', from: ca, to: correctKey });
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
 // EXPORT FOR USE IN HTML
 // ============================================================================
 window.Qbank = {
@@ -1939,6 +2017,7 @@ window.Qbank = {
   fetchQualityIssueSummary,
   resolveQualityIssue,
   clearExploreIssues,
+  fixCorrectAnswerKeys,
 
   // State access
   get config() { return CONFIG; },
