@@ -488,7 +488,7 @@ export default function QuickPracticeQuizScreen() {
         <View style={[styles.bottomBar, { backgroundColor: colors.background, borderTopColor: colors.surfaceBorder }]}>
           <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
             {showFeedback
-              ? `Score: ${correctCount + (isCorrect ? 1 : 0)}/${currentIndex + 1}`
+              ? `Score: ${correctCount}/${currentIndex + 1}`
               : `Question ${currentIndex + 1} of ${questions.length}`}
           </Text>
 
