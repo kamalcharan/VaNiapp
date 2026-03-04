@@ -1,0 +1,496 @@
+[
+  {
+    "id": "cuet-acc-share-forfeit-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Forfeiture of shares means:",
+    "explanation": "Forfeiture of shares is the cancellation of shares by the company when a shareholder fails to pay the call money due on their shares. The company takes back the shares and the shareholder loses whatever they have already paid. The forfeited shares can later be reissued.",
+    "correct_answer": "C",
+    "concept_tags": ["forfeiture", "definition", "non-payment"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Meaning of forfeiture",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Issue of additional shares to existing shareholders", "is_correct": false },
+      { "key": "B", "text": "Purchase of shares back from shareholders", "is_correct": false },
+      { "key": "C", "text": "Cancellation of shares due to non-payment of call money", "is_correct": true },
+      { "key": "D", "text": "Surrender of shares by shareholders voluntarily", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Additional shares to existing holders is a 'rights issue', not forfeiture.", "misconception": "Confusing forfeiture with rights issue." },
+      { "option_key": "B", "hint": "Buying back shares is 'buyback' — a voluntary transaction. Forfeiture is involuntary due to non-payment.", "misconception": "Confusing forfeiture with buyback." },
+      { "option_key": "D", "hint": "Voluntary surrender is different from forfeiture. Forfeiture is a penalty imposed by the company.", "misconception": "Confusing voluntary surrender with forced cancellation." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-02",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "On forfeiture of shares issued at par, the entry is:",
+    "explanation": "When shares issued at par are forfeited: Share Capital A/c Dr. (called-up amount per share — removing the shareholder's claim), To Share Forfeiture A/c (amount already received from the shareholder), To Calls-in-Arrears A/c (if calls-in-arrears exists) OR the balance. The shareholder loses what they paid.",
+    "correct_answer": "A",
+    "concept_tags": ["forfeiture", "at-par", "journal-entry"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Forfeiture entry — at par",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Share Capital A/c Dr. → To Share Forfeiture A/c, To Calls-in-Arrears A/c (if any)", "is_correct": true },
+      { "key": "B", "text": "Share Forfeiture A/c Dr. → To Share Capital A/c", "is_correct": false },
+      { "key": "C", "text": "Bank A/c Dr. → To Share Capital A/c", "is_correct": false },
+      { "key": "D", "text": "Share Capital A/c Dr. → To Bank A/c", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "This debits Forfeiture and credits Capital — meaning capital increases. But forfeiture REDUCES capital (shares are cancelled).", "misconception": "Reversing the entry." },
+      { "option_key": "C", "hint": "No cash comes in during forfeiture. The company merely cancels the shares.", "misconception": "Thinking forfeiture involves cash receipt." },
+      { "option_key": "D", "hint": "No cash goes out either. Forfeiture is a book entry — no cash movement.", "misconception": "Thinking the company pays the shareholder on forfeiture." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-03",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "On forfeiture of shares issued at a premium (premium already received), the entry is:",
+    "explanation": "If premium has already been received, Securities Premium is NOT reversed on forfeiture (as it's already in the company's bank). Entry: Share Capital A/c Dr. (called-up amount), To Share Forfeiture A/c (amount received towards capital, excluding premium), To Calls-in-Arrears A/c. Securities Premium remains untouched.",
+    "correct_answer": "B",
+    "concept_tags": ["forfeiture", "premium-received", "no-premium-reversal"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Forfeiture when premium already received",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Share Capital Dr., Securities Premium Dr. → To Share Forfeiture, To Calls-in-Arrears", "is_correct": false },
+      { "key": "B", "text": "Share Capital Dr. → To Share Forfeiture, To Calls-in-Arrears (Securities Premium NOT debited)", "is_correct": true },
+      { "key": "C", "text": "Share Forfeiture Dr. → To Share Capital, To Securities Premium", "is_correct": false },
+      { "key": "D", "text": "Bank Dr. → To Share Capital, To Securities Premium", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "If premium has already been RECEIVED, it stays. You don't debit Securities Premium because the money is already with the company.", "misconception": "Reversing premium that's already collected." },
+      { "option_key": "C", "hint": "Forfeiture debits Share Capital (reduces it), not the other way around.", "misconception": "Reversing the direction of the entry." },
+      { "option_key": "D", "hint": "No cash is involved in forfeiture. It's a book entry.", "misconception": "Thinking forfeiture involves cash." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-04",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "On forfeiture of shares issued at a premium, when premium has NOT been received, the entry includes:",
+    "explanation": "If premium was due at allotment but the shareholder defaulted at allotment (before paying premium), the Securities Premium A/c was credited at the 'amount due' stage but the premium was never received. On forfeiture: Share Capital Dr. (called-up), Securities Premium Dr. (premium not received), To Share Forfeiture (amount actually received), To Share Allotment/Calls-in-Arrears.",
+    "correct_answer": "A",
+    "concept_tags": ["forfeiture", "premium-not-received", "reversal"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Forfeiture when premium not received",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Share Capital Dr., Securities Premium Dr. → To Share Forfeiture, To Calls-in-Arrears", "is_correct": true },
+      { "key": "B", "text": "Share Capital Dr. only → To Share Forfeiture, To Calls-in-Arrears", "is_correct": false },
+      { "key": "C", "text": "Securities Premium Dr. → To Share Capital", "is_correct": false },
+      { "key": "D", "text": "Share Forfeiture Dr., Securities Premium Dr. → To Share Capital", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "If premium was NOT received, the earlier credit to Securities Premium must be reversed (debited).", "misconception": "Not reversing unreceived premium." },
+      { "option_key": "C", "hint": "This only reverses premium to capital — incomplete. The full forfeiture entry includes Share Capital debit too.", "misconception": "Partial entry." },
+      { "option_key": "D", "hint": "Share Forfeiture is credited (gain to company), not debited. The company keeps what was received.", "misconception": "Debiting forfeiture instead of crediting it." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Share Forfeiture Account has a:",
+    "explanation": "Share Forfeiture Account always has a CREDIT balance. It represents the amount received from defaulting shareholders that the company retains. It is shown under 'Reserves and Surplus' in the Balance Sheet until the shares are reissued.",
+    "correct_answer": "B",
+    "concept_tags": ["forfeiture", "balance", "credit"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Nature of Share Forfeiture Account",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Debit balance — it represents a loss", "is_correct": false },
+      { "key": "B", "text": "Credit balance — it represents amount forfeited from defaulting shareholders", "is_correct": true },
+      { "key": "C", "text": "No balance — it is immediately transferred to Capital Reserve", "is_correct": false },
+      { "key": "D", "text": "Debit balance — it represents shares to be reissued", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Forfeiture is a gain for the company (they keep what was paid). Gains create credit balances.", "misconception": "Treating a company gain as a loss." },
+      { "option_key": "C", "hint": "It's transferred to Capital Reserve only AFTER reissue, not immediately on forfeiture.", "misconception": "Premature transfer to Capital Reserve." },
+      { "option_key": "D", "hint": "The account has a credit balance. It represents money retained, not shares to be reissued.", "misconception": "Confusing the nature of the account." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Forfeited shares can be reissued at a maximum discount of:",
+    "explanation": "Forfeited shares can be reissued at a discount, but the discount cannot exceed the amount originally forfeited (credited to Share Forfeiture Account). The idea is that the total amount received (original payment + reissue price) should not be less than the face value of shares.",
+    "correct_answer": "C",
+    "concept_tags": ["reissue", "discount-limit", "forfeiture-amount"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Maximum discount on reissue",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "10% of the face value", "is_correct": false },
+      { "key": "B", "text": "50% of the face value", "is_correct": false },
+      { "key": "C", "text": "The amount forfeited on those shares", "is_correct": true },
+      { "key": "D", "text": "Any amount — there is no limit", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "10% was the old discount limit for original issue. Reissue of forfeited shares has a different rule — discount ≤ forfeited amount.", "misconception": "Applying original issue discount rules to reissue." },
+      { "option_key": "B", "hint": "50% is not a statutory limit. The limit is the amount that was forfeited on those specific shares.", "misconception": "Guessing a percentage." },
+      { "option_key": "D", "hint": "There IS a limit — the reissue discount cannot exceed the forfeited amount, ensuring the company doesn't lose money.", "misconception": "Thinking there's no restriction." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-07",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A company forfeited 1,000 shares of ₹10 each (issued at par) on which application (₹3) and allotment (₹3) were received. First Call (₹2) and Final Call (₹2) were unpaid. The Share Forfeiture A/c is credited with:",
+    "explanation": "Amount received = Application ₹3 + Allotment ₹3 = ₹6 per share. Shares forfeited = 1,000. Share Forfeiture A/c credited = 1,000 × ₹6 = ₹6,000. This represents the amount the company retains from the defaulter.",
+    "correct_answer": "B",
+    "concept_tags": ["forfeiture", "credit-amount", "numerical"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Amount credited to Forfeiture A/c",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "₹4,000", "is_correct": false },
+      { "key": "B", "text": "₹6,000", "is_correct": true },
+      { "key": "C", "text": "₹10,000", "is_correct": false },
+      { "key": "D", "text": "₹3,000", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "₹4,000 = ₹4 × 1,000 = unpaid amount (first + final call). But Forfeiture A/c records amount RECEIVED, not unpaid.", "misconception": "Using unpaid amount instead of received." },
+      { "option_key": "C", "hint": "₹10,000 = face value of forfeited shares. But Forfeiture A/c only records what was actually received (₹6 per share).", "misconception": "Using face value as forfeiture amount." },
+      { "option_key": "D", "hint": "₹3,000 = ₹3 × 1,000 = only application money. But allotment money (₹3 × 1,000) was also received.", "misconception": "Counting only application money." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-08",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Continuing from the above: These 1,000 forfeited shares are reissued at ₹8 per share as fully paid. The entry for reissue is:",
+    "explanation": "Reissue at ₹8 (face value ₹10, so discount = ₹2). Entry: Bank Dr. ₹8,000 (1,000 × 8), Share Forfeiture Dr. ₹2,000 (1,000 × 2 = discount adjusted from forfeiture), To Share Capital ₹10,000 (1,000 × 10 = fully paid). Discount on reissue is absorbed by Share Forfeiture A/c.",
+    "correct_answer": "D",
+    "concept_tags": ["reissue", "discount", "journal-entry"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Reissue of forfeited shares entry",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Bank Dr. ₹8,000 → To Share Capital ₹8,000", "is_correct": false },
+      { "key": "B", "text": "Bank Dr. ₹10,000 → To Share Capital ₹10,000", "is_correct": false },
+      { "key": "C", "text": "Bank Dr. ₹8,000 → To Share Capital ₹8,000, Share Forfeiture Dr. ₹2,000 → To Capital Reserve ₹2,000", "is_correct": false },
+      { "key": "D", "text": "Bank Dr. ₹8,000, Share Forfeiture Dr. ₹2,000 → To Share Capital ₹10,000", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Share Capital must be credited at FACE VALUE (₹10,000), not at the discounted reissue price (₹8,000).", "misconception": "Crediting capital at reissue price." },
+      { "option_key": "B", "hint": "Only ₹8,000 cash is received, not ₹10,000. The ₹2,000 gap comes from Share Forfeiture.", "misconception": "Showing more cash than actually received." },
+      { "option_key": "C", "hint": "Capital Reserve is created only AFTER reissue, from the remaining balance in Forfeiture A/c. The reissue entry itself doesn't create Capital Reserve.", "misconception": "Creating Capital Reserve in the reissue entry." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-09",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "After reissuing the 1,000 forfeited shares (from questions above), the balance in Share Forfeiture A/c transferred to Capital Reserve is:",
+    "explanation": "Share Forfeiture A/c: Credit on forfeiture = ₹6,000. Debit on reissue = ₹2,000 (discount). Balance = ₹6,000 − ₹2,000 = ₹4,000. This remaining balance is transferred to Capital Reserve. Entry: Share Forfeiture A/c Dr. ₹4,000, To Capital Reserve A/c ₹4,000.",
+    "correct_answer": "C",
+    "concept_tags": ["reissue", "capital-reserve", "balance-transfer"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Transfer to Capital Reserve",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "₹6,000", "is_correct": false },
+      { "key": "B", "text": "₹2,000", "is_correct": false },
+      { "key": "C", "text": "₹4,000", "is_correct": true },
+      { "key": "D", "text": "₹8,000", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "₹6,000 was the initial credit. But ₹2,000 was used for the reissue discount. Balance = ₹6,000 − ₹2,000 = ₹4,000.", "misconception": "Not deducting the reissue discount." },
+      { "option_key": "B", "hint": "₹2,000 was the discount used on reissue (debited from Forfeiture). The balance transferred is ₹4,000.", "misconception": "Transferring the discount amount instead of the balance." },
+      { "option_key": "D", "hint": "₹8,000 is the cash received on reissue. Capital Reserve = Forfeiture credit − Reissue discount = ₹4,000.", "misconception": "Using reissue price as Capital Reserve." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Capital Reserve arising from reissue of forfeited shares is:",
+    "explanation": "Capital Reserve from reissue of forfeited shares is a capital profit (not from normal business operations). It is NOT available for distribution as dividend. It can only be used for capital purposes like writing off capital losses.",
+    "correct_answer": "B",
+    "concept_tags": ["capital-reserve", "non-distributable", "capital-profit"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Nature of Capital Reserve",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Available for distribution as dividend", "is_correct": false },
+      { "key": "B", "text": "Not available for distribution as dividend", "is_correct": true },
+      { "key": "C", "text": "Transferable to General Reserve", "is_correct": false },
+      { "key": "D", "text": "A revenue reserve", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Capital profits cannot be distributed as dividends. Only revenue profits (from trading) are distributable.", "misconception": "Treating capital reserve as distributable." },
+      { "option_key": "C", "hint": "Capital Reserve and General Reserve are different. Capital Reserve cannot be converted to General Reserve.", "misconception": "Mixing capital and revenue reserves." },
+      { "option_key": "D", "hint": "Revenue reserve comes from trading profits. Capital Reserve from forfeiture is a CAPITAL profit.", "misconception": "Classifying a capital item as revenue." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-11",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "On forfeiture of shares, the shareholder loses whatever amount they have already paid.",
+    "explanation": "TRUE. When shares are forfeited, the defaulting shareholder loses all the money they have already paid to the company. The company retains this amount (credited to Share Forfeiture A/c). The shareholder gets nothing back.",
+    "correct_answer": "True",
+    "concept_tags": ["forfeiture", "loss-to-shareholder", "true-false"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Impact on defaulting shareholder",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Forfeiture is a penalty for non-payment. The company retains all prior payments as compensation.", "misconception": "Thinking the shareholder gets a refund." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-12",
+    "question_type": "true_false",
+    "difficulty": "medium",
+    "question_text": "Forfeited shares can be reissued at any price, even below face value.",
+    "explanation": "TRUE. Forfeited shares CAN be reissued below face value (at a discount). However, the discount cannot exceed the amount forfeited on those shares. So while the reissue price can be below face value, there is a floor — the minimum reissue price = Face value − Forfeited amount.",
+    "correct_answer": "True",
+    "concept_tags": ["reissue", "below-face-value", "true-false"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Reissue price flexibility",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Reissue at discount IS permitted for forfeited shares. The limit is the forfeited amount, not face value.", "misconception": "Thinking reissue must be at or above face value." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-13",
+    "question_type": "fill_in_blank",
+    "difficulty": "easy",
+    "question_text": "The balance remaining in Share Forfeiture Account after reissue is transferred to _______ Account.",
+    "explanation": "After reissuing forfeited shares, any balance remaining in Share Forfeiture Account is transferred to Capital Reserve Account. This is a capital profit — the company gained from the forfeiture-reissue process.",
+    "correct_answer": "Capital Reserve",
+    "concept_tags": ["reissue", "capital-reserve", "fill-in-blank"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Residual balance after reissue",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [],
+    "elimination_hints": []
+  },
+  {
+    "id": "cuet-acc-share-forfeit-14",
+    "question_type": "fill_in_blank",
+    "difficulty": "medium",
+    "question_text": "On forfeiture of shares, Share Capital Account is debited with the _______ amount per share (not the paid-up amount).",
+    "explanation": "Share Capital is debited with the CALLED-UP amount per share. This is because Share Capital was originally credited with the called-up amount when the shares were issued. On forfeiture, the entry reverses this — hence the called-up (not face value or paid-up) amount is debited.",
+    "correct_answer": "called-up",
+    "concept_tags": ["forfeiture", "called-up", "fill-in-blank"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Amount debited to Share Capital",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [],
+    "elimination_hints": []
+  },
+  {
+    "id": "cuet-acc-share-forfeit-15",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): On reissue of forfeited shares, Share Capital Account is credited with the face value, not the reissue price.\nReason (R): Share Capital always represents the nominal (face) value of shares.\n\nChoose the correct option:",
+    "explanation": "Both A and R are true, and R correctly explains A. Share Capital Account always reflects the face value of shares issued. If reissued at discount, the discount is absorbed by Share Forfeiture Account, ensuring Share Capital always equals face value × number of shares.",
+    "correct_answer": "A",
+    "concept_tags": ["reissue", "share-capital", "face-value", "assertion-reasoning"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Share Capital on reissue",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is true but R is false", "is_correct": false },
+      { "key": "D", "text": "A is false but R is true", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "R directly explains A — because Share Capital represents face value, it must be credited at face value on reissue.", "misconception": "Not seeing the causal link." },
+      { "option_key": "C", "hint": "R is correct — Share Capital always represents nominal value. This is a fundamental accounting principle.", "misconception": "Doubting the nominal value principle." },
+      { "option_key": "D", "hint": "A is correct — on reissue, Share Capital IS credited at face value, regardless of reissue price.", "misconception": "Thinking Share Capital reflects market or reissue price." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-16",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A company issued 10,000 shares of ₹10 each at ₹12 per share. Application ₹4, Allotment ₹5 (incl. ₹2 premium), First Call ₹3. Mr. Z (500 shares) did not pay allotment and first call. Shares forfeited. Share Forfeiture A/c is credited with:",
+    "explanation": "Mr. Z paid: Application = ₹4 × 500 = ₹2,000. Did NOT pay: Allotment ₹5 × 500 and First Call ₹3 × 500. Amount received from Z = ₹2,000 (application only). Share Forfeiture credited = ₹2,000. Note: Since premium (₹2) was due at allotment but not received, Securities Premium is debited too (reversed).",
+    "correct_answer": "A",
+    "concept_tags": ["forfeiture", "premium-not-received", "numerical"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Forfeiture amount with unpaid premium",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "₹2,000", "is_correct": true },
+      { "key": "B", "text": "₹4,000", "is_correct": false },
+      { "key": "C", "text": "₹5,000", "is_correct": false },
+      { "key": "D", "text": "₹6,000", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "₹4,000 = unpaid first call + part of allotment? Forfeiture A/c records amount RECEIVED (₹4 × 500 = ₹2,000), not unpaid.", "misconception": "Using unpaid amount." },
+      { "option_key": "C", "hint": "₹5,000 = face value of 500 shares. But Forfeiture A/c records only what was received from the shareholder.", "misconception": "Using face value." },
+      { "option_key": "D", "hint": "₹6,000 = ₹12 × 500 = total issue price. The shareholder only paid ₹4 × 500 = ₹2,000.", "misconception": "Using total issue price." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-17",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In the above question, the complete forfeiture entry is:",
+    "explanation": "Mr. Z held 500 shares. Called-up = ₹10 per share (₹4 app + ₹3 allotment towards capital + ₹3 first call). Premium ₹2 was due but NOT received.\nEntry: Share Capital Dr. ₹5,000 (500 × 10), Securities Premium Dr. ₹1,000 (500 × 2, premium not received), To Share Forfeiture ₹2,000 (amount received: 500 × 4), To Share Allotment ₹2,500 (500 × 5, allotment unpaid), To Share First Call ₹1,500 (500 × 3, call unpaid).",
+    "correct_answer": "C",
+    "concept_tags": ["forfeiture", "comprehensive-entry", "premium-reversal"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Full forfeiture entry with premium reversal",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Share Capital Dr. ₹5,000 → To Share Forfeiture ₹2,000, To Calls-in-Arrears ₹3,000", "is_correct": false },
+      { "key": "B", "text": "Share Capital Dr. ₹5,000, Securities Premium Dr. ₹1,000 → To Share Forfeiture ₹6,000", "is_correct": false },
+      { "key": "C", "text": "Share Capital Dr. ₹5,000, Securities Premium Dr. ₹1,000 → To Share Forfeiture ₹2,000, To Share Allotment ₹2,500, To Share First Call ₹1,500", "is_correct": true },
+      { "key": "D", "text": "Share Capital Dr. ₹6,000 → To Share Forfeiture ₹2,000, To Calls-in-Arrears ₹4,000", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "This ignores Securities Premium reversal. Premium was not received, so it must be debited (reversed).", "misconception": "Not reversing unpaid premium." },
+      { "option_key": "B", "hint": "Forfeiture A/c is only ₹2,000 (received). The remaining ₹4,000 goes to the unpaid accounts (Allotment, First Call).", "misconception": "Crediting entire amount to Forfeiture." },
+      { "option_key": "D", "hint": "Share Capital is ₹5,000 (500 × 10 face value), not ₹6,000. Premium goes separately.", "misconception": "Including premium in Share Capital." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-18",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the following scenarios with the correct treatment of Securities Premium on forfeiture:\n\n| Column I (Scenario) | Column II (Treatment) |\n|---|---|\n| (i) Shares issued at premium, premium received | (p) Securities Premium A/c is debited (reversed) |\n| (ii) Shares issued at premium, premium NOT received | (q) Securities Premium A/c is NOT affected |\n| (iii) Shares issued at par | (r) No Securities Premium involved |\n\nChoose the correct matching:",
+    "explanation": "(i) Premium received → Premium stays, NOT reversed → (q)\n(ii) Premium NOT received → Must be reversed (debited) → (p)\n(iii) Issued at par → No premium at all → (r)",
+    "correct_answer": "B",
+    "concept_tags": ["forfeiture", "premium-treatment", "match-the-following"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Premium treatment on forfeiture",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "(i)→(p), (ii)→(q), (iii)→(r)", "is_correct": false },
+      { "key": "B", "text": "(i)→(q), (ii)→(p), (iii)→(r)", "is_correct": true },
+      { "key": "C", "text": "(i)→(r), (ii)→(p), (iii)→(q)", "is_correct": false },
+      { "key": "D", "text": "(i)→(p), (ii)→(r), (iii)→(q)", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "If premium is received, it stays (q). Reversing received premium (p) would be incorrect.", "misconception": "Reversing premium that was already collected." },
+      { "option_key": "C", "hint": "(i) does involve premium — it was received. (r) means no premium, which is wrong for (i).", "misconception": "Saying premium-at-issue has no premium." },
+      { "option_key": "D", "hint": "(ii) has unreceived premium that must be reversed (p), not 'no premium' (r).", "misconception": "Ignoring the unreceived premium." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-19",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If only part of the forfeited shares are reissued, the Capital Reserve is created for:",
+    "explanation": "Capital Reserve is created only for the shares actually REISSUED, not for all forfeited shares. The balance in Forfeiture A/c relating to un-reissued shares remains in Share Forfeiture A/c until those shares are also reissued.",
+    "correct_answer": "B",
+    "concept_tags": ["reissue", "partial", "capital-reserve"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Partial reissue and Capital Reserve",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "All forfeited shares (including un-reissued)", "is_correct": false },
+      { "key": "B", "text": "Only the shares actually reissued", "is_correct": true },
+      { "key": "C", "text": "Only the un-reissued shares", "is_correct": false },
+      { "key": "D", "text": "Neither — Capital Reserve is created only when all shares are reissued", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "You can't create Capital Reserve for un-reissued shares — the process isn't complete yet.", "misconception": "Prematurely creating Capital Reserve." },
+      { "option_key": "C", "hint": "Un-reissued shares still sit in Forfeiture A/c. Capital Reserve arises only from completed reissue.", "misconception": "Reversing the logic." },
+      { "option_key": "D", "hint": "Capital Reserve CAN be created partially — proportional to the shares reissued.", "misconception": "Thinking Capital Reserve requires full reissue." }
+    ]
+  },
+  {
+    "id": "cuet-acc-share-forfeit-20",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A company forfeited 2,000 shares of ₹10 each (issued at ₹12). On these shares, ₹9 per share was received (₹3 application + ₹6 allotment including ₹2 premium). First call ₹3 was unpaid. 1,500 of these are reissued at ₹9 as fully paid. Capital Reserve on reissue is:",
+    "explanation": "Forfeiture A/c credit per share = Amount received towards capital = ₹9 − ₹2 premium = ₹7 per share. Wait — premium was included in the ₹9 received. So forfeiture credit = ₹7 per share (capital portion received: ₹3 app + ₹4 allotment towards capital). Premium ₹2 was received and stays in Securities Premium.\n\nActually, let me reconsider. Total received = ₹9 (₹3 app + ₹6 allotment). Of allotment ₹6: ₹4 capital + ₹2 premium. Premium already in Securities Premium, not reversed. Forfeiture A/c = amount received towards capital = ₹3 + ₹4 = ₹7 per share.\n\nForfeiture credit for 2,000 shares = 2,000 × ₹7 = ₹14,000.\nPer share forfeiture = ₹7.\nReissue 1,500 at ₹9 (face ₹10), discount = ₹1 per share.\nForfeiture used = 1,500 × ₹1 = ₹1,500.\nForfeiture balance for 1,500 shares = 1,500 × ₹7 − ₹1,500 = ₹10,500 − ₹1,500 = ₹9,000.\nCapital Reserve = ₹9,000.",
+    "correct_answer": "C",
+    "concept_tags": ["reissue", "capital-reserve", "comprehensive-numerical"],
+    "topic": "Forfeiture & Reissue of Shares",
+    "subtopic": "Capital Reserve with partial reissue",
+    "subject": "accountancy",
+    "chapter": "Accounting for Share Capital",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "₹14,000", "is_correct": false },
+      { "key": "B", "text": "₹10,500", "is_correct": false },
+      { "key": "C", "text": "₹9,000", "is_correct": true },
+      { "key": "D", "text": "₹12,000", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "₹14,000 is total forfeiture for all 2,000 shares. But only 1,500 were reissued, and discount must be deducted.", "misconception": "Using total forfeiture without adjustment." },
+      { "option_key": "B", "hint": "₹10,500 = 1,500 × ₹7 = forfeiture for 1,500 shares. But ₹1,500 discount on reissue must be subtracted.", "misconception": "Not deducting reissue discount." },
+      { "option_key": "D", "hint": "₹12,000 may include premium or miscalculate shares. Per share: forfeiture ₹7 − discount ₹1 = ₹6. 1,500 × 6 = ₹9,000.", "misconception": "Incorrect per-share calculation." }
+    ]
+  }
+]
