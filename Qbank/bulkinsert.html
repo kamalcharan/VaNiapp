@@ -429,13 +429,7 @@
               status: 'active',
               concept_tags: q.concept_tags || [],
               exam_ids: q.exam_suitability || ['NEET'],
-              payload: {
-                question_id: q.id,
-                topic: q.topic,
-                subtopic: q.subtopic,
-                bloom_level: q.bloom_level,
-                source: 'bulk-insert'
-              }
+              payload: buildPayload(q)
             })
             .select()
             .single();
@@ -492,10 +486,36 @@
     }
 
     // ========================================================================
+    // PAYLOAD BUILDER
+    // ========================================================================
+    function buildPayload(q) {
+      const p = {
+        question_id: q.id || '',
+        subtopic: q.subtopic || q.topic || '',
+        topic_name: q.topic || '',
+        bloom_level: q.bloom_level || 'understand',
+        options: q.options || [],
+        elimination_hints: q.elimination_hints || [],
+      };
+      // Type-specific fields (scenario-based, assertion-reasoning, etc.)
+      ['image_uri', 'image_alt', 'scenario', 'assertion', 'reason',
+       'text_with_blanks', 'column_a', 'column_b', 'correct_mapping',
+       'items', 'correct_order'].forEach(f => {
+        if (q[f] != null) p[f] = q[f];
+      });
+      return p;
+    }
+
+    // ========================================================================
     // ID / CHAPTER RESOLVERS
     // ========================================================================
     function resolveSubjectId(questionId) {
       if (!questionId) return 'unknown';
+      // CUET prefixes (cuet-phy-, cuet-chem-, cuet-bio-)
+      if (questionId.startsWith('cuet-phy-')) return 'cuet-physics';
+      if (questionId.startsWith('cuet-chem-')) return 'cuet-chemistry';
+      if (questionId.startsWith('cuet-bio-')) return 'cuet-biology';
+      // NEET prefixes
       if (questionId.startsWith('zoo-')) return 'zoology';
       if (questionId.startsWith('bot-')) return 'botany';
       if (questionId.startsWith('phy-')) return 'physics';
@@ -507,6 +527,9 @@
     // e.g. zoo-kingdom-classification-01 → topic = zoo-kingdom-classification → chapter = zoo-animal-kingdom
     // We use the file name to infer the chapter, or fall back to topic prefix
     function resolveChapterId(q) {
+      // If the JSON already has chapter_id, use it directly (CUET files have this)
+      if (q.chapter_id) return q.chapter_id;
+
       // Topic prefix → chapter ID mapping (all 4 subjects)
       //
       // IMPORTANT: Keys must match TOPIC ID prefixes (e.g. 'bot-cell' for topics
