@@ -47,8 +47,8 @@
 
 | Batch | Topic ID | Topic Name | Qs | Status |
 |-------|----------|------------|-----|--------|
-| B04 | `cuet-acc-admission-goodwill` | New Profit-Sharing Ratio, Sacrificing Ratio, Goodwill Treatment (Premium, Hidden, Raised & Written Off) | 40 | PENDING |
-| B05 | `cuet-acc-admission-adjustments` | Revaluation Account, Capital Adjustments, New Partner's Capital, Reserves Distribution | 40 | PENDING |
+| B04 | `cuet-acc-admission-goodwill` | New Profit-Sharing Ratio, Sacrificing Ratio, Goodwill Treatment (Premium, Hidden, Raised & Written Off) | 40 | DONE |
+| B05 | `cuet-acc-admission-adjustments` | Revaluation Account, Capital Adjustments, New Partner's Capital, Reserves Distribution | 40 | DONE |
 | | | **Chapter 3 Total** | **80** | |
 
 ### Chapter 4: Retirement and Death of a Partner (`cuet-acc-partner-retirement`) — 2 batches, Target: 80
