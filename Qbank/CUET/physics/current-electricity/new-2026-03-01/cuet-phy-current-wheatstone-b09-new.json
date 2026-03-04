@@ -270,12 +270,12 @@
       },
       {
         "key": "C",
-        "text": "4/6",
+        "text": "2/5",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "2/5",
+        "text": "3/5",
         "is_correct": false
       }
     ],
@@ -287,13 +287,13 @@
       },
       {
         "option_key": "C",
-        "hint": "While 4/6 equals 2/3 numerically, the standard simplified form is 2/3. However, note that option C is meant as a distractor; always simplify fractions.",
-        "misconception": null
+        "hint": "2/5 does not correspond to any correct calculation from the given data. X/R = 40/(100 - 40) = 40/60 = 2/3.",
+        "misconception": "Using incorrect denominator (100 instead of 100-l)"
       },
       {
         "option_key": "D",
-        "hint": "2/5 does not correspond to any correct calculation from the given data. X/R = 40/(100 - 40) = 40/60 = 2/3.",
-        "misconception": "Using incorrect denominator (100 instead of 100-l)"
+        "hint": "3/5 = 60/100 is incorrect. The formula uses (100-l) in the denominator, not 100. X/R = 40/60 = 2/3.",
+        "misconception": "Using total wire length 100 as denominator instead of (100-l)"
       }
     ]
   },
@@ -361,8 +361,8 @@
     "id": "cuet-phy-current-wheatstone-27",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "In a metre bridge, the null point is at 52 cm. If a resistance of 15 ohm is connected in parallel with the resistance in the right gap (which is a standard resistance S), the null point shifts to 40 cm. The value of S is:",
-    "explanation": "Let X be in the left gap. First case: X/S = 52/48, so X = 52S/48. Second case: The effective resistance in the right gap is S' = 15S/(15 + S). Now X/S' = 40/60 = 2/3, so X = 2S'/3 = 2(15S)/(3(15 + S)) = 10S/(15 + S). Equating the two expressions for X: 52S/48 = 10S/(15 + S). Since S is not zero, divide both sides by S: 52/48 = 10/(15 + S). Cross-multiplying: 52(15 + S) = 480, so 780 + 52S = 480, giving 52S = -300. This gives a negative result, so let me reconsider. Actually: X/S = 52/48 gives X = (13/12)S. For the second case: X/[15S/(15+S)] = 40/60 = 2/3. So X(15+S)/(15S) = 2/3, giving X = 30S/(3(15+S)) = 10S/(15+S). Setting equal: (13/12)S = 10S/(15+S). Dividing by S: 13/12 = 10/(15+S). So 15+S = 120/13 = 9.23. Thus S = 120/13 - 15 = (120-195)/13 = -75/13. This is negative, which is wrong. Let me recheck: null point at 52 cm means X is in left gap, so resistance of left wire = l = 52 cm portion. X/S = l/(100-l) = 52/48. With 15 ohm in parallel with S, null point moves to 40 cm. X/(15S/(15+S)) = 40/60. X(15+S)/(15S) = 2/3. X = 10S/(15+S). From first equation X = 52S/48 = 13S/12. So 13S/12 = 10S/(15+S). 13(15+S)/12 = 10. 13(15+S) = 120. 195 + 13S = 120. 13S = -75. This doesn't work because adding parallel resistance should decrease effective S, moving balance point. Let me reconsider: if null shifts from 52 to 40, that means X/(new right resistance) = 40/60. Since left balance length decreased, X appears relatively smaller now, meaning the right gap effective resistance decreased. So 15 ohm is in parallel with the gap resistance (not S itself but the unknown). Actually, let me re-read: 15 ohm in parallel with resistance in right gap. If S was already the right gap, parallel combination gives S' = 15S/(15+S) < S. Then X/S' > X/S, so l/(100-l) should increase, meaning l should increase. But l went from 52 to 40, which decreased. This means the parallel resistance was added to the LEFT gap. Let me re-interpret: the problem says 15 ohm is connected in parallel with resistance in right gap. If the null point shifts from 52 to 40, balance length (left side) decreased, meaning X/(effective right) decreased. So effective right must have increased. That means S must be less than 15 and... wait. S' = 15S/(15+S) < S always. So X/S' > X/S, meaning balance length l should increase. But it decreased to 40. So perhaps the 15 ohm is in parallel with X (the left gap). Let me try that interpretation: X' = 15X/(15+X), X'/S = 40/60 = 2/3. So 15X/((15+X)S) = 2/3, giving 45X = 2S(15+X) = 30S + 2SX. Also X = 13S/12. Substituting: 45(13S/12) = 30S + 2S(13S/12). 585S/12 = 30S + 26S²/12. Multiply by 12: 585S = 360S + 26S². 225S = 26S². 225 = 26S. S = 225/26. That's not clean. Actually, I suspect the problem means: 15 ohm in series with S, not parallel. But the question says parallel. Let me try different numbers. Actually, let me just set up the problem correctly assuming right gap parallel: First balance: X/S = 52/48. With 15 parallel to S: X/[15S/(15+S)] = 40/60. From equation 2: X = (2/3)(15S/(15+S)) = 10S/(15+S). From equation 1: X = 52S/48 = 13S/12. So 13S/12 = 10S/(15+S). Cancel S: 13/12 = 10/(15+S). 15+S = 120/13. S = 120/13 - 15 = (120-195)/13 = -75/13. Negative. The issue is that the null point should shift right (increase l) when parallel resistance is added to right gap, but it shifts left. So the problem must mean the parallel resistance is added to the unknown (left gap). With 15 parallel to X: X' = 15X/(15+X). X'/S = 40/60 = 2/3. X = 13S/12. So [15(13S/12)/(15 + 13S/12)]/S = 2/3. [195S/12]/[(180 + 13S)/12] / S = 2/3. 195/(180+13S) = 2/3. 585 = 360 + 26S. 26S = 225. S = 225/26. Still not clean. Let me redesign the question with workable numbers.",
+    "question_text": "In a metre bridge, the null point is at 40 cm from the left end with an unknown resistance X in the left gap and a known resistance S in the right gap. When a resistance of 30 ohm is connected in parallel with X, the null point shifts to 25 cm. The value of X is:",
+    "explanation": "First balance: X/S = 40/60 = 2/3, so S = 3X/2. Second balance: when 30 ohm is in parallel with X, the effective left gap resistance is X' = 30X/(30 + X). Now X'/S = 25/75 = 1/3. So 30X/((30 + X) * S) = 1/3, giving 90X = S(30 + X). Substituting S = 3X/2: 90X = (3X/2)(30 + X) = 45X + 3X*X/2. So 90X - 45X = 3X*X/2, giving 45X = 3X*X/2, hence 45 = 3X/2, so X = 30 ohm. Verification: S = 3(30)/2 = 45 ohm. First balance: 30/45 = 2/3 = 40/60. Second balance: X' = 30*30/60 = 15 ohm. 15/45 = 1/3 = 25/75. Both conditions are satisfied.",
     "correct_answer": "D",
     "concept_tags": [
       "meter-bridge",
@@ -380,39 +380,39 @@
     "options": [
       {
         "key": "A",
-        "text": "5 ohm",
+        "text": "10 ohm",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "8 ohm",
+        "text": "15 ohm",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "12 ohm",
+        "text": "20 ohm",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "10 ohm",
+        "text": "30 ohm",
         "is_correct": true
       }
     ],
     "elimination_hints": [
       {
         "option_key": "A",
-        "hint": "If S = 5 ohm, then from the first balance, X = 52 x 5/48 = 5.42 ohm. With 15 in parallel with S, S' = 3.75 ohm, and X/S' = 5.42/3.75 = 1.44, giving l = 59 cm, not 40 cm.",
+        "hint": "If X = 10 ohm, then S = 15 ohm. Parallel combination of 10 and 30 gives 7.5 ohm. New balance: 7.5/15 = 1/2, giving l = 33.3 cm, not 25 cm.",
         "misconception": "Arithmetic error in solving simultaneous equations"
       },
       {
         "option_key": "B",
-        "hint": "Substituting S = 8 ohm does not satisfy both balance conditions simultaneously. Carefully solve the two equations from both balance conditions.",
+        "hint": "If X = 15 ohm, then S = 22.5 ohm. Parallel combination of 15 and 30 gives 10 ohm. New balance: 10/22.5 = 0.44, giving l = 30.8 cm, not 25 cm.",
         "misconception": null
       },
       {
         "option_key": "C",
-        "hint": "S = 12 ohm would give X = 13 ohm from the first condition, but does not satisfy the second balance condition at 40 cm.",
+        "hint": "If X = 20 ohm, then S = 30 ohm. Parallel combination of 20 and 30 gives 12 ohm. New balance: 12/30 = 0.4, giving l = 28.6 cm, not 25 cm.",
         "misconception": null
       }
     ]
@@ -421,14 +421,14 @@
     "id": "cuet-phy-current-wheatstone-28",
     "question_type": "mcq",
     "difficulty": "hard",
-    "question_text": "Four resistances 10 ohm, 10 ohm, 10 ohm, and 10 ohm are connected to form a Wheatstone bridge. If a resistance of 10 ohm is connected in parallel across one of the arms, the current through the galvanometer arm (assuming galvanometer resistance is negligible) is proportional to:",
-    "explanation": "Initially all arms are 10 ohm each, so the bridge is balanced and galvanometer current is zero. When a 10 ohm resistor is connected in parallel with one arm, that arm's resistance becomes 10 x 10/(10 + 10) = 5 ohm. Now the bridge is unbalanced with arms 5, 10, 10, and 10 ohm. For P = 5, Q = 10, R = 10, S = 10: P/Q = 1/2 and R/S = 1, so the bridge is unbalanced. Using the unbalanced bridge formula, the galvanometer current is proportional to (PS - QR)/[(P+Q)(R+S)G + G(PS+QR) + ...]. With G approximately 0, using Thevenin equivalent across BD: V_BD = E[R/(R+S) - P/(P+Q)] = E[10/20 - 5/15] = E[1/2 - 1/3] = E/6. The current through the galvanometer is V_BD/G, but since G is negligible, I_g = V_BD/R_th where R_th is the Thevenin resistance. The key point is that current flows through the galvanometer, and it is proportional to E/6 divided by the Thevenin resistance, confirming the bridge is unbalanced. The answer reduces to: the galvanometer current is proportional to the supply voltage E.",
+    "question_text": "Four resistances of 10 ohm each form a balanced Wheatstone bridge. If a 10 ohm resistance is now connected in parallel across one arm, what is the potential difference across the galvanometer terminals (open-circuit) as a fraction of the battery EMF E?",
+    "explanation": "Initially all arms are 10 ohm each, so the bridge is balanced. When a 10 ohm resistor is connected in parallel with one arm (say P), that arm becomes 10*10/(10+10) = 5 ohm. Now P = 5, Q = 10, R = 10, S = 10. The Thevenin voltage across galvanometer terminals B and D (with galvanometer removed): V_B = E * Q/(P+Q) = E * 10/15 = 2E/3. V_D = E * S/(R+S) = E * 10/20 = E/2. Therefore V_BD = V_B - V_D = 2E/3 - E/2 = (4E - 3E)/6 = E/6. The open-circuit voltage across the galvanometer terminals is E/6.",
     "correct_answer": "A",
     "concept_tags": [
       "wheatstone-bridge",
       "unbalanced-bridge",
-      "parallel-resistance",
-      "galvanometer-current"
+      "thevenin-voltage",
+      "parallel-resistance"
     ],
     "topic": "Wheatstone Bridge and Meter Bridge",
     "subtopic": "Wheatstone bridge principle",
@@ -440,7 +440,7 @@
     "options": [
       {
         "key": "A",
-        "text": "E/6, where E is the supply voltage",
+        "text": "E/6",
         "is_correct": true
       },
       {
@@ -462,17 +462,17 @@
     "elimination_hints": [
       {
         "option_key": "B",
-        "hint": "Adding a parallel resistance across one arm changes that arm's resistance from 10 to 5 ohm, breaking the equality of ratios. P/Q = 5/10 = 1/2 while R/S = 10/10 = 1. The bridge is unbalanced.",
+        "hint": "Adding a parallel resistance across one arm changes that arm from 10 to 5 ohm, breaking the equality of ratios. P/Q = 5/10 = 1/2 while R/S = 10/10 = 1. The bridge is unbalanced.",
         "misconception": "Thinking the bridge stays balanced when one arm is modified"
       },
       {
         "option_key": "C",
-        "hint": "E/2 would be the open-circuit voltage of a battery with half the voltage across the galvanometer, which is not correct. The Thevenin voltage across BD is E(1/2 - 1/3) = E/6.",
-        "misconception": "Incorrect calculation of potential difference between bridge terminals"
+        "hint": "E/2 would mean half the battery voltage appears across the galvanometer, which is far too large. V_BD = E*Q/(P+Q) - E*S/(R+S) = 2E/3 - E/2 = E/6.",
+        "misconception": "Incorrect potential difference calculation"
       },
       {
         "option_key": "D",
-        "hint": "E/4 does not correspond to the correct potential difference calculation. V_B - V_D = E[R/(R+S) - P/(P+Q)] = E[1/2 - 1/3] = E/6.",
+        "hint": "E/4 does not result from the correct Thevenin analysis. V_B = 10E/15 = 2E/3, V_D = 10E/20 = E/2, so V_BD = 2E/3 - E/2 = E/6.",
         "misconception": null
       }
     ]
@@ -667,8 +667,8 @@
     "id": "cuet-phy-current-wheatstone-32",
     "question_type": "diagram-based",
     "difficulty": "hard",
-    "question_text": "In the unbalanced Wheatstone bridge shown, P = 1000 ohm, Q = 100 ohm, R = 500 ohm, S = 50 ohm, and the galvanometer has a resistance G = 200 ohm. The battery EMF is 10 V with negligible internal resistance. Using the Thevenin equivalent across the galvanometer terminals, find the approximate open-circuit voltage across the galvanometer terminals.",
-    "explanation": "To find the Thevenin voltage (open-circuit voltage) across the galvanometer terminals B and D: Remove the galvanometer. Current through the P-Q branch: I1 = E/(P + Q) = 10/(1000 + 100) = 10/1100 A. Voltage at B (from the P side): V_B = E - I1 x P = 10 - (10 x 1000)/1100 = 10 - 100/11 = 10/11 V. Current through the R-S branch: I2 = E/(R + S) = 10/(500 + 50) = 10/550 A. Voltage at D: V_D = E - I2 x R = 10 - (10 x 500)/550 = 10 - 100/11 = 10/11 V. Wait, let me recalculate. V_B = I1 x Q = (10/1100) x 100 = 1000/1100 = 10/11 V. V_D = I2 x S = (10/550) x 50 = 500/550 = 10/11 V. So V_B - V_D = 10/11 - 10/11 = 0. The bridge is balanced! P/Q = 1000/100 = 10, R/S = 500/50 = 10. Let me fix this with an unbalanced case.",
+    "question_text": "In the unbalanced Wheatstone bridge shown, P = 1000 ohm, Q = 100 ohm, R = 200 ohm, and S = 50 ohm. The battery EMF is 10 V with negligible internal resistance. What is the Thevenin open-circuit voltage across the galvanometer terminals B and D?",
+    "explanation": "To find the Thevenin voltage (open-circuit voltage) across the galvanometer terminals B and D, remove the galvanometer. Current through the P-Q branch: I1 = E/(P + Q) = 10/(1000 + 100) = 10/1100 A. Voltage at B: V_B = I1 x Q = (10/1100) x 100 = 1000/1100 = 10/11 V. Current through the R-S branch: I2 = E/(R + S) = 10/(200 + 50) = 10/250 A. Voltage at D: V_D = I2 x S = (10/250) x 50 = 500/250 = 2 V. Therefore V_BD = V_B - V_D = 10/11 - 2 = (10 - 22)/11 = -12/11 V. The magnitude is 12/11 V, approximately 1.09 V. The negative sign indicates D is at higher potential than B.",
     "correct_answer": "B",
     "concept_tags": [
       "wheatstone-bridge",
@@ -684,16 +684,16 @@
     "bloom_level": "analyze",
     "exam_suitability": ["CUET", "NEET"],
     "image_uri": "diagrams/cuet-phy-current-wheatstone-32.png",
-    "image_alt": "An unbalanced Wheatstone bridge with P = 1000 ohm (top-left, A to B), Q = 100 ohm (top-right, B to C), R = 200 ohm (bottom-left, A to D), S = 50 ohm (bottom-right, D to C). A galvanometer of resistance G = 200 ohm connects B and D. A battery of EMF 10 V with negligible internal resistance is connected between A and C.",
+    "image_alt": "An unbalanced Wheatstone bridge with P = 1000 ohm (top-left, A to B), Q = 100 ohm (top-right, B to C), R = 200 ohm (bottom-left, A to D), S = 50 ohm (bottom-right, D to C). A galvanometer connects B and D. A battery of EMF 10 V with negligible internal resistance is connected between A and C.",
     "options": [
       {
         "key": "A",
-        "text": "0 V",
+        "text": "0 V (bridge is balanced)",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "10/11 - 2 = -12/11 V, approximately -1.09 V",
+        "text": "12/11 V (approximately 1.09 V)",
         "is_correct": true
       },
       {
@@ -715,12 +715,12 @@
       },
       {
         "option_key": "C",
-        "hint": "5 V is half the battery EMF and would only appear if the voltage divided equally, which does not happen with unequal resistance ratios.",
+        "hint": "5 V is half the battery EMF and would only appear if the voltage divided equally, which does not happen with unequal resistance ratios in the two branches.",
         "misconception": "Assuming equal voltage division"
       },
       {
         "option_key": "D",
-        "hint": "2.5 V does not result from the correct Thevenin analysis. V_B = E x Q/(P+Q) = 10 x 100/1100 = 10/11 V. V_D = E x S/(R+S) = 10 x 50/250 = 2 V. The difference is 10/11 - 2.",
+        "hint": "2.5 V does not result from the correct Thevenin analysis. V_B = E x Q/(P+Q) = 10 x 100/1100 = 10/11 V. V_D = E x S/(R+S) = 10 x 50/250 = 2 V. The difference is |10/11 - 2| = 12/11 V.",
         "misconception": null
       }
     ]
@@ -1062,12 +1062,12 @@
       },
       {
         "key": "C",
-        "text": "28/78 ohm (approximately 0.36 ohm)",
+        "text": "24/73 ohm (approximately 0.33 ohm)",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "24/73 ohm (approximately 0.33 ohm)",
+        "text": "240/78 ohm (approximately 3.08 ohm)",
         "is_correct": false
       }
     ],
@@ -1084,7 +1084,7 @@
       },
       {
         "option_key": "D",
-        "hint": "This value results from subtracting the corrections from the lengths. End corrections are added to the respective balance lengths: effective left = 25 + 1 = 26, effective right = 75 + 2 = 77.",
+        "hint": "240/78 would result from subtracting alpha from l and adding beta differently. The correct approach adds alpha to l: effective left = 25 + 1 = 26, effective right = 75 + 2 = 77.",
         "misconception": "Applying end corrections in the wrong direction"
       }
     ]
@@ -1176,8 +1176,8 @@
     "id": "cuet-phy-current-wheatstone-40",
     "question_type": "logical-sequence",
     "difficulty": "hard",
-    "question_text": "Arrange the following concepts in order of increasing complexity of the bridge circuit used:",
-    "explanation": "The correct order of increasing complexity is: (1) Simple Wheatstone bridge (four resistors, a galvanometer, and a battery - the most fundamental bridge circuit). (2) Metre bridge (a practical Wheatstone bridge using a uniform wire for two arms, with a jockey for finding balance). (3) Post office box (a more precise Wheatstone bridge using plug-type decade resistance boxes for ratio arms and comparison arm). (4) Kelvin double bridge (an advanced bridge with two sets of ratio arms designed to eliminate lead and contact resistance errors for low-resistance measurement). Each successive instrument adds practical refinements or additional components to address specific measurement challenges.",
+    "question_text": "Arrange the following bridge circuits in order of increasing complexity of the circuit design:",
+    "explanation": "The correct order of increasing complexity is: (1) Simple Wheatstone bridge - four resistors, a galvanometer, and a battery, the most fundamental bridge circuit. (2) Metre bridge - a practical Wheatstone bridge using a uniform wire for two arms, with a jockey for finding balance. (3) Post office box - a more precise Wheatstone bridge using plug-type decade resistance boxes for ratio arms and comparison arm. (4) Kelvin double bridge - an advanced bridge with two sets of ratio arms designed to eliminate lead and contact resistance errors for low-resistance measurement. Each successive instrument adds practical refinements or additional components to address specific measurement challenges.",
     "correct_answer": "D",
     "concept_tags": [
       "wheatstone-bridge",
