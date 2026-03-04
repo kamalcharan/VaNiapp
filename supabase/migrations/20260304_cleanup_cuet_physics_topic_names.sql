@@ -5,7 +5,13 @@
 -- names. Later migrations (step1, 20260304) tried to insert cleaner names
 -- but used ON CONFLICT DO NOTHING, so the old names persisted.
 -- This migration explicitly UPDATEs those names to the standardised form.
+--
+-- Wrapped in a transaction: all-or-nothing.
 -- ==========================================================================
+
+BEGIN;
+
+-- ── PART 1: Fix 14 stale topic names ────────────────────────────────────
 
 -- Atoms & Nuclei
 UPDATE med_topics SET name = 'Bohr Model of Hydrogen Atom'
@@ -45,21 +51,17 @@ UPDATE med_topics SET name = 'Diffraction of Light'
 UPDATE med_topics SET name = 'Polarisation of Light'
   WHERE id = 'cuet-phy-opt-polarisation';
 
--- ==========================================================================
--- Cleanup: Remove orphan batch-1 topics that use old naming convention.
--- Batch 1 created topics with 'cuet-phy-curr-*' prefix; the correct set
--- uses 'cuet-phy-current-*' (from 20260304 migration).
--- Also remove batch-1-only atom topics that were superseded.
---
--- NOTE: Any batch-1 correction questions referencing these old topic IDs
--- will need their topic_id updated to the new IDs first.
--- ==========================================================================
+-- ── PART 2: Reassign questions from old topic IDs, then delete orphans ──
 
--- Reassign batch-1 questions from old topic IDs to new ones
+-- Current Electricity: move questions from old curr-* to new current-* IDs
 UPDATE med_questions SET topic_id = 'cuet-phy-current-ohm'
   WHERE topic_id = 'cuet-phy-curr-ohm';
 UPDATE med_questions SET topic_id = 'cuet-phy-current-kirchhoff'
   WHERE topic_id = 'cuet-phy-curr-kirchhoff';
+UPDATE med_questions SET topic_id = 'cuet-phy-current-instruments'
+  WHERE topic_id = 'cuet-phy-curr-wheatstone';
+UPDATE med_questions SET topic_id = 'cuet-phy-current-instruments'
+  WHERE topic_id = 'cuet-phy-curr-potentiometer';
 
 -- Delete orphan curr-* topics (old prefix from batch 1)
 DELETE FROM med_topics WHERE id IN (
@@ -70,9 +72,7 @@ DELETE FROM med_topics WHERE id IN (
   'cuet-phy-curr-potentiometer'
 );
 
--- Delete orphan atom-* topics from batch 1 that were superseded
--- (rutherford, radioactivity, nucleus, fission-fusion have no JSON files
---  and were replaced by nuclei-decay, nuclei-properties, atom-spectra)
+-- Atoms & Nuclei: reassign questions from superseded batch-1 topics
 UPDATE med_questions SET topic_id = 'cuet-phy-nuclei-decay'
   WHERE topic_id = 'cuet-phy-atom-radioactivity';
 UPDATE med_questions SET topic_id = 'cuet-phy-nuclei-properties'
@@ -80,9 +80,12 @@ UPDATE med_questions SET topic_id = 'cuet-phy-nuclei-properties'
 UPDATE med_questions SET topic_id = 'cuet-phy-nuclei-properties'
   WHERE topic_id = 'cuet-phy-atom-fission-fusion';
 
+-- Delete orphan atom-* topics from batch 1
 DELETE FROM med_topics WHERE id IN (
   'cuet-phy-atom-rutherford',
   'cuet-phy-atom-radioactivity',
   'cuet-phy-atom-nucleus',
   'cuet-phy-atom-fission-fusion'
 );
+
+COMMIT;
