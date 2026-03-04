@@ -739,7 +739,7 @@
   },
   {
     "id": "phy-semi-transistor-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): In a common emitter transistor configuration, the current gain (beta) is always greater than 1.\nReason (R): The base current is much smaller than the collector current because the base region is thin and lightly doped.",
     "explanation": "Both the assertion and the reason are correct, and the reason is the correct explanation of the assertion. In a CE configuration, beta = I_C / I_B. Because the base is very thin and lightly doped, only a small fraction (about 2-5%) of the carriers injected from the emitter recombine in the base (constituting I_B), while the vast majority (95-98%) reach the collector (constituting I_C). Since I_C >> I_B, beta = I_C/I_B is always much greater than 1 (typically 20 to 500).",
@@ -762,22 +762,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -801,7 +801,7 @@
   },
   {
     "id": "phy-semi-transistor-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): A NAND gate can be used to realise all the three basic logic gates (AND, OR, NOT).\nReason (R): The NAND gate produces an output that is the complement of the AND operation, and its truth table has three HIGH outputs and one LOW output for two inputs.",
     "explanation": "The assertion is correct: NAND is a universal gate and can be used to construct AND, OR, and NOT gates. NOT is obtained by connecting both inputs of a NAND gate together. AND is obtained by following a NAND gate with a NOT (another NAND with tied inputs). OR is obtained by first applying NOT to each input and then feeding them into a NAND gate. The reason is also correct: Y = (A.B)' is the complement of AND, and the truth table for two inputs gives outputs 1,1,1,0 for input combinations (0,0), (0,1), (1,0), (1,1) respectively. However, the reason merely describes the NAND operation; it does not explain why NAND can realise all basic gates. The ability to realise all gates comes from the mathematical completeness of the NAND function, not simply from having three HIGH and one LOW output.",
@@ -825,22 +825,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -864,7 +864,7 @@
   },
   {
     "id": "phy-semi-transistor-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the logic gates in Column I with their Boolean expressions in Column II:\n\nColumn I:\nA. AND gate\nB. OR gate\nC. NAND gate\nD. NOR gate\n\nColumn II:\n1. Y = (A + B)'\n2. Y = A.B\n3. Y = A + B\n4. Y = (A.B)'",
     "explanation": "AND gate: output is HIGH only when all inputs are HIGH, so Y = A.B (A-2). OR gate: output is HIGH when at least one input is HIGH, so Y = A + B (B-3). NAND gate: complement of AND, so Y = (A.B)' (C-4). NOR gate: complement of OR, so Y = (A + B)' (D-1). The correct matching is A-2, B-3, C-4, D-1.",
@@ -927,7 +927,7 @@
   },
   {
     "id": "phy-semi-transistor-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the transistor biasing conditions in Column I with the corresponding mode of operation in Column II:\n\nColumn I:\nA. Emitter-base junction forward biased, collector-base junction reverse biased\nB. Both junctions forward biased\nC. Both junctions reverse biased\nD. Emitter-base junction reverse biased, collector-base junction forward biased\n\nColumn II:\n1. Saturation mode\n2. Cut-off mode\n3. Active mode\n4. Inverse active mode",
     "explanation": "In the active mode (used for amplification), the emitter-base junction is forward biased and the collector-base junction is reverse biased (A-3). In saturation mode (switch ON), both junctions are forward biased (B-1). In cut-off mode (switch OFF), both junctions are reverse biased (C-2). In inverse active mode, the emitter-base junction is reverse biased and the collector-base junction is forward biased (D-4), which is the reverse of normal active mode.",
@@ -989,7 +989,7 @@
   },
   {
     "id": "phy-semi-transistor-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In an npn transistor working in the active region, the emitter-base junction is forward biased and the collector-base junction is reverse biased.",
     "explanation": "This is a true statement. For an npn transistor to operate in the active region (used for amplification), the emitter-base (EB) junction must be forward biased so that electrons are injected from the emitter into the base, and the collector-base (CB) junction must be reverse biased so that the electric field at this junction sweeps the electrons arriving from the base into the collector.",
@@ -1051,7 +1051,7 @@
   },
   {
     "id": "phy-semi-transistor-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The output of a NOR gate is HIGH when at least one of its inputs is HIGH.",
     "explanation": "This statement is false. A NOR gate produces the complement of the OR operation. The OR gate gives HIGH output when at least one input is HIGH. Therefore, the NOR gate gives LOW output when at least one input is HIGH. The NOR gate output is HIGH only when ALL inputs are LOW. The truth table for a two-input NOR gate shows: (0,0)->1, (0,1)->0, (1,0)->0, (1,1)->0.",
@@ -1111,7 +1111,7 @@
   },
   {
     "id": "phy-semi-transistor-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "If the current gain (alpha) of a transistor in common base configuration is 0.96, then the current gain (beta) in common emitter configuration is _____.",
     "explanation": "The relationship between alpha and beta is beta = alpha / (1 - alpha). Substituting alpha = 0.96: beta = 0.96 / (1 - 0.96) = 0.96 / 0.04 = 24. This means that in the common emitter configuration, the collector current is 24 times the base current.",
@@ -1174,7 +1174,7 @@
   },
   {
     "id": "phy-semi-transistor-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A student is designing a burglar alarm circuit using logic gates. The alarm (output Y) should sound (Y = 1) only when sensor A detects motion (A = 1) AND sensor B detects a broken window (B = 1) AND the system is armed (C = 1). However, the student only has two-input NAND gates available in the laboratory.\n\nTo implement this three-input AND function using only two-input NAND gates, what is the minimum number of NAND gates required?",
     "explanation": "A three-input AND gate gives Y = A.B.C. To implement this using two-input NAND gates: Step 1: Use a NAND gate with inputs A and B to get (A.B)'. Step 2: Use a NAND gate with both inputs connected to (A.B)' to get ((A.B)')' = A.B (this acts as a NOT gate). Step 3: Use a NAND gate with inputs A.B and C to get (A.B.C)'. Step 4: Use a NAND gate with both inputs connected to (A.B.C)' to get ((A.B.C)')' = A.B.C. This requires 4 NAND gates. Alternatively, the same result can be achieved with 4 gates in a slightly different arrangement, but 4 is the minimum.",

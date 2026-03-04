@@ -721,7 +721,7 @@
   },
   {
     "id": "phy-emwave-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): Electromagnetic waves carry energy and momentum even though they have no mass.\nReason (R): The energy of an electromagnetic wave is shared equally between its oscillating electric and magnetic fields.",
     "explanation": "Both the assertion and the reason are correct. EM waves carry energy (described by the Poynting vector S = E × B/μ₀) and momentum (p = U/c for energy U) despite being massless. The reason is also true: the average energy density of the electric field (½ε₀E₀²) equals that of the magnetic field (B₀²/(2μ₀)). However, the reason explains only the energy distribution, not why EM waves carry momentum. The momentum arises from the electromagnetic field itself and is related to energy by p = U/c, which is not addressed by the equal energy sharing. Therefore, R is correct but does not fully explain A (specifically the momentum part).",
@@ -742,22 +742,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -781,7 +781,7 @@
   },
   {
     "id": "phy-emwave-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): Maxwell modified Ampere's circuital law by introducing displacement current to make it consistent with the law of conservation of charge.\nReason (R): The conduction current alone was insufficient to explain the magnetic field in the region between the plates of a charging capacitor.",
     "explanation": "Both A and R are correct, and R is the correct explanation of A. The original Ampere's law (∮B·dl = μ₀Ic) failed when applied to a surface passing through the gap of a charging capacitor, where no conduction current flows, yet a magnetic field exists. This inconsistency violated the continuity equation (charge conservation). Maxwell resolved this by adding the displacement current term Id = ε₀(dΦE/dt) to Ampere's law, giving the Ampere-Maxwell law: ∮B·dl = μ₀(Ic + Id). The reason correctly identifies the specific physical situation that necessitated this modification.",
@@ -803,22 +803,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -842,7 +842,7 @@
   },
   {
     "id": "phy-emwave-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following types of electromagnetic radiation (Column-I) with their primary applications (Column-II):\n\nColumn-I:\nA. Infrared radiation\nB. X-rays\nC. Ultraviolet radiation\nD. Microwaves\n\nColumn-II:\n1. Cooking in microwave ovens and RADAR\n2. Medical imaging of bones and crystallography\n3. Sterilisation of water and LASIK eye surgery\n4. Night vision devices and TV remote controls",
     "explanation": "Infrared radiation is used in night vision equipment and TV remote controls (A→4). X-rays penetrate soft tissue but are absorbed by bones, making them ideal for medical imaging; they are also used in crystal structure determination via X-ray diffraction (B→2). Ultraviolet radiation has germicidal properties for water purification and is used in LASIK eye surgery (C→3). Microwaves are used in microwave ovens for heating food and in RADAR systems for detection and ranging (D→1).",
@@ -904,7 +904,7 @@
   },
   {
     "id": "phy-emwave-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following electromagnetic radiations (Column-I) with their correct source/production mechanism (Column-II):\n\nColumn-I:\nA. Radio waves\nB. X-rays\nC. Gamma rays\nD. Infrared radiation\n\nColumn-II:\n1. Vibrations of atoms and molecules (thermal agitation)\n2. Nuclear transitions and radioactive decay\n3. Oscillating electrons in an LC circuit / antenna\n4. Deceleration of high-speed electrons striking a metal target",
     "explanation": "Radio waves are produced by oscillating charges in LC circuits connected to antennas (A→3). X-rays are produced when fast-moving electrons are suddenly decelerated upon striking a dense metal target (Bremsstrahlung) or by inner shell electronic transitions (B→4). Gamma rays originate from transitions within the atomic nucleus and radioactive decay processes (C→2). Infrared radiation is emitted by all warm bodies due to thermal vibrations of their atoms and molecules (D→1).",
@@ -966,7 +966,7 @@
   },
   {
     "id": "phy-emwave-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "All electromagnetic waves travel with the same speed in vacuum, regardless of their frequency or wavelength.",
     "explanation": "This statement is TRUE. In vacuum, all electromagnetic waves — from radio waves to gamma rays — travel at the same speed c = 3 × 10⁸ m/s = 1/√(μ₀ε₀). The speed depends only on the properties of free space (μ₀ and ε₀) and is independent of frequency, wavelength, or amplitude. This is a fundamental property that distinguishes vacuum propagation from propagation in a medium, where the speed may vary with frequency (dispersion).",
@@ -1026,7 +1026,7 @@
   },
   {
     "id": "phy-emwave-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Electromagnetic waves are longitudinal waves, similar to sound waves.",
     "explanation": "This statement is FALSE. Electromagnetic waves are transverse waves, not longitudinal. In EM waves, the electric field E and the magnetic field B oscillate perpendicular to the direction of wave propagation. Sound waves in air are longitudinal (particles oscillate parallel to the propagation direction), but EM waves have a fundamentally different nature. The transverse nature of EM waves is confirmed by the phenomenon of polarisation.",
@@ -1086,7 +1086,7 @@
   },
   {
     "id": "phy-emwave-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "Maxwell's modification of Ampere's circuital law introduces a term called displacement current, given by Id = ε₀(dΦE/dt). In the modified law, the total current enclosed is the sum of _____ current and _____ current.",
     "explanation": "Maxwell's modified Ampere's circuital law is ∮B·dl = μ₀(Ic + Id), where Ic is the conduction current (due to actual flow of charges) and Id = ε₀(dΦE/dt) is the displacement current (due to the time-varying electric field). The conduction current represents the physical movement of charge carriers through conductors, while the displacement current exists even in vacuum or dielectric regions where the electric field is changing with time.",
@@ -1146,7 +1146,7 @@
   },
   {
     "id": "phy-emwave-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A scientist is studying different regions of the electromagnetic spectrum for a research project. She needs to select appropriate EM radiation for the following task: detecting fractures in the internal bone structure of a patient without surgery.\n\nShe also notes that the wavelength of the radiation used should be comparable to interatomic spacing in crystals (about 10⁻¹⁰ m) so that the same radiation can also be used for crystal structure analysis.\n\nThe most suitable electromagnetic radiation for both purposes is:",
     "explanation": "X-rays are the correct choice for both applications. X-rays have wavelengths in the range of 10⁻⁸ m to 10⁻¹² m, with typical medical X-rays around 10⁻¹⁰ m. They can penetrate soft tissue but are absorbed by dense structures like bones, making them ideal for detecting bone fractures. Additionally, since their wavelength is comparable to interatomic spacings in crystals (~10⁻¹⁰ m or 1 Angstrom), they undergo diffraction when passing through crystalline materials, enabling crystal structure determination (X-ray crystallography). No other region of the EM spectrum satisfies both requirements simultaneously.",

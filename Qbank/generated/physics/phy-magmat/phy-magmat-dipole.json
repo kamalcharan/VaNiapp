@@ -725,7 +725,7 @@
   },
   {
     "id": "phy-magmat-dipole-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): A bar magnet is equivalent to a solenoid carrying current.\nReason (R): The magnetic field lines of a bar magnet and a current-carrying solenoid have identical patterns, with field lines emerging from one end and entering the other.",
     "explanation": "The assertion is correct: a bar magnet behaves identically to a solenoid in terms of its external magnetic field. The reason is also correct and directly explains the assertion: both produce the same field pattern — field lines emerge from the north pole (or the end where current flows anticlockwise) and enter the south pole (or the end where current flows clockwise). The mathematical expressions for the fields at axial and equatorial points are also identical when M = NIA.",
@@ -746,22 +746,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -785,7 +785,7 @@
   },
   {
     "id": "phy-magmat-dipole-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): At the magnetic equator, the angle of dip is 0° and a freely suspended magnetic needle rests horizontally.\nReason (R): At the magnetic equator, the vertical component of Earth's magnetic field is zero.",
     "explanation": "The assertion is correct: at the magnetic equator, the dip angle δ = 0°, and a freely suspended needle aligns horizontally. The reason is also correct and directly explains the assertion: since Bᵥ = B sinδ, at δ = 0° we get Bᵥ = 0. With no vertical component to pull the needle downward, it rests horizontally. The entire Earth's field at the magnetic equator is horizontal (Bₕ = B).",
@@ -807,22 +807,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -846,7 +846,7 @@
   },
   {
     "id": "phy-magmat-dipole-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the elements of Earth's magnetism in Column I with their definitions in Column II:\n\nColumn I:\nA. Declination\nB. Angle of dip (Inclination)\nC. Horizontal component Bₕ\nD. Vertical component Bᵥ\n\nColumn II:\n1. B sinδ, where δ is the dip angle\n2. The angle between the geographic meridian and the magnetic meridian\n3. B cosδ, where δ is the dip angle\n4. The angle between the total Earth's field and the horizontal direction in the magnetic meridian",
     "explanation": "Declination is the angle between geographic and magnetic meridians → A-2. Dip is the angle between the total field vector and the horizontal in the magnetic meridian → B-4. The horizontal component is Bₕ = B cosδ → C-3. The vertical component is Bᵥ = B sinδ → D-1.",
@@ -907,7 +907,7 @@
   },
   {
     "id": "phy-magmat-dipole-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the physical situations in Column I with the correct magnetic field expressions or properties in Column II:\n\nColumn I:\nA. Axial point of a magnetic dipole (far field)\nB. Equatorial point of a magnetic dipole (far field)\nC. Neutral point when N-pole points north (bar magnet on table)\nD. Neutral point when N-pole points south (bar magnet on table)\n\nColumn II:\n1. Located on the axial line of the magnet\n2. (μ₀/4π)(M/r³), directed opposite to M\n3. Located on the equatorial line of the magnet\n4. (μ₀/4π)(2M/r³), directed along M",
     "explanation": "The axial field at far distance is (μ₀/4π)(2M/r³), directed along M → A-4. The equatorial field at far distance is (μ₀/4π)(M/r³), directed opposite to M → B-2. When the N-pole of a bar magnet points geographic north, the magnet's field opposes Earth's field on the equatorial line, so neutral points are on the equatorial line → C-3. When the N-pole points south, neutral points lie on the axial line → D-1.",
@@ -943,7 +943,7 @@
       },
       {
         "key": "D",
-        "text": "A-4, B-2, C-1, D-3",
+        "text": "A-2, B-4, C-1, D-3",
         "is_correct": false
       }
     ],
@@ -960,14 +960,14 @@
       },
       {
         "option_key": "D",
-        "hint": "This is identical to option A with C and D swapped from the correct answer. Neutral points for N-pole north are on the equatorial line (perpendicular bisector), not the axial line.",
-        "misconception": "Confusing the location of neutral points"
+        "hint": "This swaps both pairs: A↔B and C↔D. The axial field (factor 2) matches column 4, not 2, and neutral points for N-pole north are on the equatorial line (C-3, not C-1).",
+        "misconception": "Confusing both field formulas and neutral point locations"
       }
     ]
   },
   {
     "id": "phy-magmat-dipole-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The magnetic field lines of a bar magnet form continuous closed loops, emerging from the north pole outside the magnet and running from south to north inside the magnet.",
     "explanation": "This statement is TRUE. Unlike electric field lines, magnetic field lines always form continuous closed loops. Outside the magnet, they go from north pole to south pole. Inside the magnet, they continue from south pole to north pole, completing the loop. This is a consequence of Gauss's law for magnetism (∇·B = 0), which states that magnetic monopoles do not exist.",
@@ -1027,7 +1027,7 @@
   },
   {
     "id": "phy-magmat-dipole-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The geographic north pole of the Earth and the magnetic north pole of the Earth are located at the same point.",
     "explanation": "This statement is FALSE. The geographic north pole (true north, defined by Earth's rotational axis) and the magnetic north pole (where the Earth's magnetic field points vertically downward) are NOT at the same location. The magnetic north pole is offset from the geographic north pole by about 11.3°. In fact, the Earth's magnetic south pole is located near the geographic north pole (since field lines enter the Earth near the geographic north).",
@@ -1087,7 +1087,7 @@
   },
   {
     "id": "phy-magmat-dipole-19",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "At a place where the angle of dip is 45°, the horizontal and vertical components of Earth's magnetic field are _____.",
     "explanation": "When the angle of dip δ = 45°, we have Bₕ = B cos45° = B/√2 and Bᵥ = B sin45° = B/√2. Since Bₕ = Bᵥ, the horizontal and vertical components are equal in magnitude. Also, tanδ = Bᵥ/Bₕ = tan45° = 1, confirming Bᵥ = Bₕ.",
@@ -1148,7 +1148,7 @@
   },
   {
     "id": "phy-magmat-dipole-20",
-    "question_type": "scenario",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A geologist is surveying a region using a dip circle. At a particular location, she measures the angle of dip to be 30° and the horizontal component of Earth's magnetic field to be 0.36 G. She needs to determine the total magnetic field strength and the vertical component at this location.\n\nWhat is the vertical component Bᵥ of Earth's magnetic field at this location?",
     "explanation": "Given: δ = 30°, Bₕ = 0.36 G. Using the relation tanδ = Bᵥ/Bₕ, we get Bᵥ = Bₕ tanδ = 0.36 × tan30° = 0.36 × (1/√3) = 0.36/1.732 ≈ 0.208 G. Alternatively, Bᵥ = 0.36/√3 = 0.12√3 G ≈ 0.208 G. The total field B = Bₕ/cosδ = 0.36/cos30° = 0.36/(√3/2) = 0.72/√3 ≈ 0.416 G.",

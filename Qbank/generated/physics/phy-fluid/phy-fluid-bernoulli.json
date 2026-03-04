@@ -6,22 +6,56 @@
     "question_text": "According to the equation of continuity for an incompressible fluid flowing through a pipe of varying cross-section, if the cross-sectional area decreases, the velocity of the fluid:",
     "explanation": "The equation of continuity states A₁v₁ = A₂v₂ for an incompressible fluid (constant density). If A₂ < A₁, then v₂ > v₁. So when the cross-sectional area decreases, the fluid velocity increases. This is why water flows faster from a narrower nozzle.",
     "correct_answer": "A",
-    "concept_tags": ["equation of continuity", "incompressible fluid", "velocity and area"],
+    "concept_tags": [
+      "equation of continuity",
+      "incompressible fluid",
+      "velocity and area"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Increases", "is_correct": true },
-      { "key": "B", "text": "Decreases", "is_correct": false },
-      { "key": "C", "text": "Remains the same", "is_correct": false },
-      { "key": "D", "text": "First increases then decreases", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Increases",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Decreases",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Remains the same",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "First increases then decreases",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "If velocity decreased when area decreased, the product Av would decrease on both counts, violating mass conservation. The equation of continuity requires Av = constant.", "misconception": "Thinking velocity changes in the same direction as area" },
-      { "option_key": "C", "hint": "If velocity remained the same while area decreased, less volume of fluid would pass through per second, violating the conservation of mass for a steady flow.", "misconception": "Ignoring the inverse relationship between area and velocity" },
-      { "option_key": "D", "hint": "For a simple constriction, the velocity change is monotonic — it increases as the area decreases. There is no reason for a reversal.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "If velocity decreased when area decreased, the product Av would decrease on both counts, violating mass conservation. The equation of continuity requires Av = constant.",
+        "misconception": "Thinking velocity changes in the same direction as area"
+      },
+      {
+        "option_key": "C",
+        "hint": "If velocity remained the same while area decreased, less volume of fluid would pass through per second, violating the conservation of mass for a steady flow.",
+        "misconception": "Ignoring the inverse relationship between area and velocity"
+      },
+      {
+        "option_key": "D",
+        "hint": "For a simple constriction, the velocity change is monotonic — it increases as the area decreases. There is no reason for a reversal.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -31,22 +65,56 @@
     "question_text": "The speed of efflux of a liquid from an orifice at a depth h below the free surface of a large open tank is given by Torricelli's theorem as:",
     "explanation": "Torricelli's theorem states that the speed of efflux from an orifice at a depth h below the free surface of a liquid in a large open tank is v = √(2gh). This is derived from Bernoulli's equation by comparing the free surface (where velocity ≈ 0 for a large tank) with the orifice. It is equivalent to the speed of a body falling freely through height h.",
     "correct_answer": "B",
-    "concept_tags": ["Torricelli's theorem", "speed of efflux", "Bernoulli's equation"],
+    "concept_tags": [
+      "Torricelli's theorem",
+      "speed of efflux",
+      "Bernoulli's equation"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "v = √(gh)", "is_correct": false },
-      { "key": "B", "text": "v = √(2gh)", "is_correct": true },
-      { "key": "C", "text": "v = 2√(gh)", "is_correct": false },
-      { "key": "D", "text": "v = √(gh/2)", "is_correct": false }
+      {
+        "key": "A",
+        "text": "v = √(gh)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "v = √(2gh)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "v = 2√(gh)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "v = √(gh/2)",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "v = √(gh) is missing the factor of 2. Torricelli's theorem gives the same speed as free fall from height h, which is v = √(2gh), not √(gh).", "misconception": "Forgetting the factor of 2 in the kinematic equation v² = 2gh" },
-      { "option_key": "C", "hint": "2√(gh) = √(4gh), which would imply v² = 4gh. This does not follow from Bernoulli's equation or energy conservation.", "misconception": "Incorrectly placing the factor of 2 outside the square root" },
-      { "option_key": "D", "hint": "v = √(gh/2) would imply that the efflux speed is less than that from free fall, which contradicts the energy conservation derivation.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "v = √(gh) is missing the factor of 2. Torricelli's theorem gives the same speed as free fall from height h, which is v = √(2gh), not √(gh).",
+        "misconception": "Forgetting the factor of 2 in the kinematic equation v² = 2gh"
+      },
+      {
+        "option_key": "C",
+        "hint": "2√(gh) = √(4gh), which would imply v² = 4gh. This does not follow from Bernoulli's equation or energy conservation.",
+        "misconception": "Incorrectly placing the factor of 2 outside the square root"
+      },
+      {
+        "option_key": "D",
+        "hint": "v = √(gh/2) would imply that the efflux speed is less than that from free fall, which contradicts the energy conservation derivation.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -56,22 +124,57 @@
     "question_text": "The Reynolds number is a dimensionless quantity that helps determine whether the flow of a fluid is:",
     "explanation": "The Reynolds number (Re = ρvd/η) is used to predict the nature of fluid flow. For Re < 1000 (approximately), the flow is streamline (laminar). For Re > 2000 (approximately), the flow becomes turbulent. The Reynolds number thus helps distinguish between streamline and turbulent flow regimes.",
     "correct_answer": "C",
-    "concept_tags": ["Reynolds number", "streamline flow", "turbulent flow", "dimensionless quantity"],
+    "concept_tags": [
+      "Reynolds number",
+      "streamline flow",
+      "turbulent flow",
+      "dimensionless quantity"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Compressible or incompressible", "is_correct": false },
-      { "key": "B", "text": "Viscous or inviscid", "is_correct": false },
-      { "key": "C", "text": "Streamline or turbulent", "is_correct": true },
-      { "key": "D", "text": "Steady or unsteady", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Compressible or incompressible",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Viscous or inviscid",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Streamline or turbulent",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Steady or unsteady",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Compressibility depends on the Mach number (ratio of flow speed to speed of sound), not the Reynolds number.", "misconception": "Confusing Reynolds number with Mach number" },
-      { "option_key": "B", "hint": "All real fluids have some viscosity. The Reynolds number does not classify fluids as viscous or inviscid — it predicts the flow pattern for a given fluid.", "misconception": "Confusing fluid property with flow characteristic" },
-      { "option_key": "D", "hint": "While turbulent flow is unsteady, the Reynolds number specifically distinguishes between streamline (laminar) and turbulent flow based on a critical value.", "misconception": "Using imprecise terminology instead of the standard classification" }
+      {
+        "option_key": "A",
+        "hint": "Compressibility depends on the Mach number (ratio of flow speed to speed of sound), not the Reynolds number.",
+        "misconception": "Confusing Reynolds number with Mach number"
+      },
+      {
+        "option_key": "B",
+        "hint": "All real fluids have some viscosity. The Reynolds number does not classify fluids as viscous or inviscid — it predicts the flow pattern for a given fluid.",
+        "misconception": "Confusing fluid property with flow characteristic"
+      },
+      {
+        "option_key": "D",
+        "hint": "While turbulent flow is unsteady, the Reynolds number specifically distinguishes between streamline (laminar) and turbulent flow based on a critical value.",
+        "misconception": "Using imprecise terminology instead of the standard classification"
+      }
     ]
   },
   {
@@ -81,22 +184,57 @@
     "question_text": "Water flows through a horizontal pipe whose cross-sectional area changes from 40 cm² to 10 cm². If the pressure difference between the wider and narrower sections is 300 Pa, the speed of water at the wider section is (density of water = 1000 kg/m³):",
     "explanation": "Using the equation of continuity: A₁v₁ = A₂v₂, so v₂ = (A₁/A₂)v₁ = (40/10)v₁ = 4v₁. Applying Bernoulli's equation for a horizontal pipe: P₁ + ½ρv₁² = P₂ + ½ρv₂². Therefore P₁ − P₂ = ½ρ(v₂² − v₁²) = ½ρ(16v₁² − v₁²) = ½ρ(15v₁²). Substituting: 300 = ½ × 1000 × 15v₁² = 7500v₁². So v₁² = 300/7500 = 0.04, giving v₁ = 0.2 m/s.",
     "correct_answer": "D",
-    "concept_tags": ["Bernoulli's equation", "equation of continuity", "pressure difference", "horizontal pipe"],
+    "concept_tags": [
+      "Bernoulli's equation",
+      "equation of continuity",
+      "pressure difference",
+      "horizontal pipe"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "0.8 m/s", "is_correct": false },
-      { "key": "B", "text": "0.4 m/s", "is_correct": false },
-      { "key": "C", "text": "0.1 m/s", "is_correct": false },
-      { "key": "D", "text": "0.2 m/s", "is_correct": true }
+      {
+        "key": "A",
+        "text": "0.8 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.4 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.1 m/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.2 m/s",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "0.8 m/s is the speed in the narrower section (v₂ = 4v₁ = 4 × 0.2 = 0.8 m/s), not the wider section. The question asks for the speed at the wider section.", "misconception": "Confusing the speed in the narrower section with the wider section" },
-      { "option_key": "B", "hint": "0.4 m/s would result from using the area ratio as 2:1 instead of the correct 4:1. Check that A₁/A₂ = 40/10 = 4.", "misconception": "Using an incorrect area ratio" },
-      { "option_key": "C", "hint": "0.1 m/s would result from an arithmetic error in solving the equation. Verify: 300 = 7500v₁² gives v₁² = 0.04, so v₁ = 0.2 m/s.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "0.8 m/s is the speed in the narrower section (v₂ = 4v₁ = 4 × 0.2 = 0.8 m/s), not the wider section. The question asks for the speed at the wider section.",
+        "misconception": "Confusing the speed in the narrower section with the wider section"
+      },
+      {
+        "option_key": "B",
+        "hint": "0.4 m/s would result from using the area ratio as 2:1 instead of the correct 4:1. Check that A₁/A₂ = 40/10 = 4.",
+        "misconception": "Using an incorrect area ratio"
+      },
+      {
+        "option_key": "C",
+        "hint": "0.1 m/s would result from an arithmetic error in solving the equation. Verify: 300 = 7500v₁² gives v₁² = 0.04, so v₁ = 0.2 m/s.",
+        "misconception": null
+      }
     ]
   },
   {
@@ -106,22 +244,57 @@
     "question_text": "A venturimeter has a tube of cross-sectional area 2A connected to a constriction of cross-sectional area A. If the speed of the liquid in the tube section is v, the pressure drop at the constriction relative to the tube section is:",
     "explanation": "By the equation of continuity, A₁v₁ = A₂v₂. Here A₁ = 2A, v₁ = v, A₂ = A. So v₂ = (2A/A)v = 2v. Using Bernoulli's equation (horizontal): P₁ − P₂ = ½ρ(v₂² − v₁²) = ½ρ(4v² − v²) = ½ρ(3v²) = (3/2)ρv².",
     "correct_answer": "A",
-    "concept_tags": ["venturimeter", "Bernoulli's equation", "equation of continuity", "pressure drop"],
+    "concept_tags": [
+      "venturimeter",
+      "Bernoulli's equation",
+      "equation of continuity",
+      "pressure drop"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "(3/2)ρv²", "is_correct": true },
-      { "key": "B", "text": "(1/2)ρv²", "is_correct": false },
-      { "key": "C", "text": "2ρv²", "is_correct": false },
-      { "key": "D", "text": "3ρv²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "(3/2)ρv²",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "(1/2)ρv²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2ρv²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3ρv²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "(1/2)ρv² would be the dynamic pressure at the wider section. The pressure drop involves the difference of squares of velocities: ½ρ(v₂² − v₁²) = ½ρ(4v² − v²) = (3/2)ρv².", "misconception": "Using only one velocity term instead of the difference of squares" },
-      { "option_key": "C", "hint": "2ρv² would result from computing ½ρ(v₂²) = ½ρ(4v²) = 2ρv², ignoring the subtraction of v₁².", "misconception": "Forgetting to subtract the kinetic energy term at the wider section" },
-      { "option_key": "D", "hint": "3ρv² is double the correct answer. The factor ½ from Bernoulli's kinetic energy term must be included: ½ρ(3v²) = (3/2)ρv², not 3ρv².", "misconception": "Omitting the factor of ½ in the kinetic energy term" }
+      {
+        "option_key": "B",
+        "hint": "(1/2)ρv² would be the dynamic pressure at the wider section. The pressure drop involves the difference of squares of velocities: ½ρ(v₂² − v₁²) = ½ρ(4v² − v²) = (3/2)ρv².",
+        "misconception": "Using only one velocity term instead of the difference of squares"
+      },
+      {
+        "option_key": "C",
+        "hint": "2ρv² would result from computing ½ρ(v₂²) = ½ρ(4v²) = 2ρv², ignoring the subtraction of v₁².",
+        "misconception": "Forgetting to subtract the kinetic energy term at the wider section"
+      },
+      {
+        "option_key": "D",
+        "hint": "3ρv² is double the correct answer. The factor ½ from Bernoulli's kinetic energy term must be included: ½ρ(3v²) = (3/2)ρv², not 3ρv².",
+        "misconception": "Omitting the factor of ½ in the kinetic energy term"
+      }
     ]
   },
   {
@@ -131,22 +304,57 @@
     "question_text": "A steel ball of radius 2 mm falls through a viscous liquid and attains a terminal velocity of 4 cm/s. If a steel ball of radius 4 mm falls through the same liquid, its terminal velocity will be:",
     "explanation": "Terminal velocity in Stokes' flow is given by v_t = (2r²(ρ_s − ρ_l)g)/(9η). Since all other factors remain the same, v_t ∝ r². When the radius is doubled (4 mm = 2 × 2 mm), the terminal velocity becomes (4/2)² = 4 times the original. Therefore v_t' = 4 × 4 = 16 cm/s.",
     "correct_answer": "B",
-    "concept_tags": ["Stokes' law", "terminal velocity", "radius dependence", "viscous force"],
+    "concept_tags": [
+      "Stokes' law",
+      "terminal velocity",
+      "radius dependence",
+      "viscous force"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "8 cm/s", "is_correct": false },
-      { "key": "B", "text": "16 cm/s", "is_correct": true },
-      { "key": "C", "text": "32 cm/s", "is_correct": false },
-      { "key": "D", "text": "2 cm/s", "is_correct": false }
+      {
+        "key": "A",
+        "text": "8 cm/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "16 cm/s",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "32 cm/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2 cm/s",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "8 cm/s assumes v_t ∝ r (linear dependence). However, terminal velocity depends on r² in Stokes' law, so doubling r quadruples v_t.", "misconception": "Assuming terminal velocity is directly proportional to radius instead of r²" },
-      { "option_key": "C", "hint": "32 cm/s assumes v_t ∝ r³ (cubic dependence). While the gravitational force scales as r³, the Stokes drag also increases with r, making the net dependence v_t ∝ r².", "misconception": "Using volume dependence (r³) instead of the correct r² dependence" },
-      { "option_key": "D", "hint": "2 cm/s implies a decrease, which would mean an inverse relationship. Larger spheres fall faster through viscous fluids (up to the limit of laminar flow).", "misconception": "Thinking a larger sphere falls more slowly" }
+      {
+        "option_key": "A",
+        "hint": "8 cm/s assumes v_t ∝ r (linear dependence). However, terminal velocity depends on r² in Stokes' law, so doubling r quadruples v_t.",
+        "misconception": "Assuming terminal velocity is directly proportional to radius instead of r²"
+      },
+      {
+        "option_key": "C",
+        "hint": "32 cm/s assumes v_t ∝ r³ (cubic dependence). While the gravitational force scales as r³, the Stokes drag also increases with r, making the net dependence v_t ∝ r².",
+        "misconception": "Using volume dependence (r³) instead of the correct r² dependence"
+      },
+      {
+        "option_key": "D",
+        "hint": "2 cm/s implies a decrease, which would mean an inverse relationship. Larger spheres fall faster through viscous fluids (up to the limit of laminar flow).",
+        "misconception": "Thinking a larger sphere falls more slowly"
+      }
     ]
   },
   {
@@ -156,22 +364,57 @@
     "question_text": "An airplane wing is designed such that the speed of air on the upper surface is 70 m/s and on the lower surface is 60 m/s. If the wing area is 2.5 m² and the density of air is 1.3 kg/m³, the net upward force (dynamic lift) on the wing is:",
     "explanation": "By Bernoulli's principle, the pressure difference between the lower and upper surfaces is ΔP = ½ρ(v_upper² − v_lower²). Wait — since the upper surface has higher speed, it has lower pressure. So the net upward pressure is P_lower − P_upper = ½ρ(v_upper² − v_lower²). Substituting: ΔP = ½ × 1.3 × (70² − 60²) = 0.65 × (4900 − 3600) = 0.65 × 1300 = 845 Pa. The lift force F = ΔP × A = 845 × 2.5 = 2112.5 N ≈ 2112.5 N.",
     "correct_answer": "C",
-    "concept_tags": ["dynamic lift", "Bernoulli's principle", "airplane wing", "pressure difference"],
+    "concept_tags": [
+      "dynamic lift",
+      "Bernoulli's principle",
+      "airplane wing",
+      "pressure difference"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "845 N", "is_correct": false },
-      { "key": "B", "text": "1690 N", "is_correct": false },
-      { "key": "C", "text": "2112.5 N", "is_correct": true },
-      { "key": "D", "text": "4225 N", "is_correct": false }
+      {
+        "key": "A",
+        "text": "845 N",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1690 N",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2112.5 N",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4225 N",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "845 N is the pressure difference ΔP in pascals, not the force. The force is obtained by multiplying the pressure difference by the wing area: F = ΔP × A = 845 × 2.5.", "misconception": "Confusing pressure difference with force (forgetting to multiply by area)" },
-      { "option_key": "B", "hint": "1690 N would result from using the wing area as 2 m² instead of 2.5 m², or from a computational error.", "misconception": null },
-      { "option_key": "D", "hint": "4225 N would result from omitting the factor of ½ in Bernoulli's equation, giving ΔP = ρ(v₁² − v₂²) = 1690 Pa instead of the correct 845 Pa.", "misconception": "Omitting the factor of ½ in the kinetic energy term of Bernoulli's equation" }
+      {
+        "option_key": "A",
+        "hint": "845 N is the pressure difference ΔP in pascals, not the force. The force is obtained by multiplying the pressure difference by the wing area: F = ΔP × A = 845 × 2.5.",
+        "misconception": "Confusing pressure difference with force (forgetting to multiply by area)"
+      },
+      {
+        "option_key": "B",
+        "hint": "1690 N would result from using the wing area as 2 m² instead of 2.5 m², or from a computational error.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "4225 N would result from omitting the factor of ½ in Bernoulli's equation, giving ΔP = ρ(v₁² − v₂²) = 1690 Pa instead of the correct 845 Pa.",
+        "misconception": "Omitting the factor of ½ in the kinetic energy term of Bernoulli's equation"
+      }
     ]
   },
   {
@@ -181,22 +424,57 @@
     "question_text": "The viscous force acting on a sphere of radius r moving with velocity v through a fluid of viscosity η, according to Stokes' law, is:",
     "explanation": "Stokes' law gives the viscous drag force on a small sphere moving through a viscous fluid at low Reynolds number as F = 6πηrv, where η is the coefficient of viscosity, r is the radius of the sphere, and v is its velocity. The force is directly proportional to r (not r² or r³) and directly proportional to v.",
     "correct_answer": "D",
-    "concept_tags": ["Stokes' law", "viscous force", "drag force", "sphere"],
+    "concept_tags": [
+      "Stokes' law",
+      "viscous force",
+      "drag force",
+      "sphere"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "6πηr²v", "is_correct": false },
-      { "key": "B", "text": "4πηrv", "is_correct": false },
-      { "key": "C", "text": "6πηrv²", "is_correct": false },
-      { "key": "D", "text": "6πηrv", "is_correct": true }
+      {
+        "key": "A",
+        "text": "6πηr²v",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4πηrv",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "6πηrv²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "6πηrv",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The viscous drag force depends on the first power of radius (r), not r². The r² dependence appears in the terminal velocity formula, not in the force itself.", "misconception": "Confusing the power of r in Stokes' drag formula with that in terminal velocity" },
-      { "option_key": "B", "hint": "The numerical coefficient in Stokes' law is 6π, not 4π. The factor 4π appears in surface area calculations but not in Stokes' drag.", "misconception": "Using an incorrect numerical coefficient" },
-      { "option_key": "C", "hint": "Stokes' drag force depends linearly on velocity (v), not on v². The v² dependence applies at high Reynolds numbers (turbulent drag), not in the Stokes' regime.", "misconception": "Confusing laminar drag (∝ v) with turbulent drag (∝ v²)" }
+      {
+        "option_key": "A",
+        "hint": "The viscous drag force depends on the first power of radius (r), not r². The r² dependence appears in the terminal velocity formula, not in the force itself.",
+        "misconception": "Confusing the power of r in Stokes' drag formula with that in terminal velocity"
+      },
+      {
+        "option_key": "B",
+        "hint": "The numerical coefficient in Stokes' law is 6π, not 4π. The factor 4π appears in surface area calculations but not in Stokes' drag.",
+        "misconception": "Using an incorrect numerical coefficient"
+      },
+      {
+        "option_key": "C",
+        "hint": "Stokes' drag force depends linearly on velocity (v), not on v². The v² dependence applies at high Reynolds numbers (turbulent drag), not in the Stokes' regime.",
+        "misconception": "Confusing laminar drag (∝ v) with turbulent drag (∝ v²)"
+      }
     ]
   },
   {
@@ -206,22 +484,57 @@
     "question_text": "A spinning ball moving through air experiences a lateral deflection due to a difference in air velocity on opposite sides. This phenomenon is known as:",
     "explanation": "The Magnus effect describes the lateral force experienced by a spinning object moving through a fluid. When a ball spins, it drags air with it. On one side, the spin velocity adds to the flow velocity (creating lower pressure), and on the opposite side, it subtracts (creating higher pressure). This pressure difference produces a net lateral force, causing the ball to curve. This is the principle behind swing in cricket and curve balls in baseball.",
     "correct_answer": "A",
-    "concept_tags": ["Magnus effect", "spinning ball", "dynamic lift", "pressure difference"],
+    "concept_tags": [
+      "Magnus effect",
+      "spinning ball",
+      "dynamic lift",
+      "pressure difference"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Magnus effect", "is_correct": true },
-      { "key": "B", "text": "Venturi effect", "is_correct": false },
-      { "key": "C", "text": "Bernoulli's paradox", "is_correct": false },
-      { "key": "D", "text": "Coanda effect", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Magnus effect",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Venturi effect",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Bernoulli's paradox",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Coanda effect",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The Venturi effect refers to the reduction in pressure when a fluid flows through a constricted section of a pipe. It does not involve spinning objects.", "misconception": "Confusing Venturi effect with Magnus effect" },
-      { "option_key": "C", "hint": "Bernoulli's paradox (also known as the disc paradox) relates to the counterintuitive attraction of two plates when air flows between them. It does not describe the deflection of spinning balls.", "misconception": null },
-      { "option_key": "D", "hint": "The Coanda effect describes the tendency of a fluid jet to stay attached to a curved surface. While related to fluid dynamics, it is not the name for the lateral force on a spinning ball.", "misconception": "Confusing Coanda effect with Magnus effect" }
+      {
+        "option_key": "B",
+        "hint": "The Venturi effect refers to the reduction in pressure when a fluid flows through a constricted section of a pipe. It does not involve spinning objects.",
+        "misconception": "Confusing Venturi effect with Magnus effect"
+      },
+      {
+        "option_key": "C",
+        "hint": "Bernoulli's paradox (also known as the disc paradox) relates to the counterintuitive attraction of two plates when air flows between them. It does not describe the deflection of spinning balls.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The Coanda effect describes the tendency of a fluid jet to stay attached to a curved surface. While related to fluid dynamics, it is not the name for the lateral force on a spinning ball.",
+        "misconception": "Confusing Coanda effect with Magnus effect"
+      }
     ]
   },
   {
@@ -231,22 +544,56 @@
     "question_text": "A large open tank filled with water has two orifices: one at a depth of h from the free surface and another at a depth of 3h. The ratio of the speeds of efflux from the two orifices is:",
     "explanation": "By Torricelli's theorem, the speed of efflux v = √(2gd), where d is the depth below the free surface. For the first orifice at depth h: v₁ = √(2gh). For the second orifice at depth 3h: v₂ = √(2g × 3h) = √(6gh). The ratio v₁/v₂ = √(2gh)/√(6gh) = √(2/6) = √(1/3) = 1/√3 = 1 : √3.",
     "correct_answer": "B",
-    "concept_tags": ["Torricelli's theorem", "speed of efflux", "depth dependence"],
+    "concept_tags": [
+      "Torricelli's theorem",
+      "speed of efflux",
+      "depth dependence"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "1 : 3", "is_correct": false },
-      { "key": "B", "text": "1 : √3", "is_correct": true },
-      { "key": "C", "text": "1 : 9", "is_correct": false },
-      { "key": "D", "text": "√3 : 1", "is_correct": false }
+      {
+        "key": "A",
+        "text": "1 : 3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1 : √3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1 : 9",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "√3 : 1",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "1 : 3 would be the ratio of depths (h : 3h), but the efflux speed depends on the square root of depth, so the ratio of speeds is √h : √(3h) = 1 : √3.", "misconception": "Assuming speed is directly proportional to depth instead of √depth" },
-      { "option_key": "C", "hint": "1 : 9 would be the ratio of h² to (3h)² = 9h². This is the square of the depth ratio, not the ratio of efflux speeds.", "misconception": "Squaring the depth ratio instead of taking the square root" },
-      { "option_key": "D", "hint": "√3 : 1 is the inverse of the correct ratio. The orifice at greater depth has the higher speed, so the ratio should be 1 : √3, not √3 : 1.", "misconception": "Reversing the order of the ratio" }
+      {
+        "option_key": "A",
+        "hint": "1 : 3 would be the ratio of depths (h : 3h), but the efflux speed depends on the square root of depth, so the ratio of speeds is √h : √(3h) = 1 : √3.",
+        "misconception": "Assuming speed is directly proportional to depth instead of √depth"
+      },
+      {
+        "option_key": "C",
+        "hint": "1 : 9 would be the ratio of h² to (3h)² = 9h². This is the square of the depth ratio, not the ratio of efflux speeds.",
+        "misconception": "Squaring the depth ratio instead of taking the square root"
+      },
+      {
+        "option_key": "D",
+        "hint": "√3 : 1 is the inverse of the correct ratio. The orifice at greater depth has the higher speed, so the ratio should be 1 : √3, not √3 : 1.",
+        "misconception": "Reversing the order of the ratio"
+      }
     ]
   },
   {
@@ -256,22 +603,57 @@
     "question_text": "A small sphere of radius r and density ρ_s falls through a liquid of density ρ_l and coefficient of viscosity η. The terminal velocity of the sphere is v_t. If the coefficient of viscosity is doubled and the radius of the sphere is halved, the new terminal velocity will be:",
     "explanation": "Terminal velocity is given by v_t = (2r²(ρ_s − ρ_l)g)/(9η). When r → r/2 and η → 2η: v_t' = (2(r/2)²(ρ_s − ρ_l)g)/(9 × 2η) = (2 × r²/4 × (ρ_s − ρ_l)g)/(18η) = (r²(ρ_s − ρ_l)g)/(2 × 18η) = (2r²(ρ_s − ρ_l)g)/(9η × 8). Wait, let me recalculate carefully: v_t' = [2(r/2)²(ρ_s − ρ_l)g] / [9 × 2η] = [2 × r²/4 × (ρ_s − ρ_l)g] / [18η] = [r²(ρ_s − ρ_l)g] / [36η]. Original: v_t = 2r²(ρ_s − ρ_l)g / (9η). Ratio: v_t'/v_t = [r²/36η] / [2r²/9η] = (9η)/(36η × 2) = 9/72 = 1/8. So v_t' = v_t/8.",
     "correct_answer": "C",
-    "concept_tags": ["terminal velocity", "Stokes' law", "viscosity", "radius dependence"],
+    "concept_tags": [
+      "terminal velocity",
+      "Stokes' law",
+      "viscosity",
+      "radius dependence"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "v_t / 2", "is_correct": false },
-      { "key": "B", "text": "v_t / 4", "is_correct": false },
-      { "key": "C", "text": "v_t / 8", "is_correct": true },
-      { "key": "D", "text": "v_t / 16", "is_correct": false }
+      {
+        "key": "A",
+        "text": "v_t / 2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "v_t / 4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "v_t / 8",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "v_t / 16",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "v_t/2 accounts only for the doubling of viscosity (factor 1/2) but ignores the effect of halving the radius. Since v_t ∝ r², halving r gives a factor of 1/4.", "misconception": "Considering only the change in viscosity and ignoring the change in radius" },
-      { "option_key": "B", "hint": "v_t/4 accounts only for the halving of radius (r² → r²/4) but ignores the doubling of viscosity. Both changes must be combined: (1/4) × (1/2) = 1/8.", "misconception": "Considering only the change in radius and ignoring the change in viscosity" },
-      { "option_key": "D", "hint": "v_t/16 would result from using r⁴ dependence or incorrectly squaring one of the factors. The correct dependence is v_t ∝ r²/η, giving a factor of (1/4)(1/2) = 1/8.", "misconception": "Using an incorrect power law for radius or viscosity dependence" }
+      {
+        "option_key": "A",
+        "hint": "v_t/2 accounts only for the doubling of viscosity (factor 1/2) but ignores the effect of halving the radius. Since v_t ∝ r², halving r gives a factor of 1/4.",
+        "misconception": "Considering only the change in viscosity and ignoring the change in radius"
+      },
+      {
+        "option_key": "B",
+        "hint": "v_t/4 accounts only for the halving of radius (r² → r²/4) but ignores the doubling of viscosity. Both changes must be combined: (1/4) × (1/2) = 1/8.",
+        "misconception": "Considering only the change in radius and ignoring the change in viscosity"
+      },
+      {
+        "option_key": "D",
+        "hint": "v_t/16 would result from using r⁴ dependence or incorrectly squaring one of the factors. The correct dependence is v_t ∝ r²/η, giving a factor of (1/4)(1/2) = 1/8.",
+        "misconception": "Using an incorrect power law for radius or viscosity dependence"
+      }
     ]
   },
   {
@@ -281,222 +663,539 @@
     "question_text": "Water flows through a horizontal pipe. At one section the pipe radius is 4 cm and the pressure is 2.0 × 10⁵ Pa. At another section the radius is 2 cm. Taking the density of water as 1000 kg/m³ and assuming the speed at the wider section is 1 m/s, the pressure at the narrower section is:",
     "explanation": "By the equation of continuity: A₁v₁ = A₂v₂. Since A = πr², we get π(0.04)²(1) = π(0.02)²v₂, so v₂ = (0.04/0.02)² × 1 = 4 × 1 = 16 m/s. Wait: (r₁/r₂)² = (4/2)² = 4, so v₂ = 4 × 1 = 4 m/s. Using Bernoulli's equation: P₁ + ½ρv₁² = P₂ + ½ρv₂². P₂ = P₁ + ½ρ(v₁² − v₂²) = 2.0 × 10⁵ + ½ × 1000 × (1² − 4²) = 2.0 × 10⁵ + 500 × (1 − 16) = 2.0 × 10⁵ − 7500 = 1.925 × 10⁵ Pa.",
     "correct_answer": "D",
-    "concept_tags": ["Bernoulli's equation", "equation of continuity", "pressure calculation", "horizontal pipe"],
+    "concept_tags": [
+      "Bernoulli's equation",
+      "equation of continuity",
+      "pressure calculation",
+      "horizontal pipe"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2.075 × 10⁵ Pa", "is_correct": false },
-      { "key": "B", "text": "1.50 × 10⁵ Pa", "is_correct": false },
-      { "key": "C", "text": "2.0 × 10⁵ Pa", "is_correct": false },
-      { "key": "D", "text": "1.925 × 10⁵ Pa", "is_correct": true }
+      {
+        "key": "A",
+        "text": "2.075 × 10⁵ Pa",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.50 × 10⁵ Pa",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2.0 × 10⁵ Pa",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.925 × 10⁵ Pa",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "2.075 × 10⁵ Pa is higher than the pressure at the wider section. By Bernoulli's principle, where velocity is higher (narrower section), pressure must be lower.", "misconception": "Adding the kinetic energy difference instead of subtracting it" },
-      { "option_key": "B", "hint": "1.50 × 10⁵ Pa would require a pressure drop of 50,000 Pa, which does not match the calculated value of 7500 Pa from ½ρ(v₂² − v₁²).", "misconception": "Using an incorrect velocity ratio or computational error" },
-      { "option_key": "C", "hint": "2.0 × 10⁵ Pa implies no pressure change, which would violate Bernoulli's equation since the velocity changes from 1 m/s to 4 m/s.", "misconception": "Ignoring the velocity change in Bernoulli's equation" }
+      {
+        "option_key": "A",
+        "hint": "2.075 × 10⁵ Pa is higher than the pressure at the wider section. By Bernoulli's principle, where velocity is higher (narrower section), pressure must be lower.",
+        "misconception": "Adding the kinetic energy difference instead of subtracting it"
+      },
+      {
+        "option_key": "B",
+        "hint": "1.50 × 10⁵ Pa would require a pressure drop of 50,000 Pa, which does not match the calculated value of 7500 Pa from ½ρ(v₂² − v₁²).",
+        "misconception": "Using an incorrect velocity ratio or computational error"
+      },
+      {
+        "option_key": "C",
+        "hint": "2.0 × 10⁵ Pa implies no pressure change, which would violate Bernoulli's equation since the velocity changes from 1 m/s to 4 m/s.",
+        "misconception": "Ignoring the velocity change in Bernoulli's equation"
+      }
     ]
   },
   {
     "id": "phy-fluid-bernoulli-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): In a venturimeter, the liquid level in the manometer tube connected to the constricted part is lower than that connected to the wider part.\nReason (R): According to Bernoulli's principle, at the constriction the fluid velocity increases and hence the pressure decreases.",
     "explanation": "Both the assertion and the reason are correct, and the reason is the correct explanation of the assertion. In a venturimeter, the fluid speeds up at the constriction (by the equation of continuity). By Bernoulli's principle, higher velocity corresponds to lower pressure. Since the manometer tube at the constriction is connected to a region of lower pressure, the liquid level in that tube is lower. The reason directly explains the mechanism behind the assertion.",
     "correct_answer": "A",
-    "concept_tags": ["venturimeter", "Bernoulli's principle", "pressure and velocity", "manometer"],
+    "concept_tags": [
+      "venturimeter",
+      "Bernoulli's principle",
+      "pressure and velocity",
+      "manometer"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The reason directly explains why the manometer level is lower at the constriction: higher velocity → lower pressure → lower liquid level. This is exactly the causal mechanism.", "misconception": "Failing to recognize the direct causal link between the velocity-pressure relationship and the manometer level" },
-      { "option_key": "C", "hint": "The reason is scientifically accurate. Bernoulli's principle correctly states that in a streamline flow, increased velocity leads to decreased pressure.", "misconception": null },
-      { "option_key": "D", "hint": "The assertion is correct and can be verified experimentally. In any working venturimeter, the manometer shows a lower level at the constriction.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The reason directly explains why the manometer level is lower at the constriction: higher velocity → lower pressure → lower liquid level. This is exactly the causal mechanism.",
+        "misconception": "Failing to recognize the direct causal link between the velocity-pressure relationship and the manometer level"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is scientifically accurate. Bernoulli's principle correctly states that in a streamline flow, increased velocity leads to decreased pressure.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct and can be verified experimentally. In any working venturimeter, the manometer shows a lower level at the constriction.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-fluid-bernoulli-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): A ball moving without spin in a fluid does not experience the Magnus effect.\nReason (R): The Magnus effect arises because viscosity of the fluid slows down the ball uniformly on all sides.",
     "explanation": "The assertion is correct. The Magnus effect requires a spinning object — the spin creates an asymmetric velocity distribution of the fluid around the object. Without spin, the flow is symmetric, and there is no lateral force. The reason is incorrect. The Magnus effect does not arise because of uniform slowing by viscosity. It arises because a spinning ball drags the fluid along with it, adding to the flow velocity on one side and subtracting on the opposite side. This creates an asymmetric pressure distribution (by Bernoulli's principle), producing a lateral force.",
     "correct_answer": "C",
-    "concept_tags": ["Magnus effect", "spinning motion", "viscosity", "Bernoulli's principle", "lateral force"],
+    "concept_tags": [
+      "Magnus effect",
+      "spinning motion",
+      "viscosity",
+      "Bernoulli's principle",
+      "lateral force"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": true },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The reason claims that the Magnus effect arises from uniform viscous slowing, which is incorrect. The Magnus effect arises from asymmetric flow due to spin, not from uniform viscous effects.", "misconception": "Attributing the Magnus effect to viscosity alone rather than to spin-induced asymmetric flow" },
-      { "option_key": "B", "hint": "The reason is factually incorrect. Uniform viscous slowing does not explain the Magnus effect — it is the spin-induced velocity asymmetry and resulting pressure difference that causes it.", "misconception": null },
-      { "option_key": "D", "hint": "The assertion is correct. Without spin, there is no asymmetry in the flow pattern and hence no lateral Magnus force. Only drag (not lift) acts on a non-spinning ball.", "misconception": "Thinking a non-spinning ball can still experience the Magnus effect" }
+      {
+        "option_key": "A",
+        "hint": "The reason claims that the Magnus effect arises from uniform viscous slowing, which is incorrect. The Magnus effect arises from asymmetric flow due to spin, not from uniform viscous effects.",
+        "misconception": "Attributing the Magnus effect to viscosity alone rather than to spin-induced asymmetric flow"
+      },
+      {
+        "option_key": "B",
+        "hint": "The reason is factually incorrect. Uniform viscous slowing does not explain the Magnus effect — it is the spin-induced velocity asymmetry and resulting pressure difference that causes it.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. Without spin, there is no asymmetry in the flow pattern and hence no lateral Magnus force. Only drag (not lift) acts on a non-spinning ball.",
+        "misconception": "Thinking a non-spinning ball can still experience the Magnus effect"
+      }
     ]
   },
   {
     "id": "phy-fluid-bernoulli-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the physical phenomena (Column I) with the underlying principle (Column II):\n\nColumn I:\nA. Speed of efflux from a tank\nB. Working of a venturimeter\nC. Terminal velocity of a falling sphere\nD. Streamline vs turbulent flow classification\n\nColumn II:\n1. Reynolds number\n2. Bernoulli's theorem\n3. Stokes' law\n4. Torricelli's theorem",
     "explanation": "A-4: The speed of efflux from a tank is given by Torricelli's theorem (v = √(2gh)). B-2: A venturimeter works on Bernoulli's theorem — the pressure difference between wider and narrower sections is used to measure flow rate. C-3: Terminal velocity is achieved when the Stokes' drag force balances the net downward force (weight minus buoyancy). D-1: The Reynolds number determines whether the flow is streamline (laminar) or turbulent.",
     "correct_answer": "D",
-    "concept_tags": ["Torricelli's theorem", "Bernoulli's theorem", "Stokes' law", "Reynolds number"],
+    "concept_tags": [
+      "Torricelli's theorem",
+      "Bernoulli's theorem",
+      "Stokes' law",
+      "Reynolds number"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-4, B-3, C-2, D-1", "is_correct": false },
-      { "key": "B", "text": "A-2, B-4, C-3, D-1", "is_correct": false },
-      { "key": "C", "text": "A-4, B-2, C-1, D-3", "is_correct": false },
-      { "key": "D", "text": "A-4, B-2, C-3, D-1", "is_correct": true }
+      {
+        "key": "A",
+        "text": "A-4, B-3, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-4, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-2, C-1, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-4, B-2, C-3, D-1",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This pairs the venturimeter (B) with Stokes' law, which deals with viscous drag on a sphere, not with fluid flow through a constricted pipe. The venturimeter operates on Bernoulli's theorem.", "misconception": "Confusing venturimeter principle with Stokes' law" },
-      { "option_key": "B", "hint": "This pairs the speed of efflux (A) with Bernoulli's theorem and the venturimeter (B) with Torricelli's theorem. While Torricelli's theorem is derived from Bernoulli's theorem, the specific result for efflux speed is named after Torricelli.", "misconception": "Swapping Torricelli's theorem and Bernoulli's theorem applications" },
-      { "option_key": "C", "hint": "This pairs terminal velocity (C) with Reynolds number and flow classification (D) with Stokes' law. These are swapped: terminal velocity uses Stokes' law, and flow classification uses Reynolds number.", "misconception": "Swapping the roles of Stokes' law and Reynolds number" }
+      {
+        "option_key": "A",
+        "hint": "This pairs the venturimeter (B) with Stokes' law, which deals with viscous drag on a sphere, not with fluid flow through a constricted pipe. The venturimeter operates on Bernoulli's theorem.",
+        "misconception": "Confusing venturimeter principle with Stokes' law"
+      },
+      {
+        "option_key": "B",
+        "hint": "This pairs the speed of efflux (A) with Bernoulli's theorem and the venturimeter (B) with Torricelli's theorem. While Torricelli's theorem is derived from Bernoulli's theorem, the specific result for efflux speed is named after Torricelli.",
+        "misconception": "Swapping Torricelli's theorem and Bernoulli's theorem applications"
+      },
+      {
+        "option_key": "C",
+        "hint": "This pairs terminal velocity (C) with Reynolds number and flow classification (D) with Stokes' law. These are swapped: terminal velocity uses Stokes' law, and flow classification uses Reynolds number.",
+        "misconception": "Swapping the roles of Stokes' law and Reynolds number"
+      }
     ]
   },
   {
     "id": "phy-fluid-bernoulli-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the physical quantities (Column I) with their correct SI units (Column II):\n\nColumn I:\nA. Coefficient of viscosity (η)\nB. Reynolds number (Re)\nC. Rate of flow (Q = Av)\nD. Pressure energy per unit volume (P)\n\nColumn II:\n1. Pa (N/m²)\n2. Pa·s (N·s/m²)\n3. Dimensionless\n4. m³/s",
     "explanation": "A-2: Coefficient of viscosity has SI unit Pa·s (pascal-second) or equivalently N·s/m² or kg/(m·s). B-3: Reynolds number is dimensionless (Re = ρvd/η, and all dimensions cancel). C-4: Rate of flow (volume flow rate) has SI unit m³/s. D-1: Pressure has SI unit Pa (pascal) = N/m², and pressure energy per unit volume also has units of Pa.",
     "correct_answer": "B",
-    "concept_tags": ["coefficient of viscosity", "Reynolds number", "flow rate", "pressure", "SI units"],
+    "concept_tags": [
+      "coefficient of viscosity",
+      "Reynolds number",
+      "flow rate",
+      "pressure",
+      "SI units"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-1, B-3, C-4, D-2", "is_correct": false },
-      { "key": "B", "text": "A-2, B-3, C-4, D-1", "is_correct": true },
-      { "key": "C", "text": "A-2, B-3, C-1, D-4", "is_correct": false },
-      { "key": "D", "text": "A-3, B-2, C-4, D-1", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-1, B-3, C-4, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-3, C-4, D-1",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This pairs the coefficient of viscosity (A) with Pa (N/m²). Viscosity has units of Pa·s (pressure × time), not just Pa. The additional time dimension accounts for the velocity gradient in Newton's law of viscosity.", "misconception": "Confusing units of pressure with units of viscosity" },
-      { "option_key": "C", "hint": "This pairs the rate of flow (C) with Pa and pressure (D) with m³/s. These are swapped: volume flow rate is in m³/s and pressure is in Pa.", "misconception": "Swapping the units of flow rate and pressure" },
-      { "option_key": "D", "hint": "This pairs viscosity (A) with dimensionless and Reynolds number (B) with Pa·s. These are swapped: Reynolds number is dimensionless, while viscosity is measured in Pa·s.", "misconception": "Swapping the units/dimensions of viscosity and Reynolds number" }
+      {
+        "option_key": "A",
+        "hint": "This pairs the coefficient of viscosity (A) with Pa (N/m²). Viscosity has units of Pa·s (pressure × time), not just Pa. The additional time dimension accounts for the velocity gradient in Newton's law of viscosity.",
+        "misconception": "Confusing units of pressure with units of viscosity"
+      },
+      {
+        "option_key": "C",
+        "hint": "This pairs the rate of flow (C) with Pa and pressure (D) with m³/s. These are swapped: volume flow rate is in m³/s and pressure is in Pa.",
+        "misconception": "Swapping the units of flow rate and pressure"
+      },
+      {
+        "option_key": "D",
+        "hint": "This pairs viscosity (A) with dimensionless and Reynolds number (B) with Pa·s. These are swapped: Reynolds number is dimensionless, while viscosity is measured in Pa·s.",
+        "misconception": "Swapping the units/dimensions of viscosity and Reynolds number"
+      }
     ]
   },
   {
     "id": "phy-fluid-bernoulli-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In streamline flow, the velocity of the fluid at any given point remains constant over time.",
     "explanation": "This statement is TRUE. Streamline (laminar) flow is characterized by the condition that at every point in the fluid, the velocity (both magnitude and direction) remains constant with time. Different points may have different velocities, but each fixed point maintains the same velocity as time passes. This is the defining property of steady or streamline flow.",
     "correct_answer": "A",
-    "concept_tags": ["streamline flow", "steady flow", "velocity field", "laminar flow"],
+    "concept_tags": [
+      "streamline flow",
+      "steady flow",
+      "velocity field",
+      "laminar flow"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The defining characteristic of streamline (steady) flow is that the velocity at each point does not change with time. This is what distinguishes it from turbulent flow where velocities fluctuate.", "misconception": "Confusing the constancy of velocity at a point over time with uniform velocity everywhere" },
-      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The defining characteristic of streamline (steady) flow is that the velocity at each point does not change with time. This is what distinguishes it from turbulent flow where velocities fluctuate.",
+        "misconception": "Confusing the constancy of velocity at a point over time with uniform velocity everywhere"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-fluid-bernoulli-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "According to Bernoulli's principle, when the speed of a fluid increases, the pressure in the fluid also increases.",
     "explanation": "This statement is FALSE. Bernoulli's principle states that for an ideal fluid in streamline flow, an increase in the speed of the fluid occurs simultaneously with a decrease in pressure (or a decrease in the fluid's potential energy). The correct relationship is P + ½ρv² + ρgh = constant. If v increases and height remains constant, P must decrease. This is the fundamental principle behind the working of airplane wings, venturimeters, and atomizers.",
     "correct_answer": "B",
-    "concept_tags": ["Bernoulli's principle", "pressure-velocity relationship", "inverse relationship"],
+    "concept_tags": [
+      "Bernoulli's principle",
+      "pressure-velocity relationship",
+      "inverse relationship"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This would mean pressure and velocity both increase together, violating Bernoulli's equation P + ½ρv² + ρgh = constant. If v increases, then P must decrease to keep the sum constant.", "misconception": "Thinking pressure and velocity are directly proportional in fluid flow" },
-      { "option_key": "C", "hint": "This option is not applicable.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "This would mean pressure and velocity both increase together, violating Bernoulli's equation P + ½ρv² + ρgh = constant. If v increases, then P must decrease to keep the sum constant.",
+        "misconception": "Thinking pressure and velocity are directly proportional in fluid flow"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-fluid-bernoulli-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A spherical ball of density 8000 kg/m³ and radius 1 mm falls through a liquid of density 1000 kg/m³ with a terminal velocity of 0.35 m/s. The coefficient of viscosity of the liquid is approximately _____ Pa·s. (Take g = 9.8 m/s²)",
     "explanation": "At terminal velocity, the net downward force equals the Stokes' drag force. Using v_t = 2r²(ρ_s − ρ_l)g / (9η), we solve for η: η = 2r²(ρ_s − ρ_l)g / (9v_t). Substituting r = 1 × 10⁻³ m, ρ_s = 8000 kg/m³, ρ_l = 1000 kg/m³, g = 9.8 m/s², v_t = 0.35 m/s: η = 2 × (10⁻³)² × (8000 − 1000) × 9.8 / (9 × 0.35) = 2 × 10⁻⁶ × 7000 × 9.8 / 3.15 = 0.1372 / 3.15 ≈ 0.0436 Pa·s. Rounding, η ≈ 0.044 Pa·s.",
     "correct_answer": "C",
-    "concept_tags": ["terminal velocity", "Stokes' law", "coefficient of viscosity", "numerical"],
+    "concept_tags": [
+      "terminal velocity",
+      "Stokes' law",
+      "coefficient of viscosity",
+      "numerical"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "0.44 Pa·s", "is_correct": false },
-      { "key": "B", "text": "0.0088 Pa·s", "is_correct": false },
-      { "key": "C", "text": "0.044 Pa·s", "is_correct": true },
-      { "key": "D", "text": "4.4 Pa·s", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.44 Pa·s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.0088 Pa·s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.044 Pa·s",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4.4 Pa·s",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "0.44 Pa·s is 10 times the correct value. Check that r = 1 mm = 1 × 10⁻³ m, so r² = 10⁻⁶ m², not 10⁻⁵ m².", "misconception": "Error in converting mm to m, using r² = 10⁻⁵ instead of 10⁻⁶" },
-      { "option_key": "B", "hint": "0.0088 Pa·s would result from using r = 0.5 mm instead of 1 mm, or from missing the factor of 2 in the numerator of the terminal velocity formula.", "misconception": "Using the diameter instead of radius, or omitting the factor of 2" },
-      { "option_key": "D", "hint": "4.4 Pa·s is 100 times too large. This would result from using r in cm instead of m (r = 0.1 cm = 10⁻¹ instead of 10⁻³ m).", "misconception": "Incorrect unit conversion for radius" }
+      {
+        "option_key": "A",
+        "hint": "0.44 Pa·s is 10 times the correct value. Check that r = 1 mm = 1 × 10⁻³ m, so r² = 10⁻⁶ m², not 10⁻⁵ m².",
+        "misconception": "Error in converting mm to m, using r² = 10⁻⁵ instead of 10⁻⁶"
+      },
+      {
+        "option_key": "B",
+        "hint": "0.0088 Pa·s would result from using r = 0.5 mm instead of 1 mm, or from missing the factor of 2 in the numerator of the terminal velocity formula.",
+        "misconception": "Using the diameter instead of radius, or omitting the factor of 2"
+      },
+      {
+        "option_key": "D",
+        "hint": "4.4 Pa·s is 100 times too large. This would result from using r in cm instead of m (r = 0.1 cm = 10⁻¹ instead of 10⁻³ m).",
+        "misconception": "Incorrect unit conversion for radius"
+      }
     ]
   },
   {
     "id": "phy-fluid-bernoulli-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A cylindrical tank of large cross-sectional area is filled with water to a height of 5 m. A small circular orifice of diameter 2 cm is opened at the bottom of the tank. Assume the tank is open to the atmosphere and the cross-section of the tank is much larger than the orifice.\n\nWhat is the initial rate of flow of water through the orifice? (Take g = 10 m/s²; π = 3.14)",
     "explanation": "Step 1: Find the speed of efflux using Torricelli's theorem: v = √(2gh) = √(2 × 10 × 5) = √100 = 10 m/s. Step 2: Calculate the area of the orifice: radius r = 1 cm = 0.01 m, so A = πr² = 3.14 × (0.01)² = 3.14 × 10⁻⁴ m². Step 3: The rate of flow Q = Av = 3.14 × 10⁻⁴ × 10 = 3.14 × 10⁻³ m³/s.",
     "correct_answer": "D",
-    "concept_tags": ["Torricelli's theorem", "rate of flow", "equation of continuity", "efflux", "orifice"],
+    "concept_tags": [
+      "Torricelli's theorem",
+      "rate of flow",
+      "equation of continuity",
+      "efflux",
+      "orifice"
+    ],
     "topic": "Bernoulli's Principle and Viscosity",
     "subject": "physics",
     "chapter": "Mechanical Properties of Fluids",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "3.14 × 10⁻² m³/s", "is_correct": false },
-      { "key": "B", "text": "3.14 × 10⁻⁴ m³/s", "is_correct": false },
-      { "key": "C", "text": "6.28 × 10⁻³ m³/s", "is_correct": false },
-      { "key": "D", "text": "3.14 × 10⁻³ m³/s", "is_correct": true }
+      {
+        "key": "A",
+        "text": "3.14 × 10⁻² m³/s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3.14 × 10⁻⁴ m³/s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "6.28 × 10⁻³ m³/s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3.14 × 10⁻³ m³/s",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "3.14 × 10⁻² m³/s is 10 times too large. This results from using the diameter (2 cm = 0.02 m) as the radius when calculating the area. The radius is 1 cm = 0.01 m.", "misconception": "Using diameter instead of radius for the orifice area calculation" },
-      { "option_key": "B", "hint": "3.14 × 10⁻⁴ m³/s equals the orifice area in m², not the flow rate. The flow rate Q = Av, so you must multiply the area by the efflux speed (10 m/s).", "misconception": "Forgetting to multiply the area by the efflux velocity" },
-      { "option_key": "C", "hint": "6.28 × 10⁻³ m³/s is double the correct answer. This could result from using v = √(2gh) = √100 = 10 m/s correctly but then using the diameter (0.02 m) as radius, giving A = π(0.02)² = 12.56 × 10⁻⁴. Check that the radius is half the diameter.", "misconception": "Using the diameter instead of radius" }
+      {
+        "option_key": "A",
+        "hint": "3.14 × 10⁻² m³/s is 10 times too large. This results from using the diameter (2 cm = 0.02 m) as the radius when calculating the area. The radius is 1 cm = 0.01 m.",
+        "misconception": "Using diameter instead of radius for the orifice area calculation"
+      },
+      {
+        "option_key": "B",
+        "hint": "3.14 × 10⁻⁴ m³/s equals the orifice area in m², not the flow rate. The flow rate Q = Av, so you must multiply the area by the efflux speed (10 m/s).",
+        "misconception": "Forgetting to multiply the area by the efflux velocity"
+      },
+      {
+        "option_key": "C",
+        "hint": "6.28 × 10⁻³ m³/s is double the correct answer. This could result from using v = √(2gh) = √100 = 10 m/s correctly but then using the diameter (0.02 m) as radius, giving A = π(0.02)² = 12.56 × 10⁻⁴. Check that the radius is half the diameter.",
+        "misconception": "Using the diameter instead of radius"
+      }
     ]
   }
 ]

@@ -726,7 +726,7 @@
   },
   {
     "id": "phy-magmat-materials-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): Diamagnetic substances are weakly repelled by a strong magnet.\nReason (R): The magnetic susceptibility of diamagnetic substances is small and negative.",
     "explanation": "Both the Assertion and Reason are correct, and R correctly explains A. Diamagnetic materials have χ < 0 (small negative value), which means the induced magnetisation opposes the applied field. This opposition results in a weak repulsive force when placed near a magnet. The negative susceptibility is the direct cause of the repulsion.",
@@ -748,22 +748,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": true
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": false
       }
     ],
@@ -787,7 +787,7 @@
   },
   {
     "id": "phy-magmat-materials-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): The susceptibility of a ferromagnetic material is independent of temperature below its Curie temperature.\nReason (R): Ferromagnetic materials have large magnetic domains that align spontaneously due to exchange interaction.",
     "explanation": "The Assertion is incorrect. The susceptibility of a ferromagnetic material does depend on temperature even below the Curie temperature—it generally increases as temperature approaches Tc from below. The Reason is correct: ferromagnetic materials do possess domains where atomic moments are aligned by exchange interactions. Since A is false but R is true, the answer is D.",
@@ -809,22 +809,22 @@
     "options": [
       {
         "key": "A",
-        "text": "Both A and R are correct and R is the correct explanation of A",
+        "text": "Both A and R are true and R is the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "B",
-        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
         "is_correct": false
       },
       {
         "key": "C",
-        "text": "A is correct but R is incorrect",
+        "text": "A is true but R is false",
         "is_correct": false
       },
       {
         "key": "D",
-        "text": "A is incorrect but R is correct",
+        "text": "A is false but R is true",
         "is_correct": true
       }
     ],
@@ -848,7 +848,7 @@
   },
   {
     "id": "phy-magmat-materials-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match Column I with Column II:\n\nColumn I:\n(P) Diamagnetic material\n(Q) Paramagnetic material\n(R) Ferromagnetic material\n(S) Curie temperature\n\nColumn II:\n(1) χ >> 1\n(2) χ is small and negative\n(3) Temperature above which ferromagnet becomes paramagnetic\n(4) χ is small and positive",
     "explanation": "P-Diamagnetic material has χ small and negative → (2). Q-Paramagnetic material has χ small and positive → (4). R-Ferromagnetic material has χ >> 1 → (1). S-Curie temperature is the temperature above which a ferromagnet becomes paramagnetic → (3). So the correct matching is P→2, Q→4, R→1, S→3.",
@@ -909,7 +909,7 @@
   },
   {
     "id": "phy-magmat-materials-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match Column I with Column II:\n\nColumn I:\n(P) High retentivity, high coercivity\n(Q) Low retentivity, low coercivity, high permeability\n(R) Narrow hysteresis loop\n(S) Wide hysteresis loop\n\nColumn II:\n(1) Electromagnet core material\n(2) Permanent magnet material\n(3) Low hysteresis loss per cycle\n(4) High hysteresis loss per cycle",
     "explanation": "P-High retentivity and high coercivity → (2) Permanent magnet material (hard magnets like steel, Alnico). Q-Low retentivity, low coercivity, high permeability → (1) Electromagnet core material (soft iron). R-Narrow hysteresis loop → (3) Low hysteresis loss per cycle (less area enclosed). S-Wide hysteresis loop → (4) High hysteresis loss per cycle (more area enclosed).",
@@ -971,7 +971,7 @@
   },
   {
     "id": "phy-magmat-materials-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Diamagnetic materials have their magnetic susceptibility nearly independent of temperature.",
     "explanation": "This statement is TRUE. Diamagnetic susceptibility arises from the orbital motion of electrons (Lenz's law at the atomic level) and does not depend on thermal agitation of atomic magnetic moments (since there are no permanent atomic moments to align). Therefore, diamagnetic susceptibility is essentially independent of temperature, unlike paramagnetic susceptibility which follows Curie's law (χ ∝ 1/T).",
@@ -1031,7 +1031,7 @@
   },
   {
     "id": "phy-magmat-materials-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The magnetic field lines inside a diamagnetic material are more concentrated compared to the surrounding vacuum.",
     "explanation": "This statement is FALSE. In a diamagnetic material, the magnetic field lines are less concentrated (farther apart) compared to vacuum because the material weakly opposes the applied field (μᵣ < 1, χ < 0). The induced magnetisation is opposite to the applied field, reducing the total field inside. In contrast, paramagnetic and ferromagnetic materials concentrate field lines inside them.",
@@ -1092,7 +1092,7 @@
   },
   {
     "id": "phy-magmat-materials-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "The magnetising field (H) required to reduce the residual magnetisation of a ferromagnetic material to zero is called _____.",
     "explanation": "The answer is coercivity (also called coercive force). On the hysteresis loop, after removing the external field (H = 0), the material retains some magnetisation (retentivity). To bring B back to zero, a reverse magnetising field must be applied. The magnitude of this reverse field is called the coercivity. Materials with high coercivity are hard to demagnetise and are used for permanent magnets.",
@@ -1153,7 +1153,7 @@
   },
   {
     "id": "phy-magmat-materials-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "hard",
     "question_text": "A transformer core is being designed for a power supply operating at 50 Hz. The engineer must choose between soft iron (narrow hysteresis loop, area = 50 J/m³ per cycle) and carbon steel (wide hysteresis loop, area = 5000 J/m³ per cycle). If the core volume is 0.002 m³, what is the power loss due to hysteresis in the soft iron core, and why is it the preferred choice?",
     "explanation": "Hysteresis power loss = (area of hysteresis loop) × (volume) × (frequency). For soft iron: P = 50 × 0.002 × 50 = 5 W. For carbon steel: P = 5000 × 0.002 × 50 = 500 W. The soft iron core dissipates only 5 W compared to 500 W for carbon steel. Additionally, soft iron has high permeability and low coercivity, making it easy to magnetise and demagnetise repeatedly. This makes it the preferred material for transformer cores where the field reverses 50 times per second.",

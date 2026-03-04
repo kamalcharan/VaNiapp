@@ -296,12 +296,15 @@
             <option value="">Select subject first</option>
           </select>
         </div>
-        <div style="display: flex; gap: 8px;">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
           <button class="btn btn-primary" id="scanBtn" onclick="startScan()" disabled>
             🔍 Scan Chapter
           </button>
           <button class="btn btn-secondary" id="loadDbBtnTop" onclick="loadSavedIssues()" disabled>
             📥 Saved Issues
+          </button>
+          <button class="btn btn-secondary" onclick="auditDiagramImages()" style="background:#8B5CF6;color:#fff;border:none;">
+            🖼️ Diagram Audit
           </button>
         </div>
       </div>
@@ -413,10 +416,63 @@
         }
       }
 
+      // One-time data migration: fix kidney filtrate question with no options
+      runOneMigration();
+
       // Listeners
       document.getElementById('examFilter').addEventListener('change', onExamChange);
       document.getElementById('subjectFilter').addEventListener('change', onSubjectChange);
       document.getElementById('chapterFilter').addEventListener('change', onChapterChange);
+    }
+
+    async function runOneMigration() {
+      const MIGRATION_KEY = 'migration_v2_hints';
+      if (localStorage.getItem(MIGRATION_KEY)) return;
+
+      const sb = Qbank.supabase;
+      if (!sb) return;
+
+      let ok = true;
+
+      // 1. Fix kidney filtrate MCQ — add options if missing
+      const { data: existingOpts } = await sb.from('med_question_options')
+        .select('option_key').eq('question_id', '62b7a358-196c-459f-b095-7dfbde4352ce');
+      if (!existingOpts || existingOpts.length === 0) {
+        const r = await Qbank.fixEmptyOptions('62b7a358-196c-459f-b095-7dfbde4352ce', [
+          { key: 'A', text: '180 litres' },
+          { key: 'B', text: '1.5 litres' },
+          { key: 'C', text: '18 litres' },
+          { key: 'D', text: '80 litres' }
+        ], 'A');
+        if (!r.success) ok = false;
+      }
+
+      // 2. Add elimination hints for 3 questions missing them
+      const hintsToInsert = [
+        // "Animals that can tolerate a wide range of salinity" — correct: Euryhaline
+        { question_id: 'adc13689-5c52-4994-9a32-b4e5898933e8', option_key: 'A', hint_text: 'Stenohaline organisms tolerate only a narrow range of salinity — the opposite of what is asked.', misconception: 'Confusing stenohaline (narrow) with euryhaline (wide) salinity tolerance.' },
+        { question_id: 'adc13689-5c52-4994-9a32-b4e5898933e8', option_key: 'C', hint_text: 'Catadromous refers to fish migrating from freshwater to sea for breeding (e.g., eels), not salinity tolerance.', misconception: 'Mixing up migration terms with osmoregulation terms.' },
+        { question_id: 'adc13689-5c52-4994-9a32-b4e5898933e8', option_key: 'D', hint_text: 'Anadromous refers to fish migrating from sea to freshwater for breeding (e.g., salmon), not salinity range.', misconception: 'Confusing breeding migration pattern with salinity tolerance.' },
+        // "Amount of filtrate formed per day" — correct: 180 litres (A)
+        { question_id: '62b7a358-196c-459f-b095-7dfbde4352ce', option_key: 'B', hint_text: '1.5 litres is the approximate daily urine output, not the total glomerular filtrate.', misconception: 'Confusing daily urine output (1.5L) with total glomerular filtrate (180L).' },
+        { question_id: '62b7a358-196c-459f-b095-7dfbde4352ce', option_key: 'C', hint_text: '18 litres is a common miscalculation — off by a factor of 10 from the actual value.', misconception: 'Incorrectly estimating GFR by a factor of 10.' },
+        { question_id: '62b7a358-196c-459f-b095-7dfbde4352ce', option_key: 'D', hint_text: '80 litres is not the standard value; GFR of ~125 mL/min gives ~180L/day.', misconception: 'Not applying the GFR calculation correctly (125 mL/min × 1440 min/day).' },
+        // T/F "Entamoeba histolytica affects respiratory tract" — correct: False (B)
+        { question_id: 'df3b0cbb-1e96-4384-ba19-86cd59b68b29', option_key: 'A', hint_text: 'E. histolytica causes amoebiasis affecting the large intestine (colon), not the respiratory tract.', misconception: 'Assuming any infectious agent can affect the respiratory system; E. histolytica is an intestinal parasite.' }
+      ];
+
+      for (const hint of hintsToInsert) {
+        const { data: existing } = await sb.from('med_elimination_hints')
+          .select('id').eq('question_id', hint.question_id).eq('option_key', hint.option_key).limit(1);
+        if (existing && existing.length > 0) continue;
+        const { error } = await sb.from('med_elimination_hints').insert(hint);
+        if (error) { console.warn('[migration] hint insert failed:', error); ok = false; }
+      }
+
+      if (ok) {
+        localStorage.setItem(MIGRATION_KEY, Date.now().toString());
+        console.log('[migration] All hints and options fixed');
+      }
     }
 
     async function onExamChange() {
@@ -473,6 +529,129 @@
       const chapterId = document.getElementById('chapterFilter').value;
       document.getElementById('scanBtn').disabled = !chapterId;
       document.getElementById('loadDbBtnTop').disabled = !chapterId;
+    }
+
+    // ========================================================================
+    // DIAGRAM IMAGE AUDIT
+    // ========================================================================
+    async function auditDiagramImages() {
+      const sb = Qbank.supabase;
+      if (!sb) { alert('Supabase not initialized'); return; }
+
+      const resultsEl = document.getElementById('resultsContainer');
+      resultsEl.style.display = 'block';
+      resultsEl.innerHTML = '<div style="padding:20px;text-align:center;">⏳ Querying diagram questions from DB...</div>';
+
+      // Query ALL diagram-based questions from both NEET and CUET
+      const { data, error } = await sb
+        .from('med_questions')
+        .select('id, chapter_id, image_url, payload, status')
+        .eq('question_type', 'diagram-based')
+        .eq('status', 'active');
+
+      if (error) {
+        resultsEl.innerHTML = `<div style="padding:20px;color:red;">❌ Query failed: ${error.message}</div>`;
+        return;
+      }
+
+      // Categorize
+      const neet = data.filter(q => q.chapter_id && !q.chapter_id.startsWith('cuet-'));
+      const cuet = data.filter(q => q.chapter_id && q.chapter_id.startsWith('cuet-'));
+
+      const categorize = (q) => {
+        const imgUrl = q.image_url || (q.payload && q.payload.image_uri) || '';
+        if (!imgUrl) return 'empty';
+        if (imgUrl.startsWith('http')) return 'http';
+        if (imgUrl.startsWith('placeholder')) return 'placeholder';
+        return 'local-path';
+      };
+
+      const buildStats = (qs) => {
+        const stats = { total: qs.length, http: 0, empty: 0, placeholder: 0, 'local-path': 0, byChapter: {} };
+        for (const q of qs) {
+          const cat = categorize(q);
+          stats[cat]++;
+          const ch = q.chapter_id;
+          if (!stats.byChapter[ch]) stats.byChapter[ch] = { total: 0, http: 0, broken: 0, questions: [] };
+          stats.byChapter[ch].total++;
+          if (cat === 'http') stats.byChapter[ch].http++;
+          else stats.byChapter[ch].broken++;
+          stats.byChapter[ch].questions.push({ id: q.id, status: cat, url: q.image_url || (q.payload && q.payload.image_uri) || '' });
+        }
+        return stats;
+      };
+
+      const neetStats = buildStats(neet);
+      const cuetStats = buildStats(cuet);
+
+      const renderStats = (label, stats, color) => {
+        const brokenCount = stats.empty + stats.placeholder + stats['local-path'];
+        let html = `
+          <div style="border:2px solid ${color};border-radius:12px;padding:16px;margin-bottom:16px;">
+            <h3 style="margin:0 0 8px;color:${color};">${label}</h3>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;">
+              <div style="text-align:center;padding:8px;background:#f8f9fa;border-radius:8px;">
+                <div style="font-size:24px;font-weight:800;">${stats.total}</div>
+                <div style="font-size:11px;color:#666;">Total</div>
+              </div>
+              <div style="text-align:center;padding:8px;background:#22C55E18;border-radius:8px;">
+                <div style="font-size:24px;font-weight:800;color:#16A34A;">${stats.http}</div>
+                <div style="font-size:11px;color:#16A34A;">✅ Working (HTTP)</div>
+              </div>
+              <div style="text-align:center;padding:8px;background:#EF444418;border-radius:8px;">
+                <div style="font-size:24px;font-weight:800;color:#DC2626;">${brokenCount}</div>
+                <div style="font-size:11px;color:#DC2626;">❌ Broken</div>
+              </div>
+              <div style="text-align:center;padding:8px;background:#F59E0B18;border-radius:8px;">
+                <div style="font-size:24px;font-weight:800;color:#D97706;">${stats['local-path']}</div>
+                <div style="font-size:11px;color:#D97706;">📁 Local Path</div>
+              </div>
+            </div>`;
+
+        // Per-chapter breakdown
+        const chapters = Object.entries(stats.byChapter).sort((a,b) => a[0].localeCompare(b[0]));
+        if (chapters.length > 0) {
+          html += `<table style="width:100%;font-size:12px;border-collapse:collapse;">
+            <tr style="background:#f1f5f9;"><th style="padding:4px 8px;text-align:left;">Chapter</th><th>Total</th><th>✅ OK</th><th>❌ Broken</th><th>Details</th></tr>`;
+          for (const [ch, info] of chapters) {
+            const rowColor = info.broken > 0 ? '#FEF2F2' : '#F0FDF4';
+            const details = info.questions.map(q =>
+              `<span style="color:${q.status === 'http' ? '#16A34A' : '#DC2626'};font-size:10px;" title="${q.url}">${q.id} (${q.status})</span>`
+            ).join(', ');
+            html += `<tr style="background:${rowColor};border-bottom:1px solid #e2e8f0;">
+              <td style="padding:4px 8px;font-weight:600;">${ch}</td>
+              <td style="text-align:center;">${info.total}</td>
+              <td style="text-align:center;color:#16A34A;">${info.http}</td>
+              <td style="text-align:center;color:#DC2626;">${info.broken}</td>
+              <td style="padding:4px 8px;">${details}</td>
+            </tr>`;
+          }
+          html += '</table>';
+        }
+        html += '</div>';
+        return html;
+      };
+
+      resultsEl.innerHTML = `
+        <div style="padding:16px;">
+          <h2 style="margin:0 0 16px;">🖼️ Diagram-Based Question Image Audit</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;">
+            <div style="text-align:center;padding:16px;background:#f8f9fa;border-radius:12px;border:2px solid #e2e8f0;">
+              <div style="font-size:32px;font-weight:800;">${data.length}</div>
+              <div style="font-size:13px;color:#666;">Total Diagram Qs in DB</div>
+            </div>
+            <div style="text-align:center;padding:16px;background:#22C55E18;border-radius:12px;border:2px solid #22C55E;">
+              <div style="font-size:32px;font-weight:800;color:#16A34A;">${neetStats.http + cuetStats.http}</div>
+              <div style="font-size:13px;color:#16A34A;">✅ Images Working</div>
+            </div>
+            <div style="text-align:center;padding:16px;background:#EF444418;border-radius:12px;border:2px solid #EF4444;">
+              <div style="font-size:32px;font-weight:800;color:#DC2626;">${(neetStats.empty + neetStats.placeholder + neetStats['local-path']) + (cuetStats.empty + cuetStats.placeholder + cuetStats['local-path'])}</div>
+              <div style="font-size:13px;color:#DC2626;">❌ Images Broken</div>
+            </div>
+          </div>
+          ${renderStats('🩺 NEET Diagram Questions', neetStats, '#3B82F6')}
+          ${renderStats('🎓 CUET Diagram Questions', cuetStats, '#8B5CF6')}
+        </div>`;
     }
 
     // ========================================================================
@@ -682,6 +861,12 @@
             <button class="btn-copy-group" onclick="event.stopPropagation(); copyGroupIssues('${key}')" title="Copy all ${group.issues.length} issues">
               📋 Copy
             </button>
+            ${group.issueType === 'CORRECT_ID_MISMATCH' && group.issues.some(i => i.details?.resolvedKey) ? `
+              <button class="btn-copy-group" style="background: var(--success); color: #fff;"
+                onclick="event.stopPropagation(); fixAllCorrectAnswerKeys('${key}')" title="Auto-fix: set correct_answer to matching option key">
+                🔧 Fix All
+              </button>
+            ` : ''}
             <span style="font-size: 0.7rem; color: var(--gray-400);">
               ${group.severity.toUpperCase()}
             </span>
@@ -719,6 +904,12 @@
             <div class="q-preview">${preview}${preview.length >= 80 ? '...' : ''}</div>
           </div>
           <div class="issue-actions">
+            ${!isResolved && issue.issue_type === 'EMPTY_OPTIONS' ? `
+              <button class="btn-resolve" style="background: var(--success); color: #fff;"
+                onclick="openAddOptionsModal('${issue.question_id}')" title="Add options to this question">
+                + Options
+              </button>
+            ` : ''}
             ${!isResolved ? `
               <button class="btn-resolve" onclick="resolveIssue('${issue.question_id}', '${issue.issue_type}', this)" title="Mark as resolved">
                 Resolve
@@ -745,7 +936,8 @@
         return `Only ${issue.details?.optionCount || '?'} options (need 4)`;
       }
       if (issue.issue_type === 'CORRECT_ID_MISMATCH') {
-        return `Answer "${issue.details?.correct_answer}" not in options [${(issue.details?.available_keys || []).join(', ')}]`;
+        const fixHint = issue.details?.resolvedKey ? ` → fixable: key "${issue.details.resolvedKey}"` : '';
+        return `Answer "${issue.details?.correct_answer}" not in options [${(issue.details?.available_keys || []).join(', ')}]${fixHint}`;
       }
       if (issue.issue_type === 'DUPLICATE_OPTIONS') {
         return `Duplicated: "${(issue.details?.duplicates || []).join('", "')}"`;
@@ -870,6 +1062,113 @@
 
       // Update summary counts
       renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    // ========================================================================
+    // AUTO-FIX: correct_answer text → key
+    // ========================================================================
+    async function fixAllCorrectAnswerKeys(groupKey) {
+      const group = window._issueGroups?.[groupKey];
+      if (!group) return;
+
+      // Gather the question objects that have a resolvable key
+      const fixableIds = group.issues
+        .filter(i => i.details?.resolvedKey && i.status !== 'resolved')
+        .map(i => i.question_id);
+
+      if (fixableIds.length === 0) {
+        Qbank.showToast('Nothing to fix', 'info');
+        return;
+      }
+
+      const fixableQuestions = scannedQuestions.filter(q => fixableIds.includes(q.id));
+
+      // Confirm
+      if (!confirm(`Auto-fix correct_answer for ${fixableQuestions.length} questions?\n\nThis will update the DB: set correct_answer to the matching option key.`)) {
+        return;
+      }
+
+      // Disable the button
+      const groupEl = document.querySelector(`.issue-group[data-group-key="${groupKey}"]`);
+      const fixBtn = groupEl?.querySelector('button[onclick*="fixAllCorrectAnswerKeys"]');
+      if (fixBtn) { fixBtn.disabled = true; fixBtn.textContent = '🔧 Fixing...'; }
+
+      const result = await Qbank.fixCorrectAnswerKeys(fixableQuestions);
+
+      Qbank.showToast(`Fixed ${result.fixed} questions (${result.errors} errors, ${result.skipped} skipped)`, result.errors ? 'error' : 'success');
+
+      // Mark fixed issues as resolved locally
+      for (const d of result.details) {
+        if (d.status === 'fixed') {
+          const issue = currentIssues.find(i =>
+            i.question_id === d.id && i.issue_type === 'CORRECT_ID_MISMATCH' && i.status !== 'resolved'
+          );
+          if (issue) issue.status = 'resolved';
+        }
+      }
+
+      // Re-render
+      renderIssues(currentIssues);
+      renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    // ========================================================================
+    // ADD OPTIONS MODAL (for EMPTY_OPTIONS fix)
+    // ========================================================================
+    function openAddOptionsModal(questionId) {
+      const q = scannedQuestions.find(sq => sq.id === questionId);
+      const preview = q ? Qbank.escapeHtml((q.question_text || '').substring(0, 120)) : questionId;
+
+      const content = `
+        <p style="margin-bottom: 12px; color: var(--gray-300); font-size: 0.85rem;">${preview}</p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          ${['A', 'B', 'C', 'D'].map(k => `
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <label style="display: flex; align-items: center; gap: 4px; min-width: 40px;">
+                <input type="radio" name="correctOpt" value="${k}" ${k === 'A' ? 'checked' : ''}>
+                <strong>${k}</strong>
+              </label>
+              <input type="text" id="opt${k}" placeholder="Option ${k} text"
+                style="flex: 1; padding: 6px 10px; border: 1px solid var(--gray-600); border-radius: 6px; background: var(--gray-800); color: var(--gray-100); font-size: 0.9rem;">
+            </div>
+          `).join('')}
+        </div>
+        <input type="hidden" id="fixQid" value="${questionId}">
+      `;
+
+      Qbank.createModal('Add Options', content, [
+        { label: 'Cancel', class: 'btn-secondary', onclick: "this.closest('.qbank-modal-overlay').remove()" },
+        { label: 'Save Options', class: 'btn-primary', onclick: 'saveAddedOptions()' }
+      ]);
+    }
+
+    async function saveAddedOptions() {
+      const qid = document.getElementById('fixQid').value;
+      const correctKey = document.querySelector('input[name="correctOpt"]:checked')?.value;
+      const options = ['A', 'B', 'C', 'D'].map(k => ({
+        key: k,
+        text: (document.getElementById('opt' + k)?.value || '').trim()
+      }));
+
+      // Validate
+      const empty = options.filter(o => !o.text);
+      if (empty.length > 0) {
+        Qbank.showToast(`Fill in all 4 options (${empty.map(o => o.key).join(', ')} empty)`, 'error');
+        return;
+      }
+
+      const result = await Qbank.fixEmptyOptions(qid, options, correctKey);
+      if (result.success) {
+        Qbank.showToast('Options added successfully', 'success');
+        // Mark issue resolved locally
+        const issue = currentIssues.find(i => i.question_id === qid && i.issue_type === 'EMPTY_OPTIONS');
+        if (issue) issue.status = 'resolved';
+        renderIssues(currentIssues);
+        renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+      } else {
+        Qbank.showToast('Failed: ' + (result.error || 'Unknown error'), 'error');
+      }
+      document.querySelector('.qbank-modal-overlay')?.remove();
     }
 
     // ========================================================================

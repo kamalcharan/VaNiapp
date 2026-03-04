@@ -1519,8 +1519,10 @@ function runQualityValidators(questions, languages, chapterId) {
     }
 
     if (opts.length > 0) {
-      // Check for empty option text
+      // Check for empty option text — skip C & D for true-false (placeholder by design)
+      const isTFq = q.question_type === 'true-false';
       const emptyOpts = opts.filter(o => {
+        if (isTFq && ['C', 'D'].includes((o.option_key || o.key || '').toUpperCase())) return false;
         const text = (o.option_text || o.text || '').trim();
         return !text;
       });
@@ -1541,18 +1543,43 @@ function runQualityValidators(questions, languages, chapterId) {
 
       // Check correct_answer key matches an option
       if (q.correct_answer && opts.length > 0) {
-        const keys = opts.map(o => o.option_key || o.key);
-        if (!keys.includes(q.correct_answer)) {
+        const keys = opts.map(o => (o.option_key || o.key || '').toUpperCase());
+        const caUpper = q.correct_answer.toUpperCase();
+        if (!keys.includes(caUpper) || q.correct_answer.length > 2) {
+          // Try to resolve the correct key via multiple strategies:
+          // 1. Exact text match
+          const textMatch = opts.find(o =>
+            (o.option_text || o.text || '').trim().toLowerCase() === q.correct_answer.trim().toLowerCase()
+          );
+          // 2. Text contains / is contained in correct_answer
+          const partialMatch = !textMatch && opts.find(o => {
+            const oText = (o.option_text || o.text || '').trim().toLowerCase();
+            const caText = q.correct_answer.trim().toLowerCase();
+            return oText && caText && (oText.includes(caText) || caText.includes(oText));
+          });
+          // 3. is_correct flag on exactly one option
+          const correctFlagOpts = opts.filter(o => o.is_correct === true);
+          const flagMatch = !textMatch && !partialMatch && correctFlagOpts.length === 1
+            ? correctFlagOpts[0] : null;
+
+          const resolved = textMatch || partialMatch || flagMatch;
+          const resolvedKey = resolved ? (resolved.option_key || resolved.key) : null;
           issues.push(makeIssue(q, chapterId, 'CORRECT_ID_MISMATCH', {
             correct_answer: q.correct_answer,
-            available_keys: keys
+            available_keys: keys,
+            resolvedKey  // non-null means auto-fixable
           }));
         }
       }
 
-      // Duplicate option texts
-      const texts = opts.map(o => (o.option_text || o.text || '').trim().toLowerCase()).filter(Boolean);
-      const dupes = texts.filter((t, i) => texts.indexOf(t) !== i);
+      // Duplicate option texts (case-sensitive — R vs r, M vs m matter in formulas)
+      // For true-false, filter out placeholder "—" options (C & D) before checking
+      const isTF = q.question_type === 'true-false';
+      const textsToCheck = opts
+        .filter(o => !isTF || ['A', 'B'].includes((o.option_key || o.key || '').toUpperCase()))
+        .map(o => (o.option_text || o.text || '').trim())
+        .filter(Boolean);
+      const dupes = textsToCheck.filter((t, i) => textsToCheck.indexOf(t) !== i);
       if (dupes.length > 0) {
         issues.push(makeIssue(q, chapterId, 'DUPLICATE_OPTIONS', { duplicates: [...new Set(dupes)] }));
       }
@@ -1589,10 +1616,10 @@ function runQualityValidators(questions, languages, chapterId) {
       }
       case 'match-the-following': {
         // Rich payload: payload.column_a + payload.column_b
-        // Lean payload: "Column A | Column B" or matching list in question_text
+        // Lean payload: "Column A/B" or "Column I/II" or "Column-I/-II" or "Column 1/2" in question_text
         const hasPayloadCols = (Array.isArray(payload.column_a || payload.columnA) &&
           (payload.column_a || payload.columnA).length > 0);
-        const hasTextCols = /column\s*[ab]|match.*following/i.test(qText);
+        const hasTextCols = /column\s*[-_]?\s*[abI12]|match.*(?:following|column)/i.test(qText);
 
         if (!hasPayloadCols && !hasTextCols) {
           issues.push(makeIssue(q, chapterId, 'MTF_MALFORMED'));
@@ -1856,6 +1883,134 @@ async function clearExploreIssues(chapterId) {
 }
 
 // ============================================================================
+// AUTO-FIX: correct_answer text → option key
+// ============================================================================
+
+/**
+ * For questions where correct_answer stores option text instead of the key,
+ * find the matching option and update the DB to use the key (A/B/C/D).
+ *
+ * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
+ * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
+ */
+async function fixCorrectAnswerKeys(questions) {
+  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  for (const q of questions) {
+    const opts = q.options || q.med_question_options || [];
+    const ca = (q.correct_answer || '').trim();
+    if (!ca || !opts.length) { results.skipped++; continue; }
+
+    // Already a valid key — skip
+    const keys = opts.map(o => (o.option_key || o.key || '').toUpperCase());
+    if (keys.includes(ca.toUpperCase()) && ca.length <= 2) {
+      results.skipped++;
+      continue;
+    }
+
+    // Try multiple strategies to find the correct option:
+    // 1. Exact text match
+    const exactMatch = opts.find(o => {
+      const text = (o.option_text || o.text || '').trim();
+      return text.toLowerCase() === ca.toLowerCase();
+    });
+    // 2. Partial text match (contains / is contained)
+    const partialMatch = !exactMatch && opts.find(o => {
+      const text = (o.option_text || o.text || '').trim().toLowerCase();
+      const caLower = ca.toLowerCase();
+      return text && caLower && (text.includes(caLower) || caLower.includes(text));
+    });
+    // 3. is_correct flag (exactly one option marked correct)
+    const correctFlagOpts = opts.filter(o => o.is_correct === true);
+    const flagMatch = !exactMatch && !partialMatch && correctFlagOpts.length === 1
+      ? correctFlagOpts[0] : null;
+
+    const match = exactMatch || partialMatch || flagMatch;
+    if (!match) {
+      results.skipped++;
+      continue;
+    }
+
+    const correctKey = (match.option_key || match.key || '').toUpperCase();
+
+    // Also set is_correct on the matching option (and clear others)
+    const optionUpdates = opts.map(o => {
+      const k = (o.option_key || o.key || '').toUpperCase();
+      return SUPABASE
+        .from('med_question_options')
+        .update({ is_correct: k === correctKey })
+        .eq('question_id', q.id)
+        .eq('option_key', o.option_key || o.key);
+    });
+
+    const { error } = await SUPABASE
+      .from('med_questions')
+      .update({ correct_answer: correctKey })
+      .eq('id', q.id);
+
+    if (error) {
+      console.error(`[fix] Failed to update ${q.id}:`, error);
+      results.errors++;
+      results.details.push({ id: q.id, status: 'error', error: error.message });
+    } else {
+      // Fire option updates (best-effort)
+      await Promise.all(optionUpdates);
+      results.fixed++;
+      results.details.push({ id: q.id, status: 'fixed', from: ca, to: correctKey });
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
+// AUTO-FIX: add missing options to a question
+// ============================================================================
+
+/**
+ * Insert options for a question that has none, and set correct_answer.
+ *
+ * @param {string} questionId
+ * @param {{ key: string, text: string }[]} options - e.g. [{key:'A', text:'180 litres'}, ...]
+ * @param {string} correctKey - e.g. 'A'
+ * @returns {{ success: boolean, error?: string }}
+ */
+async function fixEmptyOptions(questionId, options, correctKey) {
+  if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
+
+  const optionRecords = options.map((opt, idx) => ({
+    question_id: questionId,
+    option_key: opt.key,
+    option_text: opt.text,
+    is_correct: opt.key === correctKey,
+    sort_order: idx
+  }));
+
+  const { error: optErr } = await SUPABASE
+    .from('med_question_options')
+    .insert(optionRecords);
+
+  if (optErr) {
+    console.error('[fix] Failed to insert options:', optErr);
+    return { success: false, error: optErr.message };
+  }
+
+  const { error: qErr } = await SUPABASE
+    .from('med_questions')
+    .update({ correct_answer: correctKey })
+    .eq('id', questionId);
+
+  if (qErr) {
+    console.error('[fix] Failed to update correct_answer:', qErr);
+    return { success: false, error: qErr.message };
+  }
+
+  return { success: true };
+}
+
+// ============================================================================
 // EXPORT FOR USE IN HTML
 // ============================================================================
 window.Qbank = {
@@ -1934,6 +2089,8 @@ window.Qbank = {
   fetchQualityIssueSummary,
   resolveQualityIssue,
   clearExploreIssues,
+  fixCorrectAnswerKeys,
+  fixEmptyOptions,
 
   // State access
   get config() { return CONFIG; },

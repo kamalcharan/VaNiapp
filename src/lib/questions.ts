@@ -292,15 +292,10 @@ function buildPayload(
     }
 
     case 'true-false': {
-      // Determine correctAnswer from payload, or from the correct option text
-      let tfCorrect = false;
-      if (raw.correct_answer !== undefined && raw.correct_answer !== null) {
-        tfCorrect = raw.correct_answer === true || raw.correct_answer === 'true';
-      } else {
-        // Fallback: check if the correct option's text is "True"
-        const correctOpt = options.find((o) => o.id === correctOptionId);
-        tfCorrect = correctOpt?.text?.toLowerCase().trim() === 'true';
-      }
+      // Correct answer is derived from whichever option has is_correct=true.
+      // If that option's text is "True", the answer is true; otherwise false.
+      const correctOpt = options.find((o) => o.id === correctOptionId);
+      const tfCorrect = correctOpt?.text?.toLowerCase().trim() === 'true';
       return {
         type: 'true-false',
         statement: (raw.statement as string) || text,

@@ -6,22 +6,56 @@
     "question_text": "The moment of inertia of a particle of mass m at a distance r from the axis of rotation is:",
     "explanation": "By definition, the moment of inertia of a point particle about an axis is I = mr², where m is the mass of the particle and r is its perpendicular distance from the axis. This is the fundamental building block for computing the MOI of extended bodies.",
     "correct_answer": "B",
-    "concept_tags": ["moment-of-inertia", "definition", "point-particle"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "definition",
+      "point-particle"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "mr", "is_correct": false },
-      { "key": "B", "text": "mr²", "is_correct": true },
-      { "key": "C", "text": "m²r", "is_correct": false },
-      { "key": "D", "text": "m²r²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "mr",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "mr²",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "m²r",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "m²r²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "mr has dimensions of kg⋅m, which is not the dimension of moment of inertia (kg⋅m²).", "misconception": "Confusing moment of inertia with the first moment of mass" },
-      { "option_key": "C", "hint": "m²r has dimensions of kg²⋅m, which does not match any standard rotational quantity.", "misconception": "Incorrectly squaring mass instead of distance" },
-      { "option_key": "D", "hint": "m²r² has dimensions of kg²⋅m², which is incorrect for moment of inertia.", "misconception": "Squaring both mass and distance" }
+      {
+        "option_key": "A",
+        "hint": "mr has dimensions of kg⋅m, which is not the dimension of moment of inertia (kg⋅m²).",
+        "misconception": "Confusing moment of inertia with the first moment of mass"
+      },
+      {
+        "option_key": "C",
+        "hint": "m²r has dimensions of kg²⋅m, which does not match any standard rotational quantity.",
+        "misconception": "Incorrectly squaring mass instead of distance"
+      },
+      {
+        "option_key": "D",
+        "hint": "m²r² has dimensions of kg²⋅m², which is incorrect for moment of inertia.",
+        "misconception": "Squaring both mass and distance"
+      }
     ]
   },
   {
@@ -31,22 +65,56 @@
     "question_text": "The SI unit of moment of inertia is:",
     "explanation": "Moment of inertia is defined as I = Σmᵢrᵢ², so its SI unit is the product of the unit of mass (kg) and the square of the unit of distance (m²), giving kg⋅m². This is analogous to mass in translational motion and appears in the rotational kinetic energy formula KE = ½Iω².",
     "correct_answer": "C",
-    "concept_tags": ["moment-of-inertia", "units", "SI-system"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "units",
+      "SI-system"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "kg⋅m", "is_correct": false },
-      { "key": "B", "text": "kg/m²", "is_correct": false },
-      { "key": "C", "text": "kg⋅m²", "is_correct": true },
-      { "key": "D", "text": "kg⋅m/s²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "kg⋅m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kg/m²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "kg⋅m²",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "kg⋅m/s²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "kg⋅m is the unit of the first moment of mass, not the second moment (moment of inertia).", "misconception": "Forgetting to square the distance term" },
-      { "option_key": "B", "hint": "kg/m² has distance in the denominator, but moment of inertia requires multiplication, not division.", "misconception": "Inverting the distance contribution" },
-      { "option_key": "D", "hint": "kg⋅m/s² is the unit of force (Newton), not moment of inertia.", "misconception": "Confusing moment of inertia with force" }
+      {
+        "option_key": "A",
+        "hint": "kg⋅m is the unit of the first moment of mass, not the second moment (moment of inertia).",
+        "misconception": "Forgetting to square the distance term"
+      },
+      {
+        "option_key": "B",
+        "hint": "kg/m² has distance in the denominator, but moment of inertia requires multiplication, not division.",
+        "misconception": "Inverting the distance contribution"
+      },
+      {
+        "option_key": "D",
+        "hint": "kg⋅m/s² is the unit of force (Newton), not moment of inertia.",
+        "misconception": "Confusing moment of inertia with force"
+      }
     ]
   },
   {
@@ -56,22 +124,56 @@
     "question_text": "The moment of inertia of a thin uniform ring of mass M and radius R about an axis passing through its centre and perpendicular to its plane is:",
     "explanation": "For a thin ring, all the mass is concentrated at the same distance R from the central axis perpendicular to its plane. Therefore, I = MR². This is one of the simplest and most fundamental MOI results in rotational mechanics.",
     "correct_answer": "A",
-    "concept_tags": ["moment-of-inertia", "ring", "standard-result"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "ring",
+      "standard-result"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "MR²", "is_correct": true },
-      { "key": "B", "text": "½MR²", "is_correct": false },
-      { "key": "C", "text": "¼MR²", "is_correct": false },
-      { "key": "D", "text": "2MR²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "MR²",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "½MR²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "¼MR²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2MR²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "½MR² is the MOI of a disc about its central axis, not a ring. A ring has all mass at distance R.", "misconception": "Confusing the MOI of a ring with that of a disc" },
-      { "option_key": "C", "hint": "¼MR² is the MOI of a disc about its diameter, not a ring about its central perpendicular axis.", "misconception": "Mixing up MOI formulae for different bodies and axes" },
-      { "option_key": "D", "hint": "2MR² would apply to a ring about a tangent perpendicular to its plane (by parallel axis theorem), not the central axis.", "misconception": "Applying the parallel axis theorem unnecessarily" }
+      {
+        "option_key": "B",
+        "hint": "½MR² is the MOI of a disc about its central axis, not a ring. A ring has all mass at distance R.",
+        "misconception": "Confusing the MOI of a ring with that of a disc"
+      },
+      {
+        "option_key": "C",
+        "hint": "¼MR² is the MOI of a disc about its diameter, not a ring about its central perpendicular axis.",
+        "misconception": "Mixing up MOI formulae for different bodies and axes"
+      },
+      {
+        "option_key": "D",
+        "hint": "2MR² would apply to a ring about a tangent perpendicular to its plane (by parallel axis theorem), not the central axis.",
+        "misconception": "Applying the parallel axis theorem unnecessarily"
+      }
     ]
   },
   {
@@ -81,22 +183,56 @@
     "question_text": "The radius of gyration of a body about an axis is defined as the distance from the axis where the entire mass of the body can be assumed to be concentrated to give the same moment of inertia. If the moment of inertia of a body of mass M about an axis is I, then the radius of gyration k is:",
     "explanation": "By definition, I = Mk², so k = √(I/M). The radius of gyration provides a convenient way to express the moment of inertia and represents the root mean square distance of the mass distribution from the axis of rotation.",
     "correct_answer": "D",
-    "concept_tags": ["radius-of-gyration", "moment-of-inertia", "definition"],
+    "concept_tags": [
+      "radius-of-gyration",
+      "moment-of-inertia",
+      "definition"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "I/M", "is_correct": false },
-      { "key": "B", "text": "M/I", "is_correct": false },
-      { "key": "C", "text": "√(MI)", "is_correct": false },
-      { "key": "D", "text": "√(I/M)", "is_correct": true }
+      {
+        "key": "A",
+        "text": "I/M",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "M/I",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "√(MI)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "√(I/M)",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "I/M gives k², not k. You need to take the square root to obtain the radius of gyration.", "misconception": "Forgetting to take the square root in the radius of gyration formula" },
-      { "option_key": "B", "hint": "M/I inverts the correct ratio; the correct formula is k² = I/M, not k² = M/I.", "misconception": "Inverting the formula for radius of gyration" },
-      { "option_key": "C", "hint": "√(MI) has dimensions of kg⋅m, not metres. The radius of gyration must have units of length.", "misconception": "Incorrectly combining mass and MOI" }
+      {
+        "option_key": "A",
+        "hint": "I/M gives k², not k. You need to take the square root to obtain the radius of gyration.",
+        "misconception": "Forgetting to take the square root in the radius of gyration formula"
+      },
+      {
+        "option_key": "B",
+        "hint": "M/I inverts the correct ratio; the correct formula is k² = I/M, not k² = M/I.",
+        "misconception": "Inverting the formula for radius of gyration"
+      },
+      {
+        "option_key": "C",
+        "hint": "√(MI) has dimensions of kg⋅m, not metres. The radius of gyration must have units of length.",
+        "misconception": "Incorrectly combining mass and MOI"
+      }
     ]
   },
   {
@@ -106,22 +242,57 @@
     "question_text": "The moment of inertia of a uniform disc of mass M and radius R about an axis passing through its centre and lying in its plane (i.e., about a diameter) is:",
     "explanation": "For a uniform disc, the MOI about the central perpendicular axis is I_z = ½MR². By the perpendicular axis theorem, I_z = I_x + I_y. By symmetry, I_x = I_y (both are diameters). Therefore, I_diameter = I_z/2 = ½MR²/2 = ¼MR².",
     "correct_answer": "B",
-    "concept_tags": ["moment-of-inertia", "disc", "diameter", "perpendicular-axis-theorem"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "disc",
+      "diameter",
+      "perpendicular-axis-theorem"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "½MR²", "is_correct": false },
-      { "key": "B", "text": "¼MR²", "is_correct": true },
-      { "key": "C", "text": "MR²", "is_correct": false },
-      { "key": "D", "text": "⅓MR²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "½MR²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "¼MR²",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "MR²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "⅓MR²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "½MR² is the MOI of the disc about the axis perpendicular to its plane through the centre, not about a diameter.", "misconception": "Confusing the perpendicular axis with the diametral axis" },
-      { "option_key": "C", "hint": "MR² is the MOI of a ring (not disc) about its central perpendicular axis.", "misconception": "Using the ring formula instead of the disc formula" },
-      { "option_key": "D", "hint": "⅓MR² does not correspond to any standard axis of a disc; it applies to a rod about one end.", "misconception": "Mixing up MOI formulae of different bodies" }
+      {
+        "option_key": "A",
+        "hint": "½MR² is the MOI of the disc about the axis perpendicular to its plane through the centre, not about a diameter.",
+        "misconception": "Confusing the perpendicular axis with the diametral axis"
+      },
+      {
+        "option_key": "C",
+        "hint": "MR² is the MOI of a ring (not disc) about its central perpendicular axis.",
+        "misconception": "Using the ring formula instead of the disc formula"
+      },
+      {
+        "option_key": "D",
+        "hint": "⅓MR² does not correspond to any standard axis of a disc; it applies to a rod about one end.",
+        "misconception": "Mixing up MOI formulae of different bodies"
+      }
     ]
   },
   {
@@ -131,22 +302,57 @@
     "question_text": "According to the parallel axis theorem, the moment of inertia of a body about any axis parallel to an axis through the centre of mass is given by I = I_cm + Md², where d is the distance between the two axes. The moment of inertia of a uniform solid sphere of mass M and radius R about a tangent is:",
     "explanation": "The MOI of a solid sphere about an axis through its centre is I_cm = ⅖MR². A tangent to the sphere is at a distance d = R from the centre. By the parallel axis theorem: I = I_cm + MR² = ⅖MR² + MR² = ⅖MR² + ⁵⁄₅MR² = ⁷⁄₅MR².",
     "correct_answer": "D",
-    "concept_tags": ["moment-of-inertia", "parallel-axis-theorem", "solid-sphere", "tangent"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "parallel-axis-theorem",
+      "solid-sphere",
+      "tangent"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "⅖MR²", "is_correct": false },
-      { "key": "B", "text": "MR²", "is_correct": false },
-      { "key": "C", "text": "⅔MR²", "is_correct": false },
-      { "key": "D", "text": "⁷⁄₅MR²", "is_correct": true }
+      {
+        "key": "A",
+        "text": "⅖MR²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "MR²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "⅔MR²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "⁷⁄₅MR²",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "⅖MR² is the MOI about the central axis, not about a tangent. The parallel axis theorem adds MR² to this value.", "misconception": "Forgetting to apply the parallel axis theorem for the tangential axis" },
-      { "option_key": "B", "hint": "MR² is just the Md² correction term, missing the original I_cm = ⅖MR².", "misconception": "Using only the parallel axis correction without adding I_cm" },
-      { "option_key": "C", "hint": "⅔MR² is the MOI of a hollow sphere about its centre, not a solid sphere about a tangent.", "misconception": "Confusing solid sphere with hollow sphere" }
+      {
+        "option_key": "A",
+        "hint": "⅖MR² is the MOI about the central axis, not about a tangent. The parallel axis theorem adds MR² to this value.",
+        "misconception": "Forgetting to apply the parallel axis theorem for the tangential axis"
+      },
+      {
+        "option_key": "B",
+        "hint": "MR² is just the Md² correction term, missing the original I_cm = ⅖MR².",
+        "misconception": "Using only the parallel axis correction without adding I_cm"
+      },
+      {
+        "option_key": "C",
+        "hint": "⅔MR² is the MOI of a hollow sphere about its centre, not a solid sphere about a tangent.",
+        "misconception": "Confusing solid sphere with hollow sphere"
+      }
     ]
   },
   {
@@ -156,22 +362,56 @@
     "question_text": "The perpendicular axis theorem is applicable to:",
     "explanation": "The perpendicular axis theorem (I_z = I_x + I_y) is valid only for planar (2D) bodies, i.e., laminar or flat bodies. It cannot be applied to three-dimensional bodies like spheres, cylinders, or cubes. This theorem relates the MOI about a perpendicular axis to the sum of MOIs about two mutually perpendicular axes in the plane of the body.",
     "correct_answer": "C",
-    "concept_tags": ["perpendicular-axis-theorem", "applicability", "planar-bodies"],
+    "concept_tags": [
+      "perpendicular-axis-theorem",
+      "applicability",
+      "planar-bodies"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Only spherical bodies", "is_correct": false },
-      { "key": "B", "text": "Any three-dimensional body", "is_correct": false },
-      { "key": "C", "text": "Only planar (laminar) bodies", "is_correct": true },
-      { "key": "D", "text": "Only bodies with uniform density", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Only spherical bodies",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Any three-dimensional body",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Only planar (laminar) bodies",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Only bodies with uniform density",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "Spheres are 3D bodies and the perpendicular axis theorem cannot be applied to them.", "misconception": "Thinking the theorem applies to symmetric 3D bodies" },
-      { "option_key": "B", "hint": "The theorem specifically requires a planar geometry; it breaks down for bodies with extent in all three dimensions.", "misconception": "Generalizing the perpendicular axis theorem to all bodies" },
-      { "option_key": "D", "hint": "The density need not be uniform; the theorem depends only on the geometry being planar, not on uniformity of density.", "misconception": "Confusing the condition of applicability with the nature of mass distribution" }
+      {
+        "option_key": "A",
+        "hint": "Spheres are 3D bodies and the perpendicular axis theorem cannot be applied to them.",
+        "misconception": "Thinking the theorem applies to symmetric 3D bodies"
+      },
+      {
+        "option_key": "B",
+        "hint": "The theorem specifically requires a planar geometry; it breaks down for bodies with extent in all three dimensions.",
+        "misconception": "Generalizing the perpendicular axis theorem to all bodies"
+      },
+      {
+        "option_key": "D",
+        "hint": "The density need not be uniform; the theorem depends only on the geometry being planar, not on uniformity of density.",
+        "misconception": "Confusing the condition of applicability with the nature of mass distribution"
+      }
     ]
   },
   {
@@ -181,22 +421,57 @@
     "question_text": "Four identical thin rods, each of mass m and length l, are joined to form a square frame. The moment of inertia of the frame about an axis through the centre of the square and perpendicular to its plane is:",
     "explanation": "The MOI of a single rod about an axis through its centre and perpendicular to its length is ml²/12. Each rod's centre is at a distance l/2 from the centre of the square. By the parallel axis theorem, each rod contributes: ml²/12 + m(l/2)² = ml²/12 + ml²/4 = ml²/3. For four rods: I_total = 4 × ml²/3 = 4ml²/3.",
     "correct_answer": "A",
-    "concept_tags": ["moment-of-inertia", "rod", "square-frame", "parallel-axis-theorem"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "rod",
+      "square-frame",
+      "parallel-axis-theorem"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "4ml²/3", "is_correct": true },
-      { "key": "B", "text": "ml²/3", "is_correct": false },
-      { "key": "C", "text": "2ml²/3", "is_correct": false },
-      { "key": "D", "text": "8ml²/3", "is_correct": false }
+      {
+        "key": "A",
+        "text": "4ml²/3",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "ml²/3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2ml²/3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "8ml²/3",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "ml²/3 is the contribution of a single rod; you must sum over all four rods.", "misconception": "Forgetting to multiply by the number of rods" },
-      { "option_key": "C", "hint": "2ml²/3 accounts for only two rods instead of all four in the square frame.", "misconception": "Counting only opposite rods instead of all four" },
-      { "option_key": "D", "hint": "8ml²/3 doubles the correct answer, likely from incorrectly using l instead of l/2 in the parallel axis theorem.", "misconception": "Using the full side length instead of half the side as the distance from centre to rod centre" }
+      {
+        "option_key": "B",
+        "hint": "ml²/3 is the contribution of a single rod; you must sum over all four rods.",
+        "misconception": "Forgetting to multiply by the number of rods"
+      },
+      {
+        "option_key": "C",
+        "hint": "2ml²/3 accounts for only two rods instead of all four in the square frame.",
+        "misconception": "Counting only opposite rods instead of all four"
+      },
+      {
+        "option_key": "D",
+        "hint": "8ml²/3 doubles the correct answer, likely from incorrectly using l instead of l/2 in the parallel axis theorem.",
+        "misconception": "Using the full side length instead of half the side as the distance from centre to rod centre"
+      }
     ]
   },
   {
@@ -206,22 +481,57 @@
     "question_text": "The moment of inertia of a uniform thin rod of mass M and length L about an axis perpendicular to the rod and passing through one end is:",
     "explanation": "The MOI of a rod about its centre is ML²/12. Using the parallel axis theorem with d = L/2 (distance from centre to end): I = ML²/12 + M(L/2)² = ML²/12 + ML²/4 = ML²/12 + 3ML²/12 = 4ML²/12 = ML²/3. This is a standard result frequently used in NEET problems.",
     "correct_answer": "C",
-    "concept_tags": ["moment-of-inertia", "rod", "end-axis", "parallel-axis-theorem"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "rod",
+      "end-axis",
+      "parallel-axis-theorem"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "ML²/12", "is_correct": false },
-      { "key": "B", "text": "ML²/6", "is_correct": false },
-      { "key": "C", "text": "ML²/3", "is_correct": true },
-      { "key": "D", "text": "ML²/2", "is_correct": false }
+      {
+        "key": "A",
+        "text": "ML²/12",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ML²/6",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "ML²/3",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "ML²/2",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "ML²/12 is the MOI about the centre of the rod, not about one end.", "misconception": "Using the central axis formula instead of the end-axis formula" },
-      { "option_key": "B", "hint": "ML²/6 is not a standard result for any axis of a uniform rod.", "misconception": "Averaging the centre and end-axis values incorrectly" },
-      { "option_key": "D", "hint": "ML²/2 overestimates the value; it does not follow from the correct application of the parallel axis theorem.", "misconception": "Using d = L instead of d = L/2 in the parallel axis theorem" }
+      {
+        "option_key": "A",
+        "hint": "ML²/12 is the MOI about the centre of the rod, not about one end.",
+        "misconception": "Using the central axis formula instead of the end-axis formula"
+      },
+      {
+        "option_key": "B",
+        "hint": "ML²/6 is not a standard result for any axis of a uniform rod.",
+        "misconception": "Averaging the centre and end-axis values incorrectly"
+      },
+      {
+        "option_key": "D",
+        "hint": "ML²/2 overestimates the value; it does not follow from the correct application of the parallel axis theorem.",
+        "misconception": "Using d = L instead of d = L/2 in the parallel axis theorem"
+      }
     ]
   },
   {
@@ -231,22 +541,57 @@
     "question_text": "The ratio of the moment of inertia of a circular ring to that of a circular disc of the same mass and radius about the axis perpendicular to the plane and passing through the centre is:",
     "explanation": "MOI of ring = MR² and MOI of disc = ½MR², both about the central perpendicular axis. The ratio is MR²/(½MR²) = 2:1. The ring has greater MOI because all its mass is concentrated at the rim, while the disc has mass distributed from centre to rim.",
     "correct_answer": "A",
-    "concept_tags": ["moment-of-inertia", "ring", "disc", "comparison"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "ring",
+      "disc",
+      "comparison"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "2 : 1", "is_correct": true },
-      { "key": "B", "text": "1 : 2", "is_correct": false },
-      { "key": "C", "text": "1 : 1", "is_correct": false },
-      { "key": "D", "text": "4 : 1", "is_correct": false }
+      {
+        "key": "A",
+        "text": "2 : 1",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1 : 2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1 : 1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4 : 1",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "1:2 inverts the ratio; the ring has more MOI than the disc, not less.", "misconception": "Reversing the ring-to-disc ratio" },
-      { "option_key": "C", "hint": "1:1 would mean they have the same MOI, but the ring concentrates all mass at R while the disc distributes mass inward.", "misconception": "Assuming same geometry implies same MOI" },
-      { "option_key": "D", "hint": "4:1 would apply if the disc MOI were MR²/4, which is its diametral MOI, not the perpendicular axis MOI.", "misconception": "Comparing the ring's perpendicular axis MOI with the disc's diametral MOI" }
+      {
+        "option_key": "B",
+        "hint": "1:2 inverts the ratio; the ring has more MOI than the disc, not less.",
+        "misconception": "Reversing the ring-to-disc ratio"
+      },
+      {
+        "option_key": "C",
+        "hint": "1:1 would mean they have the same MOI, but the ring concentrates all mass at R while the disc distributes mass inward.",
+        "misconception": "Assuming same geometry implies same MOI"
+      },
+      {
+        "option_key": "D",
+        "hint": "4:1 would apply if the disc MOI were MR²/4, which is its diametral MOI, not the perpendicular axis MOI.",
+        "misconception": "Comparing the ring's perpendicular axis MOI with the disc's diametral MOI"
+      }
     ]
   },
   {
@@ -256,22 +601,56 @@
     "question_text": "A uniform disc of mass M and radius R has a concentric circular hole of radius R/2 cut from it. The moment of inertia of the remaining annular disc about an axis perpendicular to its plane and passing through the centre is:",
     "explanation": "MOI of full disc = ½MR². The removed disc has radius R/2 and area π(R/2)² = πR²/4. The full disc has area πR². So mass of removed part = M × (πR²/4)/(πR²) = M/4. MOI of removed disc about the centre = ½(M/4)(R/2)² = MR²/32. MOI of remaining portion = ½MR² − MR²/32 = 16MR²/32 − MR²/32 = 15MR²/32.",
     "correct_answer": "B",
-    "concept_tags": ["moment-of-inertia", "annular-disc", "subtraction-method"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "annular-disc",
+      "subtraction-method"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "½MR²", "is_correct": false },
-      { "key": "B", "text": "15MR²/32", "is_correct": true },
-      { "key": "C", "text": "13MR²/32", "is_correct": false },
-      { "key": "D", "text": "⅜MR²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "½MR²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "15MR²/32",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "13MR²/32",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "⅜MR²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "½MR² is the MOI of the full disc without the hole; the removed part must be subtracted.", "misconception": "Forgetting to subtract the MOI of the removed portion" },
-      { "option_key": "C", "hint": "13MR²/32 results from an error in computing the mass or MOI of the removed disc.", "misconception": "Using incorrect mass fraction for the removed portion" },
-      { "option_key": "D", "hint": "⅜MR² = 12MR²/32 underestimates the result by over-subtracting the removed portion's contribution.", "misconception": "Incorrectly computing the MOI of the removed disc" }
+      {
+        "option_key": "A",
+        "hint": "½MR² is the MOI of the full disc without the hole; the removed part must be subtracted.",
+        "misconception": "Forgetting to subtract the MOI of the removed portion"
+      },
+      {
+        "option_key": "C",
+        "hint": "13MR²/32 results from an error in computing the mass or MOI of the removed disc.",
+        "misconception": "Using incorrect mass fraction for the removed portion"
+      },
+      {
+        "option_key": "D",
+        "hint": "⅜MR² = 12MR²/32 underestimates the result by over-subtracting the removed portion's contribution.",
+        "misconception": "Incorrectly computing the MOI of the removed disc"
+      }
     ]
   },
   {
@@ -281,222 +660,534 @@
     "question_text": "Two identical uniform discs, each of mass M and radius R, are placed in contact with each other in the same plane. The moment of inertia of the system about an axis passing through the centre of one disc and perpendicular to the line joining the centres is:",
     "explanation": "For the disc whose centre is on the axis: its MOI about its own diameter = ¼MR² (by perpendicular axis theorem, since I_diameter = I_z/2 = ½MR²/2 = ¼MR²). For the second disc: its centre is at distance 2R from the axis. Its MOI about its own parallel diameter = ¼MR². By parallel axis theorem: I₂ = ¼MR² + M(2R)² = ¼MR² + 4MR² = 17MR²/4. Total I = ¼MR² + 17MR²/4 = MR²/4 + 17MR²/4 = 18MR²/4 = 9MR²/2.",
     "correct_answer": "D",
-    "concept_tags": ["moment-of-inertia", "two-discs", "parallel-axis-theorem", "perpendicular-axis-theorem"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "two-discs",
+      "parallel-axis-theorem",
+      "perpendicular-axis-theorem"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "MR²/2", "is_correct": false },
-      { "key": "B", "text": "3MR²", "is_correct": false },
-      { "key": "C", "text": "4MR²", "is_correct": false },
-      { "key": "D", "text": "9MR²/2", "is_correct": true }
+      {
+        "key": "A",
+        "text": "MR²/2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3MR²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4MR²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "9MR²/2",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "MR²/2 is the MOI of a single disc about its central perpendicular axis, ignoring both the diametral axis and the second disc.", "misconception": "Using the wrong axis for the first disc and ignoring the second disc" },
-      { "option_key": "B", "hint": "3MR² likely results from using an incorrect distance between disc centres in the parallel axis theorem.", "misconception": "Using the wrong separation distance between the disc centres" },
-      { "option_key": "C", "hint": "4MR² omits the ¼MR² diametral MOI contributions from both discs.", "misconception": "Forgetting the self-MOI of each disc about its own diameter" }
+      {
+        "option_key": "A",
+        "hint": "MR²/2 is the MOI of a single disc about its central perpendicular axis, ignoring both the diametral axis and the second disc.",
+        "misconception": "Using the wrong axis for the first disc and ignoring the second disc"
+      },
+      {
+        "option_key": "B",
+        "hint": "3MR² likely results from using an incorrect distance between disc centres in the parallel axis theorem.",
+        "misconception": "Using the wrong separation distance between the disc centres"
+      },
+      {
+        "option_key": "C",
+        "hint": "4MR² omits the ¼MR² diametral MOI contributions from both discs.",
+        "misconception": "Forgetting the self-MOI of each disc about its own diameter"
+      }
     ]
   },
   {
     "id": "phy-rot-moment-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The moment of inertia of a body depends on the axis of rotation chosen.\nReason (R): The moment of inertia is a measure of how the mass of the body is distributed relative to the axis of rotation.",
     "explanation": "The assertion is correct: changing the axis of rotation changes the perpendicular distances of mass elements from the axis, thereby changing I = Σmᵢrᵢ². The reason is also correct: MOI quantifies how mass is spread about the chosen axis. Since R directly explains why I varies with the axis (different axes give different distance distributions), R is the correct explanation of A.",
     "correct_answer": "A",
-    "concept_tags": ["moment-of-inertia", "axis-dependence", "mass-distribution"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "axis-dependence",
+      "mass-distribution"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "R explains exactly why I depends on the axis: different axes yield different mass distributions (different rᵢ values).", "misconception": "Not recognising the causal link between mass distribution and axis-dependence" },
-      { "option_key": "C", "hint": "The reason is a correct and fundamental definition of moment of inertia.", "misconception": "Doubting the physical meaning of MOI as a measure of mass distribution" },
-      { "option_key": "D", "hint": "The assertion is well-known: the same body has different MOI about different axes.", "misconception": "Thinking MOI is an intrinsic property independent of the axis" }
+      {
+        "option_key": "B",
+        "hint": "R explains exactly why I depends on the axis: different axes yield different mass distributions (different rᵢ values).",
+        "misconception": "Not recognising the causal link between mass distribution and axis-dependence"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is a correct and fundamental definition of moment of inertia.",
+        "misconception": "Doubting the physical meaning of MOI as a measure of mass distribution"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is well-known: the same body has different MOI about different axes.",
+        "misconception": "Thinking MOI is an intrinsic property independent of the axis"
+      }
     ]
   },
   {
     "id": "phy-rot-moment-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): The moment of inertia of a hollow cylinder is greater than that of a solid cylinder of the same mass and radius about the same axis (central axis).\nReason (R): The parallel axis theorem states that I = I_cm + Md².",
     "explanation": "The assertion is correct: for a hollow cylinder (thin cylindrical shell) about its central axis, I = MR², while for a solid cylinder, I = ½MR². Since MR² > ½MR², the hollow cylinder has greater MOI. This is because its mass is all at distance R from the axis. The reason, while a correct statement of the parallel axis theorem, does not explain the assertion. The difference in MOI here is due to different mass distributions, not the parallel axis theorem.",
     "correct_answer": "B",
-    "concept_tags": ["moment-of-inertia", "hollow-cylinder", "solid-cylinder", "parallel-axis-theorem"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "hollow-cylinder",
+      "solid-cylinder",
+      "parallel-axis-theorem"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "evaluate",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false },
-      { "key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": true },
-      { "key": "C", "text": "A is correct but R is incorrect", "is_correct": false },
-      { "key": "D", "text": "A is incorrect but R is correct", "is_correct": false }
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The parallel axis theorem relates MOI about two parallel axes; it does not explain why a hollow cylinder has greater MOI than a solid one about the same axis.", "misconception": "Misapplying the parallel axis theorem to compare different bodies about the same axis" },
-      { "option_key": "C", "hint": "The parallel axis theorem is a correct and well-established result; R is not incorrect.", "misconception": "Doubting the validity of the parallel axis theorem" },
-      { "option_key": "D", "hint": "The assertion is correct: mass concentrated farther from the axis gives greater MOI, and the hollow cylinder has all mass at distance R.", "misconception": "Thinking solid and hollow cylinders have equal MOI for the same mass and radius" }
+      {
+        "option_key": "A",
+        "hint": "The parallel axis theorem relates MOI about two parallel axes; it does not explain why a hollow cylinder has greater MOI than a solid one about the same axis.",
+        "misconception": "Misapplying the parallel axis theorem to compare different bodies about the same axis"
+      },
+      {
+        "option_key": "C",
+        "hint": "The parallel axis theorem is a correct and well-established result; R is not incorrect.",
+        "misconception": "Doubting the validity of the parallel axis theorem"
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct: mass concentrated farther from the axis gives greater MOI, and the hollow cylinder has all mass at distance R.",
+        "misconception": "Thinking solid and hollow cylinders have equal MOI for the same mass and radius"
+      }
     ]
   },
   {
     "id": "phy-rot-moment-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following uniform bodies (Column I) with their moment of inertia about the specified axis (Column II):\n\nColumn I:\nA. Solid sphere about diameter\nB. Thin rod about centre (perpendicular)\nC. Circular disc about central perpendicular axis\nD. Hollow sphere about diameter\n\nColumn II:\n1. ML²/12\n2. ⅖MR²\n3. ½MR²\n4. ⅔MR²",
     "explanation": "The MOI of a solid sphere about a diameter is ⅖MR² (A-2). A thin rod about a perpendicular axis through its centre has MOI = ML²/12 (B-1). A circular disc about its central perpendicular axis has MOI = ½MR² (C-3). A hollow sphere (thin spherical shell) about a diameter has MOI = ⅔MR² (D-4). These are all standard results.",
     "correct_answer": "C",
-    "concept_tags": ["moment-of-inertia", "standard-bodies", "standard-results"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "standard-bodies",
+      "standard-results"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "understand",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-2, B-3, C-1, D-4", "is_correct": false },
-      { "key": "B", "text": "A-4, B-1, C-3, D-2", "is_correct": false },
-      { "key": "C", "text": "A-2, B-1, C-3, D-4", "is_correct": true },
-      { "key": "D", "text": "A-3, B-1, C-2, D-4", "is_correct": false }
+      {
+        "key": "A",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-4, B-1, C-3, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-1, C-2, D-4",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This swaps the results for the rod and the disc; ML²/12 applies to the rod, not the disc.", "misconception": "Confusing the MOI of a rod with that of a disc" },
-      { "option_key": "B", "hint": "This assigns ⅔MR² to the solid sphere and ⅖MR² to the hollow sphere, which is reversed.", "misconception": "Swapping the MOI of solid and hollow spheres" },
-      { "option_key": "D", "hint": "This assigns ½MR² to the solid sphere, which is the disc's MOI, not the sphere's.", "misconception": "Mixing up the MOI of a disc with that of a solid sphere" }
+      {
+        "option_key": "A",
+        "hint": "This swaps the results for the rod and the disc; ML²/12 applies to the rod, not the disc.",
+        "misconception": "Confusing the MOI of a rod with that of a disc"
+      },
+      {
+        "option_key": "B",
+        "hint": "This assigns ⅔MR² to the solid sphere and ⅖MR² to the hollow sphere, which is reversed.",
+        "misconception": "Swapping the MOI of solid and hollow spheres"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns ½MR² to the solid sphere, which is the disc's MOI, not the sphere's.",
+        "misconception": "Mixing up the MOI of a disc with that of a solid sphere"
+      }
     ]
   },
   {
     "id": "phy-rot-moment-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following axes (Column I) with the moment of inertia of a uniform circular disc of mass M and radius R about that axis (Column II):\n\nColumn I:\nA. Central perpendicular axis\nB. Diameter of the disc\nC. Tangent perpendicular to the plane\nD. Tangent in the plane of the disc\n\nColumn II:\n1. ¼MR²\n2. ½MR²\n3. ³⁄₂MR²\n4. ⁵⁄₄MR²",
     "explanation": "About the central perpendicular axis: I = ½MR² (A-2). About a diameter: I = ¼MR² (B-1, from perpendicular axis theorem). About a tangent perpendicular to plane: I = ½MR² + MR² = ³⁄₂MR² (C-3, by parallel axis theorem). About a tangent in the plane: I = ¼MR² + MR² = ⁵⁄₄MR² (D-4, by parallel axis theorem from diameter).",
     "correct_answer": "D",
-    "concept_tags": ["moment-of-inertia", "disc", "all-axes", "parallel-axis-theorem", "perpendicular-axis-theorem"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "disc",
+      "all-axes",
+      "parallel-axis-theorem",
+      "perpendicular-axis-theorem"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "analyze",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "A-2, B-1, C-4, D-3", "is_correct": false },
-      { "key": "B", "text": "A-1, B-2, C-3, D-4", "is_correct": false },
-      { "key": "C", "text": "A-2, B-4, C-3, D-1", "is_correct": false },
-      { "key": "D", "text": "A-2, B-1, C-3, D-4", "is_correct": true }
+      {
+        "key": "A",
+        "text": "A-2, B-1, C-4, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-4, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": true
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "This swaps C and D; the tangent perpendicular to the plane gives ³⁄₂MR² (not ⁵⁄₄MR²) because it starts from ½MR².", "misconception": "Mixing up which tangent axis starts from ½MR² and which from ¼MR²" },
-      { "option_key": "B", "hint": "This assigns ¼MR² to the central perpendicular axis and ½MR² to the diameter, which is reversed.", "misconception": "Swapping the perpendicular axis and diameter MOI values" },
-      { "option_key": "C", "hint": "Assigning ⁵⁄₄MR² to the diameter is incorrect; the diameter gives ¼MR² without any parallel axis correction.", "misconception": "Incorrectly applying the parallel axis theorem to the diametral axis" }
+      {
+        "option_key": "A",
+        "hint": "This swaps C and D; the tangent perpendicular to the plane gives ³⁄₂MR² (not ⁵⁄₄MR²) because it starts from ½MR².",
+        "misconception": "Mixing up which tangent axis starts from ½MR² and which from ¼MR²"
+      },
+      {
+        "option_key": "B",
+        "hint": "This assigns ¼MR² to the central perpendicular axis and ½MR² to the diameter, which is reversed.",
+        "misconception": "Swapping the perpendicular axis and diameter MOI values"
+      },
+      {
+        "option_key": "C",
+        "hint": "Assigning ⁵⁄₄MR² to the diameter is incorrect; the diameter gives ¼MR² without any parallel axis correction.",
+        "misconception": "Incorrectly applying the parallel axis theorem to the diametral axis"
+      }
     ]
   },
   {
     "id": "phy-rot-moment-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The moment of inertia of a body about an axis through its centre of mass is always the minimum among all parallel axes.",
     "explanation": "This is a direct consequence of the parallel axis theorem: I = I_cm + Md². Since Md² is always positive (for d ≠ 0), any axis parallel to but displaced from the COM axis will have a greater MOI. Therefore, the MOI about the COM axis is always the minimum among all parallel axes.",
     "correct_answer": "A",
-    "concept_tags": ["moment-of-inertia", "parallel-axis-theorem", "minimum-MOI"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "parallel-axis-theorem",
+      "minimum-MOI"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": true },
-      { "key": "B", "text": "False", "is_correct": false },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "B", "hint": "The parallel axis theorem guarantees that I_cm is always the smallest MOI for any set of parallel axes since Md² ≥ 0.", "misconception": "Not recognizing the implication of the Md² term being always non-negative" },
-      { "option_key": "C", "hint": "This option is not applicable for true/false questions.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for true/false questions.", "misconception": null }
+      {
+        "option_key": "B",
+        "hint": "The parallel axis theorem guarantees that I_cm is always the smallest MOI for any set of parallel axes since Md² ≥ 0.",
+        "misconception": "Not recognizing the implication of the Md² term being always non-negative"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-rot-moment-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The perpendicular axis theorem can be applied to find the moment of inertia of a solid sphere about its diameter.",
     "explanation": "This statement is false. The perpendicular axis theorem (I_z = I_x + I_y) is valid only for planar (two-dimensional/laminar) bodies. A solid sphere is a three-dimensional body, so the perpendicular axis theorem cannot be applied to it. The MOI of a solid sphere about a diameter is derived using integration.",
     "correct_answer": "B",
-    "concept_tags": ["perpendicular-axis-theorem", "solid-sphere", "applicability"],
+    "concept_tags": [
+      "perpendicular-axis-theorem",
+      "solid-sphere",
+      "applicability"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "remember",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "True", "is_correct": false },
-      { "key": "B", "text": "False", "is_correct": true },
-      { "key": "C", "text": "---", "is_correct": false },
-      { "key": "D", "text": "---", "is_correct": false }
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "The perpendicular axis theorem is restricted to planar (2D) bodies; a sphere is a 3D body.", "misconception": "Assuming the perpendicular axis theorem works for all symmetric bodies" },
-      { "option_key": "C", "hint": "This option is not applicable for true/false questions.", "misconception": null },
-      { "option_key": "D", "hint": "This option is not applicable for true/false questions.", "misconception": null }
+      {
+        "option_key": "A",
+        "hint": "The perpendicular axis theorem is restricted to planar (2D) bodies; a sphere is a 3D body.",
+        "misconception": "Assuming the perpendicular axis theorem works for all symmetric bodies"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
     ]
   },
   {
     "id": "phy-rot-moment-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "The radius of gyration of a uniform disc about its central perpendicular axis is _____.",
     "explanation": "For a uniform disc, I = ½MR² about the central perpendicular axis. Since I = Mk², we have k² = I/M = ½R², so k = R/√2. This means that if the entire mass were concentrated at a distance R/√2 from the axis, the MOI would be the same as the actual disc.",
     "correct_answer": "B",
-    "concept_tags": ["radius-of-gyration", "disc", "calculation"],
+    "concept_tags": [
+      "radius-of-gyration",
+      "disc",
+      "calculation"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "R", "is_correct": false },
-      { "key": "B", "text": "R/√2", "is_correct": true },
-      { "key": "C", "text": "R/2", "is_correct": false },
-      { "key": "D", "text": "√(2/3) R", "is_correct": false }
+      {
+        "key": "A",
+        "text": "R",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "R/√2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "R/2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "√(2/3) R",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "k = R would imply I = MR², which is the MOI of a ring, not a disc.", "misconception": "Using the ring's radius of gyration for the disc" },
-      { "option_key": "C", "hint": "R/2 would give I = MR²/4, which is the MOI of a disc about a diameter, not the perpendicular axis.", "misconception": "Confusing the perpendicular axis with a diameter" },
-      { "option_key": "D", "hint": "√(2/3) R corresponds to the radius of gyration of a solid sphere, not a disc.", "misconception": "Mixing up the radius of gyration formulae for different bodies" }
+      {
+        "option_key": "A",
+        "hint": "k = R would imply I = MR², which is the MOI of a ring, not a disc.",
+        "misconception": "Using the ring's radius of gyration for the disc"
+      },
+      {
+        "option_key": "C",
+        "hint": "R/2 would give I = MR²/4, which is the MOI of a disc about a diameter, not the perpendicular axis.",
+        "misconception": "Confusing the perpendicular axis with a diameter"
+      },
+      {
+        "option_key": "D",
+        "hint": "√(2/3) R corresponds to the radius of gyration of a solid sphere, not a disc.",
+        "misconception": "Mixing up the radius of gyration formulae for different bodies"
+      }
     ]
   },
   {
     "id": "phy-rot-moment-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A physics student has a uniform solid cylinder of mass 5 kg and radius 0.2 m. She needs to calculate its moment of inertia about an axis that is tangent to the curved surface and parallel to the cylinder's central axis.\n\nWhat is the moment of inertia of the cylinder about this tangential axis?",
     "explanation": "The MOI of a solid cylinder about its central axis is I_cm = ½MR² = ½ × 5 × (0.2)² = ½ × 5 × 0.04 = 0.1 kg⋅m². A tangential axis parallel to the central axis is at a distance d = R = 0.2 m from it. By the parallel axis theorem: I = I_cm + MR² = 0.1 + 5 × 0.04 = 0.1 + 0.2 = 0.3 kg⋅m². This equals ³⁄₂MR².",
     "correct_answer": "C",
-    "concept_tags": ["moment-of-inertia", "solid-cylinder", "tangential-axis", "parallel-axis-theorem", "numerical"],
+    "concept_tags": [
+      "moment-of-inertia",
+      "solid-cylinder",
+      "tangential-axis",
+      "parallel-axis-theorem",
+      "numerical"
+    ],
     "topic": "Moment of Inertia and Theorems",
     "subject": "physics",
     "chapter": "System of Particles and Rotational Motion",
     "bloom_level": "apply",
-    "exam_suitability": ["NEET"],
+    "exam_suitability": [
+      "NEET"
+    ],
     "options": [
-      { "key": "A", "text": "0.1 kg⋅m²", "is_correct": false },
-      { "key": "B", "text": "0.2 kg⋅m²", "is_correct": false },
-      { "key": "C", "text": "0.3 kg⋅m²", "is_correct": true },
-      { "key": "D", "text": "0.5 kg⋅m²", "is_correct": false }
+      {
+        "key": "A",
+        "text": "0.1 kg⋅m²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.2 kg⋅m²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.3 kg⋅m²",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "0.5 kg⋅m²",
+        "is_correct": false
+      }
     ],
     "elimination_hints": [
-      { "option_key": "A", "hint": "0.1 kg⋅m² is the MOI about the central axis only, without applying the parallel axis theorem for the tangential shift.", "misconception": "Forgetting to add the Md² term of the parallel axis theorem" },
-      { "option_key": "B", "hint": "0.2 kg⋅m² is just the Md² term (MR² = 5 × 0.04) without adding the central axis MOI.", "misconception": "Using only the parallel axis correction and forgetting I_cm" },
-      { "option_key": "D", "hint": "0.5 kg⋅m² could result from using MR² as the central axis MOI (ring formula) instead of ½MR².", "misconception": "Using the ring formula instead of the solid cylinder formula for the central axis" }
+      {
+        "option_key": "A",
+        "hint": "0.1 kg⋅m² is the MOI about the central axis only, without applying the parallel axis theorem for the tangential shift.",
+        "misconception": "Forgetting to add the Md² term of the parallel axis theorem"
+      },
+      {
+        "option_key": "B",
+        "hint": "0.2 kg⋅m² is just the Md² term (MR² = 5 × 0.04) without adding the central axis MOI.",
+        "misconception": "Using only the parallel axis correction and forgetting I_cm"
+      },
+      {
+        "option_key": "D",
+        "hint": "0.5 kg⋅m² could result from using MR² as the central axis MOI (ring formula) instead of ½MR².",
+        "misconception": "Using the ring formula instead of the solid cylinder formula for the central axis"
+      }
     ]
   }
 ]
