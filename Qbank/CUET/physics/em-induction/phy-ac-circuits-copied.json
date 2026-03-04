@@ -751,7 +751,7 @@
   },
   {
     "id": "cuet-phy-ac-circuits-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): At resonance in a series LCR circuit, the voltage across the inductor and capacitor may individually be much greater than the applied voltage.\nReason (R): At resonance, XL = XC, and the voltages across L and C are equal in magnitude but opposite in phase, so they cancel each other.",
     "explanation": "Both A and R are correct, and R correctly explains A. At resonance, Irms = V/R, and since R can be small, the current can be large. The voltage across the inductor VL = IrmsXL and across the capacitor VC = IrmsXC can each be much larger than the applied voltage V (this is voltage magnification, quantified by the quality factor Q = ωL/R). These voltages are equal in magnitude (since XL = XC) but 180° out of phase, so they cancel in the total voltage sum, leaving only VR = V. This is why the applied voltage appears entirely across R at resonance.",
@@ -814,7 +814,7 @@
   },
   {
     "id": "cuet-phy-ac-circuits-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The inductive reactance of a coil increases with increase in frequency of the AC source.\nReason (R): Inductive reactance is inversely proportional to the angular frequency (XL = 1/ωL).",
     "explanation": "The assertion is correct: inductive reactance XL = ωL = 2πfL, which increases linearly with frequency. However, the reason is incorrect: XL is directly proportional to ω (XL = ωL), not inversely proportional. The formula stated in the reason, XL = 1/(ωL), is wrong — that expression resembles the capacitive reactance formula XC = 1/(ωC). Therefore, A is correct but R is incorrect.",
@@ -876,7 +876,7 @@
   },
   {
     "id": "cuet-phy-ac-circuits-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following AC circuit elements (Column-I) with the phase relationship between current and voltage (Column-II):\n\nColumn-I:\nA. Pure resistor\nB. Pure inductor\nC. Pure capacitor\nD. Series LCR at resonance\n\nColumn-II:\n1. Current leads voltage by π/2\n2. Current lags voltage by π/2\n3. Current and voltage are in phase\n4. Current and voltage are in phase (Z = R)",
     "explanation": "In a pure resistor, voltage and current are in phase (A→3). In a pure inductor, current lags voltage by π/2 (B→2). In a pure capacitor, current leads voltage by π/2 (C→1). At resonance in a series LCR circuit, XL = XC, so the net reactance is zero, the impedance equals R, and current is in phase with voltage (D→4). Both A and D have in-phase current and voltage, but D specifically notes Z = R.",
@@ -940,7 +940,7 @@
   },
   {
     "id": "cuet-phy-ac-circuits-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following quantities (Column-I) with their correct expressions in a series LCR AC circuit (Column-II):\n\nColumn-I:\nA. Impedance\nB. Resonant angular frequency\nC. Power factor\nD. Quality factor\n\nColumn-II:\n1. R/Z\n2. √(R² + (XL − XC)²)\n3. 1/√(LC)\n4. ω₀L/R",
     "explanation": "Impedance Z = √(R² + (XL − XC)²) (A→2). Resonant angular frequency ω₀ = 1/√(LC), where XL = XC (B→3). Power factor cosφ = R/Z, which determines the fraction of apparent power that is real power (C→1). Quality factor Q = ω₀L/R, which measures the sharpness of resonance and the voltage magnification (D→4).",
@@ -1003,7 +1003,7 @@
   },
   {
     "id": "cuet-phy-ac-circuits-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In an AC circuit, the RMS value of voltage is always less than its peak value.",
     "explanation": "This statement is TRUE. For a sinusoidal AC voltage, Vrms = V₀/√2 ≈ 0.707V₀. Since 1/√2 < 1, the RMS value is always less than the peak value. The RMS value represents the equivalent DC value that would deliver the same power to a resistor.",
@@ -1065,7 +1065,7 @@
   },
   {
     "id": "cuet-phy-ac-circuits-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The impedance of a series LCR circuit is always greater than the resistance R in the circuit.",
     "explanation": "This statement is FALSE. The impedance Z = √(R² + (XL − XC)²). At resonance, XL = XC, so (XL − XC) = 0 and Z = R. Thus the impedance equals R at resonance, and it is not always greater than R. For all other frequencies, Z > R, but the word 'always' makes the statement false.",
@@ -1127,7 +1127,7 @@
   },
   {
     "id": "cuet-phy-ac-circuits-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "In a series LCR circuit, the phase angle between the applied voltage and current is given by tanφ = _____.",
     "explanation": "In a series LCR circuit, the phase angle φ between the voltage and current is given by tanφ = (XL − XC)/R, where XL = ωL is the inductive reactance, XC = 1/(ωC) is the capacitive reactance, and R is the resistance. If XL > XC, the circuit is inductive and current lags voltage (φ > 0). If XC > XL, the circuit is capacitive and current leads voltage (φ < 0).",
@@ -1190,7 +1190,7 @@
   },
   {
     "id": "cuet-phy-ac-circuits-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A student connects a 100 Ω resistor, a 0.5 H inductor, and a capacitor of unknown capacitance C in series with a 220 V, 50 Hz AC source. She observes that the circuit draws the maximum possible current from the source.\n\nBased on this observation, the value of the capacitor C and the current drawn are, respectively:",
     "explanation": "Maximum current occurs at resonance, where XL = XC. First, XL = ωL = 2π × 50 × 0.5 = 50π Ω ≈ 157.08 Ω. At resonance, XC = XL, so 1/(ωC) = 50π. Therefore C = 1/(ω × 50π) = 1/(100π × 50π) = 1/(5000π²) F = 10⁶/(5000π²) μF ≈ 20.3 μF. At resonance, Z = R = 100 Ω, so Irms = 220/100 = 2.2 A. The maximum current condition uniquely identifies the resonant frequency and allows determination of the unknown capacitance.",

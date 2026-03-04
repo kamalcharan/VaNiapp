@@ -750,7 +750,7 @@
   },
   {
     "id": "cuet-phy-current-kirchhoff-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The equivalent resistance of resistors connected in parallel is always less than the smallest individual resistance.\nReason (R): In a parallel combination, the reciprocal of equivalent resistance equals the sum of reciprocals of individual resistances.",
     "explanation": "Both statements are correct. For n resistors in parallel, 1/Req = 1/R₁ + 1/R₂ + ... + 1/Rn. Since each term on the right is positive, 1/Req > 1/Ri for any individual resistor Ri, which means Req < Ri. The mathematical relationship in R directly leads to and explains the physical fact stated in A.",
@@ -812,7 +812,7 @@
   },
   {
     "id": "cuet-phy-current-kirchhoff-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): When identical cells are connected in parallel, the arrangement is preferred when the external resistance is much smaller than the internal resistance.\nReason (R): Connecting cells in parallel increases the total EMF of the combination.",
     "explanation": "The assertion is correct. For parallel cells (effective EMF = E, internal resistance = r/n), current I = E/(R + r/n). When R << r, parallel connection gives I ≈ nE/r, which is n times the current from a single cell. However, the reason is incorrect: connecting identical cells in parallel does not increase the EMF; it remains E. The total EMF stays the same as one cell; only the internal resistance is reduced.",
@@ -875,7 +875,7 @@
   },
   {
     "id": "cuet-phy-current-kirchhoff-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the circuit configuration (Column-I) with the corresponding equivalent resistance (Column-II) for identical resistors each of resistance R:\n\nColumn-I:\nA. Two resistors in series\nB. Two resistors in parallel\nC. Three resistors in series\nD. Three resistors in parallel\n\nColumn-II:\n1. R/2\n2. R/3\n3. 2R\n4. 3R",
     "explanation": "Two in series: R + R = 2R (A→3). Two in parallel: R × R/(R + R) = R/2 (B→1). Three in series: R + R + R = 3R (C→4). Three in parallel: 1/Req = 3/R, so Req = R/3 (D→2). Series adds resistances; parallel reduces the effective resistance.",
@@ -937,7 +937,7 @@
   },
   {
     "id": "cuet-phy-current-kirchhoff-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following circuit conditions (Column-I) with the correct expression for current or voltage (Column-II):\n\nColumn-I:\nA. Current through external resistance R with cell (E, r)\nB. Terminal voltage during discharging\nC. Maximum current from a cell (short circuit)\nD. Condition for maximum power in external resistance\n\nColumn-II:\n1. R = r\n2. E - Ir\n3. E/r\n4. E/(R + r)",
     "explanation": "Current through external R: I = E/(R + r) (A→4). Terminal voltage during discharge: V = E - Ir (B→2). Short circuit current (R = 0): I = E/r (C→3). Maximum power transfer condition: R = r (D→1). These are fundamental relations in DC circuit analysis.",
@@ -1000,7 +1000,7 @@
   },
   {
     "id": "cuet-phy-current-kirchhoff-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In a series combination of resistors, the same current flows through each resistor.",
     "explanation": "This statement is TRUE. In a series combination, there is only one path for the current to flow. Since charge is conserved and there is no branching, the same current passes through every resistor in the series connection. The voltage, however, divides across the resistors.",
@@ -1062,7 +1062,7 @@
   },
   {
     "id": "cuet-phy-current-kirchhoff-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The EMF of a cell depends on the external resistance connected to it.",
     "explanation": "This statement is FALSE. The EMF of a cell is a property of the cell itself (determined by the electrochemistry of the electrodes and electrolyte) and does not depend on the external resistance. It is the terminal voltage (V = E - Ir) that depends on the external circuit. EMF remains constant regardless of external connections.",
@@ -1125,7 +1125,7 @@
   },
   {
     "id": "cuet-phy-current-kirchhoff-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "If n identical cells each of EMF E and internal resistance r are connected in series across an external resistance R, the current flowing in the circuit is I = _____.",
     "explanation": "When n identical cells are connected in series, the total EMF adds up to nE and the total internal resistance is nr (internal resistances in series add). The current through the circuit with external resistance R is I = nE/(R + nr). This is the standard formula for n cells in series.",
@@ -1188,7 +1188,7 @@
   },
   {
     "id": "cuet-phy-current-kirchhoff-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A student connects 3 identical cells, each of EMF 1.5 V and internal resistance 0.5 Ω, in series with an external resistance of 4.5 Ω. She then rearranges the same 3 cells in parallel across the same external resistance.\n\nWhat is the ratio of current in the series arrangement to the current in the parallel arrangement?",
     "explanation": "Series: I₁ = nE/(R + nr) = 3(1.5)/(4.5 + 3×0.5) = 4.5/6 = 0.75 A. Parallel: I₂ = nE/(nR + r) = 3(1.5)/(3×4.5 + 0.5) = 4.5/14 ≈ 0.321 A. Ratio I₁/I₂ = 0.75/0.321 = (4.5/6)/(4.5/14) = 14/6 = 7/3. The series arrangement gives more current because the external resistance is larger than the internal resistance.",

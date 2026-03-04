@@ -757,7 +757,7 @@
   },
   {
     "id": "cuet-phy-semi-diode-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): A solar cell does not require an external bias to operate and can directly convert light energy into electrical energy.\nReason (R): The built-in electric field at the p-n junction of a solar cell separates the light-generated electron-hole pairs, creating a potential difference across the cell.",
     "explanation": "Both the assertion and reason are correct, and the reason correctly explains the assertion. A solar cell is an unbiased p-n junction device. When photons with energy greater than the band gap are absorbed near the junction, electron-hole pairs are generated. The built-in electric field in the depletion region sweeps electrons towards the n-side and holes towards the p-side, creating a photovoltage (open-circuit voltage). This is the photovoltaic effect. No external bias is needed because the junction's own internal field performs the charge separation.",
@@ -821,7 +821,7 @@
   },
   {
     "id": "cuet-phy-semi-diode-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): The semiconductor materials used for fabricating LEDs must have a direct band gap.\nReason (R): In direct band gap semiconductors, the electron-hole recombination is predominantly radiative, emitting photons efficiently, whereas in indirect band gap semiconductors like silicon, recombination is mainly non-radiative.",
     "explanation": "Both the assertion and reason are correct, and the reason is the correct explanation of the assertion. In a direct band gap semiconductor (like GaAs, GaN, GaAsP), the conduction band minimum and valence band maximum occur at the same value of crystal momentum (k). This allows direct electron-hole recombination with photon emission (radiative recombination) without needing a phonon for momentum conservation. In indirect band gap semiconductors (like Si, Ge), recombination requires a phonon to conserve momentum, making the process predominantly non-radiative (energy released as heat). Therefore, LEDs must use direct band gap materials for efficient light emission.",
@@ -886,7 +886,7 @@
   },
   {
     "id": "cuet-phy-semi-diode-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the devices in Column I with their primary operating characteristics in Column II:\n\nColumn I:\nA. Half-wave rectifier\nB. Zener diode\nC. LED\nD. Photodiode\n\nColumn II:\n1. Operates in reverse bias; current depends on light intensity\n2. Forward biased p-n junction emitting light by electron-hole recombination\n3. Conducts only during one half of the AC input cycle\n4. Operates in reverse breakdown to maintain constant voltage",
     "explanation": "A half-wave rectifier uses a diode that conducts only during one half (positive or negative) of the AC input cycle (A-3). A Zener diode operates in the reverse breakdown region to maintain a constant voltage across the load (B-4). An LED is a forward-biased p-n junction that emits light when electrons and holes recombine across the junction (C-2). A photodiode operates in reverse bias, where the photocurrent varies with the intensity of incident light (D-1).",
@@ -950,7 +950,7 @@
   },
   {
     "id": "cuet-phy-semi-diode-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the semiconductor materials in Column I with the typical colour/type of light emitted by LEDs made from them in Column II:\n\nColumn I:\nA. Gallium Arsenide (GaAs)\nB. Gallium Arsenide Phosphide (GaAsP)\nC. Gallium Nitride (GaN)\nD. Gallium Phosphide (GaP)\n\nColumn II:\n1. Blue light\n2. Red/Yellow light\n3. Green light\n4. Infrared radiation",
     "explanation": "GaAs has a band gap of about 1.4 eV, which corresponds to infrared radiation (A-4). GaAsP is a ternary alloy whose band gap can be tuned; it commonly emits red to yellow light depending on composition (B-2). GaN has a wide band gap of about 3.4 eV, producing blue light (C-1). GaP with appropriate dopants (like nitrogen) emits green light (D-3).",
@@ -1015,7 +1015,7 @@
   },
   {
     "id": "cuet-phy-semi-diode-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In a full-wave rectifier, both halves of the AC input cycle are utilised to produce output across the load, resulting in a higher average DC output voltage compared to a half-wave rectifier.",
     "explanation": "This statement is true. In a full-wave rectifier, both the positive and negative half-cycles of the input AC are rectified to produce unidirectional current through the load. The average DC output voltage of a full-wave rectifier is 2V_m/pi (approximately 0.636V_m), which is exactly double that of a half-wave rectifier (V_m/pi, approximately 0.318V_m). Therefore, a full-wave rectifier produces a higher average DC output voltage.",
@@ -1078,7 +1078,7 @@
   },
   {
     "id": "cuet-phy-semi-diode-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "A photodiode is operated in forward bias to detect light, because forward bias increases the sensitivity to incident photons.",
     "explanation": "This statement is false. A photodiode is operated in reverse bias, not forward bias. Under reverse bias, the depletion region is widened, which increases the volume available for photon absorption and charge carrier generation. The strong electric field in the wide depletion region efficiently sweeps the photo-generated carriers, producing a measurable photocurrent that is proportional to light intensity. Forward bias would inject majority carriers, producing a large forward current that would overwhelm the small photocurrent signal.",
@@ -1141,7 +1141,7 @@
   },
   {
     "id": "cuet-phy-semi-diode-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A half-wave rectifier circuit uses an AC input of peak voltage 311 V (220 V rms) at 50 Hz. If the diode is ideal, the average DC output voltage is approximately _____ V. (Use V_dc = V_m / pi)",
     "explanation": "For a half-wave rectifier with an ideal diode, the average (mean) DC output voltage is given by V_dc = V_m / pi, where V_m is the peak voltage. Here V_m = 311 V. Therefore, V_dc = 311 / pi = 311 / 3.14 = 99 V (approximately). This is the standard formula for the average output of a half-wave rectifier.",
@@ -1204,7 +1204,7 @@
   },
   {
     "id": "cuet-phy-semi-diode-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A student designs a Zener diode voltage regulator circuit to power a sensitive electronic device. The circuit uses a Zener diode with Zener voltage V_Z = 9 V, a series resistance R_S = 100 ohm, and a load resistance R_L = 300 ohm. The unregulated DC input voltage is 15 V.\n\nAssuming the Zener diode is ideal, the current flowing through the Zener diode is:",
     "explanation": "Since the Zener diode maintains V_Z = 9 V across the load, the load current is I_L = V_Z / R_L = 9 / 300 = 0.03 A = 30 mA. The current through the series resistance is I_S = (V_in - V_Z) / R_S = (15 - 9) / 100 = 6/100 = 0.06 A = 60 mA. By Kirchhoff's current law at the junction: I_Z = I_S - I_L = 60 - 30 = 30 mA.",

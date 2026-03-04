@@ -1,0 +1,2478 @@
+[
+  {
+    "id": "cuet-phy-elec-dipole-01",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of electric dipole moment is:",
+    "explanation": "Dipole moment p = qd, where q is in coulombs and d is in metres. So the SI unit is C·m (coulomb-metre). In CGS, the unit is debye (1 D = 3.33 × 10⁻³⁰ C·m), but the SI unit remains C·m.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dipole-moment",
+      "SI-units"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole moment definition",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "C·m (coulomb-metre)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "C/m (coulomb per metre)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "N·m (newton-metre)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "C·m² (coulomb-metre squared)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "C/m would imply charge divided by distance. Dipole moment is charge multiplied by distance (p = qd).",
+        "misconception": "Confusing multiplication with division in p = qd"
+      },
+      {
+        "option_key": "C",
+        "hint": "N·m is the unit of torque. While torque on a dipole is τ = pE sinθ, the dipole moment itself has units of charge × distance.",
+        "misconception": "Confusing dipole moment with torque"
+      },
+      {
+        "option_key": "D",
+        "hint": "C·m² would require charge × distance², but p = q × d, not q × d².",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-02",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The direction of the electric dipole moment vector is:",
+    "explanation": "By convention, the electric dipole moment vector p points from the negative charge to the positive charge. This convention is chosen so that p points in the direction of the electric field inside the dipole (from − to +), which is opposite to the external field direction.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "dipole-direction",
+      "convention",
+      "vector"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole moment direction",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "From positive to negative charge",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "From negative to positive charge",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Perpendicular to the line joining the charges",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Along the external electric field always",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This is the direction of the electric field between the two charges of the dipole, not the dipole moment vector. The convention for p is opposite.",
+        "misconception": "Confusing field direction with dipole moment direction"
+      },
+      {
+        "option_key": "C",
+        "hint": "The dipole moment is along the line joining the charges, not perpendicular to it.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The dipole moment is a property of the dipole itself. It can be at any angle to the external field.",
+        "misconception": "Confusing dipole moment with induced alignment"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-03",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "An electric dipole placed in a uniform electric field experiences:",
+    "explanation": "In a uniform field, both charges of the dipole experience equal and opposite forces (F = qE). These form a couple (torque) but have zero net force. The torque aligns the dipole with the field. There is no translational motion — only rotation.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "dipole-in-uniform-field",
+      "torque",
+      "zero-net-force"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole in uniform field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A net force but no torque",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both a net force and a net torque",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A net torque but no net force",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Neither force nor torque",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "In a uniform field, forces on +q and −q are equal in magnitude but opposite — they cancel. Net force is zero.",
+        "misconception": "Not recognising force cancellation in uniform fields"
+      },
+      {
+        "option_key": "B",
+        "hint": "Net force is zero in a uniform field. Both force AND torque occur only in a non-uniform field.",
+        "misconception": "Confusing uniform field with non-uniform field"
+      },
+      {
+        "option_key": "D",
+        "hint": "The equal and opposite forces act at different points, creating a torque (couple). Torque is definitely non-zero unless the dipole is aligned.",
+        "misconception": "Thinking zero net force means zero torque"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-04",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The electric field on the equatorial line of a dipole at large distance r varies as:",
+    "explanation": "At a point on the equatorial (perpendicular bisector) line at large distance r, the electric field of a dipole is E_eq = kp/r³, where p is the dipole moment. The field decreases as the inverse cube of distance — faster than a point charge (1/r²).",
+    "correct_answer": "D",
+    "concept_tags": [
+      "equatorial-field",
+      "inverse-cube",
+      "dipole"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole field expressions",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1/r",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1/r²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1/r⁴",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1/r³",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1/r dependence is for an infinite line charge, not a dipole.",
+        "misconception": "Confusing dipole with line charge"
+      },
+      {
+        "option_key": "B",
+        "hint": "1/r² is the field of a point charge (monopole). A dipole's field falls off faster because the +q and −q fields partially cancel.",
+        "misconception": "Using point charge dependence for a dipole"
+      },
+      {
+        "option_key": "C",
+        "hint": "1/r⁴ is the field of a quadrupole, not a dipole.",
+        "misconception": "Confusing dipole with quadrupole"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-05",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "An electric dipole consists of two equal and opposite charges separated by a small distance d. The electric dipole moment is defined as:",
+    "explanation": "The electric dipole moment p is defined as the product of either charge magnitude q and the separation distance d, i.e., p = qd. It is a vector quantity directed from the negative charge to the positive charge.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "electric-dipole-moment",
+      "dipole-definition",
+      "vector-quantity"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "p = q/d",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "p = qd",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "p = q²d",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "p = qd²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Dividing charge by distance does not give dipole moment. The dipole moment is the product q × d, not q/d.",
+        "misconception": "Confusing the formula as a ratio rather than a product"
+      },
+      {
+        "option_key": "C",
+        "hint": "The dipole moment involves q to the first power, not q². The q² appears in Coulomb's force formula, not in dipole moment.",
+        "misconception": "Mixing up dipole moment with Coulomb's law terms"
+      },
+      {
+        "option_key": "D",
+        "hint": "The distance d appears to the first power in the dipole moment, not d². The formula is simply p = qd.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-06",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of electric dipole moment is:",
+    "explanation": "Since dipole moment p = qd, its SI unit is the product of the units of charge (coulomb) and distance (metre), which gives C·m (coulomb-metre).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dipole-moment",
+      "SI-units",
+      "coulomb-metre"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "C·m",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "C/m",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "C·m²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "C/m²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "C/m would be units of charge per unit length (linear charge density), not dipole moment.",
+        "misconception": "Confusing dipole moment units with linear charge density"
+      },
+      {
+        "option_key": "C",
+        "hint": "C·m² has an extra factor of length; the dipole moment is q times d (first power), not d².",
+        "misconception": "Confusing with quadrupole moment units"
+      },
+      {
+        "option_key": "D",
+        "hint": "C/m² is the unit of surface charge density, not dipole moment.",
+        "misconception": "Confusing with surface charge density units"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-07",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The torque on an electric dipole of moment p = 3 × 10⁻²⁹ C·m placed in a uniform electric field E = 10⁵ N/C at 30° to the field is:",
+    "explanation": "Torque τ = pE sinθ = 3 × 10⁻²⁹ × 10⁵ × sin30° = 3 × 10⁻²⁴ × 0.5 = 1.5 × 10⁻²⁴ N·m.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "dipole-torque",
+      "numerical",
+      "sine-formula"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Torque on dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "3 × 10⁻²⁴ N·m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2.6 × 10⁻²⁴ N·m",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1.5 × 10⁻²⁴ N·m",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "6 × 10⁻²⁴ N·m",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "3 × 10⁻²⁴ is pE without the sinθ factor. You must multiply by sin30° = 0.5.",
+        "misconception": "Forgetting the sine factor in torque formula"
+      },
+      {
+        "option_key": "B",
+        "hint": "2.6 × 10⁻²⁴ would come from using sin30° ≈ 0.866, which is actually sin60°.",
+        "misconception": "Confusing sin30° with sin60°"
+      },
+      {
+        "option_key": "D",
+        "hint": "6 × 10⁻²⁴ is double pE — there's no factor of 2 in the torque formula.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-08",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The work done in rotating an electric dipole from angle θ₁ to θ₂ in a uniform electric field E is:",
+    "explanation": "The potential energy of a dipole in a field is U = −pE cosθ. Work done = ΔU = U₂ − U₁ = −pE cosθ₂ − (−pE cosθ₁) = pE(cosθ₁ − cosθ₂). This is positive when the dipole rotates away from the field direction.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "work-done",
+      "dipole-rotation",
+      "potential-energy"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Energy of dipole in field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "pE(cosθ₁ − cosθ₂)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "pE(cosθ₂ − cosθ₁)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "pE(sinθ₁ − sinθ₂)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "pE(θ₂ − θ₁)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "This has the sign reversed. W = U_final − U_initial = (−pEcosθ₂) − (−pEcosθ₁) = pE(cosθ₁ − cosθ₂).",
+        "misconception": "Reversing the sign of work done"
+      },
+      {
+        "option_key": "C",
+        "hint": "The potential energy involves cosine (U = −pEcosθ), not sine. Sine appears in the torque formula.",
+        "misconception": "Confusing torque formula (sinθ) with energy formula (cosθ)"
+      },
+      {
+        "option_key": "D",
+        "hint": "Work is not simply pE × angle difference. The integration of τ dθ = pE sinθ dθ gives cosines, not linear angle.",
+        "misconception": "Assuming linear relationship between work and angle"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-09",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The potential energy of an electric dipole is minimum when the angle between p and E is:",
+    "explanation": "Potential energy U = −pE cosθ. This is minimum (most negative) when cosθ is maximum, i.e., cosθ = 1 → θ = 0°. At this angle, the dipole is aligned with the field (stable equilibrium). The energy is U_min = −pE.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "stable-equilibrium",
+      "minimum-energy",
+      "alignment"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole equilibrium",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "180°",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0°",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "90°",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "45°",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "At 180°, U = −pE cos180° = +pE, which is the maximum energy (unstable equilibrium), not minimum.",
+        "misconception": "Confusing maximum energy with minimum energy"
+      },
+      {
+        "option_key": "C",
+        "hint": "At 90°, U = −pE cos90° = 0, which is between the minimum (−pE) and maximum (+pE).",
+        "misconception": "Thinking zero energy means minimum energy"
+      },
+      {
+        "option_key": "D",
+        "hint": "At 45°, U = −pE cos45° = −pE/√2, which is negative but not the most negative value.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-10",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electric field at a point on the axial line of a short dipole at distance r (r >> 2a) from the centre is E_a, and on the equatorial line at the same distance is E_e. The angle between E_a and E_e is:",
+    "explanation": "On the axial line, the field points along the dipole moment (from −q to +q direction, same as p). On the equatorial line, the field points antiparallel to the dipole moment (opposite to p). Therefore, E_a is along p and E_e is opposite to p, making the angle between them 180°.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "axial-field",
+      "equatorial-field",
+      "direction-comparison"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole field directions",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0°",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "90°",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "120°",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "180°",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0° would mean both fields point in the same direction, but on the equatorial line the field is antiparallel to p, while on the axial line it's parallel to p.",
+        "misconception": "Not distinguishing axial and equatorial field directions"
+      },
+      {
+        "option_key": "B",
+        "hint": "90° would mean the fields are perpendicular. The axial and equatorial fields are both along the dipole axis but in opposite directions.",
+        "misconception": "Confusing the observation point geometry with the field direction"
+      },
+      {
+        "option_key": "C",
+        "hint": "120° has no special significance for dipole field directions. The angle is exactly 180°.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-11",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An electric dipole is placed at the centre of a sphere. The total electric flux through the sphere is:",
+    "explanation": "By Gauss's law, total flux Φ = q_enc/ε₀. An electric dipole has total charge = +q + (−q) = 0. Therefore, the total flux through any closed surface enclosing the dipole is zero, regardless of the surface shape.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "gauss-law",
+      "dipole-flux",
+      "zero-enclosed-charge"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Flux due to a dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "q/ε₀",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2q/ε₀",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "p/ε₀",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "q/ε₀ would be the flux from a single charge q. The dipole has both +q and −q, giving total enclosed charge = 0.",
+        "misconception": "Counting only the positive charge of the dipole"
+      },
+      {
+        "option_key": "C",
+        "hint": "2q/ε₀ adds the magnitudes of both charges. Gauss's law uses algebraic (signed) sum: +q + (−q) = 0.",
+        "misconception": "Adding absolute values instead of algebraic sum"
+      },
+      {
+        "option_key": "D",
+        "hint": "The dipole moment p does not appear in Gauss's law. Flux depends on enclosed charge, not dipole moment.",
+        "misconception": "Confusing dipole moment with charge in Gauss's law"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-12",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The work done in rotating a dipole from stable equilibrium (θ = 0°) to unstable equilibrium (θ = 180°) in a uniform field E is:",
+    "explanation": "W = pE(cosθ₁ − cosθ₂) = pE(cos0° − cos180°) = pE(1 − (−1)) = 2pE. This is the maximum work that can be done on the dipole in a given field.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "work-done",
+      "stable-unstable",
+      "dipole-rotation"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Energy of dipole in field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "pE",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "pE/2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2pE",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "pE would be the work for 0° → 90° (cos0° − cos90° = 1 − 0 = 1). For 0° → 180°, the factor is 2.",
+        "misconception": "Calculating work for half rotation instead of full 180°"
+      },
+      {
+        "option_key": "B",
+        "hint": "pE/2 has no physical basis here. The cosine difference is cos0° − cos180° = 2.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Zero work would mean the initial and final energies are equal. But U(0°) = −pE and U(180°) = +pE, differing by 2pE.",
+        "misconception": "Thinking rotation between equilibrium positions requires no work"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-13",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The torque experienced by an electric dipole of moment p placed in a uniform electric field E at an angle θ to the field is:",
+    "explanation": "The torque on a dipole in a uniform electric field is given by τ = p × E, and its magnitude is τ = pE sinθ. The torque is maximum when θ = 90° (dipole perpendicular to the field) and zero when θ = 0° or 180° (dipole parallel or anti-parallel to the field).",
+    "correct_answer": "B",
+    "concept_tags": [
+      "torque-on-dipole",
+      "uniform-field",
+      "cross-product"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "pE cosθ",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "pE sinθ",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "pE tanθ",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "pE/sinθ",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "pE cosθ gives the component along the field, which is not the torque. Torque involves the perpendicular component (sinθ), like the cross product.",
+        "misconception": "Confusing torque formula (sinθ) with potential energy formula (cosθ)"
+      },
+      {
+        "option_key": "C",
+        "hint": "The tanθ function does not appear in the torque expression. The torque is the magnitude of the cross product p × E = pE sinθ.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Dividing by sinθ would make the torque infinite at θ = 0°, which is unphysical since the torque should be zero when aligned.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-14",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The potential energy of an electric dipole of moment p in a uniform electric field E, when the dipole makes an angle θ with the field, is:",
+    "explanation": "The potential energy of a dipole in a uniform field is U = −p·E = −pE cosθ. This expression shows that U is minimum (most stable) when θ = 0° (dipole aligned with field) and maximum when θ = 180° (dipole anti-parallel to field).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "dipole-potential-energy",
+      "uniform-field",
+      "stable-equilibrium"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "pE cosθ",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "pE sinθ",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "−pE cosθ",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "−pE sinθ",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The correct expression has a negative sign. Without the negative sign, the energy would be maximum at θ = 0°, which contradicts the stable equilibrium at θ = 0°.",
+        "misconception": "Forgetting the negative sign in the potential energy expression"
+      },
+      {
+        "option_key": "B",
+        "hint": "pE sinθ is the expression for torque magnitude, not potential energy. Potential energy uses the dot product (cosθ), not the cross product (sinθ).",
+        "misconception": "Confusing torque with potential energy"
+      },
+      {
+        "option_key": "D",
+        "hint": "The potential energy involves cosθ (from the dot product p·E), not sinθ. The sinθ function appears in the torque expression.",
+        "misconception": "Mixing up sinθ and cosθ in dipole expressions"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-15",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An electric dipole is placed in a uniform electric field. The net force on the dipole is:",
+    "explanation": "In a uniform electric field, the force on the positive charge (+qE) and the force on the negative charge (−qE) are equal in magnitude but opposite in direction. Hence, the net force is zero. However, a net torque acts on the dipole unless it is aligned with the field.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dipole-in-uniform-field",
+      "net-force",
+      "torque"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "qE in the direction of the field",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2qE in the direction of the field",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "qE perpendicular to the field",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "In a uniform field, the positive charge experiences +qE and the negative charge experiences −qE. These cancel, giving zero net force.",
+        "misconception": "Considering only the force on the positive charge"
+      },
+      {
+        "option_key": "C",
+        "hint": "2qE would be the sum of magnitudes if both forces were in the same direction, but they are opposite, so they cancel.",
+        "misconception": "Adding force magnitudes instead of vector addition"
+      },
+      {
+        "option_key": "D",
+        "hint": "There is no perpendicular net force component. The forces on both charges are along the field direction, and they cancel out.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-16",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two electric field lines:",
+    "explanation": "Electric field lines never cross each other. If they did, it would imply two different directions of the electric field at the point of intersection, which is physically impossible since the electric field at any point has a unique direction.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "field-line-properties",
+      "uniqueness-of-field",
+      "electric-field-lines"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Can cross each other at any point",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Cross only at the location of a charge",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Cross only in a non-uniform field",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Never cross each other",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "If field lines crossed, there would be two directions of the field at the crossing point, which contradicts the uniqueness of the electric field vector.",
+        "misconception": "Not understanding the uniqueness of the electric field direction"
+      },
+      {
+        "option_key": "B",
+        "hint": "Field lines do not cross even at charge locations. At a point charge, lines either diverge outward or converge inward, but they don't intersect.",
+        "misconception": "Confusing convergence/divergence with crossing"
+      },
+      {
+        "option_key": "C",
+        "hint": "Field lines never cross regardless of whether the field is uniform or non-uniform. The uniqueness of the field direction applies everywhere.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-17",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "At a general point at distance r (r >> 2a) from a short dipole, the electric field makes an angle α with the position vector r. If the point makes angle θ with the dipole axis, then tanα equals:",
+    "explanation": "The general field of a dipole at angle θ has radial component E_r = 2kp cosθ/r³ and transverse component E_θ = kp sinθ/r³. The angle α between E and r satisfies tanα = E_θ/E_r = (sinθ)/(2cosθ) = (1/2)tanθ. This is a standard and important result.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "general-dipole-field",
+      "field-angle",
+      "tangent-relation"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Field at a general point",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "tanθ",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "(1/2)tanθ",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2tanθ",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "sinθ/cosθ",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "tanα = tanθ would mean α = θ, i.e., the field is always perpendicular to the dipole axis. This is not true in general.",
+        "misconception": "Assuming the field direction equals the position angle"
+      },
+      {
+        "option_key": "C",
+        "hint": "2tanθ inverts the factor of 1/2. The ratio E_θ/E_r = sinθ/(2cosθ) = (1/2)tanθ, not 2tanθ.",
+        "misconception": "Inverting the radial and transverse components"
+      },
+      {
+        "option_key": "D",
+        "hint": "sinθ/cosθ = tanθ, which is the same as option A. The factor of 1/2 from the 2cosθ in the denominator is essential.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-18",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The electric field at a general point (r, θ) from a short dipole of moment p has magnitude:",
+    "explanation": "The general field magnitude is E = (kp/r³)√(1 + 3cos²θ). This is derived from E = √(E_r² + E_θ²) where E_r = 2kpcosθ/r³ and E_θ = kpsinθ/r³. So E² = (kp/r³)²(4cos²θ + sin²θ) = (kp/r³)²(3cos²θ + 1).",
+    "correct_answer": "D",
+    "concept_tags": [
+      "general-field-magnitude",
+      "dipole-field",
+      "vector-components"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Field at a general point",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "kp/r³",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2kp/r³",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "(kp/r³)√(1 + cos²θ)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "(kp/r³)√(1 + 3cos²θ)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "kp/r³ is the field on the equatorial line (θ = 90°), where √(1 + 3cos²90°) = 1. It's not the general formula.",
+        "misconception": "Using the equatorial field value for all angles"
+      },
+      {
+        "option_key": "B",
+        "hint": "2kp/r³ is the field on the axial line (θ = 0°), where √(1 + 3cos²0°) = 2. It's not the general formula.",
+        "misconception": "Using the axial field value for all angles"
+      },
+      {
+        "option_key": "C",
+        "hint": "The coefficient inside the square root should be 3, not 1. It comes from E_r = 2kpcosθ/r³, giving 4cos²θ + sin²θ = 1 + 3cos²θ.",
+        "misconception": "Error in squaring the radial component"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-19",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An electric dipole is placed in a non-uniform electric field. The dipole will experience:",
+    "explanation": "In a non-uniform electric field, the forces on the positive and negative charges of the dipole are unequal because the field strength differs at the two charge locations. This results in both a net force (translational motion) and a net torque (rotational tendency). In contrast, a uniform field produces only torque and no net force.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "non-uniform-field",
+      "dipole-force",
+      "dipole-torque"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Only a torque but no net force",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Only a net force but no torque",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Both a net force and a torque",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Neither a net force nor a torque",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This describes a dipole in a uniform field. In a non-uniform field, the unequal forces on the two charges produce a net force in addition to the torque.",
+        "misconception": "Confusing behaviour in uniform and non-uniform fields"
+      },
+      {
+        "option_key": "B",
+        "hint": "A torque also acts unless the dipole is aligned with the field. In general, a non-uniform field produces both net force and torque.",
+        "misconception": "Ignoring the torque component in a non-uniform field"
+      },
+      {
+        "option_key": "D",
+        "hint": "A dipole in any electric field (uniform or non-uniform) experiences at least a torque (unless already aligned). A non-uniform field additionally provides a net force.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-20",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An electric dipole is initially aligned antiparallel to a uniform electric field E. The work done by the electric field in rotating the dipole to stable equilibrium is:",
+    "explanation": "At antiparallel position (θ = 180°), U_i = −pE cos180° = +pE. At stable equilibrium (θ = 0°), U_f = −pE cos0° = −pE. Work done by the field = −(U_f − U_i) = −(−pE − pE) = 2pE. Alternatively, W_field = −ΔU = 2pE. The field does positive work as it rotates the dipole to the lower energy state.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "work-done-by-field",
+      "dipole-rotation",
+      "antiparallel-alignment"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "pE",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "−2pE",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2pE",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The work is not zero because the potential energy changes from +pE to −pE, a change of 2pE.",
+        "misconception": "Thinking no work is done when returning to equilibrium"
+      },
+      {
+        "option_key": "B",
+        "hint": "pE accounts for rotation from 0° to 90° only. Rotation from 180° to 0° spans a potential energy change of 2pE, not pE.",
+        "misconception": "Computing only half the energy change"
+      },
+      {
+        "option_key": "C",
+        "hint": "The work done by the field is positive (not negative) because the field drives the dipole toward stable equilibrium, lowering the potential energy.",
+        "misconception": "Confusing work done by external agent with work done by the field"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-21",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "easy",
+    "question_text": "The diagram shows an electric dipole consisting of charges +q and −q separated by distance 2a. An arrow labelled p⃗ is drawn. In which direction does the dipole moment vector point?",
+    "image_uri": "diagrams/cuet-phy-elec-dipole-21.png",
+    "image_alt": "Two charges: −q on the left and +q on the right, separated by distance 2a. An arrow labelled p⃗ is shown between them.",
+    "explanation": "By convention, the electric dipole moment vector p⃗ points from the negative charge to the positive charge. Its magnitude is p = q × 2a. This is a fundamental definition that must be memorised.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dipole-moment-direction",
+      "convention",
+      "definition"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole moment direction",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "From −q to +q (left to right)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "From +q to −q (right to left)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Perpendicular to the line joining the charges",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Along the external electric field direction",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "This is the opposite of the convention. Current flows from + to − but dipole moment is defined from − to +.",
+        "misconception": "Reversing the dipole moment direction convention"
+      },
+      {
+        "option_key": "C",
+        "hint": "The dipole moment lies along the axis joining the two charges, not perpendicular to it.",
+        "misconception": "Confusing dipole axis with equatorial direction"
+      },
+      {
+        "option_key": "D",
+        "hint": "The dipole moment is a property of the dipole itself, not of the external field. It may or may not align with E⃗.",
+        "misconception": "Confusing dipole moment with field-induced alignment"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-22",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The diagram shows an electric dipole placed in a uniform electric field E⃗ directed to the right. The dipole makes an angle θ with the field. At the position shown, the dipole will experience:",
+    "image_uri": "diagrams/cuet-phy-elec-dipole-22.png",
+    "image_alt": "A uniform electric field E⃗ pointing to the right. A dipole (−q on lower-left, +q on upper-right) makes angle θ with the horizontal field direction. Torque arrow shows clockwise rotation tendency.",
+    "explanation": "In a uniform field, the net force on a dipole is zero (equal and opposite forces on +q and −q). However, the forces create a torque τ = pE sinθ that tends to align the dipole with the field. The torque is maximum when θ = 90° and zero when θ = 0° (aligned).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "dipole-in-uniform-field",
+      "torque",
+      "net-force-zero"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole in uniform field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A net force along the field and no torque",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A net force perpendicular to the field and a torque",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zero net force and a torque tending to align it with the field",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Zero net force and zero torque",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "In a UNIFORM field, the forces on +q and −q are equal in magnitude but opposite. Net force is zero.",
+        "misconception": "Forgetting that uniform field means zero net force on dipole"
+      },
+      {
+        "option_key": "B",
+        "hint": "There is no net force in a uniform field. Net force only arises in a non-uniform field.",
+        "misconception": "Confusing uniform and non-uniform field effects"
+      },
+      {
+        "option_key": "D",
+        "hint": "The torque is zero only when the dipole is aligned (θ = 0°) or anti-aligned (θ = 180°). At any other angle, τ = pE sinθ ≠ 0.",
+        "misconception": "Assuming zero torque at all positions"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-23",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The graph shows the variation of electric field E with distance r along the axial line of a short electric dipole. Which curve correctly represents this variation for r >> a?",
+    "image_uri": "diagrams/cuet-phy-elec-dipole-23.png",
+    "image_alt": "Four curves on an E vs r graph: (A) E ∝ 1/r (hyperbola), (B) E ∝ 1/r² (steeper curve), (C) E ∝ 1/r³ (steepest curve), (D) E = constant (horizontal line).",
+    "explanation": "For a short dipole at large distances (r >> a), the axial field is E = 2kp/r³, which varies as 1/r³. This is a faster decrease than a point charge (1/r²). Curve C correctly shows this 1/r³ dependence. The equatorial field also varies as 1/r³ but is half the axial field.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "dipole-axial-field",
+      "inverse-cube-law",
+      "graphical-analysis"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Axial field variation",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Curve A: E ∝ 1/r",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Curve C: E ∝ 1/r³",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Curve B: E ∝ 1/r²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Curve D: E = constant",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "E ∝ 1/r is the dependence for an infinite line charge, not a dipole.",
+        "misconception": "Confusing dipole with line charge"
+      },
+      {
+        "option_key": "C",
+        "hint": "E ∝ 1/r² is the dependence for a point charge. A dipole field falls off faster because the fields of +q and −q partially cancel.",
+        "misconception": "Applying point charge formula to dipole"
+      },
+      {
+        "option_key": "D",
+        "hint": "A constant field only occurs between plates of a parallel plate capacitor, not for a dipole.",
+        "misconception": "Confusing with uniform field"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-24",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "The diagram shows an electric dipole placed in a non-uniform electric field that increases in the +x direction. The dipole moment is along +x. The dipole will experience:",
+    "image_uri": "diagrams/cuet-phy-elec-dipole-24.png",
+    "image_alt": "Non-uniform electric field with arrows of increasing length pointing right. A dipole with −q on the left and +q on the right is aligned along +x. The field at +q is stronger than at −q.",
+    "explanation": "In a non-uniform field, the force on +q (at the stronger field region) exceeds the force on −q (at the weaker field region). Since both forces are to the right, the net force is to the right (toward stronger field). For a dipole aligned with the field, it moves toward the region of stronger field. Additionally, since the dipole is already aligned (θ = 0), the torque is zero.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "dipole-non-uniform-field",
+      "net-force",
+      "field-gradient"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole in non-uniform field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero net force and a torque",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A net force toward the weaker field region",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A net force and a torque both toward stronger field",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A net force toward the stronger field region and zero torque",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Zero net force occurs only in a uniform field. In a non-uniform field, the forces on +q and −q are unequal.",
+        "misconception": "Applying uniform field result to non-uniform field"
+      },
+      {
+        "option_key": "B",
+        "hint": "When p⃗ is aligned with E⃗, the dipole is attracted toward the stronger field region, not repelled from it.",
+        "misconception": "Reversing the direction of net force"
+      },
+      {
+        "option_key": "C",
+        "hint": "The torque is τ = pE sinθ. Since the dipole is already aligned (θ = 0), sinθ = 0 and the torque is zero.",
+        "misconception": "Assuming torque exists even when dipole is aligned"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-25",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The electric field of a dipole decreases faster with distance than that of a point charge.\nReason (R): The dipole field varies as 1/r³ while the point charge field varies as 1/r².",
+    "explanation": "Both A and R are correct, and R correctly explains A. The dipole field (1/r³) decreases faster than the monopole field (1/r²) because at large distances, the fields of the +q and −q charges of the dipole nearly cancel, leaving only a residual field that falls off more steeply.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dipole-vs-monopole",
+      "distance-dependence"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole field comparison",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R states exactly the quantitative comparison (1/r³ vs 1/r²) that demonstrates A. It is the direct explanation.",
+        "misconception": "Not connecting the power law difference with the rate of decrease"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is factually correct — dipole field is 1/r³ and point charge is 1/r². These are standard results.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — 1/r³ does decrease faster than 1/r² as r increases.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-26",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Electric field lines never form closed loops in electrostatics.\nReason (R): Electric field lines originate from positive charges and terminate on negative charges.",
+    "explanation": "The assertion is correct: electrostatic field lines do not form closed loops because the electrostatic field is conservative (work done around a closed path is zero). The reason is also correct and directly explains why: since field lines start at positive charges and end at negative charges, they have definite starting and ending points and cannot form closed loops.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "field-line-properties",
+      "conservative-field",
+      "closed-loops"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The reason directly explains the assertion: the fact that field lines start on positive and end on negative charges is precisely why they cannot form closed loops.",
+        "misconception": "Failing to connect the origin/termination of lines with the no-loop property"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is a correct factual statement about electrostatic field lines.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct; electrostatic field lines indeed do not form closed loops. Closed loops occur only for magnetic field lines or induced electric fields.",
+        "misconception": "Confusing electrostatic and electromagnetic field lines"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-27",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): When an electric dipole is placed in a non-uniform electric field, it experiences a net translational force in addition to torque.\nReason (R): In a non-uniform field, the magnitudes of forces on the two charges of the dipole are different.",
+    "explanation": "Both A and R are correct, and R correctly explains A. In a non-uniform field, E is different at the positions of +q and −q. So F₊ = qE₊ and F₋ = qE₋ differ in magnitude, producing a net force (F₊ − F₋ ≠ 0) in addition to the torque. The dipole moves toward the region of stronger field.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "non-uniform-field",
+      "net-force",
+      "unequal-forces"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole in non-uniform field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R is precisely the reason why a net force exists — unequal forces on the two charges directly cause the translational force in A.",
+        "misconception": "Not seeing the direct causal link"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct — in a non-uniform field, E varies with position, so the forces on charges at different positions are different.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct — a dipole in a non-uniform field experiences both torque and translational force.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-28",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The electric field at the equatorial point of a dipole is antiparallel to the dipole moment.\nReason (R): At the equatorial point, the components of the fields due to the two charges along the dipole axis add up while the perpendicular components cancel.",
+    "explanation": "The assertion is correct: at any equatorial point, the net electric field points in the direction opposite to the dipole moment (i.e., from positive to negative charge direction, while p points from negative to positive). The reason is also correct and correctly explains the assertion: at the equatorial point, the perpendicular components of the fields from +q and −q cancel by symmetry, while the axial components both point opposite to p and add up.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "equatorial-field",
+      "dipole-field-direction",
+      "superposition"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The reason explains exactly how the field components combine at the equatorial point to produce a field antiparallel to p, so it is the correct explanation.",
+        "misconception": "Not recognizing the causal connection between component analysis and resultant field direction"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason accurately describes the superposition of fields at the equatorial point; perpendicular components do cancel and axial components do add.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct; this can be verified by drawing the field vectors from both charges at any equatorial point.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-29",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the orientation of a dipole in a uniform electric field (Column I) with the corresponding physical quantity value (Column II):\n\nColumn I:\nA. θ = 0° (parallel to E)\nB. θ = 90° (perpendicular to E)\nC. θ = 180° (antiparallel to E)\nD. θ = 60°\n\nColumn II:\n1. Torque = pE (maximum torque)\n2. Potential energy = −pE (minimum, stable equilibrium)\n3. Potential energy = +pE (maximum, unstable equilibrium)\n4. Torque = (√3/2)pE",
+    "explanation": "At θ = 0°: τ = 0, U = −pE (stable equilibrium) → A-2. At θ = 90°: τ = pE (maximum), U = 0 → B-1. At θ = 180°: τ = 0, U = +pE (unstable equilibrium) → C-3. At θ = 60°: τ = pE sin60° = (√3/2)pE → D-4.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "dipole-equilibrium",
+      "torque",
+      "potential-energy",
+      "orientation"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-2, B-4, C-3, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-1, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-1, B-2, C-4, D-3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This swaps B and D. At θ = 90°, the torque is maximum (pE), not (√3/2)pE. The factor √3/2 corresponds to sin60°, not sin90°.",
+        "misconception": "Confusing the torque at 60° with that at 90°"
+      },
+      {
+        "option_key": "C",
+        "hint": "This swaps A and C. At θ = 0° (parallel), U = −pE (stable), not +pE. At θ = 180° (antiparallel), U = +pE (unstable).",
+        "misconception": "Reversing stable and unstable equilibrium positions"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns maximum torque to θ = 0°, but torque at θ = 0° is zero since sin0° = 0.",
+        "misconception": "Thinking torque is maximum at aligned position"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-30",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the properties of electric field lines in Column I with the corresponding descriptions in Column II:\n\nColumn I:\nA. Density of field lines\nB. Tangent to a field line at a point\nC. Field lines in a uniform field\nD. Field lines near a positive point charge\n\nColumn II:\n1. Gives the direction of the electric field at that point\n2. Are parallel and equally spaced\n3. Radiate outward in all directions\n4. Represents the magnitude of the electric field",
+    "explanation": "The density (closeness) of field lines represents the field magnitude → A-4. The tangent at any point on a field line gives the field direction at that point → B-1. In a uniform field, lines are parallel and equally spaced → C-2. Near a positive charge, lines radiate outward → D-3.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "field-line-properties",
+      "field-magnitude",
+      "field-direction",
+      "uniform-field"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-1, B-4, C-2, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-4, B-1, C-3, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-1, C-2, D-3",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-1, D-4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This swaps A and B. Density of lines represents magnitude (not direction), and the tangent gives direction (not magnitude).",
+        "misconception": "Confusing the role of field line density with tangent direction"
+      },
+      {
+        "option_key": "B",
+        "hint": "This swaps C and D. A uniform field has parallel, equally spaced lines, while a point charge has radially diverging lines.",
+        "misconception": "Confusing uniform field pattern with point charge pattern"
+      },
+      {
+        "option_key": "D",
+        "hint": "This completely scrambles the matching. Density gives magnitude, tangent gives direction, uniform field lines are parallel, and positive charge lines radiate outward.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-31",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The net charge of an electric dipole is zero.",
+    "explanation": "TRUE. An electric dipole consists of two equal and opposite charges: +q and −q. The net charge is +q + (−q) = 0. This is why the dipole field falls off as 1/r³ — the monopole (net charge) term is zero.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dipole-net-charge",
+      "zero-charge"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole properties",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "By definition, a dipole has +q and −q. Their algebraic sum is always zero.",
+        "misconception": "Thinking a dipole has net charge because it has two charges"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-32",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The electric dipole moment is a vector quantity directed from the negative charge to the positive charge.",
+    "explanation": "This statement is TRUE. The electric dipole moment p = qd is a vector quantity. By convention, its direction is defined from the negative charge (−q) to the positive charge (+q).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dipole-moment",
+      "vector-quantity",
+      "direction-convention"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The dipole moment is indeed a vector, and its standard convention is from negative to positive charge. This is a well-established definition in physics.",
+        "misconception": "Thinking the dipole moment is a scalar or directed from positive to negative"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-33",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The torque on an electric dipole aligned parallel to a uniform electric field is maximum.",
+    "explanation": "FALSE. Torque τ = pE sinθ. When the dipole is parallel to the field (θ = 0°), sin0° = 0, so τ = 0 (minimum, stable equilibrium). Maximum torque occurs at θ = 90° (perpendicular to the field).",
+    "correct_answer": "B",
+    "concept_tags": [
+      "torque",
+      "parallel-alignment",
+      "zero-torque"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Torque on dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "At θ = 0° (parallel), sinθ = 0, so torque is zero. The maximum torque occurs at θ = 90° (perpendicular), where sinθ = 1.",
+        "misconception": "Confusing minimum torque (stable equilibrium) with maximum torque"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-34",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Electric field lines can form closed loops in electrostatic conditions.",
+    "explanation": "This statement is FALSE. Electrostatic field lines never form closed loops. They always begin at positive charges and end at negative charges. Closed loops of field lines are a characteristic of magnetic field lines or the electric field lines of time-varying magnetic fields, not electrostatic fields.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "field-lines-no-loops",
+      "electrostatics",
+      "conservative-field"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Electrostatic fields are conservative, meaning the work done around a closed loop is zero. This requires that field lines cannot form closed loops.",
+        "misconception": "Confusing electrostatic field lines with magnetic field lines which do form closed loops"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-35",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "fill-in-blanks",
+    "difficulty": "easy",
+    "question_text": "The SI unit of electric dipole moment is ______.",
+    "explanation": "Electric dipole moment p = q × d, where q is charge (coulomb) and d is distance (metre). Therefore, SI unit = C·m (coulomb-metre). It is a vector quantity directed from −q to +q.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "dipole-moment-unit",
+      "SI-units",
+      "definition"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole moment basics",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "C/m",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "C·m",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "N/C",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "V·m",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "C/m (coulomb per metre) is related to linear charge density, not dipole moment. Dipole moment = charge × distance, not charge ÷ distance.",
+        "misconception": "Dividing instead of multiplying charge by distance"
+      },
+      {
+        "option_key": "C",
+        "hint": "N/C is the unit of electric field, not dipole moment.",
+        "misconception": "Confusing dipole moment with electric field"
+      },
+      {
+        "option_key": "D",
+        "hint": "V·m is equivalent to N·m²/C which relates to electric flux, not dipole moment.",
+        "misconception": "Confusing dipole moment with flux"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-36",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The ratio of the electric field on the axial line to the equatorial line of a dipole at the same large distance r is _____.",
+    "explanation": "E_axial = 2kp/r³, E_equatorial = kp/r³. Ratio = 2kp/r³ ÷ kp/r³ = 2. The axial field is always twice the equatorial field at the same distance from the dipole centre.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "axial-equatorial-ratio",
+      "dipole-field"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Dipole field comparison",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1/2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Ratio = 1 would mean both fields are equal, but E_axial has a factor of 2 that E_equatorial doesn't.",
+        "misconception": "Thinking the dipole field is the same in all directions"
+      },
+      {
+        "option_key": "B",
+        "hint": "1/2 inverts the ratio — the axial field is stronger (×2), not weaker (÷2).",
+        "misconception": "Inverting the axial/equatorial ratio"
+      },
+      {
+        "option_key": "D",
+        "hint": "A ratio of 3 doesn't arise from the dipole field formulas. The exact ratio is 2:1.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-37",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A water molecule has a permanent electric dipole moment of approximately 6.2 × 10⁻³⁰ C·m. It is placed in an external uniform electric field of 2 × 10⁶ N/C. Initially, the dipole moment makes an angle of 90° with the field direction.\n\nWhat is the work done by the external field in rotating the water molecule from 90° to the position of stable equilibrium (0°)?",
+    "explanation": "Work done by the field = −ΔU = −[U_final − U_initial] = −[(−pE cos0°) − (−pE cos90°)] = −[−pE − 0] = pE. So W = pE = 6.2 × 10⁻³⁰ × 2 × 10⁶ = 12.4 × 10⁻²⁴ J = 1.24 × 10⁻²³ J. The field does positive work as the dipole moves toward stable equilibrium.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "dipole-in-field",
+      "work-done",
+      "water-molecule",
+      "stable-equilibrium"
+    ],
+    "topic": "Electric Dipole",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "6.2 × 10⁻²⁴ J",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.24 × 10⁻²³ J",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2.48 × 10⁻²³ J",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3.1 × 10⁻²⁴ J",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This result comes from multiplying only p × E with a computational error. The correct product is 6.2 × 10⁻³⁰ × 2 × 10⁶ = 12.4 × 10⁻²⁴ = 1.24 × 10⁻²³ J.",
+        "misconception": "Arithmetic error in powers of ten"
+      },
+      {
+        "option_key": "C",
+        "hint": "2.48 × 10⁻²³ J = 2pE, which would be the work done in rotating from 180° to 0°, not from 90° to 0°.",
+        "misconception": "Using the formula for rotation from antiparallel to parallel position"
+      },
+      {
+        "option_key": "D",
+        "hint": "3.1 × 10⁻²⁴ J = pE/4, which does not correspond to any standard dipole rotation. The work from 90° to 0° is simply pE.",
+        "misconception": "Dividing by an incorrect factor"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-dipole-38",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "A water molecule has an electric dipole moment of 6.1 × 10⁻³⁰ C·m. It is placed in a uniform electric field of 2 × 10⁵ N/C. Calculate the maximum torque and the work done in rotating it from the position of stable equilibrium to the position of unstable equilibrium.",
+    "explanation": "Maximum torque: τ_max = pE = 6.1 × 10⁻³⁰ × 2 × 10⁵ = 1.22 × 10⁻²⁴ N·m (occurs at θ = 90°). Work done from 0° to 180°: W = pE(cos0° − cos180°) = pE(1−(−1)) = 2pE = 2 × 6.1 × 10⁻³⁰ × 2 × 10⁵ = 2.44 × 10⁻²⁴ J.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "water-molecule",
+      "dipole-torque",
+      "work-done"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Real-world dipole applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "τ_max = 1.22 × 10⁻²⁴ N·m; W = 1.22 × 10⁻²⁴ J",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "τ_max = 2.44 × 10⁻²⁴ N·m; W = 2.44 × 10⁻²⁴ J",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "τ_max = 6.1 × 10⁻²⁵ N·m; W = 1.22 × 10⁻²⁴ J",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "τ_max = 1.22 × 10⁻²⁴ N·m; W = 2.44 × 10⁻²⁴ J",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The torque is correct but the work should be 2pE (not pE). Work for 0° → 180° involves a factor of 2.",
+        "misconception": "Using W = pE instead of W = 2pE for full 180° rotation"
+      },
+      {
+        "option_key": "B",
+        "hint": "The maximum torque is pE, not 2pE. The factor 2 applies to work, not torque.",
+        "misconception": "Confusing the formula for torque with the formula for work"
+      },
+      {
+        "option_key": "C",
+        "hint": "6.1 × 10⁻²⁵ comes from dividing pE by 2, but maximum torque is simply pE (sinθ_max = 1, not 1/2).",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-39",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following positions of an electric dipole in a uniform electric field in order of increasing potential energy:\n\n1. θ = 180° (antiparallel to field)\n2. θ = 0° (parallel to field)\n3. θ = 90° (perpendicular to field)\n4. θ = 60° (at 60° to field)",
+    "explanation": "U = −pE cosθ. Calculate: U(0°) = −pE, U(60°) = −pE/2, U(90°) = 0, U(180°) = +pE. Increasing order: −pE < −pE/2 < 0 < +pE. So: θ = 0° < θ = 60° < θ = 90° < θ = 180°, i.e., 2 → 4 → 3 → 1.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "potential-energy",
+      "dipole-orientation",
+      "ordering"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Energy of dipole in field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 → 3 → 4 → 2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 → 4 → 3 → 1",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2 → 3 → 4 → 1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3 → 2 → 4 → 1",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This starts with θ = 180° (highest energy) and ends with θ = 0° (lowest). That's decreasing order, not increasing.",
+        "misconception": "Reversing the order"
+      },
+      {
+        "option_key": "C",
+        "hint": "This places θ = 90° (U = 0) before θ = 60° (U = −pE/2). But −pE/2 < 0, so 60° has lower energy than 90°.",
+        "misconception": "Not computing U(60°) correctly"
+      },
+      {
+        "option_key": "D",
+        "hint": "This starts with θ = 90° (U = 0) but θ = 0° (U = −pE) has the lowest energy and should come first.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-dipole-40",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "Arrange the following orientations of an electric dipole in a uniform electric field in order of increasing potential energy (from most negative to most positive):",
+    "items": [
+      {
+        "id": "1",
+        "text": "Dipole aligned parallel to E⃗ (θ = 0°): U = −pE"
+      },
+      {
+        "id": "2",
+        "text": "Dipole perpendicular to E⃗ (θ = 90°): U = 0"
+      },
+      {
+        "id": "3",
+        "text": "Dipole at 60° to E⃗ (θ = 60°): U = −pE/2"
+      },
+      {
+        "id": "4",
+        "text": "Dipole anti-parallel to E⃗ (θ = 180°): U = +pE"
+      }
+    ],
+    "correct_order": [
+      "1",
+      "3",
+      "2",
+      "4"
+    ],
+    "explanation": "Potential energy U = −pE cosθ. At θ = 0°: U = −pE (minimum, most stable). At θ = 60°: U = −pE cos60° = −pE/2. At θ = 90°: U = −pE cos90° = 0. At θ = 180°: U = −pE cos180° = +pE (maximum, most unstable). The order from most negative to most positive is: −pE < −pE/2 < 0 < +pE.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "dipole-potential-energy",
+      "orientation-dependence",
+      "stability"
+    ],
+    "topic": "Electric Dipole",
+    "subtopic": "Potential energy of dipole in field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "θ = 0° → θ = 60° → θ = 180° → θ = 90°",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "θ = 180° → θ = 90° → θ = 60° → θ = 0°",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "θ = 0° → θ = 60° → θ = 90° → θ = 180°",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "θ = 90° → θ = 0° → θ = 60° → θ = 180°",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This places θ = 180° before θ = 90°. Since U(180°) = +pE > U(90°) = 0, this order is wrong.",
+        "misconception": "Incorrect ordering of potential energy values"
+      },
+      {
+        "option_key": "B",
+        "hint": "This is the DECREASING order (most positive first). The question asks for INCREASING order (most negative first).",
+        "misconception": "Reversing the requested order"
+      },
+      {
+        "option_key": "D",
+        "hint": "This places θ = 90° (U = 0) as the lowest energy, but θ = 0° (U = −pE) has the lowest (most negative) energy.",
+        "misconception": "Assuming perpendicular orientation has minimum energy"
+      }
+    ]
+  }
+]
