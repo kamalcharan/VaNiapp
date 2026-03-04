@@ -1,0 +1,514 @@
+[
+  {
+    "id": "cuet-acc-ratio-comp-01",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Revenue from Operations ₹30,00,000; COGS ₹18,00,000; Operating Expenses ₹6,00,000; Interest ₹1,00,000; Tax ₹1,50,000. Calculate: (a) Gross Profit Ratio and (b) Net Profit Ratio.",
+    "explanation": "GP = ₹30,00,000 – ₹18,00,000 = ₹12,00,000. GP Ratio = (12/30) × 100 = 40%. NP = GP – Op Exp – Interest – Tax = ₹12,00,000 – ₹6,00,000 – ₹1,00,000 – ₹1,50,000 = ₹3,50,000. NP Ratio = (3.5/30) × 100 = 11.67%.",
+    "correct_answer": "B",
+    "concept_tags": ["GP-NP-ratio", "comprehensive", "numerical"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Multiple ratio computation",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "GP Ratio 40%, NP Ratio 16.67%", "is_correct": false },
+      { "key": "B", "text": "GP Ratio 40%, NP Ratio 11.67%", "is_correct": true },
+      { "key": "C", "text": "GP Ratio 60%, NP Ratio 11.67%", "is_correct": false },
+      { "key": "D", "text": "GP Ratio 40%, NP Ratio 20%", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "16.67% = ₹5L/₹30L. Did you forget to deduct tax (₹1.5L)?", "misconception": "Forgetting tax deduction." },
+      { "option_key": "C", "hint": "60% = COGS/Revenue. GP Ratio = GP/Revenue = 40%.", "misconception": "Using cost ratio instead of profit ratio." },
+      { "option_key": "D", "hint": "20% = ₹6L/₹30L (Operating Profit Ratio). NP must also deduct interest and tax.", "misconception": "Confusing operating profit with net profit." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-02",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Shareholders' Funds ₹15,00,000; 10% Long-term Debt ₹10,00,000; Current Liabilities ₹5,00,000. Calculate: (a) Debt-Equity Ratio and (b) Proprietary Ratio.",
+    "explanation": "D/E = ₹10,00,000 ÷ ₹15,00,000 = 0.67:1. Total Assets = SF + LTD + CL = ₹15L + ₹10L + ₹5L = ₹30,00,000. Proprietary Ratio = ₹15,00,000 ÷ ₹30,00,000 = 0.50 (50%).",
+    "correct_answer": "C",
+    "concept_tags": ["DE-proprietary", "dual-ratio", "numerical"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Solvency ratios together",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "D/E 1:1, Proprietary 50%", "is_correct": false },
+      { "key": "B", "text": "D/E 0.67:1, Proprietary 60%", "is_correct": false },
+      { "key": "C", "text": "D/E 0.67:1, Proprietary 50%", "is_correct": true },
+      { "key": "D", "text": "D/E 2:3, Proprietary 33%", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "D/E = ₹10L ÷ ₹15L = 0.67, not 1.0.", "misconception": "Including CL in debt." },
+      { "option_key": "B", "hint": "Total Assets = ₹30L. Proprietary = ₹15L ÷ ₹30L = 50%, not 60%.", "misconception": "Wrong Total Assets calculation." },
+      { "option_key": "D", "hint": "D/E = 0.67 which is 2:3, but Proprietary = 50%, not 33%.", "misconception": "Calculation error in Proprietary." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-03",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A company has Current Ratio 2.5:1 and Liquid Ratio 1.5:1. Current Assets are ₹5,00,000. What is the value of inventory?",
+    "explanation": "CL = CA ÷ CR = ₹5,00,000 ÷ 2.5 = ₹2,00,000. Quick Assets = QR × CL = 1.5 × ₹2,00,000 = ₹3,00,000. Inventory = CA – Quick Assets = ₹5,00,000 – ₹3,00,000 = ₹2,00,000.",
+    "correct_answer": "B",
+    "concept_tags": ["reverse-calculation", "inventory-from-ratios", "numerical"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Deriving values from multiple ratios",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "₹1,00,000", "is_correct": false },
+      { "key": "B", "text": "₹2,00,000", "is_correct": true },
+      { "key": "C", "text": "₹3,00,000", "is_correct": false },
+      { "key": "D", "text": "₹2,50,000", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "CL = ₹5L ÷ 2.5 = ₹2L. QA = 1.5 × ₹2L = ₹3L. Inventory = ₹5L – ₹3L = ₹2L.", "misconception": "Calculation error." },
+      { "option_key": "C", "hint": "₹3L is Quick Assets, not Inventory. Inventory = CA – QA.", "misconception": "Confusing QA with inventory." },
+      { "option_key": "D", "hint": "Check the steps: first find CL, then QA, then subtract from CA.", "misconception": "Arithmetic error." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-04",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "NP after Tax ₹4,80,000; 8% Preference Share Capital ₹5,00,000; Equity Shares (₹10 each) = 50,000 shares. Calculate EPS.",
+    "explanation": "Preference Dividend = 8% × ₹5,00,000 = ₹40,000. Profit for equity = ₹4,80,000 – ₹40,000 = ₹4,40,000. EPS = ₹4,40,000 ÷ 50,000 = ₹8.80 per share.",
+    "correct_answer": "D",
+    "concept_tags": ["EPS-numerical", "preference-dividend", "per-share"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "EPS calculation",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "₹9.60", "is_correct": false },
+      { "key": "B", "text": "₹10.00", "is_correct": false },
+      { "key": "C", "text": "₹7.80", "is_correct": false },
+      { "key": "D", "text": "₹8.80", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "₹9.60 = ₹4,80,000 ÷ 50,000. You forgot to deduct preference dividend.", "misconception": "Not deducting preference dividend." },
+      { "option_key": "B", "hint": "₹10 is the face value per share, not EPS.", "misconception": "Confusing face value with EPS." },
+      { "option_key": "C", "hint": "Check: Preference Dividend = 8% × ₹5L = ₹40,000. Profit for equity = ₹4.4L.", "misconception": "Calculation error in preference dividend." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-05",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): Two companies in the same industry may have different ratios even if they have similar performance.\nReason (R): Different accounting policies (e.g., depreciation methods, inventory valuation) can lead to different financial figures, affecting ratios.",
+    "explanation": "Both A and R are true, and R correctly explains A. If one company uses SLM depreciation and another uses WDV, their profit figures will differ even with identical operations. Similarly, FIFO vs weighted average for inventory impacts COGS and profit differently.",
+    "correct_answer": "A",
+    "concept_tags": ["accounting-policies", "comparability", "limitation"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Impact of accounting policies",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true },
+      { "key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false },
+      { "key": "C", "text": "A is true but R is false", "is_correct": false },
+      { "key": "D", "text": "A is false but R is true", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "R directly explains WHY ratios differ — different policies produce different figures.", "misconception": "Not seeing the causal link." },
+      { "option_key": "C", "hint": "R is factually true — different depreciation/inventory methods do affect financial figures.", "misconception": "Doubting accounting policy impact." },
+      { "option_key": "D", "hint": "A is correct — this is a well-known limitation of inter-firm ratio comparison.", "misconception": "Thinking ratios are always comparable." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which ratio is most relevant for a short-term creditor (supplier)?",
+    "explanation": "Short-term creditors (suppliers) are concerned about whether the company can pay its short-term dues. The Current Ratio or Quick Ratio (liquidity ratios) are most relevant, as they measure the ability to meet short-term obligations from current assets.",
+    "correct_answer": "A",
+    "concept_tags": ["creditor-perspective", "liquidity", "relevance"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "User-specific ratio relevance",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Current Ratio / Quick Ratio", "is_correct": true },
+      { "key": "B", "text": "Debt-Equity Ratio", "is_correct": false },
+      { "key": "C", "text": "Return on Investment", "is_correct": false },
+      { "key": "D", "text": "Earnings Per Share", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "D/E is relevant for long-term lenders, not short-term creditors.", "misconception": "Confusing short-term with long-term concerns." },
+      { "option_key": "C", "hint": "ROI is useful for investors and management, not for assessing short-term payment capacity.", "misconception": "Applying profitability to creditor needs." },
+      { "option_key": "D", "hint": "EPS is for equity shareholders, not for trade creditors.", "misconception": "Wrong user group." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-07",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Capital Employed ₹25,00,000; Revenue from Operations ₹50,00,000; NPBIT ₹5,00,000. Calculate: (a) ROI and (b) Capital Turnover Ratio.",
+    "explanation": "ROI = (NPBIT ÷ Capital Employed) × 100 = (₹5,00,000 ÷ ₹25,00,000) × 100 = 20%. Capital Turnover = Revenue ÷ Capital Employed = ₹50,00,000 ÷ ₹25,00,000 = 2 times.",
+    "correct_answer": "C",
+    "concept_tags": ["ROI", "capital-turnover", "dual-ratio"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "ROI and Capital Turnover",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "ROI 10%, Capital Turnover 5 times", "is_correct": false },
+      { "key": "B", "text": "ROI 20%, Capital Turnover 5 times", "is_correct": false },
+      { "key": "C", "text": "ROI 20%, Capital Turnover 2 times", "is_correct": true },
+      { "key": "D", "text": "ROI 10%, Capital Turnover 2 times", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "ROI = ₹5L ÷ ₹25L = 20%, not 10%. Capital Turnover = ₹50L ÷ ₹25L = 2, not 5.", "misconception": "Both ratios wrong." },
+      { "option_key": "B", "hint": "Capital Turnover = ₹50L ÷ ₹25L = 2, not 5.", "misconception": "Reversing Capital Turnover." },
+      { "option_key": "D", "hint": "ROI = ₹5L ÷ ₹25L × 100 = 20%, not 10%.", "misconception": "Calculation error in ROI." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-08",
+    "question_type": "fill_in_blank",
+    "difficulty": "easy",
+    "question_text": "Capital Employed for ratio analysis is calculated as: Total Assets minus ______.",
+    "explanation": "Capital Employed = Total Assets – Current Liabilities. Alternatively, Capital Employed = Shareholders' Funds + Long-term Borrowings. It represents the total long-term funds invested in the business.",
+    "correct_answer": "B",
+    "concept_tags": ["capital-employed", "formula", "definition"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Capital Employed definition",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Non-Current Assets", "is_correct": false },
+      { "key": "B", "text": "Current Liabilities", "is_correct": true },
+      { "key": "C", "text": "Shareholders' Funds", "is_correct": false },
+      { "key": "D", "text": "Total Revenue", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Total Assets – Non-Current Assets = Current Assets, not Capital Employed.", "misconception": "Wrong subtraction." },
+      { "option_key": "C", "hint": "Total Assets – Shareholders' Funds gives total liabilities, not Capital Employed.", "misconception": "Subtracting equity from assets." },
+      { "option_key": "D", "hint": "Revenue is a P&L item, not a Balance Sheet item.", "misconception": "Mixing P&L with B/S." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-09",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Current Ratio is 3:1, Acid Test Ratio is 1:1, and Current Liabilities are ₹3,00,000. If stock is ₹4,00,000, what is the value of prepaid expenses?",
+    "explanation": "CA = 3 × ₹3L = ₹9,00,000. Quick Assets = 1 × ₹3L = ₹3,00,000. Non-quick items = CA – QA = ₹9L – ₹3L = ₹6,00,000. Non-quick = Stock + Prepaid. Prepaid = ₹6,00,000 – ₹4,00,000 = ₹2,00,000.",
+    "correct_answer": "C",
+    "concept_tags": ["prepaid-from-ratios", "reverse-calculation", "numerical"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Deriving prepaid from ratios",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "₹1,00,000", "is_correct": false },
+      { "key": "B", "text": "₹3,00,000", "is_correct": false },
+      { "key": "C", "text": "₹2,00,000", "is_correct": true },
+      { "key": "D", "text": "₹5,00,000", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Non-quick = ₹6L. Stock = ₹4L. Prepaid = ₹6L – ₹4L = ₹2L.", "misconception": "Arithmetic error." },
+      { "option_key": "B", "hint": "₹3L is the Quick Assets value, not prepaid.", "misconception": "Confusing QA with prepaid." },
+      { "option_key": "D", "hint": "₹5L exceeds non-quick items (₹6L) minus stock (₹4L). Check calculation.", "misconception": "Adding instead of subtracting." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Window dressing in the context of ratio analysis means:",
+    "explanation": "Window dressing refers to the practice of manipulating financial statements to present a more favourable picture than reality. For example, a company might delay recording purchases or accelerate revenue recognition near year-end to improve ratios. This is a significant limitation of ratio analysis.",
+    "correct_answer": "A",
+    "concept_tags": ["window-dressing", "manipulation", "limitation"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Window dressing — limitation",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Manipulating financial data to present a better picture", "is_correct": true },
+      { "key": "B", "text": "Presenting ratios in graphical format", "is_correct": false },
+      { "key": "C", "text": "Adjusting ratios for inflation", "is_correct": false },
+      { "key": "D", "text": "Comparing ratios with industry averages", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Graphical presentation is a legitimate analysis tool, not window dressing.", "misconception": "Confusing presentation with manipulation." },
+      { "option_key": "C", "hint": "Inflation adjustment is a legitimate analytical technique.", "misconception": "Confusing adjustment with manipulation." },
+      { "option_key": "D", "hint": "Industry comparison is a valid use of ratios, not window dressing.", "misconception": "Confusing comparison with manipulation." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A company has GP Ratio 30% and Operating Ratio 85%. What is the Operating Profit Ratio?",
+    "explanation": "Operating Profit Ratio = 100% – Operating Ratio = 100% – 85% = 15%. Note: Operating Ratio and Operating Profit Ratio are complementary and add up to 100%. The GP Ratio (30%) is not directly used — it is additional information.",
+    "correct_answer": "B",
+    "concept_tags": ["operating-profit-ratio", "complementary", "calculation"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Deriving Operating Profit Ratio",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "30%", "is_correct": false },
+      { "key": "B", "text": "15%", "is_correct": true },
+      { "key": "C", "text": "85%", "is_correct": false },
+      { "key": "D", "text": "55%", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "30% is the GP Ratio, not Operating Profit Ratio.", "misconception": "Confusing GP with Operating Profit." },
+      { "option_key": "C", "hint": "85% is the Operating Ratio (cost ratio). Profit Ratio = 100% – 85% = 15%.", "misconception": "Giving the cost ratio instead of profit ratio." },
+      { "option_key": "D", "hint": "55% has no basis. Op Profit Ratio = 100% – Operating Ratio.", "misconception": "Random calculation." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-12",
+    "question_type": "true_false",
+    "difficulty": "medium",
+    "question_text": "Statement: Ratio analysis cannot be used to compare companies from different industries.",
+    "explanation": "This is TRUE in practice. Companies from different industries have vastly different capital structures, operating cycles, and business models. A manufacturing company's ratios cannot be meaningfully compared with a banking company's ratios. Cross-industry comparison is a known limitation.",
+    "correct_answer": "A",
+    "concept_tags": ["cross-industry", "limitation", "comparability"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Inter-industry comparison limitation",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": true },
+      { "key": "B", "text": "False", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "Different industries have different norms. A Current Ratio of 1.5 may be great for retail but poor for manufacturing.", "misconception": "Thinking ratios are universally comparable." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-13",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "NP after Tax ₹9,00,000; Equity Share Capital (₹10 each) ₹10,00,000; 12% Preference Capital ₹5,00,000; General Reserve ₹8,00,000; 10% Debentures ₹7,00,000. Calculate Return on Equity.",
+    "explanation": "Shareholders' Funds = Equity + Preference + General Reserve = ₹10L + ₹5L + ₹8L = ₹23,00,000. ROE = NP after Tax ÷ Shareholders' Funds × 100 = ₹9,00,000 ÷ ₹23,00,000 × 100 = 39.13%.",
+    "correct_answer": "C",
+    "concept_tags": ["ROE-numerical", "shareholders-funds", "profitability"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "ROE computation",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "90%", "is_correct": false },
+      { "key": "B", "text": "50%", "is_correct": false },
+      { "key": "C", "text": "39.13%", "is_correct": true },
+      { "key": "D", "text": "60%", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "90% = ₹9L ÷ ₹10L. You used only Equity Capital, not total Shareholders' Funds.", "misconception": "Using only equity capital." },
+      { "option_key": "B", "hint": "50% = ₹9L ÷ ₹18L. Did you exclude General Reserve?", "misconception": "Missing general reserve." },
+      { "option_key": "D", "hint": "60% = ₹9L ÷ ₹15L. You excluded General Reserve from shareholders' funds.", "misconception": "Excluding reserves." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-14",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which of the following will IMPROVE (reduce) the Debt-Equity Ratio?",
+    "explanation": "Converting debentures into equity shares reduces Debt (debentures decrease) and increases Equity (share capital increases). Both changes work to reduce the D/E ratio. This is a non-cash restructuring that improves solvency ratios.",
+    "correct_answer": "D",
+    "concept_tags": ["improve-DE", "conversion", "strategy"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Strategies to improve ratios",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Issuing more debentures", "is_correct": false },
+      { "key": "B", "text": "Paying dividend", "is_correct": false },
+      { "key": "C", "text": "Taking a new bank loan", "is_correct": false },
+      { "key": "D", "text": "Converting debentures into equity shares", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "More debentures = more debt = HIGHER D/E ratio.", "misconception": "Increasing debt to improve." },
+      { "option_key": "B", "hint": "Paying dividend reduces retained earnings (equity), which WORSENS D/E.", "misconception": "Thinking dividend helps." },
+      { "option_key": "C", "hint": "New loan = more debt = HIGHER D/E.", "misconception": "Adding more debt." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-15",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The relationship between Operating Profit Ratio, Gross Profit Ratio, and Operating Expenses is:",
+    "explanation": "Operating Profit = Gross Profit – Operating Expenses. Therefore, Operating Profit Ratio = Gross Profit Ratio – (Operating Expenses ÷ Revenue × 100). If GP Ratio is 40% and operating expenses are 20% of revenue, Operating Profit Ratio = 40% – 20% = 20%.",
+    "correct_answer": "A",
+    "concept_tags": ["ratio-relationship", "GP-OP", "formula"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Inter-ratio relationships",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "Operating Profit Ratio = Gross Profit Ratio – Operating Expense Ratio", "is_correct": true },
+      { "key": "B", "text": "Operating Profit Ratio = Net Profit Ratio + Interest Ratio", "is_correct": false },
+      { "key": "C", "text": "Operating Profit Ratio = Gross Profit Ratio + Operating Expense Ratio", "is_correct": false },
+      { "key": "D", "text": "Operating Profit Ratio = Net Profit Ratio × 2", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "While NP + Interest ≈ Operating Profit (pre-interest), this formulation ignores tax.", "misconception": "Incomplete relationship." },
+      { "option_key": "C", "hint": "Operating expenses REDUCE gross profit. It should be subtracted, not added.", "misconception": "Adding instead of subtracting." },
+      { "option_key": "D", "hint": "There's no fixed multiplier relationship between NP and OP ratios.", "misconception": "Assuming arbitrary relationship." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-16",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Net Credit Purchases ₹20,00,000; Opening Trade Payables ₹3,00,000; Closing Trade Payables ₹5,00,000. The Average Payment Period (in days) is:",
+    "explanation": "Avg Payables = (₹3L + ₹5L) ÷ 2 = ₹4,00,000. Payables Turnover = ₹20,00,000 ÷ ₹4,00,000 = 5 times. Average Payment Period = 365 ÷ 5 = 73 days.",
+    "correct_answer": "A",
+    "concept_tags": ["payment-period", "payables-turnover", "days"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Average Payment Period",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "73 days", "is_correct": true },
+      { "key": "B", "text": "91 days", "is_correct": false },
+      { "key": "C", "text": "55 days", "is_correct": false },
+      { "key": "D", "text": "60 days", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "B", "hint": "91 = 365 ÷ 4. You used closing payables (₹5L), not average (₹4L) to compute turnover.", "misconception": "Using closing instead of average." },
+      { "option_key": "C", "hint": "Check: Average = ₹4L. Turnover = ₹20L ÷ ₹4L = 5. Days = 365 ÷ 5 = 73.", "misconception": "Calculation error." },
+      { "option_key": "D", "hint": "60 days assumes monthly payment. Actual period depends on turnover calculation.", "misconception": "Assuming round number." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-17",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following is an advantage of ratio analysis?",
+    "explanation": "Ratio analysis simplifies complex financial data into meaningful, easy-to-understand relationships. A single ratio like GP Ratio (40%) tells more than saying 'Revenue is ₹50 lakh and COGS is ₹30 lakh'. It enables quick analysis and comparison.",
+    "correct_answer": "B",
+    "concept_tags": ["advantage", "simplification", "ratio-analysis"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Advantages of ratio analysis",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "It predicts the exact future performance", "is_correct": false },
+      { "key": "B", "text": "It simplifies complex financial data into meaningful relationships", "is_correct": true },
+      { "key": "C", "text": "It eliminates all limitations of financial statements", "is_correct": false },
+      { "key": "D", "text": "It replaces the need for financial statements", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Ratios are based on historical data — they indicate trends but don't predict exact future results.", "misconception": "Overstating predictive power." },
+      { "option_key": "C", "hint": "Ratio analysis inherits all limitations of financial statements (window dressing, price changes).", "misconception": "Thinking ratios overcome all limitations." },
+      { "option_key": "D", "hint": "Ratios are derived FROM financial statements — they supplement, not replace them.", "misconception": "Replacing source data." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-18",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match the ratios with the stakeholder most interested:\n\nColumn I:\n(i) Current Ratio\n(ii) Debt-Equity Ratio\n(iii) EPS\n(iv) Inventory Turnover\n\nColumn II:\n(P) Equity Shareholders\n(Q) Short-term Creditors\n(R) Management\n(S) Long-term Lenders",
+    "explanation": "Current Ratio → Short-term Creditors (Q) — measures short-term payment ability. D/E → Long-term Lenders (S) — debt safety. EPS → Equity Shareholders (P) — return per share. Inventory Turnover → Management (R) — operational efficiency.",
+    "correct_answer": "B",
+    "concept_tags": ["stakeholder-matching", "ratio-relevance", "comprehensive"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Stakeholder-ratio relevance",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "(i)–S, (ii)–Q, (iii)–P, (iv)–R", "is_correct": false },
+      { "key": "B", "text": "(i)–Q, (ii)–S, (iii)–P, (iv)–R", "is_correct": true },
+      { "key": "C", "text": "(i)–Q, (ii)–P, (iii)–S, (iv)–R", "is_correct": false },
+      { "key": "D", "text": "(i)–R, (ii)–S, (iii)–P, (iv)–Q", "is_correct": false }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "Current Ratio is for short-term creditors (Q), not long-term lenders (S). D/E is for long-term lenders.", "misconception": "Swapping short and long-term." },
+      { "option_key": "C", "hint": "D/E is for long-term lenders (S), not equity shareholders (P). EPS is for shareholders.", "misconception": "Mixing D/E and EPS relevance." },
+      { "option_key": "D", "hint": "Current Ratio is most relevant for creditors (Q), not management (R).", "misconception": "Assigning CR to management." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-19",
+    "question_type": "true_false",
+    "difficulty": "medium",
+    "question_text": "Statement: A single ratio in isolation gives a complete picture of the financial health of a company.",
+    "explanation": "This is FALSE. No single ratio can provide a complete picture. Ratio analysis is meaningful only when ratios are studied together, compared over time (trend analysis), and benchmarked against industry standards. A high GP ratio with poor liquidity still indicates problems.",
+    "correct_answer": "B",
+    "concept_tags": ["limitation", "holistic-view", "single-ratio"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Need for multiple ratios",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "True", "is_correct": false },
+      { "key": "B", "text": "False", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "A company can have excellent profitability but poor liquidity. Multiple ratios are needed for a complete picture.", "misconception": "Relying on one ratio." }
+    ]
+  },
+  {
+    "id": "cuet-acc-ratio-comp-20",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Revenue ₹60,00,000; NP after Tax ₹6,00,000; Shareholders' Funds ₹30,00,000; Total Assets ₹50,00,000. Calculate: (a) NP Ratio, (b) ROE, and identify which ratio is higher.",
+    "explanation": "NP Ratio = (₹6L ÷ ₹60L) × 100 = 10%. ROE = (₹6L ÷ ₹30L) × 100 = 20%. ROE (20%) > NP Ratio (10%). ROE is higher because equity base is smaller than revenue.",
+    "correct_answer": "D",
+    "concept_tags": ["NP-ROE-comparison", "multiple-ratios", "comprehensive"],
+    "topic": "Comprehensive Ratio Analysis Problems",
+    "subtopic": "Comparing profitability ratios",
+    "subject": "accountancy",
+    "chapter": "Ratio Analysis",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      { "key": "A", "text": "NP Ratio 10%, ROE 12%, ROE is higher", "is_correct": false },
+      { "key": "B", "text": "NP Ratio 20%, ROE 10%, NP Ratio is higher", "is_correct": false },
+      { "key": "C", "text": "NP Ratio 10%, ROE 20%, NP Ratio is higher", "is_correct": false },
+      { "key": "D", "text": "NP Ratio 10%, ROE 20%, ROE is higher", "is_correct": true }
+    ],
+    "elimination_hints": [
+      { "option_key": "A", "hint": "ROE = ₹6L ÷ ₹30L = 20%, not 12%.", "misconception": "Using Total Assets instead of SF." },
+      { "option_key": "B", "hint": "NP Ratio uses Revenue (₹60L) as denominator, giving 10%. ROE uses SF (₹30L), giving 20%.", "misconception": "Swapping the two ratios." },
+      { "option_key": "C", "hint": "20% > 10%, so ROE is higher, not NP Ratio.", "misconception": "Wrong comparison." }
+    ]
+  }
+]
