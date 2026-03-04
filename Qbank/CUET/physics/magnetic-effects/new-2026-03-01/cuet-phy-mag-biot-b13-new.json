@@ -4,26 +4,26 @@
     "chapter_id": "cuet-phy-magnetic-effects",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "In the Biot-Savart law, dB = (μ₀/4π)(Idl × r̂)/r², the direction of the magnetic field dB at a point is determined by:",
-    "explanation": "In the Biot-Savart law, the magnetic field dB is given by the cross product Idl × r̂. The direction of this cross product is perpendicular to the plane containing the current element dl and the position vector r̂. This direction is found using the right-hand rule: curl the fingers from dl toward r̂, and the thumb points in the direction of dB.",
+    "question_text": "The Biot-Savart law gives the magnetic field produced by a:",
+    "explanation": "The Biot-Savart law describes the magnetic field produced by a small current-carrying element (current element Idl). It relates the magnetic field at a point to the current element, its distance from the point, and the angle between them.",
     "correct_answer": "A",
-    "concept_tags": ["biot-savart-law", "cross-product", "right-hand-rule"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Biot-Savart law vector form",
+    "concept_tags": ["biot-savart-law", "current-element", "magnetic-field-source"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Biot-Savart law formula",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
     "bloom_level": "remember",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "The cross product dl × r̂, perpendicular to the plane of dl and r̂", "is_correct": true},
-      {"key": "B", "text": "The dot product dl · r̂, along the current element", "is_correct": false},
-      {"key": "C", "text": "Along the position vector r̂ joining the element to the point", "is_correct": false},
-      {"key": "D", "text": "Along the current element dl itself", "is_correct": false}
+      {"key": "A", "value": "Current element", "is_correct": true},
+      {"key": "B", "value": "Static charge", "is_correct": false},
+      {"key": "C", "value": "Magnetic monopole", "is_correct": false},
+      {"key": "D", "value": "Electric dipole", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "B", "hint": "The dot product gives a scalar, not a vector direction. Biot-Savart law involves a cross product.", "misconception": "Confusing dot product with cross product in the Biot-Savart law"},
-      {"option_key": "C", "hint": "The magnetic field is perpendicular to r̂, not along it. This would describe an electric field direction.", "misconception": "Confusing magnetic field direction with electric field direction"},
-      {"option_key": "D", "hint": "dB is perpendicular to dl, not along it. A field along dl would violate the cross-product nature of the law.", "misconception": "Thinking the magnetic field is along the current direction"}
+      "B: Static charges produce electric fields, not magnetic fields governed by Biot-Savart law.",
+      "C: Magnetic monopoles have never been observed; Biot-Savart law deals with current elements.",
+      "D: Electric dipoles produce electric fields; Biot-Savart law is exclusively about current-carrying conductors."
     ]
   },
   {
@@ -31,80 +31,82 @@
     "chapter_id": "cuet-phy-magnetic-effects",
     "question_type": "mcq",
     "difficulty": "easy",
-    "question_text": "The magnetic field at a perpendicular distance d from an infinitely long straight wire carrying current I is given by B = μ₀I/(2πd). If the current is doubled and the distance is halved, the new magnetic field becomes:",
-    "explanation": "The magnetic field due to an infinite straight wire is B = μ₀I/(2πd). When current is doubled (I → 2I) and distance is halved (d → d/2), the new field B' = μ₀(2I)/(2π × d/2) = μ₀(2I) × 2/(2πd) = 4 × μ₀I/(2πd) = 4B. The field becomes four times the original value.",
+    "question_text": "According to Biot-Savart law, the magnetic field dB at a point due to a current element Idl is proportional to:",
+    "explanation": "The Biot-Savart law states dB = (μ₀/4π) × (Idl sinθ)/r². The magnetic field is proportional to sinθ, where θ is the angle between the current element dl and the position vector r joining the element to the point. This arises from the cross product dl × r̂.",
     "correct_answer": "B",
-    "concept_tags": ["infinite-wire", "magnetic-field-proportionality", "inverse-distance"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Infinite straight wire",
+    "concept_tags": ["biot-savart-law", "angular-dependence", "cross-product"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Biot-Savart law formula",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
-    "bloom_level": "apply",
+    "bloom_level": "remember",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "2B", "is_correct": false},
-      {"key": "B", "text": "4B", "is_correct": true},
-      {"key": "C", "text": "B", "is_correct": false},
-      {"key": "D", "text": "8B", "is_correct": false}
+      {"key": "A", "value": "cosθ", "is_correct": false},
+      {"key": "B", "value": "sinθ", "is_correct": true},
+      {"key": "C", "value": "tanθ", "is_correct": false},
+      {"key": "D", "value": "cotθ", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "A", "hint": "This only accounts for the doubling of current but ignores the effect of halving the distance.", "misconception": "Forgetting that B is inversely proportional to distance"},
-      {"option_key": "C", "hint": "Both current and distance changed, so the field cannot remain the same.", "misconception": "Thinking the effects of current and distance cancel out"},
-      {"option_key": "D", "hint": "B is proportional to I/d, not I/d². Halving d gives a factor of 2, not 4.", "misconception": "Confusing inverse-distance with inverse-square dependence"}
+      "A: The Biot-Savart law involves a cross product (dl × r̂), which gives sinθ, not cosθ.",
+      "C: tanθ does not arise from the cross product in the Biot-Savart law expression.",
+      "D: cotθ has no basis in the vector cross product formulation of the Biot-Savart law."
     ]
   },
   {
     "id": "cuet-phy-mag-biot-23",
     "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "mcq",
+    "question_type": "diagram-based",
     "difficulty": "medium",
-    "question_text": "A straight conductor of length L carries a current I. The magnetic field at a point on the perpendicular bisector at a distance d from the conductor is B = (μ₀I/4πd)(2sinα), where α is the half-angle subtended by the conductor. As L → ∞, this expression reduces to:",
-    "explanation": "For a finite straight conductor, B = (μ₀I/4πd)(sinα₁ + sinα₂). On the perpendicular bisector, α₁ = α₂ = α, so B = (μ₀I/4πd)(2sinα). As L → ∞, α → 90°, so sinα → 1. Therefore B = (μ₀I/4πd)(2) = μ₀I/(2πd), which is the well-known result for an infinite straight wire.",
+    "question_text": "A straight conductor of length L carries current I. Point P is located at a perpendicular distance d from the midpoint of the wire, as shown in the figure. If the wire subtends angles θ₁ and θ₂ at point P from its two ends, what is the magnetic field at P?",
+    "image_uri": "diagrams/biot-savart/straight-wire-finite-angles.png",
+    "image_alt": "A finite straight wire carrying current I with point P at perpendicular distance d from the midpoint. Angles θ₁ and θ₂ are subtended at P by the two ends of the wire.",
+    "explanation": "Using the Biot-Savart law for a finite straight conductor, the magnetic field at a perpendicular distance d is B = (μ₀I/4πd)(sinθ₁ + sinθ₂). This is derived by integrating the Biot-Savart law along the length of the wire, where θ₁ and θ₂ are the angles subtended at the perpendicular foot by each end of the wire.",
     "correct_answer": "C",
-    "concept_tags": ["finite-conductor", "infinite-wire-limit", "perpendicular-bisector"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Magnetic field due to straight conductor",
+    "concept_tags": ["finite-straight-wire", "biot-savart-integration", "perpendicular-distance"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field due to straight wire",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
-    "bloom_level": "understand",
+    "bloom_level": "apply",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "μ₀I/(4πd)", "is_correct": false},
-      {"key": "B", "text": "μ₀I/(πd)", "is_correct": false},
-      {"key": "C", "text": "μ₀I/(2πd)", "is_correct": true},
-      {"key": "D", "text": "μ₀I/(4πd²)", "is_correct": false}
+      {"key": "A", "value": "(μ₀I/4πd)(cosθ₁ + cosθ₂)", "is_correct": false},
+      {"key": "B", "value": "(μ₀I/2πd)(sinθ₁ + sinθ₂)", "is_correct": false},
+      {"key": "C", "value": "(μ₀I/4πd)(sinθ₁ + sinθ₂)", "is_correct": true},
+      {"key": "D", "value": "(μ₀I/4πd)(sinθ₁ − sinθ₂)", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "A", "hint": "This is missing the factor of 2 that comes from both halves of the infinite wire contributing equally.", "misconception": "Forgetting the limiting value of 2sinα as L → ∞"},
-      {"option_key": "B", "hint": "This is twice the correct answer. Check the algebra when substituting sinα = 1.", "misconception": "Arithmetic error in simplification"},
-      {"option_key": "D", "hint": "The field of a straight wire depends on 1/d, not 1/d². The inverse-square dependence is for point sources.", "misconception": "Confusing with Coulomb's law distance dependence"}
+      "A: The angular dependence in the finite wire formula involves sine, not cosine functions.",
+      "B: The prefactor is μ₀I/4πd, not μ₀I/2πd; the 2πd form applies only to an infinitely long wire.",
+      "D: Both ends contribute field in the same direction, so the sine terms add rather than subtract."
     ]
   },
   {
     "id": "cuet-phy-mag-biot-24",
     "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "mcq",
-    "difficulty": "medium",
-    "question_text": "Two parallel infinite wires separated by distance a carry currents I₁ and I₂ in the same direction. The magnetic field at a point midway between them is:",
-    "explanation": "At the midpoint, the distance from each wire is a/2. Wire 1 produces B₁ = μ₀I₁/(2π × a/2) = μ₀I₁/(πa) directed (say) into the page. Wire 2 produces B₂ = μ₀I₂/(2π × a/2) = μ₀I₂/(πa) directed out of the page (by right-hand rule, since currents are in the same direction, the fields at the midpoint are in opposite directions). The net field is B = μ₀(I₁ − I₂)/(πa). When I₁ = I₂, the net field is zero.",
-    "correct_answer": "D",
-    "concept_tags": ["superposition", "parallel-wires", "right-hand-rule"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Superposition of magnetic fields",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The magnetic field at the centre of a circular current-carrying loop of radius R and current I is given by B = μ₀I/2R.",
+    "explanation": "This is a standard result derived from the Biot-Savart law. For a circular loop, every current element is at the same distance R from the centre and is perpendicular to the position vector joining the element to the centre (sinθ = 1). Integrating dB = (μ₀I dl)/(4πR²) over the full circumference 2πR gives B = μ₀I(2πR)/(4πR²) = μ₀I/(2R). The statement is TRUE.",
+    "correct_answer": "A",
+    "concept_tags": ["circular-loop", "centre-magnetic-field", "standard-result"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field at center of circular loop",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
-    "bloom_level": "analyze",
+    "bloom_level": "remember",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "μ₀(I₁ + I₂)/(πa), always additive", "is_correct": false},
-      {"key": "B", "text": "Zero, regardless of the values of I₁ and I₂", "is_correct": false},
-      {"key": "C", "text": "μ₀I₁I₂/(πa²), proportional to the product of currents", "is_correct": false},
-      {"key": "D", "text": "μ₀(I₁ − I₂)/(πa), and zero when I₁ = I₂", "is_correct": true}
+      {"key": "A", "value": "True", "is_correct": true},
+      {"key": "B", "value": "False", "is_correct": false},
+      {"key": "C", "value": "---", "is_correct": false},
+      {"key": "D", "value": "---", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "A", "hint": "For same-direction currents, the fields at the midpoint oppose each other, not add.", "misconception": "Ignoring direction of magnetic field when applying superposition"},
-      {"option_key": "B", "hint": "The field is zero only when I₁ = I₂. For unequal currents, there is a net field.", "misconception": "Assuming cancellation without checking current magnitudes"},
-      {"option_key": "C", "hint": "Magnetic field uses superposition (addition/subtraction of B), not multiplication of currents.", "misconception": "Confusing force between wires with field superposition"}
+      "B: The formula B = μ₀I/2R is a well-established standard result derived directly from the Biot-Savart law for a circular loop.",
+      "C: This is a placeholder option, not applicable.",
+      "D: This is a placeholder option, not applicable."
     ]
   },
   {
@@ -112,382 +114,384 @@
     "chapter_id": "cuet-phy-magnetic-effects",
     "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "A wire carrying current I is bent into a circular arc of radius R subtending an angle of 60° at its centre. The magnitude of the magnetic field at the centre of the arc is:",
-    "explanation": "The magnetic field at the centre of a circular arc subtending angle θ (in radians) is B = (μ₀I/2R)(θ/2π). For a 60° arc, θ = π/3 radians. Therefore B = (μ₀I/2R)(π/3)/(2π) = (μ₀I/2R)(1/6) = μ₀I/(12R).",
-    "correct_answer": "A",
-    "concept_tags": ["circular-arc", "magnetic-field-centre", "angle-subtended"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Magnetic field at centre of arc/semicircle",
+    "question_text": "The magnetic field on the axis of a circular loop at a distance x from its centre is B = μ₀IR²/[2(R² + x²)^(3/2)]. At what value of x is this field maximum?",
+    "explanation": "The axial field B = μ₀IR²/[2(R² + x²)^(3/2)] is maximum when the denominator (R² + x²)^(3/2) is minimum. Since R is a constant and x² ≥ 0, the denominator is smallest when x = 0. At the centre, B = μ₀I/(2R), which is the maximum value of the axial field.",
+    "correct_answer": "D",
+    "concept_tags": ["axial-field", "circular-loop", "maximum-field"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field on axis of loop",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
-    "bloom_level": "apply",
+    "bloom_level": "understand",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "μ₀I/(12R)", "is_correct": true},
-      {"key": "B", "text": "μ₀I/(6R)", "is_correct": false},
-      {"key": "C", "text": "μ₀I/(4R)", "is_correct": false},
-      {"key": "D", "text": "μ₀I/(2R)", "is_correct": false}
+      {"key": "A", "value": "x = R", "is_correct": false},
+      {"key": "B", "value": "x = R/2", "is_correct": false},
+      {"key": "C", "value": "x = 2R", "is_correct": false},
+      {"key": "D", "value": "x = 0 (at the centre)", "is_correct": true}
     ],
     "elimination_hints": [
-      {"option_key": "B", "hint": "This would be for a 120° arc (one-third of a full circle), not 60°.", "misconception": "Incorrectly computing the fraction of the circle"},
-      {"option_key": "C", "hint": "This is for a semicircular arc (180°), not 60°.", "misconception": "Confusing a 60° arc with a semicircle"},
-      {"option_key": "D", "hint": "This is for a full circular loop (360°). A 60° arc is only 1/6 of the full circle.", "misconception": "Using the full-loop formula without scaling by the arc fraction"}
+      "A: At x = R, the denominator becomes (2R²)^(3/2) = 2√2 R³, which is larger than R³, so the field is weaker than at the centre.",
+      "B: At x = R/2, the denominator is (5R²/4)^(3/2), which is greater than R³, giving a smaller field.",
+      "C: At x = 2R the field is even weaker since the denominator grows rapidly with distance."
     ]
   },
   {
     "id": "cuet-phy-mag-biot-26",
     "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "mcq",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
-    "question_text": "The magnetic field at the centre of a circular coil of radius R carrying current I is B₀. The magnetic field on the axis of the same coil at a distance R from the centre is:",
-    "explanation": "The field at the centre is B₀ = μ₀I/(2R). The field on the axis at distance x from the centre is B = (μ₀IR²)/(2(R² + x²)^(3/2)). At x = R: B = (μ₀IR²)/(2(R² + R²)^(3/2)) = (μ₀IR²)/(2(2R²)^(3/2)) = (μ₀IR²)/(2 × 2√2 × R³) = μ₀I/(4√2 R) = B₀/(2√2). This can also be written as B₀√2/4.",
-    "correct_answer": "C",
-    "concept_tags": ["circular-loop-axis", "axial-field", "distance-dependence"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Magnetic field due to circular loop on axis",
-    "subject": "cuet-physics",
-    "chapter": "Magnetic Effects of Current",
-    "bloom_level": "apply",
-    "exam_suitability": ["CUET", "NEET"],
-    "options": [
-      {"key": "A", "text": "B₀/2", "is_correct": false},
-      {"key": "B", "text": "B₀/4", "is_correct": false},
-      {"key": "C", "text": "B₀/(2√2)", "is_correct": true},
-      {"key": "D", "text": "B₀/√2", "is_correct": false}
-    ],
-    "elimination_hints": [
-      {"option_key": "A", "hint": "This ignores the (R² + x²)^(3/2) factor in the denominator. The decay is not simply 1/2 at x = R.", "misconception": "Assuming linear decay of field along axis"},
-      {"option_key": "B", "hint": "Check the power of (2R²)^(3/2). It equals 2√2 R³, not 4R³.", "misconception": "Error in evaluating (2)^(3/2)"},
-      {"option_key": "D", "hint": "This would require (R² + x²)^(3/2) = √2 R³, which is not correct for x = R.", "misconception": "Algebraic error in the axial field formula"}
-    ]
-  },
-  {
-    "id": "cuet-phy-mag-biot-27",
-    "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "mcq",
-    "difficulty": "hard",
-    "question_text": "A wire of length L carrying current I is bent into a regular hexagon. The magnetic field at the centre of the hexagon is:",
-    "explanation": "A regular hexagon has 6 sides, each of length L/6. The perpendicular distance from the centre to each side is d = (L/6)(√3/2) = L√3/12. Each side subtends angles α = β = 30° at the foot of the perpendicular from the centre. The field due to one side at the centre is B₁ = (μ₀I/4πd)(sin30° + sin30°) = (μ₀I/4πd)(1) = μ₀I/(4πd). Substituting d = L√3/12: B₁ = μ₀I/(4π × L√3/12) = 12μ₀I/(4πL√3) = 3μ₀I/(πL√3) = √3μ₀I/(πL). For 6 sides, all fields point in the same direction, so B = 6B₁ = 6√3μ₀I/(πL).",
-    "correct_answer": "B",
-    "concept_tags": ["regular-polygon", "straight-conductor", "superposition"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Superposition of magnetic fields",
+    "question_text": "Assertion (A): The Biot-Savart law is analogous to Coulomb's law in electrostatics.\nReason (R): Both laws follow an inverse-square dependence on distance and involve a proportionality constant that depends on the medium.",
+    "explanation": "Both statements are correct. The Biot-Savart law (dB ∝ 1/r²) and Coulomb's law (F ∝ 1/r²) are inverse-square laws. Both contain medium-dependent proportionality constants (μ₀/4π for Biot-Savart and 1/4πε₀ for Coulomb's law). Although the Biot-Savart law has an additional angular dependence (sinθ from the cross product), the analogy in terms of inverse-square dependence and medium-dependent constants is the fundamental basis for comparing the two laws. R correctly explains why A holds.",
+    "correct_answer": "A",
+    "concept_tags": ["biot-savart-coulomb-analogy", "inverse-square-law", "proportionality-constant"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Comparison with Coulomb's law",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
     "bloom_level": "analyze",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "3√3μ₀I/(πL)", "is_correct": false},
-      {"key": "B", "text": "6√3μ₀I/(πL)", "is_correct": true},
-      {"key": "C", "text": "2√3μ₀I/(πL)", "is_correct": false},
-      {"key": "D", "text": "12√3μ₀I/(πL)", "is_correct": false}
+      {"key": "A", "value": "Both A and R are true and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "value": "Both A and R are true but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "value": "A is true but R is false", "is_correct": false},
+      {"key": "D", "value": "A is false but R is true", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "A", "hint": "This accounts for only 3 of the 6 sides. All six sides contribute equally and in the same direction.", "misconception": "Thinking opposite sides cancel each other"},
-      {"option_key": "C", "hint": "This would correspond to only 2 sides contributing. Recheck the multiplication factor.", "misconception": "Incorrect count of contributing sides"},
-      {"option_key": "D", "hint": "This is double the correct answer. Verify the field per side calculation carefully.", "misconception": "Error in computing the perpendicular distance to the centre"}
+      "B: The inverse-square dependence and medium-dependent constants are precisely the reasons for the analogy, so R does explain A.",
+      "C: R is factually correct — both laws do have inverse-square dependence and medium-dependent constants.",
+      "D: A is correct — the Biot-Savart law is indeed considered analogous to Coulomb's law in standard physics textbooks."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-biot-27",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "Two identical circular loops of radius R, each carrying current I in the same direction, are placed coaxially and separated by a distance R (Helmholtz coil configuration), as shown in the figure. What is the magnetic field at the midpoint between the two loops?",
+    "image_uri": "diagrams/biot-savart/helmholtz-coil-midpoint.png",
+    "image_alt": "Two coaxial circular loops of radius R separated by distance R along their common axis, both carrying current I in the same direction. The midpoint M is marked at distance R/2 from each loop centre.",
+    "explanation": "At the midpoint, the distance from each loop is R/2. The field from each loop is B₁ = μ₀IR²/[2(R² + R²/4)^(3/2)] = μ₀IR²/[2(5R²/4)^(3/2)] = μ₀IR²/[2 × (5√5/8)R³] = 4μ₀I/(5√5 R). Since both loops produce fields in the same direction at the midpoint, the total field is B = 2 × 4μ₀I/(5√5 R) = 8μ₀I/(5√5 R).",
+    "correct_answer": "B",
+    "concept_tags": ["helmholtz-coil", "superposition", "axial-field", "coaxial-loops"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Superposition of magnetic fields",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "4μ₀I/(5√5 R)", "is_correct": false},
+      {"key": "B", "value": "8μ₀I/(5√5 R)", "is_correct": true},
+      {"key": "C", "value": "μ₀I/(2R)", "is_correct": false},
+      {"key": "D", "value": "μ₀I/R", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A: This is the contribution from only one loop; since both loops contribute equally in the same direction, the total is double this value.",
+      "C: μ₀I/(2R) is the field at the centre of a single loop, not at the midpoint of two loops separated by distance R.",
+      "D: μ₀I/R would be twice the single-loop centre field, but the Helmholtz geometry gives a different result due to the axial distance."
     ]
   },
   {
     "id": "cuet-phy-mag-biot-28",
     "chapter_id": "cuet-phy-magnetic-effects",
     "question_type": "mcq",
-    "difficulty": "hard",
-    "question_text": "A circular loop of radius R carries current I. At a large distance x (x >> R) along its axis, the magnetic field varies as:",
-    "explanation": "The magnetic field on the axis of a circular loop is B = (μ₀IR²)/(2(R² + x²)^(3/2)). When x >> R, R² + x² ≈ x², so (R² + x²)^(3/2) ≈ x³. Therefore B ≈ μ₀IR²/(2x³), which shows B ∝ 1/x³. This is identical to the far-field behaviour of a magnetic dipole, where B ∝ 1/x³ along the axis.",
-    "correct_answer": "D",
-    "concept_tags": ["circular-loop-axis", "far-field", "magnetic-dipole"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Magnetic field due to circular loop on axis",
-    "subject": "cuet-physics",
-    "chapter": "Magnetic Effects of Current",
-    "bloom_level": "analyze",
-    "exam_suitability": ["CUET", "NEET"],
-    "options": [
-      {"key": "A", "text": "B ∝ 1/x", "is_correct": false},
-      {"key": "B", "text": "B ∝ 1/x²", "is_correct": false},
-      {"key": "C", "text": "B ∝ 1/x⁴", "is_correct": false},
-      {"key": "D", "text": "B ∝ 1/x³", "is_correct": true}
-    ],
-    "elimination_hints": [
-      {"option_key": "A", "hint": "1/x dependence applies to an infinite straight wire, not a circular loop at large distances.", "misconception": "Confusing straight-wire field with loop field"},
-      {"option_key": "B", "hint": "1/x² would be for a point charge electric field (Coulomb's law). The loop behaves as a dipole with 1/x³.", "misconception": "Applying inverse-square law to a magnetic dipole"},
-      {"option_key": "C", "hint": "The exponent 3 comes from (x²)^(3/2) = x³. A 1/x⁴ dependence would require a quadrupole.", "misconception": "Overestimating the power in the far-field approximation"}
-    ]
-  },
-  {
-    "id": "cuet-phy-mag-biot-29",
-    "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "diagram-based",
-    "difficulty": "easy",
-    "question_text": "The diagram shows a long straight wire carrying current I in the upward direction. What is the direction of the magnetic field at point P located to the right of the wire?",
-    "image_uri": "diagrams/cuet-phy-mag-biot-29.png",
-    "image_alt": "A vertical straight wire carrying current I upward, with point P marked to the right of the wire at perpendicular distance d",
-    "explanation": "Using the right-hand rule for a straight current-carrying wire: point the thumb of the right hand in the direction of current (upward). The curled fingers indicate the direction of the magnetic field. At point P (to the right), the fingers point out of the page (toward the observer). Therefore the field at P is directed out of the page.",
-    "correct_answer": "B",
-    "concept_tags": ["right-hand-rule", "straight-wire", "field-direction"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Right-hand rule and direction of B",
-    "subject": "cuet-physics",
-    "chapter": "Magnetic Effects of Current",
-    "bloom_level": "understand",
-    "exam_suitability": ["CUET", "NEET"],
-    "options": [
-      {"key": "A", "text": "Into the page", "is_correct": false},
-      {"key": "B", "text": "Out of the page", "is_correct": true},
-      {"key": "C", "text": "Upward, parallel to the current", "is_correct": false},
-      {"key": "D", "text": "Toward the wire", "is_correct": false}
-    ],
-    "elimination_hints": [
-      {"option_key": "A", "hint": "Into the page would be the direction at a point to the left of the wire, not to the right.", "misconception": "Reversing the right-hand rule direction"},
-      {"option_key": "C", "hint": "Magnetic field lines form closed loops around the wire; they are never parallel to the current.", "misconception": "Confusing electric and magnetic field directions"},
-      {"option_key": "D", "hint": "Magnetic field lines are tangential to circles around the wire, not radial.", "misconception": "Confusing with electric field of a line charge"}
-    ]
-  },
-  {
-    "id": "cuet-phy-mag-biot-30",
-    "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "diagram-based",
     "difficulty": "medium",
-    "question_text": "The diagram shows a wire bent into a semicircular arc of radius R connected to two long straight segments. A current I flows through the wire as shown. The magnetic field at the centre O of the semicircle is:",
-    "image_uri": "diagrams/cuet-phy-mag-biot-30.png",
-    "image_alt": "A wire with current I flowing from left, through a semicircular arc of radius R (upper half), and continuing to the right. Point O is at the centre of the semicircle.",
-    "explanation": "The two straight segments pass through (or their extensions pass through) the centre O. For a straight wire, the field at any point along its own line is zero because the angle between dl and r̂ is 0° or 180°, making the cross product zero. Only the semicircular arc contributes. The field at the centre of a semicircular arc is B = μ₀I/(4R), directed into or out of the page depending on the current direction.",
-    "correct_answer": "A",
-    "concept_tags": ["semicircular-arc", "straight-segment-contribution", "superposition"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Magnetic field at centre of arc/semicircle",
+    "question_text": "A long straight wire carries a current of 10 A. At what perpendicular distance from the wire is the magnetic field equal to 1 × 10⁻⁵ T? (Use μ₀ = 4π × 10⁻⁷ T·m/A)",
+    "explanation": "For an infinitely long straight wire, B = μ₀I/(2πr). Substituting the given values: 1 × 10⁻⁵ = (4π × 10⁻⁷ × 10)/(2πr) = (4 × 10⁻⁶)/(2r). Solving for r: r = (4 × 10⁻⁶)/(2 × 10⁻⁵) = 0.2 m = 20 cm.",
+    "correct_answer": "C",
+    "concept_tags": ["infinite-straight-wire", "numerical-calculation", "perpendicular-distance"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field due to straight wire",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
     "bloom_level": "apply",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "μ₀I/(4R), due to the semicircular part only", "is_correct": true},
-      {"key": "B", "text": "μ₀I/(2R), due to both straight and curved parts", "is_correct": false},
-      {"key": "C", "text": "μ₀I/(4R) + μ₀I/(2πR), including straight wire contributions", "is_correct": false},
-      {"key": "D", "text": "Zero, because the straight parts cancel the semicircular contribution", "is_correct": false}
+      {"key": "A", "value": "10 cm", "is_correct": false},
+      {"key": "B", "value": "40 cm", "is_correct": false},
+      {"key": "C", "value": "20 cm", "is_correct": true},
+      {"key": "D", "value": "5 cm", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "B", "hint": "μ₀I/(2R) is for a complete circular loop. A semicircle gives half this value, and the straight parts contribute zero at O.", "misconception": "Treating the semicircle as a full loop"},
-      {"option_key": "C", "hint": "The straight segments produce zero field at O because the current direction is along the line joining dl and O (sinθ = 0).", "misconception": "Assuming straight segments always contribute to the field"},
-      {"option_key": "D", "hint": "The straight parts give zero field at O, not a field that cancels the semicircular contribution.", "misconception": "Incorrectly applying superposition with cancellation"}
+      "A: At 10 cm, B = 2 × 10⁻⁵ T, which is double the required value.",
+      "B: At 40 cm, B = 0.5 × 10⁻⁵ T, which is half the required value.",
+      "D: At 5 cm, B = 4 × 10⁻⁵ T, which is four times the required value."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-biot-29",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "fill-in-blanks",
+    "difficulty": "easy",
+    "question_text": "The SI unit of the magnetic field intensity (B) as obtained from the Biot-Savart law is ________.",
+    "explanation": "The SI unit of magnetic field intensity is the Tesla (T), named after Nikola Tesla. In the Biot-Savart law expression dB = (μ₀/4π)(Idl sinθ/r²), the dimensional analysis gives [T·m/A][A·m]/[m²] = T. The CGS unit is Gauss (1 T = 10⁴ Gauss), but the SI unit is Tesla.",
+    "correct_answer": "D",
+    "concept_tags": ["si-units", "tesla", "magnetic-field-unit"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Biot-Savart law formula",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Weber", "is_correct": false},
+      {"key": "B", "value": "Henry", "is_correct": false},
+      {"key": "C", "value": "Gauss", "is_correct": false},
+      {"key": "D", "value": "Tesla", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "A: Weber (Wb) is the SI unit of magnetic flux, not the magnetic field.",
+      "B: Henry (H) is the SI unit of inductance, not the magnetic field.",
+      "C: Gauss is the CGS unit of magnetic field; the question asks for the SI unit, which is Tesla."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-biot-30",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The ratio of the magnetic field at the centre of a circular coil of radius R carrying current I to the field at a point on its axis at distance R from the centre is:",
+    "explanation": "At the centre (x = 0): B_centre = μ₀I/(2R). At axial distance x = R: B_axis = μ₀IR²/[2(R² + R²)^(3/2)] = μ₀IR²/[2(2R²)^(3/2)] = μ₀IR²/[2 × 2√2 R³] = μ₀I/(4√2 R). The ratio B_centre/B_axis = [μ₀I/(2R)] / [μ₀I/(4√2 R)] = 4√2/2 = 2√2.",
+    "correct_answer": "C",
+    "concept_tags": ["axial-field", "centre-field", "field-ratio", "circular-loop"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field on axis of loop",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "2", "is_correct": false},
+      {"key": "B", "value": "√2", "is_correct": false},
+      {"key": "C", "value": "2√2", "is_correct": true},
+      {"key": "D", "value": "4√2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A: A ratio of 2 ignores the √2 factor arising from (2R²)^(3/2) = 2√2 R³.",
+      "B: √2 underestimates the ratio; the correct calculation yields an additional factor of 2.",
+      "D: 4√2 overestimates the ratio by an extra factor of 2; recheck the algebra carefully."
     ]
   },
   {
     "id": "cuet-phy-mag-biot-31",
     "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "diagram-based",
+    "question_type": "mcq",
     "difficulty": "medium",
-    "question_text": "The diagram shows two concentric circular loops of radii R and 2R lying in the same plane, carrying currents I and 2I respectively in opposite directions. The net magnetic field at the common centre O is:",
-    "image_uri": "diagrams/cuet-phy-mag-biot-31.png",
-    "image_alt": "Two concentric coplanar circular loops: inner loop of radius R carrying current I clockwise, outer loop of radius 2R carrying current 2I anticlockwise, with centre O marked",
-    "explanation": "The field at the centre due to the inner loop is B₁ = μ₀I/(2R), directed into the page (for clockwise current). The field due to the outer loop is B₂ = μ₀(2I)/(2 × 2R) = μ₀I/(2R), directed out of the page (for anticlockwise current). Since the currents are in opposite directions, B₁ and B₂ are in opposite directions with equal magnitudes. Therefore the net field at O is B₁ − B₂ = 0.",
-    "correct_answer": "C",
-    "concept_tags": ["concentric-loops", "superposition", "field-cancellation"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Superposition of magnetic fields",
+    "question_text": "A wire carrying current I is bent into a circular arc of radius R subtending an angle of 60° at its centre. The magnetic field at the centre of the arc is:",
+    "explanation": "The magnetic field at the centre of a circular arc subtending angle θ (in radians) is B = (μ₀I/4πR) × θ. For θ = 60° = π/3 radians: B = (μ₀I/4πR)(π/3) = μ₀I/(12R). Alternatively, a 60° arc is 1/6 of a full circle, so B = (1/6) × μ₀I/(2R) = μ₀I/(12R).",
+    "correct_answer": "B",
+    "concept_tags": ["circular-arc", "magnetic-field-centre", "fractional-loop"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field at center of circular loop",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
-    "bloom_level": "analyze",
+    "bloom_level": "apply",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "μ₀I/(2R), into the page", "is_correct": false},
-      {"key": "B", "text": "μ₀I/(2R), out of the page", "is_correct": false},
-      {"key": "C", "text": "Zero", "is_correct": true},
-      {"key": "D", "text": "μ₀I/R, into the page", "is_correct": false}
+      {"key": "A", "value": "μ₀I/(6R)", "is_correct": false},
+      {"key": "B", "value": "μ₀I/(12R)", "is_correct": true},
+      {"key": "C", "value": "μ₀I/(4R)", "is_correct": false},
+      {"key": "D", "value": "μ₀I/(2R)", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "A", "hint": "This is only the field from the inner loop. You must also account for the outer loop's opposing field.", "misconception": "Ignoring the contribution of the outer loop"},
-      {"option_key": "B", "hint": "This is only the field from the outer loop. Both loops must be considered together.", "misconception": "Ignoring the contribution of the inner loop"},
-      {"option_key": "D", "hint": "The fields oppose each other and are equal in magnitude, so they cancel rather than add.", "misconception": "Adding magnitudes without considering direction"}
+      "A: μ₀I/(6R) would correspond to a 120° arc (one-third of a full circle), not a 60° arc.",
+      "C: μ₀I/(4R) is the field for a semicircular arc (180°), which is three times larger than 60°.",
+      "D: μ₀I/(2R) is the field at the centre of a complete circular loop (360°), not a 60° arc."
     ]
   },
   {
     "id": "cuet-phy-mag-biot-32",
     "chapter_id": "cuet-phy-magnetic-effects",
     "question_type": "diagram-based",
-    "difficulty": "hard",
-    "question_text": "The diagram shows a wire carrying current I bent into the shape of two concentric semicircular arcs of radii R₁ and R₂ (R₂ > R₁) connected by two straight radial segments. The net magnetic field at the common centre O is:",
-    "image_uri": "diagrams/cuet-phy-mag-biot-32.png",
-    "image_alt": "A wire carrying current I forming an inner semicircular arc of radius R₁ in the upper half and an outer semicircular arc of radius R₂ in the lower half, connected by straight radial segments, with centre O marked",
-    "explanation": "The straight radial segments pass through centre O, so they contribute zero field (dl is parallel to r̂, making the cross product zero). The inner semicircular arc (upper) produces B₁ = μ₀I/(4R₁) in one direction. The outer semicircular arc (lower) carries current in the opposite sense relative to O, so it produces B₂ = μ₀I/(4R₂) in the same direction as B₁ (both into or both out of the page, since the current traverses them in the same rotational sense around O). The net field is B = (μ₀I/4)(1/R₁ + 1/R₂).",
-    "correct_answer": "D",
-    "concept_tags": ["composite-loop", "semicircular-arcs", "superposition", "radial-segments"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Magnetic field at centre of arc/semicircle",
+    "difficulty": "medium",
+    "question_text": "The diagram shows a long straight wire carrying current I in the upward direction. What is the direction of the magnetic field at point P located to the right of the wire?",
+    "image_uri": "diagrams/biot-savart/straight-wire-right-hand-rule.png",
+    "image_alt": "A vertical straight wire carrying current I upward, with point P marked to the right of the wire at a perpendicular distance d. Concentric circular field lines are shown around the wire.",
+    "explanation": "Using the right-hand rule for a straight current-carrying wire: point the thumb of the right hand in the direction of current (upward). The curled fingers indicate the direction of the magnetic field lines, which form concentric circles around the wire. At point P (to the right of the wire), the fingers curl out of the page. Therefore the field at P is directed out of the page.",
+    "correct_answer": "B",
+    "concept_tags": ["right-hand-rule", "straight-wire", "field-direction"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field due to straight wire",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
-    "bloom_level": "analyze",
+    "bloom_level": "understand",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "(μ₀I/4)(1/R₁ − 1/R₂)", "is_correct": false},
-      {"key": "B", "text": "μ₀I/(4R₁) only, as the outer arc contribution is negligible", "is_correct": false},
-      {"key": "C", "text": "μ₀I/(4R₂) only, as the inner arc contribution cancels with the straight parts", "is_correct": false},
-      {"key": "D", "text": "(μ₀I/4)(1/R₁ + 1/R₂)", "is_correct": true}
+      {"key": "A", "value": "Into the page", "is_correct": false},
+      {"key": "B", "value": "Out of the page", "is_correct": true},
+      {"key": "C", "value": "Upward, parallel to the current", "is_correct": false},
+      {"key": "D", "value": "Toward the wire (radially inward)", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "A", "hint": "Subtraction would apply if the two arcs produced fields in opposite directions. Trace the current carefully: both arcs create fields in the same direction at O.", "misconception": "Incorrectly assuming opposite field directions for the two arcs"},
-      {"option_key": "B", "hint": "The outer arc also contributes to the field. A larger radius gives a smaller but non-zero contribution.", "misconception": "Neglecting the outer arc's contribution"},
-      {"option_key": "C", "hint": "Straight radial segments produce zero field at O (dl ∥ r̂), so they cannot cancel anything.", "misconception": "Thinking radial segments contribute to the field"}
+      "A: Into the page would be the field direction at a point to the left of the wire, not to the right.",
+      "C: Magnetic field lines form closed loops around the wire; they are never parallel to the current direction.",
+      "D: Magnetic field lines are tangential to concentric circles around the wire, not radially directed toward or away from it."
     ]
   },
   {
     "id": "cuet-phy-mag-biot-33",
     "chapter_id": "cuet-phy-magnetic-effects",
     "question_type": "assertion-reasoning",
-    "difficulty": "medium",
-    "question_text": "Assertion (A): Both Biot-Savart law and Coulomb's law are inverse-square laws, but the Biot-Savart law has an additional angle dependence through the cross product.\n\nReason (R): In Biot-Savart law, the magnetic field depends on sinθ (from dl × r̂), whereas in Coulomb's law, the electric field has no such angular dependence for a point charge.",
-    "explanation": "Both statements are correct. The Biot-Savart law dB = (μ₀/4π)(Idl × r̂)/r² is an inverse-square law like Coulomb's law F = (1/4πε₀)(q₁q₂/r²)r̂, but it has an extra sinθ factor from the cross product. Coulomb's law for a point charge is spherically symmetric with no angular dependence. Furthermore, R correctly explains why A is true: the cross product dl × r̂ introduces the sinθ factor that makes Biot-Savart angle-dependent, unlike Coulomb's law.",
-    "correct_answer": "A",
-    "concept_tags": ["biot-savart-coulomb-comparison", "inverse-square-law", "angle-dependence"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Comparison of Biot-Savart with Coulomb's law",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The magnetic field at the centre of a current-carrying circular loop is always perpendicular to the plane of the loop.\nReason (R): According to the Biot-Savart law, each current element of the loop contributes a field at the centre that lies in the plane of the loop.",
+    "explanation": "Assertion A is correct: at the centre of a circular loop, every current element dl and the position vector r (from the element to the centre) both lie in the plane of the loop. Their cross product dl × r̂ is therefore perpendicular to the plane for every element. Since all such contributions point in the same perpendicular direction, the net field is perpendicular to the plane. Reason R is incorrect: it states that each element's contribution lies in the plane, whereas dl × r̂ is actually perpendicular to the plane, not in it.",
+    "correct_answer": "C",
+    "concept_tags": ["circular-loop-centre", "cross-product-direction", "field-perpendicularity"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field at center of circular loop",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
-    "bloom_level": "understand",
+    "bloom_level": "analyze",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": true},
-      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
-      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": false},
-      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+      {"key": "A", "value": "Both A and R are true and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "value": "Both A and R are true but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "value": "A is true but R is false", "is_correct": true},
+      {"key": "D", "value": "A is false but R is true", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "B", "hint": "R directly explains why Biot-Savart has angle dependence (sinθ from cross product) while Coulomb's law does not. This is exactly the explanation for A.", "misconception": "Failing to see the causal link between R and A"},
-      {"option_key": "C", "hint": "R is factually correct: sinθ does arise from the cross product, and Coulomb's law for a point charge has no angular dependence.", "misconception": "Incorrectly thinking Coulomb's law has angular dependence"},
-      {"option_key": "D", "hint": "A is correct: Biot-Savart law is indeed an inverse-square law with additional angle dependence from the cross product.", "misconception": "Denying that Biot-Savart law is an inverse-square law"}
+      "A: R claims dB lies in the plane, but dl × r̂ (where both dl and r̂ lie in the plane) is always perpendicular to the plane.",
+      "B: R is not correct at all; the cross product of two in-plane vectors is always perpendicular to the plane, not in it.",
+      "D: A is definitely correct; the net field at the centre of a circular loop is always perpendicular to the plane of the loop."
     ]
   },
   {
     "id": "cuet-phy-mag-biot-34",
     "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "assertion-reasoning",
-    "difficulty": "hard",
-    "question_text": "Assertion (A): The magnetic field at the centre of a current-carrying circular loop is always perpendicular to the plane of the loop.\n\nReason (R): According to Biot-Savart law, each current element of the loop contributes a field at the centre that lies in the plane of the loop.",
-    "explanation": "Assertion A is correct: at the centre of a circular loop, every current element dl and the position vector r̂ (from the element to the centre) both lie in the plane of the loop. The cross product dl × r̂ is therefore perpendicular to this plane for every element. Since all contributions point in the same perpendicular direction, the net field is perpendicular to the plane. Reason R is incorrect: it states that each element's contribution lies in the plane, but dl × r̂ is actually perpendicular to the plane, not in it.",
-    "correct_answer": "C",
-    "concept_tags": ["circular-loop-centre", "cross-product-direction", "biot-savart-application"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Magnetic field due to circular loop at centre",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The magnetic field due to an infinitely long straight wire carrying current I varies inversely as the square of the perpendicular distance from the wire (B ∝ 1/d²).",
+    "explanation": "This statement is FALSE. The magnetic field due to an infinitely long straight current-carrying wire is B = μ₀I/(2πd), which shows B is inversely proportional to the first power of distance (B ∝ 1/d), not the square. The inverse-square dependence (1/r²) appears in Coulomb's law for a point charge and in the Biot-Savart law for a single current element, but integration over an infinite wire yields a 1/d dependence.",
+    "correct_answer": "B",
+    "concept_tags": ["infinite-wire", "distance-dependence", "inverse-distance"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field due to straight wire",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
-    "bloom_level": "analyze",
+    "bloom_level": "remember",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "Both A and R are correct and R is the correct explanation of A", "is_correct": false},
-      {"key": "B", "text": "Both A and R are correct but R is NOT the correct explanation of A", "is_correct": false},
-      {"key": "C", "text": "A is correct but R is incorrect", "is_correct": true},
-      {"key": "D", "text": "A is incorrect but R is correct", "is_correct": false}
+      {"key": "A", "value": "True", "is_correct": false},
+      {"key": "B", "value": "False", "is_correct": true},
+      {"key": "C", "value": "---", "is_correct": false},
+      {"key": "D", "value": "---", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "A", "hint": "R claims dB lies in the plane, but dB = dl × r̂ is perpendicular to the plane since both dl and r̂ lie in the plane.", "misconception": "Confusing the plane of dl and r̂ with the direction of their cross product"},
-      {"option_key": "B", "hint": "R is not correct at all. The cross product of two in-plane vectors is always perpendicular to the plane.", "misconception": "Accepting R as correct without verifying the cross-product direction"},
-      {"option_key": "D", "hint": "A is definitely correct. The symmetry of the loop ensures all dB contributions add up perpendicular to the plane.", "misconception": "Doubting a well-established result about circular loop fields"}
+      "A: Recall B = μ₀I/(2πd) for an infinite wire; d appears to the first power in the denominator, not d².",
+      "C: This is a placeholder option, not applicable.",
+      "D: This is a placeholder option, not applicable."
     ]
   },
   {
     "id": "cuet-phy-mag-biot-35",
     "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "true-false",
-    "difficulty": "easy",
-    "question_text": "The Biot-Savart law, like Coulomb's law, obeys the principle of superposition, meaning the total magnetic field at a point due to several current-carrying conductors is the vector sum of the fields produced by each conductor individually.",
-    "explanation": "This statement is TRUE. The principle of superposition applies to both electric and magnetic fields. The total magnetic field at any point due to multiple current sources is obtained by taking the vector sum of the individual magnetic fields produced by each source. This is a fundamental property used extensively in calculating magnetic fields of complex current configurations.",
-    "correct_answer": "A",
-    "concept_tags": ["superposition-principle", "biot-savart-law", "vector-addition"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Superposition of magnetic fields",
-    "subject": "cuet-physics",
-    "chapter": "Magnetic Effects of Current",
-    "bloom_level": "remember",
-    "exam_suitability": ["CUET", "NEET"],
-    "options": [
-      {"key": "A", "text": "True", "is_correct": true},
-      {"key": "B", "text": "False", "is_correct": false},
-      {"key": "C", "text": "---", "is_correct": false},
-      {"key": "D", "text": "---", "is_correct": false}
-    ],
-    "elimination_hints": [
-      {"option_key": "B", "hint": "Superposition is valid for all electromagnetic fields in free space. Magnetic fields from different sources add vectorially.", "misconception": "Thinking superposition fails for magnetic fields"}
-    ]
-  },
-  {
-    "id": "cuet-phy-mag-biot-36",
-    "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "true-false",
-    "difficulty": "easy",
-    "question_text": "The magnetic field due to an infinitely long straight wire carrying current I varies inversely as the square of the perpendicular distance from the wire (B ∝ 1/d²).",
-    "explanation": "This statement is FALSE. The magnetic field due to an infinitely long straight current-carrying wire is B = μ₀I/(2πd), which shows that B varies inversely as the first power of distance (B ∝ 1/d), not as the square of the distance. The inverse-square dependence (1/r²) appears in Coulomb's law for a point charge, not in the magnetic field of an infinite wire.",
-    "correct_answer": "B",
-    "concept_tags": ["infinite-wire", "distance-dependence", "inverse-distance"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Infinite straight wire",
-    "subject": "cuet-physics",
-    "chapter": "Magnetic Effects of Current",
-    "bloom_level": "remember",
-    "exam_suitability": ["CUET", "NEET"],
-    "options": [
-      {"key": "A", "text": "True", "is_correct": false},
-      {"key": "B", "text": "False", "is_correct": true},
-      {"key": "C", "text": "---", "is_correct": false},
-      {"key": "D", "text": "---", "is_correct": false}
-    ],
-    "elimination_hints": [
-      {"option_key": "A", "hint": "Recall B = μ₀I/(2πd) for an infinite wire. The d is in the first power in the denominator, not squared.", "misconception": "Confusing the 1/r² in Biot-Savart law (for a point element) with the integrated result for an infinite wire"}
-    ]
-  },
-  {
-    "id": "cuet-phy-mag-biot-37",
-    "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "fill-in-blanks",
-    "difficulty": "easy",
-    "question_text": "A circular coil of radius 0.1 m carrying a current of 3.14 A has ________ turns if the magnetic field at its centre is 2 × 10⁻⁵ T. (Use μ₀ = 4π × 10⁻⁷ T·m/A and π = 3.14)",
-    "explanation": "The magnetic field at the centre of a coil with N turns is B = μ₀NI/(2R). Solving for N: N = 2BR/(μ₀I) = 2 × (2 × 10⁻⁵) × 0.1 / (4π × 10⁻⁷ × 3.14) = (4 × 10⁻⁶) / (4 × 3.14 × 3.14 × 10⁻⁷) = (4 × 10⁻⁶) / (39.44 × 10⁻⁷) = (4 × 10⁻⁶) / (3.944 × 10⁻⁶) ≈ 1. Wait, let me recalculate: N = 2 × 2×10⁻⁵ × 0.1 / (4π × 10⁻⁷ × 3.14) = 4×10⁻⁶ / (4 × 3.14 × 10⁻⁷ × 3.14) = 4×10⁻⁶ / (3.944 × 10⁻⁶) ≈ 1. Actually: μ₀I = 4π × 10⁻⁷ × 3.14 = 4 × 3.14 × 3.14 × 10⁻⁷ = 39.44 × 10⁻⁷. 2BR = 2 × 2×10⁻⁵ × 0.1 = 4 × 10⁻⁶. N = 4×10⁻⁶ / 39.44×10⁻⁷ = 4×10⁻⁶ / 3.944×10⁻⁶ ≈ 1. So N = 1 turn. The answer is B (1 turn).",
-    "correct_answer": "B",
-    "concept_tags": ["circular-coil", "number-of-turns", "magnetic-field-centre"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Magnetic field due to circular loop at centre",
-    "subject": "cuet-physics",
-    "chapter": "Magnetic Effects of Current",
-    "bloom_level": "apply",
-    "exam_suitability": ["CUET", "NEET"],
-    "options": [
-      {"key": "A", "text": "2", "is_correct": false},
-      {"key": "B", "text": "1", "is_correct": true},
-      {"key": "C", "text": "5", "is_correct": false},
-      {"key": "D", "text": "10", "is_correct": false}
-    ],
-    "elimination_hints": [
-      {"option_key": "A", "hint": "Substitute the values carefully. N = 2BR/(μ₀I). With the given numbers, N comes out to approximately 1.", "misconception": "Arithmetic error in calculation"},
-      {"option_key": "C", "hint": "This would give a much larger field at the centre. Check your powers of 10.", "misconception": "Error in handling powers of 10"},
-      {"option_key": "D", "hint": "10 turns would produce a field 10 times larger than what is given.", "misconception": "Forgetting to divide by the correct factor"}
-    ]
-  },
-  {
-    "id": "cuet-phy-mag-biot-38",
-    "chapter_id": "cuet-phy-magnetic-effects",
-    "question_type": "scenario-based",
+    "question_type": "mcq",
     "difficulty": "hard",
-    "scenario": "A physics laboratory has set up an experiment to measure the magnetic field produced by different current-carrying conductor configurations. A sensitive magnetometer is placed at specific points to measure the field. In one configuration, a long straight wire carrying 5 A is placed along the y-axis. In another, a circular loop of radius 0.05 m carrying 2 A is placed in the xy-plane with its centre at the origin. The experimenters want to find a point on the x-axis where the net magnetic field due to both sources (when operated simultaneously) is zero.",
-    "question_text": "At what approximate distance along the x-axis from the origin does the net magnetic field become zero, given that both the straight wire and the circular loop produce fields in opposite directions along the positive x-axis? (Use μ₀ = 4π × 10⁻⁷ T·m/A)",
-    "explanation": "The magnetic field due to the straight wire at distance x on the x-axis is B_wire = μ₀I₁/(2πx) = μ₀(5)/(2πx). The field due to the circular loop on its axis at distance x is B_loop = μ₀I₂R²/(2(R² + x²)^(3/2)) = μ₀(2)(0.05)²/(2(0.0025 + x²)^(3/2)). Setting B_wire = B_loop and simplifying: 5/(2πx) = 2(0.0025)/(2(0.0025 + x²)^(3/2)). For x >> R (far field), B_loop ≈ μ₀(2)(0.0025)/(2x³). So 5/(2πx) = 0.0025/x³, giving x² = 0.0025 × 2π/5 = 0.00314, so x ≈ 0.056 m ≈ 0.06 m. Among the options, 0.06 m is closest.",
-    "correct_answer": "B",
-    "concept_tags": ["superposition", "null-point", "straight-wire", "circular-loop-axis"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Superposition of magnetic fields",
+    "question_text": "A wire of total length L carrying current I is bent into a regular hexagon. The magnetic field at the centre of the hexagon is:",
+    "explanation": "A regular hexagon has 6 sides, each of length a = L/6. The perpendicular distance from the centre to each side (apothem) is d = (a√3)/2 = L√3/12. Each side subtends half-angles of 30° at the perpendicular foot, so sinα = sin30° = 1/2. The field due to one side: B₁ = (μ₀I/4πd)(2sin30°) = (μ₀I/4πd)(1) = μ₀I/(4πd) = μ₀I/(4π × L√3/12) = 12μ₀I/(4πL√3) = 3μ₀I/(πL√3) = √3μ₀I/(πL). Total for 6 sides: B = 6 × √3μ₀I/(πL) = 6√3μ₀I/(πL).",
+    "correct_answer": "D",
+    "concept_tags": ["regular-polygon", "straight-conductor", "superposition", "hexagon"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Applications",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
     "bloom_level": "analyze",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "0.03 m", "is_correct": false},
-      {"key": "B", "text": "0.06 m", "is_correct": true},
-      {"key": "C", "text": "0.10 m", "is_correct": false},
-      {"key": "D", "text": "0.15 m", "is_correct": false}
+      {"key": "A", "value": "3√3μ₀I/(πL)", "is_correct": false},
+      {"key": "B", "value": "2√3μ₀I/(πL)", "is_correct": false},
+      {"key": "C", "value": "12√3μ₀I/(πL)", "is_correct": false},
+      {"key": "D", "value": "6√3μ₀I/(πL)", "is_correct": true}
     ],
     "elimination_hints": [
-      {"option_key": "A", "hint": "At 0.03 m (close to the loop radius), the loop field dominates and the far-field approximation is not valid. The null point is farther out.", "misconception": "Underestimating the distance where fields balance"},
-      {"option_key": "C", "hint": "At 0.10 m, the loop field drops as 1/x³ while the wire field drops as 1/x, so the wire field dominates and they cannot be equal here.", "misconception": "Overestimating the null-point distance"},
-      {"option_key": "D", "hint": "At such large distance, the loop field is negligible compared to the wire field. The null point must be closer.", "misconception": "Not recognizing the rapid decay of dipole fields"}
+      "A: This accounts for only 3 sides. All 6 sides contribute equally and their fields all point in the same direction at the centre.",
+      "B: This corresponds to only 2 sides contributing. A hexagon has 6 sides, all contributing equally.",
+      "C: This is double the correct answer; verify the field-per-side calculation, especially the perpendicular distance."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-biot-36",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "scenario": "In a physics laboratory, a student sets up two concentric circular coils of radii R₁ = 5 cm and R₂ = 10 cm in the same plane. The inner coil has 10 turns carrying 2 A, and the outer coil has 20 turns carrying 1 A. The student can choose the current directions independently in each coil and wants to explore the resultant magnetic field at the common centre.",
+    "question_text": "If the currents in the two coils flow in opposite directions, what is the magnitude of the net magnetic field at the common centre? (Use μ₀ = 4π × 10⁻⁷ T·m/A)",
+    "explanation": "Field due to inner coil: B₁ = μ₀N₁I₁/(2R₁) = (4π × 10⁻⁷ × 10 × 2)/(2 × 0.05) = (8π × 10⁻⁶)/(0.1) = 80π × 10⁻⁶ T = 8π × 10⁻⁵ T. Field due to outer coil: B₂ = μ₀N₂I₂/(2R₂) = (4π × 10⁻⁷ × 20 × 1)/(2 × 0.10) = (8π × 10⁻⁶)/(0.2) = 40π × 10⁻⁶ T = 4π × 10⁻⁵ T. Since currents are in opposite directions, the fields oppose each other. Net field = B₁ - B₂ = 8π × 10⁻⁵ - 4π × 10⁻⁵ = 4π × 10⁻⁵ T ≈ 4 × 3.14 × 10⁻⁵ = 1.26 × 10⁻⁴ T.",
+    "correct_answer": "C",
+    "concept_tags": ["concentric-coils", "superposition", "multi-turn-coil", "numerical"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Superposition of magnetic fields",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "8π × 10⁻⁵ T", "is_correct": false},
+      {"key": "B", "value": "12π × 10⁻⁵ T", "is_correct": false},
+      {"key": "C", "value": "4π × 10⁻⁵ T", "is_correct": true},
+      {"key": "D", "value": "2π × 10⁻⁵ T", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A: 8π × 10⁻⁵ T is only the field of the inner coil. You must subtract the outer coil's opposing field.",
+      "B: 12π × 10⁻⁵ T would be B₁ + B₂, but the currents are in opposite directions so the fields subtract, not add.",
+      "D: 2π × 10⁻⁵ T likely arises from a calculation error. Recompute B₁ and B₂ carefully using the multi-turn formula."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-biot-37",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "The diagram shows a wire carrying current I bent into two concentric semicircular arcs of radii R₁ and R₂ (R₂ > R₁) connected by two straight radial segments. The current flows through the inner arc in the upper half and through the outer arc in the lower half. The net magnetic field at the common centre O is:",
+    "image_uri": "diagrams/biot-savart/concentric-semicircular-arcs.png",
+    "image_alt": "A wire carrying current I forming an inner semicircular arc of radius R₁ in the upper half-plane and an outer semicircular arc of radius R₂ in the lower half-plane, connected by straight radial segments, with centre O marked.",
+    "explanation": "The straight radial segments pass through the centre O, so they contribute zero field (dl is parallel to r̂, making dl × r̂ = 0). The inner semicircular arc contributes B₁ = μ₀I/(4R₁). The outer arc carries current in the same rotational sense (when viewed from above), so it contributes B₂ = μ₀I/(4R₂) in the same direction as B₁. The net field is B = (μ₀I/4)(1/R₁ + 1/R₂).",
+    "correct_answer": "D",
+    "concept_tags": ["composite-loop", "semicircular-arcs", "superposition", "radial-segments"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Applications",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "(μ₀I/4)(1/R₁ − 1/R₂)", "is_correct": false},
+      {"key": "B", "value": "μ₀I/(4R₁) only", "is_correct": false},
+      {"key": "C", "value": "μ₀I/(4R₂) only", "is_correct": false},
+      {"key": "D", "value": "(μ₀I/4)(1/R₁ + 1/R₂)", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "A: Subtraction would apply only if the two arcs produced fields in opposite directions at O. Trace the current direction: both arcs create fields in the same direction.",
+      "B: The outer arc also contributes to the field at O. A larger radius gives a smaller but non-zero contribution.",
+      "C: The inner arc contributes the larger field. Ignoring it would greatly underestimate the total."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-biot-38",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A circular loop of radius R carries current I. At a large distance x (where x >> R) along its axis, the magnetic field varies as:",
+    "explanation": "The magnetic field on the axis is B = μ₀IR²/[2(R² + x²)^(3/2)]. When x >> R, we approximate R² + x² ≈ x², so (R² + x²)^(3/2) ≈ x³. Therefore B ≈ μ₀IR²/(2x³), which gives B ∝ 1/x³. This is the same as the far-field behavior of a magnetic dipole.",
+    "correct_answer": "D",
+    "concept_tags": ["far-field", "magnetic-dipole", "axial-field", "distance-dependence"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field on axis of loop",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "B ∝ 1/x", "is_correct": false},
+      {"key": "B", "value": "B ∝ 1/x²", "is_correct": false},
+      {"key": "C", "value": "B ∝ 1/x⁴", "is_correct": false},
+      {"key": "D", "value": "B ∝ 1/x³", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "A: 1/x dependence applies to an infinite straight wire, not a circular loop at large axial distances.",
+      "B: 1/x² is the Coulomb's law dependence for a point charge; a loop behaves as a magnetic dipole with 1/x³ decay.",
+      "C: 1/x⁴ would correspond to a quadrupole. The leading term for a loop (dipole) is 1/x³."
     ]
   },
   {
@@ -495,41 +499,41 @@
     "chapter_id": "cuet-phy-magnetic-effects",
     "question_type": "logical-sequence",
     "difficulty": "medium",
-    "question_text": "Arrange the following steps in the correct order for deriving the magnetic field at the centre of a circular current-carrying loop using Biot-Savart law.",
+    "question_text": "Arrange the following steps in the correct order for deriving the magnetic field at the centre of a circular current-carrying loop using the Biot-Savart law.",
     "items": [
-      {"id": "1", "text": "Note that |dl × r̂| = dl sin90° = dl, since dl is always perpendicular to r̂ at the centre"},
-      {"id": "2", "text": "Consider a small current element Idl on the loop and write dB = (μ₀/4π)(Idl × r̂)/r²"},
-      {"id": "3", "text": "Obtain B = μ₀I/(2R) as the magnetic field at the centre"},
-      {"id": "4", "text": "Integrate over the entire loop: B = ∫dB = (μ₀I/4πR²)∫dl = (μ₀I/4πR²)(2πR)"},
-      {"id": "5", "text": "Recognise that r = R (loop radius) is constant for all elements relative to the centre"}
+      {"id": "P", "text": "Note that |dl × r̂| = dl sin90° = dl, since dl is always perpendicular to r̂ at the centre"},
+      {"id": "Q", "text": "Consider a small current element Idl on the loop and write dB = (μ₀/4π)(Idl × r̂)/r²"},
+      {"id": "R", "text": "Obtain B = μ₀I/(2R) as the magnetic field at the centre"},
+      {"id": "S", "text": "Integrate over the entire loop: B = (μ₀I/4πR²) × 2πR"},
+      {"id": "T", "text": "Recognise that the distance r = R (loop radius) is constant for all elements relative to the centre"}
     ],
-    "correct_order": ["2", "5", "1", "4", "3"],
-    "explanation": "The derivation proceeds as follows: (Step 2) Start by considering a small current element and applying Biot-Savart law. (Step 5) Recognise that the distance r from any element to the centre equals R. (Step 1) Note that dl is perpendicular to r̂ at the centre, so the cross product magnitude simplifies. (Step 4) Integrate over the full loop, substituting the simplified expressions. (Step 3) Evaluate the integral to obtain the final result B = μ₀I/(2R).",
-    "correct_answer": "D",
-    "concept_tags": ["biot-savart-derivation", "circular-loop", "integration"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Magnetic field due to circular loop at centre",
+    "correct_order": ["Q", "T", "P", "S", "R"],
+    "explanation": "The derivation proceeds as follows: (Q) Start by considering a small current element and applying the Biot-Savart law. (T) Recognise that the distance r from any element to the centre equals R, a constant. (P) Note that dl is always perpendicular to the position vector r̂ at the centre, simplifying the cross product. (S) Integrate the simplified expression over the full circumference 2πR. (R) Evaluate the integral to obtain the final result B = μ₀I/(2R).",
+    "correct_answer": "A",
+    "concept_tags": ["biot-savart-derivation", "circular-loop", "integration-steps"],
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Magnetic field at center of circular loop",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
     "bloom_level": "understand",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "1 → 2 → 5 → 4 → 3", "is_correct": false},
-      {"key": "B", "text": "2 → 1 → 5 → 3 → 4", "is_correct": false},
-      {"key": "C", "text": "5 → 2 → 1 → 4 → 3", "is_correct": false},
-      {"key": "D", "text": "2 → 5 → 1 → 4 → 3", "is_correct": true}
+      {"key": "A", "value": "Q → T → P → S → R", "is_correct": true},
+      {"key": "B", "value": "P → Q → T → R → S", "is_correct": false},
+      {"key": "C", "value": "T → Q → P → S → R", "is_correct": false},
+      {"key": "D", "value": "Q → P → T → S → R", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "A", "hint": "You must first write the Biot-Savart law (step 2) before noting the perpendicularity (step 1).", "misconception": "Applying geometric simplification before stating the law"},
-      {"option_key": "B", "hint": "Integration (step 4) must come before the final result (step 3), and geometric observations (step 5) before cross-product simplification (step 1).", "misconception": "Jumbling the order of simplification and integration"},
-      {"option_key": "C", "hint": "You should state the Biot-Savart law (step 2) before identifying the constant distance (step 5), since the law defines what r represents.", "misconception": "Identifying geometric properties before stating the governing law"}
+      "B: You must first write the Biot-Savart law (Q) before noting the perpendicularity condition (P).",
+      "C: You should state the Biot-Savart law (Q) before identifying the constant distance (T), since the law defines what r represents.",
+      "D: The constant distance observation (T) should come before the perpendicularity simplification (P), as knowing r = R is needed first."
     ]
   },
   {
     "id": "cuet-phy-mag-biot-40",
     "chapter_id": "cuet-phy-magnetic-effects",
     "question_type": "logical-sequence",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "question_text": "Arrange the following current-carrying configurations in order of increasing magnetic field strength at the specified point, from weakest to strongest. All carry the same current I and have the same characteristic dimension R.",
     "items": [
       {"id": "1", "text": "Quarter-circle arc of radius R: field at its centre of curvature = μ₀I/(8R)"},
@@ -538,25 +542,25 @@
       {"id": "4", "text": "Three-quarter arc of radius R: field at its centre of curvature = 3μ₀I/(8R)"}
     ],
     "correct_order": ["1", "3", "4", "2"],
-    "explanation": "The magnetic field at the centre of curvature of a circular arc subtending angle θ is B = μ₀Iθ/(4πR). For a quarter circle (θ = π/2): B = μ₀I/(8R). For a semicircle (θ = π): B = μ₀I/(4R). For a three-quarter arc (θ = 3π/2): B = 3μ₀I/(8R). For a full circle (θ = 2π): B = μ₀I/(2R). Ordering from weakest to strongest: quarter < semicircle < three-quarter < full circle, i.e., 1 → 3 → 4 → 2.",
+    "explanation": "The magnetic field at the centre of curvature of a circular arc subtending angle θ is B = μ₀Iθ/(4πR). For a quarter-circle (θ = π/2): B = μ₀I/(8R) [weakest]. For a semicircle (θ = π): B = μ₀I/(4R). For a three-quarter arc (θ = 3π/2): B = 3μ₀I/(8R). For a full circle (θ = 2π): B = μ₀I/(2R) [strongest]. Order from weakest to strongest: 1 → 3 → 4 → 2.",
     "correct_answer": "A",
     "concept_tags": ["circular-arc", "field-comparison", "proportionality-to-angle"],
-    "topic": "Biot-Savart Law and Magnetic Field",
-    "subtopic": "Magnetic field at centre of arc/semicircle",
+    "topic": "Biot-Savart Law and Applications",
+    "subtopic": "Applications",
     "subject": "cuet-physics",
     "chapter": "Magnetic Effects of Current",
     "bloom_level": "analyze",
     "exam_suitability": ["CUET", "NEET"],
     "options": [
-      {"key": "A", "text": "1 → 3 → 4 → 2", "is_correct": true},
-      {"key": "B", "text": "2 → 4 → 3 → 1", "is_correct": false},
-      {"key": "C", "text": "1 → 3 → 2 → 4", "is_correct": false},
-      {"key": "D", "text": "3 → 1 → 4 → 2", "is_correct": false}
+      {"key": "A", "value": "1 → 3 → 4 → 2 (Quarter < Semi < Three-quarter < Full)", "is_correct": true},
+      {"key": "B", "value": "2 → 4 → 3 → 1 (Full < Three-quarter < Semi < Quarter)", "is_correct": false},
+      {"key": "C", "value": "1 → 3 → 2 → 4 (Quarter < Semi < Full < Three-quarter)", "is_correct": false},
+      {"key": "D", "value": "3 → 1 → 4 → 2 (Semi < Quarter < Three-quarter < Full)", "is_correct": false}
     ],
     "elimination_hints": [
-      {"option_key": "B", "hint": "This is the reverse order (strongest to weakest). The question asks for weakest to strongest.", "misconception": "Reading the question as strongest to weakest"},
-      {"option_key": "C", "hint": "A full circle (2) has a larger field than a three-quarter arc (4), since it subtends a larger angle.", "misconception": "Thinking 3/4 arc produces a stronger field than a full loop"},
-      {"option_key": "D", "hint": "A quarter-circle (1) produces a weaker field than a semicircle (3), since π/2 < π.", "misconception": "Incorrectly ranking quarter-circle above semicircle"}
+      "B: This is the reverse order (strongest to weakest). The question asks for weakest to strongest.",
+      "C: A full circle (2) subtends 360° and produces a stronger field than a three-quarter arc (4) which subtends only 270°.",
+      "D: A quarter-circle (1) subtends a smaller angle than a semicircle (3), so it produces a weaker field, not a stronger one."
     ]
   }
 ]
