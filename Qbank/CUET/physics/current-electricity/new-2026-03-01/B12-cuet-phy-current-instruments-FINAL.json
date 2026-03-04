@@ -1,0 +1,2558 @@
+[
+  {
+    "id": "cuet-phy-current-instruments-01",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "An ammeter is always connected in ______ in a circuit.",
+    "explanation": "An ammeter measures current flowing through a branch. To do so it must carry the same current, hence it is connected in series with the circuit element. A parallel connection would create a short-circuit path because of its very low resistance.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "ammeter",
+      "series-connection"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Parallel",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Wheatstone bridge configuration",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Series",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Either series or parallel",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Parallel connection is used for voltmeters, not ammeters.",
+        "misconception": "Confusing ammeter connection with voltmeter connection."
+      },
+      {
+        "option_key": "B",
+        "hint": "Wheatstone bridge is a separate measurement technique, not a way to connect an ammeter.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "An ammeter must always be in series; parallel connection would short-circuit it.",
+        "misconception": "Thinking ammeters can be connected either way."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-02",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The resistance of an ideal ammeter is:",
+    "explanation": "An ideal ammeter should not alter the current it measures. For this, it must introduce zero additional resistance in the circuit. Any finite resistance would cause a voltage drop and reduce the current, leading to measurement error.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "ideal-ammeter",
+      "zero-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ideal ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Infinity",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Very high but finite",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Equal to the circuit resistance",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Infinite resistance is the property of an ideal voltmeter, not an ammeter.",
+        "misconception": "Mixing up ideal ammeter and ideal voltmeter properties."
+      },
+      {
+        "option_key": "C",
+        "hint": "High resistance in an ammeter would drastically reduce circuit current.",
+        "misconception": "Confusing ammeter with voltmeter requirements."
+      },
+      {
+        "option_key": "D",
+        "hint": "Ammeter resistance must be negligible compared to circuit resistance, not equal.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-03",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A voltmeter is connected in ______ with the component across which potential difference is to be measured.",
+    "explanation": "A voltmeter measures the potential difference between two points. It must be connected in parallel across the component so that it experiences the same potential difference. Its high resistance ensures negligible current is drawn from the circuit.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "voltmeter",
+      "parallel-connection"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "voltmeter",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Series",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Parallel",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Series-parallel combination",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Bridge configuration",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Series connection is for ammeters; a voltmeter in series would block current flow.",
+        "misconception": "Confusing ammeter and voltmeter connections."
+      },
+      {
+        "option_key": "C",
+        "hint": "No such mixed connection is used for a simple voltmeter measurement.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Bridge configuration is used in Wheatstone bridge, not for routine voltage measurement.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-04",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The deflection in a moving coil galvanometer is proportional to:",
+    "explanation": "In a moving coil galvanometer, the restoring torque is proportional to the angle of deflection (τ = kθ) and the deflecting torque is proportional to current (τ = NBIA). At equilibrium, kθ = NBIA, giving θ ∝ I. Thus deflection is directly proportional to the current through the coil.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "galvanometer",
+      "deflection",
+      "current-proportionality"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "galvanometer",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Square of the current",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Resistance of the coil",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Square root of the current",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Current flowing through the coil",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Square dependence occurs in some AC instruments but not in a moving coil galvanometer.",
+        "misconception": "Confusing with hot-wire ammeter behaviour."
+      },
+      {
+        "option_key": "B",
+        "hint": "Resistance is a fixed property of the coil, not a variable that produces deflection.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "No standard galvanometer produces deflection proportional to √I.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-05",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A galvanometer with resistance G = 50 Ω gives full-scale deflection for a current Ig = 1 mA. To convert it into an ammeter reading up to 1 A, the shunt resistance required is:",
+    "explanation": "Using the shunt formula S = Ig·G/(I − Ig) = (0.001 × 50)/(1 − 0.001) = 0.05/0.999 ≈ 0.05 Ω. The shunt carries almost all the current (I − Ig) while only Ig passes through the galvanometer.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "ammeter-conversion",
+      "shunt-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.5 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.05 Ω (approximately)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "50 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "5 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This is ten times the correct value; recheck the formula substitution.",
+        "misconception": "Arithmetic error in computing S."
+      },
+      {
+        "option_key": "C",
+        "hint": "A shunt equal to G would only double the range, not increase it 1000-fold.",
+        "misconception": "Thinking shunt equals galvanometer resistance for any conversion."
+      },
+      {
+        "option_key": "D",
+        "hint": "5 Ω is far too large for a shunt to convert to 1 A range.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-06",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A galvanometer of resistance 100 Ω gives full-scale deflection at 10 mA. To convert it into a voltmeter of range 0–10 V, the series resistance to be added is:",
+    "explanation": "Series resistance R = V/Ig − G = 10/0.01 − 100 = 1000 − 100 = 900 Ω. The high series resistance limits the current through the galvanometer to Ig when the full voltage V is applied.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "voltmeter-conversion",
+      "series-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "voltmeter series resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "900 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1000 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "100 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "9900 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "1000 Ω is V/Ig without subtracting G; the galvanometer itself has 100 Ω.",
+        "misconception": "Forgetting to subtract galvanometer resistance from total resistance."
+      },
+      {
+        "option_key": "C",
+        "hint": "100 Ω equals G; adding this would only give a range of 2 V, not 10 V.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "9900 Ω would be correct for a 100 V range, not 10 V.",
+        "misconception": "Using wrong voltage value in the formula."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-07",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A galvanometer of resistance 50 Ω is converted into an ammeter of range 0–5 A using a shunt. The same galvanometer is also converted into a voltmeter of range 0–50 V using a series resistance. If the full-scale deflection current is 2 mA, the ratio of the resistance of the voltmeter to that of the ammeter is:",
+    "explanation": "Shunt S = Ig·G/(I−Ig) = (0.002 × 50)/(5−0.002) = 0.1/4.998 ≈ 0.02 Ω. Ammeter resistance = GS/(G+S) ≈ S ≈ 0.02 Ω. Voltmeter: R_series = V/Ig − G = 50/0.002 − 50 = 25000 − 50 = 24950 Ω. Total voltmeter resistance = 24950 + 50 = 25000 Ω. Ratio = 25000/0.02 = 1,250,000 = 1.25 × 10⁶.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "ammeter-conversion",
+      "voltmeter-conversion",
+      "resistance-ratio"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "500",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "25000",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "500000",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.25 × 10⁶",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This value is far too small; the voltmeter resistance alone is 25000 Ω while the ammeter resistance is ~0.02 Ω.",
+        "misconception": "Using G as ammeter resistance instead of the parallel combination."
+      },
+      {
+        "option_key": "B",
+        "hint": "25000 is the voltmeter resistance, not the ratio.",
+        "misconception": "Confusing voltmeter resistance with the ratio."
+      },
+      {
+        "option_key": "C",
+        "hint": "Check the exact calculation of the shunt resistance and the parallel combination.",
+        "misconception": "Rounding error in computation."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-08",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "An ammeter of range 0–5 A has resistance 0.2 Ω. To increase its range to 0–25 A, the additional shunt resistance required (connected in parallel with the existing ammeter) is:",
+    "explanation": "The existing ammeter (resistance 0.2 Ω) gives full-scale at 5 A. So Ig_eff = 5 A through the 0.2 Ω ammeter. For 25 A total range, the additional shunt S carries (25−5) = 20 A. Using V_parallel: S × 20 = 0.2 × 5, so S = 1.0/20 = 0.05 Ω.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "ammeter",
+      "shunt-resistance",
+      "range-extension"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.04 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.05 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "0.2 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.0 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Re-check the current division; the ammeter carries 5 A and the shunt carries 20 A.",
+        "misconception": "Error in current splitting."
+      },
+      {
+        "option_key": "C",
+        "hint": "0.2 Ω equals the ammeter resistance; this would only split the current equally, giving 10 A not 25 A.",
+        "misconception": "Thinking equal resistances extend the range to desired value."
+      },
+      {
+        "option_key": "D",
+        "hint": "A shunt larger than the ammeter resistance would carry less current than the ammeter, reducing the range.",
+        "misconception": "Confusing shunt with series resistance."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-09",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When a shunt resistance is connected in parallel with a galvanometer to convert it into an ammeter, the effective resistance of the ammeter:",
+    "explanation": "The ammeter resistance is the parallel combination of G and S: R_eff = GS/(G+S). Since S is usually much smaller than G, R_eff ≈ S, which is very small. Hence the effective resistance decreases compared to G alone.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "ammeter",
+      "shunt-resistance",
+      "parallel-combination"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Increases",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Remains same as galvanometer resistance",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Decreases",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Becomes infinite",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Adding a parallel resistance always reduces the combined resistance.",
+        "misconception": "Confusing parallel and series resistance addition."
+      },
+      {
+        "option_key": "B",
+        "hint": "Any parallel path will change the effective resistance from G.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Infinite resistance is opposite to what an ammeter needs; ammeters need near-zero resistance.",
+        "misconception": "Confusing ammeter with voltmeter properties."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-10",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The current sensitivity of a moving coil galvanometer is defined as:",
+    "explanation": "Current sensitivity is the deflection produced per unit current, i.e., θ/I = NBA/k, where N is the number of turns, B is the magnetic field, A is the area of the coil, and k is the torsional constant of the spring. Higher current sensitivity means larger deflection for a given current.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "current-sensitivity",
+      "galvanometer"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "sensitivity and figure of merit",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Current required for full-scale deflection",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Voltage required per unit deflection",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Resistance per unit deflection",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Deflection per unit current (θ/I)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This describes the full-scale deflection current Ig, not current sensitivity.",
+        "misconception": "Confusing Ig with current sensitivity."
+      },
+      {
+        "option_key": "B",
+        "hint": "This is related to voltage sensitivity, which is θ/V.",
+        "misconception": "Mixing up current sensitivity and voltage sensitivity."
+      },
+      {
+        "option_key": "C",
+        "hint": "No standard galvanometer quantity is defined as resistance per unit deflection.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-11",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The figure of merit of a galvanometer is defined as:",
+    "explanation": "Figure of merit is the reciprocal of current sensitivity, i.e., I/θ = k/(NBA). It represents the current needed to produce unit deflection. A smaller figure of merit means the galvanometer is more sensitive.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "figure-of-merit",
+      "galvanometer"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "sensitivity and figure of merit",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Current per unit deflection (I/θ)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Deflection per unit current (θ/I)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Voltage per unit current",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Maximum current the galvanometer can measure",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "θ/I is the current sensitivity, which is the reciprocal of figure of merit.",
+        "misconception": "Confusing current sensitivity with figure of merit."
+      },
+      {
+        "option_key": "C",
+        "hint": "Voltage per unit current is simply resistance (by Ohm's law), not a galvanometer parameter.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Maximum measurable current is the full-scale deflection current Ig.",
+        "misconception": "Confusing figure of merit with Ig."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-12",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A moving coil galvanometer has N turns, each of area A, in a magnetic field B. The torsional constant of the spring is k. The current sensitivity of the galvanometer can be increased by:",
+    "explanation": "Current sensitivity = NBA/k. It increases when N, B, or A increases, or when k decreases. Using a weaker spring (smaller k) increases sensitivity, but it also makes the galvanometer slower to reach equilibrium and more fragile.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "current-sensitivity",
+      "galvanometer",
+      "design-parameters"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "sensitivity and figure of merit",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Increasing the torsional constant k",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Increasing the number of turns N",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Decreasing the magnetic field B",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Decreasing the area A of the coil",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "k is in the denominator of NBA/k; increasing k reduces sensitivity.",
+        "misconception": "Thinking a stiffer spring increases sensitivity."
+      },
+      {
+        "option_key": "C",
+        "hint": "B is in the numerator; decreasing B decreases sensitivity.",
+        "misconception": "Inverting the relationship between B and sensitivity."
+      },
+      {
+        "option_key": "D",
+        "hint": "A is in the numerator; decreasing A decreases sensitivity.",
+        "misconception": "Inverting the relationship between area and sensitivity."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-13",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The resistance of an ideal voltmeter should be:",
+    "explanation": "An ideal voltmeter should draw zero current from the circuit so that the potential difference it measures is not altered. By Ohm's law, for zero current to flow through the voltmeter, its resistance must be infinite.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "ideal-voltmeter",
+      "infinite-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ideal voltmeter",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Equal to the circuit resistance",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Infinite",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Very small but finite",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Zero resistance is the property of an ideal ammeter, not a voltmeter.",
+        "misconception": "Confusing ideal ammeter and ideal voltmeter properties."
+      },
+      {
+        "option_key": "B",
+        "hint": "If the voltmeter resistance equals the circuit resistance, it would draw significant current and alter the reading.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Small resistance would draw large current, heavily disturbing the circuit.",
+        "misconception": "Confusing voltmeter with ammeter requirements."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-14",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A galvanometer of resistance 20 Ω shows full-scale deflection for 5 mA current. Two such galvanometers and two resistances R₁ and R₂ are used to make an ammeter of range 0–0.5 A and a voltmeter of range 0–5 V respectively. The values of R₁ (shunt) and R₂ (series) are:",
+    "explanation": "For the ammeter: S = Ig·G/(I−Ig) = (0.005 × 20)/(0.5 − 0.005) = 0.1/0.495 ≈ 0.202 Ω. For the voltmeter: R = V/Ig − G = 5/0.005 − 20 = 1000 − 20 = 980 Ω.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "ammeter-conversion",
+      "voltmeter-conversion",
+      "shunt-resistance",
+      "series-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "R₁ ≈ 0.202 Ω, R₂ = 1000 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "R₁ = 0.5 Ω, R₂ = 980 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "R₁ ≈ 0.202 Ω, R₂ = 1020 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "R₁ ≈ 0.202 Ω, R₂ = 980 Ω",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "R₂ = 1000 Ω forgets to subtract galvanometer resistance G = 20 Ω.",
+        "misconception": "Forgetting to subtract G from V/Ig in the voltmeter formula."
+      },
+      {
+        "option_key": "B",
+        "hint": "R₁ = 0.5 Ω is too large; check the shunt formula S = Ig·G/(I−Ig).",
+        "misconception": "Arithmetic error in shunt calculation."
+      },
+      {
+        "option_key": "C",
+        "hint": "R₂ = 1020 Ω means G was added instead of subtracted.",
+        "misconception": "Adding G instead of subtracting it in R = V/Ig − G."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-15",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a moving coil galvanometer, the radial magnetic field is used so that:",
+    "explanation": "A radial magnetic field ensures the plane of the coil is always parallel to the magnetic field at every position during rotation. This makes the deflecting torque τ = NBIA·sinα always equal to NBIA (since α = 90° always), giving a linear relationship between deflection and current.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "radial-magnetic-field",
+      "galvanometer",
+      "linear-scale"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "galvanometer",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The deflection is proportional to the current and the scale is linear",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "The coil can rotate freely without any spring",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The magnetic flux through the coil is always zero",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The coil does not experience any torque",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The restoring spring is always needed regardless of the field shape.",
+        "misconception": "Thinking radial field removes the need for a spring."
+      },
+      {
+        "option_key": "C",
+        "hint": "If the flux were always zero, there would be no deflection at all.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "If there were no torque, the galvanometer would not deflect and could not measure anything.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-16",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Voltage sensitivity of a galvanometer is given by:",
+    "explanation": "Voltage sensitivity = θ/V. Since V = IR (where R is the total resistance of the galvanometer coil G), voltage sensitivity = θ/(IG) = (θ/I)/G = (NBA/k)/G = NBA/(kG). Note that increasing G decreases voltage sensitivity even though current sensitivity remains unchanged.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "voltage-sensitivity",
+      "galvanometer"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "current sensitivity vs voltage sensitivity",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "NBA/k",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kG/(NBA)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "NBA/(kG)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "NBAk/G",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "NBA/k is the current sensitivity (θ/I), not the voltage sensitivity.",
+        "misconception": "Confusing current sensitivity with voltage sensitivity."
+      },
+      {
+        "option_key": "B",
+        "hint": "This is the reciprocal of voltage sensitivity.",
+        "misconception": "Inverting the formula."
+      },
+      {
+        "option_key": "D",
+        "hint": "k should be in the denominator since a stiffer spring reduces sensitivity.",
+        "misconception": "Placing k in the numerator incorrectly."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-17",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A galvanometer has a coil of resistance 100 Ω and gives full-scale deflection for 10 mA. If it is to work as a voltmeter of range 0–100 V and an ammeter of range 0–1 A simultaneously (using two separate copies), the ratio of voltage sensitivity of the voltmeter to the current sensitivity of the galvanometer is:",
+    "explanation": "Current sensitivity of galvanometer = θ/I. For the voltmeter, voltage sensitivity = θ/V. At full scale, θ is the same in both. Current sensitivity = θ/Ig. Voltage sensitivity of voltmeter = θ/V. Ratio = (θ/V)/(θ/Ig) = Ig/V = 0.01/100 = 10⁻⁴ = 1/10000. But note the question asks about the galvanometer's current sensitivity. Ratio = Ig/V = 10⁻⁴.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "voltage-sensitivity",
+      "current-sensitivity",
+      "galvanometer"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "current sensitivity vs voltage sensitivity",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1/100",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1/1000",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1/10000 (i.e., 10⁻⁴)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1/10",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1/100 would be the ratio if V were 1 V; the range is 100 V.",
+        "misconception": "Using G instead of V in the ratio."
+      },
+      {
+        "option_key": "B",
+        "hint": "Check the units: ratio = Ig/V = 0.01/100.",
+        "misconception": "Arithmetic error."
+      },
+      {
+        "option_key": "D",
+        "hint": "1/10 confuses Ig (in mA) with Ig (in A).",
+        "misconception": "Unit conversion error between mA and A."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-18",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A galvanometer with G = 25 Ω and Ig = 4 mA is converted to a voltmeter of range 0–25 V. If this voltmeter is used to measure the voltage across a 6250 Ω resistance through which a true current of 4 mA flows, the reading of the voltmeter will be:",
+    "explanation": "Series resistance R = V/Ig − G = 25/0.004 − 25 = 6250 − 25 = 6225 Ω. Total voltmeter resistance = 6225 + 25 = 6250 Ω. The voltmeter is connected across 6250 Ω. Parallel combination = 6250 × 6250/(6250 + 6250) = 3125 Ω. True voltage without voltmeter = 4 mA × 6250 = 25 V. With voltmeter connected, if this 6250 Ω is in a circuit with a source, the voltage across the parallel combination changes. Assuming the source has negligible internal resistance and supplies the full EMF, the voltmeter reads the actual voltage. But if the 6250 Ω is in series with a source: total current changes. The reading depends on the circuit. For the standard interpretation: voltmeter (6250 Ω) across resistor (6250 Ω) with a constant current source of 4 mA unchanged — voltage across parallel = 4 mA × 3125 = 12.5 V. So reading = 12.5 V.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "voltmeter-loading-effect",
+      "parallel-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "voltmeter series resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "12.5 V",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "25 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "20 V",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "15 V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "25 V ignores the loading effect of the voltmeter on the circuit.",
+        "misconception": "Assuming voltmeter does not affect the circuit."
+      },
+      {
+        "option_key": "C",
+        "hint": "20 V does not correspond to any correct parallel combination calculation.",
+        "misconception": "Arithmetic error."
+      },
+      {
+        "option_key": "D",
+        "hint": "15 V does not match the parallel combination of two equal 6250 Ω resistances.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-19",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A galvanometer can be converted into a voltmeter of range V₁ by connecting a resistance R₁ in series, and into a voltmeter of range V₂ by connecting R₂ in series. The resistance of the galvanometer G is:",
+    "explanation": "For range V₁: V₁ = Ig(G + R₁), so G + R₁ = V₁/Ig. For range V₂: V₂ = Ig(G + R₂), so G + R₂ = V₂/Ig. Subtracting: R₁ − R₂ = (V₁ − V₂)/Ig. From first equation: G = V₁/Ig − R₁. Alternatively, solving the two equations: G = (V₁R₂ − V₂R₁)/(V₂ − V₁).",
+    "correct_answer": "D",
+    "concept_tags": [
+      "voltmeter-conversion",
+      "galvanometer-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "voltmeter series resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "R₁ + R₂",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "(R₁ − R₂)/(V₁ + V₂)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "R₁R₂/(R₁ + R₂)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "(V₁R₂ − V₂R₁)/(V₂ − V₁)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "G = R₁ + R₂ has no connection to the voltage ranges; it ignores V₁ and V₂.",
+        "misconception": "Guessing without applying the conversion formula."
+      },
+      {
+        "option_key": "B",
+        "hint": "This expression has wrong dimensions if R and V are in standard units.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "R₁R₂/(R₁+R₂) is a parallel combination formula, irrelevant to series voltmeter conversion.",
+        "misconception": "Applying parallel resistance formula where it does not belong."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-20",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A galvanometer of resistance 30 Ω is shunted by a 10 Ω resistance. What fraction of the total current passes through the galvanometer?",
+    "explanation": "When a shunt S is connected in parallel with galvanometer G, the current divides inversely as the resistances. Current through galvanometer Ig = I × S/(S+G) = I × 10/(10+30) = I × 10/40 = I/4. So 1/4 of the total current passes through the galvanometer.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "current-division",
+      "shunt-resistance",
+      "galvanometer"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1/3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3/4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1/4",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1/2",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1/3 would be the fraction if G = 2S, but here G = 3S.",
+        "misconception": "Using G/S instead of S/(G+S)."
+      },
+      {
+        "option_key": "B",
+        "hint": "3/4 is the fraction through the shunt, not the galvanometer.",
+        "misconception": "Confusing current through galvanometer with current through shunt."
+      },
+      {
+        "option_key": "D",
+        "hint": "1/2 would require G = S, but G ≠ S here.",
+        "misconception": "Assuming equal current division regardless of resistance values."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-21",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "easy",
+    "image_uri": "diagrams/cuet-phy-current-instruments-21.png",
+    "image_alt": "Circuit diagram showing a galvanometer connected in parallel with a low resistance (shunt) S, both together placed in series within a circuit containing a battery and a resistor.",
+    "question_text": "The diagram shows a galvanometer G connected with a low resistance S in parallel. This arrangement converts the galvanometer into:",
+    "explanation": "A low resistance (shunt) connected in parallel with a galvanometer diverts most of the current through itself, allowing the galvanometer to measure large currents. This is the standard method of converting a galvanometer into an ammeter.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "ammeter-conversion",
+      "shunt-resistance",
+      "diagram"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A voltmeter",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "An ammeter",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "An ohmmeter",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A potentiometer",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A voltmeter requires a high series resistance, not a low parallel resistance.",
+        "misconception": "Confusing parallel shunt (ammeter) with series resistance (voltmeter)."
+      },
+      {
+        "option_key": "C",
+        "hint": "An ohmmeter measures resistance and has a different internal circuit design.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A potentiometer is a device with a long wire, not a shunted galvanometer.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-22",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "image_uri": "diagrams/cuet-phy-current-instruments-22.png",
+    "image_alt": "Diagram of a moving coil galvanometer showing a rectangular coil ABCD suspended between concave pole pieces of a permanent magnet, with a soft iron core inside the coil. Arrows show the radial magnetic field lines.",
+    "question_text": "In the diagram of a moving coil galvanometer, the soft iron core placed inside the coil serves to:",
+    "explanation": "The soft iron core concentrates the magnetic field lines and makes the field radial and uniform in the gap between the pole pieces and the core. This ensures the torque on the coil is constant at all deflection angles, producing a linear scale.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "soft-iron-core",
+      "radial-field",
+      "galvanometer"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "galvanometer",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Increase the moment of inertia of the coil",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Provide electromagnetic damping",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Reduce the torsional constant of the spring",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Make the magnetic field stronger and radial",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Increasing moment of inertia would slow the response, which is undesirable.",
+        "misconception": "Confusing mechanical properties with magnetic properties."
+      },
+      {
+        "option_key": "B",
+        "hint": "Electromagnetic damping is achieved by the metallic frame, not the iron core.",
+        "misconception": "Attributing damping to the core instead of the conducting frame."
+      },
+      {
+        "option_key": "C",
+        "hint": "The torsional constant depends on the spring, not the iron core.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-23",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "image_uri": "diagrams/cuet-phy-current-instruments-23.png",
+    "image_alt": "Circuit diagram showing a galvanometer of resistance G = 40 Ω connected in series with a high resistance R, the combination connected across two points in a circuit to measure voltage. The voltage across the terminals is marked as V = 10 V and Ig = 0.5 mA is indicated.",
+    "question_text": "From the diagram, the value of the series resistance R used to convert the galvanometer into a voltmeter of range 0–10 V is:",
+    "explanation": "Using R = V/Ig − G = 10/0.0005 − 40 = 20000 − 40 = 19960 Ω ≈ 19,960 Ω. The high series resistance limits the current to Ig when the maximum voltage V is applied.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "voltmeter-conversion",
+      "series-resistance",
+      "diagram"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "voltmeter series resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "19,960 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "20,000 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "20,040 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "10,000 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "20,000 Ω is V/Ig but you must subtract G = 40 Ω from this.",
+        "misconception": "Forgetting to subtract the galvanometer resistance."
+      },
+      {
+        "option_key": "C",
+        "hint": "20,040 means G was added instead of subtracted.",
+        "misconception": "Adding G instead of subtracting in R = V/Ig − G."
+      },
+      {
+        "option_key": "D",
+        "hint": "10,000 Ω suggests a factor-of-two error; check the conversion of Ig to amperes.",
+        "misconception": "Incorrect unit conversion of mA to A."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-24",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "image_uri": "diagrams/cuet-phy-current-instruments-24.png",
+    "image_alt": "Circuit diagram with a battery of EMF 12 V and internal resistance 2 Ω connected to two resistors R₁ = 100 Ω and R₂ = 100 Ω in series. A voltmeter of resistance 200 Ω is connected across R₂.",
+    "question_text": "In the given circuit, a voltmeter of resistance 200 Ω is connected across R₂ = 100 Ω. The reading of the voltmeter is:",
+    "explanation": "The voltmeter (200 Ω) in parallel with R₂ (100 Ω) gives an effective resistance = 200×100/(200+100) = 20000/300 = 200/3 Ω. Total circuit resistance = 2 + 100 + 200/3 = 2 + 100 + 66.67 = 168.67 Ω. Current from battery = 12/168.67 ≈ 0.07114 A. Voltage across the parallel combination = 0.07114 × 200/3 = 0.07114 × 66.67 ≈ 4.74 V. Rounding: exactly 12 × (200/3)/(102 + 200/3) = 12 × (200/3)/((306+200)/3) = 12 × 200/506 = 2400/506 ≈ 4.74 V.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "voltmeter-loading-effect",
+      "parallel-resistance",
+      "circuit-analysis"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "voltmeter series resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "6 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "5 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4.74 V (approximately)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "3 V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "6 V would be the voltage across R₂ if the voltmeter had infinite resistance (no loading).",
+        "misconception": "Ignoring the loading effect of the voltmeter."
+      },
+      {
+        "option_key": "B",
+        "hint": "5 V does not match the parallel combination calculation.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "3 V is too low; recheck the effective resistance of the parallel combination.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-25",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): An ammeter is always connected in series in a circuit.\nReason (R): An ammeter has very low resistance so that it does not change the current to be measured.",
+    "explanation": "Both the assertion and reason are true. An ammeter must be connected in series to carry the full circuit current. Its very low resistance ensures minimal voltage drop across it, thereby not altering the circuit current significantly. The reason correctly explains the assertion: the low resistance is why series connection works without disturbing the circuit.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "ammeter",
+      "series-connection",
+      "low-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is not the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The low resistance is directly the reason why series connection does not disturb the current.",
+        "misconception": "Thinking the two statements are unrelated."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is factually correct: ammeters do have very low resistance.",
+        "misconception": "Incorrectly doubting the reason."
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct: ammeters are always connected in series.",
+        "misconception": "Incorrectly doubting the assertion."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-26",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Increasing the number of turns N in a galvanometer coil increases both current sensitivity and voltage sensitivity.\nReason (R): Current sensitivity = NBA/k and voltage sensitivity = NBA/(kG).",
+    "explanation": "Current sensitivity = NBA/k, which increases with N. However, increasing N increases the resistance G of the coil (since more wire means more resistance). Voltage sensitivity = NBA/(kG). Although NBA/k increases, G also increases with N, so the net effect on voltage sensitivity is not necessarily an increase. Therefore, the assertion is false — increasing N increases current sensitivity but may not increase voltage sensitivity.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "current-sensitivity",
+      "voltage-sensitivity",
+      "galvanometer-design"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "current sensitivity vs voltage sensitivity",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is not the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The assertion is false because increasing N also increases G, which reduces voltage sensitivity.",
+        "misconception": "Ignoring that coil resistance G increases with number of turns."
+      },
+      {
+        "option_key": "B",
+        "hint": "The assertion is false, not true.",
+        "misconception": "Same as above."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason correctly states the formulas for both sensitivities.",
+        "misconception": "Incorrectly doubting the formulas."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-27",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): A moving coil galvanometer can be used to detect alternating current (AC).\nReason (R): The coil of a galvanometer experiences a torque proportional to the current passing through it.",
+    "explanation": "A moving coil galvanometer cannot detect AC because the torque reverses direction with each half-cycle. Due to the mechanical inertia of the coil, it cannot follow the rapid reversals and the average deflection is zero. The reason is true — the torque is proportional to current — but the assertion is false. AC requires instruments based on heating effect (hot wire) or other principles.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "galvanometer",
+      "AC-vs-DC",
+      "torque"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "AC meters vs DC meters",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is not the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The assertion is false; a moving coil galvanometer gives zero average deflection for AC.",
+        "misconception": "Not understanding that AC reversal causes zero net deflection."
+      },
+      {
+        "option_key": "B",
+        "hint": "The assertion is false, not true.",
+        "misconception": "Same misconception as above."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is correct: torque is indeed proportional to current.",
+        "misconception": "Incorrectly doubting the proportionality of torque and current."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-28",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): When a galvanometer is converted into a voltmeter by adding a series resistance, the device draws very little current from the circuit.\nReason (R): The series resistance is much larger than the galvanometer resistance, making the total resistance of the voltmeter very high.",
+    "explanation": "Both statements are true. Adding a large series resistance makes the total resistance very high (R + G ≈ R >> G). When connected across a voltage source, the current drawn is I = V/(R+G), which is very small. The high total resistance is precisely the reason why the voltmeter draws negligible current, so R is the correct explanation of A.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "voltmeter",
+      "series-resistance",
+      "high-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "voltmeter series resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is not the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The high total resistance directly explains why little current is drawn.",
+        "misconception": "Not seeing the causal link between high resistance and low current."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is factually correct; series resistance is much larger than G.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct; voltmeters do draw very little current.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-29",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following instruments/properties (Column I) with their characteristics (Column II):\n\nColumn I: (P) Ammeter, (Q) Voltmeter, (R) Galvanometer, (S) Ideal ammeter\nColumn II: (1) Connected in parallel, (2) Measures deflection proportional to current, (3) Has zero resistance, (4) Connected in series",
+    "explanation": "Ammeter (P) is connected in series → (4). Voltmeter (Q) is connected in parallel → (1). Galvanometer (R) measures deflection proportional to current → (2). Ideal ammeter (S) has zero resistance → (3). Therefore the correct matching is P-4, Q-1, R-2, S-3.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "ammeter",
+      "voltmeter",
+      "galvanometer",
+      "ideal-ammeter"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "columns": [
+      {
+        "column_id": "I",
+        "heading": "Instrument/Property",
+        "items": [
+          {
+            "key": "P",
+            "text": "Ammeter"
+          },
+          {
+            "key": "Q",
+            "text": "Voltmeter"
+          },
+          {
+            "key": "R",
+            "text": "Galvanometer"
+          },
+          {
+            "key": "S",
+            "text": "Ideal ammeter"
+          }
+        ]
+      },
+      {
+        "column_id": "II",
+        "heading": "Characteristic",
+        "items": [
+          {
+            "key": "1",
+            "text": "Connected in parallel"
+          },
+          {
+            "key": "2",
+            "text": "Measures deflection proportional to current"
+          },
+          {
+            "key": "3",
+            "text": "Has zero resistance"
+          },
+          {
+            "key": "4",
+            "text": "Connected in series"
+          }
+        ]
+      }
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P-1, Q-4, R-3, S-2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P-4, Q-1, R-2, S-3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "P-3, Q-2, R-1, S-4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P-4, Q-1, R-3, S-2",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Ammeter is connected in series (4), not parallel (1).",
+        "misconception": "Swapping ammeter and voltmeter connections."
+      },
+      {
+        "option_key": "C",
+        "hint": "This option mismatches every instrument with a wrong characteristic.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Galvanometer measures deflection proportional to current (2), not has zero resistance (3).",
+        "misconception": "Confusing galvanometer property with ideal ammeter property."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-30",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following conversion formulas (Column I) with their purposes (Column II):\n\nColumn I: (P) S = Ig·G/(I−Ig), (Q) R = V/Ig − G, (R) θ/I = NBA/k, (S) I/θ = k/(NBA)\nColumn II: (1) Figure of merit of galvanometer, (2) Shunt for ammeter conversion, (3) Series resistance for voltmeter conversion, (4) Current sensitivity of galvanometer",
+    "explanation": "S = Ig·G/(I−Ig) is the shunt resistance formula for ammeter conversion → P-2. R = V/Ig − G is the series resistance for voltmeter conversion → Q-3. θ/I = NBA/k is the current sensitivity → R-4. I/θ = k/(NBA) is the figure of merit → S-1.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "ammeter-conversion",
+      "voltmeter-conversion",
+      "current-sensitivity",
+      "figure-of-merit"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "sensitivity and figure of merit",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "columns": [
+      {
+        "column_id": "I",
+        "heading": "Formula",
+        "items": [
+          {
+            "key": "P",
+            "text": "S = Ig·G/(I−Ig)"
+          },
+          {
+            "key": "Q",
+            "text": "R = V/Ig − G"
+          },
+          {
+            "key": "R",
+            "text": "θ/I = NBA/k"
+          },
+          {
+            "key": "S",
+            "text": "I/θ = k/(NBA)"
+          }
+        ]
+      },
+      {
+        "column_id": "II",
+        "heading": "Purpose",
+        "items": [
+          {
+            "key": "1",
+            "text": "Figure of merit of galvanometer"
+          },
+          {
+            "key": "2",
+            "text": "Shunt for ammeter conversion"
+          },
+          {
+            "key": "3",
+            "text": "Series resistance for voltmeter conversion"
+          },
+          {
+            "key": "4",
+            "text": "Current sensitivity of galvanometer"
+          }
+        ]
+      }
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P-3, Q-2, R-1, S-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P-2, Q-3, R-1, S-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P-2, Q-3, R-4, S-1",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "P-1, Q-4, R-2, S-3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "P is the shunt formula for ammeter (2), not voltmeter (3).",
+        "misconception": "Swapping ammeter and voltmeter conversion formulas."
+      },
+      {
+        "option_key": "B",
+        "hint": "θ/I is current sensitivity (4), not figure of merit (1).",
+        "misconception": "Confusing current sensitivity with figure of merit."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option has every match incorrect.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-31",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "True or False: A galvanometer can be converted into an ammeter by connecting a low resistance in parallel with it.",
+    "explanation": "This is TRUE. A low resistance (shunt) connected in parallel allows most of the current to bypass the galvanometer. The shunt carries (I − Ig) while the galvanometer carries only Ig. This extends the range of measurable current, effectively converting the galvanometer into an ammeter.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "ammeter-conversion",
+      "shunt-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement correctly describes the standard ammeter conversion method.",
+        "misconception": "Not knowing the basic ammeter conversion technique."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-32",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "True or False: A voltmeter should have very low resistance to accurately measure potential difference.",
+    "explanation": "This is FALSE. A voltmeter should have very HIGH resistance (ideally infinite) to draw negligible current from the circuit. If a voltmeter had low resistance, it would draw significant current, altering the potential difference across the component and giving an inaccurate reading.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "voltmeter",
+      "high-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ideal voltmeter",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Low resistance is the property of an ammeter, not a voltmeter.",
+        "misconception": "Confusing voltmeter and ammeter resistance requirements."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-33",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "true-false",
+    "difficulty": "medium",
+    "question_text": "True or False: In a dead-beat galvanometer, the coil is wound on a metallic frame so that eddy currents provide electromagnetic damping and the pointer comes to rest quickly.",
+    "explanation": "This is TRUE. A dead-beat (or critically damped) galvanometer has its coil wound on a conducting (metallic) frame. When the coil moves in the magnetic field, eddy currents are induced in the metallic frame, which oppose the motion (Lenz's law) and provide electromagnetic damping. This causes the pointer to reach its equilibrium position quickly without oscillating.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dead-beat-galvanometer",
+      "electromagnetic-damping",
+      "eddy-currents"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "dead-beat vs ballistic galvanometer",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement accurately describes the damping mechanism in a dead-beat galvanometer.",
+        "misconception": "Not understanding the role of the metallic frame in damping."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-34",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "true-false",
+    "difficulty": "medium",
+    "question_text": "True or False: A hot-wire ammeter can measure only DC current and cannot measure AC current.",
+    "explanation": "This is FALSE. A hot-wire ammeter works on the heating effect of current (I²R), which is independent of the direction of current. Therefore, it can measure both AC and DC currents. In fact, hot-wire ammeters are commonly used for AC measurements because they respond to the RMS value of current.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "hot-wire-ammeter",
+      "AC-DC-measurement"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "AC meters vs DC meters",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Hot-wire instruments rely on the heating effect (I²R), which works for both AC and DC.",
+        "misconception": "Thinking hot-wire instruments are direction-dependent like moving coil instruments."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-35",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "fill-in-blanks",
+    "difficulty": "easy",
+    "question_text": "The deflecting torque in a moving coil galvanometer is given by τ = NBIA, where N is the number of turns, B is the magnetic field, I is the current, and A is the ________ of the coil.",
+    "explanation": "In the torque formula τ = NBIA, A represents the area of the coil. The torque experienced by a current-carrying coil in a magnetic field depends on the number of turns, the magnetic field strength, the current, and the cross-sectional area of the coil.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "galvanometer",
+      "deflecting-torque",
+      "coil-area"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "galvanometer",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Resistance",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Inductance",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Perimeter",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Area",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Resistance does not appear in the torque formula τ = NBIA.",
+        "misconception": "Confusing electrical and mechanical properties."
+      },
+      {
+        "option_key": "B",
+        "hint": "Inductance is an electromagnetic property, not related to the torque formula.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "Torque depends on area, not perimeter; area is the product of length and breadth.",
+        "misconception": "Confusing area with perimeter."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-36",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "A galvanometer of resistance G and full-scale deflection current Ig is to be converted into a voltmeter of range V. The total resistance of the voltmeter is ________.",
+    "explanation": "For a voltmeter, a series resistance R is added where R = V/Ig − G. The total resistance = R + G = (V/Ig − G) + G = V/Ig. So the total resistance of the voltmeter is V/Ig, which is the voltage range divided by the full-scale deflection current.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "voltmeter-conversion",
+      "total-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "voltmeter series resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "V/Ig − G",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "V/Ig",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "V·Ig",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "G + Ig/V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "V/Ig − G is only the series resistance R, not the total resistance of the voltmeter.",
+        "misconception": "Confusing the added series resistance with total voltmeter resistance."
+      },
+      {
+        "option_key": "C",
+        "hint": "V·Ig has dimensions of power, not resistance.",
+        "misconception": "Dimensional error."
+      },
+      {
+        "option_key": "D",
+        "hint": "Ig/V has dimensions of 1/resistance; the formula is dimensionally incorrect.",
+        "misconception": "Inverting V and Ig in the formula."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-37",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "scenario": "A physics student in a laboratory is given a galvanometer with resistance G = 60 Ω and full-scale deflection current Ig = 3 mA. She needs to measure currents up to 3 A in a circuit. She connects a shunt resistance in parallel with the galvanometer to convert it into an ammeter.",
+    "question_text": "Based on the scenario, the value of the shunt resistance the student should use is approximately:",
+    "explanation": "Using S = Ig·G/(I−Ig) = (0.003 × 60)/(3 − 0.003) = 0.18/2.997 ≈ 0.06 Ω. The shunt must be very small to divert most of the 3 A away from the sensitive galvanometer.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "ammeter-conversion",
+      "shunt-resistance",
+      "laboratory"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "6 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.6 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.06 Ω (approximately)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "0.006 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "6 Ω is 100× too large; this would only carry a small fraction of 3 A.",
+        "misconception": "Order of magnitude error in calculation."
+      },
+      {
+        "option_key": "B",
+        "hint": "0.6 Ω is 10× too large; recheck the calculation of Ig·G.",
+        "misconception": "Decimal place error."
+      },
+      {
+        "option_key": "D",
+        "hint": "0.006 Ω is 10× too small; verify the denominator (I − Ig).",
+        "misconception": "Decimal place error in the other direction."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-38",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "scenario": "An engineer is designing a multimeter that uses a single galvanometer (G = 75 Ω, Ig = 1.5 mA) which can be switched between ammeter mode (range 0–15 A) and voltmeter mode (range 0–150 V). The switching mechanism connects either a shunt in parallel or a series resistance, depending on the mode selected.",
+    "question_text": "The ratio of the series resistance (for voltmeter mode) to the shunt resistance (for ammeter mode) in this multimeter design is closest to:",
+    "explanation": "Shunt S = Ig·G/(I−Ig) = (0.0015 × 75)/(15 − 0.0015) = 0.1125/14.9985 ≈ 0.0075 Ω. Series resistance R = V/Ig − G = 150/0.0015 − 75 = 100000 − 75 = 99925 Ω. Ratio = R/S = 99925/0.0075 ≈ 1.33 × 10⁷ ≈ 1.3 × 10⁷.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "multimeter",
+      "ammeter-conversion",
+      "voltmeter-conversion",
+      "design"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "multimeter basics",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1.3 × 10³",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.3 × 10⁵",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1.3 × 10⁶",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.3 × 10⁷ (approximately)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "10³ is far too small; the voltmeter resistance alone is ~100,000 Ω.",
+        "misconception": "Underestimating the orders of magnitude difference."
+      },
+      {
+        "option_key": "B",
+        "hint": "Check the shunt value more carefully; it is ~0.0075 Ω, not 1 Ω.",
+        "misconception": "Error in shunt calculation."
+      },
+      {
+        "option_key": "C",
+        "hint": "Close but the shunt is smaller than 0.075 Ω; recalculate S.",
+        "misconception": "Off by one order of magnitude in shunt."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-39",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following steps in the correct logical order for converting a galvanometer into an ammeter:\n(1) Calculate shunt resistance S = Ig·G/(I−Ig)\n(2) Note the galvanometer resistance G and full-scale deflection current Ig\n(3) Connect the calculated shunt resistance in parallel with the galvanometer\n(4) Determine the desired ammeter range I",
+    "explanation": "The logical sequence is: First note the galvanometer parameters G and Ig (step 2), then determine the desired range I (step 4), then calculate the required shunt using the formula (step 1), and finally connect the shunt in parallel (step 3). Order: 2 → 4 → 1 → 3.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "ammeter-conversion",
+      "shunt-resistance",
+      "procedure"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "items": [
+      "Calculate shunt resistance S = Ig·G/(I−Ig)",
+      "Note the galvanometer resistance G and full-scale deflection current Ig",
+      "Connect the calculated shunt resistance in parallel with the galvanometer",
+      "Determine the desired ammeter range I"
+    ],
+    "correct_order": [
+      2,
+      4,
+      1,
+      3
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2 → 4 → 1 → 3",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "4 → 2 → 3 → 1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1 → 2 → 4 → 3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2 → 1 → 4 → 3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "You cannot connect the shunt (step 3) before calculating its value (step 1).",
+        "misconception": "Placing physical connection before calculation."
+      },
+      {
+        "option_key": "C",
+        "hint": "You cannot calculate S (step 1) without first knowing G, Ig, and I.",
+        "misconception": "Starting calculation before gathering all required parameters."
+      },
+      {
+        "option_key": "D",
+        "hint": "Step 1 requires I (the desired range), which comes from step 4.",
+        "misconception": "Calculating S before determining the desired range."
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-instruments-40",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "A student troubleshoots an incorrect ammeter reading in a circuit. Arrange the following diagnostic steps in the most logical order:\n(1) Verify that the ammeter is connected in series, not in parallel\n(2) Check if the shunt resistance value matches the required S = Ig·G/(I−Ig)\n(3) Confirm that the reading is incorrect by comparing with a known standard\n(4) Inspect for loose connections or corroded terminals at the shunt junction",
+    "explanation": "Logical troubleshooting order: First confirm that the reading is indeed incorrect by comparing with a standard (step 3). Then check the most common mistake — whether the ammeter is connected in series (step 1). Next, inspect physical connections (step 4) as loose or corroded junctions can add resistance. Finally, verify the shunt resistance value (step 2) as a calculation or component error. Order: 3 → 1 → 4 → 2.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "ammeter",
+      "troubleshooting",
+      "series-connection",
+      "shunt-resistance"
+    ],
+    "topic": "Measuring Instruments",
+    "subtopic": "ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "items": [
+      "Verify that the ammeter is connected in series, not in parallel",
+      "Check if the shunt resistance value matches the required S = Ig·G/(I−Ig)",
+      "Confirm that the reading is incorrect by comparing with a known standard",
+      "Inspect for loose connections or corroded terminals at the shunt junction"
+    ],
+    "correct_order": [
+      3,
+      1,
+      4,
+      2
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 → 3 → 2 → 4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 → 1 → 4 → 2",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2 → 4 → 1 → 3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4 → 3 → 1 → 2",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The first step in troubleshooting should be confirming the problem exists (step 3), not jumping to fixes.",
+        "misconception": "Skipping verification and assuming the problem."
+      },
+      {
+        "option_key": "C",
+        "hint": "Checking the shunt value (step 2) is a detailed check that should come after simpler inspections.",
+        "misconception": "Starting with the most complex diagnostic step."
+      },
+      {
+        "option_key": "D",
+        "hint": "Inspecting connections (step 4) before confirming the problem (step 3) wastes time if the reading is actually correct.",
+        "misconception": "Not following standard troubleshooting methodology."
+      }
+    ]
+  }
+]
