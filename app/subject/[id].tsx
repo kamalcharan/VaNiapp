@@ -206,6 +206,19 @@ export default function SubjectDetailScreen() {
 
   const hasProgress = chapterAnalytics.some((ca) => ca.totalAnswered > 0);
 
+  // Subject-level totals for display
+  const subjectTotals = useMemo(() => {
+    let totalAnswered = 0;
+    let totalCorrect = 0;
+    let totalInBank = 0;
+    for (const ca of chapterAnalytics) {
+      totalAnswered += ca.totalAnswered;
+      totalCorrect += ca.correctCount;
+      totalInBank += ca.totalInBank;
+    }
+    return { totalAnswered, totalCorrect, totalInBank };
+  }, [chapterAnalytics]);
+
   // Find VaNi's recommended next chapter (most room to grow)
   const nextUpChapter = useMemo(() => {
     const practiced = chapterAnalytics.filter((ca) => ca.totalAnswered > 0);
@@ -382,6 +395,11 @@ export default function SubjectDetailScreen() {
 
                 <Text style={[Typography.bodySm, { color: colors.textTertiary, fontSize: 10, marginTop: 2 }]}>
                   acc = % correct answers {'·'} covered = % of question bank attempted
+                </Text>
+
+                {/* Total question bank progress */}
+                <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: Spacing.xs }]}>
+                  {subjectTotals.totalCorrect} correct out of {subjectTotals.totalAnswered} attempted {'·'} {subjectTotals.totalInBank} questions in bank
                 </Text>
 
                 {/* Subject progress bar */}
