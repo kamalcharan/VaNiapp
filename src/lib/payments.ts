@@ -14,6 +14,7 @@ export interface SaveSubscriptionParams {
   amountPaidRupees: number;
   gstRupees: number;
   paymentMethod?: string;
+  targetYear?: number;
 }
 
 export async function saveSubscription(params: SaveSubscriptionParams): Promise<void> {
@@ -32,8 +33,10 @@ export async function saveSubscription(params: SaveSubscriptionParams): Promise<
     expiresAt = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString();
   } else if (params.planType === 'yearly') {
     expiresAt = new Date(now.getTime() + 365 * 24 * 60 * 60 * 1000).toISOString();
+  } else if (params.planType === 'crunch') {
+    const year = params.targetYear ?? now.getFullYear();
+    expiresAt = new Date(year, 5, 15).toISOString(); // June 15 of exam year
   }
-  // crunch: no expiry (valid until exam season ends)
 
   const { error } = await supabase.from('med_subscriptions').insert({
     user_id: user.id,
