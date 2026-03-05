@@ -153,6 +153,10 @@ def load_all_questions_deduplicated():
                 skipped += 1
                 continue
             seen_ids.add(qid)
+            # Skip diagram-based questions (no images yet)
+            if q.get("question_type") == "diagram-based":
+                skipped += 1
+                continue
             q["_source_file"] = fname
             q["_topic_id_resolved"] = resolve_topic_id(q)
             selected_questions.append(q)
