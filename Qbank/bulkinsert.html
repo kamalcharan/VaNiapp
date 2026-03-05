@@ -481,8 +481,8 @@
             } else if (typeof q.elimination_hints === 'object') {
               // CUET format: { hint_1, hint_2, misconception_tag }
               const eh = q.elimination_hints;
-              if (eh.hint_1) hints.push({ question_id: insertedQ.id, option_key: '', hint_text: eh.hint_1, misconception: eh.misconception_tag || '' });
-              if (eh.hint_2) hints.push({ question_id: insertedQ.id, option_key: '', hint_text: eh.hint_2, misconception: eh.misconception_tag || '' });
+              if (eh.hint_1) hints.push({ question_id: insertedQ.id, option_key: 'hint_1', hint_text: eh.hint_1, misconception: eh.misconception_tag || '' });
+              if (eh.hint_2) hints.push({ question_id: insertedQ.id, option_key: 'hint_2', hint_text: eh.hint_2, misconception: eh.misconception_tag || '' });
             }
             if (hints.length > 0) {
               const { error: hintErr } = await Qbank.supabase.from('med_elimination_hints').insert(hints);
