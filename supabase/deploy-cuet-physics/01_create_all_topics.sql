@@ -1,11 +1,13 @@
 -- ==========================================================================
 -- DEPLOY STEP 1: Create ALL CUET Physics topics (idempotent)
 -- Safe to re-run — uses ON CONFLICT DO NOTHING
+-- Total: 47 topics
 -- ==========================================================================
 
 INSERT INTO med_topics (id, chapter_id, name, is_active) VALUES
   ('cuet-phy-ac-advanced', 'cuet-phy-em-induction', 'AC Circuits — Advanced', true),
-  ('cuet-phy-ac-circuits', 'cuet-phy-em-induction', 'AC Circuits', true),
+  ('cuet-phy-atom-bohr', 'cuet-phy-atoms-nuclei', 'Bohr Model of Hydrogen Atom', true),
+  ('cuet-phy-atom-spectra', 'cuet-phy-atoms-nuclei', 'Hydrogen Spectrum and Spectral Series', true),
   ('cuet-phy-comm-bandwidth', 'cuet-phy-communication', 'Bandwidth of Signals and Channels', true),
   ('cuet-phy-comm-detection', 'cuet-phy-communication', 'Detection and Demodulation', true),
   ('cuet-phy-comm-elements', 'cuet-phy-communication', 'Elements of Communication System', true),
@@ -17,11 +19,16 @@ INSERT INTO med_topics (id, chapter_id, name, is_active) VALUES
   ('cuet-phy-current-potentiometer', 'cuet-phy-current-electricity', 'Potentiometer', true),
   ('cuet-phy-current-power', 'cuet-phy-current-electricity', 'Electrical Energy and Power', true),
   ('cuet-phy-current-wheatstone', 'cuet-phy-current-electricity', 'Wheatstone Bridge and Meter Bridge', true),
+  ('cuet-phy-dual-debroglie', 'cuet-phy-dual-nature', 'de Broglie Wavelength', true),
+  ('cuet-phy-dual-photoelectric', 'cuet-phy-dual-nature', 'Photoelectric Effect', true),
+  ('cuet-phy-em-ac-circuits', 'cuet-phy-em-induction', 'AC Circuits', true),
+  ('cuet-phy-em-transformer', 'cuet-phy-em-induction', 'Resonance, Power Factor, and Transformers', true),
   ('cuet-phy-emi-faraday', 'cuet-phy-em-induction', 'Faraday''s Laws of EMI', true),
   ('cuet-phy-emi-inductance', 'cuet-phy-em-induction', 'Self and Mutual Inductance', true),
   ('cuet-phy-emwave-spectrum', 'cuet-phy-em-waves', 'Electromagnetic Spectrum and Wave Properties', true),
   ('cuet-phy-es-capacitor', 'cuet-phy-electrostatics', 'Capacitance and Capacitors', true),
   ('cuet-phy-es-coulomb', 'cuet-phy-electrostatics', 'Coulomb''s Law and Electric Charges', true),
+  ('cuet-phy-es-dielectric', 'cuet-phy-electrostatics', 'Combination of Capacitors and Dielectrics', true),
   ('cuet-phy-es-dipole', 'cuet-phy-electrostatics', 'Electric Dipole', true),
   ('cuet-phy-es-field', 'cuet-phy-electrostatics', 'Electric Field and Field Lines', true),
   ('cuet-phy-es-gauss', 'cuet-phy-electrostatics', 'Gauss''s Law and Applications', true),
@@ -29,6 +36,20 @@ INSERT INTO med_topics (id, chapter_id, name, is_active) VALUES
   ('cuet-phy-mag-ampere', 'cuet-phy-magnetic-effects', 'Ampere''s Circuital Law', true),
   ('cuet-phy-mag-biot', 'cuet-phy-magnetic-effects', 'Biot-Savart Law and Applications', true),
   ('cuet-phy-mag-devices', 'cuet-phy-magnetic-effects', 'Moving Coil Galvanometer', true),
+  ('cuet-phy-mag-dipole', 'cuet-phy-magnetic-effects', 'Magnetic Dipole and Torque', true),
   ('cuet-phy-mag-force', 'cuet-phy-magnetic-effects', 'Force on Current and Moving Charges', true),
-  ('cuet-phy-mag-solenoid', 'cuet-phy-magnetic-effects', 'Solenoid and Toroid', true)
+  ('cuet-phy-mag-lorentz-force', 'cuet-phy-magnetic-effects', 'Lorentz Force and Motion in Fields', true),
+  ('cuet-phy-mag-materials', 'cuet-phy-magnetic-effects', 'Magnetic Properties of Materials', true),
+  ('cuet-phy-mag-solenoid', 'cuet-phy-magnetic-effects', 'Solenoid and Toroid', true),
+  ('cuet-phy-nuclei-decay', 'cuet-phy-atoms-nuclei', 'Radioactive Decay', true),
+  ('cuet-phy-nuclei-properties', 'cuet-phy-atoms-nuclei', 'Nuclear Properties and Binding Energy', true),
+  ('cuet-phy-opt-diffraction', 'cuet-phy-optics', 'Diffraction of Light', true),
+  ('cuet-phy-opt-instruments', 'cuet-phy-optics', 'Optical Instruments', true),
+  ('cuet-phy-opt-interference', 'cuet-phy-optics', 'Interference of Light', true),
+  ('cuet-phy-opt-polarisation', 'cuet-phy-optics', 'Polarisation of Light', true),
+  ('cuet-phy-opt-prism', 'cuet-phy-optics', 'Prism and Dispersion', true),
+  ('cuet-phy-opt-reflection', 'cuet-phy-optics', 'Reflection and Mirrors', true),
+  ('cuet-phy-semi-diode', 'cuet-phy-electronic-devices', 'Diode Applications (Rectifier, Zener, LED, Photodiode)', true),
+  ('cuet-phy-semi-pn', 'cuet-phy-electronic-devices', 'p-n Junction Diode and Characteristics', true),
+  ('cuet-phy-semi-transistor', 'cuet-phy-electronic-devices', 'Transistor, Logic Gates, and Amplifiers', true)
 ON CONFLICT (id) DO NOTHING;
