@@ -23,7 +23,7 @@ import { TopicBreakdown, TopicStat } from '../../src/components/TopicBreakdown';
 import { useTheme } from '../../src/hooks/useTheme';
 import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
-import { getSubjects, getChapters, getChapterStats, CatalogSubject, CatalogChapter, ChapterStats } from '../../src/lib/catalog';
+import { getSubjects, getChapters, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
 import { getProfile } from '../../src/lib/database';
 import { fetchQuestionsByChapter } from '../../src/lib/questions';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
@@ -106,7 +106,6 @@ export default function SubjectDetailScreen() {
 
   const [subject, setSubject] = useState<CatalogSubject | null>(null);
   const [chapters, setChapters] = useState<CatalogChapter[]>([]);
-  const [chapterStatsMap, setChapterStatsMap] = useState<Record<string, ChapterStats>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [examFilter, setExamFilter] = useState<string | undefined>(undefined);
@@ -151,13 +150,6 @@ export default function SubjectDetailScreen() {
         }
 
         setChapters(subjectChapters);
-
-        // Fetch topic counts per chapter (non-blocking — ok if slow)
-        getChapterStats(id!).then((stats) => {
-          const map: Record<string, ChapterStats> = {};
-          for (const s of stats) map[s.chapterId] = s;
-          setChapterStatsMap(map);
-        });
       } else {
         setLoadError(`Subject "${id}" not found`);
       }
@@ -182,25 +174,25 @@ export default function SubjectDetailScreen() {
 
   // Compute per-chapter analytics from Redux
   const chapterAnalytics = useMemo(() => {
+    const catalogIds = new Set(chapters.map((ch) => ch.id));
+
     // Map catalog chapters to strength data
     const mapped = chapters.map((ch) => {
       const data = strengthChapters[ch.id];
-      const stats = chapterStatsMap[ch.id];
       return {
         chapter: ch,
         coverage: data?.coverage ?? 0,
         accuracy: data?.accuracy ?? 0,
         totalAnswered: data?.totalAnswered ?? 0,
         correctCount: data?.correctCount ?? 0,
-        totalInBank: stats?.totalQuestions ?? data?.totalInBank ?? 0,
+        totalInBank: data?.totalInBank ?? 0,
         strengthLevel: (data?.strengthLevel ?? 'just-started') as StrengthLevel,
         lastPracticedAt: data?.lastPracticedAt ?? null,
-        topics: stats?.topics ?? [],
       };
     });
 
     return mapped;
-  }, [chapters, strengthChapters, chapterStatsMap, id]);
+  }, [chapters, strengthChapters, id]);
 
   // Subject-level strength
   const subjectStrength = useMemo(() => {
@@ -562,24 +554,8 @@ export default function SubjectDetailScreen() {
                           </Text>
                         </View>
 
-                        {/* Topics with question counts */}
-                        {ca.topics.length > 0 ? (
-                          <View style={styles.topicsRow}>
-                            {ca.topics.slice(0, 4).map((t) => (
-                              <View key={t.id} style={[styles.topicChip, { backgroundColor: subject.color + '12' }]}>
-                                <Text style={[styles.topicText, { color: subject.color }]} numberOfLines={1}>
-                                  {language === 'te' && t.name_te ? t.name_te : t.name}
-                                  {t.questionCount > 0 ? ` (${t.questionCount})` : ''}
-                                </Text>
-                              </View>
-                            ))}
-                            {ca.topics.length > 4 && (
-                              <Text style={[styles.topicMoreText, { color: colors.textTertiary }]}>
-                                +{ca.topics.length - 4} more
-                              </Text>
-                            )}
-                          </View>
-                        ) : ca.chapter.important_topics && ca.chapter.important_topics.length > 0 ? (
+                        {/* Important topics (from catalog) */}
+                        {ca.chapter.important_topics && ca.chapter.important_topics.length > 0 && (
                           <View style={styles.topicsRow}>
                             {ca.chapter.important_topics.slice(0, 3).map((topic) => (
                               <View key={topic} style={[styles.topicChip, { backgroundColor: subject.color + '12' }]}>
@@ -589,7 +565,7 @@ export default function SubjectDetailScreen() {
                               </View>
                             ))}
                           </View>
-                        ) : null}
+                        )}
 
                         {/* VaNi micro-coaching */}
                         <Text style={[styles.microCoaching, { color: colors.textSecondary }]}>
@@ -669,24 +645,8 @@ export default function SubjectDetailScreen() {
                               </Text>
                             </View>
                           )}
-                          {/* Topics with question counts */}
-                          {ca.topics.length > 0 ? (
-                            <View style={styles.topicsRow}>
-                              {ca.topics.slice(0, 4).map((t) => (
-                                <View key={t.id} style={[styles.topicChip, { backgroundColor: subject.color + '12' }]}>
-                                  <Text style={[styles.topicText, { color: subject.color }]} numberOfLines={1}>
-                                    {language === 'te' && t.name_te ? t.name_te : t.name}
-                                    {t.questionCount > 0 ? ` (${t.questionCount})` : ''}
-                                  </Text>
-                                </View>
-                              ))}
-                              {ca.topics.length > 4 && (
-                                <Text style={[styles.topicMoreText, { color: colors.textTertiary }]}>
-                                  +{ca.topics.length - 4} more
-                                </Text>
-                              )}
-                            </View>
-                          ) : ca.chapter.important_topics && ca.chapter.important_topics.length > 0 ? (
+                          {/* Topics preview for not-started chapters */}
+                          {ca.chapter.important_topics && ca.chapter.important_topics.length > 0 && (
                             <View style={styles.topicsRow}>
                               {ca.chapter.important_topics.slice(0, 3).map((topic) => (
                                 <View key={topic} style={[styles.topicChip, { backgroundColor: subject.color + '12' }]}>
@@ -696,11 +656,11 @@ export default function SubjectDetailScreen() {
                                 </View>
                               ))}
                             </View>
-                          ) : null}
-                          {/* Total questions + exam info */}
+                          )}
                           <Text style={[styles.notStartedText, { color: colors.textTertiary }]}>
-                            {ca.totalInBank > 0 ? `${ca.totalInBank} Qs` : 'Coming soon'}
-                            {ca.chapter.avg_questions > 0 ? ` · ~${ca.chapter.avg_questions} asked in exam` : ''}
+                            {ca.chapter.avg_questions > 0 && `~${ca.chapter.avg_questions} Qs in exam`}
+                            {ca.chapter.avg_questions > 0 && ' · '}
+                            {ca.totalInBank > 0 ? `${ca.totalInBank} Qs in bank` : 'No questions yet'}
                           </Text>
                         </View>
                       );
@@ -878,12 +838,6 @@ const styles = StyleSheet.create({
   topicText: {
     fontFamily: 'PlusJakartaSans_400Regular',
     fontSize: 10,
-  },
-  topicMoreText: {
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 10,
-    alignSelf: 'center' as const,
-    marginLeft: 4,
   },
   microCoaching: {
     fontFamily: 'PlusJakartaSans_400Regular',
