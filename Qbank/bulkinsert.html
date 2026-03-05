@@ -228,6 +228,8 @@
             if (q.question_type === 'multiple-choice') q.question_type = 'mcq';
             if (!q.difficulty) q.difficulty = 'medium';
             if (q.question_type === 'mcq' && (!q.options || q.options.length < 4)) errors.push('MCQ needs 4 options');
+            // Normalize: some JSONs use 'value' instead of 'text' for option text
+            if (q.options) q.options.forEach(o => { if (!o.text && o.value) o.text = o.value; });
             if (q.question_type === 'mcq' && !q.correct_answer) errors.push('missing correct_answer');
             q._errors = errors;
             q._file = file.name;
@@ -447,7 +449,7 @@
             const options = q.options.map((opt, idx) => ({
               question_id: insertedQ.id,
               option_key: opt.key || String.fromCharCode(65 + idx),
-              option_text: opt.text,
+              option_text: opt.text || opt.value || '',
               is_correct: opt.is_correct || (opt.key === q.correct_answer),
               sort_order: idx
             }));
@@ -455,14 +457,17 @@
             if (optErr) appendLogLine(logEl, `  Options warning for ${q.id}: ${optErr.message}`, 'skip');
           }
 
-          // Insert elimination hints
+          // Insert elimination hints (deduplicate by option_key)
           if (q.elimination_hints && q.elimination_hints.length > 0) {
-            const hints = q.elimination_hints.map(h => ({
-              question_id: insertedQ.id,
-              option_key: h.option_key,
-              hint_text: h.hint,
-              misconception: h.misconception || ''
-            }));
+            const seenKeys = new Set();
+            const hints = q.elimination_hints
+              .filter(h => { if (seenKeys.has(h.option_key)) return false; seenKeys.add(h.option_key); return true; })
+              .map(h => ({
+                question_id: insertedQ.id,
+                option_key: h.option_key,
+                hint_text: h.hint,
+                misconception: h.misconception || ''
+              }));
             const { error: hintErr } = await Qbank.supabase.from('med_elimination_hints').insert(hints);
             if (hintErr) appendLogLine(logEl, `  Hints warning for ${q.id}: ${hintErr.message}`, 'skip');
           }
