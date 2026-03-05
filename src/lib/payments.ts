@@ -241,3 +241,19 @@ export async function createRazorpayOrder(
   };
 }
 
+// ── Cancel subscription ──────────────────────────────────────
+
+export async function cancelSubscription(): Promise<void> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Not authenticated.');
+
+  const { error } = await supabase
+    .from('med_subscriptions')
+    .update({ status: 'cancelled', updated_at: new Date().toISOString() })
+    .eq('user_id', user.id)
+    .eq('status', 'active');
+
+  if (error) throw error;
+}
+

@@ -33,6 +33,7 @@ import {
 import {
   saveSubscription,
   createRazorpayOrder,
+  logFailedPayment,
 } from '../src/lib/payments';
 import { getRazorpayConfig, type RazorpayConfig } from '../src/lib/appConfig';
 import RazorpayCheckoutModal, {
@@ -217,11 +218,19 @@ export default function UpgradeScreen() {
     setCheckoutVisible(false);
     setCheckoutParams(null);
     setLoading(false);
+    // Persist failed payment for support debugging
+    logFailedPayment({
+      planType: selectedPlan,
+      errorCode: error.errorCode ?? 'UNKNOWN',
+      errorDescription: error.errorDescription ?? 'Payment failed',
+      razorpayOrderId: checkoutParams?.orderId,
+      amountRupees: pricing.total,
+    });
     router.push({
       pathname: '/payment-failure',
       params: { errorDescription: error.errorDescription },
     });
-  }, [router]);
+  }, [router, selectedPlan, checkoutParams, pricing]);
 
   const handlePaymentDismiss = useCallback(() => {
     setCheckoutVisible(false);
