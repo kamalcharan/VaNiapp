@@ -177,10 +177,12 @@
     // INIT
     // ========================================================================
     document.addEventListener('DOMContentLoaded', async () => {
+      // Setup file picker immediately so it works even if auth is slow
+      setupDragDrop();
+
       const user = await Qbank.requireAuth('admin');
       if (!user) return;
       Qbank.renderNavHeader();
-      setupDragDrop();
     });
 
     function setupDragDrop() {
