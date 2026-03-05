@@ -745,7 +745,7 @@
   },
   {
     "id": "cuet-phy-pot-potential-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The electric field is always perpendicular to the equipotential surface at every point.\nReason (R): No work is done in moving a charge along an equipotential surface.",
     "explanation": "Both the assertion and the reason are correct. If the electric field had a component along the equipotential surface, work would be done in moving a charge along the surface, contradicting the definition of an equipotential surface. Hence R correctly explains A — the perpendicularity ensures zero work along the surface.",
@@ -807,7 +807,7 @@
   },
   {
     "id": "cuet-phy-pot-potential-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): The electrostatic potential energy of two like charges is positive.\nReason (R): Electric potential is always positive in the region surrounding a positive charge.",
     "explanation": "The assertion is correct: for two like charges (both positive or both negative), U = kq₁q₂/r is positive since the product q₁q₂ is positive. The reason is also correct: the potential around a positive charge is indeed positive (V = kq/r > 0 when q > 0). However, R does not explain A because A applies to both like positive and like negative charges, and the positivity of PE comes from the product of charges, not from the potential of a single charge.",
@@ -869,7 +869,7 @@
   },
   {
     "id": "cuet-phy-pot-potential-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the following physical situations (Column I) with the corresponding electric potential (Column II):\n\nColumn I:\nA. Inside a uniformly charged spherical shell\nB. At the surface of a uniformly charged spherical shell of radius R\nC. At a distance 2R from the centre of a uniformly charged spherical shell\nD. At infinity\n\nColumn II:\n1. Zero\n2. kQ/R\n3. kQ/2R\n4. kQ/R (same as at surface)",
     "explanation": "Inside the shell (A), the potential is constant and equal to the surface potential: kQ/R, so A→4. At the surface (B), V = kQ/R, so B→2. At distance 2R (C), V = kQ/2R, so C→3. At infinity (D), V = 0, so D→1.",
@@ -931,7 +931,7 @@
   },
   {
     "id": "cuet-phy-pot-potential-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following quantities (Column I) with their distance dependence from a point charge (Column II):\n\nColumn I:\nA. Electric field due to point charge\nB. Electric potential due to point charge\nC. Electric field due to dipole (far field)\nD. Electric potential due to dipole (far field)\n\nColumn II:\n1. ∝ 1/r\n2. ∝ 1/r²\n3. ∝ 1/r³\n4. ∝ 1/r⁴",
     "explanation": "Electric field due to a point charge E = kq/r², so A→2. Electric potential due to a point charge V = kq/r, so B→1. Electric field due to a dipole varies as 1/r³, so C→3. Electric potential due to a dipole varies as 1/r², so D→2. Hence the correct matching is A-2, B-1, C-3, D-2.",
@@ -994,7 +994,7 @@
   },
   {
     "id": "cuet-phy-pot-potential-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Equipotential surfaces due to a point charge are concentric spheres centred on the charge.",
     "explanation": "This statement is TRUE. For a point charge, the potential V = kq/r depends only on the distance r from the charge. All points at the same distance r have the same potential, forming concentric spherical surfaces centred on the charge.",
@@ -1056,7 +1056,7 @@
   },
   {
     "id": "cuet-phy-pot-potential-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "Two equipotential surfaces can intersect each other.",
     "explanation": "This statement is FALSE. If two equipotential surfaces intersected, the point of intersection would have two different values of potential simultaneously, which is physically impossible since potential is a single-valued function of position.",
@@ -1118,7 +1118,7 @@
   },
   {
     "id": "cuet-phy-pot-potential-19",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "A charge of 10 μC is placed at the origin. The potential at a point 0.3 m from the charge is _____ V. (Take k = 9 × 10⁹ N m² C⁻²)",
     "explanation": "Using V = kq/r = 9 × 10⁹ × 10 × 10⁻⁶ / 0.3 = 9 × 10⁹ × 10⁻⁵ / 0.3 = 9 × 10⁴ / 0.3 = 3 × 10⁵ V. The potential is 3 × 10⁵ V or 300000 V.",
@@ -1180,7 +1180,7 @@
   },
   {
     "id": "cuet-phy-pot-potential-20",
-    "question_type": "scenario",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "In a laboratory experiment, a student places a +5 μC charge at point A and a +10 μC charge at point B, separated by a distance of 1 m. She wants to find a point on the line joining A and B where the electric potential is zero. She assumes both charges are in free space.\n\nThe student's observation should be that:",
     "explanation": "Since both charges are positive, the potential V = kq₁/r₁ + kq₂/r₂ is always positive at every point on the line joining them (and everywhere in space, since both terms are positive). There is no point where the net potential is zero. For potential to be zero between two charges, the charges must be of opposite sign.",

@@ -1,0 +1,1082 @@
+[
+  {
+    "id": "cuet-phy-ac-adv-01",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In an LC oscillating circuit, the total energy is:",
+    "explanation": "In an ideal LC circuit, energy oscillates between the inductor (magnetic energy ½LI²) and the capacitor (electric energy ½CV²). The total energy remains constant as there is no resistance to dissipate energy. At any instant, U_total = ½LI² + ½CV² = ½CV₀² = ½LI₀² = constant.",
+    "correct_answer": "C",
+    "concept_tags": ["LC-oscillation", "energy-conservation", "electromagnetic-oscillation"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LC oscillations",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Stored only in the inductor", "is_correct": false},
+      {"key": "B", "value": "Stored only in the capacitor", "is_correct": false},
+      {"key": "C", "value": "Constant and shared between L and C", "is_correct": true},
+      {"key": "D", "value": "Continuously dissipated as heat", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Energy is stored in the inductor only at the instant of maximum current.",
+      "Energy is stored in the capacitor only at the instant of maximum charge.",
+      "There is no resistance in an ideal LC circuit, so no heat is dissipated."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-02",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The frequency of oscillation in an ideal LC circuit with inductance L and capacitance C is:",
+    "explanation": "The angular frequency of LC oscillation is ω = 1/√(LC), so the frequency f = ω/(2π) = 1/(2π√(LC)). This is analogous to SHM of a spring-mass system where ω = √(k/m).",
+    "correct_answer": "B",
+    "concept_tags": ["LC-oscillation", "frequency", "angular-frequency"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LC oscillations",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1/(2π)√(L/C)", "is_correct": false},
+      {"key": "B", "value": "1/(2π√(LC))", "is_correct": true},
+      {"key": "C", "value": "2π√(LC)", "is_correct": false},
+      {"key": "D", "value": "1/(2πLC)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "√(L/C) has dimensions of impedance, not frequency.",
+      "2π√(LC) has dimensions of time (the time period T), not frequency.",
+      "1/(2πLC) does not have the correct dimensions of frequency."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-03",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In an LC circuit, the charge on the capacitor oscillates as q = q₀ cos(ωt). The current in the circuit is:",
+    "explanation": "Current I = dq/dt = d(q₀ cos(ωt))/dt = −q₀ω sin(ωt). The magnitude of maximum current I₀ = q₀ω. The current leads the charge by π/2 (90°). When charge is maximum, current is zero and vice versa.",
+    "correct_answer": "A",
+    "concept_tags": ["LC-oscillation", "current", "differentiation", "phase"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LC oscillations",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "−q₀ω sin(ωt)", "is_correct": true},
+      {"key": "B", "value": "q₀ω sin(ωt)", "is_correct": false},
+      {"key": "C", "value": "q₀ω cos(ωt)", "is_correct": false},
+      {"key": "D", "value": "−q₀ω cos(ωt)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Current is the derivative of charge, not the same function.",
+      "d(cos(ωt))/dt = −ω sin(ωt), so the negative sign is essential.",
+      "cos differentiates to −sin, not to cos or +sin."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-04",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The LC oscillation is analogous to the mechanical oscillation of a spring-mass system. In this analogy, the inductance L corresponds to:",
+    "explanation": "In the LC-SHM analogy: inductance L ↔ mass m, capacitance C ↔ 1/k (inverse of spring constant), charge q ↔ displacement x, current I ↔ velocity v, ½LI² ↔ ½mv² (kinetic energy), ½q²/C ↔ ½kx² (potential energy).",
+    "correct_answer": "B",
+    "concept_tags": ["LC-oscillation", "SHM-analogy", "inductance"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LC oscillations — SHM analogy",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Spring constant k", "is_correct": false},
+      {"key": "B", "value": "Mass m", "is_correct": true},
+      {"key": "C", "value": "Displacement x", "is_correct": false},
+      {"key": "D", "value": "Velocity v", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Spring constant k corresponds to 1/C, not L.",
+      "Displacement x corresponds to charge q.",
+      "L appears in ½LI² which is analogous to ½mv², so L ↔ m."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-05",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In an LC oscillating circuit with inductance L = 0.5 H and capacitance C = 20 μF, the angular frequency of oscillation is:",
+    "explanation": "ω = 1/√(LC) = 1/√(0.5 × 20 × 10⁻⁶) = 1/√(10⁻⁵) = 1/(10⁻²·⁵) = 10²·⁵ = √(10⁵) = √(100000) ≈ 316.2 rad/s. Rounding: ω = 100√10 ≈ 316 rad/s.",
+    "correct_answer": "C",
+    "concept_tags": ["LC-oscillation", "angular-frequency", "numerical"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LC oscillations",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "100 rad/s", "is_correct": false},
+      {"key": "B", "value": "200 rad/s", "is_correct": false},
+      {"key": "C", "value": "100√10 rad/s", "is_correct": true},
+      {"key": "D", "value": "1000 rad/s", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "LC = 0.5 × 20 × 10⁻⁶ = 10⁻⁵, so √(LC) = 10⁻²·⁵.",
+      "1/10⁻²·⁵ = 10²·⁵ = √(10⁵) = 100√10 ≈ 316 rad/s.",
+      "100 rad/s and 1000 rad/s are common traps from unit errors."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-06",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "When the current in an LC circuit is maximum, the energy stored in the inductor is:",
+    "explanation": "When current is maximum (I = I₀), all energy is stored in the inductor as magnetic energy: U_L = ½LI₀². At this instant the capacitor is fully discharged (q = 0), so U_C = 0. The total energy equals ½LI₀².",
+    "correct_answer": "D",
+    "concept_tags": ["LC-oscillation", "magnetic-energy", "energy-transfer"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LC oscillations",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Zero", "is_correct": false},
+      {"key": "B", "value": "Half of the total energy", "is_correct": false},
+      {"key": "C", "value": "One-fourth of the total energy", "is_correct": false},
+      {"key": "D", "value": "Equal to the total energy", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "Zero energy in the inductor occurs when current is zero, not maximum.",
+      "Energy is equally shared when I = I₀/√2, not at maximum current.",
+      "At maximum current, the capacitor is fully discharged — all energy is in L."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-07",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The power factor of a purely resistive AC circuit is:",
+    "explanation": "Power factor = cos φ, where φ is the phase difference between voltage and current. In a purely resistive circuit, voltage and current are in phase (φ = 0°), so cos 0° = 1. Maximum power is dissipated.",
+    "correct_answer": "A",
+    "concept_tags": ["power-factor", "resistive-circuit", "phase-angle"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "power factor",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1", "is_correct": true},
+      {"key": "B", "value": "0", "is_correct": false},
+      {"key": "C", "value": "0.5", "is_correct": false},
+      {"key": "D", "value": "∞", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Power factor = 0 for purely reactive (L or C) circuits, not resistive.",
+      "cos φ always lies between 0 and 1; it cannot be ∞.",
+      "In a purely resistive circuit, φ = 0° and cos 0° = 1."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-08",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The wattless component of current in an AC circuit is:",
+    "explanation": "In an AC circuit, the current has two components: (1) I cos φ — the active or wattful component (in phase with voltage, responsible for power dissipation), and (2) I sin φ — the reactive or wattless component (90° out of phase with voltage, contributes zero average power).",
+    "correct_answer": "B",
+    "concept_tags": ["wattless-current", "reactive-component", "power-factor"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "wattless current",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "I cos φ", "is_correct": false},
+      {"key": "B", "value": "I sin φ", "is_correct": true},
+      {"key": "C", "value": "I tan φ", "is_correct": false},
+      {"key": "D", "value": "I/cos φ", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "I cos φ is the wattful (active) component, not the wattless component.",
+      "I tan φ and I/cos φ do not represent standard AC current components.",
+      "The wattless component is perpendicular to voltage — it involves sin φ."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-09",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a purely inductive AC circuit, the wattless component of current is:",
+    "explanation": "In a purely inductive circuit, the phase angle φ = 90° (current lags voltage by π/2). The wattless component = I sin φ = I sin 90° = I (the entire current). The active component = I cos 90° = 0. Hence no power is dissipated — all current is wattless.",
+    "correct_answer": "C",
+    "concept_tags": ["wattless-current", "inductive-circuit", "phase-angle"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "wattless current",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Zero", "is_correct": false},
+      {"key": "B", "value": "I/√2", "is_correct": false},
+      {"key": "C", "value": "I (total current)", "is_correct": true},
+      {"key": "D", "value": "I/2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Zero wattless current occurs in a purely resistive circuit (φ = 0).",
+      "I/√2 would occur when φ = 45°, not 90°.",
+      "For purely inductive circuit φ = 90°, so sin 90° = 1 → entire current is wattless."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-10",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An AC circuit has an impedance of 50 Ω and the voltage leads the current by 60°. The wattful and wattless components of a 4 A current are:",
+    "explanation": "Wattful component = I cos φ = 4 × cos 60° = 4 × 0.5 = 2 A. Wattless component = I sin φ = 4 × sin 60° = 4 × (√3/2) = 2√3 A. The power dissipated = V_rms × I × cos φ = 50 × 4 × 4 × 0.5 = 400 W (or equivalently I²R where R = Z cos φ = 25 Ω).",
+    "correct_answer": "B",
+    "concept_tags": ["wattless-current", "wattful-current", "numerical", "impedance"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "wattless current",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "2√3 A and 2 A", "is_correct": false},
+      {"key": "B", "value": "2 A and 2√3 A", "is_correct": true},
+      {"key": "C", "value": "4 A and 0 A", "is_correct": false},
+      {"key": "D", "value": "0 A and 4 A", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Option A swaps the wattful and wattless values.",
+      "4 A and 0 A would mean φ = 0° (purely resistive), but φ = 60°.",
+      "cos 60° = 0.5, so wattful = 4 × 0.5 = 2 A; sin 60° = √3/2, so wattless = 2√3 A."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-11",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The power dissipated in a purely capacitive AC circuit is:",
+    "explanation": "In a purely capacitive circuit, the phase angle φ = 90° (current leads voltage by π/2). Average power P = V_rms × I_rms × cos φ = V_rms × I_rms × cos 90° = 0. Energy is alternately stored in and returned from the capacitor's electric field.",
+    "correct_answer": "A",
+    "concept_tags": ["power", "capacitive-circuit", "wattless"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "power in reactive circuits",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Zero", "is_correct": true},
+      {"key": "B", "value": "V_rms × I_rms", "is_correct": false},
+      {"key": "C", "value": "½ V_rms × I_rms", "is_correct": false},
+      {"key": "D", "value": "V_rms²/X_C", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "V_rms × I_rms is the apparent power, not the true (real) power.",
+      "V_rms²/X_C gives the reactive power (VAR), not the real power (W).",
+      "cos 90° = 0, so no real power is dissipated in a purely capacitive circuit."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-12",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The quality factor (Q-factor) of a series LCR circuit at resonance is given by:",
+    "explanation": "Q-factor = ω₀L/R = 1/(ω₀CR) = (1/R)√(L/C). It measures the sharpness of resonance — a higher Q means a narrower resonance peak. Q also equals the ratio of voltage across L (or C) to the applied voltage at resonance.",
+    "correct_answer": "D",
+    "concept_tags": ["Q-factor", "resonance", "LCR-circuit", "sharpness"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "Q-factor and sharpness of resonance",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "R/(ω₀L)", "is_correct": false},
+      {"key": "B", "value": "ω₀CR", "is_correct": false},
+      {"key": "C", "value": "R√(L/C)", "is_correct": false},
+      {"key": "D", "value": "(1/R)√(L/C)", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "R/(ω₀L) is 1/Q, the inverse of the quality factor.",
+      "ω₀CR is also 1/Q — inverting the correct formula.",
+      "Q = ω₀L/R = (1/R)√(L/C). Higher L/C ratio and lower R give higher Q."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-13",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A series LCR circuit has L = 10 mH, C = 1 μF, and R = 10 Ω at resonance. The Q-factor of the circuit is:",
+    "explanation": "Q = (1/R)√(L/C) = (1/10)√(10 × 10⁻³/(1 × 10⁻⁶)) = (1/10)√(10⁴) = (1/10) × 100 = 10. Alternatively, ω₀ = 1/√(LC) = 1/√(10⁻⁸) = 10⁴ rad/s, and Q = ω₀L/R = 10⁴ × 10⁻² / 10 = 10.",
+    "correct_answer": "C",
+    "concept_tags": ["Q-factor", "numerical", "LCR-circuit"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "Q-factor and sharpness of resonance",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1", "is_correct": false},
+      {"key": "B", "value": "5", "is_correct": false},
+      {"key": "C", "value": "10", "is_correct": true},
+      {"key": "D", "value": "100", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "√(L/C) = √(10⁻²/10⁻⁶) = √(10⁴) = 100.",
+      "Q = 100/R = 100/10 = 10.",
+      "100 would be the voltage magnification factor times R, not Q itself."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-14",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The bandwidth (Δω) of a series LCR resonant circuit is given by:",
+    "explanation": "Bandwidth Δω = R/L. It is the range of angular frequencies around resonance for which the power is at least half the maximum power (half-power points). A higher Q-factor means smaller bandwidth: Δω = ω₀/Q = R/L.",
+    "correct_answer": "A",
+    "concept_tags": ["bandwidth", "resonance", "LCR-circuit", "half-power"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "Q-factor and sharpness of resonance",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "R/L", "is_correct": true},
+      {"key": "B", "value": "L/R", "is_correct": false},
+      {"key": "C", "value": "1/√(LC)", "is_correct": false},
+      {"key": "D", "value": "R/C", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "L/R is the time constant of an LR circuit, not bandwidth.",
+      "1/√(LC) is the resonant frequency ω₀, not the bandwidth.",
+      "Bandwidth = ω₀/Q = (1/√(LC))/(ω₀L/R) = R/L."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-15",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In a series LCR circuit, L = 0.1 H, C = 10 μF, and R = 20 Ω. The bandwidth and Q-factor of the circuit are:",
+    "explanation": "Bandwidth Δω = R/L = 20/0.1 = 200 rad/s. Resonant frequency ω₀ = 1/√(LC) = 1/√(0.1 × 10 × 10⁻⁶) = 1/√(10⁻⁶) = 1000 rad/s. Q = ω₀/Δω = 1000/200 = 5. Alternatively, Q = ω₀L/R = 1000 × 0.1/20 = 5.",
+    "correct_answer": "B",
+    "concept_tags": ["bandwidth", "Q-factor", "numerical", "resonance"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "Q-factor and sharpness of resonance",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "100 rad/s and 10", "is_correct": false},
+      {"key": "B", "value": "200 rad/s and 5", "is_correct": true},
+      {"key": "C", "value": "200 rad/s and 10", "is_correct": false},
+      {"key": "D", "value": "500 rad/s and 2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Δω = R/L = 20/0.1 = 200, so options with 100 or 500 are wrong.",
+      "Q = ω₀L/R = 1000 × 0.1 / 20 = 5.",
+      "Options with Q = 10 use ω₀ = 1000 but divide by R = 100 (wrong R)."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-16",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "At resonance in a series LCR circuit, the voltage across the capacitor is Q times the applied voltage. If Q = 20 and the applied RMS voltage is 10 V, the voltage across the capacitor is:",
+    "explanation": "At resonance, V_C = Q × V_applied = 20 × 10 = 200 V. This is because at resonance, X_L = X_C, and the current I = V/R. Voltage across C = IX_C = (V/R)(ω₀L) = V × (ω₀L/R) = VQ. The voltage across L also equals 200 V, and V_L and V_C cancel each other.",
+    "correct_answer": "D",
+    "concept_tags": ["Q-factor", "voltage-magnification", "resonance", "numerical"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "Q-factor and sharpness of resonance",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "10 V", "is_correct": false},
+      {"key": "B", "value": "20 V", "is_correct": false},
+      {"key": "C", "value": "100 V", "is_correct": false},
+      {"key": "D", "value": "200 V", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "10 V is the applied voltage, not the amplified voltage across C.",
+      "Q-factor acts as a voltage amplification factor at resonance.",
+      "V_C = Q × V = 20 × 10 = 200 V."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-17",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The average power consumed in an AC circuit is given by:",
+    "explanation": "Average power P = V_rms × I_rms × cos φ, where cos φ is the power factor. This is also written as P = I²_rms × R. The term V_rms × I_rms is the apparent power, and cos φ converts it to the actual (real) power dissipated.",
+    "correct_answer": "C",
+    "concept_tags": ["average-power", "power-factor", "real-power"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "power in AC circuits",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "V_rms × I_rms", "is_correct": false},
+      {"key": "B", "value": "V_rms × I_rms × sin φ", "is_correct": false},
+      {"key": "C", "value": "V_rms × I_rms × cos φ", "is_correct": true},
+      {"key": "D", "value": "V_rms × I_rms × tan φ", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "V_rms × I_rms is the apparent power (VA), not the real power (W).",
+      "sin φ gives the reactive component, not the power-dissipating component.",
+      "Only the in-phase component (cos φ) contributes to real power dissipation."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-18",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The power factor of a series LCR circuit at resonance is:",
+    "explanation": "At resonance, X_L = X_C, so the net reactance is zero. The impedance Z = R (purely resistive). The phase angle φ = tan⁻¹((X_L − X_C)/R) = tan⁻¹(0) = 0°. Therefore, power factor = cos 0° = 1. Maximum power is transferred at resonance.",
+    "correct_answer": "A",
+    "concept_tags": ["power-factor", "resonance", "LCR-circuit"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "power factor",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1", "is_correct": true},
+      {"key": "B", "value": "0", "is_correct": false},
+      {"key": "C", "value": "0.5", "is_correct": false},
+      {"key": "D", "value": "1/√2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Power factor = 0 in purely reactive circuits, not at resonance.",
+      "At resonance the circuit is purely resistive — φ = 0° → cos φ = 1.",
+      "Power factor = 1 means maximum power transfer."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-19",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A power station delivers 500 kW of power at 10,000 V to a factory through cables of total resistance 4 Ω. The power loss in transmission is:",
+    "explanation": "Current I = P/V = 500 × 10³/10⁴ = 50 A. Power loss = I²R = 50² × 4 = 2500 × 4 = 10,000 W = 10 kW. The percentage loss = (10/500) × 100 = 2%. This shows why high-voltage transmission reduces losses — the current is smaller for the same power.",
+    "correct_answer": "B",
+    "concept_tags": ["power-transmission", "transmission-loss", "numerical"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "power transmission",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "5 kW", "is_correct": false},
+      {"key": "B", "value": "10 kW", "is_correct": true},
+      {"key": "C", "value": "20 kW", "is_correct": false},
+      {"key": "D", "value": "50 kW", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "I = P/V = 500000/10000 = 50 A.",
+      "Power loss = I²R = 2500 × 4 = 10000 W = 10 kW.",
+      "50 kW would require I²R = 50000, which doesn't match these values."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-20",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If the transmission voltage is doubled, the power loss in the cables becomes:",
+    "explanation": "Power loss = I²R = (P/V)²R = P²R/V². If V is doubled, loss becomes P²R/(2V)² = P²R/(4V²) = original loss/4. So doubling the voltage reduces the power loss to one-fourth. This is the key reason for high-voltage power transmission.",
+    "correct_answer": "B",
+    "concept_tags": ["power-transmission", "voltage", "efficiency"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "power transmission",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Half of the original", "is_correct": false},
+      {"key": "B", "value": "One-fourth of the original", "is_correct": true},
+      {"key": "C", "value": "Double the original", "is_correct": false},
+      {"key": "D", "value": "Same as the original", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Loss ∝ 1/V², so doubling V reduces loss by a factor of 4.",
+      "Half would be correct if loss ∝ 1/V, but it's ∝ 1/V².",
+      "Higher voltage means lower current for same power → much less I²R loss."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-21",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The efficiency of a transformer is defined as:",
+    "explanation": "Efficiency η = (output power / input power) × 100%. For an ideal transformer η = 100%. Real transformers have η between 90–99% due to copper losses, eddy current losses, hysteresis losses, and flux leakage.",
+    "correct_answer": "A",
+    "concept_tags": ["transformer", "efficiency", "power"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "transformer efficiency",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "(Output power / Input power) × 100%", "is_correct": true},
+      {"key": "B", "value": "(Input power / Output power) × 100%", "is_correct": false},
+      {"key": "C", "value": "(V_s / V_p) × 100%", "is_correct": false},
+      {"key": "D", "value": "(N_p / N_s) × 100%", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Input/Output ratio would give a value > 100% for a real transformer.",
+      "V_s/V_p is the voltage ratio (turns ratio), not efficiency.",
+      "Efficiency relates power output to power input, not voltages or turns."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-22",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Copper loss (I²R loss) in a transformer is due to:",
+    "explanation": "Copper loss occurs because the primary and secondary windings have finite resistance. When current flows through these windings, energy is dissipated as heat (I²R). It can be reduced by using thick copper wires (low resistance).",
+    "correct_answer": "C",
+    "concept_tags": ["transformer", "copper-loss", "resistance", "heating"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "transformer losses",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Eddy currents in the core", "is_correct": false},
+      {"key": "B", "value": "Hysteresis in the core", "is_correct": false},
+      {"key": "C", "value": "Resistance of the windings", "is_correct": true},
+      {"key": "D", "value": "Magnetic flux leakage", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Eddy currents cause iron loss, not copper loss.",
+      "Hysteresis loss is due to repeated magnetization of the core.",
+      "Copper loss = I²R, and R is the resistance of the copper windings."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-23",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Eddy current losses in a transformer core are minimized by:",
+    "explanation": "Eddy currents are induced in the transformer core by the changing magnetic flux. Using a laminated core (thin insulated sheets) increases the resistance to eddy current paths, confining them to small loops within each lamination, thereby reducing I²R heating.",
+    "correct_answer": "B",
+    "concept_tags": ["transformer", "eddy-current-loss", "lamination"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "transformer losses",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Using thick copper windings", "is_correct": false},
+      {"key": "B", "value": "Using a laminated iron core", "is_correct": true},
+      {"key": "C", "value": "Increasing the frequency", "is_correct": false},
+      {"key": "D", "value": "Using a solid iron core", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Thick copper windings reduce copper loss, not eddy current loss.",
+      "Increasing frequency actually increases eddy current losses.",
+      "A solid core allows large eddy current loops — lamination breaks them up."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-24",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Hysteresis loss in a transformer can be minimized by using a core material with:",
+    "explanation": "Hysteresis loss is proportional to the area of the B-H (hysteresis) loop. Soft magnetic materials like soft iron or silicon steel have narrow hysteresis loops (low coercivity and low retentivity), resulting in less energy lost per magnetization cycle.",
+    "correct_answer": "A",
+    "concept_tags": ["transformer", "hysteresis-loss", "soft-iron", "B-H-curve"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "transformer losses",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Narrow hysteresis loop (e.g. soft iron)", "is_correct": true},
+      {"key": "B", "value": "Wide hysteresis loop (e.g. steel)", "is_correct": false},
+      {"key": "C", "value": "High coercivity", "is_correct": false},
+      {"key": "D", "value": "High retentivity", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Wide hysteresis loop means more area → more energy loss per cycle.",
+      "High coercivity materials (like steel) are used for permanent magnets, not transformer cores.",
+      "Narrow loop = low coercivity + low retentivity = less hysteresis loss."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-25",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A transformer with 90% efficiency has a primary voltage of 200 V and delivers power to a 20 Ω load connected to its secondary at 40 V. The primary current drawn is approximately:",
+    "explanation": "Secondary current I_s = V_s/R_load = 40/20 = 2 A. Output power = V_s × I_s = 40 × 2 = 80 W. Efficiency η = P_out/P_in → P_in = P_out/η = 80/0.9 ≈ 88.9 W. Primary current I_p = P_in/V_p = 88.9/200 ≈ 0.44 A.",
+    "correct_answer": "C",
+    "concept_tags": ["transformer", "efficiency", "numerical", "power"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "transformer efficiency",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "0.2 A", "is_correct": false},
+      {"key": "B", "value": "0.4 A", "is_correct": false},
+      {"key": "C", "value": "0.44 A", "is_correct": true},
+      {"key": "D", "value": "0.8 A", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "0.4 A assumes 100% efficiency (ideal transformer).",
+      "0.8 A comes from incorrect calculation: I_p must be greater than 0.4 A (ideal) due to losses, but not double.",
+      "P_in = 80/0.9 ≈ 88.9 W → I_p = 88.9/200 ≈ 0.44 A."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-26",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An ideal step-down transformer converts 2200 V to 220 V. If the secondary coil has 50 turns, the number of turns in the primary coil is:",
+    "explanation": "For an ideal transformer, V_p/V_s = N_p/N_s. So N_p = N_s × (V_p/V_s) = 50 × (2200/220) = 50 × 10 = 500 turns. The step-down ratio is 10:1.",
+    "correct_answer": "B",
+    "concept_tags": ["transformer", "turns-ratio", "step-down", "numerical"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "transformer calculations",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "50", "is_correct": false},
+      {"key": "B", "value": "500", "is_correct": true},
+      {"key": "C", "value": "5000", "is_correct": false},
+      {"key": "D", "value": "5", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "50 turns for primary would mean a 1:1 ratio, not a step-down.",
+      "V_p/V_s = 2200/220 = 10, so N_p = 10 × N_s = 10 × 50 = 500.",
+      "5000 would require a 100:1 ratio which doesn't match 2200:220."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-27",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a transformer, flux leakage leads to:",
+    "explanation": "Flux leakage means not all the magnetic flux produced by the primary coil links with the secondary coil. This reduces the EMF induced in the secondary, decreasing the output voltage and power. It reduces the efficiency of the transformer.",
+    "correct_answer": "D",
+    "concept_tags": ["transformer", "flux-leakage", "efficiency"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "transformer losses",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Increased output voltage", "is_correct": false},
+      {"key": "B", "value": "Increased efficiency", "is_correct": false},
+      {"key": "C", "value": "No effect on performance", "is_correct": false},
+      {"key": "D", "value": "Reduced output voltage and efficiency", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "Less flux linking secondary means less induced EMF → lower output voltage.",
+      "Flux leakage is a loss mechanism — it reduces efficiency, not increases it.",
+      "Any energy lost to leakage flux is energy not transferred to the secondary."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-28",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A town 10 km away receives electrical power from a power plant. The power plant generates 2 MW at 10 kV. The two-wire transmission line has a resistance of 0.5 Ω/km. The power loss in the line is:",
+    "explanation": "Total wire length = 2 × 10 = 20 km (two wires). Total resistance R = 20 × 0.5 = 10 Ω. Current I = P/V = 2 × 10⁶ / (10 × 10³) = 200 A. Power loss = I²R = 200² × 10 = 40000 × 10 = 400,000 W = 400 kW. Percentage loss = (400/2000) × 100 = 20%.",
+    "correct_answer": "C",
+    "concept_tags": ["power-transmission", "line-loss", "numerical"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "power transmission",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "100 kW", "is_correct": false},
+      {"key": "B", "value": "200 kW", "is_correct": false},
+      {"key": "C", "value": "400 kW", "is_correct": true},
+      {"key": "D", "value": "800 kW", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Two wires of 10 km each → total resistance = 20 × 0.5 = 10 Ω.",
+      "I = 2 × 10⁶ / 10⁴ = 200 A; Loss = 200² × 10 = 400,000 W.",
+      "200 kW uses only one wire's resistance (5 Ω) — must count both wires."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-29",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In an LC oscillating circuit, the capacitor has maximum charge q₀ and the inductance is L. The maximum current in the circuit is:",
+    "explanation": "By energy conservation: ½q₀²/C = ½LI₀². Also, I₀ = q₀ω = q₀/√(LC). Alternatively, from ½q₀²/C = ½LI₀², we get I₀ = q₀/√(LC). The maximum current occurs when the capacitor is fully discharged.",
+    "correct_answer": "A",
+    "concept_tags": ["LC-oscillation", "maximum-current", "energy-conservation"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LC oscillations",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "q₀/√(LC)", "is_correct": true},
+      {"key": "B", "value": "q₀√(LC)", "is_correct": false},
+      {"key": "C", "value": "q₀/(LC)", "is_correct": false},
+      {"key": "D", "value": "q₀√(L/C)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "q₀√(LC) has dimensions of charge × time, not current.",
+      "I₀ = q₀ω = q₀ × 1/√(LC) = q₀/√(LC).",
+      "Dimensional check: [q₀/√(LC)] = C/√(H·F) = C/√(s²) = C/s = A ✓"
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-30",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An LC circuit has L = 0.2 H and C = 5 μF. The capacitor is initially charged to 10 mC. The maximum current in the circuit is:",
+    "explanation": "I₀ = q₀/√(LC) = 10 × 10⁻³ / √(0.2 × 5 × 10⁻⁶) = 10⁻² / √(10⁻⁶) = 10⁻² / 10⁻³ = 10 A. Alternatively, ω = 1/√(LC) = 1/10⁻³ = 1000 rad/s, and I₀ = q₀ω = 10⁻² × 10³ = 10 A.",
+    "correct_answer": "D",
+    "concept_tags": ["LC-oscillation", "maximum-current", "numerical"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LC oscillations",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "0.1 A", "is_correct": false},
+      {"key": "B", "value": "1 A", "is_correct": false},
+      {"key": "C", "value": "5 A", "is_correct": false},
+      {"key": "D", "value": "10 A", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "LC = 0.2 × 5 × 10⁻⁶ = 10⁻⁶, so √(LC) = 10⁻³.",
+      "I₀ = q₀/√(LC) = 10 × 10⁻³ / 10⁻³ = 10 A.",
+      "Common error: forgetting to convert mC to C gives I₀ = 10000 A (way too high)."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-31",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In the LC-SHM analogy, the quantity analogous to the potential energy (½kx²) of the spring-mass system is:",
+    "explanation": "In the analogy: q ↔ x, I ↔ v, L ↔ m, 1/C ↔ k. Potential energy ½kx² ↔ ½(1/C)q² = q²/(2C), which is the energy stored in the capacitor (electric field energy). Kinetic energy ½mv² ↔ ½LI² (magnetic energy in the inductor).",
+    "correct_answer": "B",
+    "concept_tags": ["LC-oscillation", "SHM-analogy", "energy"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LC oscillations — SHM analogy",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "½LI² (energy in inductor)", "is_correct": false},
+      {"key": "B", "value": "q²/(2C) (energy in capacitor)", "is_correct": true},
+      {"key": "C", "value": "½CV² (energy in capacitor)", "is_correct": false},
+      {"key": "D", "value": "LI (flux linkage)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "½LI² is analogous to ½mv² (kinetic energy), not potential energy.",
+      "½CV² is the same as q²/(2C) but written in terms of V; the direct analogy uses q (↔ x).",
+      "Potential energy involves the 'displacement' variable: ½kx² ↔ q²/(2C)."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-32",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following is NOT a source of energy loss in a real transformer?",
+    "explanation": "Energy losses in a real transformer include: copper loss (I²R in windings), eddy current loss (induced currents in core), hysteresis loss (repeated magnetization of core), and flux leakage. Dielectric loss occurs in capacitors, not in transformers.",
+    "correct_answer": "D",
+    "concept_tags": ["transformer", "energy-loss", "efficiency"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "transformer losses",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Copper loss", "is_correct": false},
+      {"key": "B", "value": "Eddy current loss", "is_correct": false},
+      {"key": "C", "value": "Hysteresis loss", "is_correct": false},
+      {"key": "D", "value": "Dielectric loss", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "Copper loss (I²R) definitely occurs in the windings.",
+      "Eddy current and hysteresis losses occur in the iron core.",
+      "Dielectric loss is associated with capacitors and insulators, not transformer operation."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-33",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A step-up transformer has a turns ratio of 1:10. If the primary current is 5 A, the secondary current for an ideal transformer is:",
+    "explanation": "For an ideal transformer, I_p/I_s = N_s/N_p (current is inversely proportional to turns ratio). I_s = I_p × (N_p/N_s) = 5 × (1/10) = 0.5 A. A step-up transformer increases voltage but decreases current proportionally.",
+    "correct_answer": "A",
+    "concept_tags": ["transformer", "current-ratio", "step-up", "numerical"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "transformer calculations",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "0.5 A", "is_correct": true},
+      {"key": "B", "value": "5 A", "is_correct": false},
+      {"key": "C", "value": "50 A", "is_correct": false},
+      {"key": "D", "value": "0.05 A", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "5 A would mean no change in current (1:1 transformer).",
+      "50 A would mean the current increased — this happens in a step-down, not step-up.",
+      "In a step-up transformer, voltage increases so current must decrease: I_s = 5/10 = 0.5 A."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-34",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): A transformer cannot work with direct current (DC).\nReason (R): A transformer works on the principle of mutual induction which requires a changing magnetic flux.",
+    "explanation": "DC produces a constant current and hence a constant magnetic flux in the primary. A constant flux does not induce any EMF in the secondary (Faraday's law: EMF = −dΦ/dt = 0 for constant Φ). Moreover, with DC, the primary acts as a short circuit (only resistance, no reactance), drawing excessive current that can burn the windings.",
+    "correct_answer": "A",
+    "concept_tags": ["transformer", "DC", "mutual-induction", "assertion-reason"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "transformer principle",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "value": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "value": "A is true but R is false", "is_correct": false},
+      {"key": "D", "value": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "The transformer indeed cannot work with DC — assertion A is true.",
+      "Mutual induction requires dΦ/dt ≠ 0, which needs AC — reason R is true.",
+      "R directly explains A: the changing flux requirement is why DC fails."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-35",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In an LCR circuit connected to an AC source, the current is in phase with the voltage. This means:",
+    "explanation": "Current in phase with voltage means φ = 0°, which occurs when X_L = X_C (reactances cancel). This is the condition for resonance in a series LCR circuit. At resonance, Z = R (minimum impedance) and current is maximum.",
+    "correct_answer": "C",
+    "concept_tags": ["resonance", "phase", "LCR-circuit"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "resonance conditions",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "X_L > X_C", "is_correct": false},
+      {"key": "B", "value": "X_L < X_C", "is_correct": false},
+      {"key": "C", "value": "X_L = X_C (resonance)", "is_correct": true},
+      {"key": "D", "value": "R = 0", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "X_L > X_C makes the circuit inductive — current lags voltage.",
+      "X_L < X_C makes the circuit capacitive — current leads voltage.",
+      "In-phase condition requires net reactance = 0, i.e., X_L = X_C."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-36",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In an LCR series circuit, R = 10 Ω, L = 0.5 H, and C = 50 μF. The circuit is connected to a 220 V, 50 Hz AC source. The current in the circuit is approximately:",
+    "explanation": "ω = 2πf = 2π × 50 = 100π rad/s. X_L = ωL = 100π × 0.5 = 50π ≈ 157 Ω. X_C = 1/(ωC) = 1/(100π × 50 × 10⁻⁶) = 1/(5π × 10⁻³) = 200/π ≈ 63.7 Ω. Z = √(R² + (X_L − X_C)²) = √(100 + (157 − 63.7)²) = √(100 + 8700) = √8800 ≈ 93.8 Ω. I = V/Z = 220/93.8 ≈ 2.34 A.",
+    "correct_answer": "B",
+    "concept_tags": ["LCR-circuit", "impedance", "numerical", "current"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LCR circuit numerical",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1.0 A", "is_correct": false},
+      {"key": "B", "value": "2.3 A", "is_correct": true},
+      {"key": "C", "value": "5.0 A", "is_correct": false},
+      {"key": "D", "value": "22.0 A", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "22.0 A would require Z = 10 Ω (only R), ignoring reactances.",
+      "X_L − X_C ≈ 93 Ω, so Z ≈ √(100 + 8700) ≈ 94 Ω.",
+      "I = 220/94 ≈ 2.3 A."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-37",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In the above circuit (R = 10 Ω, L = 0.5 H, C = 50 μF, f = 50 Hz), the resonant frequency is approximately:",
+    "explanation": "f₀ = 1/(2π√(LC)) = 1/(2π√(0.5 × 50 × 10⁻⁶)) = 1/(2π√(25 × 10⁻⁶)) = 1/(2π × 5 × 10⁻³) = 1/(10π × 10⁻³) = 1000/(10π) = 100/π ≈ 31.8 Hz. The circuit is being driven at 50 Hz, which is above resonance.",
+    "correct_answer": "A",
+    "concept_tags": ["resonant-frequency", "LCR-circuit", "numerical"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "LCR circuit numerical",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "100/π Hz ≈ 31.8 Hz", "is_correct": true},
+      {"key": "B", "value": "50 Hz", "is_correct": false},
+      {"key": "C", "value": "100 Hz", "is_correct": false},
+      {"key": "D", "value": "200/π Hz ≈ 63.7 Hz", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "50 Hz is the driving frequency, not the resonant frequency.",
+      "LC = 0.5 × 50 × 10⁻⁶ = 25 × 10⁻⁶, √(LC) = 5 × 10⁻³.",
+      "f₀ = 1/(2π × 5 × 10⁻³) = 100/π ≈ 31.8 Hz."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-38",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The power factor of a series RL circuit with R = 30 Ω and X_L = 40 Ω is:",
+    "explanation": "Power factor cos φ = R/Z. Impedance Z = √(R² + X_L²) = √(900 + 1600) = √2500 = 50 Ω. cos φ = R/Z = 30/50 = 0.6. The phase angle φ = cos⁻¹(0.6) ≈ 53.13°.",
+    "correct_answer": "C",
+    "concept_tags": ["power-factor", "RL-circuit", "impedance", "numerical"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "power factor",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "0.4", "is_correct": false},
+      {"key": "B", "value": "0.5", "is_correct": false},
+      {"key": "C", "value": "0.6", "is_correct": true},
+      {"key": "D", "value": "0.8", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "0.8 = 40/50 = X_L/Z, which is sin φ, not cos φ.",
+      "0.4 = R/X_L — this is not the power factor formula.",
+      "Power factor = R/Z = 30/50 = 0.6. It's a 3-4-5 right triangle scaled by 10."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-39",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Match the following AC circuit parameters (Column-I) with their expressions (Column-II):\nColumn-I: (P) Impedance of LCR circuit (Q) Resonant frequency (R) Power factor (S) Q-factor\nColumn-II: (1) R/Z (2) √(R² + (X_L − X_C)²) (3) ω₀L/R (4) 1/(2π√(LC))",
+    "explanation": "(P) Impedance Z = √(R² + (X_L − X_C)²) → (2). (Q) Resonant frequency f₀ = 1/(2π√(LC)) → (4). (R) Power factor cos φ = R/Z → (1). (S) Q-factor = ω₀L/R → (3).",
+    "correct_answer": "B",
+    "concept_tags": ["LCR-circuit", "matching", "formulas"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "AC circuit formulas",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "P→1, Q→2, R→3, S→4", "is_correct": false},
+      {"key": "B", "value": "P→2, Q→4, R→1, S→3", "is_correct": true},
+      {"key": "C", "value": "P→2, Q→3, R→4, S→1", "is_correct": false},
+      {"key": "D", "value": "P→4, Q→2, R→3, S→1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Impedance involves square root of R² plus reactance difference squared → (2).",
+      "Resonant frequency has 1/(2π√(LC)) → (4).",
+      "Power factor = cos φ = R/Z → (1); Q = ω₀L/R → (3)."
+    ]
+  },
+  {
+    "id": "cuet-phy-ac-adv-40",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): At resonance in a series LCR circuit, the voltage across the inductor can be much greater than the applied voltage.\nReason (R): The Q-factor of the circuit amplifies the voltage across individual reactive components at resonance.",
+    "explanation": "At resonance, V_L = IX_L = (V/R)(ω₀L) = V(ω₀L/R) = VQ. Since Q can be much greater than 1 (e.g., Q = 50), the voltage across L (or C) can be 50 times the applied voltage. This voltage amplification is the essence of the Q-factor. Both A and R are true, and R correctly explains A.",
+    "correct_answer": "A",
+    "concept_tags": ["resonance", "Q-factor", "voltage-amplification", "assertion-reason"],
+    "topic": "AC Circuits — Advanced",
+    "subtopic": "Q-factor and sharpness of resonance",
+    "subject": "cuet-physics",
+    "chapter": "Alternating Current",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "value": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "value": "A is true but R is false", "is_correct": false},
+      {"key": "D", "value": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "V_L = VQ at resonance, and Q can be >> 1, so V_L >> V. Assertion A is true.",
+      "The Q-factor is precisely the ratio V_L/V (or V_C/V) at resonance. Reason R is true.",
+      "R directly explains A — the voltage amplification is due to the Q-factor."
+    ]
+  }
+]

@@ -1,0 +1,2480 @@
+[
+  {
+    "id": "cuet-phy-elec-gauss-01",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Gauss's law relates the electric flux through a closed surface to the:",
+    "explanation": "Gauss's law states Φ = q_enclosed/ε₀. It relates the total electric flux through any closed (Gaussian) surface to the net charge enclosed within that surface divided by ε₀. It does not depend on charges outside the surface.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "gauss-law",
+      "enclosed-charge",
+      "flux"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Statement of Gauss's law",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Total charge in the universe",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Charge on the surface itself",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Net charge enclosed within the surface",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Charge outside the closed surface",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Gauss's law is local — it only cares about charge inside the Gaussian surface, not all charge in the universe.",
+        "misconception": "Thinking flux depends on all charges everywhere"
+      },
+      {
+        "option_key": "B",
+        "hint": "The charge must be enclosed (inside) the surface, not on the surface. A charge on the surface itself creates a mathematical ambiguity.",
+        "misconception": "Confusing surface charge with enclosed charge"
+      },
+      {
+        "option_key": "D",
+        "hint": "Charges outside contribute zero net flux through the closed surface — their field lines enter and exit, cancelling.",
+        "misconception": "Thinking external charges contribute to net flux"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-02",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The Gaussian surface used to find the electric field of an infinitely long uniformly charged wire is:",
+    "explanation": "For a line charge, we exploit the cylindrical symmetry. A coaxial cylinder (with its axis along the wire) makes E constant on the curved surface and perpendicular to the flat ends. This simplifies ∮E·dA to E × 2πrL, allowing easy calculation.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "gaussian-surface",
+      "cylindrical-symmetry",
+      "line-charge"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Choice of Gaussian surface",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A sphere centred on the wire",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A coaxial cylinder with the wire as axis",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A cube enclosing the wire",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A flat rectangular surface",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A sphere doesn't match the cylindrical symmetry of the wire. E would vary over the sphere's surface, making the integral unsolvable simply.",
+        "misconception": "Using wrong symmetry surface"
+      },
+      {
+        "option_key": "C",
+        "hint": "While Gauss's law is valid for any surface, a cube doesn't exploit the symmetry. E would not be constant on any face.",
+        "misconception": "Ignoring the importance of symmetry for practical calculation"
+      },
+      {
+        "option_key": "D",
+        "hint": "Gauss's law requires a closed surface. A flat rectangle is an open surface — flux through it doesn't equal q/ε₀.",
+        "misconception": "Forgetting Gauss's law needs a closed surface"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-03",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "If a positive charge q is placed at the centre of a cube, the electric flux through each face is:",
+    "explanation": "By Gauss's law, total flux = q/ε₀. By symmetry of the cube, all six faces receive equal flux. So flux through each face = q/(6ε₀). This is a classic application of symmetry arguments with Gauss's law.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "cube-flux",
+      "symmetry",
+      "gauss-law"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Flux through symmetric surfaces",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "q/(6ε₀)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "q/ε₀",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "q/(4ε₀)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "6q/ε₀",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "q/ε₀ is the total flux through the entire cube (all 6 faces), not through one face.",
+        "misconception": "Using total flux instead of dividing by number of faces"
+      },
+      {
+        "option_key": "C",
+        "hint": "Dividing by 4 suggests confusing with a tetrahedron (4 faces) or a sphere formula. A cube has 6 faces.",
+        "misconception": "Wrong number of faces for a cube"
+      },
+      {
+        "option_key": "D",
+        "hint": "6q/ε₀ multiplies by 6 instead of dividing. Each face gets 1/6 of the total flux, not 6 times.",
+        "misconception": "Multiplying instead of dividing by number of faces"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-04",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The electric field inside a uniformly charged spherical shell (hollow sphere) is:",
+    "explanation": "By Gauss's law, for any Gaussian sphere of radius r < R (inside the shell), the enclosed charge is zero (all charge is on the shell surface). Therefore E × 4πr² = 0/ε₀, giving E = 0 inside. This result holds everywhere inside, not just at the centre.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "shell-theorem",
+      "zero-field-inside",
+      "gauss-law"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Field inside a shell",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "kQ/r² directed radially outward",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kQ/R² directed radially inward",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Uniform and non-zero",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Zero everywhere inside",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "kQ/r² applies outside the shell (r > R). Inside (r < R), the enclosed charge is zero.",
+        "misconception": "Applying the external field formula inside the shell"
+      },
+      {
+        "option_key": "B",
+        "hint": "There is no inward field. The enclosed charge is zero, so the field is zero, not inward.",
+        "misconception": "Thinking the shell attracts test charges inside"
+      },
+      {
+        "option_key": "C",
+        "hint": "A uniform non-zero field would violate Gauss's law since there is no enclosed charge to produce such a field.",
+        "misconception": "Confusing conductor with charged region"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-05",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Electric flux through a surface is defined as:",
+    "explanation": "Electric flux (φ) through a surface is defined as the surface integral of the electric field over that surface, i.e., φ = ∫E·dA. For a uniform field and a flat surface, it simplifies to φ = E·A = EA cosθ, where θ is the angle between the field and the area vector.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "electric-flux",
+      "surface-integral",
+      "dot-product"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "E × A (cross product of field and area)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "E · A (dot product of field and area vector)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "E / A (field divided by area)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "E + A (sum of field and area)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The cross product gives a vector, but electric flux is a scalar quantity. The correct operation is the dot product E·A.",
+        "misconception": "Confusing dot product with cross product"
+      },
+      {
+        "option_key": "C",
+        "hint": "E/A does not define flux; dividing field by area has no standard physical meaning in this context.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Adding a field vector and an area vector is not a physically meaningful operation; flux involves multiplication, not addition.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-06",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of electric flux is:",
+    "explanation": "Electric flux φ = E·A has dimensions of electric field (N/C) times area (m²). Therefore, its SI unit is N·m²/C, which is also equivalent to V·m (volt-metre).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "electric-flux",
+      "SI-units",
+      "dimensional-analysis"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "N·m²/C",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "N/C",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "N·m/C²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "C/m²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "N/C is the unit of electric field intensity, not flux. Flux includes multiplication by area (m²).",
+        "misconception": "Confusing electric field units with flux units"
+      },
+      {
+        "option_key": "C",
+        "hint": "N·m/C² does not correspond to any standard electromagnetic quantity.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "C/m² is the unit of surface charge density, not electric flux.",
+        "misconception": "Confusing flux with surface charge density"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-07",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A Gaussian sphere of radius r encloses a non-conducting solid sphere of radius R (r < R) carrying a uniform volume charge density ρ. The electric field at distance r from the centre is:",
+    "explanation": "For r < R, the enclosed charge q_enc = ρ × (4/3)πr³. By Gauss's law: E × 4πr² = ρ(4/3)πr³/ε₀. Solving: E = ρr/(3ε₀). The field increases linearly with r inside a uniformly charged sphere.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "solid-sphere",
+      "linear-field",
+      "volume-charge"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Field inside a solid sphere",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ρR/(3ε₀)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ρr/(3ε₀)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "ρr²/(3ε₀)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ρR³/(3ε₀r²)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This uses R instead of r. Inside the sphere, the field depends on the distance r from the centre, not the sphere radius R.",
+        "misconception": "Using the total radius instead of the Gaussian radius"
+      },
+      {
+        "option_key": "C",
+        "hint": "ρr²/(3ε₀) has the wrong power of r. The charge scales as r³ and the area as r², giving E ∝ r¹, not r².",
+        "misconception": "Not correctly dividing the r³ charge by the r² area"
+      },
+      {
+        "option_key": "D",
+        "hint": "ρR³/(3ε₀r²) is the field outside the sphere (r > R). Inside, only the charge within radius r counts.",
+        "misconception": "Using the external field formula inside the sphere"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-08",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electric field due to an infinite plane sheet of surface charge density σ is:",
+    "explanation": "Using a Gaussian pillbox straddling the sheet: flux through two flat faces = 2EA. Enclosed charge = σA. By Gauss's law: 2EA = σA/ε₀, so E = σ/(2ε₀). The field is uniform (independent of distance), directed away from the sheet for positive σ.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "infinite-sheet",
+      "uniform-field",
+      "pillbox"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Field due to infinite sheet",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "σ/ε₀, perpendicular to the sheet",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "σ/(4πε₀r²), decreasing with distance",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "σ/(2ε₀), perpendicular to the sheet",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "2σ/ε₀, parallel to the sheet",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "σ/ε₀ is the field between two parallel plates (with charges +σ and −σ). For a single sheet, the factor 2 in the denominator is essential.",
+        "misconception": "Confusing single sheet with parallel plate capacitor"
+      },
+      {
+        "option_key": "B",
+        "hint": "The field of an infinite sheet is independent of distance — it doesn't follow an inverse-square law.",
+        "misconception": "Applying point charge formula to an infinite sheet"
+      },
+      {
+        "option_key": "D",
+        "hint": "The field is perpendicular (normal) to the sheet, not parallel. Also, 2σ/ε₀ has the wrong magnitude.",
+        "misconception": "Wrong direction and magnitude"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-09",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A charge of 8.85 μC is placed at the centre of a hollow sphere of radius 10 cm. The electric flux through the sphere (ε₀ = 8.85 × 10⁻¹² C²/N·m²) is:",
+    "explanation": "Φ = q/ε₀ = 8.85 × 10⁻⁶ / 8.85 × 10⁻¹² = 10⁶ N·m²/C = 10⁶ V·m. Note that the flux depends only on the enclosed charge, not on the radius of the sphere.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "numerical-flux",
+      "gauss-law"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Flux calculation",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "10⁵ N·m²/C",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "10⁶ N·m²/C",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "10⁷ N·m²/C",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "8.85 × 10⁶ N·m²/C",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "10⁵ is off by a factor of 10. Check: 10⁻⁶/10⁻¹² = 10⁶, not 10⁵.",
+        "misconception": "Arithmetic error in exponent subtraction"
+      },
+      {
+        "option_key": "C",
+        "hint": "10⁷ overshoots by a factor of 10. The ratio 8.85/8.85 = 1, so Φ = 1 × 10⁶.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The 8.85 in the numerator and denominator cancel exactly, giving 10⁶, not 8.85 × 10⁶.",
+        "misconception": "Not cancelling the 8.85 factor"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-10",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electric field between two large parallel plates carrying surface charge densities +σ and −σ is:",
+    "explanation": "Each plate produces a field σ/(2ε₀). Between the plates, both fields point in the same direction (from +σ to −σ), so they add: E = σ/(2ε₀) + σ/(2ε₀) = σ/ε₀. Outside both plates, the fields cancel to zero.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "parallel-plates",
+      "superposition",
+      "uniform-field"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Parallel plate field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "σ/ε₀",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "σ/(2ε₀)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2σ/ε₀",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "σ/(2ε₀) is the field due to one plate alone. Between the plates, both plates contribute, doubling the field to σ/ε₀.",
+        "misconception": "Forgetting the contribution of the second plate"
+      },
+      {
+        "option_key": "C",
+        "hint": "2σ/ε₀ doubles the correct answer. Each plate gives σ/(2ε₀), and they add to σ/ε₀, not 2σ/ε₀.",
+        "misconception": "Doubling the already-added field"
+      },
+      {
+        "option_key": "D",
+        "hint": "Zero is the field outside the plates (where fields cancel). Between the plates, the fields reinforce.",
+        "misconception": "Confusing the region between plates with region outside"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-11",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electric field just outside the surface of a charged conductor with local surface charge density σ is:",
+    "explanation": "For a conductor, all charge resides on the surface. Using a small Gaussian pillbox at the surface: one face inside (E = 0), one face outside (E outward). Flux = EA = σA/ε₀, giving E = σ/ε₀. Note: no factor of 2 because the internal field is zero.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "conductor-surface-field",
+      "pillbox",
+      "boundary-condition"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Field at conductor surface",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "σ/(2ε₀)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2σ/ε₀",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "σ/ε₀",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "σ/(2ε₀) applies to an infinite non-conducting sheet (both sides contribute). For a conductor, E = 0 inside, so the full field σ/ε₀ appears outside.",
+        "misconception": "Confusing conductor with non-conducting sheet"
+      },
+      {
+        "option_key": "B",
+        "hint": "2σ/ε₀ overestimates the field by a factor of 2. The Gauss's law pillbox gives E = σ/ε₀ directly.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "E = 0 inside the conductor, but just outside the surface the field is σ/ε₀, not zero.",
+        "misconception": "Confusing 'inside' the conductor with 'just outside' the surface"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-12",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A charge of 5 μC is placed at the centre of a cube. The electric flux through one face of the cube is:",
+    "explanation": "By Gauss's law, total flux through the cube = q/ε₀ = 5 × 10⁻⁶ / (8.85 × 10⁻¹²) ≈ 5.65 × 10⁵ N·m²/C. By symmetry, the flux is equally distributed among all 6 faces. Flux through one face = q/(6ε₀) ≈ 9.41 × 10⁴ N·m²/C.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "gauss-law",
+      "cube-symmetry",
+      "flux-distribution"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "5.65 × 10⁵ N·m²/C",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "9.41 × 10⁴ N·m²/C",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2.83 × 10⁵ N·m²/C",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.13 × 10⁵ N·m²/C",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "5.65 × 10⁵ is the total flux through the entire closed cube (q/ε₀). You need to divide by 6 for one face.",
+        "misconception": "Using total flux instead of flux through one face"
+      },
+      {
+        "option_key": "C",
+        "hint": "2.83 × 10⁵ would be q/(2ε₀), as if dividing by 2 instead of 6. A cube has 6 faces, not 2.",
+        "misconception": "Dividing by 2 instead of 6"
+      },
+      {
+        "option_key": "D",
+        "hint": "This value does not correspond to q/(6ε₀). The correct calculation is (5 × 10⁻⁶)/(6 × 8.85 × 10⁻¹²) ≈ 9.41 × 10⁴.",
+        "misconception": "Arithmetic error in division"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-13",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electric field due to an infinitely long straight uniformly charged wire with linear charge density λ at a perpendicular distance r from the wire is:",
+    "explanation": "Using Gauss's law with a cylindrical Gaussian surface of radius r and length L coaxial with the wire: φ = E(2πrL) = λL/ε₀. Solving, E = λ/(2πε₀r). The field is directed radially outward for positive λ and decreases as 1/r.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "infinite-line-charge",
+      "gauss-law-application",
+      "cylindrical-symmetry"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "λ/(4πε₀r)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "λ/(4πε₀r²)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "λ/(2πε₀r)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "λ/(2πε₀r²)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The factor 4π appears in the point charge field formula (Coulomb's law). For a line charge with cylindrical symmetry, the correct factor is 2π.",
+        "misconception": "Using 4π (spherical) instead of 2π (cylindrical) geometry"
+      },
+      {
+        "option_key": "B",
+        "hint": "This has both an incorrect 4π factor and an incorrect 1/r² dependence. The line charge field varies as 1/r, not 1/r².",
+        "misconception": "Combining errors from spherical geometry and inverse square law"
+      },
+      {
+        "option_key": "D",
+        "hint": "The field from an infinite line charge varies as 1/r, not 1/r². The 1/r² dependence applies to point charges.",
+        "misconception": "Applying inverse square law to a line charge"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-14",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The electric field due to an infinite plane sheet of uniform surface charge density σ is:",
+    "explanation": "Using Gauss's law with a Gaussian pillbox (cylinder) straddling the sheet: 2EA = σA/ε₀, giving E = σ/(2ε₀). This field is uniform (independent of distance from the sheet) and directed perpendicular to the sheet, away from it for positive σ.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "infinite-plane-sheet",
+      "gauss-law-application",
+      "uniform-field"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "σ/(2ε₀), independent of distance",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "σ/ε₀, independent of distance",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "σ/(2ε₀r), varying with distance r",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "σ/(2ε₀r²), varying with distance r",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "σ/ε₀ is the field between two parallel infinite sheets of opposite charge (or near a conductor surface), not for a single sheet.",
+        "misconception": "Confusing single sheet field with parallel plate or conductor surface field"
+      },
+      {
+        "option_key": "C",
+        "hint": "The electric field due to an infinite plane sheet does not depend on the distance from the sheet; the Gaussian pillbox analysis shows E is constant.",
+        "misconception": "Incorrectly assuming distance dependence for an infinite sheet"
+      },
+      {
+        "option_key": "D",
+        "hint": "An inverse square dependence on distance applies to point charges, not to an infinite plane sheet.",
+        "misconception": "Applying point charge formula to a plane sheet"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-15",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A uniformly charged hollow spherical shell of total charge Q and radius R. The electric field at a point inside the shell (r < R) is:",
+    "explanation": "By Gauss's law, using a spherical Gaussian surface of radius r < R inside the shell, the enclosed charge is zero (all charge is on the shell surface). Therefore, E = 0 inside a uniformly charged hollow sphere. This result is independent of the position inside the shell.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "hollow-sphere",
+      "gauss-law",
+      "shell-theorem"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "kQ/r²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kQ/R²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "kQr/R³",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "kQ/r² would apply if all the charge Q were at the centre. Inside a shell, the enclosed charge is zero, so the field is zero.",
+        "misconception": "Treating the shell as a point charge at the centre"
+      },
+      {
+        "option_key": "B",
+        "hint": "kQ/R² is the field at the surface of the shell, not inside it.",
+        "misconception": "Confusing field at the surface with field inside"
+      },
+      {
+        "option_key": "C",
+        "hint": "kQr/R³ describes the field inside a uniformly charged solid non-conducting sphere, not a hollow shell.",
+        "misconception": "Confusing hollow shell with solid sphere"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-16",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a uniformly charged solid non-conducting sphere of total charge Q and radius R, the electric field at an internal point at distance r from the centre (r < R) is:",
+    "explanation": "Using Gauss's law, the charge enclosed by a Gaussian sphere of radius r is q_enc = Q(r³/R³) (since charge is proportional to volume). Then E(4πr²) = Q(r³/R³)/ε₀, giving E = Qr/(4πε₀R³) = kQr/R³. The field increases linearly from the centre.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "solid-sphere",
+      "gauss-law",
+      "linear-field"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "kQ/r²",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kQr/R³",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "kQ/R²",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "kQ/r² gives the field outside the sphere (r > R), not inside. Inside, only the charge enclosed within radius r contributes.",
+        "misconception": "Using total charge instead of enclosed charge for r < R"
+      },
+      {
+        "option_key": "C",
+        "hint": "kQ/R² is the field at the surface (r = R). Inside, the enclosed charge is less than Q, giving a smaller field.",
+        "misconception": "Using the surface field value everywhere inside"
+      },
+      {
+        "option_key": "D",
+        "hint": "Zero field inside applies to a hollow conducting shell, not to a uniformly charged solid non-conducting sphere.",
+        "misconception": "Confusing solid non-conducting sphere with hollow conducting shell"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-17",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A uniformly charged non-conducting sphere of radius R and total charge Q has a spherical cavity of radius R/2 centred at distance R/2 from the centre. The electric field at the centre of the cavity is:",
+    "explanation": "Using the superposition principle: E = E_full − E_removed. For the full sphere at R/2 from centre: E_full = ρ(R/2)/(3ε₀) directed outward. The removed sphere (radius R/2, centred at R/2 from main centre) contributes E_removed = 0 at its own centre. So E at cavity centre = ρR/(6ε₀) = Q/(4πε₀) × 1/(2R²) directed away from the main centre. Using ρ = Q/(4πR³/3) = 3Q/(4πR³): E = 3Q/(4πR³) × R/(6ε₀) = Q/(8πε₀R²).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "cavity-field",
+      "superposition",
+      "non-uniform-sphere"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Cavity problems",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Q/(4πε₀R²)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Q/(8πε₀R²)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Q/(16πε₀R²)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Zero field would occur inside a complete spherical shell, not inside a cavity in a solid sphere with an off-centre hole.",
+        "misconception": "Applying shell theorem to a non-symmetric cavity"
+      },
+      {
+        "option_key": "B",
+        "hint": "Q/(4πε₀R²) is the surface field of the full sphere. The field at the cavity centre is weaker due to the offset and missing charge.",
+        "misconception": "Using the full-sphere surface field formula"
+      },
+      {
+        "option_key": "D",
+        "hint": "Q/(16πε₀R²) underestimates by a factor of 2. Check: ρR/(6ε₀) with ρ = 3Q/(4πR³) gives Q/(8πε₀R²).",
+        "misconception": "Arithmetic error in density substitution"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-18",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A uniformly charged solid sphere has charge density ρ. The ratio of the electric field at distance R/2 from the centre to that at distance 2R from the centre (R is the radius) is:",
+    "explanation": "At r = R/2 (inside): E_in = ρr/(3ε₀) = ρR/(6ε₀). At r = 2R (outside): E_out = ρR³/(3ε₀r²) = ρR³/(3ε₀ × 4R²) = ρR/(12ε₀). Ratio = [ρR/(6ε₀)] / [ρR/(12ε₀)] = 12/6 = 2.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "solid-sphere",
+      "field-ratio",
+      "inside-outside"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Solid sphere field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1/4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1/2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1/4 would apply if both points were outside and the ratio were (R₁/R₂)² = (1/2)² = 1/4. But the inner point follows a different (linear) law.",
+        "misconception": "Applying inverse square law at both points"
+      },
+      {
+        "option_key": "B",
+        "hint": "1/2 would be the ratio of distances (R/2)/(R) but the fields follow different laws inside and outside.",
+        "misconception": "Using simple distance ratio"
+      },
+      {
+        "option_key": "C",
+        "hint": "4 is the inverse of 1/4. The correct ratio requires using ρr/(3ε₀) inside and ρR³/(3ε₀r²) outside.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-19",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two large parallel conducting plates carry surface charge densities +σ and −σ respectively. The electric field in the region between the plates is:",
+    "explanation": "Each infinite conducting plate produces a field of σ/(2ε₀) on each side. Between the plates, the fields from both plates add up (both point from + to − plate): E = σ/(2ε₀) + σ/(2ε₀) = σ/ε₀. Outside the plates, the fields cancel, giving zero.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "parallel-plates",
+      "superposition",
+      "conductor-surface-field"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "σ/(2ε₀)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2σ/ε₀",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "σ/ε₀",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "σ/(2ε₀) is the field due to a single infinite sheet. Between two oppositely charged plates, both fields add, giving σ/ε₀.",
+        "misconception": "Using single sheet formula without superposition"
+      },
+      {
+        "option_key": "B",
+        "hint": "2σ/ε₀ would imply four times the single-sheet field. The correct superposition gives σ/(2ε₀) + σ/(2ε₀) = σ/ε₀.",
+        "misconception": "Doubling the already-combined field"
+      },
+      {
+        "option_key": "C",
+        "hint": "Zero is the field outside the plates where the fields cancel. Between the plates, the fields reinforce each other.",
+        "misconception": "Confusing the field between plates with the field outside"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-20",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A solid conducting sphere of radius R carries a total charge Q. The surface charge density at the surface of the sphere and the electric field just outside the surface are, respectively:",
+    "explanation": "For a conducting sphere, all charge resides on the surface. Surface charge density σ = Q/(4πR²). The electric field just outside a conductor surface is E = σ/ε₀ (by Gauss's law using a small pillbox at the surface). Substituting σ: E = Q/(4πε₀R²) = kQ/R². This is consistent with treating the sphere as a point charge at large distances.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "conducting-sphere",
+      "surface-charge-density",
+      "field-at-surface"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "σ = Q/(4πR²), E = σ/(2ε₀)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "σ = Q/(4πR²), E = σ/ε₀",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "σ = Q/(2πR²), E = σ/ε₀",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "σ = Q/(4πR²), E = 2σ/ε₀",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "σ/(2ε₀) is the field due to an infinite sheet. Near a conductor surface, the field is σ/ε₀ because there is field on only one side.",
+        "misconception": "Using the infinite sheet formula σ/(2ε₀) instead of the conductor surface formula σ/ε₀"
+      },
+      {
+        "option_key": "C",
+        "hint": "The surface area of a sphere is 4πR², not 2πR². Therefore σ = Q/(4πR²).",
+        "misconception": "Using incorrect formula for sphere surface area"
+      },
+      {
+        "option_key": "D",
+        "hint": "The field just outside a conductor is σ/ε₀, not 2σ/ε₀. The factor of 2 does not appear because the field exists only on the outer side.",
+        "misconception": "Incorrectly doubling the conductor surface field"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-21",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "easy",
+    "question_text": "The diagram shows a positive charge +Q placed at the centre of a spherical Gaussian surface of radius R. The arrows represent the electric field on the surface. The total electric flux through this surface is:",
+    "image_uri": "diagrams/cuet-phy-elec-gauss-21.png",
+    "image_alt": "A sphere of radius R with a positive charge +Q at its centre. Arrows point radially outward from the surface, all of equal length, representing the uniform electric field on the spherical surface.",
+    "explanation": "By Gauss's law, the total electric flux through any closed surface is Φ = q_enclosed/ε₀. Since the enclosed charge is +Q, the flux is Q/ε₀. This result is independent of the radius R of the Gaussian surface.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "gauss-law",
+      "spherical-surface",
+      "flux-calculation"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Flux through a Gaussian surface",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Q/(4πε₀R²)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Q/(4πε₀)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Q/ε₀",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4πR²Q/ε₀",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Q/(4πε₀R²) is the electric field at distance R, not the flux. Flux = E × Area = [Q/(4πε₀R²)] × 4πR² = Q/ε₀.",
+        "misconception": "Confusing electric field with electric flux"
+      },
+      {
+        "option_key": "B",
+        "hint": "Q/(4πε₀) = kQ, which is a constant in Coulomb's law, not the total flux.",
+        "misconception": "Confusing Coulomb constant with flux"
+      },
+      {
+        "option_key": "D",
+        "hint": "4πR²Q/ε₀ incorrectly multiplies the flux by the surface area. The flux is simply Q/ε₀ regardless of R.",
+        "misconception": "Double-counting the surface area in flux calculation"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-22",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The diagram shows the cross-section of a Gaussian cylindrical surface (pillbox) straddling an infinite charged plane sheet with surface charge density σ. The flat faces of the cylinder are at equal distances from the sheet. The electric flux through the curved surface of the cylinder is:",
+    "image_uri": "diagrams/cuet-phy-elec-gauss-22.png",
+    "image_alt": "An infinite charged plane (horizontal line with + signs) with a cylindrical Gaussian surface (pillbox) whose axis is perpendicular to the plane. The flat circular faces are above and below the plane. Electric field arrows point vertically outward from both flat faces.",
+    "explanation": "For an infinite plane sheet, the electric field is perpendicular to the sheet (along the axis of the cylinder). On the curved surface, the area vector is radial (perpendicular to the cylinder axis) while E is along the axis. Since E ⊥ dA on the curved surface, E·dA = 0. The entire flux passes through the two flat faces only.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "gaussian-pillbox",
+      "infinite-sheet",
+      "flux-curved-surface"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Gaussian surface for plane sheet",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "σA/ε₀",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "σA/(2ε₀)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2σA/ε₀",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "σA/ε₀ is the total flux through the entire closed surface (both flat faces combined), not through the curved surface alone.",
+        "misconception": "Confusing total flux with flux through curved surface"
+      },
+      {
+        "option_key": "C",
+        "hint": "σA/(2ε₀) is the flux through one flat face. The curved surface has zero flux because E is perpendicular to its area vector.",
+        "misconception": "Confusing flux through flat face with curved surface"
+      },
+      {
+        "option_key": "D",
+        "hint": "No flux passes through the curved surface. The field is parallel to the curved surface, making E·dA = 0 everywhere on it.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-23",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The graph shows the variation of electric field E with distance r from the centre of a uniformly charged thin spherical shell of radius R carrying charge Q. Which graph is correct?",
+    "image_uri": "diagrams/cuet-phy-elec-gauss-23.png",
+    "image_alt": "Four E vs r graphs: (A) E constant everywhere, (B) E = kQ/r² for all r, (C) E = 0 for r < R then E = kQ/r² for r > R with discontinuity at r = R, (D) E increases linearly for r < R then decreases as 1/r² for r > R.",
+    "explanation": "For a uniformly charged spherical shell: E = 0 for r < R (no enclosed charge inside the shell) and E = kQ/r² for r > R (shell acts as point charge). At r = R, the field jumps from 0 to kQ/R² = σ/ε₀. Graph C correctly shows this behaviour — zero inside, inverse-square outside, with a discontinuity at the surface.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "shell-field",
+      "E-vs-r-graph",
+      "discontinuity"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Electric field of spherical shell",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Graph A: E is constant everywhere",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Graph C: E = 0 for r < R, then E ∝ 1/r² for r > R",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Graph B: E ∝ 1/r² for all r",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Graph D: E increases linearly inside, then decreases as 1/r²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A constant field everywhere describes an infinite plane sheet, not a spherical shell.",
+        "misconception": "Confusing shell with infinite plane"
+      },
+      {
+        "option_key": "C",
+        "hint": "E ∝ 1/r² for all r would mean a point charge. A shell has zero field inside (r < R).",
+        "misconception": "Treating the shell as a point charge at all distances"
+      },
+      {
+        "option_key": "D",
+        "hint": "Linear increase inside is for a uniformly charged solid sphere (non-conducting), not a hollow shell.",
+        "misconception": "Confusing solid sphere with spherical shell"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-24",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "The figure shows two concentric conducting spherical shells. The inner shell (radius a) carries charge +Q and the outer shell (radius b) carries charge −Q. Using Gauss's law, the electric field in the region a < r < b is:",
+    "image_uri": "diagrams/cuet-phy-elec-gauss-24.png",
+    "image_alt": "Two concentric spherical shells: inner shell of radius a with charge +Q and outer shell of radius b with charge −Q. A dashed Gaussian sphere of radius r is drawn between the shells (a < r < b).",
+    "explanation": "For a Gaussian sphere of radius r where a < r < b: the enclosed charge is +Q (only the inner shell is enclosed). By Gauss's law: E × 4πr² = Q/ε₀, so E = Q/(4πε₀r²) = kQ/r², directed radially outward. The charge on the outer shell does not contribute since it is outside the Gaussian surface.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "concentric-shells",
+      "gauss-law",
+      "enclosed-charge"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Field between concentric conductors",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "kQ/b², directed inward",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "k(Q − Q)/r² = 0",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "kQ/r², directed radially outward",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The field is zero inside the inner shell (r < a) and outside both shells (r > b), but NOT between them where the inner charge +Q is enclosed.",
+        "misconception": "Applying the zero-field result to the wrong region"
+      },
+      {
+        "option_key": "B",
+        "hint": "kQ/b² would be the field at the surface of the outer shell. Between the shells, E depends on r, not b.",
+        "misconception": "Using the wrong radius"
+      },
+      {
+        "option_key": "C",
+        "hint": "You don't subtract charges of inner and outer shells. The Gaussian surface at radius r only encloses the inner charge +Q.",
+        "misconception": "Including charge outside the Gaussian surface"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-25",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Gauss's law is valid for any closed surface, regardless of its shape.\nReason (R): The electric flux through any closed surface depends only on the net charge enclosed, not on the shape or size of the surface.",
+    "explanation": "Both A and R are true, and R is the correct explanation of A. Gauss's law ∮E·dA = q_enc/ε₀ holds for any arbitrary closed surface. Since the right-hand side depends only on enclosed charge (not surface geometry), the law's validity is independent of surface shape. This generality is what makes Gauss's law powerful.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "gauss-law-generality",
+      "surface-independence"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Properties of Gauss's law",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R directly explains why A is true — the shape-independence of Gauss's law follows precisely because flux depends only on enclosed charge.",
+        "misconception": "Not recognising the direct causal connection"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct. This is a fundamental property of Gauss's law — flux through a closed surface depends on q_enclosed, not surface geometry.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct. Gauss's law applies to any closed surface — spheres, cubes, irregular shapes, etc.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-26",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The electric flux through a closed surface does not change when the shape of the surface is changed, keeping the enclosed charge the same.\nReason (R): According to Gauss's law, electric flux through a closed surface depends only on the net charge enclosed, not on the shape or size of the surface.",
+    "explanation": "The assertion is correct: Gauss's law states φ = q_enclosed/ε₀, which depends only on the enclosed charge. The reason is also correct and directly explains the assertion. Since flux equals q/ε₀ regardless of surface geometry, changing the shape while keeping the same enclosed charge leaves the flux unchanged.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "gauss-law",
+      "surface-independence",
+      "electric-flux"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The reason is the direct mathematical statement (Gauss's law) that explains why the flux is shape-independent. It is the correct explanation.",
+        "misconception": "Not recognizing that Gauss's law directly explains the shape independence of flux"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is a correct statement of Gauss's law, which is a fundamental theorem in electrostatics.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct; this is a direct consequence of Gauss's law, which can be verified experimentally.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-27",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The electric field due to a uniformly charged infinite plane sheet is independent of distance from the sheet.\nReason (R): The infinite sheet has planar symmetry, and the Gaussian pillbox analysis yields a field that does not contain the distance variable.",
+    "explanation": "Both A and R are true, and R correctly explains A. Using a Gaussian pillbox of arbitrary height h: flux = 2EA, enclosed charge = σA. This gives E = σ/(2ε₀), with no dependence on h (distance from the sheet). The reason is the planar symmetry — translating the pillbox up or down changes nothing.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "infinite-sheet",
+      "distance-independence",
+      "planar-symmetry"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Field of infinite sheet",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "R explains precisely why A is true — the pillbox derivation produces E = σ/(2ε₀) with no distance term, which is the mathematical proof of the distance independence.",
+        "misconception": "Not connecting the derivation with the result"
+      },
+      {
+        "option_key": "C",
+        "hint": "R is correct — the pillbox analysis of an infinite sheet does yield σ/(2ε₀) with no distance variable. This is a standard derivation.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "A is correct. E = σ/(2ε₀) is constant everywhere for an infinite sheet, confirmed experimentally and theoretically.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-28",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The electric field inside a hollow conducting sphere is zero even if there is an external electric field.\nReason (R): A conductor has free electrons that rearrange themselves on the surface to cancel the external field inside.",
+    "explanation": "The assertion is correct: the field inside a hollow conductor is zero in electrostatic equilibrium, even in the presence of an external field (electrostatic shielding). The reason is also correct and explains the assertion: free electrons on the conductor surface redistribute to create an induced surface charge that exactly cancels the external field within the cavity.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "electrostatic-shielding",
+      "faraday-cage",
+      "conductor-properties"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The redistribution of surface charges (reason) is exactly the mechanism that cancels the field inside (assertion), making R the correct explanation of A.",
+        "misconception": "Not connecting charge redistribution with field cancellation inside"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is scientifically correct; conductors do have free electrons that redistribute to achieve electrostatic equilibrium.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct; electrostatic shielding is a well-established phenomenon (Faraday cage principle).",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-29",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the charge distributions in Column I with the distance dependence of the electric field in Column II:\n\nColumn I:\nA. Point charge\nB. Infinite line charge\nC. Infinite plane sheet\nD. Inside a uniformly charged solid sphere\n\nColumn II:\n1. E is independent of distance\n2. E ∝ 1/r²\n3. E ∝ 1/r\n4. E ∝ r",
+    "explanation": "Point charge: E = kq/r² → A-2. Infinite line charge: E = λ/(2πε₀r) → B-3. Infinite plane sheet: E = σ/(2ε₀), independent of distance → C-1. Inside solid sphere: E = kQr/R³ → D-4.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "field-dependence",
+      "charge-distributions",
+      "distance-variation"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-2, B-3, C-4, D-1",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This swaps B and C. The line charge field varies as 1/r, while the plane sheet field is distance-independent.",
+        "misconception": "Confusing the distance dependence of line charge and plane sheet fields"
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns 1/r to the point charge and 1/r² to the line charge, which is reversed. Point charge field goes as 1/r².",
+        "misconception": "Swapping point charge and line charge distance dependence"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns E ∝ r to the plane sheet and distance-independent to the solid sphere interior, which is reversed.",
+        "misconception": "Confusing plane sheet field with solid sphere interior field"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-30",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the Gaussian surface choices in Column I with their corresponding charge distribution applications in Column II:\n\nColumn I:\nA. Spherical Gaussian surface\nB. Cylindrical Gaussian surface (axis along the charge)\nC. Cylindrical Gaussian surface (pillbox straddling the surface)\nD. Any arbitrary closed surface\n\nColumn II:\n1. Infinite plane sheet of charge\n2. Uniformly charged sphere (solid or hollow)\n3. Infinitely long straight charged wire\n4. Verifying Gauss's law for net enclosed charge",
+    "explanation": "A spherical Gaussian surface exploits the spherical symmetry of a charged sphere → A-2. A coaxial cylinder exploits the cylindrical symmetry of an infinite wire → B-3. A pillbox straddles an infinite plane sheet to find its field → C-1. Any arbitrary closed surface can verify Gauss's law for enclosed charge → D-4.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "gaussian-surface-choice",
+      "symmetry",
+      "gauss-law-application"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-3, B-2, C-1, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-1, B-3, C-2, D-4",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This swaps B and C. The coaxial cylinder (B) is used for an infinite wire (3), and the pillbox (C) is used for a plane sheet (1).",
+        "misconception": "Confusing the Gaussian surface for wire and plane sheet"
+      },
+      {
+        "option_key": "B",
+        "hint": "This swaps A and B. A spherical surface is used for a sphere (2), not for a wire. A cylinder is used for a wire (3).",
+        "misconception": "Using spherical surface for wire and cylindrical for sphere"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns a spherical surface to a plane sheet. The correct choice for a plane sheet is a pillbox (small cylinder straddling the sheet).",
+        "misconception": "Using spherical Gaussian surface for a plane geometry"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-31",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Electric flux is a scalar quantity.",
+    "explanation": "TRUE. Electric flux Φ = ∮E·dA is the dot product of two vectors (E and dA), which yields a scalar. Flux can be positive, negative, or zero, but it has no direction — it is a scalar.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "flux-scalar",
+      "dot-product"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Properties of electric flux",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Flux is the dot product E·A, and a dot product always yields a scalar. It is not a vector.",
+        "misconception": "Confusing flux (scalar from dot product) with a vector quantity"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-32",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Gauss's law is applicable to any closed surface, regardless of its shape, as long as the surface is closed.",
+    "explanation": "This statement is TRUE. Gauss's law (∮E·dA = q_enclosed/ε₀) is valid for any closed surface (Gaussian surface), irrespective of its shape or size. However, to simplify calculations, we choose surfaces that exploit the symmetry of the charge distribution.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "gauss-law",
+      "closed-surface",
+      "generality"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Gauss's law is a fundamental theorem valid for all closed surfaces. We choose symmetric surfaces for convenience, but the law holds for any closed surface.",
+        "misconception": "Thinking Gauss's law only works for symmetric surfaces"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-33",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "If the electric flux through a closed surface is zero, there must be no charges anywhere inside it.",
+    "explanation": "FALSE. Zero net flux means the net enclosed charge is zero (by Gauss's law: Φ = q_net/ε₀ = 0). But this could be because there are equal amounts of positive and negative charge inside (e.g., a dipole), not necessarily because there are no charges at all.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "zero-flux",
+      "net-charge",
+      "dipole-enclosed"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Interpretation of Gauss's law",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A dipole (+q and −q) inside a closed surface gives zero net flux but contains charges. Zero flux means zero NET charge, not zero charge.",
+        "misconception": "Confusing zero net charge with no charges present"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-34",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "If the net electric flux through a closed surface is zero, it necessarily means that no charge exists inside the surface.",
+    "explanation": "This statement is FALSE. Zero net flux means the net enclosed charge is zero, but this does not mean no charges exist inside. Equal amounts of positive and negative charge can be enclosed, with their effects cancelling to give zero net flux. For example, a dipole inside a closed surface gives zero net flux.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "gauss-law",
+      "zero-flux",
+      "net-charge"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Zero flux only implies zero NET charge. A surface enclosing a dipole (+q and −q) has zero net flux but contains charges.",
+        "misconception": "Equating zero net flux with absence of all charges"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for true/false questions.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-35",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "fill-in-blanks",
+    "difficulty": "easy",
+    "question_text": "The SI unit of electric flux is ______.",
+    "explanation": "Electric flux Φ = E·A has units of (N/C) × m² = N·m²/C. This can also be written as V·m (volt-metre), since V = J/C = N·m/C, giving V·m = N·m²/C.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "electric-flux",
+      "SI-units",
+      "definition"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Electric flux units",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "N/C",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "C/m²",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "V/m",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "N·m²/C (or V·m)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "N/C is the unit of electric field, not electric flux. Flux = field × area, so it has an extra m² factor.",
+        "misconception": "Confusing electric field with electric flux"
+      },
+      {
+        "option_key": "B",
+        "hint": "C/m² is the unit of surface charge density (σ), not flux.",
+        "misconception": "Confusing flux with charge density"
+      },
+      {
+        "option_key": "C",
+        "hint": "V/m is another unit of electric field (equivalent to N/C). Flux has units of V·m, not V/m.",
+        "misconception": "Confusing V/m (field) with V·m (flux)"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-36",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The electric field inside a conductor in electrostatic equilibrium is _____.",
+    "explanation": "In electrostatic equilibrium, free charges in a conductor have settled and there is no current. If there were any non-zero internal field, free electrons would move (contradicting equilibrium). Therefore E = 0 everywhere inside a conductor in electrostatic equilibrium.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "conductor-field",
+      "electrostatic-equilibrium"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Conductors in electrostatics",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "σ/ε₀",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "σ/(2ε₀)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Infinity",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "σ/ε₀ is the field just outside the conductor surface, not inside. Inside, the field is always zero in equilibrium.",
+        "misconception": "Confusing surface field with internal field"
+      },
+      {
+        "option_key": "C",
+        "hint": "σ/(2ε₀) is for a non-conducting sheet. Inside a conductor, E = 0 because free charges redistribute to cancel any internal field.",
+        "misconception": "Using sheet formula for conductor interior"
+      },
+      {
+        "option_key": "D",
+        "hint": "The field is zero, not infinite. Free charges arrange themselves to perfectly shield the interior.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-37",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A physicist constructs a hollow metallic sphere of radius 15 cm and places a charge of +8 μC at its centre using an insulating support. She then measures the electric field at various distances from the centre.\n\nWhat is the electric field at a distance of 10 cm from the centre (inside the sphere)?",
+    "explanation": "This is a hollow conducting sphere with a charge at its centre. By Gauss's law, using a spherical Gaussian surface of radius r = 10 cm (inside the metallic shell), the enclosed charge is +8 μC (the charge at the centre). Wait — but the inner surface of the conductor will have −8 μC induced on it, and the Gaussian surface at r = 10 cm encloses only the +8 μC point charge (the inner surface is at R = 15 cm). So E = kQ/r² = 9 × 10⁹ × 8 × 10⁻⁶/(0.1)² = 72 × 10³/0.01 = 7.2 × 10⁶ N/C.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "hollow-sphere",
+      "gauss-law",
+      "charge-at-centre",
+      "induced-charge"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "NEET",
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3.6 × 10⁶ N/C",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3.2 × 10⁶ N/C",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "7.2 × 10⁶ N/C",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The field would be zero inside the conductor material itself, but the space between the centre charge and the inner surface is not part of the conductor. In this region, the field from the point charge exists.",
+        "misconception": "Confusing the cavity region with the conductor material"
+      },
+      {
+        "option_key": "B",
+        "hint": "3.6 × 10⁶ N/C might result from using r = 0.1 m but halving the charge or making a calculation error.",
+        "misconception": "Arithmetic error in applying Coulomb's law"
+      },
+      {
+        "option_key": "C",
+        "hint": "3.2 × 10⁶ N/C would result from using R = 15 cm instead of r = 10 cm. The field must be evaluated at the observation point, not the shell radius.",
+        "misconception": "Using shell radius instead of observation distance"
+      }
+    ],
+    "chapter_id": "cuet-phy-electrostatics"
+  },
+  {
+    "id": "cuet-phy-elec-gauss-38",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "A thin metallic spherical shell of radius R = 0.1 m carries a charge Q = +4 μC. A point charge q = −2 μC is placed at the centre. Using Gauss's law, determine the electric field at a distance r = 0.2 m from the centre and the charge on the inner surface of the shell.",
+    "explanation": "Inner surface charge: By Gauss's law, take a Gaussian sphere just inside the shell (r slightly < R). The enclosed charge is q = −2 μC. Since E = 0 inside a conductor, the flux is zero, so the charge on the inner surface must be +2 μC (to make enclosed charge zero for a Gaussian surface inside the metal). Outer surface: total charge = Q + q_inner = 4 − 2 = 2 μC on the outer surface. At r = 0.2 m: Enclosed charge = q + Q = −2 + 4 = 2 μC. E = kQ_enc/r² = 9 × 10⁹ × 2 × 10⁻⁶ / (0.2)² = 18000/0.04 = 4.5 × 10⁵ N/C, outward.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "shell-with-charge",
+      "induced-charge",
+      "gauss-law-numerical"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Conductors with internal charges",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "E = 4.5 × 10⁵ N/C outward; inner surface charge = −2 μC",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "E = 4.5 × 10⁵ N/C outward; inner surface charge = +2 μC",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "E = 9 × 10⁵ N/C outward; inner surface charge = +2 μC",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "E = 4.5 × 10⁵ N/C inward; inner surface charge = +4 μC",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The field is correct, but the inner surface charge must be +2 μC (not −2 μC). The inner surface acquires a charge opposite to q to ensure E = 0 inside the metal.",
+        "misconception": "Thinking the inner surface has the same sign as the internal charge"
+      },
+      {
+        "option_key": "C",
+        "hint": "9 × 10⁵ N/C is double the correct value. The enclosed charge at r = 0.2 m is (−2 + 4) = +2 μC, not +4 μC.",
+        "misconception": "Using Q alone instead of Q + q for enclosed charge outside"
+      },
+      {
+        "option_key": "D",
+        "hint": "The direction is outward (not inward) since the net enclosed charge is positive (+2 μC). Also, inner surface charge is +2 μC, not +4 μC.",
+        "misconception": "Using wrong direction and charge value"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-39",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following charge distributions in order of how their electric field decreases with distance (slowest to fastest decrease):\n\n1. Infinite line charge (E ∝ ?)\n2. Point charge (E ∝ ?)\n3. Electric dipole (E ∝ ?)\n4. Infinite plane sheet (E ∝ ?)",
+    "explanation": "The distance dependences are: Infinite plane sheet: E = σ/(2ε₀) ∝ r⁰ (constant, slowest decrease). Infinite line charge: E = λ/(2πε₀r) ∝ 1/r. Point charge: E = kQ/r² ∝ 1/r². Electric dipole: E ∝ 1/r³ (fastest decrease). Order from slowest to fastest: 4 (r⁰) → 1 (1/r) → 2 (1/r²) → 3 (1/r³).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "field-dependence",
+      "distance-comparison",
+      "ordering"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Comparing charge distributions",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 → 2 → 3 → 4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 → 2 → 1 → 4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4 → 1 → 2 → 3",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4 → 2 → 1 → 3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This starts with line charge (1/r) but the infinite plane (constant field) decreases even more slowly. The plane must come first.",
+        "misconception": "Forgetting that a plane sheet has constant field"
+      },
+      {
+        "option_key": "B",
+        "hint": "This starts with dipole (1/r³), which has the fastest decrease. The question asks for slowest to fastest.",
+        "misconception": "Reversing the order"
+      },
+      {
+        "option_key": "D",
+        "hint": "This swaps items 1 and 2. The line charge (1/r) decreases slower than the point charge (1/r²), so line charge comes before point charge.",
+        "misconception": "Confusing line charge (1/r) with point charge (1/r²) dependence"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-gauss-40",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "Arrange the following steps in the correct order for deriving the electric field inside a uniformly charged non-conducting solid sphere of radius R at distance r from the centre (r < R):",
+    "items": [
+      {
+        "id": "1",
+        "text": "Choose a concentric spherical Gaussian surface of radius r (< R)"
+      },
+      {
+        "id": "2",
+        "text": "Calculate the enclosed charge: q_enc = ρ × (4/3)πr³ = Q(r³/R³)"
+      },
+      {
+        "id": "3",
+        "text": "Apply Gauss's law: ∮E·dA = q_enc/ε₀"
+      },
+      {
+        "id": "4",
+        "text": "Use symmetry: E is constant on the Gaussian surface, so ∮E·dA = E × 4πr²"
+      },
+      {
+        "id": "5",
+        "text": "Solve: E × 4πr² = Qr³/(R³ε₀), giving E = Qr/(4πε₀R³) = ρr/(3ε₀)"
+      }
+    ],
+    "correct_order": [
+      "1",
+      "3",
+      "4",
+      "2",
+      "5"
+    ],
+    "explanation": "Step 1: Choose the Gaussian surface (sphere of radius r < R). Step 2: Write Gauss's law. Step 3: Use the spherical symmetry to simplify the left side to E × 4πr². Step 4: Calculate the charge enclosed within radius r. Step 5: Equate and solve for E. The key insight is that only the charge within radius r contributes, giving E ∝ r (linear increase inside).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "gauss-law-derivation",
+      "solid-sphere",
+      "systematic-method"
+    ],
+    "topic": "Gauss's Law and Applications",
+    "subtopic": "Field inside a solid sphere",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 → 2 → 3 → 4 → 5",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 → 1 → 4 → 2 → 5",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1 → 3 → 4 → 2 → 5",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "1 → 4 → 3 → 2 → 5",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This calculates the enclosed charge (step 2) before writing Gauss's law (step 3). It's more logical to state the law first, then evaluate each side.",
+        "misconception": "Calculating charge before stating the principle"
+      },
+      {
+        "option_key": "B",
+        "hint": "You should choose the Gaussian surface (step 1) before applying Gauss's law (step 3). You can't apply the law without first defining the surface.",
+        "misconception": "Applying Gauss's law before choosing the surface"
+      },
+      {
+        "option_key": "D",
+        "hint": "Using symmetry (step 4) simplifies the LHS of Gauss's law, so step 3 (writing the law) should come before step 4.",
+        "misconception": "Simplifying the integral before stating the equation"
+      }
+    ]
+  }
+]

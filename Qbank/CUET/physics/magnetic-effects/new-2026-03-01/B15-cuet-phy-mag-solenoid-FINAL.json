@@ -1,0 +1,542 @@
+[
+  {
+    "id": "cuet-phy-mag-solenoid-01",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The magnetic field inside a long solenoid carrying current I with n turns per unit length is given by:",
+    "explanation": "For an ideal long solenoid, applying Ampere's circuital law gives B = μ₀nI, where n is the number of turns per unit length, I is the current, and μ₀ is the permeability of free space.",
+    "correct_answer": "A",
+    "concept_tags": ["solenoid", "magnetic field formula", "Ampere's law"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Solenoid field formula (B=μ₀nI)",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "B = μ₀nI", "is_correct": true},
+      {"key": "B", "value": "B = μ₀NI", "is_correct": false},
+      {"key": "C", "value": "B = μ₀nI/2π", "is_correct": false},
+      {"key": "D", "value": "B = μ₀NI/2πr", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "B uses total turns N, not turns per unit length n — dimensionally incorrect for the solenoid formula.",
+      "C introduces 2π which appears in toroid/straight wire formulas, not solenoid.",
+      "D is the formula for a toroid, not a solenoid."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-02",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The magnetic field outside an ideal infinitely long solenoid is:",
+    "explanation": "For an ideal solenoid of infinite length, the magnetic field lines are confined entirely within the solenoid. By Ampere's law, the field outside is zero because no net current is enclosed by an external Amperian loop.",
+    "correct_answer": "B",
+    "concept_tags": ["solenoid", "field outside solenoid"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Field inside vs outside solenoid",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Equal to the field inside", "is_correct": false},
+      {"key": "B", "value": "Zero", "is_correct": true},
+      {"key": "C", "value": "Half the field inside", "is_correct": false},
+      {"key": "D", "value": "Inversely proportional to distance from axis", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A is wrong because the field is concentrated inside, not equally distributed.",
+      "C is arbitrary — there is no half-field relation for an ideal solenoid exterior.",
+      "D describes the field of a long straight wire, not the exterior of a solenoid."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-03",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A toroid is essentially a solenoid bent into the shape of a:",
+    "explanation": "A toroid is formed by bending a solenoid into a closed circular ring (doughnut shape). This ensures that the magnetic field is entirely confined within the core with no external field.",
+    "correct_answer": "C",
+    "concept_tags": ["toroid", "solenoid", "geometry"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Toroid vs solenoid comparison",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Straight cylinder", "is_correct": false},
+      {"key": "B", "value": "Helix", "is_correct": false},
+      {"key": "C", "value": "Ring (doughnut/torus)", "is_correct": true},
+      {"key": "D", "value": "Flat disc", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A describes an unbent solenoid itself, not a toroid.",
+      "B describes the winding pattern, not the overall shape of a toroid.",
+      "D is a flat geometry with no enclosed volume for field confinement."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-04",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Inserting a ferromagnetic core inside a solenoid increases the magnetic field because:",
+    "explanation": "A ferromagnetic core has high relative permeability (μᵣ >> 1). The field becomes B = μ₀μᵣnI, which is much larger than B = μ₀nI. The core's domains align with the external field, greatly amplifying it.",
+    "correct_answer": "D",
+    "concept_tags": ["ferromagnetic core", "permeability", "solenoid"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Effect of ferromagnetic core",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "It increases the current in the solenoid", "is_correct": false},
+      {"key": "B", "value": "It increases the number of turns per unit length", "is_correct": false},
+      {"key": "C", "value": "It reduces the length of the solenoid", "is_correct": false},
+      {"key": "D", "value": "Its high relative permeability multiplies the field", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "A is incorrect — the core does not change the current flowing through the coil.",
+      "B is incorrect — inserting a core does not alter the winding geometry.",
+      "C is incorrect — the physical length of the solenoid remains unchanged."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-05",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following is a common application of a solenoid?",
+    "explanation": "Solenoids are widely used as electromagnetic door locks, relay switches, MRI machines, and electromagnetic valves. An electromagnetic door lock uses a solenoid-based electromagnet to control the locking mechanism.",
+    "correct_answer": "A",
+    "concept_tags": ["solenoid", "applications", "electromagnet"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Applications of solenoids",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Electromagnetic door lock", "is_correct": true},
+      {"key": "B", "value": "Electric fuse", "is_correct": false},
+      {"key": "C", "value": "Rheostat", "is_correct": false},
+      {"key": "D", "value": "Potentiometer", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "B is a safety device based on heating effect, not magnetism.",
+      "C is a variable resistor that does not rely on solenoid principles.",
+      "D measures EMF using the principle of null deflection, unrelated to solenoids."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-06",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The magnetic field inside a toroid of mean radius r, total N turns, carrying current I is:",
+    "explanation": "Applying Ampere's circuital law to a circular Amperian loop of radius r inside the toroid gives B × 2πr = μ₀NI, so B = μ₀NI/(2πr).",
+    "correct_answer": "B",
+    "concept_tags": ["toroid", "magnetic field", "Ampere's law"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Toroid field formula",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "B = μ₀NI", "is_correct": false},
+      {"key": "B", "value": "B = μ₀NI/(2πr)", "is_correct": true},
+      {"key": "C", "value": "B = μ₀nI/r", "is_correct": false},
+      {"key": "D", "value": "B = μ₀I/(2πr)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A lacks the 2πr denominator required by Ampere's law for a toroid.",
+      "C mixes solenoid notation (n) with an extra r factor incorrectly.",
+      "D is the formula for a long straight conductor, missing the N factor."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-07",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A solenoid of length 0.5 m has 1000 turns and carries a current of 2 A. The magnetic field inside the solenoid is approximately:",
+    "explanation": "n = N/L = 1000/0.5 = 2000 turns/m. B = μ₀nI = 4π × 10⁻⁷ × 2000 × 2 = 16π × 10⁻⁴ ≈ 5.03 × 10⁻³ T ≈ 5.0 × 10⁻³ T.",
+    "correct_answer": "C",
+    "concept_tags": ["solenoid", "numerical", "magnetic field calculation"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Solenoid field formula (B=μ₀nI)",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "2.5 × 10⁻³ T", "is_correct": false},
+      {"key": "B", "value": "4.0 × 10⁻³ T", "is_correct": false},
+      {"key": "C", "value": "5.0 × 10⁻³ T", "is_correct": true},
+      {"key": "D", "value": "8.0 × 10⁻³ T", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A results from using n = 1000 instead of 2000, i.e., forgetting to divide by length.",
+      "B comes from an arithmetic error in multiplying the factors.",
+      "D is approximately double the correct value."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-08",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If the current through a solenoid is doubled and the number of turns per unit length is halved, the magnetic field inside the solenoid will:",
+    "explanation": "B = μ₀nI. If n → n/2 and I → 2I, then B' = μ₀(n/2)(2I) = μ₀nI = B. The magnetic field remains unchanged.",
+    "correct_answer": "D",
+    "concept_tags": ["solenoid", "proportionality", "magnetic field"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Solenoid field formula (B=μ₀nI)",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Double", "is_correct": false},
+      {"key": "B", "value": "Become four times", "is_correct": false},
+      {"key": "C", "value": "Become half", "is_correct": false},
+      {"key": "D", "value": "Remain the same", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "A considers only the doubling of current but ignores the halving of n.",
+      "B incorrectly squares the change in current.",
+      "C considers only the halving of n but ignores the doubling of current."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-09",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a real (finite-length) solenoid, the magnetic field at the centre compared to that at its ends is approximately:",
+    "explanation": "At the centre of a finite solenoid, B ≈ μ₀nI. At either end, the field is approximately half this value, i.e., B_end ≈ μ₀nI/2, because the solenoid extends in only one direction from the end.",
+    "correct_answer": "A",
+    "concept_tags": ["real solenoid", "finite solenoid", "end effects"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Ideal vs real solenoid",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Twice the field at the ends", "is_correct": true},
+      {"key": "B", "value": "Equal to the field at the ends", "is_correct": false},
+      {"key": "C", "value": "Three times the field at the ends", "is_correct": false},
+      {"key": "D", "value": "Half the field at the ends", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "B would only be true for an infinite solenoid where the field is uniform everywhere inside.",
+      "C has no theoretical basis — no factor of 3 arises in solenoid field analysis.",
+      "D reverses the relationship — the centre field is stronger, not weaker."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-10",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The self-inductance of a solenoid with N total turns, length l, and cross-sectional area A is given by:",
+    "explanation": "The flux through the solenoid is Φ = NBA = N(μ₀nI)A = N(μ₀N/l)IA = μ₀N²IA/l. Since L = Φ/I, we get L = μ₀N²A/l.",
+    "correct_answer": "B",
+    "concept_tags": ["self-inductance", "solenoid", "inductance formula"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Self-inductance relation",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "L = μ₀NA/l", "is_correct": false},
+      {"key": "B", "value": "L = μ₀N²A/l", "is_correct": true},
+      {"key": "C", "value": "L = μ₀N²l/A", "is_correct": false},
+      {"key": "D", "value": "L = μ₀NA²/l", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A is missing the N² dependence — inductance depends on the square of turns.",
+      "C inverts the roles of l and A, giving incorrect dimensions.",
+      "D squares the area instead of the number of turns."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-11",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The magnetic field in the open space inside a toroid (the central empty region) is:",
+    "explanation": "For an Amperian loop drawn inside the central empty region of a toroid, no current is enclosed (the loop does not thread through any turns). By Ampere's law, B × 2πr = 0, so B = 0.",
+    "correct_answer": "C",
+    "concept_tags": ["toroid", "central region", "Ampere's law"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Toroid field formula",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Maximum", "is_correct": false},
+      {"key": "B", "value": "Same as inside the windings", "is_correct": false},
+      {"key": "C", "value": "Zero", "is_correct": true},
+      {"key": "D", "value": "Half of the value inside the windings", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A is wrong — the field is confined to the toroid's core, not the central space.",
+      "B confuses the central hollow region with the core where windings exist.",
+      "D has no theoretical basis; no half-field relation applies here."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-12",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A solenoid of length 1 m with 500 turns carries 4 A of current. If a soft iron core of relative permeability 800 is inserted, the magnetic field inside becomes approximately:",
+    "explanation": "n = 500/1 = 500 turns/m. Without core: B₀ = μ₀nI = 4π × 10⁻⁷ × 500 × 4 = 8π × 10⁻⁴ T ≈ 2.51 × 10⁻³ T. With core: B = μᵣB₀ = 800 × 2.51 × 10⁻³ ≈ 2.01 T ≈ 2.0 T.",
+    "correct_answer": "D",
+    "concept_tags": ["ferromagnetic core", "relative permeability", "numerical"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Effect of ferromagnetic core",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "2.5 × 10⁻³ T", "is_correct": false},
+      {"key": "B", "value": "0.25 T", "is_correct": false},
+      {"key": "C", "value": "0.5 T", "is_correct": false},
+      {"key": "D", "value": "2.0 T", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "A is the field without the core — the core amplifies it by factor μᵣ = 800.",
+      "B results from an error in the multiplication by the permeability factor.",
+      "C underestimates the amplification provided by the iron core."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-13",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which statement correctly distinguishes a solenoid from a toroid?",
+    "explanation": "A key difference is that a toroid has zero magnetic field outside its core (both in the central region and exterior), while a real solenoid has a weak but non-zero field outside, especially near its ends.",
+    "correct_answer": "A",
+    "concept_tags": ["solenoid", "toroid", "comparison"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Toroid vs solenoid comparison",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "A toroid has no external magnetic field, whereas a real solenoid has a weak external field", "is_correct": true},
+      {"key": "B", "value": "A solenoid always has stronger internal field than a toroid for identical parameters", "is_correct": false},
+      {"key": "C", "value": "A toroid requires no current to produce a magnetic field", "is_correct": false},
+      {"key": "D", "value": "The field inside a solenoid depends on its radius but not in a toroid", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "B cannot be generally compared as the geometries and formulas differ fundamentally.",
+      "C violates basic electromagnetic principles — current is always needed for a magnetic field.",
+      "D is reversed — an ideal solenoid's field is radius-independent, while a toroid's field depends on radial position."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-14",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The magnetic field inside an ideal solenoid is:",
+    "explanation": "Inside an ideal (infinite) solenoid, the magnetic field is uniform and parallel to the axis. It does not depend on the radial position within the solenoid. This is derived from Ampere's law using a rectangular Amperian loop.",
+    "correct_answer": "B",
+    "concept_tags": ["ideal solenoid", "uniform field", "field properties"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Ideal vs real solenoid",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Non-uniform and radial", "is_correct": false},
+      {"key": "B", "value": "Uniform and parallel to the axis", "is_correct": true},
+      {"key": "C", "value": "Uniform and perpendicular to the axis", "is_correct": false},
+      {"key": "D", "value": "Zero at the centre and maximum near the walls", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A describes a field pattern that would violate the symmetry of the solenoid.",
+      "C has the wrong direction — the field is along the axis, not perpendicular.",
+      "D reverses the actual behaviour — the field is uniform throughout the interior."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-15",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If the length of a solenoid is doubled while keeping the total number of turns and current constant, the magnetic field inside will:",
+    "explanation": "B = μ₀nI = μ₀(N/l)I. If l → 2l with N and I constant, then n → N/(2l) = n/2. Therefore B' = μ₀(n/2)I = B/2. The field is halved.",
+    "correct_answer": "C",
+    "concept_tags": ["solenoid", "proportionality", "turns per unit length"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Solenoid field formula (B=μ₀nI)",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Double", "is_correct": false},
+      {"key": "B", "value": "Remain the same", "is_correct": false},
+      {"key": "C", "value": "Become half", "is_correct": true},
+      {"key": "D", "value": "Become one-fourth", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A incorrectly assumes B is proportional to length.",
+      "B ignores the change in turns per unit length when length changes.",
+      "D would require both n and I to be halved, which is not the case."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-16",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A toroid with 2000 turns, mean radius 20 cm, carries a current of 5 A. The magnetic field at the centre of the toroid (in the empty space enclosed by the ring) is:",
+    "explanation": "The magnetic field in the central open space of a toroid is zero. An Amperian loop drawn in this region does not enclose any current, so by Ampere's law B = 0. The given numerical values are distractors.",
+    "correct_answer": "D",
+    "concept_tags": ["toroid", "central region", "Ampere's law", "tricky"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Toroid field formula",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "10⁻² T", "is_correct": false},
+      {"key": "B", "value": "10⁻³ T", "is_correct": false},
+      {"key": "C", "value": "2 × 10⁻³ T", "is_correct": false},
+      {"key": "D", "value": "Zero", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "A results from blindly applying B = μ₀NI/(2πr) without noting the region asked about.",
+      "B is a numerical distractor that does not correspond to any valid calculation for this region.",
+      "C is another distractor — any non-zero value is wrong for the central empty space."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-17",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two solenoids P and Q have the same length and carry the same current. P has twice the number of turns as Q but half the cross-sectional area. The ratio of their self-inductances L_P/L_Q is:",
+    "explanation": "L = μ₀N²A/l. For P: L_P = μ₀(2N)²(A/2)/l = μ₀ × 4N² × A/(2l) = 2μ₀N²A/l. For Q: L_Q = μ₀N²A/l. So L_P/L_Q = 2.",
+    "correct_answer": "C",
+    "concept_tags": ["self-inductance", "solenoid", "ratio", "comparison"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Self-inductance relation",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1:1", "is_correct": false},
+      {"key": "B", "value": "4:1", "is_correct": false},
+      {"key": "C", "value": "2:1", "is_correct": true},
+      {"key": "D", "value": "1:2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A ignores the effect of different N and A values on inductance.",
+      "B considers only the N² factor (4×) but forgets the halved area.",
+      "D inverts the ratio — P has larger inductance, not smaller."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-18",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A solenoid is connected to a battery. If a soft iron rod is partially inserted into the solenoid, the rod will:",
+    "explanation": "The magnetic field inside the solenoid is non-uniform at the ends. A ferromagnetic material is attracted towards regions of stronger field. The iron rod will be pulled inward towards the region of stronger and more uniform field.",
+    "correct_answer": "A",
+    "concept_tags": ["solenoid", "ferromagnetic", "force on core", "non-uniform field"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Effect of ferromagnetic core",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Be pulled further inside the solenoid", "is_correct": true},
+      {"key": "B", "value": "Be pushed out of the solenoid", "is_correct": false},
+      {"key": "C", "value": "Remain stationary at its position", "is_correct": false},
+      {"key": "D", "value": "Start rotating about the solenoid axis", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "B would occur for a diamagnetic material, not a ferromagnetic one.",
+      "C ignores the force exerted by the non-uniform field on the magnetised rod.",
+      "D has no physical basis — the axial symmetry produces no torque about the axis."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-19",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A toroid of inner radius 10 cm and outer radius 14 cm has 1500 turns and carries 3 A. The magnetic field at a radial distance of 16 cm from the centre of the toroid is:",
+    "explanation": "The outer radius of the toroid is 14 cm. A point at 16 cm lies outside the toroid. For an Amperian loop outside the toroid, the net enclosed current is zero. Therefore B = 0 outside the toroid.",
+    "correct_answer": "B",
+    "concept_tags": ["toroid", "external field", "Ampere's law"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Toroid field formula",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "5.6 × 10⁻³ T", "is_correct": false},
+      {"key": "B", "value": "Zero", "is_correct": true},
+      {"key": "C", "value": "2.8 × 10⁻³ T", "is_correct": false},
+      {"key": "D", "value": "1.4 × 10⁻³ T", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A results from using the toroid formula at r = 16 cm without recognising the point is outside.",
+      "C is a computational distractor based on incorrect radius substitution.",
+      "D is another numerical distractor — any non-zero answer is wrong outside the toroid."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-solenoid-20",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The energy stored per unit volume inside a solenoid is u = B²/(2μ₀). If the current through the solenoid is tripled, the energy density becomes:",
+    "explanation": "B = μ₀nI, so B is proportional to I. Energy density u = B²/(2μ₀) is proportional to I². If I → 3I, then u → 9u. The energy density becomes 9 times the original value.",
+    "correct_answer": "D",
+    "concept_tags": ["energy density", "solenoid", "magnetic energy"],
+    "topic": "Solenoid and Toroid",
+    "subtopic": "Solenoid field formula (B=μ₀nI)",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "3 times the original", "is_correct": false},
+      {"key": "B", "value": "6 times the original", "is_correct": false},
+      {"key": "C", "value": "27 times the original", "is_correct": false},
+      {"key": "D", "value": "9 times the original", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "A only considers the linear change in I, ignoring the B² dependence.",
+      "B has no theoretical basis — 6 does not arise from squaring or cubing 3.",
+      "C cubes instead of squaring — energy density depends on I², not I³."
+    ]
+  }
+]

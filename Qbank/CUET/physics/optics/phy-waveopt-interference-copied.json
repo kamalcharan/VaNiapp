@@ -745,7 +745,7 @@
   },
   {
     "id": "cuet-phy-waveopt-interference-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): In Young's double slit experiment, the fringe pattern shifts when a thin transparent glass plate is introduced in the path of one of the beams. Reason (R): The glass plate introduces an additional optical path difference because light travels slower in glass than in air.",
     "explanation": "Assertion is correct: introducing a glass plate of thickness t and refractive index mu in one beam introduces an extra optical path of (mu - 1)*t, shifting the central fringe to a new position. Reason is also correct: light travels slower in glass (speed = c/mu), so the optical path length increases. The Reason correctly explains the Assertion because it is precisely because of the increased optical path (due to slower speed in glass) that the fringe pattern shifts.",
@@ -807,7 +807,7 @@
   },
   {
     "id": "cuet-phy-waveopt-interference-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): Two independent laser sources of the same frequency cannot produce a sustained interference pattern. Reason (R): For sustained interference, the two sources must be derived from the same parent source to maintain a constant phase relationship.",
     "explanation": "Assertion is correct: even two lasers of nominally the same frequency have independent, randomly fluctuating phases. Over time, the phase difference varies, and the interference pattern averages out, so no sustained pattern is observed. Reason is also correct and is the correct explanation: deriving both beams from a single source (as in YDSE) ensures a constant phase difference, which is essential for a stable interference pattern.",
@@ -870,7 +870,7 @@
   },
   {
     "id": "cuet-phy-waveopt-interference-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match Column I with Column II:\n\nColumn I:\nA. Path difference = n*lambda\nB. Path difference = (2n - 1)*lambda/2\nC. Phase difference = 0\nD. Phase difference = pi\n\nColumn II:\n1. Destructive interference\n2. Constructive interference\n3. Maximum intensity\n4. Minimum (zero) intensity",
     "explanation": "A. Path difference = n*lambda corresponds to constructive interference (2). B. Path difference = (2n-1)*lambda/2 corresponds to destructive interference (1). C. Phase difference = 0 means the waves are perfectly in phase, giving maximum intensity (3). D. Phase difference = pi means the waves are completely out of phase, giving minimum/zero intensity (4). So the correct matching is A-2, B-1, C-3, D-4.",
@@ -932,7 +932,7 @@
   },
   {
     "id": "cuet-phy-waveopt-interference-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match Column I with Column II:\n\nColumn I:\nA. Fringe width (beta) when wavelength is doubled\nB. Fringe width when slit separation is halved\nC. Fringe width when screen distance is tripled\nD. Fringe width when experiment is done in water (mu = 4/3)\n\nColumn II:\n1. beta becomes 3*beta\n2. beta becomes 2*beta\n3. beta becomes (3/4)*beta\n4. beta becomes 2*beta",
     "explanation": "Using beta = lambda*D/d: A. lambda doubled: beta' = 2*lambda*D/d = 2*beta (matches 2). B. d halved: beta' = lambda*D/(d/2) = 2*beta (matches 4). C. D tripled: beta' = lambda*3D/d = 3*beta (matches 1). D. In water (mu = 4/3): lambda' = lambda/mu = 3*lambda/4, so beta' = (3/4)*beta (matches 3). Correct matching: A-2, B-4, C-1, D-3.",
@@ -994,7 +994,7 @@
   },
   {
     "id": "cuet-phy-waveopt-interference-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In Young's double slit experiment, the fringe width is directly proportional to the wavelength of light used.",
     "explanation": "This statement is TRUE. From the fringe width formula beta = lambda*D/d, we can see that beta is directly proportional to lambda (keeping D and d constant). If the wavelength increases, the fringe width increases proportionally, and if the wavelength decreases, the fringe width decreases proportionally.",
@@ -1056,7 +1056,7 @@
   },
   {
     "id": "cuet-phy-waveopt-interference-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "medium",
     "question_text": "In the interference pattern produced by two coherent sources, energy is destroyed at the positions of dark fringes.",
     "explanation": "This statement is FALSE. Energy is NOT destroyed at dark fringes. The principle of conservation of energy holds. In interference, energy is redistributed: the energy missing from dark fringes (minima) appears at the bright fringes (maxima). The total energy remains constant; it is merely redistributed in space.",
@@ -1118,7 +1118,7 @@
   },
   {
     "id": "cuet-phy-waveopt-interference-19",
-    "question_type": "fill_in_the_blank",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "In Young's double slit experiment, if the two slits are illuminated by monochromatic light of wavelength 600 nm with slit separation 0.3 mm and screen distance 1.5 m, the distance between the 4th bright fringe and the 4th dark fringe on the same side of the central maximum is _____.",
     "explanation": "Fringe width beta = lambda*D/d = (600 x 10^-9 x 1.5) / (0.3 x 10^-3) = 9 x 10^-7 / 3 x 10^-4 = 3 x 10^-3 m = 3 mm. Position of the 4th bright fringe = 4*beta = 12 mm. Position of the 4th dark fringe = (4 - 1/2)*beta = 3.5*beta = 10.5 mm. The distance between them = 12 - 10.5 = 1.5 mm = beta/2.",
@@ -1180,7 +1180,7 @@
   },
   {
     "id": "cuet-phy-waveopt-interference-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "hard",
     "question_text": "A student performs Young's double slit experiment in the laboratory. The slit separation is 0.2 mm and the screen is 1 m away. Using a sodium lamp (lambda = 589 nm), the student observes a clear fringe pattern. The student then covers one of the slits. Which of the following correctly describes what happens to the pattern on the screen?",
     "explanation": "When one slit is blocked, there is no longer two-source interference. Instead, light passes through only a single slit, producing a single-slit diffraction pattern. This pattern has a broad central maximum with much wider and less distinct secondary maxima, and the sharp equidistant interference fringes disappear. The central diffraction maximum is much broader than the interference fringes, and the intensity distribution changes from the cos^2 modulation of YDSE to the sinc^2 pattern of single-slit diffraction.",

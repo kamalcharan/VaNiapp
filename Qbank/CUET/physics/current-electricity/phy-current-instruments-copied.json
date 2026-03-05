@@ -752,7 +752,7 @@
   },
   {
     "id": "cuet-phy-current-instruments-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): A potentiometer is preferred over a voltmeter for measuring the EMF of a cell.\nReason (R): A potentiometer draws no current from the cell at the balance point.",
     "explanation": "Both statements are correct, and R is the correct explanation of A. A voltmeter draws a small current, so it measures terminal voltage (V = E - Ir), not true EMF. A potentiometer, at balance, draws zero current from the cell (null method), so it measures the true EMF. This zero-current condition makes the potentiometer ideal for EMF measurement.",
@@ -815,7 +815,7 @@
   },
   {
     "id": "cuet-phy-current-instruments-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): An ammeter is always connected in series with the circuit element through which current is to be measured.\nReason (R): An ammeter has very high resistance so that it does not alter the current in the circuit.",
     "explanation": "The assertion is correct: an ammeter must be connected in series so that the same current that flows through the element also flows through the ammeter. However, the reason is incorrect: an ammeter has very LOW resistance (ideally zero), not high resistance. If it had high resistance, it would significantly reduce the current being measured. The low resistance ensures minimal disturbance to the circuit.",
@@ -878,7 +878,7 @@
   },
   {
     "id": "cuet-phy-current-instruments-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match the instruments (Column-I) with their key characteristics (Column-II):\n\nColumn-I:\nA. Ammeter\nB. Voltmeter\nC. Potentiometer\nD. Galvanometer\n\nColumn-II:\n1. Measures EMF accurately using null method\n2. Connected in series; has low resistance\n3. Detects small currents; shows deflection\n4. Connected in parallel; has high resistance",
     "explanation": "An ammeter is connected in series and has low resistance (A→2). A voltmeter is connected in parallel and has high resistance (B→4). A potentiometer uses the null method to measure EMF accurately (C→1). A galvanometer is a sensitive device that detects small currents (D→3).",
@@ -942,7 +942,7 @@
   },
   {
     "id": "cuet-phy-current-instruments-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match the following potentiometer applications (Column-I) with the relevant formula (Column-II):\n\nColumn-I:\nA. EMF of a cell\nB. Comparison of two EMFs\nC. Internal resistance of a cell\nD. Potential gradient of the wire\n\nColumn-II:\n1. k = V/L (V across wire, L is total length)\n2. E = kl (k = potential gradient, l = balancing length)\n3. r = R(l₁ − l₂)/l₂\n4. E₁/E₂ = l₁/l₂",
     "explanation": "EMF of a cell is found using E = kl (A→2). Comparison of EMFs uses E₁/E₂ = l₁/l₂ (B→4). Internal resistance of a cell is given by r = R(l₁ - l₂)/l₂ (C→3). Potential gradient is k = V/L (D→1). These are the fundamental formulas for all standard potentiometer experiments.",
@@ -1006,7 +1006,7 @@
   },
   {
     "id": "cuet-phy-current-instruments-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "A metre bridge is a practical form of the Wheatstone bridge.",
     "explanation": "This statement is TRUE. A metre bridge (also called a slide-wire bridge) is a practical implementation of the Wheatstone bridge. It uses a 1-metre uniform resistance wire to form two arms of the bridge, and the jockey can be slid along the wire to find the balance point. The ratio of wire lengths gives the ratio of resistances.",
@@ -1068,7 +1068,7 @@
   },
   {
     "id": "cuet-phy-current-instruments-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "A voltmeter should be connected in series with the circuit element to measure the potential difference across it.",
     "explanation": "This statement is FALSE. A voltmeter must be connected in parallel (not series) with the circuit element across which the potential difference is to be measured. Parallel connection ensures the voltmeter measures the same potential difference as the element. If connected in series, it would measure something entirely different and disrupt the circuit.",
@@ -1131,7 +1131,7 @@
   },
   {
     "id": "cuet-phy-current-instruments-19",
-    "question_type": "fill_in_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "The sensitivity of a potentiometer can be increased by _____ the length of the potentiometer wire.",
     "explanation": "The sensitivity of a potentiometer is increased by increasing the length of the wire. A longer wire means a smaller potential gradient (k = V/L), so a given EMF corresponds to a larger balancing length. This larger balancing length can be measured more precisely, improving the sensitivity of the measurement. Hence, longer wires allow detection of smaller differences in EMF.",
@@ -1194,7 +1194,7 @@
   },
   {
     "id": "cuet-phy-current-instruments-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "A student uses a metre bridge to find an unknown resistance X. She places a standard resistance of 10 Ω in the right gap and the unknown resistance X in the left gap. The balance point is obtained at the 33.3 cm mark from the left end. She then swaps the resistances (X in right gap, 10 Ω in left gap) and finds the new balance point.\n\nWhere will the new balance point be located?",
     "explanation": "First measurement: X/10 = 33.3/(100 - 33.3) = 33.3/66.7 ≈ 1/2, so X ≈ 5 Ω. When resistances are swapped: 10/5 = l/(100 - l), giving 2(100 - l) = l, so 200 = 3l, hence l = 66.7 cm from the left end. Swapping the resistances causes the balance point to shift to the complementary position (100 - 33.3 = 66.7 cm).",

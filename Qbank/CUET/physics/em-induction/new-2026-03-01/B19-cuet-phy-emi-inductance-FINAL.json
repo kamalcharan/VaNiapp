@@ -1,0 +1,1082 @@
+[
+  {
+    "id": "cuet-phy-emi-inductance-01",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Self-inductance of a coil is defined as:",
+    "explanation": "Self-inductance L is the ratio of total magnetic flux linkage (NΦ) to the current I flowing through the coil: L = NΦ/I. It measures a coil's ability to oppose changes in current through it by inducing a back-EMF. The SI unit of self-inductance is henry (H).",
+    "correct_answer": "B",
+    "concept_tags": ["self-inductance", "definition", "flux-linkage"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "self-inductance definition",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "L = Φ/NI", "is_correct": false},
+      {"key": "B", "value": "L = NΦ/I", "is_correct": true},
+      {"key": "C", "value": "L = NI/Φ", "is_correct": false},
+      {"key": "D", "value": "L = I/NΦ", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "L has units of Wb/A = henry. NΦ/I gives Wb/A, which is correct.",
+      "NI/Φ has units of A/Wb — the inverse of henry.",
+      "Φ/NI gives Wb/A but divides by N unnecessarily — flux linkage is NΦ, not Φ/N."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-02",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of self-inductance is:",
+    "explanation": "The SI unit of self-inductance is henry (H), named after Joseph Henry. 1 H = 1 Wb/A = 1 V·s/A = 1 kg·m²·s⁻²·A⁻². A coil has an inductance of 1 henry if a current of 1 A produces a flux linkage of 1 Wb through it.",
+    "correct_answer": "A",
+    "concept_tags": ["self-inductance", "SI-unit", "henry"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "self-inductance definition",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Henry (H)", "is_correct": true},
+      {"key": "B", "value": "Weber (Wb)", "is_correct": false},
+      {"key": "C", "value": "Tesla (T)", "is_correct": false},
+      {"key": "D", "value": "Farad (F)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Weber is the unit of magnetic flux, not inductance.",
+      "Tesla is the unit of magnetic field strength.",
+      "Farad is the unit of capacitance, not inductance."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-03",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The self-induced EMF in a coil is given by:",
+    "explanation": "When current through an inductor changes, the self-induced EMF (back-EMF) is ε = −L(dI/dt). The negative sign indicates the EMF opposes the change in current (Lenz's law). L is the self-inductance of the coil.",
+    "correct_answer": "C",
+    "concept_tags": ["self-inductance", "back-emf", "rate-of-change"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "self-induced EMF",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "ε = LI", "is_correct": false},
+      {"key": "B", "value": "ε = L/I", "is_correct": false},
+      {"key": "C", "value": "ε = −L(dI/dt)", "is_correct": true},
+      {"key": "D", "value": "ε = −LI²/2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "LI has units of H·A = Wb, which is flux, not EMF (volts).",
+      "LI²/2 has units of H·A² = joules — that's the energy stored in an inductor.",
+      "The EMF must involve rate of change of current, not just current itself."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-04",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The self-inductance of a long solenoid of length l, total number of turns N, and cross-sectional area A is:",
+    "explanation": "For a solenoid with n = N/l turns per unit length, B = μ₀nI. Flux through each turn = BA = μ₀nIA. Total flux linkage = NΦ = N × μ₀nIA = μ₀N²IA/l. So L = NΦ/I = μ₀N²A/l.",
+    "correct_answer": "B",
+    "concept_tags": ["self-inductance", "solenoid", "formula"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "inductance of solenoid",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "μ₀NA/l", "is_correct": false},
+      {"key": "B", "value": "μ₀N²A/l", "is_correct": true},
+      {"key": "C", "value": "μ₀N²l/A", "is_correct": false},
+      {"key": "D", "value": "μ₀NA²/l", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "L depends on N² because both the flux (∝ N) and the linkage (× N) involve N.",
+      "Increasing length l (keeping N constant) reduces n = N/l, weakening B, so l is in the denominator.",
+      "Increasing area A increases flux through each turn, so A is in the numerator."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-05",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If the number of turns in a solenoid is doubled (keeping length and area the same), the self-inductance becomes:",
+    "explanation": "L = μ₀N²A/l. If N is doubled to 2N, L' = μ₀(2N)²A/l = 4μ₀N²A/l = 4L. Self-inductance is proportional to N², so doubling N quadruples L.",
+    "correct_answer": "C",
+    "concept_tags": ["self-inductance", "solenoid", "proportionality"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "inductance of solenoid",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Doubled", "is_correct": false},
+      {"key": "B", "value": "Halved", "is_correct": false},
+      {"key": "C", "value": "Four times", "is_correct": true},
+      {"key": "D", "value": "Unchanged", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "L ∝ N². Doubling N means L ∝ (2N)² = 4N².",
+      "If L were proportional to N (not N²), doubling N would double L.",
+      "The N² dependence arises because both B (∝ N) and flux linkage (× N) depend on N."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-06",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A solenoid of 1000 turns, length 50 cm, and cross-sectional area 10 cm² is wound on a non-magnetic material. Its self-inductance is approximately:",
+    "explanation": "L = μ₀N²A/l = 4π × 10⁻⁷ × (1000)² × 10 × 10⁻⁴ / 0.5 = 4π × 10⁻⁷ × 10⁶ × 10⁻³ / 0.5 = 4π × 10⁻⁴ / 0.5 = 8π × 10⁻⁴ ≈ 2.51 × 10⁻³ H ≈ 2.5 mH.",
+    "correct_answer": "B",
+    "concept_tags": ["self-inductance", "solenoid", "numerical-problem"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "inductance of solenoid",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "0.25 mH", "is_correct": false},
+      {"key": "B", "value": "2.5 mH", "is_correct": true},
+      {"key": "C", "value": "25 mH", "is_correct": false},
+      {"key": "D", "value": "0.5 mH", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Convert units: l = 0.5 m, A = 10 × 10⁻⁴ = 10⁻³ m².",
+      "L = 4π × 10⁻⁷ × 10⁶ × 10⁻³ / 0.5 = 8π × 10⁻⁴ ≈ 2.5 × 10⁻³ H.",
+      "0.25 mH would be 10 times too small — likely a unit conversion error."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-07",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The self-inductance of a solenoid depends on:",
+    "explanation": "L = μ₀N²A/l depends on geometry (N, A, l) and the medium (μ₀ or μ). It does NOT depend on the current flowing through the solenoid. Inductance is a property of the coil itself, not of the current.",
+    "correct_answer": "D",
+    "concept_tags": ["self-inductance", "factors", "geometry"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "inductance of solenoid",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "The current through the solenoid", "is_correct": false},
+      {"key": "B", "value": "The voltage across the solenoid", "is_correct": false},
+      {"key": "C", "value": "The resistance of the wire", "is_correct": false},
+      {"key": "D", "value": "The number of turns, area, and length", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "L = μ₀N²A/l — there is no I or V in this formula.",
+      "Current determines the magnetic field strength, but not the inductance.",
+      "Resistance of the wire affects time constant (τ = L/R), but not L itself."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-08",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The current through an inductor of 5 H changes at the rate of 2 A/s. The magnitude of the self-induced EMF is:",
+    "explanation": "|ε| = L|dI/dt| = 5 × 2 = 10 V. The self-induced EMF is proportional to both the inductance and the rate of change of current.",
+    "correct_answer": "C",
+    "concept_tags": ["self-inductance", "back-emf", "numerical-problem"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "self-induced EMF",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "2.5 V", "is_correct": false},
+      {"key": "B", "value": "5 V", "is_correct": false},
+      {"key": "C", "value": "10 V", "is_correct": true},
+      {"key": "D", "value": "20 V", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Simply multiply L × dI/dt = 5 × 2 = 10 V.",
+      "2.5 V would result from dividing instead of multiplying.",
+      "The formula is ε = L(dI/dt), not ε = L/2 × (dI/dt)."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-09",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Mutual inductance between two coils is defined as:",
+    "explanation": "Mutual inductance M₁₂ is the ratio of flux linkage in coil 2 (N₂Φ₂₁) due to current I₁ in coil 1: M = N₂Φ₂₁/I₁. It measures the coupling between two coils. By Neumann's formula, M₁₂ = M₂₁ = M.",
+    "correct_answer": "A",
+    "concept_tags": ["mutual-inductance", "definition", "flux-linkage"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "mutual inductance definition",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "M = N₂Φ₂₁/I₁", "is_correct": true},
+      {"key": "B", "value": "M = N₂Φ₂₁ × I₁", "is_correct": false},
+      {"key": "C", "value": "M = I₁/(N₂Φ₂₁)", "is_correct": false},
+      {"key": "D", "value": "M = N₂I₁/Φ₂₁", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "M has units of H = Wb/A. N₂Φ₂₁/I₁ gives Wb/A — correct.",
+      "N₂Φ₂₁ × I₁ gives Wb·A, which is not henry.",
+      "Mutual inductance relates flux linkage in one coil to current in another."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-10",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The mutual inductance between two coaxial solenoids of the same length l, where the inner solenoid has N₁ turns and area A₁, and the outer solenoid has N₂ turns, is:",
+    "explanation": "The field inside the outer solenoid is B₂ = μ₀(N₂/l)I₂. The flux through the inner solenoid = B₂ × A₁ = μ₀(N₂/l)I₂ × A₁. Total flux linkage in inner solenoid = N₁ × μ₀(N₂/l)I₂A₁. So M = N₁Φ/I₂ = μ₀N₁N₂A₁/l.",
+    "correct_answer": "B",
+    "concept_tags": ["mutual-inductance", "coaxial-solenoids", "formula"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "mutual inductance of solenoids",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "μ₀N₁N₂A₂/l", "is_correct": false},
+      {"key": "B", "value": "μ₀N₁N₂A₁/l", "is_correct": true},
+      {"key": "C", "value": "μ₀N₁N₂(A₁ + A₂)/l", "is_correct": false},
+      {"key": "D", "value": "μ₀(N₁ + N₂)²A₁/l", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "The relevant area is A₁ (inner solenoid), because the flux is confined to its cross-section.",
+      "The outer solenoid's field is uniform inside, but only the inner area A₁ captures flux.",
+      "M depends on N₁N₂ (product), not (N₁ + N₂)² — mutual inductance involves coupling between two separate coils."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-11",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If the coefficient of coupling between two coils is k, the mutual inductance M is related to their self-inductances L₁ and L₂ by:",
+    "explanation": "The coefficient of coupling k relates mutual inductance to self-inductances: M = k√(L₁L₂), where 0 ≤ k ≤ 1. k = 1 for perfect coupling (all flux links both coils) and k = 0 for no coupling.",
+    "correct_answer": "C",
+    "concept_tags": ["mutual-inductance", "coupling-coefficient", "self-inductance"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "coupling coefficient",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "M = k(L₁ + L₂)", "is_correct": false},
+      {"key": "B", "value": "M = k(L₁L₂)", "is_correct": false},
+      {"key": "C", "value": "M = k√(L₁L₂)", "is_correct": true},
+      {"key": "D", "value": "M = k√(L₁ + L₂)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "M has units of henry. k is dimensionless, so the expression inside must have units of H.",
+      "k(L₁L₂) has units of H², not H — taking the square root gives the correct units.",
+      "For two identical coils (L₁ = L₂ = L), M = kL, which is consistent with M = k√(L×L)."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-12",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two coils have self-inductances L₁ = 4 mH and L₂ = 9 mH. If the coefficient of coupling is 0.5, the mutual inductance is:",
+    "explanation": "M = k√(L₁L₂) = 0.5 × √(4 × 9) = 0.5 × √36 = 0.5 × 6 = 3 mH.",
+    "correct_answer": "B",
+    "concept_tags": ["mutual-inductance", "coupling-coefficient", "numerical-problem"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "coupling coefficient",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1.5 mH", "is_correct": false},
+      {"key": "B", "value": "3 mH", "is_correct": true},
+      {"key": "C", "value": "6 mH", "is_correct": false},
+      {"key": "D", "value": "18 mH", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "√(4 × 9) = √36 = 6 mH. Then multiply by k = 0.5.",
+      "6 mH is M for k = 1 (perfect coupling).",
+      "18 mH would result from L₁ × L₂ without taking the square root."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-13",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The EMF induced in a coil due to change of current in a neighbouring coil is given by:",
+    "explanation": "The mutually induced EMF in coil 2 due to changing current in coil 1 is ε₂ = −M(dI₁/dt). M is the mutual inductance between the coils. The negative sign indicates the induced EMF opposes the change (Lenz's law).",
+    "correct_answer": "A",
+    "concept_tags": ["mutual-inductance", "induced-emf", "rate-of-change"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "mutual induction EMF",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "ε = −M(dI/dt)", "is_correct": true},
+      {"key": "B", "value": "ε = −L(dI/dt)", "is_correct": false},
+      {"key": "C", "value": "ε = MI", "is_correct": false},
+      {"key": "D", "value": "ε = MI²/2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "L(dI/dt) is the self-induced EMF in the same coil, not the mutually induced EMF.",
+      "MI has units of H·A = Wb (flux), not volts.",
+      "The EMF depends on the rate of change of current, not just the current."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-14",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The energy stored in an inductor of inductance L carrying a current I is:",
+    "explanation": "The energy stored in the magnetic field of an inductor is U = (1/2)LI². This is analogous to the energy stored in a capacitor U = (1/2)CV². The energy is stored in the magnetic field, not in the current itself.",
+    "correct_answer": "B",
+    "concept_tags": ["energy-stored", "inductor", "magnetic-field-energy"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "energy in inductor",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "LI²", "is_correct": false},
+      {"key": "B", "value": "(1/2)LI²", "is_correct": true},
+      {"key": "C", "value": "LI", "is_correct": false},
+      {"key": "D", "value": "(1/2)LI", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Analogous to capacitor energy (1/2)CV², the inductor energy has the factor 1/2.",
+      "LI has units of H·A = Wb, not joules.",
+      "(1/2)LI² has units of H·A² = V·s·A = J — correct for energy."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-15",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An inductor of 10 H carries a current of 2 A. The energy stored in the inductor is:",
+    "explanation": "U = (1/2)LI² = (1/2) × 10 × (2)² = (1/2) × 10 × 4 = 20 J.",
+    "correct_answer": "C",
+    "concept_tags": ["energy-stored", "inductor", "numerical-problem"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "energy in inductor",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "5 J", "is_correct": false},
+      {"key": "B", "value": "10 J", "is_correct": false},
+      {"key": "C", "value": "20 J", "is_correct": true},
+      {"key": "D", "value": "40 J", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "U = (1/2) × 10 × 4 = 20 J. Don't forget to square the current.",
+      "10 J results from forgetting to square I: (1/2) × 10 × 2 = 10.",
+      "40 J results from omitting the factor of 1/2."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-16",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The magnetic energy density (energy per unit volume) in a region of magnetic field B is:",
+    "explanation": "The energy stored per unit volume in a magnetic field is u = B²/(2μ₀). This is analogous to the electric energy density u = (1/2)ε₀E². For a solenoid, the total energy U = u × Volume = [B²/(2μ₀)] × Al.",
+    "correct_answer": "A",
+    "concept_tags": ["energy-density", "magnetic-field", "formula"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "magnetic energy density",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "B²/(2μ₀)", "is_correct": true},
+      {"key": "B", "value": "B/(2μ₀)", "is_correct": false},
+      {"key": "C", "value": "2B²/μ₀", "is_correct": false},
+      {"key": "D", "value": "μ₀B²/2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "B/(2μ₀) has units of T/(H/m) = A/m, which is not J/m³.",
+      "B²/(2μ₀) has units of T²/(H/m) = J/m³ — correct for energy density.",
+      "μ₀B²/2 has units of (H/m)·T² = incorrect dimensions."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-17",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two coils of self-inductances 2 mH and 8 mH are placed so close together that the effective flux in one coil is completely linked with the other. The mutual inductance between them is:",
+    "explanation": "For perfect coupling (k = 1), M = k√(L₁L₂) = 1 × √(2 × 8) = √16 = 4 mH.",
+    "correct_answer": "C",
+    "concept_tags": ["mutual-inductance", "perfect-coupling", "numerical-problem"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "coupling coefficient",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "2 mH", "is_correct": false},
+      {"key": "B", "value": "3 mH", "is_correct": false},
+      {"key": "C", "value": "4 mH", "is_correct": true},
+      {"key": "D", "value": "16 mH", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "'Completely linked' means k = 1 (perfect coupling).",
+      "M = √(L₁L₂) = √(2 × 8) = √16 = 4 mH.",
+      "16 mH is L₁ × L₂ without taking the square root."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-18",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When a soft iron core is inserted into a solenoid, its self-inductance:",
+    "explanation": "Self-inductance L = μN²A/l, where μ = μ₀μᵣ. Soft iron has a high relative permeability (μᵣ >> 1), so inserting it increases μ and hence L increases significantly. This is why iron cores are used in inductors and transformers.",
+    "correct_answer": "A",
+    "concept_tags": ["self-inductance", "iron-core", "permeability"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "effect of core material",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Increases", "is_correct": true},
+      {"key": "B", "value": "Decreases", "is_correct": false},
+      {"key": "C", "value": "Remains unchanged", "is_correct": false},
+      {"key": "D", "value": "Becomes zero", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Iron is ferromagnetic with μᵣ >> 1, which multiplies the inductance.",
+      "L = μ₀μᵣN²A/l — increasing μᵣ directly increases L.",
+      "Only a superconducting shield (perfect diamagnet) could reduce L toward zero."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-19",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two inductors of self-inductances L₁ and L₂ are connected in series with no mutual coupling. The equivalent inductance is:",
+    "explanation": "When inductors are in series with no mutual coupling (M = 0), the equivalent inductance is simply L = L₁ + L₂. This is analogous to resistors in series. If there is mutual coupling, L = L₁ + L₂ ± 2M (+ for aiding, − for opposing).",
+    "correct_answer": "A",
+    "concept_tags": ["inductors-in-series", "equivalent-inductance", "no-coupling"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "combination of inductors",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "L₁ + L₂", "is_correct": true},
+      {"key": "B", "value": "L₁L₂/(L₁ + L₂)", "is_correct": false},
+      {"key": "C", "value": "L₁ − L₂", "is_correct": false},
+      {"key": "D", "value": "√(L₁L₂)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Inductors in series add directly, just like resistors in series.",
+      "L₁L₂/(L₁ + L₂) is the formula for inductors in parallel.",
+      "L₁ − L₂ would give negative inductance if L₂ > L₁, which is unphysical for no coupling."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-20",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two inductors of self-inductances L₁ and L₂ are connected in parallel with no mutual coupling. The equivalent inductance is:",
+    "explanation": "For inductors in parallel (no mutual coupling): 1/L = 1/L₁ + 1/L₂, giving L = L₁L₂/(L₁ + L₂). This is analogous to resistors in parallel.",
+    "correct_answer": "B",
+    "concept_tags": ["inductors-in-parallel", "equivalent-inductance", "no-coupling"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "combination of inductors",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "L₁ + L₂", "is_correct": false},
+      {"key": "B", "value": "L₁L₂/(L₁ + L₂)", "is_correct": true},
+      {"key": "C", "value": "(L₁ + L₂)/L₁L₂", "is_correct": false},
+      {"key": "D", "value": "L₁ + L₂ + 2M", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Inductors combine like resistors: parallel gives the reciprocal formula.",
+      "L₁ + L₂ is the series combination, not parallel.",
+      "(L₁ + L₂)/L₁L₂ = 1/L, not L itself — you need to take the reciprocal."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-21",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "An inductor opposes any change in the current flowing through it. This property is called:",
+    "explanation": "Self-induction is the property by which an inductor opposes any change in current through it. When current increases, the back-EMF opposes the increase; when current decreases, the back-EMF opposes the decrease. This is often called electrical inertia.",
+    "correct_answer": "A",
+    "concept_tags": ["self-induction", "back-emf", "electrical-inertia"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "self-induction concept",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Self-induction", "is_correct": true},
+      {"key": "B", "value": "Mutual induction", "is_correct": false},
+      {"key": "C", "value": "Electromagnetic induction", "is_correct": false},
+      {"key": "D", "value": "Eddy current effect", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Mutual induction involves two separate coils, not a single coil opposing its own current change.",
+      "Electromagnetic induction is the general phenomenon; the specific property of opposing current change is self-induction.",
+      "Eddy currents are induced in bulk conductors, not in the coil itself."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-22",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The phenomenon of self-induction is sometimes called the 'inertia of electricity' because:",
+    "explanation": "Just as mechanical inertia opposes changes in velocity, self-induction opposes changes in current. An inductor resists both increase and decrease of current, analogous to how a massive object resists both acceleration and deceleration.",
+    "correct_answer": "D",
+    "concept_tags": ["self-induction", "electrical-inertia", "analogy"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "self-induction concept",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "It produces current in the coil", "is_correct": false},
+      {"key": "B", "value": "It increases the current rapidly", "is_correct": false},
+      {"key": "C", "value": "It stores charge in the coil", "is_correct": false},
+      {"key": "D", "value": "It opposes any change in the current through the coil", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "Self-induction does not produce current — it opposes changes to existing current.",
+      "It actually slows down rapid current changes, not increases them.",
+      "An inductor stores energy in its magnetic field, not charge."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-23",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A solenoid of length 0.5 m has 500 turns and area of cross-section 2 × 10⁻⁴ m². If a current of 3 A flows through it, the energy stored in the solenoid is approximately:",
+    "explanation": "L = μ₀N²A/l = 4π × 10⁻⁷ × (500)² × 2 × 10⁻⁴ / 0.5 = 4π × 10⁻⁷ × 25 × 10⁴ × 2 × 10⁻⁴ / 0.5 = 4π × 10⁻⁷ × 100 = 4π × 10⁻⁵ H. Energy U = (1/2)LI² = (1/2) × 4π × 10⁻⁵ × 9 = 18π × 10⁻⁵ ≈ 5.65 × 10⁻⁴ J ≈ 0.56 mJ.",
+    "correct_answer": "B",
+    "concept_tags": ["energy-stored", "solenoid", "numerical-problem"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "energy in inductor",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "0.056 mJ", "is_correct": false},
+      {"key": "B", "value": "0.56 mJ", "is_correct": true},
+      {"key": "C", "value": "5.6 mJ", "is_correct": false},
+      {"key": "D", "value": "56 mJ", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "First find L, then use U = (1/2)LI².",
+      "L = μ₀N²A/l ≈ 4π × 10⁻⁵ H ≈ 1.26 × 10⁻⁴ H.",
+      "U = 0.5 × 1.26 × 10⁻⁴ × 9 ≈ 5.65 × 10⁻⁴ J ≈ 0.56 mJ."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-24",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The mutual inductance between two coils depends on:",
+    "explanation": "Mutual inductance depends on: (1) the number of turns in both coils, (2) the area of cross-section, (3) the distance and orientation between the coils, (4) the medium between them (permeability). It does NOT depend on the current in either coil.",
+    "correct_answer": "D",
+    "concept_tags": ["mutual-inductance", "factors", "geometry"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "factors affecting mutual inductance",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Current in either coil", "is_correct": false},
+      {"key": "B", "value": "Resistance of the coils", "is_correct": false},
+      {"key": "C", "value": "EMF applied to the coils", "is_correct": false},
+      {"key": "D", "value": "Geometry, number of turns, and the medium between them", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "M = μ₀N₁N₂A/l — there is no I or R in this formula.",
+      "Current determines the flux magnitude, but mutual inductance is a geometric property.",
+      "EMF is a consequence of changing current, not a factor in determining M."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-25",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In an LR circuit connected to a battery of EMF ε, the time constant τ is:",
+    "explanation": "The time constant of an LR circuit is τ = L/R. After one time constant, the current reaches (1 − 1/e) ≈ 63.2% of its maximum value ε/R. The time constant determines how quickly current builds up or decays in an inductive circuit.",
+    "correct_answer": "A",
+    "concept_tags": ["LR-circuit", "time-constant", "exponential-growth"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "LR circuit",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "L/R", "is_correct": true},
+      {"key": "B", "value": "R/L", "is_correct": false},
+      {"key": "C", "value": "LR", "is_correct": false},
+      {"key": "D", "value": "√(LR)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "τ has units of time. L/R = H/Ω = (V·s/A)/(V/A) = s — correct.",
+      "R/L has units of 1/s — the inverse of time.",
+      "LR has units of H·Ω = V·s/A × V/A = V²s/A² — not seconds."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-26",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In an LR circuit, the current during growth is given by I = (ε/R)(1 − e^(−t/τ)). The current at t = τ is approximately:",
+    "explanation": "At t = τ: I = (ε/R)(1 − e⁻¹) = (ε/R)(1 − 1/e) = (ε/R)(1 − 0.368) = 0.632(ε/R). So the current reaches about 63.2% of its maximum value in one time constant.",
+    "correct_answer": "C",
+    "concept_tags": ["LR-circuit", "current-growth", "time-constant"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "LR circuit",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "ε/R", "is_correct": false},
+      {"key": "B", "value": "0.5(ε/R)", "is_correct": false},
+      {"key": "C", "value": "0.632(ε/R)", "is_correct": true},
+      {"key": "D", "value": "0.368(ε/R)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "ε/R is the maximum current (at t → ∞), not at t = τ.",
+      "0.368(ε/R) = (ε/R)e⁻¹ — this is the remaining fraction after decay, not the growth value.",
+      "1 − e⁻¹ ≈ 1 − 0.368 = 0.632, not 0.5."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-27",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In an LR circuit, during the decay of current, the current is given by I = I₀e^(−Rt/L). After time t = L/R, the current reduces to:",
+    "explanation": "At t = L/R = τ: I = I₀e⁻¹ = I₀/e ≈ 0.368I₀ = 36.8% of I₀. The current decays to about 37% of its initial value in one time constant.",
+    "correct_answer": "B",
+    "concept_tags": ["LR-circuit", "current-decay", "time-constant"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "LR circuit",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "I₀/2", "is_correct": false},
+      {"key": "B", "value": "I₀/e", "is_correct": true},
+      {"key": "C", "value": "I₀/e²", "is_correct": false},
+      {"key": "D", "value": "Zero", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "I₀/2 corresponds to the half-life, which is t₁/₂ = τ ln2 ≈ 0.693τ, not τ.",
+      "At t = τ, I = I₀e⁻¹ = I₀/e ≈ 0.368I₀.",
+      "I₀/e² corresponds to t = 2τ, not one time constant."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-28",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Eddy currents are produced in:",
+    "explanation": "Eddy currents are circulating currents induced in bulk conducting materials (not just wires) when they experience changing magnetic flux. They are called 'eddy' because they flow in closed loops within the conductor, like eddies in water.",
+    "correct_answer": "C",
+    "concept_tags": ["eddy-currents", "bulk-conductors", "induced-currents"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "eddy currents",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Insulating materials", "is_correct": false},
+      {"key": "B", "value": "Semiconductors only", "is_correct": false},
+      {"key": "C", "value": "Bulk conducting materials", "is_correct": true},
+      {"key": "D", "value": "Vacuum", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Insulators do not have free electrons to sustain eddy currents.",
+      "While semiconductors can have some eddy currents, the primary and dominant effect is in conductors.",
+      "Eddy currents require free charge carriers moving in closed loops — only conductors provide this."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-29",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Eddy currents can be minimized by:",
+    "explanation": "Eddy currents are minimized by laminating the core — using thin sheets of metal insulated from each other. This breaks the conducting path and limits the area of eddy current loops, reducing their magnitude. This is why transformer cores are laminated.",
+    "correct_answer": "B",
+    "concept_tags": ["eddy-currents", "lamination", "minimization"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "eddy currents",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Using a solid metal core", "is_correct": false},
+      {"key": "B", "value": "Using a laminated core", "is_correct": true},
+      {"key": "C", "value": "Increasing the thickness of the core", "is_correct": false},
+      {"key": "D", "value": "Using a core of higher conductivity", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A solid core provides large continuous conducting paths — maximizing eddy currents.",
+      "Increasing thickness increases the area for eddy current loops.",
+      "Higher conductivity means lower resistance, which increases eddy currents."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-30",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which of the following is NOT an application of eddy currents?",
+    "explanation": "Eddy currents are used in electromagnetic braking, induction furnaces, speedometers (eddy current drag), and metal detectors. Charging a battery requires DC current from a chemical or electrical source, not eddy currents.",
+    "correct_answer": "D",
+    "concept_tags": ["eddy-currents", "applications", "conceptual"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "eddy currents",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Electromagnetic braking", "is_correct": false},
+      {"key": "B", "value": "Induction furnace", "is_correct": false},
+      {"key": "C", "value": "Electric speedometer", "is_correct": false},
+      {"key": "D", "value": "Charging a battery", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "Electromagnetic brakes use eddy currents to provide a retarding force.",
+      "Induction furnaces use eddy current heating to melt metals.",
+      "Battery charging requires a sustained DC source — eddy currents are dissipative and cannot charge batteries."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-31",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Eddy currents produce a heating effect because:",
+    "explanation": "Eddy currents flow through the resistance of the conducting material. By Joule's law (P = I²R), the current produces heat. This is the principle used in induction furnaces and induction cooktops.",
+    "correct_answer": "A",
+    "concept_tags": ["eddy-currents", "heating-effect", "joule-heating"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "eddy currents",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "They flow through a resistance producing I²R losses", "is_correct": true},
+      {"key": "B", "value": "They increase the magnetic field", "is_correct": false},
+      {"key": "C", "value": "They store energy in the magnetic field", "is_correct": false},
+      {"key": "D", "value": "They reduce the resistance of the conductor", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Eddy currents actually oppose the magnetic field change (Lenz's law), they don't increase it.",
+      "Energy stored in the magnetic field is a property of inductors, not eddy currents.",
+      "All current through a resistance dissipates energy as heat — this is Joule heating."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-32",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The mutual inductance between a straight long wire and a square loop of side a at a distance d from the wire is proportional to:",
+    "explanation": "The magnetic field due to a long wire varies as B = μ₀I/(2πr). The flux through the square loop requires integration: Φ = ∫ₐ^(d+a) [μ₀I/(2πr)] × a dr = (μ₀Ia/2π) ln[(d+a)/d]. So M = Φ/I = (μ₀a/2π) ln[(d+a)/d], which involves ln and is not simply proportional to a power of d.",
+    "correct_answer": "C",
+    "concept_tags": ["mutual-inductance", "wire-and-loop", "logarithmic-dependence"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "mutual inductance calculation",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1/d", "is_correct": false},
+      {"key": "B", "value": "1/d²", "is_correct": false},
+      {"key": "C", "value": "ln[(d+a)/d]", "is_correct": true},
+      {"key": "D", "value": "d²", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "The field of a wire varies as 1/r, so integrating over the loop area gives a logarithm.",
+      "1/d dependence would occur only for a point or very small loop (a << d).",
+      "The logarithmic dependence arises from integrating 1/r over the finite width of the loop."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-33",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In electromagnetic braking, the braking force is provided by:",
+    "explanation": "In electromagnetic braking, when a conducting plate moves through a magnetic field, eddy currents are induced in the plate. By Lenz's law, these eddy currents create a force that opposes the motion of the plate, providing the braking effect. No friction surfaces are needed.",
+    "correct_answer": "B",
+    "concept_tags": ["eddy-currents", "electromagnetic-braking", "lenz-law"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "eddy currents",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Frictional force between surfaces", "is_correct": false},
+      {"key": "B", "value": "Force on eddy currents due to the magnetic field", "is_correct": true},
+      {"key": "C", "value": "Gravitational pull on the conductor", "is_correct": false},
+      {"key": "D", "value": "Elastic force of the spring mechanism", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "The whole point of electromagnetic braking is that it's frictionless — no wear and tear.",
+      "Eddy currents in a magnetic field experience a Lorentz force that opposes motion.",
+      "Gravity pulls downward regardless — it cannot provide braking."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-34",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two coils are connected in series aiding (fluxes add). If L₁ = 2 H, L₂ = 3 H, and M = 1 H, the equivalent inductance is:",
+    "explanation": "For series aiding connection (fluxes in same direction): L_eq = L₁ + L₂ + 2M = 2 + 3 + 2(1) = 7 H. The mutual inductance adds 2M because the flux from each coil links with the other in the same direction.",
+    "correct_answer": "D",
+    "concept_tags": ["series-inductors", "mutual-inductance", "aiding-connection"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "combination of inductors",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "4 H", "is_correct": false},
+      {"key": "B", "value": "5 H", "is_correct": false},
+      {"key": "C", "value": "6 H", "is_correct": false},
+      {"key": "D", "value": "7 H", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "5 H = L₁ + L₂ ignores the mutual inductance contribution.",
+      "6 H = L₁ + L₂ + M uses M instead of 2M.",
+      "For series aiding: L_eq = L₁ + L₂ + 2M (the factor 2 accounts for mutual coupling in both directions)."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-35",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "Two coils are connected in series opposing (fluxes subtract). If L₁ = 2 H, L₂ = 3 H, and M = 1 H, the equivalent inductance is:",
+    "explanation": "For series opposing connection (fluxes in opposite directions): L_eq = L₁ + L₂ − 2M = 2 + 3 − 2(1) = 3 H.",
+    "correct_answer": "B",
+    "concept_tags": ["series-inductors", "mutual-inductance", "opposing-connection"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "combination of inductors",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1 H", "is_correct": false},
+      {"key": "B", "value": "3 H", "is_correct": true},
+      {"key": "C", "value": "5 H", "is_correct": false},
+      {"key": "D", "value": "7 H", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "7 H is the series aiding result (L₁ + L₂ + 2M).",
+      "5 H ignores mutual inductance entirely.",
+      "For series opposing: L_eq = L₁ + L₂ − 2M = 5 − 2 = 3 H."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-36",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The dimensional formula of self-inductance is:",
+    "explanation": "L = ε/(dI/dt). The dimensions of EMF (ε) are [ML²T⁻³A⁻¹] and dI/dt has dimensions [AT⁻¹]. So [L] = [ML²T⁻³A⁻¹]/[AT⁻¹] = [ML²T⁻²A⁻²].",
+    "correct_answer": "C",
+    "concept_tags": ["self-inductance", "dimensional-formula", "units"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "dimensions of inductance",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "[ML²T⁻³A⁻²]", "is_correct": false},
+      {"key": "B", "value": "[ML²T⁻¹A⁻²]", "is_correct": false},
+      {"key": "C", "value": "[ML²T⁻²A⁻²]", "is_correct": true},
+      {"key": "D", "value": "[MLT⁻²A⁻²]", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "1 H = 1 V·s/A = 1 kg·m²·s⁻²·A⁻², giving [ML²T⁻²A⁻²].",
+      "Check: V = kg·m²·s⁻³·A⁻¹, so V·s/A = kg·m²·s⁻²·A⁻².",
+      "[MLT⁻²A⁻²] is missing one power of L (length)."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-37",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The principle of mutual induction is used in:",
+    "explanation": "A transformer works on the principle of mutual induction. When AC flows through the primary coil, the changing magnetic flux links with the secondary coil, inducing an EMF in it. The ratio of EMFs equals the ratio of turns.",
+    "correct_answer": "A",
+    "concept_tags": ["mutual-induction", "transformer", "application"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "applications of mutual induction",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Transformer", "is_correct": true},
+      {"key": "B", "value": "DC motor", "is_correct": false},
+      {"key": "C", "value": "Galvanometer", "is_correct": false},
+      {"key": "D", "value": "Potentiometer", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A DC motor uses the force on a current-carrying conductor in a magnetic field.",
+      "A galvanometer measures current using torque on a current loop.",
+      "A transformer requires two magnetically coupled coils — the essence of mutual induction."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-38",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "If the current through an inductor of 2 H changes from 5 A to 1 A in 0.05 s, the average EMF induced is:",
+    "explanation": "|ε| = L|ΔI/Δt| = 2 × |1 − 5|/0.05 = 2 × 4/0.05 = 2 × 80 = 160 V.",
+    "correct_answer": "D",
+    "concept_tags": ["self-inductance", "average-emf", "numerical-problem"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "self-induced EMF",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "16 V", "is_correct": false},
+      {"key": "B", "value": "40 V", "is_correct": false},
+      {"key": "C", "value": "80 V", "is_correct": false},
+      {"key": "D", "value": "160 V", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "ΔI = |1 − 5| = 4 A, Δt = 0.05 s, so ΔI/Δt = 80 A/s.",
+      "EMF = L × ΔI/Δt = 2 × 80 = 160 V.",
+      "80 V would be the answer if L = 1 H."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-39",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The current in an inductor of self-inductance L is given by I = I₀ sin(ωt). The maximum value of the self-induced EMF is:",
+    "explanation": "ε = −L(dI/dt) = −LI₀ω cos(ωt). The maximum value of |ε| = LI₀ω. This occurs when the current is passing through zero (rate of change is maximum).",
+    "correct_answer": "B",
+    "concept_tags": ["self-inductance", "sinusoidal-current", "peak-emf"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "self-induced EMF",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "LI₀", "is_correct": false},
+      {"key": "B", "value": "LI₀ω", "is_correct": true},
+      {"key": "C", "value": "LI₀/ω", "is_correct": false},
+      {"key": "D", "value": "LI₀ω²", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Differentiating I₀ sin(ωt) gives I₀ω cos(ωt), so the factor ω appears.",
+      "LI₀ has units of H·A = Wb, not volts.",
+      "LI₀ω has units of H·A·s⁻¹ = V — correct for EMF."
+    ]
+  },
+  {
+    "id": "cuet-phy-emi-inductance-40",
+    "chapter_id": "cuet-phy-em-induction",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A 100 mH inductor carries a current that increases uniformly from 0 to 10 A in 0.5 s. The power input to the inductor at the instant when the current is 5 A is:",
+    "explanation": "dI/dt = (10 − 0)/0.5 = 20 A/s (uniform rate). EMF = L(dI/dt) = 0.1 × 20 = 2 V. Power input at I = 5 A: P = ε × I = 2 × 5 = 10 W. Alternatively, P = LI(dI/dt) = 0.1 × 5 × 20 = 10 W.",
+    "correct_answer": "C",
+    "concept_tags": ["inductor-power", "energy-storage", "numerical-problem"],
+    "topic": "Self and Mutual Inductance",
+    "subtopic": "energy in inductor",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Induction",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1 W", "is_correct": false},
+      {"key": "B", "value": "5 W", "is_correct": false},
+      {"key": "C", "value": "10 W", "is_correct": true},
+      {"key": "D", "value": "20 W", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "dI/dt = 20 A/s (constant). EMF = L × dI/dt = 0.1 × 20 = 2 V.",
+      "Power = EMF × I = 2 × 5 = 10 W (at the instant when I = 5 A).",
+      "5 W results from using I = 2.5 A or EMF = 1 V."
+    ]
+  }
+]
