@@ -528,6 +528,8 @@ export default function QuickPracticeQuizScreen() {
         questionText={language === 'te' ? question.textTe : question.text}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
+        questionType={question.type}
+        explanation={language === 'te' ? question.explanationTe : question.explanation}
         eliminationHints={question.eliminationHints}
         eliminationText={String((language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique) || '')}
         selectedOptionId={selectedOptionId}

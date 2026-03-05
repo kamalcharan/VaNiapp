@@ -465,6 +465,8 @@ export default function PracticeMistakesScreen() {
         questionText={language === 'te' ? question.textTe : question.text}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
+        questionType={question.type}
+        explanation={language === 'te' ? question.explanationTe : question.explanation}
         eliminationHints={question.eliminationHints}
         selectedOptionId={selectedOptionId}
         language={language}
