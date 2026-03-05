@@ -658,7 +658,7 @@ export default function SubjectDetailScreen() {
                             </View>
                           )}
                           <Text style={[styles.notStartedText, { color: colors.textTertiary }]}>
-                            {ca.chapter.avg_questions > 0 ? `${ca.chapter.avg_questions} questions available` : 'Tap to start'}
+                            {ca.chapter.avg_questions > 0 ? `${ca.chapter.avg_questions} questions available` : 'Coming soon'}
                           </Text>
                         </View>
                       );
