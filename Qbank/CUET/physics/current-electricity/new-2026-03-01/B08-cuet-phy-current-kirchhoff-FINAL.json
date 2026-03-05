@@ -1,0 +1,2556 @@
+[
+  {
+    "id": "cuet-phy-current-kirchhoff-01",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "According to Kirchhoff's voltage law (KVL), when we traverse a closed loop in a circuit, the algebraic sum of all the EMFs and potential drops equals:",
+    "explanation": "Kirchhoff's voltage law states that the algebraic sum of all the potential differences (including EMFs and IR drops) around any closed loop in a circuit is zero. This is a direct consequence of the conservation of energy — a charge that travels around a complete loop must return to the same potential it started at.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "kirchhoff-loop-rule",
+      "KVL",
+      "conservation-of-energy",
+      "potential-difference"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Kirchhoff's loop/voltage rule (KVL)",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The total EMF of the circuit",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Zero",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "The total resistance of the loop",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The total current in the loop",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "KVL does not equate the sum to the total EMF; it accounts for both EMFs and voltage drops together summing to zero.",
+        "misconception": "Thinking KVL separates EMFs from drops as an equation"
+      },
+      {
+        "option_key": "C",
+        "hint": "Resistance is not a potential difference. KVL deals with voltages, not resistances.",
+        "misconception": "Confusing resistance with voltage"
+      },
+      {
+        "option_key": "D",
+        "hint": "Current is measured in amperes, while KVL deals with potential differences measured in volts.",
+        "misconception": "Mixing up current and voltage quantities"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-02",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "While applying the sign convention in Kirchhoff's loop rule, if we traverse a resistor in the direction opposite to the assumed current flow, the potential change across it is:",
+    "explanation": "When traversing a resistor opposite to the direction of current, we move from a lower potential to a higher potential. Current flows from high to low potential through a resistor, so going against the current means we encounter a rise in potential, i.e., +IR.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "sign-convention",
+      "KVL",
+      "potential-drop",
+      "resistor"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Sign conventions",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "+IR (a rise in potential)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "−IR (a drop in potential)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "+IR² (proportional to power)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "A drop (−IR) occurs when you traverse the resistor in the same direction as the current, not opposite.",
+        "misconception": "Reversing the sign convention for traversal direction"
+      },
+      {
+        "option_key": "C",
+        "hint": "The potential change across a current-carrying resistor is never zero (unless R = 0 or I = 0).",
+        "misconception": "Assuming no voltage drop across a resistor"
+      },
+      {
+        "option_key": "D",
+        "hint": "IR² is not even dimensionally correct for voltage. The potential change is IR, not IR².",
+        "misconception": "Confusing power dissipation formula with voltage drop"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Kirchhoff's junction rule is based on the conservation of:",
+    "explanation": "Kirchhoff's junction rule (or current rule) states that the algebraic sum of currents at any junction is zero (ΣI = 0). This means the total current entering a junction equals the total current leaving it, which is a direct consequence of conservation of electric charge.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "kirchhoff-junction-rule",
+      "conservation-of-charge",
+      "current"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Charge",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Energy",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Momentum",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Mass",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Conservation of energy is the basis of Kirchhoff's loop rule (voltage rule), not the junction rule.",
+        "misconception": "Confusing the physical basis of the junction rule with the loop rule"
+      },
+      {
+        "option_key": "C",
+        "hint": "Conservation of momentum applies to mechanics (collisions, etc.), not to current flow at a junction.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Conservation of mass is relevant in chemical reactions and fluid flow, not in the context of electrical current at a junction.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Three resistors of 2 Ω, 3 Ω, and 6 Ω are connected in parallel. The equivalent resistance of the combination is:",
+    "explanation": "For parallel resistors: 1/Req = 1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 6/6 = 1. Therefore Req = 1 Ω. The equivalent resistance of a parallel combination is always less than the smallest individual resistance.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "parallel-combination",
+      "equivalent-resistance"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "11 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "3.67 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.5 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "11 Ω = 2 + 3 + 6 would be the result if the resistors were connected in series, not parallel.",
+        "misconception": "Using series formula instead of parallel formula"
+      },
+      {
+        "option_key": "C",
+        "hint": "3.67 Ω is the arithmetic mean of the three resistances, which is not how equivalent resistance is calculated.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The equivalent resistance of this parallel combination is 1 Ω, not 0.5 Ω. Check the calculation: 1/2 + 1/3 + 1/6 = 1.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-05",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The terminal voltage of a cell is less than its EMF when it is:",
+    "explanation": "When a cell supplies current (discharging), the terminal voltage V = E - Ir, where E is the EMF, I is the current, and r is the internal resistance. Due to the voltage drop Ir across the internal resistance, the terminal voltage is always less than the EMF during discharge.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "EMF",
+      "terminal-voltage",
+      "internal-resistance",
+      "discharging"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "In open circuit",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Being charged by an external source",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Supplying current to an external resistance",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Not connected to any circuit",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "In open circuit, no current flows (I = 0), so V = E - 0 = E. The terminal voltage equals the EMF.",
+        "misconception": "Thinking terminal voltage differs from EMF even in open circuit"
+      },
+      {
+        "option_key": "B",
+        "hint": "During charging, V = E + Ir, so the terminal voltage is actually greater than the EMF, not less.",
+        "misconception": "Confusing charging and discharging conditions"
+      },
+      {
+        "option_key": "D",
+        "hint": "When not connected to any circuit, it is the same as open circuit where V = E (no current flows).",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-06",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Kirchhoff's loop rule (voltage rule) states that the algebraic sum of potential differences in a closed loop is:",
+    "explanation": "Kirchhoff's loop rule states that the algebraic sum of all potential differences (voltage drops and rises) around any closed loop in a circuit is zero (ΣV = 0). This is based on the conservation of energy: the energy gained per unit charge by EMF sources equals the energy lost per unit charge across resistances in a complete loop.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "kirchhoff-loop-rule",
+      "conservation-of-energy",
+      "potential-difference"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Equal to the total EMF in the circuit",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Equal to the total resistance",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Maximum at the junction",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Zero",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The loop rule states ΣV = 0 around a closed loop, meaning all EMFs and IR drops together sum to zero, not that the sum equals the total EMF.",
+        "misconception": "Confusing the loop equation with one side of the equation"
+      },
+      {
+        "option_key": "B",
+        "hint": "The loop rule deals with voltages (potential differences), not resistances. Total resistance is not a quantity that potential differences sum to.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "The loop rule applies around a complete closed loop, not at a junction. The junction rule deals with currents at a node.",
+        "misconception": "Confusing the loop rule with the junction rule"
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-07",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a circuit, three branches meet at a node. Branch 1 carries 4 A into the node, Branch 2 carries 1.5 A out of the node, and Branch 3 carries current I₃. Using Kirchhoff's current law, the value of I₃ is:",
+    "explanation": "By KCL, the sum of currents entering a node equals the sum of currents leaving it. Current in = 4 A. Current out = 1.5 A + I₃. Therefore 4 = 1.5 + I₃, giving I₃ = 2.5 A flowing out of the node.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "KCL",
+      "junction-rule",
+      "current-conservation",
+      "node-analysis"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Kirchhoff's junction/current rule (KCL)",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "5.5 A flowing out of the node",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2.5 A flowing into the node",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "2.5 A flowing out of the node",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4.0 A flowing out of the node",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "5.5 A would be the sum of 4 + 1.5, which ignores the direction convention. KCL requires current in = current out.",
+        "misconception": "Adding all currents without regard to direction"
+      },
+      {
+        "option_key": "B",
+        "hint": "If I₃ also flows into the node, the total inflow would be 6.5 A but only 1.5 A leaves — violating charge conservation.",
+        "misconception": "Incorrect direction assignment for the unknown current"
+      },
+      {
+        "option_key": "D",
+        "hint": "4 A is the incoming current from Branch 1. The outgoing current in Branch 3 must balance the difference, not equal the incoming.",
+        "misconception": "Assuming each outgoing branch carries the full incoming current"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-08",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two cells of EMF 3 V and 5 V with internal resistances 1 Ω and 2 Ω respectively are connected in parallel (positive to positive) across an external resistance of 10 Ω. The current through the external resistance is approximately:",
+    "explanation": "For two cells in parallel with EMFs E₁ = 3 V (r₁ = 1 Ω) and E₂ = 5 V (r₂ = 2 Ω), the equivalent EMF is E_eq = (E₁/r₁ + E₂/r₂)/(1/r₁ + 1/r₂) = (3/1 + 5/2)/(1/1 + 1/2) = (3 + 2.5)/(1 + 0.5) = 5.5/1.5 = 11/3 V. The equivalent internal resistance is r_eq = 1/(1/r₁ + 1/r₂) = 1/(1 + 0.5) = 2/3 Ω. Current through external resistance = E_eq/(r_eq + R) = (11/3)/(2/3 + 10) = (11/3)/(32/3) = 11/32 ≈ 0.34 A.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "cells-in-parallel",
+      "equivalent-EMF",
+      "internal-resistance",
+      "KVL"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Grouping of cells (series/parallel/mixed)",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.50 A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.67 A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.25 A",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.34 A",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0.50 A would result if you used a simple average EMF of 4 V divided by a wrong total resistance. The parallel EMF formula must be used.",
+        "misconception": "Averaging EMFs instead of using the weighted formula"
+      },
+      {
+        "option_key": "B",
+        "hint": "0.67 A is 2/3, which is the equivalent internal resistance value, not the current.",
+        "misconception": "Confusing intermediate calculation values with the final answer"
+      },
+      {
+        "option_key": "C",
+        "hint": "0.25 A underestimates the current. Check whether the equivalent EMF and resistance were computed correctly.",
+        "misconception": "Using incorrect formula for parallel combination of unequal cells"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-09",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a Wheatstone bridge circuit with resistances P = 100 Ω, Q = 200 Ω, R = 150 Ω, and S = 300 Ω, the bridge is:",
+    "explanation": "For a balanced Wheatstone bridge, the condition is P/Q = R/S. Here P/Q = 100/200 = 1/2 and R/S = 150/300 = 1/2. Since P/Q = R/S, the bridge is balanced and no current flows through the galvanometer.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "wheatstone-bridge",
+      "balanced-bridge",
+      "KCL",
+      "KVL"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Multi-loop circuit analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Balanced, with zero current through the galvanometer",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Unbalanced, with current flowing from B to D",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Unbalanced, with current flowing from D to B",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Balanced only if the battery EMF exceeds 2 V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Check the balance condition P/Q vs R/S. If they are equal, the bridge is balanced regardless of current direction arguments.",
+        "misconception": "Incorrectly evaluating the balance condition ratios"
+      },
+      {
+        "option_key": "C",
+        "hint": "This would be true only if P/Q ≠ R/S. Verify the ratios numerically before concluding the bridge is unbalanced.",
+        "misconception": "Arithmetic error in ratio comparison"
+      },
+      {
+        "option_key": "D",
+        "hint": "The balance condition depends only on the resistance ratios, not on the EMF of the battery.",
+        "misconception": "Thinking bridge balance depends on EMF value"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-10",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a mixed grouping of cells, m rows of n cells each (EMF = E, internal resistance = r) are connected across an external resistance R. The current through R is maximum when:",
+    "explanation": "For a mixed grouping, the total EMF = nE and total internal resistance = nr/m. The current I = nE/(nr/m + R) = mnE/(nr + mR). By AM-GM inequality, the current is maximized when the internal resistance equals the external resistance, i.e., nr/m = R, which gives R = nr/m.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "mixed-grouping",
+      "maximum-current",
+      "internal-resistance",
+      "cells"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Grouping of cells (series/parallel/mixed)",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "R = mr/n",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "R = nr/m",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "R = mnr",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "R = r/(mn)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This swaps m and n. In each row of n cells in series, the internal resistance is nr. With m rows in parallel, the net internal resistance is nr/m, not mr/n.",
+        "misconception": "Confusing the role of m (rows) and n (cells per row)"
+      },
+      {
+        "option_key": "C",
+        "hint": "mnr would be the total internal resistance if all cells were in series. Mixed grouping uses parallel rows to reduce internal resistance.",
+        "misconception": "Treating all cells as if connected in series"
+      },
+      {
+        "option_key": "D",
+        "hint": "r/(mn) is far too small and would only apply if all cells somehow combined their resistances in parallel without any series connection.",
+        "misconception": "Incorrect application of series-parallel resistance formula"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-11",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A cell of EMF 2 V and internal resistance 0.5 Ω is connected to an external resistance of 1.5 Ω. The current in the circuit and the terminal voltage of the cell are:",
+    "explanation": "Total resistance = R + r = 1.5 + 0.5 = 2 Ω. Current I = E/(R + r) = 2/2 = 1 A. Terminal voltage V = E - Ir = 2 - 1(0.5) = 1.5 V. Alternatively, V = IR = 1 × 1.5 = 1.5 V. The terminal voltage is less than the EMF due to internal resistance drop.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "EMF",
+      "internal-resistance",
+      "terminal-voltage",
+      "current"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "I = 2 A, V = 1 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "I = 1 A, V = 2 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "I = 1 A, V = 1.5 V",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "I = 0.5 A, V = 1.75 V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "I = 2 A would result from using only internal resistance (I = E/r = 2/0.5 = 4) or another error. The correct total resistance is 2 Ω giving I = 1 A.",
+        "misconception": "Forgetting to include both internal and external resistance in total resistance"
+      },
+      {
+        "option_key": "B",
+        "hint": "V = 2 V would mean the terminal voltage equals the EMF, which only occurs in open circuit (I = 0). With I = 1 A, V = E - Ir = 1.5 V.",
+        "misconception": "Ignoring the voltage drop across internal resistance"
+      },
+      {
+        "option_key": "D",
+        "hint": "I = 0.5 A would require a total resistance of 4 Ω, but R + r = 1.5 + 0.5 = 2 Ω. The correct current is 1 A.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-12",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two resistors of 4 Ω and 12 Ω are connected in parallel, and this combination is connected in series with a 3 Ω resistor. The total equivalent resistance is:",
+    "explanation": "Parallel combination of 4 Ω and 12 Ω: 1/Rp = 1/4 + 1/12 = 3/12 + 1/12 = 4/12, so Rp = 3 Ω. This is in series with 3 Ω, so total Req = 3 + 3 = 6 Ω. In series combinations, resistances add directly.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "series-parallel",
+      "equivalent-resistance",
+      "combination-circuits"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "3 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "6 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "19 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "9 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "3 Ω is only the equivalent of the parallel combination (4 Ω ∥ 12 Ω). You must add the series 3 Ω resistor to get the total.",
+        "misconception": "Forgetting to add the series resistance to the parallel combination"
+      },
+      {
+        "option_key": "C",
+        "hint": "19 Ω = 4 + 12 + 3 would be the result of adding all three resistors in series, ignoring the parallel connection.",
+        "misconception": "Treating all resistors as being in series"
+      },
+      {
+        "option_key": "D",
+        "hint": "9 Ω does not match any correct combination. The parallel equivalent is 3 Ω, and adding 3 Ω in series gives 6 Ω.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-13",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When n identical cells each of EMF E and internal resistance r are connected in series, the total EMF and total internal resistance of the combination are:",
+    "explanation": "When n identical cells are connected in series, the EMFs add up and the internal resistances also add up. Total EMF = nE and total internal resistance = nr. This is because in series, the same current flows through each cell and the potential differences across them add up.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "cells-in-series",
+      "EMF",
+      "internal-resistance",
+      "grouping-of-cells"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "nE, nr",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "nE, r/n",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "E, nr",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "E, r/n",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "r/n is the total internal resistance for parallel connection, not series. In series, internal resistances add to give nr.",
+        "misconception": "Mixing up series and parallel formulas for internal resistance"
+      },
+      {
+        "option_key": "C",
+        "hint": "Total EMF in series is nE, not E. The EMF remains E only in parallel connection of identical cells.",
+        "misconception": "Confusing series grouping with parallel grouping of cells"
+      },
+      {
+        "option_key": "D",
+        "hint": "This gives the result for parallel combination (EMF = E, internal resistance = r/n), not series.",
+        "misconception": "Applying parallel cell formulas to series connection"
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-14",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a circuit, five currents I₁ = 3 A, I₂ = 5 A, I₃ = 2 A flow into a junction, while I₄ = 4 A flows out. By Kirchhoff's junction rule, the fifth current I₅ flowing out of the junction is:",
+    "explanation": "By Kirchhoff's junction rule, the sum of currents entering a junction equals the sum of currents leaving it. Currents in: 3 + 5 + 2 = 10 A. Currents out: 4 + I₅. Therefore, 10 = 4 + I₅, giving I₅ = 6 A flowing out of the junction.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "kirchhoff-junction-rule",
+      "current-conservation",
+      "node-analysis"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2 A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4 A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "10 A",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "6 A",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "2 A does not satisfy the junction rule. Total current in = 10 A, total current out must also be 10 A: 4 + I₅ = 10, so I₅ = 6 A.",
+        "misconception": null
+      },
+      {
+        "option_key": "B",
+        "hint": "4 A flowing out would give total outgoing current = 4 + 4 = 8 A, which does not equal the incoming 10 A.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "10 A is the total current flowing into the junction, not the unknown outgoing current. I₅ = 10 - 4 = 6 A.",
+        "misconception": "Confusing total incoming current with the unknown outgoing current"
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-15",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A cell of EMF 1.5 V and internal resistance 1 Ω supplies maximum power to an external resistance R. The value of R is:",
+    "explanation": "Maximum power is transferred to the external resistance when R equals the internal resistance of the source, i.e., R = r. This is the maximum power transfer theorem. Here r = 1 Ω, so R = 1 Ω for maximum power transfer. At this condition, the efficiency is 50%.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "maximum-power-transfer",
+      "internal-resistance",
+      "external-resistance"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.5 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1.5 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "For maximum power transfer, R must equal r (not r/2). With R = 0.5 Ω, the power to R is not maximized.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "1.5 V is the EMF, not the required external resistance. For max power, R = r = 1 Ω.",
+        "misconception": "Confusing the EMF value with the required resistance"
+      },
+      {
+        "option_key": "D",
+        "hint": "R = 3 Ω is three times the internal resistance. Maximum power transfer requires R = r = 1 Ω, not R = 3r.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-16",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When n identical cells each of EMF E and internal resistance r are connected in parallel across an external resistance R, the current through R is:",
+    "explanation": "When n identical cells are connected in parallel, the effective EMF remains E (same as one cell) and the effective internal resistance becomes r/n. The current through the external resistance R is I = E/(R + r/n) = nE/(nR + r). This arrangement is useful when internal resistance is much larger than external resistance.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "cells-in-parallel",
+      "EMF",
+      "internal-resistance",
+      "current"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "nE/(R + nr)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "E/(R + nr)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "nE/(nR + r)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "nE/(R + r)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "nE/(R + nr) corresponds to n cells in series (EMF = nE, internal resistance = nr), not parallel.",
+        "misconception": "Applying series cell formula instead of parallel"
+      },
+      {
+        "option_key": "B",
+        "hint": "E/(R + nr) incorrectly adds internal resistances in series while keeping single cell EMF, which is not any standard configuration.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "nE/(R + r) does not correctly account for the reduction in internal resistance. In parallel, internal resistance becomes r/n.",
+        "misconception": "Not reducing the internal resistance correctly for parallel cells"
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-17",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In a circuit, a 10 V battery with internal resistance 1 Ω is connected to three resistors: R₁ = 4 Ω in series with a parallel combination of R₂ = 6 Ω and R₃ = 3 Ω. Using Kirchhoff's laws, the current drawn from the battery is:",
+    "explanation": "The parallel combination of R₂ and R₃: R_parallel = (6 × 3)/(6 + 3) = 18/9 = 2 Ω. Total resistance in the circuit = internal resistance + R₁ + R_parallel = 1 + 4 + 2 = 7 Ω. Current from battery = EMF / total resistance = 10/7 ≈ 1.43 A.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "series-parallel",
+      "KVL",
+      "internal-resistance",
+      "circuit-analysis"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Multi-loop circuit analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2.00 A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.00 A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "10/7 A ≈ 1.43 A",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "10/11 A ≈ 0.91 A",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "2 A would mean the total resistance is 5 Ω, which ignores the parallel combination and simply adds R₂ or R₃ individually.",
+        "misconception": "Using only one of the parallel resistors instead of computing the combination"
+      },
+      {
+        "option_key": "B",
+        "hint": "1 A implies a total resistance of 10 Ω. This would occur if R₂ and R₃ were in series (9 Ω) instead of parallel (2 Ω).",
+        "misconception": "Treating parallel resistors as series"
+      },
+      {
+        "option_key": "D",
+        "hint": "10/11 A arises from adding all resistances in series: 1 + 4 + 6 = 11 Ω, which treats R₂ and R₃ as series and ignores R₃ = 3 Ω or vice versa.",
+        "misconception": "Adding wrong combination of resistors"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-18",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A network consists of 12 identical resistors each of resistance R, forming the edges of a cube. The equivalent resistance between two diagonally opposite corners of the cube is:",
+    "explanation": "By symmetry arguments and applying Kirchhoff's laws to the cube network: current entering one corner splits equally among 3 edges, then at the next level splits again. Using the symmetry of the cube, the equivalent resistance between diagonally opposite corners is 5R/6. This is a classic result derived by noting that due to symmetry, certain nodes are at the same potential and can be short-circuited without affecting the circuit.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "symmetry",
+      "cube-network",
+      "equivalent-resistance",
+      "KCL",
+      "KVL"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Symmetry in circuits",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "R",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3R/4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "7R/12",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "5R/6",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "R would be the resistance of a single edge. The network of 12 resistors cannot simplify to just one resistor.",
+        "misconception": "Oversimplifying the cube network"
+      },
+      {
+        "option_key": "B",
+        "hint": "3R/4 is the equivalent resistance between adjacent corners of the cube, not diagonally opposite corners.",
+        "misconception": "Confusing diagonal corners with adjacent corners"
+      },
+      {
+        "option_key": "C",
+        "hint": "7R/12 is the equivalent resistance between the midpoints of opposite edges or between corners along a face diagonal, not the body diagonal.",
+        "misconception": "Using the wrong pair of nodes for the cube resistance formula"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-19",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In the circuit shown, two cells of EMF E₁ = 6 V (r₁ = 1 Ω) and E₂ = 4 V (r₂ = 1 Ω) are connected in opposition (opposing polarities) across an external resistance of 8 Ω. The current in the circuit is:",
+    "explanation": "When two cells are connected in opposition, the effective EMF is the difference of the two EMFs: E_eff = E₁ - E₂ = 6 - 4 = 2 V. The internal resistances add up (since current passes through both): total internal resistance = r₁ + r₂ = 1 + 1 = 2 Ω. Current I = E_eff/(R + r₁ + r₂) = 2/(8 + 2) = 0.2 A.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "cells-in-opposition",
+      "EMF",
+      "internal-resistance",
+      "current"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.2 A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1 A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.5 A",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2 A",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "1 A would result from using E₁ + E₂ = 10 V in series aiding (I = 10/10 = 1 A), but the cells are in opposition so E_eff = 2 V.",
+        "misconception": "Adding EMFs instead of subtracting for cells in opposition"
+      },
+      {
+        "option_key": "C",
+        "hint": "0.5 A would result from using E_eff = 2 V but forgetting one internal resistance: I = 2/(3+1) = 0.5, which is incorrect.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "2 A would result from ignoring the external resistance entirely: I = 2/1 = 2 A, which is incorrect.",
+        "misconception": "Forgetting to include the external resistance"
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-20",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A 12 V battery with internal resistance 2 Ω is connected across a combination where a 6 Ω and a 3 Ω resistor are in parallel, and this parallel combination is in series with a 4 Ω resistor. The current drawn from the battery is:",
+    "explanation": "Parallel combination: 1/Rp = 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2, so Rp = 2 Ω. Total external resistance = 2 + 4 = 6 Ω. Total resistance including internal = 6 + 2 = 8 Ω. Current I = 12/8 = 1.5 A.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "series-parallel",
+      "internal-resistance",
+      "battery",
+      "circuit-analysis"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.5 A",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "2 A",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3 A",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1 A would require total resistance of 12 Ω. The total resistance is 8 Ω (2 Ω parallel + 4 Ω series + 2 Ω internal).",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "2 A would result from ignoring the internal resistance: I = 12/6 = 2 A. The internal resistance must be included.",
+        "misconception": "Forgetting to include internal resistance of the battery"
+      },
+      {
+        "option_key": "D",
+        "hint": "3 A would result from ignoring both the series resistor and internal resistance, using only the parallel combination.",
+        "misconception": "Ignoring series elements in the circuit"
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-21",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "easy",
+    "question_text": "In the circuit shown in the diagram, a single loop contains a 6 V battery with negligible internal resistance and two resistors of 2 Ω and 4 Ω connected in series. What is the current in the circuit?",
+    "explanation": "Total resistance = 2 + 4 = 6 Ω. By Kirchhoff's voltage law around the loop: 6 V − I(2) − I(4) = 0, which gives 6 = 6I, so I = 1 A.",
+    "correct_answer": "B",
+    "image_uri": "diagrams/cuet-phy-current-kirchhoff-29.png",
+    "image_alt": "A simple series circuit with a 6 V battery connected to a 2 ohm resistor and a 4 ohm resistor in series, forming a single closed loop. Current direction is shown clockwise.",
+    "concept_tags": [
+      "KVL",
+      "series-circuit",
+      "ohms-law",
+      "single-loop"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Kirchhoff's loop/voltage rule (KVL)",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.5 A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1 A",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1.5 A",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3 A",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0.5 A would result from dividing the voltage by 12 Ω, as if the resistors were doubled.",
+        "misconception": "Incorrectly adding resistances or using wrong total resistance"
+      },
+      {
+        "option_key": "C",
+        "hint": "1.5 A = 6/4, which means only the 4 Ω resistor is considered and the 2 Ω is ignored.",
+        "misconception": "Ignoring one resistor in a series circuit"
+      },
+      {
+        "option_key": "D",
+        "hint": "3 A = 6/2, which means only the 2 Ω resistor is used. In a series circuit, both resistances add up.",
+        "misconception": "Using only one of the series resistors"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-22",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "In the circuit shown, two loops share a common branch containing a 5 Ω resistor. Loop 1 has a 10 V battery and a 3 Ω resistor, while Loop 2 has a 6 V battery and a 2 Ω resistor. The currents I₁ and I₂ flow in Loop 1 and Loop 2 respectively (both clockwise). The current through the common 5 Ω resistor (from top to bottom) is:",
+    "explanation": "Applying KVL to Loop 1: 10 − 3I₁ − 5(I₁ − I₂) = 0 → 10 − 8I₁ + 5I₂ = 0 → 8I₁ − 5I₂ = 10 ...(1). Applying KVL to Loop 2: 6 − 2I₂ − 5(I₂ − I₁) = 0 → 6 + 5I₁ − 7I₂ = 0 → 5I₁ − 7I₂ = −6 ...(2). From (1): I₁ = (10 + 5I₂)/8. Substituting in (2): 5(10 + 5I₂)/8 − 7I₂ = −6 → (50 + 25I₂)/8 − 7I₂ = −6 → 50 + 25I₂ − 56I₂ = −48 → −31I₂ = −98 → I₂ = 98/31 ≈ 3.16 A. Then I₁ = (10 + 5 × 98/31)/8 = (310 + 490)/(31 × 8) = 800/248 = 100/31 ≈ 3.23 A. Current through 5 Ω = I₁ − I₂ = (100 − 98)/31 = 2/31 ≈ 0.065 A. This is approximately 0.06 A.",
+    "correct_answer": "A",
+    "image_uri": "diagrams/cuet-phy-current-kirchhoff-30.png",
+    "image_alt": "A two-loop circuit sharing a common branch with a 5 ohm resistor. Loop 1 (left) contains a 10 V battery and a 3 ohm resistor. Loop 2 (right) contains a 6 V battery and a 2 ohm resistor. Both loop currents I1 and I2 are shown clockwise.",
+    "concept_tags": [
+      "multi-loop",
+      "mesh-analysis",
+      "KVL",
+      "simultaneous-equations"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Multi-loop circuit analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2/31 A ≈ 0.06 A (from top to bottom)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1.5 A (from top to bottom)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.8 A (from bottom to top)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2 A (from top to bottom)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "1.5 A is too large for the common branch. The two loop currents nearly cancel in the shared branch.",
+        "misconception": "Not correctly applying superposition of mesh currents in the common branch"
+      },
+      {
+        "option_key": "C",
+        "hint": "The direction and magnitude are both off. Solve the two KVL equations simultaneously to find the correct mesh currents.",
+        "misconception": "Incorrect sign convention leading to wrong current direction"
+      },
+      {
+        "option_key": "D",
+        "hint": "2 A would require a net voltage of 10 V across the 5 Ω resistor, which does not account for the other resistors and second battery in the circuit.",
+        "misconception": "Applying Ohm's law with incorrect voltage across the common resistor"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-23",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "In the Wheatstone bridge circuit shown, P = 10 Ω, Q = 20 Ω, R = 15 Ω, and S is an unknown resistance. The galvanometer shows zero deflection. The value of S is:",
+    "explanation": "For a balanced Wheatstone bridge, P/Q = R/S. Therefore S = QR/P = (20 × 15)/10 = 300/10 = 30 Ω.",
+    "correct_answer": "C",
+    "image_uri": "diagrams/cuet-phy-current-kirchhoff-31.png",
+    "image_alt": "A Wheatstone bridge circuit with four resistors P (10 ohm), Q (20 ohm), R (15 ohm), and S (unknown) arranged in a diamond configuration. A galvanometer connects the midpoints B and D. A battery is connected across the top (A) and bottom (C) nodes.",
+    "concept_tags": [
+      "wheatstone-bridge",
+      "balanced-bridge",
+      "unknown-resistance",
+      "KCL"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Multi-loop circuit analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "10 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "20 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "30 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "40 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "10 Ω would require P/Q = R/S → 1/2 = 15/10, which gives 1/2 ≠ 3/2.",
+        "misconception": "Using incorrect ratio or reciprocal"
+      },
+      {
+        "option_key": "B",
+        "hint": "20 Ω gives P/Q = 1/2 and R/S = 15/20 = 3/4. These are not equal, so the bridge would not be balanced.",
+        "misconception": "Guessing that S equals Q"
+      },
+      {
+        "option_key": "D",
+        "hint": "40 Ω gives R/S = 15/40 = 3/8, which does not equal P/Q = 1/2.",
+        "misconception": "Arithmetic error in cross-multiplication"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-24",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "The circuit shown has a symmetric star (Y) configuration with three equal resistors of 6 Ω each connected from a central node O to nodes A, B, and C. If this is converted to an equivalent delta (Δ) configuration, the resistance between any two nodes (e.g., between A and B) in the delta is:",
+    "explanation": "For a Y-to-Δ conversion with equal resistors R_Y = 6 Ω in each arm: R_Δ = (R_Y × R_Y + R_Y × R_Y + R_Y × R_Y)/R_Y = 3R_Y²/R_Y = 3R_Y = 3 × 6 = 18 Ω. Alternatively, R_AB = R_A + R_B + (R_A × R_B)/R_C = 6 + 6 + 36/6 = 6 + 6 + 6 = 18 Ω.",
+    "correct_answer": "D",
+    "image_uri": "diagrams/cuet-phy-current-kirchhoff-32.png",
+    "image_alt": "A Y (star) configuration with a central node O connected to three outer nodes A, B, and C. Each arm has a 6 ohm resistor. An equivalent delta configuration is shown alongside with unknown resistors between A-B, B-C, and C-A.",
+    "concept_tags": [
+      "star-delta",
+      "Y-delta-conversion",
+      "symmetry",
+      "equivalent-resistance"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Symmetry in circuits",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "6 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "12 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "9 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "18 Ω",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "6 Ω is the individual Y-arm resistance. The delta equivalent is always larger (3 times for equal arms).",
+        "misconception": "Assuming Y and Δ resistors are the same"
+      },
+      {
+        "option_key": "B",
+        "hint": "12 Ω = 2 × 6. The correct factor for equal Y-to-Δ conversion is 3, not 2.",
+        "misconception": "Using incorrect conversion factor"
+      },
+      {
+        "option_key": "C",
+        "hint": "9 Ω = 3/2 × 6. This would be the series combination divided by 2, which is not the correct Y-to-Δ formula.",
+        "misconception": "Misremembering the conversion formula"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-25",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): In applying Kirchhoff's loop rule, the sign of the potential change across a battery depends on the direction of traversal relative to the battery, not on the direction of current through the battery.\n\nReason (R): A battery is a source of constant EMF, and the potential always rises from the negative terminal to the positive terminal inside the battery, regardless of the current direction.",
+    "explanation": "The Assertion is true: when traversing from − to + terminal of a battery, we write +E regardless of current direction. The Reason is also true and correctly explains the Assertion. A battery maintains a fixed polarity, so the sign convention for EMF in KVL depends only on traversal direction relative to the battery terminals. Thus both A and R are true, and R is the correct explanation of A.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "sign-convention",
+      "KVL",
+      "EMF",
+      "battery-polarity"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Sign conventions",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly addresses why the sign convention for a battery in KVL depends on traversal direction — the fixed polarity. So R does explain A.",
+        "misconception": "Failing to see the causal link between fixed polarity and sign convention"
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct — potential inside a battery does rise from − to + terminal by definition of EMF.",
+        "misconception": "Incorrectly thinking the potential direction inside a battery changes with current direction"
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is correct. In KVL, the battery's EMF sign depends on whether you traverse from − to + (gain) or + to − (drop), not on current direction.",
+        "misconception": "Confusing current direction with traversal direction for sign convention"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-26",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The equivalent resistance of resistors connected in parallel is always less than the smallest individual resistance.\nReason (R): In a parallel combination, the reciprocal of equivalent resistance equals the sum of reciprocals of individual resistances.",
+    "explanation": "Both statements are correct. For n resistors in parallel, 1/Req = 1/R₁ + 1/R₂ + ... + 1/Rn. Since each term on the right is positive, 1/Req > 1/Ri for any individual resistor Ri, which means Req < Ri. The mathematical relationship in R directly leads to and explains the physical fact stated in A.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "parallel-combination",
+      "equivalent-resistance",
+      "mathematical-proof"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The reciprocal formula (R) directly proves why Req is always less than each Ri (A). Since 1/Req > 1/Ri for every i, R provides the mathematical explanation for A.",
+        "misconception": "Not recognizing the direct causal connection between the formula and the property"
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is the correct formula for parallel resistance: 1/Req = Σ(1/Ri). This is a standard result.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct. For example, 2 Ω ∥ 3 Ω = 6/5 = 1.2 Ω, which is less than 2 Ω (the smallest).",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-27",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): In a circuit with two cells of different EMFs connected in parallel across an external resistance, the cell with the higher EMF will have a current flowing through it in the direction opposite to its EMF (it gets charged).\n\nReason (R): When cells of unequal EMF are connected in parallel, the cell with higher EMF acts as a source and the cell with lower EMF may act as a load (current flows into its positive terminal), depending on the circuit parameters.",
+    "explanation": "The Assertion is false. The cell with the higher EMF acts as a source (discharges), supplying current in the conventional direction from its positive terminal through the external circuit. It is the cell with the lower EMF that may get charged if the potential difference across the parallel combination exceeds its EMF. The Reason is true — it correctly states that the higher EMF cell acts as a source and the lower one may act as a load. Since A is false, the correct option is D.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "cells-in-parallel",
+      "unequal-EMF",
+      "charging-cell",
+      "KVL"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Internal resistance of cells",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true, and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true, but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Read the Assertion carefully: it says the higher EMF cell gets charged. This contradicts the Reason which says the higher EMF cell acts as a source.",
+        "misconception": "Not noticing the contradiction between A and R"
+      },
+      {
+        "option_key": "B",
+        "hint": "If A were true, the higher EMF cell would be getting charged — but that is physically incorrect. The higher EMF cell discharges.",
+        "misconception": "Accepting the Assertion without critical analysis"
+      },
+      {
+        "option_key": "C",
+        "hint": "The Assertion claims the higher EMF cell gets charged. In reality, a higher EMF cell drives current through the circuit and discharges, so A is false.",
+        "misconception": "Confusing which cell charges and which discharges in a parallel combination"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-28",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): When identical cells are connected in parallel, the arrangement is preferred when the external resistance is much smaller than the internal resistance.\nReason (R): Connecting cells in parallel increases the total EMF of the combination.",
+    "explanation": "The assertion is correct. For parallel cells (effective EMF = E, internal resistance = r/n), current I = E/(R + r/n). When R << r, parallel connection gives I ≈ nE/r, which is n times the current from a single cell. However, the reason is incorrect: connecting identical cells in parallel does not increase the EMF; it remains E. The total EMF stays the same as one cell; only the internal resistance is reduced.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "cells-in-parallel",
+      "EMF",
+      "internal-resistance",
+      "preferred-connection"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are correct and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are correct but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is correct but R is incorrect",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is incorrect but R is correct",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The reason is factually incorrect. Parallel connection of identical cells does NOT increase total EMF; it remains E. Only series connection increases EMF to nE.",
+        "misconception": "Believing parallel cells increase EMF"
+      },
+      {
+        "option_key": "B",
+        "hint": "The reason is incorrect (EMF does not increase in parallel), so option B, which states both are correct, cannot be right.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is correct: parallel grouping is preferred when R << r, as it maximizes current by reducing effective internal resistance to r/n.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-29",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the circuit configuration (Column-I) with the corresponding equivalent resistance (Column-II) for identical resistors each of resistance R:\n\nColumn-I:\nA. Two resistors in series\nB. Two resistors in parallel\nC. Three resistors in series\nD. Three resistors in parallel\n\nColumn-II:\n1. R/2\n2. R/3\n3. 2R\n4. 3R",
+    "explanation": "Two in series: R + R = 2R (A→3). Two in parallel: R × R/(R + R) = R/2 (B→1). Three in series: R + R + R = 3R (C→4). Three in parallel: 1/Req = 3/R, so Req = R/3 (D→2). Series adds resistances; parallel reduces the effective resistance.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "series-combination",
+      "parallel-combination",
+      "equivalent-resistance"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-1, B-3, C-2, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-1, C-3, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-1, C-4, D-2",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This assigns R/2 to two in parallel and R/3 to three in parallel but swaps them with B and D. Two in parallel = R/2 (1), not R/3 (2).",
+        "misconception": null
+      },
+      {
+        "option_key": "B",
+        "hint": "This completely reverses series and parallel results. Two in series = 2R (3), not R/2 (1).",
+        "misconception": "Confusing series and parallel formulas"
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns 3R to two in series (incorrect, should be 2R) and 2R to three in series (incorrect, should be 3R).",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-30",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following circuit conditions (Column-I) with the correct expression for current or voltage (Column-II):\n\nColumn-I:\nA. Current through external resistance R with cell (E, r)\nB. Terminal voltage during discharging\nC. Maximum current from a cell (short circuit)\nD. Condition for maximum power in external resistance\n\nColumn-II:\n1. R = r\n2. E - Ir\n3. E/r\n4. E/(R + r)",
+    "explanation": "Current through external R: I = E/(R + r) (A→4). Terminal voltage during discharge: V = E - Ir (B→2). Short circuit current (R = 0): I = E/r (C→3). Maximum power transfer condition: R = r (D→1). These are fundamental relations in DC circuit analysis.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "cell-equations",
+      "terminal-voltage",
+      "short-circuit",
+      "maximum-power-transfer"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-4, B-3, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-4, C-1, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-4, B-2, C-3, D-1",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A-3, B-2, C-4, D-1",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This swaps terminal voltage (E - Ir) with short circuit current (E/r). Terminal voltage is E - Ir (2), not E/r (3).",
+        "misconception": "Confusing terminal voltage expression with short circuit current"
+      },
+      {
+        "option_key": "B",
+        "hint": "This assigns E - Ir to current and E/(R+r) to terminal voltage, which are reversed.",
+        "misconception": "Swapping the formulas for current and terminal voltage"
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns E/r (short circuit current) to the normal current through R. Normal current is E/(R+r), not E/r.",
+        "misconception": "Confusing short circuit current with normal circuit current"
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-31",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Kirchhoff's current law (junction rule) states that the algebraic sum of all currents meeting at a junction in a circuit is zero.",
+    "explanation": "This is TRUE. Kirchhoff's current law (KCL) is a statement of charge conservation. At any junction, the total current flowing in must equal the total current flowing out. Mathematically, ΣI = 0 when we assign positive signs to incoming currents and negative signs to outgoing currents (or vice versa).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "KCL",
+      "junction-rule",
+      "charge-conservation"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Kirchhoff's junction/current rule (KCL)",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "KCL is precisely this statement. The algebraic sum of currents at a node is zero, by conservation of charge.",
+        "misconception": "Confusing KCL with KVL or misremembering the statement"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-32",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "In a series combination of resistors, the same current flows through each resistor.",
+    "explanation": "This statement is TRUE. In a series combination, there is only one path for the current to flow. Since charge is conserved and there is no branching, the same current passes through every resistor in the series connection. The voltage, however, divides across the resistors.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "series-combination",
+      "current",
+      "charge-conservation"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "In series connection, there is only one path for current flow, so the current must be the same through all resistors by conservation of charge.",
+        "misconception": "Confusing series property (same current) with parallel property (same voltage)"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-33",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "When using the node voltage method for circuit analysis, the reference node (ground) must always be connected to the negative terminal of the battery.",
+    "explanation": "This is FALSE. The reference node (ground) in the node voltage method can be chosen as any node in the circuit. While it is often convenient to choose the negative terminal of a battery, there is no requirement to do so. The choice of reference node does not affect the final results — it only affects the intermediate voltage values assigned to other nodes.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "node-voltage-method",
+      "reference-node",
+      "ground",
+      "circuit-analysis"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Node voltage method",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The ground node is a reference chosen for convenience. There is no physical requirement for it to be at the battery's negative terminal.",
+        "misconception": "Thinking the reference node must be at a specific location"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-34",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The EMF of a cell depends on the external resistance connected to it.",
+    "explanation": "This statement is FALSE. The EMF of a cell is a property of the cell itself (determined by the electrochemistry of the electrodes and electrolyte) and does not depend on the external resistance. It is the terminal voltage (V = E - Ir) that depends on the external circuit. EMF remains constant regardless of external connections.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "EMF",
+      "cell",
+      "external-resistance",
+      "intrinsic-property"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "EMF is determined by the chemistry of the cell and is independent of the external circuit. Only terminal voltage changes with external resistance.",
+        "misconception": "Confusing EMF with terminal voltage"
+      },
+      {
+        "option_key": "C",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This option is not applicable for this question type.",
+        "misconception": null
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-35",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "fill-in-blanks",
+    "difficulty": "easy",
+    "question_text": "When a cell of EMF 2 V and internal resistance 0.5 Ω is short-circuited, the maximum current that flows through the cell is ________ A.",
+    "explanation": "When a cell is short-circuited, the external resistance R = 0. The current is then I = E/r = 2/0.5 = 4 A. This is the maximum possible current from the cell, limited only by its internal resistance.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "short-circuit",
+      "internal-resistance",
+      "maximum-current",
+      "EMF"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Internal resistance of cells",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "4",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "0.5",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1 A = E × r = 2 × 0.5. The correct formula is I = E/r, not E × r.",
+        "misconception": "Multiplying EMF and internal resistance instead of dividing"
+      },
+      {
+        "option_key": "B",
+        "hint": "2 A is just the EMF value. In short circuit, current = EMF / internal resistance, not just EMF.",
+        "misconception": "Thinking current equals EMF numerically"
+      },
+      {
+        "option_key": "D",
+        "hint": "0.5 is the internal resistance, not the current.",
+        "misconception": "Confusing internal resistance with current"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-36",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "If n identical cells each of EMF E and internal resistance r are connected in series across an external resistance R, the current flowing in the circuit is I = _____.",
+    "explanation": "When n identical cells are connected in series, the total EMF adds up to nE and the total internal resistance is nr (internal resistances in series add). The current through the circuit with external resistance R is I = nE/(R + nr). This is the standard formula for n cells in series.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "cells-in-series",
+      "current",
+      "EMF",
+      "internal-resistance"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "E/(R + nr)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "nE/(R + r)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "nE/(nR + r)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "nE/(R + nr)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The EMF in the numerator should be nE (sum of all EMFs in series), not just E from a single cell.",
+        "misconception": "Forgetting to multiply EMF by the number of cells in series"
+      },
+      {
+        "option_key": "B",
+        "hint": "The internal resistance in the denominator should be nr (all internal resistances in series add), not just r.",
+        "misconception": "Forgetting that internal resistances also add in series"
+      },
+      {
+        "option_key": "C",
+        "hint": "nE/(nR + r) is the formula for n cells in parallel, not series. In series, internal resistances add to nr.",
+        "misconception": "Confusing the series and parallel cell formulas"
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-37",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A student connects 3 identical cells, each of EMF 1.5 V and internal resistance 0.5 Ω, in series with an external resistance of 4.5 Ω. She then rearranges the same 3 cells in parallel across the same external resistance.\n\nWhat is the ratio of current in the series arrangement to the current in the parallel arrangement?",
+    "explanation": "Series: I₁ = nE/(R + nr) = 3(1.5)/(4.5 + 3×0.5) = 4.5/6 = 0.75 A. Parallel: I₂ = nE/(nR + r) = 3(1.5)/(3×4.5 + 0.5) = 4.5/14 ≈ 0.321 A. Ratio I₁/I₂ = 0.75/0.321 = (4.5/6)/(4.5/14) = 14/6 = 7/3. The series arrangement gives more current because the external resistance is larger than the internal resistance.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "cells-in-series",
+      "cells-in-parallel",
+      "current-comparison",
+      "grouping-of-cells"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 : 1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 : 1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "7 : 3",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "3 : 7",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1:1 would only be true if internal resistance were zero. With non-zero internal resistance, series and parallel give different currents.",
+        "misconception": "Ignoring the effect of internal resistance on current"
+      },
+      {
+        "option_key": "B",
+        "hint": "3:1 would be the ratio if only EMFs mattered (3E vs E), but the total resistance is different in each configuration.",
+        "misconception": "Considering only EMF and ignoring total resistance differences"
+      },
+      {
+        "option_key": "D",
+        "hint": "3:7 is the inverse of the correct ratio. Series gives more current here because R > r, making series grouping more advantageous.",
+        "misconception": "Reversing the ratio"
+      }
+    ],
+    "chapter_id": "cuet-phy-current-electricity",
+    "subtopic": "Kirchhoff's Laws and Networks"
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-38",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "scenario": "A physics laboratory has a black box containing a circuit with three terminals labeled X, Y, and Z. A student measures the following resistances between terminal pairs using a multimeter: R_XY = 8 Ω (Z open), R_YZ = 6 Ω (X open), and R_XZ = 10 Ω (Y open). The student suspects the box contains a delta (Δ) configuration of three resistors connected between the three terminal pairs.",
+    "question_text": "Based on the measurements in the scenario, if the internal circuit is a delta configuration with resistors R₁ (between X and Y), R₂ (between Y and Z), and R₃ (between X and Z), what is the value of R₁ (the resistor directly between terminals X and Y)?",
+    "explanation": "When terminal Z is open, R_XY = R₁ in parallel with (R₂ + R₃). So R₁(R₂ + R₃)/(R₁ + R₂ + R₃) = 8. Similarly, R_YZ = R₂(R₁ + R₃)/(R₁ + R₂ + R₃) = 6 and R_XZ = R₃(R₁ + R₂)/(R₁ + R₂ + R₃) = 10. Let S = R₁ + R₂ + R₃. Then R₁(S − R₁)/S = 8, R₂(S − R₂)/S = 6, R₃(S − R₃)/S = 10. Adding: [R₁S − R₁² + R₂S − R₂² + R₃S − R₃²]/S = 24. This gives S − (R₁² + R₂² + R₃²)/S = 24. Alternatively, R_XY + R_YZ + R_XZ = [R₁(R₂+R₃) + R₂(R₁+R₃) + R₃(R₁+R₂)]/S = [2(R₁R₂ + R₂R₃ + R₁R₃)]/S = 24. Also note R_XY + R_YZ − R_XZ = [R₁R₂ + R₁R₃ + R₁R₂ + R₂R₃ − R₁R₃ − R₂R₃]/S × ... A cleaner approach: From the three equations, R₁ − measured resistance gives us the parallel formula. We can solve: from R_XY = 8, R₁ × (R₂ + R₃)/(R₁ + R₂ + R₃) = 8. From R_YZ = 6, R₂ × (R₁ + R₃)/(R₁ + R₂ + R₃) = 6. From R_XZ = 10, R₃ × (R₁ + R₂)/(R₁ + R₂ + R₃) = 10. Adding all three: [R₁R₂ + R₁R₃ + R₁R₂ + R₂R₃ + R₂R₃ + R₁R₃]/(R₁+R₂+R₃) = 24 → 2(R₁R₂ + R₂R₃ + R₁R₃)/S = 24. Now R_XY − R_YZ + R_XZ = [R₁(R₂+R₃) − R₂(R₁+R₃) + R₃(R₁+R₂)]/S = [R₁R₂ + R₁R₃ − R₁R₂ − R₂R₃ + R₁R₃ + R₂R₃]/S = 2R₁R₃/S = 12. So R₁R₃/S = 6 = R_YZ → R₁R₃ = 6S. Similarly R_XY + R_YZ − R_XZ = 2R₁R₂/S = 4, so R₁R₂ = 2S. And −R_XY + R_YZ + R_XZ = 2R₂R₃/S = 8, so R₂R₃ = 4S. From R₁R₂ = 2S and R₂R₃ = 4S: R₁/R₃ = 1/2, so R₃ = 2R₁. From R₁R₃ = 6S and R₃ = 2R₁: 2R₁² = 6S = 6(R₁ + R₂ + 2R₁) = 6(3R₁ + R₂). From R₁R₂ = 2S = 2(3R₁ + R₂): R₁R₂ = 6R₁ + 2R₂ → R₂(R₁ − 2) = 6R₁ → R₂ = 6R₁/(R₁ − 2). Substituting into 2R₁² = 6(3R₁ + 6R₁/(R₁−2)) = 18R₁ + 36R₁/(R₁−2) = R₁[18 + 36/(R₁−2)]. So 2R₁ = 18 + 36/(R₁−2) → 2R₁ − 18 = 36/(R₁−2) → (2R₁−18)(R₁−2) = 36 → 2R₁² − 4R₁ − 18R₁ + 36 = 36 → 2R₁² − 22R₁ = 0 → 2R₁(R₁ − 11) = 0. So R₁ = 11 Ω.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "delta-network",
+      "equivalent-resistance",
+      "KCL",
+      "KVL",
+      "black-box"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Symmetry in circuits",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "8 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "11 Ω",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "14 Ω",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "16 Ω",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "8 Ω is the measured resistance between X and Y, not the actual resistor R₁. R₁ is in parallel with (R₂ + R₃) to give 8 Ω, so R₁ must be larger than 8 Ω.",
+        "misconception": "Confusing measured terminal resistance with the actual component resistance"
+      },
+      {
+        "option_key": "C",
+        "hint": "14 Ω does not satisfy the simultaneous equations derived from the three measurements. Verify by substituting back.",
+        "misconception": "Arithmetic error in solving the system of equations"
+      },
+      {
+        "option_key": "D",
+        "hint": "16 Ω is twice the measured R_XY. There is no simple doubling relationship between the measured and actual resistance.",
+        "misconception": "Assuming the delta resistor is simply double the measured value"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-39",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following steps in the correct order for applying Kirchhoff's voltage law (KVL) to solve a single-loop circuit:",
+    "explanation": "The correct procedure is: (1) First assign a direction for the current in the loop (Step 3). (2) Then choose a direction to traverse the loop — clockwise or counterclockwise (Step 1). (3) Apply the sign convention: write potential rises as positive and drops as negative as you traverse each element (Step 4). (4) Finally, set the algebraic sum of all potential differences equal to zero and solve for the unknown (Step 2).",
+    "correct_answer": "C",
+    "items": [
+      {
+        "id": "1",
+        "text": "Choose a direction (clockwise or counterclockwise) to traverse the loop"
+      },
+      {
+        "id": "2",
+        "text": "Set the sum of all potential differences around the loop equal to zero and solve"
+      },
+      {
+        "id": "3",
+        "text": "Assign a direction to the current in the loop"
+      },
+      {
+        "id": "4",
+        "text": "Apply sign convention for each circuit element while traversing the loop"
+      }
+    ],
+    "correct_order": [
+      "3",
+      "1",
+      "4",
+      "2"
+    ],
+    "concept_tags": [
+      "KVL",
+      "sign-convention",
+      "loop-analysis",
+      "procedure"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Kirchhoff's loop/voltage rule (KVL)",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 → 3 → 4 → 2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 → 4 → 1 → 2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "3 → 1 → 4 → 2",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4 → 1 → 3 → 2",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "You must assign current direction before choosing traversal direction, because the sign of the IR drop depends on the assumed current relative to traversal.",
+        "misconception": "Thinking traversal direction comes before current assignment"
+      },
+      {
+        "option_key": "B",
+        "hint": "You cannot apply sign conventions (Step 4) before choosing a traversal direction (Step 1), because the signs depend on how you traverse the loop.",
+        "misconception": "Applying sign conventions without first deciding traversal direction"
+      },
+      {
+        "option_key": "D",
+        "hint": "Sign conventions cannot be the first step because they require knowing both the current direction and the traversal direction.",
+        "misconception": "Starting the process with sign conventions before any setup"
+      }
+    ]
+  },
+  {
+    "id": "cuet-phy-current-kirchhoff-40",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "Arrange the following steps in the correct order for solving a multi-loop circuit using Kirchhoff's laws:",
+    "explanation": "The correct sequence for multi-loop analysis is: (1) First, identify all the independent loops (meshes) in the circuit (Step 2). (2) Next, assign current variables and directions to each loop (Step 4). (3) Then apply KCL at junctions to express branch currents in terms of the loop currents (Step 1). (4) Apply KVL to each independent loop to write the voltage equations (Step 5). (5) Finally, solve the resulting system of simultaneous equations for the unknown currents (Step 3).",
+    "correct_answer": "B",
+    "items": [
+      {
+        "id": "1",
+        "text": "Apply KCL at junctions to express branch currents in terms of loop currents"
+      },
+      {
+        "id": "2",
+        "text": "Identify all independent loops (meshes) in the circuit"
+      },
+      {
+        "id": "3",
+        "text": "Solve the system of simultaneous equations for unknown currents"
+      },
+      {
+        "id": "4",
+        "text": "Assign current variables and assumed directions to each loop"
+      },
+      {
+        "id": "5",
+        "text": "Apply KVL to each independent loop to write voltage equations"
+      }
+    ],
+    "correct_order": [
+      "2",
+      "4",
+      "1",
+      "5",
+      "3"
+    ],
+    "concept_tags": [
+      "multi-loop",
+      "mesh-analysis",
+      "KCL",
+      "KVL",
+      "simultaneous-equations"
+    ],
+    "topic": "Kirchhoff's Laws and Circuit Analysis",
+    "subtopic": "Multi-loop circuit analysis",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET",
+      "NEET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2 → 4 → 5 → 1 → 3",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2 → 4 → 1 → 5 → 3",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "4 → 2 → 1 → 5 → 3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2 → 1 → 4 → 5 → 3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "KVL (Step 5) should not come before KCL (Step 1). You need to know how branch currents relate to loop currents before writing voltage equations.",
+        "misconception": "Applying KVL before establishing current relationships at junctions"
+      },
+      {
+        "option_key": "C",
+        "hint": "You must identify the loops (Step 2) before assigning currents to them (Step 4). You cannot assign variables to loops you haven't identified.",
+        "misconception": "Assigning loop currents before identifying the loops"
+      },
+      {
+        "option_key": "D",
+        "hint": "You cannot apply KCL (Step 1) before assigning current directions (Step 4). KCL requires knowing which currents enter and leave each junction.",
+        "misconception": "Attempting to apply KCL without first defining current variables and directions"
+      }
+    ]
+  }
+]

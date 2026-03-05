@@ -1,0 +1,189 @@
+[
+  {
+    "id": "cuet-phy-elec-capacitor-21",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "easy",
+    "question_text": "The diagram shows a parallel plate capacitor connected to a battery. The electric field lines between the plates are drawn. The field between the plates is:",
+    "image_uri": "diagrams/cuet-phy-elec-capacitor-21.png",
+    "image_alt": "Two parallel metal plates, the left plate connected to the positive terminal of a battery and the right plate to the negative terminal. Straight parallel arrows point from the positive plate to the negative plate, representing uniform electric field.",
+    "explanation": "In a parallel plate capacitor, the electric field between the plates is uniform (constant magnitude and direction). The field lines are straight, parallel, and equally spaced, pointing from the positive plate to the negative plate. The magnitude is E = σ/ε₀ = V/d, where V is the voltage and d is the separation.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "parallel-plate-capacitor",
+      "uniform-field",
+      "field-lines"
+    ],
+    "topic": "Capacitance and Capacitors",
+    "subtopic": "Parallel plate capacitor field",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Non-uniform, stronger near the plates", "is_correct": false},
+      {"key": "B", "text": "Uniform, directed from positive to negative plate", "is_correct": true},
+      {"key": "C", "text": "Zero between the plates", "is_correct": false},
+      {"key": "D", "text": "Radial, pointing outward from centre", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "The field is uniform between infinite parallel plates. Non-uniformity only occurs near the edges (fringing effect), which is usually neglected.", "misconception": "Confusing edge effects with the bulk field"},
+      {"option_key": "C", "hint": "The field is zero outside the plates (fields cancel), not between them where both plates' fields add up.", "misconception": "Confusing the region between plates with the region outside"},
+      {"option_key": "D", "hint": "A radial field occurs for spherical charge distributions. Parallel plates create a uniform (not radial) field.", "misconception": "Confusing parallel plate with spherical geometry"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-capacitor-22",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The diagram shows three capacitors of capacitances C₁ = 2 μF, C₂ = 3 μF, and C₃ = 6 μF connected in parallel across a 12 V battery. The total charge stored in the combination is:",
+    "image_uri": "diagrams/cuet-phy-elec-capacitor-22.png",
+    "image_alt": "Three capacitors C₁ = 2 μF, C₂ = 3 μF, and C₃ = 6 μF connected in parallel between two horizontal wires, with a 12 V battery connected across them.",
+    "explanation": "For parallel connection: C_total = C₁ + C₂ + C₃ = 2 + 3 + 6 = 11 μF. Total charge Q = C_total × V = 11 × 10⁻⁶ × 12 = 132 × 10⁻⁶ C = 132 μC. Each capacitor has the same voltage (12 V) but different charges.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "parallel-capacitors",
+      "total-charge",
+      "capacitance-addition"
+    ],
+    "topic": "Capacitance and Capacitors",
+    "subtopic": "Capacitors in parallel",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "24 μC", "is_correct": false},
+      {"key": "B", "text": "36 μC", "is_correct": false},
+      {"key": "C", "text": "72 μC", "is_correct": false},
+      {"key": "D", "text": "132 μC", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "24 μC = 2 × 12, which is the charge on C₁ alone. You need to add charges on all three capacitors.", "misconception": "Using only one capacitor's charge"},
+      {"option_key": "B", "hint": "36 μC = 3 × 12, the charge on C₂ alone. In parallel, total Q = (C₁ + C₂ + C₃) × V.", "misconception": null},
+      {"option_key": "C", "hint": "72 μC = 6 × 12, the charge on C₃ alone. All three capacitors contribute to the total charge.", "misconception": "Using only the largest capacitor"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-capacitor-23",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The diagram shows two capacitors C₁ = 4 μF and C₂ = 6 μF connected in series across a 20 V battery. The voltage across C₁ is:",
+    "image_uri": "diagrams/cuet-phy-elec-capacitor-23.png",
+    "image_alt": "Two capacitors C₁ = 4 μF and C₂ = 6 μF connected in series between two wires, with a 20 V battery connected across the series combination.",
+    "explanation": "For series connection: 1/C_eq = 1/C₁ + 1/C₂ = 1/4 + 1/6 = 5/12, so C_eq = 12/5 = 2.4 μF. Common charge Q = C_eq × V = 2.4 × 20 = 48 μC. Voltage across C₁: V₁ = Q/C₁ = 48/4 = 12 V. (Check: V₂ = 48/6 = 8 V, and 12 + 8 = 20 V ✓)",
+    "correct_answer": "C",
+    "concept_tags": [
+      "series-capacitors",
+      "voltage-division",
+      "charge-conservation"
+    ],
+    "topic": "Capacitance and Capacitors",
+    "subtopic": "Capacitors in series",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "8 V", "is_correct": false},
+      {"key": "B", "text": "10 V", "is_correct": false},
+      {"key": "C", "text": "12 V", "is_correct": true},
+      {"key": "D", "text": "20 V", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "8 V is the voltage across C₂, not C₁. In series, the smaller capacitor gets the larger share of voltage (V ∝ 1/C).", "misconception": "Swapping the voltages across the two capacitors"},
+      {"option_key": "B", "hint": "10 V would mean equal splitting. But in series, voltage divides inversely with capacitance: V₁/V₂ = C₂/C₁ = 6/4 = 1.5, not 1.", "misconception": "Assuming equal voltage division in series"},
+      {"option_key": "D", "hint": "20 V is the total voltage. In series, the voltage is shared between capacitors, so each gets less than the total.", "misconception": "Thinking each capacitor gets the full battery voltage in series"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-capacitor-24",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "The figure shows a parallel plate capacitor with plate area A and separation d. A dielectric slab of thickness t (t < d) and dielectric constant K is inserted between the plates. The new capacitance is:",
+    "image_uri": "diagrams/cuet-phy-elec-capacitor-24.png",
+    "image_alt": "Two parallel plates separated by distance d. A dielectric slab of dielectric constant K and thickness t is placed between the plates, with air gaps on either side. The slab does not fill the entire gap.",
+    "explanation": "The system is equivalent to two capacitors in series: an air capacitor of gap (d − t) and a dielectric capacitor of gap t. C_air = ε₀A/(d − t), C_diel = Kε₀A/t. For series: 1/C = 1/C_air + 1/C_diel = (d − t)/(ε₀A) + t/(Kε₀A) = [K(d − t) + t]/(Kε₀A). So C = Kε₀A/[K(d − t) + t] = ε₀A/[d − t + t/K] = ε₀A/[d − t(1 − 1/K)].",
+    "correct_answer": "A",
+    "concept_tags": [
+      "dielectric-slab",
+      "partial-dielectric",
+      "series-combination"
+    ],
+    "topic": "Capacitance and Capacitors",
+    "subtopic": "Effect of dielectric on capacitance",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "ε₀A / [d − t(1 − 1/K)]", "is_correct": true},
+      {"key": "B", "text": "Kε₀A/d", "is_correct": false},
+      {"key": "C", "text": "ε₀A/(d − t)", "is_correct": false},
+      {"key": "D", "text": "ε₀A/d", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Kε₀A/d assumes the dielectric fills the entire gap. Since t < d, the dielectric is partial and the formula must account for both air and dielectric regions.", "misconception": "Assuming the dielectric fills the complete gap"},
+      {"option_key": "C", "hint": "ε₀A/(d − t) would be correct if the dielectric had K → ∞ (a conductor). For a finite K, the dielectric region contributes t/K, not zero.", "misconception": "Treating the dielectric as a perfect conductor"},
+      {"option_key": "D", "hint": "ε₀A/d is the capacitance without any dielectric. Inserting a dielectric always increases the capacitance.", "misconception": "Ignoring the effect of the dielectric entirely"}
+    ]
+  },
+  {
+    "id": "cuet-phy-elec-capacitor-25",
+    "chapter_id": "cuet-phy-electrostatics",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "Arrange the following steps in the correct order for calculating the energy stored in a charged capacitor from first principles:",
+    "items": [
+      {
+        "id": "1",
+        "text": "Consider a capacitor with charge q already on the plates and voltage V = q/C"
+      },
+      {
+        "id": "2",
+        "text": "To transfer additional charge dq, work done dW = V dq = (q/C) dq"
+      },
+      {
+        "id": "3",
+        "text": "Integrate from q = 0 to q = Q: W = ∫₀ᴼ (q/C) dq = Q²/(2C)"
+      },
+      {
+        "id": "4",
+        "text": "Express in alternative forms: U = Q²/(2C) = CV²/2 = QV/2"
+      }
+    ],
+    "correct_order": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "explanation": "Step 1: Start with a partially charged capacitor (charge q, voltage q/C). Step 2: Calculate the infinitesimal work to add charge dq against the existing voltage. Step 3: Integrate over the full charging process to get total energy. Step 4: Rewrite using Q = CV to get equivalent forms. This derivation shows why U = ½CV², not CV² — the voltage builds up gradually during charging.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "energy-derivation",
+      "integration",
+      "capacitor-energy"
+    ],
+    "topic": "Capacitance and Capacitors",
+    "subtopic": "Energy stored in a capacitor",
+    "subject": "cuet-physics",
+    "chapter": "Electrostatics",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "2 → 1 → 3 → 4", "is_correct": false},
+      {"key": "B", "text": "1 → 3 → 2 → 4", "is_correct": false},
+      {"key": "C", "text": "1 → 2 → 3 → 4", "is_correct": true},
+      {"key": "D", "text": "4 → 1 → 2 → 3", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "You must first set up the scenario (step 1: define the state of partial charging) before calculating the work (step 2).", "misconception": "Calculating work before defining the system state"},
+      {"option_key": "B", "hint": "Integration (step 3) must come after setting up the differential expression (step 2). You can't integrate before knowing what to integrate.", "misconception": "Integrating before defining the integrand"},
+      {"option_key": "D", "hint": "The final expressions (step 4) are the result, not the starting point. The derivation starts from first principles.", "misconception": "Starting with the answer instead of deriving it"}
+    ]
+  }
+]

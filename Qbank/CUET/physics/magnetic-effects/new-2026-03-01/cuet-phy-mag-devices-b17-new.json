@@ -1,0 +1,564 @@
+[
+  {
+    "id": "cuet-phy-mag-devices-21",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The deflection in a moving coil galvanometer is proportional to the current passing through it because the restoring torque is proportional to:",
+    "explanation": "In a moving coil galvanometer, the restoring torque is provided by the phosphor-bronze spring and is proportional to the angle of deflection (τ = kθ). At equilibrium, the deflecting torque (NIAB) equals the restoring torque (kθ), giving θ = (NAB/k)I. Hence deflection is proportional to current because the restoring torque is proportional to the twist/deflection angle.",
+    "correct_answer": "D",
+    "concept_tags": ["moving coil galvanometer", "restoring torque", "deflection"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "working principle",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "The magnetic field intensity", "is_correct": false},
+      {"key": "B", "value": "The number of turns of the coil", "is_correct": false},
+      {"key": "C", "value": "The area of the coil", "is_correct": false},
+      {"key": "D", "value": "The angle of twist of the suspension", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "Magnetic field, number of turns, and area are constants of the galvanometer—they don't change with deflection.",
+      "The restoring torque must vary with deflection for equilibrium to be achieved at different currents.",
+      "Think about what physically changes as the coil rotates—only the twist angle changes."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-22",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The material used for the suspension wire in a moving coil galvanometer is phosphor-bronze because it has:",
+    "explanation": "Phosphor-bronze is used for the suspension wire/spring in a moving coil galvanometer because it has a very small restoring torque per unit twist (low torsional constant). This ensures high sensitivity—even a small current produces a noticeable deflection. While it is also non-magnetic and has low temperature coefficient, the primary reason is the small restoring torque.",
+    "correct_answer": "B",
+    "concept_tags": ["galvanometer construction", "phosphor-bronze", "sensitivity"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "Galvanometer construction",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "High electrical conductivity", "is_correct": false},
+      {"key": "B", "value": "Small restoring torque per unit twist", "is_correct": true},
+      {"key": "C", "value": "High magnetic permeability", "is_correct": false},
+      {"key": "D", "value": "Large Young's modulus", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Copper has higher conductivity but is not used—so conductivity is not the key property.",
+      "High magnetic permeability would interfere with the magnetic field, making it undesirable.",
+      "Large Young's modulus means stiffness, which would reduce sensitivity, not improve it."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-23",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A galvanometer has a resistance of 50 Ω and gives full-scale deflection for a current of 5 mA. To convert it into an ammeter reading up to 5 A, the shunt resistance required is:",
+    "explanation": "To convert a galvanometer into an ammeter, a low resistance (shunt) S is connected in parallel. Using the formula S = Ig × G / (I − Ig), where Ig = 5 mA = 0.005 A, G = 50 Ω, and I = 5 A: S = (0.005 × 50) / (5 − 0.005) = 0.25 / 4.995 ≈ 0.05 Ω. Since 4.995 ≈ 5, we get S ≈ 0.05 Ω.",
+    "correct_answer": "C",
+    "concept_tags": ["ammeter conversion", "shunt resistance", "galvanometer"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "conversion to ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "0.5 Ω", "is_correct": false},
+      {"key": "B", "value": "0.005 Ω", "is_correct": false},
+      {"key": "C", "value": "0.05 Ω", "is_correct": true},
+      {"key": "D", "value": "5 Ω", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "The shunt must be very small compared to the galvanometer resistance of 50 Ω.",
+      "5 Ω is too large—it would not divert enough current away from the galvanometer.",
+      "Use S = IgG/(I−Ig) and approximate I−Ig ≈ I when I >> Ig."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-24",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The diagram shows a moving coil galvanometer with a cylindrical soft iron core placed between the poles of a permanent magnet. What is the primary purpose of the cylindrical soft iron core?",
+    "image_uri": "images/cuet-phy-mag-devices-24-galvanometer-core.svg",
+    "image_alt": "Cross-sectional diagram of a moving coil galvanometer showing a rectangular coil wound on a cylindrical soft iron core placed between concave pole pieces of a horseshoe magnet. Magnetic field lines are shown radially converging on the core.",
+    "explanation": "The cylindrical soft iron core serves to make the magnetic field radial. When placed between concave-shaped pole pieces, the soft iron core ensures that the plane of the coil is always parallel to the magnetic field direction, regardless of the coil's rotational position. This makes the deflecting torque τ = NIAB sin 90° = NIAB, ensuring a linear relationship between current and deflection throughout the range of motion.",
+    "correct_answer": "D",
+    "concept_tags": ["soft iron core", "radial field", "galvanometer construction"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "Galvanometer construction",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "To increase the electrical resistance of the coil", "is_correct": false},
+      {"key": "B", "value": "To provide a restoring torque to the coil", "is_correct": false},
+      {"key": "C", "value": "To increase the moment of inertia of the coil", "is_correct": false},
+      {"key": "D", "value": "To make the magnetic field radial and uniform", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "The core is made of soft iron (a magnetic material), not a resistor—so it doesn't affect electrical resistance.",
+      "The restoring torque is provided by the suspension wire/spring, not the core.",
+      "Increasing moment of inertia would slow the response—this would be a disadvantage, not a purpose."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-25",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The current sensitivity of a galvanometer can be increased by:",
+    "explanation": "Current sensitivity is defined as θ/I = NAB/k. To increase it, we can increase N (number of turns), A (area of coil), B (magnetic field strength), or decrease k (torsional constant of the spring). Using a stronger magnetic field directly increases current sensitivity.",
+    "correct_answer": "C",
+    "concept_tags": ["current sensitivity", "galvanometer sensitivity"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "current sensitivity",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Increasing the torsional constant of the spring", "is_correct": false},
+      {"key": "B", "value": "Decreasing the number of turns in the coil", "is_correct": false},
+      {"key": "C", "value": "Using a stronger magnetic field", "is_correct": true},
+      {"key": "D", "value": "Reducing the area of the coil", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Current sensitivity = NAB/k. Increasing k (denominator) would decrease sensitivity.",
+      "Decreasing N or A would reduce the numerator, thus reducing sensitivity.",
+      "Only an option that increases NAB or decreases k will increase sensitivity."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-26",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): An ammeter is always connected in parallel with the circuit element through which current is to be measured.\nReason (R): An ammeter has very low resistance so that it does not significantly change the current in the circuit.",
+    "explanation": "The assertion is false. An ammeter is always connected in series with the circuit element, not in parallel. If connected in parallel, its low resistance would create a short circuit. The reason is true—an ammeter does have very low resistance to minimize its effect on the circuit current. Since the assertion is false but the reason is true, the answer is D.",
+    "correct_answer": "D",
+    "concept_tags": ["ammeter", "series connection", "low resistance"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "conversion to ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Both A and R are true and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "value": "Both A and R are true but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "value": "A is true but R is false", "is_correct": false},
+      {"key": "D", "value": "A is false but R is true", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "Think carefully: is an ammeter connected in series or parallel? A parallel connection with low resistance would short the element.",
+      "The reason about low resistance is correct—ammeters must have low resistance to not alter the current being measured.",
+      "Since the assertion contains a factual error (parallel instead of series), options A and B (which state A is true) can be eliminated."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-27",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "The circuit diagram shows a galvanometer G (resistance 100 Ω, full-scale deflection current 1 mA) connected with a resistance R in series, and this combination is connected across a battery of emf 10 V. What value of R converts the galvanometer into a voltmeter of range 0–10 V?",
+    "image_uri": "images/cuet-phy-mag-devices-27-voltmeter-circuit.svg",
+    "image_alt": "Circuit diagram showing a battery of 10 V connected across a series combination of a galvanometer G (labeled 100 Ω) and a high resistance R. The voltmeter terminals are shown across the series combination of G and R.",
+    "explanation": "To convert a galvanometer into a voltmeter of range V, a high resistance R is connected in series. Using V = Ig(G + R): 10 = 0.001 × (100 + R), so 100 + R = 10000, giving R = 9900 Ω = 9.9 kΩ. The high series resistance ensures very little current is drawn from the circuit being measured.",
+    "correct_answer": "B",
+    "concept_tags": ["voltmeter conversion", "series resistance", "galvanometer"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "conversion to voltmeter",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "10,000 Ω", "is_correct": false},
+      {"key": "B", "value": "9,900 Ω", "is_correct": true},
+      {"key": "C", "value": "990 Ω", "is_correct": false},
+      {"key": "D", "value": "99,900 Ω", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "R = V/Ig − G. Don't forget to subtract the galvanometer resistance G from the total resistance.",
+      "Total resistance needed = V/Ig = 10/0.001 = 10,000 Ω. Since G = 100 Ω, R = 10,000 − 100.",
+      "990 Ω would give a voltmeter range of only about 1.09 V—too low for a 10 V range."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-28",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The figure of merit of a galvanometer is defined as the current required to produce a unit deflection in the galvanometer.",
+    "explanation": "This statement is TRUE. The figure of merit of a galvanometer is defined as the current required to produce one unit (one division) of deflection. Mathematically, figure of merit = k/(NAB), where k is the torsional constant, N is the number of turns, A is the area, and B is the magnetic field. A smaller figure of merit indicates a more sensitive galvanometer.",
+    "correct_answer": "A",
+    "concept_tags": ["figure of merit", "galvanometer sensitivity"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "figure of merit",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "True", "is_correct": true},
+      {"key": "B", "value": "False", "is_correct": false},
+      {"key": "C", "value": "---", "is_correct": false},
+      {"key": "D", "value": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Recall: figure of merit = I/θ = k/(NAB). It represents current per unit deflection.",
+      "This is a standard textbook definition—figure of merit is the reciprocal of current sensitivity."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-29",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A galvanometer of resistance 40 Ω gives full-scale deflection for a current of 2 mA. It is converted into a voltmeter of range 0–20 V and also into an ammeter of range 0–5 A. The ratio of the resistance of the voltmeter to the resistance of the ammeter is:",
+    "explanation": "For the voltmeter: Total resistance Rv = V/Ig = 20/0.002 = 10,000 Ω. For the ammeter: The shunt S = IgG/(I − Ig) = (0.002 × 40)/(5 − 0.002) = 0.08/4.998 ≈ 0.016 Ω. Total ammeter resistance Ra = GS/(G + S) ≈ S = 0.016 Ω (since S << G). Ratio Rv/Ra = 10,000/0.016 = 625,000. Alternatively, Rv/Ra = (V/Ig) / [IgG/(I−Ig)] = V(I−Ig)/(Ig²G) ≈ VI/(Ig²G) = (20 × 5)/(0.000004 × 40) = 100/0.00016 = 625,000.",
+    "correct_answer": "D",
+    "concept_tags": ["voltmeter resistance", "ammeter resistance", "conversion"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "conversion to ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "250", "is_correct": false},
+      {"key": "B", "value": "2,500", "is_correct": false},
+      {"key": "C", "value": "62,500", "is_correct": false},
+      {"key": "D", "value": "625,000", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "A voltmeter has very high resistance, an ammeter has very low resistance—the ratio should be a very large number.",
+      "Options like 250 or 2,500 are too small for the ratio of a 10,000 Ω voltmeter to a ~0.016 Ω ammeter.",
+      "Calculate each resistance separately: Rv = V/Ig and Ra ≈ IgG/I, then find the ratio."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-30",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In a moving coil galvanometer, the coil is wound on an aluminium frame to:",
+    "explanation": "The coil in a moving coil galvanometer is wound on an aluminium frame to provide electromagnetic damping. When the coil rotates in the magnetic field, eddy currents are induced in the aluminium frame (which is a conductor). These eddy currents oppose the motion of the coil (by Lenz's law), bringing the coil to rest quickly without oscillations. This is known as dead-beat behavior.",
+    "correct_answer": "B",
+    "concept_tags": ["electromagnetic damping", "eddy currents", "aluminium frame"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "Galvanometer construction",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Increase the magnetic flux through the coil", "is_correct": false},
+      {"key": "B", "value": "Provide electromagnetic damping", "is_correct": true},
+      {"key": "C", "value": "Increase the moment of inertia of the coil", "is_correct": false},
+      {"key": "D", "value": "Make the coil lighter", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "The frame is made of aluminium (a conductor)—think about what happens when a conductor moves in a magnetic field.",
+      "Increasing moment of inertia would slow the response, which is not desirable.",
+      "If making the coil lighter were the goal, a non-metallic frame would be even lighter."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-31",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "fill-in-blanks",
+    "difficulty": "easy",
+    "question_text": "To convert a galvanometer into a voltmeter, a ________ resistance is connected in ________ with the galvanometer.",
+    "explanation": "To convert a galvanometer into a voltmeter, a high resistance is connected in series with it. The high series resistance ensures that the voltmeter draws negligible current from the circuit, thereby not disturbing the potential difference being measured. The total resistance of the voltmeter becomes R + G, where R >> G.",
+    "correct_answer": "A",
+    "concept_tags": ["voltmeter conversion", "series resistance"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "conversion to voltmeter",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "high; series", "is_correct": true},
+      {"key": "B", "value": "low; series", "is_correct": false},
+      {"key": "C", "value": "high; parallel", "is_correct": false},
+      {"key": "D", "value": "low; parallel", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "A voltmeter must have high resistance to avoid drawing significant current—this eliminates options with 'low' resistance.",
+      "A voltmeter measures potential difference across a component, so it must be connected in parallel with the component, but the internal conversion uses series connection.",
+      "Low resistance in parallel describes an ammeter conversion (shunt), not a voltmeter conversion."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-32",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Increasing the number of turns of the coil in a galvanometer increases current sensitivity but may not increase voltage sensitivity.\nReason (R): Voltage sensitivity equals current sensitivity divided by the resistance of the galvanometer, and increasing turns increases resistance.",
+    "explanation": "Both the assertion and reason are true, and the reason correctly explains the assertion. Current sensitivity = NAB/k, which increases with N. However, voltage sensitivity = NAB/(kR). When N increases, the resistance R of the coil also increases (roughly proportionally). So voltage sensitivity = NAB/(kR) may not increase because the increase in N in the numerator is offset by the increase in R in the denominator. The reason correctly identifies this relationship.",
+    "correct_answer": "A",
+    "concept_tags": ["current sensitivity", "voltage sensitivity", "number of turns"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "voltage sensitivity",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "Both A and R are true and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "value": "Both A and R are true but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "value": "A is true but R is false", "is_correct": false},
+      {"key": "D", "value": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Check current sensitivity formula: θ/I = NAB/k. Increasing N clearly increases this.",
+      "Check voltage sensitivity formula: θ/V = NAB/(kR). If N doubles and R also doubles, voltage sensitivity stays the same.",
+      "The reason provides the exact mathematical relationship that explains why voltage sensitivity may not increase—this makes R a correct explanation of A."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-33",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The diagram shows a galvanometer G of resistance 20 Ω connected with a shunt resistance S in parallel. If the galvanometer gives full-scale deflection for 10 mA and the shunt carries 90 mA, what is the value of S?",
+    "image_uri": "images/cuet-phy-mag-devices-33-ammeter-shunt.svg",
+    "image_alt": "Circuit diagram showing a galvanometer G (labeled 20 Ω, carrying 10 mA) connected in parallel with a shunt resistance S (carrying 90 mA). The total current entering the parallel combination is labeled 100 mA.",
+    "explanation": "Since the galvanometer and shunt are in parallel, the voltage across both is equal: Ig × G = Is × S. Here Ig = 10 mA, G = 20 Ω, and Is = 90 mA. So S = (Ig × G)/Is = (10 × 20)/90 = 200/90 = 20/9 ≈ 2.22 Ω.",
+    "correct_answer": "C",
+    "concept_tags": ["shunt resistance", "ammeter conversion", "parallel circuit"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "2 Ω", "is_correct": false},
+      {"key": "B", "value": "0.22 Ω", "is_correct": false},
+      {"key": "C", "value": "20/9 Ω", "is_correct": true},
+      {"key": "D", "value": "9/20 Ω", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Use the equal voltage condition: Ig × G = Is × S, so S = IgG/Is.",
+      "S = (10 × 20)/90 = 200/90. Simplify: 200/90 = 20/9.",
+      "Option D (9/20 Ω) is the reciprocal of the correct answer—a common trap in fraction-based problems."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-34",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "scenario": "A physics lab has a galvanometer with resistance G = 25 Ω and full-scale deflection current Ig = 4 mA. A student needs to measure currents up to 2 A and voltages up to 50 V in a circuit experiment. The student has a box of standard resistances available.",
+    "question_text": "If the student first converts the galvanometer into an ammeter of range 0–2 A and then uses the same galvanometer (after removing the shunt) to make a voltmeter of range 0–50 V, what is the difference between the high resistance needed for the voltmeter and the shunt resistance needed for the ammeter?",
+    "explanation": "For the ammeter: S = IgG/(I − Ig) = (0.004 × 25)/(2 − 0.004) = 0.1/1.996 ≈ 0.05 Ω. For the voltmeter: R = V/Ig − G = 50/0.004 − 25 = 12,500 − 25 = 12,475 Ω. Difference = 12,475 − 0.05 = 12,474.95 ≈ 12,475 Ω. The voltmeter resistance is overwhelmingly larger than the shunt resistance.",
+    "correct_answer": "C",
+    "concept_tags": ["ammeter conversion", "voltmeter conversion", "shunt resistance", "series resistance"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "conversion to ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "12,500 Ω", "is_correct": false},
+      {"key": "B", "value": "12,450 Ω", "is_correct": false},
+      {"key": "C", "value": "12,475 Ω (approx.)", "is_correct": true},
+      {"key": "D", "value": "12,525 Ω", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "The shunt resistance is very small (~0.05 Ω), so the difference is approximately equal to the voltmeter's series resistance itself.",
+      "Voltmeter series resistance R = V/Ig − G = 12,500 − 25 = 12,475 Ω. The shunt is negligible in comparison.",
+      "12,500 Ω would be the answer if G were zero—but we must subtract G = 25 Ω from the total."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-35",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "An ideal voltmeter has zero resistance so that it does not draw any current from the circuit.",
+    "explanation": "This statement is FALSE. An ideal voltmeter has infinite resistance (not zero resistance) so that it draws zero current from the circuit. Zero resistance is the characteristic of an ideal ammeter, not a voltmeter. A voltmeter with zero resistance would short-circuit the component across which it is connected.",
+    "correct_answer": "B",
+    "concept_tags": ["ideal voltmeter", "infinite resistance"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "conversion to voltmeter",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "True", "is_correct": false},
+      {"key": "B", "value": "False", "is_correct": true},
+      {"key": "C", "value": "---", "is_correct": false},
+      {"key": "D", "value": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Think about what happens if a voltmeter with zero resistance is connected in parallel—it would short-circuit the component.",
+      "Zero resistance is the property of an ideal ammeter, not a voltmeter.",
+      "For no current to flow through the voltmeter, its resistance must be as high as possible—ideally infinite."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-36",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When a shunt of resistance S is connected across a galvanometer of resistance G, the fraction of total current that passes through the galvanometer is:",
+    "explanation": "When a shunt S is connected in parallel with galvanometer G, the current divides in the inverse ratio of resistances. The current through galvanometer Ig = I × S/(G + S). Therefore, the fraction Ig/I = S/(G + S). This shows that a smaller shunt diverts more current away from the galvanometer.",
+    "correct_answer": "D",
+    "concept_tags": ["shunt resistance", "current division", "parallel circuit"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "shunt resistance",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "G/(G + S)", "is_correct": false},
+      {"key": "B", "value": "G/S", "is_correct": false},
+      {"key": "C", "value": "S/G", "is_correct": false},
+      {"key": "D", "value": "S/(G + S)", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "In a parallel combination, current through a branch is inversely proportional to its resistance.",
+      "The galvanometer has resistance G, so less current flows through it when G is large—the fraction should decrease with increasing G.",
+      "Check: if S = G, the fraction should be 1/2 (equal split). Only S/(G + S) gives G/(G+G) = 1/2."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-37",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "logical-sequence",
+    "difficulty": "easy",
+    "question_text": "Arrange the following steps in the correct logical sequence for converting a galvanometer into an ammeter:",
+    "items": [
+      "Calculate the shunt resistance using S = IgG/(I − Ig)",
+      "Determine the full-scale deflection current (Ig) and resistance (G) of the galvanometer",
+      "Connect the calculated shunt resistance in parallel with the galvanometer",
+      "Identify the desired maximum current (I) to be measured by the ammeter"
+    ],
+    "correct_order": [2, 4, 1, 3],
+    "explanation": "The correct sequence is: First, determine the galvanometer parameters Ig and G (step 2). Then, identify the desired ammeter range I (step 4). Next, use these values to calculate the required shunt resistance S = IgG/(I − Ig) (step 1). Finally, physically connect the shunt in parallel with the galvanometer (step 3). This sequence follows the logical flow from characterization to design to implementation.",
+    "correct_answer": "C",
+    "concept_tags": ["ammeter conversion", "shunt resistance", "logical sequence"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "conversion to ammeter",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "1, 2, 3, 4", "is_correct": false},
+      {"key": "B", "value": "4, 2, 1, 3", "is_correct": false},
+      {"key": "C", "value": "2, 4, 1, 3", "is_correct": true},
+      {"key": "D", "value": "2, 1, 4, 3", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "You must know the galvanometer's properties (Ig, G) before anything else—step 2 comes first.",
+      "You cannot calculate the shunt (step 1) without knowing the desired range (step 4)—so step 4 must come before step 1.",
+      "Physical connection (step 3) is always the last step—it comes after all calculations are done."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-38",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "The diagram shows two galvanometers P and Q with identical coils (same N, A, B) but different spring constants. If kP = 2kQ, what is the ratio of their current sensitivities (θP/IP) : (θQ/IQ)?",
+    "image_uri": "images/cuet-phy-mag-devices-38-two-galvanometers.svg",
+    "image_alt": "Two moving coil galvanometers P and Q shown side by side. Both have identical coils (labeled same N, A, B) but galvanometer P has a stiffer spring (kP = 2kQ) compared to galvanometer Q. Scale readings are shown on both.",
+    "explanation": "Current sensitivity = θ/I = NAB/k. Since N, A, and B are the same for both galvanometers, the current sensitivity is inversely proportional to k. (θP/IP)/(θQ/IQ) = kQ/kP = kQ/(2kQ) = 1/2. Therefore, the ratio is 1:2. Galvanometer Q is more sensitive because it has a smaller spring constant.",
+    "correct_answer": "B",
+    "concept_tags": ["current sensitivity", "spring constant", "comparison"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "current sensitivity",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "2 : 1", "is_correct": false},
+      {"key": "B", "value": "1 : 2", "is_correct": true},
+      {"key": "C", "value": "1 : 1", "is_correct": false},
+      {"key": "D", "value": "4 : 1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "Current sensitivity = NAB/k. Higher k means lower sensitivity.",
+      "Since kP = 2kQ, P has a stiffer spring—so P should be LESS sensitive than Q.",
+      "The ratio is inversely proportional to k values: (1/kP) : (1/kQ) = (1/2kQ) : (1/kQ) = 1 : 2."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-39",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following events in the correct sequence that occurs when a current is passed through a moving coil galvanometer:",
+    "items": [
+      "The pointer attached to the coil indicates the deflection on the scale",
+      "A torque acts on the coil due to the interaction of current-carrying coil with the magnetic field",
+      "Current flows through the coil placed in the radial magnetic field",
+      "The coil rotates until the deflecting torque equals the restoring torque of the spring"
+    ],
+    "correct_order": [3, 2, 4, 1],
+    "explanation": "The correct sequence of events is: First, current flows through the coil in the radial magnetic field (step 3). This creates a deflecting torque on the coil (step 2, τ = NIAB). The coil then rotates and continues until the deflecting torque is balanced by the restoring torque of the spring (step 4, NIAB = kθ). Finally, the pointer shows the deflection on the scale (step 1). This follows the cause-and-effect chain from electrical input to mechanical output.",
+    "correct_answer": "A",
+    "concept_tags": ["galvanometer working", "deflecting torque", "restoring torque"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "working principle",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "3, 2, 4, 1", "is_correct": true},
+      {"key": "B", "value": "2, 3, 1, 4", "is_correct": false},
+      {"key": "C", "value": "3, 2, 1, 4", "is_correct": false},
+      {"key": "D", "value": "2, 3, 4, 1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      "The process starts with current flowing through the coil—this is the input, so step 3 comes first.",
+      "The pointer reading (step 1) is the final output—it must come last.",
+      "Torque (step 2) is caused by the current (step 3), and the coil must rotate and reach equilibrium (step 4) before the reading is taken (step 1)."
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-devices-40",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A galvanometer has a coil of 200 turns, each of area 1.5 × 10⁻² m², and is placed in a magnetic field of 0.2 T. If the torsional constant of the spring is 1.2 N·m/rad, what is the current required to produce a deflection of 30°?",
+    "explanation": "At equilibrium, NIAB = kθ. Converting 30° to radians: θ = 30 × π/180 = π/6 rad ≈ 0.5236 rad. So I = kθ/(NAB) = (1.2 × 0.5236)/(200 × 1.5 × 10⁻² × 0.2) = 0.6283/(200 × 0.003) = 0.6283/0.6 = 1.047 A ≈ 1.05 A.",
+    "correct_answer": "D",
+    "concept_tags": ["galvanometer deflection", "torque balance", "numerical problem"],
+    "topic": "Moving Coil Galvanometer",
+    "subtopic": "working principle",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "value": "0.52 A", "is_correct": false},
+      {"key": "B", "value": "2.10 A", "is_correct": false},
+      {"key": "C", "value": "0.63 A", "is_correct": false},
+      {"key": "D", "value": "1.05 A", "is_correct": true}
+    ],
+    "elimination_hints": [
+      "Remember to convert degrees to radians: 30° = π/6 rad, not 30 directly.",
+      "0.52 A would be the answer if you forgot to convert degrees to radians (using θ = 30 without conversion would give a different error).",
+      "I = kθ/(NAB). Compute NAB = 200 × 0.015 × 0.2 = 0.6. Then I = 1.2 × (π/6) / 0.6."
+    ]
+  }
+]

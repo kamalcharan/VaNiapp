@@ -1,0 +1,567 @@
+[
+  {
+    "id": "cuet-phy-current-ohm-21",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following materials is an example of a non-ohmic conductor?",
+    "explanation": "A semiconductor diode (p-n junction diode) is a non-ohmic conductor because its V-I characteristic is non-linear; the current through it does not vary linearly with the applied voltage. Copper, aluminium, and silver are ohmic conductors that obey Ohm's law at constant temperature.",
+    "correct_answer": "C",
+    "concept_tags": ["ohms-law", "non-ohmic-conductor", "V-I-characteristics"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "V-I Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Copper wire", "is_correct": false},
+      {"key": "B", "text": "Aluminium wire", "is_correct": false},
+      {"key": "C", "text": "Semiconductor diode", "is_correct": true},
+      {"key": "D", "text": "Silver wire", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Copper is a metal that obeys Ohm's law at constant temperature, producing a linear V-I graph.", "misconception": "Thinking all conductors are non-ohmic"},
+      {"option_key": "B", "hint": "Aluminium, like copper, is a metallic conductor that follows Ohm's law under constant physical conditions.", "misconception": null},
+      {"option_key": "D", "hint": "Silver is an excellent metallic conductor that follows Ohm's law. It has the highest electrical conductivity among metals.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-22",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The SI unit of electrical conductivity is:",
+    "explanation": "Conductivity sigma = 1/rho, where rho has units of ohm-metre (Ω·m). Therefore, conductivity has units of (Ω·m)⁻¹ = Ω⁻¹m⁻¹, which can also be written as S/m (siemens per metre) or mho/m.",
+    "correct_answer": "A",
+    "concept_tags": ["conductivity", "SI-units", "resistivity"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Conductivity",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Ω⁻¹m⁻¹", "is_correct": true},
+      {"key": "B", "text": "Ω·m", "is_correct": false},
+      {"key": "C", "text": "Ω⁻¹m", "is_correct": false},
+      {"key": "D", "text": "Ω·m⁻¹", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Ω·m is the unit of resistivity, not conductivity. Conductivity is the reciprocal of resistivity.", "misconception": "Confusing the unit of resistivity with conductivity"},
+      {"option_key": "C", "hint": "Ω⁻¹m would be obtained only if resistivity had units of Ω/m, which is incorrect.", "misconception": "Incorrect dimensional analysis of conductivity"},
+      {"option_key": "D", "hint": "Ω·m⁻¹ does not correctly represent the reciprocal of Ω·m. The reciprocal of Ω·m is Ω⁻¹m⁻¹.", "misconception": "Only inverting one part of the compound unit"}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-23",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A copper wire has a resistance of 8 Ω at 20°C. If the temperature coefficient of resistance for copper is 3.9 × 10⁻³ per °C, the resistance of the wire at 100°C is approximately:",
+    "explanation": "Using R_T = R_0(1 + alpha × ΔT), where R_0 = 8 Ω, alpha = 3.9 × 10⁻³ per °C, and ΔT = 100 - 20 = 80°C. R_100 = 8 × (1 + 3.9 × 10⁻³ × 80) = 8 × (1 + 0.312) = 8 × 1.312 = 10.496 Ω ≈ 10.5 Ω.",
+    "correct_answer": "B",
+    "concept_tags": ["temperature-coefficient", "resistance", "metals"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Temperature Dependence of Resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "8.31 Ω", "is_correct": false},
+      {"key": "B", "text": "10.5 Ω", "is_correct": true},
+      {"key": "C", "text": "12.8 Ω", "is_correct": false},
+      {"key": "D", "text": "11.1 Ω", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "8.31 Ω would result from using ΔT = 10°C instead of 80°C; make sure you compute the full temperature difference.", "misconception": "Using incorrect temperature change"},
+      {"option_key": "C", "hint": "12.8 Ω would result from using alpha = 0.006 per °C, which is not the stated value for copper.", "misconception": "Using wrong temperature coefficient"},
+      {"option_key": "D", "hint": "11.1 Ω does not match the correct calculation R = 8 × (1 + 3.9×10⁻³ × 80) = 10.5 Ω.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-24",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Three resistors of 6 Ω, 3 Ω, and 2 Ω are connected in parallel. The equivalent resistance of the combination is:",
+    "explanation": "For resistors in parallel: 1/R_eq = 1/R₁ + 1/R₂ + 1/R₃ = 1/6 + 1/3 + 1/2 = 1/6 + 2/6 + 3/6 = 6/6 = 1. Therefore R_eq = 1 Ω. The equivalent resistance in a parallel combination is always less than the smallest individual resistance.",
+    "correct_answer": "D",
+    "concept_tags": ["parallel-combination", "equivalent-resistance", "resistors"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Series and Parallel Resistors",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "11 Ω", "is_correct": false},
+      {"key": "B", "text": "2 Ω", "is_correct": false},
+      {"key": "C", "text": "3 Ω", "is_correct": false},
+      {"key": "D", "text": "1 Ω", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "11 Ω is the sum 6+3+2, which is the equivalent resistance for a series combination, not parallel.", "misconception": "Using series formula instead of parallel formula"},
+      {"option_key": "B", "hint": "2 Ω is the smallest resistor, but the parallel equivalent must be less than the smallest individual resistance.", "misconception": "Thinking parallel resistance equals the smallest resistance"},
+      {"option_key": "C", "hint": "3 Ω is one of the individual resistances and does not correspond to the parallel combination result.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-25",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If the drift velocity of electrons in a conductor is doubled while the number density of free electrons remains the same, the current through the conductor:",
+    "explanation": "Current I = nAv_d, where n is the number density, A is the cross-sectional area, and v_d is the drift velocity. If v_d is doubled and all other quantities remain constant, the current I also doubles. Current is directly proportional to drift velocity.",
+    "correct_answer": "B",
+    "concept_tags": ["drift-velocity", "current", "number-density"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Drift Velocity",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Remains the same", "is_correct": false},
+      {"key": "B", "text": "Gets doubled", "is_correct": true},
+      {"key": "C", "text": "Gets halved", "is_correct": false},
+      {"key": "D", "text": "Becomes four times", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Since I = nAv_d, changing v_d must change the current. It cannot remain the same.", "misconception": "Thinking current is independent of drift velocity"},
+      {"option_key": "C", "hint": "The relation is I = nAv_d (direct proportionality), so doubling v_d doubles I, not halves it.", "misconception": "Assuming inverse proportionality between current and drift velocity"},
+      {"option_key": "D", "hint": "I is directly proportional to v_d (not v_d²), so doubling v_d doubles I, not quadruples it.", "misconception": "Confusing linear and quadratic dependence"}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-26",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a resistor colour code, the sequence of bands is yellow, violet, orange, and gold. The value of the resistance is:",
+    "explanation": "In the colour code: Yellow = 4, Violet = 7, Orange = 10³ (multiplier), Gold = ±5% tolerance. The resistance = 47 × 10³ = 47,000 Ω = 47 kΩ with ±5% tolerance.",
+    "correct_answer": "C",
+    "concept_tags": ["colour-code", "resistor", "tolerance"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Colour Code of Resistors",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "4.7 kΩ ± 5%", "is_correct": false},
+      {"key": "B", "text": "470 Ω ± 5%", "is_correct": false},
+      {"key": "C", "text": "47 kΩ ± 5%", "is_correct": true},
+      {"key": "D", "text": "470 kΩ ± 5%", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "4.7 kΩ would result from using orange as 10² instead of 10³. Orange represents the multiplier 10³.", "misconception": "Misassigning the multiplier value for orange"},
+      {"option_key": "B", "hint": "470 Ω corresponds to yellow-violet-brown (10¹ multiplier), not yellow-violet-orange (10³ multiplier).", "misconception": "Confusing brown and orange multipliers"},
+      {"option_key": "D", "hint": "470 kΩ would require a multiplier of 10⁴ (yellow band), but the third band is orange (10³).", "misconception": "Using incorrect multiplier exponent"}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-27",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A wire of resistance 20 Ω is bent into a complete circle. The effective resistance between two diametrically opposite points is:",
+    "explanation": "When a wire of resistance 20 Ω is bent into a circle, it forms two semicircular arcs. Each semicircular arc has resistance 20/2 = 10 Ω. Between diametrically opposite points, these two 10 Ω arcs are connected in parallel. R_eq = (10 × 10)/(10 + 10) = 100/20 = 5 Ω.",
+    "correct_answer": "A",
+    "concept_tags": ["resistance", "parallel-combination", "circular-wire"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Series and Parallel Resistors",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "5 Ω", "is_correct": true},
+      {"key": "B", "text": "10 Ω", "is_correct": false},
+      {"key": "C", "text": "20 Ω", "is_correct": false},
+      {"key": "D", "text": "2.5 Ω", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "10 Ω is the resistance of one semicircular half alone. The two halves are in parallel, giving a smaller value.", "misconception": "Forgetting that the two halves are in parallel"},
+      {"option_key": "C", "hint": "20 Ω is the total resistance of the entire wire. Bending into a circle and measuring across a diameter yields a parallel combination.", "misconception": "Using total wire resistance without considering the parallel paths"},
+      {"option_key": "D", "hint": "2.5 Ω would result from assuming four equal segments in parallel, which does not apply to diametrically opposite points.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-28",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The relaxation time of free electrons in a metallic conductor is 2.5 × 10⁻¹⁴ s. If the number density of free electrons is 8.5 × 10²⁸ m⁻³ and the mass of an electron is 9.1 × 10⁻³¹ kg, the resistivity of the conductor is approximately:",
+    "explanation": "Resistivity rho = m/(ne²τ), where m = 9.1 × 10⁻³¹ kg, n = 8.5 × 10²⁸ m⁻³, e = 1.6 × 10⁻¹⁹ C, τ = 2.5 × 10⁻¹⁴ s. rho = (9.1 × 10⁻³¹)/((8.5 × 10²⁸)(1.6 × 10⁻¹⁹)²(2.5 × 10⁻¹⁴)) = (9.1 × 10⁻³¹)/((8.5 × 10²⁸)(2.56 × 10⁻³⁸)(2.5 × 10⁻¹⁴)) = (9.1 × 10⁻³¹)/(5.44 × 10⁻²³) ≈ 1.67 × 10⁻⁸ Ω·m ≈ 1.7 × 10⁻⁸ Ω·m.",
+    "correct_answer": "D",
+    "concept_tags": ["resistivity", "relaxation-time", "drift-velocity", "free-electrons"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Resistivity",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "1.7 × 10⁻⁶ Ω·m", "is_correct": false},
+      {"key": "B", "text": "1.7 × 10⁻⁴ Ω·m", "is_correct": false},
+      {"key": "C", "text": "1.7 × 10⁻² Ω·m", "is_correct": false},
+      {"key": "D", "text": "1.7 × 10⁻⁸ Ω·m", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "1.7 × 10⁻⁶ is 100 times too large. Check that e² = (1.6×10⁻¹⁹)² = 2.56×10⁻³⁸ is correctly used.", "misconception": "Error in computing e² exponent"},
+      {"option_key": "B", "hint": "1.7 × 10⁻⁴ is far too large for a metallic conductor. Typical metals have resistivities of the order 10⁻⁸ Ω·m.", "misconception": "Major arithmetic error in exponent calculation"},
+      {"option_key": "C", "hint": "1.7 × 10⁻² Ω·m is in the range of semiconductors, not metals. The given data corresponds to a metal.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-29",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "easy",
+    "question_text": "The V-I graph shown in the diagram represents a device that obeys Ohm's law. From the graph, the resistance of the device is:",
+    "explanation": "From the V-I graph (a straight line passing through the origin), the resistance is the slope of the V vs I graph: R = V/I. Reading from the graph, at I = 2 A the voltage is 10 V, so R = 10/2 = 5 Ω. A linear V-I graph through the origin confirms the device is ohmic.",
+    "correct_answer": "B",
+    "concept_tags": ["ohms-law", "V-I-characteristics", "resistance", "graph"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "V-I Characteristics",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "image_uri": "diagrams/cuet-phy-current-ohm-29.png",
+    "image_alt": "A V-I graph showing a straight line passing through the origin. The x-axis represents current (I) in amperes from 0 to 4 A, and the y-axis represents voltage (V) in volts from 0 to 20 V. The line passes through the point (2 A, 10 V).",
+    "options": [
+      {"key": "A", "text": "2.5 Ω", "is_correct": false},
+      {"key": "B", "text": "5 Ω", "is_correct": true},
+      {"key": "C", "text": "10 Ω", "is_correct": false},
+      {"key": "D", "text": "0.2 Ω", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "2.5 Ω would be the value of I/V (conductance), not V/I (resistance). Make sure you use R = V/I.", "misconception": "Calculating conductance instead of resistance"},
+      {"option_key": "C", "hint": "10 Ω would only be correct if I = 1 A at V = 10 V, but the graph shows I = 2 A at V = 10 V.", "misconception": "Misreading the graph coordinates"},
+      {"option_key": "D", "hint": "0.2 Ω = I/V = 2/10 is the conductance, not the resistance. Resistance R = V/I = 10/2 = 5 Ω.", "misconception": "Inverting the V/I ratio"}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-30",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "In the circuit shown in the diagram, three resistors R₁ = 4 Ω, R₂ = 6 Ω, and R₃ = 12 Ω are connected in parallel across a 24 V battery. The total current drawn from the battery is:",
+    "explanation": "For parallel resistors: 1/R_eq = 1/4 + 1/6 + 1/12 = 3/12 + 2/12 + 1/12 = 6/12 = 1/2. So R_eq = 2 Ω. Total current I = V/R_eq = 24/2 = 12 A. Alternatively, I = V/R₁ + V/R₂ + V/R₃ = 6 + 4 + 2 = 12 A.",
+    "correct_answer": "C",
+    "concept_tags": ["parallel-combination", "ohms-law", "current", "circuit"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Series and Parallel Resistors",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "image_uri": "diagrams/cuet-phy-current-ohm-30.png",
+    "image_alt": "A circuit diagram showing a 24 V battery connected to three resistors R1 = 4 ohm, R2 = 6 ohm, and R3 = 12 ohm in parallel. An ammeter is connected in series with the battery to measure total current.",
+    "options": [
+      {"key": "A", "text": "6 A", "is_correct": false},
+      {"key": "B", "text": "22 A", "is_correct": false},
+      {"key": "C", "text": "12 A", "is_correct": true},
+      {"key": "D", "text": "1.09 A", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "6 A is the current through R₁ alone (24/4). The total current is the sum of currents through all three branches.", "misconception": "Calculating current through only one branch"},
+      {"option_key": "B", "hint": "22 Ω is the sum of all resistances; this would be the series equivalent, not the parallel one. The total current uses the parallel R_eq.", "misconception": "Using series formula instead of parallel"},
+      {"option_key": "D", "hint": "1.09 A = 24/22 results from using the series equivalent (4+6+12=22 Ω) instead of the parallel equivalent (2 Ω).", "misconception": "Using series combination instead of parallel combination"}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-31",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The diagram shows the variation of resistance (R) of a metallic conductor and a semiconductor with temperature (T). Which curve represents the semiconductor?",
+    "explanation": "For a metallic conductor, resistance increases linearly with temperature (positive temperature coefficient). For a semiconductor, resistance decreases exponentially with increasing temperature (negative temperature coefficient) because more charge carriers are generated at higher temperatures. Therefore, the curve that shows decreasing resistance with temperature represents the semiconductor.",
+    "correct_answer": "A",
+    "concept_tags": ["temperature-dependence", "semiconductor", "metal", "resistance"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Temperature Dependence of Resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "image_uri": "diagrams/cuet-phy-current-ohm-31.png",
+    "image_alt": "A graph with temperature T on the x-axis and resistance R on the y-axis. Curve P shows resistance decreasing exponentially as temperature increases (semiconductor behavior). Curve Q shows resistance increasing linearly as temperature increases (metallic behavior).",
+    "options": [
+      {"key": "A", "text": "Curve P (decreasing R with T)", "is_correct": true},
+      {"key": "B", "text": "Curve Q (increasing R with T)", "is_correct": false},
+      {"key": "C", "text": "Both curves represent semiconductors", "is_correct": false},
+      {"key": "D", "text": "Neither curve represents a semiconductor", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Curve Q with increasing R represents a metallic conductor where more lattice vibrations at higher temperature scatter electrons more, increasing resistance.", "misconception": "Confusing metal and semiconductor temperature behavior"},
+      {"option_key": "C", "hint": "A metal and a semiconductor have opposite temperature dependences of resistance; both curves cannot represent semiconductors.", "misconception": null},
+      {"option_key": "D", "hint": "Curve P clearly shows decreasing resistance with temperature, which is the hallmark of a semiconductor.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-32",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "In the circuit shown, five identical resistors each of resistance R are connected as shown. The effective resistance between points A and B is:",
+    "explanation": "In the given Wheatstone bridge configuration with five resistors: R₁ and R₂ are in the top arms, R₃ and R₄ are in the bottom arms, and R₅ is the galvanometer arm connecting the midpoints. Since all resistors are identical (R₁=R₂=R₃=R₄=R₅=R), the bridge is balanced (R₁/R₂ = R₃/R₄). No current flows through R₅. The top series combination (R+R=2R) is in parallel with the bottom series combination (R+R=2R). R_eq = (2R × 2R)/(2R + 2R) = 4R²/4R = R.",
+    "correct_answer": "C",
+    "concept_tags": ["wheatstone-bridge", "equivalent-resistance", "balanced-bridge", "parallel-series"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Series and Parallel Resistors",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "image_uri": "diagrams/cuet-phy-current-ohm-32.png",
+    "image_alt": "A Wheatstone bridge circuit with five identical resistors R. Two resistors are in the top path from A to B, two in the bottom path from A to B, and one resistor connects the midpoints of the top and bottom paths. Points A and B are the input and output terminals.",
+    "options": [
+      {"key": "A", "text": "2R", "is_correct": false},
+      {"key": "B", "text": "R/2", "is_correct": false},
+      {"key": "C", "text": "R", "is_correct": true},
+      {"key": "D", "text": "5R", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "2R would be the resistance of just the top or bottom branch (two R in series). The two branches are in parallel.", "misconception": "Ignoring the parallel paths"},
+      {"option_key": "B", "hint": "R/2 would result from placing two resistors of R in parallel. Here we have two series branches (each 2R) in parallel, giving R.", "misconception": "Ignoring that each branch has two resistors in series"},
+      {"option_key": "D", "hint": "5R would result from adding all five resistors in series, which does not represent the actual circuit topology.", "misconception": "Adding all resistors in series regardless of circuit configuration"}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-33",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Manganin and constantan are preferred for making standard resistors.\nReason (R): These alloys have very low temperature coefficients of resistance.",
+    "explanation": "The assertion is true: manganin and constantan are used for standard resistors and resistance coils. The reason is also true: these alloys have very low temperature coefficients (nearly zero), so their resistance remains practically constant over a wide range of temperatures. The reason correctly explains the assertion, since standard resistors need stable resistance values regardless of temperature changes.",
+    "correct_answer": "A",
+    "concept_tags": ["temperature-coefficient", "alloys", "standard-resistors", "manganin", "constantan"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Temperature Dependence of Resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The reason directly explains why these alloys are chosen: their low temperature coefficient ensures stable resistance values, which is exactly what standard resistors need.", "misconception": "Not seeing the causal connection between low temperature coefficient and suitability as standard resistors"},
+      {"option_key": "C", "hint": "The reason is true: manganin has a temperature coefficient of ~0.00001 per °C, which is extremely low compared to metals like copper (~0.004 per °C).", "misconception": "Thinking alloys have high temperature coefficients"},
+      {"option_key": "D", "hint": "The assertion is true: manganin and constantan are indeed the standard materials used for precision resistance coils in laboratories.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-34",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): When resistors are connected in series, the equivalent resistance is always greater than the largest individual resistance.\nReason (R): In a series circuit, the current through each resistor is different.",
+    "explanation": "The assertion is true: in a series combination, R_eq = R₁ + R₂ + ... which is always greater than any individual resistance. The reason is false: in a series circuit, the same current flows through each resistor (not different currents). Different currents occur in parallel circuits. Since the reason is false, the correct answer is that A is true but R is false.",
+    "correct_answer": "C",
+    "concept_tags": ["series-combination", "equivalent-resistance", "current", "misconception"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Series and Parallel Resistors",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": true},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "The reason states that current through each resistor is different in series. This is incorrect; in a series circuit, the same current flows through every component.", "misconception": "Confusing series and parallel circuit current properties"},
+      {"option_key": "B", "hint": "Since the reason itself is factually wrong (current is the same in series, not different), both cannot be true.", "misconception": null},
+      {"option_key": "D", "hint": "The assertion is definitely true: R_eq = R₁ + R₂ + ... is always greater than any single R_i when all are positive.", "misconception": "Doubting that series equivalent exceeds individual values"}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-35",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The drift velocity of electrons is directly proportional to the applied electric field across the conductor.",
+    "explanation": "This statement is TRUE. The drift velocity v_d = eEτ/m, where E is the electric field, e is the electron charge, τ is the relaxation time, and m is the electron mass. Since e, τ, and m are constants for a given conductor at constant temperature, v_d is directly proportional to E. The proportionality constant μ = eτ/m is called the mobility.",
+    "correct_answer": "A",
+    "concept_tags": ["drift-velocity", "electric-field", "mobility", "proportionality"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Drift Velocity",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The relation v_d = (eτ/m)E = μE clearly shows direct proportionality between drift velocity and electric field.", "misconception": "Thinking drift velocity is independent of or inversely proportional to electric field"},
+      {"option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null},
+      {"option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-36",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The resistance of a superconductor below its critical temperature is very high but finite.",
+    "explanation": "This statement is FALSE. A superconductor below its critical temperature has exactly zero resistance, not a very high resistance. This is the defining property of superconductivity: the electrical resistance drops abruptly to zero below the critical temperature, allowing current to flow without any energy dissipation.",
+    "correct_answer": "B",
+    "concept_tags": ["superconductor", "resistance", "critical-temperature"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Temperature Dependence of Resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": false},
+      {"key": "B", "text": "False", "is_correct": true},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "A superconductor has zero resistance (not high resistance) below the critical temperature. This is the fundamental property of superconductivity.", "misconception": "Confusing superconductor properties with insulator properties"},
+      {"option_key": "C", "hint": "This option is not applicable for this question type.", "misconception": null},
+      {"option_key": "D", "hint": "This option is not applicable for this question type.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-37",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "fill-in-blanks",
+    "difficulty": "easy",
+    "question_text": "The mobility of charge carriers is defined as the drift velocity per unit ________.",
+    "explanation": "Mobility μ = v_d / E, where v_d is the drift velocity and E is the electric field. Therefore, mobility is defined as the drift velocity per unit electric field. Its SI unit is m²V⁻¹s⁻¹. Mobility is a measure of how quickly charge carriers can move through a material under the influence of an electric field.",
+    "correct_answer": "D",
+    "concept_tags": ["mobility", "drift-velocity", "electric-field"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Mobility",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "potential difference", "is_correct": false},
+      {"key": "B", "text": "current", "is_correct": false},
+      {"key": "C", "text": "resistance", "is_correct": false},
+      {"key": "D", "text": "electric field", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Potential difference (voltage) is not the same as electric field. Mobility is specifically defined as v_d/E, drift velocity per unit electric field.", "misconception": "Confusing potential difference with electric field"},
+      {"option_key": "B", "hint": "Mobility has no direct relation to current in its definition. It is defined as μ = v_d/E.", "misconception": "Confusing mobility with conductance-related quantities"},
+      {"option_key": "C", "hint": "Resistance is a bulk property of a conductor, not the quantity that appears in the definition of mobility.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-38",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "scenario": "A physics laboratory has a collection of resistors. A student is given the task of connecting five resistors with values 2 Ω, 4 Ω, 6 Ω, 8 Ω, and 12 Ω to achieve a specific equivalent resistance. The student first connects the 6 Ω and 12 Ω resistors in parallel to get a combination P. Then connects P in series with the 2 Ω resistor to get combination Q. Finally, Q is connected in parallel with the series combination of the 4 Ω and 8 Ω resistors.",
+    "question_text": "Based on the scenario described, the final equivalent resistance of the entire combination is:",
+    "explanation": "Step 1: P = 6 Ω ∥ 12 Ω = (6×12)/(6+12) = 72/18 = 4 Ω. Step 2: Q = P + 2 Ω = 4 + 2 = 6 Ω (series). Step 3: Series combination of 4 Ω and 8 Ω = 4 + 8 = 12 Ω. Step 4: Final = Q ∥ 12 Ω = (6 × 12)/(6 + 12) = 72/18 = 4 Ω.",
+    "correct_answer": "B",
+    "concept_tags": ["series-parallel", "equivalent-resistance", "problem-solving"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Series and Parallel Resistors",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "6 Ω", "is_correct": false},
+      {"key": "B", "text": "4 Ω", "is_correct": true},
+      {"key": "C", "text": "3 Ω", "is_correct": false},
+      {"key": "D", "text": "8 Ω", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "6 Ω is the intermediate result Q (after step 2). The final step requires finding Q in parallel with the 4+8=12 Ω series combination.", "misconception": "Stopping the calculation at an intermediate step"},
+      {"option_key": "C", "hint": "3 Ω does not result from any correct combination of the steps described. Recheck: Q = 6 Ω, series = 12 Ω, parallel = 4 Ω.", "misconception": null},
+      {"option_key": "D", "hint": "8 Ω is one of the individual resistor values. The systematic series-parallel reduction gives 4 Ω.", "misconception": "Confusing an individual resistor value with the final equivalent"}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-39",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following steps in the correct order to derive the expression for drift velocity of electrons in a conductor using the free electron model:",
+    "items": [
+      {"id": "1", "text": "Apply Newton's second law to find acceleration: a = eE/m"},
+      {"id": "2", "text": "Consider free electrons in a conductor under an external electric field E"},
+      {"id": "3", "text": "Obtain drift velocity: v_d = eEτ/m"},
+      {"id": "4", "text": "Recognize that between collisions, the average time is the relaxation time τ"},
+      {"id": "5", "text": "Use v_d = aτ to relate drift velocity to acceleration and relaxation time"}
+    ],
+    "correct_order": ["2", "1", "4", "5", "3"],
+    "explanation": "The derivation begins by (2) considering free electrons in a conductor under electric field E. Then (1) applying F = eE and Newton's law gives acceleration a = eE/m. Next (4) we introduce the concept of relaxation time τ as the average time between collisions. Then (5) using v_d = aτ connects drift velocity to the acceleration and relaxation time. Finally (3) substituting a = eE/m gives the result v_d = eEτ/m.",
+    "correct_answer": "A",
+    "concept_tags": ["drift-velocity", "free-electron-model", "derivation", "relaxation-time"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Drift Velocity",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "2 → 1 → 4 → 5 → 3", "is_correct": true},
+      {"key": "B", "text": "1 → 2 → 3 → 4 → 5", "is_correct": false},
+      {"key": "C", "text": "2 → 4 → 1 → 3 → 5", "is_correct": false},
+      {"key": "D", "text": "4 → 2 → 5 → 1 → 3", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "You cannot apply Newton's law (step 1) before setting up the physical scenario (step 2). The derivation must begin with the model setup.", "misconception": "Not following the logical structure of a physics derivation"},
+      {"option_key": "C", "hint": "Step 1 (finding acceleration) must come before step 5 (using v_d = aτ), since step 5 requires the expression for acceleration.", "misconception": "Skipping the acceleration step before using it"},
+      {"option_key": "D", "hint": "Starting with relaxation time (step 4) before establishing the physical setup and force analysis is not logically correct.", "misconception": null}
+    ]
+  },
+  {
+    "id": "cuet-phy-current-ohm-40",
+    "chapter_id": "cuet-phy-current-electricity",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "A student wants to determine the unknown resistance of a wire using a metre bridge (based on Wheatstone bridge principle). Arrange the following experimental steps in the correct sequence:",
+    "items": [
+      {"id": "1", "text": "Connect the standard resistance box in the left gap and unknown resistance in the right gap of the metre bridge"},
+      {"id": "2", "text": "Close the key and move the jockey along the bridge wire to find the null point (zero galvanometer deflection)"},
+      {"id": "3", "text": "Note the balancing length l from the left end and calculate unknown resistance using R = S × l/(100 - l)"},
+      {"id": "4", "text": "Repeat the experiment for different values of standard resistance S and take the mean value"},
+      {"id": "5", "text": "Check all connections and ensure the galvanometer and battery key are properly connected"}
+    ],
+    "correct_order": ["5", "1", "2", "3", "4"],
+    "explanation": "The correct experimental sequence is: (5) First check all connections and ensure the circuit is properly set up. (1) Then connect the standard resistance and unknown resistance in the appropriate gaps. (2) Close the key and find the null point by moving the jockey along the wire. (3) Note the balancing length and calculate the unknown resistance. (4) Repeat for different standard resistance values and take the mean for accuracy.",
+    "correct_answer": "D",
+    "concept_tags": ["metre-bridge", "wheatstone-bridge", "experiment", "resistance-measurement"],
+    "topic": "Ohm's Law and Resistance",
+    "subtopic": "Resistance",
+    "subject": "cuet-physics",
+    "chapter": "Current Electricity",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "1 → 5 → 2 → 3 → 4", "is_correct": false},
+      {"key": "B", "text": "5 → 1 → 3 → 2 → 4", "is_correct": false},
+      {"key": "C", "text": "1 → 2 → 5 → 4 → 3", "is_correct": false},
+      {"key": "D", "text": "5 → 1 → 2 → 3 → 4", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Checking connections (step 5) must be done before connecting resistances (step 1), not after. Safety and setup verification always come first.", "misconception": "Skipping preliminary checks in an experiment"},
+      {"option_key": "B", "hint": "You cannot calculate the unknown resistance (step 3) before finding the null point (step 2). The balancing length is determined experimentally first.", "misconception": "Attempting calculation before taking measurements"},
+      {"option_key": "C", "hint": "Checking connections (step 5) after finding the null point makes no sense. Also, repetition (step 4) should come after calculation (step 3).", "misconception": "Disorganized experimental procedure"}
+    ]
+  }
+]

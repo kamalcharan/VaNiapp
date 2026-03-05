@@ -1,0 +1,561 @@
+[
+  {
+    "id": "cuet-phy-mag-force-21",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A straight conductor of length 0.5 m carrying a current of 2 A is placed perpendicular to a uniform magnetic field of 0.4 T. The force experienced by the conductor is:",
+    "explanation": "Using F = BIL sinθ, where B = 0.4 T, I = 2 A, L = 0.5 m, and θ = 90° (perpendicular). F = 0.4 × 2 × 0.5 × sin90° = 0.4 × 2 × 0.5 × 1 = 0.4 N.",
+    "correct_answer": "A",
+    "concept_tags": ["force-on-conductor", "BIL-formula", "perpendicular-field"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "force on current-carrying conductor (F=BIL sinθ)",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "0.4 N", "is_correct": true},
+      {"key": "B", "text": "0.2 N", "is_correct": false},
+      {"key": "C", "text": "0.8 N", "is_correct": false},
+      {"key": "D", "text": "0.1 N", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "This would result from using sinθ = 0.5 (i.e., θ = 30°), but the conductor is perpendicular to the field so sinθ = 1.", "misconception": "Using wrong angle in F = BIL sinθ"},
+      {"option_key": "C", "hint": "This is double the correct answer. Check that you are not multiplying any quantity twice.", "misconception": "Arithmetic error in multiplication"},
+      {"option_key": "D", "hint": "This is one-fourth of the correct value. Verify all substituted values: B = 0.4, I = 2, L = 0.5.", "misconception": "Incorrect substitution of given values"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-22",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A proton moving with velocity v enters a uniform magnetic field B perpendicular to its direction of motion. The path followed by the proton is:",
+    "explanation": "When a charged particle enters a magnetic field perpendicular to its velocity, the magnetic force F = qv × B acts as a centripetal force. Since this force is always perpendicular to the velocity, it changes the direction but not the speed of the particle. This results in uniform circular motion. The radius of the circle is r = mv/(qB).",
+    "correct_answer": "C",
+    "concept_tags": ["circular-motion", "lorentz-force", "charged-particle-in-B"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "motion of charge in magnetic field",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "A straight line", "is_correct": false},
+      {"key": "B", "text": "A parabolic path", "is_correct": false},
+      {"key": "C", "text": "A circular path", "is_correct": true},
+      {"key": "D", "text": "A helical path", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "A straight line would occur only if the velocity were parallel to B (zero force). Here v is perpendicular to B.", "misconception": "Thinking magnetic force does not deflect the particle"},
+      {"option_key": "B", "hint": "A parabolic path occurs under a constant force (like gravity). The magnetic force changes direction continuously, unlike gravity.", "misconception": "Confusing magnetic force with gravitational force"},
+      {"option_key": "D", "hint": "A helical path requires a velocity component along B. Since v is entirely perpendicular to B, the path is circular, not helical.", "misconception": "Assuming helical motion without a parallel velocity component"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-23",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A charged particle of mass m and charge q moves in a circular orbit of radius r in a magnetic field B. The kinetic energy of the particle is:",
+    "explanation": "For circular motion in a magnetic field: qvB = mv²/r, giving v = qBr/m. The kinetic energy is KE = ½mv² = ½m(qBr/m)² = q²B²r²/(2m). This shows that the kinetic energy depends on the square of the charge, field, and radius, and inversely on the mass.",
+    "correct_answer": "D",
+    "concept_tags": ["circular-motion", "kinetic-energy", "radius-momentum-relation"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "motion of charge in magnetic field",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "qBr/m", "is_correct": false},
+      {"key": "B", "text": "q²B²r/(2m)", "is_correct": false},
+      {"key": "C", "text": "qB²r²/(2m)", "is_correct": false},
+      {"key": "D", "text": "q²B²r²/(2m)", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This has dimensions of velocity, not energy. Kinetic energy must have dimensions of kg·m²/s².", "misconception": "Confusing velocity with kinetic energy"},
+      {"option_key": "B", "hint": "Check the power of r. From v = qBr/m, v² involves r², not r.", "misconception": "Missing a factor of r in the derivation"},
+      {"option_key": "C", "hint": "Check the power of q. From v = qBr/m, v² involves q², not q.", "misconception": "Missing a factor of q in the derivation"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-24",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Two long parallel wires separated by a distance of 0.1 m carry currents of 5 A and 10 A in the same direction. The force per unit length between them is: (μ₀ = 4π × 10⁻⁷ T·m/A)",
+    "explanation": "The force per unit length between two parallel current-carrying wires is F/L = μ₀I₁I₂/(2πd). Substituting: F/L = (4π × 10⁻⁷ × 5 × 10)/(2π × 0.1) = (4π × 10⁻⁷ × 50)/(0.2π) = (200π × 10⁻⁷)/(0.2π) = 1000 × 10⁻⁷ = 10⁻⁴ N/m = 1 × 10⁻⁴ N/m. Since the currents are in the same direction, the force is attractive.",
+    "correct_answer": "B",
+    "concept_tags": ["parallel-currents", "force-per-unit-length", "attractive-force"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "force between parallel currents",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "2 × 10⁻⁴ N/m, repulsive", "is_correct": false},
+      {"key": "B", "text": "1 × 10⁻⁴ N/m, attractive", "is_correct": true},
+      {"key": "C", "text": "1 × 10⁻⁴ N/m, repulsive", "is_correct": false},
+      {"key": "D", "text": "5 × 10⁻⁵ N/m, attractive", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Check your calculation. The factor 2π in the denominator should give 10⁻⁴, not 2 × 10⁻⁴. Also, same-direction currents attract.", "misconception": "Error in simplifying the 2π factor"},
+      {"option_key": "C", "hint": "The magnitude is correct, but same-direction currents attract each other, they do not repel.", "misconception": "Confusing the direction of force between parallel currents"},
+      {"option_key": "D", "hint": "This is half the correct value. Verify your substitution of I₁ and I₂ in the formula.", "misconception": "Using incorrect current values in the formula"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-25",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A proton and an alpha particle (charge 2e, mass 4mₚ) enter a uniform magnetic field perpendicular to their velocities. If both have the same kinetic energy, the ratio of the radii of their circular paths (rₚ/rα) is:",
+    "explanation": "The radius of circular motion is r = mv/(qB). Since KE = ½mv², we get v = √(2KE/m), so r = m√(2KE/m)/(qB) = √(2mKE)/(qB). For the proton: rₚ = √(2mₚKE)/(eB). For the alpha particle: rα = √(2 × 4mₚ × KE)/(2eB) = 2√(2mₚKE)/(2eB) = √(2mₚKE)/(eB). Therefore rₚ/rα = [√(2mₚKE)/(eB)] / [√(2mₚKE)/(eB)] = 1. The ratio is 1:1.",
+    "correct_answer": "D",
+    "concept_tags": ["radius-ratio", "kinetic-energy", "proton-alpha-comparison"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "motion of charge in magnetic field",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "1 : 2", "is_correct": false},
+      {"key": "B", "text": "2 : 1", "is_correct": false},
+      {"key": "C", "text": "1 : √2", "is_correct": false},
+      {"key": "D", "text": "1 : 1", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This would be correct if both had the same momentum, not the same kinetic energy. With equal KE, r = √(2mKE)/(qB).", "misconception": "Confusing equal kinetic energy with equal momentum"},
+      {"option_key": "B", "hint": "This is the inverse of option A. Neither is correct for equal kinetic energy conditions.", "misconception": "Inverting the ratio while still using the momentum formula"},
+      {"option_key": "C", "hint": "This would arise from an error in the mass or charge ratio. For an alpha particle, m = 4mₚ and q = 2e; √(4mₚ)/(2e) = √(mₚ)/e.", "misconception": "Algebraic error in evaluating √m/q for the alpha particle"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-26",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a velocity selector, electric and magnetic fields are applied perpendicular to each other and to the velocity of charged particles. A particle passes through undeflected when:",
+    "explanation": "In a velocity selector, the electric force qE and the magnetic force qvB act in opposite directions on the charged particle. For the particle to pass undeflected, these forces must balance: qE = qvB, giving v = E/B. This condition is independent of the charge and mass of the particle, so only particles with velocity v = E/B pass through straight.",
+    "correct_answer": "C",
+    "concept_tags": ["velocity-selector", "electric-magnetic-balance", "undeflected-motion"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "velocity selector",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "v = B/E", "is_correct": false},
+      {"key": "B", "text": "v = EB", "is_correct": false},
+      {"key": "C", "text": "v = E/B", "is_correct": true},
+      {"key": "D", "text": "v = E²/B", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This is the inverse of the correct relation. From qE = qvB, solve for v: v = E/B, not B/E.", "misconception": "Inverting the ratio when solving qE = qvB"},
+      {"option_key": "B", "hint": "Check dimensions: EB has units of V·T/m, which is not velocity. v = E/B has units (V/m)/(T) = m/s.", "misconception": "Multiplying instead of dividing E and B"},
+      {"option_key": "D", "hint": "This has incorrect dimensions. The balance condition qE = qvB gives a linear relation between v, E, and B.", "misconception": "Introducing an incorrect power of E"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-27",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A charged particle enters a region where a uniform magnetic field B and a uniform electric field E are both present and mutually perpendicular. If the particle has charge q, mass m, and enters with velocity v = E/B perpendicular to both fields, but the electric field is suddenly switched off, the radius of the resulting circular path is:",
+    "explanation": "Initially the particle moves undeflected with v = E/B (velocity selector condition). When the electric field is switched off, only the magnetic force acts. The particle moves in a circle with radius r = mv/(qB). Substituting v = E/B: r = m(E/B)/(qB) = mE/(qB²). This radius depends on the mass-to-charge ratio and the fields.",
+    "correct_answer": "D",
+    "concept_tags": ["velocity-selector", "circular-motion", "radius-formula"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "velocity selector",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "mE/(qB)", "is_correct": false},
+      {"key": "B", "text": "mB/(qE)", "is_correct": false},
+      {"key": "C", "text": "mE²/(qB²)", "is_correct": false},
+      {"key": "D", "text": "mE/(qB²)", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Check dimensions: mE/(qB) has units of kg·(V/m)/(C·T) = kg·m/s² × s/(C) which is not length. You need r = mv/(qB) with v = E/B.", "misconception": "Forgetting to substitute v = E/B into the radius formula"},
+      {"option_key": "B", "hint": "This inverts E and B. The velocity is E/B, not B/E, so the radius involves E in the numerator and B² in the denominator.", "misconception": "Inverting the velocity selector relation"},
+      {"option_key": "C", "hint": "The radius is r = mv/(qB) = m(E/B)/(qB) = mE/(qB²). There is no E² term.", "misconception": "Squaring E instead of B in the substitution"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-28",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In a cyclotron, a proton is accelerated to high speeds. The time period of revolution of the proton in the magnetic field is independent of:",
+    "explanation": "In a cyclotron, the time period T = 2πm/(qB). This expression shows that T depends on the mass m, charge q, and magnetic field B, but is independent of the speed (or kinetic energy) of the particle and the radius of its circular path. This independence of speed from the time period is the fundamental principle that allows the cyclotron to work with a fixed-frequency oscillating electric field.",
+    "correct_answer": "A",
+    "concept_tags": ["cyclotron", "time-period", "frequency-independence"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "cyclotron",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Speed and radius of the circular path", "is_correct": true},
+      {"key": "B", "text": "Mass of the particle", "is_correct": false},
+      {"key": "C", "text": "Charge of the particle", "is_correct": false},
+      {"key": "D", "text": "Magnetic field strength", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "T = 2πm/(qB) explicitly contains m in the numerator. Changing the mass changes the time period.", "misconception": "Thinking mass does not affect the cyclotron frequency"},
+      {"option_key": "C", "hint": "T = 2πm/(qB) contains q in the denominator. Changing the charge changes the time period.", "misconception": "Thinking charge does not affect the cyclotron frequency"},
+      {"option_key": "D", "hint": "T = 2πm/(qB) contains B in the denominator. A stronger field means a shorter time period.", "misconception": "Thinking the magnetic field does not affect the time period"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-29",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "diagram-based",
+    "difficulty": "easy",
+    "question_text": "The diagram shows a straight current-carrying conductor placed in a uniform magnetic field directed into the page. The current flows from left to right. Using Fleming's left-hand rule, the force on the conductor is directed:",
+    "image_uri": "diagrams/cuet-phy-mag-force-29.png",
+    "image_alt": "A horizontal conductor carrying current I from left to right, placed in a uniform magnetic field B directed into the page (shown by crosses). Force direction to be determined.",
+    "explanation": "Using Fleming's left-hand rule: the forefinger points in the direction of the magnetic field (into the page), the middle finger points in the direction of current (left to right). The thumb then points upward, indicating the force on the conductor is directed upward.",
+    "correct_answer": "B",
+    "concept_tags": ["flemings-left-hand-rule", "force-direction", "conductor-in-field"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "force on current-carrying conductor (F=BIL sinθ)",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Downward", "is_correct": false},
+      {"key": "B", "text": "Upward", "is_correct": true},
+      {"key": "C", "text": "Into the page", "is_correct": false},
+      {"key": "D", "text": "Out of the page", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Downward would result if the current direction were reversed (right to left). Re-apply Fleming's left-hand rule with correct current direction.", "misconception": "Reversing the current direction in Fleming's rule"},
+      {"option_key": "C", "hint": "The force cannot be along the magnetic field direction. F = IL × B is perpendicular to both I and B.", "misconception": "Confusing force direction with field direction"},
+      {"option_key": "D", "hint": "The magnetic field is into the page. The force must be perpendicular to both B and I, which means it must be in the plane of the page (up or down).", "misconception": "Confusing the force direction with the field's opposite direction"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-30",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The diagram shows a rectangular current loop ABCD placed in a uniform magnetic field B directed along the positive x-axis. The loop carries current I in the anticlockwise direction as seen from above. The plane of the loop is in the xz-plane. The net force on the loop is:",
+    "image_uri": "diagrams/cuet-phy-mag-force-30.png",
+    "image_alt": "A rectangular loop ABCD in the xz-plane carrying anticlockwise current I. The uniform magnetic field B is along the positive x-axis. Sides AB and CD are parallel to x-axis; sides BC and DA are parallel to z-axis.",
+    "explanation": "In a uniform magnetic field, the net force on any closed current loop is always zero. This is because the forces on opposite sides of the loop are equal in magnitude but opposite in direction. Sides AB and CD carry current parallel and antiparallel to B respectively, so the force on each is zero (sinθ = 0). Sides BC and DA are perpendicular to B and carry currents in opposite directions, so their forces cancel. The net force is zero, though a net torque may exist.",
+    "correct_answer": "C",
+    "concept_tags": ["current-loop", "uniform-field", "net-force-zero", "torque"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "force on current-carrying conductor (F=BIL sinθ)",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "BIL along the positive y-axis", "is_correct": false},
+      {"key": "B", "text": "2BIL along the positive z-axis", "is_correct": false},
+      {"key": "C", "text": "Zero", "is_correct": true},
+      {"key": "D", "text": "BIL along the negative x-axis", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Individual sides may experience forces, but in a uniform field, forces on opposite sides cancel exactly. The net force on a closed loop in a uniform field is always zero.", "misconception": "Summing magnitudes of forces without considering directions"},
+      {"option_key": "B", "hint": "Forces on sides BC and DA are equal and opposite, so they cancel. The net force is zero in a uniform field.", "misconception": "Forgetting that opposite sides carry current in opposite directions relative to B"},
+      {"option_key": "D", "hint": "No net translational force exists on a closed loop in a uniform field. A net force requires a non-uniform field.", "misconception": "Confusing net force with net torque on the loop"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-31",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "The diagram shows a charged particle of charge +q entering a region with both electric field E (upward) and magnetic field B (into the page) with velocity v directed to the right. For what value of v will the particle travel in a straight line, and what happens if the speed is doubled?",
+    "image_uri": "diagrams/cuet-phy-mag-force-31.png",
+    "image_alt": "A positive charge +q moving to the right with velocity v. Electric field E points upward (arrows). Magnetic field B is directed into the page (crosses). The region has both fields present simultaneously.",
+    "explanation": "For straight-line motion, the electric force qE (upward) must balance the magnetic force qvB (downward, by Fleming's left-hand rule for a positive charge moving right in a field into the page). So qE = qvB, giving v = E/B. If the speed is doubled to 2E/B, the magnetic force becomes 2qE (downward) while the electric force remains qE (upward). The net force is qE downward, and the particle curves downward.",
+    "correct_answer": "D",
+    "concept_tags": ["velocity-selector", "crossed-fields", "force-balance", "deflection"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "velocity selector",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "v = E/B; if doubled, the particle curves upward", "is_correct": false},
+      {"key": "B", "text": "v = B/E; if doubled, the particle curves downward", "is_correct": false},
+      {"key": "C", "text": "v = E/B; if doubled, the particle continues in a straight line", "is_correct": false},
+      {"key": "D", "text": "v = E/B; if doubled, the particle curves downward", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "When v > E/B, the magnetic force (downward) exceeds the electric force (upward), so the net force is downward, not upward.", "misconception": "Reversing the direction of net force when magnetic force dominates"},
+      {"option_key": "B", "hint": "The balance condition is v = E/B, not B/E. From qE = qvB, solving for v gives E/B.", "misconception": "Inverting the velocity selector formula"},
+      {"option_key": "C", "hint": "Straight-line motion requires exact balance qE = qvB. Doubling v breaks this balance, so the particle must curve.", "misconception": "Thinking the particle remains undeflected at all speeds"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-32",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "The diagram shows two long parallel wires P and Q separated by distance d, carrying currents I₁ and I₂ respectively in the same direction (upward). The force on wire Q due to wire P is:",
+    "image_uri": "diagrams/cuet-phy-mag-force-32.png",
+    "image_alt": "Two vertical parallel wires P and Q separated by distance d. Both carry current upward. Wire P carries current I₁ and wire Q carries current I₂. The magnetic field due to P at the location of Q and the resulting force direction are to be determined.",
+    "explanation": "Wire P produces a magnetic field at the location of Q. Using the right-hand rule, the field due to P at Q's location points into the page (for P on the left carrying current upward). Wire Q carries current upward in this field (into the page), so by F = IL × B, the force on Q is directed toward P (attractive). The magnitude is F/L = μ₀I₁I₂/(2πd). Parallel currents in the same direction always attract.",
+    "correct_answer": "A",
+    "concept_tags": ["parallel-currents", "attractive-force", "right-hand-rule", "force-direction"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "force between parallel currents",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Attractive, directed toward wire P, with magnitude μ₀I₁I₂/(2πd) per unit length", "is_correct": true},
+      {"key": "B", "text": "Repulsive, directed away from wire P, with magnitude μ₀I₁I₂/(2πd) per unit length", "is_correct": false},
+      {"key": "C", "text": "Attractive, directed toward wire P, with magnitude μ₀I₁I₂/(4πd) per unit length", "is_correct": false},
+      {"key": "D", "text": "Zero, because the fields from the two wires cancel", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Same-direction currents attract, not repel. Opposite-direction currents repel. This is a fundamental result.", "misconception": "Reversing the attraction/repulsion rule for parallel currents"},
+      {"option_key": "C", "hint": "The formula uses 2π in the denominator, not 4π. F/L = μ₀I₁I₂/(2πd) is the standard result.", "misconception": "Confusing the 2π factor with 4π from Biot-Savart law"},
+      {"option_key": "D", "hint": "Each wire experiences a force due to the other wire's field. The fields do not cancel at the wire locations.", "misconception": "Confusing field superposition at a midpoint with force on a wire"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-33",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The work done by a magnetic force on a charged particle moving in a magnetic field is always zero.\n\nReason (R): The magnetic force on a moving charged particle is always perpendicular to its velocity.",
+    "explanation": "Both A and R are true, and R is the correct explanation of A. The magnetic force F = qv × B is always perpendicular to the velocity v (since the cross product is perpendicular to both vectors). Work is defined as W = F · ds, where ds is along the velocity. Since F is perpendicular to v (and hence to ds), the dot product F · ds = 0 at every instant. Therefore the magnetic force does zero work. R directly explains why A is true.",
+    "correct_answer": "A",
+    "concept_tags": ["work-by-magnetic-force", "perpendicular-force", "lorentz-force"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "Lorentz force",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "R directly explains A: work = F · ds = 0 precisely because F ⊥ v. The perpendicularity is the reason for zero work.", "misconception": "Failing to connect perpendicularity of force with zero work done"},
+      {"option_key": "C", "hint": "R is correct. The cross product v × B is always perpendicular to v by the definition of the cross product.", "misconception": "Thinking the magnetic force can have a component along velocity"},
+      {"option_key": "D", "hint": "A is correct. Since F ⊥ v always, W = ∫F · ds = 0. The magnetic force cannot change the kinetic energy of a particle.", "misconception": "Thinking magnetic force can do work on a charged particle"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-34",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): A charged particle moving parallel to a magnetic field experiences no magnetic force and continues in a straight line.\n\nReason (R): The magnetic force on a charged particle is given by F = qE, where E is the electric field.",
+    "explanation": "Assertion A is true: when a charged particle moves parallel (or antiparallel) to B, the angle θ between v and B is 0° (or 180°), so F = qvB sinθ = 0. The particle experiences no deflection and moves in a straight line. Reason R is false: the magnetic force on a moving charge is F = qv × B (Lorentz force), not F = qE. The expression F = qE describes the electric force, not the magnetic force.",
+    "correct_answer": "C",
+    "concept_tags": ["parallel-motion", "zero-force", "lorentz-force", "electric-vs-magnetic"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "Lorentz force",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are true but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": true},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "R states an incorrect formula. The magnetic force is F = qv × B, not F = qE. F = qE is the electric force.", "misconception": "Confusing the electric force formula with the magnetic force formula"},
+      {"option_key": "B", "hint": "R is factually incorrect as it gives the electric force formula instead of the magnetic force formula.", "misconception": "Accepting an incorrect formula as true"},
+      {"option_key": "D", "hint": "A is correct: when v is parallel to B, sinθ = 0 in F = qvBsinθ, so F = 0 and the particle is undeflected.", "misconception": "Thinking a charged particle always experiences force in a magnetic field"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-35",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "When a charged particle enters a uniform magnetic field at an angle θ (where 0° < θ < 90°) to the field direction, it follows a helical path with its axis along the magnetic field direction.",
+    "explanation": "This statement is TRUE. When a charged particle enters a magnetic field at an angle θ to B, its velocity has two components: v‖ = vcosθ (along B) and v⊥ = vsinθ (perpendicular to B). The perpendicular component causes circular motion, while the parallel component causes uniform linear motion along B. The combination of circular motion perpendicular to B and linear motion along B produces a helical (spiral) path with its axis along B.",
+    "correct_answer": "A",
+    "concept_tags": ["helical-motion", "velocity-components", "angle-entry"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "helical motion",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The velocity component along B is unaffected by the magnetic force (F = qv × B has no component along B). This component causes forward drift while the perpendicular component causes circular motion, resulting in a helix.", "misconception": "Thinking the particle follows a circular path even when it has a velocity component along B"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-36",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The force between two parallel wires carrying currents in opposite directions is attractive.",
+    "explanation": "This statement is FALSE. When two parallel wires carry currents in opposite directions, the force between them is repulsive, not attractive. Using the right-hand rule and F = IL × B, the magnetic field produced by one wire at the location of the other wire creates a force that pushes the wires apart. The rule is: same-direction currents attract, opposite-direction currents repel.",
+    "correct_answer": "B",
+    "concept_tags": ["parallel-currents", "repulsive-force", "opposite-currents"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "force between parallel currents",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": false},
+      {"key": "B", "text": "False", "is_correct": true},
+      {"key": "C", "text": "---", "is_correct": false},
+      {"key": "D", "text": "---", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Apply the right-hand rule: the field from one wire at the other wire's location, combined with the opposite current direction, gives a repulsive force. Same-direction currents attract; opposite-direction currents repel.", "misconception": "Confusing the rule for same and opposite direction currents"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-37",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "A proton (mass = 1.67 × 10⁻²⁷ kg, charge = 1.6 × 10⁻¹⁹ C) moves in a circular path of radius 0.1 m in a magnetic field of 0.5 T. The speed of the proton is approximately ________ m/s.",
+    "explanation": "For circular motion in a magnetic field: qvB = mv²/r, giving v = qBr/m. Substituting: v = (1.6 × 10⁻¹⁹ × 0.5 × 0.1)/(1.67 × 10⁻²⁷) = (8 × 10⁻²¹)/(1.67 × 10⁻²⁷) = 4.79 × 10⁶ ≈ 4.8 × 10⁶ m/s.",
+    "correct_answer": "D",
+    "concept_tags": ["circular-motion", "proton-speed", "radius-formula"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "motion of charge in magnetic field",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "4.8 × 10⁴", "is_correct": false},
+      {"key": "B", "text": "4.8 × 10⁵", "is_correct": false},
+      {"key": "C", "text": "4.8 × 10⁷", "is_correct": false},
+      {"key": "D", "text": "4.8 × 10⁶", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Check your powers of 10: (10⁻¹⁹ × 10⁻¹)/(10⁻²⁷) = 10⁻²⁰⁺²⁷ = 10⁷, not 10⁴.", "misconception": "Error in handling powers of 10"},
+      {"option_key": "B", "hint": "The exponent should be 6, not 5. Recount: 10⁻¹⁹ × 10⁻¹ = 10⁻²⁰; dividing by 10⁻²⁷ gives 10⁷; the coefficient 8/1.67 ≈ 4.8 adjusts this to ~4.8 × 10⁶.", "misconception": "Off-by-one error in exponent arithmetic"},
+      {"option_key": "C", "hint": "This would make the proton travel at nearly 1/6 the speed of light for a 0.5 T field and 0.1 m radius, which is too fast. Check the coefficient calculation.", "misconception": "Incorrect division of the numerical coefficient"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-38",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "scenario": "A cyclotron is used to accelerate protons (mass = 1.67 × 10⁻²⁷ kg, charge = 1.6 × 10⁻¹⁹ C). The cyclotron has a magnetic field of 1.5 T and the radius of the dees is 0.5 m. The oscillating electric field between the dees accelerates the protons each time they cross the gap.",
+    "question_text": "What is the maximum kinetic energy (in MeV) that the protons can achieve in this cyclotron? (1 MeV = 1.6 × 10⁻¹³ J)",
+    "explanation": "The maximum speed is achieved when the proton reaches the edge of the dee: v_max = qBR/m = (1.6 × 10⁻¹⁹ × 1.5 × 0.5)/(1.67 × 10⁻²⁷) = (1.2 × 10⁻¹⁹)/(1.67 × 10⁻²⁷) = 7.19 × 10⁷ m/s. Maximum KE = ½mv² = ½ × 1.67 × 10⁻²⁷ × (7.19 × 10⁷)² = ½ × 1.67 × 10⁻²⁷ × 5.17 × 10¹⁵ = 4.32 × 10⁻¹² J. Converting to MeV: 4.32 × 10⁻¹² / 1.6 × 10⁻¹³ = 27 MeV. Alternatively, KE = q²B²R²/(2m) = (1.6 × 10⁻¹⁹)² × (1.5)² × (0.5)² / (2 × 1.67 × 10⁻²⁷) = (2.56 × 10⁻³⁸ × 2.25 × 0.25)/(3.34 × 10⁻²⁷) = 1.44 × 10⁻³⁸/(3.34 × 10⁻²⁷) ≈ 4.31 × 10⁻¹² J ≈ 27 MeV.",
+    "correct_answer": "C",
+    "concept_tags": ["cyclotron", "maximum-kinetic-energy", "proton-acceleration", "dee-radius"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "cyclotron",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "13.5 MeV", "is_correct": false},
+      {"key": "B", "text": "54 MeV", "is_correct": false},
+      {"key": "C", "text": "27 MeV", "is_correct": true},
+      {"key": "D", "text": "6.75 MeV", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This is half the correct answer. Ensure you are using KE = q²B²R²/(2m) and not missing any squared term.", "misconception": "Missing the square on one of the quantities in the KE formula"},
+      {"option_key": "B", "hint": "This is double the correct answer. Check the factor of 2 in the denominator of KE = ½mv².", "misconception": "Forgetting the factor of ½ in the kinetic energy formula"},
+      {"option_key": "D", "hint": "This is one-fourth of the correct value. Verify that you have squared both B and R in the formula.", "misconception": "Forgetting to square the magnetic field or radius"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-39",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "logical-sequence",
+    "difficulty": "easy",
+    "question_text": "Arrange the following steps in the correct order for determining the force on a current-carrying conductor placed in a magnetic field using the formula F = BIL sinθ.",
+    "items": [
+      {"id": "1", "text": "Calculate F = BIL sinθ by substituting the known values"},
+      {"id": "2", "text": "Identify the magnetic field strength B and current I in the conductor of length L"},
+      {"id": "3", "text": "Use Fleming's left-hand rule to determine the direction of the force"},
+      {"id": "4", "text": "Determine the angle θ between the current direction and the magnetic field"}
+    ],
+    "correct_order": ["2", "4", "1", "3"],
+    "explanation": "The correct sequence is: (Step 2) First identify the given quantities: B, I, and L. (Step 4) Determine the angle θ between the current direction and the magnetic field. (Step 1) Substitute all values into F = BIL sinθ to calculate the magnitude. (Step 3) Finally, use Fleming's left-hand rule to find the direction of the force.",
+    "correct_answer": "B",
+    "concept_tags": ["force-calculation-steps", "BIL-formula", "flemings-rule"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "force on current-carrying conductor (F=BIL sinθ)",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "2 → 1 → 4 → 3", "is_correct": false},
+      {"key": "B", "text": "2 → 4 → 1 → 3", "is_correct": true},
+      {"key": "C", "text": "4 → 2 → 3 → 1", "is_correct": false},
+      {"key": "D", "text": "3 → 2 → 4 → 1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "You cannot calculate F = BIL sinθ (step 1) before determining θ (step 4). The angle is needed for the substitution.", "misconception": "Attempting calculation before all variables are identified"},
+      {"option_key": "C", "hint": "You should identify B, I, and L (step 2) before determining the angle (step 4), as you need to know the setup first.", "misconception": "Starting with angle determination before understanding the physical setup"},
+      {"option_key": "D", "hint": "Fleming's rule (step 3) gives direction, which is typically determined after computing the magnitude. You also need B and I first.", "misconception": "Determining force direction before identifying the physical quantities"}
+    ]
+  },
+  {
+    "id": "cuet-phy-mag-force-40",
+    "chapter_id": "cuet-phy-magnetic-effects",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "Arrange the following phenomena in order of increasing magnetic force experienced, from least to greatest, for identical charged particles (charge q, mass m) moving with speed v.",
+    "items": [
+      {"id": "1", "text": "Particle moving parallel to a uniform magnetic field B: F = qvB sin0° = 0"},
+      {"id": "2", "text": "Particle moving at 30° to a uniform magnetic field B: F = qvB sin30° = 0.5qvB"},
+      {"id": "3", "text": "Particle moving at 60° to a uniform magnetic field B: F = qvB sin60° = 0.866qvB"},
+      {"id": "4", "text": "Particle moving perpendicular to a uniform magnetic field B: F = qvB sin90° = qvB"}
+    ],
+    "correct_order": ["1", "2", "3", "4"],
+    "explanation": "The magnetic force on a charged particle is F = qvB sinθ. As the angle θ between v and B increases from 0° to 90°, sinθ increases from 0 to 1. At θ = 0° (parallel): F = 0. At θ = 30°: F = 0.5qvB. At θ = 60°: F = 0.866qvB. At θ = 90° (perpendicular): F = qvB (maximum). The order from least to greatest force is: parallel (0°) → 30° → 60° → perpendicular (90°), i.e., 1 → 2 → 3 → 4.",
+    "correct_answer": "D",
+    "concept_tags": ["angle-dependence", "sinθ-variation", "magnetic-force-comparison"],
+    "topic": "Force on Current and Moving Charges",
+    "subtopic": "Lorentz force",
+    "subject": "cuet-physics",
+    "chapter": "Magnetic Effects of Current",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "4 → 3 → 2 → 1", "is_correct": false},
+      {"key": "B", "text": "1 → 3 → 2 → 4", "is_correct": false},
+      {"key": "C", "text": "2 → 1 → 3 → 4", "is_correct": false},
+      {"key": "D", "text": "1 → 2 → 3 → 4", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This is the order from greatest to least, but the question asks for least to greatest (increasing order).", "misconception": "Reversing the required ordering direction"},
+      {"option_key": "B", "hint": "sin60° > sin30°, so the force at 60° is greater than at 30°. Items 2 and 3 are in wrong order here.", "misconception": "Incorrectly ranking sin30° and sin60°"},
+      {"option_key": "C", "hint": "A particle moving parallel to B (item 1) has zero force, which is less than force at 30° (item 2). Item 1 should come first.", "misconception": "Thinking a parallel-moving particle experiences some force"}
+    ]
+  }
+]

@@ -745,7 +745,7 @@
   },
   {
     "id": "cuet-phy-waveopt-diffraction-13",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "question_text": "Assertion (A): The resolving power of a telescope increases with increase in the diameter of its objective lens.\nReason (R): The limit of resolution of a telescope is given by θ = 1.22λ/D, where D is the diameter of the objective.",
     "explanation": "The assertion is correct: increasing the diameter D of the objective lens decreases the minimum resolvable angle θ = 1.22λ/D, which means the telescope can resolve finer angular details, i.e., its resolving power increases. The reason is also correct: the formula θ = 1.22λ/D is indeed Rayleigh's criterion for the limit of resolution of a telescope. Moreover, the reason correctly explains why the assertion is true — as D increases, θ decreases, so resolving power (which is 1/θ or D/1.22λ) increases.",
@@ -807,7 +807,7 @@
   },
   {
     "id": "cuet-phy-waveopt-diffraction-14",
-    "question_type": "assertion_reasoning",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "question_text": "Assertion (A): In a single slit diffraction experiment, if the slit width is made very large compared to the wavelength, the diffraction pattern disappears and the screen is uniformly illuminated.\nReason (R): Diffraction effects are significant only when the size of the obstacle or aperture is comparable to the wavelength of light.",
     "explanation": "The assertion is correct: when the slit width 'a' is much larger than the wavelength λ (a >> λ), the angular width of the central maximum 2λ/a becomes extremely small, essentially approaching zero. The diffraction fringes become so narrow and closely spaced that they are unobservable, and the light appears to travel in straight lines producing a uniformly illuminated region behind the slit (geometric shadow limit). The reason is also correct: diffraction is most prominent when the aperture size is of the order of the wavelength. Furthermore, the reason correctly explains the assertion — when 'a' >> λ, the aperture is no longer comparable to the wavelength, so diffraction effects become negligible.",
@@ -869,7 +869,7 @@
   },
   {
     "id": "cuet-phy-waveopt-diffraction-15",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "question_text": "Match Column I with Column II:\n\nColumn I:\nA. Resolving power of telescope\nB. Limit of resolution of microscope\nC. Angular width of central maximum (single slit)\nD. Condition for nth minimum (single slit)\n\nColumn II:\n1. a sin θ = nλ\n2. D/(1.22λ)\n3. λ/(2n sinθ)\n4. 2λ/a",
     "explanation": "A-2: The resolving power of a telescope is D/(1.22λ), where D is the objective diameter. B-3: The limit of resolution of a microscope is d_min = λ/(2n sinθ), where n sinθ is the numerical aperture. C-4: The angular width of the central maximum in single slit diffraction is 2λ/a. D-1: The condition for the nth minimum in single slit diffraction is a sin θ = nλ.",
@@ -931,7 +931,7 @@
   },
   {
     "id": "cuet-phy-waveopt-diffraction-16",
-    "question_type": "match_the_following",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "question_text": "Match Column I with Column II:\n\nColumn I:\nA. Fresnel diffraction\nB. Fraunhofer diffraction\nC. Diffraction grating resolving power\nD. Width of central maximum on screen (single slit)\n\nColumn II:\n1. 2λD/a (where D is slit-to-screen distance)\n2. nN (where n is order and N is total number of slits)\n3. Source and screen at infinite distance\n4. Source or screen at finite distance",
     "explanation": "A-4: In Fresnel diffraction, either the source or the screen (or both) is at a finite distance from the diffracting element. B-3: In Fraunhofer diffraction, both source and screen are effectively at infinite distance (parallel incident rays and observation at infinity or focal plane of lens). C-2: The resolving power of a diffraction grating is nN, where n is the order of diffraction and N is the total number of slits. D-1: The linear width of the central maximum on the screen in single slit diffraction is 2λD/a, where D is the distance from the slit to the screen.",
@@ -993,7 +993,7 @@
   },
   {
     "id": "cuet-phy-waveopt-diffraction-17",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "In single slit diffraction, the central maximum is twice as wide as the secondary maxima.",
     "explanation": "This statement is TRUE. In single slit Fraunhofer diffraction, the minima occur at angles given by a sinθ = nλ (n = ±1, ±2, ...). The central maximum extends from the first minimum on one side (θ = -λ/a) to the first minimum on the other side (θ = +λ/a), giving an angular width of 2λ/a. Each secondary maximum has an angular width of approximately λ/a (the spacing between consecutive minima). Therefore, the central maximum is twice the width of any secondary maximum.",
@@ -1055,7 +1055,7 @@
   },
   {
     "id": "cuet-phy-waveopt-diffraction-18",
-    "question_type": "true_false",
+    "question_type": "true-false",
     "difficulty": "easy",
     "question_text": "The resolving power of a microscope increases when the wavelength of light used is increased.",
     "explanation": "This statement is FALSE. The resolving power of a microscope is given by RP = 2n sinθ/λ, where n sinθ is the numerical aperture. Since λ appears in the denominator, increasing the wavelength decreases the resolving power. To increase the resolving power of a microscope, one should use light of shorter wavelength (such as ultraviolet light or electron beams in electron microscopes).",
@@ -1117,7 +1117,7 @@
   },
   {
     "id": "cuet-phy-waveopt-diffraction-19",
-    "question_type": "fill_in_the_blanks",
+    "question_type": "fill-in-blanks",
     "difficulty": "medium",
     "question_text": "The resolving power of a diffraction grating in the nth order with a total of N slits is given by RP = _____.",
     "explanation": "The resolving power of a diffraction grating is defined as RP = λ/Δλ, where Δλ is the minimum resolvable wavelength difference. According to the Rayleigh criterion applied to a diffraction grating, the resolving power equals the product of the order of diffraction (n) and the total number of slits (N): RP = nN. This means higher order diffraction and more slits both improve the ability to distinguish closely spaced spectral lines.",
@@ -1179,7 +1179,7 @@
   },
   {
     "id": "cuet-phy-waveopt-diffraction-20",
-    "question_type": "scenario_based",
+    "question_type": "scenario-based",
     "difficulty": "medium",
     "question_text": "An astronomer is observing binary stars (two stars very close together) using two telescopes: Telescope P with an objective diameter of 100 cm and Telescope Q with an objective diameter of 50 cm. Both observations are made using light of wavelength 5500 Å. If Telescope P can just resolve the two stars, what can be said about the observation through Telescope Q?",
     "explanation": "The minimum angular separation that can be resolved is θ = 1.22λ/D. For Telescope P: θ_P = 1.22 × 5.5 × 10⁻⁷ / 1.0 = 6.71 × 10⁻⁷ rad. For Telescope Q: θ_Q = 1.22 × 5.5 × 10⁻⁷ / 0.5 = 1.342 × 10⁻⁶ rad. Since Q has half the diameter, its limit of resolution is twice that of P. If Telescope P just resolves the two stars (their angular separation equals θ_P), then Telescope Q cannot resolve them because its limit of resolution θ_Q = 2θ_P is larger than the actual angular separation of the stars. The two stars would appear as a single unresolved image through Telescope Q.",
