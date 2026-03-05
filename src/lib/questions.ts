@@ -100,6 +100,19 @@ export async function fetchQuestionsByChapter(
       return { ok: false, error: 'no-questions' };
     }
 
+    // DEBUG: log raw Supabase response for the first question
+    if (data.length > 0) {
+      const sample = data[0] as Record<string, unknown>;
+      console.log(`[questions DEBUG] chapter=${resolvedId}, count=${data.length}`);
+      console.log(`[questions DEBUG] question_text="${String(sample.question_text || '').slice(0, 80)}"`);
+      const opts = sample.med_question_options as Array<Record<string, unknown>> | undefined;
+      if (opts && opts.length > 0) {
+        console.log(`[questions DEBUG] option_text[0]="${String(opts[0]?.option_text || '').slice(0, 80)}"`);
+      } else {
+        console.log(`[questions DEBUG] NO options returned by Supabase`);
+      }
+    }
+
     const questions = (data as unknown as DbQuestion[]).map(dbToV2);
     cache.set(resolvedId, questions);
     return { ok: true, questions };

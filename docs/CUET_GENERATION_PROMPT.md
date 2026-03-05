@@ -9,8 +9,10 @@
 
 Read the following files first:
 1. `docs/CUET_GENERATION_PROMPT.md` (this file — for current statistics)
-2. `docs/CUET_PHYSICS_GENERATION_PLAN.md` (Physics batch registry + protocol)
-3. `docs/SESSION_HANDOVER.md` (JSON schema, rules, elimination hints format)
+2. `docs/CUET_MASTER_PLAN.md` (all subjects, chapters, DB IDs)
+3. `docs/CUET_PHYSICS_GENERATION_PLAN.md` (Physics batch registry + protocol)
+4. `docs/CUET_ACCOUNTANCY_GENERATION_PLAN.md` (Accountancy batch registry + protocol)
+5. `docs/SESSION_HANDOVER.md` (JSON schema, rules, elimination hints format)
 
 ---
 
@@ -18,12 +20,26 @@ Read the following files first:
 
 ### CUET Question Bank — All Subjects
 
-| Subject | Target | Existing (Copied) | New Generated | Total | Remaining | % Done |
-|---------|--------|-------------------|---------------|-------|-----------|--------|
-| **Physics** | 2,560 | 680 | 140 | 820 | 1,740 | 32% |
-| **Chemistry** | TBD | 0 | 0 | 0 | TBD | 0% |
-| **Biology** | TBD | 0 | 0 | 0 | TBD | 0% |
-| **TOTAL** | ~2,560+ | 680 | 140 | 820 | ~1,740+ | — |
+| # | Subject | Chapters | Target | Copied | New | Total | % Done |
+|---|---------|----------|--------|--------|-----|-------|--------|
+| 1 | **Physics** | 10 | 2,560 | 680 | 140 | 820 | 32% |
+| 2 | **Chemistry** | 10 | TBD | 0 | 0 | 0 | 0% |
+| 3 | **Biology** | 13 | TBD | 0 | 0 | 0 | 0% |
+| 4 | **Mathematics** | 13 | TBD | 0 | 0 | 0 | 0% |
+| 5 | **Accountancy** | 11 | 720 | 0 | 160 | 160 | 22% |
+| 6 | **Business Studies** | 12 | TBD | 0 | 0 | 0 | 0% |
+| 7 | **Economics** | 16 | TBD | 0 | 0 | 0 | 0% |
+| 8 | **History** | 13 | TBD | 0 | 0 | 0 | 0% |
+| 9 | **Political Science** | 16 | TBD | 0 | 0 | 0 | 0% |
+| 10 | **Geography** | 12 | TBD | 0 | 0 | 0 | 0% |
+| 11 | **Psychology** | 9 | TBD | 0 | 0 | 0 | 0% |
+| 12 | **Sociology** | 12 | TBD | 0 | 0 | 0 | 0% |
+| 13 | **Computer Science** | 10 | TBD | 0 | 0 | 0 | 0% |
+| 14 | **Legal Studies** | 10 | TBD | 0 | 0 | 0 | 0% |
+| 15 | **Physical Education** | 10 | TBD | 0 | 0 | 0 | 0% |
+| 16 | **Home Science** | 9 | TBD | 0 | 0 | 0 | 0% |
+| 17 | **English** | 8 | TBD | 0 | 0 | 0 | 0% |
+| | **TOTAL** | **194** | — | 680 | 300 | 980 | — |
 
 ### NEET Question Bank — All Subjects (Qbank/generated/)
 
@@ -49,6 +65,22 @@ Read the following files first:
 | 8 | Atoms & Nuclei (5 topics: B35-B39) | 80 | 0 | 80 | 280 | 29% |
 | 9 | Electronic Devices (5 topics: B40-B44) | 60 | 0 | 60 | 260 | 23% |
 | 10 | Communication (3 topics: B45-B47) | 0 | 0 | 0 | 120 | 0% |
+
+### CUET Accountancy — Chapter Progress Detail
+
+| # | Chapter | DB Chapter ID | New | Total | Target | Status |
+|---|---------|---------------|-----|-------|--------|--------|
+| 1 | Partnership Basics | cuet-acc-partnership-basics | 80 | 80 | 80 | 100% |
+| 2 | Change in Profit-Sharing Ratio | cuet-acc-profit-sharing | 40 | 40 | 40 | 100% |
+| 3 | Admission of a Partner | cuet-acc-partner-admission | 40 | 40 | 80 | 50% |
+| 4 | Retirement & Death | cuet-acc-partner-retirement | 0 | 0 | 80 | 0% |
+| 5 | Dissolution | cuet-acc-dissolution | 0 | 0 | 40 | 0% |
+| 6 | Share Capital | cuet-acc-share-capital | 0 | 0 | 80 | 0% |
+| 7 | Debentures | cuet-acc-debentures | 0 | 0 | 80 | 0% |
+| 8 | Financial Statements | cuet-acc-financial-statements | 0 | 0 | 40 | 0% |
+| 9 | Statement Analysis | cuet-acc-statement-analysis | 0 | 0 | 40 | 0% |
+| 10 | Accounting Ratios | cuet-acc-ratios | 0 | 0 | 80 | 0% |
+| 11 | Cash Flow Statement | cuet-acc-cash-flow | 0 | 0 | 80 | 0% |
 
 ### CUET Chemistry — Chapter Progress Detail
 
@@ -87,14 +119,15 @@ Read the following files first:
 
 ## SESSION RULES
 
-1. **Generate up to 400 questions per session** (10 batches × 40 Qs)
+1. **Generate up to 400 questions per session** (10 batches x 40 Qs)
 2. **Ask user which subject** to work on — show statistics above, let them decide
-3. **Dual output** — every batch saves CUET version + NEET version
-4. **Chapter IDs must match DB** — see mapping below
-5. **No duplicate question stems** — read existing NEET JSONs for that chapter first
-6. **Every question must have `elimination_hints`** — mandatory for VaNi app
-7. **Follow type mix EXACTLY** — see strict breakdown below
-8. **Every special type must include its required payload fields** — see type-specific rules below
+3. **Dual output for Science subjects** — Physics, Chemistry, Biology save CUET + NEET versions
+4. **CUET-only for non-science subjects** — Math, Accountancy, Business, Economics, History, PolSci, Geography, Psychology, Sociology, CS, Legal, PE, Home Sci, English (no NEET copy needed)
+5. **Chapter IDs must match DB** — see mapping below or `docs/CUET_MASTER_PLAN.md`
+6. **No duplicate question stems** — read existing JSONs for that chapter first
+7. **Every question must have `elimination_hints`** — mandatory for VaNi app
+8. **Follow type mix EXACTLY** — see strict breakdown below
+9. **Every special type must include its required payload fields** — see type-specific rules below
 
 ---
 
@@ -118,7 +151,7 @@ Read the following files first:
 
 ### Validation before saving — count ALL types:
 ```
-MCQ=20  Diagram=4  AR=4  TF=4  MTF=2  FIB=2  Scenario=2  Sequence=2  → Total=40
+MCQ=20  Diagram=4  AR=4  TF=4  MTF=2  FIB=2  Scenario=2  Sequence=2  -> Total=40
 ```
 **If any count is wrong, FIX IT before saving. Do NOT save a batch with missing types.**
 
@@ -163,7 +196,7 @@ The app shows the question text, then 4 tappable option cards labeled A/B/C/D.
   "id": "cuet-phy-elec-coulomb-01",
   "chapter_id": "cuet-phy-electrostatics",
   "question_type": "mcq",
-  "question_text": "Two point charges of +2μC and -3μC are placed 30 cm apart. What is the magnitude of the electric force between them?",
+  "question_text": "Two point charges of +2uC and -3uC are placed 30 cm apart. What is the magnitude of the electric force between them?",
   "options": [
     { "key": "A", "text": "0.2 N", "is_correct": false },
     { "key": "B", "text": "0.6 N", "is_correct": true },
@@ -171,7 +204,7 @@ The app shows the question text, then 4 tappable option cards labeled A/B/C/D.
     { "key": "D", "text": "0.06 N", "is_correct": false }
   ],
   "correct_answer": "B",
-  "explanation": "Using Coulomb's law: F = kq₁q₂/r² = 9×10⁹ × 2×10⁻⁶ × 3×10⁻⁶ / (0.3)² = 0.6 N",
+  "explanation": "Using Coulomb's law: F = kq1q2/r2 = 9x10^9 x 2x10^-6 x 3x10^-6 / (0.3)^2 = 0.6 N",
   "difficulty": "medium",
   "topic": "Coulomb's Law",
   "subtopic": "Force between point charges",
@@ -180,8 +213,8 @@ The app shows the question text, then 4 tappable option cards labeled A/B/C/D.
   "exam_suitability": ["CUET", "NEET"],
   "elimination_hints": [
     { "option_key": "A", "hint": "This would be the answer if r = 0.3m was squared incorrectly", "misconception": "Forgetting to square the distance" },
-    { "option_key": "C", "hint": "Double the correct value — check the product of charges", "misconception": "Using 4μC instead of 2μC" },
-    { "option_key": "D", "hint": "Off by a factor of 10 — check unit conversions", "misconception": "Converting μC to C incorrectly" }
+    { "option_key": "C", "hint": "Double the correct value -- check the product of charges", "misconception": "Using 4uC instead of 2uC" },
+    { "option_key": "D", "hint": "Off by a factor of 10 -- check unit conversions", "misconception": "Converting uC to C incorrectly" }
   ]
 }
 ```
@@ -211,7 +244,7 @@ The app renders a **STATEMENT** card, then two large **True / False** buttons. N
   "bloom_level": "remember",
   "exam_suitability": ["CUET", "NEET"],
   "elimination_hints": [
-    { "option_key": "B", "hint": "Recall Gauss's law — no enclosed charge means E=0 inside", "misconception": "Confusing hollow conductor with solid conductor" }
+    { "option_key": "B", "hint": "Recall Gauss's law -- no enclosed charge means E=0 inside", "misconception": "Confusing hollow conductor with solid conductor" }
   ]
 }
 ```
@@ -252,18 +285,18 @@ The app renders separate **ASSERTION (A)** and **REASON (R)** styled cards, then
   "bloom_level": "analyze",
   "exam_suitability": ["CUET", "NEET"],
   "elimination_hints": [
-    { "option_key": "B", "hint": "R directly explains why the field is uniform — the large plate assumption", "misconception": "Not seeing the causal link between plate size and field uniformity" },
-    { "option_key": "C", "hint": "R is factually correct — capacitor plates ARE large compared to separation", "misconception": "Thinking the reason is a false statement" },
-    { "option_key": "D", "hint": "A is factually correct — the field IS uniform between the plates", "misconception": "Confusing edge fringing with the central region" }
+    { "option_key": "B", "hint": "R directly explains why the field is uniform -- the large plate assumption", "misconception": "Not seeing the causal link between plate size and field uniformity" },
+    { "option_key": "C", "hint": "R is factually correct -- capacitor plates ARE large compared to separation", "misconception": "Thinking the reason is a false statement" },
+    { "option_key": "D", "hint": "A is factually correct -- the field IS uniform between the plates", "misconception": "Confusing edge fringing with the central region" }
   ]
 }
 ```
 
 **Rules:**
 - `question_text` MUST contain: `Assertion (A): ...\nReason (R): ...` (the app parses this as fallback)
-- `assertion` field = ONLY the assertion text (stored in `payload.assertion` — app reads this first)
-- `reason` field = ONLY the reason text (stored in `payload.reason` — app reads this first)
-- **ALWAYS include both `assertion` and `reason` as separate fields** — the app prefers them over parsing question_text
+- `assertion` field = ONLY the assertion text (stored in `payload.assertion` -- app reads this first)
+- `reason` field = ONLY the reason text (stored in `payload.reason` -- app reads this first)
+- **ALWAYS include both `assertion` and `reason` as separate fields** -- the app prefers them over parsing question_text
 - Options MUST use standard NEET wording (see example above)
 
 ---
@@ -307,7 +340,7 @@ The app renders **Column I** and **Column II** tables, then 4 mapping options.
   "exam_suitability": ["CUET", "NEET"],
   "elimination_hints": [
     { "option_key": "B", "hint": "Charge is not measured in Volts", "misconception": "Confusing charge with potential" },
-    { "option_key": "C", "hint": "Electric potential is not V/m — that's the field", "misconception": "Mixing up potential and field units" },
+    { "option_key": "C", "hint": "Electric potential is not V/m -- that is the field", "misconception": "Mixing up potential and field units" },
     { "option_key": "D", "hint": "Farad is the unit of capacitance, not charge", "misconception": "Confusing capacitance with charge" }
   ]
 }
@@ -315,10 +348,10 @@ The app renders **Column I** and **Column II** tables, then 4 mapping options.
 
 **Rules:**
 - `question_text` MUST contain Column I + Column II formatted text (app parses this as fallback)
-- `column_a` = array of `{id, text}` — stored in `payload.column_a` (app reads this first)
-- `column_b` = array of `{id, text}` — stored in `payload.column_b` (app reads this first)
-- `correct_mapping` = `{colA_id: colB_id}` — stored in `payload.correct_mapping`
-- **ALWAYS include `column_a`, `column_b`, `correct_mapping`** — fallback parsing is fragile
+- `column_a` = array of `{id, text}` -- stored in `payload.column_a` (app reads this first)
+- `column_b` = array of `{id, text}` -- stored in `payload.column_b` (app reads this first)
+- `correct_mapping` = `{colA_id: colB_id}` -- stored in `payload.correct_mapping`
+- **ALWAYS include `column_a`, `column_b`, `correct_mapping`** -- fallback parsing is fragile
 - Column I items: use `(P)`, `(Q)`, `(R)`, `(S)` labels
 - Column II items: use `(i)`, `(ii)`, `(iii)`, `(iv)` labels
 - Options: mapping strings like `"P-iii, Q-iv, R-ii, S-i"`
@@ -338,12 +371,12 @@ The app renders a **FILL IN THE BLANK(S)** card with blanks highlighted as style
   "text_with_blanks": "The SI unit of electric flux is ______.",
   "options": [
     { "key": "A", "text": "N/C", "is_correct": false },
-    { "key": "B", "text": "V·m", "is_correct": false },
-    { "key": "C", "text": "N·m²/C", "is_correct": true },
-    { "key": "D", "text": "C/m²", "is_correct": false }
+    { "key": "B", "text": "V*m", "is_correct": false },
+    { "key": "C", "text": "N*m^2/C", "is_correct": true },
+    { "key": "D", "text": "C/m^2", "is_correct": false }
   ],
   "correct_answer": "C",
-  "explanation": "Electric flux Φ = E·A has units of (N/C)·m² = N·m²/C",
+  "explanation": "Electric flux = E*A has units of (N/C)*m^2 = N*m^2/C",
   "difficulty": "easy",
   "topic": "Gauss's Law",
   "subtopic": "Electric flux",
@@ -352,16 +385,16 @@ The app renders a **FILL IN THE BLANK(S)** card with blanks highlighted as style
   "exam_suitability": ["CUET", "NEET"],
   "elimination_hints": [
     { "option_key": "A", "hint": "N/C is the unit of electric field, not flux", "misconception": "Confusing field with flux" },
-    { "option_key": "B", "hint": "V·m is volt-metre — check the dimensions of E·A", "misconception": "Incomplete dimensional analysis" },
-    { "option_key": "D", "hint": "C/m² is the unit of surface charge density", "misconception": "Confusing flux with charge density" }
+    { "option_key": "B", "hint": "V*m is volt-metre -- check the dimensions of E*A", "misconception": "Incomplete dimensional analysis" },
+    { "option_key": "D", "hint": "C/m^2 is the unit of surface charge density", "misconception": "Confusing flux with charge density" }
   ]
 }
 ```
 
 **Rules:**
-- `text_with_blanks` = the sentence with `______` (3+ underscores) for each blank — stored in `payload.text_with_blanks`, rendered in a styled card with highlighted blanks
+- `text_with_blanks` = the sentence with `______` (3+ underscores) for each blank -- stored in `payload.text_with_blanks`, rendered in a styled card with highlighted blanks
 - `question_text` = same text OR a short instruction (the app shows this in the header box and `text_with_blanks` in the blanks card)
-- **ALWAYS include `text_with_blanks`** — without it, question_text gets duplicated in both the header and the blanks card
+- **ALWAYS include `text_with_blanks`** -- without it, question_text gets duplicated in both the header and the blanks card
 - Use `______` (6 underscores) to mark blanks
 - Options are the possible answers to fill in
 
@@ -377,7 +410,7 @@ The app renders a purple **SCENARIO** card with context text, a transition promp
   "chapter_id": "cuet-phy-electrostatics",
   "question_type": "scenario-based",
   "question_text": "What is the approximate percentage error in the voltmeter reading compared to the true potential difference?",
-  "scenario": "A physics student measures the potential difference across a 5Ω resistor carrying 2A current. She then connects a voltmeter with internal resistance 1000Ω across it and notes the reading.",
+  "scenario": "A physics student measures the potential difference across a 5 ohm resistor carrying 2A current. She then connects a voltmeter with internal resistance 1000 ohm across it and notes the reading.",
   "options": [
     { "key": "A", "text": "0.1%", "is_correct": false },
     { "key": "B", "text": "0.5%", "is_correct": true },
@@ -385,7 +418,7 @@ The app renders a purple **SCENARIO** card with context text, a transition promp
     { "key": "D", "text": "5.0%", "is_correct": false }
   ],
   "correct_answer": "B",
-  "explanation": "The voltmeter in parallel: effective R = 5×1000/(5+1000) ≈ 4.975Ω. Error = (5-4.975)/5 × 100 ≈ 0.5%",
+  "explanation": "The voltmeter in parallel: effective R = 5x1000/(5+1000) = 4.975 ohm. Error = (5-4.975)/5 x 100 = 0.5%",
   "difficulty": "hard",
   "topic": "Current Electricity",
   "subtopic": "Measurement errors",
@@ -394,16 +427,16 @@ The app renders a purple **SCENARIO** card with context text, a transition promp
   "exam_suitability": ["CUET", "NEET"],
   "elimination_hints": [
     { "option_key": "A", "hint": "0.1% would require an even higher voltmeter resistance", "misconception": "Overestimating voltmeter accuracy" },
-    { "option_key": "C", "hint": "1% error would occur with a 500Ω voltmeter, not 1000Ω", "misconception": "Incorrect parallel resistance calculation" },
+    { "option_key": "C", "hint": "1% error would occur with a 500 ohm voltmeter, not 1000 ohm", "misconception": "Incorrect parallel resistance calculation" },
     { "option_key": "D", "hint": "5% error implies the voltmeter resistance equals the measured resistance", "misconception": "Confusing percentage error formula" }
   ]
 }
 ```
 
 **Rules:**
-- `scenario` = ONLY the context paragraph (3-5 sentences) — stored in `payload.scenario`, rendered in the SCENARIO card
-- `question_text` = ONLY the actual question being asked — shown in the header box above the scenario
-- **`scenario` and `question_text` MUST be DIFFERENT strings** — if scenario is missing or equals question_text, the same text gets duplicated in both the header box and the scenario card
+- `scenario` = ONLY the context paragraph (3-5 sentences) -- stored in `payload.scenario`, rendered in the SCENARIO card
+- `question_text` = ONLY the actual question being asked -- shown in the header box above the scenario
+- **`scenario` and `question_text` MUST be DIFFERENT strings** -- if scenario is missing or equals question_text, the same text gets duplicated in both the header box and the scenario card
 - Scenarios should be practical, real-world, or exam-style case studies
 - The question should require analysis of the given scenario to answer
 
@@ -444,11 +477,11 @@ The app renders a **DIAGRAM** card with an image, then 4 options.
 ```
 
 **Rules:**
-- `image_uri` — storage path: `question-images/{subject}/{chapter-slug}/{question-id}.png`. Stored in `med_questions.image_url` AND `payload.image_uri`
-- `image_alt` — concise description of the diagram. Stored in `med_questions.image_alt`
-- `question_text` — the question about the diagram (shown in header box)
+- `image_uri` -- storage path: `question-images/{subject}/{chapter-slug}/{question-id}.png`. Stored in `med_questions.image_url` AND `payload.image_uri`
+- `image_alt` -- concise description of the diagram. Stored in `med_questions.image_alt`
+- `question_text` -- the question about the diagram (shown in header box)
 - Diagrams are generated separately (matplotlib) and uploaded via upload script
-- **DO NOT skip `image_uri` or `image_alt`** — without them, the question renders an empty placeholder
+- **DO NOT skip `image_uri` or `image_alt`** -- without them, the question renders an empty placeholder
 
 ---
 
@@ -470,10 +503,10 @@ The app renders an **ARRANGE IN CORRECT ORDER** card with items labeled P, Q, R,
   ],
   "correct_order": ["1", "2", "3", "4"],
   "options": [
-    { "key": "A", "text": "P → Q → R → S", "is_correct": true },
-    { "key": "B", "text": "Q → P → S → R", "is_correct": false },
-    { "key": "C", "text": "P → R → Q → S", "is_correct": false },
-    { "key": "D", "text": "Q → R → P → S", "is_correct": false }
+    { "key": "A", "text": "P -> Q -> R -> S", "is_correct": true },
+    { "key": "B", "text": "Q -> P -> S -> R", "is_correct": false },
+    { "key": "C", "text": "P -> R -> Q -> S", "is_correct": false },
+    { "key": "D", "text": "Q -> R -> P -> S", "is_correct": false }
   ],
   "correct_answer": "A",
   "explanation": "First the capacitor connects to battery, then current flows, charges accumulate, and finally V_cap = EMF",
@@ -492,17 +525,17 @@ The app renders an **ARRANGE IN CORRECT ORDER** card with items labeled P, Q, R,
 ```
 
 **Rules:**
-- `items` = array of `{id, text}` objects — stored in `payload.items`. The app labels them P, Q, R, S... in the card
-- `correct_order` = array of item IDs in correct sequence — stored in `payload.correct_order`
+- `items` = array of `{id, text}` objects -- stored in `payload.items`. The app labels them P, Q, R, S... in the card
+- `correct_order` = array of item IDs in correct sequence -- stored in `payload.correct_order`
 - `question_text` = instruction text shown in the header box
 - Options: different orderings using P, Q, R, S labels with arrows
-- **DO NOT skip `items` or `correct_order`** — without them, the ARRANGE card renders empty
+- **DO NOT skip `items` or `correct_order`** -- without them, the ARRANGE card renders empty
 
 ---
 
 ## CHAPTER ID REFERENCE (Critical for Imports)
 
-### CUET → DB Chapter IDs (used in CUET JSON files)
+### CUET -> DB Chapter IDs (used in CUET JSON files)
 
 **Physics** (`subject_id: "cuet-physics"`):
 | Folder | DB chapter_id |
@@ -532,7 +565,7 @@ The app renders an **ARRANGE IN CORRECT ORDER** card with items labeled P, Q, R,
 | `amines` | `cuet-chem-amines` |
 | `biomolecules` | `cuet-chem-biomolecules` |
 
-**Biology** (`subject_id: "biology"`):
+**Biology** (`subject_id: "cuet-biology"`):
 | Folder | DB chapter_id |
 |--------|---------------|
 | `sexual-repro-plants` | `cuet-bio-sexual-repro-plants` |
@@ -549,7 +582,228 @@ The app renders an **ARRANGE IN CORRECT ORDER** card with items labeled P, Q, R,
 | `ecosystem` | `cuet-bio-ecosystem` |
 | `biodiversity` | `cuet-bio-biodiversity` |
 
-### NEET → DB Chapter IDs (used in NEET copy JSON files)
+**Mathematics** (`subject_id: "cuet-mathematics"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `relations-functions` | `cuet-math-relations-functions` |
+| `inverse-trig` | `cuet-math-inverse-trig` |
+| `matrices` | `cuet-math-matrices` |
+| `determinants` | `cuet-math-determinants` |
+| `continuity` | `cuet-math-continuity` |
+| `derivatives-app` | `cuet-math-derivatives-app` |
+| `integrals` | `cuet-math-integrals` |
+| `integrals-app` | `cuet-math-integrals-app` |
+| `diff-equations` | `cuet-math-diff-equations` |
+| `vectors` | `cuet-math-vectors` |
+| `3d-geometry` | `cuet-math-3d-geometry` |
+| `linear-prog` | `cuet-math-linear-prog` |
+| `probability` | `cuet-math-probability` |
+
+**Accountancy** (`subject_id: "cuet-accountancy"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `partnership-basics` | `cuet-acc-partnership-basics` |
+| `profit-sharing` | `cuet-acc-profit-sharing` |
+| `partner-admission` | `cuet-acc-partner-admission` |
+| `partner-retirement` | `cuet-acc-partner-retirement` |
+| `dissolution` | `cuet-acc-dissolution` |
+| `share-capital` | `cuet-acc-share-capital` |
+| `debentures` | `cuet-acc-debentures` |
+| `financial-statements` | `cuet-acc-financial-statements` |
+| `statement-analysis` | `cuet-acc-statement-analysis` |
+| `ratios` | `cuet-acc-ratios` |
+| `cash-flow` | `cuet-acc-cash-flow` |
+
+**Business Studies** (`subject_id: "cuet-business"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `nature-mgmt` | `cuet-bst-nature-mgmt` |
+| `principles` | `cuet-bst-principles` |
+| `environment` | `cuet-bst-environment` |
+| `planning` | `cuet-bst-planning` |
+| `organising` | `cuet-bst-organising` |
+| `staffing` | `cuet-bst-staffing` |
+| `directing` | `cuet-bst-directing` |
+| `controlling` | `cuet-bst-controlling` |
+| `financial-mgmt` | `cuet-bst-financial-mgmt` |
+| `financial-markets` | `cuet-bst-financial-markets` |
+| `marketing` | `cuet-bst-marketing` |
+| `consumer-protection` | `cuet-bst-consumer-protection` |
+
+**Economics** (`subject_id: "cuet-economics"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `macro-intro` | `cuet-eco-macro-intro` |
+| `national-income` | `cuet-eco-national-income` |
+| `money-banking` | `cuet-eco-money-banking` |
+| `income-employment` | `cuet-eco-income-employment` |
+| `govt-budget` | `cuet-eco-govt-budget` |
+| `bop` | `cuet-eco-bop` |
+| `pre-independence` | `cuet-eco-pre-independence` |
+| `planning-era` | `cuet-eco-planning-era` |
+| `lpg-reforms` | `cuet-eco-lpg-reforms` |
+| `poverty` | `cuet-eco-poverty` |
+| `human-capital` | `cuet-eco-human-capital` |
+| `rural-dev` | `cuet-eco-rural-dev` |
+| `employment` | `cuet-eco-employment` |
+| `infrastructure` | `cuet-eco-infrastructure` |
+| `environment-dev` | `cuet-eco-environment` |
+| `dev-experience` | `cuet-eco-dev-experience` |
+
+**History** (`subject_id: "cuet-history"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `harappan` | `cuet-hist-harappan` |
+| `kings-farmers` | `cuet-hist-kings-farmers` |
+| `kinship-caste` | `cuet-hist-kinship-caste` |
+| `thinkers-beliefs` | `cuet-hist-thinkers-beliefs` |
+| `travellers` | `cuet-hist-travellers` |
+| `bhakti-sufi` | `cuet-hist-bhakti-sufi` |
+| `vijayanagara` | `cuet-hist-vijayanagara` |
+| `peasants-zamindars` | `cuet-hist-peasants-zamindars` |
+| `colonialism` | `cuet-hist-colonialism` |
+| `rebels-raj` | `cuet-hist-rebels-raj` |
+| `gandhi-nationalism` | `cuet-hist-gandhi-nationalism` |
+| `constitution` | `cuet-hist-constitution` |
+| `partition` | `cuet-hist-partition` |
+
+**Political Science** (`subject_id: "cuet-polsci"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `cold-war` | `cuet-pol-cold-war` |
+| `end-bipolarity` | `cuet-pol-end-bipolarity` |
+| `us-hegemony` | `cuet-pol-us-hegemony` |
+| `alt-centres` | `cuet-pol-alt-centres` |
+| `south-asia` | `cuet-pol-south-asia` |
+| `intl-orgs` | `cuet-pol-intl-orgs` |
+| `security` | `cuet-pol-security` |
+| `pol-environment` | `cuet-pol-environment` |
+| `globalisation` | `cuet-pol-globalisation` |
+| `nation-building` | `cuet-pol-nation-building` |
+| `one-party` | `cuet-pol-one-party` |
+| `planned-dev` | `cuet-pol-planned-dev` |
+| `external-relations` | `cuet-pol-external-relations` |
+| `congress-challenges` | `cuet-pol-congress-challenges` |
+| `democratic-crisis` | `cuet-pol-democratic-crisis` |
+| `popular-movements` | `cuet-pol-popular-movements` |
+
+**Geography** (`subject_id: "cuet-geography"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `human-nature` | `cuet-geo-human-nature` |
+| `world-population` | `cuet-geo-world-population` |
+| `human-dev` | `cuet-geo-human-dev` |
+| `primary-activities` | `cuet-geo-primary-activities` |
+| `secondary-activities` | `cuet-geo-secondary-activities` |
+| `transport` | `cuet-geo-transport` |
+| `india-population` | `cuet-geo-india-population` |
+| `migration` | `cuet-geo-migration` |
+| `settlements` | `cuet-geo-settlements` |
+| `land-agriculture` | `cuet-geo-land-agriculture` |
+| `water-resources` | `cuet-geo-water-resources` |
+| `minerals-energy` | `cuet-geo-minerals-energy` |
+
+**Psychology** (`subject_id: "cuet-psychology"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `variations` | `cuet-psy-variations` |
+| `self-personality` | `cuet-psy-self-personality` |
+| `life-challenges` | `cuet-psy-life-challenges` |
+| `disorders` | `cuet-psy-disorders` |
+| `therapeutic` | `cuet-psy-therapeutic` |
+| `attitude` | `cuet-psy-attitude` |
+| `social-influence` | `cuet-psy-social-influence` |
+| `applied` | `cuet-psy-applied` |
+| `skills` | `cuet-psy-skills` |
+
+**Sociology** (`subject_id: "cuet-sociology"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `intro` | `cuet-soc-intro` |
+| `demographic` | `cuet-soc-demographic` |
+| `institutions` | `cuet-soc-institutions` |
+| `market` | `cuet-soc-market` |
+| `inequality` | `cuet-soc-inequality` |
+| `cultural-diversity` | `cuet-soc-cultural-diversity` |
+| `structural-change` | `cuet-soc-structural-change` |
+| `cultural-change` | `cuet-soc-cultural-change` |
+| `democracy` | `cuet-soc-democracy` |
+| `rural` | `cuet-soc-rural` |
+| `industrial` | `cuet-soc-industrial` |
+| `soc-globalisation` | `cuet-soc-globalisation` |
+
+**Computer Science** (`subject_id: "cuet-cs"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `python-basics` | `cuet-cs-python-basics` |
+| `functions` | `cuet-cs-functions` |
+| `file-handling` | `cuet-cs-file-handling` |
+| `data-structures` | `cuet-cs-data-structures` |
+| `sql` | `cuet-cs-sql` |
+| `boolean` | `cuet-cs-boolean` |
+| `networking` | `cuet-cs-networking` |
+| `web-dev` | `cuet-cs-web-dev` |
+| `cyber-security` | `cuet-cs-cyber-security` |
+| `societal-impacts` | `cuet-cs-societal-impacts` |
+
+**Legal Studies** (`subject_id: "cuet-legal"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `judiciary` | `cuet-leg-judiciary` |
+| `topics-in-law` | `cuet-leg-topics-in-law` |
+| `family-law` | `cuet-leg-family-law` |
+| `torts` | `cuet-leg-torts` |
+| `criminal-law` | `cuet-leg-criminal-law` |
+| `contract` | `cuet-leg-contract` |
+| `constitutional` | `cuet-leg-constitutional` |
+| `human-rights` | `cuet-leg-human-rights` |
+| `intl-law` | `cuet-leg-intl-law` |
+| `arbitration` | `cuet-leg-arbitration` |
+
+**Physical Education** (`subject_id: "cuet-ped"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `planning` | `cuet-ped-planning` |
+| `nutrition` | `cuet-ped-nutrition` |
+| `yoga` | `cuet-ped-yoga` |
+| `cwsn` | `cuet-ped-cwsn` |
+| `children-women` | `cuet-ped-children-women` |
+| `measurement` | `cuet-ped-measurement` |
+| `physiology` | `cuet-ped-physiology` |
+| `biomechanics` | `cuet-ped-biomechanics` |
+| `ped-psychology` | `cuet-ped-psychology` |
+| `training` | `cuet-ped-training` |
+
+**Home Science** (`subject_id: "cuet-homesci"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `nutrition-lifecycle` | `cuet-hs-nutrition-lifecycle` |
+| `therapeutic-nutrition` | `cuet-hs-therapeutic-nutrition` |
+| `food-safety` | `cuet-hs-food-safety` |
+| `hs-human-dev` | `cuet-hs-human-dev` |
+| `community-dev` | `cuet-hs-community-dev` |
+| `fabric-apparel` | `cuet-hs-fabric-apparel` |
+| `resource-mgmt` | `cuet-hs-resource-mgmt` |
+| `hs-communication` | `cuet-hs-communication` |
+| `child-care` | `cuet-hs-child-care` |
+
+**English** (`subject_id: "cuet-english"`):
+| Folder | DB chapter_id |
+|--------|---------------|
+| `reading` | `cuet-eng-reading` |
+| `vocabulary` | `cuet-eng-vocabulary` |
+| `grammar` | `cuet-eng-grammar` |
+| `sentence-correction` | `cuet-eng-sentence-correction` |
+| `para-jumbles` | `cuet-eng-para-jumbles` |
+| `idioms` | `cuet-eng-idioms` |
+| `synonyms-antonyms` | `cuet-eng-synonyms-antonyms` |
+| `cloze` | `cuet-eng-cloze` |
+
+> **Full chapter details with topic breakdowns:** See `docs/CUET_MASTER_PLAN.md`
+
+### NEET -> DB Chapter IDs (used in NEET copy JSON files)
+
+> NEET copies are only needed for Physics, Chemistry, and Biology.
 
 **Physics** (`subject_id: "physics"`):
 | NEET Folder | DB chapter_id |
@@ -578,7 +832,7 @@ The app renders an **ARRANGE IN CORRECT ORDER** card with items labeled P, Q, R,
 | `amines` | `chem-amines` |
 | `biomolecules` | `chem-biomolecules` |
 
-**Biology** — NEET uses botany (`subject_id: "botany"`) + zoology (`subject_id: "zoology"`):
+**Biology** -- NEET uses botany (`subject_id: "botany"`) + zoology (`subject_id: "zoology"`):
 | NEET Folder | DB chapter_id |
 |-------------|---------------|
 | `sexual-reproduction` | `bot-sexual-reproduction` |
@@ -597,14 +851,39 @@ The app renders an **ARRANGE IN CORRECT ORDER** card with items labeled P, Q, R,
 
 ---
 
+## ID PREFIX CONVENTION
+
+| Subject | CUET ID Prefix | Example |
+|---------|----------------|---------|
+| Physics | `cuet-phy-` | `cuet-phy-elec-coulomb-01` |
+| Chemistry | `cuet-chem-` | `cuet-chem-sol-raoult-01` |
+| Biology | `cuet-bio-` | `cuet-bio-repro-pollination-01` |
+| Mathematics | `cuet-math-` | `cuet-math-rel-equivalence-01` |
+| Accountancy | `cuet-acc-` | `cuet-acc-partnership-goodwill-01` |
+| Business Studies | `cuet-bst-` | `cuet-bst-planning-types-01` |
+| Economics | `cuet-eco-` | `cuet-eco-gdp-methods-01` |
+| History | `cuet-hist-` | `cuet-hist-harappan-trade-01` |
+| Political Science | `cuet-pol-` | `cuet-pol-cold-war-nato-01` |
+| Geography | `cuet-geo-` | `cuet-geo-population-density-01` |
+| Psychology | `cuet-psy-` | `cuet-psy-disorders-anxiety-01` |
+| Sociology | `cuet-soc-` | `cuet-soc-caste-system-01` |
+| Computer Science | `cuet-cs-` | `cuet-cs-sql-joins-01` |
+| Legal Studies | `cuet-leg-` | `cuet-leg-contract-offer-01` |
+| Physical Education | `cuet-ped-` | `cuet-ped-yoga-asanas-01` |
+| Home Science | `cuet-hs-` | `cuet-hs-nutrition-protein-01` |
+| English | `cuet-eng-` | `cuet-eng-grammar-tenses-01` |
+
+---
+
 ## PER-BATCH EXECUTION PROTOCOL
 
 ### For each batch of 40 questions:
 
 **Step 1: Read existing questions** to avoid duplicates
 ```
-Read: Qbank/generated/{subject}/{neet-chapter-folder}/*.json
 Read: Qbank/CUET/{subject}/{cuet-chapter-folder}/*.json
+Read: Qbank/generated/{subject}/{neet-chapter-folder}/*.json  (for science subjects only)
+Read: Qbank/NEET/{subject}/{neet-chapter-folder}/*.json  (for science subjects only)
 ```
 
 **Step 2: Generate 40 questions** following the type mix:
@@ -619,42 +898,41 @@ Read: Qbank/CUET/{subject}/{cuet-chapter-folder}/*.json
 
 **Step 3: Save CUET JSON**
 ```
-Qbank/CUET/{subject}/{chapter-folder}/new-YYYY-MM-DD/{topic_id}.json
+Qbank/CUET/{subject}/{chapter-folder}/batch-YYYY-MM-DD/{topic_id}.json
 ```
-- `subject_id`: `cuet-physics` / `cuet-chemistry` / `biology`
-- `chapter_id`: use CUET chapter ID from mapping above
-- `exam_suitability`: `["CUET", "NEET"]`
-- `id` prefix: `cuet-phy-`, `cuet-chem-`, `cuet-bio-`
+- Use CUET `subject_id` and `chapter_id` from mapping above
+- `exam_suitability`: `["CUET", "NEET"]` for science, `["CUET"]` for non-science
+- `id` prefix: use the CUET prefix from the ID prefix table above
 
-**Step 4: Save NEET Copy**
+**Step 4: Save NEET Copy** (ONLY for Physics, Chemistry, Biology)
 ```
 Qbank/NEET/{subject}/{chapter-folder}/new-YYYY-MM-DD/{topic_id}.json
 ```
-- `subject_id`: `physics` / `chemistry` / `botany` or `zoology`
-- `chapter_id`: use NEET chapter ID from mapping above
+- Use NEET `subject_id` and `chapter_id` from NEET mapping above
 - `exam_suitability`: `["NEET", "CUET"]`
 - `id` prefix: `phy-`, `chem-`, `bot-`, `zoo-`
+- **Skip this step for non-science subjects** (Math, Accountancy, Business, etc.)
 
-**Step 5: Update this file** — increment "New Generated" counts in the statistics tables
+**Step 5: Update this file** -- increment "New Generated" counts in the statistics tables
 
 **Step 6: Commit & push**
 
 ---
 
-## JSON SCHEMA — REQUIRED FIELDS BY TYPE
+## JSON SCHEMA -- REQUIRED FIELDS BY TYPE
 
 > Every question has the base fields below. Type-specific fields are MANDATORY additions.
-> See the COMPLETE EXAMPLES in the type-specific section above — use those as your template.
+> See the COMPLETE EXAMPLES in the type-specific section above -- use those as your template.
 
 ### Base fields (ALL types):
 
 | Field | Required | Description |
 |-------|----------|-------------|
 | `id` | Yes | Unique ID: `{prefix}-{chapter}-{topic}-{seq}` |
-| `chapter_id` | Yes | Must match DB chapter ID from mapping below |
+| `chapter_id` | Yes | Must match DB chapter ID from mapping above |
 | `question_type` | Yes | One of: `mcq`, `true-false`, `assertion-reasoning`, `match-the-following`, `fill-in-blanks`, `scenario-based`, `diagram-based`, `logical-sequence` |
 | `question_text` | Yes | The question stem shown in the header box |
-| `options` | Yes | Array of `{key, text, is_correct}` — always A/B/C/D for MCQ types, A/B for true-false |
+| `options` | Yes | Array of `{key, text, is_correct}` -- always A/B/C/D for MCQ types, A/B for true-false |
 | `correct_answer` | Yes | The key of the correct option: "A", "B", "C", or "D" |
 | `explanation` | Yes | Detailed explanation with reasoning |
 | `difficulty` | Yes | `"easy"`, `"medium"`, or `"hard"` |
@@ -662,7 +940,7 @@ Qbank/NEET/{subject}/{chapter-folder}/new-YYYY-MM-DD/{topic_id}.json
 | `subtopic` | Yes | Subtopic name |
 | `concept_tags` | Yes | Array of kebab-case tags |
 | `bloom_level` | Yes | `"remember"`, `"understand"`, `"apply"`, `"analyze"` |
-| `exam_suitability` | Yes | `["CUET", "NEET"]` or `["NEET"]` |
+| `exam_suitability` | Yes | `["CUET", "NEET"]` or `["CUET"]` |
 | `elimination_hints` | Yes | Array of `{option_key, hint, misconception}` for WRONG options |
 
 ### Type-specific MANDATORY additions:
@@ -682,13 +960,14 @@ Qbank/NEET/{subject}/{chapter-folder}/new-YYYY-MM-DD/{topic_id}.json
 ## WHAT NOT TO DO
 
 ### General:
-- Do NOT modify code files — this is purely content generation
-- Do NOT generate questions without `elimination_hints` — they are MANDATORY
-- Do NOT use chapter_ids that don't exist in the DB — check mapping above
-- Do NOT duplicate question stems from existing JSONs — read them first
-- Do NOT skip the NEET copy (except for CUET-only chapters like Communication Systems)
-- Do NOT mix up CUET and NEET chapter_ids — they are DIFFERENT
-- **Do NOT save a batch with missing question types** — count MCQ/Diagram/AR/TF/MTF/FIB/Scenario/Sequence before saving
+- Do NOT modify code files -- this is purely content generation
+- Do NOT generate questions without `elimination_hints` -- they are MANDATORY
+- Do NOT use chapter_ids that don't exist in the DB -- check mapping above
+- Do NOT duplicate question stems from existing JSONs -- read them first
+- Do NOT skip the NEET copy for science subjects (Physics, Chemistry, Biology)
+- Do NOT create NEET copies for non-science subjects (they are CUET-only)
+- Do NOT mix up CUET and NEET chapter_ids -- they are DIFFERENT
+- **Do NOT save a batch with missing question types** -- count MCQ/Diagram/AR/TF/MTF/FIB/Scenario/Sequence before saving
 
 ### Type-specific (causes broken rendering if violated):
 - **scenario-based**: Do NOT put the scenario inside `question_text`. The `scenario` field MUST be a separate string. If they match, the app shows the same text TWICE.
@@ -716,4 +995,4 @@ Qbank/NEET/{subject}/{chapter-folder}/new-YYYY-MM-DD/{topic_id}.json
 
 ---
 
-*Last updated: 2026-03-02*
+*Last updated: 2026-03-04*
