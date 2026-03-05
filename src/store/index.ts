@@ -94,8 +94,14 @@ store.subscribe(() => {
  * Rehydrate Redux from the user's persisted data.
  * Call this AFTER authenticating so we know which user ID to load.
  */
+let _rehydratedUserId: string | null = null;
+
 export async function rehydrateStore(userId: string): Promise<void> {
   _currentUserId = userId;
+
+  // Skip if already rehydrated for this user (prevents overwriting in-memory changes)
+  if (_rehydratedUserId === userId) return;
+  _rehydratedUserId = userId;
 
   // Clean up legacy global key (one-time migration)
   AsyncStorage.removeItem(LEGACY_PERSIST_KEY).catch((e) => reportError(e, 'low', 'store.legacyCleanup'));
@@ -144,5 +150,6 @@ export function resetAllData(): void {
     saveTimeout = null;
   }
   _currentUserId = null;
+  _rehydratedUserId = null;
   store.dispatch({ type: RESET_ALL });
 }
