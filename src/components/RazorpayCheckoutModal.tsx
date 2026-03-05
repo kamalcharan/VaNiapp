@@ -15,6 +15,7 @@ export interface RazorpayPaymentResult {
   paymentId: string;
   orderId: string;
   signature: string;
+  method?: string;
 }
 
 export interface RazorpayPaymentError {
@@ -86,7 +87,8 @@ function buildCheckoutHtml(params: RazorpayCheckoutParams, razorpayKeyId: string
           type: "success",
           razorpay_payment_id: response.razorpay_payment_id,
           razorpay_order_id: response.razorpay_order_id,
-          razorpay_signature: response.razorpay_signature
+          razorpay_signature: response.razorpay_signature,
+          method: response.razorpay_payment_method || ""
         }));
       },
       modal: {
@@ -123,6 +125,7 @@ export default function RazorpayCheckoutModal({ visible, params, razorpayKeyId, 
           paymentId: data.razorpay_payment_id,
           orderId: data.razorpay_order_id,
           signature: data.razorpay_signature,
+          method: data.method || undefined,
         });
       } else if (data.type === 'failed') {
         onFailure({

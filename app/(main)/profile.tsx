@@ -39,7 +39,11 @@ import { useSelector } from 'react-redux';
 import { store, RootState } from '../../src/store';
 import { updateTargetYear, updateLanguage } from '../../src/store/slices/authSlice';
 import { getTargetYearOptions } from '../../src/constants/persona';
+import { useTrial } from '../../src/hooks/useTrial';
+import { TRIAL_QUESTION_LIMIT } from '../../src/store/slices/trialSlice';
 import type { PlanId } from '../../src/constants/pricing';
+import { getPaymentHistory, type PaymentHistoryItem, cancelSubscription } from '../../src/lib/payments';
+import { setPaid } from '../../src/store/slices/trialSlice';
 
 /** Font-based glyphs for each language (never use country flags) */
 const LANG_GLYPH: Record<string, string> = {
@@ -59,6 +63,7 @@ export default function ProfileScreen() {
   const isPaid = useSelector((s: RootState) => s.trial.isPaid);
   const subscriptionPlan = useSelector((s: RootState) => s.trial.subscriptionPlan);
   const subscriptionExpiresAt = useSelector((s: RootState) => s.trial.subscriptionExpiresAt);
+  const { daysLeft, questionsLeft, questionsAnswered } = useTrial();
 
   const [profile, setProfile] = useState<MedProfile | null>(null);
   const [subjects, setSubjects] = useState<CatalogSubject[]>([]);
@@ -83,6 +88,9 @@ export default function ProfileScreen() {
   const [joinCode, setJoinCode] = useState('');
   // const [generatingCode, setGeneratingCode] = useState(false);
   const [pendingExamChange, setPendingExamChange] = useState<ExamType | null>(null);
+  const [paymentHistory, setPaymentHistory] = useState<PaymentHistoryItem[]>([]);
+  const [cancelDialog, setCancelDialog] = useState(false);
+  const [cancelling, setCancelling] = useState(false);
 
   const EXAM_OPTIONS: { id: ExamType; label: string; emoji: string }[] = [
     { id: 'NEET', label: 'NEET', emoji: '\uD83E\uDE7A' },
@@ -135,6 +143,9 @@ export default function ProfileScreen() {
       setEditLanguage(prof.language || 'en');
       setEditTargetYear(prof.target_year ?? null);
     }
+
+    // Fetch payment history (non-blocking)
+    getPaymentHistory().then(setPaymentHistory).catch(() => {});
 
     setLoading(false);
   };
@@ -238,6 +249,21 @@ export default function ProfileScreen() {
   //     setGeneratingCode(false);
   //   }
   // };
+
+  const handleCancelSubscription = async () => {
+    setCancelling(true);
+    try {
+      await cancelSubscription();
+      store.dispatch(setPaid(false));
+      toast.show('Subscription cancelled', 'success');
+      setCancelDialog(false);
+      loadProfile();
+    } catch (err: any) {
+      toast.show(err?.message || 'Failed to cancel', 'error');
+    } finally {
+      setCancelling(false);
+    }
+  };
 
   const handleShareInvite = async () => {
     try {
@@ -758,11 +784,46 @@ export default function ProfileScreen() {
                       : 'Until exam season'}
                   </Text>
                 </View>
+
+                {/* Coupon badge if activated via coupon */}
+                {paymentHistory.length > 0 && paymentHistory[0].couponCode && (
+                  <>
+                    <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
+                    <View style={styles.infoRow}>
+                      <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Activated via</Text>
+                      <View style={[styles.statusBadge, { backgroundColor: colors.primaryLight }]}>
+                        <Text style={[Typography.bodySm, { color: colors.primary, fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
+                          {paymentHistory[0].couponCode}
+                        </Text>
+                      </View>
+                    </View>
+                  </>
+                )}
+
+                <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Pressable
+                    onPress={() => router.push('/payment-history')}
+                    style={{ paddingVertical: Spacing.xs }}
+                  >
+                    <Text style={[Typography.bodySm, { color: colors.primary }]}>
+                      Payment history
+                    </Text>
+                  </Pressable>
+                  <Pressable
+                    onPress={() => setCancelDialog(true)}
+                    style={{ paddingVertical: Spacing.xs }}
+                  >
+                    <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
+                      Cancel plan
+                    </Text>
+                  </Pressable>
+                </View>
               </>
             ) : (
               <View style={{ alignItems: 'center', gap: Spacing.md, paddingVertical: Spacing.sm }}>
                 <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center' }]}>
-                  You're on the free trial. Upgrade to unlock full access!
+                  {questionsAnswered}/{TRIAL_QUESTION_LIMIT} questions used · {daysLeft} day{daysLeft === 1 ? '' : 's'} left
                 </Text>
                 <PuffyButton
                   title="View Plans"
@@ -918,6 +979,18 @@ export default function ProfileScreen() {
         cancelLabel="Cancel"
         onConfirm={handleSignOut}
         onCancel={() => setLogoutDialog(false)}
+      />
+
+      {/* Cancel Subscription Dialog */}
+      <ThemedDialog
+        visible={cancelDialog}
+        title="Cancel Subscription"
+        emoji={'\u26A0\uFE0F'}
+        message="Are you sure? You'll lose access to premium features at the end of your billing period."
+        confirmLabel={cancelling ? 'Cancelling...' : 'Yes, Cancel'}
+        cancelLabel="Keep Plan"
+        onConfirm={handleCancelSubscription}
+        onCancel={() => setCancelDialog(false)}
       />
 
       {/* Subject Selection Prompt (after exam change) */}

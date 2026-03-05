@@ -5,12 +5,15 @@ interface AuthState {
   isAuthenticated: boolean;
   hasCompletedOnboarding: boolean;
   user: UserProfile | null;
+  /** Persisted exam focus toggle on the dashboard (NEET/CUET) */
+  dashboardExamFocus: ExamType | null;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
   hasCompletedOnboarding: false,
   user: null,
+  dashboardExamFocus: null,
 };
 
 const authSlice = createSlice({
@@ -38,12 +41,19 @@ const authSlice = createSlice({
     updateTargetYear: (state, action: PayloadAction<number | undefined>) => {
       if (state.user) state.user.targetYear = action.payload;
     },
+    setDashboardExamFocus: (state, action: PayloadAction<ExamType>) => {
+      state.dashboardExamFocus = action.payload;
+    },
     logout: () => initialState,
     rehydrate: (_state, action: PayloadAction<AuthState>) => {
       const rehydrated = { ...action.payload };
       // Ensure targetYear field exists on old persisted profiles
       if (rehydrated.user && rehydrated.user.targetYear === undefined) {
         rehydrated.user.targetYear = undefined;
+      }
+      // Ensure dashboardExamFocus exists on old persisted state
+      if (rehydrated.dashboardExamFocus === undefined) {
+        rehydrated.dashboardExamFocus = null;
       }
       return rehydrated;
     },
@@ -58,6 +68,7 @@ export const {
   updateLanguage,
   updateSubjects,
   updateTargetYear,
+  setDashboardExamFocus,
   logout,
 } = authSlice.actions;
 

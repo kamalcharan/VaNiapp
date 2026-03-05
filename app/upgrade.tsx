@@ -33,6 +33,7 @@ import {
 import {
   saveSubscription,
   createRazorpayOrder,
+  logFailedPayment,
 } from '../src/lib/payments';
 import { getRazorpayConfig, type RazorpayConfig } from '../src/lib/appConfig';
 import RazorpayCheckoutModal, {
@@ -134,8 +135,8 @@ export default function UpgradeScreen() {
           planType: 'yearly',
           paymentStatus: 'coupon_free',
           couponCode: appliedCoupon!.code,
-          amountPaidPaise: 0,
-          gstPaise: 0,
+          amountPaidRupees: 0,
+          gstRupees: 0,
         });
         store.dispatch(setSubscription({
           plan: 'yearly',
@@ -185,9 +186,11 @@ export default function UpgradeScreen() {
         razorpayPaymentId: result.paymentId,
         razorpayOrderId: result.orderId,
         razorpaySignature: result.signature,
+        paymentMethod: result.method,
+        targetYear,
         couponCode: appliedCoupon?.code,
-        amountPaidPaise: pricing.total * 100,
-        gstPaise: pricing.gst * 100,
+        amountPaidRupees: pricing.discountedPrice,
+        gstRupees: pricing.gst,
       });
       // Cache full subscription info so isPaid persists across app restarts
       let expiresAt: string | null = null;
@@ -195,6 +198,9 @@ export default function UpgradeScreen() {
         expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
       } else if (selectedPlan === 'yearly') {
         expiresAt = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
+      } else if (selectedPlan === 'crunch') {
+        const year = targetYear ?? new Date().getFullYear();
+        expiresAt = new Date(year, 5, 15).toISOString(); // June 15
       }
       store.dispatch(setSubscription({ plan: selectedPlan, expiresAt }));
       router.replace({
@@ -212,11 +218,19 @@ export default function UpgradeScreen() {
     setCheckoutVisible(false);
     setCheckoutParams(null);
     setLoading(false);
+    // Persist failed payment for support debugging
+    logFailedPayment({
+      planType: selectedPlan,
+      errorCode: error.errorCode ?? 'UNKNOWN',
+      errorDescription: error.errorDescription ?? 'Payment failed',
+      razorpayOrderId: checkoutParams?.orderId,
+      amountRupees: pricing.total,
+    });
     router.push({
       pathname: '/payment-failure',
       params: { errorDescription: error.errorDescription },
     });
-  }, [router]);
+  }, [router, selectedPlan, checkoutParams, pricing]);
 
   const handlePaymentDismiss = useCallback(() => {
     setCheckoutVisible(false);

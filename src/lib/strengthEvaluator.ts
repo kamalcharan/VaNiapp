@@ -64,16 +64,25 @@ export function evaluateSubjectStrength(
 
   let totalWeight = 0;
   let weightedCoverage = 0;
+
+  // For accuracy, only include chapters the user has actually practiced.
+  // Unpracticed chapters (accuracy=0, coverage=0) should not drag down the average.
+  let accuracyWeight = 0;
   let weightedAccuracy = 0;
 
   for (const ch of chapters) {
     totalWeight += ch.totalInBank;
     weightedCoverage += ch.coverage * ch.totalInBank;
-    weightedAccuracy += ch.accuracy * ch.totalInBank;
+
+    const hasPracticed = ch.coverage > 0 || ch.accuracy > 0;
+    if (hasPracticed) {
+      accuracyWeight += ch.totalInBank;
+      weightedAccuracy += ch.accuracy * ch.totalInBank;
+    }
   }
 
   const coverage = totalWeight > 0 ? weightedCoverage / totalWeight : 0;
-  const accuracy = totalWeight > 0 ? weightedAccuracy / totalWeight : 0;
+  const accuracy = accuracyWeight > 0 ? weightedAccuracy / accuracyWeight : 0;
 
   // Reuse same evaluation logic for the rolled-up numbers
   const { level } = evaluateStrength({

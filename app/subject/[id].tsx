@@ -23,7 +23,7 @@ import { TopicBreakdown, TopicStat } from '../../src/components/TopicBreakdown';
 import { useTheme } from '../../src/hooks/useTheme';
 import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
-import { getSubjects, getChapters, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
+import { getSubjects, getChapters, getChapterQuestionCounts, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
 import { getProfile } from '../../src/lib/database';
 import { fetchQuestionsByChapter } from '../../src/lib/questions';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
@@ -106,6 +106,7 @@ export default function SubjectDetailScreen() {
 
   const [subject, setSubject] = useState<CatalogSubject | null>(null);
   const [chapters, setChapters] = useState<CatalogChapter[]>([]);
+  const [bankCounts, setBankCounts] = useState<Record<string, number>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [examFilter, setExamFilter] = useState<string | undefined>(undefined);
@@ -150,6 +151,9 @@ export default function SubjectDetailScreen() {
         }
 
         setChapters(subjectChapters);
+
+        // Fetch question counts for chapters not yet practiced (single batched query)
+        getChapterQuestionCounts(id!).then(setBankCounts);
       } else {
         setLoadError(`Subject "${id}" not found`);
       }
@@ -185,14 +189,14 @@ export default function SubjectDetailScreen() {
         accuracy: data?.accuracy ?? 0,
         totalAnswered: data?.totalAnswered ?? 0,
         correctCount: data?.correctCount ?? 0,
-        totalInBank: data?.totalInBank ?? ch.avg_questions ?? 25,
+        totalInBank: data?.totalInBank || bankCounts[ch.id] || 0,
         strengthLevel: (data?.strengthLevel ?? 'just-started') as StrengthLevel,
         lastPracticedAt: data?.lastPracticedAt ?? null,
       };
     });
 
     return mapped;
-  }, [chapters, strengthChapters, id]);
+  }, [chapters, strengthChapters, bankCounts, id]);
 
   // Subject-level strength
   const subjectStrength = useMemo(() => {
@@ -205,6 +209,19 @@ export default function SubjectDetailScreen() {
   }, [chapterAnalytics]);
 
   const hasProgress = chapterAnalytics.some((ca) => ca.totalAnswered > 0);
+
+  // Subject-level totals for display
+  const subjectTotals = useMemo(() => {
+    let totalAnswered = 0;
+    let totalCorrect = 0;
+    let totalInBank = 0;
+    for (const ca of chapterAnalytics) {
+      totalAnswered += ca.totalAnswered;
+      totalCorrect += ca.correctCount;
+      totalInBank += ca.totalInBank;
+    }
+    return { totalAnswered, totalCorrect, totalInBank };
+  }, [chapterAnalytics]);
 
   // Find VaNi's recommended next chapter (most room to grow)
   const nextUpChapter = useMemo(() => {
@@ -382,6 +399,11 @@ export default function SubjectDetailScreen() {
 
                 <Text style={[Typography.bodySm, { color: colors.textTertiary, fontSize: 10, marginTop: 2 }]}>
                   acc = % correct answers {'·'} covered = % of question bank attempted
+                </Text>
+
+                {/* Total question bank progress */}
+                <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: Spacing.xs }]}>
+                  {subjectTotals.totalCorrect} correct out of {subjectTotals.totalAnswered} attempted {'·'} {subjectTotals.totalInBank} questions in bank
                 </Text>
 
                 {/* Subject progress bar */}
@@ -627,8 +649,22 @@ export default function SubjectDetailScreen() {
                               </Text>
                             </View>
                           )}
+                          {/* Topics preview for not-started chapters */}
+                          {ca.chapter.important_topics && ca.chapter.important_topics.length > 0 && (
+                            <View style={styles.topicsRow}>
+                              {ca.chapter.important_topics.slice(0, 3).map((topic) => (
+                                <View key={topic} style={[styles.topicChip, { backgroundColor: subject.color + '12' }]}>
+                                  <Text style={[styles.topicText, { color: subject.color }]} numberOfLines={1}>
+                                    {topic}
+                                  </Text>
+                                </View>
+                              ))}
+                            </View>
+                          )}
                           <Text style={[styles.notStartedText, { color: colors.textTertiary }]}>
-                            {ca.chapter.avg_questions > 0 ? `~${ca.chapter.avg_questions} questions` : 'Tap to start'}
+                            {ca.chapter.avg_questions > 0 && `~${ca.chapter.avg_questions} Qs in exam`}
+                            {ca.chapter.avg_questions > 0 && ' · '}
+                            {ca.totalInBank > 0 ? `${ca.totalInBank} Qs in bank` : 'No questions yet'}
                           </Text>
                         </View>
                       );

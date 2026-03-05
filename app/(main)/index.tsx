@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
@@ -22,11 +22,12 @@ import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
 import { RootState } from '../../src/store';
+import { setDashboardExamFocus } from '../../src/store/slices/authSlice';
 import * as Haptics from 'expo-haptics';
 import { useTrial } from '../../src/hooks/useTrial';
 
 // Exam focus for BOTH users - which exam to focus on
-type ExamFocus = 'ALL' | 'NEET' | 'CUET';
+type ExamFocus = 'NEET' | 'CUET';
 
 // Journey status with VaNi coaching language
 interface SubjectJourney {
@@ -81,10 +82,13 @@ export default function DashboardScreen() {
   const { colors, mode, toggle } = useTheme();
   const persona = usePersona();
   const router = useRouter();
+  const dispatch = useDispatch();
   const [profile, setProfile] = useState<MedProfile | null>(null);
   const [subjectJourneys, setSubjectJourneys] = useState<SubjectJourney[]>([]);
   const [allSubjects, setAllSubjects] = useState<CatalogSubject[]>([]);
-  const [examFocus, setExamFocus] = useState<ExamFocus>('ALL');
+  const savedExamFocus = useSelector((state: RootState) => state.auth.dashboardExamFocus);
+  const examFocus: ExamFocus = (savedExamFocus as ExamFocus) || 'NEET';
+  const setExamFocus = (focus: ExamFocus) => dispatch(setDashboardExamFocus(focus));
   const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
   const trial = useTrial();
 
@@ -145,7 +149,7 @@ export default function DashboardScreen() {
   }, []);
 
   // Filter journeys based on exam focus (for BOTH users)
-  const filteredJourneys = profile?.exam === 'BOTH' && examFocus !== 'ALL'
+  const filteredJourneys = profile?.exam === 'BOTH'
     ? subjectJourneys.filter(j => j.subject.exam_id === examFocus)
     : subjectJourneys;
 
@@ -192,9 +196,9 @@ export default function DashboardScreen() {
       : null;
   const greeting = firstName ? `Hey, ${firstName}` : 'Study Board';
 
-  // For BOTH users, show the focused exam or combined label
+  // For BOTH users, show the focused exam label
   const examLabel = profile?.exam === 'BOTH'
-    ? (examFocus === 'ALL' ? 'NEET + CUET' : examFocus)
+    ? examFocus
     : profile?.exam ?? 'NEET';
 
   const isBothUser = profile?.exam === 'BOTH';
@@ -255,10 +259,10 @@ export default function DashboardScreen() {
                 Focus on:
               </Text>
               <View style={styles.examToggle}>
-                {(['ALL', 'NEET', 'CUET'] as ExamFocus[]).map((focus) => {
+                {(['NEET', 'CUET'] as ExamFocus[]).map((focus) => {
                   const isActive = examFocus === focus;
-                  const label = focus === 'ALL' ? 'All' : focus;
-                  const emoji = focus === 'NEET' ? '\uD83E\uDE7A' : focus === 'CUET' ? '\uD83C\uDF93' : '\uD83C\uDFAF';
+                  const label = focus;
+                  const emoji = focus === 'NEET' ? '\uD83E\uDE7A' : '\uD83C\uDF93';
                   return (
                     <Pressable
                       key={focus}
@@ -303,7 +307,7 @@ export default function DashboardScreen() {
           {filteredJourneys.length > 0 && (
             <View style={styles.journeySection}>
               <HandwrittenText variant="hand" rotation={-1}>
-                {isBothUser && examFocus !== 'ALL' ? `${examFocus} Journey` : persona.labels.chapterListHeader}
+                {isBothUser ? `${examFocus} Journey` : persona.labels.chapterListHeader}
               </HandwrittenText>
 
               <View style={styles.journeyGrid}>
@@ -315,7 +319,7 @@ export default function DashboardScreen() {
                       style={styles.journeyCardWrap}
                       onPress={() => {
                         // Pass exam focus for BOTH users so subject detail can filter chapters
-                        const focusParam = isBothUser && examFocus !== 'ALL' ? `?focus=${examFocus}` : '';
+                        const focusParam = isBothUser ? `?focus=${examFocus}` : '';
                         guardedPush(`/subject/${journey.subject.id}${focusParam}`);
                       }}
                     >
@@ -331,7 +335,7 @@ export default function DashboardScreen() {
                             <Text style={styles.journeyEmoji}>{journey.subject.emoji}</Text>
                           </View>
 
-                          {/* Subject Name */}
+                          {/* Subject Name + Exam Tag */}
                           <Text
                             style={[
                               Typography.h3,
@@ -341,6 +345,22 @@ export default function DashboardScreen() {
                           >
                             {journey.subject.name}
                           </Text>
+                          {isBothUser && (
+                            <View
+                              style={{
+                                alignSelf: 'center',
+                                paddingHorizontal: 6,
+                                paddingVertical: 1,
+                                borderRadius: 4,
+                                backgroundColor: journey.subject.exam_id === 'NEET' ? '#3B82F620' : '#8B5CF620',
+                                marginTop: 2,
+                              }}
+                            >
+                              <Text style={{ fontSize: 9, fontWeight: '700', color: journey.subject.exam_id === 'NEET' ? '#3B82F6' : '#8B5CF6' }}>
+                                {journey.subject.exam_id}
+                              </Text>
+                            </View>
+                          )}
 
                           {/* Journey Status Badge */}
                           <View
