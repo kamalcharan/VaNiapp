@@ -165,6 +165,20 @@ def load_all_questions_deduplicated():
     return selected_questions
 
 
+# Map JSON question_type to DB allowed values
+QUESTION_TYPE_MAP = {
+    "multiple-choice": "mcq",
+    "mcq": "mcq",
+    "true-false": "true-false",
+    "assertion-reasoning": "assertion-reasoning",
+    "match-the-following": "match-the-following",
+    "fill-in-blanks": "fill-in-blanks",
+    "scenario-based": "scenario-based",
+    "diagram-based": "diagram-based",
+    "logical-sequence": "logical-sequence",
+}
+
+
 def convert_to_insert_format(q):
     """Convert a question JSON to the format expected by insert_batch_questions."""
     topic_id = q["_topic_id_resolved"]
@@ -183,7 +197,7 @@ def convert_to_insert_format(q):
         "chapter_id": q["chapter_id"],
         "topic_id": topic_id,
         "exam_ids": exam_ids,
-        "question_type": q["question_type"],
+        "question_type": QUESTION_TYPE_MAP.get(q["question_type"], q["question_type"]),
         "difficulty": q["difficulty"],
         "question_text": q["question_text"],
         "explanation": q["explanation"],

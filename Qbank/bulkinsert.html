@@ -225,18 +225,6 @@
             if (!q.id) errors.push('missing id');
             if (!q.question_text) errors.push('missing question_text');
             if (!q.question_type) q.question_type = 'mcq';
-            // Normalize question_type: JSON uses underscores, DB expects hyphens
-            const TYPE_MAP = {
-              'true_false': 'true-false',
-              'assertion_reasoning': 'assertion-reasoning',
-              'match_the_following': 'match-the-following',
-              'fill_in_blank': 'fill-in-blanks',
-              'fill_in_blanks': 'fill-in-blanks',
-              'scenario_based': 'scenario-based',
-              'diagram_based': 'diagram-based',
-              'logical_sequence': 'logical-sequence'
-            };
-            q.question_type = TYPE_MAP[q.question_type] || q.question_type;
             if (!q.difficulty) q.difficulty = 'medium';
             if (q.question_type === 'mcq' && (!q.options || q.options.length < 4)) errors.push('MCQ needs 4 options');
             if (q.question_type === 'mcq' && !q.correct_answer) errors.push('missing correct_answer');
@@ -443,20 +431,25 @@
           const subjectId = resolveSubjectId(q.id);
           const chapterId = resolveChapterId(q);
 
+          // Map JSON question_type to DB-allowed values
+          const typeMap = { 'multiple-choice': 'mcq' };
+          const dbType = typeMap[q.question_type] || q.question_type || 'mcq';
+
           // Insert main question
           const { data: insertedQ, error: qError } = await Qbank.supabase
             .from('med_questions')
             .insert({
               subject_id: subjectId,
               chapter_id: chapterId,
-              question_type: q.question_type || 'mcq',
+              topic_id: q.topic_id || null,
+              question_type: dbType,
               difficulty: q.difficulty || 'medium',
               question_text: q.question_text,
               correct_answer: normalizeTrueFalseAnswer(q),
               explanation: q.explanation || '',
               status: 'active',
               concept_tags: q.concept_tags || [],
-              exam_ids: q.exam_suitability || ['NEET'],
+              exam_ids: q.exam_suitability || q.exam_ids || ['NEET'],
               payload: buildPayload(q)
             })
             .select()
