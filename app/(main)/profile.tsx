@@ -39,6 +39,8 @@ import { useSelector } from 'react-redux';
 import { store, RootState } from '../../src/store';
 import { updateTargetYear, updateLanguage } from '../../src/store/slices/authSlice';
 import { getTargetYearOptions } from '../../src/constants/persona';
+import { useTrial } from '../../src/hooks/useTrial';
+import { TRIAL_QUESTION_LIMIT } from '../../src/store/slices/trialSlice';
 import type { PlanId } from '../../src/constants/pricing';
 
 /** Font-based glyphs for each language (never use country flags) */
@@ -59,6 +61,7 @@ export default function ProfileScreen() {
   const isPaid = useSelector((s: RootState) => s.trial.isPaid);
   const subscriptionPlan = useSelector((s: RootState) => s.trial.subscriptionPlan);
   const subscriptionExpiresAt = useSelector((s: RootState) => s.trial.subscriptionExpiresAt);
+  const { daysLeft, questionsLeft, questionsAnswered } = useTrial();
 
   const [profile, setProfile] = useState<MedProfile | null>(null);
   const [subjects, setSubjects] = useState<CatalogSubject[]>([]);
@@ -762,7 +765,7 @@ export default function ProfileScreen() {
             ) : (
               <View style={{ alignItems: 'center', gap: Spacing.md, paddingVertical: Spacing.sm }}>
                 <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center' }]}>
-                  You're on the free trial. Upgrade to unlock full access!
+                  {questionsAnswered}/{TRIAL_QUESTION_LIMIT} questions used · {daysLeft} day{daysLeft === 1 ? '' : 's'} left
                 </Text>
                 <PuffyButton
                   title="View Plans"
