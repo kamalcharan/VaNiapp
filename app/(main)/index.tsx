@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { StickyNote } from '../../src/components/ui/StickyNote';
@@ -22,6 +22,7 @@ import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
 import { RootState } from '../../src/store';
+import { setDashboardExamFocus } from '../../src/store/slices/authSlice';
 import * as Haptics from 'expo-haptics';
 import { useTrial } from '../../src/hooks/useTrial';
 
@@ -81,10 +82,13 @@ export default function DashboardScreen() {
   const { colors, mode, toggle } = useTheme();
   const persona = usePersona();
   const router = useRouter();
+  const dispatch = useDispatch();
   const [profile, setProfile] = useState<MedProfile | null>(null);
   const [subjectJourneys, setSubjectJourneys] = useState<SubjectJourney[]>([]);
   const [allSubjects, setAllSubjects] = useState<CatalogSubject[]>([]);
-  const [examFocus, setExamFocus] = useState<ExamFocus>('NEET');
+  const savedExamFocus = useSelector((state: RootState) => state.auth.dashboardExamFocus);
+  const examFocus: ExamFocus = (savedExamFocus as ExamFocus) || 'NEET';
+  const setExamFocus = (focus: ExamFocus) => dispatch(setDashboardExamFocus(focus));
   const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
   const trial = useTrial();
 

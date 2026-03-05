@@ -206,6 +206,19 @@ export default function SubjectDetailScreen() {
 
   const hasProgress = chapterAnalytics.some((ca) => ca.totalAnswered > 0);
 
+  // Subject-level totals for display
+  const subjectTotals = useMemo(() => {
+    let totalAnswered = 0;
+    let totalCorrect = 0;
+    let totalInBank = 0;
+    for (const ca of chapterAnalytics) {
+      totalAnswered += ca.totalAnswered;
+      totalCorrect += ca.correctCount;
+      totalInBank += ca.totalInBank;
+    }
+    return { totalAnswered, totalCorrect, totalInBank };
+  }, [chapterAnalytics]);
+
   // Find VaNi's recommended next chapter (most room to grow)
   const nextUpChapter = useMemo(() => {
     const practiced = chapterAnalytics.filter((ca) => ca.totalAnswered > 0);
@@ -382,6 +395,11 @@ export default function SubjectDetailScreen() {
 
                 <Text style={[Typography.bodySm, { color: colors.textTertiary, fontSize: 10, marginTop: 2 }]}>
                   acc = % correct answers {'·'} covered = % of question bank attempted
+                </Text>
+
+                {/* Total question bank progress */}
+                <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: Spacing.xs }]}>
+                  {subjectTotals.totalCorrect} correct out of {subjectTotals.totalAnswered} attempted {'·'} {subjectTotals.totalInBank} questions in bank
                 </Text>
 
                 {/* Subject progress bar */}
@@ -627,8 +645,20 @@ export default function SubjectDetailScreen() {
                               </Text>
                             </View>
                           )}
+                          {/* Topics preview for not-started chapters */}
+                          {ca.chapter.important_topics && ca.chapter.important_topics.length > 0 && (
+                            <View style={styles.topicsRow}>
+                              {ca.chapter.important_topics.slice(0, 3).map((topic) => (
+                                <View key={topic} style={[styles.topicChip, { backgroundColor: subject.color + '12' }]}>
+                                  <Text style={[styles.topicText, { color: subject.color }]} numberOfLines={1}>
+                                    {topic}
+                                  </Text>
+                                </View>
+                              ))}
+                            </View>
+                          )}
                           <Text style={[styles.notStartedText, { color: colors.textTertiary }]}>
-                            {ca.chapter.avg_questions > 0 ? `~${ca.chapter.avg_questions} questions` : 'Tap to start'}
+                            {ca.chapter.avg_questions > 0 ? `${ca.chapter.avg_questions} questions available` : 'Coming soon'}
                           </Text>
                         </View>
                       );
