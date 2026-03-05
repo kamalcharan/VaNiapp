@@ -550,15 +550,11 @@
     // ========================================================================
     function resolveSubjectId(questionId) {
       if (!questionId) return 'unknown';
-<<<<<<< HEAD
-      // NEET subjects
-=======
-      // CUET prefixes (cuet-phy-, cuet-chem-, cuet-bio-)
+      // CUET prefixes
       if (questionId.startsWith('cuet-phy-')) return 'cuet-physics';
       if (questionId.startsWith('cuet-chem-')) return 'cuet-chemistry';
       if (questionId.startsWith('cuet-bio-')) return 'cuet-biology';
       // NEET prefixes
->>>>>>> origin/main
       if (questionId.startsWith('zoo-')) return 'zoology';
       if (questionId.startsWith('bot-')) return 'botany';
       if (questionId.startsWith('phy-')) return 'physics';
@@ -606,6 +602,8 @@
         'cuet-acc-cfs':         'cuet-acc-cash-flow',
         // B12: Ratio Analysis
         'cuet-acc-ratio':       'cuet-acc-ratio-analysis',
+        // B13: Computerized Accounting System
+        'cuet-acc-comp':        'cuet-acc-computerized',
 
         // ── Botany (17 chapters) ──────────────────────────────
         // Topics: bot-cell-theory, bot-cell-prokaryotic, bot-cell-eukaryotic, bot-cell-organelles

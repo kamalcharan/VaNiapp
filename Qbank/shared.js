@@ -2034,6 +2034,7 @@ window.Qbank = {
   normalizeIds,
 
   // Supabase
+  get supabase() { return SUPABASE; },
   initSupabase,
   fetchSubjects,
   fetchChapters,
