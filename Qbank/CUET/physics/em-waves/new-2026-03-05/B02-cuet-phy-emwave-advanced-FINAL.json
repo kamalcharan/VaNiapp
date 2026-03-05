@@ -1,0 +1,546 @@
+[
+  {
+    "id": "cuet-phy-emwave-41",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Electromagnetic waves are transverse in nature.\nReason (R): The electric and magnetic field vectors are perpendicular to each other and to the direction of propagation.",
+    "explanation": "Both A and R are true, and R correctly explains A. EM waves are transverse because E and B oscillate perpendicular to the propagation direction. This is fundamentally different from longitudinal waves (like sound) where oscillation is along the propagation direction.",
+    "correct_answer": "A",
+    "concept_tags": ["transverse-nature", "E-B-perpendicular", "assertion-reasoning"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "nature of EM waves",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The perpendicularity of E, B, and the propagation direction is precisely what makes the wave transverse. R directly explains A.", "misconception": "Thinking the explanation is unrelated"},
+      {"option_key": "C", "hint": "R is factually correct — E ⊥ B ⊥ direction of propagation is a well-established property of EM waves.", "misconception": "Doubting the perpendicularity of E and B"},
+      {"option_key": "D", "hint": "A is true — EM waves are indeed transverse. This is confirmed by polarisation experiments.", "misconception": "Thinking EM waves are longitudinal"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-42",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The energy of an electromagnetic wave is shared equally between the electric and magnetic fields.\nReason (R): The electric energy density uE = ½ε₀E² equals the magnetic energy density uB = B²/(2μ₀) at every instant in an EM wave.",
+    "explanation": "Both A and R are true, and R correctly explains A. In an EM wave, since B = E/c and c = 1/√(μ₀ε₀), we can show that ½ε₀E² = B²/(2μ₀) at every instant. The energy oscillates between zero and maximum, but at each instant the electric and magnetic contributions are exactly equal.",
+    "correct_answer": "A",
+    "concept_tags": ["energy-equipartition", "energy-density", "E-B-equality"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "energy distribution in EM waves",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "analyse",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "R directly proves A — if uE = uB at every instant, then the energy is equally shared. R is the explanation.", "misconception": "Not seeing the direct logical connection"},
+      {"option_key": "C", "hint": "R is true: substituting B = E/c into B²/(2μ₀) gives E²/(2c²μ₀) = ½ε₀E² since c² = 1/(μ₀ε₀).", "misconception": "Not verifying the mathematical equality"},
+      {"option_key": "D", "hint": "A is true — equal energy sharing is a fundamental property derived from Maxwell's equations.", "misconception": "Thinking one field dominates the other"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-43",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Radio waves can diffract around buildings and hills.\nReason (R): Radio waves have wavelengths comparable to the size of buildings and hills.",
+    "explanation": "Both A and R are true, and R correctly explains A. Radio waves have wavelengths from metres to kilometres, which are comparable to the size of buildings and hills. Diffraction is significant when the obstacle size is comparable to the wavelength, so radio waves bend around these structures. This is why AM radio signals can be received even behind mountains.",
+    "correct_answer": "A",
+    "concept_tags": ["radio-diffraction", "wavelength-obstacle", "diffraction"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "diffraction of EM waves",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The comparable wavelength is precisely why diffraction occurs. R is the direct cause of A.", "misconception": "Not connecting diffraction condition to wavelength"},
+      {"option_key": "C", "hint": "R is correct: AM radio wavelengths are ~100–1000 m, comparable to building and hill sizes.", "misconception": "Underestimating radio wavelengths"},
+      {"option_key": "D", "hint": "A is true — radio reception behind obstacles is daily evidence of radio wave diffraction.", "misconception": "Thinking radio needs line-of-sight"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-44",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): Displacement current does not produce a magnetic field.\nReason (R): Displacement current is not a flow of charges.",
+    "explanation": "A is false but R is true. Displacement current IS NOT a flow of charges (R is true — it arises from changing electric field). However, displacement current DOES produce a magnetic field, exactly like conduction current (A is false). This was Maxwell's key insight: a changing electric field between capacitor plates produces a magnetic field, maintaining the continuity of the Ampere's circuital law.",
+    "correct_answer": "D",
+    "concept_tags": ["displacement-current", "maxwell-insight", "magnetic-field"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "displacement current and Maxwell's correction",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "analyse",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "A is false — displacement current does produce a magnetic field. That's the whole point of Maxwell's modification to Ampere's law.", "misconception": "Thinking displacement current has no magnetic effect"},
+      {"option_key": "B", "hint": "A is false, so this option cannot be correct.", "misconception": "Same as above"},
+      {"option_key": "C", "hint": "R is true — displacement current is ε₀(dΦE/dt), not a flow of actual charges. It exists even in vacuum.", "misconception": "Confusing displacement current with conduction current"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-45",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following electromagnetic waves (Column-I) with their sources (Column-II):\n\nColumn-I: (P) Radio waves (Q) X-rays (R) Gamma rays (S) Infrared\nColumn-II: (1) Radioactive nuclei (2) Vibration of atoms/molecules (3) Accelerating electrons striking metal target (4) Oscillating electric circuits",
+    "explanation": "P→4: Radio waves are produced by oscillating charges in LC circuits and antennas. Q→3: X-rays are produced when high-speed electrons decelerate upon hitting a metal target (Bremsstrahlung). R→1: Gamma rays originate from nuclear transitions in radioactive decay. S→2: Infrared radiation is emitted by vibrating atoms and molecules (thermal motion).",
+    "correct_answer": "B",
+    "concept_tags": ["sources", "matching", "spectrum-production"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "sources of different EM waves",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "P→1, Q→3, R→4, S→2", "is_correct": false},
+      {"key": "B", "text": "P→4, Q→3, R→1, S→2", "is_correct": true},
+      {"key": "C", "text": "P→4, Q→1, R→3, S→2", "is_correct": false},
+      {"key": "D", "text": "P→2, Q→3, R→1, S→4", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "P→1 means radio waves from radioactive nuclei — incorrect. Nuclear decay produces gamma rays, not radio waves.", "misconception": "Confusing nuclear radiation with radio transmission"},
+      {"option_key": "C", "hint": "Q→1 implies X-rays from radioactive nuclei. While some nuclei emit X-rays, the primary source is electron deceleration in X-ray tubes (3).", "misconception": "Confusing gamma emission with X-ray production"},
+      {"option_key": "D", "hint": "P→2 means radio waves from atomic vibrations — incorrect. Atomic vibrations produce infrared, not radio waves.", "misconception": "Confusing thermal radiation with radio waves"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-46",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following electromagnetic waves (Column-I) with their approximate frequency ranges (Column-II):\n\nColumn-I: (P) Microwaves (Q) Visible light (R) Ultraviolet (S) X-rays\nColumn-II: (1) 10¹⁵ to 10¹⁷ Hz (2) 4 × 10¹⁴ to 7.5 × 10¹⁴ Hz (3) 10⁹ to 10¹² Hz (4) 10¹⁷ to 10²⁰ Hz",
+    "explanation": "P→3: Microwaves have frequencies from ~10⁹ to 10¹² Hz (GHz range). Q→2: Visible light spans ~4 × 10¹⁴ Hz (red) to ~7.5 × 10¹⁴ Hz (violet). R→1: UV radiation spans ~10¹⁵ to 10¹⁷ Hz. S→4: X-rays have frequencies from ~10¹⁷ to 10²⁰ Hz.",
+    "correct_answer": "A",
+    "concept_tags": ["frequency-ranges", "spectrum-ordering", "matching"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "frequency ranges of EM spectrum",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "P→3, Q→2, R→1, S→4", "is_correct": true},
+      {"key": "B", "text": "P→3, Q→1, R→2, S→4", "is_correct": false},
+      {"key": "C", "text": "P→2, Q→3, R→1, S→4", "is_correct": false},
+      {"key": "D", "text": "P→3, Q→2, R→4, S→1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Q→1 assigns 10¹⁵–10¹⁷ Hz to visible light, which is actually the UV range. Visible is only ~4–7.5 × 10¹⁴ Hz.", "misconception": "Overestimating visible light frequency"},
+      {"option_key": "C", "hint": "P→2 assigns ~10¹⁴ Hz to microwaves. Microwaves are much lower frequency (~10⁹–10¹² Hz).", "misconception": "Confusing microwave and visible frequencies"},
+      {"option_key": "D", "hint": "R→4 assigns 10¹⁷–10²⁰ Hz to UV, but that's the X-ray range. UV is lower frequency than X-rays.", "misconception": "Swapping UV and X-ray frequency ranges"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-47",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following EM wave applications (Column-I) with the type of EM wave used (Column-II):\n\nColumn-I: (P) Night vision cameras (Q) Satellite communication (R) Sterilisation of surgical instruments (S) Medical imaging of bones\nColumn-II: (1) X-rays (2) Ultraviolet (3) Microwaves (4) Infrared",
+    "explanation": "P→4: Night vision uses infrared cameras to detect heat emitted by bodies. Q→3: Satellite communication uses microwaves which can penetrate the ionosphere. R→2: UV radiation kills bacteria and is used for sterilisation. S→1: X-rays penetrate soft tissue but are absorbed by bones, creating contrast images.",
+    "correct_answer": "C",
+    "concept_tags": ["applications", "matching", "practical-uses"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "applications of EM spectrum",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "P→4, Q→3, R→1, S→2", "is_correct": false},
+      {"key": "B", "text": "P→3, Q→4, R→2, S→1", "is_correct": false},
+      {"key": "C", "text": "P→4, Q→3, R→2, S→1", "is_correct": true},
+      {"key": "D", "text": "P→4, Q→2, R→3, S→1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "R→1 means sterilisation with X-rays — UV is the standard sterilisation method, not X-rays.", "misconception": "Confusing X-ray imaging with UV sterilisation"},
+      {"option_key": "B", "hint": "P→3 means night vision with microwaves — night vision cameras detect infrared (heat), not microwaves.", "misconception": "Confusing thermal IR with microwave detection"},
+      {"option_key": "D", "hint": "Q→2 means satellite communication with UV — UV is absorbed by the atmosphere. Microwaves pass through.", "misconception": "Thinking UV can be used for long-range communication"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-48",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Electromagnetic waves require a material medium for their propagation.",
+    "explanation": "This statement is FALSE. Electromagnetic waves are self-sustaining oscillations of electric and magnetic fields and do NOT require a material medium. They can propagate through vacuum at the speed of light. This is fundamentally different from mechanical waves like sound, which need a medium.",
+    "correct_answer": "B",
+    "concept_tags": ["vacuum-propagation", "no-medium", "em-vs-mechanical"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "properties of EM waves",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": false},
+      {"key": "B", "text": "False", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Sunlight reaches us through the vacuum of space — clear proof that EM waves don't need a medium.", "misconception": "Confusing EM waves with sound waves which do need a medium"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-49",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "X-rays have a higher frequency than ultraviolet rays.",
+    "explanation": "This statement is TRUE. In the EM spectrum, frequency increases as: radio < microwave < IR < visible < UV < X-rays < gamma rays. X-rays (10¹⁷–10²⁰ Hz) have higher frequency than UV (10¹⁵–10¹⁷ Hz).",
+    "correct_answer": "A",
+    "concept_tags": ["frequency-ordering", "x-rays-vs-uv", "spectrum"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "EM spectrum ordering",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "X-rays are more energetic than UV — since E = hf, higher energy means higher frequency.", "misconception": "Reversing the order of X-rays and UV in the spectrum"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-50",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "true-false",
+    "difficulty": "medium",
+    "question_text": "In an electromagnetic wave, the electric and magnetic fields are in phase with each other.",
+    "explanation": "This statement is TRUE. In an EM wave, E and B reach their maximum, minimum, and zero values simultaneously — they oscillate in phase. If E = E₀ sin(kx − ωt), then B = B₀ sin(kx − ωt) with the same phase. They differ in direction (perpendicular) and magnitude (B₀ = E₀/c), but not in phase.",
+    "correct_answer": "A",
+    "concept_tags": ["phase-relation", "E-B-in-phase", "wave-properties"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "phase relationship in EM waves",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Unlike standing waves or LC oscillations where E and B are 90° out of phase, in a travelling EM wave they are always in phase.", "misconception": "Confusing travelling wave with standing wave or LC circuit phase relations"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-51",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "true-false",
+    "difficulty": "medium",
+    "question_text": "The displacement current between the plates of a charging capacitor is equal to the conduction current in the external circuit.",
+    "explanation": "This statement is TRUE. Maxwell showed that the displacement current Id = ε₀(dΦE/dt) between the capacitor plates equals the conduction current Ic in the connecting wires. This ensures continuity of current through the circuit, including the gap between the capacitor plates where no charges actually flow.",
+    "correct_answer": "A",
+    "concept_tags": ["displacement-current", "conduction-current", "continuity"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "displacement current",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "If Id ≠ Ic, Kirchhoff's current law would be violated at the capacitor terminals. Maxwell's correction precisely ensures Id = Ic.", "misconception": "Thinking current is discontinuous at capacitor plates"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-52",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "fill-in-blanks",
+    "difficulty": "easy",
+    "question_text": "The part of the electromagnetic spectrum used in television remote controls is ______.",
+    "explanation": "Television remote controls use infrared (IR) radiation. They emit IR light pulses in coded patterns that are received by an IR sensor on the TV. IR is used because it is invisible, safe, low-power, and works well over short distances within a room.",
+    "correct_answer": "C",
+    "concept_tags": ["infrared", "remote-control", "applications"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "everyday applications of EM waves",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Radio waves", "is_correct": false},
+      {"key": "B", "text": "Microwaves", "is_correct": false},
+      {"key": "C", "text": "Infrared", "is_correct": true},
+      {"key": "D", "text": "Ultraviolet", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Radio waves are used for broadcast communication (FM/AM radio, WiFi), not for TV remote controls.", "misconception": "Confusing radio broadcast with remote control"},
+      {"option_key": "B", "hint": "Microwaves are used in ovens and long-distance communication, not in handheld remote controls.", "misconception": "Confusing different wireless technologies"},
+      {"option_key": "D", "hint": "UV radiation can be harmful to eyes and skin. It would be unsafe and impractical for a consumer remote control.", "misconception": "Thinking any invisible radiation works for remotes"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-53",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "Maxwell added ______ current to Ampere's circuital law to make it consistent for both steady and time-varying fields.",
+    "explanation": "Maxwell added the displacement current (Id = ε₀ dΦE/dt) to Ampere's circuital law. The original law worked for steady currents but failed for time-varying fields (e.g., between capacitor plates during charging). The modified law is: ∮B·dl = μ₀(Ic + Id), where Ic is conduction current and Id is displacement current.",
+    "correct_answer": "B",
+    "concept_tags": ["displacement-current", "ampere-law", "maxwell-correction"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "Maxwell's modification of Ampere's law",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Conduction", "is_correct": false},
+      {"key": "B", "text": "Displacement", "is_correct": true},
+      {"key": "C", "text": "Convection", "is_correct": false},
+      {"key": "D", "text": "Eddy", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Conduction current was already in the original Ampere's law. Maxwell added something new, not what was already there.", "misconception": "Confusing existing term with the new addition"},
+      {"option_key": "C", "hint": "Convection current refers to charge transport in fluids. It is not related to Maxwell's theoretical correction.", "misconception": "Random guess among current types"},
+      {"option_key": "D", "hint": "Eddy currents are induced circular currents in conductors, related to Faraday's law — not Maxwell's correction to Ampere's law.", "misconception": "Confusing Faraday's law effects with Maxwell's addition"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-54",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The speed of light in vacuum, c = 1/√(μ₀ε₀), has a value of approximately ______ m/s.",
+    "explanation": "Using μ₀ = 4π × 10⁻⁷ H/m and ε₀ = 8.854 × 10⁻¹² F/m, c = 1/√(μ₀ε₀) = 1/√(4π × 10⁻⁷ × 8.854 × 10⁻¹²) ≈ 3 × 10⁸ m/s. This value was calculated by Maxwell and matched the experimentally known speed of light, leading him to conclude that light is an electromagnetic wave.",
+    "correct_answer": "A",
+    "concept_tags": ["speed-of-light", "mu-epsilon", "maxwell-prediction"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "derivation of speed of light",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "3 × 10⁸", "is_correct": true},
+      {"key": "B", "text": "3 × 10⁶", "is_correct": false},
+      {"key": "C", "text": "3 × 10¹⁰", "is_correct": false},
+      {"key": "D", "text": "3 × 10⁵", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "3 × 10⁶ m/s is about 1% of the speed of light. Light travels ~300,000 km/s, not 3,000 km/s.", "misconception": "Off by a factor of 100"},
+      {"option_key": "C", "hint": "3 × 10¹⁰ m/s exceeds the speed of light by 100×. Nothing can travel this fast according to relativity.", "misconception": "Confusing with c in cm/s (3 × 10¹⁰ cm/s)"},
+      {"option_key": "D", "hint": "3 × 10⁵ m/s is approximately the speed of sound in some metals, not the speed of light.", "misconception": "Off by three orders of magnitude"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-55",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A student is studying the electromagnetic spectrum and notes the following observations:\n(i) A TV remote works by emitting invisible radiation detected by a sensor on the TV.\n(ii) Mobile phones use radiation that can pass through walls but has less energy than light.\n(iii) Hospital X-ray machines can see through skin but not through bones.\n\nWhich of the following correctly identifies all three types of radiation?",
+    "explanation": "(i) TV remotes use infrared radiation — invisible, low energy, short range. (ii) Mobile phones use microwaves — they can penetrate walls, have lower frequency (hence lower energy) than visible light. (iii) X-rays penetrate soft tissue but are absorbed by dense bone, creating contrast images. The correct identification is IR, Microwaves, X-rays.",
+    "correct_answer": "B",
+    "concept_tags": ["spectrum-identification", "real-world", "scenario"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "identifying EM waves from properties",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "(i) UV, (ii) Radio waves, (iii) X-rays", "is_correct": false},
+      {"key": "B", "text": "(i) Infrared, (ii) Microwaves, (iii) X-rays", "is_correct": true},
+      {"key": "C", "text": "(i) Infrared, (ii) Radio waves, (iii) Gamma rays", "is_correct": false},
+      {"key": "D", "text": "(i) Radio waves, (ii) Microwaves, (iii) X-rays", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "UV is not used in TV remotes — it would be harmful to emit UV radiation directly at people. Remotes use safe infrared.", "misconception": "Confusing invisible UV with invisible IR"},
+      {"option_key": "C", "hint": "Mobile phones use microwaves (GHz range), not radio waves (MHz range). Also, hospital imaging uses X-rays, not gamma rays.", "misconception": "Confusing microwave with radio, and X-ray with gamma"},
+      {"option_key": "D", "hint": "TV remotes emit infrared, not radio waves. Radio waves have much longer wavelengths and are used for broadcasting.", "misconception": "Thinking any wireless device uses radio waves"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-56",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "A parallel plate capacitor with plate area A = 2 × 10⁻² m² is being charged by a current of 0.5 A. The electric field between the plates changes uniformly.\n\nThe displacement current between the plates is:",
+    "explanation": "The displacement current Id between capacitor plates equals the conduction current Ic in the external circuit (Maxwell's continuity principle). Since Ic = 0.5 A, Id = 0.5 A. This can be verified: Id = ε₀(dΦE/dt) = ε₀A(dE/dt). Since the charging current provides dQ/dt = 0.5 A, and Q = ε₀AE, we get ε₀A(dE/dt) = dQ/dt = 0.5 A.",
+    "correct_answer": "B",
+    "concept_tags": ["displacement-current-calculation", "capacitor-charging", "maxwell"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "displacement current numerical",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "0.25 A", "is_correct": false},
+      {"key": "B", "text": "0.5 A", "is_correct": true},
+      {"key": "C", "text": "1.0 A", "is_correct": false},
+      {"key": "D", "text": "Depends on the plate area", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Id = Ic always (for a charging capacitor). The displacement current is NOT half the conduction current.", "misconception": "Thinking displacement current is half of conduction current"},
+      {"option_key": "C", "hint": "Id = Ic = 0.5 A, not 2 × Ic. There is no doubling factor in the Id-Ic relationship.", "misconception": "Doubling the current incorrectly"},
+      {"option_key": "D", "hint": "While ε₀A(dE/dt) depends on area, the result always equals Ic regardless of plate dimensions. The area cancels out.", "misconception": "Thinking displacement current depends on plate geometry independently of conduction current"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-57",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "An astronaut on the International Space Station communicates with ground control using radio signals. The ISS orbits at a height of approximately 400 km above Earth's surface.\n\nThe time delay for the radio signal to travel from ISS to Earth is approximately:",
+    "explanation": "Radio signals travel at the speed of light, c = 3 × 10⁸ m/s. Distance = 400 km = 4 × 10⁵ m. Time = distance/speed = 4 × 10⁵/(3 × 10⁸) = 1.33 × 10⁻³ s ≈ 1.3 ms. This is barely perceptible in conversation.",
+    "correct_answer": "B",
+    "concept_tags": ["speed-distance-time", "space-communication", "practical"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "EM wave speed applications",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "0.13 ms", "is_correct": false},
+      {"key": "B", "text": "1.3 ms", "is_correct": true},
+      {"key": "C", "text": "13 ms", "is_correct": false},
+      {"key": "D", "text": "1.3 s", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "0.13 ms corresponds to only 40 km distance, not 400 km. Check the exponent calculation.", "misconception": "Error in power of ten"},
+      {"option_key": "C", "hint": "13 ms corresponds to ~4000 km, which is 10× the actual ISS height.", "misconception": "Using 4 × 10⁶ m instead of 4 × 10⁵ m"},
+      {"option_key": "D", "hint": "1.3 s would mean a distance of ~400,000 km — roughly the Earth-Moon distance, not ISS height.", "misconception": "Major order of magnitude error"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-58",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A plane EM wave has an electric field amplitude of 480 V/m. The magnetic field amplitude and the average intensity of the wave are respectively:",
+    "explanation": "B₀ = E₀/c = 480/(3 × 10⁸) = 1.6 × 10⁻⁶ T. Average intensity I = ½ε₀cE₀² = ½ × 8.85 × 10⁻¹² × 3 × 10⁸ × (480)² = ½ × 8.85 × 10⁻¹² × 3 × 10⁸ × 2.304 × 10⁵ = ½ × 611.5 ≈ 306 W/m².",
+    "correct_answer": "A",
+    "concept_tags": ["numerical", "B-amplitude", "intensity-calculation"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "E, B amplitude and intensity",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "1.6 × 10⁻⁶ T, 306 W/m²", "is_correct": true},
+      {"key": "B", "text": "1.6 × 10⁻⁶ T, 612 W/m²", "is_correct": false},
+      {"key": "C", "text": "1.6 × 10⁻⁸ T, 306 W/m²", "is_correct": false},
+      {"key": "D", "text": "1.6 × 10⁻⁶ T, 153 W/m²", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "612 W/m² is the peak intensity (ε₀cE₀²), not the average. For average, you need the ½ factor from time-averaging sin².", "misconception": "Forgetting the ½ factor in average intensity"},
+      {"option_key": "C", "hint": "1.6 × 10⁻⁸ T is 100× too small. B₀ = E₀/c = 480/(3×10⁸) = 1.6 × 10⁻⁶ T.", "misconception": "Arithmetic error in exponents: 10⁰/10⁸ ≠ 10⁻⁸ for this calculation"},
+      {"option_key": "D", "hint": "153 W/m² is ¼ε₀cE₀², which counts only the electric field contribution. Total intensity includes both E and B.", "misconception": "Forgetting to add the magnetic field energy contribution"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-59",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which property of electromagnetic waves proves that they are transverse?",
+    "explanation": "Polarisation is exclusively a property of transverse waves. Only waves whose oscillations are perpendicular to the propagation direction can be polarised (restricted to a single plane). Longitudinal waves like sound cannot be polarised. The fact that light can be polarised (using Polaroid filters, for example) proves it is transverse.",
+    "correct_answer": "C",
+    "concept_tags": ["polarisation", "transverse-proof", "wave-nature"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "evidence for transverse nature",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "Reflection", "is_correct": false},
+      {"key": "B", "text": "Diffraction", "is_correct": false},
+      {"key": "C", "text": "Polarisation", "is_correct": true},
+      {"key": "D", "text": "Interference", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Both transverse and longitudinal waves can be reflected. Reflection doesn't distinguish wave type.", "misconception": "Thinking reflection is unique to transverse waves"},
+      {"option_key": "B", "hint": "Diffraction occurs for all types of waves — it proves wave nature but not transverse nature.", "misconception": "Confusing wave nature with transverse nature"},
+      {"option_key": "D", "hint": "Interference occurs for both longitudinal and transverse waves (e.g., sound interference). It proves wave nature, not transverse nature.", "misconception": "Confusing general wave properties with transverse-specific properties"}
+    ]
+  },
+  {
+    "id": "cuet-phy-emwave-60",
+    "chapter_id": "cuet-phy-em-waves",
+    "topic_id": "cuet-phy-emwave-spectrum",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The electric field of a sinusoidal EM wave in vacuum obeys the equation E = 100 sin(5 × 10⁶ t − kx) V/m. The wavelength of the wave is:",
+    "explanation": "From the equation, ω = 5 × 10⁶ rad/s. Frequency f = ω/(2π) = 5 × 10⁶/(2π) Hz. Using c = fλ, we get λ = c/f = 2πc/ω = 2π × 3 × 10⁸/(5 × 10⁶) = 6π × 10⁸/5 × 10⁶ = 6π × 10² ≈ 120π m ≈ 377 m. Alternatively, k = ω/c = 5 × 10⁶/(3 × 10⁸) = 1.67 × 10⁻² rad/m, and λ = 2π/k = 2π/(1.67 × 10⁻²) ≈ 376.8 m.",
+    "correct_answer": "D",
+    "concept_tags": ["wave-equation", "wavelength-from-omega", "numerical"],
+    "topic": "Electromagnetic Spectrum and Wave Properties",
+    "subtopic": "EM wave equation analysis",
+    "subject": "cuet-physics",
+    "chapter": "Electromagnetic Waves",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "60 m", "is_correct": false},
+      {"key": "B", "text": "60π m", "is_correct": false},
+      {"key": "C", "text": "12π m", "is_correct": false},
+      {"key": "D", "text": "120π m", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "60 m forgets the 2π factor. λ = 2πc/ω, not c/ω.", "misconception": "Using λ = c/ω instead of λ = 2πc/ω"},
+      {"option_key": "B", "hint": "60π m uses λ = πc/ω. The correct formula is λ = 2πc/ω = 2π × 3 × 10⁸/(5 × 10⁶).", "misconception": "Using π instead of 2π"},
+      {"option_key": "C", "hint": "12π m comes from an error in the power of ten: 10⁸/10⁶ = 10² = 100, not 10.", "misconception": "Arithmetic error in exponent subtraction"}
+    ]
+  }
+]
