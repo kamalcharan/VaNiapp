@@ -98,11 +98,11 @@
           <h3 class="card-title">1. Select JSON Files</h3>
         </div>
         <div class="card-body">
-          <input type="file" id="fileInput" accept=".json" multiple style="display: none;">
-          <div class="drop-zone" id="dropZone">
+          <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
             <div class="icon">📁</div>
             <div><strong>Click to select files</strong> or drag & drop</div>
             <div class="hint">Select multiple .json files from Qbank/generated/{subject}/{chapter}/</div>
+            <input type="file" id="fileInput" accept=".json" multiple style="display: none;" onchange="handleFiles(event.target.files)">
           </div>
         </div>
       </div>
@@ -177,30 +177,14 @@
     // INIT
     // ========================================================================
     document.addEventListener('DOMContentLoaded', async () => {
-      // Setup file picker immediately so it works even if auth is slow
-      setupDragDrop();
-
       const user = await Qbank.requireAuth('admin');
       if (!user) return;
       Qbank.renderNavHeader();
+      setupDragDrop();
     });
 
     function setupDragDrop() {
       const zone = document.getElementById('dropZone');
-      const fileInput = document.getElementById('fileInput');
-
-      // Click to open file picker
-      zone.addEventListener('click', () => {
-        fileInput.value = '';  // Reset so re-selecting same files still triggers change
-        fileInput.click();
-      });
-
-      // File selected via picker
-      fileInput.addEventListener('change', () => {
-        if (fileInput.files.length > 0) handleFiles(fileInput.files);
-      });
-
-      // Drag & drop
       zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('drag-over'); });
       zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
       zone.addEventListener('drop', (e) => {
