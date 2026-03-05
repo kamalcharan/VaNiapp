@@ -23,7 +23,7 @@ import { TopicBreakdown, TopicStat } from '../../src/components/TopicBreakdown';
 import { useTheme } from '../../src/hooks/useTheme';
 import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
-import { getSubjects, getChapters, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
+import { getSubjects, getChapters, getChapterQuestionCounts, CatalogSubject, CatalogChapter } from '../../src/lib/catalog';
 import { getProfile } from '../../src/lib/database';
 import { fetchQuestionsByChapter } from '../../src/lib/questions';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
@@ -106,6 +106,7 @@ export default function SubjectDetailScreen() {
 
   const [subject, setSubject] = useState<CatalogSubject | null>(null);
   const [chapters, setChapters] = useState<CatalogChapter[]>([]);
+  const [bankCounts, setBankCounts] = useState<Record<string, number>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [examFilter, setExamFilter] = useState<string | undefined>(undefined);
@@ -150,6 +151,9 @@ export default function SubjectDetailScreen() {
         }
 
         setChapters(subjectChapters);
+
+        // Fetch question counts for chapters not yet practiced (single batched query)
+        getChapterQuestionCounts(id!).then(setBankCounts);
       } else {
         setLoadError(`Subject "${id}" not found`);
       }
@@ -185,14 +189,14 @@ export default function SubjectDetailScreen() {
         accuracy: data?.accuracy ?? 0,
         totalAnswered: data?.totalAnswered ?? 0,
         correctCount: data?.correctCount ?? 0,
-        totalInBank: data?.totalInBank ?? 0,
+        totalInBank: data?.totalInBank || bankCounts[ch.id] || 0,
         strengthLevel: (data?.strengthLevel ?? 'just-started') as StrengthLevel,
         lastPracticedAt: data?.lastPracticedAt ?? null,
       };
     });
 
     return mapped;
-  }, [chapters, strengthChapters, id]);
+  }, [chapters, strengthChapters, bankCounts, id]);
 
   // Subject-level strength
   const subjectStrength = useMemo(() => {

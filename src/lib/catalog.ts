@@ -250,10 +250,51 @@ export async function getNeetSubjectIds(): Promise<string[]> {
   return neetSubjects.map((s) => s.id);
 }
 
+// ── Question counts per chapter (batched by subject) ────────
+
+let cachedQuestionCounts: Map<string, Record<string, number>> = new Map();
+
+/**
+ * Fetch total question counts per chapter for a subject in a single query.
+ * Returns a map of chapterId -> questionCount.
+ */
+export async function getChapterQuestionCounts(subjectId: string): Promise<Record<string, number>> {
+  if (cachedQuestionCounts.has(subjectId)) {
+    return cachedQuestionCounts.get(subjectId)!;
+  }
+
+  if (!supabase) return {};
+
+  try {
+    const { data, error } = await supabase
+      .from('med_questions')
+      .select('chapter_id')
+      .eq('subject_id', subjectId)
+      .eq('is_active', true);
+
+    if (error || !data) {
+      console.warn('[catalog] Failed to fetch question counts:', error?.message);
+      return {};
+    }
+
+    const counts: Record<string, number> = {};
+    for (const row of data) {
+      counts[row.chapter_id] = (counts[row.chapter_id] || 0) + 1;
+    }
+
+    cachedQuestionCounts.set(subjectId, counts);
+    return counts;
+  } catch (err) {
+    console.warn('[catalog] Exception fetching question counts:', err);
+    return {};
+  }
+}
+
 /** Clear cache (useful after admin changes). */
 export function clearCatalogCache(): void {
   cachedExams = null;
   cachedSubjects = null;
   cachedLanguages = null;
   cachedChapters.clear();
+  cachedQuestionCounts.clear();
 }
