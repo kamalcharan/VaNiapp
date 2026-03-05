@@ -89,7 +89,7 @@ function SubjectSection({
       return {
         coverage: data?.coverage ?? 0,
         accuracy: data?.accuracy ?? 0,
-        totalInBank: ch.avg_questions || 25,
+        totalInBank: data?.totalInBank ?? 0,
       };
     });
     return evaluateSubjectStrength(chapterData);
@@ -175,7 +175,7 @@ function CompactSubjectRow({
       return {
         coverage: data?.coverage ?? 0,
         accuracy: data?.accuracy ?? 0,
-        totalInBank: ch.avg_questions || 25,
+        totalInBank: data?.totalInBank ?? 0,
       };
     });
     return evaluateSubjectStrength(chapterData);

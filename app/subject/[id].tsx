@@ -185,7 +185,7 @@ export default function SubjectDetailScreen() {
         accuracy: data?.accuracy ?? 0,
         totalAnswered: data?.totalAnswered ?? 0,
         correctCount: data?.correctCount ?? 0,
-        totalInBank: data?.totalInBank ?? ch.avg_questions ?? 0,
+        totalInBank: data?.totalInBank ?? 0,
         strengthLevel: (data?.strengthLevel ?? 'just-started') as StrengthLevel,
         lastPracticedAt: data?.lastPracticedAt ?? null,
       };
@@ -657,8 +657,10 @@ export default function SubjectDetailScreen() {
                               ))}
                             </View>
                           )}
-                          <Text style={[styles.notStartedText, { color: ca.totalInBank > 0 ? colors.textTertiary : colors.textSecondary }]}>
-                            {ca.totalInBank > 0 ? `${ca.totalInBank} questions available` : 'No questions yet — coming soon'}
+                          <Text style={[styles.notStartedText, { color: colors.textTertiary }]}>
+                            {ca.chapter.avg_questions > 0 && `~${ca.chapter.avg_questions} Qs in exam`}
+                            {ca.chapter.avg_questions > 0 && ' · '}
+                            {ca.totalInBank > 0 ? `${ca.totalInBank} Qs in bank` : 'No questions yet'}
                           </Text>
                         </View>
                       );
