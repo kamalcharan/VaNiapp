@@ -39,7 +39,12 @@ export function useTrial(): TrialStatus {
     subscriptionExpiresAt,
   } = useSelector((state: RootState) => state.trial);
 
-  if (isPaid) {
+  // Live-check: if subscription has expired mid-session, treat as unpaid
+  const subscriptionExpired = isPaid && subscriptionExpiresAt
+    ? new Date(subscriptionExpiresAt) < new Date()
+    : false;
+
+  if (isPaid && !subscriptionExpired) {
     return {
       canPractice: true,
       isPaid: true,
