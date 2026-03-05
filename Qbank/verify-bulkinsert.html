@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Bulk Insert - CUET Physics</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .verify-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
+    .verify-box { text-align: center; padding: 16px; border-radius: 8px; border: 2px solid var(--gray-200); }
+    .verify-box .value { font-size: 2rem; font-weight: 700; }
+    .verify-box .label { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+    .verify-box.pass { border-color: #22c55e; background: #f0fdf4; }
+    .verify-box.fail { border-color: #ef4444; background: #fef2f2; }
+    .verify-box.warn { border-color: #f59e0b; background: #fffbeb; }
+    .check-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0; }
+    .check-table th, .check-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--gray-200); }
+    .check-table th { background: var(--gray-50); font-weight: 600; font-size: 12px; text-transform: uppercase; color: var(--gray-500); }
+    .check-table tr:hover { background: var(--gray-50); }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+    .badge-pass { background: #dcfce7; color: #166534; }
+    .badge-fail { background: #fee2e2; color: #991b1b; }
+    .badge-warn { background: #fef3c7; color: #92400e; }
+    .section-title { font-size: 16px; font-weight: 700; margin: 24px 0 8px; padding: 8px 12px; border-radius: 8px; background: #dbeafe; color: #1e40af; }
+    .detail-box { background: #1e293b; color: #e2e8f0; padding: 16px; border-radius: 8px; font-family: monospace; font-size: 13px; white-space: pre-wrap; max-height: 400px; overflow-y: auto; margin: 12px 0; }
+    .summary-banner { padding: 20px; border-radius: 12px; text-align: center; margin: 20px 0; font-size: 18px; font-weight: 700; }
+    .summary-pass { background: #dcfce7; color: #166534; border: 2px solid #22c55e; }
+    .summary-fail { background: #fee2e2; color: #991b1b; border: 2px solid #ef4444; }
+  </style>
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-icon">&#x2705;</span>
+          Verify Bulk Insert — CUET Physics
+        </h1>
+        <p class="page-subtitle">Cross-check database against expected question counts from FINAL JSON files</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Verification Checks</h3>
+          <button class="btn btn-primary" id="runBtn" onclick="runVerification()">Run Verification</button>
+        </div>
+        <div class="card-body" id="results">
+          <p style="color: var(--gray-500); text-align: center;">Click "Run Verification" to compare your database against expected CUET Physics data.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Qbank.requireAuth('admin');
+      if (!user) return;
+      Qbank.renderNavHeader();
+    });
+
+    // Expected counts from FINAL JSON files (25 files, 867 questions)
+    const EXPECTED = {
+      subject_id: 'cuet-physics',
+      total: 867,
+      chapters: [
+        { chapter_id: 'cuet-phy-electrostatics',       name: 'Electrostatics',       expected: 240, batches: 'B01-B06' },
+        { chapter_id: 'cuet-phy-current-electricity',   name: 'Current Electricity',   expected: 207, batches: 'B07-B12' },
+        { chapter_id: 'cuet-phy-magnetic-effects',      name: 'Magnetic Effects',      expected: 180, batches: 'B13-B17' },
+        { chapter_id: 'cuet-phy-em-induction',          name: 'EM Induction & AC',     expected: 160, batches: 'B18-B21' },
+        { chapter_id: 'cuet-phy-em-waves',              name: 'EM Waves',              expected: 40,  batches: 'B01-B02 (Mar 5)' },
+        { chapter_id: 'cuet-phy-communication',         name: 'Communication Systems', expected: 40,  batches: 'B01-B02 (Mar 5)' },
+      ]
+    };
+
+    async function runVerification() {
+      const btn = document.getElementById('runBtn');
+      const results = document.getElementById('results');
+      btn.disabled = true;
+      btn.textContent = 'Verifying...';
+      results.innerHTML = '<p>Running verification queries...</p>';
+
+      try {
+        const checks = [];
+        let html = '';
+
+        // ── CHECK 1: Total CUET Physics questions ──
+        const { count: totalActive } = await Qbank.supabase
+          .from('med_questions')
+          .select('*', { count: 'exact', head: true })
+          .eq('subject_id', EXPECTED.subject_id)
+          .eq('status', 'active');
+
+        const { count: totalAll } = await Qbank.supabase
+          .from('med_questions')
+          .select('*', { count: 'exact', head: true })
+          .eq('subject_id', EXPECTED.subject_id);
+
+        const totalMatch = totalActive === EXPECTED.total;
+        checks.push(totalMatch);
+
+        html += `<div class="verify-grid">`;
+        html += `<div class="verify-box ${totalMatch ? 'pass' : 'fail'}">
+          <div class="value">${totalActive ?? 0}</div>
+          <div class="label">Active Questions (expected ${EXPECTED.total})</div>
+        </div>`;
+        html += `<div class="verify-box ${totalAll === totalActive ? 'pass' : 'warn'}">
+          <div class="value">${totalAll ?? 0}</div>
+          <div class="label">Total (all statuses)</div>
+        </div>`;
+        html += `<div class="verify-box ${totalMatch ? 'pass' : 'fail'}">
+          <div class="value">${totalMatch ? 'PASS' : 'FAIL'}</div>
+          <div class="label">Total Count Check</div>
+        </div>`;
+        html += `</div>`;
+
+        // ── CHECK 2: Per-chapter counts ──
+        html += `<div class="section-title">Per-Chapter Breakdown</div>`;
+        html += `<table class="check-table">`;
+        html += `<thead><tr><th>Chapter</th><th>Chapter ID</th><th>Batches</th><th>Expected</th><th>Active in DB</th><th>Status</th></tr></thead><tbody>`;
+
+        for (const ch of EXPECTED.chapters) {
+          const { count: chCount } = await Qbank.supabase
+            .from('med_questions')
+            .select('*', { count: 'exact', head: true })
+            .eq('chapter_id', ch.chapter_id)
+            .eq('status', 'active');
+
+          const match = chCount === ch.expected;
+          checks.push(match);
+          const badge = match
+            ? '<span class="badge badge-pass">PASS</span>'
+            : chCount > 0
+              ? `<span class="badge badge-warn">MISMATCH (${chCount > ch.expected ? '+' : ''}${chCount - ch.expected})</span>`
+              : '<span class="badge badge-fail">MISSING</span>';
+
+          html += `<tr>
+            <td><strong>${ch.name}</strong></td>
+            <td><code>${ch.chapter_id}</code></td>
+            <td>${ch.batches}</td>
+            <td>${ch.expected}</td>
+            <td style="font-weight: 700; color: ${match ? '#22c55e' : '#ef4444'}">${chCount ?? 0}</td>
+            <td>${badge}</td>
+          </tr>`;
+        }
+        html += `</tbody></table>`;
+
+        // ── CHECK 3: Options count (should be 4 per MCQ) ──
+        html += `<div class="section-title">Data Integrity Checks</div>`;
+
+        // Questions with options
+        const { data: optionCounts, error: optErr } = await Qbank.supabase
+          .from('med_questions')
+          .select('id, med_question_options(id)')
+          .eq('subject_id', EXPECTED.subject_id)
+          .eq('status', 'active');
+
+        let noOptions = 0;
+        let wrongOptionCount = 0;
+        let goodOptions = 0;
+        if (optionCounts && !optErr) {
+          for (const q of optionCounts) {
+            const opts = q.med_question_options?.length || 0;
+            if (opts === 0) noOptions++;
+            else if (opts !== 4) wrongOptionCount++;
+            else goodOptions++;
+          }
+        }
+
+        const optionsOk = noOptions === 0;
+        checks.push(optionsOk);
+
+        html += `<table class="check-table">`;
+        html += `<thead><tr><th>Check</th><th>Result</th><th>Status</th></tr></thead><tbody>`;
+        html += `<tr>
+          <td>Questions with exactly 4 options</td>
+          <td>${goodOptions} / ${totalActive ?? 0}</td>
+          <td>${optionsOk ? '<span class="badge badge-pass">PASS</span>' : `<span class="badge badge-fail">${noOptions} missing options</span>`}</td>
+        </tr>`;
+        if (wrongOptionCount > 0) {
+          html += `<tr>
+            <td>Questions with wrong option count (not 4)</td>
+            <td>${wrongOptionCount}</td>
+            <td><span class="badge badge-warn">CHECK</span></td>
+          </tr>`;
+        }
+
+        // Check elimination hints
+        const { data: hintCounts, error: hintErr } = await Qbank.supabase
+          .from('med_questions')
+          .select('id, med_elimination_hints(id)')
+          .eq('subject_id', EXPECTED.subject_id)
+          .eq('status', 'active');
+
+        let noHints = 0;
+        let withHints = 0;
+        if (hintCounts && !hintErr) {
+          for (const q of hintCounts) {
+            if ((q.med_elimination_hints?.length || 0) > 0) withHints++;
+            else noHints++;
+          }
+        }
+
+        html += `<tr>
+          <td>Questions with elimination hints</td>
+          <td>${withHints} / ${totalActive ?? 0} (${noHints} without)</td>
+          <td>${withHints > 0 ? '<span class="badge badge-pass">OK</span>' : '<span class="badge badge-warn">NONE</span>'}</td>
+        </tr>`;
+
+        // Check correct_answer field is populated
+        const { count: noAnswer } = await Qbank.supabase
+          .from('med_questions')
+          .select('*', { count: 'exact', head: true })
+          .eq('subject_id', EXPECTED.subject_id)
+          .eq('status', 'active')
+          .is('correct_answer', null);
+
+        const answerOk = (noAnswer ?? 0) === 0;
+        checks.push(answerOk);
+
+        html += `<tr>
+          <td>All questions have correct_answer</td>
+          <td>${answerOk ? 'Yes' : `${noAnswer} missing`}</td>
+          <td>${answerOk ? '<span class="badge badge-pass">PASS</span>' : '<span class="badge badge-fail">FAIL</span>'}</td>
+        </tr>`;
+
+        // Check question_type distribution
+        const { data: typeDist } = await Qbank.supabase
+          .from('med_questions')
+          .select('question_type')
+          .eq('subject_id', EXPECTED.subject_id)
+          .eq('status', 'active');
+
+        if (typeDist) {
+          const types = {};
+          typeDist.forEach(q => { types[q.question_type] = (types[q.question_type] || 0) + 1; });
+          const typeStr = Object.entries(types).map(([t, c]) => `${t}: ${c}`).join(', ');
+          html += `<tr>
+            <td>Question type distribution</td>
+            <td>${typeStr}</td>
+            <td><span class="badge badge-pass">INFO</span></td>
+          </tr>`;
+        }
+
+        // Check difficulty distribution
+        const { data: diffDist } = await Qbank.supabase
+          .from('med_questions')
+          .select('difficulty')
+          .eq('subject_id', EXPECTED.subject_id)
+          .eq('status', 'active');
+
+        if (diffDist) {
+          const diffs = {};
+          diffDist.forEach(q => { diffs[q.difficulty] = (diffs[q.difficulty] || 0) + 1; });
+          const diffStr = Object.entries(diffs).map(([d, c]) => `${d}: ${c}`).join(', ');
+          html += `<tr>
+            <td>Difficulty distribution</td>
+            <td>${diffStr}</td>
+            <td><span class="badge badge-pass">INFO</span></td>
+          </tr>`;
+        }
+
+        // Check for duplicate question IDs in payload
+        const { data: payloadIds } = await Qbank.supabase
+          .from('med_questions')
+          .select('payload')
+          .eq('subject_id', EXPECTED.subject_id)
+          .eq('status', 'active');
+
+        let dupCount = 0;
+        if (payloadIds) {
+          const seen = new Set();
+          for (const q of payloadIds) {
+            const qid = q.payload?.question_id || q.payload?.id;
+            if (qid) {
+              if (seen.has(qid)) dupCount++;
+              seen.add(qid);
+            }
+          }
+        }
+
+        const noDups = dupCount === 0;
+        checks.push(noDups);
+
+        html += `<tr>
+          <td>Duplicate question IDs in payload</td>
+          <td>${dupCount === 0 ? 'None found' : `${dupCount} duplicates!`}</td>
+          <td>${noDups ? '<span class="badge badge-pass">PASS</span>' : '<span class="badge badge-fail">FAIL</span>'}</td>
+        </tr>`;
+
+        // Check image_url population for questions that need images
+        const { count: withImages } = await Qbank.supabase
+          .from('med_questions')
+          .select('*', { count: 'exact', head: true })
+          .eq('subject_id', EXPECTED.subject_id)
+          .eq('status', 'active')
+          .not('image_url', 'is', null);
+
+        html += `<tr>
+          <td>Questions with image_url set</td>
+          <td>${withImages ?? 0} / ${totalActive ?? 0}</td>
+          <td><span class="badge badge-pass">INFO</span></td>
+        </tr>`;
+
+        html += `</tbody></table>`;
+
+        // ── CHECK 4: Sample questions ──
+        html += `<div class="section-title">Sample Questions (first 3)</div>`;
+        const { data: samples } = await Qbank.supabase
+          .from('med_questions')
+          .select(`id, subject_id, chapter_id, question_type, difficulty,
+                   question_text, correct_answer, payload,
+                   med_question_options (option_key, option_text, is_correct)`)
+          .eq('subject_id', EXPECTED.subject_id)
+          .eq('status', 'active')
+          .limit(3);
+
+        if (samples && samples.length > 0) {
+          html += `<div class="detail-box">${escapeHtml(JSON.stringify(samples, null, 2))}</div>`;
+        } else {
+          html += `<p style="color: #ef4444;">No sample questions found!</p>`;
+        }
+
+        // ── FINAL SUMMARY ──
+        const allPass = checks.every(c => c);
+        html += `<div class="summary-banner ${allPass ? 'summary-pass' : 'summary-fail'}">
+          ${allPass
+            ? 'ALL CHECKS PASSED — Bulk insert verified successfully!'
+            : `${checks.filter(c => !c).length} of ${checks.length} checks FAILED — review issues above`}
+        </div>`;
+
+        results.innerHTML = html;
+
+      } catch (err) {
+        results.innerHTML = `<p style="color: #ef4444;">Error: ${escapeHtml(err.message)}</p>`;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Run Verification';
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+  </script>
+</body>
+</html>
