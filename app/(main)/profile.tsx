@@ -9,7 +9,6 @@ import {
   Easing,
   ActivityIndicator,
   Linking,
-  Share,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useRouter } from 'expo-router';
@@ -90,7 +89,6 @@ export default function ProfileScreen() {
   // const [generatingCode, setGeneratingCode] = useState(false);
   const [pendingExamChange, setPendingExamChange] = useState<ExamType | null>(null);
   const [paymentHistory, setPaymentHistory] = useState<PaymentHistoryItem[]>([]);
-  const [showBillingHistory, setShowBillingHistory] = useState(false);
   const [cancelDialog, setCancelDialog] = useState(false);
   const [cancelling, setCancelling] = useState(false);
 
@@ -265,36 +263,6 @@ export default function ProfileScreen() {
     } finally {
       setCancelling(false);
     }
-  };
-
-  const handleShareReceipt = async (item: PaymentHistoryItem) => {
-    const date = new Date(item.createdAt).toLocaleDateString('en-IN', {
-      day: 'numeric', month: 'long', year: 'numeric',
-    });
-    const total = item.amountPaid + item.gstAmount;
-    const receipt = [
-      '--- VaNi Payment Receipt ---',
-      '',
-      `Date: ${date}`,
-      `Plan: ${item.planType}`,
-      `Status: ${item.status}`,
-      '',
-      `Base Amount: \u20B9${item.amountPaid}`,
-      `GST (18%):   \u20B9${item.gstAmount}`,
-      `Total Paid:  \u20B9${total}`,
-      '',
-      item.paymentMethod ? `Payment Method: ${item.paymentMethod.toUpperCase()}` : '',
-      item.razorpayPaymentId ? `Transaction ID: ${item.razorpayPaymentId}` : '',
-      item.couponCode ? `Coupon Applied: ${item.couponCode}` : '',
-      '',
-      'Vikuna Technologies',
-      'connect@vikuna.io | www.vikuna.io',
-      '---',
-    ].filter(Boolean).join('\n');
-
-    try {
-      await Share.share({ message: receipt, title: 'VaNi Payment Receipt' });
-    } catch { /* dismissed */ }
   };
 
   const handleShareInvite = async () => {
@@ -832,16 +800,25 @@ export default function ProfileScreen() {
                   </>
                 )}
 
-                {/* Cancel subscription */}
                 <View style={[styles.divider, { backgroundColor: colors.surfaceBorder }]} />
-                <Pressable
-                  onPress={() => setCancelDialog(true)}
-                  style={{ alignSelf: 'center', paddingVertical: Spacing.xs }}
-                >
-                  <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
-                    Cancel subscription
-                  </Text>
-                </Pressable>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Pressable
+                    onPress={() => router.push('/payment-history')}
+                    style={{ paddingVertical: Spacing.xs }}
+                  >
+                    <Text style={[Typography.bodySm, { color: colors.primary }]}>
+                      Payment history
+                    </Text>
+                  </Pressable>
+                  <Pressable
+                    onPress={() => setCancelDialog(true)}
+                    style={{ paddingVertical: Spacing.xs }}
+                  >
+                    <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
+                      Cancel plan
+                    </Text>
+                  </Pressable>
+                </View>
               </>
             ) : (
               <View style={{ alignItems: 'center', gap: Spacing.md, paddingVertical: Spacing.sm }}>
@@ -858,141 +835,6 @@ export default function ProfileScreen() {
               </View>
             )}
           </StickyNote>
-
-          {/* Billing & Payments */}
-          {isPaid && paymentHistory.length > 0 && (
-            <JournalCard rotation={-0.3} delay={340}>
-              <Text
-                style={[
-                  Typography.label,
-                  { color: colors.textTertiary, marginBottom: Spacing.md },
-                ]}
-              >
-                BILLING & PAYMENTS
-              </Text>
-
-              {/* Latest payment summary */}
-              {(() => {
-                const latest = paymentHistory[0];
-                return (
-                  <View style={{ gap: Spacing.sm }}>
-                    <View style={styles.infoRow}>
-                      <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Last payment</Text>
-                      <Text style={[Typography.bodySm, { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
-                        {new Date(latest.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
-                      </Text>
-                    </View>
-                    <View style={styles.infoRow}>
-                      <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Amount</Text>
-                      <Text style={[Typography.bodySm, { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
-                        {latest.paymentStatus === 'coupon_free'
-                          ? 'Free (Coupon)'
-                          : `\u20B9${latest.amountPaid} + \u20B9${latest.gstAmount} GST = \u20B9${latest.amountPaid + latest.gstAmount}`}
-                      </Text>
-                    </View>
-                    {latest.paymentMethod && (
-                      <View style={styles.infoRow}>
-                        <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Method</Text>
-                        <Text style={[Typography.bodySm, { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
-                          {latest.paymentMethod.toUpperCase()}
-                        </Text>
-                      </View>
-                    )}
-                    {latest.razorpayPaymentId && (
-                      <View style={styles.infoRow}>
-                        <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Txn ID</Text>
-                        <Text style={[Typography.bodySm, { color: colors.textTertiary, fontSize: 11 }]}>
-                          {latest.razorpayPaymentId}
-                        </Text>
-                      </View>
-                    )}
-                    {latest.couponCode && (
-                      <View style={styles.infoRow}>
-                        <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Coupon</Text>
-                        <View style={[styles.statusBadge, { backgroundColor: colors.primaryLight }]}>
-                          <Text style={[Typography.bodySm, { color: colors.primary, fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
-                            {latest.couponCode}
-                          </Text>
-                        </View>
-                      </View>
-                    )}
-                    {/* Share Receipt button */}
-                    {latest.paymentStatus === 'paid' && (
-                      <Pressable
-                        onPress={() => handleShareReceipt(latest)}
-                        style={{
-                          alignSelf: 'flex-end',
-                          marginTop: Spacing.sm,
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          gap: 4,
-                        }}
-                      >
-                        <Text style={{ fontSize: 14 }}>{'\uD83D\uDCC4'}</Text>
-                        <Text style={[Typography.bodySm, { color: colors.primary }]}>Share Receipt</Text>
-                      </Pressable>
-                    )}
-                  </View>
-                );
-              })()}
-
-              {/* Show all transactions toggle */}
-              {paymentHistory.length > 1 && (
-                <>
-                  <Pressable
-                    onPress={() => setShowBillingHistory((v) => !v)}
-                    style={{ alignSelf: 'center', paddingVertical: Spacing.sm, marginTop: Spacing.sm }}
-                  >
-                    <Text style={[Typography.bodySm, { color: colors.primary }]}>
-                      {showBillingHistory ? 'Hide history' : `View all ${paymentHistory.length} transactions`}
-                    </Text>
-                  </Pressable>
-
-                  {showBillingHistory && (
-                    <View style={{ gap: Spacing.md, marginTop: Spacing.sm }}>
-                      {paymentHistory.slice(1).map((item) => (
-                        <View
-                          key={item.id}
-                          style={{
-                            borderTopWidth: 1,
-                            borderTopColor: colors.surfaceBorder,
-                            paddingTop: Spacing.sm,
-                            gap: Spacing.xs,
-                          }}
-                        >
-                          <View style={styles.infoRow}>
-                            <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
-                              {new Date(item.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
-                            </Text>
-                            <Text style={[Typography.bodySm, { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold' }]}>
-                              {item.paymentStatus === 'coupon_free'
-                                ? 'Free (Coupon)'
-                                : `\u20B9${item.amountPaid + item.gstAmount}`}
-                            </Text>
-                          </View>
-                          <View style={styles.infoRow}>
-                            <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>
-                              {item.planType} {item.paymentMethod ? `\u00B7 ${item.paymentMethod.toUpperCase()}` : ''}
-                            </Text>
-                            <View style={[styles.statusBadge, {
-                              backgroundColor: item.status === 'active' ? colors.correctBg : colors.surfaceBorder,
-                            }]}>
-                              <Text style={[Typography.bodySm, {
-                                color: item.status === 'active' ? colors.correct : colors.textTertiary,
-                                fontSize: 11,
-                              }]}>
-                                {item.status}
-                              </Text>
-                            </View>
-                          </View>
-                        </View>
-                      ))}
-                    </View>
-                  )}
-                </>
-              )}
-            </JournalCard>
-          )}
 
           {/* Invite / Referral */}
           <JournalCard rotation={0.3} delay={350}>
