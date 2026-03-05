@@ -11,8 +11,8 @@ export interface SaveSubscriptionParams {
   razorpayOrderId?: string;
   razorpaySignature?: string;
   couponCode?: string;
-  amountPaidPaise: number;
-  gstPaise: number;
+  amountPaidRupees: number;
+  gstRupees: number;
 }
 
 export async function saveSubscription(params: SaveSubscriptionParams): Promise<void> {
@@ -43,8 +43,8 @@ export async function saveSubscription(params: SaveSubscriptionParams): Promise<
     razorpay_order_id: params.razorpayOrderId ?? null,
     razorpay_signature: params.razorpaySignature ?? null,
     coupon_code: params.couponCode ?? null,
-    amount_paid: params.amountPaidPaise,
-    gst_amount: params.gstPaise,
+    amount_paid: params.amountPaidRupees,
+    gst_amount: params.gstRupees,
     expires_at: expiresAt,
   });
 
