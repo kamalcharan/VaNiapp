@@ -14,6 +14,7 @@ begin
     when 'fill_in_the_blank'    then 'fill-in-blanks'
     when 'fill_in_the_blanks'   then 'fill-in-blanks'
     when 'fill_in_blanks'       then 'fill-in-blanks'
+    when 'fill-in-the-blank'    then 'fill-in-blanks'
     when 'fill-in-the-blanks'   then 'fill-in-blanks'
     when 'fill_blanks'          then 'fill-in-blanks'
     when 'scenario_based'       then 'scenario-based'
