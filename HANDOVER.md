@@ -13,99 +13,195 @@ NEET & CUET exam prep mobile app for Gen-Z Indian students (15-18). Hand-drawn j
 - **Dev server**: Runs on user's local machine, not in this environment
 
 ## Branch
-- Current feature branch: `claude/init-app-improvements-NGkuX`
-- Previous branches merged: `claude/vani-app-continuation-c60lq`
-
-## Current State Summary
-- **375 NEET JSON files** across 4 subjects in `Qbank/generated/`
-  - Botany: 65 files, ~1,300 questions
-  - Chemistry: 82 files, ~1,640 questions
-  - Physics: 71 files, ~1,420 questions
-  - Zoology: 157 files, ~3,136 questions
-  - **Total: ~7,496 questions generated**
-- Bulk import system (`Qbank/bulkinsert.html`) imports JSONs into Supabase
-- Quality validation system (`Qbank/explore.html`) scans DB for issues
-- 8 question type components all rendering from Supabase data
-
-## What Was Done This Session (Session ending 2026-03-03)
-
-### Completed Work
-1. **Quality Validators** — Fixed false positives for assertion-reasoning, scenario-based, match-the-following, logical-sequence (validators assumed rich payload but data uses lean payload)
-2. **Explore Quality Scanner** — Added language-aware quality scanning page with issue grouping, copy, resolve
-3. **Dashboard Quality Card** — Shows issue counts, auto-detection of broken images
-4. **Topic-Level Performance** — Added topic breakdown in chapter results with expandable sections
-5. **Skip & Review Later** — Fixed blank page after last question, added skip/review functionality
-6. **QBANK_AGENT.md Lessons Learned** — Added comprehensive Section 13 documenting all generation bugs, fixes, field standards, and production checklist (see `docs/QBANK_AGENT.md`)
-
-### Key Bugs Fixed This Session
-- Quality validators producing thousands of false positives (lean vs rich payload)
-- Blank page after answering the last question in a chapter
-- Country flag emojis not rendering (replaced with font glyphs)
-- Music overlay showing on auth screens
-- VaNi elimination sheet scroll content cut off
+- Current feature branch: `claude/init-project-83tEF`
+- Previous branches: `claude/init-app-improvements-NGkuX`, `claude/vani-app-continuation-c60lq`
 
 ---
 
-## NEXT SESSION PRIORITIES (Owner's Directive)
+## What Was Done This Session (Session ending 2026-03-05)
 
-### Priority 1: NEET JSON & DB Data Audit
-**Goal:** Verify all 375 JSON files are correctly structured and all data in Supabase is accurate.
+### CUET Physics Question Bank — Complete Generation & DB Insert
 
-- Check subject/chapter alignment: every JSON maps to the correct `med_chapters` entry
-- Verify question counts per chapter match expectations
-- Identify any JSONs that were **NOT imported** into Supabase (compare JSON file list vs DB records)
-- Check for duplicate questions across files
-- Verify `question_type` distribution matches the generation spec
+Generated and inserted **866 CUET Physics questions** across 6 chapters (21 FINAL files):
 
-### Priority 2: True/False "All FALSE" Bug Investigation
-**Goal:** Find and fix why all True/False answers appear to be FALSE.
+| Chapter | Subtopics | Questions | DB Status |
+|---------|-----------|-----------|-----------|
+| Electrostatics | coulomb, field, dipole, gauss, potential, capacitor | 240 | 240/240 |
+| Current Electricity | ohm, kirchhoff, wheatstone, potentiometer, power, instruments | 206 | 206/206 |
+| Magnetic Effects | biot, ampere, solenoid, force, devices | 180 | 180/180 |
+| EM Induction & AC | faraday, inductance, ac-circuits, ac-advanced | 160 | 160/160 |
+| EM Waves | spectrum, advanced | 40 | 40/40 |
+| Communication | basics, advanced | 40 | 40/40 |
+| **Total** | **21 FINAL files** | **866** | **866/866** |
 
-**CRITICAL FINDING:** The JSON files themselves have a roughly even True/False distribution:
+### Verified DB Integrity
+- Ran chapter-level and subtopic-level SQL counts — all match FINAL files exactly
+- No missing inserts, no duplicates
+
+---
+
+## Lessons Learned (This Session)
+
+### 1. Batch Size & Context Management
+- **40 questions per subtopic** is the sweet spot for generation quality
+- Going beyond 40 in a single prompt leads to repetition and quality drop-off
+- Splitting into subtopics (e.g., field → coulomb, field, dipole, gauss, potential, capacitor) keeps questions focused
+
+### 2. Question ID Naming Convention
+- Pattern: `cuet-phy-{subtopic}-{nn}` (e.g., `cuet-phy-elec-coulomb-01`)
+- The `TOPIC_TO_CHAPTER` mapping in `bulkinsert.html` uses prefix matching — **longer prefixes must come before shorter ones** (e.g., `phy-elec-semiconductor` before `phy-elec`)
+- Always verify new ID prefixes are added to the mapping BEFORE inserting
+
+### 3. Bulkinsert Dedup Works Reliably
+- Re-running the same FINAL file is safe — existing questions show as "Already in DB (skip)"
+- Only genuinely new `question_id` values get inserted
+- The tool processes ALL questions — no hidden limit at 40 or any other number
+
+### 4. Incomplete Files Are OK — Track Them
+- B12 instruments (6/40) and B15 solenoid (20/40) are incomplete but what's there is in the DB
+- Better to insert partial quality content than wait for complete sets
+
+### 5. Question Schema That Works
+Every FINAL JSON question must have:
+```json
+{
+  "id": "cuet-phy-elec-coulomb-01",
+  "question_type": "mcq",
+  "difficulty": "easy|medium|hard",
+  "question_text": "...",
+  "explanation": "...",
+  "correct_answer": "B",
+  "concept_tags": ["tag1", "tag2"],
+  "topic": "Human-readable topic name",
+  "subject": "cuet-physics",
+  "chapter": "Chapter Name",
+  "bloom_level": "remember|understand|apply|analyze",
+  "exam_suitability": ["CUET", "NEET"],
+  "options": [
+    {"key": "A", "text": "...", "is_correct": false},
+    {"key": "B", "text": "...", "is_correct": true},
+    {"key": "C", "text": "...", "is_correct": false},
+    {"key": "D", "text": "...", "is_correct": false}
+  ],
+  "elimination_hints": [
+    {"option_key": "A", "hint": "...", "misconception": "..."},
+    {"option_key": "C", "hint": "...", "misconception": null},
+    {"option_key": "D", "hint": "...", "misconception": "..."}
+  ],
+  "chapter_id": "cuet-phy-electrostatics",
+  "subtopic": "Coulomb's Law and Electric Charges"
+}
 ```
-Botany:    65 True, 65 False
-Chemistry: 82 True, 82 False
-Physics:    7 True,  7 False
-Zoology:  148 True, 89 False
+- `elimination_hints`: only for **wrong** options (3 hints for 4-option MCQ)
+- `correct_answer` must match the `key` of the option with `is_correct: true`
+- `chapter_id` must exist in the `TOPIC_TO_CHAPTER` mapping
+
+### 6. DB Schema Awareness
+- Table: `med_questions` — stores full question JSON in `payload` column
+- Related: `med_options`, `med_elimination_hints` (inserted by bulkinsert)
+- `payload->>'question_id'` is the unique key used for dedup
+- Chapter resolution: `bulkinsert.html` maps `id` prefix → `chapter_id` via `TOPIC_TO_CHAPTER`
+
+### 7. Diagram/Image Questions
+- Generated 60 matplotlib PNG diagrams in `Qbank/CUET/physics/images/`
+- Image references in JSON use relative paths — need Supabase Storage upload for production
+- Diagram-based questions work in schema but need hosted image URLs to render in-app
+
+### 8. SQL Queries — Kamal Moderates
+- Assistant proposes queries, Kamal runs them manually
+- Always use `payload->>'question_id'` for filtering (not `id` column)
+- Useful patterns:
+  ```sql
+  -- Count by chapter
+  SELECT payload->>'question_id' LIKE 'cuet-phy-elec-%' ...
+
+  -- List all IDs for a subtopic
+  SELECT payload->>'question_id' FROM med_questions
+  WHERE payload->>'question_id' LIKE 'cuet-phy-elec-coulomb-%' ORDER BY 1;
+  ```
+
+---
+
+## Incomplete Work (Carry Forward)
+
+### Physics Questions Still Needed
+| File | Current | Target | Gap |
+|------|---------|--------|-----|
+| B12 instruments | 6 | 40 | 34 |
+| B15 solenoid | 20 | 40 | 20 |
+
+### Physics Chapters With NO Questions Yet
+- **Optics** (ray optics, wave optics)
+- **Dual Nature** (photoelectric effect, matter waves)
+- **Atoms & Nuclei** (Bohr model, radioactivity, nuclear reactions)
+- **Electronic Devices** (semiconductors, diodes, transistors, logic gates)
+
+### Existing Priorities (From Previous Session)
+- Priority 2: True/False "All FALSE" bug — in code path, not data
+- Priority 3: Image/diagram hosting strategy
+- Priority 4: Production readiness testing
+- Priority 5: Code cleanup
+- Priority 6: DRY up repeated patterns
+
+---
+
+## NEXT SESSION: Engineering Graphics (CUET)
+
+### Subject Overview
+Engineering Graphics is a CUET-specific subject (not in NEET). Topics to cover:
+
+### Proposed Subtopics & Question Plan
+
+| # | Subtopic | ID Prefix | Target |
+|---|----------|-----------|--------|
+| B01 | Scales & Engineering Curves | `cuet-eg-scales` | 40 |
+| B02 | Projection of Points & Lines | `cuet-eg-projections` | 40 |
+| B03 | Projection of Planes | `cuet-eg-planes` | 40 |
+| B04 | Projection of Solids | `cuet-eg-solids` | 40 |
+| B05 | Sections of Solids | `cuet-eg-sections` | 40 |
+| B06 | Development of Surfaces | `cuet-eg-development` | 40 |
+| B07 | Isometric Projections | `cuet-eg-isometric` | 40 |
+| B08 | Orthographic Projections | `cuet-eg-orthographic` | 40 |
+
+**Estimated total: ~320 questions**
+
+### Setup Needed Before Generation
+1. **Create DB chapter**: `cuet-eg-engineering-graphics` in `med_chapters`
+2. **Add topic mappings** to `bulkinsert.html`:
+   ```javascript
+   // Engineering Graphics
+   'eg-scales':       'cuet-eg-engineering-graphics',
+   'eg-projections':  'cuet-eg-engineering-graphics',
+   'eg-planes':       'cuet-eg-engineering-graphics',
+   'eg-solids':       'cuet-eg-engineering-graphics',
+   'eg-sections':     'cuet-eg-engineering-graphics',
+   'eg-development':  'cuet-eg-engineering-graphics',
+   'eg-isometric':    'cuet-eg-engineering-graphics',
+   'eg-orthographic': 'cuet-eg-engineering-graphics',
+   ```
+3. **Add subject mapping**: `'eg-'` → subject `cuet-engineering-graphics` in bulkinsert subject resolution
+4. **Create folder**: `Qbank/CUET/engineering-graphics/new-YYYY-MM-DD/`
+
+### Engineering Graphics — Special Considerations
+- **Heavily visual subject** — many questions involve reading/interpreting drawings
+- Focus on **theory MCQs** that can work without images: conventions, rules, terminology, angle calculations, projection principles
+- For diagram-based questions: generate matplotlib/SVG diagrams showing projection views, section lines, development patterns
+- Question types: primarily MCQ, some fill-in-blanks (numerical answers like true lengths, angles)
+- Bloom levels: mix of remember (conventions), understand (principles), apply (calculate projections)
+
+### Key Files for Next Session
 ```
-So the bug is **NOT in the generated data** — it's in the code path. Investigate:
-- `src/lib/questions.ts` → `dbToV2()` / `buildPayload()` — how is `correct_answer` mapped for true-false?
-- `src/components/exam/TrueFalseQuestion.tsx` — uses synthetic IDs `tf-true`/`tf-false`
-- `src/lib/questionAdapter.ts` → `getCorrectId()` — does it handle true-false correctly?
-- Check if the DB `correct_answer` field for true-false questions matches what the code expects
-- The mapping between DB option keys (A/B) and synthetic IDs (tf-true/tf-false) may be broken
+GENERATION:
+  docs/QBANK_AGENT.md               — generation rules & lessons learned
+  Qbank/CUET/physics/*/new-*/*FINAL* — reference for JSON schema
 
-### Priority 3: Image/Diagram Questions Won't Work for NEET
-**Goal:** Acknowledge and plan for diagram-based question limitations.
+IMPORT:
+  Qbank/bulkinsert.html              — needs new TOPIC_TO_CHAPTER entries
 
-- Diagram-based questions require actual hosted images
-- Current `image_uri` fields likely have placeholder or empty values
-- Need to decide: (a) remove diagram-based from NEET generation, (b) source real images, or (c) use AI-generated diagrams
-- Runtime safety exists: `qualityAutoDetect.ts` auto-reports IMAGE_LOAD_FAILED silently
-
-### Priority 4: Production Readiness Testing
-**Goal:** 100% production-ready for Questions, Answers, and Statistics.
-
-Test areas:
-- **Questions flow**: All 8 types render correctly from Supabase data
-- **Answers flow**: Correct answer highlighting, explanation display, elimination hints
-- **Statistics flow**: Chapter results accuracy, topic breakdown, strength evaluation
-- **Edge cases**: Empty payload fields, missing translations, question_type normalization
-- **Practice exam**: V2 type support end-to-end
-
-### Priority 5: Code Cleanup — No Orphan Code
-**Goal:** Remove dead code, unused imports, stale components.
-
-- Find unreferenced components, utilities, and types
-- Remove legacy question files if fully migrated to Supabase
-- Clean up unused Redux slices or actions
-- Remove commented-out code blocks
-
-### Priority 6: Streamline for Reusability
-**Goal:** DRY up repeated patterns across question screens and components.
-
-- Identify duplicate logic across `chapter-question.tsx`, `quick-question.tsx`, `practice-question.tsx`
-- Consider shared hooks or utility functions
-- Standardize error handling patterns
+INCOMPLETE PHYSICS (if time permits):
+  B12-cuet-phy-current-instruments   — needs 34 more questions
+  B15-cuet-phy-mag-solenoid          — needs 20 more questions
+```
 
 ---
 
@@ -122,7 +218,35 @@ The owner (Kamal) will act as **moderator for all SQL operations**:
 
 ---
 
-## Completed Releases (R1-R9+)
+## Question Bank Inventory (All Subjects)
+
+### NEET Questions (in `Qbank/generated/`)
+| Subject | Files | Questions |
+|---------|-------|-----------|
+| Botany | 65 | ~1,300 |
+| Chemistry | 82 | ~1,640 |
+| Physics | 71 | ~1,420 |
+| Zoology | 157 | ~3,136 |
+| **Total** | **375** | **~7,496** |
+
+### CUET Physics (in `Qbank/CUET/physics/`)
+| Chapter | Files | Questions | DB |
+|---------|-------|-----------|-----|
+| Electrostatics | 6 | 240 | 240 |
+| Current Electricity | 6 | 206 | 206 |
+| Magnetic Effects | 5 | 180 | 180 |
+| EM Induction & AC | 4 | 160 | 160 |
+| EM Waves | 2 | 40 | 40 |
+| Communication | 2 | 40 | 40 |
+| **Total** | **25** | **866** | **866** |
+
+### CUET Engineering Graphics (planned)
+- Target: ~320 questions across 8 subtopics
+- Status: Not started
+
+---
+
+## Completed Releases (R1-R10)
 
 ### R1-R3 (pre-existing)
 Core app: auth, onboarding, profile, subject picker, chapter/practice exam screens, dashboard, history, basic question bank.
@@ -139,7 +263,7 @@ Chapter strength tracker, StrengthMap component, elimination technique + Ask VaN
 ### R9: Practice V2 + Bookmarks + Dashboard
 Practice exam V2, bookmark system, dashboard quality card, results V2 with type breakdown.
 
-### R10 (current): Supabase Integration + Quality System
+### R10: Supabase Integration + Quality System
 - Supabase backend fully connected (questions, chapters, topics, languages from DB)
 - Bulk import system (`bulkinsert.html`) with chapter mapping and FK resolution
 - Quality validation system (`explore.html`) with language-aware scanning
@@ -147,15 +271,21 @@ Practice exam V2, bookmark system, dashboard quality card, results V2 with type 
 - Skip & Review Later functionality
 - QBANK_AGENT.md generation methodology guide
 
+### R11 (current): CUET Question Bank
+- 866 CUET Physics questions generated, validated, and inserted
+- 21 FINAL JSON files across 6 chapters
+- Diagram generation pipeline (matplotlib PNGs)
+- Verification tooling (`verify.html`)
+
 ## Key Architecture
 
 ### Question Data Pipeline
 ```
-JSON files (Qbank/generated/)
-  → bulkinsert.html (browser-based bulk import)
-    → Supabase DB (med_questions + med_options + med_elimination_hints)
-      → src/lib/questions.ts dbToV2()
-        → QuestionRenderer → type-specific component
+JSON files (Qbank/generated/ or Qbank/CUET/)
+  -> bulkinsert.html (browser-based bulk import)
+    -> Supabase DB (med_questions + med_options + med_elimination_hints)
+      -> src/lib/questions.ts dbToV2()
+        -> QuestionRenderer -> type-specific component
 ```
 
 ### Question Types & Components
@@ -169,26 +299,6 @@ JSON files (Qbank/generated/)
 | scenario-based | ScenarioBasedQuestion | A/B/C/D | Separate scenario card |
 | diagram-based | DiagramBasedQuestion | A/B/C/D | **ISSUE: needs real images** |
 | logical-sequence | LogicalSequenceQuestion | A/B/C/D | Sequence ordering |
-
-### Key Files for Next Session
-```
-CRITICAL (bug investigation):
-  src/lib/questions.ts              — dbToV2(), buildPayload() — true-false mapping
-  src/components/exam/TrueFalseQuestion.tsx — synthetic ID logic
-  src/lib/questionAdapter.ts        — getCorrectId()
-
-DATA AUDIT:
-  Qbank/generated/                  — 375 JSON files to verify
-  Qbank/bulkinsert.html             — import tool (chapter mapping)
-  Qbank/shared.js                   — quality validators
-
-QUALITY:
-  Qbank/explore.html                — quality scanner UI
-  src/lib/qualityAutoDetect.ts      — runtime image failure detection
-
-REFERENCE:
-  docs/QBANK_AGENT.md               — generation rules + Section 13 lessons learned
-```
 
 ## User Preferences
 - "dont code without my go ahead" — always present plan and wait for approval
