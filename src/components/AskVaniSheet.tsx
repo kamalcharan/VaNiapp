@@ -26,6 +26,8 @@ interface AskVaniSheetProps {
   questionText: string;
   subjectId: SubjectId;
   questionId?: string;
+  questionType?: string;
+  explanation?: string;
   eliminationHints?: EliminationHint[];
   /** Plain-text fallback (used in quick-practice) */
   eliminationText?: string;
@@ -41,16 +43,45 @@ interface ChatMessage {
   isUserPick?: boolean;
 }
 
+/** Extract a short recall hint from the explanation (first sentence, capped). */
+function buildRecallHint(explanation: string): string {
+  // Grab up to the first period/newline, capped at 200 chars
+  const firstSentence = explanation.split(/[.\n]/)[0]?.trim() || '';
+  if (firstSentence.length > 200) return firstSentence.slice(0, 197) + '...';
+  return firstSentence;
+}
+
 function buildChatMessages(
   hints: EliminationHint[],
   eliminationText: string | undefined,
   selectedOptionId: string | null | undefined,
   language: string,
+  questionType?: string,
+  explanation?: string,
 ): ChatMessage[] {
   const msgs: ChatMessage[] = [];
   const isTelugu = language === 'te';
 
-  // If we have structured per-option hints
+  // ── Fill-in-blanks: recall hints instead of elimination ──
+  if (questionType === 'fill-in-blanks') {
+    msgs.push({
+      type: 'intro',
+      text: "Let me give you a recall hint...",
+    });
+    if (explanation) {
+      msgs.push({
+        type: 'hint',
+        text: buildRecallHint(explanation),
+      });
+    }
+    msgs.push({
+      type: 'closing',
+      text: "Try to recall the key term — you've got this!",
+    });
+    return msgs;
+  }
+
+  // ── Structured per-option hints ──
   if (hints.length > 0) {
     msgs.push({
       type: 'intro',
@@ -275,6 +306,8 @@ export function AskVaniSheet({
   onClose,
   questionText,
   subjectId,
+  questionType,
+  explanation,
   eliminationHints = [],
   eliminationText,
   selectedOptionId,
@@ -289,8 +322,8 @@ export function AskVaniSheet({
 
   const messages = useCallback(
     () =>
-      buildChatMessages(eliminationHints, eliminationText, selectedOptionId, language),
-    [eliminationHints, eliminationText, selectedOptionId, language],
+      buildChatMessages(eliminationHints, eliminationText, selectedOptionId, language, questionType, explanation),
+    [eliminationHints, eliminationText, selectedOptionId, language, questionType, explanation],
   )();
 
   // ── Slide animation ──
@@ -389,7 +422,7 @@ export function AskVaniSheet({
                 <View>
                   <Text style={[Typography.h3, { color: colors.text }]}>VaNi</Text>
                   <Text style={[chatStyles.headerSub, { color: colors.textTertiary }]}>
-                    Elimination Coach
+                    {questionType === 'fill-in-blanks' ? 'Recall Coach' : 'Elimination Coach'}
                   </Text>
                 </View>
               </View>
