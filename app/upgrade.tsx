@@ -134,8 +134,8 @@ export default function UpgradeScreen() {
           planType: 'yearly',
           paymentStatus: 'coupon_free',
           couponCode: appliedCoupon!.code,
-          amountPaidPaise: 0,
-          gstPaise: 0,
+          amountPaidRupees: 0,
+          gstRupees: 0,
         });
         store.dispatch(setSubscription({
           plan: 'yearly',
@@ -186,8 +186,8 @@ export default function UpgradeScreen() {
         razorpayOrderId: result.orderId,
         razorpaySignature: result.signature,
         couponCode: appliedCoupon?.code,
-        amountPaidPaise: pricing.discountedPrice * 100,
-        gstPaise: pricing.gst * 100,
+        amountPaidRupees: pricing.discountedPrice,
+        gstRupees: pricing.gst,
       });
       // Cache full subscription info so isPaid persists across app restarts
       let expiresAt: string | null = null;
