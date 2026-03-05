@@ -236,6 +236,8 @@
               'match_the_following': 'match-the-following',
               'fill_in_blank': 'fill-in-blanks',
               'fill_in_blanks': 'fill-in-blanks',
+              'fill-in-the-blank': 'fill-in-blanks',
+              'fill-in-the-blanks': 'fill-in-blanks',
               'scenario_based': 'scenario-based',
               'diagram_based': 'diagram-based',
               'logical_sequence': 'logical-sequence'
@@ -565,6 +567,7 @@
       if (questionId.startsWith('chem-')) return 'chemistry';
       // CUET subjects
       if (questionId.startsWith('cuet-acc-')) return 'accountancy';
+      if (questionId.startsWith('cuet-bst-')) return 'business-studies';
       return 'unknown';
     }
 
