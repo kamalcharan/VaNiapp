@@ -186,7 +186,7 @@ export default function UpgradeScreen() {
         razorpayOrderId: result.orderId,
         razorpaySignature: result.signature,
         couponCode: appliedCoupon?.code,
-        amountPaidPaise: pricing.total * 100,
+        amountPaidPaise: pricing.discountedPrice * 100,
         gstPaise: pricing.gst * 100,
       });
       // Cache full subscription info so isPaid persists across app restarts
