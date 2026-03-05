@@ -392,6 +392,22 @@
 
     // ========================================================================
     // BULK INSERT
+    // Normalize correct_answer for true-false questions:
+    // JSON stores "True"/"False" but option keys are "A"/"B"
+    function normalizeTrueFalseAnswer(q) {
+      if (q.question_type === 'true-false' && q.correct_answer) {
+        const ans = q.correct_answer.toLowerCase();
+        if (ans === 'true') return 'A';
+        if (ans === 'false') return 'B';
+      }
+      // For other types, check if correct_answer matches an option id (CUET) vs key (NEET)
+      if (q.options && q.correct_answer) {
+        const match = q.options.find(o => (o.id || o.key) === q.correct_answer);
+        if (match) return match.key || match.id;
+      }
+      return q.correct_answer;
+    }
+
     // ========================================================================
     async function insertAll() {
       if (newQuestions.length === 0) {
@@ -436,7 +452,7 @@
               question_type: q.question_type || 'mcq',
               difficulty: q.difficulty || 'medium',
               question_text: q.question_text,
-              correct_answer: q.correct_answer,
+              correct_answer: normalizeTrueFalseAnswer(q),
               explanation: q.explanation || '',
               status: 'active',
               concept_tags: q.concept_tags || [],
