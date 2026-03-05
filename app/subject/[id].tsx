@@ -645,8 +645,20 @@ export default function SubjectDetailScreen() {
                               </Text>
                             </View>
                           )}
+                          {/* Topics preview for not-started chapters */}
+                          {ca.chapter.important_topics && ca.chapter.important_topics.length > 0 && (
+                            <View style={styles.topicsRow}>
+                              {ca.chapter.important_topics.slice(0, 3).map((topic) => (
+                                <View key={topic} style={[styles.topicChip, { backgroundColor: subject.color + '12' }]}>
+                                  <Text style={[styles.topicText, { color: subject.color }]} numberOfLines={1}>
+                                    {topic}
+                                  </Text>
+                                </View>
+                              ))}
+                            </View>
+                          )}
                           <Text style={[styles.notStartedText, { color: colors.textTertiary }]}>
-                            {ca.chapter.avg_questions > 0 ? `~${ca.chapter.avg_questions} questions` : 'Tap to start'}
+                            {ca.chapter.avg_questions > 0 ? `${ca.chapter.avg_questions} questions available` : 'Tap to start'}
                           </Text>
                         </View>
                       );
