@@ -1,0 +1,562 @@
+[
+  {
+    "id": "cuet-phy-comm-01",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-elements",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The three essential elements of a communication system are:",
+    "explanation": "Every communication system consists of three fundamental blocks: (1) Transmitter — converts the message signal into a form suitable for transmission, (2) Channel — the physical medium through which the signal travels (wire, free space, optical fibre), and (3) Receiver — extracts the original message from the received signal.",
+    "correct_answer": "A",
+    "concept_tags": ["communication-elements", "transmitter", "receiver", "channel"],
+    "topic": "Elements of Communication System",
+    "subtopic": "basic blocks",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Transmitter, Channel, Receiver", "is_correct": true},
+      {"key": "B", "text": "Oscillator, Amplifier, Antenna", "is_correct": false},
+      {"key": "C", "text": "Modulator, Demodulator, Amplifier", "is_correct": false},
+      {"key": "D", "text": "Encoder, Decoder, Repeater", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Oscillator, amplifier and antenna are components within a transmitter, not the three main blocks of the system.", "misconception": "Confusing sub-components with main elements"},
+      {"option_key": "C", "hint": "Modulator and demodulator are parts of the transmitter and receiver respectively, not the three fundamental elements.", "misconception": "Listing processes instead of system blocks"},
+      {"option_key": "D", "hint": "Encoder and decoder are used in digital communication. Repeater is an intermediate device. These are not the three fundamental elements.", "misconception": "Mixing digital communication terms with basic structure"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-02",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-elements",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A transducer in a communication system is a device that:",
+    "explanation": "A transducer converts one form of energy into another. In communication, the transmitting transducer converts the message (sound, image, data) into an electrical signal. For example, a microphone converts sound energy into electrical energy, and a camera converts light into electrical signals.",
+    "correct_answer": "B",
+    "concept_tags": ["transducer", "energy-conversion", "input-device"],
+    "topic": "Elements of Communication System",
+    "subtopic": "transducer",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Amplifies the signal", "is_correct": false},
+      {"key": "B", "text": "Converts one form of energy into another", "is_correct": true},
+      {"key": "C", "text": "Filters unwanted frequencies", "is_correct": false},
+      {"key": "D", "text": "Modulates the carrier wave", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Signal amplification is done by an amplifier, not a transducer.", "misconception": "Confusing transducer with amplifier"},
+      {"option_key": "C", "hint": "Filtering unwanted frequencies is done by a band-pass filter, not a transducer.", "misconception": "Confusing transducer with filter"},
+      {"option_key": "D", "hint": "Modulation is done by a modulator circuit. A transducer only converts the physical signal to electrical form.", "misconception": "Confusing transducer with modulator"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-03",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-elements",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The process of retrieving the original message signal from the modulated carrier wave at the receiver is called:",
+    "explanation": "Demodulation (or detection) is the process of extracting the original message signal from the modulated carrier wave. It is the reverse of modulation and is performed at the receiver end. For AM signals, an envelope detector is commonly used for demodulation.",
+    "correct_answer": "C",
+    "concept_tags": ["demodulation", "detection", "receiver"],
+    "topic": "Elements of Communication System",
+    "subtopic": "demodulation",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Modulation", "is_correct": false},
+      {"key": "B", "text": "Amplification", "is_correct": false},
+      {"key": "C", "text": "Demodulation", "is_correct": true},
+      {"key": "D", "text": "Transmission", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Modulation is the opposite process — it combines the message with a carrier at the transmitter, not recovery at receiver.", "misconception": "Confusing modulation with demodulation"},
+      {"option_key": "B", "hint": "Amplification increases signal strength but does not extract the original message from the carrier.", "misconception": "Confusing signal strengthening with message recovery"},
+      {"option_key": "D", "hint": "Transmission is sending the signal through the channel, not recovering the message.", "misconception": "Confusing the sending process with the receiving process"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-04",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-bandwidth",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The bandwidth of a speech signal for telephonic communication is approximately:",
+    "explanation": "For telephone-quality speech, the frequency range is approximately 300 Hz to 3400 Hz, giving a bandwidth of about 3100 Hz ≈ 3 kHz. Music requires higher bandwidth (~20 kHz), and video requires even more (~4.2 MHz for analog TV).",
+    "correct_answer": "A",
+    "concept_tags": ["bandwidth", "speech-signal", "frequency-range"],
+    "topic": "Bandwidth of Signals and Channels",
+    "subtopic": "signal bandwidth",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "3 kHz", "is_correct": true},
+      {"key": "B", "text": "20 kHz", "is_correct": false},
+      {"key": "C", "text": "4.2 MHz", "is_correct": false},
+      {"key": "D", "text": "300 MHz", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "20 kHz is the bandwidth of high-fidelity music signals (20 Hz to 20 kHz), not telephonic speech.", "misconception": "Confusing speech bandwidth with audio bandwidth"},
+      {"option_key": "C", "hint": "4.2 MHz is the bandwidth of an analog video/TV signal, far more than what speech requires.", "misconception": "Confusing speech with video bandwidth"},
+      {"option_key": "D", "hint": "300 MHz is a carrier frequency range, not a message signal bandwidth.", "misconception": "Confusing carrier frequency with signal bandwidth"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-05",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-bandwidth",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If an audio signal of 10 kHz is used to modulate a carrier of 1 MHz, the bandwidth of the AM signal is:",
+    "explanation": "In amplitude modulation, the modulated signal contains the carrier frequency fc and two sidebands: (fc + fm) and (fc − fm). The bandwidth = 2fm = 2 × 10 kHz = 20 kHz. The AM signal occupies from (1000 − 10) kHz to (1000 + 10) kHz = 990 kHz to 1010 kHz.",
+    "correct_answer": "B",
+    "concept_tags": ["AM-bandwidth", "sidebands", "twice-modulating-frequency"],
+    "topic": "Bandwidth of Signals and Channels",
+    "subtopic": "AM signal bandwidth",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "10 kHz", "is_correct": false},
+      {"key": "B", "text": "20 kHz", "is_correct": true},
+      {"key": "C", "text": "1 MHz", "is_correct": false},
+      {"key": "D", "text": "1.01 MHz", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "10 kHz is the modulating frequency fm. Bandwidth of AM = 2fm because there are two sidebands.", "misconception": "Forgetting that AM has two sidebands (upper and lower)"},
+      {"option_key": "C", "hint": "1 MHz is the carrier frequency, not the bandwidth. Bandwidth is the range of frequencies occupied by the modulated signal.", "misconception": "Confusing carrier frequency with bandwidth"},
+      {"option_key": "D", "hint": "1.01 MHz is the upper sideband frequency (fc + fm), not the bandwidth.", "misconception": "Confusing sideband frequency with bandwidth"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-06",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-propagation",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Ground wave propagation is suitable for frequencies:",
+    "explanation": "Ground wave propagation works for frequencies below about 2 MHz. The radio waves follow the curvature of the Earth along its surface. At higher frequencies, the ground absorbs more energy, making ground wave propagation ineffective. AM radio broadcasting (530–1710 kHz) uses ground wave propagation.",
+    "correct_answer": "A",
+    "concept_tags": ["ground-wave", "low-frequency", "propagation-mode"],
+    "topic": "Propagation of EM Waves",
+    "subtopic": "ground wave propagation",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Up to 2 MHz", "is_correct": true},
+      {"key": "B", "text": "2 MHz to 30 MHz", "is_correct": false},
+      {"key": "C", "text": "30 MHz to 300 MHz", "is_correct": false},
+      {"key": "D", "text": "Above 300 MHz", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "2–30 MHz (short wave) is the range for sky wave (ionospheric) propagation, not ground wave.", "misconception": "Confusing ground wave with sky wave frequency range"},
+      {"option_key": "C", "hint": "30–300 MHz (VHF) uses space wave (line-of-sight) propagation, not ground wave.", "misconception": "Confusing ground wave with space wave"},
+      {"option_key": "D", "hint": "Above 300 MHz (UHF and beyond) uses space wave/satellite communication. Ground absorption is too high.", "misconception": "Thinking higher frequency means better ground propagation"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-07",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-propagation",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Sky wave propagation is used for long-distance communication using the reflection of radio waves from the:",
+    "explanation": "Sky wave propagation relies on the ionosphere — a layer of the atmosphere (80–400 km altitude) containing ionised gases. The ionosphere reflects radio waves in the frequency range 2–30 MHz back to Earth. This allows communication over thousands of kilometres by successive reflections between the ionosphere and Earth's surface.",
+    "correct_answer": "B",
+    "concept_tags": ["sky-wave", "ionosphere", "reflection"],
+    "topic": "Propagation of EM Waves",
+    "subtopic": "sky wave propagation",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Troposphere", "is_correct": false},
+      {"key": "B", "text": "Ionosphere", "is_correct": true},
+      {"key": "C", "text": "Stratosphere", "is_correct": false},
+      {"key": "D", "text": "Ozone layer", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "The troposphere (0–12 km) causes weather effects on signals but does not reflect radio waves like the ionosphere does.", "misconception": "Confusing troposphere with ionosphere"},
+      {"option_key": "C", "hint": "The stratosphere (12–50 km) contains the ozone layer but lacks the free electrons needed to reflect radio waves.", "misconception": "Mixing up atmospheric layers"},
+      {"option_key": "D", "hint": "The ozone layer absorbs UV radiation but does not reflect radio waves. Radio wave reflection needs free electrons.", "misconception": "Confusing UV absorption with radio wave reflection"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-08",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-propagation",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The maximum range of a TV transmitting tower of height h above the Earth's surface is given by d = √(2Rh), where R is the radius of Earth. If the tower height is doubled, the range becomes:",
+    "explanation": "Range d = √(2Rh). If h is doubled: d' = √(2R × 2h) = √(2 × 2Rh) = √2 × √(2Rh) = √2 × d. So the range increases by a factor of √2, i.e., d' = √2 d ≈ 1.414d.",
+    "correct_answer": "C",
+    "concept_tags": ["tower-range", "line-of-sight", "height-dependence"],
+    "topic": "Propagation of EM Waves",
+    "subtopic": "space wave range formula",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "2d", "is_correct": false},
+      {"key": "B", "text": "4d", "is_correct": false},
+      {"key": "C", "text": "√2 d", "is_correct": true},
+      {"key": "D", "text": "d/√2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "d is proportional to √h, not h. Doubling h gives √2 × d, not 2d.", "misconception": "Assuming linear relationship between range and height"},
+      {"option_key": "B", "hint": "4d would require h to increase 16 times (since d ∝ √h, d' = 4d requires h' = 16h).", "misconception": "Squaring instead of taking square root"},
+      {"option_key": "D", "hint": "d/√2 means the range decreases, which contradicts the fact that a taller tower should have greater range.", "misconception": "Inverting the relationship"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-09",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-modulation",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The main reason for modulation in communication is:",
+    "explanation": "Audio signals (20 Hz – 20 kHz) have wavelengths of 15 km to 15,000 km. An antenna needs to be at least λ/4 long to radiate efficiently, which would require impractically large antennas. By modulating onto a high-frequency carrier, the effective wavelength becomes much smaller, allowing practical antenna sizes.",
+    "correct_answer": "D",
+    "concept_tags": ["need-for-modulation", "antenna-size", "practical"],
+    "topic": "Modulation and Amplitude Modulation",
+    "subtopic": "need for modulation",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "To increase the power of the signal", "is_correct": false},
+      {"key": "B", "text": "To reduce noise in the signal", "is_correct": false},
+      {"key": "C", "text": "To convert analog to digital", "is_correct": false},
+      {"key": "D", "text": "To enable transmission using antennas of practical size", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Amplifiers increase power. Modulation shifts the frequency band, it does not increase power.", "misconception": "Confusing modulation with amplification"},
+      {"option_key": "B", "hint": "While FM has better noise immunity than AM, noise reduction is not the primary reason for modulation.", "misconception": "Confusing a secondary benefit with the main purpose"},
+      {"option_key": "C", "hint": "Analog-to-digital conversion is digitisation, not modulation. AM and FM are analog modulation techniques.", "misconception": "Confusing modulation with digitisation"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-10",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-modulation",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "In amplitude modulation, which property of the carrier wave is varied?",
+    "explanation": "In amplitude modulation (AM), the amplitude of the high-frequency carrier wave is varied in accordance with the instantaneous value of the modulating (message) signal. The frequency and phase of the carrier remain constant. In FM, the frequency is varied; in PM, the phase is varied.",
+    "correct_answer": "A",
+    "concept_tags": ["amplitude-modulation", "carrier-amplitude", "AM-definition"],
+    "topic": "Modulation and Amplitude Modulation",
+    "subtopic": "definition of AM",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Amplitude", "is_correct": true},
+      {"key": "B", "text": "Frequency", "is_correct": false},
+      {"key": "C", "text": "Phase", "is_correct": false},
+      {"key": "D", "text": "Wavelength and amplitude both", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Varying frequency is frequency modulation (FM), not amplitude modulation.", "misconception": "Confusing AM with FM"},
+      {"option_key": "C", "hint": "Varying phase is phase modulation (PM), a different technique from AM.", "misconception": "Confusing AM with PM"},
+      {"option_key": "D", "hint": "In AM, only the amplitude changes. The frequency (and hence wavelength) of the carrier stays constant.", "misconception": "Thinking multiple properties change simultaneously in AM"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-11",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-modulation",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The modulation index of an AM wave is 0.6. The ratio of the maximum amplitude to the minimum amplitude of the modulated wave is:",
+    "explanation": "For AM, Amax = Ac(1 + m) and Amin = Ac(1 − m), where m is the modulation index. Ratio = Amax/Amin = (1 + m)/(1 − m) = (1 + 0.6)/(1 − 0.6) = 1.6/0.4 = 4.",
+    "correct_answer": "C",
+    "concept_tags": ["modulation-index", "Amax-Amin", "numerical"],
+    "topic": "Modulation and Amplitude Modulation",
+    "subtopic": "modulation index calculation",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "1.6", "is_correct": false},
+      {"key": "B", "text": "2.5", "is_correct": false},
+      {"key": "C", "text": "4", "is_correct": true},
+      {"key": "D", "text": "0.6", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "1.6 is (1 + m), the maximum amplitude relative to carrier. The question asks the ratio Amax/Amin.", "misconception": "Calculating Amax/Ac instead of Amax/Amin"},
+      {"option_key": "B", "hint": "2.5 is 1/Amin = 1/0.4 — not the correct ratio. You need (1+m)/(1−m).", "misconception": "Arithmetic error in ratio calculation"},
+      {"option_key": "D", "hint": "0.6 is the modulation index itself, not the amplitude ratio.", "misconception": "Restating the given value as the answer"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-12",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-modulation",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For an AM wave, the carrier frequency is 1 MHz and the modulating frequency is 5 kHz. The frequencies of the upper and lower sidebands are:",
+    "explanation": "In AM, the upper sideband (USB) frequency = fc + fm = 1000 + 5 = 1005 kHz, and the lower sideband (LSB) frequency = fc − fm = 1000 − 5 = 995 kHz. The AM spectrum consists of three frequencies: LSB, carrier, and USB.",
+    "correct_answer": "A",
+    "concept_tags": ["sidebands", "USB-LSB", "AM-spectrum"],
+    "topic": "Modulation and Amplitude Modulation",
+    "subtopic": "sideband frequencies",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "1005 kHz and 995 kHz", "is_correct": true},
+      {"key": "B", "text": "1050 kHz and 950 kHz", "is_correct": false},
+      {"key": "C", "text": "1005 MHz and 995 MHz", "is_correct": false},
+      {"key": "D", "text": "1500 kHz and 500 kHz", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "1050 and 950 kHz means fm = 50 kHz, not 5 kHz. Check unit conversion: 5 kHz = 5 kHz, not 50 kHz.", "misconception": "Adding an extra zero to the modulating frequency"},
+      {"option_key": "C", "hint": "The units are wrong — sidebands are in kHz (near 1000 kHz = 1 MHz), not in MHz.", "misconception": "Using wrong units — MHz instead of kHz"},
+      {"option_key": "D", "hint": "1500 and 500 kHz would mean fm = 500 kHz = 0.5 MHz, not 5 kHz. Massive arithmetic error.", "misconception": "Confusing kHz with MHz in the modulating frequency"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-13",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-modulation",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The modulation index of an AM signal is 0.5. The fraction of total power carried by the carrier is:",
+    "explanation": "In AM, total power Pt = Pc(1 + m²/2), where Pc is carrier power. Fraction of power in carrier = Pc/Pt = 1/(1 + m²/2) = 1/(1 + 0.25/2) = 1/(1 + 0.125) = 1/1.125 = 8/9 ≈ 0.889 or 88.9%. This shows that in AM, most power is wasted in the carrier which carries no information.",
+    "correct_answer": "B",
+    "concept_tags": ["AM-power", "carrier-power-fraction", "efficiency"],
+    "topic": "Modulation and Amplitude Modulation",
+    "subtopic": "power in AM",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "1/2", "is_correct": false},
+      {"key": "B", "text": "8/9", "is_correct": true},
+      {"key": "C", "text": "4/5", "is_correct": false},
+      {"key": "D", "text": "2/3", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "1/2 would mean half the power in carrier, which only happens at m = √2 (over-modulation). For m = 0.5, the carrier carries much more.", "misconception": "Guessing without using the formula"},
+      {"option_key": "C", "hint": "4/5 = 0.8 corresponds to m²/2 = 0.25, i.e., m = √0.5 ≈ 0.707, not 0.5.", "misconception": "Using wrong value for m in the formula"},
+      {"option_key": "D", "hint": "2/3 = 0.667 corresponds to m²/2 = 0.5, i.e., m = 1. Not 0.5.", "misconception": "Substituting m = 1 instead of m = 0.5"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-14",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-modulation",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An audio signal of 3 kHz is amplitude modulated with a carrier of 810 kHz. The frequencies present in the AM wave are:",
+    "explanation": "An AM wave contains three frequency components: the carrier frequency fc = 810 kHz, the upper sideband fc + fm = 810 + 3 = 813 kHz, and the lower sideband fc − fm = 810 − 3 = 807 kHz. These three discrete frequencies make up the AM spectrum.",
+    "correct_answer": "D",
+    "concept_tags": ["AM-frequencies", "three-components", "spectrum"],
+    "topic": "Modulation and Amplitude Modulation",
+    "subtopic": "AM wave frequency components",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "810 kHz only", "is_correct": false},
+      {"key": "B", "text": "807 kHz and 813 kHz only", "is_correct": false},
+      {"key": "C", "text": "3 kHz, 810 kHz, and 813 kHz", "is_correct": false},
+      {"key": "D", "text": "807 kHz, 810 kHz, and 813 kHz", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "810 kHz alone is an unmodulated carrier. Modulation creates additional sideband frequencies.", "misconception": "Thinking modulation doesn't create new frequencies"},
+      {"option_key": "B", "hint": "The carrier frequency is always present in AM — it's the dominant component. You cannot omit it.", "misconception": "Thinking AM suppresses the carrier"},
+      {"option_key": "C", "hint": "The original modulating frequency (3 kHz) is NOT present in the AM wave. Only fc, fc+fm, and fc−fm appear.", "misconception": "Thinking the baseband signal appears directly in the AM wave"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-15",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-propagation",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A TV tower has a height of 100 m. The maximum distance up to which the TV transmission can be received is: (Take R = 6.4 × 10⁶ m)",
+    "explanation": "Using d = √(2Rh) = √(2 × 6.4 × 10⁶ × 100) = √(12.8 × 10⁸) = √(1.28 × 10⁹) = 3.58 × 10⁴ m ≈ 35.8 km.",
+    "correct_answer": "B",
+    "concept_tags": ["tower-range-numerical", "line-of-sight", "space-wave"],
+    "topic": "Propagation of EM Waves",
+    "subtopic": "range calculation",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "25.3 km", "is_correct": false},
+      {"key": "B", "text": "35.8 km", "is_correct": true},
+      {"key": "C", "text": "50.5 km", "is_correct": false},
+      {"key": "D", "text": "71.6 km", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "25.3 km corresponds to using d = √(Rh) instead of d = √(2Rh) — the factor of 2 is missing.", "misconception": "Forgetting the factor of 2 in the formula"},
+      {"option_key": "C", "hint": "50.5 km would correspond to h ≈ 200 m. Check: √(2 × 6.4 × 10⁶ × 200) ≈ 50.6 km.", "misconception": "Using h = 200 m instead of 100 m"},
+      {"option_key": "D", "hint": "71.6 km is 2 × 35.8 km. Range is proportional to √h, not h.", "misconception": "Using d = 2Rh or d = 2√(2Rh)"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-16",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-detection",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "In the process of AM detection, the component that removes the high-frequency carrier from the rectified signal is:",
+    "explanation": "After rectification (using a diode), the signal still contains the high-frequency carrier ripple superimposed on the message signal. A low-pass filter (typically an RC circuit) removes the high-frequency carrier components and passes only the low-frequency message signal (envelope). This process is called envelope detection.",
+    "correct_answer": "B",
+    "concept_tags": ["detection", "envelope-detector", "low-pass-filter"],
+    "topic": "Detection and Demodulation",
+    "subtopic": "AM detection circuit",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "High-pass filter", "is_correct": false},
+      {"key": "B", "text": "Low-pass filter", "is_correct": true},
+      {"key": "C", "text": "Band-pass filter", "is_correct": false},
+      {"key": "D", "text": "Oscillator", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "A high-pass filter would do the opposite — pass the carrier and remove the message signal.", "misconception": "Confusing low-pass and high-pass filter functions"},
+      {"option_key": "C", "hint": "A band-pass filter passes a specific band. In detection, we need to remove the carrier entirely, which a low-pass filter does.", "misconception": "Confusing the filter used in tuning with detection"},
+      {"option_key": "D", "hint": "An oscillator generates signals (used in the transmitter for carrier generation), not for filtering.", "misconception": "Confusing signal generation with signal filtering"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-17",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-modulation",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The maximum modulation index for distortion-free AM is:",
+    "explanation": "The modulation index m = Am/Ac, where Am is the message amplitude and Ac is the carrier amplitude. For distortion-free AM, m must satisfy 0 ≤ m ≤ 1. When m > 1 (over-modulation), the envelope of the AM wave gets distorted, causing the recovered signal to not faithfully reproduce the original message.",
+    "correct_answer": "C",
+    "concept_tags": ["modulation-index-limit", "over-modulation", "distortion"],
+    "topic": "Modulation and Amplitude Modulation",
+    "subtopic": "modulation index limits",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "0.5", "is_correct": false},
+      {"key": "B", "text": "0.75", "is_correct": false},
+      {"key": "C", "text": "1", "is_correct": true},
+      {"key": "D", "text": "2", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "m = 0.5 is within the allowed range but is not the maximum. Higher modulation up to 1 is still distortion-free.", "misconception": "Being overly conservative about the limit"},
+      {"option_key": "B", "hint": "m = 0.75 is used in practice for safety margin, but theoretically m = 1 is the maximum for distortion-free AM.", "misconception": "Confusing practical recommendation with theoretical limit"},
+      {"option_key": "D", "hint": "m = 2 means the message amplitude is twice the carrier — this causes severe over-modulation and envelope distortion.", "misconception": "Thinking modulation index can exceed 1 without distortion"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-18",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-propagation",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The critical frequency of an ionospheric layer with maximum electron density Nmax is given by fc = 9√(Nmax). If Nmax = 10¹² electrons/m³, the critical frequency is:",
+    "explanation": "fc = 9√(Nmax) = 9√(10¹²) = 9 × 10⁶ Hz = 9 MHz. The critical frequency is the maximum frequency that can be reflected by the ionosphere at vertical incidence. Frequencies above fc pass through the ionosphere and cannot be used for sky wave communication.",
+    "correct_answer": "C",
+    "concept_tags": ["critical-frequency", "electron-density", "ionosphere"],
+    "topic": "Propagation of EM Waves",
+    "subtopic": "critical frequency of ionosphere",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "9 kHz", "is_correct": false},
+      {"key": "B", "text": "900 kHz", "is_correct": false},
+      {"key": "C", "text": "9 MHz", "is_correct": true},
+      {"key": "D", "text": "90 MHz", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "9 kHz = 9 × 10³ Hz. Check: 9√(10¹²) = 9 × 10⁶ Hz = 9 MHz, not 9 kHz.", "misconception": "Error in calculating √(10¹²) — should be 10⁶, not 10³"},
+      {"option_key": "B", "hint": "900 kHz = 9 × 10⁵ Hz, which would need Nmax = 10¹⁰. For Nmax = 10¹², fc = 9 × 10⁶.", "misconception": "Off by a factor of 10"},
+      {"option_key": "D", "hint": "90 MHz = 9 × 10⁷ Hz would need Nmax ≈ 10¹⁴, not 10¹². Exponent error.", "misconception": "Adding instead of halving the exponent in square root"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-19",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-elements",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A repeater in a communication system is used to:",
+    "explanation": "A repeater receives the attenuated signal, amplifies it, and retransmits it. It extends the range of communication by compensating for signal loss (attenuation) during transmission over long distances. Repeaters are placed at intervals along the communication channel.",
+    "correct_answer": "B",
+    "concept_tags": ["repeater", "amplification", "range-extension"],
+    "topic": "Elements of Communication System",
+    "subtopic": "repeater",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Convert analog signals to digital", "is_correct": false},
+      {"key": "B", "text": "Extend the range by amplifying and retransmitting the signal", "is_correct": true},
+      {"key": "C", "text": "Modulate the carrier wave", "is_correct": false},
+      {"key": "D", "text": "Reduce noise in the signal", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Analog-to-digital conversion is done by an ADC (analog-to-digital converter), not a repeater.", "misconception": "Confusing repeater with ADC"},
+      {"option_key": "C", "hint": "Modulation is done at the transmitter. A repeater works on an already modulated signal.", "misconception": "Confusing repeater with modulator"},
+      {"option_key": "D", "hint": "While digital repeaters can regenerate signals, the primary function is to amplify and retransmit, not noise reduction.", "misconception": "Confusing a secondary benefit with the primary function"}
+    ]
+  },
+  {
+    "id": "cuet-phy-comm-20",
+    "chapter_id": "cuet-phy-communication",
+    "topic_id": "cuet-phy-comm-modulation",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An AM wave is represented as: y = [10 + 6 sin(2π × 1500t)] sin(2π × 10⁵ t). The modulation index and carrier frequency are:",
+    "explanation": "Comparing with the standard form y = Ac[1 + m sin(2πfmt)] sin(2πfct): Ac = 10, mAc = 6, so m = 6/10 = 0.6. The carrier frequency fc = 10⁵ Hz = 100 kHz. The modulating frequency fm = 1500 Hz = 1.5 kHz.",
+    "correct_answer": "A",
+    "concept_tags": ["AM-wave-equation", "extract-parameters", "carrier-frequency"],
+    "topic": "Modulation and Amplitude Modulation",
+    "subtopic": "AM wave equation analysis",
+    "subject": "cuet-physics",
+    "chapter": "Communication Systems",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET", "NEET"],
+    "options": [
+      {"key": "A", "text": "0.6 and 100 kHz", "is_correct": true},
+      {"key": "B", "text": "0.6 and 1.5 kHz", "is_correct": false},
+      {"key": "C", "text": "6 and 100 kHz", "is_correct": false},
+      {"key": "D", "text": "0.06 and 10⁵ MHz", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "1.5 kHz is the modulating frequency (fm), not the carrier frequency. The carrier is the higher frequency: 10⁵ Hz = 100 kHz.", "misconception": "Confusing modulating frequency with carrier frequency"},
+      {"option_key": "C", "hint": "m = Am/Ac = 6/10 = 0.6, not 6. The modulation index is a ratio, always ≤ 1 for distortion-free AM.", "misconception": "Using the amplitude directly instead of the ratio"},
+      {"option_key": "D", "hint": "10⁵ Hz = 100 kHz = 0.1 MHz, not 10⁵ MHz. Also m = 0.6, not 0.06.", "misconception": "Unit confusion between Hz and MHz"}
+    ]
+  }
+]
