@@ -256,4 +256,109 @@ export function clearCatalogCache(): void {
   cachedSubjects = null;
   cachedLanguages = null;
   cachedChapters.clear();
+  cachedChapterStats.clear();
+}
+
+// ── Chapter stats (topic counts + total Qs) ─────────────────
+
+export interface TopicInfo {
+  id: string;
+  name: string;
+  name_te: string | null;
+  questionCount: number;
+}
+
+export interface ChapterStats {
+  chapterId: string;
+  totalQuestions: number;
+  topics: TopicInfo[];
+}
+
+let cachedChapterStats: Map<string, ChapterStats[]> = new Map();
+
+/**
+ * Fetch topics and question counts for all chapters of a subject.
+ * Returns one entry per chapter with its topics and per-topic question counts.
+ */
+export async function getChapterStats(subjectId: string): Promise<ChapterStats[]> {
+  if (cachedChapterStats.has(subjectId)) {
+    return cachedChapterStats.get(subjectId)!;
+  }
+
+  if (!supabase) return [];
+
+  try {
+    // 1. Get all topics for this subject's chapters
+    const { data: topics, error: topicErr } = await supabase
+      .from('med_topics')
+      .select('id, chapter_id, name, name_te, sort_order')
+      .eq('is_active', true)
+      .in('chapter_id', (await getChapters(subjectId)).map((ch) => ch.id))
+      .order('sort_order');
+
+    if (topicErr) {
+      console.warn('[catalog] Failed to fetch topics:', topicErr.message);
+      return [];
+    }
+
+    // 2. Get question counts per chapter and per topic
+    // We query counts grouped by chapter_id and topic_id
+    const { data: qCounts, error: qErr } = await supabase
+      .rpc('get_chapter_question_counts', { p_subject_id: subjectId });
+
+    // If RPC doesn't exist, fall back to counting from med_questions directly
+    let chapterTotals: Record<string, number> = {};
+    let topicCounts: Record<string, number> = {};
+
+    if (qErr || !qCounts) {
+      // Fallback: count questions per chapter
+      const { data: questions, error: fallbackErr } = await supabase
+        .from('med_questions')
+        .select('chapter_id, topic_id')
+        .eq('subject_id', subjectId)
+        .eq('is_active', true);
+
+      if (!fallbackErr && questions) {
+        for (const q of questions) {
+          chapterTotals[q.chapter_id] = (chapterTotals[q.chapter_id] || 0) + 1;
+          if (q.topic_id) {
+            topicCounts[q.topic_id] = (topicCounts[q.topic_id] || 0) + 1;
+          }
+        }
+      }
+    } else {
+      // RPC returned { chapter_id, topic_id, count }[]
+      for (const row of qCounts) {
+        chapterTotals[row.chapter_id] = (chapterTotals[row.chapter_id] || 0) + row.count;
+        if (row.topic_id) {
+          topicCounts[row.topic_id] = (topicCounts[row.topic_id] || 0) + row.count;
+        }
+      }
+    }
+
+    // 3. Build result
+    const chapters = await getChapters(subjectId);
+    const topicsByChapter: Record<string, typeof topics> = {};
+    for (const t of (topics || [])) {
+      if (!topicsByChapter[t.chapter_id]) topicsByChapter[t.chapter_id] = [];
+      topicsByChapter[t.chapter_id].push(t);
+    }
+
+    const result: ChapterStats[] = chapters.map((ch) => ({
+      chapterId: ch.id,
+      totalQuestions: chapterTotals[ch.id] || 0,
+      topics: (topicsByChapter[ch.id] || []).map((t) => ({
+        id: t.id,
+        name: t.name,
+        name_te: t.name_te,
+        questionCount: topicCounts[t.id] || 0,
+      })),
+    }));
+
+    cachedChapterStats.set(subjectId, result);
+    return result;
+  } catch (err) {
+    console.warn('[catalog] Exception fetching chapter stats:', err);
+    return [];
+  }
 }
