@@ -185,6 +185,8 @@ export default function UpgradeScreen() {
         razorpayPaymentId: result.paymentId,
         razorpayOrderId: result.orderId,
         razorpaySignature: result.signature,
+        paymentMethod: result.method,
+        targetYear,
         couponCode: appliedCoupon?.code,
         amountPaidRupees: pricing.discountedPrice,
         gstRupees: pricing.gst,
@@ -195,6 +197,9 @@ export default function UpgradeScreen() {
         expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
       } else if (selectedPlan === 'yearly') {
         expiresAt = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
+      } else if (selectedPlan === 'crunch') {
+        const year = targetYear ?? new Date().getFullYear();
+        expiresAt = new Date(year, 5, 15).toISOString(); // June 15
       }
       store.dispatch(setSubscription({ plan: selectedPlan, expiresAt }));
       router.replace({
