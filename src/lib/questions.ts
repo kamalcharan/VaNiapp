@@ -109,6 +109,57 @@ export async function fetchQuestionsByChapter(
   }
 }
 
+/**
+ * Fetch a random set of questions for a subject from Supabase (for quick practice).
+ * Returns up to `limit` questions across all chapters of the subject.
+ */
+export async function fetchQuestionsBySubject(
+  subjectId: string,
+  limit: number = 20,
+): Promise<FetchQuestionsResult> {
+  const cacheKey = `subject:${subjectId}:${limit}`;
+
+  if (cache.has(cacheKey)) {
+    return { ok: true, questions: cache.get(cacheKey)! };
+  }
+
+  if (!supabase) {
+    return { ok: false, error: 'not-configured' };
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from('med_questions')
+      .select(
+        `id, subject_id, chapter_id, topic_id, question_type, difficulty,
+         question_text, question_text_te, explanation, explanation_te,
+         correct_answer, image_url, image_alt, payload,
+         med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
+         med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te),
+         med_topics!topic_id (name, name_te)`,
+      )
+      .eq('subject_id', subjectId)
+      .eq('status', 'active')
+      .limit(limit);
+
+    if (error) {
+      console.warn(`[questions] Supabase error for subject ${subjectId}:`, error.message);
+      return { ok: false, error: 'no-connection' };
+    }
+
+    if (!data || data.length === 0) {
+      return { ok: false, error: 'no-questions' };
+    }
+
+    const questions = (data as unknown as DbQuestion[]).map(dbToV2);
+    cache.set(cacheKey, questions);
+    return { ok: true, questions };
+  } catch (err) {
+    console.warn(`[questions] Subject fetch failed for ${subjectId}:`, err);
+    return { ok: false, error: 'no-connection' };
+  }
+}
+
 /** Clear cached questions (useful after imports). */
 export function clearQuestionsCache(): void {
   cache.clear();

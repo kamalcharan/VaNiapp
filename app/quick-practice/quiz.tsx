@@ -19,6 +19,7 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
 import { buildV2QuickPractice } from '../../src/data/questions';
+import { fetchQuestionsBySubject } from '../../src/lib/questions';
 import { getCorrectId } from '../../src/lib/questionAdapter';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
@@ -27,7 +28,7 @@ import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
 import { ReportIssueSheet } from '../../src/components/exam/ReportIssueSheet';
 import { useToast } from '../../src/components/ui/Toast';
-import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession } from '../../src/types';
+import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession, QuestionV2 } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
@@ -67,7 +68,48 @@ export default function QuickPracticeQuizScreen() {
     return best.unlockedTypes;
   }, [strengthChapters, subject]);
 
-  const questions = useMemo(() => buildV2QuickPractice(subject, unlockedTypes), [subject, unlockedTypes]);
+  const [questions, setQuestions] = useState<QuestionV2[]>([]);
+  const [loadingQuestions, setLoadingQuestions] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  // Load questions: try Supabase first, fall back to local data
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setLoadingQuestions(true);
+      setLoadError(null);
+
+      // Try Supabase first
+      const result = await fetchQuestionsBySubject(subject, 50);
+      if (cancelled) return;
+
+      if (result.ok && result.questions.length > 0) {
+        // Shuffle and pick up to 20
+        const shuffled = [...result.questions].sort(() => Math.random() - 0.5);
+        const filtered = unlockedTypes
+          ? shuffled.filter((q) => unlockedTypes.includes(q.type))
+          : shuffled;
+        setQuestions(filtered.slice(0, 20));
+        setLoadingQuestions(false);
+        return;
+      }
+
+      // Fall back to local hardcoded questions
+      const local = buildV2QuickPractice(subject, unlockedTypes);
+      if (cancelled) return;
+
+      if (local.length > 0) {
+        setQuestions(local);
+        setLoadingQuestions(false);
+        return;
+      }
+
+      setLoadError('No questions available for this subject yet.');
+      setLoadingQuestions(false);
+    })();
+
+    return () => { cancelled = true; };
+  }, [subject, unlockedTypes]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
@@ -157,7 +199,7 @@ export default function QuickPracticeQuizScreen() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [subjectId]);
+  }, [subjectId, questions.length]);
 
   // Auto-finish when timer runs out
   useEffect(() => {
@@ -304,6 +346,40 @@ export default function QuickPracticeQuizScreen() {
     setShowConceptSheet(false);
     scrollRef.current?.scrollTo({ y: 0, animated: true });
   };
+
+  if (loadingQuestions) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 12 }}>
+            <Text style={{ fontSize: 32 }}>{'\u26A1'}</Text>
+            <Text style={[Typography.h2, { color: colors.text }]}>Loading questions...</Text>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  if (loadError || (!question && !quizFinished)) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, paddingHorizontal: 32 }}>
+            <Text style={{ fontSize: 32 }}>{'\uD83D\uDCDA'}</Text>
+            <Text style={[Typography.h2, { color: colors.text, textAlign: 'center' }]}>
+              {loadError || 'No questions available yet'}
+            </Text>
+            <Pressable
+              onPress={() => router.back()}
+              style={{ marginTop: 12, paddingVertical: 12, paddingHorizontal: 24, borderRadius: 12, backgroundColor: colors.primary }}
+            >
+              <Text style={{ color: '#FFF', fontFamily: 'PlusJakartaSans_600SemiBold', fontSize: 15 }}>Go Back</Text>
+            </Pressable>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
 
   if (quizFinished || !question || !subjectMeta) {
     return (
