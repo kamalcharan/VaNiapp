@@ -1,5 +1,5 @@
 /**
- * Qbank Admin - Shared Utilities
+ * Qbank Admin - Shared Utilities (v2025.03.05)
  * Config loader, Auth, Supabase client, Gemini client, UI helpers
  */
 

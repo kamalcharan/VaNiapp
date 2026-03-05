@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Bulk Insert - Qbank Admin</title>
   <link rel="stylesheet" href="./styles.css">
   <style>
@@ -98,11 +101,11 @@
           <h3 class="card-title">1. Select JSON Files</h3>
         </div>
         <div class="card-body">
+          <input type="file" id="fileInput" accept=".json,application/json" multiple style="display: none;" onchange="handleFiles(this.files)">
           <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
             <div class="icon">📁</div>
             <div><strong>Click to select files</strong> or drag & drop</div>
             <div class="hint">Select multiple .json files from Qbank/generated/{subject}/{chapter}/</div>
-            <input type="file" id="fileInput" accept=".json" multiple style="display: none;" onchange="handleFiles(event.target.files)">
           </div>
         </div>
       </div>
@@ -163,8 +166,9 @@
     </div>
   </div>
 
-  <script src="./shared.js"></script>
+  <script src="./shared.js?v=20260305"></script>
   <script>
+    console.log('[bulkinsert] Script loaded - version 2025.03.05');
     // ========================================================================
     // STATE
     // ========================================================================
