@@ -440,9 +440,9 @@
           if (q.options && q.options.length > 0) {
             const options = q.options.map((opt, idx) => ({
               question_id: insertedQ.id,
-              option_key: opt.key || String.fromCharCode(65 + idx),
+              option_key: opt.key || opt.id || String.fromCharCode(65 + idx),
               option_text: opt.text,
-              is_correct: opt.is_correct || (opt.key === q.correct_answer),
+              is_correct: opt.is_correct || ((opt.key || opt.id) === q.correct_answer),
               sort_order: idx
             }));
             const { error: optErr } = await Qbank.supabase.from('med_question_options').insert(options);
@@ -450,15 +450,26 @@
           }
 
           // Insert elimination hints
-          if (q.elimination_hints && q.elimination_hints.length > 0) {
-            const hints = q.elimination_hints.map(h => ({
-              question_id: insertedQ.id,
-              option_key: h.option_key,
-              hint_text: h.hint,
-              misconception: h.misconception || ''
-            }));
-            const { error: hintErr } = await Qbank.supabase.from('med_elimination_hints').insert(hints);
-            if (hintErr) appendLogLine(logEl, `  Hints warning for ${q.id}: ${hintErr.message}`, 'skip');
+          if (q.elimination_hints) {
+            let hints = [];
+            if (Array.isArray(q.elimination_hints)) {
+              // NEET format: array of { option_key, hint, misconception }
+              hints = q.elimination_hints.map(h => ({
+                question_id: insertedQ.id,
+                option_key: h.option_key || '',
+                hint_text: h.hint || h.hint_text || '',
+                misconception: h.misconception || ''
+              }));
+            } else if (typeof q.elimination_hints === 'object') {
+              // CUET format: { hint_1, hint_2, misconception_tag }
+              const eh = q.elimination_hints;
+              if (eh.hint_1) hints.push({ question_id: insertedQ.id, option_key: '', hint_text: eh.hint_1, misconception: eh.misconception_tag || '' });
+              if (eh.hint_2) hints.push({ question_id: insertedQ.id, option_key: '', hint_text: eh.hint_2, misconception: eh.misconception_tag || '' });
+            }
+            if (hints.length > 0) {
+              const { error: hintErr } = await Qbank.supabase.from('med_elimination_hints').insert(hints);
+              if (hintErr) appendLogLine(logEl, `  Hints warning for ${q.id}: ${hintErr.message}`, 'skip');
+            }
           }
 
           inserted++;
@@ -520,6 +531,8 @@
       if (questionId.startsWith('bot-')) return 'botany';
       if (questionId.startsWith('phy-')) return 'physics';
       if (questionId.startsWith('chem-')) return 'chemistry';
+      // CUET subjects
+      if (questionId.startsWith('cuet-acc-')) return 'accountancy';
       return 'unknown';
     }
 
@@ -536,6 +549,32 @@
       // like bot-cell-theory, bot-cell-prokaryotic), NOT chapter IDs!
       // Longer/more-specific prefixes MUST come first to avoid false matches.
       const TOPIC_TO_CHAPTER = {
+        // ── CUET Accountancy (10 chapters) ────────────────────
+        // B04: NPO
+        'cuet-acc-npo':         'cuet-acc-npo',
+        // B05: Partnership Fundamentals (partner-fundamentals, partner-goodwill, partner-guarantee, partner-advanced)
+        'cuet-acc-partner':     'cuet-acc-partnership-basics',
+        // B06: Goodwill & B07: Change in PSR → Reconstitution
+        'cuet-acc-psr':         'cuet-acc-reconstitution',
+        // B08: Admission of a Partner → Reconstitution
+        'cuet-acc-admission':   'cuet-acc-reconstitution',
+        // B09: Retirement/Death of a Partner → Reconstitution
+        'cuet-acc-retire':      'cuet-acc-reconstitution',
+        // B03: Accounting for Share Capital
+        'cuet-acc-share':       'cuet-acc-share-capital',
+        // B02: Accounting for Debentures
+        'cuet-acc-deb':         'cuet-acc-debentures',
+        // B01: Dissolution of Partnership
+        'cuet-acc-dissol':      'cuet-acc-dissolution',
+        // B10: Financial Statements of a Company
+        'cuet-acc-fs':          'cuet-acc-financial-statements',
+        // B13: Analysis of Financial Statements
+        'cuet-acc-sa':          'cuet-acc-financial-statements',
+        // B11: Cash Flow Statement
+        'cuet-acc-cfs':         'cuet-acc-cash-flow',
+        // B12: Ratio Analysis
+        'cuet-acc-ratio':       'cuet-acc-ratio-analysis',
+
         // ── Botany (17 chapters) ──────────────────────────────
         // Topics: bot-cell-theory, bot-cell-prokaryotic, bot-cell-eukaryotic, bot-cell-organelles
         'bot-cell':         'bot-cell-unit',
