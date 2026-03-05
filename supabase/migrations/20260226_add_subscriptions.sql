@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS med_subscriptions (
   coupon_code  text,
 
   -- Amounts in paise (100 paise = 1 INR)
-  amount_paid  integer    NOT NULL DEFAULT 0,
-  gst_amount   integer    NOT NULL DEFAULT 0,
+  amount_paid  integer    NOT NULL DEFAULT 0,   -- base price after discount, EXCLUDING GST
+  gst_amount   integer    NOT NULL DEFAULT 0,   -- GST charged (18% of amount_paid)
 
   -- Validity
   starts_at    timestamptz NOT NULL DEFAULT now(),
