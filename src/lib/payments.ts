@@ -13,6 +13,7 @@ export interface SaveSubscriptionParams {
   couponCode?: string;
   amountPaidRupees: number;
   gstRupees: number;
+  paymentMethod?: string;
 }
 
 export async function saveSubscription(params: SaveSubscriptionParams): Promise<void> {
@@ -45,6 +46,7 @@ export async function saveSubscription(params: SaveSubscriptionParams): Promise<
     coupon_code: params.couponCode ?? null,
     amount_paid: params.amountPaidRupees,
     gst_amount: params.gstRupees,
+    payment_method: params.paymentMethod ?? null,
     expires_at: expiresAt,
   });
 
@@ -113,6 +115,75 @@ export async function getActiveSubscription(): Promise<ActiveSubscription | null
     expiresAt: data.expires_at,
     couponCode: data.coupon_code,
   };
+}
+
+// ── Payment history ──────────────────────────────────────────
+
+export interface PaymentHistoryItem {
+  id: string;
+  planType: PlanId;
+  paymentStatus: 'paid' | 'coupon_free' | 'pending';
+  amountPaid: number;
+  gstAmount: number;
+  paymentMethod: string | null;
+  couponCode: string | null;
+  razorpayPaymentId: string | null;
+  status: string;
+  startsAt: string;
+  expiresAt: string | null;
+  createdAt: string;
+}
+
+export async function getPaymentHistory(): Promise<PaymentHistoryItem[]> {
+  if (!supabase) return [];
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return [];
+
+  const { data, error } = await supabase
+    .from('med_subscriptions')
+    .select('id, plan_type, payment_status, amount_paid, gst_amount, payment_method, coupon_code, razorpay_payment_id, status, starts_at, expires_at, created_at')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false });
+
+  if (error || !data) return [];
+
+  return data.map((row: any) => ({
+    id: row.id,
+    planType: row.plan_type as PlanId,
+    paymentStatus: row.payment_status,
+    amountPaid: row.amount_paid,
+    gstAmount: row.gst_amount,
+    paymentMethod: row.payment_method,
+    couponCode: row.coupon_code,
+    razorpayPaymentId: row.razorpay_payment_id,
+    status: row.status,
+    startsAt: row.starts_at,
+    expiresAt: row.expires_at,
+    createdAt: row.created_at,
+  }));
+}
+
+// ── Log failed payment ──────────────────────────────────────
+
+export async function logFailedPayment(params: {
+  planType: PlanId;
+  errorCode: string;
+  errorDescription: string;
+  razorpayOrderId?: string;
+  amountRupees: number;
+}): Promise<void> {
+  if (!supabase) return;
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+
+  await supabase.from('med_failed_payments').insert({
+    user_id: user.id,
+    plan_type: params.planType,
+    error_code: params.errorCode,
+    error_description: params.errorDescription,
+    razorpay_order_id: params.razorpayOrderId ?? null,
+    amount: params.amountRupees,
+  }).catch(() => {});
 }
 
 // ── Create Razorpay order via Supabase Edge Function ─────────
