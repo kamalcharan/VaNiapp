@@ -493,10 +493,10 @@
       // Generate button
       document.getElementById('generateBtn').href = `./generate.html?exam=${examId}&subject=${subjectId}`;
 
-      // Load data in parallel
+      // Load data in parallel (pass examId so only exam-relevant chapters/counts are fetched)
       const [chaptersData, qCounts, jobs] = await Promise.all([
-        Qbank.fetchChapters(subjectId),
-        Qbank.fetchQuestionsCountByChapter(subjectId),
+        Qbank.fetchChapters(subjectId, examId),
+        Qbank.fetchQuestionsCountByChapter(subjectId, examId),
         Qbank.fetchGenerationJobs()
       ]);
 
