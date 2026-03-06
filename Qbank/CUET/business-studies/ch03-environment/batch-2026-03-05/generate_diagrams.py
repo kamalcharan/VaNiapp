@@ -107,7 +107,7 @@ def diagram_lpg_pillars():
         ('PRIVATISATION', '#2980b9', 0.50,
          ['Disinvestment of PSUs', 'Private sector entry in\nreserved sectors',
           'Sale of govt equity', 'Reduced public sector role',
-          'E.g. Air India to Tata']),
+          'E.g. National Airways\nto Pinnacle Group']),
         ('GLOBALISATION', '#27ae60', 0.80,
          ['Integration with\nworld economy', 'Free flow of trade\nand investment',
           'Reduced tariff barriers', 'MNC entry into India',
