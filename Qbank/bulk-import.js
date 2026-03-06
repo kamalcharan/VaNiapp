@@ -528,6 +528,7 @@ const CUET_CHAPTER_MAP = {
   'business-studies/ch04-planning': 'cuet-bst-planning',
   'business-studies/ch05-organising': 'cuet-bst-organising',
   'business-studies/ch06-staffing': 'cuet-bst-staffing',
+  'business-studies/ch07-directing': 'cuet-bst-directing',
 };
 
 // NEET/generated physics folder → DB chapter_id (folder names don't match DB IDs)
