@@ -510,11 +510,13 @@ Go to the Insert page to add these to the database.`);
             // but also store in payload for redundancy
             if (q.image_uri) payload.image_uri = q.image_uri;
 
+            const topicId = await Qbank.resolveTopicId(chapterId, q.topic);
             const { data: insertedQ, error: qError } = await Qbank.supabase
               .from('med_questions')
               .insert({
                 subject_id: subjectId,
                 chapter_id: chapterId,
+                topic_id: topicId,
                 question_type: q.question_type || 'mcq',
                 difficulty: q.difficulty || 'medium',
                 question_text: q.question_text,

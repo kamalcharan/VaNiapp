@@ -49,6 +49,31 @@ const SUBJECT_MAP = {
 };
 
 // ============================================================================
+// TOPIC RESOLUTION  (chapterId + topicName → topic_id from med_topics)
+// ============================================================================
+const _topicCache = {}; // chapterId -> { name_lower: topic_id }
+async function resolveTopicId(supabase, chapterId, topicName) {
+  if (!chapterId || !topicName) return null;
+  if (!_topicCache[chapterId]) {
+    const { data, error } = await supabase
+      .from('med_topics')
+      .select('id, name')
+      .eq('chapter_id', chapterId);
+    if (error || !data) {
+      log(`Failed to fetch topics for ${chapterId}: ${error?.message}`, 'warn');
+      return null;
+    }
+    const map = {};
+    data.forEach(t => { map[t.name.toLowerCase().trim()] = t.id; });
+    _topicCache[chapterId] = map;
+  }
+  const key = topicName.toLowerCase().trim();
+  const tid = _topicCache[chapterId][key];
+  if (!tid) log(`No topic match for "${topicName}" in chapter ${chapterId}`, 'warn');
+  return tid || null;
+}
+
+// ============================================================================
 // HELPERS
 // ============================================================================
 function log(msg, type = 'info') {
@@ -392,13 +417,16 @@ async function main() {
   for (const q of newQuestions) {
     try {
       const subjectId = SUBJECT_MAP[q._subject] || q._subject;
+      const chapterId = q.chapter_id || resolveChapterId(q._source, q._subject, q._chapter);
+      const topicId = await resolveTopicId(supabase, chapterId, q.topic);
 
       // Insert main question record
       const { data: insertedQ, error: qError } = await supabase
         .from('med_questions')
         .insert({
           subject_id: subjectId,
-          chapter_id: q.chapter_id || resolveChapterId(q._source, q._subject, q._chapter),
+          chapter_id: chapterId,
+          topic_id: topicId,
           question_type: q.question_type || 'mcq',
           difficulty: q.difficulty || 'medium',
           question_text: q.question_text,

@@ -356,6 +356,39 @@ function buildImportPayload(q) {
   return payload;
 }
 
+/**
+ * Resolve topic_id from a topic name and chapter_id.
+ * Fetches all topics for the chapter, then matches by case-insensitive name.
+ * Uses a per-chapter cache so repeated calls don't hit the DB.
+ * Returns the topic id string, or null if no match found.
+ */
+const _topicCache = {}; // chapterId -> { name_lower: topic_id }
+async function resolveTopicId(chapterId, topicName) {
+  if (!SUPABASE || !chapterId || !topicName) return null;
+
+  // Build cache for this chapter if needed
+  if (!_topicCache[chapterId]) {
+    const { data, error } = await SUPABASE
+      .from('med_topics')
+      .select('id, name')
+      .eq('chapter_id', chapterId);
+    if (error || !data) {
+      console.warn('[resolveTopicId] Failed to fetch topics for', chapterId, error);
+      return null;
+    }
+    const map = {};
+    data.forEach(t => { map[t.name.toLowerCase().trim()] = t.id; });
+    _topicCache[chapterId] = map;
+  }
+
+  const key = topicName.toLowerCase().trim();
+  const tid = _topicCache[chapterId][key];
+  if (!tid) {
+    console.warn(`[resolveTopicId] No topic match for "${topicName}" in chapter ${chapterId}`);
+  }
+  return tid || null;
+}
+
 async function insertQuestions(questions) {
   if (!SUPABASE) return { success: false, error: 'Supabase not initialized' };
   const { data, error } = await SUPABASE
@@ -415,7 +448,7 @@ async function insertJobQuestionsToDb(job) {
       const questionRecord = {
         subject_id: job.subject_id,
         chapter_id: job.chapter_id,
-        topic_id: null, // Will be matched later if needed
+        topic_id: await resolveTopicId(job.chapter_id, q.topic),
         exam_ids: q.exam_suitability || job.exam_ids || ['NEET'],
         question_type: q.question_type,
         difficulty: q.difficulty || 'medium',
@@ -517,7 +550,7 @@ async function insertApprovedQuestionsToDb(job, approvedQuestions) {
       const questionRecord = {
         subject_id: job.subject_id,
         chapter_id: job.chapter_id,
-        topic_id: null,
+        topic_id: await resolveTopicId(job.chapter_id, q.topic),
         exam_ids: q.exam_suitability || job.exam_ids || ['NEET'],
         question_type: q.question_type,
         difficulty: q.difficulty || 'medium',
@@ -823,15 +856,10 @@ async function fetchTopicCountsByChapter(chapterId) {
     nameToId[t.name.toLowerCase().trim()] = t.id;
   });
 
-  // Debug: check how many questions have topic_id set
-  const withTopicId = questions.filter(q => q.topic_id).length;
-  const withoutTopicId = questions.filter(q => !q.topic_id).length;
-  const topicIds = [...new Set(questions.map(q => q.topic_id).filter(Boolean))];
-  const dbTopicIds = topics.map(t => t.id);
-  console.log(`[TopicMatch] chapter=${chapterId}: ${questions.length} questions, ${withTopicId} have topic_id, ${withoutTopicId} missing`);
-  console.log('[TopicMatch] topic_ids on questions:', topicIds);
-  console.log('[TopicMatch] topic ids in med_topics:', dbTopicIds);
-  console.log('[TopicMatch] Sample raw question:', JSON.stringify(questions[0]));
+  // Debug
+  const payloadTopics = [...new Set(questions.map(q => q.payload?.topic_name || q.payload?.topic || '').filter(Boolean))];
+  console.log('[TopicMatch] med_topics names:', topics.map(t => t.name));
+  console.log('[TopicMatch] payload topic names:', payloadTopics);
 
   const counts = {};
   let unmatchedTopics = new Set();
@@ -2182,6 +2210,7 @@ window.Qbank = {
   fetchGenerationJobs,
   createGenerationJob,
   updateGenerationJob,
+  resolveTopicId,
   insertQuestions,
   insertQuestionOptions,
   insertEliminationHints,
