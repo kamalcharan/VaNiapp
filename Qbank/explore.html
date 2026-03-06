@@ -339,11 +339,14 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title" id="issuesTitle">Issues</h3>
-            <div style="display: flex; gap: 8px;">
+            <div style="display: flex; gap: 8px; align-items: center;">
               <button class="btn btn-sm" onclick="filterIssues('all')" id="filterAll">All</button>
               <button class="btn btn-sm" onclick="filterIssues('high')" id="filterHigh" style="color: #991b1b;">High</button>
               <button class="btn btn-sm" onclick="filterIssues('medium')" id="filterMed" style="color: #92400e;">Medium</button>
               <button class="btn btn-sm" onclick="filterIssues('low')" id="filterLow" style="color: #1e40af;">Low</button>
+              <button class="btn btn-sm" id="btnCopyAll" onclick="copyAllIssues()" style="display:none; margin-left: 8px; background: var(--gray-700); color: #fff; font-size: 0.75rem;" title="Copy all issues to clipboard">
+                📋 Copy All
+              </button>
             </div>
           </div>
           <div class="card-body" id="issuesContainer">
@@ -756,6 +759,9 @@
 
       document.getElementById('issuesTitle').textContent =
         `Issues (${issues.length}) — ${chapterName}`;
+
+      document.getElementById('btnCopyAll').style.display =
+        issues.length > 0 ? '' : 'none';
     }
 
     // ========================================================================
@@ -999,6 +1005,44 @@
     function copyQuestionId(qid) {
       navigator.clipboard.writeText(qid).then(() => {
         Qbank.showToast('Question ID copied', 'info');
+      });
+    }
+
+    function copyAllIssues() {
+      if (!currentIssues || currentIssues.length === 0) return;
+
+      const sevOrder = { high: 0, medium: 1, low: 2 };
+      const sorted = [...currentIssues].sort((a, b) => sevOrder[a.severity] - sevOrder[b.severity]);
+
+      const chapterName = document.getElementById('chapterFilter')
+        .selectedOptions[0]?.textContent || 'Chapter';
+      const high = sorted.filter(i => i.severity === 'high').length;
+      const med  = sorted.filter(i => i.severity === 'medium').length;
+      const low  = sorted.filter(i => i.severity === 'low').length;
+
+      const header = `${chapterName} — ${sorted.length} issues (${high} high, ${med} medium, ${low} low)\n${'─'.repeat(60)}\n`;
+
+      const lines = [header];
+      let prevSeverity = '';
+
+      for (const issue of sorted) {
+        if (issue.severity !== prevSeverity) {
+          lines.push(`\n▸ ${issue.severity.toUpperCase()} (${sorted.filter(i => i.severity === issue.severity).length})\n`);
+          prevSeverity = issue.severity;
+        }
+        const q = scannedQuestions.find(sq => sq.id === issue.question_id);
+        const label = getIssueLabel(issue);
+        const detail = getIssueDetail(issue);
+        const preview = q ? (q.question_text || '').substring(0, 100).replace(/\n/g, ' ') : '';
+        let line = `${issue.question_id}  [${q?.question_type || '?'}]  ${label}`;
+        if (detail) line += `  ${detail}`;
+        if (preview) line += `\n   ${preview}${preview.length >= 100 ? '...' : ''}`;
+        lines.push(line);
+      }
+
+      const text = lines.join('\n');
+      navigator.clipboard.writeText(text).then(() => {
+        Qbank.showToast(`Copied all ${sorted.length} issues to clipboard`, 'success');
       });
     }
 
