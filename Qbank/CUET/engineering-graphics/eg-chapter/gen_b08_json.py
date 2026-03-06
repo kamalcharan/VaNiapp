@@ -7,7 +7,7 @@ OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cuet-eg-orthogra
 def base(qid, qtype, diff, bloom, subtopic, tags):
     return {
         "id": qid,
-        "chapter_id": "cuet-eg",
+        "chapter_id": "cuet-eg-engineering-graphics",
         "topic_id": "cuet-eg-orthographic",
         "question_type": qtype,
         "difficulty": diff,
