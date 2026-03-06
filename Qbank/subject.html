@@ -242,22 +242,55 @@
       display: block;
     }
 
-    /* Topic list inside chapter body */
-    .topic-section {
-      padding: 16px;
-      border-bottom: 1px solid var(--gray-200);
+    /* Tab bar inside chapter body */
+    .chapter-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--gray-200);
+      background: var(--white);
     }
-    .topic-section-header {
-      font-size: 0.8rem;
+    .chapter-tab {
+      padding: 10px 20px;
+      font-size: 0.85rem;
       font-weight: 600;
-      text-transform: uppercase;
       color: var(--gray-500);
-      letter-spacing: 0.03em;
-      margin-bottom: 10px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.15s;
+      user-select: none;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
+    .chapter-tab:hover {
+      color: var(--gray-700);
+      background: var(--gray-50);
+    }
+    .chapter-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .chapter-tab .tab-count {
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      padding: 1px 7px;
+      border-radius: 10px;
+    }
+    .chapter-tab.active .tab-count {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    .chapter-tab-panel {
+      display: none;
+      padding: 16px;
+    }
+    .chapter-tab-panel.active {
+      display: block;
+    }
+
+    /* Topic grid */
     .topic-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -326,10 +359,7 @@
       color: var(--gray-500);
     }
 
-    /* Questions section inside chapter body */
-    .questions-section {
-      padding: 16px;
-    }
+    /* Questions section inside chapter body (now a tab panel) */
 
     .q-filters {
       display: flex;
@@ -953,7 +983,7 @@
 
       // Initialize state if first time
       if (!chapterState[chapterId]) {
-        chapterState[chapterId] = { page: 1, filter: null, topicFilter: null, data: [], total: 0 };
+        chapterState[chapterId] = { page: 1, filter: null, topicFilter: null, tab: 'questions', data: [], total: 0 };
       }
 
       await loadChapterContent(chapterId);
@@ -998,72 +1028,112 @@
       const body = document.getElementById(`chapter-body-${chapterId}`);
       const state = chapterState[chapterId];
       const topicData = topicCache[chapterId] || { topics: [], counts: {} };
+      const hasTopics = topicData.topics.length > 0 || Object.keys(topicData.counts).length > 0;
+      const counts = chapterQuestionCounts[chapterId] || { total: 0, active: 0, draft: 0, pending: 0 };
+      const activeTab = state.tab || 'questions';
 
-      let html = '';
+      // ---- Tab bar ----
+      let html = `<div class="chapter-tabs">
+        <div class="chapter-tab ${activeTab === 'questions' ? 'active' : ''}"
+             onclick="switchTab('${chapterId}', 'questions')">
+          Questions <span class="tab-count">${counts.total}</span>
+        </div>`;
 
-      // ---- Topic Section ----
-      if (topicData.topics.length > 0 || Object.keys(topicData.counts).length > 0) {
-        const maxTopicCount = Math.max(1, ...Object.values(topicData.counts).map(c => c.total));
-        const meta = Qbank.getSubjectMeta(subjectId);
-
-        html += `<div class="topic-section">
-          <div class="topic-section-header">
-            Topics (${topicData.topics.length})
-            ${state.topicFilter ? `<button class="q-filter-btn active" onclick="clearTopicFilter('${chapterId}')" style="font-size: 0.72rem; padding: 2px 8px;">Clear filter ✕</button>` : ''}
-          </div>
-          <div class="topic-grid">`;
-
-        // Render named topics
-        topicData.topics.forEach(topic => {
-          const tc = topicData.counts[topic.id] || { total: 0, active: 0, draft: 0 };
-          const barPct = maxTopicCount > 0 ? (tc.total / maxTopicCount) * 100 : 0;
-          const isActive = state.topicFilter === topic.id;
-
-          html += `
-            <div class="topic-card ${isActive ? 'active-filter' : ''}" onclick="filterByTopic('${chapterId}', '${topic.id}')">
-              <div class="topic-name">
-                ${Qbank.escapeHtml(topic.name)}
-                ${topic.is_important ? '<span class="important-tag">IMP</span>' : ''}
-              </div>
-              <div class="topic-mini-bar">
-                <div class="fill" style="width: ${barPct}%; background: ${meta.color};"></div>
-              </div>
-              <div class="topic-count">${tc.total}</div>
-              <div class="topic-status-dots">
-                <span style="color: var(--success);">${tc.active}a</span>
-                <span style="color: var(--warning);">${tc.draft}d</span>
-              </div>
-            </div>`;
-        });
-
-        // Uncategorized
-        const uncatCounts = topicData.counts['__none__'];
-        if (uncatCounts && uncatCounts.total > 0) {
-          const barPct = maxTopicCount > 0 ? (uncatCounts.total / maxTopicCount) * 100 : 0;
-          const isActive = state.topicFilter === '__none__';
-          html += `
-            <div class="topic-card ${isActive ? 'active-filter' : ''}" onclick="filterByTopic('${chapterId}', '__none__')" style="border-style: dashed;">
-              <div class="topic-name" style="color: var(--gray-400);">Uncategorized</div>
-              <div class="topic-mini-bar">
-                <div class="fill" style="width: ${barPct}%; background: var(--gray-400);"></div>
-              </div>
-              <div class="topic-count" style="color: var(--gray-400);">${uncatCounts.total}</div>
-              <div class="topic-status-dots">
-                <span style="color: var(--success);">${uncatCounts.active}a</span>
-                <span style="color: var(--warning);">${uncatCounts.draft}d</span>
-              </div>
-            </div>`;
-        }
-
-        html += `</div></div>`;
+      if (hasTopics) {
+        html += `
+          <div class="chapter-tab ${activeTab === 'topics' ? 'active' : ''}"
+               onclick="switchTab('${chapterId}', 'topics')">
+            Topics <span class="tab-count">${topicData.topics.length}</span>
+          </div>`;
       }
 
-      // ---- Questions Section ----
-      html += `<div class="questions-section">`;
+      html += `</div>`;
+
+      // ---- Questions tab panel ----
+      html += `<div class="chapter-tab-panel ${activeTab === 'questions' ? 'active' : ''}" id="tab-questions-${chapterId}">`;
       html += renderChapterQuestions(chapterId);
       html += `</div>`;
 
+      // ---- Topics tab panel ----
+      if (hasTopics) {
+        html += `<div class="chapter-tab-panel ${activeTab === 'topics' ? 'active' : ''}" id="tab-topics-${chapterId}">`;
+        html += renderTopicsPanel(chapterId, topicData);
+        html += `</div>`;
+      }
+
       body.innerHTML = html;
+    }
+
+    function renderTopicsPanel(chapterId, topicData) {
+      const state = chapterState[chapterId];
+      const maxTopicCount = Math.max(1, ...Object.values(topicData.counts).map(c => c.total));
+      const meta = Qbank.getSubjectMeta(subjectId);
+
+      let html = '';
+
+      if (state.topicFilter) {
+        html += `<div style="margin-bottom: 12px;">
+          <button class="q-filter-btn active" onclick="clearTopicFilter('${chapterId}')" style="font-size: 0.78rem; padding: 4px 12px;">
+            Filtering questions by topic — Clear ✕
+          </button>
+        </div>`;
+      }
+
+      html += `<div class="topic-grid">`;
+
+      topicData.topics.forEach(topic => {
+        const tc = topicData.counts[topic.id] || { total: 0, active: 0, draft: 0 };
+        const barPct = maxTopicCount > 0 ? (tc.total / maxTopicCount) * 100 : 0;
+        const isActive = state.topicFilter === topic.id;
+
+        html += `
+          <div class="topic-card ${isActive ? 'active-filter' : ''}" onclick="filterByTopic('${chapterId}', '${topic.id}')">
+            <div class="topic-name">
+              ${Qbank.escapeHtml(topic.name)}
+              ${topic.is_important ? '<span class="important-tag">IMP</span>' : ''}
+            </div>
+            <div class="topic-mini-bar">
+              <div class="fill" style="width: ${barPct}%; background: ${meta.color};"></div>
+            </div>
+            <div class="topic-count">${tc.total}</div>
+            <div class="topic-status-dots">
+              <span style="color: var(--success);">${tc.active}a</span>
+              <span style="color: var(--warning);">${tc.draft}d</span>
+            </div>
+          </div>`;
+      });
+
+      // Uncategorized
+      const uncatCounts = topicData.counts['__none__'];
+      if (uncatCounts && uncatCounts.total > 0) {
+        const barPct = maxTopicCount > 0 ? (uncatCounts.total / maxTopicCount) * 100 : 0;
+        const isActive = state.topicFilter === '__none__';
+        html += `
+          <div class="topic-card ${isActive ? 'active-filter' : ''}" onclick="filterByTopic('${chapterId}', '__none__')" style="border-style: dashed;">
+            <div class="topic-name" style="color: var(--gray-400);">Uncategorized</div>
+            <div class="topic-mini-bar">
+              <div class="fill" style="width: ${barPct}%; background: var(--gray-400);"></div>
+            </div>
+            <div class="topic-count" style="color: var(--gray-400);">${uncatCounts.total}</div>
+            <div class="topic-status-dots">
+              <span style="color: var(--success);">${uncatCounts.active}a</span>
+              <span style="color: var(--warning);">${uncatCounts.draft}d</span>
+            </div>
+          </div>`;
+      }
+
+      html += `</div>`;
+
+      if (topicData.topics.length === 0) {
+        html += `<div class="empty-chapter">No topics found for this chapter.</div>`;
+      }
+
+      return html;
+    }
+
+    function switchTab(chapterId, tab) {
+      chapterState[chapterId].tab = tab;
+      renderChapterBody(chapterId);
     }
 
     function renderChapterQuestions(chapterId) {
@@ -1189,6 +1259,8 @@
         state.topicFilter = null;
       } else {
         state.topicFilter = topicId;
+        // Auto-switch to Questions tab to show filtered results
+        state.tab = 'questions';
       }
       renderChapterBody(chapterId);
     }
