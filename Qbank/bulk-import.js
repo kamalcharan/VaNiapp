@@ -44,8 +44,8 @@ const SUBJECT_MAP = {
   chemistry: 'chemistry',
   'cuet-physics': 'cuet-physics',
   'cuet-chemistry': 'cuet-chemistry',
-  'cuet-biology': 'cuet-biology',
-  'business-studies': 'cuet-business-studies',
+  'cuet-biology': 'biology',
+  'business-studies': 'business-studies',
 };
 
 // ============================================================================
