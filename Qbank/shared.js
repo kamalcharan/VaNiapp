@@ -378,6 +378,7 @@ function buildImportPayload(q) {
 /**
  * Parse MTF column items from question text.
  * Handles: (P) text, A. text, A  text formats.
+ * textTe is populated separately by the translation program.
  */
 function _parseMTFColumns(text) {
   const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–]/i);
@@ -388,8 +389,8 @@ function _parseMTFColumns(text) {
 
   function extractItems(body) {
     let items = [];
-    // Try parenthesized: (P) text, (Q) text
     let m;
+    // Try parenthesized: (P) text, (Q) text
     const parenRe = /\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s*([^\n(]+)/g;
     while ((m = parenRe.exec(body)) !== null) {
       items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
