@@ -435,30 +435,54 @@ function parseMatchColumns(text: string): {
   const columnB: { id: string; text: string; textTe: string }[] = [];
 
   // Split into Column I / Column II sections
-  // Match headers like "Column I:", "Column A:", "Column 1:", "List I:", "List-I"
-  const colSplit = text.split(/column\s*(?:ii|II|2|b|B)\s*[:\-]/i);
+  // Match headers like "Column I:", "Column-I:", "Column A:", "Column 1:", "List I:", "List-I"
+  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–]/i);
   if (colSplit.length < 2) return { columnA, columnB };
 
   const col1Text = colSplit[0];
   const col2Text = colSplit[1];
 
   // Remove the "Column I:" header from col1Text
-  const col1Body = col1Text.replace(/.*column\s*(?:i|I|1|a|A)\s*[:\-]/i, '');
+  const col1Body = col1Text.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–]/i, '');
 
-  // Extract labeled items: (P), (Q), (1), (a), (i), (ii) etc.
-  const itemRegex = /\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s*([^\n(]+)/g;
+  // Extract labeled items in multiple formats:
+  // 1. Parenthesized: (P), (Q), (1), (a), (i), (ii), (iii), (iv) etc.
+  // 2. Dotted: A., B., C., 1., 2., 3. etc.
+  // 3. Letter/number at line start: A  text, B  text
+  function extractItems(body: string): { id: string; text: string; textTe: string }[] {
+    const items: { id: string; text: string; textTe: string }[] = [];
 
-  let match;
-  // eslint-disable-next-line no-cond-assign
-  while ((match = itemRegex.exec(col1Body)) !== null) {
-    columnA.push({ id: match[1].trim(), text: match[2].trim(), textTe: '' });
+    // Try parenthesized format first: (P) text, (Q) text
+    const parenRegex = /\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s*([^\n(]+)/g;
+    let m;
+    // eslint-disable-next-line no-cond-assign
+    while ((m = parenRegex.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+    }
+    if (items.length >= 2) return items;
+
+    // Try dotted format: A. text, B. text, 1. text, 2. text
+    items.length = 0;
+    const dotRegex = /(?:^|\n)\s*([A-Za-z0-9]+)\.\s+(.+?)(?=\n\s*[A-Za-z0-9]+\.|$)/gs;
+    // eslint-disable-next-line no-cond-assign
+    while ((m = dotRegex.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+    }
+    if (items.length >= 2) return items;
+
+    // Try colon-separated inline: (P) text (Q) text — already covered by paren
+    // Try simple "A  text" format (letter + spaces + text on each line)
+    items.length = 0;
+    const simpleRegex = /(?:^|\n)\s*([A-Z])\s{2,}(.+?)(?=\n|$)/g;
+    // eslint-disable-next-line no-cond-assign
+    while ((m = simpleRegex.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+    }
+    return items;
   }
 
-  itemRegex.lastIndex = 0;
-  // eslint-disable-next-line no-cond-assign
-  while ((match = itemRegex.exec(col2Text)) !== null) {
-    columnB.push({ id: match[1].trim(), text: match[2].trim(), textTe: '' });
-  }
+  columnA.push(...extractItems(col1Body));
+  columnB.push(...extractItems(col2Text));
 
   return { columnA, columnB };
 }

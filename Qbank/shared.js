@@ -353,7 +353,71 @@ function buildImportPayload(q) {
   // logical-sequence: items array + correct ordering
   if (q.items) payload.items = q.items;
   if (q.correct_order) payload.correct_order = q.correct_order;
+  // match-the-following: structured column data for drag-and-drop UI
+  if (q.column_a || q.columnA) payload.columnA = q.column_a || q.columnA;
+  if (q.column_b || q.columnB) payload.columnB = q.column_b || q.columnB;
+  if (q.correct_mapping || q.correctMapping) payload.correctMapping = q.correct_mapping || q.correctMapping;
+  // If MTF but no structured columns, parse from question_text
+  if (q.question_type === 'match-the-following' && !payload.columnA && q.question_text) {
+    const parsed = _parseMTFColumns(q.question_text);
+    if (parsed.columnA.length > 0 && parsed.columnB.length > 0) {
+      payload.columnA = parsed.columnA;
+      payload.columnB = parsed.columnB;
+    }
+    // Derive correctMapping from the correct option
+    if (!payload.correctMapping && q.options && q.correct_answer) {
+      const correctOpt = q.options.find(o => o.is_correct || o.key === q.correct_answer);
+      if (correctOpt) {
+        payload.correctMapping = _parseOptionMapping(correctOpt.text);
+      }
+    }
+  }
   return payload;
+}
+
+/**
+ * Parse MTF column items from question text.
+ * Handles: (P) text, A. text, A  text formats.
+ */
+function _parseMTFColumns(text) {
+  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–]/i);
+  if (colSplit.length < 2) return { columnA: [], columnB: [] };
+
+  const col1Body = colSplit[0].replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–]/i, '');
+  const col2Body = colSplit[1];
+
+  function extractItems(body) {
+    let items = [];
+    // Try parenthesized: (P) text, (Q) text
+    let m;
+    const parenRe = /\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s*([^\n(]+)/g;
+    while ((m = parenRe.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+    }
+    if (items.length >= 2) return items;
+
+    // Try dotted: A. text, B. text, 1. text
+    items = [];
+    const dotRe = /(?:^|\n)\s*([A-Za-z0-9]+)\.\s+(.+?)(?=\n\s*[A-Za-z0-9]+\.|$)/gs;
+    while ((m = dotRe.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+    }
+    return items;
+  }
+
+  return { columnA: extractItems(col1Body), columnB: extractItems(col2Body) };
+}
+
+/**
+ * Parse option mapping text like "A-2, B-3, C-4, D-1" into { A: "2", B: "3", ... }
+ */
+function _parseOptionMapping(text) {
+  const mapping = {};
+  for (const part of text.split(/[,;]\s*/)) {
+    const m = part.trim().match(/^([A-Za-z0-9]+)\s*[-–→]\s*\(?([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)?$/);
+    if (m) mapping[m[1].trim()] = m[2].trim();
+  }
+  return mapping;
 }
 
 /**
@@ -2317,6 +2381,92 @@ async function fixEmptyOptions(questionId, options, correctKey) {
 }
 
 // ============================================================================
+// AUTO-FIX: MTF payload — parse columnA/columnB from question_text
+// ============================================================================
+
+/**
+ * Fix MTF questions that are missing columnA/columnB in payload.
+ * Parses the question_text to extract column items and derives correctMapping
+ * from the correct option text.
+ *
+ * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
+ * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
+ */
+async function fixMTFPayload(questions) {
+  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  for (const q of questions) {
+    if (q.question_type !== 'match-the-following') { results.skipped++; continue; }
+
+    const payload = q.payload || {};
+    // Skip if already has column data
+    const existingColA = payload.column_a || payload.columnA || [];
+    const existingColB = payload.column_b || payload.columnB || [];
+    if (Array.isArray(existingColA) && existingColA.length > 0 &&
+        Array.isArray(existingColB) && existingColB.length > 0) {
+      results.skipped++;
+      continue;
+    }
+
+    const text = q.question_text || '';
+    if (!text) { results.skipped++; continue; }
+
+    // Parse columns from question text
+    const parsed = _parseMTFColumns(text);
+    if (parsed.columnA.length < 2 || parsed.columnB.length < 2) {
+      results.skipped++;
+      results.details.push({
+        id: q.id,
+        status: 'skipped',
+        reason: `Parsed colA=${parsed.columnA.length}, colB=${parsed.columnB.length}`
+      });
+      continue;
+    }
+
+    // Derive correctMapping from the correct option
+    const opts = q.med_question_options || q.options || [];
+    const correctOpt = opts.find(o => o.is_correct === true) ||
+                       opts.find(o => (o.option_key || o.key) === q.correct_answer);
+    let mapping = {};
+    if (correctOpt) {
+      mapping = _parseOptionMapping(correctOpt.option_text || correctOpt.text || '');
+    }
+
+    // Update payload in DB
+    const newPayload = {
+      ...payload,
+      columnA: parsed.columnA,
+      columnB: parsed.columnB,
+      correctMapping: mapping
+    };
+
+    const { error } = await SUPABASE
+      .from('med_questions')
+      .update({ payload: newPayload })
+      .eq('id', q.id);
+
+    if (error) {
+      console.error(`[fixMTF] Failed to update ${q.id}:`, error);
+      results.errors++;
+      results.details.push({ id: q.id, status: 'error', error: error.message });
+    } else {
+      results.fixed++;
+      results.details.push({
+        id: q.id,
+        status: 'fixed',
+        colA: parsed.columnA.length,
+        colB: parsed.columnB.length,
+        mappingKeys: Object.keys(mapping).length
+      });
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
 // EXPORT FOR USE IN HTML
 // ============================================================================
 window.Qbank = {
@@ -2401,6 +2551,7 @@ window.Qbank = {
   clearExploreIssues,
   fixCorrectAnswerKeys,
   fixEmptyOptions,
+  fixMTFPayload,
 
   // State access
   get config() { return CONFIG; },
