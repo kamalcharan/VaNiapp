@@ -51,7 +51,14 @@ const SUBJECT_MAP = {
 // ============================================================================
 // TOPIC RESOLUTION  (chapterId + topicName → topic_id from med_topics)
 // ============================================================================
-const _topicCache = {}; // chapterId -> { name_lower: topic_id }
+function _normalizeTopic(name) {
+  return name.toLowerCase()
+    .replace(/[''\u2019]s\b/g, '')
+    .replace(/\band\b/g, '').replace(/\bof\b/g, '').replace(/\bthe\b/g, '')
+    .replace(/[,()]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+const _topicCache = {}; // chapterId -> [{ id, nameLower, nameNorm, words }]
 async function resolveTopicId(supabase, chapterId, topicName) {
   if (!chapterId || !topicName) return null;
   if (!_topicCache[chapterId]) {
@@ -63,14 +70,36 @@ async function resolveTopicId(supabase, chapterId, topicName) {
       log(`Failed to fetch topics for ${chapterId}: ${error?.message}`, 'warn');
       return null;
     }
-    const map = {};
-    data.forEach(t => { map[t.name.toLowerCase().trim()] = t.id; });
-    _topicCache[chapterId] = map;
+    _topicCache[chapterId] = data.map(t => {
+      const norm = _normalizeTopic(t.name);
+      return { id: t.id, nameLower: t.name.toLowerCase().trim(), nameNorm: norm, words: new Set(norm.split(' ').filter(Boolean)) };
+    });
   }
-  const key = topicName.toLowerCase().trim();
-  const tid = _topicCache[chapterId][key];
-  if (!tid) log(`No topic match for "${topicName}" in chapter ${chapterId}`, 'warn');
-  return tid || null;
+  const topics = _topicCache[chapterId];
+  const needle = topicName.toLowerCase().trim();
+  const needleNorm = _normalizeTopic(topicName);
+  const needleWords = new Set(needleNorm.split(' ').filter(Boolean));
+  // 1. Exact match
+  const exact = topics.find(t => t.nameLower === needle);
+  if (exact) return exact.id;
+  // 2. Normalized exact match
+  const normExact = topics.find(t => t.nameNorm === needleNorm);
+  if (normExact) return normExact.id;
+  // 3. Contains match
+  const contains = topics.find(t => needleNorm.includes(t.nameNorm) || t.nameNorm.includes(needleNorm));
+  if (contains) return contains.id;
+  // 4. Best keyword overlap
+  let bestScore = 0, bestTopic = null;
+  for (const t of topics) {
+    if (t.words.size === 0) continue;
+    let overlap = 0;
+    for (const w of t.words) { if (needleWords.has(w)) overlap++; }
+    const score = overlap / t.words.size;
+    if (score > bestScore && overlap >= 2) { bestScore = score; bestTopic = t; }
+  }
+  if (bestScore >= 0.5 && bestTopic) return bestTopic.id;
+  log(`No topic match for "${topicName}" in chapter ${chapterId}`, 'warn');
+  return null;
 }
 
 // ============================================================================
