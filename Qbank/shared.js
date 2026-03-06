@@ -823,7 +823,18 @@ async function fetchTopicCountsByChapter(chapterId) {
     nameToId[t.name.toLowerCase().trim()] = t.id;
   });
 
+  // Debug: log first few questions' payload topic fields and topic names for comparison
+  const sampleQ = questions.slice(0, 3).map(q => ({
+    topic_id: q.topic_id,
+    payload_topic: q.payload?.topic,
+    payload_topic_name: q.payload?.topic_name,
+    payload_keys: q.payload ? Object.keys(q.payload) : 'NO_PAYLOAD'
+  }));
+  console.log('[TopicMatch] Topic names in DB:', Object.keys(nameToId));
+  console.log('[TopicMatch] Sample questions:', sampleQ);
+
   const counts = {};
+  let unmatchedTopics = new Set();
   questions.forEach(q => {
     // Try topic_id first, then fall back to matching payload topic name
     // Note: payload stores topic as "topic_name" (shared.js imports) or "topic" (import.html / AI-generated)
@@ -836,11 +847,21 @@ async function fetchTopicCountsByChapter(chapterId) {
     }
     if (!tid) tid = '__none__';
 
+    // Track unmatched for debugging
+    if (tid === '__none__') {
+      const pName = q.payload?.topic_name || q.payload?.topic || '';
+      if (pName) unmatchedTopics.add(pName);
+    }
+
     if (!counts[tid]) counts[tid] = { total: 0, active: 0, draft: 0 };
     counts[tid].total++;
     if (q.status === 'active') counts[tid].active++;
     else if (q.status === 'draft') counts[tid].draft++;
   });
+
+  if (unmatchedTopics.size > 0) {
+    console.log('[TopicMatch] Unmatched topic names from payload:', [...unmatchedTopics]);
+  }
 
   return { topics, counts };
 }
