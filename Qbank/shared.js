@@ -1653,7 +1653,17 @@ const QUALITY_ISSUE_TYPES = {
 
   // Content quality
   EMPTY_EXPLANATION:      { severity: 'medium', label: 'No explanation' },
-  NO_ELIMINATION_HINTS:   { severity: 'low',    label: 'No elimination hints' },
+  NO_ELIMINATION_HINTS:   { severity: 'high',   label: 'No hints (mandatory for all types)' },
+
+  // Data integrity — topic/chapter mapping
+  MISSING_TOPIC_ID:       { severity: 'high',   label: 'No topic_id set' },
+  MISSING_CHAPTER_ID:     { severity: 'high',   label: 'No chapter_id set' },
+
+  // Type-specific payload issues (custom UI can't render)
+  MTF_NO_COLUMN_DATA:     { severity: 'high',   label: 'MTF missing column A/B data (custom UI broken)' },
+  SEQ_NO_ITEMS:           { severity: 'high',   label: 'Sequence question missing items list' },
+  SEQ_INCOMPLETE_TEXT:    { severity: 'high',   label: 'Sequence question text has no items to arrange' },
+  MTF_DUPLICATE_KEYS:     { severity: 'high',   label: 'MTF has duplicate option/column keys (drag broken)' },
 
   // Translation (parameterized via details.language)
   MISSING_TRANSLATION:    { severity: 'low',    label: 'Missing translation' },
@@ -1864,8 +1874,73 @@ function runQualityValidators(questions, languages, chapterId) {
         }
         break;
       }
-      // scenario-based and logical-sequence: content is always in question_text
-      // No special payload check needed — question_text emptiness already caught above
+      case 'logical-sequence': {
+        // Custom UI needs payload.items array with text for each item
+        const seqItems = payload.items || payload.Items || [];
+        if (!Array.isArray(seqItems) || seqItems.length === 0) {
+          issues.push(makeIssue(q, chapterId, 'SEQ_NO_ITEMS'));
+        } else {
+          // Check if items have actual text content
+          const emptyItems = seqItems.filter(it => !(it.text || '').trim());
+          if (emptyItems.length > 0) {
+            issues.push(makeIssue(q, chapterId, 'SEQ_NO_ITEMS', {
+              emptyCount: emptyItems.length, total: seqItems.length
+            }));
+          }
+        }
+        // Also check question_text — "Arrange the following in the correct order." with no items is meaningless
+        if (qText && /arrange.*following/i.test(qText) && !/\([ivxIVX]+\)|\d\)|\d\./.test(qText)) {
+          // Text says "arrange the following" but doesn't list any items inline
+          if (!Array.isArray(seqItems) || seqItems.length === 0) {
+            issues.push(makeIssue(q, chapterId, 'SEQ_INCOMPLETE_TEXT'));
+          }
+        }
+        break;
+      }
+      // scenario-based: content is in question_text — emptiness already caught above
+    }
+
+    // ── Match-the-following: custom UI needs column_a + column_b arrays ──
+    if (q.question_type === 'match-the-following') {
+      const colA = payload.column_a || payload.columnA || [];
+      const colB = payload.column_b || payload.columnB || [];
+      if (!Array.isArray(colA) || colA.length === 0 || !Array.isArray(colB) || colB.length === 0) {
+        issues.push(makeIssue(q, chapterId, 'MTF_NO_COLUMN_DATA', {
+          hasColumnA: Array.isArray(colA) && colA.length > 0,
+          hasColumnB: Array.isArray(colB) && colB.length > 0
+        }));
+      }
+      // Check for duplicate keys in columns or options — breaks drag-and-drop
+      if (Array.isArray(colA) && colA.length > 0) {
+        const aIds = colA.map(c => c.id);
+        const bIds = (Array.isArray(colB) ? colB : []).map(c => c.id);
+        const allIds = [...aIds, ...bIds];
+        const dupeIds = allIds.filter((id, i) => allIds.indexOf(id) !== i);
+        if (dupeIds.length > 0) {
+          issues.push(makeIssue(q, chapterId, 'MTF_DUPLICATE_KEYS', {
+            duplicateIds: [...new Set(dupeIds)]
+          }));
+        }
+      }
+      // Also check payload.options for duplicate IDs
+      const mtfOpts = payload.options || [];
+      if (Array.isArray(mtfOpts) && mtfOpts.length > 0) {
+        const optIds = mtfOpts.map(o => o.id);
+        const dupeOptIds = optIds.filter((id, i) => optIds.indexOf(id) !== i);
+        if (dupeOptIds.length > 0) {
+          issues.push(makeIssue(q, chapterId, 'MTF_DUPLICATE_KEYS', {
+            duplicateOptionIds: [...new Set(dupeOptIds)]
+          }));
+        }
+      }
+    }
+
+    // ── Data integrity: chapter & topic ──────────────────────
+    if (!q.chapter_id) {
+      issues.push(makeIssue(q, chapterId, 'MISSING_CHAPTER_ID'));
+    }
+    if (!q.topic_id) {
+      issues.push(makeIssue(q, chapterId, 'MISSING_TOPIC_ID'));
     }
 
     // ── Content quality ─────────────────────────────────────
@@ -1966,7 +2041,7 @@ async function fetchQuestionsForScan(chapterId) {
   const { data, error } = await SUPABASE
     .from('med_questions')
     .select(`
-      id, subject_id, chapter_id, question_type, difficulty, status,
+      id, subject_id, chapter_id, topic_id, question_type, difficulty, status,
       question_text, question_text_te, explanation, explanation_te,
       correct_answer, payload, image_url, concept_tags,
       med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
