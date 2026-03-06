@@ -811,15 +811,27 @@ async function fetchTopicCountsByChapter(chapterId) {
 
   const [topicsRes, questionsRes] = await Promise.all([
     SUPABASE.from('med_topics').select('id, name, sort_order, is_important').eq('chapter_id', chapterId).order('sort_order'),
-    SUPABASE.from('med_questions').select('topic_id, status').eq('chapter_id', chapterId)
+    SUPABASE.from('med_questions').select('topic_id, status, payload').eq('chapter_id', chapterId)
   ]);
 
   const topics = topicsRes.data || [];
   const questions = questionsRes.data || [];
 
+  // Build a name->id lookup so we can match payload.topic_name to topic ids
+  const nameToId = {};
+  topics.forEach(t => {
+    nameToId[t.name.toLowerCase().trim()] = t.id;
+  });
+
   const counts = {};
   questions.forEach(q => {
-    const tid = q.topic_id || '__none__';
+    // Try topic_id first, then fall back to matching payload.topic_name
+    let tid = q.topic_id;
+    if (!tid && q.payload?.topic_name) {
+      tid = nameToId[q.payload.topic_name.toLowerCase().trim()] || '__none__';
+    }
+    if (!tid) tid = '__none__';
+
     if (!counts[tid]) counts[tid] = { total: 0, active: 0, draft: 0 };
     counts[tid].total++;
     if (q.status === 'active') counts[tid].active++;
