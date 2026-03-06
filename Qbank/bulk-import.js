@@ -45,6 +45,7 @@ const SUBJECT_MAP = {
   'cuet-physics': 'cuet-physics',
   'cuet-chemistry': 'cuet-chemistry',
   'cuet-biology': 'cuet-biology',
+  'business-studies': 'cuet-business-studies',
 };
 
 // ============================================================================
@@ -415,6 +416,19 @@ async function main() {
             // Diagram-based question fields
             ...(q.image_uri && { image_uri: q.image_uri }),
             ...(q.image_alt && { image_alt: q.image_alt }),
+            // Match-the-following fields
+            ...(q.column_a && { column_a: q.column_a }),
+            ...(q.column_b && { column_b: q.column_b }),
+            ...(q.correct_mapping && { correct_mapping: q.correct_mapping }),
+            // Assertion-reasoning fields
+            ...(q.assertion && { assertion: q.assertion }),
+            ...(q.reason && { reason: q.reason }),
+            // Fill-in-blanks fields
+            ...(q.text_with_blanks && { text_with_blanks: q.text_with_blanks }),
+            // Logical-sequence fields
+            ...(q.sequence_items && { sequence_items: q.sequence_items }),
+            // Scenario-based fields
+            ...(q.scenario && { scenario: q.scenario }),
           },
         })
         .select()
@@ -507,6 +521,12 @@ const CUET_CHAPTER_MAP = {
   'biology/organisms-populations': 'cuet-bio-organisms-populations',
   'biology/ecosystem': 'cuet-bio-ecosystem',
   'biology/biodiversity': 'cuet-bio-biodiversity',
+  // Business Studies (cuet-business-studies subject)
+  'business-studies/ch01-nature-significance': 'cuet-bst-nature-mgmt',
+  'business-studies/ch02-principles': 'cuet-bst-principles-mgmt',
+  'business-studies/ch03-environment': 'cuet-bst-environment',
+  'business-studies/ch04-planning': 'cuet-bst-planning',
+  'business-studies/ch05-organising': 'cuet-bst-organising',
 };
 
 // NEET/generated physics folder → DB chapter_id (folder names don't match DB IDs)
