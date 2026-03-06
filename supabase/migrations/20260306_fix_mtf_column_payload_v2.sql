@@ -118,7 +118,7 @@ DECLARE
 BEGIN
   FOR q IN
     SELECT
-      mq.id,
+      mq.id::TEXT AS id,
       mq.question_text,
       mq.payload,
       mq.correct_answer,
@@ -186,7 +186,7 @@ BEGIN
       || jsonb_build_object('columnA', col_a)
       || jsonb_build_object('columnB', col_b)
       || jsonb_build_object('correctMapping', mapping)
-    WHERE id = q.id;
+    WHERE id = q.id::UUID;
 
     fixed_count := fixed_count + 1;
   END LOOP;
