@@ -26,17 +26,21 @@ const EXAM_CONFIG = {
     fullName: 'Common University Entrance Test',
     icon: '🎓',
     description: 'University Entrance',
-    subjects: ['MATHEMATICS', 'BIOLOGY', 'PHYSICS', 'CHEMISTRY', 'ACCOUNTANCY', 'BUSINESS-STUDIES', 'ECONOMICS']
+    subjects: ['CUET-PHYSICS', 'CUET-CHEMISTRY', 'CUET-BIOLOGY', 'MATHEMATICS', 'ACCOUNTANCY', 'BUSINESS-STUDIES', 'ECONOMICS']
   }
 };
 
 const SUBJECT_META = {
+  // NEET subjects
   'PHYSICS':          { name: 'Physics',          emoji: '⚡', color: '#3b82f6', bg: '#dbeafe' },
   'CHEMISTRY':        { name: 'Chemistry',        emoji: '🧪', color: '#10b981', bg: '#d1fae5' },
   'BOTANY':           { name: 'Botany',           emoji: '🌿', color: '#22c55e', bg: '#dcfce7' },
   'ZOOLOGY':          { name: 'Zoology',          emoji: '🦁', color: '#f59e0b', bg: '#fef3c7' },
+  // CUET subjects (cuet-physics, cuet-chemistry, cuet-biology use distinct DB subject_ids)
+  'CUET-PHYSICS':     { name: 'Physics',          emoji: '⚡', color: '#3b82f6', bg: '#dbeafe' },
+  'CUET-CHEMISTRY':   { name: 'Chemistry',        emoji: '🧪', color: '#10b981', bg: '#d1fae5' },
+  'CUET-BIOLOGY':     { name: 'Biology',          emoji: '🧬', color: '#8b5cf6', bg: '#ede9fe' },
   'MATHEMATICS':      { name: 'Mathematics',      emoji: '📐', color: '#ef4444', bg: '#fee2e2' },
-  'BIOLOGY':          { name: 'Biology',          emoji: '🧬', color: '#8b5cf6', bg: '#ede9fe' },
   'ACCOUNTANCY':      { name: 'Accountancy',      emoji: '📊', color: '#14b8a6', bg: '#ccfbf1' },
   'BUSINESS-STUDIES': { name: 'Business Studies', emoji: '💼', color: '#6366f1', bg: '#e0e7ff' },
   'ECONOMICS':        { name: 'Economics',        emoji: '💰', color: '#f97316', bg: '#ffedd5' }
