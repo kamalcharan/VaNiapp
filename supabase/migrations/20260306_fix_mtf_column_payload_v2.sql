@@ -135,22 +135,47 @@ BEGIN
     q_text := q.question_text;
 
     -- ── Split text into Column I and Column II sections ──
-    -- Try multiple split patterns for Column II header
+    -- IMPORTANT: "Column II" is often mentioned TWICE — once in the intro
+    -- sentence ("Match X in Column I with Y in Column II:") and again as
+    -- the actual data header. We need the LAST occurrence.
     col2_body := NULL;
     col1_body := NULL;
 
-    -- Pattern 1: "Column II:" or "Column-II:" or "Column II -" (case insensitive)
-    IF q_text ~* 'column\s*[-–]?\s*(ii|2|b)\s*[-–:.]' THEN
-      col1_body := (regexp_split_to_array(q_text, '(?i)column\s*[-–]?\s*(?:ii|2|b)\s*[-–:.]'))[1];
-      col2_body := substring(q_text FROM '(?i)column\s*[-–]?\s*(?:ii|2|b)\s*[-–:.]\s*(.*)$');
-    -- Pattern 2: "Column-II" without separator
-    ELSIF q_text ~* 'column[-–](ii|2|b)' THEN
-      col1_body := (regexp_split_to_array(q_text, '(?i)column[-–](?:ii|2|b)'))[1];
-      col2_body := substring(q_text FROM '(?i)column[-–](?:ii|2|b)\s*(.*)$');
-    -- Pattern 3: **Column II** (markdown bold)
-    ELSIF q_text ~* '\*\*column\s*(ii|2|b)\*\*' THEN
-      col1_body := (regexp_split_to_array(q_text, '(?i)\*\*column\s*(?:ii|2|b)\*\*'))[1];
-      col2_body := substring(q_text FROM '(?i)\*\*column\s*(?:ii|2|b)\*\*\s*(.*)$');
+    DECLARE
+      col2_pattern TEXT := '(?i)(?:\*\*)?column\s*[-–]?\s*(?:ii|2|b)(?:\*\*)?\s*[-–:.(]';
+      col2_pos INT;
+      all_parts TEXT[];
+      n_parts INT;
+    BEGIN
+      -- Split on ALL Column II occurrences
+      all_parts := regexp_split_to_array(q_text, col2_pattern);
+      n_parts := array_length(all_parts, 1);
+
+      IF n_parts >= 2 THEN
+        -- Column II body = everything after the LAST Column II header
+        col2_body := all_parts[n_parts];
+        -- Column I body = everything before the last Column II header
+        -- (join all preceding parts back together)
+        col1_body := array_to_string(all_parts[1:n_parts-1],
+          -- re-insert approximate separator for joined parts
+          ' Column II: ');
+      END IF;
+    END;
+
+    -- Fallback: try without separator requirement (just "Column II" or "Column-II")
+    IF col2_body IS NULL THEN
+      DECLARE
+        col2_pattern2 TEXT := '(?i)(?:\*\*)?column\s*[-–]?\s*(?:ii|2)(?:\*\*)?';
+        all_parts2 TEXT[];
+        n2 INT;
+      BEGIN
+        all_parts2 := regexp_split_to_array(q_text, col2_pattern2);
+        n2 := array_length(all_parts2, 1);
+        IF n2 >= 2 THEN
+          col2_body := all_parts2[n2];
+          col1_body := array_to_string(all_parts2[1:n2-1], ' Column II ');
+        END IF;
+      END;
     END IF;
 
     IF col2_body IS NULL OR col1_body IS NULL THEN
@@ -159,10 +184,10 @@ BEGIN
       CONTINUE;
     END IF;
 
-    -- Remove Column I header from col1_body
-    col1_body := regexp_replace(col1_body, '(?i).*column\s*[-–]?\s*(?:i|1|a)\s*[-–:.]\s*', '');
-    -- Also strip markdown bold Column I
-    col1_body := regexp_replace(col1_body, '(?i).*\*\*column\s*(?:i|1|a)\*\*\s*', '');
+    -- Remove everything up to and including the LAST Column I header
+    col1_body := regexp_replace(col1_body,
+      '(?i).*(?:\*\*)?column\s*[-–]?\s*(?:i|1|a)(?:\*\*)?\s*[-–:.(]\s*(?:[^)]*\)\s*)?',
+      '');
 
     -- ── Extract items from each section ──
     col_a := _extract_mtf_items(col1_body);
