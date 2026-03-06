@@ -50,7 +50,7 @@ const SUBJECT_MAP = {
 // ============================================================================
 // TOPIC RESOLUTION  (chapterId + topicName → topic_id from med_topics)
 // ============================================================================
-const _topicCache = {}; // chapterId -> { name_lower: topic_id }
+const _topicCache = {}; // chapterId -> [{ id, nameLower }]
 async function resolveTopicId(supabase, chapterId, topicName) {
   if (!chapterId || !topicName) return null;
   if (!_topicCache[chapterId]) {
@@ -62,14 +62,18 @@ async function resolveTopicId(supabase, chapterId, topicName) {
       log(`Failed to fetch topics for ${chapterId}: ${error?.message}`, 'warn');
       return null;
     }
-    const map = {};
-    data.forEach(t => { map[t.name.toLowerCase().trim()] = t.id; });
-    _topicCache[chapterId] = map;
+    _topicCache[chapterId] = data.map(t => ({ id: t.id, nameLower: t.name.toLowerCase().trim() }));
   }
-  const key = topicName.toLowerCase().trim();
-  const tid = _topicCache[chapterId][key];
-  if (!tid) log(`No topic match for "${topicName}" in chapter ${chapterId}`, 'warn');
-  return tid || null;
+  const topics = _topicCache[chapterId];
+  const needle = topicName.toLowerCase().trim();
+  // 1. Exact match
+  const exact = topics.find(t => t.nameLower === needle);
+  if (exact) return exact.id;
+  // 2. Contains match (DB name in payload name, or vice versa)
+  const contains = topics.find(t => needle.includes(t.nameLower) || t.nameLower.includes(needle));
+  if (contains) return contains.id;
+  log(`No topic match for "${topicName}" in chapter ${chapterId}`, 'warn');
+  return null;
 }
 
 // ============================================================================

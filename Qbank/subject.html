@@ -1041,7 +1041,7 @@
       renderChapterBody(chapterId);
     }
 
-    // Resolve a question's topic id using same logic as shared.js
+    // Resolve a question's topic id using same fuzzy logic as shared.js
     // payload stores topic as "topic_name" (shared.js imports) or "topic" (import.html / AI-generated)
     function resolveTopicId(q, chapterId) {
       if (q.topic_id) return q.topic_id;
@@ -1049,8 +1049,12 @@
       const pTopicName = q.payload?.topic_name || q.payload?.topic || '';
       if (pTopicName) {
         const needle = pTopicName.toLowerCase().trim();
-        const match = topicData.topics.find(t => t.name.toLowerCase().trim() === needle);
-        if (match) return match.id;
+        // 1. Exact match
+        const exact = topicData.topics.find(t => t.name.toLowerCase().trim() === needle);
+        if (exact) return exact.id;
+        // 2. Contains match (DB name in payload name, or vice versa)
+        const contains = topicData.topics.find(t => needle.includes(t.name.toLowerCase().trim()) || t.name.toLowerCase().trim().includes(needle));
+        if (contains) return contains.id;
       }
       return '__none__';
     }

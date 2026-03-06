@@ -358,11 +358,13 @@ function buildImportPayload(q) {
 
 /**
  * Resolve topic_id from a topic name and chapter_id.
- * Fetches all topics for the chapter, then matches by case-insensitive name.
+ * Fetches all topics for the chapter, then matches by:
+ *   1. Exact case-insensitive match
+ *   2. DB topic name contained within the payload topic name (or vice versa)
  * Uses a per-chapter cache so repeated calls don't hit the DB.
  * Returns the topic id string, or null if no match found.
  */
-const _topicCache = {}; // chapterId -> { name_lower: topic_id }
+const _topicCache = {}; // chapterId -> [{ id, nameLower }]
 async function resolveTopicId(chapterId, topicName) {
   if (!SUPABASE || !chapterId || !topicName) return null;
 
@@ -376,17 +378,23 @@ async function resolveTopicId(chapterId, topicName) {
       console.warn('[resolveTopicId] Failed to fetch topics for', chapterId, error);
       return null;
     }
-    const map = {};
-    data.forEach(t => { map[t.name.toLowerCase().trim()] = t.id; });
-    _topicCache[chapterId] = map;
+    _topicCache[chapterId] = data.map(t => ({ id: t.id, nameLower: t.name.toLowerCase().trim() }));
   }
 
-  const key = topicName.toLowerCase().trim();
-  const tid = _topicCache[chapterId][key];
-  if (!tid) {
-    console.warn(`[resolveTopicId] No topic match for "${topicName}" in chapter ${chapterId}`);
-  }
-  return tid || null;
+  const topics = _topicCache[chapterId];
+  const needle = topicName.toLowerCase().trim();
+
+  // 1. Exact match
+  const exact = topics.find(t => t.nameLower === needle);
+  if (exact) return exact.id;
+
+  // 2. DB topic name is contained in payload topic name (e.g. "Dimensional Analysis" in "Units, Dimensions, and Dimensional Analysis")
+  //    or payload topic name is contained in DB topic name
+  const contains = topics.find(t => needle.includes(t.nameLower) || t.nameLower.includes(needle));
+  if (contains) return contains.id;
+
+  console.warn(`[resolveTopicId] No topic match for "${topicName}" in chapter ${chapterId}`);
+  return null;
 }
 
 async function insertQuestions(questions) {
@@ -850,32 +858,33 @@ async function fetchTopicCountsByChapter(chapterId) {
   const topics = topicsRes.data || [];
   const questions = questionsRes.data || [];
 
-  // Build a name->id lookup so we can match payload topic to topic ids
-  const nameToId = {};
-  topics.forEach(t => {
-    nameToId[t.name.toLowerCase().trim()] = t.id;
-  });
+  // Build topic list for fuzzy matching
+  const topicList = topics.map(t => ({ id: t.id, nameLower: t.name.toLowerCase().trim() }));
 
-  // Debug
-  const payloadTopics = [...new Set(questions.map(q => q.payload?.topic_name || q.payload?.topic || '').filter(Boolean))];
-  console.log('[TopicMatch] med_topics names:', topics.map(t => t.name));
-  console.log('[TopicMatch] payload topic names:', payloadTopics);
+  function matchTopicId(payloadTopicName) {
+    const needle = payloadTopicName.toLowerCase().trim();
+    // 1. Exact match
+    const exact = topicList.find(t => t.nameLower === needle);
+    if (exact) return exact.id;
+    // 2. Contains match (DB name in payload name, or vice versa)
+    const contains = topicList.find(t => needle.includes(t.nameLower) || t.nameLower.includes(needle));
+    if (contains) return contains.id;
+    return null;
+  }
 
   const counts = {};
   let unmatchedTopics = new Set();
   questions.forEach(q => {
-    // Try topic_id first, then fall back to matching payload topic name
-    // Note: payload stores topic as "topic_name" (shared.js imports) or "topic" (import.html / AI-generated)
+    // Try topic_id first, then fall back to fuzzy-matching payload topic name
     let tid = q.topic_id;
     if (!tid) {
       const pTopicName = q.payload?.topic_name || q.payload?.topic || '';
       if (pTopicName) {
-        tid = nameToId[pTopicName.toLowerCase().trim()] || '__none__';
+        tid = matchTopicId(pTopicName) || '__none__';
       }
     }
     if (!tid) tid = '__none__';
 
-    // Track unmatched for debugging
     if (tid === '__none__') {
       const pName = q.payload?.topic_name || q.payload?.topic || '';
       if (pName) unmatchedTopics.add(pName);
@@ -888,7 +897,7 @@ async function fetchTopicCountsByChapter(chapterId) {
   });
 
   if (unmatchedTopics.size > 0) {
-    console.log('[TopicMatch] Unmatched topic names from payload:', [...unmatchedTopics]);
+    console.warn('[TopicMatch] Unmatched topic names from payload:', [...unmatchedTopics]);
   }
 
   return { topics, counts };
