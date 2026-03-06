@@ -770,6 +770,65 @@ async function fetchQuestionsCountByChapter(subjectId, examId = null) {
   return counts;
 }
 
+async function fetchTypeDistribution(subjectId, examId = null) {
+  if (!SUPABASE) return {};
+  const PAGE_SIZE = 1000;
+  let allData = [];
+  let from = 0;
+
+  while (true) {
+    let query = SUPABASE
+      .from('med_questions')
+      .select('question_type, status')
+      .ilike('subject_id', subjectId)
+      .range(from, from + PAGE_SIZE - 1);
+
+    if (examId) {
+      query = query.contains('exam_ids', [examId]);
+    }
+
+    const { data, error } = await query;
+    if (error) { console.error('Error fetching type distribution:', error); return {}; }
+    if (!data || data.length === 0) break;
+    allData = allData.concat(data);
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
+  }
+
+  const dist = {};
+  allData.forEach(q => {
+    const t = q.question_type || 'unknown';
+    if (!dist[t]) dist[t] = { total: 0, active: 0, draft: 0 };
+    dist[t].total++;
+    if (q.status === 'active') dist[t].active++;
+    else if (q.status === 'draft') dist[t].draft++;
+  });
+  return dist;
+}
+
+async function fetchTopicCountsByChapter(chapterId) {
+  if (!SUPABASE) return { topics: [], counts: {} };
+
+  const [topicsRes, questionsRes] = await Promise.all([
+    SUPABASE.from('med_topics').select('id, name, sort_order, is_important').eq('chapter_id', chapterId).order('sort_order'),
+    SUPABASE.from('med_questions').select('topic_id, status').eq('chapter_id', chapterId)
+  ]);
+
+  const topics = topicsRes.data || [];
+  const questions = questionsRes.data || [];
+
+  const counts = {};
+  questions.forEach(q => {
+    const tid = q.topic_id || '__none__';
+    if (!counts[tid]) counts[tid] = { total: 0, active: 0, draft: 0 };
+    counts[tid].total++;
+    if (q.status === 'active') counts[tid].active++;
+    else if (q.status === 'draft') counts[tid].draft++;
+  });
+
+  return { topics, counts };
+}
+
 async function updateQuestionStatus(questionId, newStatus) {
   if (!SUPABASE) return null;
   const { data, error } = await SUPABASE
@@ -2097,6 +2156,8 @@ window.Qbank = {
   fetchQuestionsByChapter,
   fetchQuestionDetails,
   fetchQuestionsCountByChapter,
+  fetchTypeDistribution,
+  fetchTopicCountsByChapter,
   updateQuestionStatus,
   bulkUpdateQuestionStatus,
 
