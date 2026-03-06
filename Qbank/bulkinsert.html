@@ -574,7 +574,10 @@
       if (questionId.startsWith('chem-')) return 'chemistry';
       // CUET subjects
       if (questionId.startsWith('cuet-acc-')) return 'accountancy';
+
       if (questionId.startsWith('cuet-bst-')) return 'business-studies';
+      if (questionId.startsWith('cuet-eg-')) return 'cuet-engineering-graphics';
+
       return 'unknown';
     }
 
