@@ -381,10 +381,19 @@ function buildImportPayload(q) {
  * textTe is populated separately by the translation program.
  */
 function _parseMTFColumns(text) {
-  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–]/i);
+  // ── Strategy 1: pipe-delimited table rows ──
+  // Format: "Column I | Column II  A. colA_text | 1. colB_text  B. colA_text | 2. colB_text"
+  // Rows contain pipe-separated pairs like "A. Fe (Z=26) | 1. [Ar]3d⁶4s²"
+  const pipeRows = _parseMTFPipeTable(text);
+  if (pipeRows.columnA.length >= 2 && pipeRows.columnB.length >= 2) {
+    return pipeRows;
+  }
+
+  // ── Strategy 2: column header split (original logic) ──
+  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–)]/i);
   if (colSplit.length < 2) return { columnA: [], columnB: [] };
 
-  const col1Body = colSplit[0].replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–]/i, '');
+  const col1Body = colSplit[0].replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–)]/i, '');
   const col2Body = colSplit[1];
 
   function extractItems(body) {
@@ -407,6 +416,61 @@ function _parseMTFColumns(text) {
   }
 
   return { columnA: extractItems(col1Body), columnB: extractItems(col2Body) };
+}
+
+/**
+ * Parse pipe-delimited MTF table format.
+ * Handles text like:
+ *   "Column I | Column II A. Fe (Z=26) | 1. [Ar]3d⁶4s² B. Cu (Z=29) | 2. [Ar]3d¹⁰4s¹"
+ * Also handles the format where items use letters (A-Z) on the left and numbers (1-9) on the right.
+ */
+function _parseMTFPipeTable(text) {
+  const columnA = [];
+  const columnB = [];
+
+  // Remove the header portion up to and including "Column II" (with optional parenthesized description)
+  let body = text.replace(/^.*?column\s*[-–]?\s*(?:ii|II|2|b|B)\s*(?:\([^)]*\))?[:\-–|]?\s*/i, '');
+  if (body === text) return { columnA: [], columnB: [] }; // no column header found
+
+  // Match pipe-separated row pairs:
+  // "A. left text | 1. right text" or "(A) left text | (1) right text"
+  // Left keys are typically A-Z letters, right keys are typically 1-9 numbers
+  const pipeRowRe = /(?:^|\s)(?:\(?([A-Za-z])\)?[.\s]+)(.*?)\s*\|\s*(?:\(?(\d+)\)?[.\s]+)(.*?)(?=(?:\s+(?:\(?[A-Za-z]\)?[.\s]))|$)/gs;
+  let m;
+  while ((m = pipeRowRe.exec(body)) !== null) {
+    const leftId = m[1].trim();
+    const leftText = m[2].trim();
+    const rightId = m[3].trim();
+    const rightText = m[4].trim();
+    if (leftText && rightText) {
+      columnA.push({ id: leftId, text: leftText, textTe: '' });
+      columnB.push({ id: rightId, text: rightText, textTe: '' });
+    }
+  }
+
+  // Fallback: split body by pipes and try to pair items
+  if (columnA.length < 2) {
+    columnA.length = 0;
+    columnB.length = 0;
+    // Split on pipes, then look for item patterns
+    const segments = body.split(/\s*\|\s*/);
+    let leftItem = null;
+    for (const seg of segments) {
+      const itemMatch = seg.match(/^\s*(?:\(?([A-Za-z0-9]+)\)?[.\s]+)(.+)$/s);
+      if (!itemMatch) continue;
+      const id = itemMatch[1].trim();
+      const txt = itemMatch[2].trim();
+      // Letters → column A, numbers → column B
+      if (/^[A-Za-z]$/.test(id)) {
+        leftItem = { id, text: txt, textTe: '' };
+        columnA.push(leftItem);
+      } else if (/^\d+$/.test(id)) {
+        columnB.push({ id, text: txt, textTe: '' });
+      }
+    }
+  }
+
+  return { columnA, columnB };
 }
 
 /**
