@@ -230,7 +230,7 @@ async function fetchSubjects() {
   return data;
 }
 
-async function fetchChapters(subjectId = null) {
+async function fetchChapters(subjectId = null, examId = null) {
   if (!SUPABASE) return [];
   let query = SUPABASE
     .from('med_chapters')
@@ -243,6 +243,11 @@ async function fetchChapters(subjectId = null) {
     // Use OR filter for case-insensitive in() equivalent
     const subjects = CURRENT_USER.subjects;
     query = query.or(subjects.map(s => `subject_id.ilike.${s}`).join(','));
+  }
+
+  // Filter by exam if specified (chapters have exam_ids array)
+  if (examId) {
+    query = query.contains('exam_ids', [examId]);
   }
 
   const { data, error } = await query;
@@ -633,15 +638,30 @@ function getAutoInsertTimeRemaining(jobCreatedAt) {
 
 async function getQuestionStats() {
   if (!SUPABASE) return [];
-  const { data, error } = await SUPABASE
-    .from('med_questions')
-    .select('subject_id, question_type, difficulty, status');
 
-  if (error) {
-    console.error('Error fetching stats:', error);
-    return null;
+  // Paginate to avoid Supabase default 1000-row limit
+  const PAGE_SIZE = 1000;
+  let allData = [];
+  let from = 0;
+
+  while (true) {
+    const { data, error } = await SUPABASE
+      .from('med_questions')
+      .select('subject_id, chapter_id, question_type, difficulty, status, exam_ids')
+      .range(from, from + PAGE_SIZE - 1);
+
+    if (error) {
+      console.error('Error fetching stats:', error);
+      return allData.length > 0 ? allData : null;
+    }
+
+    if (!data || data.length === 0) break;
+    allData = allData.concat(data);
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
   }
-  return data;
+
+  return allData;
 }
 
 async function fetchQuestionsByChapter(chapterId, options = {}) {
@@ -700,21 +720,41 @@ async function bulkUpdateQuestionStatus(questionIds, newStatus) {
   return data;
 }
 
-async function fetchQuestionsCountByChapter(subjectId) {
+async function fetchQuestionsCountByChapter(subjectId, examId = null) {
   if (!SUPABASE) return {};
-  const { data, error } = await SUPABASE
-    .from('med_questions')
-    .select('chapter_id, status')
-    .ilike('subject_id', subjectId);
 
-  if (error) {
-    console.error('Error fetching question counts:', error);
-    return {};
+  // Paginate to avoid Supabase default 1000-row limit
+  const PAGE_SIZE = 1000;
+  let allData = [];
+  let from = 0;
+
+  while (true) {
+    let query = SUPABASE
+      .from('med_questions')
+      .select('chapter_id, status, exam_ids')
+      .ilike('subject_id', subjectId)
+      .range(from, from + PAGE_SIZE - 1);
+
+    if (examId) {
+      query = query.contains('exam_ids', [examId]);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error('Error fetching question counts:', error);
+      return {};
+    }
+
+    if (!data || data.length === 0) break;
+    allData = allData.concat(data);
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
   }
 
   // Group by chapter_id and status
   const counts = {};
-  (data || []).forEach(q => {
+  allData.forEach(q => {
     if (!counts[q.chapter_id]) {
       counts[q.chapter_id] = { total: 0, active: 0, draft: 0, pending: 0 };
     }
