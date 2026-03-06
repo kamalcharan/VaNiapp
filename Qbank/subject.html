@@ -242,15 +242,25 @@
       display: block;
     }
 
-    /* Tab bar inside chapter body */
+    /* Tab bar inside chapter body — scrollable topic tabs */
     .chapter-tabs {
       display: flex;
       border-bottom: 2px solid var(--gray-200);
       background: var(--white);
+      overflow-x: auto;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+    .chapter-tabs::-webkit-scrollbar {
+      height: 3px;
+    }
+    .chapter-tabs::-webkit-scrollbar-thumb {
+      background: var(--gray-300);
+      border-radius: 3px;
     }
     .chapter-tab {
-      padding: 10px 20px;
-      font-size: 0.85rem;
+      padding: 10px 16px;
+      font-size: 0.82rem;
       font-weight: 600;
       color: var(--gray-500);
       cursor: pointer;
@@ -260,7 +270,9 @@
       user-select: none;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .chapter-tab:hover {
       color: var(--gray-700);
@@ -271,16 +283,23 @@
       border-bottom-color: var(--primary);
     }
     .chapter-tab .tab-count {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
       background: var(--gray-100);
       color: var(--gray-600);
-      padding: 1px 7px;
+      padding: 1px 6px;
       border-radius: 10px;
     }
     .chapter-tab.active .tab-count {
       background: var(--primary-light);
       color: var(--primary-dark);
+    }
+    .chapter-tab .imp-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f59e0b;
+      flex-shrink: 0;
     }
     .chapter-tab-panel {
       display: none;
@@ -288,75 +307,6 @@
     }
     .chapter-tab-panel.active {
       display: block;
-    }
-
-    /* Topic grid */
-    .topic-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 8px;
-    }
-    .topic-card {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: border-color 0.15s, box-shadow 0.15s;
-      font-size: 0.85rem;
-    }
-    .topic-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 1px 4px rgba(99,102,241,0.12);
-    }
-    .topic-card.active-filter {
-      border-color: var(--primary);
-      background: #eef2ff;
-    }
-    .topic-card .topic-name {
-      flex: 1;
-      font-weight: 500;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .topic-card .topic-name .important-tag {
-      font-size: 0.65rem;
-      background: #fef3c7;
-      color: #92400e;
-      padding: 1px 5px;
-      border-radius: 3px;
-      margin-left: 6px;
-      vertical-align: middle;
-    }
-    .topic-card .topic-count {
-      font-weight: 700;
-      font-size: 0.9rem;
-      min-width: 24px;
-      text-align: center;
-    }
-    .topic-mini-bar {
-      width: 60px;
-      height: 6px;
-      background: var(--gray-100);
-      border-radius: 3px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .topic-mini-bar .fill {
-      height: 100%;
-      border-radius: 3px;
-      transition: width 0.4s;
-    }
-    .topic-status-dots {
-      display: flex;
-      gap: 4px;
-      font-size: 0.72rem;
-      color: var(--gray-500);
     }
 
     /* Questions section inside chapter body (now a tab panel) */
@@ -983,7 +933,7 @@
 
       // Initialize state if first time
       if (!chapterState[chapterId]) {
-        chapterState[chapterId] = { page: 1, filter: null, topicFilter: null, tab: 'questions', data: [], total: 0 };
+        chapterState[chapterId] = { page: 1, filter: null, tab: '__all__', data: [], total: 0 };
       }
 
       await loadChapterContent(chapterId);
@@ -1003,10 +953,14 @@
         : Qbank.fetchTopicCountsByChapter(chapterId);
 
       const state = chapterState[chapterId];
+      const isTopicTab = state.tab && state.tab !== '__all__';
+
+      // For topic tabs: fetch a large page so we can filter client-side
+      // For "All" tab: use normal server-side pagination
       const qPromise = Qbank.fetchQuestionsByChapter(chapterId, {
-        page: state.page,
-        pageSize: 10,
-        status: state.filter === 'pending_review' ? null : state.filter
+        page: isTopicTab ? 1 : state.page,
+        pageSize: isTopicTab ? 500 : 10,
+        status: state.filter === 'pending_review' ? null : (isTopicTab ? null : state.filter)
       });
 
       const [topicData, result] = await Promise.all([topicPromise, qPromise]);
@@ -1016,7 +970,7 @@
 
       state.data = result.data;
       const counts = chapterQuestionCounts[chapterId] || { total: 0, active: 0, draft: 0, pending: 0 };
-      if (!state.filter) state.total = counts.total;
+      if (!state.filter || isTopicTab) state.total = counts.total;
       else if (state.filter === 'active') state.total = counts.active;
       else if (state.filter === 'draft') state.total = counts.draft;
       else state.total = counts.pending;
@@ -1024,136 +978,100 @@
       renderChapterBody(chapterId);
     }
 
+    // Build topic tabs list for a chapter (cached)
+    function getTopicTabs(chapterId) {
+      const topicData = topicCache[chapterId] || { topics: [], counts: {} };
+      const tabs = [];
+
+      // "All" tab always first
+      const counts = chapterQuestionCounts[chapterId] || { total: 0 };
+      tabs.push({ id: '__all__', name: 'All', count: counts.total, important: false });
+
+      // One tab per named topic
+      topicData.topics.forEach(t => {
+        const tc = topicData.counts[t.id] || { total: 0, active: 0, draft: 0 };
+        tabs.push({ id: t.id, name: t.name, count: tc.total, important: !!t.is_important, active: tc.active, draft: tc.draft });
+      });
+
+      // Uncategorized tab if there are unmatched questions
+      const uncat = topicData.counts['__none__'];
+      if (uncat && uncat.total > 0) {
+        tabs.push({ id: '__none__', name: 'Uncategorized', count: uncat.total, important: false, active: uncat.active, draft: uncat.draft });
+      }
+
+      return tabs;
+    }
+
     function renderChapterBody(chapterId) {
       const body = document.getElementById(`chapter-body-${chapterId}`);
       const state = chapterState[chapterId];
-      const topicData = topicCache[chapterId] || { topics: [], counts: {} };
-      const hasTopics = topicData.topics.length > 0 || Object.keys(topicData.counts).length > 0;
-      const counts = chapterQuestionCounts[chapterId] || { total: 0, active: 0, draft: 0, pending: 0 };
-      const activeTab = state.tab || 'questions';
+      const tabs = getTopicTabs(chapterId);
+      const activeTab = state.tab || '__all__';
 
-      // ---- Tab bar ----
-      let html = `<div class="chapter-tabs">
-        <div class="chapter-tab ${activeTab === 'questions' ? 'active' : ''}"
-             onclick="switchTab('${chapterId}', 'questions')">
-          Questions <span class="tab-count">${counts.total}</span>
-        </div>`;
-
-      if (hasTopics) {
+      // ---- Tab bar (scrollable) ----
+      let html = `<div class="chapter-tabs">`;
+      tabs.forEach(t => {
         html += `
-          <div class="chapter-tab ${activeTab === 'topics' ? 'active' : ''}"
-               onclick="switchTab('${chapterId}', 'topics')">
-            Topics <span class="tab-count">${topicData.topics.length}</span>
+          <div class="chapter-tab ${activeTab === t.id ? 'active' : ''}"
+               onclick="switchTab('${chapterId}', '${t.id}')">
+            ${t.important ? '<span class="imp-dot"></span>' : ''}
+            ${Qbank.escapeHtml(t.name)}
+            <span class="tab-count">${t.count}</span>
           </div>`;
-      }
-
+      });
       html += `</div>`;
 
-      // ---- Questions tab panel ----
-      html += `<div class="chapter-tab-panel ${activeTab === 'questions' ? 'active' : ''}" id="tab-questions-${chapterId}">`;
+      // ---- Tab panel: questions for selected topic ----
+      html += `<div class="chapter-tab-panel active">`;
       html += renderChapterQuestions(chapterId);
       html += `</div>`;
 
-      // ---- Topics tab panel ----
-      if (hasTopics) {
-        html += `<div class="chapter-tab-panel ${activeTab === 'topics' ? 'active' : ''}" id="tab-topics-${chapterId}">`;
-        html += renderTopicsPanel(chapterId, topicData);
-        html += `</div>`;
-      }
-
       body.innerHTML = html;
-    }
 
-    function renderTopicsPanel(chapterId, topicData) {
-      const state = chapterState[chapterId];
-      const maxTopicCount = Math.max(1, ...Object.values(topicData.counts).map(c => c.total));
-      const meta = Qbank.getSubjectMeta(subjectId);
-
-      let html = '';
-
-      if (state.topicFilter) {
-        html += `<div style="margin-bottom: 12px;">
-          <button class="q-filter-btn active" onclick="clearTopicFilter('${chapterId}')" style="font-size: 0.78rem; padding: 4px 12px;">
-            Filtering questions by topic — Clear ✕
-          </button>
-        </div>`;
-      }
-
-      html += `<div class="topic-grid">`;
-
-      topicData.topics.forEach(topic => {
-        const tc = topicData.counts[topic.id] || { total: 0, active: 0, draft: 0 };
-        const barPct = maxTopicCount > 0 ? (tc.total / maxTopicCount) * 100 : 0;
-        const isActive = state.topicFilter === topic.id;
-
-        html += `
-          <div class="topic-card ${isActive ? 'active-filter' : ''}" onclick="filterByTopic('${chapterId}', '${topic.id}')">
-            <div class="topic-name">
-              ${Qbank.escapeHtml(topic.name)}
-              ${topic.is_important ? '<span class="important-tag">IMP</span>' : ''}
-            </div>
-            <div class="topic-mini-bar">
-              <div class="fill" style="width: ${barPct}%; background: ${meta.color};"></div>
-            </div>
-            <div class="topic-count">${tc.total}</div>
-            <div class="topic-status-dots">
-              <span style="color: var(--success);">${tc.active}a</span>
-              <span style="color: var(--warning);">${tc.draft}d</span>
-            </div>
-          </div>`;
-      });
-
-      // Uncategorized
-      const uncatCounts = topicData.counts['__none__'];
-      if (uncatCounts && uncatCounts.total > 0) {
-        const barPct = maxTopicCount > 0 ? (uncatCounts.total / maxTopicCount) * 100 : 0;
-        const isActive = state.topicFilter === '__none__';
-        html += `
-          <div class="topic-card ${isActive ? 'active-filter' : ''}" onclick="filterByTopic('${chapterId}', '__none__')" style="border-style: dashed;">
-            <div class="topic-name" style="color: var(--gray-400);">Uncategorized</div>
-            <div class="topic-mini-bar">
-              <div class="fill" style="width: ${barPct}%; background: var(--gray-400);"></div>
-            </div>
-            <div class="topic-count" style="color: var(--gray-400);">${uncatCounts.total}</div>
-            <div class="topic-status-dots">
-              <span style="color: var(--success);">${uncatCounts.active}a</span>
-              <span style="color: var(--warning);">${uncatCounts.draft}d</span>
-            </div>
-          </div>`;
-      }
-
-      html += `</div>`;
-
-      if (topicData.topics.length === 0) {
-        html += `<div class="empty-chapter">No topics found for this chapter.</div>`;
-      }
-
-      return html;
+      // Scroll active tab into view
+      const activeEl = body.querySelector('.chapter-tab.active');
+      if (activeEl) activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
 
     function switchTab(chapterId, tab) {
-      chapterState[chapterId].tab = tab;
+      const state = chapterState[chapterId];
+      state.tab = tab;
+      state.page = 1;
+      // Re-fetch when switching tabs (server-side topic filter not available, use client filter)
       renderChapterBody(chapterId);
+    }
+
+    // Resolve a question's topic id using same logic as shared.js
+    function resolveTopicId(q, chapterId) {
+      if (q.topic_id) return q.topic_id;
+      const topicData = topicCache[chapterId] || { topics: [] };
+      if (q.payload?.topic_name) {
+        const needle = q.payload.topic_name.toLowerCase().trim();
+        const match = topicData.topics.find(t => t.name.toLowerCase().trim() === needle);
+        if (match) return match.id;
+      }
+      return '__none__';
     }
 
     function renderChapterQuestions(chapterId) {
       const state = chapterState[chapterId];
       const counts = chapterQuestionCounts[chapterId] || { total: 0, active: 0, draft: 0, pending: 0 };
+      const activeTab = state.tab || '__all__';
       const pageSize = 10;
-      const totalPages = Math.max(1, Math.ceil(state.total / pageSize));
 
       const chPending = pendingByChapter[chapterId] || 0;
       const chReady = readyByChapter[chapterId] || 0;
       const jobQCount = chPending + chReady;
 
+      // Status filter pills
       let html = `
         <div class="q-filters">
           <button class="q-filter-btn ${!state.filter ? 'active' : ''}"
-                  onclick="setFilter('${chapterId}', null)">All (${counts.total})</button>
+                  onclick="setFilter('${chapterId}', null)">All</button>
           <button class="q-filter-btn ${state.filter === 'active' ? 'active' : ''}"
-                  onclick="setFilter('${chapterId}', 'active')">Active (${counts.active})</button>
+                  onclick="setFilter('${chapterId}', 'active')">Active</button>
           <button class="q-filter-btn ${state.filter === 'draft' ? 'active' : ''}"
-                  onclick="setFilter('${chapterId}', 'draft')">Draft (${counts.draft})</button>
+                  onclick="setFilter('${chapterId}', 'draft')">Draft</button>
           ${jobQCount > 0 ? `
             <button class="q-filter-btn ${state.filter === 'pending_review' ? 'active' : ''}"
                     onclick="setFilter('${chapterId}', 'pending_review')" style="border-color: var(--primary);">
@@ -1167,24 +1085,36 @@
         return html + renderPendingJobQuestions(chapterId);
       }
 
-      // Filter by topic if set
+      // Filter by topic tab (client-side)
       let displayData = state.data;
-      if (state.topicFilter) {
-        const filterVal = state.topicFilter === '__none__' ? null : state.topicFilter;
-        displayData = state.data.filter(q => (q.topic_id || null) === filterVal);
+      if (activeTab !== '__all__') {
+        displayData = state.data.filter(q => resolveTopicId(q, chapterId) === activeTab);
+      }
+
+      // Also apply status filter client-side for topic-filtered views
+      if (state.filter && activeTab !== '__all__') {
+        displayData = displayData.filter(q => q.status === state.filter);
       }
 
       if (displayData.length === 0) {
+        const isTopicTab = activeTab !== '__all__';
         return html + `
           <div class="empty-chapter">
-            No ${state.filter || ''} questions ${state.topicFilter ? 'for this topic' : 'yet'}.
-            ${!state.topicFilter && chPending > 0 ? `<br><strong>${chPending} questions need review</strong> — <a href="./review.html?exam=${examId}&subject=${subjectId}&status=pending">Review them</a>.` : ''}
-            ${!state.topicFilter && chReady > 0 ? `<br><strong>${chReady} questions ready to insert</strong> — <a href="./insert.html?exam=${examId}&subject=${subjectId}">Insert them</a>.` : ''}
-            ${!state.topicFilter && jobQCount === 0 ? `<br><a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${chapterId}">Generate some!</a>` : ''}
+            No ${state.filter || ''} questions ${isTopicTab ? 'for this topic' : 'yet'}.
+            ${!isTopicTab && chPending > 0 ? `<br><strong>${chPending} questions need review</strong> — <a href="./review.html?exam=${examId}&subject=${subjectId}&status=pending">Review them</a>.` : ''}
+            ${!isTopicTab && chReady > 0 ? `<br><strong>${chReady} questions ready to insert</strong> — <a href="./insert.html?exam=${examId}&subject=${subjectId}">Insert them</a>.` : ''}
+            ${!isTopicTab && jobQCount === 0 ? `<br><a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${chapterId}">Generate some!</a>` : ''}
           </div>`;
       }
 
-      const startNum = (state.page - 1) * pageSize;
+      // Pagination
+      const totalFiltered = displayData.length;
+      const totalPages = Math.max(1, Math.ceil(totalFiltered / pageSize));
+      const safePage = Math.min(state.page, totalPages);
+      const pageData = (activeTab !== '__all__')
+        ? displayData.slice((safePage - 1) * pageSize, safePage * pageSize)
+        : displayData; // "All" tab uses server-side pagination already
+      const startNum = (safePage - 1) * pageSize;
 
       // Select All + Bulk actions
       html += `
@@ -1203,7 +1133,7 @@
                   onclick="bulkSetStatus('${chapterId}', 'draft')">Draft Selected</button>
         </div>`;
 
-      html += displayData.map((q, i) => {
+      html += pageData.map((q, i) => {
         const isActive = q.status === 'active';
         const toggleClass = isActive ? 'to-draft' : 'to-active';
         const toggleLabel = isActive ? 'Draft' : 'Active';
@@ -1234,14 +1164,27 @@
         `;
       }).join('');
 
-      // Pagination (only show if no topic filter active since topic filter is client-side)
-      if (!state.topicFilter) {
+      // Pagination controls
+      if (activeTab !== '__all__' && totalPages > 1) {
+        // Client-side pagination for topic tabs
         html += `
           <div class="q-pagination">
-            <span>Page ${state.page} of ${totalPages} (${state.total} questions)</span>
+            <span>Page ${safePage} of ${totalPages} (${totalFiltered} questions)</span>
+            <div style="display: flex; gap: 8px;">
+              <button ${safePage <= 1 ? 'disabled' : ''} onclick="changePage('${chapterId}', -1)">← Prev</button>
+              <button ${safePage >= totalPages ? 'disabled' : ''} onclick="changePage('${chapterId}', 1)">Next →</button>
+            </div>
+          </div>`;
+      } else if (activeTab === '__all__') {
+        // Server-side pagination for All tab
+        const serverTotal = state.total;
+        const serverPages = Math.max(1, Math.ceil(serverTotal / pageSize));
+        html += `
+          <div class="q-pagination">
+            <span>Page ${state.page} of ${serverPages} (${serverTotal} questions)</span>
             <div style="display: flex; gap: 8px;">
               <button ${state.page <= 1 ? 'disabled' : ''} onclick="changePage('${chapterId}', -1)">← Prev</button>
-              <button ${state.page >= totalPages ? 'disabled' : ''} onclick="changePage('${chapterId}', 1)">Next →</button>
+              <button ${state.page >= serverPages ? 'disabled' : ''} onclick="changePage('${chapterId}', 1)">Next →</button>
             </div>
           </div>`;
       }
@@ -1250,39 +1193,23 @@
     }
 
     // ========================================================================
-    // TOPIC FILTER
-    // ========================================================================
-    function filterByTopic(chapterId, topicId) {
-      const state = chapterState[chapterId];
-      // Toggle off if same topic clicked
-      if (state.topicFilter === topicId) {
-        state.topicFilter = null;
-      } else {
-        state.topicFilter = topicId;
-        // Auto-switch to Questions tab to show filtered results
-        state.tab = 'questions';
-      }
-      renderChapterBody(chapterId);
-    }
-
-    function clearTopicFilter(chapterId) {
-      chapterState[chapterId].topicFilter = null;
-      renderChapterBody(chapterId);
-    }
-
-    // ========================================================================
     // FILTER & PAGINATION
     // ========================================================================
     async function setFilter(chapterId, filter) {
       chapterState[chapterId].filter = filter;
       chapterState[chapterId].page = 1;
-      chapterState[chapterId].topicFilter = null;
       await loadChapterContent(chapterId);
     }
 
     async function changePage(chapterId, direction) {
-      chapterState[chapterId].page += direction;
-      await loadChapterContent(chapterId);
+      const state = chapterState[chapterId];
+      state.page += direction;
+      // Topic tabs use client-side pagination, just re-render
+      if (state.tab && state.tab !== '__all__') {
+        renderChapterBody(chapterId);
+      } else {
+        await loadChapterContent(chapterId);
+      }
     }
 
     // ========================================================================
