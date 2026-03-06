@@ -357,14 +357,31 @@ function buildImportPayload(q) {
 }
 
 /**
+ * Normalize a topic name for matching: lowercase, strip possessives ('s),
+ * remove common filler words, trim.
+ */
+function _normalizeTopic(name) {
+  return name.toLowerCase()
+    .replace(/[''\u2019]s\b/g, '')   // strip possessive 's
+    .replace(/\band\b/g, '')          // remove "and"
+    .replace(/\bof\b/g, '')           // remove "of"
+    .replace(/\bthe\b/g, '')          // remove "the"
+    .replace(/[,()]/g, '')            // remove punctuation
+    .replace(/\s+/g, ' ')            // collapse whitespace
+    .trim();
+}
+
+/**
  * Resolve topic_id from a topic name and chapter_id.
  * Fetches all topics for the chapter, then matches by:
  *   1. Exact case-insensitive match
- *   2. DB topic name contained within the payload topic name (or vice versa)
+ *   2. Normalized match (strip possessives, filler words)
+ *   3. DB topic name contained within the payload topic name (or vice versa)
+ *   4. Best keyword overlap score
  * Uses a per-chapter cache so repeated calls don't hit the DB.
  * Returns the topic id string, or null if no match found.
  */
-const _topicCache = {}; // chapterId -> [{ id, nameLower }]
+const _topicCache = {}; // chapterId -> [{ id, nameLower, nameNorm, words }]
 async function resolveTopicId(chapterId, topicName) {
   if (!SUPABASE || !chapterId || !topicName) return null;
 
@@ -378,20 +395,39 @@ async function resolveTopicId(chapterId, topicName) {
       console.warn('[resolveTopicId] Failed to fetch topics for', chapterId, error);
       return null;
     }
-    _topicCache[chapterId] = data.map(t => ({ id: t.id, nameLower: t.name.toLowerCase().trim() }));
+    _topicCache[chapterId] = data.map(t => {
+      const norm = _normalizeTopic(t.name);
+      return { id: t.id, nameLower: t.name.toLowerCase().trim(), nameNorm: norm, words: new Set(norm.split(' ').filter(Boolean)) };
+    });
   }
 
   const topics = _topicCache[chapterId];
   const needle = topicName.toLowerCase().trim();
+  const needleNorm = _normalizeTopic(topicName);
+  const needleWords = new Set(needleNorm.split(' ').filter(Boolean));
 
   // 1. Exact match
   const exact = topics.find(t => t.nameLower === needle);
   if (exact) return exact.id;
 
-  // 2. DB topic name is contained in payload topic name (e.g. "Dimensional Analysis" in "Units, Dimensions, and Dimensional Analysis")
-  //    or payload topic name is contained in DB topic name
-  const contains = topics.find(t => needle.includes(t.nameLower) || t.nameLower.includes(needle));
+  // 2. Normalized exact match (e.g. "Kirchhoff's Laws" → "kirchhoff laws" matches "kirchhoff laws")
+  const normExact = topics.find(t => t.nameNorm === needleNorm);
+  if (normExact) return normExact.id;
+
+  // 3. Contains match on normalized names
+  const contains = topics.find(t => needleNorm.includes(t.nameNorm) || t.nameNorm.includes(needleNorm));
   if (contains) return contains.id;
+
+  // 4. Best keyword overlap — pick topic where most DB words appear in the payload topic
+  let bestScore = 0, bestTopic = null;
+  for (const t of topics) {
+    if (t.words.size === 0) continue;
+    let overlap = 0;
+    for (const w of t.words) { if (needleWords.has(w)) overlap++; }
+    const score = overlap / t.words.size; // fraction of DB topic words matched
+    if (score > bestScore && overlap >= 2) { bestScore = score; bestTopic = t; }
+  }
+  if (bestScore >= 0.5 && bestTopic) return bestTopic.id;
 
   console.warn(`[resolveTopicId] No topic match for "${topicName}" in chapter ${chapterId}`);
   return null;
@@ -858,17 +894,35 @@ async function fetchTopicCountsByChapter(chapterId) {
   const topics = topicsRes.data || [];
   const questions = questionsRes.data || [];
 
-  // Build topic list for fuzzy matching
-  const topicList = topics.map(t => ({ id: t.id, nameLower: t.name.toLowerCase().trim() }));
+  // Build topic list for fuzzy matching (reuse shared normalizer)
+  const topicList = topics.map(t => {
+    const norm = _normalizeTopic(t.name);
+    return { id: t.id, nameLower: t.name.toLowerCase().trim(), nameNorm: norm, words: new Set(norm.split(' ').filter(Boolean)) };
+  });
 
   function matchTopicId(payloadTopicName) {
     const needle = payloadTopicName.toLowerCase().trim();
+    const needleNorm = _normalizeTopic(payloadTopicName);
+    const needleWords = new Set(needleNorm.split(' ').filter(Boolean));
     // 1. Exact match
     const exact = topicList.find(t => t.nameLower === needle);
     if (exact) return exact.id;
-    // 2. Contains match (DB name in payload name, or vice versa)
-    const contains = topicList.find(t => needle.includes(t.nameLower) || t.nameLower.includes(needle));
+    // 2. Normalized exact match
+    const normExact = topicList.find(t => t.nameNorm === needleNorm);
+    if (normExact) return normExact.id;
+    // 3. Contains match (DB name in payload name, or vice versa)
+    const contains = topicList.find(t => needleNorm.includes(t.nameNorm) || t.nameNorm.includes(needleNorm));
     if (contains) return contains.id;
+    // 4. Best keyword overlap
+    let bestScore = 0, bestTopic = null;
+    for (const t of topicList) {
+      if (t.words.size === 0) continue;
+      let overlap = 0;
+      for (const w of t.words) { if (needleWords.has(w)) overlap++; }
+      const score = overlap / t.words.size;
+      if (score > bestScore && overlap >= 2) { bestScore = score; bestTopic = t; }
+    }
+    if (bestScore >= 0.5 && bestTopic) return bestTopic.id;
     return null;
   }
 

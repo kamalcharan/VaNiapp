@@ -1042,20 +1042,40 @@
     }
 
     // Resolve a question's topic id using same fuzzy logic as shared.js
-    // payload stores topic as "topic_name" (shared.js imports) or "topic" (import.html / AI-generated)
+    // Reuse _normalizeTopic from shared.js (loaded via <script>)
     function resolveTopicId(q, chapterId) {
       if (q.topic_id) return q.topic_id;
       const topicData = topicCache[chapterId] || { topics: [] };
       const pTopicName = q.payload?.topic_name || q.payload?.topic || '';
-      if (pTopicName) {
-        const needle = pTopicName.toLowerCase().trim();
-        // 1. Exact match
-        const exact = topicData.topics.find(t => t.name.toLowerCase().trim() === needle);
-        if (exact) return exact.id;
-        // 2. Contains match (DB name in payload name, or vice versa)
-        const contains = topicData.topics.find(t => needle.includes(t.name.toLowerCase().trim()) || t.name.toLowerCase().trim().includes(needle));
-        if (contains) return contains.id;
+      if (!pTopicName) return '__none__';
+
+      const needle = pTopicName.toLowerCase().trim();
+      const needleNorm = _normalizeTopic(pTopicName);
+      const needleWords = new Set(needleNorm.split(' ').filter(Boolean));
+
+      // 1. Exact
+      const exact = topicData.topics.find(t => t.name.toLowerCase().trim() === needle);
+      if (exact) return exact.id;
+      // 2. Normalized exact
+      const normExact = topicData.topics.find(t => _normalizeTopic(t.name) === needleNorm);
+      if (normExact) return normExact.id;
+      // 3. Contains
+      const contains = topicData.topics.find(t => {
+        const tn = _normalizeTopic(t.name);
+        return needleNorm.includes(tn) || tn.includes(needleNorm);
+      });
+      if (contains) return contains.id;
+      // 4. Keyword overlap (>=50% and at least 2 words in common)
+      let bestScore = 0, bestTopic = null;
+      for (const t of topicData.topics) {
+        const tWords = new Set(_normalizeTopic(t.name).split(' ').filter(Boolean));
+        if (tWords.size === 0) continue;
+        let overlap = 0;
+        for (const w of tWords) { if (needleWords.has(w)) overlap++; }
+        const score = overlap / tWords.size;
+        if (score > bestScore && overlap >= 2) { bestScore = score; bestTopic = t; }
       }
+      if (bestScore >= 0.5 && bestTopic) return bestTopic.id;
       return '__none__';
     }
 
