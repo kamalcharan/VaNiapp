@@ -823,15 +823,15 @@ async function fetchTopicCountsByChapter(chapterId) {
     nameToId[t.name.toLowerCase().trim()] = t.id;
   });
 
-  // Debug: log first few questions' payload topic fields and topic names for comparison
-  const sampleQ = questions.slice(0, 3).map(q => ({
-    topic_id: q.topic_id,
-    payload_topic: q.payload?.topic,
-    payload_topic_name: q.payload?.topic_name,
-    payload_keys: q.payload ? Object.keys(q.payload) : 'NO_PAYLOAD'
-  }));
-  console.log('[TopicMatch] Topic names in DB:', Object.keys(nameToId));
-  console.log('[TopicMatch] Sample questions:', sampleQ);
+  // Debug: check how many questions have topic_id set
+  const withTopicId = questions.filter(q => q.topic_id).length;
+  const withoutTopicId = questions.filter(q => !q.topic_id).length;
+  const topicIds = [...new Set(questions.map(q => q.topic_id).filter(Boolean))];
+  const dbTopicIds = topics.map(t => t.id);
+  console.log(`[TopicMatch] chapter=${chapterId}: ${questions.length} questions, ${withTopicId} have topic_id, ${withoutTopicId} missing`);
+  console.log('[TopicMatch] topic_ids on questions:', topicIds);
+  console.log('[TopicMatch] topic ids in med_topics:', dbTopicIds);
+  console.log('[TopicMatch] Sample raw question:', JSON.stringify(questions[0]));
 
   const counts = {};
   let unmatchedTopics = new Set();
