@@ -260,9 +260,11 @@
     function renderDashboard() {
       const examSubjects = Qbank.normalizeIds(Qbank.getExamSubjects(currentExam));
 
-      // Filter stats to only this exam's subjects
+      // Filter stats to only this exam's subjects AND this exam's exam_ids
       const examStats = allStats.filter(q => {
-        return examSubjects.includes(Qbank.normalizeId(q.subject_id));
+        const matchesSubject = examSubjects.includes(Qbank.normalizeId(q.subject_id));
+        const matchesExam = !q.exam_ids || q.exam_ids.includes(currentExam);
+        return matchesSubject && matchesExam;
       });
 
       // Filter jobs to this exam's subjects
@@ -270,9 +272,11 @@
         return examSubjects.includes(Qbank.normalizeId(j.subject_id));
       });
 
-      // Filter chapters to this exam's subjects
+      // Filter chapters to this exam's subjects AND this exam's exam_ids
       const examChapters = allChapters.filter(ch => {
-        return examSubjects.includes(Qbank.normalizeId(ch.subject_id));
+        const matchesSubject = examSubjects.includes(Qbank.normalizeId(ch.subject_id));
+        const matchesExam = !ch.exam_ids || ch.exam_ids.includes(currentExam);
+        return matchesSubject && matchesExam;
       });
 
       // Update "View All" link with exam context
