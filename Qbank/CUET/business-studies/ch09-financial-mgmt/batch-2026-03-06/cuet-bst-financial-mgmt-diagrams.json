@@ -1,0 +1,89 @@
+[
+  {
+    "id": "cuet-bst-financial-mgmt-66",
+    "chapter_id": "cuet-bst-financial-mgmt",
+    "question_type": "diagram-based",
+    "difficulty": "medium",
+    "question_text": "Study the diagram showing the Operating Cycle of a manufacturing company. Which stage comes immediately AFTER 'Work-in-Progress'?",
+    "image_uri": "diagrams/cuet-bst-financial-mgmt-66.png",
+    "image_alt": "A circular flowchart showing the Operating Cycle of a manufacturing company with 6 stages connected by arrows in clockwise direction: Stage 1 — Cash (green), Stage 2 — Raw Materials (orange), Stage 3 — Work-in-Progress (blue), Stage 4 — Finished Goods (purple), Stage 5 — Debtors/Accounts Receivable (red), Stage 6 — Cash (green, completing the cycle). Each stage has an icon and a brief label. The centre reads 'Operating Cycle' with a note: 'Longer cycle = More working capital needed'.",
+    "explanation": "The operating cycle diagram clearly shows the sequence: Cash → Raw Materials → Work-in-Progress → Finished Goods → Debtors → Cash. After Work-in-Progress (Stage 3), the next stage is Finished Goods (Stage 4), when production is complete and goods are ready for sale.",
+    "correct_answer": "B",
+    "concept_tags": ["operating-cycle", "working-capital", "diagram-based"],
+    "topic": "Fixed and Working Capital",
+    "subtopic": "Operating cycle stages",
+    "subject": "cuet-business-studies",
+    "chapter": "Financial Management",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Raw Materials", "is_correct": false},
+      {"key": "B", "text": "Finished Goods", "is_correct": true},
+      {"key": "C", "text": "Cash", "is_correct": false},
+      {"key": "D", "text": "Debtors/Accounts Receivable", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Raw Materials comes BEFORE Work-in-Progress (Stage 2 → Stage 3), not after.", "misconception": "Reversing the production sequence"},
+      {"option_key": "C", "hint": "Cash is the starting and ending point of the cycle — it comes after Debtors, not directly after WIP.", "misconception": "Skipping stages in the cycle"},
+      {"option_key": "D", "hint": "Debtors come after Finished Goods (Stage 5), not directly after WIP (Stage 3).", "misconception": "Skipping the finished goods stage"}
+    ]
+  },
+  {
+    "id": "cuet-bst-financial-mgmt-67",
+    "chapter_id": "cuet-bst-financial-mgmt",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "Study the pie charts showing the capital structure of two companies. Company X has 70% Equity and 30% Debt. Company Y has 30% Equity and 70% Debt. If the cost of debt is 10% and ROI is 15% for both, which company's equity shareholders will earn a higher return?",
+    "image_uri": "diagrams/cuet-bst-financial-mgmt-67.png",
+    "image_alt": "Two side-by-side pie charts comparing capital structure. Left pie chart: 'Company X' — 70% Equity (blue) and 30% Debt (red). Right pie chart: 'Company Y' — 30% Equity (blue) and 70% Debt (red). Below each chart: Company X shows 'Low Leverage, Lower Financial Risk' and Company Y shows 'High Leverage, Higher Financial Risk'. A note at the bottom reads: 'ROI = 15%, Cost of Debt = 10% for both companies'.",
+    "explanation": "Since ROI (15%) > Cost of debt (10%), more debt benefits equity shareholders. Company Y with 70% debt has higher leverage. For every Rs 100: Company X — Interest = 3 (10% of 30), Profit for equity = 15 − 3 = 12, ROE = 12/70 = 17.1%. Company Y — Interest = 7 (10% of 70), Profit for equity = 15 − 7 = 8, ROE = 8/30 = 26.7%. Company Y's shareholders earn a higher ROE.",
+    "correct_answer": "D",
+    "concept_tags": ["capital-structure", "trading-on-equity", "leverage", "diagram-based"],
+    "topic": "Capital Structure",
+    "subtopic": "Leverage and ROE comparison",
+    "subject": "cuet-business-studies",
+    "chapter": "Financial Management",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Company X — less debt means more profit for shareholders", "is_correct": false},
+      {"key": "B", "text": "Both earn the same return since ROI is the same", "is_correct": false},
+      {"key": "C", "text": "Neither — debt always reduces shareholder returns", "is_correct": false},
+      {"key": "D", "text": "Company Y — higher leverage boosts ROE when ROI exceeds cost of debt", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Less debt means a LARGER equity base. Total profit for equity is higher but ROE (%) is LOWER because the denominator is bigger.", "misconception": "Confusing absolute profit with percentage return"},
+      {"option_key": "B", "hint": "Same ROI doesn't mean same ROE — leverage amplifies the return to equity holders.", "misconception": "Ignoring the leverage effect on ROE"},
+      {"option_key": "C", "hint": "When ROI > cost of debt, leverage INCREASES shareholder returns, not decreases.", "misconception": "Thinking debt always hurts shareholders"}
+    ]
+  },
+  {
+    "id": "cuet-bst-financial-mgmt-68",
+    "chapter_id": "cuet-bst-financial-mgmt",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "Study the table comparing two financing plans for a company needing Rs 20 lakh. Plan A uses 100% Equity. Plan B uses 50% Equity + 50% Debt at 10%. EBIT is Rs 4 lakh and tax rate is 30%. According to the table, what is the ROE under Plan B?",
+    "image_uri": "diagrams/cuet-bst-financial-mgmt-68.png",
+    "image_alt": "A comparison table titled 'Trading on Equity — Two Financing Plans' with the following structure:\n\nRow headers: Total Capital, Equity, Debt (10%), EBIT, Less: Interest, EBT, Less: Tax (30%), PAT (Profit After Tax), ROE (PAT/Equity)\n\nPlan A (100% Equity): Rs 20 lakh, Rs 20 lakh, Nil, Rs 4 lakh, Nil, Rs 4 lakh, Rs 1.2 lakh, Rs 2.8 lakh, 14%\n\nPlan B (50:50): Rs 20 lakh, Rs 10 lakh, Rs 10 lakh, Rs 4 lakh, Rs 1 lakh, Rs 3 lakh, Rs 0.9 lakh, Rs 2.1 lakh, ?\n\nThe ROE cell for Plan B shows a '?' mark. Plan A ROE (14%) is shown. The table is colour-coded with equity in blue and debt in red.",
+    "explanation": "Under Plan B: EBIT = Rs 4 lakh. Interest = 10% of 10 lakh = Rs 1 lakh. EBT = 4 − 1 = Rs 3 lakh. Tax = 30% of 3 = Rs 0.9 lakh. PAT = 3 − 0.9 = Rs 2.1 lakh. ROE = 2.1/10 × 100 = 21%. Despite lower absolute profit (2.1 vs 2.8 lakh), ROE is higher (21% vs 14%) because equity base is smaller.",
+    "correct_answer": "C",
+    "concept_tags": ["trading-on-equity", "numerical", "ROE", "diagram-based"],
+    "topic": "Capital Structure",
+    "subtopic": "Trading on equity — numerical comparison",
+    "subject": "cuet-business-studies",
+    "chapter": "Financial Management",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "14% — same as Plan A", "is_correct": false},
+      {"key": "B", "text": "10% — equal to the cost of debt", "is_correct": false},
+      {"key": "C", "text": "21% — higher than Plan A due to leverage", "is_correct": true},
+      {"key": "D", "text": "20% — equal to EBIT/Equity ratio", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Plan B has different capital structure — ROE cannot be the same. Leverage changes the return.", "misconception": "Ignoring the impact of leverage on ROE"},
+      {"option_key": "B", "hint": "10% is the cost of debt, not the return on equity. ROE is calculated as PAT/Equity.", "misconception": "Confusing cost of debt with return on equity"},
+      {"option_key": "D", "hint": "20% would be 4/20 (EBIT/Total Capital). But ROE uses PAT (after interest and tax) divided by equity only.", "misconception": "Using EBIT instead of PAT and total capital instead of equity"}
+    ]
+  }
+]

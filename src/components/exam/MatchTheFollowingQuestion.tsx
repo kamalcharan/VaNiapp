@@ -28,7 +28,7 @@ interface Props extends QuestionRendererProps {
 function parseOptionMapping(text: string): Record<string, string> {
   const mapping: Record<string, string> = {};
   for (const part of text.split(/[,;]\s*/)) {
-    const m = part.trim().match(/^([A-Za-z0-9]+)\s*[-–→]\s*\(?([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)?$/);
+    const m = part.trim().match(/^\(?([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)?\s*[-–→]\s*\(?([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)?$/);
     if (m) mapping[m[1].trim()] = m[2].trim();
   }
   return mapping;

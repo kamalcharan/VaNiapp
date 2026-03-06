@@ -469,10 +469,10 @@ function parseMatchColumns(text: string): {
  */
 function parseOptionPairs(text: string): Record<string, string> {
   const mapping: Record<string, string> = {};
-  // Match patterns: P-ii, Q-iii or 1-b, 2-c (with various separators)
+  // Match patterns: P-ii, Q-iii, 1-b, 2-c, (i)→Q, (ii)→P (with various separators)
   const pairs = text.split(/[,;]\s*/);
   for (const pair of pairs) {
-    const m = pair.trim().match(/^([A-Za-z0-9]+)\s*[-–→]\s*\(?([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)?$/);
+    const m = pair.trim().match(/^\(?([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)?\s*[-–→]\s*\(?([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)?$/);
     if (m) mapping[m[1].trim()] = m[2].trim();
   }
   return mapping;
