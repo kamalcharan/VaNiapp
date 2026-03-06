@@ -6,11 +6,19 @@
   <title>Subject Detail - Qbank Admin</title>
   <link rel="stylesheet" href="./styles.css">
   <style>
+    /* ================================================================
+       HERO
+       ================================================================ */
     .subject-hero {
       display: flex;
       align-items: center;
       gap: 16px;
       margin-bottom: 8px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--gray-50, #f9fafb);
+      padding: 12px 0;
     }
     .subject-hero-icon {
       font-size: 2.5rem;
@@ -20,11 +28,9 @@
       align-items: center;
       justify-content: center;
       border-radius: 16px;
+      flex-shrink: 0;
     }
-    .subject-hero-info h1 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
+    .subject-hero-info h1 { margin: 0; font-size: 1.5rem; }
     .subject-hero-info .breadcrumb {
       font-size: 0.85rem;
       color: var(--gray-500);
@@ -35,6 +41,9 @@
       text-decoration: none;
     }
 
+    /* ================================================================
+       STATS GRID — 4 cards with % bar
+       ================================================================ */
     .subject-stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -47,6 +56,8 @@
       border-radius: var(--radius);
       padding: 16px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     .subject-stat-card .value {
       font-size: 1.75rem;
@@ -57,7 +68,90 @@
       color: var(--gray-500);
       margin-top: 4px;
     }
+    .stat-pct-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--gray-100);
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .stat-pct-bar .fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.6s ease;
+    }
+    .subject-stat-card.clickable { cursor: pointer; }
+    .subject-stat-card.clickable:hover { border-color: var(--primary); }
 
+    /* ================================================================
+       TYPE DISTRIBUTION — horizontal bar chart
+       ================================================================ */
+    .type-dist-section {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .type-dist-section h3 {
+      margin: 0 0 16px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .type-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .type-bar-label {
+      width: 140px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-align: right;
+      flex-shrink: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .type-bar-track {
+      flex: 1;
+      height: 24px;
+      background: var(--gray-100);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .type-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: white;
+      transition: width 0.6s ease;
+      min-width: 0;
+      white-space: nowrap;
+    }
+    .type-bar-count {
+      width: 80px;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      flex-shrink: 0;
+      text-align: right;
+    }
+    .type-bar-count .pct {
+      color: var(--gray-400);
+      font-size: 0.75rem;
+    }
+
+    /* ================================================================
+       CHAPTER CARDS — with topic drill-down
+       ================================================================ */
     .chapter-row {
       background: var(--white);
       border: 1px solid var(--gray-200);
@@ -77,9 +171,7 @@
       gap: 12px;
       user-select: none;
     }
-    .chapter-row-header:hover {
-      background: var(--gray-50);
-    }
+    .chapter-row-header:hover { background: var(--gray-50); }
     .chapter-num {
       width: 32px;
       height: 32px;
@@ -91,25 +183,39 @@
       font-size: 0.85rem;
       flex-shrink: 0;
     }
-    .chapter-name {
-      font-weight: 600;
+    .chapter-info {
       flex: 1;
       min-width: 0;
-      overflow: hidden;
     }
-    .chapter-name .meta {
-      font-weight: 400;
+    .chapter-name {
+      font-weight: 600;
+    }
+    .chapter-meta-row {
       font-size: 0.8rem;
       color: var(--gray-500);
+      margin-top: 2px;
+    }
+    .chapter-mini-bar {
+      height: 4px;
+      background: var(--gray-100);
+      border-radius: 2px;
+      margin-top: 6px;
+      overflow: hidden;
+      max-width: 200px;
+    }
+    .chapter-mini-bar .fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--success);
+      transition: width 0.5s;
     }
     .chapter-counts {
       display: flex;
       gap: 16px;
       font-size: 0.85rem;
+      flex-shrink: 0;
     }
-    .chapter-counts span {
-      white-space: nowrap;
-    }
+    .chapter-counts span { white-space: nowrap; }
     .chapter-counts .c-total { font-weight: 600; }
     .chapter-counts .c-active { color: var(--success); }
     .chapter-counts .c-draft { color: var(--warning, #f59e0b); }
@@ -130,12 +236,80 @@
     .chapter-body {
       display: none;
       border-top: 1px solid var(--gray-200);
-      padding: 16px;
       background: var(--gray-50);
     }
     .chapter-row.expanded .chapter-body {
       display: block;
     }
+
+    /* Tab bar inside chapter body — scrollable topic tabs */
+    .chapter-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--gray-200);
+      background: var(--white);
+      overflow-x: auto;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+    .chapter-tabs::-webkit-scrollbar {
+      height: 3px;
+    }
+    .chapter-tabs::-webkit-scrollbar-thumb {
+      background: var(--gray-300);
+      border-radius: 3px;
+    }
+    .chapter-tab {
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.15s;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .chapter-tab:hover {
+      color: var(--gray-700);
+      background: var(--gray-50);
+    }
+    .chapter-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .chapter-tab .tab-count {
+      font-size: 0.68rem;
+      font-weight: 700;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+    .chapter-tab.active .tab-count {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+    .chapter-tab .imp-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f59e0b;
+      flex-shrink: 0;
+    }
+    .chapter-tab-panel {
+      display: none;
+      padding: 16px;
+    }
+    .chapter-tab-panel.active {
+      display: block;
+    }
+
+    /* Questions section inside chapter body (now a tab panel) */
 
     .q-filters {
       display: flex;
@@ -386,9 +560,25 @@
       color: var(--gray-400);
     }
 
+    /* Loading skeleton */
+    .skeleton {
+      background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 50%, var(--gray-100) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 6px;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .skeleton-bar { height: 24px; margin-bottom: 10px; }
+    .skeleton-card { height: 60px; margin-bottom: 8px; }
+
     @media (max-width: 768px) {
       .subject-stats { grid-template-columns: repeat(2, 1fr); }
       .chapter-counts { display: none; }
+      .type-bar-label { width: 80px; font-size: 0.75rem; }
+      .topic-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -418,22 +608,33 @@
         <div class="subject-stat-card">
           <div class="value" id="statTotal">--</div>
           <div class="label">Total Questions</div>
+          <div class="stat-pct-bar"><div class="fill" id="barTotal" style="width: 0; background: var(--primary);"></div></div>
         </div>
         <div class="subject-stat-card">
           <div class="value" id="statActive" style="color: var(--success);">--</div>
           <div class="label">Active</div>
+          <div class="stat-pct-bar"><div class="fill" id="barActive" style="width: 0; background: var(--success);"></div></div>
         </div>
         <div class="subject-stat-card">
           <div class="value" id="statDraft" style="color: #f59e0b;">--</div>
           <div class="label">Draft</div>
+          <div class="stat-pct-bar"><div class="fill" id="barDraft" style="width: 0; background: #f59e0b;"></div></div>
         </div>
-        <div class="subject-stat-card" id="pendingStatCard" style="cursor: pointer;" title="Click to review pending jobs">
+        <div class="subject-stat-card clickable" id="pendingStatCard" title="Click to review pending jobs">
           <div class="value" id="statPending" style="color: #f59e0b;">--</div>
           <div class="label">Needs Review</div>
+          <div class="stat-pct-bar"><div class="fill" id="barPending" style="width: 0; background: #f59e0b;"></div></div>
         </div>
-        <div class="subject-stat-card" id="readyStatCard" style="cursor: pointer;" title="Click to insert reviewed questions">
-          <div class="value" id="statReady" style="color: var(--success);">--</div>
-          <div class="label">Ready to Insert</div>
+      </div>
+
+      <!-- Question Type Distribution -->
+      <div class="type-dist-section" id="typeDistSection" style="display: none;">
+        <h3>Question Type Distribution</h3>
+        <div id="typeDistChart">
+          <!-- Skeleton loading -->
+          <div class="skeleton skeleton-bar" style="width: 80%;"></div>
+          <div class="skeleton skeleton-bar" style="width: 50%;"></div>
+          <div class="skeleton skeleton-bar" style="width: 30%;"></div>
         </div>
       </div>
 
@@ -443,10 +644,10 @@
           <h3 class="card-title" id="chaptersTitle">Chapters</h3>
         </div>
         <div class="card-body" id="chaptersContainer">
-          <div class="qbank-loader">
-            <div class="loader-spinner"></div>
-            <p class="loader-message">Loading chapters...</p>
-          </div>
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card"></div>
         </div>
       </div>
 
@@ -465,9 +666,34 @@
     let pendingByChapter = {};
     let readyByChapter = {};
     let pendingJobsByChapter = {};
+    let typeDistribution = {};
 
     // Per-chapter state for expanded questions
     const chapterState = {};
+    // Cache: chapterId -> { topics, counts }
+    const topicCache = {};
+
+    // Type bar colors
+    const TYPE_COLORS = {
+      'mcq': '#6366f1',
+      'assertion-reasoning': '#8b5cf6',
+      'true-false': '#10b981',
+      'match-the-following': '#f59e0b',
+      'fill-in-blanks': '#ef4444',
+      'scenario-based': '#ec4899',
+      'diagram-based': '#14b8a6',
+      'logical-sequence': '#f97316'
+    };
+    const TYPE_LABELS = {
+      'mcq': 'MCQ',
+      'true-false': 'True / False',
+      'assertion-reasoning': 'Assertion-Reasoning',
+      'match-the-following': 'Match the Following',
+      'fill-in-blanks': 'Fill in Blanks',
+      'scenario-based': 'Scenario Based',
+      'diagram-based': 'Diagram Based',
+      'logical-sequence': 'Logical Sequence'
+    };
 
     async function init() {
       const user = await Qbank.requireAuth();
@@ -494,16 +720,18 @@
       document.getElementById('generateBtn').href = `./generate.html?exam=${examId}&subject=${subjectId}`;
 
       // Load data in parallel
-      const [chaptersData, qCounts, jobs] = await Promise.all([
-        Qbank.fetchChapters(subjectId),
-        Qbank.fetchQuestionsCountByChapter(subjectId),
-        Qbank.fetchGenerationJobs()
+      const [chaptersData, qCounts, jobs, typeDist] = await Promise.all([
+        Qbank.fetchChapters(subjectId, examId),
+        Qbank.fetchQuestionsCountByChapter(subjectId, examId),
+        Qbank.fetchGenerationJobs(),
+        Qbank.fetchTypeDistribution(subjectId, examId)
       ]);
 
       chapters = chaptersData;
       chapterQuestionCounts = qCounts;
+      typeDistribution = typeDist;
 
-      // Count jobs per chapter, split by actual status
+      // Count jobs per chapter
       pendingJobsByChapter = {};
       readyByChapter = {};
       jobs.filter(j =>
@@ -520,52 +748,102 @@
           if (!readyByChapter[chId]) readyByChapter[chId] = 0;
           readyByChapter[chId] += approved;
         }
-        // Store all non-inserted jobs for displaying questions
         if (!pendingJobsByChapter[chId]) pendingJobsByChapter[chId] = [];
         pendingJobsByChapter[chId].push(job);
       });
 
       renderStats();
+      renderTypeDistribution();
       renderChapters();
     }
 
+    // ========================================================================
+    // STATS
+    // ========================================================================
     function renderStats() {
-      let total = 0, active = 0, draft = 0, pending = 0;
-
+      let total = 0, active = 0, draft = 0;
       Object.values(chapterQuestionCounts).forEach(c => {
         total += c.total;
         active += c.active;
         draft += c.draft;
-        pending += c.pending;
       });
 
-      // Add pending from jobs
       let jobPending = 0;
       Object.values(pendingByChapter).forEach(v => jobPending += v);
+      let jobReady = 0;
+      Object.values(readyByChapter).forEach(v => jobReady += v);
 
       document.getElementById('statTotal').textContent = total;
       document.getElementById('statActive').textContent = active;
       document.getElementById('statDraft').textContent = draft;
-      document.getElementById('statPending').textContent = jobPending;
+      document.getElementById('statPending').textContent = jobPending + jobReady;
 
-      // Ready to insert count
-      let jobReady = 0;
-      Object.values(readyByChapter).forEach(v => jobReady += v);
-      document.getElementById('statReady').textContent = jobReady;
+      // Percentage bars
+      if (total > 0) {
+        document.getElementById('barTotal').style.width = '100%';
+        document.getElementById('barActive').style.width = ((active / total) * 100) + '%';
+        document.getElementById('barDraft').style.width = ((draft / total) * 100) + '%';
+      }
+      const pendingTotal = jobPending + jobReady;
+      if (pendingTotal > 0) {
+        document.getElementById('barPending').style.width = '100%';
+      }
 
-      // Make stat cards clickable
+      // Clickable pending card
       document.getElementById('pendingStatCard').onclick = () => {
         if (jobPending > 0) {
           window.location.href = `./review.html?exam=${examId}&subject=${subjectId}&status=pending`;
-        }
-      };
-      document.getElementById('readyStatCard').onclick = () => {
-        if (jobReady > 0) {
+        } else if (jobReady > 0) {
           window.location.href = `./insert.html?exam=${examId}&subject=${subjectId}`;
         }
       };
     }
 
+    // ========================================================================
+    // TYPE DISTRIBUTION CHART
+    // ========================================================================
+    function renderTypeDistribution() {
+      const section = document.getElementById('typeDistSection');
+      const container = document.getElementById('typeDistChart');
+
+      const entries = Object.entries(typeDistribution).sort((a, b) => b[1].total - a[1].total);
+      if (entries.length === 0) {
+        section.style.display = 'none';
+        return;
+      }
+
+      section.style.display = 'block';
+      const maxCount = entries[0][1].total;
+
+      container.innerHTML = entries.map(([type, counts]) => {
+        const pct = maxCount > 0 ? (counts.total / maxCount) * 100 : 0;
+        const totalAll = Object.values(typeDistribution).reduce((s, c) => s + c.total, 0);
+        const globalPct = totalAll > 0 ? ((counts.total / totalAll) * 100).toFixed(1) : 0;
+        const color = TYPE_COLORS[type] || '#6b7280';
+        const label = TYPE_LABELS[type] || type;
+
+        return `
+          <div class="type-bar-row">
+            <div class="type-bar-label">${label}</div>
+            <div class="type-bar-track">
+              <div class="type-bar-fill" style="width: ${pct}%; background: ${color};">
+                ${pct > 20 ? counts.total : ''}
+              </div>
+            </div>
+            <div class="type-bar-count">
+              ${counts.total} <span class="pct">(${globalPct}%)</span>
+              <div style="font-size: 0.7rem; color: var(--gray-400);">
+                ${counts.active} active &middot; ${counts.draft} draft
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ========================================================================
+    // CHAPTERS
+    // ========================================================================
     function renderChapters() {
       const container = document.getElementById('chaptersContainer');
       const meta = Qbank.getSubjectMeta(subjectId);
@@ -594,18 +872,24 @@
               <div class="chapter-num" style="background: ${meta.bg}; color: ${meta.color};">
                 ${ch.chapter_number || idx + 1}
               </div>
-              <div class="chapter-name">
-                ${ch.name}
-                <div class="meta">
+              <div class="chapter-info">
+                <div class="chapter-name">${ch.name}</div>
+                <div class="chapter-meta-row">
                   Class ${ch.class_level || '?'}
                   ${ch.weightage ? ' &middot; ' + ch.weightage + '% weightage' : ''}
+                  ${counts.total > 0 ? ` &middot; ${activePct}% active` : ''}
                 </div>
+                ${counts.total > 0 ? `
+                  <div class="chapter-mini-bar">
+                    <div class="fill" style="width: ${activePct}%;"></div>
+                  </div>
+                ` : ''}
               </div>
               <div class="chapter-counts">
                 <span class="c-total">${counts.total} total</span>
                 <span class="c-active">${counts.active} active</span>
                 <span class="c-draft">${counts.draft} draft</span>
-                ${chPending > 0 ? `<span style="color: #f59e0b;">${chPending} needs review</span>` : ''}
+                ${chPending > 0 ? `<span style="color: #f59e0b;">${chPending} review</span>` : ''}
                 ${chReady > 0 ? `<span style="color: var(--success);">${chReady} ready</span>` : ''}
               </div>
               <div class="chapter-actions">
@@ -613,19 +897,19 @@
                    class="btn btn-sm btn-secondary" onclick="event.stopPropagation();"
                    title="Scan for quality issues"
                    style="${counts.total === 0 ? 'display:none;' : ''}">
-                  🔍 Explore
+                  Explore
                 </a>
                 <a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${ch.id}"
                    class="btn btn-sm btn-primary" onclick="event.stopPropagation();">
-                  ${counts.total === 0 ? 'Generate First' : 'Generate More'}
+                  ${counts.total === 0 ? 'Generate First' : 'Generate'}
                 </a>
               </div>
               <span class="chapter-expand-icon">▼</span>
             </div>
             <div class="chapter-body" id="chapter-body-${ch.id}">
-              <div class="qbank-loader">
-                <div class="loader-spinner"></div>
-                <p class="loader-message">Loading questions...</p>
+              <div style="padding: 16px;">
+                <div class="skeleton skeleton-card"></div>
+                <div class="skeleton skeleton-card" style="width: 70%;"></div>
               </div>
             </div>
           </div>
@@ -634,7 +918,7 @@
     }
 
     // ========================================================================
-    // EXPAND CHAPTER — LOAD QUESTIONS
+    // EXPAND CHAPTER — LOAD TOPICS + QUESTIONS
     // ========================================================================
     async function toggleChapter(chapterId) {
       const row = document.getElementById(`chapter-${chapterId}`);
@@ -649,60 +933,171 @@
 
       // Initialize state if first time
       if (!chapterState[chapterId]) {
-        chapterState[chapterId] = { page: 1, filter: null, data: [], total: 0 };
+        chapterState[chapterId] = { page: 1, filter: null, tab: '__all__', data: [], total: 0 };
       }
 
-      await loadChapterQuestions(chapterId);
+      await loadChapterContent(chapterId);
     }
 
-    async function loadChapterQuestions(chapterId) {
+    async function loadChapterContent(chapterId) {
       const body = document.getElementById(`chapter-body-${chapterId}`);
-      const state = chapterState[chapterId];
-
       body.innerHTML = `
-        <div class="qbank-loader" style="padding: 16px;">
-          <div class="loader-spinner"></div>
-          <p class="loader-message">Loading questions...</p>
+        <div style="padding: 16px;">
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card" style="width: 70%;"></div>
         </div>`;
 
-      const result = await Qbank.fetchQuestionsByChapter(chapterId, {
-        page: state.page,
-        pageSize: 10,
-        status: state.filter
+      // Fetch topics (cached) and questions in parallel
+      const topicPromise = topicCache[chapterId]
+        ? Promise.resolve(topicCache[chapterId])
+        : Qbank.fetchTopicCountsByChapter(chapterId);
+
+      const state = chapterState[chapterId];
+      const isTopicTab = state.tab && state.tab !== '__all__';
+
+      // For topic tabs: fetch a large page so we can filter client-side
+      // For "All" tab: use normal server-side pagination
+      const qPromise = Qbank.fetchQuestionsByChapter(chapterId, {
+        page: isTopicTab ? 1 : state.page,
+        pageSize: isTopicTab ? 500 : 10,
+        status: state.filter === 'pending_review' ? null : (isTopicTab ? null : state.filter)
       });
 
-      state.data = result.data;
-      // Estimate total from our cached counts
-      const counts = chapterQuestionCounts[chapterId] || { total: 0, active: 0, draft: 0, pending: 0 };
-      let filteredTotal;
-      if (!state.filter) filteredTotal = counts.total;
-      else if (state.filter === 'active') filteredTotal = counts.active;
-      else if (state.filter === 'draft') filteredTotal = counts.draft;
-      else filteredTotal = counts.pending;
-      state.total = filteredTotal;
+      const [topicData, result] = await Promise.all([topicPromise, qPromise]);
 
-      renderChapterQuestions(chapterId);
+      // Cache topic data
+      topicCache[chapterId] = topicData;
+
+      state.data = result.data;
+      const counts = chapterQuestionCounts[chapterId] || { total: 0, active: 0, draft: 0, pending: 0 };
+      if (!state.filter || isTopicTab) state.total = counts.total;
+      else if (state.filter === 'active') state.total = counts.active;
+      else if (state.filter === 'draft') state.total = counts.draft;
+      else state.total = counts.pending;
+
+      renderChapterBody(chapterId);
+    }
+
+    // Build topic tabs list for a chapter (cached)
+    function getTopicTabs(chapterId) {
+      const topicData = topicCache[chapterId] || { topics: [], counts: {} };
+      const tabs = [];
+
+      // "All" tab always first
+      const counts = chapterQuestionCounts[chapterId] || { total: 0 };
+      tabs.push({ id: '__all__', name: 'All', count: counts.total, important: false });
+
+      // One tab per named topic
+      topicData.topics.forEach(t => {
+        const tc = topicData.counts[t.id] || { total: 0, active: 0, draft: 0 };
+        tabs.push({ id: t.id, name: t.name, count: tc.total, important: !!t.is_important, active: tc.active, draft: tc.draft });
+      });
+
+      // Uncategorized tab if there are unmatched questions
+      const uncat = topicData.counts['__none__'];
+      if (uncat && uncat.total > 0) {
+        tabs.push({ id: '__none__', name: 'Uncategorized', count: uncat.total, important: false, active: uncat.active, draft: uncat.draft });
+      }
+
+      return tabs;
+    }
+
+    function renderChapterBody(chapterId) {
+      const body = document.getElementById(`chapter-body-${chapterId}`);
+      const state = chapterState[chapterId];
+      const tabs = getTopicTabs(chapterId);
+      const activeTab = state.tab || '__all__';
+
+      // ---- Tab bar (scrollable) ----
+      let html = `<div class="chapter-tabs">`;
+      tabs.forEach(t => {
+        html += `
+          <div class="chapter-tab ${activeTab === t.id ? 'active' : ''}"
+               onclick="switchTab('${chapterId}', '${t.id}')">
+            ${t.important ? '<span class="imp-dot"></span>' : ''}
+            ${Qbank.escapeHtml(t.name)}
+            <span class="tab-count">${t.count}</span>
+          </div>`;
+      });
+      html += `</div>`;
+
+      // ---- Tab panel: questions for selected topic ----
+      html += `<div class="chapter-tab-panel active">`;
+      html += renderChapterQuestions(chapterId);
+      html += `</div>`;
+
+      body.innerHTML = html;
+
+      // Scroll active tab into view
+      const activeEl = body.querySelector('.chapter-tab.active');
+      if (activeEl) activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    function switchTab(chapterId, tab) {
+      const state = chapterState[chapterId];
+      state.tab = tab;
+      state.page = 1;
+      // Re-fetch when switching tabs (server-side topic filter not available, use client filter)
+      renderChapterBody(chapterId);
+    }
+
+    // Resolve a question's topic id using same fuzzy logic as shared.js
+    // Reuse _normalizeTopic from shared.js (loaded via <script>)
+    function resolveTopicId(q, chapterId) {
+      if (q.topic_id) return q.topic_id;
+      const topicData = topicCache[chapterId] || { topics: [] };
+      const pTopicName = q.payload?.topic_name || q.payload?.topic || '';
+      if (!pTopicName) return '__none__';
+
+      const needle = pTopicName.toLowerCase().trim();
+      const needleNorm = _normalizeTopic(pTopicName);
+      const needleWords = new Set(needleNorm.split(' ').filter(Boolean));
+
+      // 1. Exact
+      const exact = topicData.topics.find(t => t.name.toLowerCase().trim() === needle);
+      if (exact) return exact.id;
+      // 2. Normalized exact
+      const normExact = topicData.topics.find(t => _normalizeTopic(t.name) === needleNorm);
+      if (normExact) return normExact.id;
+      // 3. Contains
+      const contains = topicData.topics.find(t => {
+        const tn = _normalizeTopic(t.name);
+        return needleNorm.includes(tn) || tn.includes(needleNorm);
+      });
+      if (contains) return contains.id;
+      // 4. Keyword overlap (>=50% and at least 2 words in common)
+      let bestScore = 0, bestTopic = null;
+      for (const t of topicData.topics) {
+        const tWords = new Set(_normalizeTopic(t.name).split(' ').filter(Boolean));
+        if (tWords.size === 0) continue;
+        let overlap = 0;
+        for (const w of tWords) { if (needleWords.has(w)) overlap++; }
+        const score = overlap / tWords.size;
+        if (score > bestScore && overlap >= 2) { bestScore = score; bestTopic = t; }
+      }
+      if (bestScore >= 0.5 && bestTopic) return bestTopic.id;
+      return '__none__';
     }
 
     function renderChapterQuestions(chapterId) {
-      const body = document.getElementById(`chapter-body-${chapterId}`);
       const state = chapterState[chapterId];
       const counts = chapterQuestionCounts[chapterId] || { total: 0, active: 0, draft: 0, pending: 0 };
+      const activeTab = state.tab || '__all__';
       const pageSize = 10;
-      const totalPages = Math.max(1, Math.ceil(state.total / pageSize));
 
       const chPending = pendingByChapter[chapterId] || 0;
       const chReady = readyByChapter[chapterId] || 0;
       const jobQCount = chPending + chReady;
 
-      const filterHtml = `
+      // Status filter pills
+      let html = `
         <div class="q-filters">
           <button class="q-filter-btn ${!state.filter ? 'active' : ''}"
-                  onclick="setFilter('${chapterId}', null)">All (${counts.total})</button>
+                  onclick="setFilter('${chapterId}', null)">All</button>
           <button class="q-filter-btn ${state.filter === 'active' ? 'active' : ''}"
-                  onclick="setFilter('${chapterId}', 'active')">Active (${counts.active})</button>
+                  onclick="setFilter('${chapterId}', 'active')">Active</button>
           <button class="q-filter-btn ${state.filter === 'draft' ? 'active' : ''}"
-                  onclick="setFilter('${chapterId}', 'draft')">Draft (${counts.draft})</button>
+                  onclick="setFilter('${chapterId}', 'draft')">Draft</button>
           ${jobQCount > 0 ? `
             <button class="q-filter-btn ${state.filter === 'pending_review' ? 'active' : ''}"
                     onclick="setFilter('${chapterId}', 'pending_review')" style="border-color: var(--primary);">
@@ -713,26 +1108,42 @@
 
       // If viewing pending_review, show questions from generation jobs
       if (state.filter === 'pending_review') {
-        body.innerHTML = filterHtml + renderPendingJobQuestions(chapterId);
-        return;
+        return html + renderPendingJobQuestions(chapterId);
       }
 
-      if (state.data.length === 0) {
-        body.innerHTML = `
-          ${filterHtml}
+      // Filter by topic tab (client-side)
+      let displayData = state.data;
+      if (activeTab !== '__all__') {
+        displayData = state.data.filter(q => resolveTopicId(q, chapterId) === activeTab);
+      }
+
+      // Also apply status filter client-side for topic-filtered views
+      if (state.filter && activeTab !== '__all__') {
+        displayData = displayData.filter(q => q.status === state.filter);
+      }
+
+      if (displayData.length === 0) {
+        const isTopicTab = activeTab !== '__all__';
+        return html + `
           <div class="empty-chapter">
-            No ${state.filter || ''} questions yet.
-            ${chPending > 0 ? `<br><strong>${chPending} questions need review</strong> — <a href="./review.html?exam=${examId}&subject=${subjectId}&status=pending">Review them</a>.` : ''}
-            ${chReady > 0 ? `<br><strong>${chReady} questions ready to insert</strong> — <a href="./insert.html?exam=${examId}&subject=${subjectId}">Insert them</a>.` : ''}
-            ${jobQCount === 0 ? `<br><a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${chapterId}">Generate some!</a>` : ''}
+            No ${state.filter || ''} questions ${isTopicTab ? 'for this topic' : 'yet'}.
+            ${!isTopicTab && chPending > 0 ? `<br><strong>${chPending} questions need review</strong> — <a href="./review.html?exam=${examId}&subject=${subjectId}&status=pending">Review them</a>.` : ''}
+            ${!isTopicTab && chReady > 0 ? `<br><strong>${chReady} questions ready to insert</strong> — <a href="./insert.html?exam=${examId}&subject=${subjectId}">Insert them</a>.` : ''}
+            ${!isTopicTab && jobQCount === 0 ? `<br><a href="./generate.html?exam=${examId}&subject=${subjectId}&chapter=${chapterId}">Generate some!</a>` : ''}
           </div>`;
-        return;
       }
 
-      const startNum = (state.page - 1) * pageSize;
+      // Pagination
+      const totalFiltered = displayData.length;
+      const totalPages = Math.max(1, Math.ceil(totalFiltered / pageSize));
+      const safePage = Math.min(state.page, totalPages);
+      const pageData = (activeTab !== '__all__')
+        ? displayData.slice((safePage - 1) * pageSize, safePage * pageSize)
+        : displayData; // "All" tab uses server-side pagination already
+      const startNum = (safePage - 1) * pageSize;
 
-      // Select All + Bulk actions bar
-      const selectBarHtml = `
+      // Select All + Bulk actions
+      html += `
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
           <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85rem;">
             <input type="checkbox" id="selectAll-${chapterId}" onchange="toggleSelectAll('${chapterId}', this.checked)"
@@ -748,7 +1159,7 @@
                   onclick="bulkSetStatus('${chapterId}', 'draft')">Draft Selected</button>
         </div>`;
 
-      const questionsHtml = state.data.map((q, i) => {
+      html += pageData.map((q, i) => {
         const isActive = q.status === 'active';
         const toggleClass = isActive ? 'to-draft' : 'to-active';
         const toggleLabel = isActive ? 'Draft' : 'Active';
@@ -779,16 +1190,32 @@
         `;
       }).join('');
 
-      const paginationHtml = `
-        <div class="q-pagination">
-          <span>Page ${state.page} of ${totalPages} (${state.total} questions)</span>
-          <div style="display: flex; gap: 8px;">
-            <button ${state.page <= 1 ? 'disabled' : ''} onclick="changePage('${chapterId}', -1)">← Prev</button>
-            <button ${state.page >= totalPages ? 'disabled' : ''} onclick="changePage('${chapterId}', 1)">Next →</button>
-          </div>
-        </div>`;
+      // Pagination controls
+      if (activeTab !== '__all__' && totalPages > 1) {
+        // Client-side pagination for topic tabs
+        html += `
+          <div class="q-pagination">
+            <span>Page ${safePage} of ${totalPages} (${totalFiltered} questions)</span>
+            <div style="display: flex; gap: 8px;">
+              <button ${safePage <= 1 ? 'disabled' : ''} onclick="changePage('${chapterId}', -1)">← Prev</button>
+              <button ${safePage >= totalPages ? 'disabled' : ''} onclick="changePage('${chapterId}', 1)">Next →</button>
+            </div>
+          </div>`;
+      } else if (activeTab === '__all__') {
+        // Server-side pagination for All tab
+        const serverTotal = state.total;
+        const serverPages = Math.max(1, Math.ceil(serverTotal / pageSize));
+        html += `
+          <div class="q-pagination">
+            <span>Page ${state.page} of ${serverPages} (${serverTotal} questions)</span>
+            <div style="display: flex; gap: 8px;">
+              <button ${state.page <= 1 ? 'disabled' : ''} onclick="changePage('${chapterId}', -1)">← Prev</button>
+              <button ${state.page >= serverPages ? 'disabled' : ''} onclick="changePage('${chapterId}', 1)">Next →</button>
+            </div>
+          </div>`;
+      }
 
-      body.innerHTML = filterHtml + selectBarHtml + questionsHtml + paginationHtml;
+      return html;
     }
 
     // ========================================================================
@@ -797,12 +1224,18 @@
     async function setFilter(chapterId, filter) {
       chapterState[chapterId].filter = filter;
       chapterState[chapterId].page = 1;
-      await loadChapterQuestions(chapterId);
+      await loadChapterContent(chapterId);
     }
 
     async function changePage(chapterId, direction) {
-      chapterState[chapterId].page += direction;
-      await loadChapterQuestions(chapterId);
+      const state = chapterState[chapterId];
+      state.page += direction;
+      // Topic tabs use client-side pagination, just re-render
+      if (state.tab && state.tab !== '__all__') {
+        renderChapterBody(chapterId);
+      } else {
+        await loadChapterContent(chapterId);
+      }
     }
 
     // ========================================================================
@@ -877,10 +1310,9 @@
     // ========================================================================
     // EXPAND QUESTION — SHOW FULL DETAILS
     // ========================================================================
-    const loadedDetails = {}; // cache: questionId -> { options, hints }
+    const loadedDetails = {};
 
     async function expandQuestion(questionId, event) {
-      // Don't expand when clicking checkbox
       if (event && event.target.classList.contains('q-check')) return;
 
       const item = document.getElementById(`q-${questionId}`);
@@ -895,7 +1327,6 @@
 
       item.classList.add('expanded');
 
-      // Load details if not cached
       if (!loadedDetails[questionId]) {
         const details = await Qbank.fetchQuestionDetails(questionId);
         loadedDetails[questionId] = details;
@@ -903,7 +1334,6 @@
 
       const details = loadedDetails[questionId];
       const q = chapterState[item.dataset.chapter]?.data.find(x => x.id === questionId);
-
       renderQuestionDetail(questionId, q, details);
     }
 
@@ -1006,17 +1436,14 @@
       const ids = Array.from(checked).map(cb => cb.dataset.qid);
 
       if (ids.length === 0) return;
-
       if (!confirm(`Set ${ids.length} question(s) to "${newStatus}"?`)) return;
 
       const result = await Qbank.bulkUpdateQuestionStatus(ids, newStatus);
       if (result) {
         Qbank.showToast(`${result.length} questions set to ${newStatus}`, 'success');
 
-        // Update local counts
         const counts = chapterQuestionCounts[chapterId];
         if (counts) {
-          // Recalculate from the data we have
           const state = chapterState[chapterId];
           ids.forEach(id => {
             const q = state.data.find(x => x.id === id);
@@ -1030,8 +1457,11 @@
           });
         }
 
+        // Invalidate topic cache for this chapter
+        delete topicCache[chapterId];
+
         renderStats();
-        await loadChapterQuestions(chapterId);
+        await loadChapterContent(chapterId);
       } else {
         Qbank.showToast('Failed to update questions', 'error');
       }
@@ -1052,7 +1482,6 @@
       if (result) {
         Qbank.showToast(`Question ${newStatus === 'active' ? 'activated' : 'set to draft'}`, 'success');
 
-        // Update local counts
         const counts = chapterQuestionCounts[chapterId];
         if (counts) {
           if (newStatus === 'active') {
@@ -1064,8 +1493,11 @@
           }
         }
 
+        // Invalidate topic cache for this chapter
+        delete topicCache[chapterId];
+
         renderStats();
-        await loadChapterQuestions(chapterId);
+        await loadChapterContent(chapterId);
       } else {
         Qbank.showToast('Failed to update status', 'error');
         if (btn) {

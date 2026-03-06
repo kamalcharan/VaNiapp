@@ -26,17 +26,21 @@ const EXAM_CONFIG = {
     fullName: 'Common University Entrance Test',
     icon: '🎓',
     description: 'University Entrance',
-    subjects: ['MATHEMATICS', 'BIOLOGY', 'PHYSICS', 'CHEMISTRY', 'ACCOUNTANCY', 'BUSINESS-STUDIES', 'ECONOMICS']
+    subjects: ['CUET-PHYSICS', 'CUET-CHEMISTRY', 'CUET-BIOLOGY', 'MATHEMATICS', 'ACCOUNTANCY', 'BUSINESS-STUDIES', 'ECONOMICS']
   }
 };
 
 const SUBJECT_META = {
+  // NEET subjects
   'PHYSICS':          { name: 'Physics',          emoji: '⚡', color: '#3b82f6', bg: '#dbeafe' },
   'CHEMISTRY':        { name: 'Chemistry',        emoji: '🧪', color: '#10b981', bg: '#d1fae5' },
   'BOTANY':           { name: 'Botany',           emoji: '🌿', color: '#22c55e', bg: '#dcfce7' },
   'ZOOLOGY':          { name: 'Zoology',          emoji: '🦁', color: '#f59e0b', bg: '#fef3c7' },
+  // CUET subjects (cuet-physics, cuet-chemistry, cuet-biology use distinct DB subject_ids)
+  'CUET-PHYSICS':     { name: 'Physics',          emoji: '⚡', color: '#3b82f6', bg: '#dbeafe' },
+  'CUET-CHEMISTRY':   { name: 'Chemistry',        emoji: '🧪', color: '#10b981', bg: '#d1fae5' },
+  'CUET-BIOLOGY':     { name: 'Biology',          emoji: '🧬', color: '#8b5cf6', bg: '#ede9fe' },
   'MATHEMATICS':      { name: 'Mathematics',      emoji: '📐', color: '#ef4444', bg: '#fee2e2' },
-  'BIOLOGY':          { name: 'Biology',          emoji: '🧬', color: '#8b5cf6', bg: '#ede9fe' },
   'ACCOUNTANCY':      { name: 'Accountancy',      emoji: '📊', color: '#14b8a6', bg: '#ccfbf1' },
   'BUSINESS-STUDIES': { name: 'Business Studies', emoji: '💼', color: '#6366f1', bg: '#e0e7ff' },
   'ECONOMICS':        { name: 'Economics',        emoji: '💰', color: '#f97316', bg: '#ffedd5' }
@@ -230,7 +234,7 @@ async function fetchSubjects() {
   return data;
 }
 
-async function fetchChapters(subjectId = null) {
+async function fetchChapters(subjectId = null, examId = null) {
   if (!SUPABASE) return [];
   let query = SUPABASE
     .from('med_chapters')
@@ -243,6 +247,11 @@ async function fetchChapters(subjectId = null) {
     // Use OR filter for case-insensitive in() equivalent
     const subjects = CURRENT_USER.subjects;
     query = query.or(subjects.map(s => `subject_id.ilike.${s}`).join(','));
+  }
+
+  // Filter by exam if specified (chapters have exam_ids array)
+  if (examId) {
+    query = query.contains('exam_ids', [examId]);
   }
 
   const { data, error } = await query;
@@ -344,7 +353,149 @@ function buildImportPayload(q) {
   // logical-sequence: items array + correct ordering
   if (q.items) payload.items = q.items;
   if (q.correct_order) payload.correct_order = q.correct_order;
+  // match-the-following: structured column data for drag-and-drop UI
+  if (q.column_a || q.columnA) payload.columnA = q.column_a || q.columnA;
+  if (q.column_b || q.columnB) payload.columnB = q.column_b || q.columnB;
+  if (q.correct_mapping || q.correctMapping) payload.correctMapping = q.correct_mapping || q.correctMapping;
+  // If MTF but no structured columns, parse from question_text
+  if (q.question_type === 'match-the-following' && !payload.columnA && q.question_text) {
+    const parsed = _parseMTFColumns(q.question_text);
+    if (parsed.columnA.length > 0 && parsed.columnB.length > 0) {
+      payload.columnA = parsed.columnA;
+      payload.columnB = parsed.columnB;
+    }
+    // Derive correctMapping from the correct option
+    if (!payload.correctMapping && q.options && q.correct_answer) {
+      const correctOpt = q.options.find(o => o.is_correct || o.key === q.correct_answer);
+      if (correctOpt) {
+        payload.correctMapping = _parseOptionMapping(correctOpt.text);
+      }
+    }
+  }
   return payload;
+}
+
+/**
+ * Parse MTF column items from question text.
+ * Handles: (P) text, A. text, A  text formats.
+ * textTe is populated separately by the translation program.
+ */
+function _parseMTFColumns(text) {
+  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–]/i);
+  if (colSplit.length < 2) return { columnA: [], columnB: [] };
+
+  const col1Body = colSplit[0].replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–]/i, '');
+  const col2Body = colSplit[1];
+
+  function extractItems(body) {
+    let items = [];
+    let m;
+    // Try parenthesized: (P) text, (Q) text
+    const parenRe = /\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s*([^\n(]+)/g;
+    while ((m = parenRe.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+    }
+    if (items.length >= 2) return items;
+
+    // Try dotted: A. text, B. text, 1. text
+    items = [];
+    const dotRe = /(?:^|\n)\s*([A-Za-z0-9]+)\.\s+(.+?)(?=\n\s*[A-Za-z0-9]+\.|$)/gs;
+    while ((m = dotRe.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+    }
+    return items;
+  }
+
+  return { columnA: extractItems(col1Body), columnB: extractItems(col2Body) };
+}
+
+/**
+ * Parse option mapping text like "A-2, B-3, C-4, D-1" into { A: "2", B: "3", ... }
+ */
+function _parseOptionMapping(text) {
+  const mapping = {};
+  for (const part of text.split(/[,;]\s*/)) {
+    const m = part.trim().match(/^([A-Za-z0-9]+)\s*[-–→]\s*\(?([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)?$/);
+    if (m) mapping[m[1].trim()] = m[2].trim();
+  }
+  return mapping;
+}
+
+/**
+ * Normalize a topic name for matching: lowercase, strip possessives ('s),
+ * remove common filler words, trim.
+ */
+function _normalizeTopic(name) {
+  return name.toLowerCase()
+    .replace(/[''\u2019]s\b/g, '')   // strip possessive 's
+    .replace(/\band\b/g, '')          // remove "and"
+    .replace(/\bof\b/g, '')           // remove "of"
+    .replace(/\bthe\b/g, '')          // remove "the"
+    .replace(/[,()]/g, '')            // remove punctuation
+    .replace(/\s+/g, ' ')            // collapse whitespace
+    .trim();
+}
+
+/**
+ * Resolve topic_id from a topic name and chapter_id.
+ * Fetches all topics for the chapter, then matches by:
+ *   1. Exact case-insensitive match
+ *   2. Normalized match (strip possessives, filler words)
+ *   3. DB topic name contained within the payload topic name (or vice versa)
+ *   4. Best keyword overlap score
+ * Uses a per-chapter cache so repeated calls don't hit the DB.
+ * Returns the topic id string, or null if no match found.
+ */
+const _topicCache = {}; // chapterId -> [{ id, nameLower, nameNorm, words }]
+async function resolveTopicId(chapterId, topicName) {
+  if (!SUPABASE || !chapterId || !topicName) return null;
+
+  // Build cache for this chapter if needed
+  if (!_topicCache[chapterId]) {
+    const { data, error } = await SUPABASE
+      .from('med_topics')
+      .select('id, name')
+      .eq('chapter_id', chapterId);
+    if (error || !data) {
+      console.warn('[resolveTopicId] Failed to fetch topics for', chapterId, error);
+      return null;
+    }
+    _topicCache[chapterId] = data.map(t => {
+      const norm = _normalizeTopic(t.name);
+      return { id: t.id, nameLower: t.name.toLowerCase().trim(), nameNorm: norm, words: new Set(norm.split(' ').filter(Boolean)) };
+    });
+  }
+
+  const topics = _topicCache[chapterId];
+  const needle = topicName.toLowerCase().trim();
+  const needleNorm = _normalizeTopic(topicName);
+  const needleWords = new Set(needleNorm.split(' ').filter(Boolean));
+
+  // 1. Exact match
+  const exact = topics.find(t => t.nameLower === needle);
+  if (exact) return exact.id;
+
+  // 2. Normalized exact match (e.g. "Kirchhoff's Laws" → "kirchhoff laws" matches "kirchhoff laws")
+  const normExact = topics.find(t => t.nameNorm === needleNorm);
+  if (normExact) return normExact.id;
+
+  // 3. Contains match on normalized names
+  const contains = topics.find(t => needleNorm.includes(t.nameNorm) || t.nameNorm.includes(needleNorm));
+  if (contains) return contains.id;
+
+  // 4. Best keyword overlap — pick topic where most DB words appear in the payload topic
+  let bestScore = 0, bestTopic = null;
+  for (const t of topics) {
+    if (t.words.size === 0) continue;
+    let overlap = 0;
+    for (const w of t.words) { if (needleWords.has(w)) overlap++; }
+    const score = overlap / t.words.size; // fraction of DB topic words matched
+    if (score > bestScore && overlap >= 2) { bestScore = score; bestTopic = t; }
+  }
+  if (bestScore >= 0.5 && bestTopic) return bestTopic.id;
+
+  console.warn(`[resolveTopicId] No topic match for "${topicName}" in chapter ${chapterId}`);
+  return null;
 }
 
 async function insertQuestions(questions) {
@@ -406,7 +557,7 @@ async function insertJobQuestionsToDb(job) {
       const questionRecord = {
         subject_id: job.subject_id,
         chapter_id: job.chapter_id,
-        topic_id: null, // Will be matched later if needed
+        topic_id: await resolveTopicId(job.chapter_id, q.topic),
         exam_ids: q.exam_suitability || job.exam_ids || ['NEET'],
         question_type: q.question_type,
         difficulty: q.difficulty || 'medium',
@@ -508,7 +659,7 @@ async function insertApprovedQuestionsToDb(job, approvedQuestions) {
       const questionRecord = {
         subject_id: job.subject_id,
         chapter_id: job.chapter_id,
-        topic_id: null,
+        topic_id: await resolveTopicId(job.chapter_id, q.topic),
         exam_ids: q.exam_suitability || job.exam_ids || ['NEET'],
         question_type: q.question_type,
         difficulty: q.difficulty || 'medium',
@@ -633,15 +784,30 @@ function getAutoInsertTimeRemaining(jobCreatedAt) {
 
 async function getQuestionStats() {
   if (!SUPABASE) return [];
-  const { data, error } = await SUPABASE
-    .from('med_questions')
-    .select('subject_id, question_type, difficulty, status');
 
-  if (error) {
-    console.error('Error fetching stats:', error);
-    return null;
+  // Paginate to avoid Supabase default 1000-row limit
+  const PAGE_SIZE = 1000;
+  let allData = [];
+  let from = 0;
+
+  while (true) {
+    const { data, error } = await SUPABASE
+      .from('med_questions')
+      .select('subject_id, chapter_id, question_type, difficulty, status, exam_ids')
+      .range(from, from + PAGE_SIZE - 1);
+
+    if (error) {
+      console.error('Error fetching stats:', error);
+      return allData.length > 0 ? allData : null;
+    }
+
+    if (!data || data.length === 0) break;
+    allData = allData.concat(data);
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
   }
-  return data;
+
+  return allData;
 }
 
 async function fetchQuestionsByChapter(chapterId, options = {}) {
@@ -700,21 +866,41 @@ async function bulkUpdateQuestionStatus(questionIds, newStatus) {
   return data;
 }
 
-async function fetchQuestionsCountByChapter(subjectId) {
+async function fetchQuestionsCountByChapter(subjectId, examId = null) {
   if (!SUPABASE) return {};
-  const { data, error } = await SUPABASE
-    .from('med_questions')
-    .select('chapter_id, status')
-    .ilike('subject_id', subjectId);
 
-  if (error) {
-    console.error('Error fetching question counts:', error);
-    return {};
+  // Paginate to avoid Supabase default 1000-row limit
+  const PAGE_SIZE = 1000;
+  let allData = [];
+  let from = 0;
+
+  while (true) {
+    let query = SUPABASE
+      .from('med_questions')
+      .select('chapter_id, status, exam_ids')
+      .ilike('subject_id', subjectId)
+      .range(from, from + PAGE_SIZE - 1);
+
+    if (examId) {
+      query = query.contains('exam_ids', [examId]);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error('Error fetching question counts:', error);
+      return {};
+    }
+
+    if (!data || data.length === 0) break;
+    allData = allData.concat(data);
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
   }
 
   // Group by chapter_id and status
   const counts = {};
-  (data || []).forEach(q => {
+  allData.forEach(q => {
     if (!counts[q.chapter_id]) {
       counts[q.chapter_id] = { total: 0, active: 0, draft: 0, pending: 0 };
     }
@@ -724,6 +910,116 @@ async function fetchQuestionsCountByChapter(subjectId) {
     else counts[q.chapter_id].pending++;
   });
   return counts;
+}
+
+async function fetchTypeDistribution(subjectId, examId = null) {
+  if (!SUPABASE) return {};
+  const PAGE_SIZE = 1000;
+  let allData = [];
+  let from = 0;
+
+  while (true) {
+    let query = SUPABASE
+      .from('med_questions')
+      .select('question_type, status')
+      .ilike('subject_id', subjectId)
+      .range(from, from + PAGE_SIZE - 1);
+
+    if (examId) {
+      query = query.contains('exam_ids', [examId]);
+    }
+
+    const { data, error } = await query;
+    if (error) { console.error('Error fetching type distribution:', error); return {}; }
+    if (!data || data.length === 0) break;
+    allData = allData.concat(data);
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
+  }
+
+  const dist = {};
+  allData.forEach(q => {
+    const t = q.question_type || 'unknown';
+    if (!dist[t]) dist[t] = { total: 0, active: 0, draft: 0 };
+    dist[t].total++;
+    if (q.status === 'active') dist[t].active++;
+    else if (q.status === 'draft') dist[t].draft++;
+  });
+  return dist;
+}
+
+async function fetchTopicCountsByChapter(chapterId) {
+  if (!SUPABASE) return { topics: [], counts: {} };
+
+  const [topicsRes, questionsRes] = await Promise.all([
+    SUPABASE.from('med_topics').select('id, name, sort_order, is_important').eq('chapter_id', chapterId).order('sort_order'),
+    SUPABASE.from('med_questions').select('topic_id, status, payload').eq('chapter_id', chapterId)
+  ]);
+
+  const topics = topicsRes.data || [];
+  const questions = questionsRes.data || [];
+
+  // Build topic list for fuzzy matching (reuse shared normalizer)
+  const topicList = topics.map(t => {
+    const norm = _normalizeTopic(t.name);
+    return { id: t.id, nameLower: t.name.toLowerCase().trim(), nameNorm: norm, words: new Set(norm.split(' ').filter(Boolean)) };
+  });
+
+  function matchTopicId(payloadTopicName) {
+    const needle = payloadTopicName.toLowerCase().trim();
+    const needleNorm = _normalizeTopic(payloadTopicName);
+    const needleWords = new Set(needleNorm.split(' ').filter(Boolean));
+    // 1. Exact match
+    const exact = topicList.find(t => t.nameLower === needle);
+    if (exact) return exact.id;
+    // 2. Normalized exact match
+    const normExact = topicList.find(t => t.nameNorm === needleNorm);
+    if (normExact) return normExact.id;
+    // 3. Contains match (DB name in payload name, or vice versa)
+    const contains = topicList.find(t => needleNorm.includes(t.nameNorm) || t.nameNorm.includes(needleNorm));
+    if (contains) return contains.id;
+    // 4. Best keyword overlap
+    let bestScore = 0, bestTopic = null;
+    for (const t of topicList) {
+      if (t.words.size === 0) continue;
+      let overlap = 0;
+      for (const w of t.words) { if (needleWords.has(w)) overlap++; }
+      const score = overlap / t.words.size;
+      if (score > bestScore && overlap >= 2) { bestScore = score; bestTopic = t; }
+    }
+    if (bestScore >= 0.5 && bestTopic) return bestTopic.id;
+    return null;
+  }
+
+  const counts = {};
+  let unmatchedTopics = new Set();
+  questions.forEach(q => {
+    // Try topic_id first, then fall back to fuzzy-matching payload topic name
+    let tid = q.topic_id;
+    if (!tid) {
+      const pTopicName = q.payload?.topic_name || q.payload?.topic || '';
+      if (pTopicName) {
+        tid = matchTopicId(pTopicName) || '__none__';
+      }
+    }
+    if (!tid) tid = '__none__';
+
+    if (tid === '__none__') {
+      const pName = q.payload?.topic_name || q.payload?.topic || '';
+      if (pName) unmatchedTopics.add(pName);
+    }
+
+    if (!counts[tid]) counts[tid] = { total: 0, active: 0, draft: 0 };
+    counts[tid].total++;
+    if (q.status === 'active') counts[tid].active++;
+    else if (q.status === 'draft') counts[tid].draft++;
+  });
+
+  if (unmatchedTopics.size > 0) {
+    console.warn('[TopicMatch] Unmatched topic names from payload:', [...unmatchedTopics]);
+  }
+
+  return { topics, counts };
 }
 
 async function updateQuestionStatus(questionId, newStatus) {
@@ -1422,7 +1718,17 @@ const QUALITY_ISSUE_TYPES = {
 
   // Content quality
   EMPTY_EXPLANATION:      { severity: 'medium', label: 'No explanation' },
-  NO_ELIMINATION_HINTS:   { severity: 'low',    label: 'No elimination hints' },
+  NO_ELIMINATION_HINTS:   { severity: 'high',   label: 'No hints (mandatory for all types)' },
+
+  // Data integrity — topic/chapter mapping
+  MISSING_TOPIC_ID:       { severity: 'high',   label: 'No topic_id set' },
+  MISSING_CHAPTER_ID:     { severity: 'high',   label: 'No chapter_id set' },
+
+  // Type-specific payload issues (custom UI can't render)
+  MTF_NO_COLUMN_DATA:     { severity: 'high',   label: 'MTF missing column A/B data (custom UI broken)' },
+  SEQ_NO_ITEMS:           { severity: 'high',   label: 'Sequence question missing items list' },
+  SEQ_INCOMPLETE_TEXT:    { severity: 'high',   label: 'Sequence question text has no items to arrange' },
+  MTF_DUPLICATE_KEYS:     { severity: 'high',   label: 'MTF has duplicate option/column keys (drag broken)' },
 
   // Translation (parameterized via details.language)
   MISSING_TRANSLATION:    { severity: 'low',    label: 'Missing translation' },
@@ -1633,8 +1939,73 @@ function runQualityValidators(questions, languages, chapterId) {
         }
         break;
       }
-      // scenario-based and logical-sequence: content is always in question_text
-      // No special payload check needed — question_text emptiness already caught above
+      case 'logical-sequence': {
+        // Custom UI needs payload.items array with text for each item
+        const seqItems = payload.items || payload.Items || [];
+        if (!Array.isArray(seqItems) || seqItems.length === 0) {
+          issues.push(makeIssue(q, chapterId, 'SEQ_NO_ITEMS'));
+        } else {
+          // Check if items have actual text content
+          const emptyItems = seqItems.filter(it => !(it.text || '').trim());
+          if (emptyItems.length > 0) {
+            issues.push(makeIssue(q, chapterId, 'SEQ_NO_ITEMS', {
+              emptyCount: emptyItems.length, total: seqItems.length
+            }));
+          }
+        }
+        // Also check question_text — "Arrange the following in the correct order." with no items is meaningless
+        if (qText && /arrange.*following/i.test(qText) && !/\([ivxIVX]+\)|\d\)|\d\./.test(qText)) {
+          // Text says "arrange the following" but doesn't list any items inline
+          if (!Array.isArray(seqItems) || seqItems.length === 0) {
+            issues.push(makeIssue(q, chapterId, 'SEQ_INCOMPLETE_TEXT'));
+          }
+        }
+        break;
+      }
+      // scenario-based: content is in question_text — emptiness already caught above
+    }
+
+    // ── Match-the-following: custom UI needs column_a + column_b arrays ──
+    if (q.question_type === 'match-the-following') {
+      const colA = payload.column_a || payload.columnA || [];
+      const colB = payload.column_b || payload.columnB || [];
+      if (!Array.isArray(colA) || colA.length === 0 || !Array.isArray(colB) || colB.length === 0) {
+        issues.push(makeIssue(q, chapterId, 'MTF_NO_COLUMN_DATA', {
+          hasColumnA: Array.isArray(colA) && colA.length > 0,
+          hasColumnB: Array.isArray(colB) && colB.length > 0
+        }));
+      }
+      // Check for duplicate keys in columns or options — breaks drag-and-drop
+      if (Array.isArray(colA) && colA.length > 0) {
+        const aIds = colA.map(c => c.id);
+        const bIds = (Array.isArray(colB) ? colB : []).map(c => c.id);
+        const allIds = [...aIds, ...bIds];
+        const dupeIds = allIds.filter((id, i) => allIds.indexOf(id) !== i);
+        if (dupeIds.length > 0) {
+          issues.push(makeIssue(q, chapterId, 'MTF_DUPLICATE_KEYS', {
+            duplicateIds: [...new Set(dupeIds)]
+          }));
+        }
+      }
+      // Also check payload.options for duplicate IDs
+      const mtfOpts = payload.options || [];
+      if (Array.isArray(mtfOpts) && mtfOpts.length > 0) {
+        const optIds = mtfOpts.map(o => o.id);
+        const dupeOptIds = optIds.filter((id, i) => optIds.indexOf(id) !== i);
+        if (dupeOptIds.length > 0) {
+          issues.push(makeIssue(q, chapterId, 'MTF_DUPLICATE_KEYS', {
+            duplicateOptionIds: [...new Set(dupeOptIds)]
+          }));
+        }
+      }
+    }
+
+    // ── Data integrity: chapter & topic ──────────────────────
+    if (!q.chapter_id) {
+      issues.push(makeIssue(q, chapterId, 'MISSING_CHAPTER_ID'));
+    }
+    if (!q.topic_id) {
+      issues.push(makeIssue(q, chapterId, 'MISSING_TOPIC_ID'));
     }
 
     // ── Content quality ─────────────────────────────────────
@@ -1735,7 +2106,7 @@ async function fetchQuestionsForScan(chapterId) {
   const { data, error } = await SUPABASE
     .from('med_questions')
     .select(`
-      id, subject_id, chapter_id, question_type, difficulty, status,
+      id, subject_id, chapter_id, topic_id, question_type, difficulty, status,
       question_text, question_text_te, explanation, explanation_te,
       correct_answer, payload, image_url, concept_tags,
       med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
@@ -2011,6 +2382,92 @@ async function fixEmptyOptions(questionId, options, correctKey) {
 }
 
 // ============================================================================
+// AUTO-FIX: MTF payload — parse columnA/columnB from question_text
+// ============================================================================
+
+/**
+ * Fix MTF questions that are missing columnA/columnB in payload.
+ * Parses the question_text to extract column items and derives correctMapping
+ * from the correct option text.
+ *
+ * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
+ * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
+ */
+async function fixMTFPayload(questions) {
+  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  for (const q of questions) {
+    if (q.question_type !== 'match-the-following') { results.skipped++; continue; }
+
+    const payload = q.payload || {};
+    // Skip if already has column data
+    const existingColA = payload.column_a || payload.columnA || [];
+    const existingColB = payload.column_b || payload.columnB || [];
+    if (Array.isArray(existingColA) && existingColA.length > 0 &&
+        Array.isArray(existingColB) && existingColB.length > 0) {
+      results.skipped++;
+      continue;
+    }
+
+    const text = q.question_text || '';
+    if (!text) { results.skipped++; continue; }
+
+    // Parse columns from question text
+    const parsed = _parseMTFColumns(text);
+    if (parsed.columnA.length < 2 || parsed.columnB.length < 2) {
+      results.skipped++;
+      results.details.push({
+        id: q.id,
+        status: 'skipped',
+        reason: `Parsed colA=${parsed.columnA.length}, colB=${parsed.columnB.length}`
+      });
+      continue;
+    }
+
+    // Derive correctMapping from the correct option
+    const opts = q.med_question_options || q.options || [];
+    const correctOpt = opts.find(o => o.is_correct === true) ||
+                       opts.find(o => (o.option_key || o.key) === q.correct_answer);
+    let mapping = {};
+    if (correctOpt) {
+      mapping = _parseOptionMapping(correctOpt.option_text || correctOpt.text || '');
+    }
+
+    // Update payload in DB
+    const newPayload = {
+      ...payload,
+      columnA: parsed.columnA,
+      columnB: parsed.columnB,
+      correctMapping: mapping
+    };
+
+    const { error } = await SUPABASE
+      .from('med_questions')
+      .update({ payload: newPayload })
+      .eq('id', q.id);
+
+    if (error) {
+      console.error(`[fixMTF] Failed to update ${q.id}:`, error);
+      results.errors++;
+      results.details.push({ id: q.id, status: 'error', error: error.message });
+    } else {
+      results.fixed++;
+      results.details.push({
+        id: q.id,
+        status: 'fixed',
+        colA: parsed.columnA.length,
+        colB: parsed.columnB.length,
+        mappingKeys: Object.keys(mapping).length
+      });
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
 // EXPORT FOR USE IN HTML
 // ============================================================================
 window.Qbank = {
@@ -2042,6 +2499,7 @@ window.Qbank = {
   fetchGenerationJobs,
   createGenerationJob,
   updateGenerationJob,
+  resolveTopicId,
   insertQuestions,
   insertQuestionOptions,
   insertEliminationHints,
@@ -2053,6 +2511,8 @@ window.Qbank = {
   fetchQuestionsByChapter,
   fetchQuestionDetails,
   fetchQuestionsCountByChapter,
+  fetchTypeDistribution,
+  fetchTopicCountsByChapter,
   updateQuestionStatus,
   bulkUpdateQuestionStatus,
 
@@ -2092,6 +2552,7 @@ window.Qbank = {
   clearExploreIssues,
   fixCorrectAnswerKeys,
   fixEmptyOptions,
+  fixMTFPayload,
 
   // State access
   get config() { return CONFIG; },
