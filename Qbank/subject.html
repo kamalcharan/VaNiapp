@@ -1042,11 +1042,13 @@
     }
 
     // Resolve a question's topic id using same logic as shared.js
+    // payload stores topic as "topic_name" (shared.js imports) or "topic" (import.html / AI-generated)
     function resolveTopicId(q, chapterId) {
       if (q.topic_id) return q.topic_id;
       const topicData = topicCache[chapterId] || { topics: [] };
-      if (q.payload?.topic_name) {
-        const needle = q.payload.topic_name.toLowerCase().trim();
+      const pTopicName = q.payload?.topic_name || q.payload?.topic || '';
+      if (pTopicName) {
+        const needle = pTopicName.toLowerCase().trim();
         const match = topicData.topics.find(t => t.name.toLowerCase().trim() === needle);
         if (match) return match.id;
       }

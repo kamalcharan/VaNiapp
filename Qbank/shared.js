@@ -817,7 +817,7 @@ async function fetchTopicCountsByChapter(chapterId) {
   const topics = topicsRes.data || [];
   const questions = questionsRes.data || [];
 
-  // Build a name->id lookup so we can match payload.topic_name to topic ids
+  // Build a name->id lookup so we can match payload topic to topic ids
   const nameToId = {};
   topics.forEach(t => {
     nameToId[t.name.toLowerCase().trim()] = t.id;
@@ -825,10 +825,14 @@ async function fetchTopicCountsByChapter(chapterId) {
 
   const counts = {};
   questions.forEach(q => {
-    // Try topic_id first, then fall back to matching payload.topic_name
+    // Try topic_id first, then fall back to matching payload topic name
+    // Note: payload stores topic as "topic_name" (shared.js imports) or "topic" (import.html / AI-generated)
     let tid = q.topic_id;
-    if (!tid && q.payload?.topic_name) {
-      tid = nameToId[q.payload.topic_name.toLowerCase().trim()] || '__none__';
+    if (!tid) {
+      const pTopicName = q.payload?.topic_name || q.payload?.topic || '';
+      if (pTopicName) {
+        tid = nameToId[pTopicName.toLowerCase().trim()] || '__none__';
+      }
     }
     if (!tid) tid = '__none__';
 
