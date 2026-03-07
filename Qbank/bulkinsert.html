@@ -1166,6 +1166,24 @@
             }
           }
 
+          // Update elimination hints if provided
+          if (r.elimination_hints && Array.isArray(r.elimination_hints) && r.elimination_hints.length > 0) {
+            // Delete existing hints and re-insert
+            await Qbank.supabase.from('med_elimination_hints').delete().eq('question_id', dbId);
+            const hints = r.elimination_hints
+              .filter(h => h.option_key && (h.hint || h.hint_text))
+              .map(h => ({
+                question_id: dbId,
+                option_key: h.option_key,
+                hint_text: h.hint || h.hint_text || '',
+                misconception: h.misconception || ''
+              }));
+            if (hints.length > 0) {
+              const { error: hintErr } = await Qbank.supabase.from('med_elimination_hints').insert(hints);
+              if (hintErr) appendLogLine(logEl, `  Hints warning for ${dbId}: ${hintErr.message}`, 'skip');
+            }
+          }
+
           updated++;
           if (updated % 5 === 0 || i === valid.length - 1) {
             appendLogLine(logEl, `[${i + 1}/${valid.length}] ${r.question_id || r.id || dbId} — updated`, 'ok');

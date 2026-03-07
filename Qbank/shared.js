@@ -2810,32 +2810,37 @@ async function fixMTFDuplicateKeys(questions) {
 }
 
 // ============================================================================
-// AUTO-FIX: Backfill missing elimination hints from payload
+// AUTO-FIX: Backfill missing elimination hints
 // ============================================================================
 
 /**
- * For questions flagged NO_ELIMINATION_HINTS, check if payload.elimination_hints
- * has the data and insert rows into med_elimination_hints table.
+ * For questions flagged NO_ELIMINATION_HINTS, insert hints into med_elimination_hints.
  *
- * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
+ * Tries two sources in order:
+ *   1. payload.elimination_hints (future imports will store these)
+ *   2. sourceData — array of source JSON questions matched by question_text
+ *
+ * @param {Array} questions  - DB question rows (from fetchQuestionsForScan)
+ * @param {Array} sourceData - Optional: parsed source JSON questions with elimination_hints
  * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
  */
-async function fixMissingHints(questions) {
+async function fixMissingHints(questions, sourceData) {
   if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
 
   const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
 
-  for (const q of questions) {
-    const payload = q.payload || {};
-    const payloadHints = payload.elimination_hints || [];
-
-    // Skip if payload has no hints data either — nothing to backfill from
-    if (!Array.isArray(payloadHints) || payloadHints.length === 0) {
-      results.skipped++;
-      results.details.push({ id: q.id, status: 'skipped', reason: 'No hints in payload' });
-      continue;
+  // Build lookup from source data by normalised question_text
+  const sourceMap = new Map();
+  if (Array.isArray(sourceData)) {
+    for (const sq of sourceData) {
+      if (sq.elimination_hints && sq.elimination_hints.length > 0) {
+        const key = _normalizeText(sq.question_text || '');
+        if (key) sourceMap.set(key, sq.elimination_hints);
+      }
     }
+  }
 
+  for (const q of questions) {
     // Check if hints already exist in the table (avoid duplicates)
     const { data: existing } = await SUPABASE
       .from('med_elimination_hints')
@@ -2847,13 +2852,41 @@ async function fixMissingHints(questions) {
       continue;
     }
 
-    // Insert hints from payload
-    const hintRecords = payloadHints.map(h => ({
-      question_id: q.id,
-      option_key: h.option_key,
-      hint_text: h.hint || h.hint_text || '',
-      misconception: h.misconception || ''
-    })).filter(h => h.option_key && h.hint_text);
+    // Source 1: payload.elimination_hints
+    const payload = q.payload || {};
+    let rawHints = payload.elimination_hints || [];
+
+    // Source 2: match from uploaded source JSON by question text
+    if ((!Array.isArray(rawHints) || rawHints.length === 0) && sourceMap.size > 0) {
+      const key = _normalizeText(q.question_text || '');
+      rawHints = sourceMap.get(key) || [];
+    }
+
+    if (!Array.isArray(rawHints) || rawHints.length === 0) {
+      results.skipped++;
+      results.details.push({ id: q.id, status: 'skipped', reason: 'No hints in payload or source' });
+      continue;
+    }
+
+    // Insert hints — handle both formats:
+    //   1. Array of objects: [{option_key, hint, misconception}]
+    //   2. Array of strings: ["A incorrectly assumes...", "B ignores..."]
+    const hintRecords = rawHints.map(h => {
+      if (typeof h === 'string') {
+        // Parse option key from start of string: "A incorrectly..." → key="A", text="incorrectly..."
+        const match = h.match(/^([A-D])\s+(.+)$/s);
+        if (match) {
+          return { question_id: q.id, option_key: match[1], hint_text: match[2].trim(), misconception: '' };
+        }
+        return null;
+      }
+      return {
+        question_id: q.id,
+        option_key: h.option_key,
+        hint_text: h.hint || h.hint_text || '',
+        misconception: h.misconception || ''
+      };
+    }).filter(h => h && h.option_key && h.hint_text);
 
     if (hintRecords.length === 0) {
       results.skipped++;
@@ -2876,6 +2909,11 @@ async function fixMissingHints(questions) {
   }
 
   return results;
+}
+
+/** Normalize text for fuzzy matching — lowercase, collapse whitespace, strip punctuation */
+function _normalizeText(text) {
+  return (text || '').toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
 }
 
 // ============================================================================

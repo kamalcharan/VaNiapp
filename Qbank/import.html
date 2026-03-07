@@ -482,7 +482,8 @@ Go to the Insert page to add these to the database.`);
               subtopic: q.subtopic,
               bloom_level: q.bloom_level,
               exam_suitability: q.exam_suitability,
-              source: 'manual_import'
+              source: 'manual_import',
+              elimination_hints: q.elimination_hints || []
             };
             // Scenario-based: store scenario separately so the app doesn't duplicate question_text
             if (q.scenario) payload.scenario = q.scenario;
@@ -548,14 +549,19 @@ Go to the Insert page to add these to the database.`);
 
             // Insert hints if present
             if (q.elimination_hints && q.elimination_hints.length > 0) {
-              const hints = q.elimination_hints.map(h => ({
-                question_id: insertedQ.id,
-                option_key: h.option_key,
-                hint_text: h.hint,
-                misconception: h.misconception || ''
-              }));
+              const hints = q.elimination_hints
+                .filter(h => h.option_key && (h.hint || h.hint_text))
+                .map(h => ({
+                  question_id: insertedQ.id,
+                  option_key: h.option_key,
+                  hint_text: h.hint || h.hint_text || '',
+                  misconception: h.misconception || ''
+                }));
 
-              await Qbank.supabase.from('med_elimination_hints').insert(hints);
+              if (hints.length > 0) {
+                const { error: hintErr } = await Qbank.supabase.from('med_elimination_hints').insert(hints);
+                if (hintErr) console.error(`[import] Hint insert failed for ${insertedQ.id}:`, hintErr.message);
+              }
             }
 
             inserted++;
