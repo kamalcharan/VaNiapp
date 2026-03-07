@@ -484,6 +484,27 @@ function parseColumnItemsFromJson(data: unknown): { id: string; text: string; te
 }
 
 /**
+ * Strip trailing MCQ option text that sometimes appears at the end of
+ * question_text after the column items.  Patterns removed:
+ *   - "Select the correct match/option/answer:" and everything after
+ *   - "Choose the correct ..." and everything after
+ *   - "The correct combination is:" and everything after
+ *   - Lines starting with (A)/(B)/(C)/(D) that contain mapping patterns
+ */
+function stripTrailingOptions(body: string): string {
+  // Remove everything from a "Select/Choose/Correct combination" prompt onward
+  body = body.replace(
+    /\n\s*(?:select|choose|the correct|identify the correct|pick the correct|which of the following)[^\n]*(?:\n[\s\S]*)?$/i,
+    ''
+  );
+  // Remove MCQ option lines: (A) ..., (B) ..., (C) ..., (D) ...
+  // These contain mapping patterns like "(i)–(r), (ii)–(s)" that pollute column items.
+  // IMPORTANT: Only match UPPERCASE A-D to avoid stripping actual column items like (a), (b).
+  body = body.replace(/\n\s*\([A-D]\)\s*[\s\S]*$/, '');
+  return body;
+}
+
+/**
  * Parse match-the-following columns from question_text.
  * Handles formats like:
  *   Column I:\n(P) Bulliform cells\n(Q) Palisade...\nColumn II:\n(i) Bean-shaped...\n(ii) Large...
@@ -519,7 +540,14 @@ function parseMatchColumns(text: string): {
   const col2Text = colSplit[colSplit.length - 1];
 
   // Remove the "Column I:" / "List I:" header from col1Text
-  const col1Body = col1Text.replace(/.*(?:column|list)\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\))?\s*[:\-–]/is, '');
+  const col1Body = stripTrailingOptions(
+    col1Text.replace(/.*(?:column|list)\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\))?\s*[:\-–]/is, '')
+  );
+
+  // Strip trailing MCQ option listing from Column II text (e.g.
+  // "Select the correct match:\n(A) (i)–(r), (ii)–(s)..." that bleeds
+  // into the column items and produces garbage entries).
+  const col2TextClean = stripTrailingOptions(col2Text);
 
   // Extract labeled items in multiple formats:
   // 1. Parenthesized: (P), (Q), (1), (a), (i), (ii), (iii), (iv) etc.
@@ -575,7 +603,7 @@ function parseMatchColumns(text: string): {
   }
 
   columnA.push(...extractItems(col1Body));
-  columnB.push(...extractItems(col2Text));
+  columnB.push(...extractItems(col2TextClean));
 
   return { columnA, columnB };
 }
