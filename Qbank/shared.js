@@ -2672,6 +2672,34 @@ async function fixMTFDuplicateKeys(questions) {
       }
     }
 
+    // ── Case 3: Duplicate IDs in payload.options (JSONB) ──
+    const payloadOpts = payload.options || [];
+    if (Array.isArray(payloadOpts) && payloadOpts.length > 0) {
+      const pIds = payloadOpts.map(o => o.id);
+      const hasDupePayloadOpts = pIds.some((id, i) => pIds.indexOf(id) !== i);
+      if (hasDupePayloadOpts) {
+        const newPayloadOpts = payloadOpts.map((o, i) => ({
+          ...o,
+          id: OPTION_KEYS[i] || `opt_${i}`
+        }));
+        const newPayload = { ...payload, options: newPayloadOpts };
+
+        const { error } = await SUPABASE
+          .from('med_questions')
+          .update({ payload: newPayload, corrected_at: new Date().toISOString() })
+          .eq('id', q.id);
+
+        if (error) {
+          console.error(`[fixMTFDuplicateKeys] Failed to fix payload.options for ${q.id}:`, error);
+          results.errors++;
+          results.details.push({ id: q.id, status: 'error', fix: 'payload-options-dupes', error: error.message });
+          continue;
+        }
+        didFix = true;
+        fixes.push('payload-options-dupes');
+      }
+    }
+
     if (didFix) {
       results.fixed++;
       results.details.push({ id: q.id, status: 'fixed', fixes });
