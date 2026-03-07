@@ -66,11 +66,14 @@ const FALLBACK_SUBJECTS: CatalogSubject[] = [
   { id: 'cuet-chemistry', name: 'Chemistry', emoji: '\uD83E\uDDEA', color: '#F97316', category: 'Science', exam_id: 'CUET', sort_order: 11 },
   { id: 'mathematics', name: 'Mathematics', emoji: '\uD83D\uDCCF', color: '#EF4444', category: 'Science', exam_id: 'CUET', sort_order: 12 },
   { id: 'biology', name: 'Biology / Biotech', emoji: '\uD83E\uDDEC', color: '#22C55E', category: 'Science', exam_id: 'CUET', sort_order: 13 },
+  { id: 'agriculture', name: 'Agriculture', emoji: '\uD83C\uDF3E', color: '#22C55E', category: 'Science', exam_id: 'CUET', sort_order: 14 },
+  { id: 'engineering-graphics', name: 'Engineering Graphics', emoji: '\uD83D\uDCD0', color: '#6366F1', category: 'Science', exam_id: 'CUET', sort_order: 15 },
   // CUET Commerce
   { id: 'accountancy', name: 'Accountancy', emoji: '\uD83D\uDCCA', color: '#14B8A6', category: 'Commerce', exam_id: 'CUET', sort_order: 20 },
   { id: 'business-studies', name: 'Business Studies', emoji: '\uD83D\uDCBC', color: '#8B5CF6', category: 'Commerce', exam_id: 'CUET', sort_order: 21 },
   { id: 'economics', name: 'Economics', emoji: '\uD83D\uDCB9', color: '#F59E0B', category: 'Commerce', exam_id: 'CUET', sort_order: 22 },
-  // CUET Arts
+  { id: 'entrepreneurship', name: 'Entrepreneurship', emoji: '\uD83D\uDE80', color: '#0EA5E9', category: 'Commerce', exam_id: 'CUET', sort_order: 23 },
+  // CUET Arts / Humanities
   { id: 'history', name: 'History', emoji: '\uD83C\uDFDB\uFE0F', color: '#92400E', category: 'Arts / Humanities', exam_id: 'CUET', sort_order: 30 },
   { id: 'geography', name: 'Geography', emoji: '\uD83C\uDF0D', color: '#059669', category: 'Arts / Humanities', exam_id: 'CUET', sort_order: 31 },
   { id: 'political-science', name: 'Political Science', emoji: '\uD83D\uDDF3\uFE0F', color: '#6366F1', category: 'Arts / Humanities', exam_id: 'CUET', sort_order: 32 },
@@ -78,6 +81,8 @@ const FALLBACK_SUBJECTS: CatalogSubject[] = [
   { id: 'psychology', name: 'Psychology', emoji: '\uD83E\uDDE0', color: '#F472B6', category: 'Arts / Humanities', exam_id: 'CUET', sort_order: 34 },
   { id: 'philosophy', name: 'Philosophy', emoji: '\uD83D\uDCA1', color: '#A78BFA', category: 'Arts / Humanities', exam_id: 'CUET', sort_order: 35 },
   { id: 'anthropology', name: 'Anthropology', emoji: '\uD83D\uDD2C', color: '#78716C', category: 'Arts / Humanities', exam_id: 'CUET', sort_order: 36 },
+  { id: 'knowledge-traditions', name: 'Knowledge Traditions', emoji: '\uD83D\uDCDC', color: '#D97706', category: 'Arts / Humanities', exam_id: 'CUET', sort_order: 37 },
+  { id: 'legal-studies', name: 'Legal Studies', emoji: '\u2696\uFE0F', color: '#7C3AED', category: 'Arts / Humanities', exam_id: 'CUET', sort_order: 38 },
   // CUET Other
   { id: 'computer-science', name: 'Computer Science', emoji: '\uD83D\uDCBB', color: '#0EA5E9', category: 'Other', exam_id: 'CUET', sort_order: 40 },
   { id: 'environmental-studies', name: 'Environmental Studies', emoji: '\uD83C\uDF3F', color: '#16A34A', category: 'Other', exam_id: 'CUET', sort_order: 41 },
@@ -85,6 +90,9 @@ const FALLBACK_SUBJECTS: CatalogSubject[] = [
   { id: 'fine-arts', name: 'Fine Arts', emoji: '\uD83C\uDFA8', color: '#DB2777', category: 'Other', exam_id: 'CUET', sort_order: 43 },
   { id: 'home-science', name: 'Home Science', emoji: '\uD83C\uDFE0', color: '#D97706', category: 'Other', exam_id: 'CUET', sort_order: 44 },
   { id: 'mass-media', name: 'Mass Media / Journalism', emoji: '\uD83D\uDCF0', color: '#4F46E5', category: 'Other', exam_id: 'CUET', sort_order: 45 },
+  { id: 'teaching-aptitude', name: 'Teaching Aptitude', emoji: '\uD83D\uDC68\u200D\uD83C\uDFEB', color: '#EC4899', category: 'Other', exam_id: 'CUET', sort_order: 46 },
+  { id: 'performing-arts', name: 'Performing Arts', emoji: '\uD83C\uDFAD', color: '#F43F5E', category: 'Other', exam_id: 'CUET', sort_order: 47 },
+  { id: 'sanskrit', name: 'Sanskrit', emoji: '\uD83D\uDD49\uFE0F', color: '#CA8A04', category: 'Other', exam_id: 'CUET', sort_order: 48 },
   // General Test
   { id: 'general-test', name: 'General Test', emoji: '\uD83D\uDDD2\uFE0F', color: '#64748B', category: 'General Test', exam_id: 'CUET', sort_order: 50 },
 ];

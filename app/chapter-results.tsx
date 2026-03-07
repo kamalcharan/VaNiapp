@@ -38,9 +38,14 @@ export default function ChapterResultsScreen() {
   const isQuickMode = chapterId?.startsWith('quick-') ?? false;
   const quickSubjectId = isQuickMode ? chapterId!.replace('quick-', '') as NeetSubjectId : null;
   const chapter = chapterId && !isQuickMode ? getChapterById(chapterId) : null;
-  const subjectMeta = isQuickMode
-    ? (quickSubjectId ? SUBJECT_META[quickSubjectId] : null)
-    : (chapter ? SUBJECT_META[chapter.subjectId] : null);
+  const rawSubjectId = isQuickMode ? quickSubjectId : chapter?.subjectId;
+  const subjectMeta = rawSubjectId
+    ? (SUBJECT_META[rawSubjectId] ?? {
+        name: rawSubjectId.charAt(0).toUpperCase() + rawSubjectId.slice(1).replace(/-/g, ' '),
+        emoji: '\u26A1',
+        color: '#3B82F6',
+      })
+    : null;
   const questions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
 
   // Fetch Supabase questions (cached from quiz session) for topic data
