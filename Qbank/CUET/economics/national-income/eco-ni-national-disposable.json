@@ -1,0 +1,490 @@
+[
+  {
+    "id": "eco-ni-disp-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following is the correct formula for Personal Income (PI)?",
+    "explanation": "Personal Income is the income actually received by households from all sources before paying personal taxes. It is derived from National Income (NI) by subtracting items earned but not received (undistributed profits, corporate tax, and net social security contributions) and adding items received but not earned (transfer payments). The formula is: PI = NI - Undistributed Profits - Corporate Tax - Net Social Security Contributions + Transfer Payments. This distinction is important because not all of National Income flows to individuals; some is retained by corporations or taken by the government as corporate tax.",
+    "correct_answer": "B",
+    "concept_tags": ["Personal Income", "National Income", "transfer payments", "corporate tax", "undistributed profits"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "PI = NI + Undistributed Profits + Corporate Tax - Transfer Payments", "is_correct": false},
+      {"key": "B", "text": "PI = NI - Undistributed Profits - Corporate Tax - Net Social Security Contributions + Transfer Payments", "is_correct": true},
+      {"key": "C", "text": "PI = NI - Transfer Payments + Corporate Tax + Undistributed Profits", "is_correct": false},
+      {"key": "D", "text": "PI = NI + Corporate Tax - Subsidies + Depreciation", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This formula adds undistributed profits and corporate tax instead of subtracting them. These are income components earned but not received by individuals, so they must be deducted.", "misconception": "Reversing the direction of adjustments for retained corporate income."},
+      {"option_key": "C", "hint": "Transfer payments are received but not earned, so they should be added to arrive at personal income, not subtracted.", "misconception": "Confusing the treatment of transfer payments in Personal Income calculation."},
+      {"option_key": "D", "hint": "Subsidies and depreciation are used in converting between Market Price and Factor Cost or Gross and Net aggregates, not in deriving Personal Income from National Income.", "misconception": "Mixing up aggregate conversion adjustments with Personal Income derivation."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-02",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Given: National Income = Rs 10,000 crore, Corporate Tax = Rs 800 crore, Undistributed Profits = Rs 600 crore, Net Social Security Contributions = Rs 400 crore, Transfer Payments = Rs 1,200 crore. Calculate Personal Income.",
+    "explanation": "Personal Income (PI) = NI - Undistributed Profits - Corporate Tax - Net Social Security Contributions + Transfer Payments. Substituting the values: PI = 10,000 - 600 - 800 - 400 + 1,200 = Rs 9,400 crore. Undistributed profits and corporate tax are deducted because they represent income earned by the corporate sector that does not reach individuals. Net social security contributions are deducted as they are paid by employees but retained by the government. Transfer payments are added because households receive them even though they are not earned through productive activity.",
+    "correct_answer": "C",
+    "concept_tags": ["Personal Income", "numerical problem", "corporate tax", "undistributed profits", "transfer payments"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Rs 8,800 crore", "is_correct": false},
+      {"key": "B", "text": "Rs 9,000 crore", "is_correct": false},
+      {"key": "C", "text": "Rs 9,400 crore", "is_correct": true},
+      {"key": "D", "text": "Rs 10,600 crore", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Rs 8,800 results from subtracting transfer payments instead of adding them. Transfer payments are received by households and must be added.", "misconception": "Treating transfer payments as a deduction instead of an addition."},
+      {"option_key": "B", "hint": "Rs 9,000 is obtained if you forget to add transfer payments altogether. All four adjustments must be applied to National Income.", "misconception": "Omitting transfer payments from the Personal Income calculation."},
+      {"option_key": "D", "hint": "Rs 10,600 would result from adding corporate tax and undistributed profits instead of subtracting them. These are retained by corporations and do not reach individuals.", "misconception": "Reversing the direction of corporate sector deductions."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Personal Disposable Income is obtained by deducting which of the following from Personal Income?",
+    "explanation": "Personal Disposable Income (PDI) is the income that is actually available to households for consumption and saving. It is derived from Personal Income by subtracting direct personal taxes (such as income tax, wealth tax, etc.) and non-tax payments (such as fines and fees). The formula is: PDI = Personal Income - Direct Personal Taxes - Non-Tax Payments. This represents the amount households can freely choose to spend on consumption or save. It is the final stage in the chain: National Income → Personal Income → Personal Disposable Income.",
+    "correct_answer": "A",
+    "concept_tags": ["Personal Disposable Income", "Personal Income", "direct taxes"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Direct personal taxes and non-tax payments", "is_correct": true},
+      {"key": "B", "text": "Indirect taxes and subsidies", "is_correct": false},
+      {"key": "C", "text": "Depreciation and NFIA", "is_correct": false},
+      {"key": "D", "text": "Corporate tax and undistributed profits", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Indirect taxes and subsidies are used to convert between Market Price and Factor Cost aggregates, not to derive Personal Disposable Income from Personal Income.", "misconception": "Confusing indirect taxes with direct personal taxes."},
+      {"option_key": "C", "hint": "Depreciation converts Gross to Net aggregates and NFIA converts Domestic to National. Neither is relevant to the PI to PDI conversion.", "misconception": "Mixing up macro aggregate conversions with personal income adjustments."},
+      {"option_key": "D", "hint": "Corporate tax and undistributed profits are deducted from National Income to get Personal Income, not from Personal Income to get Personal Disposable Income.", "misconception": "Confusing the NI-to-PI step with the PI-to-PDI step."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-04",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "If NNP at Factor Cost is Rs 50,000 crore, Net Indirect Taxes are Rs 5,000 crore, and Net Current Transfers from the Rest of the World are Rs 2,000 crore, what is the Net National Disposable Income (NNDI)?",
+    "explanation": "Net National Disposable Income (NNDI) = NNP at Factor Cost + Net Indirect Taxes + Net Current Transfers from the Rest of the World. Substituting: NNDI = 50,000 + 5,000 + 2,000 = Rs 57,000 crore. NNDI represents the total income available to the nation for spending on final consumption and saving. It adds Net Indirect Taxes to convert from factor cost to market price, and then adds net current transfers from abroad (such as remittances, gifts, and grants received minus those sent abroad). This gives a comprehensive measure of the nation's disposable income.",
+    "correct_answer": "D",
+    "concept_tags": ["Net National Disposable Income", "NNP_FC", "Net Indirect Taxes", "net current transfers", "numerical problem"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Rs 47,000 crore", "is_correct": false},
+      {"key": "B", "text": "Rs 53,000 crore", "is_correct": false},
+      {"key": "C", "text": "Rs 55,000 crore", "is_correct": false},
+      {"key": "D", "text": "Rs 57,000 crore", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Rs 47,000 would result from subtracting both NIT and net transfers. Both must be added to NNP_FC to arrive at NNDI.", "misconception": "Subtracting adjustments that should be added."},
+      {"option_key": "B", "hint": "Rs 53,000 results from adding NIT but subtracting net current transfers. Net current transfers from ROW are an addition to national disposable income.", "misconception": "Treating net current transfers from abroad as a deduction."},
+      {"option_key": "C", "hint": "Rs 55,000 is obtained by adding only NIT and ignoring net current transfers. All three components must be included.", "misconception": "Omitting net current transfers from the Rest of the World."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Private Income includes which of the following?",
+    "explanation": "Private Income refers to the total income from all sources that accrues to the private sector (both households and private enterprises). It includes factor income from net domestic product accruing to the private sector, Net Factor Income from Abroad (NFIA), current transfers from the government (such as scholarships, pensions, subsidies), net current transfers from the rest of the world, and interest on national debt. It does not include income accruing to the government sector through its enterprises. Private Income is a broader concept than Personal Income as it includes the corporate sector's retained earnings as well.",
+    "correct_answer": "B",
+    "concept_tags": ["Private Income", "NFIA", "transfer payments", "government transfers"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Only wages and salaries received by individuals", "is_correct": false},
+      {"key": "B", "text": "Factor income accruing to private sector from NDP + NFIA + transfer payments from government + net current transfers from abroad", "is_correct": true},
+      {"key": "C", "text": "National Income minus all types of taxes", "is_correct": false},
+      {"key": "D", "text": "GDP at Market Price minus depreciation", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Private Income is not limited to wages and salaries. It includes all factor incomes accruing to the private sector, plus various transfer payments.", "misconception": "Equating Private Income with only wage income."},
+      {"option_key": "C", "hint": "Simply subtracting all taxes from National Income does not yield Private Income. The derivation involves specific additions of transfer payments and adjustments for the public sector's share.", "misconception": "Oversimplifying Private Income as NI minus taxes."},
+      {"option_key": "D", "hint": "GDP_MP minus depreciation gives NDP at Market Price, which is a national accounting aggregate, not Private Income.", "misconception": "Confusing NDP_MP with Private Income."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-06",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Personal Income is always less than National Income.\nReason (R): Corporate tax and undistributed profits are deducted from National Income while arriving at Personal Income.",
+    "explanation": "The Assertion is false because Personal Income is not necessarily always less than National Income. While corporate tax, undistributed profits, and net social security contributions are deducted, transfer payments are added. If transfer payments exceed the sum of these deductions, Personal Income can actually be greater than National Income. The Reason is partially true — corporate tax and undistributed profits are indeed deducted, but the Reason omits that transfer payments are added, which can potentially make PI exceed NI. Since the Assertion is false, the correct answer is D.",
+    "correct_answer": "D",
+    "concept_tags": ["Personal Income", "National Income", "assertion-reasoning", "transfer payments"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "For A to be the answer, the Assertion must be true. But PI is not always less than NI because transfer payments added can exceed the deductions made.", "misconception": "Assuming Personal Income must always be less than National Income."},
+      {"option_key": "B", "hint": "This option also requires the Assertion to be true. Since PI can exceed NI when transfer payments are large enough, the Assertion is false.", "misconception": "Overlooking the role of transfer payments in potentially making PI greater than NI."},
+      {"option_key": "C", "hint": "The Reason is actually true — corporate tax and undistributed profits are indeed deducted. The error lies in the Assertion, not the Reason.", "misconception": "Incorrectly evaluating the truth value of the Reason statement."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-07",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): National Disposable Income (Net) equals NNP at Market Price plus Net Current Transfers from the Rest of the World.\nReason (R): National Disposable Income measures the total income available to the nation for final consumption expenditure and saving.",
+    "explanation": "The Assertion is true. Net National Disposable Income = NNP_FC + Net Indirect Taxes + Net Current Transfers from ROW, which simplifies to NNP_MP + Net Current Transfers from ROW (since NNP_MP = NNP_FC + NIT). The Reason is also true — National Disposable Income indeed represents the total income available to the nation for consumption and saving. Furthermore, the Reason correctly explains why net current transfers from ROW are added: they increase the nation's pool of disposable income available for spending and saving. Hence both are true and R correctly explains A.",
+    "correct_answer": "A",
+    "concept_tags": ["National Disposable Income", "NNP_MP", "net current transfers", "assertion-reasoning"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The Reason does explain the Assertion. The purpose of adding net current transfers to NNP_MP is precisely because NDI measures total income available for consumption and saving, and transfers add to this pool.", "misconception": "Failing to see the causal link between the definition of NDI and its formula."},
+      {"option_key": "C", "hint": "The Reason is factually correct. NDI does measure the total income available for final consumption and saving. This is its standard textbook definition.", "misconception": "Incorrectly judging the Reason as false."},
+      {"option_key": "D", "hint": "The Assertion is correct. NNDI = NNP_FC + NIT + Net Current Transfers from ROW = NNP_MP + Net Current Transfers from ROW.", "misconception": "Incorrectly recalling the formula for Net National Disposable Income."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-08",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Undistributed profits are also called retained earnings.\nReason (R): Undistributed profits represent the portion of corporate profits that is distributed as dividends to shareholders.",
+    "explanation": "The Assertion is true. Undistributed profits are indeed also known as retained earnings — they represent the portion of profits that companies keep within the business rather than distributing to shareholders. The Reason, however, is false. It incorrectly states that undistributed profits are the portion distributed as dividends. In reality, undistributed profits are the exact opposite — they are the portion of profits NOT distributed as dividends. Dividends are the distributed portion, while undistributed profits (retained earnings) are held back for reinvestment, reserves, or future use by the corporation.",
+    "correct_answer": "C",
+    "concept_tags": ["undistributed profits", "retained earnings", "dividends", "corporate profits"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": true},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "The Reason states that undistributed profits are distributed as dividends, which is a contradiction in terms. Undistributed profits are the portion NOT distributed.", "misconception": "Confusing undistributed profits with dividends."},
+      {"option_key": "B", "hint": "Both A and R cannot be true because the Reason contains a factual error. Undistributed profits are retained, not distributed.", "misconception": "Accepting an internally contradictory statement as true."},
+      {"option_key": "D", "hint": "The Assertion is factually correct. 'Undistributed profits' and 'retained earnings' are standard synonymous terms used in economics and accounting.", "misconception": "Doubting the equivalence of undistributed profits and retained earnings."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-09",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "True or False: Gross National Disposable Income = Gross National Product at Market Price + Net Current Transfers from the Rest of the World.",
+    "explanation": "This statement is True. Gross National Disposable Income (GNDI) is obtained by adding Net Current Transfers from the Rest of the World to GNP at Market Price. The formula is: GNDI = GNP_MP + Net Current Transfers from ROW. Alternatively, GNDI = GNP_FC + Net Indirect Taxes + Net Current Transfers from ROW. Net current transfers include items like remittances received from abroad, gifts, grants, and similar unrequited transfers, minus similar payments made to the rest of the world. This gives the total gross income available to the nation.",
+    "correct_answer": "A",
+    "concept_tags": ["Gross National Disposable Income", "GNP_MP", "net current transfers"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The formula stated is the standard textbook definition of GNDI. Net current transfers from ROW are added to GNP_MP to get the total gross disposable income of the nation.", "misconception": "Doubting the standard formula for Gross National Disposable Income."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-10",
+    "question_type": "true-false",
+    "difficulty": "medium",
+    "question_text": "True or False: Private Income is always greater than Personal Income because Private Income includes corporate tax and retained earnings of the corporate sector.",
+    "explanation": "This statement is True. Private Income includes the entire income accruing to the private sector, which encompasses both households and private corporations. It includes corporate tax (which corporations earn but pay to the government) and undistributed profits (retained earnings kept by corporations). When we derive Personal Income from Private Income, we subtract corporate tax, undistributed profits, and net social security contributions — all of which are positive amounts. Therefore, Private Income is always greater than Personal Income, as PI is a subset that excludes the corporate sector's retained portions.",
+    "correct_answer": "A",
+    "concept_tags": ["Private Income", "Personal Income", "corporate tax", "retained earnings"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Private Income encompasses all income to the private sector including corporate retentions. Personal Income excludes corporate tax and undistributed profits, making it necessarily smaller.", "misconception": "Assuming Personal Income could exceed Private Income by including transfer payments."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-11",
+    "question_type": "true-false",
+    "difficulty": "medium",
+    "question_text": "True or False: Net National Disposable Income minus Net Indirect Taxes minus Net Current Transfers from ROW equals National Income (NNP at Factor Cost).",
+    "explanation": "This statement is True. Net National Disposable Income (NNDI) = NNP_FC + Net Indirect Taxes + Net Current Transfers from ROW. By rearranging this formula: NNP_FC = NNDI - Net Indirect Taxes - Net Current Transfers from ROW. Since National Income is defined as NNP at Factor Cost, the statement is algebraically and conceptually correct. This reverse derivation is useful in numerical problems where NNDI is given and National Income needs to be computed. It demonstrates the step-by-step relationship between disposable income and factor income measures.",
+    "correct_answer": "A",
+    "concept_tags": ["NNDI", "NNP_FC", "National Income", "reverse derivation"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "This is a simple algebraic rearrangement of the NNDI formula. If NNDI = NNP_FC + NIT + Net Current Transfers from ROW, then NNP_FC = NNDI - NIT - Net Current Transfers from ROW.", "misconception": "Failing to recognize the reverse algebraic derivation of the NNDI formula."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-12",
+    "question_type": "fill-in-the-blank",
+    "difficulty": "easy",
+    "question_text": "Personal Disposable Income = Personal Income - ________.",
+    "explanation": "Personal Disposable Income is the income available to individuals after paying direct personal taxes (such as income tax) and miscellaneous non-tax payments (such as fines, fees, penalties). The complete formula is: PDI = PI - Direct Personal Taxes - Non-Tax Payments. This represents the final income in the hands of households that they can choose to either consume or save. It is the last step in the income chain from National Income to the income actually at the disposal of individuals for their private use.",
+    "correct_answer": "A",
+    "concept_tags": ["Personal Disposable Income", "direct taxes", "non-tax payments"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Direct personal taxes and non-tax payments", "is_correct": true},
+      {"key": "B", "text": "Indirect taxes and subsidies", "is_correct": false},
+      {"key": "C", "text": "Corporate tax and undistributed profits", "is_correct": false},
+      {"key": "D", "text": "Depreciation and Net Factor Income from Abroad", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Indirect taxes and subsidies relate to the conversion between Market Price and Factor Cost aggregates, not to deriving Personal Disposable Income.", "misconception": "Confusing indirect taxes with direct personal taxes."},
+      {"option_key": "C", "hint": "Corporate tax and undistributed profits are deducted from National Income to arrive at Personal Income, not from Personal Income to arrive at PDI.", "misconception": "Mixing up the NI-to-PI step with the PI-to-PDI step."},
+      {"option_key": "D", "hint": "Depreciation and NFIA are macroeconomic adjustments (Gross to Net and Domestic to National), entirely unrelated to personal disposable income.", "misconception": "Applying macro aggregate conversion formulas to personal income derivation."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-13",
+    "question_type": "fill-in-the-blank",
+    "difficulty": "easy",
+    "question_text": "National Disposable Income (Net) = NNP_FC + Net Indirect Taxes + ________.",
+    "explanation": "The complete formula for Net National Disposable Income is: NNDI = NNP_FC + Net Indirect Taxes (NIT) + Net Current Transfers from the Rest of the World. NNP_FC is National Income, adding NIT converts it to NNP_MP, and adding Net Current Transfers from ROW gives the total disposable income of the nation. Net current transfers from ROW include workers' remittances, gifts, grants, and donations received from abroad minus those sent abroad. These transfers augment the nation's income available for consumption and saving without requiring any productive service in return.",
+    "correct_answer": "B",
+    "concept_tags": ["NNDI", "net current transfers", "Rest of the World"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Net Factor Income from Abroad", "is_correct": false},
+      {"key": "B", "text": "Net Current Transfers from the Rest of the World", "is_correct": true},
+      {"key": "C", "text": "Depreciation", "is_correct": false},
+      {"key": "D", "text": "Corporate Tax", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "NFIA is used to convert Domestic Product to National Product. NNP_FC already accounts for NFIA, so it is not added again in the NNDI formula.", "misconception": "Confusing Net Factor Income from Abroad with Net Current Transfers from ROW."},
+      {"option_key": "C", "hint": "Depreciation converts Gross to Net aggregates. Since we are already working with NNP (Net), depreciation has already been accounted for.", "misconception": "Adding depreciation to a measure that is already net of depreciation."},
+      {"option_key": "D", "hint": "Corporate tax is relevant when deriving Personal Income from National Income, not when computing National Disposable Income.", "misconception": "Mixing up Personal Income derivation with National Disposable Income formula."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-14",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "An economy reports the following data (in Rs crore): NDP at Factor Cost accruing to private sector = 40,000; Net Factor Income from Abroad = (-) 500; Current Transfers from Government = 3,000; Net Current Transfers from Rest of the World = 1,500; Income from Property and Entrepreneurship accruing to Government = 4,000; Savings of Non-Departmental Enterprises = 800. Calculate Private Income.",
+    "explanation": "Private Income = Factor Income from NDP accruing to Private Sector + NFIA + Current Transfers from Government + Net Current Transfers from ROW. Note: NFIA is added algebraically (it is negative here). Substituting: Private Income = 40,000 + (-500) + 3,000 + 1,500 = Rs 44,000 crore. Income from property and entrepreneurship accruing to government and savings of non-departmental enterprises are NOT included because they accrue to the government sector, not the private sector. Private Income captures only the income flowing to households and private enterprises from all sources.",
+    "correct_answer": "C",
+    "concept_tags": ["Private Income", "numerical problem", "NFIA", "government transfers", "scenario-based"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Rs 40,000 crore", "is_correct": false},
+      {"key": "B", "text": "Rs 43,200 crore", "is_correct": false},
+      {"key": "C", "text": "Rs 44,000 crore", "is_correct": true},
+      {"key": "D", "text": "Rs 48,800 crore", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Rs 40,000 is only the NDP_FC accruing to the private sector. Private Income also includes NFIA, government transfers, and net current transfers from ROW.", "misconception": "Equating Private Income with only the domestic factor income of the private sector."},
+      {"option_key": "B", "hint": "Rs 43,200 likely results from incorrectly deducting savings of non-departmental enterprises. These belong to the government sector and are not part of Private Income calculation.", "misconception": "Incorrectly deducting government enterprise savings from Private Income."},
+      {"option_key": "D", "hint": "Rs 48,800 probably includes income from government property and entrepreneurship. This income accrues to the government sector and must not be included in Private Income.", "misconception": "Including government sector income in Private Income."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-15",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "The Central Statistical Office of a country provides the following information (in Rs crore): National Income (NNP_FC) = 8,000; Corporate Tax = 500; Undistributed Profits = 300; Net Social Security Contributions = 200; Transfer Payments = 400; Direct Personal Taxes = 600. Calculate (i) Personal Income and (ii) Personal Disposable Income.",
+    "explanation": "Step 1: Personal Income (PI) = NI - Undistributed Profits - Corporate Tax - Net Social Security Contributions + Transfer Payments = 8,000 - 300 - 500 - 200 + 400 = Rs 7,400 crore. Step 2: Personal Disposable Income (PDI) = PI - Direct Personal Taxes = 7,400 - 600 = Rs 6,800 crore. This two-step calculation shows how income flows from the national aggregate level down to the amount actually available to households. Each deduction represents a leakage from the income stream that prevents it from reaching individuals directly.",
+    "correct_answer": "B",
+    "concept_tags": ["Personal Income", "Personal Disposable Income", "numerical problem", "two-step calculation"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "PI = Rs 7,400 crore; PDI = Rs 7,000 crore", "is_correct": false},
+      {"key": "B", "text": "PI = Rs 7,400 crore; PDI = Rs 6,800 crore", "is_correct": true},
+      {"key": "C", "text": "PI = Rs 8,400 crore; PDI = Rs 7,800 crore", "is_correct": false},
+      {"key": "D", "text": "PI = Rs 7,000 crore; PDI = Rs 6,400 crore", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "While PI = Rs 7,400 is correct, PDI should be 7,400 - 600 = Rs 6,800 crore. Rs 7,000 may result from an arithmetic error in subtracting direct personal taxes.", "misconception": "Arithmetic error in the second step of calculation."},
+      {"option_key": "C", "hint": "PI = Rs 8,400 results from adding corporate tax and undistributed profits instead of subtracting them. These are earned but not received by individuals and must be deducted.", "misconception": "Reversing the direction of corporate deductions in PI formula."},
+      {"option_key": "D", "hint": "PI = Rs 7,000 likely results from forgetting to add transfer payments. Transfer payments are received but not earned and must be added to arrive at Personal Income.", "misconception": "Omitting transfer payments from the Personal Income calculation."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-16",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following concepts in Column I with their correct descriptions in Column II:\n\nColumn I:\nP. Undistributed Profits\nQ. Transfer Payments\nR. Corporate Tax\nS. Net Social Security Contributions\n\nColumn II:\n1. Tax levied on the profits earned by corporations, paid to the government\n2. Payments received by households without rendering any productive service in return\n3. Portion of corporate profits retained by the firm for reinvestment and reserves\n4. Employees' contribution to social security schemes like provident fund, minus benefits received",
+    "explanation": "P-3: Undistributed profits (retained earnings) are the portion of after-tax corporate profits not distributed as dividends but kept within the firm for business expansion, reserves, or future investment. Q-2: Transfer payments are one-sided payments such as pensions, scholarships, unemployment benefits, and old-age benefits received by households without any corresponding productive service rendered. R-1: Corporate tax is the direct tax levied by the government on the net profits of corporations. S-4: Net social security contributions represent the excess of employees' contributions to schemes like provident fund and pension over the benefits they receive from such schemes.",
+    "correct_answer": "A",
+    "concept_tags": ["undistributed profits", "transfer payments", "corporate tax", "social security", "match-the-following"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "P-3, Q-2, R-1, S-4", "is_correct": true},
+      {"key": "B", "text": "P-2, Q-3, R-4, S-1", "is_correct": false},
+      {"key": "C", "text": "P-1, Q-4, R-3, S-2", "is_correct": false},
+      {"key": "D", "text": "P-3, Q-4, R-2, S-1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "This incorrectly matches undistributed profits with transfer payments. Undistributed profits are retained by corporations; transfer payments are received by households for free.", "misconception": "Confusing corporate retained earnings with government transfer payments."},
+      {"option_key": "C", "hint": "This matches undistributed profits with corporate tax description and corporate tax with retained earnings. These are distinct concepts — one is a tax, the other is voluntary retention.", "misconception": "Interchanging the definitions of corporate tax and undistributed profits."},
+      {"option_key": "D", "hint": "This incorrectly matches transfer payments with social security and corporate tax with transfer payments. Corporate tax is paid to government, not received from it.", "misconception": "Mixing up the direction of payment flows between corporations, households, and government."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-17",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following income aggregates in Column I with their correct formulas in Column II:\n\nColumn I:\nP. Personal Income\nQ. Personal Disposable Income\nR. Net National Disposable Income\nS. Gross National Disposable Income\n\nColumn II:\n1. NNP_MP + Net Current Transfers from ROW\n2. NI - Undistributed Profits - Corporate Tax - Net Social Security Contributions + Transfer Payments\n3. GNP_MP + Net Current Transfers from ROW\n4. Personal Income - Direct Personal Taxes - Non-Tax Payments",
+    "explanation": "P-2: Personal Income is derived from National Income by subtracting items earned but not received (undistributed profits, corporate tax, net social security contributions) and adding items received but not earned (transfer payments). Q-4: Personal Disposable Income is obtained by subtracting direct personal taxes and non-tax payments from Personal Income. R-1: Net National Disposable Income = NNP_MP + Net Current Transfers from ROW (equivalently, NNP_FC + NIT + Net Current Transfers from ROW). S-3: Gross National Disposable Income = GNP_MP + Net Current Transfers from ROW (the gross counterpart includes depreciation).",
+    "correct_answer": "B",
+    "concept_tags": ["Personal Income", "PDI", "NNDI", "GNDI", "formulas", "match-the-following"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "P-2, Q-4, R-3, S-1", "is_correct": false},
+      {"key": "B", "text": "P-2, Q-4, R-1, S-3", "is_correct": true},
+      {"key": "C", "text": "P-4, Q-2, R-1, S-3", "is_correct": false},
+      {"key": "D", "text": "P-2, Q-1, R-4, S-3", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This swaps NNDI and GNDI formulas. NNDI uses NNP_MP (Net) while GNDI uses GNP_MP (Gross). Net uses net product, Gross uses gross product.", "misconception": "Confusing the Net and Gross versions of National Disposable Income."},
+      {"option_key": "C", "hint": "This swaps PI and PDI formulas. Personal Income is derived from National Income using corporate adjustments; PDI is derived from PI using direct tax deductions.", "misconception": "Interchanging the formulas for Personal Income and Personal Disposable Income."},
+      {"option_key": "D", "hint": "This incorrectly matches PDI with the NNDI formula and NNDI with the PDI formula. These are entirely different concepts at different levels of aggregation.", "misconception": "Confusing national-level disposable income with personal-level disposable income."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-18",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following income concepts in the correct logical sequence from the broadest national aggregate to the narrowest individual-level measure:\n1. Personal Disposable Income\n2. National Income (NNP_FC)\n3. Personal Income\n4. Private Income",
+    "explanation": "The correct sequence from broadest to narrowest is: National Income (NNP_FC) → Private Income → Personal Income → Personal Disposable Income. National Income (2) is the broadest measure covering all factor incomes of the nation. Private Income (4) narrows it to the private sector by excluding government sector income but adding transfers. Personal Income (3) further narrows by removing corporate retentions (undistributed profits, corporate tax). Personal Disposable Income (1) is the narrowest, being what remains after deducting direct personal taxes. Each step represents a progressive narrowing of the income flow toward individual households.",
+    "correct_answer": "C",
+    "concept_tags": ["income hierarchy", "logical-sequence", "NI", "PI", "PDI", "Private Income"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "1 → 3 → 4 → 2", "is_correct": false},
+      {"key": "B", "text": "2 → 3 → 4 → 1", "is_correct": false},
+      {"key": "C", "text": "2 → 4 → 3 → 1", "is_correct": true},
+      {"key": "D", "text": "4 → 2 → 1 → 3", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This sequence starts with the narrowest measure (PDI) and ends with the broadest (NI). The question asks for broadest to narrowest, which is the reverse direction.", "misconception": "Reversing the order from narrowest to broadest instead of broadest to narrowest."},
+      {"option_key": "B", "hint": "This places Personal Income before Private Income. Private Income is broader than Personal Income because it includes corporate tax and undistributed profits.", "misconception": "Assuming Personal Income is broader than Private Income."},
+      {"option_key": "D", "hint": "This places Private Income before National Income. National Income is a broader aggregate covering the entire economy, while Private Income covers only the private sector.", "misconception": "Thinking Private Income is a broader concept than National Income."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-19",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "Arrange the following steps in the correct order to derive Net National Disposable Income from GDP at Market Price:\n1. Add Net Current Transfers from the Rest of the World\n2. Subtract Depreciation (Consumption of Fixed Capital)\n3. Add Net Factor Income from Abroad (NFIA)\n4. The result is Net National Disposable Income",
+    "explanation": "The correct sequence is: Start with GDP_MP → Subtract Depreciation to get NDP_MP (Step 2) → Add NFIA to get NNP_MP (Step 3) → Add Net Current Transfers from ROW (Step 1) → Arrive at NNDI (Step 4). The order follows the standard conversion chain: GDP_MP → NDP_MP (Gross to Net via depreciation) → NNP_MP (Domestic to National via NFIA) → NNDI (adding external transfers). Each step modifies the aggregate progressively. Note that the order of steps 2 and 3 could theoretically be swapped, but the conventional approach goes from Gross→Net first, then Domestic→National.",
+    "correct_answer": "A",
+    "concept_tags": ["NNDI derivation", "logical-sequence", "GDP_MP", "depreciation", "NFIA"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "2 → 3 → 1 → 4", "is_correct": true},
+      {"key": "B", "text": "3 → 1 → 2 → 4", "is_correct": false},
+      {"key": "C", "text": "1 → 2 → 3 → 4", "is_correct": false},
+      {"key": "D", "text": "3 → 2 → 4 → 1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "This starts with NFIA before subtracting depreciation. While algebraically the final result is the same, the conventional order is to first convert from Gross to Net (depreciation), then from Domestic to National (NFIA).", "misconception": "Applying the Domestic-to-National conversion before the Gross-to-Net conversion."},
+      {"option_key": "C", "hint": "This starts with adding net current transfers. These transfers should be added last, after arriving at NNP_MP, to get National Disposable Income.", "misconception": "Adding net current transfers before completing the conversion to NNP_MP."},
+      {"option_key": "D", "hint": "This places the result (Step 4) before adding net current transfers (Step 1). The final answer must come after all adjustments are completed.", "misconception": "Arriving at NNDI before completing all necessary adjustments."}
+    ]
+  },
+  {
+    "id": "eco-ni-disp-20",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "Study the following flow diagram showing the derivation of Personal Income from National Income:\n\nNational Income (NNP_FC)\n    |\n    | (−) Box X\n    | (−) Box Y\n    | (−) Net Social Security Contributions\n    | (+) Box Z\n    |\n    v\nPersonal Income (PI)\n\nIdentify the correct values of Box X, Box Y, and Box Z respectively.",
+    "explanation": "The flow diagram shows the standard derivation of Personal Income from National Income. The formula is: PI = NI - Undistributed Profits - Corporate Tax - Net Social Security Contributions + Transfer Payments. In the diagram, three items are subtracted and one is added. Since Net Social Security Contributions is already shown as a subtraction, Box X and Box Y must be the other two subtractions: Undistributed Profits and Corporate Tax (in either order). Box Z is the addition: Transfer Payments. The correct identification is X = Undistributed Profits, Y = Corporate Tax, Z = Transfer Payments. These adjustments convert the income earned by the entire economy into the income actually received by individuals.",
+    "correct_answer": "B",
+    "concept_tags": ["Personal Income", "diagram-based", "flow chart", "undistributed profits", "corporate tax", "transfer payments"],
+    "topic": "Personal Income and National Disposable Income",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "X = Depreciation, Y = NFIA, Z = Subsidies", "is_correct": false},
+      {"key": "B", "text": "X = Undistributed Profits, Y = Corporate Tax, Z = Transfer Payments", "is_correct": true},
+      {"key": "C", "text": "X = Indirect Taxes, Y = Depreciation, Z = NFIA", "is_correct": false},
+      {"key": "D", "text": "X = Corporate Tax, Y = Transfer Payments, Z = Undistributed Profits", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Depreciation and NFIA are used for Gross-to-Net and Domestic-to-National conversions respectively. They have no role in the NI-to-PI derivation. Subsidies are part of Net Indirect Taxes, not PI formula.", "misconception": "Confusing macro aggregate conversions with Personal Income derivation steps."},
+      {"option_key": "C", "hint": "Indirect taxes and depreciation belong to entirely different conversion formulas (MP to FC and Gross to Net). The NI-to-PI derivation involves corporate sector adjustments and transfer payments only.", "misconception": "Applying the wrong set of adjustments to the NI-to-PI conversion."},
+      {"option_key": "D", "hint": "This option places Transfer Payments as a subtraction (Box Y) and Undistributed Profits as an addition (Box Z). Transfer Payments must be added (+), not subtracted, and Undistributed Profits must be subtracted (-), not added.", "misconception": "Reversing the signs of transfer payments and undistributed profits in the PI formula."}
+    ]
+  }
+]
