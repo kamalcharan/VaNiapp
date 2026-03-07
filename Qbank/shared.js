@@ -2593,9 +2593,32 @@ async function fixMTFPayload(questions) {
     if (!text) { results.skipped++; continue; }
 
     // Parse columns from question text
-    const parsed = _parseMTFColumns(text);
+    let parsed = _parseMTFColumns(text);
+
+    // If text parse failed, try extracting columns from payload.options
     if (parsed.columnA.length < 2 || parsed.columnB.length < 2) {
-      console.log(`[fixMTF] Parse failed for ${q.id}: colA=${parsed.columnA.length}, colB=${parsed.columnB.length}, text="${text.substring(0, 300)}"`);
+      const payloadOpts = payload.options || [];
+      if (Array.isArray(payloadOpts) && payloadOpts.length > 0) {
+        // payload.options might contain column items as objects with key/text
+        console.log(`[fixMTF] Text parse failed, trying payload.options:`, JSON.stringify(payloadOpts.slice(0, 2)));
+        // Try combining all option texts and re-parse
+        const optTexts = payloadOpts.map(o => (o.text || o.option_text || '')).join('\n');
+        if (optTexts) {
+          const fromOpts = _parseMTFColumns(text + '\n' + optTexts);
+          if (fromOpts.columnA.length >= 2 && fromOpts.columnB.length >= 2) {
+            parsed = fromOpts;
+          }
+        }
+      }
+    }
+
+    // If still failed, try extracting from DB option texts (they often contain "A-1, B-2" mapping patterns)
+    if (parsed.columnA.length < 2 || parsed.columnB.length < 2) {
+      const dbOpts = q.med_question_options || [];
+      if (dbOpts.length > 0) {
+        console.log(`[fixMTF] Trying DB options:`, dbOpts.map(o => `${o.option_key}: ${(o.option_text||'').substring(0,100)}`));
+      }
+      console.log(`[fixMTF] Parse failed for ${q.id}: colA=${parsed.columnA.length}, colB=${parsed.columnB.length}`);
       results.skipped++;
       results.details.push({
         id: q.id,
