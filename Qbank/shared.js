@@ -2810,6 +2810,139 @@ async function fixMTFDuplicateKeys(questions) {
 }
 
 // ============================================================================
+// AUTO-FIX: Backfill missing elimination hints from payload
+// ============================================================================
+
+/**
+ * For questions flagged NO_ELIMINATION_HINTS, check if payload.elimination_hints
+ * has the data and insert rows into med_elimination_hints table.
+ *
+ * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
+ * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
+ */
+async function fixMissingHints(questions) {
+  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  for (const q of questions) {
+    const payload = q.payload || {};
+    const payloadHints = payload.elimination_hints || [];
+
+    // Skip if payload has no hints data either — nothing to backfill from
+    if (!Array.isArray(payloadHints) || payloadHints.length === 0) {
+      results.skipped++;
+      results.details.push({ id: q.id, status: 'skipped', reason: 'No hints in payload' });
+      continue;
+    }
+
+    // Check if hints already exist in the table (avoid duplicates)
+    const { data: existing } = await SUPABASE
+      .from('med_elimination_hints')
+      .select('option_key')
+      .eq('question_id', q.id);
+
+    if (existing && existing.length > 0) {
+      results.skipped++;
+      continue;
+    }
+
+    // Insert hints from payload
+    const hintRecords = payloadHints.map(h => ({
+      question_id: q.id,
+      option_key: h.option_key,
+      hint_text: h.hint || h.hint_text || '',
+      misconception: h.misconception || ''
+    })).filter(h => h.option_key && h.hint_text);
+
+    if (hintRecords.length === 0) {
+      results.skipped++;
+      results.details.push({ id: q.id, status: 'skipped', reason: 'Hints have no text' });
+      continue;
+    }
+
+    const { error } = await SUPABASE
+      .from('med_elimination_hints')
+      .insert(hintRecords);
+
+    if (error) {
+      console.error(`[fixMissingHints] Failed to insert hints for ${q.id}:`, error);
+      results.errors++;
+      results.details.push({ id: q.id, status: 'error', error: error.message });
+    } else {
+      results.fixed++;
+      results.details.push({ id: q.id, status: 'fixed', hintsInserted: hintRecords.length });
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
+// AUTO-FIX: Backfill missing sequence items from question_text
+// ============================================================================
+
+/**
+ * For sequence questions flagged SEQ_NO_ITEMS, parse numbered items from
+ * question_text and derive correct_order from the correct option.
+ *
+ * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
+ * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
+ */
+async function fixMissingSequenceItems(questions) {
+  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  for (const q of questions) {
+    if (q.question_type !== 'logical-sequence') { results.skipped++; continue; }
+
+    const payload = q.payload || {};
+    // Skip if already has items
+    if (Array.isArray(payload.items) && payload.items.length > 0) {
+      results.skipped++;
+      continue;
+    }
+
+    const text = q.question_text || '';
+    const items = _parseSequenceItems(text);
+    if (items.length < 2) {
+      results.skipped++;
+      results.details.push({ id: q.id, status: 'skipped', reason: `Parsed ${items.length} items` });
+      continue;
+    }
+
+    // Derive correct_order from the correct option
+    const opts = q.med_question_options || q.options || [];
+    const correctOpt = opts.find(o => o.is_correct === true) ||
+                       opts.find(o => (o.option_key || o.key) === q.correct_answer);
+    let correctOrder = [];
+    if (correctOpt) {
+      correctOrder = _parseSequenceOrder(correctOpt.option_text || correctOpt.text || '');
+    }
+
+    const newPayload = { ...payload, items };
+    if (correctOrder.length >= 2) newPayload.correct_order = correctOrder;
+
+    const { error } = await SUPABASE
+      .from('med_questions')
+      .update({ payload: newPayload, corrected_at: new Date().toISOString() })
+      .eq('id', q.id);
+
+    if (error) {
+      console.error(`[fixSeqItems] Failed to update ${q.id}:`, error);
+      results.errors++;
+      results.details.push({ id: q.id, status: 'error', error: error.message });
+    } else {
+      results.fixed++;
+      results.details.push({ id: q.id, status: 'fixed', itemCount: items.length, hasOrder: correctOrder.length >= 2 });
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
 // EXPORT FOR USE IN HTML
 // ============================================================================
 window.Qbank = {
@@ -2896,6 +3029,8 @@ window.Qbank = {
   fixEmptyOptions,
   fixMTFPayload,
   fixMTFDuplicateKeys,
+  fixMissingHints,
+  fixMissingSequenceItems,
 
   // State access
   get config() { return CONFIG; },
