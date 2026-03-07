@@ -2871,28 +2871,35 @@ async function fixMissingHints(questions, sourceData) {
       continue;
     }
 
-    // Parse hints — handle all known field name variants
-    const hintRecords = rawHints.map(h => {
+    // Determine wrong option keys (all options except correct answer)
+    const correctAns = (q.correct_answer || '').toUpperCase();
+    const allOptionKeys = ['A', 'B', 'C', 'D'];
+    const wrongKeys = allOptionKeys.filter(k => k !== correctAns);
+
+    // Parse hints — handle objects, "A text" strings, AND plain text strings
+    const hintRecords = [];
+    let plainStringIdx = 0;
+    for (const h of rawHints) {
       if (typeof h === 'string') {
+        // Try "A some hint text" format first
         const match = h.match(/^([A-D])\s+(.+)$/s);
-        if (match) return { question_id: q.id, option_key: match[1], hint_text: match[2].trim(), misconception: '' };
-        return null;
+        if (match) {
+          hintRecords.push({ question_id: q.id, option_key: match[1], hint_text: match[2].trim(), misconception: '' });
+        } else if (h.trim().length > 0 && plainStringIdx < wrongKeys.length) {
+          // Plain string — assign to next wrong option in order
+          hintRecords.push({ question_id: q.id, option_key: wrongKeys[plainStringIdx], hint_text: h.trim(), misconception: '' });
+          plainStringIdx++;
+        }
+      } else if (h && typeof h === 'object') {
+        const hintText = h.hint || h.hint_text || h.text || h.description || '';
+        const optKey = h.option_key || h.key || h.optionKey || '';
+        if (optKey && hintText) {
+          hintRecords.push({ question_id: q.id, option_key: optKey, hint_text: hintText, misconception: h.misconception || '' });
+        }
       }
-      const hintText = h.hint || h.hint_text || h.text || h.description || '';
-      const optKey = h.option_key || h.key || h.optionKey || '';
-      return {
-        question_id: q.id,
-        option_key: optKey,
-        hint_text: hintText,
-        misconception: h.misconception || ''
-      };
-    }).filter(h => h && h.option_key && h.hint_text);
+    }
 
     if (hintRecords.length === 0) {
-      // Log the raw structure so we can see what fields are actually present
-      if (rawHints.length > 0) {
-        console.log('[fixMissingHints] Hint has no text. Raw hint keys:', Object.keys(rawHints[0]), 'values:', JSON.stringify(rawHints[0]));
-      }
       results.skipped++;
       continue;
     }
