@@ -2829,15 +2829,18 @@ async function fixMissingHints(questions, sourceData) {
 
   const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
 
-  // Build lookup from source data by normalised question_text
-  const sourceMap = new Map();
+  // Build lookups from source data — by question_id AND by normalised text
+  const sourceById = new Map();
+  const sourceByText = new Map();
   if (Array.isArray(sourceData)) {
     for (const sq of sourceData) {
       if (sq.elimination_hints && sq.elimination_hints.length > 0) {
+        if (sq.id) sourceById.set(sq.id, sq.elimination_hints);
         const key = _normalizeText(sq.question_text || '');
-        if (key) sourceMap.set(key, sq.elimination_hints);
+        if (key) sourceByText.set(key, sq.elimination_hints);
       }
     }
+    console.log(`[fixMissingHints] Source loaded: ${sourceById.size} by ID, ${sourceByText.size} by text`);
   }
 
   // Batch check: fetch all existing hints for these question IDs in one query
@@ -2862,19 +2865,36 @@ async function fixMissingHints(questions, sourceData) {
       continue;
     }
 
-    // Source 1: payload.elimination_hints
+    // Try multiple sources to find hints
     const payload = q.payload || {};
-    let rawHints = payload.elimination_hints || [];
+    let rawHints = null;
+    let matchSource = '';
 
-    // Source 2: match from uploaded source JSON by question text
-    if ((!Array.isArray(rawHints) || rawHints.length === 0) && sourceMap.size > 0) {
-      const key = _normalizeText(q.question_text || '');
-      rawHints = sourceMap.get(key) || [];
+    // Source 1: payload.elimination_hints (stored during bulk insert)
+    if (Array.isArray(payload.elimination_hints) && payload.elimination_hints.length > 0) {
+      rawHints = payload.elimination_hints;
+      matchSource = 'payload';
     }
 
-    if (!Array.isArray(rawHints) || rawHints.length === 0) {
+    // Source 2: match source JSON by payload.question_id → source.id
+    if (!rawHints && sourceById.size > 0 && payload.question_id) {
+      rawHints = sourceById.get(payload.question_id) || null;
+      if (rawHints) matchSource = 'source-id:' + payload.question_id;
+    }
+
+    // Source 3: match source JSON by normalised question text
+    if (!rawHints && sourceByText.size > 0) {
+      const key = _normalizeText(q.question_text || '');
+      rawHints = sourceByText.get(key) || null;
+      if (rawHints) matchSource = 'source-text';
+    }
+
+    if (!rawHints || !Array.isArray(rawHints) || rawHints.length === 0) {
       results.skipped++;
-      results.details.push({ id: q.id, status: 'skipped', reason: 'No hints in payload or source' });
+      results.details.push({
+        id: q.id, status: 'skipped',
+        reason: `No hints found (payload_qid=${payload.question_id || 'none'}, text=${(q.question_text||'').substring(0,50)}...)`
+      });
       continue;
     }
 
@@ -2902,7 +2922,7 @@ async function fixMissingHints(questions, sourceData) {
     }
 
     allHintRecords.push(...hintRecords);
-    results.details.push({ id: q.id, status: 'fixed', hintsInserted: hintRecords.length });
+    results.details.push({ id: q.id, status: 'fixed', hintsInserted: hintRecords.length, source: matchSource });
     results.fixed++;
   }
 
