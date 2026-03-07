@@ -2868,13 +2868,25 @@ async function fixMissingHints(questions, sourceData) {
       continue;
     }
 
-    // Insert hints
-    const hintRecords = rawHints.map(h => ({
-      question_id: q.id,
-      option_key: h.option_key,
-      hint_text: h.hint || h.hint_text || '',
-      misconception: h.misconception || ''
-    })).filter(h => h.option_key && h.hint_text);
+    // Insert hints — handle both formats:
+    //   1. Array of objects: [{option_key, hint, misconception}]
+    //   2. Array of strings: ["A incorrectly assumes...", "B ignores..."]
+    const hintRecords = rawHints.map(h => {
+      if (typeof h === 'string') {
+        // Parse option key from start of string: "A incorrectly..." → key="A", text="incorrectly..."
+        const match = h.match(/^([A-D])\s+(.+)$/s);
+        if (match) {
+          return { question_id: q.id, option_key: match[1], hint_text: match[2].trim(), misconception: '' };
+        }
+        return null;
+      }
+      return {
+        question_id: q.id,
+        option_key: h.option_key,
+        hint_text: h.hint || h.hint_text || '',
+        misconception: h.misconception || ''
+      };
+    }).filter(h => h && h.option_key && h.hint_text);
 
     if (hintRecords.length === 0) {
       results.skipped++;
