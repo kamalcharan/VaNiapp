@@ -483,7 +483,8 @@ async function main() {
             // Fill-in-blanks fields
             ...(q.text_with_blanks && { text_with_blanks: q.text_with_blanks }),
             // Logical-sequence fields
-            ...(q.sequence_items && { sequence_items: q.sequence_items }),
+            ...(q.items && { items: q.items }),
+            ...(q.correct_order && { correct_order: q.correct_order }),
             // Scenario-based fields
             ...(q.scenario && { scenario: q.scenario }),
           },
