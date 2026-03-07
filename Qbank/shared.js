@@ -2896,7 +2896,7 @@ async function fixMissingHints(questions, sourceData) {
 
     const { error } = await SUPABASE
       .from('med_elimination_hints')
-      .insert(hintRecords);
+      .upsert(hintRecords, { onConflict: 'question_id,option_key' });
 
     if (error) {
       console.error(`[fixMissingHints] Failed to insert hints for ${q.id}:`, error);
