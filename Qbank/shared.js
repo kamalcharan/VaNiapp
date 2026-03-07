@@ -2619,12 +2619,19 @@ async function fixMTFPayload(questions) {
         console.log(`[fixMTF] Trying DB options:`, dbOpts.map(o => `${o.option_key}: ${(o.option_text||'').substring(0,100)}`));
       }
       console.log(`[fixMTF] Parse failed for ${q.id}: colA=${parsed.columnA.length}, colB=${parsed.columnB.length}`);
-      results.skipped++;
-      results.details.push({
-        id: q.id,
-        status: 'skipped',
-        reason: `Parsed colA=${parsed.columnA.length}, colB=${parsed.columnB.length}`
-      });
+      // Column data is missing everywhere — mark question as draft so it doesn't show with broken UI
+      const { error: draftErr } = await SUPABASE
+        .from('med_questions')
+        .update({ status: 'draft', corrected_at: new Date().toISOString() })
+        .eq('id', q.id);
+      if (draftErr) {
+        console.error(`[fixMTF] Failed to mark ${q.id} as draft:`, draftErr);
+        results.errors++;
+        results.details.push({ id: q.id, status: 'error', error: draftErr.message });
+      } else {
+        results.fixed++;
+        results.details.push({ id: q.id, status: 'fixed', action: 'marked-draft (column data missing, needs manual edit)' });
+      }
       continue;
     }
 
