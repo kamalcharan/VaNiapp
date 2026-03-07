@@ -558,13 +558,12 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   poolGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
     gap: Spacing.sm,
     overflow: 'visible',
   },
   poolChip: {
     borderRadius: BorderRadius.md,
+    width: '100%',
   },
   poolChipInner: {
     flexDirection: 'row',

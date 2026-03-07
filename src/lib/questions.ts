@@ -466,6 +466,14 @@ function buildPayload(
 
 /** Parse array of column/sequence items from DB payload JSON */
 function parseColumnItemsFromJson(data: unknown): { id: string; text: string; textTe: string; textHi: string }[] {
+  // Handle JSON string (e.g. Supabase returning stringified JSON)
+  if (typeof data === 'string') {
+    try {
+      data = JSON.parse(data);
+    } catch {
+      return [];
+    }
+  }
   if (!Array.isArray(data)) return [];
   return data.map((item: Record<string, unknown>) => ({
     id: String(item.id ?? ''),
