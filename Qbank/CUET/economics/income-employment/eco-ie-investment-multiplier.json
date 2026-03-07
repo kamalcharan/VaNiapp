@@ -1,0 +1,496 @@
+[
+  {
+    "id": "eco-ie-investment-multiplier-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The investment multiplier (K) is defined as:",
+    "explanation": "The investment multiplier (K) is the ratio of change in income (ΔY) to the change in investment (ΔI) that caused it. K = ΔY/ΔI. It shows how many times income increases relative to the initial increase in investment. For example, if an investment of ₹100 crore leads to an income increase of ₹500 crore, the multiplier is 5. The multiplier works because one person's spending becomes another person's income, creating successive rounds of spending.",
+    "correct_answer": "A",
+    "concept_tags": ["investment-multiplier", "definition", "change-in-income"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "The ratio of change in income to change in investment (ΔY/ΔI)", "is_correct": true},
+      {"key": "B", "text": "The ratio of total income to total investment (Y/I)", "is_correct": false},
+      {"key": "C", "text": "The ratio of change in investment to change in income (ΔI/ΔY)", "is_correct": false},
+      {"key": "D", "text": "The ratio of consumption to saving (C/S)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Y/I is a ratio of total (not changes in) income and investment. The multiplier specifically measures how a CHANGE in investment causes a CHANGE in income — it is about increments, not totals.", "misconception": "Confusing the multiplier (a marginal/change concept) with a ratio of total values."},
+      {"option_key": "C", "hint": "ΔI/ΔY is the INVERSE of the multiplier. The multiplier shows how much income changes PER unit of investment change, not how much investment changes per unit of income change.", "misconception": "Inverting the multiplier formula."},
+      {"option_key": "D", "hint": "C/S is the ratio of total consumption to total saving, which is not the multiplier. The multiplier formula involves marginal propensities: K = 1/(1−MPC) = 1/MPS.", "misconception": "Confusing the multiplier with the consumption-saving ratio."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The formula for the investment multiplier in terms of MPC is:",
+    "explanation": "The investment multiplier K = 1/(1 − MPC). Since MPC + MPS = 1, this is equivalent to K = 1/MPS. For example, if MPC = 0.8, K = 1/(1−0.8) = 1/0.2 = 5. This means every ₹1 of additional investment generates ₹5 of additional income. The formula is derived from the geometric series of spending rounds: ΔY = ΔI + ΔI·c + ΔI·c² + ... = ΔI × 1/(1−c).",
+    "correct_answer": "C",
+    "concept_tags": ["multiplier-formula", "MPC", "MPS"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "K = 1/MPC", "is_correct": false},
+      {"key": "B", "text": "K = MPC/(1 − MPC)", "is_correct": false},
+      {"key": "C", "text": "K = 1/(1 − MPC)", "is_correct": true},
+      {"key": "D", "text": "K = 1 − MPC", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "K = 1/MPC would give a multiplier of 1.25 when MPC = 0.8. But the correct multiplier with MPC = 0.8 is 1/0.2 = 5. The formula uses 1/(1−MPC), not 1/MPC.", "misconception": "Using MPC directly in the denominator instead of (1 − MPC)."},
+      {"option_key": "B", "hint": "K = MPC/(1−MPC) would give 0.8/0.2 = 4 when MPC = 0.8. The correct value is 5. The numerator is 1, not MPC.", "misconception": "Incorrectly placing MPC in the numerator of the multiplier formula."},
+      {"option_key": "D", "hint": "K = 1 − MPC would give 0.2 when MPC = 0.8. This is actually MPS, not the multiplier. The multiplier is the RECIPROCAL of MPS: K = 1/MPS = 1/(1−MPC).", "misconception": "Confusing the multiplier formula with MPS (which is 1 − MPC)."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-03",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The value of the investment multiplier is directly related to:",
+    "explanation": "The multiplier K = 1/(1−MPC). As MPC increases, (1−MPC) decreases, and K increases. Therefore, the multiplier has a DIRECT (positive) relationship with MPC. Higher MPC means people spend a larger fraction of additional income, creating stronger successive rounds of spending. For instance, MPC = 0.5 gives K = 2, MPC = 0.8 gives K = 5, and MPC = 0.9 gives K = 10. Conversely, the multiplier has an INVERSE relationship with MPS.",
+    "correct_answer": "B",
+    "concept_tags": ["multiplier", "MPC", "direct-relationship"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "MPS — higher MPS means higher multiplier", "is_correct": false},
+      {"key": "B", "text": "MPC — higher MPC means higher multiplier", "is_correct": true},
+      {"key": "C", "text": "Rate of interest — higher interest rate means higher multiplier", "is_correct": false},
+      {"key": "D", "text": "Tax rate — higher tax rate means higher multiplier", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "MPS has an INVERSE relationship with the multiplier. K = 1/MPS — as MPS increases, the denominator grows, and the multiplier DECREASES. Higher saving means less spending in each round.", "misconception": "Confusing direct and inverse relationships — MPS is inversely related to the multiplier."},
+      {"option_key": "C", "hint": "The rate of interest affects investment decisions (how much firms invest) but does NOT determine the multiplier value. The multiplier depends solely on MPC (or MPS), not on interest rates.", "misconception": "Thinking the interest rate determines the multiplier rather than the level of investment."},
+      {"option_key": "D", "hint": "Higher taxes reduce disposable income and effective spending power, which would REDUCE the multiplier effect. In the basic model, the multiplier depends on MPC, not tax rates.", "misconception": "Thinking higher taxes increase the multiplier when they actually dampen it."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The minimum value of the investment multiplier is:",
+    "explanation": "The multiplier K = 1/(1−MPC) = 1/MPS. The minimum value of K occurs when MPS is at its maximum. Since 0 < MPC < 1, MPS ranges between 0 and 1 (exclusive). When MPS approaches 1 (MPC approaches 0), K approaches 1. When MPS approaches 0 (MPC approaches 1), K approaches infinity. Therefore, the multiplier ranges from just above 1 to infinity: 1 < K < ∞. The minimum value is 1 (approached but never reached), meaning income increases by at least as much as the initial investment.",
+    "correct_answer": "A",
+    "concept_tags": ["multiplier-range", "minimum-value", "MPC-MPS-limits"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "1 (when MPC = 0, the entire additional income is saved)", "is_correct": true},
+      {"key": "B", "text": "0 (when there is no consumption)", "is_correct": false},
+      {"key": "C", "text": "Infinity (when MPC = 1)", "is_correct": false},
+      {"key": "D", "text": "0.5 (when MPC = MPS)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The multiplier can never be zero. Even if MPC = 0 (nobody spends additional income), the initial investment itself adds to income (ΔY = ΔI). So the minimum K = ΔY/ΔI = 1, not 0.", "misconception": "Forgetting that the initial investment itself creates income, giving a minimum multiplier of 1."},
+      {"option_key": "C", "hint": "Infinity is the MAXIMUM (theoretical) value of the multiplier, not the minimum. K → ∞ when MPC → 1 (all additional income is respent). The question asks for the minimum.", "misconception": "Confusing the maximum value with the minimum value of the multiplier."},
+      {"option_key": "D", "hint": "When MPC = MPS = 0.5, K = 1/(1−0.5) = 2, not 0.5. The minimum value of the multiplier is 1 (when MPC → 0), not 2.", "misconception": "Miscalculating the multiplier when MPC = 0.5 and confusing it with the minimum value."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-05",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The multiplier process works through:",
+    "explanation": "The multiplier process operates through successive rounds of consumption spending. When investment increases by ΔI, it becomes income for workers and suppliers. These recipients spend a fraction (MPC) of this income on consumption, which becomes income for others. These recipients again spend MPC of their additional income, and so on. Each round adds less income than the previous one (because MPC < 1, and each term is MPC times the previous). The total increase in income is the sum of this infinite geometric series: ΔY = ΔI(1 + c + c² + c³ + ...) = ΔI × 1/(1−c).",
+    "correct_answer": "D",
+    "concept_tags": ["multiplier-process", "successive-rounds", "consumption-spending", "geometric-series"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "A single round of spending equal to the initial investment", "is_correct": false},
+      {"key": "B", "text": "Successive rounds of saving that keep accumulating", "is_correct": false},
+      {"key": "C", "text": "Government printing additional money for each round", "is_correct": false},
+      {"key": "D", "text": "Successive rounds of consumption spending, each smaller than the previous", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "If only a single round occurred, the multiplier would be exactly 1 (ΔY = ΔI). The whole point of the multiplier is that there are MULTIPLE rounds of spending, each creating new income and new spending.", "misconception": "Thinking the multiplier effect occurs in a single round without successive spending."},
+      {"option_key": "B", "hint": "The multiplier works through successive rounds of CONSUMPTION (spending), not saving. Saving is the leakage that reduces each successive round. It is the SPENDING that creates new income, not saving.", "misconception": "Confusing the driver of the multiplier (consumption) with the leakage (saving)."},
+      {"option_key": "C", "hint": "The multiplier does not require printing money. The same money circulates through the economy — each person's spending becomes another's income. No new money creation is needed for the multiplier to work.", "misconception": "Thinking the multiplier requires money creation rather than the circulation of existing spending."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-06",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The multiplier works in both forward and backward directions.\nReason (R): Just as an increase in investment leads to a multiplied increase in income, a decrease in investment leads to a multiplied decrease in income.",
+    "explanation": "Both A and R are true, and R correctly explains A. The multiplier is symmetric — it amplifies both increases and decreases in autonomous spending. If investment falls by ΔI, income falls by K × ΔI through successive rounds of reduced spending. When firms cut investment, their suppliers earn less, spend less, causing further income reductions. The same multiplier value applies in both directions. This is why the multiplier can be destabilizing — small drops in investment can cause large contractions (as seen in recessions).",
+    "correct_answer": "A",
+    "concept_tags": ["forward-backward-multiplier", "symmetric", "contraction"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The reason precisely defines WHAT forward and backward multiplier means: forward = increase in I → multiplied increase in Y; backward = decrease in I → multiplied decrease in Y. This is the exact explanation.", "misconception": "Failing to see that the reason defines the forward and backward directions mentioned in the assertion."},
+      {"option_key": "C", "hint": "The reason is correct — a decrease in investment does cause a multiplied decrease in income. The same consumption chain works in reverse: reduced investment → reduced income → reduced consumption → further reduced income.", "misconception": "Denying that the multiplier works for decreases in investment."},
+      {"option_key": "D", "hint": "The assertion is true — the multiplier does work in both directions. This is well-established in Keynesian economics and is why recessions can deepen rapidly through the negative multiplier effect.", "misconception": "Thinking the multiplier only amplifies increases, not decreases."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-07",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): If MPC = 1, the multiplier would be infinite.\nReason (R): When MPC = 1, the entire additional income is consumed and nothing is saved, so the spending chain never diminishes.",
+    "explanation": "Both A and R are true, and R correctly explains A. If MPC = 1, then K = 1/(1−1) = 1/0 = ∞. Economically, this means every rupee of additional income is spent entirely on consumption with zero saving. Each round of spending generates the same amount of income as the previous round (no leakage through saving), so the spending chain continues indefinitely without diminishing. However, MPC = 1 is a theoretical extreme — in reality, MPC is always less than 1, so the multiplier is finite.",
+    "correct_answer": "A",
+    "concept_tags": ["MPC-equals-1", "infinite-multiplier", "theoretical-extreme"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The reason directly explains WHY the multiplier is infinite: zero saving means zero leakage, so the spending chain never diminishes. This is the precise mechanism — the explanation is causal and complete.", "misconception": "Not connecting zero saving (MPC = 1) with the non-diminishing spending chain that produces infinite multiplier."},
+      {"option_key": "C", "hint": "The reason is factually correct. When MPC = 1, MPS = 0, meaning all additional income is consumed. With no saving, there is no leakage from the spending stream, so each round equals the previous one.", "misconception": "Thinking some saving occurs even when MPC = 1."},
+      {"option_key": "D", "hint": "The assertion is mathematically correct: K = 1/(1−MPC) = 1/(1−1) = 1/0 = ∞. Division by zero yields infinity, confirming the infinite multiplier at MPC = 1.", "misconception": "Incorrectly computing 1/(1−1) or thinking the multiplier has a finite upper bound."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-08",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Saving is considered a leakage in the multiplier process.\nReason (R): The portion of income that is saved is not spent on consumption and therefore does not create additional income in the next round.",
+    "explanation": "Both A and R are true, and R correctly explains A. In the multiplier process, each round of spending generates new income. The portion consumed (MPC) flows to the next round as new income, keeping the chain going. The portion saved (MPS) 'leaks out' of the spending stream and does not generate further income through consumption. Saving thus weakens the multiplier effect. Higher saving (higher MPS) means more leakage and a smaller multiplier. This is why K = 1/MPS — the multiplier is inversely related to the leakage.",
+    "correct_answer": "A",
+    "concept_tags": ["saving-leakage", "multiplier-process", "spending-stream"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The reason precisely explains WHY saving is a leakage: it exits the spending stream and doesn't create next-round income. This is the definition of a leakage — the explanation is direct and causal.", "misconception": "Not recognizing that the reason defines exactly what makes saving a leakage in the multiplier context."},
+      {"option_key": "C", "hint": "The reason is correct — saved income IS withdrawn from the consumption-income chain. If ₹100 of additional income is received and ₹20 is saved, only ₹80 flows to the next round as spending.", "misconception": "Thinking saved income somehow re-enters the spending stream automatically."},
+      {"option_key": "D", "hint": "The assertion is true — saving is universally recognized as a leakage in the Keynesian multiplier framework. Other leakages include taxes and imports (in extended models).", "misconception": "Thinking saving is an injection rather than a leakage in the multiplier process."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-09",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "True or False: The multiplier is always greater than 1 in the Keynesian model.",
+    "explanation": "This is TRUE. Since 0 < MPC < 1, we have 0 < (1−MPC) < 1, so K = 1/(1−MPC) > 1. The multiplier is always greater than 1 because the initial investment itself creates at least ΔI worth of income, and additional rounds of spending (however small) add more. Even with a very low MPC (say 0.1), K = 1/0.9 ≈ 1.11, which is still greater than 1. The multiplier equals exactly 1 only in the theoretical extreme where MPC = 0 (all additional income saved), which Keynes ruled out.",
+    "correct_answer": "A",
+    "concept_tags": ["multiplier-greater-than-1", "MPC-range", "minimum-multiplier"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "K = 1/(1−MPC). Since 0 < MPC < 1, the denominator (1−MPC) is between 0 and 1. One divided by a number between 0 and 1 always gives a result greater than 1.", "misconception": "Miscalculating the multiplier range or thinking it can be less than 1."},
+      {"option_key": "B", "hint": "Even in the weakest case (MPC barely above 0), the multiplier is just above 1 because the initial investment always creates that much income at minimum, plus some additional spending.", "misconception": "Thinking the multiplier could be less than 1, which would mean income rises by less than the investment — impossible in the Keynesian model."},
+      {"option_key": "B", "hint": "The multiplier exceeding 1 is the whole point of multiplier theory — it shows that investment has an amplified effect on income. If K ≤ 1, there would be no 'multiplier' effect to discuss.", "misconception": "Not understanding that the multiplier's purpose is to show amplification (K > 1) of initial spending."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-10",
+    "question_type": "true-false",
+    "difficulty": "medium",
+    "question_text": "True or False: A higher MPS leads to a larger multiplier effect.",
+    "explanation": "This is FALSE. The multiplier K = 1/MPS. A higher MPS means a LARGER denominator, resulting in a SMALLER multiplier. Higher MPS means people save a larger portion of additional income, creating more leakage from the spending stream. Each successive round of spending is smaller, so the total multiplied effect is weaker. For example, MPS = 0.2 gives K = 5, while MPS = 0.4 gives K = 2.5. The multiplier is INVERSELY related to MPS.",
+    "correct_answer": "B",
+    "concept_tags": ["MPS", "multiplier", "inverse-relationship"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": false},
+      {"key": "B", "text": "False", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "K = 1/MPS. When MPS increases, the denominator increases, making K smaller. For example, MPS rising from 0.2 to 0.5 reduces K from 5 to 2. Higher saving = more leakage = weaker multiplier.", "misconception": "Thinking higher saving strengthens the multiplier when it actually weakens it by increasing leakage."},
+      {"option_key": "A", "hint": "More saving means less spending in each round. If people save 40% instead of 20% of additional income, each successive round of spending is much smaller, reducing the cumulative effect.", "misconception": "Not understanding that saving is a leakage that reduces the multiplier effect."},
+      {"option_key": "A", "hint": "The multiplier is directly related to MPC and inversely related to MPS. Higher MPC (more spending) → larger multiplier. Higher MPS (more saving) → smaller multiplier.", "misconception": "Confusing the direct MPC-multiplier relationship with an incorrect direct MPS-multiplier relationship."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-11",
+    "question_type": "true-false",
+    "difficulty": "hard",
+    "question_text": "True or False: The paradox of thrift states that an increase in the desire to save by the entire community may actually lead to a decrease in total saving.",
+    "explanation": "This is TRUE. The paradox of thrift is a Keynesian concept. When everyone tries to save more simultaneously, consumption falls. This reduces Aggregate Demand, which reduces output and income through the multiplier process. With lower income, even though people are trying to save a higher proportion, the TOTAL amount saved may actually fall because income has decreased. For example, if people increase MPS but income falls proportionally more, total saving (S = MPS × Y) could decrease. The individual virtue of thrift becomes a collective vice.",
+    "correct_answer": "A",
+    "concept_tags": ["paradox-of-thrift", "saving", "reduced-income", "keynesian"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "This IS paradoxical but true. When everyone saves more → consumption falls → AD falls → income falls via multiplier → even with higher saving rate, TOTAL saving can fall because income has shrunk.", "misconception": "Thinking that higher saving desire must always lead to higher total saving, ignoring the income contraction effect."},
+      {"option_key": "B", "hint": "The paradox works through the multiplier: reduced consumption → reduced income → the income base shrinks. Saving = MPS × Y. Even with higher MPS, if Y falls enough, S = MPS × Y may decrease.", "misconception": "Ignoring the feedback effect of reduced consumption on income and therefore on total saving."},
+      {"option_key": "B", "hint": "This is a well-established Keynesian paradox. What is individually rational (saving more) becomes collectively harmful (reduced total saving and income). It demonstrates the fallacy of composition in economics.", "misconception": "Applying individual-level logic (more saving = more wealth) to the entire economy without considering aggregate effects."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-12",
+    "question_type": "fill-in-blanks",
+    "difficulty": "easy",
+    "question_text": "If MPC = 0.8, the value of the investment multiplier is ______.",
+    "explanation": "K = 1/(1 − MPC) = 1/(1 − 0.8) = 1/0.2 = 5. This means every ₹1 of additional investment will lead to a ₹5 increase in national income. The multiplier of 5 reflects the fact that 80% of each round's income is respent: Round 1 = ₹1, Round 2 = ₹0.80, Round 3 = ₹0.64, Round 4 = ₹0.512, and so on. The sum of this infinite series converges to ₹5.",
+    "correct_answer": "C",
+    "concept_tags": ["multiplier-calculation", "MPC", "numerical"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "0.8", "is_correct": false},
+      {"key": "B", "text": "0.2", "is_correct": false},
+      {"key": "C", "text": "5", "is_correct": true},
+      {"key": "D", "text": "4", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "0.8 is the MPC value itself, not the multiplier. The multiplier is calculated as K = 1/(1−MPC) = 1/(1−0.8) = 1/0.2 = 5.", "misconception": "Confusing the MPC value with the multiplier."},
+      {"option_key": "B", "hint": "0.2 is MPS (= 1 − MPC = 1 − 0.8). The multiplier is the RECIPROCAL of MPS: K = 1/MPS = 1/0.2 = 5, not MPS itself.", "misconception": "Confusing MPS with the multiplier instead of computing K = 1/MPS."},
+      {"option_key": "D", "hint": "K = 4 would correspond to MPC = 0.75 (since 1/0.25 = 4). With MPC = 0.8, K = 1/0.2 = 5. The calculation error might come from using MPC/(1−MPC) = 0.8/0.2 = 4 instead of 1/(1−MPC).", "misconception": "Using MPC/(1−MPC) instead of 1/(1−MPC) as the multiplier formula."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-13",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "If a ₹100 crore increase in investment leads to a ₹400 crore increase in income, the MPC of the economy is ______.",
+    "explanation": "K = ΔY/ΔI = 400/100 = 4. Since K = 1/(1−MPC): 4 = 1/(1−MPC) → 1−MPC = 1/4 = 0.25 → MPC = 1 − 0.25 = 0.75. This means 75 paise of every additional rupee of income is spent on consumption, and 25 paise is saved. The multiplier of 4 indicates that the initial ₹100 crore investment generated three additional rounds of significant spending, ultimately creating ₹400 crore of total income.",
+    "correct_answer": "B",
+    "concept_tags": ["MPC-calculation", "multiplier-reverse", "numerical"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "0.25", "is_correct": false},
+      {"key": "B", "text": "0.75", "is_correct": true},
+      {"key": "C", "text": "0.80", "is_correct": false},
+      {"key": "D", "text": "4.00", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "0.25 is MPS (= 1/K = 1/4), not MPC. MPC = 1 − MPS = 1 − 0.25 = 0.75. Remember, K = 1/MPS, so MPS = 1/K.", "misconception": "Computing MPS (1/K) but reporting it as MPC."},
+      {"option_key": "C", "hint": "MPC = 0.80 would give K = 1/(1−0.8) = 5. But K = ΔY/ΔI = 400/100 = 4, not 5. The correct MPC for K = 4 is 0.75.", "misconception": "Using an incorrect MPC value that doesn't match the given multiplier."},
+      {"option_key": "D", "hint": "4.00 is the multiplier value (K = ΔY/ΔI = 400/100 = 4), not the MPC. MPC is derived from K: MPC = 1 − 1/K = 1 − 0.25 = 0.75.", "misconception": "Reporting the multiplier value as MPC."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-14",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "In an economy with MPC = 0.9, the government increases investment by ₹50 crore. Calculate the total increase in income and the increase in consumption.",
+    "explanation": "K = 1/(1−MPC) = 1/(1−0.9) = 1/0.1 = 10.\nTotal increase in income: ΔY = K × ΔI = 10 × 50 = ₹500 crore.\nIncrease in consumption: ΔC = MPC × ΔY = 0.9 × 500 = ₹450 crore.\nVerification: ΔS = MPS × ΔY = 0.1 × 500 = ₹50 crore = ΔI ✓ (at the new equilibrium, additional saving equals additional investment).\nThe high MPC of 0.9 gives a large multiplier (10), meaning each rupee of investment generates ₹10 of income through strong consumption rounds.",
+    "correct_answer": "D",
+    "concept_tags": ["multiplier-calculation", "income-increase", "consumption-increase", "numerical"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "ΔY = ₹100 crore, ΔC = ₹50 crore", "is_correct": false},
+      {"key": "B", "text": "ΔY = ₹250 crore, ΔC = ₹200 crore", "is_correct": false},
+      {"key": "C", "text": "ΔY = ₹500 crore, ΔC = ₹400 crore", "is_correct": false},
+      {"key": "D", "text": "ΔY = ₹500 crore, ΔC = ₹450 crore", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "ΔY = ₹100 crore implies K = 100/50 = 2, which corresponds to MPC = 0.5. With MPC = 0.9, K = 10, giving ΔY = 10 × 50 = ₹500 crore.", "misconception": "Using a much smaller multiplier than what MPC = 0.9 produces."},
+      {"option_key": "B", "hint": "ΔY = ₹250 crore implies K = 250/50 = 5, corresponding to MPC = 0.8. With MPC = 0.9, K = 1/0.1 = 10, not 5.", "misconception": "Computing the multiplier as 5 (for MPC = 0.8) instead of 10 (for MPC = 0.9)."},
+      {"option_key": "C", "hint": "ΔY = ₹500 crore is correct, but ΔC = ₹400 crore implies MPC = 400/500 = 0.8, not 0.9. With MPC = 0.9, ΔC = 0.9 × 500 = ₹450 crore.", "misconception": "Using the wrong MPC value to compute the consumption increase despite correctly computing income increase."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-15",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "An economy has an equilibrium income of ₹2,000 crore with MPC = 0.8. If the government wants to increase equilibrium income to ₹2,500 crore, by how much should autonomous investment be increased?",
+    "explanation": "Required increase in income: ΔY = 2,500 − 2,000 = ₹500 crore.\nK = 1/(1−MPC) = 1/(1−0.8) = 1/0.2 = 5.\nSince ΔY = K × ΔI: 500 = 5 × ΔI → ΔI = 500/5 = ₹100 crore.\nThe government needs to increase autonomous investment by ₹100 crore. The multiplier of 5 will amplify this into a ₹500 crore increase in equilibrium income.\nVerification: New equilibrium saving = old saving + ΔS = old saving + MPS × ΔY = old saving + 0.2 × 500 = old saving + 100 = old I + ΔI ✓.",
+    "correct_answer": "B",
+    "concept_tags": ["required-investment", "target-income", "multiplier-application", "numerical"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "₹500 crore", "is_correct": false},
+      {"key": "B", "text": "₹100 crore", "is_correct": true},
+      {"key": "C", "text": "₹250 crore", "is_correct": false},
+      {"key": "D", "text": "₹50 crore", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "₹500 crore is the TOTAL income increase needed, not the investment increase. The multiplier amplifies investment: ΔI = ΔY/K = 500/5 = ₹100 crore. You don't need to invest the full ₹500 crore.", "misconception": "Confusing the total income increase with the required investment increase, ignoring the multiplier effect."},
+      {"option_key": "C", "hint": "₹250 crore would imply K = 500/250 = 2, corresponding to MPC = 0.5. With MPC = 0.8, K = 5, so only ₹100 crore of investment is needed.", "misconception": "Using the wrong multiplier value."},
+      {"option_key": "D", "hint": "₹50 crore would generate ΔY = 5 × 50 = ₹250 crore, reaching only ₹2,250 crore — short of the ₹2,500 crore target. The required ΔI = 500/5 = ₹100 crore.", "misconception": "Miscalculating the investment needed to achieve the target income increase."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-16",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following MPC values with their corresponding multiplier values:\n\nColumn A:\n(i) MPC = 0.5\n(ii) MPC = 0.75\n(iii) MPC = 0.8\n(iv) MPC = 0.9\n\nColumn B:\n(p) K = 10\n(q) K = 4\n(r) K = 2\n(s) K = 5",
+    "explanation": "(i) MPC = 0.5: K = 1/(1−0.5) = 1/0.5 = 2 → (r)\n(ii) MPC = 0.75: K = 1/(1−0.75) = 1/0.25 = 4 → (q)\n(iii) MPC = 0.8: K = 1/(1−0.8) = 1/0.2 = 5 → (s)\n(iv) MPC = 0.9: K = 1/(1−0.9) = 1/0.1 = 10 → (p)\nNotice the pattern: as MPC increases, the multiplier increases. This confirms the direct relationship between MPC and the multiplier.",
+    "correct_answer": "C",
+    "concept_tags": ["MPC-multiplier-values", "matching", "calculation"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "(i)→(s), (ii)→(q), (iii)→(r), (iv)→(p)", "is_correct": false},
+      {"key": "B", "text": "(i)→(q), (ii)→(r), (iii)→(p), (iv)→(s)", "is_correct": false},
+      {"key": "C", "text": "(i)→(r), (ii)→(q), (iii)→(s), (iv)→(p)", "is_correct": true},
+      {"key": "D", "text": "(i)→(p), (ii)→(s), (iii)→(q), (iv)→(r)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This maps MPC = 0.5 to K = 5, but K = 1/(1−0.5) = 2, not 5. K = 5 corresponds to MPC = 0.8. Check each calculation carefully.", "misconception": "Miscalculating the multiplier for MPC = 0.5."},
+      {"option_key": "B", "hint": "This maps MPC = 0.5 to K = 4 and MPC = 0.75 to K = 2. But higher MPC should give a HIGHER multiplier. MPC = 0.5 gives K = 2 (lower), and MPC = 0.75 gives K = 4 (higher).", "misconception": "Assigning lower multiplier values to higher MPC values, violating the direct MPC-K relationship."},
+      {"option_key": "D", "hint": "This reverses the entire matching — assigning the highest multiplier (K = 10) to the lowest MPC (0.5) and vice versa. The relationship is DIRECT: higher MPC → higher K.", "misconception": "Completely reversing the MPC-multiplier relationship."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-17",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following with their roles in the multiplier process:\n\nColumn A:\n(i) Initial investment (ΔI)\n(ii) MPC\n(iii) Saving (MPS)\n(iv) Successive rounds of spending\n\nColumn B:\n(p) Determines the speed at which each round diminishes\n(q) The mechanism through which income gets multiplied\n(r) The leakage that limits the total multiplier effect\n(s) The initial injection that starts the multiplier process",
+    "explanation": "(i)→(s): The initial investment is the injection that starts the chain reaction of the multiplier process.\n(ii)→(p): MPC determines what fraction of each round's income flows to the next round — it determines how quickly the rounds diminish.\n(iii)→(r): Saving (MPS) is the leakage at each round. The saved portion exits the spending chain, limiting how large the total multiplier can be.\n(iv)→(q): The successive rounds of spending are the MECHANISM through which income gets multiplied — each round creates new income that funds new spending.",
+    "correct_answer": "A",
+    "concept_tags": ["multiplier-roles", "injection", "leakage", "mechanism"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "(i)→(s), (ii)→(p), (iii)→(r), (iv)→(q)", "is_correct": true},
+      {"key": "B", "text": "(i)→(q), (ii)→(r), (iii)→(s), (iv)→(p)", "is_correct": false},
+      {"key": "C", "text": "(i)→(s), (ii)→(r), (iii)→(p), (iv)→(q)", "is_correct": false},
+      {"key": "D", "text": "(i)→(p), (ii)→(s), (iii)→(q), (iv)→(r)", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "This maps initial investment to 'mechanism' (q) and saving to 'injection' (s). But investment is the INJECTION that starts the process, and saving is the LEAKAGE that limits it.", "misconception": "Confusing the injection (investment) with the mechanism (spending rounds) and leakage (saving)."},
+      {"option_key": "C", "hint": "This swaps MPC and MPS roles. MPC determines how fast rounds diminish (p) — higher MPC means slower diminishing. MPS is the leakage (r) — higher MPS means more leakage. Option C reverses these.", "misconception": "Swapping the roles of MPC (round diminishing rate) and MPS (leakage)."},
+      {"option_key": "D", "hint": "This maps initial investment to 'diminishing speed' (p) and MPC to 'injection' (s). But the initial investment is what STARTS the process (injection), and MPC determines how each round DIMINISHES.", "misconception": "Misassigning the roles of initial investment and MPC in the multiplier framework."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-18",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following rounds of the multiplier process in correct order when investment increases by ₹100 crore and MPC = 0.8:\n1. Third round: ₹64 crore of additional spending\n2. First round: ₹100 crore of investment creates ₹100 crore of income\n3. Second round: ₹80 crore spent on consumption from the first round income\n4. Process converges to total income increase of ₹500 crore\n5. Fourth round: ₹51.2 crore of additional spending",
+    "explanation": "The correct sequence is: 2 → 3 → 1 → 5 → 4. The multiplier process starts with the initial ₹100 crore investment creating ₹100 crore of income (2). Recipients spend 80% = ₹80 crore on consumption (3). This ₹80 crore becomes income for others, who spend 80% = ₹64 crore (1). This continues: 80% of ₹64 = ₹51.2 crore (5), and so on. The geometric series 100 + 80 + 64 + 51.2 + ... converges to 100/(1−0.8) = ₹500 crore (4).",
+    "correct_answer": "B",
+    "concept_tags": ["multiplier-rounds", "geometric-series", "convergence", "sequence"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "2 → 1 → 3 → 5 → 4", "is_correct": false},
+      {"key": "B", "text": "2 → 3 → 1 → 5 → 4", "is_correct": true},
+      {"key": "C", "text": "3 → 2 → 1 → 5 → 4", "is_correct": false},
+      {"key": "D", "text": "2 → 3 → 5 → 1 → 4", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This places the third round (₹64 crore) before the second round (₹80 crore). The rounds must proceed in order: ₹100 → ₹80 → ₹64 → ₹51.2, as each is 80% of the previous.", "misconception": "Mixing up the order of the second and third rounds of the multiplier."},
+      {"option_key": "C", "hint": "This starts with the second round (₹80 crore spending) before the initial investment (₹100 crore). The process must START with the initial investment — you cannot have spending rounds before the initial injection.", "misconception": "Placing a later spending round before the initial investment that triggers the process."},
+      {"option_key": "D", "hint": "This places the fourth round (₹51.2 crore) before the third round (₹64 crore). Each round must follow the previous one: ₹80 → ₹64 → ₹51.2, as 0.8 × 80 = 64 and 0.8 × 64 = 51.2.", "misconception": "Swapping the order of the third and fourth rounds."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-19",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "Arrange the following steps in the correct sequence showing how the paradox of thrift operates:\n1. Aggregate Demand falls due to lower consumption\n2. All households decide to save more (increase MPS)\n3. Total saving in the economy may actually decrease\n4. National income falls through the multiplier process\n5. Consumption expenditure decreases",
+    "explanation": "The correct sequence is: 2 → 5 → 1 → 4 → 3. First, all households decide to save more (2). With higher MPS, they reduce consumption spending (5). Lower consumption reduces Aggregate Demand (1). The fall in AD triggers the multiplier process in reverse, causing national income to contract (4). With lower income, even though the saving RATE is higher, total saving may decrease because the income base has shrunk (3). This is the paradox: trying to save more leads to less total saving.",
+    "correct_answer": "C",
+    "concept_tags": ["paradox-of-thrift", "sequence", "multiplier-reverse", "income-contraction"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "2 → 1 → 5 → 4 → 3", "is_correct": false},
+      {"key": "B", "text": "5 → 2 → 1 → 4 → 3", "is_correct": false},
+      {"key": "C", "text": "2 → 5 → 1 → 4 → 3", "is_correct": true},
+      {"key": "D", "text": "2 → 5 → 4 → 1 → 3", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This places AD falling (1) before consumption decreasing (5). But AD falls BECAUSE consumption decreased — reduced consumption is the cause, reduced AD is the effect.", "misconception": "Placing the effect (AD falling) before the cause (consumption declining) in the paradox chain."},
+      {"option_key": "B", "hint": "This starts with consumption decreasing (5) before the saving decision (2). But consumption falls BECAUSE households decided to save more — the saving decision triggers the consumption cut.", "misconception": "Placing the consumption reduction before the decision to increase saving."},
+      {"option_key": "D", "hint": "This places the multiplier income fall (4) before AD falls (1). But the multiplier process is TRIGGERED by the fall in AD — AD must fall first, then income contracts through the multiplier.", "misconception": "Placing the multiplier-driven income contraction before the initial fall in Aggregate Demand."}
+    ]
+  },
+  {
+    "id": "eco-ie-investment-multiplier-20",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "In the Keynesian cross diagram, the AD₁ curve (C + I₁) intersects the 45° line at point E₁, giving equilibrium income Y₁. Investment increases by ΔI, shifting the AD curve upward to AD₂ (C + I₂). AD₂ intersects the 45° line at point E₂, giving equilibrium income Y₂. Which of the following correctly describes the relationship between the vertical shift (ΔI) and the horizontal shift (ΔY)?",
+    "explanation": "The vertical shift of the AD curve equals ΔI (the increase in autonomous investment). The horizontal shift (change in equilibrium income) is ΔY = K × ΔI, where K is the multiplier. Since K > 1, ΔY > ΔI — the horizontal distance (income change) is always GREATER than the vertical distance (investment change). This visually demonstrates the multiplier effect. For example, with MPC = 0.8 (K = 5), a vertical shift of ₹100 leads to a horizontal shift of ₹500. The ratio ΔY/ΔI = K = the multiplier.",
+    "correct_answer": "A",
+    "concept_tags": ["keynesian-cross", "multiplier-diagram", "vertical-horizontal-shift", "AD-shift"],
+    "topic": "Investment Multiplier",
+    "subject": "economics",
+    "chapter": "Income and Employment",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "ΔY > ΔI; the horizontal shift exceeds the vertical shift by the multiplier factor", "is_correct": true},
+      {"key": "B", "text": "ΔY = ΔI; income increases by exactly the amount of additional investment", "is_correct": false},
+      {"key": "C", "text": "ΔY < ΔI; income increases by less than the investment increase", "is_correct": false},
+      {"key": "D", "text": "The vertical and horizontal shifts are unrelated to each other", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "ΔY = ΔI would mean the multiplier is exactly 1, which requires MPC = 0. Since MPC is always positive (between 0 and 1), K > 1 and ΔY > ΔI. The multiplier AMPLIFIES the initial investment.", "misconception": "Ignoring the multiplier effect and assuming income changes by exactly the investment amount."},
+      {"option_key": "C", "hint": "ΔY < ΔI would mean the multiplier is less than 1, which is impossible when 0 < MPC < 1. The multiplier is always > 1, so income always increases by MORE than the initial investment.", "misconception": "Thinking the multiplier can dampen the initial investment impact rather than amplify it."},
+      {"option_key": "D", "hint": "The shifts are directly related: ΔY = K × ΔI. The vertical shift (ΔI) causes the horizontal shift (ΔY) through the multiplier mechanism. They are fundamentally linked by the multiplier formula.", "misconception": "Thinking the investment change and income change are independent, ignoring the multiplier relationship."}
+    ]
+  }
+]
