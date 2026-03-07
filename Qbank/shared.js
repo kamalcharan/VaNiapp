@@ -467,8 +467,9 @@ function _parseMTFPipeTable(text) {
 
   if (columnA.length >= 2) return { columnA, columnB };
 
-  // Fallback: try parenthesized row pairs with pipe: "(A) leftText | (1) rightText"
-  const parenRowRe = /\(([A-Z])\)\s+(.+?)\s*\|\s*\((\d+)\)\s+(.+?)(?=\s+\([A-Z]\)\s|$)/gs;
+  // Fallback: try parenthesized row pairs with pipe: "(a) leftText | (i) rightText"
+  // Supports uppercase/lowercase letters and roman numeral IDs
+  const parenRowRe = /\(([A-Za-z])\)\s+(.+?)\s*\|\s*\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s+(.+?)(?=\s*\([A-Za-z]\)\s|Choose\b|\n\s*\n|$)/gs;
   while ((m = parenRowRe.exec(body)) !== null) {
     columnA.push({ id: m[1], text: m[2].trim(), textTe: '' });
     columnB.push({ id: m[3], text: m[4].trim(), textTe: '' });
