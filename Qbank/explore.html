@@ -1077,6 +1077,12 @@
                 + Options
               </button>
             ` : ''}
+            ${!isResolved && ['QUESTION_TOO_SHORT', 'EMPTY_QUESTION_TEXT', 'MTF_MISSING_COLUMNS'].includes(issue.issue_type) ? `
+              <button class="btn-resolve" style="background: #e67e22; color: #fff;"
+                onclick="markAsDraft('${issue.question_id}', '${issue.issue_type}', this)" title="Mark question as draft (hidden from students)">
+                Draft
+              </button>
+            ` : ''}
             ${!isResolved ? `
               <button class="btn-resolve" onclick="resolveIssue('${issue.question_id}', '${issue.issue_type}', this)" title="Mark as resolved">
                 Resolve
@@ -1266,6 +1272,53 @@
       }
 
       // Update summary counts
+      renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    // ========================================================================
+    // Mark question as draft in DB (hides from students)
+    // ========================================================================
+    async function markAsDraft(questionId, issueType, btnEl) {
+      btnEl.disabled = true;
+      btnEl.textContent = '...';
+
+      const { error } = await Qbank.supabase
+        .from('med_questions')
+        .update({ status: 'draft' })
+        .eq('id', questionId);
+
+      if (error) {
+        btnEl.textContent = 'Error';
+        console.error('[markAsDraft]', error);
+        alert('Failed to mark as draft: ' + error.message);
+        return;
+      }
+
+      // Also resolve the issue
+      const issue = currentIssues.find(i =>
+        i.question_id === questionId && i.issue_type === issueType && i.status !== 'resolved'
+      );
+      if (issue) {
+        const dbKey = questionId + '|' + issueType;
+        const dbId = issue._dbId || dbIssueMap.get(dbKey);
+        if (dbId) await Qbank.resolveQualityIssue(dbId);
+        issue.status = 'resolved';
+      }
+
+      // Update UI
+      const itemEl = btnEl.closest('.issue-item');
+      if (itemEl) {
+        itemEl.classList.add('resolved');
+        const actionsEl = itemEl.querySelector('.issue-actions');
+        if (actionsEl) actionsEl.innerHTML = '<span style="font-size: 0.7rem; color: #e67e22;">Drafted</span>';
+      }
+      const groupEl = itemEl?.closest('.issue-group');
+      if (groupEl) {
+        const countEl = groupEl.querySelector('.issue-group-count');
+        const remaining = groupEl.querySelectorAll('.issue-item:not(.resolved)').length;
+        if (countEl) countEl.textContent = remaining;
+        if (remaining === 0) groupEl.style.opacity = '0.4';
+      }
       renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
     }
 
