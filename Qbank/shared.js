@@ -520,13 +520,59 @@ function _parseOptionMapping(text) {
  * Extracts "1. text", "2. text" etc. into [{id: "1", text: "..."}]
  */
 function _parseSequenceItems(text) {
-  const items = [];
-  const re = /(?:^|\n)\s*(\d+)\.\s+(.+?)(?=\n\s*\d+\.|$)/gs;
+  let items = [];
+
+  // Format 1: "1. item text" (most common)
+  const re1 = /(?:^|\n)\s*(\d+)\.\s+(.+?)(?=\n\s*\d+\.|$)/gs;
   let m;
-  while ((m = re.exec(text)) !== null) {
+  while ((m = re1.exec(text)) !== null) {
     items.push({ id: m[1], text: m[2].trim() });
   }
-  return items;
+  if (items.length >= 2) return items;
+
+  // Format 2: "1) item text"
+  items = [];
+  const re2 = /(?:^|\n)\s*(\d+)\)\s+(.+?)(?=\n\s*\d+\)|$)/gs;
+  while ((m = re2.exec(text)) !== null) {
+    items.push({ id: m[1], text: m[2].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  // Format 3: "(i) item text" — roman numerals
+  items = [];
+  const romanMap = { 'i': '1', 'ii': '2', 'iii': '3', 'iv': '4', 'v': '5', 'vi': '6', 'vii': '7', 'viii': '8' };
+  const re3 = /(?:^|\n)\s*\(([ivx]+)\)\s+(.+?)(?=\n\s*\([ivx]+\)|$)/gis;
+  while ((m = re3.exec(text)) !== null) {
+    const id = romanMap[m[1].toLowerCase()] || String(items.length + 1);
+    items.push({ id, text: m[2].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  // Format 4: "(a) item text" — letter labels
+  items = [];
+  const re4 = /(?:^|\n)\s*\(([a-z])\)\s+(.+?)(?=\n\s*\([a-z]\)|$)/gis;
+  while ((m = re4.exec(text)) !== null) {
+    items.push({ id: String(m[1].toLowerCase().charCodeAt(0) - 96), text: m[2].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  // Format 5: "Step 1: text" or "Step 1 - text"
+  items = [];
+  const re5 = /(?:^|\n)\s*[Ss]tep\s*(\d+)\s*[:\-–]\s*(.+?)(?=\n\s*[Ss]tep\s*\d|$)/gs;
+  while ((m = re5.exec(text)) !== null) {
+    items.push({ id: m[1], text: m[2].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  // Format 6: lines starting with "- " or "• " (unordered — assign sequential IDs)
+  items = [];
+  const re6 = /(?:^|\n)\s*[-•]\s+(.+?)(?=\n\s*[-•]\s|$)/gs;
+  while ((m = re6.exec(text)) !== null) {
+    items.push({ id: String(items.length + 1), text: m[1].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  return [];
 }
 
 /**
@@ -3045,8 +3091,9 @@ async function fixMissingSequenceItems(questions) {
     const text = q.question_text || '';
     const items = _parseSequenceItems(text);
     if (items.length < 2) {
+      console.log(`[fixSeqItems] Cannot parse items from: "${text.substring(0, 200)}"`);
       results.skipped++;
-      results.details.push({ id: q.id, status: 'skipped', reason: `Parsed ${items.length} items` });
+      results.details.push({ id: q.id, status: 'skipped', reason: `Parsed ${items.length} items from text` });
       continue;
     }
 
