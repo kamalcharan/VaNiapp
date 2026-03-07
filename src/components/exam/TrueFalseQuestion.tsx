@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
+import { t } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
 
 interface TrueFalsePayloadShape {
   type: 'true-false';
   statement: string;
   statementTe: string;
+  statementHi: string;
   correctAnswer: boolean;
 }
 
@@ -52,7 +54,7 @@ export function TrueFalseQuestion({ language, selectedOptionId, showFeedback, on
       <View style={[styles.statementCard, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
         <Text style={[styles.statementLabel, { color: colors.textTertiary }]}>STATEMENT</Text>
         <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-          {language === 'te' ? payload.statementTe : payload.statement}
+          {t(language, payload.statement, payload.statementTe, payload.statementHi)}
         </Text>
       </View>
 

@@ -28,7 +28,7 @@ import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
 import { ReportIssueSheet } from '../../src/components/exam/ReportIssueSheet';
 import { useToast } from '../../src/components/ui/Toast';
-import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession, QuestionV2 } from '../../src/types';
+import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession, QuestionV2, t } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
@@ -509,7 +509,7 @@ export default function QuickPracticeQuizScreen() {
           {/* Question Text */}
           <View style={[styles.questionBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
             <Text style={[Typography.h3, { color: colors.text, lineHeight: 26 }]}>
-              {language === 'te' ? question.textTe : question.text}
+              {t(language, question.text, question.textTe, question.textHi)}
             </Text>
           </View>
 
@@ -543,7 +543,7 @@ export default function QuickPracticeQuizScreen() {
                   questionId={question.id}
                   selectedOptionId={selectedOptionId}
                   correctOptionId={correctId}
-                  questionText={language === 'te' ? question.textTe : question.text}
+                  questionText={t(language, question.text, question.textTe, question.textHi)}
                   subjectId={question.subjectId as SubjectId}
                   language={language}
                   onConceptPress={(tag) => { setSelectedConceptTag(tag); setShowConceptSheet(true); }}
@@ -553,7 +553,7 @@ export default function QuickPracticeQuizScreen() {
               <JournalCard delay={0}>
                 <HandwrittenText variant="handSm">Explanation</HandwrittenText>
                 <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.sm, lineHeight: 22 }]}>
-                  {language === 'te' ? question.explanationTe : question.explanation}
+                  {t(language, question.explanation, question.explanationTe, question.explanationHi)}
                 </Text>
               </JournalCard>
             </View>
@@ -601,13 +601,13 @@ export default function QuickPracticeQuizScreen() {
       <AskVaniSheet
         visible={showVaniSheet}
         onClose={() => setShowVaniSheet(false)}
-        questionText={language === 'te' ? question.textTe : question.text}
+        questionText={t(language, question.text, question.textTe, question.textHi)}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
         questionType={question.type}
-        explanation={language === 'te' ? question.explanationTe : question.explanation}
+        explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
-        eliminationText={String((language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique) || '')}
+        eliminationText={t(language, question.eliminationTechnique, question.eliminationTechniqueTe, question.eliminationTechniqueHi)}
         selectedOptionId={selectedOptionId}
         language={language}
       />

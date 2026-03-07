@@ -18,7 +18,7 @@ import { getV2QuestionsByChapter } from '../src/data/questions';
 import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter';
 import { RootState } from '../src/store';
-import { NeetSubjectId, QuestionV2 } from '../src/types';
+import { NeetSubjectId, QuestionV2, t } from '../src/types';
 
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
@@ -167,7 +167,7 @@ export default function ChapterResultsScreen() {
             <Text style={styles.gradeEmoji}>{grade.emoji}</Text>
             <HandwrittenText variant="hand">{grade.label}</HandwrittenText>
             <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 4 }]}>
-              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : (language === 'te' && chapter ? chapter.nameTe : chapter?.name)}
+              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : (chapter ? t(language, chapter.name, chapter.nameTe, chapter.nameHi) : '')}
             </Text>
           </View>
 

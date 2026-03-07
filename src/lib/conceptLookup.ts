@@ -56,7 +56,7 @@ async function fetchConceptFromEdgeFunction(
             role: 'system',
             content: `You are VaNi, an AI tutor for Indian students (ages 15-18) preparing for NEET.
 Provide a deep, exam-focused concept explanation.
-Respond in ${language === 'te' ? 'Telugu (keep scientific terms in English)' : 'English'}.
+Respond in ${language === 'hi' ? 'Hindi (keep scientific terms in English)' : language === 'te' ? 'Telugu (keep scientific terms in English)' : 'English'}.
 Use analogies that Indian Gen-Z students relate to.
 Output valid JSON only.`,
           },

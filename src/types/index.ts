@@ -1,6 +1,22 @@
 export type ThemeMode = 'light' | 'dark';
 export type ExamType = 'NEET' | 'CUET' | 'BOTH';
-export type Language = 'en' | 'te';
+export type Language = 'en' | 'te' | 'hi';
+
+/**
+ * Localized text helper — picks the right translation for the active language.
+ * Falls back to English if translation is empty/missing.
+ * Usage: t(language, text, textTe, textHi)
+ */
+export function t(
+  lang: Language,
+  en: string,
+  te?: string | null,
+  hi?: string | null,
+): string {
+  if (lang === 'hi' && hi) return hi;
+  if (lang === 'te' && te) return te;
+  return en;
+}
 
 // ── Onboarding Flow Config (from med_app_config) ────────────
 
@@ -98,6 +114,7 @@ export interface Subject {
   id: SubjectId;
   name: string;
   nameTe: string;
+  nameHi?: string;
   icon: string;
   chapters: Chapter[];
 }
@@ -106,6 +123,7 @@ export interface Chapter {
   id: string;
   name: string;
   nameTe: string;
+  nameHi?: string;
   subjectId: SubjectId;
   questionCount: number;
   timeMinutes: number;
@@ -135,12 +153,15 @@ export interface Question {
   subjectId: NeetSubjectId;
   text: string;
   textTe: string;
+  textHi?: string;
   options: Option[];
   correctOptionId: string;
   explanation: string;
   explanationTe: string;
+  explanationHi?: string;
   eliminationTechnique: string;
   eliminationTechniqueTe: string;
+  eliminationTechniqueHi?: string;
   difficulty: Difficulty;
 }
 
@@ -148,6 +169,7 @@ export interface Option {
   id: string;
   text: string;
   textTe: string;
+  textHi?: string;
 }
 
 export interface UserAnswer {
@@ -354,8 +376,10 @@ export interface EliminationHint {
   optionKey: string;
   hint: string;
   hintTe: string;
+  hintHi?: string;
   misconception: string;
   misconceptionTe: string;
+  misconceptionHi?: string;
 }
 
 export interface QuestionV2 {
@@ -369,14 +393,18 @@ export interface QuestionV2 {
   topicId?: string;
   topicName?: string;
   topicNameTe?: string;
+  topicNameHi?: string; // already optional
 
-  // Common fields (bilingual)
+  // Common fields (multilingual)
   text: string;
   textTe: string;
+  textHi?: string;
   explanation: string;
   explanationTe: string;
+  explanationHi?: string;
   eliminationTechnique: string;
   eliminationTechniqueTe: string;
+  eliminationTechniqueHi?: string;
   eliminationHints?: EliminationHint[];
 
   // Type-specific payload
@@ -395,16 +423,18 @@ interface AssertionReasoningPayload {
   type: 'assertion-reasoning';
   assertion: string;
   assertionTe: string;
+  assertionHi?: string;
   reason: string;
   reasonTe: string;
+  reasonHi?: string;
   options: Option[];
   correctOptionId: string;
 }
 
 interface MatchTheFollowingPayload {
   type: 'match-the-following';
-  columnA: { id: string; text: string; textTe: string }[];
-  columnB: { id: string; text: string; textTe: string }[];
+  columnA: { id: string; text: string; textTe: string; textHi?: string }[];
+  columnB: { id: string; text: string; textTe: string; textHi?: string }[];
   correctMapping: Record<string, string>;
   options: Option[];
   correctOptionId: string;
@@ -414,6 +444,7 @@ interface TrueFalsePayload {
   type: 'true-false';
   statement: string;
   statementTe: string;
+  statementHi?: string;
   correctAnswer: boolean;
 }
 
@@ -427,7 +458,7 @@ interface DiagramBasedPayload {
 
 interface LogicalSequencePayload {
   type: 'logical-sequence';
-  items: { id: string; text: string; textTe: string }[];
+  items: { id: string; text: string; textTe: string; textHi?: string }[];
   correctOrder: string[];
   options: Option[];
   correctOptionId: string;
@@ -437,6 +468,7 @@ interface FillInBlanksPayload {
   type: 'fill-in-blanks';
   textWithBlanks: string;
   textWithBlanksTe: string;
+  textWithBlanksHi?: string;
   options: Option[];
   correctOptionId: string;
 }
@@ -445,6 +477,7 @@ interface ScenarioBasedPayload {
   type: 'scenario-based';
   scenario: string;
   scenarioTe: string;
+  scenarioHi?: string;
   options: Option[];
   correctOptionId: string;
 }

@@ -635,9 +635,40 @@
         return html;
       };
 
+      // Build plain-text report for clipboard
+      const buildTextReport = (label, stats) => {
+        const brokenCount = stats.empty + stats.placeholder + stats['local-path'];
+        let txt = `${label}: ${stats.total} total, ${stats.http} working, ${brokenCount} broken\n`;
+        const chapters = Object.entries(stats.byChapter).sort((a,b) => a[0].localeCompare(b[0]));
+        for (const [ch, info] of chapters) {
+          if (info.broken === 0) continue;
+          txt += `\n  ${ch} — ${info.broken} broken:\n`;
+          for (const q of info.questions) {
+            if (q.status === 'http') continue;
+            txt += `    ${q.id}  [${q.status}]  ${q.url || '(empty)'}\n`;
+          }
+        }
+        return txt;
+      };
+
+      const totalBroken = (neetStats.empty + neetStats.placeholder + neetStats['local-path']) + (cuetStats.empty + cuetStats.placeholder + cuetStats['local-path']);
+
+      // Store report text for copy button
+      window.__diagramAuditReport = `DIAGRAM IMAGE AUDIT REPORT\n` +
+        `Date: ${new Date().toISOString().slice(0,10)}\n` +
+        `Total: ${data.length} diagram questions, ${neetStats.http + cuetStats.http} working, ${totalBroken} broken\n` +
+        `${'='.repeat(60)}\n\n` +
+        buildTextReport('NEET', neetStats) + '\n' +
+        buildTextReport('CUET', cuetStats);
+
       resultsEl.innerHTML = `
         <div style="padding:16px;">
-          <h2 style="margin:0 0 16px;">🖼️ Diagram-Based Question Image Audit</h2>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <h2 style="margin:0;">🖼️ Diagram-Based Question Image Audit</h2>
+            <button onclick="copyDiagramAudit()" style="padding:6px 16px;background:#3B82F6;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;">
+              📋 Copy Report
+            </button>
+          </div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;">
             <div style="text-align:center;padding:16px;background:#f8f9fa;border-radius:12px;border:2px solid #e2e8f0;">
               <div style="font-size:32px;font-weight:800;">${data.length}</div>
@@ -648,13 +679,38 @@
               <div style="font-size:13px;color:#16A34A;">✅ Images Working</div>
             </div>
             <div style="text-align:center;padding:16px;background:#EF444418;border-radius:12px;border:2px solid #EF4444;">
-              <div style="font-size:32px;font-weight:800;color:#DC2626;">${(neetStats.empty + neetStats.placeholder + neetStats['local-path']) + (cuetStats.empty + cuetStats.placeholder + cuetStats['local-path'])}</div>
+              <div style="font-size:32px;font-weight:800;color:#DC2626;">${totalBroken}</div>
               <div style="font-size:13px;color:#DC2626;">❌ Images Broken</div>
             </div>
           </div>
           ${renderStats('🩺 NEET Diagram Questions', neetStats, '#3B82F6')}
           ${renderStats('🎓 CUET Diagram Questions', cuetStats, '#8B5CF6')}
         </div>`;
+    }
+
+    // Copy diagram audit report to clipboard
+    async function copyDiagramAudit() {
+      const report = window.__diagramAuditReport;
+      if (!report) { alert('Run Diagram Audit first'); return; }
+      try {
+        await navigator.clipboard.writeText(report);
+        const btn = event.target;
+        const orig = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        btn.style.background = '#16A34A';
+        setTimeout(() => { btn.textContent = orig; btn.style.background = '#3B82F6'; }, 2000);
+      } catch (e) {
+        // Fallback for non-HTTPS contexts
+        const ta = document.createElement('textarea');
+        ta.value = report;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Report copied to clipboard!');
+      }
     }
 
     // ========================================================================

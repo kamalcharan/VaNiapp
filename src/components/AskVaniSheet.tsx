@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useTheme } from '../hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../constants/theme';
-import { SubjectId, EliminationHint } from '../types';
+import { SubjectId, EliminationHint, t } from '../types';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
@@ -60,7 +60,7 @@ function buildChatMessages(
   explanation?: string,
 ): ChatMessage[] {
   const msgs: ChatMessage[] = [];
-  const isTelugu = language === 'te';
+  const isNonEnglish = language !== 'en';
 
   // ── Fill-in-blanks: recall hints instead of elimination ──
   if (questionType === 'fill-in-blanks') {
@@ -89,7 +89,7 @@ function buildChatMessages(
     });
 
     for (const hint of hints) {
-      const hintText = isTelugu && hint.hintTe ? hint.hintTe : hint.hint;
+      const hintText = isNonEnglish ? t(language, hint.hint, hint.hintTe, hint.hintHi) : hint.hint;
       const isUserPick = hint.optionKey === selectedOptionId;
 
       msgs.push({
@@ -100,8 +100,8 @@ function buildChatMessages(
       });
 
       if (hint.misconception) {
-        const miscText = isTelugu && hint.misconceptionTe
-          ? hint.misconceptionTe
+        const miscText = isNonEnglish
+          ? t(language, hint.misconception, hint.misconceptionTe, hint.misconceptionHi)
           : hint.misconception;
         msgs.push({
           type: 'misconception',

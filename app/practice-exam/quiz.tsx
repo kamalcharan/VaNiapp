@@ -26,6 +26,7 @@ import {
   UserAnswer,
   QuestionV2,
   Option,
+  t,
 } from '../../src/types';
 import {
   startPracticeExam,
@@ -565,7 +566,7 @@ export default function PracticeQuestionScreen() {
           {/* Question Text */}
           <View style={[styles.questionBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
             <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-              {language === 'te' ? question.textTe : question.text}
+              {t(language, question.text, question.textTe, question.textHi)}
             </Text>
           </View>
 
@@ -632,7 +633,7 @@ export default function PracticeQuestionScreen() {
                       },
                     ]}
                   >
-                    {language === 'te' ? opt.textTe : opt.text}
+                    {t(language, opt.text, opt.textTe, opt.textHi)}
                   </Text>
                   {isEliminated && (
                     <Text style={[styles.elimBadge, { color: colors.textTertiary }]}>X</Text>

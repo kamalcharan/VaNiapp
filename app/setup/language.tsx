@@ -32,6 +32,7 @@ const ACTIVE_LIGHT_BG = '#E8F0FE';
 const LANG_GLYPH: Record<string, string> = {
   en: 'Aa',
   te: '\u0C05',   // అ
+  hi: '\u0915',   // क
 };
 
 export default function LanguageScreen() {
