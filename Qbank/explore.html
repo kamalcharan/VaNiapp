@@ -1301,7 +1301,13 @@
           const issue = currentIssues.find(i =>
             i.question_id === d.id && i.issue_type === 'MTF_DUPLICATE_KEYS' && i.status !== 'resolved'
           );
-          if (issue) issue.status = 'resolved';
+          if (issue) {
+            issue.status = 'resolved';
+            // Also resolve in DB if it was saved there
+            const dbKey = d.id + '|MTF_DUPLICATE_KEYS';
+            const dbId = issue._dbId || dbIssueMap.get(dbKey);
+            if (dbId) Qbank.resolveQualityIssue(dbId);
+          }
         }
       }
 
