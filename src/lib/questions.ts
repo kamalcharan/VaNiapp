@@ -455,8 +455,19 @@ function parseMatchColumns(text: string): {
   columnA: { id: string; text: string; textTe: string; textHi: string }[];
   columnB: { id: string; text: string; textTe: string; textHi: string }[];
 } {
-  const columnA: { id: string; text: string; textTe: string; textHi: string }[] = [];
-  const columnB: { id: string; text: string; textTe: string; textHi: string }[] = [];
+  type ColItem = { id: string; text: string; textTe: string; textHi: string };
+
+  // ── Strategy 1: Pipe-delimited row pairs ──────────────────────
+  // Format: "...Column I | Column II  A. leftText | 1. rightText  B. leftText | 2. rightText"
+  // Strip everything up to the LAST "Column II" header (greedy .*), then match row pairs.
+  const pipeResult = parsePipeDelimitedMtf(text);
+  if (pipeResult.columnA.length >= 2 && pipeResult.columnB.length >= 2) {
+    return pipeResult;
+  }
+
+  // ── Strategy 2: Separate Column I / Column II sections ────────
+  const columnA: ColItem[] = [];
+  const columnB: ColItem[] = [];
 
   // Split into Column I / Column II sections
   // Match headers like "Column I:", "Column-I:", "Column A:", "Column 1:", "List I:", "List-I"
@@ -473,8 +484,8 @@ function parseMatchColumns(text: string): {
   // 1. Parenthesized: (P), (Q), (1), (a), (i), (ii), (iii), (iv) etc.
   // 2. Dotted: A., B., C., 1., 2., 3. etc.
   // 3. Letter/number at line start: A  text, B  text
-  function extractItems(body: string): { id: string; text: string; textTe: string; textHi: string }[] {
-    const items: { id: string; text: string; textTe: string; textHi: string }[] = [];
+  function extractItems(body: string): ColItem[] {
+    const items: ColItem[] = [];
 
     // Try parenthesized format first: (P) text, (Q) text
     const parenRegex = /\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s*([^\n(]+)/g;
@@ -507,6 +518,64 @@ function parseMatchColumns(text: string): {
 
   columnA.push(...extractItems(col1Body));
   columnB.push(...extractItems(col2Text));
+
+  return { columnA, columnB };
+}
+
+/**
+ * Parse pipe-delimited MTF format used by chemistry questions.
+ * Handles: "...Column I | Column II  A. leftText | 1. rightText  B. leftText | 2. rightText"
+ * Uses greedy match to find the LAST "Column II" header, then extracts row pairs.
+ */
+function parsePipeDelimitedMtf(text: string): {
+  columnA: { id: string; text: string; textTe: string; textHi: string }[];
+  columnB: { id: string; text: string; textTe: string; textHi: string }[];
+} {
+  type ColItem = { id: string; text: string; textTe: string; textHi: string };
+  const columnA: ColItem[] = [];
+  const columnB: ColItem[] = [];
+
+  // GREEDY .* strips up to the LAST "Column II/B/2" header
+  const body = text.replace(
+    /^.*(?:\*\*\s*)?[Cc]olumn\s*[-–]?\s*(?:[Ii]{2}|2|[Bb])\s*(?:\*\*)?\s*(?:\([^)]*\))?\s*[:\-–|]?\s*/s,
+    ''
+  );
+
+  if (body === text || body.trim().length < 5) return { columnA, columnB };
+
+  // Strategy A: match complete row pairs "A. leftText | 1. rightText"
+  const rowPairRegex = /([A-Z])\.\s+(.+?)\s*\|\s*(\d+)\.\s+(.+?)(?=\s+[A-Z]\.\s|$)/gs;
+  let m;
+  // eslint-disable-next-line no-cond-assign
+  while ((m = rowPairRegex.exec(body)) !== null) {
+    columnA.push({ id: m[1], text: m[2].trim(), textTe: '', textHi: '' });
+    columnB.push({ id: m[3], text: m[4].trim(), textTe: '', textHi: '' });
+  }
+
+  if (columnA.length >= 2) return { columnA, columnB };
+
+  // Strategy B: split by pipe, classify each segment as letter (colA) or number (colB)
+  columnA.length = 0;
+  columnB.length = 0;
+  const segments = body.split(/\s*\|\s*/);
+  for (const seg of segments) {
+    const trimmed = seg.trim();
+    if (trimmed.length < 1) continue;
+
+    // "A. text" or "(A) text" → Column A
+    const letterMatch = trimmed.match(/^\s*\(?([A-Za-z])\)?[.\s]+(.+)$/s);
+    if (letterMatch) {
+      columnA.push({ id: letterMatch[1].toUpperCase(), text: letterMatch[2].trim(), textTe: '', textHi: '' });
+      continue;
+    }
+
+    // "1. text" or "(1) text" → Column B
+    const numberMatch = trimmed.match(/^\s*\(?(\d+)\)?[.\s]+(.+)$/s);
+    if (numberMatch) {
+      columnB.push({ id: numberMatch[1], text: numberMatch[2].trim(), textTe: '', textHi: '' });
+      continue;
+    }
+  }
 
   return { columnA, columnB };
 }
