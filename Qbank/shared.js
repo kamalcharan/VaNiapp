@@ -2932,10 +2932,12 @@ async function fixMissingHints(questions, sourceData) {
       const batch = allHintRecords.slice(i, i + 500);
       const { error } = await SUPABASE
         .from('med_elimination_hints')
-        .upsert(batch, { onConflict: 'question_id,option_key' });
+        .insert(batch);
 
       if (error) {
         console.error(`[fixMissingHints] Batch insert failed (${i}-${i + batch.length}):`, error);
+        console.error('[fixMissingHints] Error details:', error.message, error.code, error.details, error.hint);
+        console.log('[fixMissingHints] Sample record:', JSON.stringify(batch[0]));
         // Mark all questions in this batch as errors
         const failedIds = new Set(batch.map(h => h.question_id));
         for (const d of results.details) {
