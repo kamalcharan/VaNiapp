@@ -1324,23 +1324,38 @@
       const group = window._issueGroups?.[groupKey];
       if (!group) return;
 
-      // Get question IDs from the issues
       const qIds = group.issues.map(i => i.question_id);
       if (!qIds.length) return;
 
-      // Fetch full question data for these IDs
       const fixableQuestions = scannedQuestions.filter(q => qIds.includes(q.id));
+      console.log(`[fixMTF] Found ${fixableQuestions.length}/${qIds.length} questions`);
       if (!fixableQuestions.length) {
         Qbank.showToast('No MTF questions found to fix', 'error');
         return;
       }
 
-      // Disable the button
+      // Debug: log payload structure
+      for (const fq of fixableQuestions) {
+        const p = fq.payload || {};
+        console.log(`[fixMTF] Q=${fq.id} payload keys:`, Object.keys(p),
+          'columnA:', p.column_a || p.columnA || 'MISSING',
+          'columnB:', p.column_b || p.columnB || 'MISSING',
+          'text:', (fq.question_text || '').substring(0, 200));
+      }
+
       const groupEl = document.querySelector(`.issue-group[data-group-key="${groupKey}"]`);
       const fixBtn = groupEl?.querySelector('button[onclick*="fixAllMTFPayload"]');
       if (fixBtn) { fixBtn.disabled = true; fixBtn.textContent = '🔧 Fixing...'; }
 
-      const result = await Qbank.fixMTFPayload(fixableQuestions);
+      let result;
+      try {
+        result = await Qbank.fixMTFPayload(fixableQuestions);
+      } catch (err) {
+        console.error('[fixMTF] Error:', err);
+        Qbank.showToast('Fix failed: ' + err.message, 'error');
+        if (fixBtn) { fixBtn.disabled = false; fixBtn.textContent = '🔧 Fix All'; }
+        return;
+      }
 
       Qbank.showToast(
         `Fixed ${result.fixed} MTF questions (${result.errors} errors, ${result.skipped} skipped)`,

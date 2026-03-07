@@ -2595,6 +2595,7 @@ async function fixMTFPayload(questions) {
     // Parse columns from question text
     const parsed = _parseMTFColumns(text);
     if (parsed.columnA.length < 2 || parsed.columnB.length < 2) {
+      console.log(`[fixMTF] Parse failed for ${q.id}: colA=${parsed.columnA.length}, colB=${parsed.columnB.length}, text="${text.substring(0, 300)}"`);
       results.skipped++;
       results.details.push({
         id: q.id,
