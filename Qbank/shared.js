@@ -2896,7 +2896,7 @@ async function fixMissingHints(questions, sourceData) {
 
     const { error } = await SUPABASE
       .from('med_elimination_hints')
-      .insert(hintRecords);
+      .upsert(hintRecords, { onConflict: 'question_id,option_key' });
 
     if (error) {
       console.error(`[fixMissingHints] Failed to insert hints for ${q.id}:`, error);
@@ -2921,6 +2921,7 @@ async function auditHints(examTag) {
   let totalQuestions = 0, withHints = 0, withoutHints = 0;
   let goodHints = 0, badHints = 0;
   const badSamples = [];
+  const allHintRows = [];
 
   while (true) {
     const { data: questions, error } = await SUPABASE
@@ -2946,6 +2947,12 @@ async function auditHints(examTag) {
 
       withHints++;
       for (const h of hints) {
+        allHintRows.push({
+          question_id: h.question_id,
+          option_key: h.option_key,
+          hint_text: (h.hint_text || '').substring(0, 120),
+          misconception: h.misconception || ''
+        });
         const isGood = h.option_key && /^[A-D]$/.test(h.option_key) && h.hint_text && h.hint_text.length > 5;
         if (isGood) {
           goodHints++;
@@ -2967,7 +2974,7 @@ async function auditHints(examTag) {
     from += PAGE;
   }
 
-  return { totalQuestions, withHints, withoutHints, goodHints, badHints, badSamples };
+  return { totalQuestions, withHints, withoutHints, goodHints, badHints, badSamples, allHintRows };
 }
 
 /** Normalize text for fuzzy matching — lowercase, collapse whitespace, strip punctuation */
