@@ -3035,124 +3035,6 @@ async function fixMissingHints(questions, sourceData) {
 }
 
 /**
- * For fill-in-blanks (or any) questions flagged EMPTY_OPTIONS, use Gemini to generate
- * 4 plausible options (1 correct + 3 distractors) and insert them into med_question_options.
- *
- * @param {Array} questions - DB question rows missing options
- * @param {Function} onProgress - optional callback(current, total, questionText)
- * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
- */
-async function generateOptionsWithAI(questions, onProgress) {
-  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
-
-  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
-
-  // Process in batches of 5 questions per Gemini call to save tokens
-  const BATCH_SIZE = 5;
-  for (let i = 0; i < questions.length; i += BATCH_SIZE) {
-    const batch = questions.slice(i, i + BATCH_SIZE);
-
-    if (onProgress) onProgress(i, questions.length, `Processing batch ${Math.floor(i / BATCH_SIZE) + 1}...`);
-
-    const prompt = `You are generating MCQ options for fill-in-the-blank accountancy questions for Indian CUET exam.
-
-For each question below, generate exactly 4 options (A, B, C, D) where one is correct.
-- The correct answer text is given — make one option match it exactly
-- Create 3 plausible distractors based on common student misconceptions
-- Keep options concise (same style as the correct answer)
-- For multi-blank questions (correct answer has commas), each option must fill ALL blanks in order
-
-Return ONLY a JSON array (no markdown fences) with this structure:
-[
-  {
-    "qid": "<question id>",
-    "correct_key": "A",
-    "options": [
-      {"key": "A", "text": "correct answer text"},
-      {"key": "B", "text": "distractor 1"},
-      {"key": "C", "text": "distractor 2"},
-      {"key": "D", "text": "distractor 3"}
-    ]
-  }
-]
-
-Questions:
-${batch.map(q => `ID: ${q.id}
-Question: ${q.question_text}
-Correct Answer: ${q.correct_answer}
-Explanation: ${(q.explanation || '').substring(0, 200)}
----`).join('\n')}`;
-
-    try {
-      const raw = await callGemini(prompt, { temperature: 0.3 });
-      // Strip markdown fences if present
-      const cleaned = raw.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
-      const generated = JSON.parse(cleaned);
-
-      for (const item of generated) {
-        const q = batch.find(bq => bq.id === item.qid);
-        if (!q || !item.options || item.options.length !== 4) {
-          results.skipped++;
-          results.details.push({ id: item.qid || '?', status: 'skipped', reason: 'Bad AI response' });
-          continue;
-        }
-
-        // Validate: exactly one correct key
-        const correctKey = item.correct_key?.toUpperCase();
-        if (!correctKey || !['A', 'B', 'C', 'D'].includes(correctKey)) {
-          results.skipped++;
-          results.details.push({ id: q.id, status: 'skipped', reason: `Invalid correct_key: ${item.correct_key}` });
-          continue;
-        }
-
-        // Build option records
-        const optionRecords = item.options.map((opt, idx) => ({
-          question_id: q.id,
-          option_key: opt.key.toUpperCase(),
-          option_text: opt.text,
-          is_correct: opt.key.toUpperCase() === correctKey,
-          sort_order: idx
-        }));
-
-        // Insert options
-        const { error } = await SUPABASE
-          .from('med_question_options')
-          .insert(optionRecords);
-
-        if (error) {
-          console.error(`[generateOptions] Insert failed for ${q.id}:`, error.message);
-          results.errors++;
-          results.details.push({ id: q.id, status: 'error', error: error.message });
-          continue;
-        }
-
-        // Update correct_answer to the key if it was text
-        await SUPABASE
-          .from('med_questions')
-          .update({ correct_answer: correctKey })
-          .eq('id', q.id);
-
-        results.fixed++;
-        results.details.push({ id: q.id, status: 'fixed', correctKey, options: item.options.map(o => `${o.key}: ${o.text}`) });
-      }
-    } catch (err) {
-      console.error(`[generateOptions] Batch error:`, err);
-      for (const q of batch) {
-        results.errors++;
-        results.details.push({ id: q.id, status: 'error', error: err.message });
-      }
-    }
-
-    // Small delay between batches to avoid rate limits
-    if (i + BATCH_SIZE < questions.length) {
-      await new Promise(r => setTimeout(r, 1000));
-    }
-  }
-
-  return results;
-}
-
-/**
  * Diagnose existing elimination hints for a given exam tag.
  * Returns counts of good vs bad hints, plus sample bad rows.
  */
@@ -3392,7 +3274,6 @@ window.Qbank = {
   fixMTFPayload,
   fixMTFDuplicateKeys,
   fixMissingHints,
-  generateOptionsWithAI,
   auditHints,
   fixMissingSequenceItems,
 
