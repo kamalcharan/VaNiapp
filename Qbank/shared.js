@@ -2103,13 +2103,16 @@ function runQualityValidators(questions, languages, chapterId) {
         break;
       }
       case 'logical-sequence': {
-        // Custom UI needs payload.items array with text for each item
+        // Custom UI needs payload.items array with {id, text} objects
         const seqItems = payload.items || payload.Items || [];
         if (!Array.isArray(seqItems) || seqItems.length === 0) {
           issues.push(makeIssue(q, chapterId, 'SEQ_NO_ITEMS'));
         } else {
-          // Check if items have actual text content
-          const emptyItems = seqItems.filter(it => !(it.text || '').trim());
+          // Items can be objects {id, text} or plain strings — check both
+          const emptyItems = seqItems.filter(it => {
+            const txt = typeof it === 'string' ? it : (it.text || '');
+            return !txt.trim();
+          });
           if (emptyItems.length > 0) {
             issues.push(makeIssue(q, chapterId, 'SEQ_NO_ITEMS', {
               emptyCount: emptyItems.length, total: seqItems.length
@@ -3082,18 +3085,34 @@ async function fixMissingSequenceItems(questions) {
     if (q.question_type !== 'logical-sequence') { results.skipped++; continue; }
 
     const payload = q.payload || {};
-    // Skip if already has items
-    if (Array.isArray(payload.items) && payload.items.length > 0) {
-      results.skipped++;
-      continue;
+    const existingItems = payload.items || payload.Items || [];
+
+    // Check if items already exist as proper {id, text} objects
+    if (Array.isArray(existingItems) && existingItems.length > 0) {
+      const allObjects = existingItems.every(it => typeof it === 'object' && it !== null && (it.text || '').trim());
+      if (allObjects) {
+        results.skipped++;
+        continue;
+      }
     }
 
-    const text = q.question_text || '';
-    const items = _parseSequenceItems(text);
+    let items = [];
+
+    // If items exist as plain strings, convert them to {id, text} objects
+    if (Array.isArray(existingItems) && existingItems.length > 0 && typeof existingItems[0] === 'string') {
+      items = existingItems.map((s, idx) => ({ id: String(idx + 1), text: String(s).trim() }));
+    }
+
+    // Otherwise parse from question_text
     if (items.length < 2) {
-      console.log(`[fixSeqItems] Cannot parse items from: "${text.substring(0, 200)}"`);
+      const text = q.question_text || '';
+      items = _parseSequenceItems(text);
+    }
+
+    if (items.length < 2) {
+      console.log(`[fixSeqItems] Cannot parse items for ${q.id}: existing=${existingItems.length}, text="${(q.question_text||'').substring(0, 200)}"`);
       results.skipped++;
-      results.details.push({ id: q.id, status: 'skipped', reason: `Parsed ${items.length} items from text` });
+      results.details.push({ id: q.id, status: 'skipped', reason: `Could not get items` });
       continue;
     }
 
