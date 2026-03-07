@@ -353,6 +353,21 @@ function buildImportPayload(q) {
   // logical-sequence: items array + correct ordering
   if (q.items) payload.items = q.items;
   if (q.correct_order) payload.correct_order = q.correct_order;
+  // If sequence but no items, parse numbered items from question_text
+  if (q.question_type === 'logical-sequence' && !payload.items && q.question_text) {
+    const parsed = _parseSequenceItems(q.question_text);
+    if (parsed.length >= 2) {
+      payload.items = parsed;
+    }
+    // Derive correct_order from the correct option (e.g. "4 → 3 → 1 → 2")
+    if (!payload.correct_order && q.options && q.correct_answer) {
+      const correctOpt = q.options.find(o => o.is_correct || o.key === q.correct_answer);
+      if (correctOpt) {
+        const order = _parseSequenceOrder(correctOpt.text);
+        if (order.length >= 2) payload.correct_order = order;
+      }
+    }
+  }
   // match-the-following: structured column data for drag-and-drop UI
   if (q.column_a || q.columnA) payload.columnA = q.column_a || q.columnA;
   if (q.column_b || q.columnB) payload.columnB = q.column_b || q.columnB;
@@ -498,6 +513,29 @@ function _parseOptionMapping(text) {
     if (m) mapping[m[1].trim()] = m[2].trim();
   }
   return mapping;
+}
+
+/**
+ * Parse numbered sequence items from question text.
+ * Extracts "1. text", "2. text" etc. into [{id: "1", text: "..."}]
+ */
+function _parseSequenceItems(text) {
+  const items = [];
+  const re = /(?:^|\n)\s*(\d+)\.\s+(.+?)(?=\n\s*\d+\.|$)/gs;
+  let m;
+  while ((m = re.exec(text)) !== null) {
+    items.push({ id: m[1], text: m[2].trim() });
+  }
+  return items;
+}
+
+/**
+ * Parse sequence correct order from option text like "4 → 3 → 1 → 2"
+ * Returns array of string IDs: ["4", "3", "1", "2"]
+ */
+function _parseSequenceOrder(text) {
+  // Split on arrows, dashes, or "then" connectors
+  return text.split(/\s*[→\-–]\s*/).map(s => s.trim()).filter(s => /^\d+$/.test(s));
 }
 
 /**
