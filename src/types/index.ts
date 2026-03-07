@@ -1,28 +1,21 @@
 export type ThemeMode = 'light' | 'dark';
 export type ExamType = 'NEET' | 'CUET' | 'BOTH';
-export type Language = string;
-
-/** Localized text map — language code → translated string. */
-export type L = Record<string, string>;
+export type Language = 'en' | 'te' | 'hi';
 
 /**
  * Localized text helper — picks the right translation for the active language.
- * Accepts an L map (parameterized) or legacy positional strings.
+ * Falls back to English if translation is empty/missing.
+ * Usage: t(language, text, textTe, textHi)
  */
-export function t(lang: string, text: L): string;
-export function t(lang: string, en: string, te?: string | null, hi?: string | null): string;
 export function t(
-  lang: string,
-  textOrEn: L | string,
+  lang: Language,
+  en: string,
   te?: string | null,
   hi?: string | null,
 ): string {
-  if (typeof textOrEn === 'object') {
-    return textOrEn[lang] || textOrEn.en || '';
-  }
   if (lang === 'hi' && hi) return hi;
   if (lang === 'te' && te) return te;
-  return textOrEn;
+  return en;
 }
 
 // ── Onboarding Flow Config (from med_app_config) ────────────
@@ -154,14 +147,6 @@ export const NEET_SCORING = {
   timeLimitMs: 200 * 60 * 1000, // 3hr 20min
 } as const;
 
-// Legacy format — used by local fallback data files (src/data/questions/*.ts)
-export interface LegacyOption {
-  id: string;
-  text: string;
-  textTe: string;
-  textHi?: string;
-}
-
 export interface Question {
   id: string;
   chapterId: string;
@@ -169,7 +154,7 @@ export interface Question {
   text: string;
   textTe: string;
   textHi?: string;
-  options: LegacyOption[];
+  options: Option[];
   correctOptionId: string;
   explanation: string;
   explanationTe: string;
@@ -180,10 +165,11 @@ export interface Question {
   difficulty: Difficulty;
 }
 
-// Parameterized option — used by QuestionV2 payloads
 export interface Option {
   id: string;
-  text: L;
+  text: string;
+  textTe: string;
+  textHi?: string;
 }
 
 export interface UserAnswer {
@@ -388,8 +374,12 @@ export type QuestionType =
 
 export interface EliminationHint {
   optionKey: string;
-  hint: L;
-  misconception: L;
+  hint: string;
+  hintTe: string;
+  hintHi?: string;
+  misconception: string;
+  misconceptionTe: string;
+  misconceptionHi?: string;
 }
 
 export interface QuestionV2 {
@@ -399,14 +389,25 @@ export interface QuestionV2 {
   subjectId: SubjectId;
   difficulty: Difficulty;
 
+  // Topic (from med_topics via topic_id)
   topicId?: string;
-  topicName?: L;
+  topicName?: string;
+  topicNameTe?: string;
+  topicNameHi?: string; // already optional
 
-  text: L;
-  explanation: L;
-  eliminationTechnique: L;
+  // Common fields (multilingual)
+  text: string;
+  textTe: string;
+  textHi?: string;
+  explanation: string;
+  explanationTe: string;
+  explanationHi?: string;
+  eliminationTechnique: string;
+  eliminationTechniqueTe: string;
+  eliminationTechniqueHi?: string;
   eliminationHints?: EliminationHint[];
 
+  // Type-specific payload
   payload: QuestionPayload;
 }
 
@@ -420,16 +421,20 @@ interface McqPayload {
 
 interface AssertionReasoningPayload {
   type: 'assertion-reasoning';
-  assertion: L;
-  reason: L;
+  assertion: string;
+  assertionTe: string;
+  assertionHi?: string;
+  reason: string;
+  reasonTe: string;
+  reasonHi?: string;
   options: Option[];
   correctOptionId: string;
 }
 
 interface MatchTheFollowingPayload {
   type: 'match-the-following';
-  columnA: { id: string; text: L }[];
-  columnB: { id: string; text: L }[];
+  columnA: { id: string; text: string; textTe: string; textHi?: string }[];
+  columnB: { id: string; text: string; textTe: string; textHi?: string }[];
   correctMapping: Record<string, string>;
   options: Option[];
   correctOptionId: string;
@@ -437,7 +442,9 @@ interface MatchTheFollowingPayload {
 
 interface TrueFalsePayload {
   type: 'true-false';
-  statement: L;
+  statement: string;
+  statementTe: string;
+  statementHi?: string;
   correctAnswer: boolean;
 }
 
@@ -451,7 +458,7 @@ interface DiagramBasedPayload {
 
 interface LogicalSequencePayload {
   type: 'logical-sequence';
-  items: { id: string; text: L }[];
+  items: { id: string; text: string; textTe: string; textHi?: string }[];
   correctOrder: string[];
   options: Option[];
   correctOptionId: string;
@@ -459,14 +466,18 @@ interface LogicalSequencePayload {
 
 interface FillInBlanksPayload {
   type: 'fill-in-blanks';
-  textWithBlanks: L;
+  textWithBlanks: string;
+  textWithBlanksTe: string;
+  textWithBlanksHi?: string;
   options: Option[];
   correctOptionId: string;
 }
 
 interface ScenarioBasedPayload {
   type: 'scenario-based';
-  scenario: L;
+  scenario: string;
+  scenarioTe: string;
+  scenarioHi?: string;
   options: Option[];
   correctOptionId: string;
 }

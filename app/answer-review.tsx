@@ -346,7 +346,7 @@ export default function AnswerReviewScreen() {
           {/* Question Text */}
           <View style={[styles.questionBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
             <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-              {t(language, question.text)}
+              {t(language, question.text, question.textTe, question.textHi)}
             </Text>
           </View>
 
@@ -364,7 +364,7 @@ export default function AnswerReviewScreen() {
           <JournalCard delay={0}>
             <HandwrittenText variant="handSm">Explanation</HandwrittenText>
             <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.sm, lineHeight: 22 }]}>
-              {t(language, question.explanation)}
+              {t(language, question.explanation, question.explanationTe, question.explanationHi)}
             </Text>
           </JournalCard>
 
@@ -374,7 +374,7 @@ export default function AnswerReviewScreen() {
               questionId={question.id}
               selectedOptionId={selected}
               correctOptionId={getCorrectId(question)}
-              questionText={t(language, question.text)}
+              questionText={t(language, question.text, question.textTe, question.textHi)}
               subjectId={question.subjectId as SubjectId}
               language={language}
               onConceptPress={(tag) => { setSelectedConceptTag(tag); setShowConceptSheet(true); }}
@@ -415,13 +415,13 @@ export default function AnswerReviewScreen() {
       <AskVaniSheet
         visible={showVaniSheet || showElimination}
         onClose={() => { setShowVaniSheet(false); setShowElimination(false); }}
-        questionText={t(language, question.text)}
+        questionText={t(language, question.text, question.textTe, question.textHi)}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
         questionType={question.type}
-        explanation={t(language, question.explanation)}
+        explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
-        eliminationText={t(language, question.eliminationTechnique)}
+        eliminationText={t(language, question.eliminationTechnique, question.eliminationTechniqueTe, question.eliminationTechniqueHi)}
         selectedOptionId={selected}
         language={language}
       />

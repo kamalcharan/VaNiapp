@@ -89,7 +89,7 @@ function buildChatMessages(
     });
 
     for (const hint of hints) {
-      const hintText = t(language, hint.hint);
+      const hintText = isNonEnglish ? t(language, hint.hint, hint.hintTe, hint.hintHi) : hint.hint;
       const isUserPick = hint.optionKey === selectedOptionId;
 
       msgs.push({
@@ -99,8 +99,10 @@ function buildChatMessages(
         isUserPick,
       });
 
-      if (hint.misconception?.en) {
-        const miscText = t(language, hint.misconception);
+      if (hint.misconception) {
+        const miscText = isNonEnglish
+          ? t(language, hint.misconception, hint.misconceptionTe, hint.misconceptionHi)
+          : hint.misconception;
         msgs.push({
           type: 'misconception',
           text: miscText,

@@ -287,7 +287,7 @@ export default function SubjectDetailScreen() {
         // Only include questions the user has attempted
         if (!(q.id in qResults)) continue;
         if (!stats[q.topicId]) {
-          stats[q.topicId] = { correct: 0, total: 0, name: q.topicName! };
+          stats[q.topicId] = { correct: 0, total: 0, name: q.topicName, nameTe: q.topicNameTe || '' };
         }
         stats[q.topicId].total++;
         if (qResults[q.id]) {

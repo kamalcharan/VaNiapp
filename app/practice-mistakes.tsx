@@ -385,7 +385,7 @@ export default function PracticeMistakesScreen() {
           {/* Question Text */}
           <View style={[styles.questionBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
             <Text style={[Typography.h3, { color: colors.text, lineHeight: 26 }]}>
-              {t(language, question.text)}
+              {t(language, question.text, question.textTe, question.textHi)}
             </Text>
           </View>
 
@@ -413,7 +413,7 @@ export default function PracticeMistakesScreen() {
                   questionId={question.id}
                   selectedOptionId={selectedOptionId}
                   correctOptionId={correctId}
-                  questionText={t(language, question.text)}
+                  questionText={t(language, question.text, question.textTe, question.textHi)}
                   subjectId={question.subjectId as SubjectId}
                   language={language}
                   onConceptPress={(tag) => {
@@ -426,7 +426,7 @@ export default function PracticeMistakesScreen() {
               <JournalCard delay={0}>
                 <HandwrittenText variant="handSm">Explanation</HandwrittenText>
                 <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.sm, lineHeight: 22 }]}>
-                  {t(language, question.explanation)}
+                  {t(language, question.explanation, question.explanationTe, question.explanationHi)}
                 </Text>
               </JournalCard>
             </View>
@@ -462,11 +462,11 @@ export default function PracticeMistakesScreen() {
       <AskVaniSheet
         visible={showVaniSheet}
         onClose={() => setShowVaniSheet(false)}
-        questionText={t(language, question.text)}
+        questionText={t(language, question.text, question.textTe, question.textHi)}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
         questionType={question.type}
-        explanation={t(language, question.explanation)}
+        explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
         selectedOptionId={selectedOptionId}
         language={language}

@@ -99,7 +99,7 @@ export function DiagramBasedQuestion({ question, language, selectedOptionId, sho
                 <Text style={[styles.optLabelText, { color: os.text }]}>{label}</Text>
               </View>
               <Text style={[Typography.body, { color: os.text, flex: 1 }]}>
-                {t(language, opt.text)}
+                {t(language, opt.text, opt.textTe, opt.textHi)}
               </Text>
               {showFeedback && opt.id === payload.correctOptionId && (
                 <Text style={{ fontSize: 18, color: '#16A34A' }}>{'\u2713'}</Text>

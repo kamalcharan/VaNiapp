@@ -1,4 +1,3 @@
-// @ts-nocheck — legacy sample data, converted to L format at runtime via convertSampleV2()
 import { QuestionV2 } from '../../types';
 
 /**

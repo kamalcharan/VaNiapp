@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
-import { Option, t, L } from '../../types';
+import { Option, t } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
 
 interface FillInBlanksPayloadShape {
   type: 'fill-in-blanks';
-  textWithBlanks: L;
+  textWithBlanks: string;
+  textWithBlanksTe: string;
+  textWithBlanksHi: string;
   options: Option[];
   correctOptionId: string;
 }
@@ -55,7 +57,7 @@ export function FillInBlanksQuestion({ language, selectedOptionId, showFeedback,
     return { bg: colors.surface, border: colors.surfaceBorder, text: colors.textTertiary };
   };
 
-  const rawText = t(language, payload.textWithBlanks);
+  const rawText = t(language, payload.textWithBlanks, payload.textWithBlanksTe, payload.textWithBlanksHi);
 
   return (
     <View style={styles.container}>
@@ -93,7 +95,7 @@ export function FillInBlanksQuestion({ language, selectedOptionId, showFeedback,
                 <Text style={[styles.optLabelText, { color: os.text }]}>{label}</Text>
               </View>
               <Text style={[Typography.body, { color: os.text, flex: 1 }]}>
-                {t(language, opt.text)}
+                {t(language, opt.text, opt.textTe, opt.textHi)}
               </Text>
               {showFeedback && opt.id === payload.correctOptionId && (
                 <Text style={{ fontSize: 18, color: '#16A34A' }}>{'\u2713'}</Text>

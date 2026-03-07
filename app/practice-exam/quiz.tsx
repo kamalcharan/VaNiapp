@@ -566,7 +566,7 @@ export default function PracticeQuestionScreen() {
           {/* Question Text */}
           <View style={[styles.questionBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
             <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-              {t(language, question.text)}
+              {t(language, question.text, question.textTe, question.textHi)}
             </Text>
           </View>
 
@@ -633,7 +633,7 @@ export default function PracticeQuestionScreen() {
                       },
                     ]}
                   >
-                    {t(language, opt.text)}
+                    {t(language, opt.text, opt.textTe, opt.textHi)}
                   </Text>
                   {isEliminated && (
                     <Text style={[styles.elimBadge, { color: colors.textTertiary }]}>X</Text>
