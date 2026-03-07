@@ -2534,8 +2534,9 @@ async function fixMTFPayload(questions) {
 // ============================================================================
 
 /**
- * Fix MTF questions where columnA and columnB have overlapping IDs.
- * Prefixes all Column B IDs with "b-" and updates correctMapping accordingly.
+ * Fix MTF questions with duplicate keys. Handles TWO cases:
+ *   1. Column A/B ID overlap → prefix Column B IDs with "b-"
+ *   2. Duplicate option_key in med_question_options → reassign unique keys (A, B, C, D)
  *
  * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
  * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
@@ -2544,64 +2545,138 @@ async function fixMTFDuplicateKeys(questions) {
   if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
 
   const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+  const OPTION_KEYS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
   for (const q of questions) {
     if (q.question_type !== 'match-the-following') { results.skipped++; continue; }
 
+    let didFix = false;
+    const fixes = [];
+
+    // ── Case 1: Column A/B ID overlap ──
     const payload = q.payload || {};
     const colA = payload.column_a || payload.columnA || [];
     const colB = payload.column_b || payload.columnB || [];
 
-    if (!Array.isArray(colA) || !Array.isArray(colB) || colA.length === 0 || colB.length === 0) {
-      results.skipped++;
-      continue;
+    if (Array.isArray(colA) && Array.isArray(colB) && colA.length > 0 && colB.length > 0) {
+      const aIds = new Set(colA.map(c => c.id));
+      const hasOverlap = colB.some(c => aIds.has(c.id));
+      if (hasOverlap) {
+        const newColB = colB.map(item => ({
+          ...item,
+          id: item.id.startsWith('b-') ? item.id : 'b-' + item.id
+        }));
+        const oldMapping = payload.correct_mapping || payload.correctMapping || {};
+        const newMapping = {};
+        for (const [aId, bId] of Object.entries(oldMapping)) {
+          newMapping[aId] = String(bId).startsWith('b-') ? bId : 'b-' + bId;
+        }
+
+        const { error } = await SUPABASE
+          .from('med_questions')
+          .update({
+            payload: { ...payload, columnA: colA, columnB: newColB, correctMapping: newMapping },
+            corrected_at: new Date().toISOString()
+          })
+          .eq('id', q.id);
+
+        if (error) {
+          results.errors++;
+          results.details.push({ id: q.id, status: 'error', fix: 'column-overlap', error: error.message });
+          continue;
+        }
+        didFix = true;
+        fixes.push('column-overlap');
+      }
     }
 
-    // Check for overlapping IDs
-    const aIds = new Set(colA.map(c => c.id));
-    const hasOverlap = colB.some(c => aIds.has(c.id));
-    if (!hasOverlap) {
-      results.skipped++;
-      continue;
+    // ── Case 2: Duplicate option_key in med_question_options ──
+    const opts = q.med_question_options || [];
+    if (Array.isArray(opts) && opts.length > 0) {
+      const optKeys = opts.map(o => o.option_key);
+      const hasDupeOpts = optKeys.some((k, i) => optKeys.indexOf(k) !== i);
+      if (hasDupeOpts) {
+        // Fetch full option rows (with their UUIDs) for this question
+        const { data: dbOpts, error: fetchErr } = await SUPABASE
+          .from('med_question_options')
+          .select('id, option_key, is_correct, sort_order')
+          .eq('question_id', q.id)
+          .order('sort_order');
+
+        if (fetchErr || !dbOpts || dbOpts.length === 0) {
+          console.error(`[fixMTFDuplicateKeys] Failed to fetch options for ${q.id}:`, fetchErr);
+          results.errors++;
+          results.details.push({ id: q.id, status: 'error', fix: 'duplicate-option-keys', error: fetchErr?.message || 'no options' });
+          continue;
+        }
+
+        // Find the correct option BEFORE reassigning keys
+        const correctOpt = dbOpts.find(o => o.is_correct === true);
+        const correctIdx = correctOpt ? dbOpts.indexOf(correctOpt) : -1;
+
+        // Reassign unique keys A, B, C, D... using the UUID to update each row
+        let optFixFailed = false;
+        for (let i = 0; i < dbOpts.length; i++) {
+          const newKey = OPTION_KEYS[i] || `opt_${i}`;
+          const { error: upErr } = await SUPABASE
+            .from('med_question_options')
+            .update({ option_key: newKey })
+            .eq('id', dbOpts[i].id);
+
+          if (upErr) {
+            console.error(`[fixMTFDuplicateKeys] Failed to update option ${dbOpts[i].id}:`, upErr);
+            optFixFailed = true;
+          }
+        }
+
+        if (optFixFailed) {
+          results.errors++;
+          results.details.push({ id: q.id, status: 'error', fix: 'duplicate-option-keys', error: 'partial update failure' });
+          continue;
+        }
+
+        // Update correct_answer on the question to match the new key
+        if (correctIdx >= 0) {
+          const newCorrectKey = OPTION_KEYS[correctIdx] || `opt_${correctIdx}`;
+          await SUPABASE
+            .from('med_questions')
+            .update({ correct_answer: newCorrectKey, corrected_at: new Date().toISOString() })
+            .eq('id', q.id);
+        }
+
+        // Also update elimination hints to use new keys
+        const { data: dbHints } = await SUPABASE
+          .from('med_elimination_hints')
+          .select('id, option_key')
+          .eq('question_id', q.id)
+          .order('option_key');
+        if (dbHints && dbHints.length > 0) {
+          // Build old→new key map
+          const keyMap = {};
+          for (let i = 0; i < dbOpts.length; i++) {
+            keyMap[dbOpts[i].option_key] = OPTION_KEYS[i] || `opt_${i}`;
+          }
+          for (const hint of dbHints) {
+            const newKey = keyMap[hint.option_key];
+            if (newKey && newKey !== hint.option_key) {
+              await SUPABASE
+                .from('med_elimination_hints')
+                .update({ option_key: newKey })
+                .eq('id', hint.id);
+            }
+          }
+        }
+
+        didFix = true;
+        fixes.push('duplicate-option-keys');
+      }
     }
 
-    // Prefix all Column B IDs with "b-"
-    const newColB = colB.map(item => ({
-      ...item,
-      id: item.id.startsWith('b-') ? item.id : 'b-' + item.id
-    }));
-
-    // Update correctMapping values
-    const oldMapping = payload.correct_mapping || payload.correctMapping || {};
-    const newMapping = {};
-    for (const [aId, bId] of Object.entries(oldMapping)) {
-      newMapping[aId] = String(bId).startsWith('b-') ? bId : 'b-' + bId;
-    }
-
-    const newPayload = {
-      ...payload,
-      columnA: colA,
-      columnB: newColB,
-      correctMapping: newMapping
-    };
-
-    const { error } = await SUPABASE
-      .from('med_questions')
-      .update({ payload: newPayload, corrected_at: new Date().toISOString() })
-      .eq('id', q.id);
-
-    if (error) {
-      console.error(`[fixMTFDuplicateKeys] Failed to update ${q.id}:`, error);
-      results.errors++;
-      results.details.push({ id: q.id, status: 'error', error: error.message });
-    } else {
+    if (didFix) {
       results.fixed++;
-      results.details.push({
-        id: q.id,
-        status: 'fixed',
-        oldBIds: colB.map(c => c.id),
-        newBIds: newColB.map(c => c.id)
-      });
+      results.details.push({ id: q.id, status: 'fixed', fixes });
+    } else {
+      results.skipped++;
     }
   }
 
