@@ -89,9 +89,9 @@ export default function ChapterResultsScreen() {
         color: '#3B82F6',
       })
     : DEFAULT_META;
-  const questions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
+  const localQuestions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
 
-  // Fetch Supabase questions (cached from quiz session) for topic data
+  // Fetch Supabase questions (cached from quiz session) for stats + topic data
   const [dbQuestions, setDbQuestions] = useState<QuestionV2[]>([]);
   useEffect(() => {
     if (!chapterId || isQuickMode) return;
@@ -99,6 +99,9 @@ export default function ChapterResultsScreen() {
       if (result.ok) setDbQuestions(result.questions);
     });
   }, [chapterId, isQuickMode]);
+
+  // Use local questions if available, otherwise Supabase questions (for CUET chapters etc.)
+  const questions = localQuestions.length > 0 ? localQuestions : dbQuestions;
 
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
