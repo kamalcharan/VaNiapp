@@ -49,7 +49,11 @@ export default function QuickPracticeQuizScreen() {
   const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
 
   const subject = subjectId as NeetSubjectId;
-  const subjectMeta = SUBJECT_META[subject];
+  const subjectMeta = SUBJECT_META[subject] ?? {
+    name: subject ? subject.charAt(0).toUpperCase() + subject.slice(1).replace(/-/g, ' ') : 'Practice',
+    emoji: '\u26A1',
+    color: '#3B82F6',
+  };
 
   // Quick practice spans multiple chapters — use the broadest unlock across subject
   const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
@@ -89,9 +93,12 @@ export default function QuickPracticeQuizScreen() {
         const filtered = unlockedTypes
           ? shuffled.filter((q) => unlockedTypes.includes(q.type))
           : shuffled;
-        setQuestions(filtered.slice(0, 20));
-        setLoadingQuestions(false);
-        return;
+        if (filtered.length > 0) {
+          setQuestions(filtered.slice(0, 20));
+          setLoadingQuestions(false);
+          return;
+        }
+        // All questions filtered out by unlockedTypes — fall through to local fallback
       }
 
       // Fall back to local hardcoded questions
