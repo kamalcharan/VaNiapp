@@ -729,9 +729,18 @@
 
       try {
         const r = await Qbank.auditHints(tag.trim());
+        window.__lastHintAudit = r;
         container.innerHTML = `
           <div style="padding:20px;background:#1a1a2e;border-radius:12px;margin:10px 0;">
             <h3 style="color:#D97706;">🔍 Hint Audit: ${tag}</h3>
+            <div style="margin:10px 0;">
+              <button onclick="copyHintAudit()" style="background:#3B82F6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;">
+                📋 Copy Full Report
+              </button>
+              <button onclick="copyHintSamples()" style="background:#8B5CF6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;margin-left:8px;">
+                📋 Copy All Hint Rows
+              </button>
+            </div>
             <table style="width:100%;color:#e0e0e0;border-collapse:collapse;margin-top:10px;">
               <tr><td style="padding:6px;">Total questions</td><td style="font-weight:bold;">${r.totalQuestions}</td></tr>
               <tr><td style="padding:6px;">With hints</td><td style="font-weight:bold;color:#22C55E;">${r.withHints}</td></tr>
@@ -746,6 +755,42 @@
           </div>`;
       } catch (e) {
         container.innerHTML = `<div style="padding:20px;color:#EF4444;">Error: ${e.message}</div>`;
+      }
+    }
+
+    async function copyHintAudit() {
+      const r = window.__lastHintAudit;
+      if (!r) { alert('Run audit first'); return; }
+      const text = JSON.stringify(r, null, 2);
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Full audit report copied!');
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Full audit report copied!');
+      }
+    }
+
+    async function copyHintSamples() {
+      const r = window.__lastHintAudit;
+      if (!r) { alert('Run audit first'); return; }
+      const text = JSON.stringify(r.allHintRows || r.badSamples, null, 2);
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Hint rows copied!');
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Hint rows copied!');
       }
     }
 
