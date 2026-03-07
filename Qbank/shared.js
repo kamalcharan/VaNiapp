@@ -2151,19 +2151,29 @@ function makeIssue(question, chapterId, issueType, details = {}) {
 
 /**
  * Fetch full question data for a chapter (with options + hints) for scanning.
+ * Dynamically includes translation columns for all active languages.
  */
 async function fetchQuestionsForScan(chapterId) {
   if (!SUPABASE) return [];
 
+  // Build dynamic translation column list from active languages
+  const langs = await fetchActiveLanguages();
+  const qLangCols = langs.flatMap(l => QUESTION_TRANSLATABLE_FIELDS.map(f => f + '_' + l.id)).join(', ');
+  const optLangCols = langs.flatMap(l => OPTION_TRANSLATABLE_FIELDS.map(f => f + '_' + l.id)).join(', ');
+  const hintLangCols = langs.flatMap(l => HINT_TRANSLATABLE_FIELDS.map(f => f + '_' + l.id)).join(', ');
+
+  const selectStr = `
+      id, subject_id, chapter_id, topic_id, question_type, difficulty, status,
+      question_text, explanation, correct_answer, payload, image_url, concept_tags,
+      corrected_at, last_translated_at
+      ${qLangCols ? ', ' + qLangCols : ''},
+      med_question_options (option_key, option_text, is_correct, sort_order${optLangCols ? ', ' + optLangCols : ''}),
+      med_elimination_hints (option_key, hint_text, misconception${hintLangCols ? ', ' + hintLangCols : ''})
+    `;
+
   const { data, error } = await SUPABASE
     .from('med_questions')
-    .select(`
-      id, subject_id, chapter_id, topic_id, question_type, difficulty, status,
-      question_text, question_text_te, explanation, explanation_te,
-      correct_answer, payload, image_url, concept_tags,
-      med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
-      med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)
-    `)
+    .select(selectStr)
     .eq('chapter_id', chapterId)
     .in('status', ['active', 'draft']);
 
@@ -2370,7 +2380,7 @@ async function fixCorrectAnswerKeys(questions) {
 
     const { error } = await SUPABASE
       .from('med_questions')
-      .update({ correct_answer: correctKey })
+      .update({ correct_answer: correctKey, corrected_at: new Date().toISOString() })
       .eq('id', q.id);
 
     if (error) {
@@ -2422,7 +2432,7 @@ async function fixEmptyOptions(questionId, options, correctKey) {
 
   const { error: qErr } = await SUPABASE
     .from('med_questions')
-    .update({ correct_answer: correctKey })
+    .update({ correct_answer: correctKey, corrected_at: new Date().toISOString() })
     .eq('id', questionId);
 
   if (qErr) {
@@ -2497,7 +2507,7 @@ async function fixMTFPayload(questions) {
 
     const { error } = await SUPABASE
       .from('med_questions')
-      .update({ payload: newPayload })
+      .update({ payload: newPayload, corrected_at: new Date().toISOString() })
       .eq('id', q.id);
 
     if (error) {
