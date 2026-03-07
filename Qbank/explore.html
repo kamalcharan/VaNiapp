@@ -306,6 +306,9 @@
           <button class="btn btn-secondary" onclick="auditDiagramImages()" style="background:#8B5CF6;color:#fff;border:none;">
             🖼️ Diagram Audit
           </button>
+          <button class="btn btn-secondary" onclick="runHintAudit()" style="background:#D97706;color:#fff;border:none;">
+            🔍 Audit Hints
+          </button>
         </div>
       </div>
 
@@ -710,6 +713,39 @@
         document.execCommand('copy');
         document.body.removeChild(ta);
         alert('Report copied to clipboard!');
+      }
+    }
+
+    // ========================================================================
+    // HINT AUDIT
+    // ========================================================================
+    async function runHintAudit() {
+      const tag = prompt('Enter exam tag to audit (e.g. CUET, NEET):');
+      if (!tag) return;
+
+      const container = document.getElementById('resultsContainer');
+      container.style.display = 'block';
+      container.innerHTML = `<div style="padding:20px;text-align:center;">⏳ Auditing ${tag} hints...</div>`;
+
+      try {
+        const r = await Qbank.auditHints(tag.trim());
+        container.innerHTML = `
+          <div style="padding:20px;background:#1a1a2e;border-radius:12px;margin:10px 0;">
+            <h3 style="color:#D97706;">🔍 Hint Audit: ${tag}</h3>
+            <table style="width:100%;color:#e0e0e0;border-collapse:collapse;margin-top:10px;">
+              <tr><td style="padding:6px;">Total questions</td><td style="font-weight:bold;">${r.totalQuestions}</td></tr>
+              <tr><td style="padding:6px;">With hints</td><td style="font-weight:bold;color:#22C55E;">${r.withHints}</td></tr>
+              <tr><td style="padding:6px;">Without hints</td><td style="font-weight:bold;color:#EF4444;">${r.withoutHints}</td></tr>
+              <tr><td style="padding:6px;">Good hint rows</td><td style="font-weight:bold;color:#22C55E;">${r.goodHints}</td></tr>
+              <tr><td style="padding:6px;">Bad hint rows</td><td style="font-weight:bold;color:#EF4444;">${r.badHints}</td></tr>
+            </table>
+            ${r.badSamples.length > 0 ? `
+              <h4 style="color:#EF4444;margin-top:15px;">Bad samples (up to 10):</h4>
+              <pre style="background:#111;padding:10px;border-radius:8px;overflow-x:auto;font-size:12px;color:#ccc;">${JSON.stringify(r.badSamples, null, 2)}</pre>
+            ` : '<p style="color:#22C55E;margin-top:10px;">✅ All hint rows look valid!</p>'}
+          </div>`;
+      } catch (e) {
+        container.innerHTML = `<div style="padding:20px;color:#EF4444;">Error: ${e.message}</div>`;
       }
     }
 

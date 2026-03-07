@@ -2911,6 +2911,65 @@ async function fixMissingHints(questions, sourceData) {
   return results;
 }
 
+/**
+ * Diagnose existing elimination hints for a given exam tag.
+ * Returns counts of good vs bad hints, plus sample bad rows.
+ */
+async function auditHints(examTag) {
+  const PAGE = 1000;
+  let from = 0;
+  let totalQuestions = 0, withHints = 0, withoutHints = 0;
+  let goodHints = 0, badHints = 0;
+  const badSamples = [];
+
+  while (true) {
+    const { data: questions, error } = await SUPABASE
+      .from('med_questions')
+      .select('id, question_text')
+      .contains('tags', [examTag])
+      .range(from, from + PAGE - 1);
+
+    if (error) throw error;
+    if (!questions || questions.length === 0) break;
+
+    for (const q of questions) {
+      totalQuestions++;
+      const { data: hints } = await SUPABASE
+        .from('med_elimination_hints')
+        .select('*')
+        .eq('question_id', q.id);
+
+      if (!hints || hints.length === 0) {
+        withoutHints++;
+        continue;
+      }
+
+      withHints++;
+      for (const h of hints) {
+        const isGood = h.option_key && /^[A-D]$/.test(h.option_key) && h.hint_text && h.hint_text.length > 5;
+        if (isGood) {
+          goodHints++;
+        } else {
+          badHints++;
+          if (badSamples.length < 10) {
+            badSamples.push({
+              question_id: h.question_id,
+              option_key: h.option_key,
+              hint_text: (h.hint_text || '').substring(0, 80),
+              misconception: h.misconception
+            });
+          }
+        }
+      }
+    }
+
+    if (questions.length < PAGE) break;
+    from += PAGE;
+  }
+
+  return { totalQuestions, withHints, withoutHints, goodHints, badHints, badSamples };
+}
+
 /** Normalize text for fuzzy matching — lowercase, collapse whitespace, strip punctuation */
 function _normalizeText(text) {
   return (text || '').toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
@@ -3068,6 +3127,7 @@ window.Qbank = {
   fixMTFPayload,
   fixMTFDuplicateKeys,
   fixMissingHints,
+  auditHints,
   fixMissingSequenceItems,
 
   // State access
