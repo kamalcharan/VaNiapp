@@ -339,7 +339,7 @@ export default function ChapterResultsScreen() {
                 onPress={() =>
                   router.push({
                     pathname: '/practice-mistakes',
-                    params: { sessionId: lastSession.id, sessionMode: 'chapter' },
+                    params: { chapterId: chapterId! },
                   })
                 }
                 variant="ghost"

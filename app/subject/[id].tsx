@@ -119,6 +119,7 @@ export default function SubjectDetailScreen() {
 
   // Redux strength data
   const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
+  const chapterHistory = useSelector((state: RootState) => state.practice.chapterHistory);
 
   // Animation
   const fadeIn = useRef(new Animated.Value(0)).current;
@@ -632,6 +633,34 @@ export default function SubjectDetailScreen() {
                               </Text>
                             </Pressable>
                           )}
+
+                          {/* View Last Result — show if chapter has a completed session in history */}
+                          {(() => {
+                            const lastResult = chapterHistory.find(
+                              (s) => s.chapterId === ca.chapter.id && s.completedAt != null,
+                            );
+                            if (!lastResult || lastResult.correctCount == null) return null;
+                            return (
+                              <Pressable
+                                style={[styles.practiceAgainButton, { backgroundColor: '#6366F115' }]}
+                                onPress={() =>
+                                  router.push({
+                                    pathname: '/chapter-results',
+                                    params: {
+                                      chapterId: lastResult.chapterId,
+                                      correct: String(lastResult.correctCount),
+                                      total: String(lastResult.totalQuestions),
+                                      timeUsedMs: String(lastResult.timeUsedMs ?? 0),
+                                    },
+                                  })
+                                }
+                              >
+                                <Text style={[styles.practiceAgainText, { color: '#6366F1' }]}>
+                                  View last result ({lastResult.correctCount}/{lastResult.totalQuestions})
+                                </Text>
+                              </Pressable>
+                            );
+                          })()}
                         </View>
                       </View>
                     )}
