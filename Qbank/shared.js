@@ -2574,10 +2574,17 @@ async function fixMTFDuplicateKeys(questions) {
           newMapping[aId] = String(bId).startsWith('b-') ? bId : 'b-' + bId;
         }
 
+        // Remove stale snake_case keys so they don't shadow the fixed camelCase ones
+        // (bulk-import stores column_a/column_b; validator reads column_a || columnA)
+        const cleanPayload = { ...payload };
+        delete cleanPayload.column_a;
+        delete cleanPayload.column_b;
+        delete cleanPayload.correct_mapping;
+
         const { error } = await SUPABASE
           .from('med_questions')
           .update({
-            payload: { ...payload, columnA: colA, columnB: newColB, correctMapping: newMapping },
+            payload: { ...cleanPayload, columnA: colA, columnB: newColB, correctMapping: newMapping },
             corrected_at: new Date().toISOString()
           })
           .eq('id', q.id);
@@ -2677,8 +2684,8 @@ async function fixMTFDuplicateKeys(questions) {
     // ── Case 3: Duplicate IDs in payload.options (JSONB) ──
     const payloadOpts = payload.options || [];
     if (Array.isArray(payloadOpts) && payloadOpts.length > 0) {
-      const pIds = payloadOpts.map(o => o.id);
-      const hasDupePayloadOpts = pIds.some((id, i) => pIds.indexOf(id) !== i);
+      const pIds = payloadOpts.map(o => o.id || o.key).filter(Boolean);
+      const hasDupePayloadOpts = pIds.length > 0 && pIds.some((id, i) => pIds.indexOf(id) !== i);
       if (hasDupePayloadOpts) {
         const newPayloadOpts = payloadOpts.map((o, i) => ({
           ...o,
