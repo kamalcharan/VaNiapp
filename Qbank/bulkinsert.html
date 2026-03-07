@@ -80,6 +80,44 @@
     .id-new { background: #dcfce7; color: #166534; }
     .id-dup { background: #fef3c7; color: #92400e; }
     .id-err { background: #fee2e2; color: #991b1b; }
+
+    /* Mode tabs */
+    .mode-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 24px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: white;
+    }
+    .mode-tab {
+      flex: 1;
+      padding: 14px 20px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--gray-500);
+      border-right: 1px solid var(--gray-200);
+      transition: all 0.2s;
+    }
+    .mode-tab:last-child { border-right: none; }
+    .mode-tab:hover { background: var(--gray-50); }
+    .mode-tab.active { background: var(--primary); color: white; }
+    .mode-tab .tab-icon { font-size: 1.2rem; display: block; margin-bottom: 4px; }
+    .mode-tab .tab-hint { font-size: 11px; font-weight: 400; color: inherit; opacity: 0.7; }
+
+    /* Corrected import styles */
+    .corrected-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .corrected-stat { text-align: center; padding: 16px; background: var(--gray-50); border-radius: var(--radius); }
+    .corrected-stat .value { font-size: 1.5rem; font-weight: 700; }
+    .corrected-stat .label { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -92,8 +130,27 @@
           <span class="page-title-icon">📦</span>
           Bulk Insert
         </h1>
-        <p class="page-subtitle">Select generated JSON files from any subject/chapter folder — validates IDs, checks for duplicates, inserts to DB</p>
+        <p class="page-subtitle">Import raw JSON or apply corrections from session files</p>
       </div>
+
+      <!-- Mode Tabs -->
+      <div class="mode-tabs">
+        <div class="mode-tab active" id="tabRaw" onclick="switchMode('raw')">
+          <span class="tab-icon">📦</span>
+          Import Raw
+          <div class="tab-hint">New questions from generated JSON</div>
+        </div>
+        <div class="mode-tab" id="tabCorrected" onclick="switchMode('corrected')">
+          <span class="tab-icon">🔧</span>
+          Import Corrected
+          <div class="tab-hint">Update existing questions from correction sessions</div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- RAW MODE -->
+      <!-- ============================================================ -->
+      <div id="rawMode">
 
       <!-- Step 1: Select Files -->
       <div class="card" id="step1Card">
@@ -163,6 +220,80 @@
           <div class="log-panel" id="logPanel"></div>
         </div>
       </div>
+
+      </div><!-- /rawMode -->
+
+      <!-- ============================================================ -->
+      <!-- CORRECTED MODE -->
+      <!-- ============================================================ -->
+      <div id="correctedMode" style="display: none;">
+
+        <!-- Step C1: Select correction files -->
+        <div class="card" id="stepC1Card">
+          <div class="card-header">
+            <h3 class="card-title">1. Select Correction Files</h3>
+          </div>
+          <div class="card-body">
+            <input type="file" id="correctedFileInput" accept=".json,application/json" multiple style="display: none;" onchange="handleCorrectedFiles(this.files)">
+            <div class="drop-zone" id="correctedDropZone" onclick="document.getElementById('correctedFileInput').click()">
+              <div class="icon">🔧</div>
+              <div><strong>Click to select corrected_records.json</strong> or drag & drop</div>
+              <div class="hint">From corrections/{session}/ folder — contains updated question fields</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step C2: Scan corrected records -->
+        <div class="card" id="stepC2Card" style="display: none;">
+          <div class="card-header">
+            <h3 class="card-title">2. Correction Summary</h3>
+            <button class="btn btn-sm btn-ghost" onclick="resetCorrected()">Clear & Start Over</button>
+          </div>
+          <div class="card-body">
+            <div class="corrected-summary" id="correctedStats"></div>
+            <table class="file-table">
+              <thead>
+                <tr>
+                  <th>Question ID</th>
+                  <th>DB UUID</th>
+                  <th>Fields Changed</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="correctedTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Step C3: Apply corrections -->
+        <div class="card" id="stepC3Card" style="display: none;">
+          <div class="card-header">
+            <h3 class="card-title">3. Apply Corrections</h3>
+          </div>
+          <div class="card-body">
+            <div class="progress-bar" id="correctedProgressBar" style="display: none;">
+              <div class="fill" id="correctedProgressFill" style="width: 0%"></div>
+            </div>
+            <div style="display: flex; gap: 12px; margin-top: 16px; justify-content: center;">
+              <button class="btn btn-primary btn-lg" id="applyCorrectedBtn" onclick="applyCorrectedRecords()">
+                Apply Corrections to DB
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step C4: Correction Log -->
+        <div class="card" id="stepC4Card" style="display: none;">
+          <div class="card-header">
+            <h3 class="card-title">4. Correction Log</h3>
+          </div>
+          <div class="card-body">
+            <div class="log-panel" id="correctedLogPanel"></div>
+          </div>
+        </div>
+
+      </div><!-- /correctedMode -->
+
     </div>
   </div>
 
@@ -803,6 +934,273 @@
       document.getElementById('progressBar').style.display = 'none';
       document.getElementById('dbCheckResult').innerHTML = '';
       document.getElementById('insertBtn').style.display = 'none';
+    }
+
+    // ========================================================================
+    // MODE SWITCHING
+    // ========================================================================
+    let currentMode = 'raw';
+
+    function switchMode(mode) {
+      currentMode = mode;
+      document.getElementById('rawMode').style.display = mode === 'raw' ? 'block' : 'none';
+      document.getElementById('correctedMode').style.display = mode === 'corrected' ? 'block' : 'none';
+      document.getElementById('tabRaw').classList.toggle('active', mode === 'raw');
+      document.getElementById('tabCorrected').classList.toggle('active', mode === 'corrected');
+    }
+
+    // ========================================================================
+    // CORRECTED MODE — STATE
+    // ========================================================================
+    let correctedRecords = [];   // parsed from corrected_records.json
+    let correctedSession = '';   // session name from manifest or filename
+
+    // Setup drag-drop for corrected zone
+    function setupCorrectedDragDrop() {
+      const zone = document.getElementById('correctedDropZone');
+      zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('drag-over'); });
+      zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        handleCorrectedFiles(e.dataTransfer.files);
+      });
+    }
+
+    // Init corrected drag-drop on load
+    document.addEventListener('DOMContentLoaded', () => { setupCorrectedDragDrop(); });
+
+    // ========================================================================
+    // CORRECTED MODE — FILE HANDLING
+    // ========================================================================
+    async function handleCorrectedFiles(fileList) {
+      correctedRecords = [];
+      correctedSession = '';
+
+      const files = Array.from(fileList).filter(f => f.name.endsWith('.json'));
+      if (files.length === 0) {
+        Qbank.showToast('No .json files selected', 'error');
+        return;
+      }
+
+      // Look for corrected_records.json or manifest.json
+      let records = [];
+      let manifest = null;
+
+      for (const file of files) {
+        try {
+          const text = await file.text();
+          const parsed = JSON.parse(text);
+
+          if (file.name === 'manifest.json' && parsed.session_id) {
+            manifest = parsed;
+            correctedSession = parsed.session_id || '';
+          } else if (Array.isArray(parsed)) {
+            // Array of corrected records
+            records.push(...parsed.map(r => ({ ...r, _sourceFile: file.name })));
+          } else if (parsed.records && Array.isArray(parsed.records)) {
+            // Wrapped format: { session: '...', records: [...] }
+            records.push(...parsed.records.map(r => ({ ...r, _sourceFile: file.name })));
+            if (parsed.session) correctedSession = parsed.session;
+          }
+        } catch (err) {
+          Qbank.showToast(`Failed to parse ${file.name}: ${err.message}`, 'error');
+        }
+      }
+
+      if (records.length === 0) {
+        Qbank.showToast('No corrected records found in selected files', 'error');
+        return;
+      }
+
+      // Validate: each record needs a DB UUID or a question_id (payload ID) to locate the row
+      correctedRecords = records.map(r => {
+        const errors = [];
+        if (!r.db_id && !r.question_id && !r.id) errors.push('No db_id or question_id');
+        const changedFields = Object.keys(r).filter(k =>
+          !['db_id', 'question_id', 'id', '_sourceFile', '_errors', '_dbRow'].includes(k)
+        );
+        if (changedFields.length === 0) errors.push('No changed fields');
+        r._errors = errors;
+        r._changedFields = changedFields;
+        return r;
+      });
+
+      if (!correctedSession) {
+        correctedSession = new Date().toISOString().slice(0, 10).replace(/-/g, '') + '-web';
+      }
+
+      renderCorrectedSummary();
+    }
+
+    // ========================================================================
+    // CORRECTED MODE — RENDER SUMMARY
+    // ========================================================================
+    function renderCorrectedSummary() {
+      const total = correctedRecords.length;
+      const valid = correctedRecords.filter(r => r._errors.length === 0).length;
+      const invalid = total - valid;
+
+      document.getElementById('correctedStats').innerHTML = `
+        <div class="corrected-stat"><div class="value">${total}</div><div class="label">Total Records</div></div>
+        <div class="corrected-stat"><div class="value" style="color: #22c55e">${valid}</div><div class="label">Valid</div></div>
+        <div class="corrected-stat"><div class="value" style="color: ${invalid > 0 ? '#ef4444' : '#22c55e'}">${invalid}</div><div class="label">Invalid</div></div>
+        <div class="corrected-stat"><div class="value" style="font-size: 0.9rem;">${esc(correctedSession)}</div><div class="label">Session</div></div>
+      `;
+
+      const tbody = document.getElementById('correctedTableBody');
+      tbody.innerHTML = correctedRecords.map(r => {
+        const qid = r.question_id || r.id || '--';
+        const dbId = r.db_id || '<em>will lookup</em>';
+        const fields = r._changedFields.join(', ');
+        const status = r._errors.length === 0
+          ? '<span class="id-check-badge id-new">Ready</span>'
+          : `<span class="id-check-badge id-err">${esc(r._errors.join('; '))}</span>`;
+        return `<tr>
+          <td><code>${esc(qid)}</code></td>
+          <td><code style="font-size: 11px;">${dbId}</code></td>
+          <td>${esc(fields)}</td>
+          <td>${status}</td>
+        </tr>`;
+      }).join('');
+
+      document.getElementById('stepC2Card').style.display = 'block';
+      document.getElementById('stepC3Card').style.display = valid > 0 ? 'block' : 'none';
+      document.getElementById('applyCorrectedBtn').textContent = `Apply ${valid} Corrections to DB`;
+      document.getElementById('stepC2Card').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ========================================================================
+    // CORRECTED MODE — APPLY CORRECTIONS (UPSERT)
+    // ========================================================================
+    async function applyCorrectedRecords() {
+      const valid = correctedRecords.filter(r => r._errors.length === 0);
+      if (valid.length === 0) {
+        Qbank.showToast('No valid records to apply', 'error');
+        return;
+      }
+
+      if (!confirm(`Apply ${valid.length} corrections to the database?\n\nSession: ${correctedSession}\n\nThis will UPDATE existing question records and stamp corrected_at.`)) {
+        return;
+      }
+
+      const btn = document.getElementById('applyCorrectedBtn');
+      btn.disabled = true;
+      btn.textContent = 'Applying...';
+
+      document.getElementById('stepC4Card').style.display = 'block';
+      const logEl = document.getElementById('correctedLogPanel');
+      logEl.innerHTML = '';
+      const progressBar = document.getElementById('correctedProgressBar');
+      const progressFill = document.getElementById('correctedProgressFill');
+      progressBar.style.display = 'block';
+
+      let updated = 0;
+      let errors = 0;
+
+      for (let i = 0; i < valid.length; i++) {
+        const r = valid[i];
+        const pct = Math.round(((i + 1) / valid.length) * 100);
+        progressFill.style.width = pct + '%';
+
+        try {
+          // Resolve the DB UUID if not provided
+          let dbId = r.db_id;
+          if (!dbId) {
+            const lookupId = r.question_id || r.id;
+            const { data: found, error: lookupErr } = await Qbank.supabase
+              .from('med_questions')
+              .select('id')
+              .eq('payload->>question_id', lookupId)
+              .single();
+
+            if (lookupErr || !found) {
+              throw new Error(`Could not find question with payload question_id="${lookupId}"`);
+            }
+            dbId = found.id;
+          }
+
+          // Build update payload — only include known DB columns
+          const DB_QUESTION_COLUMNS = [
+            'question_text', 'explanation', 'correct_answer', 'question_type',
+            'difficulty', 'status', 'subject_id', 'chapter_id', 'topic_id',
+            'concept_tags', 'exam_ids', 'payload', 'image_url',
+            'question_text_te', 'explanation_te',
+            'question_text_hi', 'explanation_hi'
+          ];
+
+          const updateData = {};
+          for (const field of r._changedFields) {
+            if (DB_QUESTION_COLUMNS.includes(field)) {
+              updateData[field] = r[field];
+            }
+          }
+
+          // Always stamp correction tracking
+          updateData.corrected_at = new Date().toISOString();
+          updateData.correction_session = correctedSession;
+
+          const { error: updateErr } = await Qbank.supabase
+            .from('med_questions')
+            .update(updateData)
+            .eq('id', dbId);
+
+          if (updateErr) throw updateErr;
+
+          // Update options if provided
+          if (r.options && Array.isArray(r.options)) {
+            for (const opt of r.options) {
+              const optUpdate = {};
+              if (opt.option_text !== undefined) optUpdate.option_text = opt.option_text;
+              if (opt.is_correct !== undefined) optUpdate.is_correct = opt.is_correct;
+              if (opt.option_text_te !== undefined) optUpdate.option_text_te = opt.option_text_te;
+              if (opt.option_text_hi !== undefined) optUpdate.option_text_hi = opt.option_text_hi;
+
+              if (Object.keys(optUpdate).length > 0) {
+                await Qbank.supabase
+                  .from('med_question_options')
+                  .update(optUpdate)
+                  .eq('question_id', dbId)
+                  .eq('option_key', opt.option_key || opt.key);
+              }
+            }
+          }
+
+          updated++;
+          if (updated % 5 === 0 || i === valid.length - 1) {
+            appendLogLine(logEl, `[${i + 1}/${valid.length}] ${r.question_id || r.id || dbId} — updated`, 'ok');
+          }
+        } catch (err) {
+          errors++;
+          appendLogLine(logEl, `[${i + 1}/${valid.length}] ${r.question_id || r.id} — FAILED: ${err.message}`, 'fail');
+        }
+      }
+
+      // Final summary
+      appendLogLine(logEl, '', 'info');
+      appendLogLine(logEl, '========================================', 'info');
+      appendLogLine(logEl, `  DONE: ${updated} updated, ${errors} failed (session: ${correctedSession})`, updated > 0 ? 'ok' : 'fail');
+      appendLogLine(logEl, '========================================', 'info');
+
+      progressFill.style.width = '100%';
+      Qbank.showToast(`Updated ${updated} questions (${errors} errors)`, updated > 0 ? 'success' : 'error');
+
+      btn.disabled = false;
+      btn.textContent = `Apply ${valid.length} Corrections to DB`;
+      document.getElementById('stepC4Card').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ========================================================================
+    // CORRECTED MODE — RESET
+    // ========================================================================
+    function resetCorrected() {
+      correctedRecords = [];
+      correctedSession = '';
+      document.getElementById('correctedFileInput').value = '';
+      document.getElementById('stepC2Card').style.display = 'none';
+      document.getElementById('stepC3Card').style.display = 'none';
+      document.getElementById('stepC4Card').style.display = 'none';
+      document.getElementById('correctedProgressBar').style.display = 'none';
     }
   </script>
 </body>
