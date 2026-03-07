@@ -35,6 +35,7 @@ import {
   STRENGTH_LEVELS,
   ChapterExamSession,
   QuestionV2,
+  t,
 } from '../../src/types';
 import {
   startChapterExam,
@@ -542,7 +543,7 @@ export default function ChapterQuizScreen() {
             <Text
               style={[Typography.h3, { color: colors.text, lineHeight: 26 }]}
             >
-              {language === 'te' ? question.textTe : question.text}
+              {t(language, question.text, question.textTe, question.textHi)}
             </Text>
           </View>
 
@@ -624,7 +625,7 @@ export default function ChapterQuizScreen() {
                   selectedOptionId={selectedOptionId}
                   correctOptionId={correctId}
                   questionText={
-                    language === 'te' ? question.textTe : question.text
+                    t(language, question.text, question.textTe, question.textHi)
                   }
                   subjectId={question.subjectId as SubjectId}
                   language={language}
@@ -648,9 +649,7 @@ export default function ChapterQuizScreen() {
                     },
                   ]}
                 >
-                  {language === 'te'
-                    ? question.explanationTe
-                    : question.explanation}
+                  {t(language, question.explanation, question.explanationTe, question.explanationHi)}
                 </Text>
               </JournalCard>
             </View>
@@ -708,11 +707,11 @@ export default function ChapterQuizScreen() {
       <AskVaniSheet
         visible={showVaniSheet}
         onClose={() => setShowVaniSheet(false)}
-        questionText={language === 'te' ? question.textTe : question.text}
+        questionText={t(language, question.text, question.textTe, question.textHi)}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
         questionType={question.type}
-        explanation={language === 'te' ? question.explanationTe : question.explanation}
+        explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
         selectedOptionId={selectedOptionId}
         language={language}

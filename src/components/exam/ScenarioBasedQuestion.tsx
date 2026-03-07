@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
-import { Option } from '../../types';
+import { Option, t } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
 
 interface ScenarioBasedPayloadShape {
   type: 'scenario-based';
   scenario: string;
   scenarioTe: string;
+  scenarioHi: string;
   options: Option[];
   correctOptionId: string;
 }
@@ -38,7 +39,7 @@ export function ScenarioBasedQuestion({ language, selectedOptionId, showFeedback
       <View style={[styles.scenarioCard, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
         <Text style={[styles.cardLabel, { color: '#8B5CF6' }]}>SCENARIO</Text>
         <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-          {language === 'te' ? payload.scenarioTe : payload.scenario}
+          {t(language, payload.scenario, payload.scenarioTe, payload.scenarioHi)}
         </Text>
       </View>
 
@@ -73,7 +74,7 @@ export function ScenarioBasedQuestion({ language, selectedOptionId, showFeedback
                 <Text style={[styles.optLabelText, { color: os.text }]}>{label}</Text>
               </View>
               <Text style={[Typography.body, { color: os.text, flex: 1 }]}>
-                {language === 'te' ? opt.textTe : opt.text}
+                {t(language, opt.text, opt.textTe, opt.textHi)}
               </Text>
               {showFeedback && opt.id === payload.correctOptionId && (
                 <Text style={{ fontSize: 18, color: '#16A34A' }}>{'\u2713'}</Text>

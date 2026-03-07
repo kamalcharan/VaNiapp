@@ -39,6 +39,7 @@ export interface CatalogChapter {
   branch: string | null;
   name: string;
   name_te: string | null;
+  name_hi: string | null;
   chapter_number: number | null;
   class_level: number | null;
   weightage: number;
@@ -91,6 +92,7 @@ const FALLBACK_SUBJECTS: CatalogSubject[] = [
 const FALLBACK_LANGUAGES: CatalogLanguage[] = [
   { id: 'en', label: 'English', native: 'English', emoji: 'Aa', description: 'Questions, explanations & UI in English', sort_order: 1 },
   { id: 'te', label: 'Telugu', native: '\u0C24\u0C46\u0C32\u0C41\u0C17\u0C41', emoji: '\u0C05', description: 'Questions & explanations in Telugu, UI in English', sort_order: 2 },
+  { id: 'hi', label: 'Hindi', native: '\u0939\u093F\u0928\u094D\u0926\u0940', emoji: '\u0915', description: 'Questions & explanations in Hindi, UI in English', sort_order: 3 },
 ];
 
 // ── In-memory cache ──────────────────────────────────────────
@@ -214,7 +216,7 @@ export async function getChapters(subjectId: string, examId?: string): Promise<C
   try {
     let query = supabase
       .from('med_chapters')
-      .select('id, subject_id, exam_ids, branch, name, name_te, chapter_number, class_level, weightage, avg_questions, important_topics')
+      .select('id, subject_id, exam_ids, branch, name, name_te, name_hi, chapter_number, class_level, weightage, avg_questions, important_topics')
       .eq('subject_id', subjectId)
       .eq('is_active', true);
 

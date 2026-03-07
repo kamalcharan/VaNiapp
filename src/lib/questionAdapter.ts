@@ -39,10 +39,13 @@ export function legacyToV2(q: Question): QuestionV2 {
     difficulty: q.difficulty,
     text: q.text,
     textTe: q.textTe,
+    textHi: q.textHi,
     explanation: q.explanation,
     explanationTe: q.explanationTe,
+    explanationHi: q.explanationHi,
     eliminationTechnique: q.eliminationTechnique,
     eliminationTechniqueTe: q.eliminationTechniqueTe,
+    eliminationTechniqueHi: q.eliminationTechniqueHi,
     eliminationHints: [],
     payload: {
       type: 'mcq',

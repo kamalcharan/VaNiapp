@@ -28,7 +28,7 @@ import { WrongAnswerCard } from '../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../src/components/exam/ConceptExplainerSheet';
 import { useToast } from '../src/components/ui/Toast';
 import { toggleBookmark } from '../src/store/slices/bookmarkSlice';
-import { QuestionV2, UserAnswer, SubjectId } from '../src/types';
+import { QuestionV2, UserAnswer, SubjectId, t } from '../src/types';
 
 type Filter = 'all' | 'wrong' | 'correct' | 'skipped';
 
@@ -316,7 +316,7 @@ export default function AnswerReviewScreen() {
 
           {chapter && (
             <Text style={[Typography.bodySm, { color: colors.textTertiary, marginBottom: Spacing.sm }]}>
-              {language === 'te' ? chapter.nameTe : chapter.name}
+              {t(language, chapter.name, chapter.nameTe, chapter.nameHi)}
             </Text>
           )}
 
@@ -346,7 +346,7 @@ export default function AnswerReviewScreen() {
           {/* Question Text */}
           <View style={[styles.questionBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
             <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-              {language === 'te' ? question.textTe : question.text}
+              {t(language, question.text, question.textTe, question.textHi)}
             </Text>
           </View>
 
@@ -364,7 +364,7 @@ export default function AnswerReviewScreen() {
           <JournalCard delay={0}>
             <HandwrittenText variant="handSm">Explanation</HandwrittenText>
             <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.sm, lineHeight: 22 }]}>
-              {language === 'te' ? question.explanationTe : question.explanation}
+              {t(language, question.explanation, question.explanationTe, question.explanationHi)}
             </Text>
           </JournalCard>
 
@@ -374,7 +374,7 @@ export default function AnswerReviewScreen() {
               questionId={question.id}
               selectedOptionId={selected}
               correctOptionId={getCorrectId(question)}
-              questionText={language === 'te' ? question.textTe : question.text}
+              questionText={t(language, question.text, question.textTe, question.textHi)}
               subjectId={question.subjectId as SubjectId}
               language={language}
               onConceptPress={(tag) => { setSelectedConceptTag(tag); setShowConceptSheet(true); }}
@@ -415,13 +415,13 @@ export default function AnswerReviewScreen() {
       <AskVaniSheet
         visible={showVaniSheet || showElimination}
         onClose={() => { setShowVaniSheet(false); setShowElimination(false); }}
-        questionText={language === 'te' ? question.textTe : question.text}
+        questionText={t(language, question.text, question.textTe, question.textHi)}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
         questionType={question.type}
-        explanation={language === 'te' ? question.explanationTe : question.explanation}
+        explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
-        eliminationText={String((language === 'te' ? question.eliminationTechniqueTe : question.eliminationTechnique) || '')}
+        eliminationText={t(language, question.eliminationTechnique, question.eliminationTechniqueTe, question.eliminationTechniqueHi)}
         selectedOptionId={selected}
         language={language}
       />

@@ -32,7 +32,7 @@ import { useToast } from '../src/components/ui/Toast';
 import { getCorrectId } from '../src/lib/questionAdapter';
 import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { reportError } from '../src/lib/errorReporting';
-import { QuestionV2, SubjectId } from '../src/types';
+import { QuestionV2, SubjectId, t } from '../src/types';
 
 const DIFF_COLORS = { easy: '#22C55E', medium: '#F59E0B', hard: '#EF4444' };
 
@@ -385,7 +385,7 @@ export default function PracticeMistakesScreen() {
           {/* Question Text */}
           <View style={[styles.questionBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
             <Text style={[Typography.h3, { color: colors.text, lineHeight: 26 }]}>
-              {language === 'te' ? question.textTe : question.text}
+              {t(language, question.text, question.textTe, question.textHi)}
             </Text>
           </View>
 
@@ -413,7 +413,7 @@ export default function PracticeMistakesScreen() {
                   questionId={question.id}
                   selectedOptionId={selectedOptionId}
                   correctOptionId={correctId}
-                  questionText={language === 'te' ? question.textTe : question.text}
+                  questionText={t(language, question.text, question.textTe, question.textHi)}
                   subjectId={question.subjectId as SubjectId}
                   language={language}
                   onConceptPress={(tag) => {
@@ -426,7 +426,7 @@ export default function PracticeMistakesScreen() {
               <JournalCard delay={0}>
                 <HandwrittenText variant="handSm">Explanation</HandwrittenText>
                 <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.sm, lineHeight: 22 }]}>
-                  {language === 'te' ? question.explanationTe : question.explanation}
+                  {t(language, question.explanation, question.explanationTe, question.explanationHi)}
                 </Text>
               </JournalCard>
             </View>
@@ -462,11 +462,11 @@ export default function PracticeMistakesScreen() {
       <AskVaniSheet
         visible={showVaniSheet}
         onClose={() => setShowVaniSheet(false)}
-        questionText={language === 'te' ? question.textTe : question.text}
+        questionText={t(language, question.text, question.textTe, question.textHi)}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
         questionType={question.type}
-        explanation={language === 'te' ? question.explanationTe : question.explanation}
+        explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
         selectedOptionId={selectedOptionId}
         language={language}

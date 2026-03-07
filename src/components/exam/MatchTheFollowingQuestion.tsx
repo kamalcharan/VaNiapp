@@ -2,13 +2,14 @@ import React, { useState, useRef, useCallback, useMemo } from 'react';
 import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
-import { Option } from '../../types';
+import { Option, t } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
 
 interface ColumnItem {
   id: string;
   text: string;
   textTe: string;
+  textHi: string;
 }
 
 interface MatchTheFollowingPayloadShape {
@@ -294,7 +295,7 @@ export function MatchTheFollowingQuestion({
                 style={[Typography.bodySm, { color: colors.text, flex: 1 }]}
                 numberOfLines={2}
               >
-                {language === 'te' ? bItem.textTe : bItem.text}
+                {t(language, bItem.text, bItem.textTe, bItem.textHi)}
               </Text>
               {showFeedback && (
                 <Text style={{ fontSize: 14 }}>
@@ -357,7 +358,7 @@ export function MatchTheFollowingQuestion({
                     style={[Typography.bodySm, { color: colors.text, flex: 1 }]}
                     numberOfLines={3}
                   >
-                    {language === 'te' ? aItem.textTe : aItem.text}
+                    {t(language, aItem.text, aItem.textTe, aItem.textHi)}
                   </Text>
                 </View>
 
@@ -433,7 +434,7 @@ export function MatchTheFollowingQuestion({
                         style={[Typography.bodySm, { color: colors.text, flex: 1 }]}
                         numberOfLines={2}
                       >
-                        {language === 'te' ? bItem.textTe : bItem.text}
+                        {t(language, bItem.text, bItem.textTe, bItem.textHi)}
                       </Text>
                     </Pressable>
                   </Animated.View>
@@ -463,11 +464,9 @@ export function MatchTheFollowingQuestion({
           {columnA.map((a, idx) => {
             const correctBId = payload.correctMapping[a.id];
             const bItem = columnB.find((b) => b.id === correctBId);
-            const aText = language === 'te' ? a.textTe : a.text;
+            const aText = t(language, a.text, a.textTe, a.textHi);
             const bText = bItem
-              ? language === 'te'
-                ? bItem.textTe
-                : bItem.text
+              ? t(language, bItem.text, bItem.textTe, bItem.textHi)
               : correctBId;
             return (
               <Text

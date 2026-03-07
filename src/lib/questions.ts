@@ -8,6 +8,7 @@ interface DbOption {
   option_key: string;
   option_text: string;
   option_text_te: string | null;
+  option_text_hi: string | null;
   is_correct: boolean;
   sort_order: number;
 }
@@ -16,13 +17,16 @@ interface DbEliminationHint {
   option_key: string;
   hint_text: string;
   hint_text_te: string | null;
+  hint_text_hi: string | null;
   misconception: string | null;
   misconception_te: string | null;
+  misconception_hi: string | null;
 }
 
 interface DbTopic {
   name: string;
   name_te: string | null;
+  name_hi: string | null;
 }
 
 interface DbQuestion {
@@ -34,8 +38,10 @@ interface DbQuestion {
   difficulty: string;
   question_text: string;
   question_text_te: string | null;
+  question_text_hi: string | null;
   explanation: string | null;
   explanation_te: string | null;
+  explanation_hi: string | null;
   correct_answer: string;
   image_url: string | null;
   image_alt: string | null;
@@ -81,11 +87,11 @@ export async function fetchQuestionsByChapter(
       .from('med_questions')
       .select(
         `id, subject_id, chapter_id, topic_id, question_type, difficulty,
-         question_text, question_text_te, explanation, explanation_te,
+         question_text, question_text_te, question_text_hi, explanation, explanation_te, explanation_hi,
          correct_answer, image_url, image_alt, payload,
-         med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
-         med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te),
-         med_topics!topic_id (name, name_te)`,
+         med_question_options (option_key, option_text, option_text_te, option_text_hi, is_correct, sort_order),
+         med_elimination_hints (option_key, hint_text, hint_text_te, hint_text_hi, misconception, misconception_te, misconception_hi),
+         med_topics!topic_id (name, name_te, name_hi)`,
       )
       .eq('chapter_id', resolvedId)
       .eq('status', 'active')
@@ -145,11 +151,11 @@ export async function fetchQuestionsBySubject(
       .from('med_questions')
       .select(
         `id, subject_id, chapter_id, topic_id, question_type, difficulty,
-         question_text, question_text_te, explanation, explanation_te,
+         question_text, question_text_te, question_text_hi, explanation, explanation_te, explanation_hi,
          correct_answer, image_url, image_alt, payload,
-         med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
-         med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te),
-         med_topics!topic_id (name, name_te)`,
+         med_question_options (option_key, option_text, option_text_te, option_text_hi, is_correct, sort_order),
+         med_elimination_hints (option_key, hint_text, hint_text_te, hint_text_hi, misconception, misconception_te, misconception_hi),
+         med_topics!topic_id (name, name_te, name_hi)`,
       )
       .eq('subject_id', subjectId)
       .eq('status', 'active')
@@ -189,6 +195,7 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     id: o.option_key,
     text: o.option_text,
     textTe: o.option_text_te || '',
+    textHi: o.option_text_hi || '',
   }));
 
   const correctOption = dbOptions.find((o) => o.is_correct);
@@ -202,8 +209,10 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     optionKey: h.option_key,
     hint: h.hint_text || '',
     hintTe: h.hint_text_te || '',
+    hintHi: h.hint_text_hi || '',
     misconception: h.misconception || '',
     misconceptionTe: h.misconception_te || '',
+    misconceptionHi: h.misconception_hi || '',
   }));
 
   // Build a combined elimination technique string from hints
@@ -214,6 +223,11 @@ function dbToV2(row: DbQuestion): QuestionV2 {
   const eliminationTextTe = eliminationHints
     .filter((h) => h.hintTe)
     .map((h) => `Option ${h.optionKey}: ${h.hintTe}`)
+    .join('\n');
+
+  const eliminationTextHi = eliminationHints
+    .filter((h) => h.hintHi)
+    .map((h) => `Option ${h.optionKey}: ${h.hintHi}`)
     .join('\n');
 
   const payload = buildPayload(row, options, correctOptionId);
@@ -275,12 +289,16 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     topicId: row.topic_id || payloadTopic,
     topicName: row.med_topics?.name || payloadTopic,
     topicNameTe: row.med_topics?.name_te || undefined,
+    topicNameHi: row.med_topics?.name_hi || undefined,
     text: displayText,
     textTe: row.question_text_te || '',
+    textHi: row.question_text_hi || '',
     explanation: row.explanation || '',
     explanationTe: row.explanation_te || '',
+    explanationHi: row.explanation_hi || '',
     eliminationTechnique: eliminationText,
     eliminationTechniqueTe: eliminationTextTe,
+    eliminationTechniqueHi: eliminationTextHi,
     eliminationHints,
     payload,
   };
@@ -313,8 +331,10 @@ function buildPayload(
         type: 'assertion-reasoning',
         assertion,
         assertionTe: (raw.assertion_te as string) || '',
+        assertionHi: (raw.assertion_hi as string) || '',
         reason,
         reasonTe: (raw.reason_te as string) || '',
+        reasonHi: (raw.reason_hi as string) || '',
         options,
         correctOptionId,
       };
@@ -364,6 +384,7 @@ function buildPayload(
         type: 'true-false',
         statement: (raw.statement as string) || text,
         statementTe: (raw.statement_te as string) || '',
+        statementHi: (raw.statement_hi as string) || '',
         correctAnswer: tfCorrect,
       };
     }
@@ -373,6 +394,7 @@ function buildPayload(
         type: 'fill-in-blanks',
         textWithBlanks: (raw.text_with_blanks as string) || text,
         textWithBlanksTe: (raw.text_with_blanks_te as string) || '',
+        textWithBlanksHi: (raw.text_with_blanks_hi as string) || '',
         options,
         correctOptionId,
       };
@@ -382,6 +404,7 @@ function buildPayload(
         type: 'scenario-based',
         scenario: (raw.scenario as string) || text,
         scenarioTe: (raw.scenario_te as string) || '',
+        scenarioHi: (raw.scenario_hi as string) || '',
         options,
         correctOptionId,
       };
@@ -412,12 +435,13 @@ function buildPayload(
 // ── Text parsers ─────────────────────────────────────────────
 
 /** Parse array of column/sequence items from DB payload JSON */
-function parseColumnItemsFromJson(data: unknown): { id: string; text: string; textTe: string }[] {
+function parseColumnItemsFromJson(data: unknown): { id: string; text: string; textTe: string; textHi: string }[] {
   if (!Array.isArray(data)) return [];
   return data.map((item: Record<string, unknown>) => ({
     id: String(item.id ?? ''),
     text: String(item.text ?? ''),
     textTe: String(item.text_te ?? item.textTe ?? ''),
+    textHi: String(item.text_hi ?? item.textHi ?? ''),
   }));
 }
 
@@ -428,11 +452,11 @@ function parseColumnItemsFromJson(data: unknown): { id: string; text: string; te
  *   Column A:\n1. Item\n2. Item\nColumn B:\n(a) Item\n(b) Item
  */
 function parseMatchColumns(text: string): {
-  columnA: { id: string; text: string; textTe: string }[];
-  columnB: { id: string; text: string; textTe: string }[];
+  columnA: { id: string; text: string; textTe: string; textHi: string }[];
+  columnB: { id: string; text: string; textTe: string; textHi: string }[];
 } {
-  const columnA: { id: string; text: string; textTe: string }[] = [];
-  const columnB: { id: string; text: string; textTe: string }[] = [];
+  const columnA: { id: string; text: string; textTe: string; textHi: string }[] = [];
+  const columnB: { id: string; text: string; textTe: string; textHi: string }[] = [];
 
   // Split into Column I / Column II sections
   // Match headers like "Column I:", "Column-I:", "Column A:", "Column 1:", "List I:", "List-I"
@@ -449,15 +473,15 @@ function parseMatchColumns(text: string): {
   // 1. Parenthesized: (P), (Q), (1), (a), (i), (ii), (iii), (iv) etc.
   // 2. Dotted: A., B., C., 1., 2., 3. etc.
   // 3. Letter/number at line start: A  text, B  text
-  function extractItems(body: string): { id: string; text: string; textTe: string }[] {
-    const items: { id: string; text: string; textTe: string }[] = [];
+  function extractItems(body: string): { id: string; text: string; textTe: string; textHi: string }[] {
+    const items: { id: string; text: string; textTe: string; textHi: string }[] = [];
 
     // Try parenthesized format first: (P) text, (Q) text
     const parenRegex = /\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s*([^\n(]+)/g;
     let m;
     // eslint-disable-next-line no-cond-assign
     while ((m = parenRegex.exec(body)) !== null) {
-      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
     }
     if (items.length >= 2) return items;
 
@@ -466,7 +490,7 @@ function parseMatchColumns(text: string): {
     const dotRegex = /(?:^|\n)\s*([A-Za-z0-9]+)\.\s+(.+?)(?=\n\s*[A-Za-z0-9]+\.|$)/gs;
     // eslint-disable-next-line no-cond-assign
     while ((m = dotRegex.exec(body)) !== null) {
-      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
     }
     if (items.length >= 2) return items;
 
@@ -476,7 +500,7 @@ function parseMatchColumns(text: string): {
     const simpleRegex = /(?:^|\n)\s*([A-Z])\s{2,}(.+?)(?=\n|$)/g;
     // eslint-disable-next-line no-cond-assign
     while ((m = simpleRegex.exec(body)) !== null) {
-      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
     }
     return items;
   }

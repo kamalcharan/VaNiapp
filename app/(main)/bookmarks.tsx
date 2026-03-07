@@ -31,6 +31,7 @@ import { SUBJECT_META } from '../../src/constants/subjects';
 import { reportError } from '../../src/lib/errorReporting';
 import { getCorrectId } from '../../src/lib/questionAdapter';
 import type { QuestionV2 } from '../../src/types';
+import { t } from '../../src/types';
 
 // Enable LayoutAnimation on Android
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -294,7 +295,7 @@ export default function BookmarksScreen() {
                           style={[Typography.body, { color: colors.text, marginTop: Spacing.sm, lineHeight: 22 }]}
                           numberOfLines={isExpanded ? undefined : 3}
                         >
-                          {language === 'te' ? item.textTe : item.text}
+                          {t(language, item.text, item.textTe, item.textHi)}
                         </Text>
                       </Pressable>
 
@@ -314,7 +315,7 @@ export default function BookmarksScreen() {
                           <View style={[styles.explanationBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
                             <HandwrittenText variant="handSm">Explanation</HandwrittenText>
                             <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.xs, lineHeight: 22 }]}>
-                              {language === 'te' ? item.explanationTe : item.explanation}
+                              {t(language, item.explanation, item.explanationTe, item.explanationHi)}
                             </Text>
                           </View>
                         </View>
@@ -374,10 +375,13 @@ function dbRowToV2(row: any): QuestionV2 {
     difficulty: row.difficulty,
     text: row.question_text,
     textTe: row.question_text_te || '',
+    textHi: row.question_text_hi || '',
     explanation: row.explanation || '',
     explanationTe: row.explanation_te || '',
+    explanationHi: row.explanation_hi || '',
     eliminationTechnique: eliminationText,
     eliminationTechniqueTe: eliminationTextTe,
+    eliminationTechniqueHi: '',
     eliminationHints,
     payload: {
       type: 'mcq',
