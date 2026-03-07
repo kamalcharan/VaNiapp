@@ -1424,29 +1424,41 @@
         return;
       }
 
-      // Check if any questions have hints in payload already
-      const hasPayloadHints = fixableQuestions.some(q =>
+      // Check how many questions have hints in payload vs missing
+      const withPayloadHints = fixableQuestions.filter(q =>
         Array.isArray(q.payload?.elimination_hints) && q.payload.elimination_hints.length > 0
+      );
+      const withoutPayloadHints = fixableQuestions.filter(q =>
+        !Array.isArray(q.payload?.elimination_hints) || q.payload.elimination_hints.length === 0
       );
 
       let sourceData = null;
 
-      if (!hasPayloadHints) {
-        // No hints in payload — need source JSON files
-        const useFiles = confirm(
-          `${fixableQuestions.length} questions have no hints in the database or payload.\n\n` +
-          `To fix this, select the source JSON files (the *-copied.json files from Qbank/CUET/) ` +
-          `that contain the original elimination_hints.\n\n` +
-          `You can select multiple files. Click OK to choose files, or Cancel to skip.`
-        );
+      if (withoutPayloadHints.length > 0) {
+        // Some or all questions lack payload hints — offer source JSON file upload
+        const msg = withPayloadHints.length > 0
+          ? `${withPayloadHints.length} questions have hints in payload and will be fixed automatically.\n\n` +
+            `${withoutPayloadHints.length} questions have NO hints in payload or database.\n` +
+            `To fix these, select the source JSON files (the *-copied.json files from Qbank/CUET/).\n\n` +
+            `Click OK to choose files, or Cancel to fix only the ${withPayloadHints.length} with payload hints.`
+          : `${withoutPayloadHints.length} questions have no hints in the database or payload.\n\n` +
+            `To fix this, select the source JSON files (the *-copied.json files from Qbank/CUET/) ` +
+            `that contain the original elimination_hints.\n\n` +
+            `You can select multiple files. Click OK to choose files, or Cancel to skip.`;
+
+        const useFiles = confirm(msg);
 
         if (useFiles) {
           sourceData = await _loadSourceJsonFiles();
           if (!sourceData || sourceData.length === 0) {
-            Qbank.showToast('No source data loaded — cancelled', 'error');
-            return;
+            if (withPayloadHints.length === 0) {
+              Qbank.showToast('No source data loaded — cancelled', 'error');
+              return;
+            }
+            // Still proceed with payload-only fixes
+            Qbank.showToast('No source files loaded — fixing only questions with payload hints', 'warn');
           }
-        } else {
+        } else if (withPayloadHints.length === 0) {
           Qbank.showToast('Fix cancelled — source JSON files needed', 'error');
           return;
         }
