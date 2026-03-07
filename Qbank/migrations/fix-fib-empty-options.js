@@ -320,7 +320,7 @@ async function main() {
   const { data: allFIB, error: fetchErr } = await supabase
     .from('med_questions')
     .select('id, question_text, correct_answer, question_type')
-    .eq('question_type', 'fill_in_blank')
+    .eq('question_type', 'fill-in-blanks')
     .eq('status', 'active');
 
   if (fetchErr) {
