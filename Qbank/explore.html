@@ -1462,6 +1462,13 @@
 
       const result = await Qbank.fixMissingHints(fixableQuestions, sourceData);
 
+      // Debug: log skip reasons to console
+      console.log('[fixHints] Result:', JSON.stringify({ fixed: result.fixed, skipped: result.skipped, errors: result.errors }));
+      const skipped = result.details.filter(d => d.status === 'skipped');
+      if (skipped.length > 0) console.log('[fixHints] Skipped (first 5):', skipped.slice(0, 5));
+      const errored = result.details.filter(d => d.status === 'error');
+      if (errored.length > 0) console.log('[fixHints] Errors (first 5):', errored.slice(0, 5));
+
       Qbank.showToast(
         `Fixed ${result.fixed} questions (${result.errors} errors, ${result.skipped} skipped)`,
         result.errors ? 'error' : 'success'
