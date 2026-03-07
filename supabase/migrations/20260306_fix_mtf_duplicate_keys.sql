@@ -57,7 +57,8 @@ BEGIN
         jsonb_build_object(
           'id', new_id,
           'text', b_item->>'text',
-          'textTe', COALESCE(b_item->>'textTe', '')
+          'textTe', COALESCE(b_item->>'textTe', ''),
+          'textHi', COALESCE(b_item->>'textHi', '')
         )
       );
     END LOOP;

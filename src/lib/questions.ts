@@ -362,6 +362,24 @@ function buildPayload(
 
       // If we still have column data, return match-the-following
       if (colA.length > 0 && colB.length > 0) {
+        // Deduplicate: if any Column B ID collides with a Column A ID,
+        // prefix ALL Column B IDs with "b-" so React keys stay unique.
+        const aIdSet = new Set(colA.map((c) => c.id));
+        const hasOverlap = colB.some((c) => aIdSet.has(c.id));
+        if (hasOverlap) {
+          for (const item of colB) {
+            item.id = `b-${item.id}`;
+          }
+          // Update correctMapping values to match new B IDs
+          if (mapping) {
+            const updated: Record<string, string> = {};
+            for (const [aId, bId] of Object.entries(mapping)) {
+              updated[aId] = bId.startsWith('b-') ? bId : `b-${bId}`;
+            }
+            mapping = updated;
+          }
+        }
+
         return {
           type: 'match-the-following',
           columnA: colA,
