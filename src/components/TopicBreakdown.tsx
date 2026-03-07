@@ -2,12 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Spacing } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { t } from '../types';
+import { t, L } from '../types';
 
 export interface TopicStat {
-  name: string;
-  nameTe: string;
-  nameHi?: string;
+  name: L;
   correct: number;
   total: number;
 }
@@ -43,7 +41,7 @@ export function TopicBreakdown({ topics, language, label }: Props) {
       {sorted.map(([key, stat]) => {
         const pct = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
         const barColor = pct >= 70 ? '#22C55E' : pct >= 40 ? '#F59E0B' : '#EF4444';
-        const displayName = t(language, stat.name, stat.nameTe, stat.nameHi);
+        const displayName = t(language, stat.name);
         return (
           <View key={key} style={styles.row}>
             <View style={styles.header}>

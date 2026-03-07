@@ -1,4 +1,4 @@
-import { Question, QuestionV2, QuestionType, NeetSubjectId } from '../../types';
+import { Question, QuestionV2, QuestionType, NeetSubjectId, L } from '../../types';
 import { legacyBatchToV2, filterByUnlockedTypes } from '../../lib/questionAdapter';
 import { physicsLawsOfMotionQuestions } from './physics-laws-of-motion';
 import { physicsThermodynamicsQuestions } from './physics-thermodynamics';
@@ -8,7 +8,32 @@ import { botanyCellBiologyQuestions } from './botany-cell-biology';
 import { botanyPlantAnatomyQuestions } from './botany-plant-anatomy';
 import { zoologyHumanPhysiologyQuestions } from './zoology-human-physiology';
 import { zoologyGeneticsQuestions } from './zoology-genetics';
-import { sampleV2Questions } from './sample-v2-questions';
+import { sampleV2Questions as rawSampleV2 } from './sample-v2-questions';
+
+// Convert legacy per-language string fields to L maps at runtime
+function toL(en: unknown, te?: unknown, hi?: unknown): L {
+  const r: L = { en: String(en ?? '') };
+  if (te) r.te = String(te);
+  if (hi) r.hi = String(hi);
+  return r;
+}
+
+function convertSampleV2(raw: any[]): QuestionV2[] {
+  return raw.map((q): QuestionV2 => {
+    const p = { ...q.payload };
+    if (p.statement !== undefined) { p.statement = toL(p.statement, p.statementTe, p.statementHi); delete p.statementTe; delete p.statementHi; }
+    if (p.assertion !== undefined) { p.assertion = toL(p.assertion, p.assertionTe, p.assertionHi); p.reason = toL(p.reason, p.reasonTe, p.reasonHi); delete p.assertionTe; delete p.assertionHi; delete p.reasonTe; delete p.reasonHi; }
+    if (p.scenario !== undefined) { p.scenario = toL(p.scenario, p.scenarioTe, p.scenarioHi); delete p.scenarioTe; delete p.scenarioHi; }
+    if (p.textWithBlanks !== undefined) { p.textWithBlanks = toL(p.textWithBlanks, p.textWithBlanksTe, p.textWithBlanksHi); delete p.textWithBlanksTe; delete p.textWithBlanksHi; }
+    if (p.options) p.options = p.options.map((o: any) => ({ id: o.id, text: toL(o.text, o.textTe, o.textHi) }));
+    if (p.columnA) p.columnA = p.columnA.map((c: any) => ({ id: c.id, text: toL(c.text, c.textTe, c.textHi) }));
+    if (p.columnB) p.columnB = p.columnB.map((c: any) => ({ id: c.id, text: toL(c.text, c.textTe, c.textHi) }));
+    if (p.items) p.items = p.items.map((c: any) => ({ id: c.id, text: toL(c.text, c.textTe, c.textHi) }));
+    return { ...q, text: toL(q.text, q.textTe, q.textHi), explanation: toL(q.explanation, q.explanationTe, q.explanationHi), eliminationTechnique: toL(q.eliminationTechnique, q.eliminationTechniqueTe, q.eliminationTechniqueHi), topicName: q.topicName ? toL(q.topicName, q.topicNameTe, q.topicNameHi) : undefined, payload: p };
+  });
+}
+
+const sampleV2Questions = convertSampleV2(rawSampleV2);
 
 // All questions indexed by chapter ID (DB med_chapters IDs)
 const questionsByChapter: Record<string, Question[]> = {

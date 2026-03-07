@@ -509,7 +509,7 @@ export default function QuickPracticeQuizScreen() {
           {/* Question Text */}
           <View style={[styles.questionBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
             <Text style={[Typography.h3, { color: colors.text, lineHeight: 26 }]}>
-              {t(language, question.text, question.textTe, question.textHi)}
+              {t(language, question.text)}
             </Text>
           </View>
 
@@ -543,7 +543,7 @@ export default function QuickPracticeQuizScreen() {
                   questionId={question.id}
                   selectedOptionId={selectedOptionId}
                   correctOptionId={correctId}
-                  questionText={t(language, question.text, question.textTe, question.textHi)}
+                  questionText={t(language, question.text)}
                   subjectId={question.subjectId as SubjectId}
                   language={language}
                   onConceptPress={(tag) => { setSelectedConceptTag(tag); setShowConceptSheet(true); }}
@@ -553,7 +553,7 @@ export default function QuickPracticeQuizScreen() {
               <JournalCard delay={0}>
                 <HandwrittenText variant="handSm">Explanation</HandwrittenText>
                 <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.sm, lineHeight: 22 }]}>
-                  {t(language, question.explanation, question.explanationTe, question.explanationHi)}
+                  {t(language, question.explanation)}
                 </Text>
               </JournalCard>
             </View>
@@ -601,13 +601,13 @@ export default function QuickPracticeQuizScreen() {
       <AskVaniSheet
         visible={showVaniSheet}
         onClose={() => setShowVaniSheet(false)}
-        questionText={t(language, question.text, question.textTe, question.textHi)}
+        questionText={t(language, question.text)}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
         questionType={question.type}
-        explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
+        explanation={t(language, question.explanation)}
         eliminationHints={question.eliminationHints}
-        eliminationText={t(language, question.eliminationTechnique, question.eliminationTechniqueTe, question.eliminationTechniqueHi)}
+        eliminationText={t(language, question.eliminationTechnique)}
         selectedOptionId={selectedOptionId}
         language={language}
       />

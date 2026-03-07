@@ -4,11 +4,11 @@ import { Typography, Spacing, BorderRadius } from '../../constants/theme';
 import { t } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
 
+import type { L } from '../../types';
+
 interface TrueFalsePayloadShape {
   type: 'true-false';
-  statement: string;
-  statementTe: string;
-  statementHi: string;
+  statement: L;
   correctAnswer: boolean;
 }
 
@@ -54,7 +54,7 @@ export function TrueFalseQuestion({ language, selectedOptionId, showFeedback, on
       <View style={[styles.statementCard, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
         <Text style={[styles.statementLabel, { color: colors.textTertiary }]}>STATEMENT</Text>
         <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-          {t(language, payload.statement, payload.statementTe, payload.statementHi)}
+          {t(language, payload.statement)}
         </Text>
       </View>
 

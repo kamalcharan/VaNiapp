@@ -1,55 +1,42 @@
 import { supabase } from './supabase';
-import type { QuestionV2, QuestionType, Difficulty, Option, EliminationHint } from '../types';
+import type { QuestionV2, QuestionType, Difficulty, Option, EliminationHint, L } from '../types';
 import { resolveLegacyChapterId } from './questionAdapter';
 
-// ── Types for DB rows ────────────────────────────────────────
+// ── Dynamic L builder ────────────────────────────────────────
+// Builds an L (localized text map) from a DB row by detecting _xx suffixed columns.
+// Adding a new language column (e.g. question_text_ta) is automatically picked up.
 
-interface DbOption {
-  option_key: string;
-  option_text: string;
-  option_text_te: string | null;
-  option_text_hi: string | null;
-  is_correct: boolean;
-  sort_order: number;
+function l(row: Record<string, unknown>, baseCol: string): L {
+  const en = String(row[baseCol] ?? '');
+  const result: L = { en };
+  const prefix = baseCol + '_';
+  for (const key of Object.keys(row)) {
+    if (key.startsWith(prefix) && key.length === prefix.length + 2 && row[key]) {
+      result[key.slice(prefix.length)] = String(row[key]);
+    }
+  }
+  return result;
 }
 
-interface DbEliminationHint {
-  option_key: string;
-  hint_text: string;
-  hint_text_te: string | null;
-  hint_text_hi: string | null;
-  misconception: string | null;
-  misconception_te: string | null;
-  misconception_hi: string | null;
+// Build L from payload JSON fields (e.g. raw.assertion, raw.assertion_te, raw.assertion_ta)
+function lPayload(raw: Record<string, unknown>, baseKey: string, fallback?: string): L {
+  const en = String(raw[baseKey] ?? fallback ?? '');
+  const result: L = { en };
+  const prefix = baseKey + '_';
+  for (const key of Object.keys(raw)) {
+    if (key.startsWith(prefix) && key.length === prefix.length + 2 && raw[key]) {
+      result[key.slice(prefix.length)] = String(raw[key]);
+    }
+  }
+  return result;
 }
 
-interface DbTopic {
-  name: string;
-  name_te: string | null;
-  name_hi: string | null;
-}
+// ── DB row types (untyped — we use Record<string, unknown> for dynamic column detection) ──
 
-interface DbQuestion {
-  id: string;
-  subject_id: string;
-  chapter_id: string;
-  topic_id: string | null;
-  question_type: string;
-  difficulty: string;
-  question_text: string;
-  question_text_te: string | null;
-  question_text_hi: string | null;
-  explanation: string | null;
-  explanation_te: string | null;
-  explanation_hi: string | null;
-  correct_answer: string;
-  image_url: string | null;
-  image_alt: string | null;
-  payload: Record<string, unknown> | null;
-  med_question_options: DbOption[];
-  med_elimination_hints: DbEliminationHint[];
-  med_topics: DbTopic | null;
-}
+type DbRow = Record<string, unknown>;
+type DbOptionRow = Record<string, unknown>;
+type DbHintRow = Record<string, unknown>;
+type DbTopicRow = Record<string, unknown>;
 
 // ── Result type ──────────────────────────────────────────────
 
@@ -86,12 +73,7 @@ export async function fetchQuestionsByChapter(
     const { data, error } = await supabase
       .from('med_questions')
       .select(
-        `id, subject_id, chapter_id, topic_id, question_type, difficulty,
-         question_text, question_text_te, question_text_hi, explanation, explanation_te, explanation_hi,
-         correct_answer, image_url, image_alt, payload,
-         med_question_options (option_key, option_text, option_text_te, option_text_hi, is_correct, sort_order),
-         med_elimination_hints (option_key, hint_text, hint_text_te, hint_text_hi, misconception, misconception_te, misconception_hi),
-         med_topics!topic_id (name, name_te, name_hi)`,
+        `*, med_question_options (*), med_elimination_hints (*), med_topics!topic_id (*)`,
       )
       .eq('chapter_id', resolvedId)
       .eq('status', 'active')
@@ -119,7 +101,7 @@ export async function fetchQuestionsByChapter(
       }
     }
 
-    const questions = (data as unknown as DbQuestion[]).map(dbToV2);
+    const questions = (data as DbRow[]).map(dbToV2);
     cache.set(resolvedId, questions);
     return { ok: true, questions };
   } catch (err) {
@@ -150,12 +132,7 @@ export async function fetchQuestionsBySubject(
     const { data, error } = await supabase
       .from('med_questions')
       .select(
-        `id, subject_id, chapter_id, topic_id, question_type, difficulty,
-         question_text, question_text_te, question_text_hi, explanation, explanation_te, explanation_hi,
-         correct_answer, image_url, image_alt, payload,
-         med_question_options (option_key, option_text, option_text_te, option_text_hi, is_correct, sort_order),
-         med_elimination_hints (option_key, hint_text, hint_text_te, hint_text_hi, misconception, misconception_te, misconception_hi),
-         med_topics!topic_id (name, name_te, name_hi)`,
+        `*, med_question_options (*), med_elimination_hints (*), med_topics!topic_id (*)`,
       )
       .eq('subject_id', subjectId)
       .eq('status', 'active')
@@ -170,7 +147,7 @@ export async function fetchQuestionsBySubject(
       return { ok: false, error: 'no-questions' };
     }
 
-    const questions = (data as unknown as DbQuestion[]).map(dbToV2);
+    const questions = (data as DbRow[]).map(dbToV2);
     cache.set(cacheKey, questions);
     return { ok: true, questions };
   } catch (err) {
@@ -186,205 +163,159 @@ export function clearQuestionsCache(): void {
 
 // ── Transform DB row → QuestionV2 ────────────────────────────
 
-function dbToV2(row: DbQuestion): QuestionV2 {
-  const dbOptions = (row.med_question_options || []).sort(
-    (a, b) => a.sort_order - b.sort_order,
+function dbToV2(row: DbRow): QuestionV2 {
+  const dbOptions = ((row.med_question_options as DbOptionRow[]) || []).sort(
+    (a, b) => (a.sort_order as number) - (b.sort_order as number),
   );
 
   const options: Option[] = dbOptions.map((o) => ({
-    id: o.option_key,
-    text: o.option_text,
-    textTe: o.option_text_te || '',
-    textHi: o.option_text_hi || '',
+    id: String(o.option_key),
+    text: l(o, 'option_text'),
   }));
 
   const correctOption = dbOptions.find((o) => o.is_correct);
-  const correctOptionId = correctOption?.option_key || row.correct_answer;
+  const correctOptionId = String(correctOption?.option_key ?? row.correct_answer ?? '');
 
   const raw = (row.payload ?? {}) as Record<string, unknown>;
-  const questionId = (raw.question_id as string) || row.id;
+  const questionId = (raw.question_id as string) || String(row.id);
+  const questionType = String(row.question_type);
+  const questionText = String(row.question_text ?? '');
 
   // Map elimination hints from DB
-  const eliminationHints: EliminationHint[] = (row.med_elimination_hints || []).map((h) => ({
-    optionKey: h.option_key,
-    hint: h.hint_text || '',
-    hintTe: h.hint_text_te || '',
-    hintHi: h.hint_text_hi || '',
-    misconception: h.misconception || '',
-    misconceptionTe: h.misconception_te || '',
-    misconceptionHi: h.misconception_hi || '',
+  const hintRows = (row.med_elimination_hints as DbHintRow[]) || [];
+  const eliminationHints: EliminationHint[] = hintRows.map((h) => ({
+    optionKey: String(h.option_key),
+    hint: l(h, 'hint_text'),
+    misconception: l(h, 'misconception'),
   }));
 
-  // Build a combined elimination technique string from hints
-  const eliminationText = eliminationHints
-    .map((h) => `Option ${h.optionKey}: ${h.hint}`)
-    .join('\n');
+  // Build combined elimination technique L from all hints
+  const elimTechnique: L = { en: '' };
+  const langCodes = new Set<string>();
+  for (const h of eliminationHints) {
+    for (const code of Object.keys(h.hint)) langCodes.add(code);
+  }
+  for (const code of langCodes) {
+    const lines = eliminationHints
+      .filter((h) => h.hint[code])
+      .map((h) => `Option ${h.optionKey}: ${h.hint[code]}`);
+    if (lines.length > 0) elimTechnique[code] = lines.join('\n');
+  }
 
-  const eliminationTextTe = eliminationHints
-    .filter((h) => h.hintTe)
-    .map((h) => `Option ${h.optionKey}: ${h.hintTe}`)
-    .join('\n');
+  const payload = buildPayload(row, options, correctOptionId, raw, questionText);
 
-  const eliminationTextHi = eliminationHints
-    .filter((h) => h.hintHi)
-    .map((h) => `Option ${h.optionKey}: ${h.hintHi}`)
-    .join('\n');
-
-  const payload = buildPayload(row, options, correctOptionId);
-
-  // Clean display text — strip embedded structured data that the component renders.
-  // Each special type has its own card (scenario card, blanks card, etc.) so we
-  // minimise the question-box text to avoid duplication.
-  let displayText = row.question_text;
-  if (row.question_type === 'match-the-following') {
+  // Clean display text (English) — strip embedded structured data
+  let displayText = questionText;
+  if (questionType === 'match-the-following') {
     displayText = displayText.replace(/\n*column\s*(?:i|I|1|a|A)\s*[:\-][\s\S]*/i, '').trim();
-    // Remove trailing ":" if leftover
     displayText = displayText.replace(/:\s*$/, '').trim();
-  } else if (row.question_type === 'assertion-reasoning') {
+  } else if (questionType === 'assertion-reasoning') {
     displayText = displayText.replace(/\n*assertion\s*(?:\(A\))?\s*[:\-][\s\S]*/i, '').trim();
     displayText = displayText.replace(/:\s*$/, '').trim();
     if (!displayText) displayText = 'Read the assertion and reason below and choose the correct option.';
-  } else if (row.question_type === 'true-false') {
-    // TrueFalseQuestion renders its own STATEMENT card; avoid showing the same text twice
+  } else if (questionType === 'true-false') {
     displayText = 'Is the following statement true or false?';
-  } else if (row.question_type === 'scenario-based') {
-    // ScenarioBasedQuestion renders a SCENARIO card from payload.scenario.
-    // If a separate question stem exists in payload, use it; otherwise use a generic prompt.
+  } else if (questionType === 'scenario-based') {
     const scenarioPayload = (raw.scenario as string) || '';
-    if (scenarioPayload && scenarioPayload !== row.question_text) {
-      // payload.scenario is different from question_text → question_text IS the actual question stem
-      // Keep displayText as-is (it's the question, not the scenario)
-    } else {
-      // scenario fell back to question_text → both would show the same text
+    if (!scenarioPayload || scenarioPayload === questionText) {
       displayText = 'Based on the scenario below, select the correct answer.';
     }
-  } else if (row.question_type === 'fill-in-blanks') {
-    // FillInBlanksQuestion renders a FILL IN THE BLANK(S) card with highlighted blanks.
-    // If payload has a separate text_with_blanks, keep the question_text for context.
+  } else if (questionType === 'fill-in-blanks') {
     const blanksPayload = (raw.text_with_blanks as string) || '';
-    if (blanksPayload && blanksPayload !== row.question_text) {
-      // Keep displayText as-is (it's a different instruction text)
-    } else {
+    if (!blanksPayload || blanksPayload === questionText) {
       displayText = 'Fill in the blank(s) in the statement below.';
     }
-  } else if (row.question_type === 'diagram-based') {
-    // DiagramBasedQuestion renders its own diagram card
-    // question_text typically IS the question about the diagram — keep it
-  } else if (row.question_type === 'logical-sequence') {
-    // LogicalSequenceQuestion renders an ARRANGE card — keep instruction as displayText
-    if (!displayText || displayText === row.question_text) {
+  } else if (questionType === 'logical-sequence') {
+    if (!displayText || displayText === questionText) {
       displayText = 'Arrange the following in the correct order.';
     }
   }
 
-  // Payload topic — bulk-import uses "topic", Gemini-generated uses "topic_name"
+  // Build text L: override English with cleaned display text
+  const textL = l(row, 'question_text');
+  textL.en = displayText;
+
+  // Topic name
+  const topicRow = row.med_topics as DbTopicRow | null;
   const payloadTopic = (raw.topic as string) || (raw.topic_name as string) || undefined;
+  let topicName: L | undefined;
+  if (topicRow) {
+    topicName = l(topicRow, 'name');
+  } else if (payloadTopic) {
+    topicName = { en: payloadTopic };
+  }
 
   return {
     id: questionId,
-    type: row.question_type as QuestionType,
-    chapterId: row.chapter_id,
-    subjectId: row.subject_id as QuestionV2['subjectId'],
-    difficulty: row.difficulty as Difficulty,
-    topicId: row.topic_id || payloadTopic,
-    topicName: row.med_topics?.name || payloadTopic,
-    topicNameTe: row.med_topics?.name_te || undefined,
-    topicNameHi: row.med_topics?.name_hi || undefined,
-    text: displayText,
-    textTe: row.question_text_te || '',
-    textHi: row.question_text_hi || '',
-    explanation: row.explanation || '',
-    explanationTe: row.explanation_te || '',
-    explanationHi: row.explanation_hi || '',
-    eliminationTechnique: eliminationText,
-    eliminationTechniqueTe: eliminationTextTe,
-    eliminationTechniqueHi: eliminationTextHi,
+    type: questionType as QuestionType,
+    chapterId: String(row.chapter_id),
+    subjectId: String(row.subject_id) as QuestionV2['subjectId'],
+    difficulty: String(row.difficulty) as Difficulty,
+    topicId: String(row.topic_id ?? '') || payloadTopic,
+    topicName,
+    text: textL,
+    explanation: l(row, 'explanation'),
+    eliminationTechnique: elimTechnique,
     eliminationHints,
     payload,
   };
 }
 
 // ── Build type-specific payload ──────────────────────────────
-// Extracts structured data from DB payload JSON first, then falls
-// back to parsing question_text (the bulk-import only stores metadata
-// in payload, so the actual column/assertion data lives in question_text).
 
 function buildPayload(
-  row: DbQuestion,
+  row: DbRow,
   options: Option[],
   correctOptionId: string,
+  raw: Record<string, unknown>,
+  questionText: string,
 ): QuestionV2['payload'] {
-  const raw = (row.payload ?? {}) as Record<string, unknown>;
-  const text = row.question_text || '';
+  const qType = String(row.question_type);
 
-  switch (row.question_type) {
+  switch (qType) {
     case 'assertion-reasoning': {
-      // Try payload JSON first, fall back to parsing question_text
-      let assertion = (raw.assertion as string) || '';
-      let reason = (raw.reason as string) || '';
-      if (!assertion || !reason) {
-        const parsed = parseAssertionReason(text);
-        assertion = assertion || parsed.assertion;
-        reason = reason || parsed.reason;
+      let assertionEn = (raw.assertion as string) || '';
+      let reasonEn = (raw.reason as string) || '';
+      if (!assertionEn || !reasonEn) {
+        const parsed = parseAssertionReason(questionText);
+        assertionEn = assertionEn || parsed.assertion;
+        reasonEn = reasonEn || parsed.reason;
       }
-      return {
-        type: 'assertion-reasoning',
-        assertion,
-        assertionTe: (raw.assertion_te as string) || '',
-        assertionHi: (raw.assertion_hi as string) || '',
-        reason,
-        reasonTe: (raw.reason_te as string) || '',
-        reasonHi: (raw.reason_hi as string) || '',
-        options,
-        correctOptionId,
-      };
+      const assertion = lPayload(raw, 'assertion', assertionEn);
+      assertion.en = assertionEn;
+      const reason = lPayload(raw, 'reason', reasonEn);
+      reason.en = reasonEn;
+      return { type: 'assertion-reasoning', assertion, reason, options, correctOptionId };
     }
 
     case 'match-the-following': {
-      // Try payload JSON first, fall back to parsing question_text
       let colA = parseColumnItemsFromJson(raw.column_a ?? raw.columnA);
       let colB = parseColumnItemsFromJson(raw.column_b ?? raw.columnB);
       let mapping = (raw.correct_mapping ?? raw.correctMapping) as Record<string, string> | undefined;
 
       if (colA.length === 0 || colB.length === 0) {
-        const parsed = parseMatchColumns(text);
+        const parsed = parseMatchColumns(questionText);
         colA = colA.length > 0 ? colA : parsed.columnA;
         colB = colB.length > 0 ? colB : parsed.columnB;
       }
 
-      // Build correctMapping from the correct option text if not in payload
       if (!mapping || Object.keys(mapping).length === 0) {
         const correctOpt = options.find((o) => o.id === correctOptionId);
-        if (correctOpt) {
-          mapping = parseOptionPairs(correctOpt.text);
-        }
+        if (correctOpt) mapping = parseOptionPairs(correctOpt.text.en);
       }
 
-      // If we still have column data, return match-the-following
       if (colA.length > 0 && colB.length > 0) {
-        return {
-          type: 'match-the-following',
-          columnA: colA,
-          columnB: colB,
-          correctMapping: mapping || {},
-          options,
-          correctOptionId,
-        };
+        return { type: 'match-the-following', columnA: colA, columnB: colB, correctMapping: mapping || {}, options, correctOptionId };
       }
-      // Fall back to MCQ if parsing failed
       return { type: 'mcq', options, correctOptionId };
     }
 
     case 'true-false': {
-      // Correct answer is derived from whichever option has is_correct=true.
-      // If that option's text is "True", the answer is true; otherwise false.
       const correctOpt = options.find((o) => o.id === correctOptionId);
-      const tfCorrect = correctOpt?.text?.toLowerCase().trim() === 'true';
+      const tfCorrect = (correctOpt?.text?.en ?? '').toLowerCase().trim() === 'true';
       return {
         type: 'true-false',
-        statement: (raw.statement as string) || text,
-        statementTe: (raw.statement_te as string) || '',
-        statementHi: (raw.statement_hi as string) || '',
+        statement: lPayload(raw, 'statement', questionText),
         correctAnswer: tfCorrect,
       };
     }
@@ -392,9 +323,7 @@ function buildPayload(
     case 'fill-in-blanks':
       return {
         type: 'fill-in-blanks',
-        textWithBlanks: (raw.text_with_blanks as string) || text,
-        textWithBlanksTe: (raw.text_with_blanks_te as string) || '',
-        textWithBlanksHi: (raw.text_with_blanks_hi as string) || '',
+        textWithBlanks: lPayload(raw, 'text_with_blanks', questionText),
         options,
         correctOptionId,
       };
@@ -402,9 +331,7 @@ function buildPayload(
     case 'scenario-based':
       return {
         type: 'scenario-based',
-        scenario: (raw.scenario as string) || text,
-        scenarioTe: (raw.scenario_te as string) || '',
-        scenarioHi: (raw.scenario_hi as string) || '',
+        scenario: lPayload(raw, 'scenario', questionText),
         options,
         correctOptionId,
       };
@@ -412,8 +339,8 @@ function buildPayload(
     case 'diagram-based':
       return {
         type: 'diagram-based',
-        imageUri: row.image_url || (raw.image_uri as string) || '',
-        imageAlt: row.image_alt || (raw.image_alt as string) || '',
+        imageUri: String(row.image_url ?? raw.image_uri ?? ''),
+        imageAlt: String(row.image_alt ?? raw.image_alt ?? ''),
         options,
         correctOptionId,
       };
@@ -435,72 +362,55 @@ function buildPayload(
 // ── Text parsers ─────────────────────────────────────────────
 
 /** Parse array of column/sequence items from DB payload JSON */
-function parseColumnItemsFromJson(data: unknown): { id: string; text: string; textTe: string; textHi: string }[] {
+function parseColumnItemsFromJson(data: unknown): { id: string; text: L }[] {
   if (!Array.isArray(data)) return [];
   return data.map((item: Record<string, unknown>) => ({
     id: String(item.id ?? ''),
-    text: String(item.text ?? ''),
-    textTe: String(item.text_te ?? item.textTe ?? ''),
-    textHi: String(item.text_hi ?? item.textHi ?? ''),
+    text: lPayload(item, 'text'),
   }));
 }
 
 /**
- * Parse match-the-following columns from question_text.
- * Handles formats like:
- *   Column I:\n(P) Bulliform cells\n(Q) Palisade...\nColumn II:\n(i) Bean-shaped...\n(ii) Large...
- *   Column A:\n1. Item\n2. Item\nColumn B:\n(a) Item\n(b) Item
+ * Parse match-the-following columns from question_text (English only — parsed from text).
  */
 function parseMatchColumns(text: string): {
-  columnA: { id: string; text: string; textTe: string; textHi: string }[];
-  columnB: { id: string; text: string; textTe: string; textHi: string }[];
+  columnA: { id: string; text: L }[];
+  columnB: { id: string; text: L }[];
 } {
-  const columnA: { id: string; text: string; textTe: string; textHi: string }[] = [];
-  const columnB: { id: string; text: string; textTe: string; textHi: string }[] = [];
+  const columnA: { id: string; text: L }[] = [];
+  const columnB: { id: string; text: L }[] = [];
 
-  // Split into Column I / Column II sections
-  // Match headers like "Column I:", "Column-I:", "Column A:", "Column 1:", "List I:", "List-I"
   const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–]/i);
   if (colSplit.length < 2) return { columnA, columnB };
 
   const col1Text = colSplit[0];
   const col2Text = colSplit[1];
-
-  // Remove the "Column I:" header from col1Text
   const col1Body = col1Text.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–]/i, '');
 
-  // Extract labeled items in multiple formats:
-  // 1. Parenthesized: (P), (Q), (1), (a), (i), (ii), (iii), (iv) etc.
-  // 2. Dotted: A., B., C., 1., 2., 3. etc.
-  // 3. Letter/number at line start: A  text, B  text
-  function extractItems(body: string): { id: string; text: string; textTe: string; textHi: string }[] {
-    const items: { id: string; text: string; textTe: string; textHi: string }[] = [];
+  function extractItems(body: string): { id: string; text: L }[] {
+    const items: { id: string; text: L }[] = [];
 
-    // Try parenthesized format first: (P) text, (Q) text
     const parenRegex = /\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s*([^\n(]+)/g;
     let m;
     // eslint-disable-next-line no-cond-assign
     while ((m = parenRegex.exec(body)) !== null) {
-      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
+      items.push({ id: m[1].trim(), text: { en: m[2].trim() } });
     }
     if (items.length >= 2) return items;
 
-    // Try dotted format: A. text, B. text, 1. text, 2. text
     items.length = 0;
     const dotRegex = /(?:^|\n)\s*([A-Za-z0-9]+)\.\s+(.+?)(?=\n\s*[A-Za-z0-9]+\.|$)/gs;
     // eslint-disable-next-line no-cond-assign
     while ((m = dotRegex.exec(body)) !== null) {
-      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
+      items.push({ id: m[1].trim(), text: { en: m[2].trim() } });
     }
     if (items.length >= 2) return items;
 
-    // Try colon-separated inline: (P) text (Q) text — already covered by paren
-    // Try simple "A  text" format (letter + spaces + text on each line)
     items.length = 0;
     const simpleRegex = /(?:^|\n)\s*([A-Z])\s{2,}(.+?)(?=\n|$)/g;
     // eslint-disable-next-line no-cond-assign
     while ((m = simpleRegex.exec(body)) !== null) {
-      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
+      items.push({ id: m[1].trim(), text: { en: m[2].trim() } });
     }
     return items;
   }

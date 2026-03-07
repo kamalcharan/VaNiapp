@@ -1,4 +1,4 @@
-import { Question, QuestionV2, QuestionType } from '../types';
+import { Question, QuestionV2, QuestionType, L } from '../types';
 
 /**
  * Map old local chapter IDs → DB (med_chapters) chapter IDs.
@@ -30,6 +30,14 @@ export function resolveLegacyChapterId(chapterId: string): string {
  * This allows existing question data to work with the new type system
  * without modifying the question bank files.
  */
+/** Convert legacy string fields to L map */
+function toLegacy(en: string, te?: string, hi?: string): L {
+  const result: L = { en };
+  if (te) result.te = te;
+  if (hi) result.hi = hi;
+  return result;
+}
+
 export function legacyToV2(q: Question): QuestionV2 {
   return {
     id: q.id,
@@ -37,19 +45,16 @@ export function legacyToV2(q: Question): QuestionV2 {
     chapterId: LEGACY_CHAPTER_MAP[q.chapterId] ?? q.chapterId,
     subjectId: q.subjectId,
     difficulty: q.difficulty,
-    text: q.text,
-    textTe: q.textTe,
-    textHi: q.textHi,
-    explanation: q.explanation,
-    explanationTe: q.explanationTe,
-    explanationHi: q.explanationHi,
-    eliminationTechnique: q.eliminationTechnique,
-    eliminationTechniqueTe: q.eliminationTechniqueTe,
-    eliminationTechniqueHi: q.eliminationTechniqueHi,
+    text: toLegacy(q.text, q.textTe, q.textHi),
+    explanation: toLegacy(q.explanation, q.explanationTe, q.explanationHi),
+    eliminationTechnique: toLegacy(q.eliminationTechnique, q.eliminationTechniqueTe, q.eliminationTechniqueHi),
     eliminationHints: [],
     payload: {
       type: 'mcq',
-      options: q.options,
+      options: q.options.map((o) => ({
+        id: o.id,
+        text: toLegacy(o.text, o.textTe, o.textHi),
+      })),
       correctOptionId: q.correctOptionId,
     },
   };

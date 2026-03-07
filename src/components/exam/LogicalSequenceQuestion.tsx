@@ -1,14 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
-import { Option, t } from '../../types';
+import { Option, t, L } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
 
 interface SequenceItem {
   id: string;
-  text: string;
-  textTe: string;
-  textHi: string;
+  text: L;
 }
 
 interface LogicalSequencePayloadShape {
@@ -64,7 +62,7 @@ export function LogicalSequenceQuestion({ language, selectedOptionId, showFeedba
                 </Text>
               </View>
               <Text style={[Typography.body, { color: colors.text, flex: 1 }]}>
-                {t(language, item.text, item.textTe, item.textHi)}
+                {t(language, item.text)}
               </Text>
             </View>
           ))}
@@ -110,7 +108,7 @@ export function LogicalSequenceQuestion({ language, selectedOptionId, showFeedba
                 <Text style={[styles.optLabelText, { color: os.text }]}>{label}</Text>
               </View>
               <Text style={[Typography.body, { color: os.text, flex: 1 }]}>
-                {t(language, opt.text, opt.textTe, opt.textHi)}
+                {t(language, opt.text)}
               </Text>
               {showFeedback && opt.id === payload.correctOptionId && (
                 <Text style={{ fontSize: 18, color: '#16A34A' }}>{'\u2713'}</Text>

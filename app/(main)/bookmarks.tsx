@@ -295,7 +295,7 @@ export default function BookmarksScreen() {
                           style={[Typography.body, { color: colors.text, marginTop: Spacing.sm, lineHeight: 22 }]}
                           numberOfLines={isExpanded ? undefined : 3}
                         >
-                          {t(language, item.text, item.textTe, item.textHi)}
+                          {t(language, item.text)}
                         </Text>
                       </Pressable>
 
@@ -315,7 +315,7 @@ export default function BookmarksScreen() {
                           <View style={[styles.explanationBox, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
                             <HandwrittenText variant="handSm">Explanation</HandwrittenText>
                             <Text style={[Typography.body, { color: colors.text, marginTop: Spacing.xs, lineHeight: 22 }]}>
-                              {t(language, item.explanation, item.explanationTe, item.explanationHi)}
+                              {t(language, item.explanation)}
                             </Text>
                           </View>
                         </View>

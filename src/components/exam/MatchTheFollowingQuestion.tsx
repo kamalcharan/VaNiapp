@@ -2,14 +2,12 @@ import React, { useState, useRef, useCallback, useMemo } from 'react';
 import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
-import { Option, t } from '../../types';
+import { Option, t, L } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
 
 interface ColumnItem {
   id: string;
-  text: string;
-  textTe: string;
-  textHi: string;
+  text: L;
 }
 
 interface MatchTheFollowingPayloadShape {
@@ -78,7 +76,7 @@ export function MatchTheFollowingQuestion({
   const displayPairs = useMemo(() => {
     if (isConfirmed && selectedOptionId) {
       const opt = payload.options.find((o) => o.id === selectedOptionId);
-      if (opt) return parseOptionMapping(opt.text);
+      if (opt) return parseOptionMapping(opt.text.en);
     }
     return pairs;
   }, [isConfirmed, selectedOptionId, pairs, payload.options]);
@@ -295,7 +293,7 @@ export function MatchTheFollowingQuestion({
                 style={[Typography.bodySm, { color: colors.text, flex: 1 }]}
                 numberOfLines={2}
               >
-                {t(language, bItem.text, bItem.textTe, bItem.textHi)}
+                {t(language, bItem.text)}
               </Text>
               {showFeedback && (
                 <Text style={{ fontSize: 14 }}>
@@ -358,7 +356,7 @@ export function MatchTheFollowingQuestion({
                     style={[Typography.bodySm, { color: colors.text, flex: 1 }]}
                     numberOfLines={3}
                   >
-                    {t(language, aItem.text, aItem.textTe, aItem.textHi)}
+                    {t(language, aItem.text)}
                   </Text>
                 </View>
 
@@ -434,7 +432,7 @@ export function MatchTheFollowingQuestion({
                         style={[Typography.bodySm, { color: colors.text, flex: 1 }]}
                         numberOfLines={2}
                       >
-                        {t(language, bItem.text, bItem.textTe, bItem.textHi)}
+                        {t(language, bItem.text)}
                       </Text>
                     </Pressable>
                   </Animated.View>
@@ -464,9 +462,9 @@ export function MatchTheFollowingQuestion({
           {columnA.map((a, idx) => {
             const correctBId = payload.correctMapping[a.id];
             const bItem = columnB.find((b) => b.id === correctBId);
-            const aText = t(language, a.text, a.textTe, a.textHi);
+            const aText = t(language, a.text);
             const bText = bItem
-              ? t(language, bItem.text, bItem.textTe, bItem.textHi)
+              ? t(language, bItem.text)
               : correctBId;
             return (
               <Text

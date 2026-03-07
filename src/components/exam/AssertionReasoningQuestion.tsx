@@ -4,14 +4,12 @@ import { Typography, Spacing, BorderRadius } from '../../constants/theme';
 import { Option, t } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
 
+import type { L } from '../../types';
+
 interface AssertionReasoningPayloadShape {
   type: 'assertion-reasoning';
-  assertion: string;
-  assertionTe: string;
-  assertionHi: string;
-  reason: string;
-  reasonTe: string;
-  reasonHi: string;
+  assertion: L;
+  reason: L;
   options: Option[];
   correctOptionId: string;
 }
@@ -125,7 +123,7 @@ export function AssertionReasoningQuestion({ language, selectedOptionId, showFee
             <Text style={[styles.arLabel, { color: '#6366F1' }]}>ASSERTION</Text>
           </View>
           <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-            {t(language, payload.assertion, payload.assertionTe, payload.assertionHi)}
+            {t(language, payload.assertion)}
           </Text>
         </View>
 
@@ -141,7 +139,7 @@ export function AssertionReasoningQuestion({ language, selectedOptionId, showFee
             <Text style={[styles.arLabel, { color: '#D97706' }]}>REASON</Text>
           </View>
           <Text style={[Typography.body, { color: colors.text, lineHeight: 24 }]}>
-            {t(language, payload.reason, payload.reasonTe, payload.reasonHi)}
+            {t(language, payload.reason)}
           </Text>
         </View>
       </View>
@@ -204,7 +202,7 @@ export function AssertionReasoningQuestion({ language, selectedOptionId, showFee
                 </View>
               ) : (
                 <Text style={[Typography.body, { color: os.text, flex: 1 }]}>
-                  {t(language, opt.text, opt.textTe, opt.textHi)}
+                  {t(language, opt.text)}
                 </Text>
               )}
 

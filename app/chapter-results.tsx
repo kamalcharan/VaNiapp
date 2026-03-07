@@ -112,7 +112,7 @@ export default function ChapterResultsScreen() {
       if (!q.topicId || !q.topicName) continue;
       if (!answeredIds.has(q.id)) continue;
       if (!stats[q.topicId]) {
-        stats[q.topicId] = { correct: 0, total: 0, name: q.topicName, nameTe: q.topicNameTe || '' };
+        stats[q.topicId] = { correct: 0, total: 0, name: q.topicName! };
       }
       stats[q.topicId].total++;
       const ans = lastSession.answers.find((a) => a.questionId === q.id);

@@ -543,7 +543,7 @@ export default function ChapterQuizScreen() {
             <Text
               style={[Typography.h3, { color: colors.text, lineHeight: 26 }]}
             >
-              {t(language, question.text, question.textTe, question.textHi)}
+              {t(language, question.text)}
             </Text>
           </View>
 
@@ -625,7 +625,7 @@ export default function ChapterQuizScreen() {
                   selectedOptionId={selectedOptionId}
                   correctOptionId={correctId}
                   questionText={
-                    t(language, question.text, question.textTe, question.textHi)
+                    t(language, question.text)
                   }
                   subjectId={question.subjectId as SubjectId}
                   language={language}
@@ -649,7 +649,7 @@ export default function ChapterQuizScreen() {
                     },
                   ]}
                 >
-                  {t(language, question.explanation, question.explanationTe, question.explanationHi)}
+                  {t(language, question.explanation)}
                 </Text>
               </JournalCard>
             </View>
@@ -707,11 +707,11 @@ export default function ChapterQuizScreen() {
       <AskVaniSheet
         visible={showVaniSheet}
         onClose={() => setShowVaniSheet(false)}
-        questionText={t(language, question.text, question.textTe, question.textHi)}
+        questionText={t(language, question.text)}
         subjectId={question.subjectId as SubjectId}
         questionId={question.id}
         questionType={question.type}
-        explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
+        explanation={t(language, question.explanation)}
         eliminationHints={question.eliminationHints}
         selectedOptionId={selectedOptionId}
         language={language}
