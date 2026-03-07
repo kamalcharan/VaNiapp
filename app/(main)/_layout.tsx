@@ -10,6 +10,7 @@ import { useAuth } from '../_layout';
 
 const TABS = [
   { key: 'index', route: '/(main)', label: 'Study Board', emoji: '\uD83D\uDCDA' },
+  { key: 'history', route: '/(main)/history', label: 'My Journal', emoji: '\uD83D\uDCD3' },
   { key: 'bookmarks', route: '/(main)/bookmarks', label: 'Saved', emoji: '\uD83D\uDD16' },
   { key: 'profile', route: '/(main)/profile', label: 'Me', emoji: '\u270D\uFE0F' },
 ] as const;
@@ -45,7 +46,7 @@ export default function MainLayout() {
   // Determine active tab from URL segments
   const seg1 = segments.length > 1 ? (segments as string[])[1] : '';
   const activeKey =
-    seg1 === 'profile' ? 'profile' : seg1 === 'bookmarks' ? 'bookmarks' : 'index';
+    seg1 === 'profile' ? 'profile' : seg1 === 'bookmarks' ? 'bookmarks' : seg1 === 'history' ? 'history' : 'index';
 
   if (!verified) {
     return (
