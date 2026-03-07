@@ -154,6 +154,16 @@
         </div>
       </div>
 
+      <!-- Danger Zone: Delete language data -->
+      <div class="lang-coverage" id="dangerZone" style="border: 2px solid var(--error); display: none;">
+        <h3 style="color: var(--error);">⚠️ Delete Language Data</h3>
+        <p style="font-size: 0.85rem; color: var(--gray-500); margin: 0 0 16px;">
+          Permanently removes <strong>all</strong> translated text for a language across every table
+          (questions, options, hints, chapters, topics). English data is never touched.
+        </p>
+        <div id="deleteButtons" style="display: flex; gap: 12px; flex-wrap: wrap;"></div>
+      </div>
+
       <!-- Filters -->
       <div class="ts-filters">
         <div class="form-group">
@@ -231,6 +241,7 @@
       document.getElementById('langFilter').addEventListener('change', loadBreakdown);
 
       await loadGlobalStats();
+      renderDeleteButtons();
     });
 
     // ====================================================================
@@ -427,6 +438,83 @@
 
       body.innerHTML = tableHtml;
       hint.textContent = `${sorted.filter(ch => chapterMap[ch.id]).length} chapters with questions`;
+    }
+    // ====================================================================
+    // DELETE LANGUAGE DATA
+    // ====================================================================
+    function renderDeleteButtons() {
+      const zone = document.getElementById('dangerZone');
+      const container = document.getElementById('deleteButtons');
+      if (activeLangs.length === 0) { zone.style.display = 'none'; return; }
+
+      zone.style.display = '';
+      container.innerHTML = activeLangs.map(l =>
+        `<button class="btn" style="background: var(--error); color: white; border: none;"
+                onclick="deleteLanguageData('${l.id}', '${Qbank.escapeHtml(l.label)}')">
+          🗑️ Delete ${Qbank.escapeHtml(l.label)} (${l.id}) data
+        </button>`
+      ).join('');
+    }
+
+    async function deleteLanguageData(langId, langLabel) {
+      // Double-confirm
+      const msg = `This will permanently delete ALL ${langLabel} (${langId}) translations from:\n\n`
+        + `• med_questions  →  question_text_${langId}, explanation_${langId}\n`
+        + `• med_question_options  →  option_text_${langId}\n`
+        + `• med_elimination_hints  →  hint_text_${langId}, misconception_${langId}\n`
+        + `• med_chapters  →  name_${langId}\n`
+        + `• med_topics  →  name_${langId}\n\n`
+        + `English data will NOT be touched.\n\nType "${langId}" to confirm:`;
+
+      const confirmation = prompt(msg);
+      if (confirmation !== langId) {
+        if (confirmation !== null) alert('Confirmation did not match. Aborted.');
+        return;
+      }
+
+      const btn = event.target;
+      btn.disabled = true;
+      btn.textContent = `Deleting ${langLabel}...`;
+
+      try {
+        // Define all tables and their translated columns for this language
+        const updates = [
+          { table: 'med_questions',          cols: [`question_text_${langId}`, `explanation_${langId}`] },
+          { table: 'med_question_options',   cols: [`option_text_${langId}`] },
+          { table: 'med_elimination_hints',  cols: [`hint_text_${langId}`, `misconception_${langId}`] },
+          { table: 'med_chapters',           cols: [`name_${langId}`] },
+          { table: 'med_topics',             cols: [`name_${langId}`] },
+        ];
+
+        const results = [];
+        for (const { table, cols } of updates) {
+          // Build update payload: set each column to null
+          const payload = {};
+          cols.forEach(c => { payload[c] = null; });
+
+          // Use a filter that matches all rows (id is never null)
+          const { error, count } = await Qbank.supabase
+            .from(table)
+            .update(payload, { count: 'exact' })
+            .not('id', 'is', null);
+
+          if (error) throw new Error(`${table}: ${error.message}`);
+          results.push({ table, count });
+        }
+
+        const summary = results.map(r => `  ${r.table}: ${r.count ?? '?'} rows cleared`).join('\n');
+        alert(`✅ All ${langLabel} data deleted successfully!\n\n${summary}`);
+
+        // Refresh the dashboard
+        await loadGlobalStats();
+        renderDeleteButtons();
+      } catch (err) {
+        console.error('[translate] Delete language data failed:', err);
+        alert(`❌ Error: ${err.message}`);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = `🗑️ Delete ${langLabel} (${langId}) data`;
+      }
     }
   </script>
 </body>
