@@ -1022,6 +1022,12 @@
                 🔧 Fix Dupes
               </button>
             ` : ''}
+            ${group.issueType === 'EMPTY_OPTIONS' ? `
+              <button class="btn-copy-group" style="background: #8e44ad; color: #fff;"
+                onclick="event.stopPropagation(); generateOptionsForGroup('${key}')" title="AI-generate options for fill-in-blanks">
+                🤖 Generate Options
+              </button>
+            ` : ''}
             ${group.issueType === 'NO_ELIMINATION_HINTS' ? `
               <button class="btn-copy-group" style="background: var(--success); color: #fff;"
                 onclick="event.stopPropagation(); fixAllMissingHints('${key}')" title="Auto-fix: backfill hints from payload data">
@@ -1472,6 +1478,62 @@
         }
       }
 
+      renderIssues(currentIssues);
+      renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    // ========================================================================
+    // AI-GENERATE: Options for fill-in-blanks / empty option questions
+    // ========================================================================
+    async function generateOptionsForGroup(groupKey) {
+      const group = window._issueGroups?.[groupKey];
+      if (!group) return;
+
+      const qIds = group.issues.filter(i => i.status !== 'resolved').map(i => i.question_id);
+      if (!qIds.length) return;
+
+      const questions = scannedQuestions.filter(q => qIds.includes(q.id));
+      if (!questions.length) {
+        Qbank.showToast('No questions found', 'error');
+        return;
+      }
+
+      if (!confirm(`Generate AI options for ${questions.length} questions using Gemini?\n\nThis will create 4 MCQ options (1 correct + 3 distractors) for each question and insert them into the database.`)) {
+        return;
+      }
+
+      const groupEl = document.querySelector(`.issue-group[data-group-key="${groupKey}"]`);
+      const btn = groupEl?.querySelector('button[onclick*="generateOptionsForGroup"]');
+      if (btn) { btn.disabled = true; btn.textContent = '🤖 Generating...'; }
+
+      const result = await Qbank.generateOptionsWithAI(questions, (current, total, msg) => {
+        if (btn) btn.textContent = `🤖 ${current}/${total}...`;
+      });
+
+      console.log('[generateOptions] Result:', JSON.stringify({ fixed: result.fixed, skipped: result.skipped, errors: result.errors }));
+      if (result.details.length > 0) console.log('[generateOptions] Details:', result.details);
+
+      Qbank.showToast(
+        `Generated options for ${result.fixed} questions (${result.errors} errors, ${result.skipped} skipped)`,
+        result.errors ? 'error' : 'success'
+      );
+
+      // Mark fixed issues as resolved
+      for (const d of result.details) {
+        if (d.status === 'fixed') {
+          const issue = currentIssues.find(i =>
+            i.question_id === d.id && i.issue_type === 'EMPTY_OPTIONS' && i.status !== 'resolved'
+          );
+          if (issue) {
+            issue.status = 'resolved';
+            const dbKey = d.id + '|EMPTY_OPTIONS';
+            const dbId = issue._dbId || dbIssueMap.get(dbKey);
+            if (dbId) Qbank.resolveQualityIssue(dbId);
+          }
+        }
+      }
+
+      if (btn) { btn.disabled = false; btn.textContent = '🤖 Generate Options'; }
       renderIssues(currentIssues);
       renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
     }
