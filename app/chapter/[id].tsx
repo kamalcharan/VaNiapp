@@ -295,6 +295,7 @@ export default function ChapterQuizScreen() {
         pathname: '/chapter-results',
         params: {
           chapterId: chapterId!,
+          subjectId,
           correct: String(finalCorrect),
           total: String(questions.length),
           timeUsedMs: String(timeUsedMs),
@@ -434,6 +435,12 @@ export default function ChapterQuizScreen() {
           <View style={styles.loadingContainer}>
             <Text style={{ fontSize: 32 }}>{'\u2728'}</Text>
             <Text style={[Typography.h2, { color: colors.text }]}>Loading results...</Text>
+            <Pressable
+              onPress={() => router.replace('/(main)')}
+              style={{ marginTop: 24, paddingVertical: 12, paddingHorizontal: 24, borderRadius: 12, backgroundColor: '#64748B20' }}
+            >
+              <Text style={{ color: colors.textSecondary, fontFamily: 'PlusJakartaSans_600SemiBold', fontSize: 14 }}>Back to Dashboard</Text>
+            </Pressable>
           </View>
         </SafeAreaView>
       </DotGridBackground>

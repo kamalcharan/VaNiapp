@@ -59,12 +59,13 @@ function deriveSubjectFromChapterId(chapterId: string | undefined): string | nul
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const { chapterId: rawChapterId, correct, total, timeUsedMs: timeParam, skipped: skippedParam } = useLocalSearchParams<{
+  const { chapterId: rawChapterId, correct, total, timeUsedMs: timeParam, skipped: skippedParam, subjectId: subjectIdParam } = useLocalSearchParams<{
     chapterId: string;
     correct: string;
     total: string;
     timeUsedMs: string;
     skipped: string;
+    subjectId: string;
   }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
 
@@ -75,20 +76,22 @@ export default function ChapterResultsScreen() {
   const quickSubjectId = isQuickMode ? chapterId!.replace('quick-', '') as NeetSubjectId : null;
   const chapter = chapterId && !isQuickMode ? getChapterById(chapterId) : null;
 
-  // Derive subjectId: quick-mode uses the suffix, chapter mode uses local lookup then prefix mapping
+  // Derive subjectId: try explicit param first, then local chapter lookup, then prefix mapping
   const rawSubjectId = isQuickMode
     ? quickSubjectId
-    : chapter?.subjectId ?? deriveSubjectFromChapterId(chapterId);
+    : subjectIdParam || chapter?.subjectId || deriveSubjectFromChapterId(chapterId);
+
+  const DEFAULT_META = { name: 'Practice', emoji: '\u26A1', color: '#3B82F6' };
   const subjectMeta = rawSubjectId
     ? (SUBJECT_META[rawSubjectId] ?? {
         name: rawSubjectId.charAt(0).toUpperCase() + rawSubjectId.slice(1).replace(/-/g, ' '),
         emoji: '\u26A1',
         color: '#3B82F6',
       })
-    : null;
-  const questions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
+    : DEFAULT_META;
+  const localQuestions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
 
-  // Fetch Supabase questions (cached from quiz session) for topic data
+  // Fetch Supabase questions (cached from quiz session) for stats + topic data
   const [dbQuestions, setDbQuestions] = useState<QuestionV2[]>([]);
   useEffect(() => {
     if (!chapterId || isQuickMode) return;
@@ -96,6 +99,9 @@ export default function ChapterResultsScreen() {
       if (result.ok) setDbQuestions(result.questions);
     });
   }, [chapterId, isQuickMode]);
+
+  // Use local questions if available, otherwise Supabase questions (for CUET chapters etc.)
+  const questions = localQuestions.length > 0 ? localQuestions : dbQuestions;
 
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
@@ -199,8 +205,6 @@ export default function ChapterResultsScreen() {
       router.push({ pathname: '/answer-review', params: { sessionId: lastSession.id } });
     }
   };
-
-  if (!subjectMeta) return null;
 
   return (
     <DotGridBackground>
