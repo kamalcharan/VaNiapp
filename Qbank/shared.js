@@ -382,19 +382,21 @@ function buildImportPayload(q) {
  */
 function _parseMTFColumns(text) {
   // ── Strategy 1: pipe-delimited table rows ──
-  // Format: "Column I | Column II  A. colA_text | 1. colB_text  B. colA_text | 2. colB_text"
-  // Rows contain pipe-separated pairs like "A. Fe (Z=26) | 1. [Ar]3d⁶4s²"
+  // Format: "... Column I | Column II A. leftText | 1. rightText B. leftText | 2. rightText"
   const pipeRows = _parseMTFPipeTable(text);
   if (pipeRows.columnA.length >= 2 && pipeRows.columnB.length >= 2) {
     return pipeRows;
   }
 
   // ── Strategy 2: column header split (original logic) ──
+  // Use LAST occurrence of "Column II/B/2" to avoid matching intro text
   const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–)]/i);
   if (colSplit.length < 2) return { columnA: [], columnB: [] };
 
-  const col1Body = colSplit[0].replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–)]/i, '');
-  const col2Body = colSplit[1];
+  // Use LAST part as Column II body, everything before as Column I area
+  const col2Body = colSplit[colSplit.length - 1];
+  const col1Raw = colSplit.slice(0, -1).join(' ');
+  const col1Body = col1Raw.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–)]/i, '');
 
   function extractItems(body) {
     let items = [];
@@ -420,54 +422,40 @@ function _parseMTFColumns(text) {
 
 /**
  * Parse pipe-delimited MTF table format.
- * Handles text like:
- *   "Column I | Column II A. Fe (Z=26) | 1. [Ar]3d⁶4s² B. Cu (Z=29) | 2. [Ar]3d¹⁰4s¹"
- * Also handles the format where items use letters (A-Z) on the left and numbers (1-9) on the right.
+ * Handles: "... Column I | Column II A. leftText | 1. rightText B. leftText | 2. rightText ..."
+ * Key: uses GREEDY .* to strip up to the LAST "Column II/B/2" header,
+ * then matches complete row pairs with "letter. text | number. text".
  */
 function _parseMTFPipeTable(text) {
-  const columnA = [];
-  const columnB = [];
-
-  // Remove the header portion up to and including "Column II" (with optional parenthesized description)
-  let body = text.replace(/^.*?column\s*[-–]?\s*(?:ii|II|2|b|B)\s*(?:\([^)]*\))?[:\-–|]?\s*/i, '');
-  if (body === text) return { columnA: [], columnB: [] }; // no column header found
-
-  // Match pipe-separated row pairs:
-  // "A. left text | 1. right text" or "(A) left text | (1) right text"
-  // Left keys are typically A-Z letters, right keys are typically 1-9 numbers
-  const pipeRowRe = /(?:^|\s)(?:\(?([A-Za-z])\)?[.\s]+)(.*?)\s*\|\s*(?:\(?(\d+)\)?[.\s]+)(.*?)(?=(?:\s+(?:\(?[A-Za-z]\)?[.\s]))|$)/gs;
-  let m;
-  while ((m = pipeRowRe.exec(body)) !== null) {
-    const leftId = m[1].trim();
-    const leftText = m[2].trim();
-    const rightId = m[3].trim();
-    const rightText = m[4].trim();
-    if (leftText && rightText) {
-      columnA.push({ id: leftId, text: leftText, textTe: '' });
-      columnB.push({ id: rightId, text: rightText, textTe: '' });
-    }
+  // Must mention column headers
+  if (!/column\s*[-–]?\s*(?:i{1,2}|[12ab])/i.test(text)) {
+    return { columnA: [], columnB: [] };
   }
 
-  // Fallback: split body by pipes and try to pair items
-  if (columnA.length < 2) {
-    columnA.length = 0;
-    columnB.length = 0;
-    // Split on pipes, then look for item patterns
-    const segments = body.split(/\s*\|\s*/);
-    let leftItem = null;
-    for (const seg of segments) {
-      const itemMatch = seg.match(/^\s*(?:\(?([A-Za-z0-9]+)\)?[.\s]+)(.+)$/s);
-      if (!itemMatch) continue;
-      const id = itemMatch[1].trim();
-      const txt = itemMatch[2].trim();
-      // Letters → column A, numbers → column B
-      if (/^[A-Za-z]$/.test(id)) {
-        leftItem = { id, text: txt, textTe: '' };
-        columnA.push(leftItem);
-      } else if (/^\d+$/.test(id)) {
-        columnB.push({ id, text: txt, textTe: '' });
-      }
-    }
+  // Strip up to LAST "Column II/B/2" header using GREEDY .* (not .*?)
+  // This skips "Column II" in the intro sentence and finds the table header
+  let body = text.replace(/^.*column\s*[-–]?\s*(?:ii|2|b)\s*(?:\([^)]*\))?[:\-–|]?\s*/is, '');
+  if (body === text || body.length < 5) return { columnA: [], columnB: [] };
+
+  const columnA = [];
+  const columnB = [];
+  let m;
+
+  // Match complete row pairs: "A. leftText | 1. rightText"
+  // The lookahead stops right text at the next "X. " letter-item or end-of-string
+  const rowRe = /([A-Z])\.\s+(.+?)\s*\|\s*(\d+)\.\s+(.+?)(?=\s+[A-Z]\.\s|$)/gs;
+  while ((m = rowRe.exec(body)) !== null) {
+    columnA.push({ id: m[1], text: m[2].trim(), textTe: '' });
+    columnB.push({ id: m[3], text: m[4].trim(), textTe: '' });
+  }
+
+  if (columnA.length >= 2) return { columnA, columnB };
+
+  // Fallback: try parenthesized row pairs "(A) leftText | (1) rightText"
+  const parenRowRe = /\(([A-Z])\)\s+(.+?)\s*\|\s*\((\d+)\)\s+(.+?)(?=\s+\([A-Z]\)\s|$)/gs;
+  while ((m = parenRowRe.exec(body)) !== null) {
+    columnA.push({ id: m[1], text: m[2].trim(), textTe: '' });
+    columnB.push({ id: m[3], text: m[4].trim(), textTe: '' });
   }
 
   return { columnA, columnB };
