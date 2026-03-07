@@ -49,6 +49,7 @@ import { setPaid } from '../../src/store/slices/trialSlice';
 const LANG_GLYPH: Record<string, string> = {
   en: 'Aa',
   te: '\u0C05',   // అ
+  hi: '\u0915',   // क
 };
 import { getRazorpayConfig } from '../../src/lib/appConfig';
 

@@ -11,6 +11,7 @@ import {
 } from '@expo-google-fonts/plus-jakarta-sans';
 import { Caveat_700Bold } from '@expo-google-fonts/caveat';
 import { IndieFlower_400Regular } from '@expo-google-fonts/indie-flower';
+import { NotoSansDevanagari_400Regular, NotoSansDevanagari_600SemiBold } from '@expo-google-fonts/noto-sans-devanagari';
 import * as NativeSplashScreen from 'expo-splash-screen';
 import { Colors } from '../src/constants/theme';
 import { ThemeContext, ThemeContextValue } from '../src/hooks/useTheme';
@@ -76,6 +77,8 @@ export default function RootLayout() {
     PlusJakartaSans_800ExtraBold,
     Caveat_700Bold,
     IndieFlower_400Regular,
+    NotoSansDevanagari_400Regular,
+    NotoSansDevanagari_600SemiBold,
   });
 
   // Load fonts → hide native splash

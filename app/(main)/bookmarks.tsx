@@ -30,7 +30,7 @@ import { getV2QuestionsByIds } from '../../src/data/questions';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { reportError } from '../../src/lib/errorReporting';
 import { getCorrectId } from '../../src/lib/questionAdapter';
-import type { QuestionV2 } from '../../src/types';
+import type { QuestionV2, Language } from '../../src/types';
 import { t } from '../../src/types';
 
 // Enable LayoutAnimation on Android
@@ -50,7 +50,7 @@ export default function BookmarksScreen() {
   const router = useRouter();
   const dispatch = useDispatch();
   const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
-  const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en') as 'en' | 'te';
+  const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en') as Language;
   const [questions, setQuestions] = useState<QuestionV2[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
