@@ -1527,22 +1527,37 @@
     // ========================================================================
     async function fixAllMissingSequenceItems(groupKey) {
       const group = window._issueGroups?.[groupKey];
-      if (!group) return;
+      if (!group) { console.error('[fixSeq] No group found for key:', groupKey); return; }
 
       const qIds = group.issues.map(i => i.question_id);
-      if (!qIds.length) return;
+      if (!qIds.length) { console.error('[fixSeq] No question IDs in group'); return; }
 
       const fixableQuestions = scannedQuestions.filter(q => qIds.includes(q.id));
+      console.log(`[fixSeq] Found ${fixableQuestions.length}/${qIds.length} questions in scannedQuestions`);
       if (!fixableQuestions.length) {
         Qbank.showToast('No sequence questions found to fix', 'error');
         return;
       }
 
+      // Log sample question to debug
+      const sample = fixableQuestions[0];
+      console.log('[fixSeq] Sample question:', sample.id, 'type:', sample.question_type,
+        'text:', (sample.question_text || '').substring(0, 150),
+        'payload.items:', sample.payload?.items);
+
       const groupEl = document.querySelector(`.issue-group[data-group-key="${groupKey}"]`);
       const fixBtn = groupEl?.querySelector('button[onclick*="fixAllMissingSequenceItems"]');
       if (fixBtn) { fixBtn.disabled = true; fixBtn.textContent = '🔧 Fixing...'; }
 
-      const result = await Qbank.fixMissingSequenceItems(fixableQuestions);
+      let result;
+      try {
+        result = await Qbank.fixMissingSequenceItems(fixableQuestions);
+      } catch (err) {
+        console.error('[fixSeq] Error:', err);
+        Qbank.showToast('Fix failed: ' + err.message, 'error');
+        if (fixBtn) { fixBtn.disabled = false; fixBtn.textContent = '🔧 Fix All'; }
+        return;
+      }
 
       Qbank.showToast(
         `Fixed ${result.fixed} sequence questions (${result.errors} errors, ${result.skipped} skipped)`,
