@@ -2499,13 +2499,29 @@ async function fixMTFPayload(questions) {
       mapping = _parseOptionMapping(correctOpt.option_text || correctOpt.text || '');
     }
 
-    // Update payload in DB
-    const newPayload = {
-      ...payload,
-      columnA: parsed.columnA,
-      columnB: parsed.columnB,
-      correctMapping: mapping
-    };
+    // Deduplicate column IDs if they overlap (e.g., both use A, B, C, D)
+    const aIds = new Set(parsed.columnA.map(c => c.id));
+    if (parsed.columnB.some(c => aIds.has(c.id))) {
+      parsed.columnB = parsed.columnB.map(item => ({
+        ...item,
+        id: 'b-' + (item.id || item.text || '')
+      }));
+      // Also update mapping values to match prefixed IDs
+      const newMapping = {};
+      for (const [k, v] of Object.entries(mapping)) {
+        newMapping[k] = String(v).startsWith('b-') ? v : 'b-' + v;
+      }
+      mapping = newMapping;
+    }
+
+    // Update payload in DB — remove stale snake_case keys
+    const newPayload = { ...payload };
+    delete newPayload.column_a;
+    delete newPayload.column_b;
+    delete newPayload.correct_mapping;
+    newPayload.columnA = parsed.columnA;
+    newPayload.columnB = parsed.columnB;
+    newPayload.correctMapping = mapping;
 
     const { error } = await SUPABASE
       .from('med_questions')
@@ -2552,49 +2568,42 @@ async function fixMTFDuplicateKeys(questions) {
   for (const q of questions) {
     if (q.question_type !== 'match-the-following') { results.skipped++; continue; }
 
-    let didFix = false;
     const fixes = [];
+    let payloadDirty = false;
+
+    // Use a MUTABLE copy of the payload — all cases accumulate changes here,
+    // then we do a SINGLE DB write at the end. Previous bug: Case 3 was
+    // spreading the original payload, undoing Case 1's column-overlap fix.
+    const payload = { ...(q.payload || {}) };
+
+    // Normalize: remove snake_case keys upfront, keep only camelCase
+    // (bulk-import writes column_a/column_b; we standardize to columnA/columnB)
+    if (payload.column_a && !payload.columnA) payload.columnA = payload.column_a;
+    if (payload.column_b && !payload.columnB) payload.columnB = payload.column_b;
+    if (payload.correct_mapping && !payload.correctMapping) payload.correctMapping = payload.correct_mapping;
+    delete payload.column_a;
+    delete payload.column_b;
+    delete payload.correct_mapping;
 
     // ── Case 1: Column A/B ID overlap ──
-    const payload = q.payload || {};
-    const colA = payload.column_a || payload.columnA || [];
-    const colB = payload.column_b || payload.columnB || [];
+    const colA = payload.columnA || [];
+    const colB = payload.columnB || [];
 
     if (Array.isArray(colA) && Array.isArray(colB) && colA.length > 0 && colB.length > 0) {
       const aIds = new Set(colA.map(c => c.id));
       const hasOverlap = colB.some(c => aIds.has(c.id));
       if (hasOverlap) {
-        const newColB = colB.map(item => ({
+        payload.columnB = colB.map(item => ({
           ...item,
-          id: item.id.startsWith('b-') ? item.id : 'b-' + item.id
+          id: String(item.id || '').startsWith('b-') ? item.id : 'b-' + (item.id || item.text || '')
         }));
-        const oldMapping = payload.correct_mapping || payload.correctMapping || {};
+        const oldMapping = payload.correctMapping || {};
         const newMapping = {};
         for (const [aId, bId] of Object.entries(oldMapping)) {
           newMapping[aId] = String(bId).startsWith('b-') ? bId : 'b-' + bId;
         }
-
-        // Remove stale snake_case keys so they don't shadow the fixed camelCase ones
-        // (bulk-import stores column_a/column_b; validator reads column_a || columnA)
-        const cleanPayload = { ...payload };
-        delete cleanPayload.column_a;
-        delete cleanPayload.column_b;
-        delete cleanPayload.correct_mapping;
-
-        const { error } = await SUPABASE
-          .from('med_questions')
-          .update({
-            payload: { ...cleanPayload, columnA: colA, columnB: newColB, correctMapping: newMapping },
-            corrected_at: new Date().toISOString()
-          })
-          .eq('id', q.id);
-
-        if (error) {
-          results.errors++;
-          results.details.push({ id: q.id, status: 'error', fix: 'column-overlap', error: error.message });
-          continue;
-        }
-        didFix = true;
+        payload.correctMapping = newMapping;
+        payloadDirty = true;
         fixes.push('column-overlap');
       }
     }
@@ -2605,7 +2614,6 @@ async function fixMTFDuplicateKeys(questions) {
       const optKeys = opts.map(o => o.option_key);
       const hasDupeOpts = optKeys.some((k, i) => optKeys.indexOf(k) !== i);
       if (hasDupeOpts) {
-        // Fetch full option rows (with their UUIDs) for this question
         const { data: dbOpts, error: fetchErr } = await SUPABASE
           .from('med_question_options')
           .select('id, option_key, is_correct, sort_order')
@@ -2619,11 +2627,9 @@ async function fixMTFDuplicateKeys(questions) {
           continue;
         }
 
-        // Find the correct option BEFORE reassigning keys
         const correctOpt = dbOpts.find(o => o.is_correct === true);
         const correctIdx = correctOpt ? dbOpts.indexOf(correctOpt) : -1;
 
-        // Reassign unique keys A, B, C, D... using the UUID to update each row
         let optFixFailed = false;
         for (let i = 0; i < dbOpts.length; i++) {
           const newKey = OPTION_KEYS[i] || `opt_${i}`;
@@ -2631,7 +2637,6 @@ async function fixMTFDuplicateKeys(questions) {
             .from('med_question_options')
             .update({ option_key: newKey })
             .eq('id', dbOpts[i].id);
-
           if (upErr) {
             console.error(`[fixMTFDuplicateKeys] Failed to update option ${dbOpts[i].id}:`, upErr);
             optFixFailed = true;
@@ -2644,7 +2649,6 @@ async function fixMTFDuplicateKeys(questions) {
           continue;
         }
 
-        // Update correct_answer on the question to match the new key
         if (correctIdx >= 0) {
           const newCorrectKey = OPTION_KEYS[correctIdx] || `opt_${correctIdx}`;
           await SUPABASE
@@ -2653,14 +2657,12 @@ async function fixMTFDuplicateKeys(questions) {
             .eq('id', q.id);
         }
 
-        // Also update elimination hints to use new keys
         const { data: dbHints } = await SUPABASE
           .from('med_elimination_hints')
           .select('id, option_key')
           .eq('question_id', q.id)
           .order('option_key');
         if (dbHints && dbHints.length > 0) {
-          // Build old→new key map
           const keyMap = {};
           for (let i = 0; i < dbOpts.length; i++) {
             keyMap[dbOpts[i].option_key] = OPTION_KEYS[i] || `opt_${i}`;
@@ -2676,7 +2678,6 @@ async function fixMTFDuplicateKeys(questions) {
           }
         }
 
-        didFix = true;
         fixes.push('duplicate-option-keys');
       }
     }
@@ -2687,29 +2688,31 @@ async function fixMTFDuplicateKeys(questions) {
       const pIds = payloadOpts.map(o => o.id || o.key).filter(Boolean);
       const hasDupePayloadOpts = pIds.length > 0 && pIds.some((id, i) => pIds.indexOf(id) !== i);
       if (hasDupePayloadOpts) {
-        const newPayloadOpts = payloadOpts.map((o, i) => ({
+        payload.options = payloadOpts.map((o, i) => ({
           ...o,
           id: OPTION_KEYS[i] || `opt_${i}`
         }));
-        const newPayload = { ...payload, options: newPayloadOpts };
-
-        const { error } = await SUPABASE
-          .from('med_questions')
-          .update({ payload: newPayload, corrected_at: new Date().toISOString() })
-          .eq('id', q.id);
-
-        if (error) {
-          console.error(`[fixMTFDuplicateKeys] Failed to fix payload.options for ${q.id}:`, error);
-          results.errors++;
-          results.details.push({ id: q.id, status: 'error', fix: 'payload-options-dupes', error: error.message });
-          continue;
-        }
-        didFix = true;
+        payloadDirty = true;
         fixes.push('payload-options-dupes');
       }
     }
 
-    if (didFix) {
+    // ── Single DB write for all payload changes ──
+    if (payloadDirty) {
+      const { error } = await SUPABASE
+        .from('med_questions')
+        .update({ payload, corrected_at: new Date().toISOString() })
+        .eq('id', q.id);
+
+      if (error) {
+        console.error(`[fixMTFDuplicateKeys] Failed to update payload for ${q.id}:`, error);
+        results.errors++;
+        results.details.push({ id: q.id, status: 'error', fixes, error: error.message });
+        continue;
+      }
+    }
+
+    if (fixes.length > 0) {
       results.fixed++;
       results.details.push({ id: q.id, status: 'fixed', fixes });
     } else {
