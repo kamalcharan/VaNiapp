@@ -20,6 +20,42 @@ import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter
 import { RootState } from '../src/store';
 import { NeetSubjectId, QuestionV2, t } from '../src/types';
 
+/** Derive subjectId from chapterId prefix when local chapter data is unavailable */
+function deriveSubjectFromChapterId(chapterId: string | undefined): string | null {
+  if (!chapterId) return null;
+  // CUET prefixes (check before NEET since 'cuet-phy-' contains 'phy-')
+  if (chapterId.startsWith('cuet-phy-')) return 'cuet-physics';
+  if (chapterId.startsWith('cuet-chem-')) return 'cuet-chemistry';
+  if (chapterId.startsWith('cuet-math-')) return 'mathematics';
+  if (chapterId.startsWith('cuet-bio-')) return 'biology';
+  if (chapterId.startsWith('cuet-agri-')) return 'agriculture';
+  if (chapterId.startsWith('cuet-eg-')) return 'engineering-graphics';
+  if (chapterId.startsWith('cuet-acc-')) return 'accountancy';
+  if (chapterId.startsWith('cuet-bst-') || chapterId.startsWith('bst-')) return 'business-studies';
+  if (chapterId.startsWith('cuet-eco-')) return 'economics';
+  if (chapterId.startsWith('cuet-ent-')) return 'entrepreneurship';
+  if (chapterId.startsWith('cuet-hist-')) return 'history';
+  if (chapterId.startsWith('cuet-geo-')) return 'geography';
+  if (chapterId.startsWith('cuet-pol-')) return 'political-science';
+  if (chapterId.startsWith('cuet-soc-')) return 'sociology';
+  if (chapterId.startsWith('cuet-psy-')) return 'psychology';
+  if (chapterId.startsWith('cuet-phil-')) return 'philosophy';
+  if (chapterId.startsWith('cuet-anth-')) return 'anthropology';
+  if (chapterId.startsWith('cuet-cs-')) return 'computer-science';
+  if (chapterId.startsWith('cuet-env-')) return 'environmental-studies';
+  if (chapterId.startsWith('cuet-pe-')) return 'physical-education';
+  if (chapterId.startsWith('cuet-fa-')) return 'fine-arts';
+  if (chapterId.startsWith('cuet-hs-')) return 'home-science';
+  if (chapterId.startsWith('cuet-mm-')) return 'mass-media';
+  if (chapterId.startsWith('cuet-gt-')) return 'general-test';
+  // NEET prefixes
+  if (chapterId.startsWith('zoo-')) return 'zoology';
+  if (chapterId.startsWith('bot-')) return 'botany';
+  if (chapterId.startsWith('phy-')) return 'physics';
+  if (chapterId.startsWith('chem-')) return 'chemistry';
+  return null;
+}
+
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
   const router = useRouter();
@@ -38,7 +74,11 @@ export default function ChapterResultsScreen() {
   const isQuickMode = chapterId?.startsWith('quick-') ?? false;
   const quickSubjectId = isQuickMode ? chapterId!.replace('quick-', '') as NeetSubjectId : null;
   const chapter = chapterId && !isQuickMode ? getChapterById(chapterId) : null;
-  const rawSubjectId = isQuickMode ? quickSubjectId : chapter?.subjectId;
+
+  // Derive subjectId: quick-mode uses the suffix, chapter mode uses local lookup then prefix mapping
+  const rawSubjectId = isQuickMode
+    ? quickSubjectId
+    : chapter?.subjectId ?? deriveSubjectFromChapterId(chapterId);
   const subjectMeta = rawSubjectId
     ? (SUBJECT_META[rawSubjectId] ?? {
         name: rawSubjectId.charAt(0).toUpperCase() + rawSubjectId.slice(1).replace(/-/g, ' '),
@@ -161,7 +201,6 @@ export default function ChapterResultsScreen() {
   };
 
   if (!subjectMeta) return null;
-  if (!isQuickMode && !chapter) return null;
 
   return (
     <DotGridBackground>
@@ -172,7 +211,7 @@ export default function ChapterResultsScreen() {
             <Text style={styles.gradeEmoji}>{grade.emoji}</Text>
             <HandwrittenText variant="hand">{grade.label}</HandwrittenText>
             <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 4 }]}>
-              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : (chapter ? t(language, chapter.name, chapter.nameTe, chapter.nameHi) : '')}
+              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : (chapter ? t(language, chapter.name, chapter.nameTe, chapter.nameHi) : `${subjectMeta.name} — Chapter Practice`)}
             </Text>
           </View>
 
