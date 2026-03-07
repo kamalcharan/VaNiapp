@@ -388,7 +388,21 @@ function _parseMTFColumns(text) {
     return pipeRows;
   }
 
-  // ── Strategy 2: column header split (original logic) ──
+  // ── Strategy 2: arrow-separated row pairs ──
+  // Format: "(P) lacZ → (i) Codes for permease\n(Q) lacY → (ii) Codes for beta-galactosidase"
+  // Appears after a "Column I ... → Column II ..." header line
+  {
+    const arrowRowRe = /\(([A-Z])\)\s+(.+?)\s*→\s*\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s+(.+?)(?=\s*\([A-Z]\)\s|Choose\b|\n\s*\n|$)/gs;
+    const colA = [], colB = [];
+    let m;
+    while ((m = arrowRowRe.exec(text)) !== null) {
+      colA.push({ id: m[1], text: m[2].trim(), textTe: '' });
+      colB.push({ id: m[3], text: m[4].trim(), textTe: '' });
+    }
+    if (colA.length >= 2 && colB.length >= 2) return { columnA: colA, columnB: colB };
+  }
+
+  // ── Strategy 3: column header split (original logic) ──
   // Split on "Column II" with optional parenthetical label and/or delimiter
   // Handles: "Column II:", "Column II (Function)", "Column II (Label):", "→ Column II"
   const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*(?:\([^)]*\)\s*[:\-–→]?|[:\-–→)])/i);
@@ -453,9 +467,19 @@ function _parseMTFPipeTable(text) {
 
   if (columnA.length >= 2) return { columnA, columnB };
 
-  // Fallback: try parenthesized row pairs "(A) leftText | (1) rightText"
+  // Fallback: try parenthesized row pairs with pipe: "(A) leftText | (1) rightText"
   const parenRowRe = /\(([A-Z])\)\s+(.+?)\s*\|\s*\((\d+)\)\s+(.+?)(?=\s+\([A-Z]\)\s|$)/gs;
   while ((m = parenRowRe.exec(body)) !== null) {
+    columnA.push({ id: m[1], text: m[2].trim(), textTe: '' });
+    columnB.push({ id: m[3], text: m[4].trim(), textTe: '' });
+  }
+
+  if (columnA.length >= 2) return { columnA, columnB };
+
+  // Fallback: arrow-separated row pairs "(P) lacZ → (i) Codes for permease"
+  // Handles both uppercase letters and roman numerals as IDs
+  const arrowRowRe = /\(([A-Za-z0-9]+)\)\s+(.+?)\s*→\s*\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s+(.+?)(?=\s+\([A-Z]\)\s|Choose\b|\n\s*\n|$)/gs;
+  while ((m = arrowRowRe.exec(body)) !== null) {
     columnA.push({ id: m[1], text: m[2].trim(), textTe: '' });
     columnB.push({ id: m[3], text: m[4].trim(), textTe: '' });
   }
