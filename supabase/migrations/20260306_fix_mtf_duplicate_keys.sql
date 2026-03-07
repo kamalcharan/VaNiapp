@@ -22,13 +22,13 @@ BEGIN
       mq.payload
     FROM med_questions mq
     WHERE mq.question_type = 'match-the-following'
-      AND mq.payload->'columnA' IS NOT NULL
-      AND jsonb_array_length(COALESCE(mq.payload->'columnA', '[]'::JSONB)) > 0
-      AND mq.payload->'columnB' IS NOT NULL
-      AND jsonb_array_length(COALESCE(mq.payload->'columnB', '[]'::JSONB)) > 0
+      AND (mq.payload->'columnA' IS NOT NULL OR mq.payload->'column_a' IS NOT NULL)
+      AND jsonb_array_length(COALESCE(mq.payload->'columnA', mq.payload->'column_a', '[]'::JSONB)) > 0
+      AND (mq.payload->'columnB' IS NOT NULL OR mq.payload->'column_b' IS NOT NULL)
+      AND jsonb_array_length(COALESCE(mq.payload->'columnB', mq.payload->'column_b', '[]'::JSONB)) > 0
   LOOP
-    col_a := q.payload->'columnA';
-    col_b := q.payload->'columnB';
+    col_a := COALESCE(q.payload->'columnA', q.payload->'column_a');
+    col_b := COALESCE(q.payload->'columnB', q.payload->'column_b');
 
     -- Collect Column A IDs
     a_ids := ARRAY(
@@ -57,27 +57,30 @@ BEGIN
         jsonb_build_object(
           'id', new_id,
           'text', b_item->>'text',
-          'textTe', COALESCE(b_item->>'textTe', '')
+          'textTe', COALESCE(b_item->>'textTe', ''),
+          'textHi', COALESCE(b_item->>'textHi', '')
         )
       );
     END LOOP;
 
-    -- Update correctMapping to use new B IDs
+    -- Update correctMapping to use new B IDs (handle both key formats)
     new_mapping := '{}'::JSONB;
-    IF q.payload->'correctMapping' IS NOT NULL THEN
-      FOR old_id IN SELECT jsonb_object_keys(q.payload->'correctMapping') LOOP
+    IF q.payload->'correctMapping' IS NOT NULL OR q.payload->'correct_mapping' IS NOT NULL THEN
+      FOR old_id IN SELECT jsonb_object_keys(COALESCE(q.payload->'correctMapping', q.payload->'correct_mapping')) LOOP
         new_mapping := new_mapping || jsonb_build_object(
           old_id,
-          'b-' || (q.payload->'correctMapping'->>old_id)
+          'b-' || (COALESCE(q.payload->'correctMapping', q.payload->'correct_mapping')->>old_id)
         );
       END LOOP;
     END IF;
 
-    -- Update payload
+    -- Update payload (normalize to camelCase keys)
     UPDATE med_questions
     SET payload = payload
+      || jsonb_build_object('columnA', col_a)
       || jsonb_build_object('columnB', new_col_b)
       || jsonb_build_object('correctMapping', new_mapping)
+      - 'column_a' - 'column_b' - 'correct_mapping'
     WHERE id = q.id::UUID;
 
     fixed_count := fixed_count + 1;
@@ -87,19 +90,19 @@ BEGIN
   RAISE NOTICE 'Fixed % questions with duplicate column IDs', fixed_count;
 END $$;
 
--- Verify: check for any remaining duplicates
+-- Verify: check for any remaining duplicates (both key formats)
 SELECT
   mq.id,
   left(mq.question_text, 80) AS preview,
-  (SELECT array_agg(e->>'id') FROM jsonb_array_elements(mq.payload->'columnA') e) AS a_ids,
-  (SELECT array_agg(e->>'id') FROM jsonb_array_elements(mq.payload->'columnB') e) AS b_ids
+  (SELECT array_agg(e->>'id') FROM jsonb_array_elements(COALESCE(mq.payload->'columnA', mq.payload->'column_a')) e) AS a_ids,
+  (SELECT array_agg(e->>'id') FROM jsonb_array_elements(COALESCE(mq.payload->'columnB', mq.payload->'column_b')) e) AS b_ids
 FROM med_questions mq
 WHERE mq.question_type = 'match-the-following'
-  AND mq.payload->'columnA' IS NOT NULL
-  AND jsonb_array_length(COALESCE(mq.payload->'columnA', '[]'::JSONB)) > 0
+  AND (mq.payload->'columnA' IS NOT NULL OR mq.payload->'column_a' IS NOT NULL)
+  AND jsonb_array_length(COALESCE(mq.payload->'columnA', mq.payload->'column_a', '[]'::JSONB)) > 0
   AND EXISTS (
     SELECT 1
-    FROM jsonb_array_elements(mq.payload->'columnA') a,
-         jsonb_array_elements(mq.payload->'columnB') b
+    FROM jsonb_array_elements(COALESCE(mq.payload->'columnA', mq.payload->'column_a')) a,
+         jsonb_array_elements(COALESCE(mq.payload->'columnB', mq.payload->'column_b')) b
     WHERE a->>'id' = b->>'id'
   );

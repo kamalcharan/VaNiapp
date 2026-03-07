@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, Image, ActivityIndicator } from 'react-native';
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
-import { Option } from '../../types';
+import { Option, t } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
 import { autoReportIssue } from '../../lib/qualityAutoDetect';
 
@@ -99,7 +99,7 @@ export function DiagramBasedQuestion({ question, language, selectedOptionId, sho
                 <Text style={[styles.optLabelText, { color: os.text }]}>{label}</Text>
               </View>
               <Text style={[Typography.body, { color: os.text, flex: 1 }]}>
-                {language === 'te' ? opt.textTe : opt.text}
+                {t(language, opt.text, opt.textTe, opt.textHi)}
               </Text>
               {showFeedback && opt.id === payload.correctOptionId && (
                 <Text style={{ fontSize: 18, color: '#16A34A' }}>{'\u2713'}</Text>

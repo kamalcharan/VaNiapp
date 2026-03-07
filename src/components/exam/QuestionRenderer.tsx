@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { QuestionV2 } from '../../types';
+import { QuestionV2, Language } from '../../types';
 import { reportError } from '../../lib/errorReporting';
 import { McqQuestion } from './McqQuestion';
 import { TrueFalseQuestion } from './TrueFalseQuestion';
@@ -12,7 +12,7 @@ import { LogicalSequenceQuestion } from './LogicalSequenceQuestion';
 
 export interface QuestionRendererProps {
   question: QuestionV2;
-  language: 'en' | 'te';
+  language: Language;
   selectedOptionId: string | null;
   showFeedback: boolean;
   onSelect: (optionId: string) => void;

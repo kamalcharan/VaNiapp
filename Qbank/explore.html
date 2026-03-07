@@ -306,6 +306,9 @@
           <button class="btn btn-secondary" onclick="auditDiagramImages()" style="background:#8B5CF6;color:#fff;border:none;">
             🖼️ Diagram Audit
           </button>
+          <button class="btn btn-secondary" onclick="runHintAudit()" style="background:#D97706;color:#fff;border:none;">
+            🔍 Audit Hints
+          </button>
         </div>
       </div>
 
@@ -339,11 +342,14 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title" id="issuesTitle">Issues</h3>
-            <div style="display: flex; gap: 8px;">
+            <div style="display: flex; gap: 8px; align-items: center;">
               <button class="btn btn-sm" onclick="filterIssues('all')" id="filterAll">All</button>
               <button class="btn btn-sm" onclick="filterIssues('high')" id="filterHigh" style="color: #991b1b;">High</button>
               <button class="btn btn-sm" onclick="filterIssues('medium')" id="filterMed" style="color: #92400e;">Medium</button>
               <button class="btn btn-sm" onclick="filterIssues('low')" id="filterLow" style="color: #1e40af;">Low</button>
+              <button class="btn btn-sm" id="btnCopyAll" onclick="copyAllIssues()" style="display:none; margin-left: 8px; background: var(--gray-700); color: #fff; font-size: 0.75rem;" title="Copy all issues to clipboard">
+                📋 Copy All
+              </button>
             </div>
           </div>
           <div class="card-body" id="issuesContainer">
@@ -632,9 +638,40 @@
         return html;
       };
 
+      // Build plain-text report for clipboard
+      const buildTextReport = (label, stats) => {
+        const brokenCount = stats.empty + stats.placeholder + stats['local-path'];
+        let txt = `${label}: ${stats.total} total, ${stats.http} working, ${brokenCount} broken\n`;
+        const chapters = Object.entries(stats.byChapter).sort((a,b) => a[0].localeCompare(b[0]));
+        for (const [ch, info] of chapters) {
+          if (info.broken === 0) continue;
+          txt += `\n  ${ch} — ${info.broken} broken:\n`;
+          for (const q of info.questions) {
+            if (q.status === 'http') continue;
+            txt += `    ${q.id}  [${q.status}]  ${q.url || '(empty)'}\n`;
+          }
+        }
+        return txt;
+      };
+
+      const totalBroken = (neetStats.empty + neetStats.placeholder + neetStats['local-path']) + (cuetStats.empty + cuetStats.placeholder + cuetStats['local-path']);
+
+      // Store report text for copy button
+      window.__diagramAuditReport = `DIAGRAM IMAGE AUDIT REPORT\n` +
+        `Date: ${new Date().toISOString().slice(0,10)}\n` +
+        `Total: ${data.length} diagram questions, ${neetStats.http + cuetStats.http} working, ${totalBroken} broken\n` +
+        `${'='.repeat(60)}\n\n` +
+        buildTextReport('NEET', neetStats) + '\n' +
+        buildTextReport('CUET', cuetStats);
+
       resultsEl.innerHTML = `
         <div style="padding:16px;">
-          <h2 style="margin:0 0 16px;">🖼️ Diagram-Based Question Image Audit</h2>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <h2 style="margin:0;">🖼️ Diagram-Based Question Image Audit</h2>
+            <button onclick="copyDiagramAudit()" style="padding:6px 16px;background:#3B82F6;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;">
+              📋 Copy Report
+            </button>
+          </div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;">
             <div style="text-align:center;padding:16px;background:#f8f9fa;border-radius:12px;border:2px solid #e2e8f0;">
               <div style="font-size:32px;font-weight:800;">${data.length}</div>
@@ -645,13 +682,116 @@
               <div style="font-size:13px;color:#16A34A;">✅ Images Working</div>
             </div>
             <div style="text-align:center;padding:16px;background:#EF444418;border-radius:12px;border:2px solid #EF4444;">
-              <div style="font-size:32px;font-weight:800;color:#DC2626;">${(neetStats.empty + neetStats.placeholder + neetStats['local-path']) + (cuetStats.empty + cuetStats.placeholder + cuetStats['local-path'])}</div>
+              <div style="font-size:32px;font-weight:800;color:#DC2626;">${totalBroken}</div>
               <div style="font-size:13px;color:#DC2626;">❌ Images Broken</div>
             </div>
           </div>
           ${renderStats('🩺 NEET Diagram Questions', neetStats, '#3B82F6')}
           ${renderStats('🎓 CUET Diagram Questions', cuetStats, '#8B5CF6')}
         </div>`;
+    }
+
+    // Copy diagram audit report to clipboard
+    async function copyDiagramAudit() {
+      const report = window.__diagramAuditReport;
+      if (!report) { alert('Run Diagram Audit first'); return; }
+      try {
+        await navigator.clipboard.writeText(report);
+        const btn = event.target;
+        const orig = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        btn.style.background = '#16A34A';
+        setTimeout(() => { btn.textContent = orig; btn.style.background = '#3B82F6'; }, 2000);
+      } catch (e) {
+        // Fallback for non-HTTPS contexts
+        const ta = document.createElement('textarea');
+        ta.value = report;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Report copied to clipboard!');
+      }
+    }
+
+    // ========================================================================
+    // HINT AUDIT
+    // ========================================================================
+    async function runHintAudit() {
+      const tag = prompt('Enter exam tag to audit (e.g. CUET, NEET):');
+      if (!tag) return;
+
+      const container = document.getElementById('resultsContainer');
+      container.style.display = 'block';
+      container.innerHTML = `<div style="padding:20px;text-align:center;">⏳ Auditing ${tag} hints...</div>`;
+
+      try {
+        const r = await Qbank.auditHints(tag.trim());
+        window.__lastHintAudit = r;
+        container.innerHTML = `
+          <div style="padding:20px;background:#1a1a2e;border-radius:12px;margin:10px 0;">
+            <h3 style="color:#D97706;">🔍 Hint Audit: ${tag}</h3>
+            <div style="margin:10px 0;">
+              <button onclick="copyHintAudit()" style="background:#3B82F6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;">
+                📋 Copy Full Report
+              </button>
+              <button onclick="copyHintSamples()" style="background:#8B5CF6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;margin-left:8px;">
+                📋 Copy All Hint Rows
+              </button>
+            </div>
+            <table style="width:100%;color:#e0e0e0;border-collapse:collapse;margin-top:10px;">
+              <tr><td style="padding:6px;">Total questions</td><td style="font-weight:bold;">${r.totalQuestions}</td></tr>
+              <tr><td style="padding:6px;">With hints</td><td style="font-weight:bold;color:#22C55E;">${r.withHints}</td></tr>
+              <tr><td style="padding:6px;">Without hints</td><td style="font-weight:bold;color:#EF4444;">${r.withoutHints}</td></tr>
+              <tr><td style="padding:6px;">Good hint rows</td><td style="font-weight:bold;color:#22C55E;">${r.goodHints}</td></tr>
+              <tr><td style="padding:6px;">Bad hint rows</td><td style="font-weight:bold;color:#EF4444;">${r.badHints}</td></tr>
+            </table>
+            ${r.badSamples.length > 0 ? `
+              <h4 style="color:#EF4444;margin-top:15px;">Bad samples (up to 10):</h4>
+              <pre style="background:#111;padding:10px;border-radius:8px;overflow-x:auto;font-size:12px;color:#ccc;">${JSON.stringify(r.badSamples, null, 2)}</pre>
+            ` : '<p style="color:#22C55E;margin-top:10px;">✅ All hint rows look valid!</p>'}
+          </div>`;
+      } catch (e) {
+        container.innerHTML = `<div style="padding:20px;color:#EF4444;">Error: ${e.message}</div>`;
+      }
+    }
+
+    async function copyHintAudit() {
+      const r = window.__lastHintAudit;
+      if (!r) { alert('Run audit first'); return; }
+      const text = JSON.stringify(r, null, 2);
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Full audit report copied!');
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Full audit report copied!');
+      }
+    }
+
+    async function copyHintSamples() {
+      const r = window.__lastHintAudit;
+      if (!r) { alert('Run audit first'); return; }
+      const text = JSON.stringify(r.allHintRows || r.badSamples, null, 2);
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Hint rows copied!');
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Hint rows copied!');
+      }
     }
 
     // ========================================================================
@@ -756,6 +896,9 @@
 
       document.getElementById('issuesTitle').textContent =
         `Issues (${issues.length}) — ${chapterName}`;
+
+      document.getElementById('btnCopyAll').style.display =
+        issues.length > 0 ? '' : 'none';
     }
 
     // ========================================================================
@@ -873,6 +1016,24 @@
                 🔧 Fix MTF
               </button>
             ` : ''}
+            ${group.issueType === 'MTF_DUPLICATE_KEYS' ? `
+              <button class="btn-copy-group" style="background: var(--success); color: #fff;"
+                onclick="event.stopPropagation(); fixAllMTFDuplicateKeys('${key}')" title="Auto-fix: prefix Column B IDs with b- to deduplicate">
+                🔧 Fix Dupes
+              </button>
+            ` : ''}
+            ${group.issueType === 'NO_ELIMINATION_HINTS' ? `
+              <button class="btn-copy-group" style="background: var(--success); color: #fff;"
+                onclick="event.stopPropagation(); fixAllMissingHints('${key}')" title="Auto-fix: backfill hints from payload data">
+                🔧 Fix Hints
+              </button>
+            ` : ''}
+            ${group.issueType === 'SEQ_NO_ITEMS' ? `
+              <button class="btn-copy-group" style="background: var(--success); color: #fff;"
+                onclick="event.stopPropagation(); fixAllMissingSequenceItems('${key}')" title="Auto-fix: parse sequence items from question text">
+                🔧 Fix Sequence
+              </button>
+            ` : ''}
             <span style="font-size: 0.7rem; color: var(--gray-400);">
               ${group.severity.toUpperCase()}
             </span>
@@ -914,6 +1075,12 @@
               <button class="btn-resolve" style="background: var(--success); color: #fff;"
                 onclick="openAddOptionsModal('${issue.question_id}')" title="Add options to this question">
                 + Options
+              </button>
+            ` : ''}
+            ${!isResolved && ['QUESTION_TOO_SHORT', 'EMPTY_QUESTION_TEXT', 'MTF_MISSING_COLUMNS'].includes(issue.issue_type) ? `
+              <button class="btn-resolve" style="background: #e67e22; color: #fff;"
+                onclick="markAsDraft('${issue.question_id}', '${issue.issue_type}', this)" title="Mark question as draft (hidden from students)">
+                Draft
               </button>
             ` : ''}
             ${!isResolved ? `
@@ -1002,6 +1169,44 @@
       });
     }
 
+    function copyAllIssues() {
+      if (!currentIssues || currentIssues.length === 0) return;
+
+      const sevOrder = { high: 0, medium: 1, low: 2 };
+      const sorted = [...currentIssues].sort((a, b) => sevOrder[a.severity] - sevOrder[b.severity]);
+
+      const chapterName = document.getElementById('chapterFilter')
+        .selectedOptions[0]?.textContent || 'Chapter';
+      const high = sorted.filter(i => i.severity === 'high').length;
+      const med  = sorted.filter(i => i.severity === 'medium').length;
+      const low  = sorted.filter(i => i.severity === 'low').length;
+
+      const header = `${chapterName} — ${sorted.length} issues (${high} high, ${med} medium, ${low} low)\n${'─'.repeat(60)}\n`;
+
+      const lines = [header];
+      let prevSeverity = '';
+
+      for (const issue of sorted) {
+        if (issue.severity !== prevSeverity) {
+          lines.push(`\n▸ ${issue.severity.toUpperCase()} (${sorted.filter(i => i.severity === issue.severity).length})\n`);
+          prevSeverity = issue.severity;
+        }
+        const q = scannedQuestions.find(sq => sq.id === issue.question_id);
+        const label = getIssueLabel(issue);
+        const detail = getIssueDetail(issue);
+        const preview = q ? (q.question_text || '').substring(0, 100).replace(/\n/g, ' ') : '';
+        let line = `${issue.question_id}  [${q?.question_type || '?'}]  ${label}`;
+        if (detail) line += `  ${detail}`;
+        if (preview) line += `\n   ${preview}${preview.length >= 100 ? '...' : ''}`;
+        lines.push(line);
+      }
+
+      const text = lines.join('\n');
+      navigator.clipboard.writeText(text).then(() => {
+        Qbank.showToast(`Copied all ${sorted.length} issues to clipboard`, 'success');
+      });
+    }
+
     function copyGroupIssues(groupKey) {
       const group = window._issueGroups?.[groupKey];
       if (!group || !group.issues.length) return;
@@ -1071,6 +1276,53 @@
     }
 
     // ========================================================================
+    // Mark question as draft in DB (hides from students)
+    // ========================================================================
+    async function markAsDraft(questionId, issueType, btnEl) {
+      btnEl.disabled = true;
+      btnEl.textContent = '...';
+
+      const { error } = await Qbank.supabase
+        .from('med_questions')
+        .update({ status: 'draft' })
+        .eq('id', questionId);
+
+      if (error) {
+        btnEl.textContent = 'Error';
+        console.error('[markAsDraft]', error);
+        alert('Failed to mark as draft: ' + error.message);
+        return;
+      }
+
+      // Also resolve the issue
+      const issue = currentIssues.find(i =>
+        i.question_id === questionId && i.issue_type === issueType && i.status !== 'resolved'
+      );
+      if (issue) {
+        const dbKey = questionId + '|' + issueType;
+        const dbId = issue._dbId || dbIssueMap.get(dbKey);
+        if (dbId) await Qbank.resolveQualityIssue(dbId);
+        issue.status = 'resolved';
+      }
+
+      // Update UI
+      const itemEl = btnEl.closest('.issue-item');
+      if (itemEl) {
+        itemEl.classList.add('resolved');
+        const actionsEl = itemEl.querySelector('.issue-actions');
+        if (actionsEl) actionsEl.innerHTML = '<span style="font-size: 0.7rem; color: #e67e22;">Drafted</span>';
+      }
+      const groupEl = itemEl?.closest('.issue-group');
+      if (groupEl) {
+        const countEl = groupEl.querySelector('.issue-group-count');
+        const remaining = groupEl.querySelectorAll('.issue-item:not(.resolved)').length;
+        if (countEl) countEl.textContent = remaining;
+        if (remaining === 0) groupEl.style.opacity = '0.4';
+      }
+      renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    // ========================================================================
     // AUTO-FIX: correct_answer text → key
     // ========================================================================
     async function fixAllCorrectAnswerKeys(groupKey) {
@@ -1125,23 +1377,38 @@
       const group = window._issueGroups?.[groupKey];
       if (!group) return;
 
-      // Get question IDs from the issues
       const qIds = group.issues.map(i => i.question_id);
       if (!qIds.length) return;
 
-      // Fetch full question data for these IDs
       const fixableQuestions = scannedQuestions.filter(q => qIds.includes(q.id));
+      console.log(`[fixMTF] Found ${fixableQuestions.length}/${qIds.length} questions`);
       if (!fixableQuestions.length) {
         Qbank.showToast('No MTF questions found to fix', 'error');
         return;
       }
 
-      // Disable the button
+      // Debug: log payload structure
+      for (const fq of fixableQuestions) {
+        const p = fq.payload || {};
+        console.log(`[fixMTF] Q=${fq.id} payload keys:`, Object.keys(p),
+          'columnA:', p.column_a || p.columnA || 'MISSING',
+          'columnB:', p.column_b || p.columnB || 'MISSING',
+          'text:', (fq.question_text || '').substring(0, 200));
+      }
+
       const groupEl = document.querySelector(`.issue-group[data-group-key="${groupKey}"]`);
       const fixBtn = groupEl?.querySelector('button[onclick*="fixAllMTFPayload"]');
       if (fixBtn) { fixBtn.disabled = true; fixBtn.textContent = '🔧 Fixing...'; }
 
-      const result = await Qbank.fixMTFPayload(fixableQuestions);
+      let result;
+      try {
+        result = await Qbank.fixMTFPayload(fixableQuestions);
+      } catch (err) {
+        console.error('[fixMTF] Error:', err);
+        Qbank.showToast('Fix failed: ' + err.message, 'error');
+        if (fixBtn) { fixBtn.disabled = false; fixBtn.textContent = '🔧 Fix All'; }
+        return;
+      }
 
       Qbank.showToast(
         `Fixed ${result.fixed} MTF questions (${result.errors} errors, ${result.skipped} skipped)`,
@@ -1159,6 +1426,226 @@
       }
 
       // Re-render
+      renderIssues(currentIssues);
+      renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    // ========================================================================
+    // AUTO-FIX: MTF duplicate keys — prefix Column B IDs with "b-"
+    // ========================================================================
+    async function fixAllMTFDuplicateKeys(groupKey) {
+      const group = window._issueGroups?.[groupKey];
+      if (!group) return;
+
+      const qIds = group.issues.map(i => i.question_id);
+      if (!qIds.length) return;
+
+      const fixableQuestions = scannedQuestions.filter(q => qIds.includes(q.id));
+      if (!fixableQuestions.length) {
+        Qbank.showToast('No MTF questions found to fix', 'error');
+        return;
+      }
+
+      const groupEl = document.querySelector(`.issue-group[data-group-key="${groupKey}"]`);
+      const fixBtn = groupEl?.querySelector('button[onclick*="fixAllMTFDuplicateKeys"]');
+      if (fixBtn) { fixBtn.disabled = true; fixBtn.textContent = '🔧 Fixing...'; }
+
+      const result = await Qbank.fixMTFDuplicateKeys(fixableQuestions);
+
+      Qbank.showToast(
+        `Fixed ${result.fixed} MTF duplicate keys (${result.errors} errors, ${result.skipped} skipped)`,
+        result.errors ? 'error' : 'success'
+      );
+
+      for (const d of result.details) {
+        if (d.status === 'fixed') {
+          const issue = currentIssues.find(i =>
+            i.question_id === d.id && i.issue_type === 'MTF_DUPLICATE_KEYS' && i.status !== 'resolved'
+          );
+          if (issue) {
+            issue.status = 'resolved';
+            // Also resolve in DB if it was saved there
+            const dbKey = d.id + '|MTF_DUPLICATE_KEYS';
+            const dbId = issue._dbId || dbIssueMap.get(dbKey);
+            if (dbId) Qbank.resolveQualityIssue(dbId);
+          }
+        }
+      }
+
+      renderIssues(currentIssues);
+      renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    // ========================================================================
+    // AUTO-FIX: Missing elimination hints — backfill from payload or JSON
+    // ========================================================================
+    async function fixAllMissingHints(groupKey) {
+      const group = window._issueGroups?.[groupKey];
+      if (!group) return;
+
+      const qIds = group.issues.map(i => i.question_id);
+      if (!qIds.length) return;
+
+      const fixableQuestions = scannedQuestions.filter(q => qIds.includes(q.id));
+      if (!fixableQuestions.length) {
+        Qbank.showToast('No questions found to fix', 'error');
+        return;
+      }
+
+      // Always offer source JSON file upload — payload hints alone may not cover all questions
+      const withPayloadHints = fixableQuestions.filter(q =>
+        Array.isArray(q.payload?.elimination_hints) && q.payload.elimination_hints.length > 0
+      ).length;
+      const total = fixableQuestions.length;
+
+      let sourceData = null;
+
+      const msg = withPayloadHints > 0
+        ? `${withPayloadHints}/${total} questions have hints in payload.\n` +
+          `${total - withPayloadHints} still need source files.\n\n` +
+          `Select source JSON files (*-copied.json) to fix all, or Cancel to use payload hints only.`
+        : `${total} questions need hints.\n\n` +
+          `Select the source JSON files (*-copied.json from Qbank/CUET/) that contain elimination_hints.\n\n` +
+          `Click OK to choose files.`;
+
+      const useFiles = confirm(msg);
+
+      if (useFiles) {
+        sourceData = await _loadSourceJsonFiles();
+        if (!sourceData || sourceData.length === 0) {
+          if (withPayloadHints === 0) {
+            Qbank.showToast('No source data loaded — cancelled', 'error');
+            return;
+          }
+          Qbank.showToast('No files loaded — using payload hints only', 'warn');
+        }
+      } else if (withPayloadHints === 0) {
+        Qbank.showToast('Fix cancelled — source JSON files needed', 'error');
+        return;
+      }
+
+      const groupEl = document.querySelector(`.issue-group[data-group-key="${groupKey}"]`);
+      const fixBtn = groupEl?.querySelector('button[onclick*="fixAllMissingHints"]');
+      if (fixBtn) { fixBtn.disabled = true; fixBtn.textContent = '🔧 Fixing...'; }
+
+      const result = await Qbank.fixMissingHints(fixableQuestions, sourceData);
+
+      // Debug: log skip reasons to console
+      console.log('[fixHints] Result:', JSON.stringify({ fixed: result.fixed, skipped: result.skipped, errors: result.errors }));
+      const skipped = result.details.filter(d => d.status === 'skipped');
+      if (skipped.length > 0) console.log('[fixHints] Skipped (first 5):', skipped.slice(0, 5));
+      const errored = result.details.filter(d => d.status === 'error');
+      if (errored.length > 0) console.log('[fixHints] Errors (first 5):', errored.slice(0, 5));
+
+      Qbank.showToast(
+        `Fixed ${result.fixed} questions (${result.errors} errors, ${result.skipped} skipped)`,
+        result.errors ? 'error' : 'success'
+      );
+
+      for (const d of result.details) {
+        if (d.status === 'fixed') {
+          const issue = currentIssues.find(i =>
+            i.question_id === d.id && i.issue_type === 'NO_ELIMINATION_HINTS' && i.status !== 'resolved'
+          );
+          if (issue) {
+            issue.status = 'resolved';
+            const dbKey = d.id + '|NO_ELIMINATION_HINTS';
+            const dbId = issue._dbId || dbIssueMap.get(dbKey);
+            if (dbId) Qbank.resolveQualityIssue(dbId);
+          }
+        }
+      }
+
+      renderIssues(currentIssues);
+      renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    /** Prompt user to pick JSON files and return all questions from them */
+    function _loadSourceJsonFiles() {
+      return new Promise((resolve) => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.multiple = true;
+        input.accept = '.json';
+        input.onchange = async () => {
+          const files = Array.from(input.files);
+          if (!files.length) { resolve(null); return; }
+
+          const allQuestions = [];
+          for (const file of files) {
+            try {
+              const text = await file.text();
+              const parsed = JSON.parse(text);
+              const questions = Array.isArray(parsed) ? parsed : (parsed.questions || [parsed]);
+              allQuestions.push(...questions);
+            } catch (e) {
+              console.warn(`Failed to parse ${file.name}:`, e);
+            }
+          }
+          Qbank.showToast(`Loaded ${allQuestions.length} questions from ${files.length} files`, 'success');
+          resolve(allQuestions);
+        };
+        input.oncancel = () => resolve(null);
+        input.click();
+      });
+    }
+
+    // ========================================================================
+    // AUTO-FIX: Missing sequence items — parse from question_text
+    // ========================================================================
+    async function fixAllMissingSequenceItems(groupKey) {
+      const group = window._issueGroups?.[groupKey];
+      if (!group) { console.error('[fixSeq] No group found for key:', groupKey); return; }
+
+      const qIds = group.issues.map(i => i.question_id);
+      if (!qIds.length) { console.error('[fixSeq] No question IDs in group'); return; }
+
+      const fixableQuestions = scannedQuestions.filter(q => qIds.includes(q.id));
+      console.log(`[fixSeq] Found ${fixableQuestions.length}/${qIds.length} questions in scannedQuestions`);
+      if (!fixableQuestions.length) {
+        Qbank.showToast('No sequence questions found to fix', 'error');
+        return;
+      }
+
+      // Log sample question to debug
+      const sample = fixableQuestions[0];
+      console.log('[fixSeq] Sample question:', sample.id, 'type:', sample.question_type,
+        'text:', (sample.question_text || '').substring(0, 150),
+        'payload.items:', sample.payload?.items);
+
+      const groupEl = document.querySelector(`.issue-group[data-group-key="${groupKey}"]`);
+      const fixBtn = groupEl?.querySelector('button[onclick*="fixAllMissingSequenceItems"]');
+      if (fixBtn) { fixBtn.disabled = true; fixBtn.textContent = '🔧 Fixing...'; }
+
+      let result;
+      try {
+        result = await Qbank.fixMissingSequenceItems(fixableQuestions);
+      } catch (err) {
+        console.error('[fixSeq] Error:', err);
+        Qbank.showToast('Fix failed: ' + err.message, 'error');
+        if (fixBtn) { fixBtn.disabled = false; fixBtn.textContent = '🔧 Fix All'; }
+        return;
+      }
+
+      Qbank.showToast(
+        `Fixed ${result.fixed} sequence questions (${result.errors} errors, ${result.skipped} skipped)`,
+        result.errors ? 'error' : 'success'
+      );
+
+      for (const d of result.details) {
+        if (d.status === 'fixed') {
+          const issue = currentIssues.find(i =>
+            i.question_id === d.id && i.issue_type === 'SEQ_NO_ITEMS' && i.status !== 'resolved'
+          );
+          if (issue) {
+            issue.status = 'resolved';
+            const dbKey = d.id + '|SEQ_NO_ITEMS';
+            const dbId = issue._dbId || dbIssueMap.get(dbKey);
+            if (dbId) Qbank.resolveQualityIssue(dbId);
+          }
+        }
+      }
+
       renderIssues(currentIssues);
       renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
     }

@@ -3,105 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telugu Translation - Qbank Admin</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Translation Status - Qbank Admin</title>
   <link rel="stylesheet" href="./styles.css">
   <style>
-    .translation-card {
-      background: white;
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg);
-      margin-bottom: 16px;
-      overflow: hidden;
-    }
-
-    .translation-header {
+    /* ── Filters ────────────────────────────────────── */
+    .ts-filters {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      background: var(--gray-50);
-      border-bottom: 1px solid var(--gray-200);
-    }
-
-    .translation-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-    }
-
-    .translation-column {
-      padding: 20px;
-    }
-
-    .translation-column:first-child {
-      border-right: 1px solid var(--gray-200);
-    }
-
-    .lang-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--gray-500);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .translation-text {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--gray-800);
-    }
-
-    .translation-text.telugu {
-      font-family: 'Noto Sans Telugu', sans-serif;
-    }
-
-    .translation-input {
-      width: 100%;
-      min-height: 100px;
-      padding: 12px;
-      border: 1px solid var(--gray-300);
-      border-radius: var(--radius);
-      font-family: 'Noto Sans Telugu', sans-serif;
-      font-size: 1rem;
-      line-height: 1.7;
-      resize: vertical;
-    }
-
-    .translation-actions {
-      padding: 12px 20px;
-      background: var(--gray-50);
-      border-top: 1px solid var(--gray-200);
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-    }
-
-    .batch-controls {
-      display: flex;
-      align-items: center;
       gap: 16px;
+      align-items: flex-end;
       padding: 20px;
       background: white;
-      border-radius: var(--radius-lg);
       border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
       margin-bottom: 24px;
       flex-wrap: wrap;
     }
-    @media (max-width: 768px) {
-      .translation-body { grid-template-columns: 1fr !important; }
-      .translation-column:first-child { border-right: none; border-bottom: 1px solid var(--gray-200); }
+    .ts-filters .form-group { margin: 0; flex: 1; min-width: 180px; }
+
+    /* ── Global summary cards ───────────────────────── */
+    .ts-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .ts-summary-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
+    .ts-summary-card .value { font-size: 1.75rem; font-weight: 700; line-height: 1; }
+    .ts-summary-card .label { font-size: 0.8rem; color: var(--gray-500); margin-top: 6px; }
+    .ts-summary-card.good  { border-left: 4px solid var(--success); }
+    .ts-summary-card.warn  { border-left: 4px solid var(--warning); }
+    .ts-summary-card.bad   { border-left: 4px solid var(--error); }
+    .ts-summary-card.info  { border-left: 4px solid var(--info); }
+
+    /* ── Per-language coverage bars ──────────────────── */
+    .lang-coverage {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .lang-coverage h3 { margin: 0 0 16px; font-size: 1rem; }
+    .lang-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .lang-row:last-child { margin-bottom: 0; }
+    .lang-label-bar {
+      font-weight: 600;
+      min-width: 100px;
+      font-size: 0.9rem;
+    }
+    .lang-bar-wrap {
+      flex: 1;
+      height: 26px;
+      background: var(--gray-100);
+      border-radius: 13px;
+      overflow: hidden;
+      position: relative;
+    }
+    .lang-bar-fill {
+      height: 100%;
+      border-radius: 13px;
+      transition: width 0.6s ease;
+      min-width: 2px;
+    }
+    .lang-bar-fill.high   { background: var(--success); }
+    .lang-bar-fill.medium { background: var(--warning); }
+    .lang-bar-fill.low    { background: var(--error); }
+    .lang-pct {
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-width: 90px;
+      text-align: right;
     }
 
-    .questions-needing-translation {
-      color: var(--warning);
+    /* ── Chapter breakdown table ─────────────────────── */
+    .ch-table { width: 100%; border-collapse: collapse; }
+    .ch-table th, .ch-table td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 0.85rem;
+    }
+    .ch-table th {
+      background: var(--gray-50);
       font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--gray-500);
+    }
+    .ch-table tr:hover { background: var(--gray-50); }
+    .ch-pct-bar {
+      display: inline-block;
+      height: 8px;
+      border-radius: 4px;
+      min-width: 2px;
+    }
+    .ch-pct-bar.high   { background: var(--success); }
+    .ch-pct-bar.medium { background: var(--warning); }
+    .ch-pct-bar.low    { background: var(--error); }
+
+    .corrected-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 99px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    @media (max-width: 768px) {
+      .ts-summary { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
-  <!-- Load Telugu font -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <header id="nav-header"></header>
@@ -111,494 +136,386 @@
       <div class="page-header">
         <h1 class="page-title">
           <span class="page-title-icon">🌐</span>
-          Telugu Translation
+          Translation Status
         </h1>
-        <p class="page-subtitle">Add Telugu translations to English questions using Gemini AI</p>
+        <p class="page-subtitle">Coverage dashboard — tracks translation progress per language, subject, and chapter</p>
       </div>
 
-      <!-- Summary Stats -->
-      <div class="stats-grid" style="margin-bottom: 24px;">
-        <div class="stat-card">
-          <div class="stat-icon total">📚</div>
-          <div class="stat-content">
-            <div class="stat-value" id="totalQuestions">--</div>
-            <div class="stat-label">Total Questions</div>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon pending">🌐</div>
-          <div class="stat-content">
-            <div class="stat-value" id="needsTranslation">--</div>
-            <div class="stat-label">Need Telugu</div>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon" style="background: #d1fae5;">✓</div>
-          <div class="stat-content">
-            <div class="stat-value" id="hasTranslation">--</div>
-            <div class="stat-label">Already Translated</div>
-          </div>
+      <!-- Global Summary -->
+      <div class="ts-summary" id="globalSummary">
+        <div class="ts-summary-card info"><div class="value" id="totalQs">--</div><div class="label">Total Questions</div></div>
+      </div>
+
+      <!-- Per-language coverage -->
+      <div class="lang-coverage" id="langCoverage">
+        <h3>Language Coverage</h3>
+        <div id="langBars">
+          <p style="color: var(--gray-400); text-align: center;">Loading...</p>
         </div>
       </div>
 
-      <!-- Batch Controls -->
-      <div class="batch-controls">
-        <div class="form-group" style="margin: 0; flex: 1;">
-          <label class="form-label">Select Subject</label>
+      <!-- Danger Zone: Delete language data -->
+      <div class="lang-coverage" id="dangerZone" style="border: 2px solid var(--error); display: none;">
+        <h3 style="color: var(--error);">⚠️ Delete Language Data</h3>
+        <p style="font-size: 0.85rem; color: var(--gray-500); margin: 0 0 16px;">
+          Permanently removes <strong>all</strong> translated text for a language across every table
+          (questions, options, hints, chapters, topics). English data is never touched.
+        </p>
+        <div id="deleteButtons" style="display: flex; gap: 12px; flex-wrap: wrap;"></div>
+      </div>
+
+      <!-- Filters -->
+      <div class="ts-filters">
+        <div class="form-group">
+          <label class="form-label">Subject</label>
           <select id="subjectFilter" class="form-select">
             <option value="">All Subjects</option>
           </select>
         </div>
-        <div class="form-group" style="margin: 0; flex: 1;">
-          <label class="form-label">Select Chapter</label>
-          <select id="chapterFilter" class="form-select" disabled>
-            <option value="">Select subject first</option>
-          </select>
-        </div>
-        <div class="form-group" style="margin: 0;">
-          <label class="form-label">Batch Size</label>
-          <select id="batchSize" class="form-select">
-            <option value="5">5 questions</option>
-            <option value="10" selected>10 questions</option>
-            <option value="20">20 questions</option>
+        <div class="form-group">
+          <label class="form-label">Language</label>
+          <select id="langFilter" class="form-select">
+            <option value="">All Languages</option>
           </select>
         </div>
         <div style="align-self: flex-end;">
-          <button class="btn btn-primary" id="translateBatchBtn" onclick="translateBatch()" disabled>
-            🤖 Translate Batch with Gemini
-          </button>
+          <button class="btn btn-secondary" onclick="loadBreakdown()">Refresh</button>
         </div>
       </div>
 
-      <!-- Questions List -->
+      <!-- Chapter breakdown -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Questions Needing Translation</h3>
-          <div style="display: flex; gap: 8px;">
-            <button class="btn btn-sm btn-success" id="saveAllBtn" onclick="saveAllTranslations()" style="display: none;">
-              Save All Translations
-            </button>
-            <button class="btn btn-sm btn-secondary" onclick="loadQuestions()">Refresh</button>
-          </div>
+          <h3 class="card-title">Chapter Breakdown</h3>
+          <span id="breakdownHint" style="font-size: 0.8rem; color: var(--gray-500);"></span>
         </div>
-        <div class="card-body" id="questionsContainer">
-          <div class="qbank-loader">
-            <div class="loader-spinner"></div>
-            <p class="loader-message">Loading questions...</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Translation Progress -->
-      <div id="translationProgress" style="display: none; margin-top: 24px;">
-        <div class="card">
-          <div class="card-body" style="text-align: center; padding: 40px;">
-            <div class="loader-spinner" style="margin: 0 auto 16px;"></div>
-            <h3 id="translationStatusTitle">Translating with Gemini...</h3>
-            <p id="translationStatusMessage" style="color: var(--gray-500);">
-              This may take a minute. Please wait.
-            </p>
-            <div class="progress-bar" style="max-width: 400px; margin: 16px auto;">
-              <div class="progress-fill" id="translationProgressBar" style="width: 20%;"></div>
-            </div>
-          </div>
+        <div class="card-body" id="breakdownBody">
+          <p style="color: var(--gray-400); text-align: center; padding: 40px;">Select a subject to view chapter-level translation coverage.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="./shared.js"></script>
+  <script src="./shared.js?v=20260307"></script>
   <script>
-    let questions = [];
-    let subjects = [];
-    let chapters = [];
-    let chapterIssueCounts = {};  // chapterId → number of MISSING_TRANSLATION issues
+    console.log('[translate] Translation Status Dashboard loaded');
 
-    async function init() {
-      const user = await Qbank.requireAuth(['admin']);
+    let activeLangs = [];   // [{id, label, native, emoji}]
+    let allSubjects = [];
+
+    // ====================================================================
+    // INIT
+    // ====================================================================
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Qbank.requireAuth('admin');
       if (!user) return;
-
       Qbank.renderNavHeader();
 
-      // Load subjects
-      subjects = await Qbank.fetchSubjects();
-      const subjectSelect = document.getElementById('subjectFilter');
-      subjects.forEach(s => {
-        const option = document.createElement('option');
-        option.value = s.id;
-        option.textContent = `${Qbank.getSubjectEmoji(s.id)} ${s.name}`;
-        subjectSelect.appendChild(option);
-      });
-
-      // Event listeners
-      document.getElementById('subjectFilter').addEventListener('change', onSubjectChange);
-      document.getElementById('chapterFilter').addEventListener('change', loadQuestions);
-
-      await loadStats();
-      await loadQuestions();
-    }
-
-    async function loadStats() {
-      if (!Qbank.supabase) return;
-      try {
-        const { data, error } = await Qbank.supabase
-          .from('med_questions')
-          .select('id, question_text_te');
-
-        if (error) throw error;
-
-        const total = data.length;
-        const translated = data.filter(q => q.question_text_te).length;
-        const needsTranslation = total - translated;
-
-        document.getElementById('totalQuestions').textContent = total;
-        document.getElementById('needsTranslation').textContent = needsTranslation;
-        document.getElementById('hasTranslation').textContent = translated;
-
-      } catch (error) {
-        console.error('Error loading stats:', error);
-      }
-    }
-
-    async function onSubjectChange() {
-      const subjectId = document.getElementById('subjectFilter').value;
-      const chapterSelect = document.getElementById('chapterFilter');
-
-      if (!subjectId) {
-        chapterSelect.innerHTML = '<option value="">Select subject first</option>';
-        chapterSelect.disabled = true;
-        loadQuestions();
-        return;
-      }
-
-      // Load chapters + translation issue counts in parallel
-      const [chaptersData, issueCounts] = await Promise.all([
-        Qbank.fetchChapters(subjectId),
-        fetchTranslationIssueCounts(subjectId)
+      // Load languages + subjects in parallel
+      const [langs, subjects] = await Promise.all([
+        Qbank.fetchActiveLanguages(),
+        Qbank.fetchSubjects()
       ]);
-      chapters = chaptersData;
-      chapterIssueCounts = issueCounts;
+      activeLangs = langs;
+      allSubjects = subjects;
 
-      // Sort: chapters with most issues first, then by chapter number
-      const sorted = [...chapters].sort((a, b) => {
-        const aCount = chapterIssueCounts[a.id] || 0;
-        const bCount = chapterIssueCounts[b.id] || 0;
-        if (bCount !== aCount) return bCount - aCount;
-        return (a.chapter_number || 0) - (b.chapter_number || 0);
+      // Populate subject filter
+      const subjectSel = document.getElementById('subjectFilter');
+      subjects.forEach(s => {
+        const o = document.createElement('option');
+        o.value = s.id;
+        o.textContent = `${Qbank.getSubjectEmoji(s.id)} ${s.name}`;
+        subjectSel.appendChild(o);
       });
 
-      chapterSelect.innerHTML = '<option value="">All Chapters</option>';
-      sorted.forEach(ch => {
-        const issueCount = chapterIssueCounts[ch.id] || 0;
-        const option = document.createElement('option');
-        option.value = ch.id;
-        const badge = issueCount > 0 ? ` ⚠️ ${issueCount} need translation` : '';
-        option.textContent = `${ch.chapter_number || '-'}. ${ch.name}${badge}`;
-        chapterSelect.appendChild(option);
+      // Populate language filter
+      const langSel = document.getElementById('langFilter');
+      activeLangs.forEach(l => {
+        const o = document.createElement('option');
+        o.value = l.id;
+        o.textContent = `${l.emoji} ${l.label} (${l.native})`;
+        langSel.appendChild(o);
       });
-      chapterSelect.disabled = false;
 
-      loadQuestions();
-    }
+      document.getElementById('subjectFilter').addEventListener('change', loadBreakdown);
+      document.getElementById('langFilter').addEventListener('change', loadBreakdown);
 
-    async function fetchTranslationIssueCounts(subjectId) {
-      if (!Qbank.supabase) return {};
+      await loadGlobalStats();
+      renderDeleteButtons();
+    });
 
-      // Count questions needing translation per chapter for this subject
+    // ====================================================================
+    // GLOBAL STATS — per-language coverage across all questions
+    // ====================================================================
+    async function loadGlobalStats() {
+      if (!Qbank.supabase) return;
+
+      // Build select: id + all translation columns
+      const langCols = activeLangs.map(l => `question_text_${l.id}`).join(', ');
+      const selectStr = `id, subject_id${langCols ? ', ' + langCols : ''}, corrected_at, last_translated_at`;
+
       const { data, error } = await Qbank.supabase
         .from('med_questions')
-        .select('chapter_id')
-        .ilike('subject_id', subjectId)
-        .is('question_text_te', null);
+        .select(selectStr)
+        .in('status', ['active', 'draft']);
 
       if (error) {
-        console.error('Error fetching translation counts:', error);
-        return {};
-      }
-
-      const counts = {};
-      (data || []).forEach(q => {
-        counts[q.chapter_id] = (counts[q.chapter_id] || 0) + 1;
-      });
-      return counts;
-    }
-
-    async function loadQuestions() {
-      const container = document.getElementById('questionsContainer');
-      const translateBtn = document.getElementById('translateBatchBtn');
-      Qbank.showLoader(container, 'Loading questions...');
-
-      try {
-        const subjectId = document.getElementById('subjectFilter').value;
-        const chapterId = document.getElementById('chapterFilter').value;
-        const batchSize = parseInt(document.getElementById('batchSize').value);
-
-        let query = Qbank.supabase
-          .from('med_questions')
-          .select('*')
-          .is('question_text_te', null)
-          .limit(batchSize);
-
-        if (subjectId) {
-          query = query.ilike('subject_id', subjectId);
-        }
-        if (chapterId) {
-          query = query.eq('chapter_id', chapterId);
-        }
-
-        const { data, error } = await query;
-
-        if (error) throw error;
-
-        questions = data || [];
-
-        translateBtn.disabled = questions.length === 0;
-
-        if (questions.length === 0) {
-          container.innerHTML = `
-            <div class="empty-state">
-              <div class="empty-icon">🎉</div>
-              <p class="empty-title">All caught up!</p>
-              <p class="empty-message">No questions need Telugu translation in this selection.</p>
-            </div>
-          `;
-          return;
-        }
-
-        container.innerHTML = questions.map((q, i) => renderTranslationCard(q, i)).join('');
-
-      } catch (error) {
-        console.error('Error loading questions:', error);
-        container.innerHTML = '<p class="empty-message">Failed to load questions</p>';
-      }
-    }
-
-    function renderTranslationCard(question, index) {
-      return `
-        <div class="translation-card" id="trans-${question.id}">
-          <div class="translation-header">
-            <div class="question-meta">
-              <span class="question-number">Q${index + 1}</span>
-              ${Qbank.getQuestionTypeBadge(question.question_type)}
-              ${Qbank.getDifficultyBadge(question.difficulty)}
-              <span class="badge badge-type">${question.chapter_id}</span>
-            </div>
-          </div>
-          <div class="translation-body">
-            <div class="translation-column">
-              <div class="lang-label">Aa English</div>
-              <p class="translation-text">${Qbank.escapeHtml(question.question_text)}</p>
-              ${question.explanation ? `
-                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--gray-200);">
-                  <div class="lang-label">Explanation</div>
-                  <p class="translation-text" style="font-size: 0.9rem; color: var(--gray-600);">${question.explanation}</p>
-                </div>
-              ` : ''}
-            </div>
-            <div class="translation-column">
-              <div class="lang-label">అ Telugu</div>
-              <textarea
-                class="translation-input"
-                id="telugu-${question.id}"
-                placeholder="Telugu translation will appear here..."
-              >${question.question_text_te || ''}</textarea>
-              ${question.explanation ? `
-                <div style="margin-top: 12px;">
-                  <div class="lang-label">Explanation (Telugu)</div>
-                  <textarea
-                    class="translation-input"
-                    id="telugu-exp-${question.id}"
-                    placeholder="Telugu explanation..."
-                    style="min-height: 60px;"
-                  >${question.explanation_te || ''}</textarea>
-                </div>
-              ` : ''}
-            </div>
-          </div>
-          <div class="translation-actions">
-            <button class="btn btn-sm btn-secondary" onclick="clearTranslation('${question.id}')">
-              Clear
-            </button>
-            <button class="btn btn-sm btn-success" onclick="saveTranslation('${question.id}')">
-              ✓ Save Translation
-            </button>
-          </div>
-        </div>
-      `;
-    }
-
-    async function translateBatch() {
-      if (questions.length === 0) {
-        Qbank.showToast('No questions to translate', 'warning');
+        console.error('[translate] Failed to load global stats:', error);
         return;
       }
 
-      const progressDiv = document.getElementById('translationProgress');
-      const progressBar = document.getElementById('translationProgressBar');
-      const statusTitle = document.getElementById('translationStatusTitle');
-      const statusMessage = document.getElementById('translationStatusMessage');
+      const total = data.length;
+      document.getElementById('totalQs').textContent = total;
 
-      progressDiv.style.display = 'block';
-      progressBar.style.width = '20%';
+      // Count corrected-but-not-retranslated
+      const pendingRetranslation = data.filter(q =>
+        q.corrected_at && (!q.last_translated_at || new Date(q.corrected_at) > new Date(q.last_translated_at))
+      ).length;
 
-      try {
-        statusTitle.textContent = 'Building translation prompt...';
-        progressBar.style.width = '30%';
+      // Build global summary cards
+      const summaryEl = document.getElementById('globalSummary');
+      let summaryHtml = `<div class="ts-summary-card info"><div class="value">${total}</div><div class="label">Total Questions</div></div>`;
 
-        const prompt = Qbank.buildTeluguTranslationPrompt(questions);
+      if (pendingRetranslation > 0) {
+        summaryHtml += `<div class="ts-summary-card warn"><div class="value">${pendingRetranslation}</div><div class="label">Corrected, Awaiting Re-translation</div></div>`;
+      }
 
-        statusTitle.textContent = 'Calling Gemini for Telugu translations...';
-        statusMessage.textContent = `Translating ${questions.length} questions. This may take a minute.`;
-        progressBar.style.width = '50%';
+      // Per-language stats
+      const langStats = [];
+      for (const lang of activeLangs) {
+        const col = `question_text_${lang.id}`;
+        const translated = data.filter(q => q[col]).length;
+        const pct = total > 0 ? Math.round((translated / total) * 100) : 0;
+        langStats.push({ lang, translated, missing: total - translated, pct });
 
-        const response = await Qbank.callGemini(prompt, { temperature: 0.3 });
+        const cls = pct >= 80 ? 'good' : pct >= 40 ? 'warn' : 'bad';
+        summaryHtml += `<div class="ts-summary-card ${cls}"><div class="value">${pct}%</div><div class="label">${lang.emoji} ${lang.label}</div></div>`;
+      }
+      summaryEl.innerHTML = summaryHtml;
 
-        statusTitle.textContent = 'Parsing translations...';
-        progressBar.style.width = '80%';
+      // Language coverage bars
+      const barsEl = document.getElementById('langBars');
+      barsEl.innerHTML = langStats.map(s => {
+        const cls = s.pct >= 80 ? 'high' : s.pct >= 40 ? 'medium' : 'low';
+        return `
+          <div class="lang-row">
+            <div class="lang-label-bar">${s.lang.emoji} ${s.lang.label}</div>
+            <div class="lang-bar-wrap">
+              <div class="lang-bar-fill ${cls}" style="width: ${Math.max(s.pct, 1)}%"></div>
+            </div>
+            <div class="lang-pct">${s.translated}/${total} (${s.pct}%)</div>
+          </div>
+        `;
+      }).join('');
 
-        const translations = Qbank.parseJsonResponse(response);
+      if (langStats.length === 0) {
+        barsEl.innerHTML = '<p style="color: var(--gray-400); text-align: center;">No active languages configured.</p>';
+      }
+    }
 
-        if (!Array.isArray(translations)) {
-          throw new Error('Invalid translation response format');
+    // ====================================================================
+    // CHAPTER BREAKDOWN
+    // ====================================================================
+    async function loadBreakdown() {
+      const subjectId = document.getElementById('subjectFilter').value;
+      const langId = document.getElementById('langFilter').value;
+      const body = document.getElementById('breakdownBody');
+      const hint = document.getElementById('breakdownHint');
+
+      if (!subjectId) {
+        body.innerHTML = '<p style="color: var(--gray-400); text-align: center; padding: 40px;">Select a subject to view chapter-level translation coverage.</p>';
+        hint.textContent = '';
+        return;
+      }
+
+      body.innerHTML = '<div style="text-align:center; padding: 40px;"><div class="loader-spinner" style="margin: 0 auto 12px;"></div>Loading...</div>';
+
+      // Fetch chapters for this subject
+      const chapters = await Qbank.fetchChapters(subjectId);
+
+      // Determine which languages to show
+      const langs = langId ? activeLangs.filter(l => l.id === langId) : activeLangs;
+      if (langs.length === 0) {
+        body.innerHTML = '<p style="color: var(--gray-400); text-align: center; padding: 40px;">No languages selected.</p>';
+        return;
+      }
+
+      // Fetch question counts per chapter with translation columns
+      const langCols = langs.map(l => `question_text_${l.id}`).join(', ');
+      const selectStr = `id, chapter_id, corrected_at, last_translated_at${langCols ? ', ' + langCols : ''}`;
+
+      const { data: questions, error } = await Qbank.supabase
+        .from('med_questions')
+        .select(selectStr)
+        .eq('subject_id', subjectId)
+        .in('status', ['active', 'draft']);
+
+      if (error) {
+        body.innerHTML = `<p style="color: var(--error);">Error: ${Qbank.escapeHtml(error.message)}</p>`;
+        return;
+      }
+
+      // Aggregate per chapter
+      const chapterMap = {};
+      (questions || []).forEach(q => {
+        if (!chapterMap[q.chapter_id]) {
+          chapterMap[q.chapter_id] = { total: 0, langs: {}, correctedPending: 0 };
+          langs.forEach(l => { chapterMap[q.chapter_id].langs[l.id] = 0; });
         }
-
-        statusTitle.textContent = 'Applying translations...';
-        progressBar.style.width = '90%';
-
-        // Apply translations to UI
-        translations.forEach(t => {
-          const question = questions[t.index];
-          if (!question) return;
-
-          const textInput = document.getElementById(`telugu-${question.id}`);
-          const expInput = document.getElementById(`telugu-exp-${question.id}`);
-
-          if (textInput && t.question_text_te) {
-            textInput.value = t.question_text_te;
-          }
-          if (expInput && t.explanation_te) {
-            expInput.value = t.explanation_te;
-          }
+        const ch = chapterMap[q.chapter_id];
+        ch.total++;
+        langs.forEach(l => {
+          if (q[`question_text_${l.id}`]) ch.langs[l.id]++;
         });
+        if (q.corrected_at && (!q.last_translated_at || new Date(q.corrected_at) > new Date(q.last_translated_at))) {
+          ch.correctedPending++;
+        }
+      });
 
-        progressBar.style.width = '100%';
-        statusTitle.textContent = 'Translations ready!';
-        statusMessage.textContent = 'Review the translations and save each one.';
+      // Build table
+      const langHeaders = langs.map(l => `<th>${l.emoji} ${l.label}</th>`).join('');
+      let tableHtml = `<table class="ch-table">
+        <thead><tr>
+          <th>Chapter</th>
+          <th>Total Qs</th>
+          ${langHeaders}
+          <th>Pending Re-translation</th>
+        </tr></thead>
+        <tbody>`;
 
-        Qbank.showToast(`${translations.length} translations generated! Review and save.`, 'success');
+      // Sort chapters by chapter_number
+      const sorted = [...chapters].sort((a, b) => (a.chapter_number || 0) - (b.chapter_number || 0));
 
-        // Show "Save All" button
-        const saveAllBtn = document.getElementById('saveAllBtn');
-        if (saveAllBtn) saveAllBtn.style.display = 'inline-flex';
+      let grandTotal = 0;
+      const grandLang = {};
+      langs.forEach(l => { grandLang[l.id] = 0; });
+      let grandPending = 0;
 
-        setTimeout(() => {
-          progressDiv.style.display = 'none';
-        }, 2000);
+      for (const ch of sorted) {
+        const stats = chapterMap[ch.id];
+        if (!stats) continue; // no questions
 
-      } catch (error) {
-        console.error('Translation error:', error);
-        statusTitle.textContent = 'Translation Failed';
-        statusMessage.textContent = error.message;
-        progressBar.style.width = '100%';
-        progressBar.style.background = 'var(--error)';
+        grandTotal += stats.total;
+        grandPending += stats.correctedPending;
 
-        Qbank.showToast('Translation failed: ' + error.message, 'error');
+        const langCells = langs.map(l => {
+          const count = stats.langs[l.id] || 0;
+          grandLang[l.id] += count;
+          const pct = stats.total > 0 ? Math.round((count / stats.total) * 100) : 0;
+          const cls = pct >= 80 ? 'high' : pct >= 40 ? 'medium' : 'low';
+          return `<td>
+            <span class="ch-pct-bar ${cls}" style="width: ${Math.max(pct, 2)}px; display: inline-block;"></span>
+            ${count}/${stats.total} <span style="color: var(--gray-400); font-size: 0.75rem;">(${pct}%)</span>
+          </td>`;
+        }).join('');
 
-        setTimeout(() => {
-          progressDiv.style.display = 'none';
-          progressBar.style.background = '';
-        }, 3000);
+        const pendingBadge = stats.correctedPending > 0
+          ? `<span class="corrected-badge">${stats.correctedPending} pending</span>`
+          : '<span style="color: var(--gray-400); font-size: 0.75rem;">--</span>';
+
+        tableHtml += `<tr>
+          <td><strong>${Qbank.escapeHtml(ch.name)}</strong><br><span style="font-size: 0.7rem; color: var(--gray-400);">${ch.id}</span></td>
+          <td>${stats.total}</td>
+          ${langCells}
+          <td>${pendingBadge}</td>
+        </tr>`;
       }
+
+      // Grand total row
+      const grandLangCells = langs.map(l => {
+        const pct = grandTotal > 0 ? Math.round((grandLang[l.id] / grandTotal) * 100) : 0;
+        return `<td><strong>${grandLang[l.id]}/${grandTotal} (${pct}%)</strong></td>`;
+      }).join('');
+
+      tableHtml += `<tr style="background: var(--gray-50); font-weight: 600;">
+        <td>TOTAL</td>
+        <td>${grandTotal}</td>
+        ${grandLangCells}
+        <td>${grandPending > 0 ? `<span class="corrected-badge">${grandPending} pending</span>` : '--'}</td>
+      </tr>`;
+
+      tableHtml += '</tbody></table>';
+
+      body.innerHTML = tableHtml;
+      hint.textContent = `${sorted.filter(ch => chapterMap[ch.id]).length} chapters with questions`;
+    }
+    // ====================================================================
+    // DELETE LANGUAGE DATA
+    // ====================================================================
+    function renderDeleteButtons() {
+      const zone = document.getElementById('dangerZone');
+      const container = document.getElementById('deleteButtons');
+      if (activeLangs.length === 0) { zone.style.display = 'none'; return; }
+
+      zone.style.display = '';
+      container.innerHTML = activeLangs.map(l =>
+        `<button class="btn" style="background: var(--error); color: white; border: none;"
+                onclick="deleteLanguageData('${l.id}', '${Qbank.escapeHtml(l.label)}')">
+          🗑️ Delete ${Qbank.escapeHtml(l.label)} (${l.id}) data
+        </button>`
+      ).join('');
     }
 
-    async function saveTranslation(questionId) {
-      const textInput = document.getElementById(`telugu-${questionId}`);
-      const expInput = document.getElementById(`telugu-exp-${questionId}`);
+    async function deleteLanguageData(langId, langLabel) {
+      // Double-confirm
+      const msg = `This will permanently delete ALL ${langLabel} (${langId}) translations from:\n\n`
+        + `• med_questions  →  question_text_${langId}, explanation_${langId}\n`
+        + `• med_question_options  →  option_text_${langId}\n`
+        + `• med_elimination_hints  →  hint_text_${langId}, misconception_${langId}\n`
+        + `• med_chapters  →  name_${langId}\n`
+        + `• med_topics  →  name_${langId}\n\n`
+        + `English data will NOT be touched.\n\nType "${langId}" to confirm:`;
 
-      const updates = {};
-
-      if (textInput && textInput.value.trim()) {
-        updates.question_text_te = textInput.value.trim();
-      }
-      if (expInput && expInput.value.trim()) {
-        updates.explanation_te = expInput.value.trim();
-      }
-
-      if (Object.keys(updates).length === 0) {
-        Qbank.showToast('No translation to save', 'warning');
+      const confirmation = prompt(msg);
+      if (confirmation !== langId) {
+        if (confirmation !== null) alert('Confirmation did not match. Aborted.');
         return;
       }
 
+      const btn = event.target;
+      btn.disabled = true;
+      btn.textContent = `Deleting ${langLabel}...`;
+
       try {
-        const { error } = await Qbank.supabase
-          .from('med_questions')
-          .update(updates)
-          .eq('id', questionId);
+        // Define all tables and their translated columns for this language
+        const updates = [
+          { table: 'med_questions',          cols: [`question_text_${langId}`, `explanation_${langId}`] },
+          { table: 'med_question_options',   cols: [`option_text_${langId}`] },
+          { table: 'med_elimination_hints',  cols: [`hint_text_${langId}`, `misconception_${langId}`] },
+          { table: 'med_chapters',           cols: [`name_${langId}`] },
+          { table: 'med_topics',             cols: [`name_${langId}`] },
+        ];
 
-        if (error) throw error;
+        const results = [];
+        for (const { table, cols } of updates) {
+          // Build update payload: set each column to null
+          const payload = {};
+          cols.forEach(c => { payload[c] = null; });
 
-        Qbank.showToast('Translation saved!', 'success');
+          // Use a filter that matches all rows (id is never null)
+          const { error, count } = await Qbank.supabase
+            .from(table)
+            .update(payload, { count: 'exact' })
+            .not('id', 'is', null);
 
-        // Remove card from list
-        const card = document.getElementById(`trans-${questionId}`);
-        if (card) {
-          card.style.opacity = '0.5';
-          card.style.pointerEvents = 'none';
+          if (error) throw new Error(`${table}: ${error.message}`);
+          results.push({ table, count });
         }
 
-        // Update stats
-        loadStats();
+        const summary = results.map(r => `  ${r.table}: ${r.count ?? '?'} rows cleared`).join('\n');
+        alert(`✅ All ${langLabel} data deleted successfully!\n\n${summary}`);
 
-      } catch (error) {
-        console.error('Save error:', error);
-        Qbank.showToast('Failed to save: ' + error.message, 'error');
+        // Refresh the dashboard
+        await loadGlobalStats();
+        renderDeleteButtons();
+      } catch (err) {
+        console.error('[translate] Delete language data failed:', err);
+        alert(`❌ Error: ${err.message}`);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = `🗑️ Delete ${langLabel} (${langId}) data`;
       }
     }
-
-    async function saveAllTranslations() {
-      const btn = document.getElementById('saveAllBtn');
-      if (btn) { btn.disabled = true; btn.textContent = 'Saving...'; }
-
-      let saved = 0, errors = 0;
-      for (const q of questions) {
-        const card = document.getElementById(`trans-${q.id}`);
-        if (!card || card.style.pointerEvents === 'none') continue; // already saved
-
-        const textInput = document.getElementById(`telugu-${q.id}`);
-        const expInput = document.getElementById(`telugu-exp-${q.id}`);
-
-        const updates = {};
-        if (textInput && textInput.value.trim()) updates.question_text_te = textInput.value.trim();
-        if (expInput && expInput.value.trim()) updates.explanation_te = expInput.value.trim();
-
-        if (Object.keys(updates).length === 0) continue;
-
-        try {
-          const { error } = await Qbank.supabase.from('med_questions').update(updates).eq('id', q.id);
-          if (error) throw error;
-          saved++;
-          if (card) { card.style.opacity = '0.5'; card.style.pointerEvents = 'none'; }
-        } catch (err) {
-          errors++;
-          console.error('Save error for', q.id, err);
-        }
-      }
-
-      Qbank.showToast(`Saved ${saved} translations${errors > 0 ? `, ${errors} errors` : ''}`, saved > 0 ? 'success' : 'error');
-      loadStats();
-      if (btn) { btn.disabled = false; btn.textContent = 'Save All Translations'; }
-    }
-
-    function clearTranslation(questionId) {
-      const textInput = document.getElementById(`telugu-${questionId}`);
-      const expInput = document.getElementById(`telugu-exp-${questionId}`);
-
-      if (textInput) textInput.value = '';
-      if (expInput) expInput.value = '';
-    }
-
-    // Initialize
-    init();
   </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ interface DbOption {
   option_key: string;
   option_text: string;
   option_text_te: string | null;
+  option_text_hi: string | null;
   is_correct: boolean;
   sort_order: number;
 }
@@ -16,13 +17,16 @@ interface DbEliminationHint {
   option_key: string;
   hint_text: string;
   hint_text_te: string | null;
+  hint_text_hi: string | null;
   misconception: string | null;
   misconception_te: string | null;
+  misconception_hi: string | null;
 }
 
 interface DbTopic {
   name: string;
   name_te: string | null;
+  name_hi: string | null;
 }
 
 interface DbQuestion {
@@ -34,8 +38,10 @@ interface DbQuestion {
   difficulty: string;
   question_text: string;
   question_text_te: string | null;
+  question_text_hi: string | null;
   explanation: string | null;
   explanation_te: string | null;
+  explanation_hi: string | null;
   correct_answer: string;
   image_url: string | null;
   image_alt: string | null;
@@ -81,11 +87,11 @@ export async function fetchQuestionsByChapter(
       .from('med_questions')
       .select(
         `id, subject_id, chapter_id, topic_id, question_type, difficulty,
-         question_text, question_text_te, explanation, explanation_te,
+         question_text, question_text_te, question_text_hi, explanation, explanation_te, explanation_hi,
          correct_answer, image_url, image_alt, payload,
-         med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
-         med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te),
-         med_topics!topic_id (name, name_te)`,
+         med_question_options (option_key, option_text, option_text_te, option_text_hi, is_correct, sort_order),
+         med_elimination_hints (option_key, hint_text, hint_text_te, hint_text_hi, misconception, misconception_te, misconception_hi),
+         med_topics!topic_id (name, name_te, name_hi)`,
       )
       .eq('chapter_id', resolvedId)
       .eq('status', 'active')
@@ -145,11 +151,11 @@ export async function fetchQuestionsBySubject(
       .from('med_questions')
       .select(
         `id, subject_id, chapter_id, topic_id, question_type, difficulty,
-         question_text, question_text_te, explanation, explanation_te,
+         question_text, question_text_te, question_text_hi, explanation, explanation_te, explanation_hi,
          correct_answer, image_url, image_alt, payload,
-         med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
-         med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te),
-         med_topics!topic_id (name, name_te)`,
+         med_question_options (option_key, option_text, option_text_te, option_text_hi, is_correct, sort_order),
+         med_elimination_hints (option_key, hint_text, hint_text_te, hint_text_hi, misconception, misconception_te, misconception_hi),
+         med_topics!topic_id (name, name_te, name_hi)`,
       )
       .eq('subject_id', subjectId)
       .eq('status', 'active')
@@ -185,11 +191,24 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     (a, b) => a.sort_order - b.sort_order,
   );
 
-  const options: Option[] = dbOptions.map((o) => ({
-    id: o.option_key,
-    text: o.option_text,
-    textTe: o.option_text_te || '',
-  }));
+  const options: Option[] = dbOptions.map((o, idx) => {
+    const id = o.option_key;
+    return {
+      id,
+      text: o.option_text,
+      textTe: o.option_text_te || '',
+      textHi: o.option_text_hi || '',
+    };
+  });
+
+  // Deduplicate option IDs — if two options share the same key, append index
+  const seenOptionIds = new Set<string>();
+  for (let i = 0; i < options.length; i++) {
+    if (seenOptionIds.has(options[i].id)) {
+      options[i] = { ...options[i], id: `${options[i].id}_${i}` };
+    }
+    seenOptionIds.add(options[i].id);
+  }
 
   const correctOption = dbOptions.find((o) => o.is_correct);
   const correctOptionId = correctOption?.option_key || row.correct_answer;
@@ -202,8 +221,10 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     optionKey: h.option_key,
     hint: h.hint_text || '',
     hintTe: h.hint_text_te || '',
+    hintHi: h.hint_text_hi || '',
     misconception: h.misconception || '',
     misconceptionTe: h.misconception_te || '',
+    misconceptionHi: h.misconception_hi || '',
   }));
 
   // Build a combined elimination technique string from hints
@@ -214,6 +235,11 @@ function dbToV2(row: DbQuestion): QuestionV2 {
   const eliminationTextTe = eliminationHints
     .filter((h) => h.hintTe)
     .map((h) => `Option ${h.optionKey}: ${h.hintTe}`)
+    .join('\n');
+
+  const eliminationTextHi = eliminationHints
+    .filter((h) => h.hintHi)
+    .map((h) => `Option ${h.optionKey}: ${h.hintHi}`)
     .join('\n');
 
   const payload = buildPayload(row, options, correctOptionId);
@@ -275,12 +301,16 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     topicId: row.topic_id || payloadTopic,
     topicName: row.med_topics?.name || payloadTopic,
     topicNameTe: row.med_topics?.name_te || undefined,
+    topicNameHi: row.med_topics?.name_hi || undefined,
     text: displayText,
     textTe: row.question_text_te || '',
+    textHi: row.question_text_hi || '',
     explanation: row.explanation || '',
     explanationTe: row.explanation_te || '',
+    explanationHi: row.explanation_hi || '',
     eliminationTechnique: eliminationText,
     eliminationTechniqueTe: eliminationTextTe,
+    eliminationTechniqueHi: eliminationTextHi,
     eliminationHints,
     payload,
   };
@@ -313,8 +343,10 @@ function buildPayload(
         type: 'assertion-reasoning',
         assertion,
         assertionTe: (raw.assertion_te as string) || '',
+        assertionHi: (raw.assertion_hi as string) || '',
         reason,
         reasonTe: (raw.reason_te as string) || '',
+        reasonHi: (raw.reason_hi as string) || '',
         options,
         correctOptionId,
       };
@@ -342,6 +374,24 @@ function buildPayload(
 
       // If we still have column data, return match-the-following
       if (colA.length > 0 && colB.length > 0) {
+        // Deduplicate: if any Column B ID collides with a Column A ID,
+        // prefix ALL Column B IDs with "b-" so React keys stay unique.
+        const aIdSet = new Set(colA.map((c) => c.id));
+        const hasOverlap = colB.some((c) => aIdSet.has(c.id));
+        if (hasOverlap) {
+          for (const item of colB) {
+            item.id = `b-${item.id}`;
+          }
+          // Update correctMapping values to match new B IDs
+          if (mapping) {
+            const updated: Record<string, string> = {};
+            for (const [aId, bId] of Object.entries(mapping)) {
+              updated[aId] = bId.startsWith('b-') ? bId : `b-${bId}`;
+            }
+            mapping = updated;
+          }
+        }
+
         return {
           type: 'match-the-following',
           columnA: colA,
@@ -364,6 +414,7 @@ function buildPayload(
         type: 'true-false',
         statement: (raw.statement as string) || text,
         statementTe: (raw.statement_te as string) || '',
+        statementHi: (raw.statement_hi as string) || '',
         correctAnswer: tfCorrect,
       };
     }
@@ -373,6 +424,7 @@ function buildPayload(
         type: 'fill-in-blanks',
         textWithBlanks: (raw.text_with_blanks as string) || text,
         textWithBlanksTe: (raw.text_with_blanks_te as string) || '',
+        textWithBlanksHi: (raw.text_with_blanks_hi as string) || '',
         options,
         correctOptionId,
       };
@@ -382,6 +434,7 @@ function buildPayload(
         type: 'scenario-based',
         scenario: (raw.scenario as string) || text,
         scenarioTe: (raw.scenario_te as string) || '',
+        scenarioHi: (raw.scenario_hi as string) || '',
         options,
         correctOptionId,
       };
@@ -412,12 +465,13 @@ function buildPayload(
 // ── Text parsers ─────────────────────────────────────────────
 
 /** Parse array of column/sequence items from DB payload JSON */
-function parseColumnItemsFromJson(data: unknown): { id: string; text: string; textTe: string }[] {
+function parseColumnItemsFromJson(data: unknown): { id: string; text: string; textTe: string; textHi: string }[] {
   if (!Array.isArray(data)) return [];
   return data.map((item: Record<string, unknown>) => ({
     id: String(item.id ?? ''),
     text: String(item.text ?? ''),
     textTe: String(item.text_te ?? item.textTe ?? ''),
+    textHi: String(item.text_hi ?? item.textHi ?? ''),
   }));
 }
 
@@ -428,61 +482,202 @@ function parseColumnItemsFromJson(data: unknown): { id: string; text: string; te
  *   Column A:\n1. Item\n2. Item\nColumn B:\n(a) Item\n(b) Item
  */
 function parseMatchColumns(text: string): {
-  columnA: { id: string; text: string; textTe: string }[];
-  columnB: { id: string; text: string; textTe: string }[];
+  columnA: { id: string; text: string; textTe: string; textHi: string }[];
+  columnB: { id: string; text: string; textTe: string; textHi: string }[];
 } {
-  const columnA: { id: string; text: string; textTe: string }[] = [];
-  const columnB: { id: string; text: string; textTe: string }[] = [];
+  type ColItem = { id: string; text: string; textTe: string; textHi: string };
+
+  // ── Strategy 1: Pipe-delimited row pairs ──────────────────────
+  // Format: "...Column I | Column II  A. leftText | 1. rightText  B. leftText | 2. rightText"
+  // Strip everything up to the LAST "Column II" header (greedy .*), then match row pairs.
+  const pipeResult = parsePipeDelimitedMtf(text);
+  if (pipeResult.columnA.length >= 2 && pipeResult.columnB.length >= 2) {
+    return pipeResult;
+  }
+
+  // ── Strategy 2: Separate Column I / Column II sections ────────
+  const columnA: ColItem[] = [];
+  const columnB: ColItem[] = [];
 
   // Split into Column I / Column II sections
   // Match headers like "Column I:", "Column-I:", "Column A:", "Column 1:", "List I:", "List-I"
-  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–]/i);
+  // Also handles parenthesized descriptions: "Column II (Definitions):"
+  const colSplitRegex = /(?:column|list)\s*[-–]?\s*(?:ii|II|2|b|B)\s*(?:\([^)]*\))?\s*[:\-–]/i;
+  const colSplit = text.split(colSplitRegex);
   if (colSplit.length < 2) return { columnA, columnB };
 
-  const col1Text = colSplit[0];
-  const col2Text = colSplit[1];
+  // Use the LAST split if there are multiple "Column II" occurrences
+  const col1Text = colSplit.length > 2 ? colSplit.slice(0, -1).join('') : colSplit[0];
+  const col2Text = colSplit[colSplit.length - 1];
 
-  // Remove the "Column I:" header from col1Text
-  const col1Body = col1Text.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–]/i, '');
+  // Remove the "Column I:" / "List I:" header from col1Text
+  const col1Body = col1Text.replace(/.*(?:column|list)\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\))?\s*[:\-–]/is, '');
 
   // Extract labeled items in multiple formats:
   // 1. Parenthesized: (P), (Q), (1), (a), (i), (ii), (iii), (iv) etc.
   // 2. Dotted: A., B., C., 1., 2., 3. etc.
   // 3. Letter/number at line start: A  text, B  text
-  function extractItems(body: string): { id: string; text: string; textTe: string }[] {
-    const items: { id: string; text: string; textTe: string }[] = [];
+  function extractItems(body: string): ColItem[] {
+    const items: ColItem[] = [];
 
     // Try parenthesized format first: (P) text, (Q) text
     const parenRegex = /\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s*([^\n(]+)/g;
     let m;
     // eslint-disable-next-line no-cond-assign
     while ((m = parenRegex.exec(body)) !== null) {
-      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
     }
     if (items.length >= 2) return items;
 
-    // Try dotted format: A. text, B. text, 1. text, 2. text
+    // Try dotted format (multiline): A. text\nB. text
     items.length = 0;
     const dotRegex = /(?:^|\n)\s*([A-Za-z0-9]+)\.\s+(.+?)(?=\n\s*[A-Za-z0-9]+\.|$)/gs;
     // eslint-disable-next-line no-cond-assign
     while ((m = dotRegex.exec(body)) !== null) {
-      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
     }
     if (items.length >= 2) return items;
 
-    // Try colon-separated inline: (P) text (Q) text — already covered by paren
+    // Try dotted format (inline, no newlines): "A. text B. text C. text"
+    items.length = 0;
+    const inlineDotRegex = /([A-Z])\.\s+(.+?)(?=\s+[A-Z]\.\s|$)/gs;
+    // eslint-disable-next-line no-cond-assign
+    while ((m = inlineDotRegex.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
+    }
+    if (items.length >= 2) return items;
+
+    // Try inline numbered format (no newlines): "1. text 2. text 3. text"
+    items.length = 0;
+    const inlineNumRegex = /(\d+)\.\s+(.+?)(?=\s+\d+\.\s|$)/gs;
+    // eslint-disable-next-line no-cond-assign
+    while ((m = inlineNumRegex.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
+    }
+    if (items.length >= 2) return items;
+
     // Try simple "A  text" format (letter + spaces + text on each line)
     items.length = 0;
     const simpleRegex = /(?:^|\n)\s*([A-Z])\s{2,}(.+?)(?=\n|$)/g;
     // eslint-disable-next-line no-cond-assign
     while ((m = simpleRegex.exec(body)) !== null) {
-      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '' });
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
     }
     return items;
   }
 
   columnA.push(...extractItems(col1Body));
   columnB.push(...extractItems(col2Text));
+
+  return { columnA, columnB };
+}
+
+/**
+ * Parse pipe-delimited MTF format (all subjects).
+ * Handles multiple format variants:
+ *   - "Column I | Column II  A. left | 1. right  B. left | 2. right"
+ *   - "Column A | Column B  (A) left | (1) right  (B) left | (2) right"
+ *   - "List I | List II  (i) left | (P) right  (ii) left | (Q) right"
+ *   - Any mix of letter/roman-numeral for colA and number/letter for colB
+ * Uses greedy match to find the LAST column-2 header, then extracts items.
+ */
+function parsePipeDelimitedMtf(text: string): {
+  columnA: { id: string; text: string; textTe: string; textHi: string }[];
+  columnB: { id: string; text: string; textTe: string; textHi: string }[];
+} {
+  type ColItem = { id: string; text: string; textTe: string; textHi: string };
+  const mkItem = (id: string, t: string): ColItem => ({ id, text: t.trim(), textTe: '', textHi: '' });
+
+  // Only proceed if text contains pipes (quick bail-out for non-pipe formats)
+  if (!text.includes('|')) return { columnA: [], columnB: [] };
+
+  // GREEDY .* strips up to the LAST "Column II/B/2" or "List II/B/2" header
+  // Handles: Column II, Column-II, Column B, Column 2, List II, List B, etc.
+  // Also handles markdown bold **Column II**, parenthesized descriptions (Definition)
+  const body = text.replace(
+    /^.*(?:\*\*\s*)?(?:column|list)\s*[-–]?\s*(?:[Ii]{2}|II|2|[Bb])\s*(?:\*\*)?\s*(?:\([^)]*\))?\s*[:\-–|]?\s*/is,
+    ''
+  );
+
+  if (body === text || body.trim().length < 5) return { columnA: [], columnB: [] };
+
+  // ── Strategy A: match complete row pairs ────────────────────
+  // "A. leftText | 1. rightText" or "(A) leftText | (1) rightText"
+  // Letters/roman for colA, numbers for colB
+  let columnA: ColItem[] = [];
+  let columnB: ColItem[] = [];
+  let m;
+
+  // A1: "A. left | 1. right" (dotted letter + dotted number)
+  const dotPairRegex = /([A-Z])\.\s+(.+?)\s*\|\s*(\d+)\.\s+(.+?)(?=\s+[A-Z]\.\s|$)/gs;
+  // eslint-disable-next-line no-cond-assign
+  while ((m = dotPairRegex.exec(body)) !== null) {
+    columnA.push(mkItem(m[1], m[2]));
+    columnB.push(mkItem(m[3], m[4]));
+  }
+  if (columnA.length >= 2) return { columnA, columnB };
+
+  // A2: "(A) left | (1) right" (parenthesized letter + parenthesized number)
+  columnA = []; columnB = [];
+  const parenPairRegex = /\(([A-Za-z]+)\)\s+(.+?)\s*\|\s*\((\d+)\)\s+(.+?)(?=\s+\([A-Za-z]+\)\s|$)/gs;
+  // eslint-disable-next-line no-cond-assign
+  while ((m = parenPairRegex.exec(body)) !== null) {
+    columnA.push(mkItem(m[1], m[2]));
+    columnB.push(mkItem(m[3], m[4]));
+  }
+  if (columnA.length >= 2) return { columnA, columnB };
+
+  // A3: "(i) left | (P) right" (roman/number colA + letter colB — reversed ID types)
+  columnA = []; columnB = [];
+  const reversePairRegex = /\(([ivxIVX0-9]+)\)\s+(.+?)\s*\|\s*\(([A-Za-z]+)\)\s+(.+?)(?=\s+\([ivxIVX0-9]+\)\s|$)/gs;
+  // eslint-disable-next-line no-cond-assign
+  while ((m = reversePairRegex.exec(body)) !== null) {
+    columnA.push(mkItem(m[1], m[2]));
+    columnB.push(mkItem(m[3], m[4]));
+  }
+  if (columnA.length >= 2) return { columnA, columnB };
+
+  // ── Strategy B: split by pipe, classify each segment ────────
+  columnA = []; columnB = [];
+  const segments = body.split(/\s*\|\s*/);
+  for (const seg of segments) {
+    const trimmed = seg.trim();
+    if (trimmed.length < 1) continue;
+
+    // "(A) text" or "(iv) text" — parenthesized ID
+    const parenMatch = trimmed.match(/^\s*\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s+(.+)$/s);
+    if (parenMatch) {
+      const id = parenMatch[1].trim();
+      const txt = parenMatch[2].trim();
+      // Letters → colA, numbers → colB, roman numerals → colA
+      if (/^\d+$/.test(id)) {
+        columnB.push(mkItem(id, txt));
+      } else {
+        columnA.push(mkItem(id, txt));
+      }
+      continue;
+    }
+
+    // "A. text" — dotted letter → colA
+    const dotLetterMatch = trimmed.match(/^\s*([A-Za-z])\.\s+(.+)$/s);
+    if (dotLetterMatch) {
+      columnA.push(mkItem(dotLetterMatch[1].toUpperCase(), dotLetterMatch[2].trim()));
+      continue;
+    }
+
+    // "1. text" — dotted number → colB
+    const dotNumberMatch = trimmed.match(/^\s*(\d+)\.\s+(.+)$/s);
+    if (dotNumberMatch) {
+      columnB.push(mkItem(dotNumberMatch[1], dotNumberMatch[2].trim()));
+      continue;
+    }
+  }
+
+  // If one column has items but the other doesn't, pipe classification may have
+  // put everything into one side. In that case, bail out and let Strategy 2 handle it.
+  if (columnA.length < 2 || columnB.length < 2) {
+    return { columnA: [], columnB: [] };
+  }
 
   return { columnA, columnB };
 }

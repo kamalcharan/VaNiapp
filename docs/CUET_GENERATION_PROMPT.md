@@ -396,7 +396,9 @@ The app renders a **FILL IN THE BLANK(S)** card with blanks highlighted as style
 - `question_text` = same text OR a short instruction (the app shows this in the header box and `text_with_blanks` in the blanks card)
 - **ALWAYS include `text_with_blanks`** -- without it, question_text gets duplicated in both the header and the blanks card
 - Use `______` (6 underscores) to mark blanks
-- Options are the possible answers to fill in
+- **MUST have exactly 4 options (A/B/C/D)** with plausible distractors — FIB is NOT free-text input. The app renders 4 tappable option cards, not a text field. An empty `options: []` = nothing to tap = broken question.
+- The correct fill-in answer goes in ONE option (with `is_correct: true`), the other 3 are plausible wrong fills.
+- **NEVER output `"options": []`** — this is the #1 FIB failure mode that required a migration to fix 27 broken questions.
 
 ---
 
@@ -481,6 +483,10 @@ The app renders a **DIAGRAM** card with an image, then 4 options.
 - `image_alt` -- concise description of the diagram. Stored in `med_questions.image_alt`
 - `question_text` -- the question about the diagram (shown in header box)
 - Diagrams are generated separately (matplotlib) and uploaded via upload script
+- **`image_uri` MUST start with `question-images/`** — this is the Supabase Storage bucket path. NEVER use local/relative paths like `diagrams/filename.png` or `images/filename.png`. The import tool prepends the Supabase public URL to this path.
+  - Correct: `"question-images/business-studies/planning/cuet-bst-planning-61.png"`
+  - WRONG: `"diagrams/cuet-bst-planning-61.png"`
+  - WRONG: `"cuet-bst-planning-61.png"`
 - **DO NOT skip `image_uri` or `image_alt`** -- without them, the question renders an empty placeholder
 
 ---
@@ -904,6 +910,19 @@ Qbank/CUET/{subject}/{chapter-folder}/batch-YYYY-MM-DD/{topic_id}.json
 - `exam_suitability`: `["CUET", "NEET"]` for science, `["CUET"]` for non-science
 - `id` prefix: use the CUET prefix from the ID prefix table above
 
+**Step 3.5: Generate & Upload Diagram Images** (if batch has diagram-based questions)
+1. Generate PNG images using matplotlib/PIL for each diagram-based question
+2. Save locally: `Qbank/CUET/{subject}/{chapter}/batch-YYYY-MM-DD/diagrams/{question-id}.png`
+3. Create upload script: `upload_diagrams.js` in the batch folder
+4. Upload to Supabase Storage bucket `question-images` at the path in `image_uri`
+5. Verify: the `image_uri` in JSON must match the storage path EXACTLY
+
+If you cannot generate diagrams in-session, CLEARLY mark them as TODO:
+```json
+"image_uri": "question-images/{subject}/{chapter}/{id}.png",
+"image_alt": "TODO: [description of what the diagram should show]"
+```
+
 **Step 4: Save NEET Copy** (ONLY for Physics, Chemistry, Biology)
 ```
 Qbank/NEET/{subject}/{chapter-folder}/new-YYYY-MM-DD/{topic_id}.json
@@ -977,6 +996,9 @@ Qbank/NEET/{subject}/{chapter-folder}/new-YYYY-MM-DD/{topic_id}.json
 - **logical-sequence**: Do NOT omit `items` or `correct_order`. Without them, the ARRANGE card renders empty.
 - **diagram-based**: Do NOT omit `image_uri` or `image_alt`. The question renders an empty placeholder without them.
 - **true-false**: Do NOT add C/D dummy options. Only include A="True" and B="False".
+- **fill-in-blanks**: Do NOT generate FIB with `"options": []`. Every FIB MUST have 4 options (A/B/C/D) with the correct answer as one option and 3 plausible distractors. The app does NOT have a text input — it shows 4 tappable cards. Empty options = untappable = broken.
+- **diagram-based**: Do NOT use local file paths in `image_uri`. It MUST be a storage path starting with `question-images/`. Local paths like `diagrams/file.png` will render as broken images in the app.
+- **ALL types**: Do NOT let `correct_answer` and `is_correct` disagree. If `correct_answer` is "C", then option C MUST have `is_correct: true` and all others `is_correct: false`.
 
 ### Production-readiness checklist (run before saving each batch):
 ```
@@ -989,10 +1011,32 @@ Qbank/NEET/{subject}/{chapter-folder}/new-YYYY-MM-DD/{topic_id}.json
 [ ] Every logical-sequence has `items` array and `correct_order` array
 [ ] Every diagram-based has `image_uri` and `image_alt`
 [ ] Every true-false has exactly 2 options (A=True, B=False)
-[ ] correct_answer matches the option with is_correct=true
+[ ] correct_answer KEY matches the option where is_correct=true (if correct_answer="B", option B must have is_correct:true)
+[ ] FIB questions have exactly 4 options with non-empty text (NOT empty array, NOT empty strings)
+[ ] Diagram image_uri starts with "question-images/" (NOT local paths like "diagrams/...")
+[ ] No option has empty text ("text": "" or "text": " ")
 [ ] No duplicate question stems vs existing JSONs
 ```
 
 ---
 
-*Last updated: 2026-03-04*
+## AUTOMATED VALIDATION (run after saving each batch)
+
+Before committing, validate your JSON with the bulk-import dry-run:
+
+```
+node Qbank/bulk-import.js --dry-run --file path/to/batch.json
+```
+
+This checks:
+- All required fields present per question type
+- Options array non-empty with valid text
+- `correct_answer` matches `is_correct` flag
+- Type-specific fields (`scenario`, `text_with_blanks`, `assertion`, `reason`, etc.)
+- `image_uri` format for diagram-based questions
+
+**If dry-run reports errors, FIX THEM before committing.**
+
+---
+
+*Last updated: 2026-03-07*

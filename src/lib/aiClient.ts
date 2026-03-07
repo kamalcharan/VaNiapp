@@ -43,7 +43,9 @@ function checkLocalCache(query: string, subjectId: SubjectId): DoubtEntry | null
 function buildSystemPrompt(exam: ExamType, subjectId: SubjectId, language: Language): string {
   const subjectName = SUBJECT_META[subjectId]?.name ?? subjectId;
   const langInstruction =
-    language === 'te'
+    language === 'hi'
+      ? 'Respond in Hindi (Devanagari script). Use Hindi for explanations but keep scientific terms in English.'
+      : language === 'te'
       ? 'Respond in Telugu script. Use Telugu for explanations but keep scientific terms in English.'
       : 'Respond in English.';
 

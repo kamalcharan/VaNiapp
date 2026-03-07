@@ -353,6 +353,21 @@ function buildImportPayload(q) {
   // logical-sequence: items array + correct ordering
   if (q.items) payload.items = q.items;
   if (q.correct_order) payload.correct_order = q.correct_order;
+  // If sequence but no items, parse numbered items from question_text
+  if (q.question_type === 'logical-sequence' && !payload.items && q.question_text) {
+    const parsed = _parseSequenceItems(q.question_text);
+    if (parsed.length >= 2) {
+      payload.items = parsed;
+    }
+    // Derive correct_order from the correct option (e.g. "4 → 3 → 1 → 2")
+    if (!payload.correct_order && q.options && q.correct_answer) {
+      const correctOpt = q.options.find(o => o.is_correct || o.key === q.correct_answer);
+      if (correctOpt) {
+        const order = _parseSequenceOrder(correctOpt.text);
+        if (order.length >= 2) payload.correct_order = order;
+      }
+    }
+  }
   // match-the-following: structured column data for drag-and-drop UI
   if (q.column_a || q.columnA) payload.columnA = q.column_a || q.columnA;
   if (q.column_b || q.columnB) payload.columnB = q.column_b || q.columnB;
@@ -381,11 +396,37 @@ function buildImportPayload(q) {
  * textTe is populated separately by the translation program.
  */
 function _parseMTFColumns(text) {
-  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–]/i);
+  // ── Strategy 1: pipe-delimited table rows ──
+  // Format: "... Column I | Column II A. leftText | 1. rightText B. leftText | 2. rightText"
+  const pipeRows = _parseMTFPipeTable(text);
+  if (pipeRows.columnA.length >= 2 && pipeRows.columnB.length >= 2) {
+    return pipeRows;
+  }
+
+  // ── Strategy 2: arrow-separated row pairs ──
+  // Format: "(P) lacZ → (i) Codes for permease\n(Q) lacY → (ii) Codes for beta-galactosidase"
+  // Appears after a "Column I ... → Column II ..." header line
+  {
+    const arrowRowRe = /\(([A-Z])\)\s+(.+?)\s*→\s*\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s+(.+?)(?=\s*\([A-Z]\)\s|Choose\b|\n\s*\n|$)/gs;
+    const colA = [], colB = [];
+    let m;
+    while ((m = arrowRowRe.exec(text)) !== null) {
+      colA.push({ id: m[1], text: m[2].trim(), textTe: '' });
+      colB.push({ id: m[3], text: m[4].trim(), textTe: '' });
+    }
+    if (colA.length >= 2 && colB.length >= 2) return { columnA: colA, columnB: colB };
+  }
+
+  // ── Strategy 3: column header split (original logic) ──
+  // Split on "Column II" with optional parenthetical label and/or delimiter
+  // Handles: "Column II:", "Column II (Function)", "Column II (Label):", "→ Column II"
+  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*(?:\([^)]*\)\s*[:\-–→]?|[:\-–→)])/i);
   if (colSplit.length < 2) return { columnA: [], columnB: [] };
 
-  const col1Body = colSplit[0].replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–]/i, '');
-  const col2Body = colSplit[1];
+  // Use LAST part as Column II body, everything before as Column I area
+  const col2Body = colSplit[colSplit.length - 1];
+  const col1Raw = colSplit.slice(0, -1).join(' ');
+  const col1Body = col1Raw.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\)\s*[:\-–→]?|[:\-–→)])/i, '');
 
   function extractItems(body) {
     let items = [];
@@ -410,6 +451,59 @@ function _parseMTFColumns(text) {
 }
 
 /**
+ * Parse pipe-delimited MTF table format.
+ * Handles: "... Column I | Column II A. leftText | 1. rightText B. leftText | 2. rightText ..."
+ * Key: uses GREEDY .* to strip up to the LAST "Column II/B/2" header,
+ * then matches complete row pairs with "letter. text | number. text".
+ */
+function _parseMTFPipeTable(text) {
+  // Must mention column headers
+  if (!/column\s*[-–]?\s*(?:i{1,2}|[12ab])/i.test(text)) {
+    return { columnA: [], columnB: [] };
+  }
+
+  // Strip up to LAST "Column II/B/2" header using GREEDY .* (not .*?)
+  // This skips "Column II" in the intro sentence and finds the table header
+  // Also handles arrow → separator and parenthetical labels like (Function)
+  let body = text.replace(/^.*column\s*[-–]?\s*(?:ii|2|b)\s*(?:\([^)]*\))?[:\-–→|]?\s*/is, '');
+  if (body === text || body.length < 5) return { columnA: [], columnB: [] };
+
+  const columnA = [];
+  const columnB = [];
+  let m;
+
+  // Match complete row pairs: "A. leftText | 1. rightText"
+  // The lookahead stops right text at the next "X. " letter-item or end-of-string
+  const rowRe = /([A-Z])\.\s+(.+?)\s*\|\s*(\d+)\.\s+(.+?)(?=\s+[A-Z]\.\s|$)/gs;
+  while ((m = rowRe.exec(body)) !== null) {
+    columnA.push({ id: m[1], text: m[2].trim(), textTe: '' });
+    columnB.push({ id: m[3], text: m[4].trim(), textTe: '' });
+  }
+
+  if (columnA.length >= 2) return { columnA, columnB };
+
+  // Fallback: try parenthesized row pairs with pipe: "(a) leftText | (i) rightText"
+  // Supports uppercase/lowercase letters and roman numeral IDs
+  const parenRowRe = /\(([A-Za-z])\)\s+(.+?)\s*\|\s*\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s+(.+?)(?=\s*\([A-Za-z]\)\s|Choose\b|\n\s*\n|$)/gs;
+  while ((m = parenRowRe.exec(body)) !== null) {
+    columnA.push({ id: m[1], text: m[2].trim(), textTe: '' });
+    columnB.push({ id: m[3], text: m[4].trim(), textTe: '' });
+  }
+
+  if (columnA.length >= 2) return { columnA, columnB };
+
+  // Fallback: arrow-separated row pairs "(P) lacZ → (i) Codes for permease"
+  // Handles both uppercase letters and roman numerals as IDs
+  const arrowRowRe = /\(([A-Za-z0-9]+)\)\s+(.+?)\s*→\s*\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s+(.+?)(?=\s+\([A-Z]\)\s|Choose\b|\n\s*\n|$)/gs;
+  while ((m = arrowRowRe.exec(body)) !== null) {
+    columnA.push({ id: m[1], text: m[2].trim(), textTe: '' });
+    columnB.push({ id: m[3], text: m[4].trim(), textTe: '' });
+  }
+
+  return { columnA, columnB };
+}
+
+/**
  * Parse option mapping text like "A-2, B-3, C-4, D-1" into { A: "2", B: "3", ... }
  */
 function _parseOptionMapping(text) {
@@ -419,6 +513,75 @@ function _parseOptionMapping(text) {
     if (m) mapping[m[1].trim()] = m[2].trim();
   }
   return mapping;
+}
+
+/**
+ * Parse numbered sequence items from question text.
+ * Extracts "1. text", "2. text" etc. into [{id: "1", text: "..."}]
+ */
+function _parseSequenceItems(text) {
+  let items = [];
+
+  // Format 1: "1. item text" (most common)
+  const re1 = /(?:^|\n)\s*(\d+)\.\s+(.+?)(?=\n\s*\d+\.|$)/gs;
+  let m;
+  while ((m = re1.exec(text)) !== null) {
+    items.push({ id: m[1], text: m[2].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  // Format 2: "1) item text"
+  items = [];
+  const re2 = /(?:^|\n)\s*(\d+)\)\s+(.+?)(?=\n\s*\d+\)|$)/gs;
+  while ((m = re2.exec(text)) !== null) {
+    items.push({ id: m[1], text: m[2].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  // Format 3: "(i) item text" — roman numerals
+  items = [];
+  const romanMap = { 'i': '1', 'ii': '2', 'iii': '3', 'iv': '4', 'v': '5', 'vi': '6', 'vii': '7', 'viii': '8' };
+  const re3 = /(?:^|\n)\s*\(([ivx]+)\)\s+(.+?)(?=\n\s*\([ivx]+\)|$)/gis;
+  while ((m = re3.exec(text)) !== null) {
+    const id = romanMap[m[1].toLowerCase()] || String(items.length + 1);
+    items.push({ id, text: m[2].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  // Format 4: "(a) item text" — letter labels
+  items = [];
+  const re4 = /(?:^|\n)\s*\(([a-z])\)\s+(.+?)(?=\n\s*\([a-z]\)|$)/gis;
+  while ((m = re4.exec(text)) !== null) {
+    items.push({ id: String(m[1].toLowerCase().charCodeAt(0) - 96), text: m[2].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  // Format 5: "Step 1: text" or "Step 1 - text"
+  items = [];
+  const re5 = /(?:^|\n)\s*[Ss]tep\s*(\d+)\s*[:\-–]\s*(.+?)(?=\n\s*[Ss]tep\s*\d|$)/gs;
+  while ((m = re5.exec(text)) !== null) {
+    items.push({ id: m[1], text: m[2].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  // Format 6: lines starting with "- " or "• " (unordered — assign sequential IDs)
+  items = [];
+  const re6 = /(?:^|\n)\s*[-•]\s+(.+?)(?=\n\s*[-•]\s|$)/gs;
+  while ((m = re6.exec(text)) !== null) {
+    items.push({ id: String(items.length + 1), text: m[1].trim() });
+  }
+  if (items.length >= 2) return items;
+
+  return [];
+}
+
+/**
+ * Parse sequence correct order from option text like "4 → 3 → 1 → 2"
+ * Returns array of string IDs: ["4", "3", "1", "2"]
+ */
+function _parseSequenceOrder(text) {
+  // Split on arrows, dashes, or "then" connectors
+  return text.split(/\s*[→\-–]\s*/).map(s => s.trim()).filter(s => /^\d+$/.test(s));
 }
 
 /**
@@ -1940,13 +2103,16 @@ function runQualityValidators(questions, languages, chapterId) {
         break;
       }
       case 'logical-sequence': {
-        // Custom UI needs payload.items array with text for each item
+        // Custom UI needs payload.items array with {id, text} objects
         const seqItems = payload.items || payload.Items || [];
         if (!Array.isArray(seqItems) || seqItems.length === 0) {
           issues.push(makeIssue(q, chapterId, 'SEQ_NO_ITEMS'));
         } else {
-          // Check if items have actual text content
-          const emptyItems = seqItems.filter(it => !(it.text || '').trim());
+          // Items can be objects {id, text} or plain strings — check both
+          const emptyItems = seqItems.filter(it => {
+            const txt = typeof it === 'string' ? it : (it.text || '');
+            return !txt.trim();
+          });
           if (emptyItems.length > 0) {
             issues.push(makeIssue(q, chapterId, 'SEQ_NO_ITEMS', {
               emptyCount: emptyItems.length, total: seqItems.length
@@ -1987,15 +2153,17 @@ function runQualityValidators(questions, languages, chapterId) {
           }));
         }
       }
-      // Also check payload.options for duplicate IDs
+      // Also check payload.options for duplicate IDs/keys
       const mtfOpts = payload.options || [];
       if (Array.isArray(mtfOpts) && mtfOpts.length > 0) {
-        const optIds = mtfOpts.map(o => o.id);
-        const dupeOptIds = optIds.filter((id, i) => optIds.indexOf(id) !== i);
-        if (dupeOptIds.length > 0) {
-          issues.push(makeIssue(q, chapterId, 'MTF_DUPLICATE_KEYS', {
-            duplicateOptionIds: [...new Set(dupeOptIds)]
-          }));
+        const optIds = mtfOpts.map(o => o.id || o.key).filter(Boolean);
+        if (optIds.length > 0) {
+          const dupeOptIds = optIds.filter((id, i) => optIds.indexOf(id) !== i);
+          if (dupeOptIds.length > 0) {
+            issues.push(makeIssue(q, chapterId, 'MTF_DUPLICATE_KEYS', {
+              duplicateOptionIds: [...new Set(dupeOptIds)]
+            }));
+          }
         }
       }
     }
@@ -2013,7 +2181,9 @@ function runQualityValidators(questions, languages, chapterId) {
       issues.push(makeIssue(q, chapterId, 'EMPTY_EXPLANATION'));
     }
 
-    if (hints.length === 0) {
+    // Elimination hints only apply to types with wrong options to hint about
+    const hintableTypes = ['mcq', 'assertion-reasoning'];
+    if (hints.length === 0 && hintableTypes.includes(q.question_type)) {
       issues.push(makeIssue(q, chapterId, 'NO_ELIMINATION_HINTS'));
     }
 
@@ -2099,19 +2269,29 @@ function makeIssue(question, chapterId, issueType, details = {}) {
 
 /**
  * Fetch full question data for a chapter (with options + hints) for scanning.
+ * Dynamically includes translation columns for all active languages.
  */
 async function fetchQuestionsForScan(chapterId) {
   if (!SUPABASE) return [];
 
+  // Build dynamic translation column list from active languages
+  const langs = await fetchActiveLanguages();
+  const qLangCols = langs.flatMap(l => QUESTION_TRANSLATABLE_FIELDS.map(f => f + '_' + l.id)).join(', ');
+  const optLangCols = langs.flatMap(l => OPTION_TRANSLATABLE_FIELDS.map(f => f + '_' + l.id)).join(', ');
+  const hintLangCols = langs.flatMap(l => HINT_TRANSLATABLE_FIELDS.map(f => f + '_' + l.id)).join(', ');
+
+  const selectStr = `
+      id, subject_id, chapter_id, topic_id, question_type, difficulty, status,
+      question_text, explanation, correct_answer, payload, image_url, concept_tags,
+      corrected_at, last_translated_at
+      ${qLangCols ? ', ' + qLangCols : ''},
+      med_question_options (option_key, option_text, is_correct, sort_order${optLangCols ? ', ' + optLangCols : ''}),
+      med_elimination_hints (option_key, hint_text, misconception${hintLangCols ? ', ' + hintLangCols : ''})
+    `;
+
   const { data, error } = await SUPABASE
     .from('med_questions')
-    .select(`
-      id, subject_id, chapter_id, topic_id, question_type, difficulty, status,
-      question_text, question_text_te, explanation, explanation_te,
-      correct_answer, payload, image_url, concept_tags,
-      med_question_options (option_key, option_text, option_text_te, is_correct, sort_order),
-      med_elimination_hints (option_key, hint_text, hint_text_te, misconception, misconception_te)
-    `)
+    .select(selectStr)
     .eq('chapter_id', chapterId)
     .in('status', ['active', 'draft']);
 
@@ -2318,7 +2498,7 @@ async function fixCorrectAnswerKeys(questions) {
 
     const { error } = await SUPABASE
       .from('med_questions')
-      .update({ correct_answer: correctKey })
+      .update({ correct_answer: correctKey, corrected_at: new Date().toISOString() })
       .eq('id', q.id);
 
     if (error) {
@@ -2370,7 +2550,7 @@ async function fixEmptyOptions(questionId, options, correctKey) {
 
   const { error: qErr } = await SUPABASE
     .from('med_questions')
-    .update({ correct_answer: correctKey })
+    .update({ correct_answer: correctKey, corrected_at: new Date().toISOString() })
     .eq('id', questionId);
 
   if (qErr) {
@@ -2415,14 +2595,45 @@ async function fixMTFPayload(questions) {
     if (!text) { results.skipped++; continue; }
 
     // Parse columns from question text
-    const parsed = _parseMTFColumns(text);
+    let parsed = _parseMTFColumns(text);
+
+    // If text parse failed, try extracting columns from payload.options
     if (parsed.columnA.length < 2 || parsed.columnB.length < 2) {
-      results.skipped++;
-      results.details.push({
-        id: q.id,
-        status: 'skipped',
-        reason: `Parsed colA=${parsed.columnA.length}, colB=${parsed.columnB.length}`
-      });
+      const payloadOpts = payload.options || [];
+      if (Array.isArray(payloadOpts) && payloadOpts.length > 0) {
+        // payload.options might contain column items as objects with key/text
+        console.log(`[fixMTF] Text parse failed, trying payload.options:`, JSON.stringify(payloadOpts.slice(0, 2)));
+        // Try combining all option texts and re-parse
+        const optTexts = payloadOpts.map(o => (o.text || o.option_text || '')).join('\n');
+        if (optTexts) {
+          const fromOpts = _parseMTFColumns(text + '\n' + optTexts);
+          if (fromOpts.columnA.length >= 2 && fromOpts.columnB.length >= 2) {
+            parsed = fromOpts;
+          }
+        }
+      }
+    }
+
+    // If still failed, try extracting from DB option texts (they often contain "A-1, B-2" mapping patterns)
+    if (parsed.columnA.length < 2 || parsed.columnB.length < 2) {
+      const dbOpts = q.med_question_options || [];
+      if (dbOpts.length > 0) {
+        console.log(`[fixMTF] Trying DB options:`, dbOpts.map(o => `${o.option_key}: ${(o.option_text||'').substring(0,100)}`));
+      }
+      console.log(`[fixMTF] Parse failed for ${q.id}: colA=${parsed.columnA.length}, colB=${parsed.columnB.length}`);
+      // Column data is missing everywhere — mark question as draft so it doesn't show with broken UI
+      const { error: draftErr } = await SUPABASE
+        .from('med_questions')
+        .update({ status: 'draft', corrected_at: new Date().toISOString() })
+        .eq('id', q.id);
+      if (draftErr) {
+        console.error(`[fixMTF] Failed to mark ${q.id} as draft:`, draftErr);
+        results.errors++;
+        results.details.push({ id: q.id, status: 'error', error: draftErr.message });
+      } else {
+        results.fixed++;
+        results.details.push({ id: q.id, status: 'fixed', action: 'marked-draft (column data missing, needs manual edit)' });
+      }
       continue;
     }
 
@@ -2435,17 +2646,38 @@ async function fixMTFPayload(questions) {
       mapping = _parseOptionMapping(correctOpt.option_text || correctOpt.text || '');
     }
 
-    // Update payload in DB
-    const newPayload = {
-      ...payload,
-      columnA: parsed.columnA,
-      columnB: parsed.columnB,
-      correctMapping: mapping
-    };
+    // Ensure all column IDs are unique using indexed scheme (a-0, b-0, etc.)
+    // This handles: intra-column dupes, cross-column overlap, and missing IDs
+    const allParsedIds = [...parsed.columnA.map(c => c.id), ...parsed.columnB.map(c => c.id)];
+    const needsDedup = allParsedIds.some((id, i) => allParsedIds.indexOf(id) !== i)
+                    || allParsedIds.some(id => id === undefined || id === null || id === '');
+    if (needsDedup) {
+      const aIdMap = {};
+      const bIdMap = {};
+      parsed.columnA.forEach((item, i) => { aIdMap[item.id] = 'a-' + i; });
+      parsed.columnB.forEach((item, i) => { bIdMap[item.id] = 'b-' + i; });
+      parsed.columnA = parsed.columnA.map((item, i) => ({ ...item, id: 'a-' + i }));
+      parsed.columnB = parsed.columnB.map((item, i) => ({ ...item, id: 'b-' + i }));
+      // Update mapping to use new IDs
+      const newMapping = {};
+      for (const [k, v] of Object.entries(mapping)) {
+        newMapping[aIdMap[k] || k] = bIdMap[v] || v;
+      }
+      mapping = newMapping;
+    }
+
+    // Update payload in DB — remove stale snake_case keys
+    const newPayload = { ...payload };
+    delete newPayload.column_a;
+    delete newPayload.column_b;
+    delete newPayload.correct_mapping;
+    newPayload.columnA = parsed.columnA;
+    newPayload.columnB = parsed.columnB;
+    newPayload.correctMapping = mapping;
 
     const { error } = await SUPABASE
       .from('med_questions')
-      .update({ payload: newPayload })
+      .update({ payload: newPayload, corrected_at: new Date().toISOString() })
       .eq('id', q.id);
 
     if (error) {
@@ -2461,6 +2693,493 @@ async function fixMTFPayload(questions) {
         colB: parsed.columnB.length,
         mappingKeys: Object.keys(mapping).length
       });
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
+// AUTO-FIX: MTF duplicate column keys — prefix Column B IDs with "b-"
+// ============================================================================
+
+/**
+ * Fix MTF questions with duplicate keys. Handles TWO cases:
+ *   1. Column A/B ID overlap → prefix Column B IDs with "b-"
+ *   2. Duplicate option_key in med_question_options → reassign unique keys (A, B, C, D)
+ *
+ * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
+ * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
+ */
+async function fixMTFDuplicateKeys(questions) {
+  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+  const OPTION_KEYS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
+  for (const q of questions) {
+    if (q.question_type !== 'match-the-following') { results.skipped++; continue; }
+
+    const fixes = [];
+    let payloadDirty = false;
+
+    // Use a MUTABLE copy of the payload — all cases accumulate changes here,
+    // then we do a SINGLE DB write at the end. Previous bug: Case 3 was
+    // spreading the original payload, undoing Case 1's column-overlap fix.
+    const payload = { ...(q.payload || {}) };
+
+    // Normalize: remove snake_case keys upfront, keep only camelCase
+    // (bulk-import writes column_a/column_b; we standardize to columnA/columnB)
+    if (payload.column_a && !payload.columnA) payload.columnA = payload.column_a;
+    if (payload.column_b && !payload.columnB) payload.columnB = payload.column_b;
+    if (payload.correct_mapping && !payload.correctMapping) payload.correctMapping = payload.correct_mapping;
+    delete payload.column_a;
+    delete payload.column_b;
+    delete payload.correct_mapping;
+
+    // ── Case 1: Ensure ALL column IDs are unique (within + across columns) ──
+    // The validator flags duplicates in [...colA ids, ...colB ids] combined,
+    // so we must fix: (a) missing/undefined IDs, (b) intra-column dupes,
+    // (c) cross-column overlap.
+    let colA = Array.isArray(payload.columnA) ? payload.columnA : [];
+    let colB = Array.isArray(payload.columnB) ? payload.columnB : [];
+
+    if (colA.length > 0 || colB.length > 0) {
+      // Collect all IDs to check for ANY duplicates (same logic as validator)
+      const allIdsBefore = [...colA.map(c => c.id), ...colB.map(c => c.id)];
+      const hasDupes = allIdsBefore.some((id, i) => allIdsBefore.indexOf(id) !== i)
+                    || allIdsBefore.some(id => id === undefined || id === null || id === '');
+
+      if (hasDupes) {
+        // Assign guaranteed-unique IDs: Column A gets "a-0", "a-1", ...
+        // Column B gets "b-0", "b-1", ... — no possibility of overlap
+        payload.columnA = colA.map((item, i) => ({ ...item, id: 'a-' + i }));
+        payload.columnB = colB.map((item, i) => ({ ...item, id: 'b-' + i }));
+
+        // Rebuild correctMapping: old A id → new A id, old B id → new B id
+        const oldMapping = payload.correctMapping || {};
+        if (Object.keys(oldMapping).length > 0) {
+          const aIdMap = {};  // old colA id → new colA id
+          const bIdMap = {};  // old colB id → new colB id
+          colA.forEach((item, i) => { aIdMap[item.id] = 'a-' + i; });
+          colB.forEach((item, i) => { bIdMap[item.id] = 'b-' + i; });
+
+          const newMapping = {};
+          for (const [oldAId, oldBId] of Object.entries(oldMapping)) {
+            const newAId = aIdMap[oldAId] || oldAId;
+            const newBId = bIdMap[oldBId] || oldBId;
+            newMapping[newAId] = newBId;
+          }
+          payload.correctMapping = newMapping;
+        }
+
+        payloadDirty = true;
+        fixes.push('column-ids-deduped');
+      }
+    }
+
+    // ── Case 2: Duplicate option_key in med_question_options ──
+    const opts = q.med_question_options || [];
+    if (Array.isArray(opts) && opts.length > 0) {
+      const optKeys = opts.map(o => o.option_key);
+      const hasDupeOpts = optKeys.some((k, i) => optKeys.indexOf(k) !== i);
+      if (hasDupeOpts) {
+        const { data: dbOpts, error: fetchErr } = await SUPABASE
+          .from('med_question_options')
+          .select('id, option_key, is_correct, sort_order')
+          .eq('question_id', q.id)
+          .order('sort_order');
+
+        // NOTE: Do NOT use `continue` on error here — Case 1 may have set
+        // payloadDirty, and we must still reach the payload write at the end.
+        if (fetchErr || !dbOpts || dbOpts.length === 0) {
+          console.error(`[fixMTFDuplicateKeys] Failed to fetch options for ${q.id}:`, fetchErr);
+          fixes.push('duplicate-option-keys:error:' + (fetchErr?.message || 'no options'));
+        } else {
+          const correctOpt = dbOpts.find(o => o.is_correct === true);
+          const correctIdx = correctOpt ? dbOpts.indexOf(correctOpt) : -1;
+
+          let optFixFailed = false;
+          for (let i = 0; i < dbOpts.length; i++) {
+            const newKey = OPTION_KEYS[i] || `opt_${i}`;
+            const { error: upErr } = await SUPABASE
+              .from('med_question_options')
+              .update({ option_key: newKey })
+              .eq('id', dbOpts[i].id);
+            if (upErr) {
+              console.error(`[fixMTFDuplicateKeys] Failed to update option ${dbOpts[i].id}:`, upErr);
+              optFixFailed = true;
+            }
+          }
+
+          if (optFixFailed) {
+            fixes.push('duplicate-option-keys:partial-error');
+          } else {
+            if (correctIdx >= 0) {
+              const newCorrectKey = OPTION_KEYS[correctIdx] || `opt_${correctIdx}`;
+              await SUPABASE
+                .from('med_questions')
+                .update({ correct_answer: newCorrectKey, corrected_at: new Date().toISOString() })
+                .eq('id', q.id);
+            }
+
+            const { data: dbHints } = await SUPABASE
+              .from('med_elimination_hints')
+              .select('id, option_key')
+              .eq('question_id', q.id)
+              .order('option_key');
+            if (dbHints && dbHints.length > 0) {
+              const keyMap = {};
+              for (let i = 0; i < dbOpts.length; i++) {
+                keyMap[dbOpts[i].option_key] = OPTION_KEYS[i] || `opt_${i}`;
+              }
+              for (const hint of dbHints) {
+                const newKey = keyMap[hint.option_key];
+                if (newKey && newKey !== hint.option_key) {
+                  await SUPABASE
+                    .from('med_elimination_hints')
+                    .update({ option_key: newKey })
+                    .eq('id', hint.id);
+                }
+              }
+            }
+
+            fixes.push('duplicate-option-keys');
+          }
+        }
+      }
+    }
+
+    // ── Case 3: Duplicate IDs in payload.options (JSONB) ──
+    const payloadOpts = payload.options || [];
+    if (Array.isArray(payloadOpts) && payloadOpts.length > 0) {
+      const pIds = payloadOpts.map(o => o.id || o.key).filter(Boolean);
+      const hasDupePayloadOpts = pIds.length > 0 && pIds.some((id, i) => pIds.indexOf(id) !== i);
+      if (hasDupePayloadOpts) {
+        payload.options = payloadOpts.map((o, i) => ({
+          ...o,
+          id: OPTION_KEYS[i] || `opt_${i}`
+        }));
+        payloadDirty = true;
+        fixes.push('payload-options-dupes');
+      }
+    }
+
+    // ── Single DB write for all payload changes ──
+    if (payloadDirty) {
+      const { error } = await SUPABASE
+        .from('med_questions')
+        .update({ payload, corrected_at: new Date().toISOString() })
+        .eq('id', q.id);
+
+      if (error) {
+        console.error(`[fixMTFDuplicateKeys] Failed to update payload for ${q.id}:`, error);
+        results.errors++;
+        results.details.push({ id: q.id, status: 'error', fixes, error: error.message });
+        continue;
+      }
+    }
+
+    if (fixes.length > 0) {
+      results.fixed++;
+      results.details.push({ id: q.id, status: 'fixed', fixes });
+    } else {
+      results.skipped++;
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
+// AUTO-FIX: Backfill missing elimination hints
+// ============================================================================
+
+/**
+ * For questions flagged NO_ELIMINATION_HINTS, insert hints into med_elimination_hints.
+ *
+ * Tries two sources in order:
+ *   1. payload.elimination_hints (future imports will store these)
+ *   2. sourceData — array of source JSON questions matched by question_text
+ *
+ * @param {Array} questions  - DB question rows (from fetchQuestionsForScan)
+ * @param {Array} sourceData - Optional: parsed source JSON questions with elimination_hints
+ * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
+ */
+async function fixMissingHints(questions, sourceData) {
+  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  // Build lookups from source data — by source id AND by normalised text
+  const sourceById = new Map();
+  const sourceByText = new Map();
+  if (Array.isArray(sourceData)) {
+    for (const sq of sourceData) {
+      if (sq.elimination_hints && sq.elimination_hints.length > 0) {
+        if (sq.id) sourceById.set(sq.id, sq.elimination_hints);
+        const key = _normalizeText(sq.question_text || '');
+        if (key) sourceByText.set(key, sq.elimination_hints);
+      }
+    }
+  }
+
+  // Collect all hint records to insert
+  const allHintRecords = [];
+  const matchedQIds = [];
+
+  for (const q of questions) {
+    const payload = q.payload || {};
+    let rawHints = null;
+
+    // Source 1: payload.elimination_hints
+    if (Array.isArray(payload.elimination_hints) && payload.elimination_hints.length > 0) {
+      rawHints = payload.elimination_hints;
+    }
+
+    // Source 2: match by payload.question_id → source id
+    if (!rawHints && payload.question_id) {
+      rawHints = sourceById.get(payload.question_id) || null;
+    }
+
+    // Source 3: match by normalised question text
+    if (!rawHints) {
+      const key = _normalizeText(q.question_text || '');
+      if (key) rawHints = sourceByText.get(key) || null;
+    }
+
+    if (!rawHints || !Array.isArray(rawHints) || rawHints.length === 0) {
+      results.skipped++;
+      continue;
+    }
+
+    // Determine wrong option keys (all options except correct answer)
+    const correctAns = (q.correct_answer || '').toUpperCase();
+    const allOptionKeys = ['A', 'B', 'C', 'D'];
+    const wrongKeys = allOptionKeys.filter(k => k !== correctAns);
+
+    // Parse hints — handle objects, "A text" strings, AND plain text strings
+    const hintRecords = [];
+    let plainStringIdx = 0;
+    for (const h of rawHints) {
+      if (typeof h === 'string') {
+        // Try "A some hint text" format first
+        const match = h.match(/^([A-D])\s+(.+)$/s);
+        if (match) {
+          hintRecords.push({ question_id: q.id, option_key: match[1], hint_text: match[2].trim(), misconception: '' });
+        } else if (h.trim().length > 0 && plainStringIdx < wrongKeys.length) {
+          // Plain string — assign to next wrong option in order
+          hintRecords.push({ question_id: q.id, option_key: wrongKeys[plainStringIdx], hint_text: h.trim(), misconception: '' });
+          plainStringIdx++;
+        }
+      } else if (h && typeof h === 'object') {
+        const hintText = h.hint || h.hint_text || h.text || h.description || '';
+        const optKey = h.option_key || h.key || h.optionKey || '';
+        if (optKey && hintText) {
+          // If option_key is a valid A-D key, use it directly
+          if (/^[A-D]$/.test(optKey)) {
+            hintRecords.push({ question_id: q.id, option_key: optKey, hint_text: hintText, misconception: h.misconception || '' });
+          } else if (plainStringIdx < wrongKeys.length) {
+            // Generic hint (e.g. hint_1, hint_2) — assign to next wrong option
+            hintRecords.push({ question_id: q.id, option_key: wrongKeys[plainStringIdx], hint_text: hintText, misconception: h.misconception || '' });
+            plainStringIdx++;
+          }
+        }
+      }
+    }
+
+    if (hintRecords.length === 0) {
+      results.skipped++;
+      continue;
+    }
+
+    allHintRecords.push(...hintRecords);
+    matchedQIds.push(q.id);
+  }
+
+  if (allHintRecords.length === 0) {
+    return results;
+  }
+
+  // Step 1: DELETE any existing partial/bad hints for matched questions
+  for (let i = 0; i < matchedQIds.length; i += 200) {
+    const batch = matchedQIds.slice(i, i + 200);
+    await SUPABASE
+      .from('med_elimination_hints')
+      .delete()
+      .in('question_id', batch);
+  }
+
+  // Step 2: INSERT fresh hints
+  for (let i = 0; i < allHintRecords.length; i += 500) {
+    const batch = allHintRecords.slice(i, i + 500);
+    const { error } = await SUPABASE
+      .from('med_elimination_hints')
+      .insert(batch);
+
+    if (error) {
+      console.error('[fixMissingHints] Insert failed:', error.message);
+      const failedIds = new Set(batch.map(h => h.question_id));
+      failedIds.forEach(() => results.errors++);
+    }
+  }
+
+  // Count successes (total matched minus errors)
+  results.fixed = matchedQIds.length - results.errors;
+
+  for (const qId of matchedQIds) {
+    results.details.push({ id: qId, status: 'fixed' });
+  }
+
+  return results;
+}
+
+/**
+ * Diagnose existing elimination hints for a given exam tag.
+ * Returns counts of good vs bad hints, plus sample bad rows.
+ */
+async function auditHints(examTag) {
+  const PAGE = 1000;
+  let from = 0;
+  let totalQuestions = 0, withHints = 0, withoutHints = 0;
+  let goodHints = 0, badHints = 0;
+  const badSamples = [];
+  const allHintRows = [];
+
+  while (true) {
+    const { data: questions, error } = await SUPABASE
+      .from('med_questions')
+      .select('id, question_text')
+      .contains('tags', [examTag])
+      .range(from, from + PAGE - 1);
+
+    if (error) throw error;
+    if (!questions || questions.length === 0) break;
+
+    for (const q of questions) {
+      totalQuestions++;
+      const { data: hints } = await SUPABASE
+        .from('med_elimination_hints')
+        .select('*')
+        .eq('question_id', q.id);
+
+      if (!hints || hints.length === 0) {
+        withoutHints++;
+        continue;
+      }
+
+      withHints++;
+      for (const h of hints) {
+        allHintRows.push({
+          question_id: h.question_id,
+          option_key: h.option_key,
+          hint_text: (h.hint_text || '').substring(0, 120),
+          misconception: h.misconception || ''
+        });
+        const isGood = h.option_key && /^[A-D]$/.test(h.option_key) && h.hint_text && h.hint_text.length > 5;
+        if (isGood) {
+          goodHints++;
+        } else {
+          badHints++;
+          if (badSamples.length < 10) {
+            badSamples.push({
+              question_id: h.question_id,
+              option_key: h.option_key,
+              hint_text: (h.hint_text || '').substring(0, 80),
+              misconception: h.misconception
+            });
+          }
+        }
+      }
+    }
+
+    if (questions.length < PAGE) break;
+    from += PAGE;
+  }
+
+  return { totalQuestions, withHints, withoutHints, goodHints, badHints, badSamples, allHintRows };
+}
+
+/** Normalize text for fuzzy matching — lowercase, collapse whitespace, strip punctuation */
+function _normalizeText(text) {
+  return (text || '').toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+// ============================================================================
+// AUTO-FIX: Backfill missing sequence items from question_text
+// ============================================================================
+
+/**
+ * For sequence questions flagged SEQ_NO_ITEMS, parse numbered items from
+ * question_text and derive correct_order from the correct option.
+ *
+ * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
+ * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
+ */
+async function fixMissingSequenceItems(questions) {
+  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  for (const q of questions) {
+    if (q.question_type !== 'logical-sequence') { results.skipped++; continue; }
+
+    const payload = q.payload || {};
+    const existingItems = payload.items || payload.Items || [];
+
+    // Check if items already exist as proper {id, text} objects
+    if (Array.isArray(existingItems) && existingItems.length > 0) {
+      const allObjects = existingItems.every(it => typeof it === 'object' && it !== null && (it.text || '').trim());
+      if (allObjects) {
+        results.skipped++;
+        continue;
+      }
+    }
+
+    let items = [];
+
+    // If items exist as plain strings, convert them to {id, text} objects
+    if (Array.isArray(existingItems) && existingItems.length > 0 && typeof existingItems[0] === 'string') {
+      items = existingItems.map((s, idx) => ({ id: String(idx + 1), text: String(s).trim() }));
+    }
+
+    // Otherwise parse from question_text
+    if (items.length < 2) {
+      const text = q.question_text || '';
+      items = _parseSequenceItems(text);
+    }
+
+    if (items.length < 2) {
+      console.log(`[fixSeqItems] Cannot parse items for ${q.id}: existing=${existingItems.length}, text="${(q.question_text||'').substring(0, 200)}"`);
+      results.skipped++;
+      results.details.push({ id: q.id, status: 'skipped', reason: `Could not get items` });
+      continue;
+    }
+
+    // Derive correct_order from the correct option
+    const opts = q.med_question_options || q.options || [];
+    const correctOpt = opts.find(o => o.is_correct === true) ||
+                       opts.find(o => (o.option_key || o.key) === q.correct_answer);
+    let correctOrder = [];
+    if (correctOpt) {
+      correctOrder = _parseSequenceOrder(correctOpt.option_text || correctOpt.text || '');
+    }
+
+    const newPayload = { ...payload, items };
+    if (correctOrder.length >= 2) newPayload.correct_order = correctOrder;
+
+    const { error } = await SUPABASE
+      .from('med_questions')
+      .update({ payload: newPayload, corrected_at: new Date().toISOString() })
+      .eq('id', q.id);
+
+    if (error) {
+      console.error(`[fixSeqItems] Failed to update ${q.id}:`, error);
+      results.errors++;
+      results.details.push({ id: q.id, status: 'error', error: error.message });
+    } else {
+      results.fixed++;
+      results.details.push({ id: q.id, status: 'fixed', itemCount: items.length, hasOrder: correctOrder.length >= 2 });
     }
   }
 
@@ -2553,6 +3272,10 @@ window.Qbank = {
   fixCorrectAnswerKeys,
   fixEmptyOptions,
   fixMTFPayload,
+  fixMTFDuplicateKeys,
+  fixMissingHints,
+  auditHints,
+  fixMissingSequenceItems,
 
   // State access
   get config() { return CONFIG; },
