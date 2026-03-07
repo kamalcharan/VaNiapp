@@ -2530,6 +2530,85 @@ async function fixMTFPayload(questions) {
 }
 
 // ============================================================================
+// AUTO-FIX: MTF duplicate column keys — prefix Column B IDs with "b-"
+// ============================================================================
+
+/**
+ * Fix MTF questions where columnA and columnB have overlapping IDs.
+ * Prefixes all Column B IDs with "b-" and updates correctMapping accordingly.
+ *
+ * @param {Array} questions - Full question rows (from fetchQuestionsForScan)
+ * @returns {{ fixed: number, skipped: number, errors: number, details: Array }}
+ */
+async function fixMTFDuplicateKeys(questions) {
+  if (!SUPABASE) return { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
+
+  for (const q of questions) {
+    if (q.question_type !== 'match-the-following') { results.skipped++; continue; }
+
+    const payload = q.payload || {};
+    const colA = payload.column_a || payload.columnA || [];
+    const colB = payload.column_b || payload.columnB || [];
+
+    if (!Array.isArray(colA) || !Array.isArray(colB) || colA.length === 0 || colB.length === 0) {
+      results.skipped++;
+      continue;
+    }
+
+    // Check for overlapping IDs
+    const aIds = new Set(colA.map(c => c.id));
+    const hasOverlap = colB.some(c => aIds.has(c.id));
+    if (!hasOverlap) {
+      results.skipped++;
+      continue;
+    }
+
+    // Prefix all Column B IDs with "b-"
+    const newColB = colB.map(item => ({
+      ...item,
+      id: item.id.startsWith('b-') ? item.id : 'b-' + item.id
+    }));
+
+    // Update correctMapping values
+    const oldMapping = payload.correct_mapping || payload.correctMapping || {};
+    const newMapping = {};
+    for (const [aId, bId] of Object.entries(oldMapping)) {
+      newMapping[aId] = String(bId).startsWith('b-') ? bId : 'b-' + bId;
+    }
+
+    const newPayload = {
+      ...payload,
+      columnA: colA,
+      columnB: newColB,
+      correctMapping: newMapping
+    };
+
+    const { error } = await SUPABASE
+      .from('med_questions')
+      .update({ payload: newPayload, corrected_at: new Date().toISOString() })
+      .eq('id', q.id);
+
+    if (error) {
+      console.error(`[fixMTFDuplicateKeys] Failed to update ${q.id}:`, error);
+      results.errors++;
+      results.details.push({ id: q.id, status: 'error', error: error.message });
+    } else {
+      results.fixed++;
+      results.details.push({
+        id: q.id,
+        status: 'fixed',
+        oldBIds: colB.map(c => c.id),
+        newBIds: newColB.map(c => c.id)
+      });
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
 // EXPORT FOR USE IN HTML
 // ============================================================================
 window.Qbank = {
@@ -2615,6 +2694,7 @@ window.Qbank = {
   fixCorrectAnswerKeys,
   fixEmptyOptions,
   fixMTFPayload,
+  fixMTFDuplicateKeys,
 
   // State access
   get config() { return CONFIG; },
