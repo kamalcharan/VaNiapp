@@ -389,14 +389,15 @@ function _parseMTFColumns(text) {
   }
 
   // ── Strategy 2: column header split (original logic) ──
-  // Use LAST occurrence of "Column II/B/2" to avoid matching intro text
-  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–)]/i);
+  // Split on "Column II" with optional parenthetical label and/or delimiter
+  // Handles: "Column II:", "Column II (Function)", "Column II (Label):", "→ Column II"
+  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*(?:\([^)]*\)\s*[:\-–→]?|[:\-–→)])/i);
   if (colSplit.length < 2) return { columnA: [], columnB: [] };
 
   // Use LAST part as Column II body, everything before as Column I area
   const col2Body = colSplit[colSplit.length - 1];
   const col1Raw = colSplit.slice(0, -1).join(' ');
-  const col1Body = col1Raw.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–)]/i, '');
+  const col1Body = col1Raw.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\)\s*[:\-–→]?|[:\-–→)])/i, '');
 
   function extractItems(body) {
     let items = [];
@@ -434,7 +435,8 @@ function _parseMTFPipeTable(text) {
 
   // Strip up to LAST "Column II/B/2" header using GREEDY .* (not .*?)
   // This skips "Column II" in the intro sentence and finds the table header
-  let body = text.replace(/^.*column\s*[-–]?\s*(?:ii|2|b)\s*(?:\([^)]*\))?[:\-–|]?\s*/is, '');
+  // Also handles arrow → separator and parenthetical labels like (Function)
+  let body = text.replace(/^.*column\s*[-–]?\s*(?:ii|2|b)\s*(?:\([^)]*\))?[:\-–→|]?\s*/is, '');
   if (body === text || body.length < 5) return { columnA: [], columnB: [] };
 
   const columnA = [];
