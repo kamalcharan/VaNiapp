@@ -2854,13 +2854,24 @@ async function fixMissingHints(questions, sourceData) {
       .in('question_id', batch);
     if (data) data.forEach(row => existingHintIds.add(row.question_id));
   }
+  console.log(`[fixMissingHints] ${existingHintIds.size}/${qIds.length} already have hints in DB`);
 
   // Collect all hint records to insert in one batch
   const allHintRecords = [];
 
+  let skipExisting = 0, skipNoMatch = 0, skipNoText = 0;
+  // Log first question's payload for debugging
+  if (questions.length > 0) {
+    const p = questions[0].payload || {};
+    console.log('[fixMissingHints] Sample payload keys:', Object.keys(p),
+      'question_id:', p.question_id || 'MISSING',
+      'elimination_hints:', Array.isArray(p.elimination_hints) ? p.elimination_hints.length : 'MISSING');
+  }
+
   for (const q of questions) {
     // Skip if hints already exist in DB
     if (existingHintIds.has(q.id)) {
+      skipExisting++;
       results.skipped++;
       continue;
     }
@@ -2890,6 +2901,7 @@ async function fixMissingHints(questions, sourceData) {
     }
 
     if (!rawHints || !Array.isArray(rawHints) || rawHints.length === 0) {
+      skipNoMatch++;
       results.skipped++;
       results.details.push({
         id: q.id, status: 'skipped',
@@ -2916,6 +2928,7 @@ async function fixMissingHints(questions, sourceData) {
     }).filter(h => h && h.option_key && h.hint_text);
 
     if (hintRecords.length === 0) {
+      skipNoText++;
       results.skipped++;
       results.details.push({ id: q.id, status: 'skipped', reason: 'Hints have no text' });
       continue;
@@ -2926,13 +2939,15 @@ async function fixMissingHints(questions, sourceData) {
     results.fixed++;
   }
 
+  console.log(`[fixMissingHints] Summary: ${skipExisting} already in DB, ${skipNoMatch} no match, ${skipNoText} no text, ${results.fixed} to insert (${allHintRecords.length} hint records)`);
+
   // Batch upsert all hints in chunks of 500
   if (allHintRecords.length > 0) {
     for (let i = 0; i < allHintRecords.length; i += 500) {
       const batch = allHintRecords.slice(i, i + 500);
       const { error } = await SUPABASE
         .from('med_elimination_hints')
-        .insert(batch);
+        .upsert(batch, { onConflict: 'question_id,option_key', ignoreDuplicates: true });
 
       if (error) {
         console.error(`[fixMissingHints] Batch insert failed (${i}-${i + batch.length}):`, error);
