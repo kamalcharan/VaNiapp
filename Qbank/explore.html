@@ -1424,44 +1424,36 @@
         return;
       }
 
-      // Check how many questions have hints in payload vs missing
+      // Always offer source JSON file upload — payload hints alone may not cover all questions
       const withPayloadHints = fixableQuestions.filter(q =>
         Array.isArray(q.payload?.elimination_hints) && q.payload.elimination_hints.length > 0
-      );
-      const withoutPayloadHints = fixableQuestions.filter(q =>
-        !Array.isArray(q.payload?.elimination_hints) || q.payload.elimination_hints.length === 0
-      );
+      ).length;
+      const total = fixableQuestions.length;
 
       let sourceData = null;
 
-      if (withoutPayloadHints.length > 0) {
-        // Some or all questions lack payload hints — offer source JSON file upload
-        const msg = withPayloadHints.length > 0
-          ? `${withPayloadHints.length} questions have hints in payload and will be fixed automatically.\n\n` +
-            `${withoutPayloadHints.length} questions have NO hints in payload or database.\n` +
-            `To fix these, select the source JSON files (the *-copied.json files from Qbank/CUET/).\n\n` +
-            `Click OK to choose files, or Cancel to fix only the ${withPayloadHints.length} with payload hints.`
-          : `${withoutPayloadHints.length} questions have no hints in the database or payload.\n\n` +
-            `To fix this, select the source JSON files (the *-copied.json files from Qbank/CUET/) ` +
-            `that contain the original elimination_hints.\n\n` +
-            `You can select multiple files. Click OK to choose files, or Cancel to skip.`;
+      const msg = withPayloadHints > 0
+        ? `${withPayloadHints}/${total} questions have hints in payload.\n` +
+          `${total - withPayloadHints} still need source files.\n\n` +
+          `Select source JSON files (*-copied.json) to fix all, or Cancel to use payload hints only.`
+        : `${total} questions need hints.\n\n` +
+          `Select the source JSON files (*-copied.json from Qbank/CUET/) that contain elimination_hints.\n\n` +
+          `Click OK to choose files.`;
 
-        const useFiles = confirm(msg);
+      const useFiles = confirm(msg);
 
-        if (useFiles) {
-          sourceData = await _loadSourceJsonFiles();
-          if (!sourceData || sourceData.length === 0) {
-            if (withPayloadHints.length === 0) {
-              Qbank.showToast('No source data loaded — cancelled', 'error');
-              return;
-            }
-            // Still proceed with payload-only fixes
-            Qbank.showToast('No source files loaded — fixing only questions with payload hints', 'warn');
+      if (useFiles) {
+        sourceData = await _loadSourceJsonFiles();
+        if (!sourceData || sourceData.length === 0) {
+          if (withPayloadHints === 0) {
+            Qbank.showToast('No source data loaded — cancelled', 'error');
+            return;
           }
-        } else if (withPayloadHints.length === 0) {
-          Qbank.showToast('Fix cancelled — source JSON files needed', 'error');
-          return;
+          Qbank.showToast('No files loaded — using payload hints only', 'warn');
         }
+      } else if (withPayloadHints === 0) {
+        Qbank.showToast('Fix cancelled — source JSON files needed', 'error');
+        return;
       }
 
       const groupEl = document.querySelector(`.issue-group[data-group-key="${groupKey}"]`);

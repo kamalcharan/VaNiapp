@@ -2840,14 +2840,24 @@ async function fixMissingHints(questions, sourceData) {
     }
   }
 
-  for (const q of questions) {
-    // Check if hints already exist in the table (avoid duplicates)
-    const { data: existing } = await SUPABASE
+  // Batch check: fetch all existing hints for these question IDs in one query
+  const qIds = questions.map(q => q.id);
+  const existingHintIds = new Set();
+  for (let i = 0; i < qIds.length; i += 200) {
+    const batch = qIds.slice(i, i + 200);
+    const { data } = await SUPABASE
       .from('med_elimination_hints')
-      .select('option_key')
-      .eq('question_id', q.id);
+      .select('question_id')
+      .in('question_id', batch);
+    if (data) data.forEach(row => existingHintIds.add(row.question_id));
+  }
 
-    if (existing && existing.length > 0) {
+  // Collect all hint records to insert in one batch
+  const allHintRecords = [];
+
+  for (const q of questions) {
+    // Skip if hints already exist in DB
+    if (existingHintIds.has(q.id)) {
       results.skipped++;
       continue;
     }
@@ -2868,12 +2878,9 @@ async function fixMissingHints(questions, sourceData) {
       continue;
     }
 
-    // Insert hints — handle both formats:
-    //   1. Array of objects: [{option_key, hint, misconception}]
-    //   2. Array of strings: ["A incorrectly assumes...", "B ignores..."]
+    // Parse hints — handle both formats
     const hintRecords = rawHints.map(h => {
       if (typeof h === 'string') {
-        // Parse option key from start of string: "A incorrectly..." → key="A", text="incorrectly..."
         const match = h.match(/^([A-D])\s+(.+)$/s);
         if (match) {
           return { question_id: q.id, option_key: match[1], hint_text: match[2].trim(), misconception: '' };
@@ -2894,17 +2901,32 @@ async function fixMissingHints(questions, sourceData) {
       continue;
     }
 
-    const { error } = await SUPABASE
-      .from('med_elimination_hints')
-      .upsert(hintRecords, { onConflict: 'question_id,option_key' });
+    allHintRecords.push(...hintRecords);
+    results.details.push({ id: q.id, status: 'fixed', hintsInserted: hintRecords.length });
+    results.fixed++;
+  }
 
-    if (error) {
-      console.error(`[fixMissingHints] Failed to insert hints for ${q.id}:`, error);
-      results.errors++;
-      results.details.push({ id: q.id, status: 'error', error: error.message });
-    } else {
-      results.fixed++;
-      results.details.push({ id: q.id, status: 'fixed', hintsInserted: hintRecords.length });
+  // Batch upsert all hints in chunks of 500
+  if (allHintRecords.length > 0) {
+    for (let i = 0; i < allHintRecords.length; i += 500) {
+      const batch = allHintRecords.slice(i, i + 500);
+      const { error } = await SUPABASE
+        .from('med_elimination_hints')
+        .upsert(batch, { onConflict: 'question_id,option_key' });
+
+      if (error) {
+        console.error(`[fixMissingHints] Batch insert failed (${i}-${i + batch.length}):`, error);
+        // Mark all questions in this batch as errors
+        const failedIds = new Set(batch.map(h => h.question_id));
+        for (const d of results.details) {
+          if (failedIds.has(d.id) && d.status === 'fixed') {
+            d.status = 'error';
+            d.error = error.message;
+            results.fixed--;
+            results.errors++;
+          }
+        }
+      }
     }
   }
 
