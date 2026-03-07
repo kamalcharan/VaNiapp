@@ -191,25 +191,23 @@ function dbToV2(row: DbQuestion): QuestionV2 {
     (a, b) => a.sort_order - b.sort_order,
   );
 
-  const options: Option[] = dbOptions.map((o, idx) => ({
-    id: o.option_key,
-    text: o.option_text,
-    textTe: o.option_text_te || '',
-    textHi: o.option_text_hi || '',
-    _sortOrder: idx,
-  }));
+  const options: Option[] = dbOptions.map((o, idx) => {
+    const id = o.option_key;
+    return {
+      id,
+      text: o.option_text,
+      textTe: o.option_text_te || '',
+      textHi: o.option_text_hi || '',
+    };
+  });
 
   // Deduplicate option IDs — if two options share the same key, append index
   const seenOptionIds = new Set<string>();
-  for (const opt of options) {
-    if (seenOptionIds.has(opt.id)) {
-      opt.id = `${opt.id}_${(opt as any)._sortOrder}`;
+  for (let i = 0; i < options.length; i++) {
+    if (seenOptionIds.has(options[i].id)) {
+      options[i] = { ...options[i], id: `${options[i].id}_${i}` };
     }
-    seenOptionIds.add(opt.id);
-  }
-  // Clean up temp field
-  for (const opt of options) {
-    delete (opt as any)._sortOrder;
+    seenOptionIds.add(options[i].id);
   }
 
   const correctOption = dbOptions.find((o) => o.is_correct);

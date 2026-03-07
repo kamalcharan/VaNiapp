@@ -2039,15 +2039,17 @@ function runQualityValidators(questions, languages, chapterId) {
           }));
         }
       }
-      // Also check payload.options for duplicate IDs
+      // Also check payload.options for duplicate IDs/keys
       const mtfOpts = payload.options || [];
       if (Array.isArray(mtfOpts) && mtfOpts.length > 0) {
-        const optIds = mtfOpts.map(o => o.id);
-        const dupeOptIds = optIds.filter((id, i) => optIds.indexOf(id) !== i);
-        if (dupeOptIds.length > 0) {
-          issues.push(makeIssue(q, chapterId, 'MTF_DUPLICATE_KEYS', {
-            duplicateOptionIds: [...new Set(dupeOptIds)]
-          }));
+        const optIds = mtfOpts.map(o => o.id || o.key).filter(Boolean);
+        if (optIds.length > 0) {
+          const dupeOptIds = optIds.filter((id, i) => optIds.indexOf(id) !== i);
+          if (dupeOptIds.length > 0) {
+            issues.push(makeIssue(q, chapterId, 'MTF_DUPLICATE_KEYS', {
+              duplicateOptionIds: [...new Set(dupeOptIds)]
+            }));
+          }
         }
       }
     }
