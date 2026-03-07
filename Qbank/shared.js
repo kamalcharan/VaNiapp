@@ -2829,7 +2829,7 @@ async function fixMissingHints(questions, sourceData) {
 
   const results = { fixed: 0, skipped: 0, errors: 0, details: [] };
 
-  // Build lookups from source data — by question_id AND by normalised text
+  // Build lookups from source data — by source id AND by normalised text
   const sourceById = new Map();
   const sourceByText = new Map();
   if (Array.isArray(sourceData)) {
@@ -2840,131 +2840,99 @@ async function fixMissingHints(questions, sourceData) {
         if (key) sourceByText.set(key, sq.elimination_hints);
       }
     }
-    console.log(`[fixMissingHints] Source loaded: ${sourceById.size} by ID, ${sourceByText.size} by text`);
   }
 
-  // Batch check: fetch all existing hints for these question IDs in one query
-  const qIds = questions.map(q => q.id);
-  const existingHintIds = new Set();
-  for (let i = 0; i < qIds.length; i += 200) {
-    const batch = qIds.slice(i, i + 200);
-    const { data } = await SUPABASE
-      .from('med_elimination_hints')
-      .select('question_id')
-      .in('question_id', batch);
-    if (data) data.forEach(row => existingHintIds.add(row.question_id));
-  }
-  console.log(`[fixMissingHints] ${existingHintIds.size}/${qIds.length} already have hints in DB`);
-
-  // Collect all hint records to insert in one batch
+  // Collect all hint records to insert
   const allHintRecords = [];
-
-  let skipExisting = 0, skipNoMatch = 0, skipNoText = 0;
-  // Log first question's payload for debugging
-  if (questions.length > 0) {
-    const p = questions[0].payload || {};
-    console.log('[fixMissingHints] Sample payload keys:', Object.keys(p),
-      'question_id:', p.question_id || 'MISSING',
-      'elimination_hints:', Array.isArray(p.elimination_hints) ? p.elimination_hints.length : 'MISSING');
-  }
+  const matchedQIds = [];
 
   for (const q of questions) {
-    // Skip if hints already exist in DB
-    if (existingHintIds.has(q.id)) {
-      skipExisting++;
-      results.skipped++;
-      continue;
-    }
-
-    // Try multiple sources to find hints
     const payload = q.payload || {};
     let rawHints = null;
-    let matchSource = '';
 
-    // Source 1: payload.elimination_hints (stored during bulk insert)
+    // Source 1: payload.elimination_hints
     if (Array.isArray(payload.elimination_hints) && payload.elimination_hints.length > 0) {
       rawHints = payload.elimination_hints;
-      matchSource = 'payload';
     }
 
-    // Source 2: match source JSON by payload.question_id → source.id
-    if (!rawHints && sourceById.size > 0 && payload.question_id) {
+    // Source 2: match by payload.question_id → source id
+    if (!rawHints && payload.question_id) {
       rawHints = sourceById.get(payload.question_id) || null;
-      if (rawHints) matchSource = 'source-id:' + payload.question_id;
     }
 
-    // Source 3: match source JSON by normalised question text
-    if (!rawHints && sourceByText.size > 0) {
+    // Source 3: match by normalised question text
+    if (!rawHints) {
       const key = _normalizeText(q.question_text || '');
-      rawHints = sourceByText.get(key) || null;
-      if (rawHints) matchSource = 'source-text';
+      if (key) rawHints = sourceByText.get(key) || null;
     }
 
     if (!rawHints || !Array.isArray(rawHints) || rawHints.length === 0) {
-      skipNoMatch++;
       results.skipped++;
-      results.details.push({
-        id: q.id, status: 'skipped',
-        reason: `No hints found (payload_qid=${payload.question_id || 'none'}, text=${(q.question_text||'').substring(0,50)}...)`
-      });
       continue;
     }
 
-    // Parse hints — handle both formats
+    // Parse hints — handle all known field name variants
     const hintRecords = rawHints.map(h => {
       if (typeof h === 'string') {
         const match = h.match(/^([A-D])\s+(.+)$/s);
-        if (match) {
-          return { question_id: q.id, option_key: match[1], hint_text: match[2].trim(), misconception: '' };
-        }
+        if (match) return { question_id: q.id, option_key: match[1], hint_text: match[2].trim(), misconception: '' };
         return null;
       }
+      const hintText = h.hint || h.hint_text || h.text || h.description || '';
+      const optKey = h.option_key || h.key || h.optionKey || '';
       return {
         question_id: q.id,
-        option_key: h.option_key,
-        hint_text: h.hint || h.hint_text || '',
+        option_key: optKey,
+        hint_text: hintText,
         misconception: h.misconception || ''
       };
     }).filter(h => h && h.option_key && h.hint_text);
 
     if (hintRecords.length === 0) {
-      skipNoText++;
+      // Log the raw structure so we can see what fields are actually present
+      if (rawHints.length > 0) {
+        console.log('[fixMissingHints] Hint has no text. Raw hint keys:', Object.keys(rawHints[0]), 'values:', JSON.stringify(rawHints[0]));
+      }
       results.skipped++;
-      results.details.push({ id: q.id, status: 'skipped', reason: 'Hints have no text' });
       continue;
     }
 
     allHintRecords.push(...hintRecords);
-    results.details.push({ id: q.id, status: 'fixed', hintsInserted: hintRecords.length, source: matchSource });
-    results.fixed++;
+    matchedQIds.push(q.id);
   }
 
-  console.log(`[fixMissingHints] Summary: ${skipExisting} already in DB, ${skipNoMatch} no match, ${skipNoText} no text, ${results.fixed} to insert (${allHintRecords.length} hint records)`);
+  if (allHintRecords.length === 0) {
+    return results;
+  }
 
-  // Batch upsert all hints in chunks of 500
-  if (allHintRecords.length > 0) {
-    for (let i = 0; i < allHintRecords.length; i += 500) {
-      const batch = allHintRecords.slice(i, i + 500);
-      const { error } = await SUPABASE
-        .from('med_elimination_hints')
-        .upsert(batch, { onConflict: 'question_id,option_key', ignoreDuplicates: true });
+  // Step 1: DELETE any existing partial/bad hints for matched questions
+  for (let i = 0; i < matchedQIds.length; i += 200) {
+    const batch = matchedQIds.slice(i, i + 200);
+    await SUPABASE
+      .from('med_elimination_hints')
+      .delete()
+      .in('question_id', batch);
+  }
 
-      if (error) {
-        console.error(`[fixMissingHints] Batch insert failed (${i}-${i + batch.length}):`, error);
-        console.error('[fixMissingHints] Error details:', error.message, error.code, error.details, error.hint);
-        console.log('[fixMissingHints] Sample record:', JSON.stringify(batch[0]));
-        // Mark all questions in this batch as errors
-        const failedIds = new Set(batch.map(h => h.question_id));
-        for (const d of results.details) {
-          if (failedIds.has(d.id) && d.status === 'fixed') {
-            d.status = 'error';
-            d.error = error.message;
-            results.fixed--;
-            results.errors++;
-          }
-        }
-      }
+  // Step 2: INSERT fresh hints
+  for (let i = 0; i < allHintRecords.length; i += 500) {
+    const batch = allHintRecords.slice(i, i + 500);
+    const { error } = await SUPABASE
+      .from('med_elimination_hints')
+      .insert(batch);
+
+    if (error) {
+      console.error('[fixMissingHints] Insert failed:', error.message);
+      const failedIds = new Set(batch.map(h => h.question_id));
+      failedIds.forEach(() => results.errors++);
     }
+  }
+
+  // Count successes (total matched minus errors)
+  results.fixed = matchedQIds.length - results.errors;
+
+  for (const qId of matchedQIds) {
+    results.details.push({ id: qId, status: 'fixed' });
   }
 
   return results;
