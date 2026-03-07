@@ -2499,17 +2499,22 @@ async function fixMTFPayload(questions) {
       mapping = _parseOptionMapping(correctOpt.option_text || correctOpt.text || '');
     }
 
-    // Deduplicate column IDs if they overlap (e.g., both use A, B, C, D)
-    const aIds = new Set(parsed.columnA.map(c => c.id));
-    if (parsed.columnB.some(c => aIds.has(c.id))) {
-      parsed.columnB = parsed.columnB.map(item => ({
-        ...item,
-        id: 'b-' + (item.id || item.text || '')
-      }));
-      // Also update mapping values to match prefixed IDs
+    // Ensure all column IDs are unique using indexed scheme (a-0, b-0, etc.)
+    // This handles: intra-column dupes, cross-column overlap, and missing IDs
+    const allParsedIds = [...parsed.columnA.map(c => c.id), ...parsed.columnB.map(c => c.id)];
+    const needsDedup = allParsedIds.some((id, i) => allParsedIds.indexOf(id) !== i)
+                    || allParsedIds.some(id => id === undefined || id === null || id === '');
+    if (needsDedup) {
+      const aIdMap = {};
+      const bIdMap = {};
+      parsed.columnA.forEach((item, i) => { aIdMap[item.id] = 'a-' + i; });
+      parsed.columnB.forEach((item, i) => { bIdMap[item.id] = 'b-' + i; });
+      parsed.columnA = parsed.columnA.map((item, i) => ({ ...item, id: 'a-' + i }));
+      parsed.columnB = parsed.columnB.map((item, i) => ({ ...item, id: 'b-' + i }));
+      // Update mapping to use new IDs
       const newMapping = {};
       for (const [k, v] of Object.entries(mapping)) {
-        newMapping[k] = String(v).startsWith('b-') ? v : 'b-' + v;
+        newMapping[aIdMap[k] || k] = bIdMap[v] || v;
       }
       mapping = newMapping;
     }
@@ -2585,26 +2590,44 @@ async function fixMTFDuplicateKeys(questions) {
     delete payload.column_b;
     delete payload.correct_mapping;
 
-    // ── Case 1: Column A/B ID overlap ──
-    const colA = payload.columnA || [];
-    const colB = payload.columnB || [];
+    // ── Case 1: Ensure ALL column IDs are unique (within + across columns) ──
+    // The validator flags duplicates in [...colA ids, ...colB ids] combined,
+    // so we must fix: (a) missing/undefined IDs, (b) intra-column dupes,
+    // (c) cross-column overlap.
+    let colA = Array.isArray(payload.columnA) ? payload.columnA : [];
+    let colB = Array.isArray(payload.columnB) ? payload.columnB : [];
 
-    if (Array.isArray(colA) && Array.isArray(colB) && colA.length > 0 && colB.length > 0) {
-      const aIds = new Set(colA.map(c => c.id));
-      const hasOverlap = colB.some(c => aIds.has(c.id));
-      if (hasOverlap) {
-        payload.columnB = colB.map(item => ({
-          ...item,
-          id: String(item.id || '').startsWith('b-') ? item.id : 'b-' + (item.id || item.text || '')
-        }));
+    if (colA.length > 0 || colB.length > 0) {
+      // Collect all IDs to check for ANY duplicates (same logic as validator)
+      const allIdsBefore = [...colA.map(c => c.id), ...colB.map(c => c.id)];
+      const hasDupes = allIdsBefore.some((id, i) => allIdsBefore.indexOf(id) !== i)
+                    || allIdsBefore.some(id => id === undefined || id === null || id === '');
+
+      if (hasDupes) {
+        // Assign guaranteed-unique IDs: Column A gets "a-0", "a-1", ...
+        // Column B gets "b-0", "b-1", ... — no possibility of overlap
+        payload.columnA = colA.map((item, i) => ({ ...item, id: 'a-' + i }));
+        payload.columnB = colB.map((item, i) => ({ ...item, id: 'b-' + i }));
+
+        // Rebuild correctMapping: old A id → new A id, old B id → new B id
         const oldMapping = payload.correctMapping || {};
-        const newMapping = {};
-        for (const [aId, bId] of Object.entries(oldMapping)) {
-          newMapping[aId] = String(bId).startsWith('b-') ? bId : 'b-' + bId;
+        if (Object.keys(oldMapping).length > 0) {
+          const aIdMap = {};  // old colA id → new colA id
+          const bIdMap = {};  // old colB id → new colB id
+          colA.forEach((item, i) => { aIdMap[item.id] = 'a-' + i; });
+          colB.forEach((item, i) => { bIdMap[item.id] = 'b-' + i; });
+
+          const newMapping = {};
+          for (const [oldAId, oldBId] of Object.entries(oldMapping)) {
+            const newAId = aIdMap[oldAId] || oldAId;
+            const newBId = bIdMap[oldBId] || oldBId;
+            newMapping[newAId] = newBId;
+          }
+          payload.correctMapping = newMapping;
         }
-        payload.correctMapping = newMapping;
+
         payloadDirty = true;
-        fixes.push('column-overlap');
+        fixes.push('column-ids-deduped');
       }
     }
 
@@ -2620,65 +2643,63 @@ async function fixMTFDuplicateKeys(questions) {
           .eq('question_id', q.id)
           .order('sort_order');
 
+        // NOTE: Do NOT use `continue` on error here — Case 1 may have set
+        // payloadDirty, and we must still reach the payload write at the end.
         if (fetchErr || !dbOpts || dbOpts.length === 0) {
           console.error(`[fixMTFDuplicateKeys] Failed to fetch options for ${q.id}:`, fetchErr);
-          results.errors++;
-          results.details.push({ id: q.id, status: 'error', fix: 'duplicate-option-keys', error: fetchErr?.message || 'no options' });
-          continue;
-        }
+          fixes.push('duplicate-option-keys:error:' + (fetchErr?.message || 'no options'));
+        } else {
+          const correctOpt = dbOpts.find(o => o.is_correct === true);
+          const correctIdx = correctOpt ? dbOpts.indexOf(correctOpt) : -1;
 
-        const correctOpt = dbOpts.find(o => o.is_correct === true);
-        const correctIdx = correctOpt ? dbOpts.indexOf(correctOpt) : -1;
-
-        let optFixFailed = false;
-        for (let i = 0; i < dbOpts.length; i++) {
-          const newKey = OPTION_KEYS[i] || `opt_${i}`;
-          const { error: upErr } = await SUPABASE
-            .from('med_question_options')
-            .update({ option_key: newKey })
-            .eq('id', dbOpts[i].id);
-          if (upErr) {
-            console.error(`[fixMTFDuplicateKeys] Failed to update option ${dbOpts[i].id}:`, upErr);
-            optFixFailed = true;
-          }
-        }
-
-        if (optFixFailed) {
-          results.errors++;
-          results.details.push({ id: q.id, status: 'error', fix: 'duplicate-option-keys', error: 'partial update failure' });
-          continue;
-        }
-
-        if (correctIdx >= 0) {
-          const newCorrectKey = OPTION_KEYS[correctIdx] || `opt_${correctIdx}`;
-          await SUPABASE
-            .from('med_questions')
-            .update({ correct_answer: newCorrectKey, corrected_at: new Date().toISOString() })
-            .eq('id', q.id);
-        }
-
-        const { data: dbHints } = await SUPABASE
-          .from('med_elimination_hints')
-          .select('id, option_key')
-          .eq('question_id', q.id)
-          .order('option_key');
-        if (dbHints && dbHints.length > 0) {
-          const keyMap = {};
+          let optFixFailed = false;
           for (let i = 0; i < dbOpts.length; i++) {
-            keyMap[dbOpts[i].option_key] = OPTION_KEYS[i] || `opt_${i}`;
-          }
-          for (const hint of dbHints) {
-            const newKey = keyMap[hint.option_key];
-            if (newKey && newKey !== hint.option_key) {
-              await SUPABASE
-                .from('med_elimination_hints')
-                .update({ option_key: newKey })
-                .eq('id', hint.id);
+            const newKey = OPTION_KEYS[i] || `opt_${i}`;
+            const { error: upErr } = await SUPABASE
+              .from('med_question_options')
+              .update({ option_key: newKey })
+              .eq('id', dbOpts[i].id);
+            if (upErr) {
+              console.error(`[fixMTFDuplicateKeys] Failed to update option ${dbOpts[i].id}:`, upErr);
+              optFixFailed = true;
             }
           }
-        }
 
-        fixes.push('duplicate-option-keys');
+          if (optFixFailed) {
+            fixes.push('duplicate-option-keys:partial-error');
+          } else {
+            if (correctIdx >= 0) {
+              const newCorrectKey = OPTION_KEYS[correctIdx] || `opt_${correctIdx}`;
+              await SUPABASE
+                .from('med_questions')
+                .update({ correct_answer: newCorrectKey, corrected_at: new Date().toISOString() })
+                .eq('id', q.id);
+            }
+
+            const { data: dbHints } = await SUPABASE
+              .from('med_elimination_hints')
+              .select('id, option_key')
+              .eq('question_id', q.id)
+              .order('option_key');
+            if (dbHints && dbHints.length > 0) {
+              const keyMap = {};
+              for (let i = 0; i < dbOpts.length; i++) {
+                keyMap[dbOpts[i].option_key] = OPTION_KEYS[i] || `opt_${i}`;
+              }
+              for (const hint of dbHints) {
+                const newKey = keyMap[hint.option_key];
+                if (newKey && newKey !== hint.option_key) {
+                  await SUPABASE
+                    .from('med_elimination_hints')
+                    .update({ option_key: newKey })
+                    .eq('id', hint.id);
+                }
+              }
+            }
+
+            fixes.push('duplicate-option-keys');
+          }
+        }
       }
     }
 
