@@ -1981,9 +1981,10 @@ function runQualityValidators(questions, languages, chapterId) {
       issues.push(makeIssue(q, chapterId, 'QUESTION_TOO_SHORT', { length: qText.length }));
     }
 
-    if (opts.length === 0 && q.question_type !== 'true-false') {
+    const noOptionTypes = ['true-false', 'fill-in-blanks'];
+    if (opts.length === 0 && !noOptionTypes.includes(q.question_type)) {
       issues.push(makeIssue(q, chapterId, 'EMPTY_OPTIONS'));
-    } else if (opts.length > 0 && opts.length < 4 && q.question_type !== 'true-false') {
+    } else if (opts.length > 0 && opts.length < 4 && !noOptionTypes.includes(q.question_type)) {
       issues.push(makeIssue(q, chapterId, 'FEW_OPTIONS', { optionCount: opts.length }));
     }
 
