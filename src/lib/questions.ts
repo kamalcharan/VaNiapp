@@ -471,14 +471,17 @@ function parseMatchColumns(text: string): {
 
   // Split into Column I / Column II sections
   // Match headers like "Column I:", "Column-I:", "Column A:", "Column 1:", "List I:", "List-I"
-  const colSplit = text.split(/column\s*[-–]?\s*(?:ii|II|2|b|B)\s*[:\-–]/i);
+  // Also handles parenthesized descriptions: "Column II (Definitions):"
+  const colSplitRegex = /(?:column|list)\s*[-–]?\s*(?:ii|II|2|b|B)\s*(?:\([^)]*\))?\s*[:\-–]/i;
+  const colSplit = text.split(colSplitRegex);
   if (colSplit.length < 2) return { columnA, columnB };
 
-  const col1Text = colSplit[0];
-  const col2Text = colSplit[1];
+  // Use the LAST split if there are multiple "Column II" occurrences
+  const col1Text = colSplit.length > 2 ? colSplit.slice(0, -1).join('') : colSplit[0];
+  const col2Text = colSplit[colSplit.length - 1];
 
-  // Remove the "Column I:" header from col1Text
-  const col1Body = col1Text.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*[:\-–]/i, '');
+  // Remove the "Column I:" / "List I:" header from col1Text
+  const col1Body = col1Text.replace(/.*(?:column|list)\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\))?\s*[:\-–]/is, '');
 
   // Extract labeled items in multiple formats:
   // 1. Parenthesized: (P), (Q), (1), (a), (i), (ii), (iii), (iv) etc.
@@ -496,7 +499,7 @@ function parseMatchColumns(text: string): {
     }
     if (items.length >= 2) return items;
 
-    // Try dotted format: A. text, B. text, 1. text, 2. text
+    // Try dotted format (multiline): A. text\nB. text
     items.length = 0;
     const dotRegex = /(?:^|\n)\s*([A-Za-z0-9]+)\.\s+(.+?)(?=\n\s*[A-Za-z0-9]+\.|$)/gs;
     // eslint-disable-next-line no-cond-assign
@@ -505,7 +508,24 @@ function parseMatchColumns(text: string): {
     }
     if (items.length >= 2) return items;
 
-    // Try colon-separated inline: (P) text (Q) text — already covered by paren
+    // Try dotted format (inline, no newlines): "A. text B. text C. text"
+    items.length = 0;
+    const inlineDotRegex = /([A-Z])\.\s+(.+?)(?=\s+[A-Z]\.\s|$)/gs;
+    // eslint-disable-next-line no-cond-assign
+    while ((m = inlineDotRegex.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
+    }
+    if (items.length >= 2) return items;
+
+    // Try inline numbered format (no newlines): "1. text 2. text 3. text"
+    items.length = 0;
+    const inlineNumRegex = /(\d+)\.\s+(.+?)(?=\s+\d+\.\s|$)/gs;
+    // eslint-disable-next-line no-cond-assign
+    while ((m = inlineNumRegex.exec(body)) !== null) {
+      items.push({ id: m[1].trim(), text: m[2].trim(), textTe: '', textHi: '' });
+    }
+    if (items.length >= 2) return items;
+
     // Try simple "A  text" format (letter + spaces + text on each line)
     items.length = 0;
     const simpleRegex = /(?:^|\n)\s*([A-Z])\s{2,}(.+?)(?=\n|$)/g;
@@ -523,58 +543,110 @@ function parseMatchColumns(text: string): {
 }
 
 /**
- * Parse pipe-delimited MTF format used by chemistry questions.
- * Handles: "...Column I | Column II  A. leftText | 1. rightText  B. leftText | 2. rightText"
- * Uses greedy match to find the LAST "Column II" header, then extracts row pairs.
+ * Parse pipe-delimited MTF format (all subjects).
+ * Handles multiple format variants:
+ *   - "Column I | Column II  A. left | 1. right  B. left | 2. right"
+ *   - "Column A | Column B  (A) left | (1) right  (B) left | (2) right"
+ *   - "List I | List II  (i) left | (P) right  (ii) left | (Q) right"
+ *   - Any mix of letter/roman-numeral for colA and number/letter for colB
+ * Uses greedy match to find the LAST column-2 header, then extracts items.
  */
 function parsePipeDelimitedMtf(text: string): {
   columnA: { id: string; text: string; textTe: string; textHi: string }[];
   columnB: { id: string; text: string; textTe: string; textHi: string }[];
 } {
   type ColItem = { id: string; text: string; textTe: string; textHi: string };
-  const columnA: ColItem[] = [];
-  const columnB: ColItem[] = [];
+  const mkItem = (id: string, t: string): ColItem => ({ id, text: t.trim(), textTe: '', textHi: '' });
 
-  // GREEDY .* strips up to the LAST "Column II/B/2" header
+  // Only proceed if text contains pipes (quick bail-out for non-pipe formats)
+  if (!text.includes('|')) return { columnA: [], columnB: [] };
+
+  // GREEDY .* strips up to the LAST "Column II/B/2" or "List II/B/2" header
+  // Handles: Column II, Column-II, Column B, Column 2, List II, List B, etc.
+  // Also handles markdown bold **Column II**, parenthesized descriptions (Definition)
   const body = text.replace(
-    /^.*(?:\*\*\s*)?[Cc]olumn\s*[-–]?\s*(?:[Ii]{2}|2|[Bb])\s*(?:\*\*)?\s*(?:\([^)]*\))?\s*[:\-–|]?\s*/s,
+    /^.*(?:\*\*\s*)?(?:column|list)\s*[-–]?\s*(?:[Ii]{2}|II|2|[Bb])\s*(?:\*\*)?\s*(?:\([^)]*\))?\s*[:\-–|]?\s*/is,
     ''
   );
 
-  if (body === text || body.trim().length < 5) return { columnA, columnB };
+  if (body === text || body.trim().length < 5) return { columnA: [], columnB: [] };
 
-  // Strategy A: match complete row pairs "A. leftText | 1. rightText"
-  const rowPairRegex = /([A-Z])\.\s+(.+?)\s*\|\s*(\d+)\.\s+(.+?)(?=\s+[A-Z]\.\s|$)/gs;
+  // ── Strategy A: match complete row pairs ────────────────────
+  // "A. leftText | 1. rightText" or "(A) leftText | (1) rightText"
+  // Letters/roman for colA, numbers for colB
+  let columnA: ColItem[] = [];
+  let columnB: ColItem[] = [];
   let m;
-  // eslint-disable-next-line no-cond-assign
-  while ((m = rowPairRegex.exec(body)) !== null) {
-    columnA.push({ id: m[1], text: m[2].trim(), textTe: '', textHi: '' });
-    columnB.push({ id: m[3], text: m[4].trim(), textTe: '', textHi: '' });
-  }
 
+  // A1: "A. left | 1. right" (dotted letter + dotted number)
+  const dotPairRegex = /([A-Z])\.\s+(.+?)\s*\|\s*(\d+)\.\s+(.+?)(?=\s+[A-Z]\.\s|$)/gs;
+  // eslint-disable-next-line no-cond-assign
+  while ((m = dotPairRegex.exec(body)) !== null) {
+    columnA.push(mkItem(m[1], m[2]));
+    columnB.push(mkItem(m[3], m[4]));
+  }
   if (columnA.length >= 2) return { columnA, columnB };
 
-  // Strategy B: split by pipe, classify each segment as letter (colA) or number (colB)
-  columnA.length = 0;
-  columnB.length = 0;
+  // A2: "(A) left | (1) right" (parenthesized letter + parenthesized number)
+  columnA = []; columnB = [];
+  const parenPairRegex = /\(([A-Za-z]+)\)\s+(.+?)\s*\|\s*\((\d+)\)\s+(.+?)(?=\s+\([A-Za-z]+\)\s|$)/gs;
+  // eslint-disable-next-line no-cond-assign
+  while ((m = parenPairRegex.exec(body)) !== null) {
+    columnA.push(mkItem(m[1], m[2]));
+    columnB.push(mkItem(m[3], m[4]));
+  }
+  if (columnA.length >= 2) return { columnA, columnB };
+
+  // A3: "(i) left | (P) right" (roman/number colA + letter colB — reversed ID types)
+  columnA = []; columnB = [];
+  const reversePairRegex = /\(([ivxIVX0-9]+)\)\s+(.+?)\s*\|\s*\(([A-Za-z]+)\)\s+(.+?)(?=\s+\([ivxIVX0-9]+\)\s|$)/gs;
+  // eslint-disable-next-line no-cond-assign
+  while ((m = reversePairRegex.exec(body)) !== null) {
+    columnA.push(mkItem(m[1], m[2]));
+    columnB.push(mkItem(m[3], m[4]));
+  }
+  if (columnA.length >= 2) return { columnA, columnB };
+
+  // ── Strategy B: split by pipe, classify each segment ────────
+  columnA = []; columnB = [];
   const segments = body.split(/\s*\|\s*/);
   for (const seg of segments) {
     const trimmed = seg.trim();
     if (trimmed.length < 1) continue;
 
-    // "A. text" or "(A) text" → Column A
-    const letterMatch = trimmed.match(/^\s*\(?([A-Za-z])\)?[.\s]+(.+)$/s);
-    if (letterMatch) {
-      columnA.push({ id: letterMatch[1].toUpperCase(), text: letterMatch[2].trim(), textTe: '', textHi: '' });
+    // "(A) text" or "(iv) text" — parenthesized ID
+    const parenMatch = trimmed.match(/^\s*\(([A-Za-z0-9]+(?:i{1,3}v?|v)?)\)\s+(.+)$/s);
+    if (parenMatch) {
+      const id = parenMatch[1].trim();
+      const txt = parenMatch[2].trim();
+      // Letters → colA, numbers → colB, roman numerals → colA
+      if (/^\d+$/.test(id)) {
+        columnB.push(mkItem(id, txt));
+      } else {
+        columnA.push(mkItem(id, txt));
+      }
       continue;
     }
 
-    // "1. text" or "(1) text" → Column B
-    const numberMatch = trimmed.match(/^\s*\(?(\d+)\)?[.\s]+(.+)$/s);
-    if (numberMatch) {
-      columnB.push({ id: numberMatch[1], text: numberMatch[2].trim(), textTe: '', textHi: '' });
+    // "A. text" — dotted letter → colA
+    const dotLetterMatch = trimmed.match(/^\s*([A-Za-z])\.\s+(.+)$/s);
+    if (dotLetterMatch) {
+      columnA.push(mkItem(dotLetterMatch[1].toUpperCase(), dotLetterMatch[2].trim()));
       continue;
     }
+
+    // "1. text" — dotted number → colB
+    const dotNumberMatch = trimmed.match(/^\s*(\d+)\.\s+(.+)$/s);
+    if (dotNumberMatch) {
+      columnB.push(mkItem(dotNumberMatch[1], dotNumberMatch[2].trim()));
+      continue;
+    }
+  }
+
+  // If one column has items but the other doesn't, pipe classification may have
+  // put everything into one side. In that case, bail out and let Strategy 2 handle it.
+  if (columnA.length < 2 || columnB.length < 2) {
+    return { columnA: [], columnB: [] };
   }
 
   return { columnA, columnB };
