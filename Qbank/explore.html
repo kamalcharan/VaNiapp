@@ -1328,7 +1328,7 @@
     }
 
     // ========================================================================
-    // AUTO-FIX: Missing elimination hints — backfill from payload
+    // AUTO-FIX: Missing elimination hints — backfill from payload or JSON
     // ========================================================================
     async function fixAllMissingHints(groupKey) {
       const group = window._issueGroups?.[groupKey];
@@ -1343,11 +1343,39 @@
         return;
       }
 
+      // Check if any questions have hints in payload already
+      const hasPayloadHints = fixableQuestions.some(q =>
+        Array.isArray(q.payload?.elimination_hints) && q.payload.elimination_hints.length > 0
+      );
+
+      let sourceData = null;
+
+      if (!hasPayloadHints) {
+        // No hints in payload — need source JSON files
+        const useFiles = confirm(
+          `${fixableQuestions.length} questions have no hints in the database or payload.\n\n` +
+          `To fix this, select the source JSON files (the *-copied.json files from Qbank/CUET/) ` +
+          `that contain the original elimination_hints.\n\n` +
+          `You can select multiple files. Click OK to choose files, or Cancel to skip.`
+        );
+
+        if (useFiles) {
+          sourceData = await _loadSourceJsonFiles();
+          if (!sourceData || sourceData.length === 0) {
+            Qbank.showToast('No source data loaded — cancelled', 'error');
+            return;
+          }
+        } else {
+          Qbank.showToast('Fix cancelled — source JSON files needed', 'error');
+          return;
+        }
+      }
+
       const groupEl = document.querySelector(`.issue-group[data-group-key="${groupKey}"]`);
       const fixBtn = groupEl?.querySelector('button[onclick*="fixAllMissingHints"]');
       if (fixBtn) { fixBtn.disabled = true; fixBtn.textContent = '🔧 Fixing...'; }
 
-      const result = await Qbank.fixMissingHints(fixableQuestions);
+      const result = await Qbank.fixMissingHints(fixableQuestions, sourceData);
 
       Qbank.showToast(
         `Fixed ${result.fixed} questions (${result.errors} errors, ${result.skipped} skipped)`,
@@ -1370,6 +1398,36 @@
 
       renderIssues(currentIssues);
       renderSummary(scannedQuestions, currentIssues.filter(i => i.status !== 'resolved'));
+    }
+
+    /** Prompt user to pick JSON files and return all questions from them */
+    function _loadSourceJsonFiles() {
+      return new Promise((resolve) => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.multiple = true;
+        input.accept = '.json';
+        input.onchange = async () => {
+          const files = Array.from(input.files);
+          if (!files.length) { resolve(null); return; }
+
+          const allQuestions = [];
+          for (const file of files) {
+            try {
+              const text = await file.text();
+              const parsed = JSON.parse(text);
+              const questions = Array.isArray(parsed) ? parsed : (parsed.questions || [parsed]);
+              allQuestions.push(...questions);
+            } catch (e) {
+              console.warn(`Failed to parse ${file.name}:`, e);
+            }
+          }
+          Qbank.showToast(`Loaded ${allQuestions.length} questions from ${files.length} files`, 'success');
+          resolve(allQuestions);
+        };
+        input.oncancel = () => resolve(null);
+        input.click();
+      });
     }
 
     // ========================================================================
