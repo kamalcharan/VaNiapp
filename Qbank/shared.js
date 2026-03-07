@@ -2181,7 +2181,9 @@ function runQualityValidators(questions, languages, chapterId) {
       issues.push(makeIssue(q, chapterId, 'EMPTY_EXPLANATION'));
     }
 
-    if (hints.length === 0) {
+    // Elimination hints only apply to types with wrong options to hint about
+    const hintableTypes = ['mcq', 'assertion-reasoning'];
+    if (hints.length === 0 && hintableTypes.includes(q.question_type)) {
       issues.push(makeIssue(q, chapterId, 'NO_ELIMINATION_HINTS'));
     }
 
@@ -2974,7 +2976,14 @@ async function fixMissingHints(questions, sourceData) {
         const hintText = h.hint || h.hint_text || h.text || h.description || '';
         const optKey = h.option_key || h.key || h.optionKey || '';
         if (optKey && hintText) {
-          hintRecords.push({ question_id: q.id, option_key: optKey, hint_text: hintText, misconception: h.misconception || '' });
+          // If option_key is a valid A-D key, use it directly
+          if (/^[A-D]$/.test(optKey)) {
+            hintRecords.push({ question_id: q.id, option_key: optKey, hint_text: hintText, misconception: h.misconception || '' });
+          } else if (plainStringIdx < wrongKeys.length) {
+            // Generic hint (e.g. hint_1, hint_2) — assign to next wrong option
+            hintRecords.push({ question_id: q.id, option_key: wrongKeys[plainStringIdx], hint_text: hintText, misconception: h.misconception || '' });
+            plainStringIdx++;
+          }
         }
       }
     }
