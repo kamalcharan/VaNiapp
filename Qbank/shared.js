@@ -391,6 +391,23 @@ function buildImportPayload(q) {
 }
 
 /**
+ * Strip trailing MCQ option text that sometimes appears at the end of
+ * question_text after the column items.  Patterns removed:
+ *   - "Select the correct match/option/answer:" and everything after
+ *   - "Choose the correct ..." and everything after
+ *   - Lines starting with (A)/(B)/(C)/(D) uppercase that contain mapping patterns
+ */
+function _stripTrailingMCQOptions(body) {
+  body = body.replace(
+    /\n\s*(?:select|choose|the correct|identify the correct|pick the correct|which of the following)[^\n]*(?:\n[\s\S]*)?$/i,
+    ''
+  );
+  // Only match UPPERCASE A-D to avoid stripping actual column items like (a), (b)
+  body = body.replace(/\n\s*\([A-D]\)\s*[\s\S]*$/, '');
+  return body;
+}
+
+/**
  * Parse MTF column items from question text.
  * Handles: (P) text, A. text, A  text formats.
  * textTe is populated separately by the translation program.
@@ -424,9 +441,11 @@ function _parseMTFColumns(text) {
   if (colSplit.length < 2) return { columnA: [], columnB: [] };
 
   // Use LAST part as Column II body, everything before as Column I area
-  const col2Body = colSplit[colSplit.length - 1];
+  const col2Body = _stripTrailingMCQOptions(colSplit[colSplit.length - 1]);
   const col1Raw = colSplit.slice(0, -1).join(' ');
-  const col1Body = col1Raw.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\)\s*[:\-–→]?|[:\-–→)])/i, '');
+  const col1Body = _stripTrailingMCQOptions(
+    col1Raw.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\)\s*[:\-–→]?|[:\-–→)])/i, '')
+  );
 
   function extractItems(body) {
     let items = [];
