@@ -31,19 +31,13 @@ import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
 import { RootState } from '../../src/store';
 import {
   StrengthLevel,
-  STRENGTH_LEVELS,
-  NEEDS_FOCUS_CONFIG,
   ExamType,
 } from '../../src/types';
+import { getStrengthConfig } from '../../src/lib/strengthHelpers';
 
 // Enable LayoutAnimation on Android
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
-}
-
-function getStrengthConfig(level: StrengthLevel) {
-  if (level === 'needs-focus') return NEEDS_FOCUS_CONFIG;
-  return STRENGTH_LEVELS.find((s) => s.id === level) || STRENGTH_LEVELS[0];
 }
 
 // VaNi coaching messages per chapter strength — always positive

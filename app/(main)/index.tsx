@@ -19,8 +19,9 @@ import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing } from '../../src/constants/theme';
 import { getProfile, getUserSubjectIds, shareInviteMessage, MedProfile } from '../../src/lib/database';
 import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
-import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
+import { StrengthLevel, ExamType } from '../../src/types';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
+import { getStrengthConfig, getVaniMessage, getStrengthSubjectIds } from '../../src/lib/strengthHelpers';
 import { RootState } from '../../src/store';
 import { setDashboardExamFocus } from '../../src/store/slices/authSlice';
 import * as Haptics from 'expo-haptics';
@@ -39,44 +40,7 @@ interface SubjectJourney {
   vaniMessage: string;
 }
 
-// VaNi coaching messages for each strength level
-const VANI_MESSAGES: Record<StrengthLevel, string[]> = {
-  'just-started': [
-    "Let's begin your journey!",
-    "Ready to explore together?",
-    "Your adventure starts here!",
-  ],
-  'getting-there': [
-    "You're building momentum!",
-    "Great progress, keep going!",
-    "I see your growth!",
-  ],
-  'on-track': [
-    "You're doing amazing!",
-    "Strong foundations built!",
-    "Keep up the great work!",
-  ],
-  'strong': [
-    "You're mastering this!",
-    "Excellent command!",
-    "Ready to conquer!",
-  ],
-  'needs-focus': [
-    "Let's strengthen this together",
-    "I'll help you improve here",
-    "We'll work through this!",
-  ],
-};
-
-function getVaniMessage(level: StrengthLevel): string {
-  const messages = VANI_MESSAGES[level];
-  return messages[Math.floor(Math.random() * messages.length)];
-}
-
-function getStrengthConfig(level: StrengthLevel) {
-  if (level === 'needs-focus') return NEEDS_FOCUS_CONFIG;
-  return STRENGTH_LEVELS.find(s => s.id === level) || STRENGTH_LEVELS[0];
-}
+// getStrengthConfig, getVaniMessage, getStrengthSubjectIds — imported from shared lib
 
 export default function DashboardScreen() {
   const { colors, mode, toggle } = useTheme();
@@ -119,8 +83,11 @@ export default function DashboardScreen() {
         // Create journey data from actual strength data in Redux,
         // reusing evaluateSubjectStrength() so numbers match subject detail screen.
         const journeys: SubjectJourney[] = matched.map((subject) => {
+          // For CUET subjects with a NEET counterpart (e.g. cuet-physics → physics),
+          // include strength data from both so practice is shared across exams.
+          const validSubjectIds = getStrengthSubjectIds(subject.id);
           const subjectChapters = Object.values(strengthChapters).filter(
-            (ch) => ch.subjectId === subject.id,
+            (ch) => validSubjectIds.includes(ch.subjectId),
           );
           const chaptersCompleted = subjectChapters.filter(
             (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
