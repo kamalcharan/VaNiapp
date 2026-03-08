@@ -48,3 +48,20 @@ export function getVaniMessage(level: StrengthLevel): string {
   const messages = VANI_MESSAGES[level];
   return messages[Math.floor(Math.random() * messages.length)];
 }
+
+// ── NEET ↔ CUET shared-subject mapping ──────────────────────
+// Some NEET chapters are tagged with exam_ids: ['NEET', 'CUET'] (shared).
+// When showing CUET stats, we need to also include strength data from
+// those shared NEET chapters. Key = CUET subject ID, Value = NEET subject ID.
+const CUET_TO_NEET_SUBJECT: Record<string, string> = {
+  'cuet-physics': 'physics',
+  'cuet-chemistry': 'chemistry',
+};
+
+/**
+ * Get the NEET counterpart subject ID for a CUET subject.
+ * Returns undefined if the subject has no NEET counterpart.
+ */
+export function getNeetCounterpart(subjectId: string): string | undefined {
+  return CUET_TO_NEET_SUBJECT[subjectId];
+}

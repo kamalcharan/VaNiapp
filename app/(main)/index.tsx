@@ -21,7 +21,7 @@ import { getProfile, getUserSubjectIds, shareInviteMessage, MedProfile } from '.
 import { getSubjects, getChapters, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, ExamType } from '../../src/types';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
-import { getStrengthConfig, getVaniMessage } from '../../src/lib/strengthHelpers';
+import { getStrengthConfig, getVaniMessage, getNeetCounterpart } from '../../src/lib/strengthHelpers';
 import { RootState } from '../../src/store';
 import { setDashboardExamFocus } from '../../src/store/slices/authSlice';
 import * as Haptics from 'expo-haptics';
@@ -84,13 +84,26 @@ export default function DashboardScreen() {
         // reusing evaluateSubjectStrength() so numbers match subject detail screen.
         const journeys: SubjectJourney[] = await Promise.all(
           matched.map(async (subject) => {
-            // Load chapter list for this subject to get accurate totalChapters
+            // Load this subject's own chapters
             const catalogChapters = await getChapters(subject.id);
             const chapterIds = new Set(catalogChapters.map((ch) => ch.id));
 
-            // Filter strength data to only chapters in this subject's syllabus
+            // For CUET subjects (e.g. cuet-physics), also load shared NEET
+            // chapters tagged with exam_ids: ['NEET','CUET']. Practice done
+            // on these via NEET records subjectId='physics', so we need to
+            // include that strength data for the CUET card too.
+            const neetCounterpart = getNeetCounterpart(subject.id);
+            if (neetCounterpart) {
+              const sharedNeetChapters = await getChapters(neetCounterpart, 'CUET');
+              for (const ch of sharedNeetChapters) {
+                chapterIds.add(ch.id);
+              }
+            }
+
+            // Filter strength data — match by chapterId (covers both CUET-own
+            // chapters and shared NEET chapters regardless of subjectId)
             const subjectChapters = Object.values(strengthChapters).filter(
-              (ch) => ch.subjectId === subject.id && chapterIds.has(ch.chapterId),
+              (ch) => chapterIds.has(ch.chapterId),
             );
             const chaptersCompleted = subjectChapters.filter(
               (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
@@ -108,7 +121,7 @@ export default function DashboardScreen() {
               strengthLevel: strength.level,
               accuracy: Math.round(strength.accuracy),
               chaptersCompleted,
-              totalChapters: catalogChapters.length,
+              totalChapters: chapterIds.size,
               vaniMessage: getVaniMessage(strength.level),
             };
           }),
