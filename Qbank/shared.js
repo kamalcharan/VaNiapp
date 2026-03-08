@@ -2164,11 +2164,14 @@ function runQualityValidators(questions, languages, chapterId) {
           hasColumnB: Array.isArray(colB) && colB.length > 0
         }));
       }
-      // Check for garbage column items (text is empty, single char, or punctuation-only)
+      // Check for garbage column items (empty, pure punctuation, or MCQ option labels)
       if (Array.isArray(colA) && colA.length > 0 && Array.isArray(colB) && colB.length > 0) {
         const isGarbage = (item) => {
           const t = (item.text || '').trim();
-          return !t || t.length <= 2 || /^[,–\-;:.|/\\]+$/.test(t);
+          if (!t) return true;                                    // empty
+          if (/^[,–\-;:.|/\\]+$/.test(t)) return true;          // punctuation-only
+          if (/^[A-Da-d]$/.test(t)) return true;                 // bare MCQ option label
+          return false;
         };
         const garbageA = colA.filter(isGarbage);
         const garbageB = colB.filter(isGarbage);
