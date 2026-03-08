@@ -358,6 +358,21 @@ function buildPayload(
       let colB = parseColumnItemsFromJson(raw.column_b ?? raw.columnB);
       let mapping = (raw.correct_mapping ?? raw.correctMapping) as Record<string, string> | undefined;
 
+      // Detect garbled DB data: an earlier migration didn't strip MCQ option
+      // lines from Column II text, producing many garbage items with tiny text
+      // like ",", "–", or empty strings. If >50% of items have text ≤2 chars,
+      // discard and re-parse from question_text.
+      const isGarbled = (items: { text: string }[]) =>
+        items.length > 0 &&
+        items.filter((it) => it.text.trim().length <= 2).length > items.length * 0.3;
+
+      if (isGarbled(colB)) {
+        colB = [];
+        mapping = undefined; // Reset mapping — it may reference garbled IDs
+        // Also reset colA if it looks bad
+        if (isGarbled(colA)) colA = [];
+      }
+
       if (colA.length === 0 || colB.length === 0) {
         const parsed = parseMatchColumns(text);
         colA = colA.length > 0 ? colA : parsed.columnA;

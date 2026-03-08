@@ -651,7 +651,9 @@ export default function ChapterQuizScreen() {
                 )}
                 {!isCorrect &&
                   'options' in question.payload &&
-                  'correctOptionId' in question.payload && (
+                  'correctOptionId' in question.payload &&
+                  /* MTF shows its own "Correct matching:" card — hide raw option ID */
+                  question.payload.type !== 'match-the-following' && (
                     <Text
                       style={[
                         Typography.bodySm,
