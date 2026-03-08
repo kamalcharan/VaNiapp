@@ -5,15 +5,11 @@ import { RootState } from '../store';
 import { ChapterStrengthData } from '../store/slices/strengthSlice';
 import { getChapters, CatalogChapter } from '../lib/catalog';
 import { SUBJECT_META } from '../constants/subjects';
-import { STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, StrengthLevel } from '../types';
+import { StrengthLevel } from '../types';
 import { useTheme } from '../hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../constants/theme';
 import { evaluateSubjectStrength } from '../lib/strengthEvaluator';
-
-function getStrengthConfig(level: StrengthLevel) {
-  if (level === 'needs-focus') return NEEDS_FOCUS_CONFIG;
-  return STRENGTH_LEVELS.find((s) => s.id === level) ?? STRENGTH_LEVELS[0];
-}
+import { getStrengthConfig } from '../lib/strengthHelpers';
 
 // ── Chapter Row ──
 
