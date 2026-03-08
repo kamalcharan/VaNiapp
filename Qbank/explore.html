@@ -1010,9 +1010,9 @@
                 🔧 Fix All
               </button>
             ` : ''}
-            ${group.issueType === 'MTF_NO_COLUMN_DATA' ? `
+            ${['MTF_NO_COLUMN_DATA', 'MTF_GARBAGE_COLUMNS', 'MTF_EXCESSIVE_ITEMS'].includes(group.issueType) ? `
               <button class="btn-copy-group" style="background: var(--success); color: #fff;"
-                onclick="event.stopPropagation(); fixAllMTFPayload('${key}')" title="Auto-fix: parse columnA/columnB from question text">
+                onclick="event.stopPropagation(); fixAllMTFPayload('${key}')" title="Auto-fix: re-parse columnA/columnB from question text">
                 🔧 Fix MTF
               </button>
             ` : ''}

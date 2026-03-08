@@ -1908,6 +1908,10 @@ const QUALITY_ISSUE_TYPES = {
 
   // Type-specific payload issues (custom UI can't render)
   MTF_NO_COLUMN_DATA:     { severity: 'high',   label: 'MTF missing column A/B data (custom UI broken)' },
+  MTF_GARBAGE_COLUMNS:    { severity: 'high',   label: 'MTF columns have garbage items (likely from MCQ option pollution)' },
+  MTF_COLUMN_COUNT_MISMATCH: { severity: 'medium', label: 'MTF column A and B have different item counts' },
+  MTF_EXCESSIVE_ITEMS:    { severity: 'high',   label: 'MTF column has too many items (>8 is suspicious)' },
+  MTF_NO_CORRECT_MAPPING: { severity: 'medium', label: 'MTF missing correct_mapping in payload' },
   SEQ_NO_ITEMS:           { severity: 'high',   label: 'Sequence question missing items list' },
   SEQ_INCOMPLETE_TEXT:    { severity: 'high',   label: 'Sequence question text has no items to arrange' },
   MTF_DUPLICATE_KEYS:     { severity: 'high',   label: 'MTF has duplicate option/column keys (drag broken)' },
@@ -2160,6 +2164,44 @@ function runQualityValidators(questions, languages, chapterId) {
           hasColumnB: Array.isArray(colB) && colB.length > 0
         }));
       }
+      // Check for garbage column items (text is empty, single char, or punctuation-only)
+      if (Array.isArray(colA) && colA.length > 0 && Array.isArray(colB) && colB.length > 0) {
+        const isGarbage = (item) => {
+          const t = (item.text || '').trim();
+          return !t || t.length <= 2 || /^[,–\-;:.|/\\]+$/.test(t);
+        };
+        const garbageA = colA.filter(isGarbage);
+        const garbageB = colB.filter(isGarbage);
+        if (garbageA.length > 0 || garbageB.length > 0) {
+          issues.push(makeIssue(q, chapterId, 'MTF_GARBAGE_COLUMNS', {
+            garbageInA: garbageA.length, totalA: colA.length,
+            garbageInB: garbageB.length, totalB: colB.length,
+            samplesA: garbageA.slice(0, 3).map(i => `(${i.id}) "${i.text}"`),
+            samplesB: garbageB.slice(0, 3).map(i => `(${i.id}) "${i.text}"`)
+          }));
+        }
+
+        // Check for excessive items (>8 per column is suspicious)
+        if (colA.length > 8 || colB.length > 8) {
+          issues.push(makeIssue(q, chapterId, 'MTF_EXCESSIVE_ITEMS', {
+            colACount: colA.length, colBCount: colB.length
+          }));
+        }
+
+        // Check column count mismatch
+        if (colA.length !== colB.length) {
+          issues.push(makeIssue(q, chapterId, 'MTF_COLUMN_COUNT_MISMATCH', {
+            colACount: colA.length, colBCount: colB.length
+          }));
+        }
+
+        // Check for missing correct_mapping
+        const mapping = payload.correct_mapping || payload.correctMapping;
+        if (!mapping || (typeof mapping === 'object' && Object.keys(mapping).length === 0)) {
+          issues.push(makeIssue(q, chapterId, 'MTF_NO_CORRECT_MAPPING'));
+        }
+      }
+
       // Check for duplicate keys in columns or options — breaks drag-and-drop
       if (Array.isArray(colA) && colA.length > 0) {
         const aIds = colA.map(c => c.id);
