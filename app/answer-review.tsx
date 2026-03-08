@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   View,
   Text,
@@ -23,6 +23,7 @@ import { getV2QuestionsByChapter } from '../src/data/questions';
 import { getChapterById } from '../src/data/chapters';
 import { getCorrectId, legacyBatchToV2 } from '../src/lib/questionAdapter';
 import { getAllQuestions } from '../src/data/questions';
+import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { AskVaniSheet } from '../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../src/components/exam/ConceptExplainerSheet';
@@ -55,24 +56,41 @@ export default function AnswerReviewScreen() {
   const [showConceptSheet, setShowConceptSheet] = useState(false);
   const [selectedConceptTag, setSelectedConceptTag] = useState('');
 
+  // Fetch Supabase questions for chapter sessions (has elimination hints + matching IDs)
+  const [supabaseQuestions, setSupabaseQuestions] = useState<QuestionV2[]>([]);
+  useEffect(() => {
+    if (!session || session.mode !== 'chapter') return;
+    fetchQuestionsByChapter(session.chapterId).then((result) => {
+      if (result.ok) setSupabaseQuestions(result.questions);
+    });
+  }, [session]);
+
   // Build question list + answer map
   const { questions, answerMap } = useMemo(() => {
     if (!session) return { questions: [] as QuestionV2[], answerMap: {} as Record<string, UserAnswer> };
-
-    let qs: QuestionV2[];
-    if (session.mode === 'chapter') {
-      qs = getV2QuestionsByChapter(session.chapterId);
-    } else {
-      qs = legacyBatchToV2(getAllQuestions());
-    }
 
     const aMap: Record<string, UserAnswer> = {};
     session.answers.forEach((a) => {
       aMap[a.questionId] = a;
     });
 
-    return { questions: qs, answerMap: aMap };
-  }, [session]);
+    // For chapter sessions: prefer Supabase questions (matching IDs + elimination hints)
+    // Fall back to local if Supabase hasn't loaded yet or has no matches
+    if (session.mode === 'chapter') {
+      if (supabaseQuestions.length > 0) {
+        // Only include questions the user actually answered
+        const answeredSet = new Set(session.answers.map((a) => a.questionId));
+        const matched = supabaseQuestions.filter((q) => answeredSet.has(q.id));
+        if (matched.length > 0) {
+          return { questions: matched, answerMap: aMap };
+        }
+      }
+      // Fallback to local questions
+      return { questions: getV2QuestionsByChapter(session.chapterId), answerMap: aMap };
+    }
+
+    return { questions: legacyBatchToV2(getAllQuestions()), answerMap: aMap };
+  }, [session, supabaseQuestions]);
 
   // Classify each question
   const classified = useMemo(() => {
