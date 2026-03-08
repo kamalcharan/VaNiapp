@@ -127,57 +127,62 @@ export default function ChapterResultsScreen() {
     return h.length > 0 ? h[0] : null;
   });
 
+  // Only consider questions that were actually answered in this session
+  const answeredQuestions = useMemo(() => {
+    if (!lastSession || !questions.length) return [];
+    const answeredIds = new Set(lastSession.answers.map((a) => a.questionId));
+    return questions.filter((q) => answeredIds.has(q.id));
+  }, [lastSession, questions]);
+
   const difficultyStats = useMemo(() => {
-    if (!lastSession || !questions.length) return null;
+    if (!answeredQuestions.length) return null;
     const stats = { easy: { correct: 0, total: 0 }, medium: { correct: 0, total: 0 }, hard: { correct: 0, total: 0 } };
-    for (const q of questions) {
+    for (const q of answeredQuestions) {
       stats[q.difficulty].total++;
-      const ans = lastSession.answers.find((a) => a.questionId === q.id);
+      const ans = lastSession!.answers.find((a) => a.questionId === q.id);
       if (ans?.selectedOptionId === getCorrectId(q)) {
         stats[q.difficulty].correct++;
       }
     }
     return stats;
-  }, [lastSession, questions]);
+  }, [lastSession, answeredQuestions]);
 
   // Question type breakdown
   const typeStats = useMemo(() => {
-    if (!lastSession || !questions.length) return null;
+    if (!answeredQuestions.length) return null;
     const stats: Record<string, { correct: number; total: number; label: string }> = {};
-    for (const q of questions) {
+    for (const q of answeredQuestions) {
       if (!stats[q.type]) {
         const label = q.type.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
         stats[q.type] = { correct: 0, total: 0, label };
       }
       stats[q.type].total++;
-      const ans = lastSession.answers.find((a) => a.questionId === q.id);
+      const ans = lastSession!.answers.find((a) => a.questionId === q.id);
       if (ans?.selectedOptionId === getCorrectId(q)) {
         stats[q.type].correct++;
       }
     }
     return Object.entries(stats).filter(([, v]) => v.total > 0);
-  }, [lastSession, questions]);
+  }, [lastSession, answeredQuestions]);
 
   // Topic breakdown (uses Supabase questions with topicId/topicName)
   const topicStats = useMemo(() => {
-    if (!lastSession || !questions.length) return null;
-    const answeredIds = new Set(lastSession.answers.map((a) => a.questionId));
+    if (!answeredQuestions.length) return null;
     const stats: Record<string, TopicStat> = {};
-    for (const q of questions) {
+    for (const q of answeredQuestions) {
       if (!q.topicId || !q.topicName) continue;
-      if (!answeredIds.has(q.id)) continue;
       if (!stats[q.topicId]) {
         stats[q.topicId] = { correct: 0, total: 0, name: q.topicName, nameTe: q.topicNameTe || '' };
       }
       stats[q.topicId].total++;
-      const ans = lastSession.answers.find((a) => a.questionId === q.id);
+      const ans = lastSession!.answers.find((a) => a.questionId === q.id);
       if (ans?.selectedOptionId === getCorrectId(q)) {
         stats[q.topicId].correct++;
       }
     }
     const entries = Object.entries(stats).filter(([, v]) => v.total > 0);
     return entries.length > 0 ? entries : null;
-  }, [lastSession, questions]);
+  }, [lastSession, answeredQuestions]);
 
   const getGrade = () => {
     if (percentage >= 90) return { label: 'Excellent!', emoji: '🌟', color: '#22C55E' };
