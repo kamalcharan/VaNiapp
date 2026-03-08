@@ -18,10 +18,10 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing } from '../../src/constants/theme';
 import { getProfile, getUserSubjectIds, shareInviteMessage, MedProfile } from '../../src/lib/database';
-import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
+import { getSubjects, getChapters, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, ExamType } from '../../src/types';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
-import { getStrengthConfig, getVaniMessage, getStrengthSubjectIds } from '../../src/lib/strengthHelpers';
+import { getStrengthConfig, getVaniMessage, getBaseSubjectId, getExamFilterForSubject } from '../../src/lib/strengthHelpers';
 import { RootState } from '../../src/store';
 import { setDashboardExamFocus } from '../../src/store/slices/authSlice';
 import * as Haptics from 'expo-haptics';
@@ -82,33 +82,42 @@ export default function DashboardScreen() {
 
         // Create journey data from actual strength data in Redux,
         // reusing evaluateSubjectStrength() so numbers match subject detail screen.
-        const journeys: SubjectJourney[] = matched.map((subject) => {
-          // For CUET subjects with a NEET counterpart (e.g. cuet-physics → physics),
-          // include strength data from both so practice is shared across exams.
-          const validSubjectIds = getStrengthSubjectIds(subject.id);
-          const subjectChapters = Object.values(strengthChapters).filter(
-            (ch) => validSubjectIds.includes(ch.subjectId),
-          );
-          const chaptersCompleted = subjectChapters.filter(
-            (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
-          ).length;
+        // For CUET subjects sharing chapters with NEET (e.g. cuet-physics → physics),
+        // load the CUET chapter list and only include strength for those chapter IDs.
+        const journeys: SubjectJourney[] = await Promise.all(
+          matched.map(async (subject) => {
+            const baseId = getBaseSubjectId(subject.id);
+            const examFilter = getExamFilterForSubject(subject.id);
 
-          const evalData = subjectChapters.map((ch) => ({
-            coverage: ch.coverage,
-            accuracy: ch.accuracy,
-            totalInBank: ch.totalInBank,
-          }));
-          const strength = evaluateSubjectStrength(evalData);
+            // Load actual chapter IDs for this subject+exam combo
+            const catalogChapters = await getChapters(baseId, examFilter);
+            const chapterIds = new Set(catalogChapters.map((ch) => ch.id));
 
-          return {
-            subject,
-            strengthLevel: strength.level,
-            accuracy: Math.round(strength.accuracy),
-            chaptersCompleted,
-            totalChapters: 10,
-            vaniMessage: getVaniMessage(strength.level),
-          };
-        });
+            // Filter strength data to only chapters in this subject's syllabus
+            const subjectChapters = Object.values(strengthChapters).filter(
+              (ch) => ch.subjectId === baseId && chapterIds.has(ch.chapterId),
+            );
+            const chaptersCompleted = subjectChapters.filter(
+              (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
+            ).length;
+
+            const evalData = subjectChapters.map((ch) => ({
+              coverage: ch.coverage,
+              accuracy: ch.accuracy,
+              totalInBank: ch.totalInBank,
+            }));
+            const strength = evaluateSubjectStrength(evalData);
+
+            return {
+              subject,
+              strengthLevel: strength.level,
+              accuracy: Math.round(strength.accuracy),
+              chaptersCompleted,
+              totalChapters: catalogChapters.length,
+              vaniMessage: getVaniMessage(strength.level),
+            };
+          }),
+        );
 
         setSubjectJourneys(journeys);
       }

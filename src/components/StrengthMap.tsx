@@ -9,7 +9,7 @@ import { StrengthLevel } from '../types';
 import { useTheme } from '../hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../constants/theme';
 import { evaluateSubjectStrength } from '../lib/strengthEvaluator';
-import { getStrengthConfig } from '../lib/strengthHelpers';
+import { getStrengthConfig, getBaseSubjectId, getExamFilterForSubject } from '../lib/strengthHelpers';
 
 // ── Chapter Row ──
 
@@ -76,7 +76,9 @@ function SubjectSection({
   const [catalogChapters, setCatalogChapters] = useState<CatalogChapter[]>([]);
 
   useEffect(() => {
-    getChapters(subjectId).then(setCatalogChapters);
+    const baseId = getBaseSubjectId(subjectId);
+    const examFilter = getExamFilterForSubject(subjectId);
+    getChapters(baseId, examFilter).then(setCatalogChapters);
   }, [subjectId]);
 
   const subjectStrength = useMemo(() => {
@@ -162,7 +164,9 @@ function CompactSubjectRow({
   const [catalogChapters, setCatalogChapters] = useState<CatalogChapter[]>([]);
 
   useEffect(() => {
-    getChapters(subjectId).then(setCatalogChapters);
+    const baseId = getBaseSubjectId(subjectId);
+    const examFilter = getExamFilterForSubject(subjectId);
+    getChapters(baseId, examFilter).then(setCatalogChapters);
   }, [subjectId]);
 
   const subjectStrength = useMemo(() => {
