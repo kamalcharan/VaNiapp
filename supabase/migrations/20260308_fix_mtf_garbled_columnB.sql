@@ -199,20 +199,16 @@ BEGIN
       AND (mq.payload->'columnB' IS NULL
            OR jsonb_array_length(COALESCE(mq.payload->'columnB', '[]'::JSONB)) = 0)
   LOOP
-    -- Try pipe parser first
-    SELECT p.col_a, p.col_b INTO col_a, col_b
-    FROM _parse_mtf_pipe_rows(q.question_text) p;
+    -- Parse using column split + extract (garbled questions are column format, not pipe)
+    SELECT s.col1_body, s.col2_body INTO split
+    FROM _fix_garbled_split_columns(q.question_text) s;
 
-    -- If pipe parser fails, use column split
-    IF jsonb_array_length(COALESCE(col_a, '[]'::JSONB)) < 2
-       OR jsonb_array_length(COALESCE(col_b, '[]'::JSONB)) < 2 THEN
-      SELECT s.col1_body, s.col2_body INTO split
-      FROM _fix_garbled_split_columns(q.question_text) s;
-
-      IF split.col1_body IS NOT NULL AND split.col2_body IS NOT NULL THEN
-        col_a := _fix_garbled_extract_items(split.col1_body);
-        col_b := _fix_garbled_extract_items(split.col2_body);
-      END IF;
+    IF split.col1_body IS NOT NULL AND split.col2_body IS NOT NULL THEN
+      col_a := _fix_garbled_extract_items(split.col1_body);
+      col_b := _fix_garbled_extract_items(split.col2_body);
+    ELSE
+      col_a := '[]'::JSONB;
+      col_b := '[]'::JSONB;
     END IF;
 
     -- Skip if still can't parse
