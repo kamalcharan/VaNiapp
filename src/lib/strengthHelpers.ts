@@ -48,35 +48,3 @@ export function getVaniMessage(level: StrengthLevel): string {
   const messages = VANI_MESSAGES[level];
   return messages[Math.floor(Math.random() * messages.length)];
 }
-
-// ── NEET ↔ CUET subject mapping ─────────────────────────────
-// Subjects that share the same chapters/content across exams.
-// Key = CUET subject ID, Value = NEET subject ID.
-
-const CUET_TO_NEET_SUBJECT: Record<string, string> = {
-  'cuet-physics': 'physics',
-  'cuet-chemistry': 'chemistry',
-};
-
-/**
- * Get the base (NEET) subject ID that owns the chapters in the DB.
- * e.g. 'cuet-physics' → 'physics', 'chemistry' → 'chemistry'.
- * Chapters are stored under the NEET subject_id; CUET subjects are
- * just a filtered view (via exam_ids) of the same chapter pool.
- */
-export function getBaseSubjectId(subjectId: string): string {
-  return CUET_TO_NEET_SUBJECT[subjectId] ?? subjectId;
-}
-
-/**
- * Get the exam filter to use when loading chapters for a subject.
- * CUET subjects return 'CUET' so only CUET-tagged chapters are included.
- * NEET subjects return 'NEET'.
- * Returns undefined for subjects not in the mapping (exam-agnostic).
- */
-export function getExamFilterForSubject(subjectId: string): string | undefined {
-  if (CUET_TO_NEET_SUBJECT[subjectId]) return 'CUET';
-  // Check if it's a known NEET subject (reverse lookup)
-  if (Object.values(CUET_TO_NEET_SUBJECT).includes(subjectId)) return 'NEET';
-  return undefined;
-}

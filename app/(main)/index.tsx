@@ -21,7 +21,7 @@ import { getProfile, getUserSubjectIds, shareInviteMessage, MedProfile } from '.
 import { getSubjects, getChapters, CatalogSubject } from '../../src/lib/catalog';
 import { StrengthLevel, ExamType } from '../../src/types';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
-import { getStrengthConfig, getVaniMessage, getBaseSubjectId, getExamFilterForSubject } from '../../src/lib/strengthHelpers';
+import { getStrengthConfig, getVaniMessage } from '../../src/lib/strengthHelpers';
 import { RootState } from '../../src/store';
 import { setDashboardExamFocus } from '../../src/store/slices/authSlice';
 import * as Haptics from 'expo-haptics';
@@ -82,20 +82,15 @@ export default function DashboardScreen() {
 
         // Create journey data from actual strength data in Redux,
         // reusing evaluateSubjectStrength() so numbers match subject detail screen.
-        // For CUET subjects sharing chapters with NEET (e.g. cuet-physics → physics),
-        // load the CUET chapter list and only include strength for those chapter IDs.
         const journeys: SubjectJourney[] = await Promise.all(
           matched.map(async (subject) => {
-            const baseId = getBaseSubjectId(subject.id);
-            const examFilter = getExamFilterForSubject(subject.id);
-
-            // Load actual chapter IDs for this subject+exam combo
-            const catalogChapters = await getChapters(baseId, examFilter);
+            // Load chapter list for this subject to get accurate totalChapters
+            const catalogChapters = await getChapters(subject.id);
             const chapterIds = new Set(catalogChapters.map((ch) => ch.id));
 
             // Filter strength data to only chapters in this subject's syllabus
             const subjectChapters = Object.values(strengthChapters).filter(
-              (ch) => ch.subjectId === baseId && chapterIds.has(ch.chapterId),
+              (ch) => ch.subjectId === subject.id && chapterIds.has(ch.chapterId),
             );
             const chaptersCompleted = subjectChapters.filter(
               (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
