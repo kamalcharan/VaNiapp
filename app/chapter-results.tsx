@@ -14,7 +14,6 @@ import { useTheme } from '../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
 import { getChapterById } from '../src/data/chapters';
-import { getV2QuestionsByChapter } from '../src/data/questions';
 import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter';
 import { RootState } from '../src/store';
@@ -89,19 +88,14 @@ export default function ChapterResultsScreen() {
         color: '#3B82F6',
       })
     : DEFAULT_META;
-  const localQuestions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
-
-  // Fetch Supabase questions (cached from quiz session) for stats + topic data
-  const [dbQuestions, setDbQuestions] = useState<QuestionV2[]>([]);
+  // Fetch Supabase questions (quiz uses Supabase IDs for answers) — no fallback to local
+  const [questions, setQuestions] = useState<QuestionV2[]>([]);
   useEffect(() => {
     if (!chapterId || isQuickMode) return;
     fetchQuestionsByChapter(chapterId).then((result) => {
-      if (result.ok) setDbQuestions(result.questions);
+      if (result.ok) setQuestions(result.questions);
     });
   }, [chapterId, isQuickMode]);
-
-  // Prefer Supabase questions (quiz uses Supabase IDs for answers), fall back to local
-  const questions = dbQuestions.length > 0 ? dbQuestions : localQuestions;
 
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
@@ -156,10 +150,10 @@ export default function ChapterResultsScreen() {
 
   // Topic breakdown (uses Supabase questions with topicId/topicName)
   const topicStats = useMemo(() => {
-    if (!lastSession || !dbQuestions.length) return null;
+    if (!lastSession || !questions.length) return null;
     const answeredIds = new Set(lastSession.answers.map((a) => a.questionId));
     const stats: Record<string, TopicStat> = {};
-    for (const q of dbQuestions) {
+    for (const q of questions) {
       if (!q.topicId || !q.topicName) continue;
       if (!answeredIds.has(q.id)) continue;
       if (!stats[q.topicId]) {
@@ -173,7 +167,7 @@ export default function ChapterResultsScreen() {
     }
     const entries = Object.entries(stats).filter(([, v]) => v.total > 0);
     return entries.length > 0 ? entries : null;
-  }, [lastSession, dbQuestions]);
+  }, [lastSession, questions]);
 
   const getGrade = () => {
     if (percentage >= 90) return { label: 'Excellent!', emoji: '🌟', color: '#22C55E' };
