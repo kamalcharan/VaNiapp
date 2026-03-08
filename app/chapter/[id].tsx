@@ -707,6 +707,25 @@ export default function ChapterQuizScreen() {
           )}
         </ScrollView>
 
+        {/* VaNi Peek Drawer — shown after answering */}
+        {showFeedback && (
+          <Pressable
+            onPress={() => setShowVaniSheet(true)}
+            style={[
+              styles.vaniPeek,
+              {
+                backgroundColor: '#8B5CF610',
+                borderTopColor: '#8B5CF625',
+              },
+            ]}
+          >
+            <Text style={styles.vaniPeekText}>
+              {'\u2728'} Ask VaNi — {!isCorrect ? 'why was I wrong?' : 'explain this concept'}
+            </Text>
+            <Text style={[styles.vaniPeekArrow, { color: '#8B5CF6' }]}>{'\u25B2'}</Text>
+          </Pressable>
+        )}
+
         {/* Fixed Bottom Bar */}
         <View
           style={[
@@ -902,6 +921,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#F59E0B',
     marginTop: 4,
+  },
+  vaniPeek: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: Spacing.lg,
+    borderTopWidth: 1,
+    gap: 6,
+  },
+  vaniPeekText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 13,
+    color: '#8B5CF6',
+  },
+  vaniPeekArrow: {
+    fontSize: 10,
   },
   bottomBar: {
     flexDirection: 'row',
