@@ -33,7 +33,7 @@ import {
   StrengthLevel,
   ExamType,
 } from '../../src/types';
-import { getStrengthConfig } from '../../src/lib/strengthHelpers';
+import { getStrengthConfig, getBaseSubjectId } from '../../src/lib/strengthHelpers';
 
 // Enable LayoutAnimation on Android
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -138,17 +138,20 @@ export default function SubjectDetailScreen() {
           filter = userExam ?? undefined;
         }
         setExamFilter(filter);
-        const subjectChapters = await getChapters(id!, filter);
+        // Use the base subject ID for chapter loading — CUET subjects like
+        // 'cuet-physics' share chapters with 'physics' (filtered by exam_ids).
+        const baseId = getBaseSubjectId(id!);
+        const subjectChapters = await getChapters(baseId, filter);
 
         if (subjectChapters.length === 0) {
-          console.warn(`[SubjectDetail] No chapters returned for subject=${id}, filter=${filter}`);
+          console.warn(`[SubjectDetail] No chapters returned for subject=${id} (base=${baseId}), filter=${filter}`);
           setLoadError(`No chapters found for ${found.name}. Check DB connection.`);
         }
 
         setChapters(subjectChapters);
 
         // Fetch question counts for chapters not yet practiced (single batched query)
-        getChapterQuestionCounts(id!).then(setBankCounts);
+        getChapterQuestionCounts(baseId).then(setBankCounts);
       } else {
         setLoadError(`Subject "${id}" not found`);
       }

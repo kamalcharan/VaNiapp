@@ -59,23 +59,24 @@ const CUET_TO_NEET_SUBJECT: Record<string, string> = {
 };
 
 /**
- * Get the NEET counterpart subject ID for a CUET subject (if any).
- * Returns undefined if no mapping exists (subject is CUET-only).
+ * Get the base (NEET) subject ID that owns the chapters in the DB.
+ * e.g. 'cuet-physics' → 'physics', 'chemistry' → 'chemistry'.
+ * Chapters are stored under the NEET subject_id; CUET subjects are
+ * just a filtered view (via exam_ids) of the same chapter pool.
  */
-export function getNeetCounterpart(cuetSubjectId: string): string | undefined {
-  return CUET_TO_NEET_SUBJECT[cuetSubjectId];
+export function getBaseSubjectId(subjectId: string): string {
+  return CUET_TO_NEET_SUBJECT[subjectId] ?? subjectId;
 }
 
 /**
- * Get all subject IDs whose strength data should contribute to a given subject.
- * For NEET subjects, returns just [subjectId].
- * For CUET subjects with a NEET counterpart, returns [cuetSubjectId, neetSubjectId]
- * so that shared chapter practice data is included.
+ * Get the exam filter to use when loading chapters for a subject.
+ * CUET subjects return 'CUET' so only CUET-tagged chapters are included.
+ * NEET subjects return 'NEET'.
+ * Returns undefined for subjects not in the mapping (exam-agnostic).
  */
-export function getStrengthSubjectIds(subjectId: string): string[] {
-  const neetCounterpart = CUET_TO_NEET_SUBJECT[subjectId];
-  if (neetCounterpart) {
-    return [subjectId, neetCounterpart];
-  }
-  return [subjectId];
+export function getExamFilterForSubject(subjectId: string): string | undefined {
+  if (CUET_TO_NEET_SUBJECT[subjectId]) return 'CUET';
+  // Check if it's a known NEET subject (reverse lookup)
+  if (Object.values(CUET_TO_NEET_SUBJECT).includes(subjectId)) return 'NEET';
+  return undefined;
 }
