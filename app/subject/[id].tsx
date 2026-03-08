@@ -33,7 +33,7 @@ import {
   StrengthLevel,
   ExamType,
 } from '../../src/types';
-import { getStrengthConfig } from '../../src/lib/strengthHelpers';
+import { getStrengthConfig, getNeetCounterpart } from '../../src/lib/strengthHelpers';
 
 // Enable LayoutAnimation on Android
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -138,17 +138,38 @@ export default function SubjectDetailScreen() {
           filter = userExam ?? undefined;
         }
         setExamFilter(filter);
+        // Load this subject's own chapters
         const subjectChapters = await getChapters(id!, filter);
 
-        if (subjectChapters.length === 0) {
+        // For CUET subjects with a NEET counterpart (e.g. cuet-physics),
+        // also include shared NEET chapters tagged with exam_ids containing 'CUET'.
+        const neetCounterpart = getNeetCounterpart(id!);
+        let allChapters = subjectChapters;
+        if (neetCounterpart) {
+          const sharedNeetChapters = await getChapters(neetCounterpart, 'CUET');
+          // Merge, avoiding duplicates by chapter ID
+          const existingIds = new Set(subjectChapters.map((ch) => ch.id));
+          const extra = sharedNeetChapters.filter((ch) => !existingIds.has(ch.id));
+          allChapters = [...subjectChapters, ...extra];
+        }
+
+        if (allChapters.length === 0) {
           console.warn(`[SubjectDetail] No chapters returned for subject=${id}, filter=${filter}`);
           setLoadError(`No chapters found for ${found.name}. Check DB connection.`);
         }
 
-        setChapters(subjectChapters);
+        setChapters(allChapters);
 
         // Fetch question counts for chapters not yet practiced (single batched query)
-        getChapterQuestionCounts(id!).then(setBankCounts);
+        if (neetCounterpart) {
+          // Load both own + shared NEET chapter counts in parallel
+          Promise.all([
+            getChapterQuestionCounts(id!),
+            getChapterQuestionCounts(neetCounterpart),
+          ]).then(([own, shared]) => setBankCounts({ ...shared, ...own }));
+        } else {
+          getChapterQuestionCounts(id!).then(setBankCounts);
+        }
       } else {
         setLoadError(`Subject "${id}" not found`);
       }
