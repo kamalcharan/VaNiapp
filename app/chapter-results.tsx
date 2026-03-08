@@ -100,8 +100,8 @@ export default function ChapterResultsScreen() {
     });
   }, [chapterId, isQuickMode]);
 
-  // Use local questions if available, otherwise Supabase questions (for CUET chapters etc.)
-  const questions = localQuestions.length > 0 ? localQuestions : dbQuestions;
+  // Prefer Supabase questions (quiz uses Supabase IDs for answers), fall back to local
+  const questions = dbQuestions.length > 0 ? dbQuestions : localQuestions;
 
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
@@ -436,7 +436,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   typeLabel: {
-    width: 100,
+    width: 130,
     paddingVertical: 4,
     paddingHorizontal: 8,
     borderRadius: BorderRadius.sm,
