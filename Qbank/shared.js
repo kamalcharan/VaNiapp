@@ -2191,8 +2191,10 @@ function runQualityValidators(questions, languages, chapterId) {
           }));
         }
 
-        // Check column count mismatch
-        if (colA.length !== colB.length) {
+        // Check column count mismatch — only flag large differences (>2).
+        // Small differences (4 vs 3, 4 vs 2) are normal many-to-one matching
+        // in Indian competitive exam MTF questions.
+        if (Math.abs(colA.length - colB.length) > 2) {
           issues.push(makeIssue(q, chapterId, 'MTF_COLUMN_COUNT_MISMATCH', {
             colACount: colA.length, colBCount: colB.length
           }));
