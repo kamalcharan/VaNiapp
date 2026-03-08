@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, Image, ActivityIndicator } from 'react-native';
+import ImageViewing from 'react-native-image-viewing';
 import { Typography, Spacing, BorderRadius } from '../../constants/theme';
 import { Option, t } from '../../types';
 import { QuestionRendererProps } from './QuestionRenderer';
@@ -20,6 +21,7 @@ interface Props extends QuestionRendererProps {
 export function DiagramBasedQuestion({ question, language, selectedOptionId, showFeedback, onSelect, colors, payload }: Props) {
   const [imageLoading, setImageLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
+  const [imageViewerVisible, setImageViewerVisible] = useState(false);
   const isCorrect = selectedOptionId === payload.correctOptionId;
   const hasImage = !!payload.imageUri && payload.imageUri.startsWith('http');
 
@@ -42,7 +44,7 @@ export function DiagramBasedQuestion({ question, language, selectedOptionId, sho
       <View style={[styles.diagramCard, { backgroundColor: colors.surface, borderColor: colors.surfaceBorder }]}>
         <Text style={[styles.cardLabel, { color: '#8B5CF6' }]}>DIAGRAM</Text>
         {hasImage && !imageError ? (
-          <View style={styles.imageContainer}>
+          <Pressable onPress={() => setImageViewerVisible(true)} style={styles.imageContainer}>
             {imageLoading && (
               <View style={styles.loadingOverlay}>
                 <ActivityIndicator size="small" color={colors.primary} />
@@ -60,7 +62,14 @@ export function DiagramBasedQuestion({ question, language, selectedOptionId, sho
               }}
               accessibilityLabel={payload.imageAlt || 'Diagram'}
             />
-          </View>
+            <Text style={[styles.zoomHint, { color: colors.textTertiary }]}>Tap to zoom</Text>
+            <ImageViewing
+              images={[{ uri: payload.imageUri }]}
+              imageIndex={0}
+              visible={imageViewerVisible}
+              onRequestClose={() => setImageViewerVisible(false)}
+            />
+          </Pressable>
         ) : (
           <View style={[styles.placeholderBox, { borderColor: colors.surfaceBorder }]}>
             <Text style={[styles.placeholderIcon, { color: colors.textTertiary }]}>
@@ -139,6 +148,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 220,
     borderRadius: BorderRadius.md,
+  },
+  zoomHint: {
+    fontSize: 11,
+    textAlign: 'center',
+    marginTop: Spacing.xs,
+    fontFamily: 'PlusJakartaSans_500Medium',
   },
   loadingOverlay: {
     position: 'absolute',
