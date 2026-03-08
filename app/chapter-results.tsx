@@ -138,15 +138,19 @@ export default function ChapterResultsScreen() {
 
   // Only consider questions that were actually answered in this session
   const answeredQuestions = useMemo(() => {
-    if (!answerMap.size || !questions.length) return questions; // fallback to all questions
+    if (!answerMap.size || !questions.length) return [];
     const filtered = questions.filter((q) => answerMap.has(q.id));
     if (filtered.length === 0 && answerMap.size > 0 && questions.length > 0) {
-      // Debug: IDs don't match — log samples to diagnose
       const sampleAnswerId = [...answerMap.keys()][0];
       const sampleQuestionId = questions[0].id;
-      console.warn(`[results] ID mismatch! answer ID sample: "${sampleAnswerId}", question ID sample: "${sampleQuestionId}"`);
+      reportError(
+        new Error(`Question ID mismatch in results: answer="${sampleAnswerId}", question="${sampleQuestionId}"`),
+        'high',
+        'ChapterResults.idMismatch',
+        { chapterId, answerCount: answerMap.size, questionCount: questions.length },
+      );
     }
-    return filtered.length > 0 ? filtered : questions; // fallback if IDs don't match
+    return filtered;
   }, [answerMap, questions]);
 
   const difficultyStats = useMemo(() => {
