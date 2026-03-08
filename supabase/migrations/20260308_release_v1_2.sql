@@ -7,7 +7,7 @@ UPDATE med_app_versions SET status = 'legacy' WHERE version = '1.1' AND status =
 
 INSERT INTO med_app_versions (version, status, release_notes, download_url, android_download_url, android_download_tinyurl, is_skippable)
 VALUES (
-  '1.2',
+  '1.2.0',
   'active',
   'CUET exam support, Telugu and Hindi language release',
   'https://drive.google.com/file/d/1voRW2HKpdj6rn82cPKivSwXxD0IT5qKd/view?usp=sharing',
