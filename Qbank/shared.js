@@ -2953,6 +2953,113 @@ async function fixMTFDuplicateKeys(questions) {
 }
 
 // ============================================================================
+// CLEAR TRANSLATIONS for selected questions
+// ============================================================================
+
+/**
+ * Wipe all non-English translation fields for a set of questions.
+ * Clears: med_questions (question_text_te/hi, explanation_te/hi, last_translated_at),
+ *         med_question_options (option_text_te/hi),
+ *         med_elimination_hints (hint_text_te/hi, misconception_te/hi),
+ *         payload columnA/columnB textTe/textHi fields.
+ *
+ * This allows the translation pipeline to regenerate clean translations
+ * after garbage data (e.g. from MTF option pollution) has been fixed.
+ */
+async function clearTranslations(questions) {
+  if (!SUPABASE) return { cleared: 0, errors: 0, details: [] };
+
+  const langs = await fetchActiveLanguages();
+  const results = { cleared: 0, errors: 0, details: [] };
+
+  for (const q of questions) {
+    const qId = q.id;
+    let hasError = false;
+
+    // 1. Clear question-level translation columns
+    const qUpdate = {};
+    for (const lang of langs) {
+      for (const field of QUESTION_TRANSLATABLE_FIELDS) {
+        qUpdate[field + '_' + lang.id] = null;
+      }
+    }
+    qUpdate.last_translated_at = null;
+
+    // Also clear payload column textTe/textHi
+    const payload = q.payload ? { ...q.payload } : null;
+    if (payload) {
+      const clearColumnItems = (items) => {
+        if (!Array.isArray(items)) return items;
+        return items.map(item => {
+          const cleaned = { ...item };
+          for (const lang of langs) {
+            const suffix = lang.id.charAt(0).toUpperCase() + lang.id.slice(1); // te → Te, hi → Hi
+            cleaned['text' + suffix] = '';
+          }
+          return cleaned;
+        });
+      };
+      if (payload.columnA) payload.columnA = clearColumnItems(payload.columnA);
+      if (payload.columnB) payload.columnB = clearColumnItems(payload.columnB);
+      if (payload.column_a) payload.column_a = clearColumnItems(payload.column_a);
+      if (payload.column_b) payload.column_b = clearColumnItems(payload.column_b);
+      qUpdate.payload = payload;
+    }
+
+    const { error: qErr } = await SUPABASE
+      .from('med_questions')
+      .update(qUpdate)
+      .eq('id', qId);
+    if (qErr) {
+      console.error(`[clearTranslations] question ${qId}:`, qErr);
+      hasError = true;
+    }
+
+    // 2. Clear option translation columns
+    const optUpdate = {};
+    for (const lang of langs) {
+      for (const field of OPTION_TRANSLATABLE_FIELDS) {
+        optUpdate[field + '_' + lang.id] = null;
+      }
+    }
+    const { error: optErr } = await SUPABASE
+      .from('med_question_options')
+      .update(optUpdate)
+      .eq('question_id', qId);
+    if (optErr) {
+      console.error(`[clearTranslations] options ${qId}:`, optErr);
+      hasError = true;
+    }
+
+    // 3. Clear hint translation columns
+    const hintUpdate = {};
+    for (const lang of langs) {
+      for (const field of HINT_TRANSLATABLE_FIELDS) {
+        hintUpdate[field + '_' + lang.id] = null;
+      }
+    }
+    const { error: hintErr } = await SUPABASE
+      .from('med_elimination_hints')
+      .update(hintUpdate)
+      .eq('question_id', qId);
+    if (hintErr) {
+      console.error(`[clearTranslations] hints ${qId}:`, hintErr);
+      hasError = true;
+    }
+
+    if (hasError) {
+      results.errors++;
+      results.details.push({ id: qId, status: 'error' });
+    } else {
+      results.cleared++;
+      results.details.push({ id: qId, status: 'cleared' });
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
 // AUTO-FIX: Backfill missing elimination hints
 // ============================================================================
 
@@ -3335,6 +3442,7 @@ window.Qbank = {
   fixMTFPayload,
   fixMTFDuplicateKeys,
   fixMissingHints,
+  clearTranslations,
   auditHints,
   fixMissingSequenceItems,
 
