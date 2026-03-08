@@ -31,19 +31,13 @@ import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
 import { RootState } from '../../src/store';
 import {
   StrengthLevel,
-  STRENGTH_LEVELS,
-  NEEDS_FOCUS_CONFIG,
   ExamType,
 } from '../../src/types';
+import { getStrengthConfig, getNeetCounterpart } from '../../src/lib/strengthHelpers';
 
 // Enable LayoutAnimation on Android
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
-}
-
-function getStrengthConfig(level: StrengthLevel) {
-  if (level === 'needs-focus') return NEEDS_FOCUS_CONFIG;
-  return STRENGTH_LEVELS.find((s) => s.id === level) || STRENGTH_LEVELS[0];
 }
 
 // VaNi coaching messages per chapter strength — always positive
@@ -119,6 +113,7 @@ export default function SubjectDetailScreen() {
 
   // Redux strength data
   const strengthChapters = useSelector((state: RootState) => state.strength.chapters);
+  const chapterHistory = useSelector((state: RootState) => state.practice.chapterHistory);
 
   // Animation
   const fadeIn = useRef(new Animated.Value(0)).current;
@@ -143,17 +138,38 @@ export default function SubjectDetailScreen() {
           filter = userExam ?? undefined;
         }
         setExamFilter(filter);
+        // Load this subject's own chapters
         const subjectChapters = await getChapters(id!, filter);
 
-        if (subjectChapters.length === 0) {
+        // For CUET subjects with a NEET counterpart (e.g. cuet-physics),
+        // also include shared NEET chapters tagged with exam_ids containing 'CUET'.
+        const neetCounterpart = getNeetCounterpart(id!);
+        let allChapters = subjectChapters;
+        if (neetCounterpart) {
+          const sharedNeetChapters = await getChapters(neetCounterpart, 'CUET');
+          // Merge, avoiding duplicates by chapter ID
+          const existingIds = new Set(subjectChapters.map((ch) => ch.id));
+          const extra = sharedNeetChapters.filter((ch) => !existingIds.has(ch.id));
+          allChapters = [...subjectChapters, ...extra];
+        }
+
+        if (allChapters.length === 0) {
           console.warn(`[SubjectDetail] No chapters returned for subject=${id}, filter=${filter}`);
           setLoadError(`No chapters found for ${found.name}. Check DB connection.`);
         }
 
-        setChapters(subjectChapters);
+        setChapters(allChapters);
 
         // Fetch question counts for chapters not yet practiced (single batched query)
-        getChapterQuestionCounts(id!).then(setBankCounts);
+        if (neetCounterpart) {
+          // Load both own + shared NEET chapter counts in parallel
+          Promise.all([
+            getChapterQuestionCounts(id!),
+            getChapterQuestionCounts(neetCounterpart),
+          ]).then(([own, shared]) => setBankCounts({ ...shared, ...own }));
+        } else {
+          getChapterQuestionCounts(id!).then(setBankCounts);
+        }
       } else {
         setLoadError(`Subject "${id}" not found`);
       }
@@ -632,6 +648,34 @@ export default function SubjectDetailScreen() {
                               </Text>
                             </Pressable>
                           )}
+
+                          {/* View Last Result — show if chapter has a completed session in history */}
+                          {(() => {
+                            const lastResult = chapterHistory.find(
+                              (s) => s.chapterId === ca.chapter.id && s.completedAt != null,
+                            );
+                            if (!lastResult || lastResult.correctCount == null) return null;
+                            return (
+                              <Pressable
+                                style={[styles.practiceAgainButton, { backgroundColor: '#6366F115' }]}
+                                onPress={() =>
+                                  router.push({
+                                    pathname: '/chapter-results',
+                                    params: {
+                                      chapterId: lastResult.chapterId,
+                                      correct: String(lastResult.correctCount),
+                                      total: String(lastResult.totalQuestions),
+                                      timeUsedMs: String(lastResult.timeUsedMs ?? 0),
+                                    },
+                                  })
+                                }
+                              >
+                                <Text style={[styles.practiceAgainText, { color: '#6366F1' }]}>
+                                  View last result ({lastResult.correctCount}/{lastResult.totalQuestions})
+                                </Text>
+                              </Pressable>
+                            );
+                          })()}
                         </View>
                       </View>
                     )}

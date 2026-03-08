@@ -18,9 +18,10 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { usePersona } from '../../src/hooks/usePersona';
 import { Typography, Spacing } from '../../src/constants/theme';
 import { getProfile, getUserSubjectIds, shareInviteMessage, MedProfile } from '../../src/lib/database';
-import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
-import { StrengthLevel, STRENGTH_LEVELS, NEEDS_FOCUS_CONFIG, ExamType } from '../../src/types';
+import { getSubjects, getChapters, CatalogSubject } from '../../src/lib/catalog';
+import { StrengthLevel, ExamType } from '../../src/types';
 import { evaluateSubjectStrength } from '../../src/lib/strengthEvaluator';
+import { getStrengthConfig, getVaniMessage, getNeetCounterpart } from '../../src/lib/strengthHelpers';
 import { RootState } from '../../src/store';
 import { setDashboardExamFocus } from '../../src/store/slices/authSlice';
 import * as Haptics from 'expo-haptics';
@@ -39,44 +40,7 @@ interface SubjectJourney {
   vaniMessage: string;
 }
 
-// VaNi coaching messages for each strength level
-const VANI_MESSAGES: Record<StrengthLevel, string[]> = {
-  'just-started': [
-    "Let's begin your journey!",
-    "Ready to explore together?",
-    "Your adventure starts here!",
-  ],
-  'getting-there': [
-    "You're building momentum!",
-    "Great progress, keep going!",
-    "I see your growth!",
-  ],
-  'on-track': [
-    "You're doing amazing!",
-    "Strong foundations built!",
-    "Keep up the great work!",
-  ],
-  'strong': [
-    "You're mastering this!",
-    "Excellent command!",
-    "Ready to conquer!",
-  ],
-  'needs-focus': [
-    "Let's strengthen this together",
-    "I'll help you improve here",
-    "We'll work through this!",
-  ],
-};
-
-function getVaniMessage(level: StrengthLevel): string {
-  const messages = VANI_MESSAGES[level];
-  return messages[Math.floor(Math.random() * messages.length)];
-}
-
-function getStrengthConfig(level: StrengthLevel) {
-  if (level === 'needs-focus') return NEEDS_FOCUS_CONFIG;
-  return STRENGTH_LEVELS.find(s => s.id === level) || STRENGTH_LEVELS[0];
-}
+// getStrengthConfig, getVaniMessage, getStrengthSubjectIds — imported from shared lib
 
 export default function DashboardScreen() {
   const { colors, mode, toggle } = useTheme();
@@ -118,30 +82,50 @@ export default function DashboardScreen() {
 
         // Create journey data from actual strength data in Redux,
         // reusing evaluateSubjectStrength() so numbers match subject detail screen.
-        const journeys: SubjectJourney[] = matched.map((subject) => {
-          const subjectChapters = Object.values(strengthChapters).filter(
-            (ch) => ch.subjectId === subject.id,
-          );
-          const chaptersCompleted = subjectChapters.filter(
-            (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
-          ).length;
+        const journeys: SubjectJourney[] = await Promise.all(
+          matched.map(async (subject) => {
+            // Load this subject's own chapters
+            const catalogChapters = await getChapters(subject.id);
+            const chapterIds = new Set(catalogChapters.map((ch) => ch.id));
 
-          const evalData = subjectChapters.map((ch) => ({
-            coverage: ch.coverage,
-            accuracy: ch.accuracy,
-            totalInBank: ch.totalInBank,
-          }));
-          const strength = evaluateSubjectStrength(evalData);
+            // For CUET subjects (e.g. cuet-physics), also load shared NEET
+            // chapters tagged with exam_ids: ['NEET','CUET']. Practice done
+            // on these via NEET records subjectId='physics', so we need to
+            // include that strength data for the CUET card too.
+            const neetCounterpart = getNeetCounterpart(subject.id);
+            if (neetCounterpart) {
+              const sharedNeetChapters = await getChapters(neetCounterpart, 'CUET');
+              for (const ch of sharedNeetChapters) {
+                chapterIds.add(ch.id);
+              }
+            }
 
-          return {
-            subject,
-            strengthLevel: strength.level,
-            accuracy: Math.round(strength.accuracy),
-            chaptersCompleted,
-            totalChapters: 10,
-            vaniMessage: getVaniMessage(strength.level),
-          };
-        });
+            // Filter strength data — match by chapterId (covers both CUET-own
+            // chapters and shared NEET chapters regardless of subjectId)
+            const subjectChapters = Object.values(strengthChapters).filter(
+              (ch) => chapterIds.has(ch.chapterId),
+            );
+            const chaptersCompleted = subjectChapters.filter(
+              (ch) => ch.coverage >= 60 && ch.accuracy >= 70,
+            ).length;
+
+            const evalData = subjectChapters.map((ch) => ({
+              coverage: ch.coverage,
+              accuracy: ch.accuracy,
+              totalInBank: ch.totalInBank,
+            }));
+            const strength = evaluateSubjectStrength(evalData);
+
+            return {
+              subject,
+              strengthLevel: strength.level,
+              accuracy: Math.round(strength.accuracy),
+              chaptersCompleted,
+              totalChapters: chapterIds.size,
+              vaniMessage: getVaniMessage(strength.level),
+            };
+          }),
+        );
 
         setSubjectJourneys(journeys);
       }

@@ -76,7 +76,11 @@ export function reportError(
 ): void {
   const err = toError(error);
 
-  console.warn(`[VaNi Error] [${severity}] ${context ?? ''}:`, err.message);
+  // Use console.log instead of console.warn to avoid React Native's
+  // yellow warning banner in dev mode — these go to Sentry regardless.
+  if (__DEV__) {
+    console.log(`[VaNi Error] [${severity}] ${context ?? ''}:`, err.message);
+  }
 
   const fingerprint = `${context}:${err.message}`;
   if (isDuplicate(fingerprint)) return;

@@ -31,17 +31,22 @@ export interface OnboardingFlowConfig {
 // NEET fixed subjects
 export type NeetSubjectId = 'physics' | 'chemistry' | 'botany' | 'zoology';
 
-// All CUET domain subject IDs
+// All CUET domain subject IDs (must match med_subjects DB table)
 export type CuetSubjectId =
   // Science
+  | 'cuet-physics'
+  | 'cuet-chemistry'
   | 'physics'
   | 'chemistry'
   | 'mathematics'
   | 'biology'
+  | 'agriculture'
+  | 'engineering-graphics'
   // Commerce
   | 'accountancy'
   | 'business-studies'
   | 'economics'
+  | 'entrepreneurship'
   // Arts / Humanities
   | 'history'
   | 'geography'
@@ -50,6 +55,8 @@ export type CuetSubjectId =
   | 'psychology'
   | 'philosophy'
   | 'anthropology'
+  | 'knowledge-traditions'
+  | 'legal-studies'
   // Other Domain
   | 'computer-science'
   | 'environmental-studies'
@@ -57,6 +64,9 @@ export type CuetSubjectId =
   | 'fine-arts'
   | 'home-science'
   | 'mass-media'
+  | 'teaching-aptitude'
+  | 'performing-arts'
+  | 'sanskrit'
   // General Test
   | 'general-test';
 

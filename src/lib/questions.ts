@@ -358,6 +358,21 @@ function buildPayload(
       let colB = parseColumnItemsFromJson(raw.column_b ?? raw.columnB);
       let mapping = (raw.correct_mapping ?? raw.correctMapping) as Record<string, string> | undefined;
 
+      // Detect garbled DB data: an earlier migration didn't strip MCQ option
+      // lines from Column II text, producing many garbage items with tiny text
+      // like ",", "–", or empty strings. If >50% of items have text ≤2 chars,
+      // discard and re-parse from question_text.
+      const isGarbled = (items: { text: string }[]) =>
+        items.length > 0 &&
+        items.filter((it) => it.text.trim().length <= 2).length > items.length * 0.3;
+
+      if (isGarbled(colB)) {
+        colB = [];
+        mapping = undefined; // Reset mapping — it may reference garbled IDs
+        // Also reset colA if it looks bad
+        if (isGarbled(colA)) colA = [];
+      }
+
       if (colA.length === 0 || colB.length === 0) {
         const parsed = parseMatchColumns(text);
         colA = colA.length > 0 ? colA : parsed.columnA;
@@ -466,6 +481,14 @@ function buildPayload(
 
 /** Parse array of column/sequence items from DB payload JSON */
 function parseColumnItemsFromJson(data: unknown): { id: string; text: string; textTe: string; textHi: string }[] {
+  // Handle JSON string (e.g. Supabase returning stringified JSON)
+  if (typeof data === 'string') {
+    try {
+      data = JSON.parse(data);
+    } catch {
+      return [];
+    }
+  }
   if (!Array.isArray(data)) return [];
   return data.map((item: Record<string, unknown>) => ({
     id: String(item.id ?? ''),
@@ -473,6 +496,27 @@ function parseColumnItemsFromJson(data: unknown): { id: string; text: string; te
     textTe: String(item.text_te ?? item.textTe ?? ''),
     textHi: String(item.text_hi ?? item.textHi ?? ''),
   }));
+}
+
+/**
+ * Strip trailing MCQ option text that sometimes appears at the end of
+ * question_text after the column items.  Patterns removed:
+ *   - "Select the correct match/option/answer:" and everything after
+ *   - "Choose the correct ..." and everything after
+ *   - "The correct combination is:" and everything after
+ *   - Lines starting with (A)/(B)/(C)/(D) that contain mapping patterns
+ */
+function stripTrailingOptions(body: string): string {
+  // Remove everything from a "Select/Choose/Correct combination" prompt onward
+  body = body.replace(
+    /\n\s*(?:select|choose|the correct|identify the correct|pick the correct|which of the following)[^\n]*(?:\n[\s\S]*)?$/i,
+    ''
+  );
+  // Remove MCQ option lines: (A) ..., (B) ..., (C) ..., (D) ...
+  // These contain mapping patterns like "(i)–(r), (ii)–(s)" that pollute column items.
+  // IMPORTANT: Only match UPPERCASE A-D to avoid stripping actual column items like (a), (b).
+  body = body.replace(/\n\s*\([A-D]\)\s*[\s\S]*$/, '');
+  return body;
 }
 
 /**
@@ -511,7 +555,14 @@ function parseMatchColumns(text: string): {
   const col2Text = colSplit[colSplit.length - 1];
 
   // Remove the "Column I:" / "List I:" header from col1Text
-  const col1Body = col1Text.replace(/.*(?:column|list)\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\))?\s*[:\-–]/is, '');
+  const col1Body = stripTrailingOptions(
+    col1Text.replace(/.*(?:column|list)\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\))?\s*[:\-–]/is, '')
+  );
+
+  // Strip trailing MCQ option listing from Column II text (e.g.
+  // "Select the correct match:\n(A) (i)–(r), (ii)–(s)..." that bleeds
+  // into the column items and produces garbage entries).
+  const col2TextClean = stripTrailingOptions(col2Text);
 
   // Extract labeled items in multiple formats:
   // 1. Parenthesized: (P), (Q), (1), (a), (i), (ii), (iii), (iv) etc.
@@ -567,7 +618,7 @@ function parseMatchColumns(text: string): {
   }
 
   columnA.push(...extractItems(col1Body));
-  columnB.push(...extractItems(col2Text));
+  columnB.push(...extractItems(col2TextClean));
 
   return { columnA, columnB };
 }

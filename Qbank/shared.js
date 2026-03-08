@@ -391,6 +391,23 @@ function buildImportPayload(q) {
 }
 
 /**
+ * Strip trailing MCQ option text that sometimes appears at the end of
+ * question_text after the column items.  Patterns removed:
+ *   - "Select the correct match/option/answer:" and everything after
+ *   - "Choose the correct ..." and everything after
+ *   - Lines starting with (A)/(B)/(C)/(D) uppercase that contain mapping patterns
+ */
+function _stripTrailingMCQOptions(body) {
+  body = body.replace(
+    /\n\s*(?:select|choose|the correct|identify the correct|pick the correct|which of the following)[^\n]*(?:\n[\s\S]*)?$/i,
+    ''
+  );
+  // Only match UPPERCASE A-D to avoid stripping actual column items like (a), (b)
+  body = body.replace(/\n\s*\([A-D]\)\s*[\s\S]*$/, '');
+  return body;
+}
+
+/**
  * Parse MTF column items from question text.
  * Handles: (P) text, A. text, A  text formats.
  * textTe is populated separately by the translation program.
@@ -424,9 +441,11 @@ function _parseMTFColumns(text) {
   if (colSplit.length < 2) return { columnA: [], columnB: [] };
 
   // Use LAST part as Column II body, everything before as Column I area
-  const col2Body = colSplit[colSplit.length - 1];
+  const col2Body = _stripTrailingMCQOptions(colSplit[colSplit.length - 1]);
   const col1Raw = colSplit.slice(0, -1).join(' ');
-  const col1Body = col1Raw.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\)\s*[:\-–→]?|[:\-–→)])/i, '');
+  const col1Body = _stripTrailingMCQOptions(
+    col1Raw.replace(/.*column\s*[-–]?\s*(?:i|I|1|a|A)\s*(?:\([^)]*\)\s*[:\-–→]?|[:\-–→)])/i, '')
+  );
 
   function extractItems(body) {
     let items = [];
@@ -1889,6 +1908,10 @@ const QUALITY_ISSUE_TYPES = {
 
   // Type-specific payload issues (custom UI can't render)
   MTF_NO_COLUMN_DATA:     { severity: 'high',   label: 'MTF missing column A/B data (custom UI broken)' },
+  MTF_GARBAGE_COLUMNS:    { severity: 'high',   label: 'MTF columns have garbage items (likely from MCQ option pollution)' },
+  MTF_COLUMN_COUNT_MISMATCH: { severity: 'medium', label: 'MTF column A and B have different item counts' },
+  MTF_EXCESSIVE_ITEMS:    { severity: 'high',   label: 'MTF column has too many items (>8 is suspicious)' },
+  MTF_NO_CORRECT_MAPPING: { severity: 'medium', label: 'MTF missing correct_mapping in payload' },
   SEQ_NO_ITEMS:           { severity: 'high',   label: 'Sequence question missing items list' },
   SEQ_INCOMPLETE_TEXT:    { severity: 'high',   label: 'Sequence question text has no items to arrange' },
   MTF_DUPLICATE_KEYS:     { severity: 'high',   label: 'MTF has duplicate option/column keys (drag broken)' },
@@ -2141,6 +2164,49 @@ function runQualityValidators(questions, languages, chapterId) {
           hasColumnB: Array.isArray(colB) && colB.length > 0
         }));
       }
+      // Check for garbage column items (empty, pure punctuation, or MCQ option labels)
+      if (Array.isArray(colA) && colA.length > 0 && Array.isArray(colB) && colB.length > 0) {
+        const isGarbage = (item) => {
+          const t = (item.text || '').trim();
+          if (!t) return true;                                    // empty
+          if (/^[,–\-;:.|/\\]+$/.test(t)) return true;          // punctuation-only
+          if (/^[A-Da-d]$/.test(t)) return true;                 // bare MCQ option label
+          return false;
+        };
+        const garbageA = colA.filter(isGarbage);
+        const garbageB = colB.filter(isGarbage);
+        if (garbageA.length > 0 || garbageB.length > 0) {
+          issues.push(makeIssue(q, chapterId, 'MTF_GARBAGE_COLUMNS', {
+            garbageInA: garbageA.length, totalA: colA.length,
+            garbageInB: garbageB.length, totalB: colB.length,
+            samplesA: garbageA.slice(0, 3).map(i => `(${i.id}) "${i.text}"`),
+            samplesB: garbageB.slice(0, 3).map(i => `(${i.id}) "${i.text}"`)
+          }));
+        }
+
+        // Check for excessive items (>8 per column is suspicious)
+        if (colA.length > 8 || colB.length > 8) {
+          issues.push(makeIssue(q, chapterId, 'MTF_EXCESSIVE_ITEMS', {
+            colACount: colA.length, colBCount: colB.length
+          }));
+        }
+
+        // Check column count mismatch — only flag large differences (>2).
+        // Small differences (4 vs 3, 4 vs 2) are normal many-to-one matching
+        // in Indian competitive exam MTF questions.
+        if (Math.abs(colA.length - colB.length) > 2) {
+          issues.push(makeIssue(q, chapterId, 'MTF_COLUMN_COUNT_MISMATCH', {
+            colACount: colA.length, colBCount: colB.length
+          }));
+        }
+
+        // Check for missing correct_mapping
+        const mapping = payload.correct_mapping || payload.correctMapping;
+        if (!mapping || (typeof mapping === 'object' && Object.keys(mapping).length === 0)) {
+          issues.push(makeIssue(q, chapterId, 'MTF_NO_CORRECT_MAPPING'));
+        }
+      }
+
       // Check for duplicate keys in columns or options — breaks drag-and-drop
       if (Array.isArray(colA) && colA.length > 0) {
         const aIds = colA.map(c => c.id);
@@ -2892,6 +2958,113 @@ async function fixMTFDuplicateKeys(questions) {
 }
 
 // ============================================================================
+// CLEAR TRANSLATIONS for selected questions
+// ============================================================================
+
+/**
+ * Wipe all non-English translation fields for a set of questions.
+ * Clears: med_questions (question_text_te/hi, explanation_te/hi, last_translated_at),
+ *         med_question_options (option_text_te/hi),
+ *         med_elimination_hints (hint_text_te/hi, misconception_te/hi),
+ *         payload columnA/columnB textTe/textHi fields.
+ *
+ * This allows the translation pipeline to regenerate clean translations
+ * after garbage data (e.g. from MTF option pollution) has been fixed.
+ */
+async function clearTranslations(questions) {
+  if (!SUPABASE) return { cleared: 0, errors: 0, details: [] };
+
+  const langs = await fetchActiveLanguages();
+  const results = { cleared: 0, errors: 0, details: [] };
+
+  for (const q of questions) {
+    const qId = q.id;
+    let hasError = false;
+
+    // 1. Clear question-level translation columns
+    const qUpdate = {};
+    for (const lang of langs) {
+      for (const field of QUESTION_TRANSLATABLE_FIELDS) {
+        qUpdate[field + '_' + lang.id] = null;
+      }
+    }
+    qUpdate.last_translated_at = null;
+
+    // Also clear payload column textTe/textHi
+    const payload = q.payload ? { ...q.payload } : null;
+    if (payload) {
+      const clearColumnItems = (items) => {
+        if (!Array.isArray(items)) return items;
+        return items.map(item => {
+          const cleaned = { ...item };
+          for (const lang of langs) {
+            const suffix = lang.id.charAt(0).toUpperCase() + lang.id.slice(1); // te → Te, hi → Hi
+            cleaned['text' + suffix] = '';
+          }
+          return cleaned;
+        });
+      };
+      if (payload.columnA) payload.columnA = clearColumnItems(payload.columnA);
+      if (payload.columnB) payload.columnB = clearColumnItems(payload.columnB);
+      if (payload.column_a) payload.column_a = clearColumnItems(payload.column_a);
+      if (payload.column_b) payload.column_b = clearColumnItems(payload.column_b);
+      qUpdate.payload = payload;
+    }
+
+    const { error: qErr } = await SUPABASE
+      .from('med_questions')
+      .update(qUpdate)
+      .eq('id', qId);
+    if (qErr) {
+      console.error(`[clearTranslations] question ${qId}:`, qErr);
+      hasError = true;
+    }
+
+    // 2. Clear option translation columns
+    const optUpdate = {};
+    for (const lang of langs) {
+      for (const field of OPTION_TRANSLATABLE_FIELDS) {
+        optUpdate[field + '_' + lang.id] = null;
+      }
+    }
+    const { error: optErr } = await SUPABASE
+      .from('med_question_options')
+      .update(optUpdate)
+      .eq('question_id', qId);
+    if (optErr) {
+      console.error(`[clearTranslations] options ${qId}:`, optErr);
+      hasError = true;
+    }
+
+    // 3. Clear hint translation columns
+    const hintUpdate = {};
+    for (const lang of langs) {
+      for (const field of HINT_TRANSLATABLE_FIELDS) {
+        hintUpdate[field + '_' + lang.id] = null;
+      }
+    }
+    const { error: hintErr } = await SUPABASE
+      .from('med_elimination_hints')
+      .update(hintUpdate)
+      .eq('question_id', qId);
+    if (hintErr) {
+      console.error(`[clearTranslations] hints ${qId}:`, hintErr);
+      hasError = true;
+    }
+
+    if (hasError) {
+      results.errors++;
+      results.details.push({ id: qId, status: 'error' });
+    } else {
+      results.cleared++;
+      results.details.push({ id: qId, status: 'cleared' });
+    }
+  }
+
+  return results;
+}
+
+// ============================================================================
 // AUTO-FIX: Backfill missing elimination hints
 // ============================================================================
 
@@ -3274,6 +3447,7 @@ window.Qbank = {
   fixMTFPayload,
   fixMTFDuplicateKeys,
   fixMissingHints,
+  clearTranslations,
   auditHints,
   fixMissingSequenceItems,
 

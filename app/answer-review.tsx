@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   View,
   Text,
@@ -23,11 +23,13 @@ import { getV2QuestionsByChapter } from '../src/data/questions';
 import { getChapterById } from '../src/data/chapters';
 import { getCorrectId, legacyBatchToV2 } from '../src/lib/questionAdapter';
 import { getAllQuestions } from '../src/data/questions';
+import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { AskVaniSheet } from '../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../src/components/exam/ConceptExplainerSheet';
 import { useToast } from '../src/components/ui/Toast';
 import { toggleBookmark } from '../src/store/slices/bookmarkSlice';
+import { reportError } from '../src/lib/errorReporting';
 import { QuestionV2, UserAnswer, SubjectId, t } from '../src/types';
 
 type Filter = 'all' | 'wrong' | 'correct' | 'skipped';
@@ -55,24 +57,76 @@ export default function AnswerReviewScreen() {
   const [showConceptSheet, setShowConceptSheet] = useState(false);
   const [selectedConceptTag, setSelectedConceptTag] = useState('');
 
+  // Fetch Supabase questions for chapter sessions (has elimination hints + matching IDs)
+  const [supabaseQuestions, setSupabaseQuestions] = useState<QuestionV2[]>([]);
+  const [questionsLoading, setQuestionsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+  useEffect(() => {
+    if (!session) { setQuestionsLoading(false); return; }
+    if (session.mode !== 'chapter') { setQuestionsLoading(false); return; }
+    setQuestionsLoading(true);
+    setFetchError(null);
+    fetchQuestionsByChapter(session.chapterId)
+      .then((result) => {
+        if (result.ok) {
+          setSupabaseQuestions(result.questions);
+
+          // Report if any answered questions are missing elimination hints
+          const answeredIds = new Set(session.answers.map((a) => a.questionId));
+          const answered = result.questions.filter((q) => answeredIds.has(q.id));
+          const missingHints = answered.filter(
+            (q) => !q.eliminationHints || q.eliminationHints.length === 0,
+          );
+          if (missingHints.length > 0) {
+            reportError(
+              new Error(`Elimination hints not available for ${missingHints.length} question(s)`),
+              'medium',
+              'AnswerReview.missingHints',
+              {
+                chapterId: session.chapterId,
+                questionIds: missingHints.map((q) => q.id).join(', '),
+              },
+            );
+          }
+        } else {
+          setFetchError(result.error);
+          reportError(
+            new Error(`Failed to fetch questions: ${result.error}`),
+            'high',
+            'AnswerReview.fetchQuestions',
+            { chapterId: session.chapterId, error: result.error },
+          );
+        }
+      })
+      .catch((err) => {
+        setFetchError('no-connection');
+        reportError(err, 'high', 'AnswerReview.fetchQuestions', { chapterId: session.chapterId });
+      })
+      .finally(() => setQuestionsLoading(false));
+  }, [session]);
+
   // Build question list + answer map
   const { questions, answerMap } = useMemo(() => {
     if (!session) return { questions: [] as QuestionV2[], answerMap: {} as Record<string, UserAnswer> };
-
-    let qs: QuestionV2[];
-    if (session.mode === 'chapter') {
-      qs = getV2QuestionsByChapter(session.chapterId);
-    } else {
-      qs = legacyBatchToV2(getAllQuestions());
-    }
 
     const aMap: Record<string, UserAnswer> = {};
     session.answers.forEach((a) => {
       aMap[a.questionId] = a;
     });
 
-    return { questions: qs, answerMap: aMap };
-  }, [session]);
+    if (session.mode === 'chapter' && supabaseQuestions.length > 0) {
+      const answeredSet = new Set(session.answers.map((a) => a.questionId));
+      const matched = supabaseQuestions.filter((q) => answeredSet.has(q.id));
+      return { questions: matched, answerMap: aMap };
+    }
+
+    // Practice exam mode — uses local questions
+    if (session.mode !== 'chapter') {
+      return { questions: legacyBatchToV2(getAllQuestions()), answerMap: aMap };
+    }
+
+    return { questions: [] as QuestionV2[], answerMap: aMap };
+  }, [session, supabaseQuestions]);
 
   // Classify each question
   const classified = useMemo(() => {
@@ -132,7 +186,53 @@ export default function AnswerReviewScreen() {
     }
   };
 
-  if (!session || !current) {
+  if (!session) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.container} edges={['top']}>
+          <View style={styles.emptyState}>
+            <Text style={[Typography.h3, { color: colors.text }]}>No review data available</Text>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  if (questionsLoading) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.container} edges={['top']}>
+          <View style={styles.emptyState}>
+            <Text style={[Typography.h3, { color: colors.text }]}>Loading questions...</Text>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  if (fetchError || (!current && questions.length === 0)) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.container} edges={['top']}>
+          <View style={styles.emptyState}>
+            <Text style={[Typography.h3, { color: colors.text }]}>
+              Question data is not available
+            </Text>
+            <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: Spacing.sm, textAlign: 'center' }]}>
+              {fetchError === 'no-connection'
+                ? 'Please check your internet connection and try again.'
+                : 'Unable to load questions for this session.'}
+            </Text>
+            <Pressable onPress={() => router.back()} style={{ marginTop: Spacing.lg }}>
+              <Text style={[Typography.body, { color: colors.primary }]}>Go Back</Text>
+            </Pressable>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  if (!current) {
     return (
       <DotGridBackground>
         <SafeAreaView style={styles.container} edges={['top']}>

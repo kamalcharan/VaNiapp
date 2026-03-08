@@ -14,21 +14,58 @@ import { useTheme } from '../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
 import { getChapterById } from '../src/data/chapters';
-import { getV2QuestionsByChapter } from '../src/data/questions';
 import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter';
+import { reportError } from '../src/lib/errorReporting';
 import { RootState } from '../src/store';
-import { NeetSubjectId, QuestionV2, t } from '../src/types';
+import { NeetSubjectId, QuestionV2, UserAnswer, t } from '../src/types';
+
+/** Derive subjectId from chapterId prefix when local chapter data is unavailable */
+function deriveSubjectFromChapterId(chapterId: string | undefined): string | null {
+  if (!chapterId) return null;
+  // CUET prefixes (check before NEET since 'cuet-phy-' contains 'phy-')
+  if (chapterId.startsWith('cuet-phy-')) return 'cuet-physics';
+  if (chapterId.startsWith('cuet-chem-')) return 'cuet-chemistry';
+  if (chapterId.startsWith('cuet-math-')) return 'mathematics';
+  if (chapterId.startsWith('cuet-bio-')) return 'biology';
+  if (chapterId.startsWith('cuet-agri-')) return 'agriculture';
+  if (chapterId.startsWith('cuet-eg-')) return 'engineering-graphics';
+  if (chapterId.startsWith('cuet-acc-')) return 'accountancy';
+  if (chapterId.startsWith('cuet-bst-') || chapterId.startsWith('bst-')) return 'business-studies';
+  if (chapterId.startsWith('cuet-eco-')) return 'economics';
+  if (chapterId.startsWith('cuet-ent-')) return 'entrepreneurship';
+  if (chapterId.startsWith('cuet-hist-')) return 'history';
+  if (chapterId.startsWith('cuet-geo-')) return 'geography';
+  if (chapterId.startsWith('cuet-pol-')) return 'political-science';
+  if (chapterId.startsWith('cuet-soc-')) return 'sociology';
+  if (chapterId.startsWith('cuet-psy-')) return 'psychology';
+  if (chapterId.startsWith('cuet-phil-')) return 'philosophy';
+  if (chapterId.startsWith('cuet-anth-')) return 'anthropology';
+  if (chapterId.startsWith('cuet-cs-')) return 'computer-science';
+  if (chapterId.startsWith('cuet-env-')) return 'environmental-studies';
+  if (chapterId.startsWith('cuet-pe-')) return 'physical-education';
+  if (chapterId.startsWith('cuet-fa-')) return 'fine-arts';
+  if (chapterId.startsWith('cuet-hs-')) return 'home-science';
+  if (chapterId.startsWith('cuet-mm-')) return 'mass-media';
+  if (chapterId.startsWith('cuet-gt-')) return 'general-test';
+  // NEET prefixes
+  if (chapterId.startsWith('zoo-')) return 'zoology';
+  if (chapterId.startsWith('bot-')) return 'botany';
+  if (chapterId.startsWith('phy-')) return 'physics';
+  if (chapterId.startsWith('chem-')) return 'chemistry';
+  return null;
+}
 
 export default function ChapterResultsScreen() {
   const { colors } = useTheme();
   const router = useRouter();
-  const { chapterId: rawChapterId, correct, total, timeUsedMs: timeParam, skipped: skippedParam } = useLocalSearchParams<{
+  const { chapterId: rawChapterId, correct, total, timeUsedMs: timeParam, skipped: skippedParam, subjectId: subjectIdParam } = useLocalSearchParams<{
     chapterId: string;
     correct: string;
     total: string;
     timeUsedMs: string;
     skipped: string;
+    subjectId: string;
   }>();
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
 
@@ -38,17 +75,35 @@ export default function ChapterResultsScreen() {
   const isQuickMode = chapterId?.startsWith('quick-') ?? false;
   const quickSubjectId = isQuickMode ? chapterId!.replace('quick-', '') as NeetSubjectId : null;
   const chapter = chapterId && !isQuickMode ? getChapterById(chapterId) : null;
-  const subjectMeta = isQuickMode
-    ? (quickSubjectId ? SUBJECT_META[quickSubjectId] : null)
-    : (chapter ? SUBJECT_META[chapter.subjectId] : null);
-  const questions = useMemo(() => (chapterId && !isQuickMode ? getV2QuestionsByChapter(chapterId) : []), [chapterId, isQuickMode]);
 
-  // Fetch Supabase questions (cached from quiz session) for topic data
-  const [dbQuestions, setDbQuestions] = useState<QuestionV2[]>([]);
+  // Derive subjectId: try explicit param first, then local chapter lookup, then prefix mapping
+  const rawSubjectId = isQuickMode
+    ? quickSubjectId
+    : subjectIdParam || chapter?.subjectId || deriveSubjectFromChapterId(chapterId);
+
+  const DEFAULT_META = { name: 'Practice', emoji: '\u26A1', color: '#3B82F6' };
+  const subjectMeta = rawSubjectId
+    ? (SUBJECT_META[rawSubjectId] ?? {
+        name: rawSubjectId.charAt(0).toUpperCase() + rawSubjectId.slice(1).replace(/-/g, ' '),
+        emoji: '\u26A1',
+        color: '#3B82F6',
+      })
+    : DEFAULT_META;
+  // Fetch Supabase questions (quiz uses Supabase IDs for answers) — no fallback
+  const [questions, setQuestions] = useState<QuestionV2[]>([]);
   useEffect(() => {
     if (!chapterId || isQuickMode) return;
     fetchQuestionsByChapter(chapterId).then((result) => {
-      if (result.ok) setDbQuestions(result.questions);
+      if (result.ok) {
+        setQuestions(result.questions);
+      } else {
+        reportError(
+          new Error(`Failed to load questions for results: ${result.error}`),
+          'high',
+          'ChapterResults.fetchQuestions',
+          { chapterId, error: result.error },
+        );
+      }
     });
   }, [chapterId, isQuickMode]);
 
@@ -66,63 +121,87 @@ export default function ChapterResultsScreen() {
     return `${m}m ${s}s`;
   };
 
-  // Difficulty breakdown from the last session answers in Redux
+  // Find the session for THIS chapter (not just the most recent one)
   const lastSession = useSelector((state: RootState) => {
     const h = state.practice.chapterHistory;
-    return h.length > 0 ? h[0] : null;
+    if (!chapterId) return h.length > 0 ? h[0] : null;
+    return h.find((s) => s.chapterId === chapterId) ?? (h.length > 0 ? h[0] : null);
   });
 
+  // Build a lookup from answer questionId → answer for fast matching
+  const answerMap = useMemo(() => {
+    if (!lastSession) return new Map<string, UserAnswer>();
+    const m = new Map<string, UserAnswer>();
+    for (const a of lastSession.answers) m.set(a.questionId, a);
+    return m;
+  }, [lastSession]);
+
+  // Only consider questions that were actually answered in this session
+  const answeredQuestions = useMemo(() => {
+    if (!answerMap.size || !questions.length) return [];
+    const filtered = questions.filter((q) => answerMap.has(q.id));
+    if (filtered.length === 0 && answerMap.size > 0 && questions.length > 0) {
+      const sampleAnswerId = [...answerMap.keys()][0];
+      const sampleQuestionId = questions[0].id;
+      reportError(
+        new Error(`Question ID mismatch in results: answer="${sampleAnswerId}", question="${sampleQuestionId}"`),
+        'high',
+        'ChapterResults.idMismatch',
+        { chapterId, answerCount: answerMap.size, questionCount: questions.length },
+      );
+    }
+    return filtered;
+  }, [answerMap, questions]);
+
   const difficultyStats = useMemo(() => {
-    if (!lastSession || !questions.length) return null;
+    if (!questions.length) return null;
     const stats = { easy: { correct: 0, total: 0 }, medium: { correct: 0, total: 0 }, hard: { correct: 0, total: 0 } };
-    for (const q of questions) {
+    for (const q of answeredQuestions) {
       stats[q.difficulty].total++;
-      const ans = lastSession.answers.find((a) => a.questionId === q.id);
+      const ans = answerMap.get(q.id);
       if (ans?.selectedOptionId === getCorrectId(q)) {
         stats[q.difficulty].correct++;
       }
     }
     return stats;
-  }, [lastSession, questions]);
+  }, [answerMap, answeredQuestions, questions]);
 
   // Question type breakdown
   const typeStats = useMemo(() => {
-    if (!lastSession || !questions.length) return null;
+    if (!questions.length) return null;
     const stats: Record<string, { correct: number; total: number; label: string }> = {};
-    for (const q of questions) {
+    for (const q of answeredQuestions) {
       if (!stats[q.type]) {
         const label = q.type.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
         stats[q.type] = { correct: 0, total: 0, label };
       }
       stats[q.type].total++;
-      const ans = lastSession.answers.find((a) => a.questionId === q.id);
+      const ans = answerMap.get(q.id);
       if (ans?.selectedOptionId === getCorrectId(q)) {
         stats[q.type].correct++;
       }
     }
     return Object.entries(stats).filter(([, v]) => v.total > 0);
-  }, [lastSession, questions]);
+  }, [answerMap, answeredQuestions, questions]);
 
   // Topic breakdown (uses Supabase questions with topicId/topicName)
   const topicStats = useMemo(() => {
-    if (!lastSession || !dbQuestions.length) return null;
-    const answeredIds = new Set(lastSession.answers.map((a) => a.questionId));
+    if (!questions.length) return null;
     const stats: Record<string, TopicStat> = {};
-    for (const q of dbQuestions) {
+    for (const q of answeredQuestions) {
       if (!q.topicId || !q.topicName) continue;
-      if (!answeredIds.has(q.id)) continue;
       if (!stats[q.topicId]) {
         stats[q.topicId] = { correct: 0, total: 0, name: q.topicName, nameTe: q.topicNameTe || '' };
       }
       stats[q.topicId].total++;
-      const ans = lastSession.answers.find((a) => a.questionId === q.id);
+      const ans = answerMap.get(q.id);
       if (ans?.selectedOptionId === getCorrectId(q)) {
         stats[q.topicId].correct++;
       }
     }
     const entries = Object.entries(stats).filter(([, v]) => v.total > 0);
     return entries.length > 0 ? entries : null;
-  }, [lastSession, dbQuestions]);
+  }, [answerMap, answeredQuestions, questions]);
 
   const getGrade = () => {
     if (percentage >= 90) return { label: 'Excellent!', emoji: '🌟', color: '#22C55E' };
@@ -155,9 +234,6 @@ export default function ChapterResultsScreen() {
     }
   };
 
-  if (!subjectMeta) return null;
-  if (!isQuickMode && !chapter) return null;
-
   return (
     <DotGridBackground>
       <SafeAreaView style={styles.container} edges={['top']}>
@@ -167,7 +243,7 @@ export default function ChapterResultsScreen() {
             <Text style={styles.gradeEmoji}>{grade.emoji}</Text>
             <HandwrittenText variant="hand">{grade.label}</HandwrittenText>
             <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 4 }]}>
-              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : (chapter ? t(language, chapter.name, chapter.nameTe, chapter.nameHi) : '')}
+              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : (chapter ? t(language, chapter.name, chapter.nameTe, chapter.nameHi) : `${subjectMeta.name} — Chapter Practice`)}
             </Text>
           </View>
 
@@ -291,7 +367,7 @@ export default function ChapterResultsScreen() {
                 onPress={() =>
                   router.push({
                     pathname: '/practice-mistakes',
-                    params: { sessionId: lastSession.id, sessionMode: 'chapter' },
+                    params: { chapterId: chapterId! },
                   })
                 }
                 variant="ghost"
@@ -388,7 +464,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   typeLabel: {
-    width: 100,
+    width: 130,
     paddingVertical: 4,
     paddingHorizontal: 8,
     borderRadius: BorderRadius.sm,

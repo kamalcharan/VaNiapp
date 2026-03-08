@@ -114,17 +114,46 @@ export default function ChapterQuizScreen() {
     loadQuestions();
   }, [chapterId]);
 
-  // Derive subject from chapterId prefix (e.g., "zoo-animal-kingdom" → "zoology")
-  const subjectId = useMemo(() => {
-    if (!chapterId) return 'zoology';
+  // Derive subject from chapterId prefix — covers both NEET and CUET chapters
+  const subjectIdFromPrefix = useMemo(() => {
+    if (!chapterId) return 'physics';
+    // CUET prefixes (must check before NEET since 'cuet-phy-' also starts with 'phy-' substring)
+    if (chapterId.startsWith('cuet-phy-')) return 'cuet-physics';
+    if (chapterId.startsWith('cuet-chem-')) return 'cuet-chemistry';
+    if (chapterId.startsWith('cuet-math-')) return 'mathematics';
+    if (chapterId.startsWith('cuet-bio-')) return 'biology';
+    if (chapterId.startsWith('cuet-agri-')) return 'agriculture';
+    if (chapterId.startsWith('cuet-eg-')) return 'engineering-graphics';
+    if (chapterId.startsWith('cuet-acc-')) return 'accountancy';
+    if (chapterId.startsWith('cuet-bst-') || chapterId.startsWith('bst-')) return 'business-studies';
+    if (chapterId.startsWith('cuet-eco-')) return 'economics';
+    if (chapterId.startsWith('cuet-ent-')) return 'entrepreneurship';
+    if (chapterId.startsWith('cuet-hist-')) return 'history';
+    if (chapterId.startsWith('cuet-geo-')) return 'geography';
+    if (chapterId.startsWith('cuet-pol-')) return 'political-science';
+    if (chapterId.startsWith('cuet-soc-')) return 'sociology';
+    if (chapterId.startsWith('cuet-psy-')) return 'psychology';
+    if (chapterId.startsWith('cuet-phil-')) return 'philosophy';
+    if (chapterId.startsWith('cuet-anth-')) return 'anthropology';
+    if (chapterId.startsWith('cuet-cs-')) return 'computer-science';
+    if (chapterId.startsWith('cuet-env-')) return 'environmental-studies';
+    if (chapterId.startsWith('cuet-pe-')) return 'physical-education';
+    if (chapterId.startsWith('cuet-fa-')) return 'fine-arts';
+    if (chapterId.startsWith('cuet-hs-')) return 'home-science';
+    if (chapterId.startsWith('cuet-mm-')) return 'mass-media';
+    if (chapterId.startsWith('cuet-gt-')) return 'general-test';
+    // NEET prefixes
     if (chapterId.startsWith('zoo-')) return 'zoology';
     if (chapterId.startsWith('bot-')) return 'botany';
     if (chapterId.startsWith('phy-')) return 'physics';
     if (chapterId.startsWith('chem-')) return 'chemistry';
-    return 'zoology';
+    return 'physics';
   }, [chapterId]);
 
-  const subjectMeta = SUBJECT_META[subjectId] || SUBJECT_META.zoology;
+  // Once questions load, prefer the DB's own subjectId (authoritative)
+  const subjectId = questions.length > 0 ? questions[0].subjectId : subjectIdFromPrefix;
+
+  const subjectMeta = SUBJECT_META[subjectId] || SUBJECT_META.physics;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
@@ -134,6 +163,7 @@ export default function ChapterQuizScreen() {
   const [showConceptSheet, setShowConceptSheet] = useState(false);
   const [selectedConceptTag, setSelectedConceptTag] = useState('');
   const [showConfetti, setShowConfetti] = useState(false);
+  const [quizFinished, setQuizFinished] = useState(false);
   const streakScaleAnim = useRef(new Animated.Value(0)).current;
   const scrollRef = useRef<ScrollView>(null);
   const startTimeRef = useRef(Date.now());
@@ -251,6 +281,7 @@ export default function ChapterQuizScreen() {
     if (currentIndex >= questions.length - 1) {
       // Last question — mark as fully completed so cleanup doesn't double-save
       quizCompletedRef.current = true;
+      setQuizFinished(true);
       const allAnswers = { ...answers, [question.id]: selectedOptionId! };
       const finalCorrect = Object.entries(allAnswers).filter(([qId, optId]) => {
         const q = questions.find((qq) => qq.id === qId);
@@ -258,6 +289,20 @@ export default function ChapterQuizScreen() {
       }).length;
 
       const timeUsedMs = Date.now() - startTimeRef.current;
+
+      // Navigate FIRST — before Redux dispatches that trigger question recalculation
+      router.replace({
+        pathname: '/chapter-results',
+        params: {
+          chapterId: chapterId!,
+          subjectId,
+          correct: String(finalCorrect),
+          total: String(questions.length),
+          timeUsedMs: String(timeUsedMs),
+        },
+      });
+
+      // Then dispatch Redux state updates (quizFinished guards the UI)
       dispatch(
         completeChapterExam({
           correctCount: finalCorrect,
@@ -286,17 +331,6 @@ export default function ChapterQuizScreen() {
 
       // Sync progress to Supabase in background
       syncChapterProgress(chapterId!).catch((e) => reportError(e, 'medium', 'ChapterQuiz.syncProgress'));
-
-      // Navigate to results screen
-      router.replace({
-        pathname: '/chapter-results',
-        params: {
-          chapterId: chapterId!,
-          correct: String(finalCorrect),
-          total: String(questions.length),
-          timeUsedMs: String(timeUsedMs),
-        },
-      });
       return;
     }
 
@@ -394,7 +428,24 @@ export default function ChapterQuizScreen() {
     );
   }
 
-  if (!question) return null;
+  if (quizFinished || !question) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+          <View style={styles.loadingContainer}>
+            <Text style={{ fontSize: 32 }}>{'\u2728'}</Text>
+            <Text style={[Typography.h2, { color: colors.text }]}>Loading results...</Text>
+            <Pressable
+              onPress={() => router.replace('/(main)')}
+              style={{ marginTop: 24, paddingVertical: 12, paddingHorizontal: 24, borderRadius: 12, backgroundColor: '#64748B20' }}
+            >
+              <Text style={{ color: colors.textSecondary, fontFamily: 'PlusJakartaSans_600SemiBold', fontSize: 14 }}>Back to Dashboard</Text>
+            </Pressable>
+          </View>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
 
   const isLast = currentIndex >= questions.length - 1;
 
@@ -600,7 +651,9 @@ export default function ChapterQuizScreen() {
                 )}
                 {!isCorrect &&
                   'options' in question.payload &&
-                  'correctOptionId' in question.payload && (
+                  'correctOptionId' in question.payload &&
+                  /* MTF shows its own "Correct matching:" card — hide raw option ID */
+                  question.payload.type !== 'match-the-following' && (
                     <Text
                       style={[
                         Typography.bodySm,
