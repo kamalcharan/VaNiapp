@@ -18,7 +18,7 @@ import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter';
 import { reportError } from '../src/lib/errorReporting';
 import { RootState } from '../src/store';
-import { NeetSubjectId, QuestionV2, t } from '../src/types';
+import { NeetSubjectId, QuestionV2, UserAnswer, t } from '../src/types';
 
 /** Derive subjectId from chapterId prefix when local chapter data is unavailable */
 function deriveSubjectFromChapterId(chapterId: string | undefined): string | null {
@@ -121,35 +121,50 @@ export default function ChapterResultsScreen() {
     return `${m}m ${s}s`;
   };
 
-  // Difficulty breakdown from the last session answers in Redux
+  // Find the session for THIS chapter (not just the most recent one)
   const lastSession = useSelector((state: RootState) => {
     const h = state.practice.chapterHistory;
-    return h.length > 0 ? h[0] : null;
+    if (!chapterId) return h.length > 0 ? h[0] : null;
+    return h.find((s) => s.chapterId === chapterId) ?? (h.length > 0 ? h[0] : null);
   });
+
+  // Build a lookup from answer questionId → answer for fast matching
+  const answerMap = useMemo(() => {
+    if (!lastSession) return new Map<string, UserAnswer>();
+    const m = new Map<string, UserAnswer>();
+    for (const a of lastSession.answers) m.set(a.questionId, a);
+    return m;
+  }, [lastSession]);
 
   // Only consider questions that were actually answered in this session
   const answeredQuestions = useMemo(() => {
-    if (!lastSession || !questions.length) return [];
-    const answeredIds = new Set(lastSession.answers.map((a) => a.questionId));
-    return questions.filter((q) => answeredIds.has(q.id));
-  }, [lastSession, questions]);
+    if (!answerMap.size || !questions.length) return questions; // fallback to all questions
+    const filtered = questions.filter((q) => answerMap.has(q.id));
+    if (filtered.length === 0 && answerMap.size > 0 && questions.length > 0) {
+      // Debug: IDs don't match — log samples to diagnose
+      const sampleAnswerId = [...answerMap.keys()][0];
+      const sampleQuestionId = questions[0].id;
+      console.warn(`[results] ID mismatch! answer ID sample: "${sampleAnswerId}", question ID sample: "${sampleQuestionId}"`);
+    }
+    return filtered.length > 0 ? filtered : questions; // fallback if IDs don't match
+  }, [answerMap, questions]);
 
   const difficultyStats = useMemo(() => {
-    if (!answeredQuestions.length) return null;
+    if (!questions.length) return null;
     const stats = { easy: { correct: 0, total: 0 }, medium: { correct: 0, total: 0 }, hard: { correct: 0, total: 0 } };
     for (const q of answeredQuestions) {
       stats[q.difficulty].total++;
-      const ans = lastSession!.answers.find((a) => a.questionId === q.id);
+      const ans = answerMap.get(q.id);
       if (ans?.selectedOptionId === getCorrectId(q)) {
         stats[q.difficulty].correct++;
       }
     }
     return stats;
-  }, [lastSession, answeredQuestions]);
+  }, [answerMap, answeredQuestions, questions]);
 
   // Question type breakdown
   const typeStats = useMemo(() => {
-    if (!answeredQuestions.length) return null;
+    if (!questions.length) return null;
     const stats: Record<string, { correct: number; total: number; label: string }> = {};
     for (const q of answeredQuestions) {
       if (!stats[q.type]) {
@@ -157,17 +172,17 @@ export default function ChapterResultsScreen() {
         stats[q.type] = { correct: 0, total: 0, label };
       }
       stats[q.type].total++;
-      const ans = lastSession!.answers.find((a) => a.questionId === q.id);
+      const ans = answerMap.get(q.id);
       if (ans?.selectedOptionId === getCorrectId(q)) {
         stats[q.type].correct++;
       }
     }
     return Object.entries(stats).filter(([, v]) => v.total > 0);
-  }, [lastSession, answeredQuestions]);
+  }, [answerMap, answeredQuestions, questions]);
 
   // Topic breakdown (uses Supabase questions with topicId/topicName)
   const topicStats = useMemo(() => {
-    if (!answeredQuestions.length) return null;
+    if (!questions.length) return null;
     const stats: Record<string, TopicStat> = {};
     for (const q of answeredQuestions) {
       if (!q.topicId || !q.topicName) continue;
@@ -175,14 +190,14 @@ export default function ChapterResultsScreen() {
         stats[q.topicId] = { correct: 0, total: 0, name: q.topicName, nameTe: q.topicNameTe || '' };
       }
       stats[q.topicId].total++;
-      const ans = lastSession!.answers.find((a) => a.questionId === q.id);
+      const ans = answerMap.get(q.id);
       if (ans?.selectedOptionId === getCorrectId(q)) {
         stats[q.topicId].correct++;
       }
     }
     const entries = Object.entries(stats).filter(([, v]) => v.total > 0);
     return entries.length > 0 ? entries : null;
-  }, [lastSession, answeredQuestions]);
+  }, [answerMap, answeredQuestions, questions]);
 
   const getGrade = () => {
     if (percentage >= 90) return { label: 'Excellent!', emoji: '🌟', color: '#22C55E' };
