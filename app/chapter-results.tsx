@@ -16,6 +16,7 @@ import { SUBJECT_META } from '../src/constants/subjects';
 import { getChapterById } from '../src/data/chapters';
 import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter';
+import { reportError } from '../src/lib/errorReporting';
 import { RootState } from '../src/store';
 import { NeetSubjectId, QuestionV2, t } from '../src/types';
 
@@ -88,12 +89,21 @@ export default function ChapterResultsScreen() {
         color: '#3B82F6',
       })
     : DEFAULT_META;
-  // Fetch Supabase questions (quiz uses Supabase IDs for answers) — no fallback to local
+  // Fetch Supabase questions (quiz uses Supabase IDs for answers) — no fallback
   const [questions, setQuestions] = useState<QuestionV2[]>([]);
   useEffect(() => {
     if (!chapterId || isQuickMode) return;
     fetchQuestionsByChapter(chapterId).then((result) => {
-      if (result.ok) setQuestions(result.questions);
+      if (result.ok) {
+        setQuestions(result.questions);
+      } else {
+        reportError(
+          new Error(`Failed to load questions for results: ${result.error}`),
+          'high',
+          'ChapterResults.fetchQuestions',
+          { chapterId, error: result.error },
+        );
+      }
     });
   }, [chapterId, isQuickMode]);
 
