@@ -1,0 +1,490 @@
+[
+  {
+    "id": "eco-ni-real-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Nominal GDP is measured at:",
+    "explanation": "Nominal GDP (also called GDP at current prices) measures the value of all final goods and services produced in an economy during a year at the prices prevailing in that same year. It does not adjust for inflation or deflation. In contrast, Real GDP (GDP at constant prices) measures output using prices of a fixed base year, thereby removing the effect of price changes. This distinction is fundamental in national income accounting because Nominal GDP can rise simply due to price increases without any change in actual output.",
+    "correct_answer": "A",
+    "concept_tags": ["nominal-gdp", "current-prices", "gdp-measurement"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Current year prices", "is_correct": true},
+      {"key": "B", "text": "Base year prices", "is_correct": false},
+      {"key": "C", "text": "Wholesale prices only", "is_correct": false},
+      {"key": "D", "text": "Constant prices adjusted for subsidies", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Base year prices are used to calculate Real GDP (GDP at constant prices), not Nominal GDP. The base year is a reference year whose prices are used to isolate quantity changes.", "misconception": "Confusing Real GDP measurement with Nominal GDP measurement."},
+      {"option_key": "C", "hint": "Nominal GDP includes the value of all final goods and services at market prices, not just wholesale prices. It encompasses retail, wholesale, and all other price levels in the economy.", "misconception": "Restricting GDP measurement to a single price category."},
+      {"option_key": "D", "hint": "Constant prices refer to Real GDP, and subsidy adjustment relates to the distinction between market price and factor cost — a separate concept from nominal vs real GDP.", "misconception": "Mixing up the nominal-real distinction with the market price-factor cost distinction."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-02",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If Nominal GDP of a country is ₹500 crore and the GDP deflator is 125, what is the Real GDP?",
+    "explanation": "The GDP deflator formula is: GDP Deflator = (Nominal GDP / Real GDP) × 100. Rearranging this, Real GDP = (Nominal GDP / GDP Deflator) × 100. Substituting the given values: Real GDP = (500 / 125) × 100 = ₹400 crore. A GDP deflator of 125 indicates that the general price level has risen by 25% compared to the base year. This means that ₹500 crore of Nominal GDP, when adjusted for this 25% inflation, represents only ₹400 crore worth of real output in base year prices. This calculation is a standard CUET numerical question.",
+    "correct_answer": "B",
+    "concept_tags": ["gdp-deflator", "real-gdp-calculation", "nominal-gdp"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "₹625 crore", "is_correct": false},
+      {"key": "B", "text": "₹400 crore", "is_correct": true},
+      {"key": "C", "text": "₹500 crore", "is_correct": false},
+      {"key": "D", "text": "₹375 crore", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "₹625 crore would result from multiplying Nominal GDP by the deflator ratio (500 × 125/100), which inflates the value further instead of deflating it. Since the deflator is above 100, Real GDP must be less than Nominal GDP.", "misconception": "Reversing the deflator formula — multiplying instead of dividing."},
+      {"option_key": "C", "hint": "₹500 crore is the Nominal GDP itself. Real GDP equals Nominal GDP only when the GDP deflator is exactly 100 (i.e., no change in price level from the base year).", "misconception": "Assuming Nominal and Real GDP are equal regardless of price level changes."},
+      {"option_key": "D", "hint": "₹375 crore results from an incorrect calculation such as 500 − 125 or 500 × 75/100. The correct formula requires dividing Nominal GDP by the deflator and multiplying by 100.", "misconception": "Subtracting the deflator value from Nominal GDP instead of using the division formula."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-03",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which of the following is NOT a limitation of GDP as a measure of welfare?",
+    "explanation": "GDP measures the total monetary value of all final goods and services produced within the domestic territory during an accounting year. While it captures market-based economic output effectively, it fails to account for income distribution (a country may have high GDP but extreme inequality), non-market activities (household work, volunteer services), externalities (pollution, environmental degradation), quality of life (leisure, mental health), and the underground economy. However, GDP does include the value of government services such as defence, law and order, and public administration, valued at their factor cost. Therefore, excluding government services is NOT a limitation — they are already included.",
+    "correct_answer": "C",
+    "concept_tags": ["gdp-limitations", "welfare", "government-services"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "It ignores income distribution among the population", "is_correct": false},
+      {"key": "B", "text": "It does not account for non-market activities like household work", "is_correct": false},
+      {"key": "C", "text": "It fails to include the value of government services", "is_correct": true},
+      {"key": "D", "text": "It ignores negative externalities such as pollution", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "GDP gives a total aggregate figure and per capita GDP is just an average. Neither reveals how income is distributed — a billionaire and a daily-wage worker are averaged together. This is a well-known limitation.", "misconception": "Thinking GDP captures distributional equity."},
+      {"option_key": "B", "hint": "Household services (cooking, cleaning, childcare by family members) have no market transaction and hence no market price. GDP excludes them entirely, which is a genuine limitation.", "misconception": "Believing all productive activities are captured by GDP."},
+      {"option_key": "D", "hint": "Negative externalities like pollution, noise, and congestion impose social costs that GDP does not subtract. In fact, activities causing pollution may increase GDP while reducing welfare.", "misconception": "Assuming GDP accounts for environmental and social costs."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-04",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "In the base year, which of the following statements is always true?",
+    "explanation": "In the base year, prices used for calculating Real GDP and Nominal GDP are the same because the base year serves as the reference point. Since Nominal GDP = Σ(Current year prices × Current year quantities) and Real GDP = Σ(Base year prices × Current year quantities), in the base year itself the current year IS the base year. Therefore, Nominal GDP = Real GDP, and the GDP deflator = (Nominal GDP / Real GDP) × 100 = 100. This is a definitional identity. The deflator being 100 does not mean there is no inflation in the economy in general — it simply means prices are being compared to themselves. This concept is frequently tested in CUET to assess conceptual clarity.",
+    "correct_answer": "D",
+    "concept_tags": ["base-year", "gdp-deflator", "nominal-real-equality"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Real GDP is greater than Nominal GDP", "is_correct": false},
+      {"key": "B", "text": "GDP deflator is zero", "is_correct": false},
+      {"key": "C", "text": "Nominal GDP is greater than Real GDP", "is_correct": false},
+      {"key": "D", "text": "Nominal GDP equals Real GDP and the GDP deflator equals 100", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Real GDP exceeds Nominal GDP only when the price level has fallen below the base year level (deflation, i.e., deflator < 100). In the base year itself, both are equal by definition.", "misconception": "Assuming Real GDP is always higher than Nominal GDP."},
+      {"option_key": "B", "hint": "The GDP deflator is an index number with a base value of 100, not zero. A deflator of zero would imply the price level is zero, which is economically impossible.", "misconception": "Confusing the base value of a price index (100) with zero."},
+      {"option_key": "C", "hint": "Nominal GDP exceeds Real GDP only when prices have risen above the base year level (inflation, i.e., deflator > 100). In the base year, there is no price difference to create a gap.", "misconception": "Believing Nominal GDP is always larger than Real GDP."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-05",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "An economy produces only two goods — Rice and Cloth. In the base year (2015-16), 100 kg of Rice was produced at ₹20/kg and 50 metres of Cloth at ₹100/m. In 2023-24, 120 kg of Rice is produced at ₹30/kg and 60 metres of Cloth at ₹150/m. What is the GDP deflator for 2023-24?",
+    "explanation": "Step 1: Calculate Nominal GDP (2023-24) = (120 × 30) + (60 × 150) = 3600 + 9000 = ₹12,600. Step 2: Calculate Real GDP (2023-24 at base year prices) = (120 × 20) + (60 × 100) = 2400 + 6000 = ₹8,400. Step 3: GDP Deflator = (Nominal GDP / Real GDP) × 100 = (12600 / 8400) × 100 = 150. A deflator of 150 means the overall price level has increased by 50% since the base year. Note that we use current year quantities with both current and base year prices — this is the standard Paasche index approach used for the GDP deflator. This is a typical CUET numerical requiring careful stepwise computation.",
+    "correct_answer": "C",
+    "concept_tags": ["gdp-deflator-calculation", "nominal-gdp", "real-gdp", "paasche-index"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "120", "is_correct": false},
+      {"key": "B", "text": "133.33", "is_correct": false},
+      {"key": "C", "text": "150", "is_correct": true},
+      {"key": "D", "text": "175", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "A deflator of 120 could result from incorrectly using base year quantities instead of current year quantities in the calculation, or from a computational error in one of the intermediate steps.", "misconception": "Using base year quantities for both Nominal and Real GDP calculations."},
+      {"option_key": "B", "hint": "133.33 may result from an error such as dividing only the rice component or using incorrect price-quantity combinations. Verify that all goods are included with the correct prices.", "misconception": "Calculating the deflator for only one good instead of the entire basket."},
+      {"option_key": "D", "hint": "175 could result from incorrectly adding base year GDP to the calculation or making arithmetic errors. Recheck: Nominal = 12,600 and Real = 8,400, giving 150.", "misconception": "Making arithmetic errors in multi-step GDP deflator calculations."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-06",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Real GDP is a better indicator of economic performance than Nominal GDP.\nReasoning (R): Real GDP eliminates the effect of price changes by valuing output at constant base year prices.",
+    "explanation": "Both the Assertion and Reasoning are true, and R correctly explains A. Nominal GDP can increase either due to an increase in production or an increase in prices (inflation), or both. This makes it unreliable for comparing economic performance across years because a rise in Nominal GDP may merely reflect inflation rather than genuine growth in output. Real GDP solves this problem by using base year (constant) prices, thereby isolating the change in physical output from price changes. For example, if Nominal GDP rises by 10% but inflation is 8%, the real growth is only about 2%. Hence, economists and policymakers prefer Real GDP for inter-temporal comparisons of economic performance.",
+    "correct_answer": "A",
+    "concept_tags": ["real-gdp", "nominal-gdp", "economic-performance", "constant-prices"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The reasoning directly explains why Real GDP is superior — because it removes price distortions. If R were unrelated to A (e.g., 'Real GDP is calculated by the government'), then B would apply. Here, R provides the exact mechanism.", "misconception": "Failing to see the causal link between removing price effects and better performance measurement."},
+      {"option_key": "C", "hint": "The Reasoning is factually correct — Real GDP does use constant base year prices to eliminate price changes. This is the standard NCERT definition of Real GDP.", "misconception": "Doubting the definition of Real GDP as output valued at base year prices."},
+      {"option_key": "D", "hint": "The Assertion is widely accepted in economics. Real GDP is indeed preferred over Nominal GDP for measuring economic performance because it reflects actual output changes.", "misconception": "Believing Nominal GDP is a better performance indicator than Real GDP."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-07",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): A rise in GDP always leads to an improvement in the welfare of the people.\nReasoning (R): GDP does not account for the distribution of income among different sections of society.",
+    "explanation": "The Assertion is false because a rise in GDP does not necessarily improve welfare. GDP may increase while the benefits accrue only to a small section of society, leaving the majority no better off or even worse off. Additionally, GDP growth may come at the cost of environmental degradation, loss of leisure, or increased stress — all of which reduce welfare. The Reasoning is true — GDP is an aggregate measure that says nothing about how income is distributed. A country with high GDP but extreme inequality (where the top 1% owns most wealth) may have poor welfare outcomes for the majority. Since A is false and R is true, the correct answer is D. This is a critical-thinking question testing the limitations of GDP as a welfare measure.",
+    "correct_answer": "D",
+    "concept_tags": ["gdp-welfare-disconnect", "income-distribution", "gdp-limitations"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": false},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "For A to be correct, both statements must be true and R must explain A. But the assertion uses 'always', which makes it false — GDP growth with rising inequality can worsen welfare for the majority.", "misconception": "Equating GDP growth automatically with welfare improvement."},
+      {"option_key": "B", "hint": "This option also requires both A and R to be true. Since A claims GDP rise 'always' improves welfare — an absolute claim easily disproven by counterexamples — A is false.", "misconception": "Overlooking the word 'always' which makes the assertion an absolute and incorrect claim."},
+      {"option_key": "C", "hint": "The Reasoning is factually correct. GDP is indeed an aggregate that does not reveal how income is shared among rich, middle class, and poor. NCERT explicitly states this limitation.", "misconception": "Believing GDP captures distributional information."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-08",
+    "question_type": "assertion-reasoning",
+    "difficulty": "easy",
+    "question_text": "Assertion (A): Green GDP is always lower than the conventional GDP of a country.\nReasoning (R): Green GDP deducts the cost of environmental degradation and resource depletion from the conventional GDP.",
+    "explanation": "Both A and R are true, and R is the correct explanation of A. Green GDP = Conventional GDP − Cost of environmental degradation − Cost of natural resource depletion. Since environmental damage and resource depletion are inevitable in any production process (emissions, deforestation, water pollution, mineral extraction), the deductions are always positive, making Green GDP always lower than conventional GDP. The Reasoning correctly identifies the mechanism — Green GDP accounts for negative environmental externalities that conventional GDP ignores. This concept highlights that conventional GDP overstates economic welfare by treating natural resources as free and ignoring ecological costs. Countries like China and India have explored Green GDP accounting to get a more realistic picture of sustainable development.",
+    "correct_answer": "A",
+    "concept_tags": ["green-gdp", "environmental-degradation", "resource-depletion", "sustainable-development"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "R directly explains A. The reason Green GDP is lower is precisely because environmental and depletion costs are subtracted. The causal link is direct and explicit.", "misconception": "Failing to connect the deduction mechanism in R with the lower value stated in A."},
+      {"option_key": "C", "hint": "The Reasoning accurately defines the Green GDP adjustment. It is a factual statement consistent with NCERT and environmental economics literature.", "misconception": "Doubting that Green GDP involves subtracting environmental costs from conventional GDP."},
+      {"option_key": "D", "hint": "The Assertion is logically true because any production process causes some environmental cost. Since these costs are always positive, Green GDP after deduction must be lower than conventional GDP.", "misconception": "Believing that some economies might have zero environmental degradation, making Green GDP equal to GDP."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-09",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "True or False: If the GDP deflator is greater than 100, it indicates that the price level has risen compared to the base year.",
+    "explanation": "This statement is True. The GDP deflator is a price index with a base year value of 100. It is calculated as (Nominal GDP / Real GDP) × 100. When the deflator exceeds 100, it means Nominal GDP is greater than Real GDP, which occurs because current year prices are higher than base year prices — indicating inflation since the base year. For instance, a deflator of 130 means the overall price level has risen by 30% compared to the base year. Conversely, a deflator below 100 would indicate deflation (fall in price level). The GDP deflator is a comprehensive price index as it covers all goods and services produced domestically, unlike the CPI which covers only a fixed basket of consumer goods.",
+    "correct_answer": "A",
+    "concept_tags": ["gdp-deflator", "inflation", "price-level", "base-year"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The GDP deflator is defined with base year = 100. If it exceeds 100, prices must have risen. A value of, say, 120 directly means prices are 20% higher than in the base year. Choosing False contradicts the mathematical definition of the deflator.", "misconception": "Misunderstanding the GDP deflator scale where 100 represents the base year price level."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-10",
+    "question_type": "true-false",
+    "difficulty": "medium",
+    "question_text": "True or False: GDP includes the value of services provided by homemakers within their own households.",
+    "explanation": "This statement is False. GDP only measures the value of goods and services that are exchanged in the market (i.e., have a market price). Services provided by homemakers — such as cooking, cleaning, childcare, and elderly care within their own households — are non-market activities with no market transaction and hence no recorded market price. They are excluded from GDP calculation. This is one of the major limitations of GDP as a welfare indicator because these services have significant economic value. If a family hires a cook or a nanny, those wages are counted in GDP, but the same services performed by a family member are not. Feminist economists particularly criticise this exclusion as it undervalues women's unpaid domestic labour.",
+    "correct_answer": "B",
+    "concept_tags": ["non-market-activities", "gdp-limitations", "household-services"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": false},
+      {"key": "B", "text": "False", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "GDP is based on market transactions. Homemakers' services within their own household involve no market exchange, no wages paid, and no recorded transaction. Without a market price, these services cannot be included in GDP.", "misconception": "Believing that all productive activities, whether marketed or not, are included in GDP."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-11",
+    "question_type": "true-false",
+    "difficulty": "medium",
+    "question_text": "True or False: The Human Development Index (HDI) is considered a better measure of welfare than GDP because it includes health, education, and standard of living dimensions.",
+    "explanation": "This statement is True. The HDI, developed by Pakistani economist Mahbub ul Haq and used by the United Nations Development Programme (UNDP), is a composite index measuring three key dimensions of human development: (1) Health — measured by life expectancy at birth, (2) Education — measured by mean years of schooling and expected years of schooling, and (3) Standard of living — measured by Gross National Income (GNI) per capita at purchasing power parity (PPP). Unlike GDP, which is a purely economic measure of output, HDI captures broader aspects of human welfare. A country can have high GDP but low HDI (e.g., due to poor health infrastructure or low literacy), demonstrating that economic output alone does not guarantee well-being.",
+    "correct_answer": "A",
+    "concept_tags": ["hdi", "welfare-measurement", "undp", "gdp-alternatives"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "HDI is internationally recognised as a broader welfare measure than GDP. It explicitly incorporates health (life expectancy), education (years of schooling), and living standards (GNI per capita), covering dimensions GDP ignores.", "misconception": "Thinking GDP alone is a sufficient measure of welfare, or that HDI does not include these three dimensions."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-12",
+    "question_type": "fill-in-the-blank",
+    "difficulty": "easy",
+    "question_text": "GDP measured at the prices of a fixed base year is called ________ GDP.",
+    "explanation": "GDP measured at base year (constant) prices is called Real GDP. The term 'Real' signifies that the effect of price changes has been removed, leaving only the 'real' change in physical output. Real GDP is also referred to as 'GDP at constant prices' because the prices used for valuation remain constant (fixed at the base year level) across different years. This allows meaningful comparison of output across time periods. For instance, if India's Real GDP grew from ₹100 lakh crore to ₹107 lakh crore, it means actual output increased by 7%, irrespective of what happened to prices. The Central Statistics Office (CSO) in India currently uses 2011-12 as the base year for calculating Real GDP.",
+    "correct_answer": "A",
+    "concept_tags": ["real-gdp", "constant-prices", "base-year"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Real", "is_correct": true},
+      {"key": "B", "text": "Nominal", "is_correct": false},
+      {"key": "C", "text": "Potential", "is_correct": false},
+      {"key": "D", "text": "Green", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Nominal GDP uses current year prices, not base year prices. The question specifically says 'prices of a fixed base year', which is the defining feature of Real GDP.", "misconception": "Confusing current year prices (Nominal) with constant base year prices (Real)."},
+      {"option_key": "C", "hint": "Potential GDP refers to the maximum output an economy can produce at full employment of resources. It is a theoretical concept, not a method of price adjustment.", "misconception": "Mixing up potential output capacity with the method of GDP price measurement."},
+      {"option_key": "D", "hint": "Green GDP adjusts for environmental costs and resource depletion. It is about environmental accounting, not about using base year prices.", "misconception": "Confusing environmental adjustment (Green GDP) with price-level adjustment (Real GDP)."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-13",
+    "question_type": "fill-in-the-blank",
+    "difficulty": "medium",
+    "question_text": "The formula for GDP Deflator is: GDP Deflator = (________ / Real GDP) × 100.",
+    "explanation": "The GDP Deflator formula is: GDP Deflator = (Nominal GDP / Real GDP) × 100. The blank should be filled with 'Nominal GDP'. The GDP deflator is a comprehensive price index that measures the average level of prices of all goods and services included in GDP. It reflects the ratio of what the economy produced valued at current prices to what it produced valued at base year prices. Unlike the Consumer Price Index (CPI), which uses a fixed basket of goods, the GDP deflator automatically updates its basket as the composition of GDP changes. The deflator is particularly useful for converting Nominal GDP to Real GDP and for measuring economy-wide inflation. In the base year, since Nominal GDP equals Real GDP, the deflator equals 100.",
+    "correct_answer": "B",
+    "concept_tags": ["gdp-deflator", "nominal-gdp", "real-gdp", "price-index"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Real GDP", "is_correct": false},
+      {"key": "B", "text": "Nominal GDP", "is_correct": true},
+      {"key": "C", "text": "Net GDP", "is_correct": false},
+      {"key": "D", "text": "Per Capita GDP", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "If Real GDP were in the numerator and denominator, the deflator would always be 100 regardless of price changes, making it useless as a price index.", "misconception": "Placing Real GDP in both numerator and denominator of the deflator formula."},
+      {"option_key": "C", "hint": "Net GDP (GDP minus depreciation, i.e., NDP) is a different concept related to accounting for capital consumption. The standard deflator formula uses Nominal GDP, not Net GDP.", "misconception": "Confusing Net GDP (which accounts for depreciation) with Nominal GDP (which uses current prices)."},
+      {"option_key": "D", "hint": "Per Capita GDP divides total GDP by population. It is not used in the deflator formula. The deflator relates aggregate Nominal GDP to aggregate Real GDP.", "misconception": "Mixing up per capita measures with aggregate price-level measurement."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-14",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "Country X has the following data:\n- Year 2020-21 (Base Year): GDP = ₹200 lakh crore\n- Year 2023-24: Nominal GDP = ₹300 lakh crore, Real GDP = ₹240 lakh crore\n\nA student claims: 'The economy has grown by 50% since the base year.' Evaluate this claim. What is the actual real growth rate and the GDP deflator for 2023-24?",
+    "explanation": "The student's claim is incorrect. The student has compared Nominal GDP of 2023-24 (₹300 lakh crore) with the base year GDP (₹200 lakh crore), calculating growth as (300−200)/200 × 100 = 50%. However, this 50% includes both real output growth and inflation. The correct measure of economic growth uses Real GDP. Real growth rate = (Real GDP 2023-24 − Base Year GDP) / Base Year GDP × 100 = (240 − 200) / 200 × 100 = 20%. The GDP deflator = (Nominal GDP / Real GDP) × 100 = (300 / 240) × 100 = 125. This means prices rose by 25% since the base year, while actual output grew by only 20%. The student confused nominal growth with real growth — a common error.",
+    "correct_answer": "B",
+    "concept_tags": ["real-growth-rate", "gdp-deflator-calculation", "nominal-vs-real-growth"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "The claim is correct; real growth is 50% and GDP deflator is 100", "is_correct": false},
+      {"key": "B", "text": "The claim is incorrect; real growth is 20% and GDP deflator is 125", "is_correct": true},
+      {"key": "C", "text": "The claim is incorrect; real growth is 25% and GDP deflator is 150", "is_correct": false},
+      {"key": "D", "text": "The claim is correct; real growth is 50% and GDP deflator is 125", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "A GDP deflator of 100 would mean no inflation since the base year, making Nominal GDP equal to Real GDP. But Nominal GDP (₹300 lakh crore) clearly exceeds Real GDP (₹240 lakh crore), so the deflator cannot be 100.", "misconception": "Ignoring the gap between Nominal and Real GDP which reveals inflation."},
+      {"option_key": "C", "hint": "Real growth of 25% would require Real GDP to be ₹250 lakh crore (200 × 1.25), not ₹240 lakh crore. Also, a deflator of 150 would require Real GDP to be ₹200 lakh crore (300/1.5), not ₹240 lakh crore. Both figures are inconsistent with the given data.", "misconception": "Making arithmetic errors in growth rate and deflator calculations."},
+      {"option_key": "D", "hint": "While the GDP deflator of 125 is correct, the 50% growth claim uses Nominal GDP, not Real GDP. The whole point of Real GDP is to strip out inflation for accurate growth measurement.", "misconception": "Using Nominal GDP growth as a measure of real economic expansion."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-15",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "Two countries, Alphaland and Betaland, have the following data for 2024-25:\n\n| Indicator | Alphaland | Betaland |\n|---|---|---|\n| Per Capita GDP (PPP $) | 12,000 | 8,000 |\n| Life Expectancy (years) | 62 | 75 |\n| Mean Years of Schooling | 5 | 10 |\n| Income Inequality (Gini coefficient) | 0.65 | 0.30 |\n| Environmental Degradation Cost | 15% of GDP | 3% of GDP |\n\nWhich country is likely to have higher welfare for its citizens, and why?",
+    "explanation": "Despite Alphaland having a 50% higher Per Capita GDP, Betaland is likely to have higher welfare for its citizens. Betaland scores better on almost every welfare-relevant indicator: life expectancy is 75 vs 62 years (better health infrastructure), mean schooling is 10 vs 5 years (better education), income inequality is much lower (Gini 0.30 vs 0.65, meaning more equitable distribution), and environmental degradation cost is only 3% vs 15% of GDP (more sustainable growth). GDP alone fails to capture these dimensions. Alphaland's high GDP may benefit only a small elite (high Gini), while its population suffers from poor health, low education, and severe environmental damage. This scenario perfectly illustrates why GDP is an inadequate welfare measure and why composite indices like HDI are preferred.",
+    "correct_answer": "C",
+    "concept_tags": ["welfare-comparison", "gdp-limitations", "hdi", "income-inequality", "green-gdp"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Alphaland, because its Per Capita GDP is significantly higher", "is_correct": false},
+      {"key": "B", "text": "Alphaland, because higher GDP always means higher welfare", "is_correct": false},
+      {"key": "C", "text": "Betaland, because it performs better on health, education, equality, and environmental sustainability despite lower GDP", "is_correct": true},
+      {"key": "D", "text": "Both countries have equal welfare since GDP differences are offset by other factors", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Higher Per Capita GDP does not guarantee higher welfare. Alphaland's Gini coefficient of 0.65 indicates extreme inequality — the GDP benefits are concentrated among a few, leaving most citizens worse off.", "misconception": "Equating higher per capita GDP directly with better welfare without considering distribution."},
+      {"option_key": "B", "hint": "The word 'always' makes this option categorically wrong. GDP ignores distribution, health outcomes, education quality, environmental damage, and leisure — all of which are crucial to welfare.", "misconception": "Treating GDP as an absolute and complete measure of welfare."},
+      {"option_key": "D", "hint": "The data shows a clear advantage for Betaland across multiple welfare dimensions (life expectancy, education, equality, environment). These are not merely offsetting — Betaland dominates on welfare-relevant indicators.", "misconception": "Assuming welfare differences cancel out when multiple indicators point in the same direction."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-16",
+    "question_type": "match-the-following",
+    "difficulty": "easy",
+    "question_text": "Match the following concepts (Column I) with their descriptions (Column II):\n\n| Column I | Column II |\n|---|---|\n| (i) Nominal GDP | (P) GDP adjusted for environmental costs |\n| (ii) Real GDP | (Q) GDP measured at current year prices |\n| (iii) GDP Deflator | (R) GDP measured at base year (constant) prices |\n| (iv) Green GDP | (S) Ratio of Nominal GDP to Real GDP multiplied by 100 |",
+    "explanation": "The correct matching is: (i)→Q, (ii)→R, (iii)→S, (iv)→P. Nominal GDP (i) is measured at current year prices (Q) — it reflects the market value of output using the prices prevailing in the same year. Real GDP (ii) is measured at base year or constant prices (R) — it removes the effect of inflation by using a fixed set of prices. GDP Deflator (iii) is the ratio of Nominal GDP to Real GDP multiplied by 100 (S) — it serves as a comprehensive price index for the entire economy. Green GDP (iv) is GDP adjusted for environmental costs (P) — it deducts the monetary value of environmental degradation and natural resource depletion from conventional GDP. These are four fundamental concepts in national income accounting for CUET.",
+    "correct_answer": "B",
+    "concept_tags": ["nominal-gdp", "real-gdp", "gdp-deflator", "green-gdp"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "(i)→R, (ii)→Q, (iii)→S, (iv)→P", "is_correct": false},
+      {"key": "B", "text": "(i)→Q, (ii)→R, (iii)→S, (iv)→P", "is_correct": true},
+      {"key": "C", "text": "(i)→Q, (ii)→R, (iii)→P, (iv)→S", "is_correct": false},
+      {"key": "D", "text": "(i)→S, (ii)→R, (iii)→Q, (iv)→P", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This option swaps Nominal and Real GDP. Remember: Nominal = current prices (Q), Real = constant/base year prices (R). 'Nominal' relates to 'name value' or face value at current prices.", "misconception": "Reversing the definitions of Nominal GDP (current prices) and Real GDP (constant prices)."},
+      {"option_key": "C", "hint": "This option incorrectly matches GDP Deflator with environmental adjustment (P) and Green GDP with the deflator formula (S). The deflator is a price ratio, not an environmental concept.", "misconception": "Confusing the GDP deflator (a price index) with Green GDP (an environmental adjustment)."},
+      {"option_key": "D", "hint": "This option assigns the deflator formula (S) to Nominal GDP, which is incorrect. Nominal GDP is simply GDP at current prices, not a ratio.", "misconception": "Thinking Nominal GDP is calculated as a ratio rather than being a direct measurement at current prices."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-17",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following GDP limitations (Column I) with their examples (Column II):\n\n| Column I | Column II |\n|---|---|\n| (i) Ignores non-market activities | (P) A country with high GDP but severe air pollution |\n| (ii) Ignores income distribution | (Q) A mother taking care of her children at home |\n| (iii) Ignores externalities | (R) Citizens working 80 hours a week with no holidays |\n| (iv) Ignores quality of life and leisure | (S) Top 10% earning 70% of national income |",
+    "explanation": "The correct matching is: (i)→Q, (ii)→S, (iii)→P, (iv)→R. Non-market activities (i) include unpaid domestic services like a mother's childcare (Q) — these have real economic value but no market price, so GDP excludes them. Income distribution (ii) is illustrated by the top 10% earning 70% of national income (S) — GDP per capita would look impressive but masks severe inequality. Externalities (iii) are shown by high GDP with severe air pollution (P) — factories boost GDP but the health and environmental costs of pollution are not subtracted. Quality of life and leisure (iv) is captured by citizens overworking with no holidays (R) — GDP may be high due to excessive work, but welfare suffers due to stress, burnout, and lost leisure time.",
+    "correct_answer": "A",
+    "concept_tags": ["gdp-limitations", "non-market-activities", "externalities", "income-distribution", "leisure"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "(i)→Q, (ii)→S, (iii)→P, (iv)→R", "is_correct": true},
+      {"key": "B", "text": "(i)→Q, (ii)→P, (iii)→S, (iv)→R", "is_correct": false},
+      {"key": "C", "text": "(i)→S, (ii)→Q, (iii)→R, (iv)→P", "is_correct": false},
+      {"key": "D", "text": "(i)→Q, (ii)→S, (iii)→R, (iv)→P", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "This swaps externalities and income distribution. Pollution (P) is a negative externality — a cost imposed on third parties. Income concentration (S) is a distribution issue. Externalities involve unpriced side effects of production.", "misconception": "Confusing externalities (unpriced side effects) with income inequality (distributional skew)."},
+      {"option_key": "C", "hint": "This matches non-market activities with income inequality (S) and income distribution with childcare (Q). A mother's unpaid childcare is a non-market activity, not a distribution issue. Income distribution concerns who gets how much.", "misconception": "Mixing up unpaid household work (non-market) with income shares (distribution)."},
+      {"option_key": "D", "hint": "This swaps externalities and leisure. Pollution (P) is an externality — an unpriced byproduct of production. Overwork (R) relates to quality of life and leisure sacrifice, not externalities.", "misconception": "Confusing environmental externalities with labour welfare and leisure issues."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-18",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following steps in the correct logical sequence for calculating Real GDP from Nominal GDP:\n\n1. Obtain the GDP Deflator value for the year\n2. Note the Nominal GDP of the current year\n3. Apply the formula: Real GDP = (Nominal GDP / GDP Deflator) × 100\n4. Identify the base year and its price level\n5. Interpret the result as GDP at constant (base year) prices",
+    "explanation": "The correct logical sequence is: 4 → 2 → 1 → 3 → 5. First, you must identify the base year and its price level (Step 4) because the entire concept of Real GDP depends on having a reference year for constant prices. Next, you note the Nominal GDP of the current year (Step 2) — this is the raw data measured at current prices. Then, you obtain the GDP Deflator value (Step 1), which tells you how much prices have changed since the base year. With both Nominal GDP and the deflator in hand, you apply the formula Real GDP = (Nominal GDP / GDP Deflator) × 100 (Step 3). Finally, you interpret the result (Step 5) — the calculated figure represents GDP at constant base year prices, showing real output changes stripped of price effects.",
+    "correct_answer": "B",
+    "concept_tags": ["real-gdp-calculation", "gdp-deflator", "base-year", "step-by-step"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "2 → 1 → 4 → 3 → 5", "is_correct": false},
+      {"key": "B", "text": "4 → 2 → 1 → 3 → 5", "is_correct": true},
+      {"key": "C", "text": "1 → 2 → 4 → 3 → 5", "is_correct": false},
+      {"key": "D", "text": "4 → 1 → 2 → 5 → 3", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Starting with Nominal GDP (Step 2) before identifying the base year (Step 4) is logically flawed. Without knowing the base year, you cannot contextualise why you need to adjust Nominal GDP in the first place.", "misconception": "Skipping the foundational step of establishing the base year reference point."},
+      {"option_key": "C", "hint": "Obtaining the GDP Deflator (Step 1) before identifying the base year (Step 4) is illogical because the deflator itself is calculated with reference to the base year. You need the base year framework first.", "misconception": "Using the deflator without first understanding the base year framework it depends on."},
+      {"option_key": "D", "hint": "This places interpretation (Step 5) before the actual calculation (Step 3). You cannot interpret a result before computing it. The formula must be applied before the result can be explained.", "misconception": "Attempting to interpret results before performing the computation."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-19",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "Arrange the following in the correct logical sequence showing the evolution of welfare measurement concepts from narrowest to broadest:\n\n1. Net Economic Welfare (NEW) — adjusts for non-market activities and disamenities\n2. GDP at current prices (Nominal GDP) — total market value of output\n3. Human Development Index (HDI) — includes health, education, and income\n4. Green GDP — adjusts GDP for environmental degradation\n5. GDP per capita — average income per person",
+    "explanation": "The correct sequence from narrowest to broadest welfare measure is: 2 → 5 → 4 → 1 → 3. Nominal GDP (Step 2) is the narrowest measure — it simply totals market output without any adjustments. GDP per capita (Step 5) improves slightly by dividing by population, giving an average, but still ignores distribution and non-economic factors. Green GDP (Step 4) goes further by subtracting environmental costs, acknowledging that economic activity has ecological consequences. Net Economic Welfare (Step 1) is broader still, as it adjusts for non-market activities (like household work), leisure, and disamenities (like pollution and congestion), attempting to measure actual economic well-being. HDI (Step 3) is the broadest, incorporating not just income but also health (life expectancy) and education (schooling), providing a multidimensional welfare assessment that goes well beyond purely economic measures.",
+    "correct_answer": "C",
+    "concept_tags": ["welfare-measures", "hdi", "green-gdp", "net-economic-welfare", "gdp-evolution"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "2 → 5 → 1 → 4 → 3", "is_correct": false},
+      {"key": "B", "text": "5 → 2 → 4 → 1 → 3", "is_correct": false},
+      {"key": "C", "text": "2 → 5 → 4 → 1 → 3", "is_correct": true},
+      {"key": "D", "text": "2 → 4 → 5 → 3 → 1", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This places NEW (1) before Green GDP (4). Green GDP only adjusts for environmental costs, while NEW adjusts for non-market activities, leisure, AND disamenities — making NEW broader than Green GDP.", "misconception": "Underestimating the scope of Net Economic Welfare compared to Green GDP."},
+      {"option_key": "B", "hint": "Starting with GDP per capita (5) before Nominal GDP (2) is incorrect. GDP per capita is derived from total GDP by dividing by population — it requires GDP first and adds the dimension of population averaging.", "misconception": "Thinking per capita income is a more basic measure than total GDP."},
+      {"option_key": "D", "hint": "This places HDI (3) before NEW (1), and GDP per capita (5) after Green GDP (4). HDI is the broadest measure as it includes non-economic dimensions. Also, GDP per capita is narrower than Green GDP.", "misconception": "Incorrectly ordering the progression of welfare measurement sophistication."}
+    ]
+  },
+  {
+    "id": "eco-ni-real-20",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "Study the following data table showing an economy's GDP over four years:\n\n| Year | Nominal GDP (₹ crore) | Real GDP (₹ crore) | GDP Deflator |\n|---|---|---|---|\n| 2020-21 (Base Year) | 1,000 | 1,000 | 100 |\n| 2021-22 | 1,200 | 1,100 | ? |\n| 2022-23 | 1,500 | 1,150 | ? |\n| 2023-24 | 1,800 | 1,250 | ? |\n\nBased on the data, which of the following correctly states the GDP deflator values for 2021-22, 2022-23, and 2023-24, and what trend do they reveal?",
+    "explanation": "Using the formula GDP Deflator = (Nominal GDP / Real GDP) × 100: For 2021-22: (1200/1100) × 100 = 109.09 ≈ 109.1. For 2022-23: (1500/1150) × 100 = 130.43 ≈ 130.4. For 2023-24: (1800/1250) × 100 = 144. The deflators are 109.1, 130.4, and 144 respectively. The trend reveals accelerating inflation — the gap between Nominal and Real GDP widens each year. While Nominal GDP grew by 80% (1000 to 1800), Real GDP grew by only 25% (1000 to 1250), meaning most of the nominal growth was driven by rising prices rather than increased output. The deflator rising from 100 to 144 shows a cumulative 44% increase in the price level over three years, with the annual price increases becoming progressively larger.",
+    "correct_answer": "A",
+    "concept_tags": ["gdp-deflator-calculation", "inflation-trend", "nominal-real-divergence", "data-interpretation"],
+    "topic": "Nominal vs Real GDP and Welfare",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "109.1, 130.4, and 144 — indicating rising inflation with the price level increasing progressively each year", "is_correct": true},
+      {"key": "B", "text": "91.7, 76.7, and 69.4 — indicating falling price levels (deflation) over the period", "is_correct": false},
+      {"key": "C", "text": "120, 150, and 180 — indicating a constant rate of inflation each year", "is_correct": false},
+      {"key": "D", "text": "109.1, 130.4, and 144 — indicating deflation as the economy grows", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Values of 91.7, 76.7, and 69.4 would result from reversing the formula (Real GDP / Nominal GDP × 100). Since Nominal GDP exceeds Real GDP in all years, the deflator must be above 100, indicating inflation, not deflation.", "misconception": "Inverting the GDP deflator formula by placing Real GDP in the numerator."},
+      {"option_key": "C", "hint": "Values of 120, 150, and 180 would imply Real GDP is always 1,000 crore (dividing Nominal GDP by these deflators and multiplying by 100). But Real GDP clearly changes each year as given in the table.", "misconception": "Ignoring the given Real GDP data and assuming it remains constant at the base year level."},
+      {"option_key": "D", "hint": "While the deflator values 109.1, 130.4, and 144 are correct, the interpretation is wrong. Deflators above 100 and rising indicate inflation (rising prices), not deflation. Deflation would require deflators falling below 100.", "misconception": "Confusing rising deflator values (which indicate inflation) with deflation."}
+    ]
+  }
+]
