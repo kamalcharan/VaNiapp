@@ -1,0 +1,491 @@
+[
+  {
+    "id": "eco-ni-agg-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following is the correct formula to convert GDP at Market Price (GDP_MP) to GDP at Factor Cost (GDP_FC)?",
+    "explanation": "GDP at Factor Cost is derived from GDP at Market Price by subtracting Net Indirect Taxes (NIT). Net Indirect Taxes equal Indirect Taxes minus Subsidies. Market Price includes the effect of indirect taxes (which raise prices) and subsidies (which lower prices). To arrive at the income actually received by factors of production, we must remove these government-induced price distortions. Hence, GDP_FC = GDP_MP - Indirect Taxes + Subsidies, or equivalently GDP_FC = GDP_MP - NIT.",
+    "correct_answer": "B",
+    "concept_tags": ["GDP_MP", "GDP_FC", "Net Indirect Taxes", "conversion formulas"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "GDP_FC = GDP_MP + Indirect Taxes - Subsidies", "is_correct": false},
+      {"key": "B", "text": "GDP_FC = GDP_MP - Indirect Taxes + Subsidies", "is_correct": true},
+      {"key": "C", "text": "GDP_FC = GDP_MP + Depreciation - NFIA", "is_correct": false},
+      {"key": "D", "text": "GDP_FC = GDP_MP - Depreciation + Indirect Taxes", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This formula adds indirect taxes instead of subtracting them. Indirect taxes inflate market prices above factor cost, so they must be removed, not added.", "misconception": "Confusing the direction of adjustment for indirect taxes."},
+      {"option_key": "C", "hint": "Depreciation and NFIA are used to convert between Gross/Net and Domestic/National aggregates respectively, not between Market Price and Factor Cost.", "misconception": "Mixing up the concepts of depreciation and NFIA with indirect taxes and subsidies."},
+      {"option_key": "D", "hint": "Depreciation is irrelevant when converting between MP and FC. Depreciation is used only for converting Gross to Net aggregates.", "misconception": "Conflating the Gross-to-Net conversion with the MP-to-FC conversion."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-02",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If Net National Product at Factor Cost (NNP_FC) is Rs 80,000 crore and Net Indirect Taxes are Rs 8,000 crore, what is the value of Net National Product at Market Price (NNP_MP)?",
+    "explanation": "NNP at Market Price is obtained by adding Net Indirect Taxes to NNP at Factor Cost. Net Indirect Taxes (NIT) = Indirect Taxes - Subsidies. The relationship is: NNP_MP = NNP_FC + NIT. Market Price aggregates are always higher than Factor Cost aggregates by the amount of Net Indirect Taxes (assuming NIT is positive). Substituting the values: NNP_MP = 80,000 + 8,000 = Rs 88,000 crore. This is a straightforward application of the FC-to-MP conversion formula.",
+    "correct_answer": "C",
+    "concept_tags": ["NNP_FC", "NNP_MP", "Net Indirect Taxes", "numerical problem"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Rs 72,000 crore", "is_correct": false},
+      {"key": "B", "text": "Rs 80,000 crore", "is_correct": false},
+      {"key": "C", "text": "Rs 88,000 crore", "is_correct": true},
+      {"key": "D", "text": "Rs 96,000 crore", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Rs 72,000 is obtained by subtracting NIT from NNP_FC. However, to move from Factor Cost to Market Price, NIT must be added, not subtracted.", "misconception": "Reversing the direction of conversion from FC to MP."},
+      {"option_key": "B", "hint": "Rs 80,000 is the given NNP_FC itself. Converting to MP requires adjusting for Net Indirect Taxes; the two values cannot be equal when NIT is non-zero.", "misconception": "Assuming NNP_FC and NNP_MP are the same."},
+      {"option_key": "D", "hint": "Rs 96,000 would result from adding NIT twice or adding some other figure. Only one addition of NIT is needed for this conversion.", "misconception": "Double-counting the Net Indirect Taxes adjustment."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-03",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which of the following national income aggregates is also known as 'National Income'?",
+    "explanation": "In macroeconomics, the term 'National Income' specifically refers to Net National Product at Factor Cost (NNP_FC). This is because NNP_FC represents the net income earned by all the factors of production (land, labour, capital, and entrepreneurship) of a country, both within and outside the domestic territory, after deducting depreciation. It is valued at factor cost, meaning it reflects actual earnings of factors without the distortion of indirect taxes and subsidies. This is the most commonly tested definition in CBSE and CUET examinations.",
+    "correct_answer": "D",
+    "concept_tags": ["National Income", "NNP_FC", "definition"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "GDP at Market Price", "is_correct": false},
+      {"key": "B", "text": "GNP at Market Price", "is_correct": false},
+      {"key": "C", "text": "NDP at Factor Cost", "is_correct": false},
+      {"key": "D", "text": "NNP at Factor Cost", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "GDP_MP measures the total market value of goods and services produced within the domestic territory. It is neither 'net' nor at 'factor cost', and does not account for NFIA.", "misconception": "Confusing GDP_MP with National Income."},
+      {"option_key": "B", "hint": "GNP_MP includes NFIA but is still a 'gross' measure (includes depreciation) and valued at market price. National Income must be net and at factor cost.", "misconception": "Believing that including NFIA alone makes an aggregate equal to National Income."},
+      {"option_key": "C", "hint": "NDP_FC is net and at factor cost, but it is a 'domestic' product measure. National Income must be a 'national' measure that includes NFIA.", "misconception": "Confusing Domestic Product with National Product."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-04",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "If a country's Net Factor Income from Abroad (NFIA) is negative, which of the following is necessarily true?",
+    "explanation": "A negative NFIA means that the factor income earned by the rest of the world within the domestic territory exceeds the factor income earned by the residents of the country from abroad. In other words, foreigners earn more from working and investing in this country than the country's own residents earn from abroad. This directly implies that GDP (Domestic Product) will be greater than GNP (National Product), since GNP = GDP + NFIA, and a negative NFIA reduces GNP below GDP. This is typically the case for developing countries like India, where foreign investment inflows exceed outward earnings.",
+    "correct_answer": "A",
+    "concept_tags": ["NFIA", "GDP", "GNP", "developing economy"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "GDP > GNP", "is_correct": true},
+      {"key": "B", "text": "GNP > GDP", "is_correct": false},
+      {"key": "C", "text": "NDP > NNP and GNP > GDP", "is_correct": false},
+      {"key": "D", "text": "National Income > Domestic Income necessarily by the amount of depreciation", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "GNP = GDP + NFIA. If NFIA is negative, adding a negative number to GDP makes GNP smaller than GDP, not larger.", "misconception": "Misunderstanding the algebraic effect of negative NFIA on the GDP-GNP relationship."},
+      {"option_key": "C", "hint": "While NDP > NNP is correct when NFIA is negative, GNP > GDP is incorrect. Both parts of the statement must be true for the option to be correct.", "misconception": "Failing to evaluate both parts of a compound statement."},
+      {"option_key": "D", "hint": "Depreciation determines the Gross-to-Net conversion, not the Domestic-to-National conversion. The Domestic-National gap depends on NFIA, not depreciation.", "misconception": "Confusing the role of depreciation with NFIA."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-05",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Depreciation, also known as Consumption of Fixed Capital, is deducted from which aggregate to obtain NDP?",
+    "explanation": "Net Domestic Product (NDP) is obtained by deducting depreciation (consumption of fixed capital) from Gross Domestic Product (GDP). Depreciation represents the reduction in the value of fixed assets due to normal wear and tear, obsolescence, and expected accidental damage during the production process. The formula is NDP = GDP - Depreciation. This applies to both Market Price and Factor Cost variants. The deduction of depreciation converts any 'Gross' measure into its corresponding 'Net' measure, reflecting the true addition to the economy's productive capacity.",
+    "correct_answer": "B",
+    "concept_tags": ["depreciation", "GDP", "NDP", "Gross to Net"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "NNP", "is_correct": false},
+      {"key": "B", "text": "GDP", "is_correct": true},
+      {"key": "C", "text": "NDP itself", "is_correct": false},
+      {"key": "D", "text": "Personal Income", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "NNP is already a 'Net' aggregate, meaning depreciation has already been subtracted. Subtracting depreciation again would be double-counting.", "misconception": "Not recognizing that 'Net' already implies depreciation has been removed."},
+      {"option_key": "C", "hint": "NDP is the result of the subtraction, not the starting point. You cannot derive NDP by subtracting depreciation from NDP itself.", "misconception": "Circular reasoning about the formula."},
+      {"option_key": "D", "hint": "Personal Income is a different concept related to income received by individuals. Depreciation is subtracted from Gross aggregates, not from Personal Income.", "misconception": "Confusing national income aggregates with personal income concepts."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-06",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): For India, Gross National Product (GNP) is generally less than Gross Domestic Product (GDP).\nReasoning (R): India's Net Factor Income from Abroad (NFIA) is typically negative because factor income paid to the rest of the world exceeds factor income received from abroad.",
+    "explanation": "Both the Assertion and Reasoning are true, and the Reasoning correctly explains the Assertion. India is a developing country that receives significant foreign investment and employs foreign expertise. The income earned by foreign factors of production within India (such as profits repatriated by multinational companies) exceeds the income earned by Indian factors abroad. This makes NFIA negative. Since GNP = GDP + NFIA, a negative NFIA ensures that GNP < GDP. Therefore, the Reasoning provides the correct and direct explanation for the Assertion.",
+    "correct_answer": "A",
+    "concept_tags": ["NFIA", "GNP", "GDP", "India", "developing economy"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The Reasoning directly addresses why GNP < GDP by explaining the negative NFIA. Since GNP = GDP + NFIA, a negative NFIA is the precise reason GNP falls below GDP, making R the correct explanation.", "misconception": "Failing to see the direct causal link between negative NFIA and GNP being less than GDP."},
+      {"option_key": "C", "hint": "The Reasoning is factually accurate. India's NFIA is indeed typically negative due to large outflows of investment income to foreign investors. The statement about factor income paid exceeding factor income received is correct.", "misconception": "Incorrectly assuming India's NFIA is positive."},
+      {"option_key": "D", "hint": "The Assertion is factually correct. Multiple data sources confirm that India's GNP is less than its GDP due to the negative NFIA component.", "misconception": "Believing that GNP is always greater than GDP for all countries."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-07",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): NNP at Factor Cost can exceed GDP at Market Price.\nReasoning (R): If NFIA is positive and large enough, and depreciation plus Net Indirect Taxes are relatively small, then NNP_FC can be greater than GDP_MP.",
+    "explanation": "Both statements are true and R correctly explains A. The relationship is: NNP_FC = GDP_MP + NFIA - Depreciation - Net Indirect Taxes. Rearranging, NNP_FC - GDP_MP = NFIA - Depreciation - NIT. If NFIA is sufficiently large and positive (as might occur in a country with massive overseas earnings, like some Gulf states or advanced economies), and if depreciation and NIT are relatively small, then the right side becomes positive, making NNP_FC > GDP_MP. While this is uncommon in practice, it is theoretically possible, and the Reasoning correctly identifies the conditions under which the Assertion holds true.",
+    "correct_answer": "A",
+    "concept_tags": ["NNP_FC", "GDP_MP", "NFIA", "depreciation", "NIT", "theoretical analysis"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The Reasoning explicitly states the mathematical conditions (large positive NFIA, small depreciation and NIT) under which NNP_FC exceeds GDP_MP. This is a direct and correct explanation of the Assertion.", "misconception": "Not recognizing that the Reasoning provides the exact conditions that make the Assertion possible."},
+      {"option_key": "C", "hint": "The Reasoning is logically and mathematically sound. Using the formula NNP_FC = GDP_MP + NFIA - Depreciation - NIT, if NFIA > Depreciation + NIT, then NNP_FC > GDP_MP.", "misconception": "Assuming the conditions described in the Reasoning are impossible."},
+      {"option_key": "D", "hint": "The Assertion is theoretically valid. There is no rule that prevents NNP_FC from exceeding GDP_MP; it depends on the magnitudes of NFIA, depreciation, and NIT.", "misconception": "Incorrectly believing that NNP_FC can never exceed GDP_MP under any circumstances."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-08",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): Subsidies are added back when converting from Market Price to Factor Cost.\nReasoning (R): Subsidies reduce the market price of goods below their actual cost of production, so they must be added to arrive at factor cost.",
+    "explanation": "Both the Assertion and the Reasoning are true, and R is the correct explanation of A. When the government provides subsidies, the market price of goods falls below the actual cost borne by the factors of production. For example, if a good costs Rs 100 to produce and the government gives a Rs 20 subsidy, it sells at Rs 80 in the market. To find the true factor cost (Rs 100), we must add the subsidy (Rs 20) back to the market price (Rs 80). The formula GDP_FC = GDP_MP - Indirect Taxes + Subsidies reflects this. The Reasoning correctly identifies why subsidies must be added back.",
+    "correct_answer": "A",
+    "concept_tags": ["subsidies", "Market Price", "Factor Cost", "conversion"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Both A and R are true, and R is the correct explanation of A", "is_correct": true},
+      {"key": "B", "text": "Both A and R are true, but R is NOT the correct explanation of A", "is_correct": false},
+      {"key": "C", "text": "A is true but R is false", "is_correct": false},
+      {"key": "D", "text": "A is false but R is true", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The Reasoning provides the exact economic logic for why subsidies are added. Subsidies depress market price below factor cost, so adding them restores the true factor cost. This is a direct causal explanation.", "misconception": "Failing to connect the economic logic of subsidies to the mathematical operation."},
+      {"option_key": "C", "hint": "The Reasoning is factually correct. Subsidies do reduce market prices below production costs. This is a well-established concept in NCERT Class 12 Macroeconomics.", "misconception": "Misunderstanding the effect of subsidies on market prices."},
+      {"option_key": "D", "hint": "The Assertion is correct as per the standard formula: GDP_FC = GDP_MP - Indirect Taxes + Subsidies. Adding subsidies is the established procedure for MP to FC conversion.", "misconception": "Believing subsidies should be subtracted rather than added in the MP to FC conversion."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-09",
+    "question_type": "true-false",
+    "difficulty": "easy",
+
+    "question_text": "True or False: GNP at Market Price = GDP at Market Price + Net Factor Income from Abroad (NFIA).",
+    "explanation": "This statement is True. GNP (Gross National Product) is derived from GDP (Gross Domestic Product) by adding Net Factor Income from Abroad (NFIA). NFIA represents the difference between factor income earned by domestic residents from abroad and factor income earned by foreign residents within the domestic territory. GDP measures production within the domestic territory regardless of nationality, while GNP measures production by nationals regardless of location. The formula GNP_MP = GDP_MP + NFIA is one of the fundamental identities in national income accounting as taught in NCERT Class 12 Macroeconomics.",
+    "correct_answer": "A",
+    "concept_tags": ["GNP", "GDP", "NFIA", "formula"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "The formula GNP = GDP + NFIA is a standard and fundamental identity in macroeconomics. It correctly converts a domestic aggregate to a national aggregate by accounting for net factor income flows across borders.", "misconception": "Doubting the basic GDP-to-GNP conversion formula."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-10",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "True or False: If Indirect Taxes equal Subsidies in an economy, then GDP at Market Price and GDP at Factor Cost will be equal.",
+    "explanation": "This statement is True. The relationship between GDP_MP and GDP_FC is: GDP_FC = GDP_MP - Indirect Taxes + Subsidies, which can be rewritten as GDP_FC = GDP_MP - (Indirect Taxes - Subsidies) = GDP_MP - NIT. If Indirect Taxes equal Subsidies, then Net Indirect Taxes (NIT) = Indirect Taxes - Subsidies = 0. When NIT is zero, GDP_FC = GDP_MP - 0 = GDP_MP. This means the market price exactly reflects the factor cost with no distortion from government taxation or subsidy policies. While this is a rare theoretical scenario, it is mathematically valid and tests understanding of the NIT concept.",
+    "correct_answer": "A",
+    "concept_tags": ["NIT", "GDP_MP", "GDP_FC", "indirect taxes", "subsidies"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Apply the formula: GDP_FC = GDP_MP - NIT. If Indirect Taxes = Subsidies, then NIT = 0, and the two aggregates become equal. The statement is logically and mathematically correct.", "misconception": "Believing that GDP_MP and GDP_FC can never be equal regardless of NIT value."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-11",
+    "question_type": "true-false",
+    "difficulty": "medium",
+    "question_text": "True or False: National Income (NNP_FC) can be calculated directly from GDP_MP using the formula: National Income = GDP_MP + NFIA - Depreciation - Net Indirect Taxes.",
+    "explanation": "This statement is True. Starting from GDP_MP, we can reach NNP_FC (National Income) in a single step using: NNP_FC = GDP_MP + NFIA - Depreciation - Net Indirect Taxes. This formula combines three conversions: (1) Domestic to National by adding NFIA, (2) Gross to Net by subtracting Depreciation, and (3) Market Price to Factor Cost by subtracting NIT. Breaking it down: GDP_MP + NFIA = GNP_MP; GNP_MP - Depreciation = NNP_MP; NNP_MP - NIT = NNP_FC. All three adjustments can be applied simultaneously in one formula, which is a commonly tested shortcut in CUET examinations.",
+    "correct_answer": "A",
+    "concept_tags": ["National Income", "GDP_MP", "NFIA", "depreciation", "NIT", "comprehensive formula"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "True", "is_correct": true},
+      {"key": "B", "text": "False", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "Trace the conversion step by step: GDP_MP to GNP_MP (add NFIA), GNP_MP to NNP_MP (subtract depreciation), NNP_MP to NNP_FC (subtract NIT). Combining all steps yields the given formula, which is correct.", "misconception": "Believing that conversions between aggregates must be done one step at a time and cannot be combined."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-12",
+    "question_type": "fill-in-the-blank",
+    "difficulty": "easy",
+    "question_text": "The difference between Gross Domestic Product and Net Domestic Product is ________.",
+    "explanation": "The difference between GDP and NDP is Depreciation, also known as Consumption of Fixed Capital. The formula is NDP = GDP - Depreciation, which means GDP - NDP = Depreciation. Depreciation refers to the decline in the value of fixed capital assets (such as machinery, buildings, and equipment) due to normal wear and tear, expected obsolescence, and anticipated accidental damage during the production process. It represents the portion of gross output that must be set aside to replace worn-out capital rather than being available as new net production.",
+    "correct_answer": "B",
+    "concept_tags": ["GDP", "NDP", "depreciation", "Consumption of Fixed Capital"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "remember",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Net Indirect Taxes", "is_correct": false},
+      {"key": "B", "text": "Depreciation (Consumption of Fixed Capital)", "is_correct": true},
+      {"key": "C", "text": "Net Factor Income from Abroad", "is_correct": false},
+      {"key": "D", "text": "Transfer Payments", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Net Indirect Taxes determine the difference between Market Price and Factor Cost aggregates, not between Gross and Net aggregates.", "misconception": "Confusing the MP-FC adjustment with the Gross-Net adjustment."},
+      {"option_key": "C", "hint": "NFIA determines the difference between Domestic and National aggregates (e.g., GDP vs GNP), not between Gross and Net.", "misconception": "Confusing the Domestic-National adjustment with the Gross-Net adjustment."},
+      {"option_key": "D", "hint": "Transfer Payments are relevant to the concept of Personal Income and Private Income, not to the conversion between Gross and Net product measures.", "misconception": "Introducing an unrelated concept from personal income accounting."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-13",
+    "question_type": "fill-in-the-blank",
+    "difficulty": "medium",
+    "question_text": "Net Factor Income from Abroad (NFIA) = Factor income earned by ________ of a country from the rest of the world minus factor income earned by ________ within the domestic territory of that country.",
+    "explanation": "NFIA = Factor income earned by normal residents of a country from the rest of the world minus factor income earned by non-residents (rest of the world) within the domestic territory. Normal residents include all individuals, firms, and institutions that ordinarily reside in the country and have their centre of economic interest there. The first component captures income flowing into the country from its residents' economic activities abroad (wages, rent, interest, profits earned abroad). The second component captures income flowing out to foreigners for their economic activities within the country. The net of these two flows gives NFIA.",
+    "correct_answer": "A",
+    "concept_tags": ["NFIA", "normal residents", "non-residents", "factor income"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "normal residents; non-residents (rest of the world)", "is_correct": true},
+      {"key": "B", "text": "non-residents; normal residents", "is_correct": false},
+      {"key": "C", "text": "citizens; foreigners", "is_correct": false},
+      {"key": "D", "text": "domestic firms; foreign firms", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "This reverses the order. NFIA starts with income earned by residents from abroad and subtracts income earned by non-residents domestically. Reversing would give negative NFIA.", "misconception": "Reversing the components of the NFIA formula."},
+      {"option_key": "C", "hint": "The concept uses 'normal residents' not 'citizens'. A normal resident is defined by centre of economic interest, not by citizenship or nationality. A foreign citizen can be a normal resident of India.", "misconception": "Confusing citizenship with normal residency for national income purposes."},
+      {"option_key": "D", "hint": "NFIA includes all factor incomes (wages, rent, interest, profit), not just firm-level income. Individual workers earning abroad also contribute to NFIA.", "misconception": "Limiting NFIA to only corporate/firm-level income flows."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-14",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "An economy has the following data (in Rs crore): GDP at Market Price = 5,000; Consumption of Fixed Capital (Depreciation) = 300; Net Factor Income from Abroad = -200; Indirect Taxes = 400; Subsidies = 100. Calculate the National Income (NNP at Factor Cost) of this economy.",
+    "explanation": "National Income = NNP_FC = GDP_MP + NFIA - Depreciation - Net Indirect Taxes. First, calculate Net Indirect Taxes (NIT) = Indirect Taxes - Subsidies = 400 - 100 = 300. Now substitute: NNP_FC = 5,000 + (-200) - 300 - 300 = 5,000 - 200 - 300 - 300 = 4,200. Step by step: GDP_MP = 5,000; adding NFIA gives GNP_MP = 5,000 + (-200) = 4,800; subtracting depreciation gives NNP_MP = 4,800 - 300 = 4,500; subtracting NIT gives NNP_FC = 4,500 - 300 = 4,200. Therefore, National Income = Rs 4,200 crore.",
+    "correct_answer": "B",
+    "concept_tags": ["National Income", "NNP_FC", "GDP_MP", "NFIA", "depreciation", "NIT", "numerical"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Rs 4,000 crore", "is_correct": false},
+      {"key": "B", "text": "Rs 4,200 crore", "is_correct": true},
+      {"key": "C", "text": "Rs 4,500 crore", "is_correct": false},
+      {"key": "D", "text": "Rs 4,800 crore", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Rs 4,000 results from subtracting Indirect Taxes (400) without adding back Subsidies (100). NIT = Indirect Taxes - Subsidies = 300, not 400. Always use net indirect taxes, not gross indirect taxes alone.", "misconception": "Forgetting to account for subsidies when calculating Net Indirect Taxes."},
+      {"option_key": "C", "hint": "Rs 4,500 is NNP_MP (before subtracting NIT). This value has not been converted from Market Price to Factor Cost. The final step of subtracting NIT (Rs 300) is still needed.", "misconception": "Stopping the calculation at NNP_MP and forgetting the MP-to-FC conversion."},
+      {"option_key": "D", "hint": "Rs 4,800 is GNP_MP (GDP_MP + NFIA). This is only the first step. Depreciation and NIT still need to be subtracted to reach NNP_FC.", "misconception": "Only performing the Domestic-to-National conversion and ignoring Gross-to-Net and MP-to-FC conversions."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-15",
+    "question_type": "scenario-based",
+    "difficulty": "hard",
+    "question_text": "Country X has the following national income data (in Rs crore): NNP at Factor Cost (National Income) = 10,000; Net Factor Income from Abroad = 500; Depreciation = 1,200; Subsidies = 800; Indirect Taxes = 1,500. What is the GDP at Market Price for Country X?",
+    "explanation": "We need to reverse-engineer GDP_MP from NNP_FC. The formula is: NNP_FC = GDP_MP + NFIA - Depreciation - NIT. Rearranging: GDP_MP = NNP_FC - NFIA + Depreciation + NIT. First, NIT = Indirect Taxes - Subsidies = 1,500 - 800 = 700. Now substitute: GDP_MP = 10,000 - 500 + 1,200 + 700 = 11,400. Step by step in reverse: NNP_FC = 10,000; adding NIT gives NNP_MP = 10,000 + 700 = 10,700; adding Depreciation gives GNP_MP = 10,700 + 1,200 = 11,900; subtracting NFIA gives GDP_MP = 11,900 - 500 = 11,400. Therefore, GDP_MP = Rs 11,400 crore.",
+    "correct_answer": "C",
+    "concept_tags": ["GDP_MP", "NNP_FC", "reverse calculation", "NFIA", "depreciation", "NIT", "numerical"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "apply",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "Rs 10,700 crore", "is_correct": false},
+      {"key": "B", "text": "Rs 11,200 crore", "is_correct": false},
+      {"key": "C", "text": "Rs 11,400 crore", "is_correct": true},
+      {"key": "D", "text": "Rs 11,900 crore", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "Rs 10,700 is NNP_MP (NNP_FC + NIT). This only converts from Factor Cost to Market Price but does not add back depreciation or adjust for NFIA to reach GDP_MP.", "misconception": "Only performing the FC-to-MP conversion and forgetting the Net-to-Gross and National-to-Domestic steps."},
+      {"option_key": "B", "hint": "Rs 11,200 may result from an error in calculating NIT, such as subtracting only Indirect Taxes without accounting for Subsidies, or making an arithmetic error in the multi-step calculation.", "misconception": "Making an arithmetic error or using incorrect NIT value in the reverse calculation."},
+      {"option_key": "D", "hint": "Rs 11,900 is GNP_MP (before subtracting NFIA). Since NFIA is positive (Rs 500), GDP_MP = GNP_MP - NFIA = 11,900 - 500 = 11,400, not 11,900.", "misconception": "Forgetting to subtract NFIA when converting from National to Domestic product."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-16",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following conversions (Column I) with the correct adjustment (Column II):\n\nColumn I:\n(i) GDP to GNP\n(ii) GDP to NDP\n(iii) GDP_MP to GDP_FC\n(iv) GNP_FC to NNP_FC\n\nColumn II:\n(P) Subtract Depreciation\n(Q) Add NFIA\n(R) Subtract Net Indirect Taxes\n(S) Subtract Depreciation",
+    "explanation": "The correct matching is: (i)-Q, (ii)-P, (iii)-R, (iv)-S. (i) GDP to GNP: The conversion from Domestic to National product requires adding Net Factor Income from Abroad (NFIA), hence Q. (ii) GDP to NDP: Converting Gross to Net requires subtracting Depreciation (Consumption of Fixed Capital), hence P. (iii) GDP_MP to GDP_FC: Converting Market Price to Factor Cost requires subtracting Net Indirect Taxes (Indirect Taxes - Subsidies), hence R. (iv) GNP_FC to NNP_FC: Converting Gross National to Net National requires subtracting Depreciation, hence S. Note that both P and S involve subtracting depreciation, as the Gross-to-Net conversion always uses depreciation.",
+    "correct_answer": "A",
+    "concept_tags": ["GDP", "GNP", "NDP", "NNP", "NFIA", "depreciation", "NIT", "matching"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "(i)-Q, (ii)-P, (iii)-R, (iv)-S", "is_correct": true},
+      {"key": "B", "text": "(i)-R, (ii)-Q, (iii)-P, (iv)-S", "is_correct": false},
+      {"key": "C", "text": "(i)-Q, (ii)-R, (iii)-P, (iv)-S", "is_correct": false},
+      {"key": "D", "text": "(i)-P, (ii)-S, (iii)-Q, (iv)-R", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "This matches GDP to GNP with subtracting NIT (R), which is incorrect. NIT is used for MP-to-FC conversion, not Domestic-to-National. NFIA (Q) converts Domestic to National.", "misconception": "Confusing the role of NIT (MP/FC conversion) with NFIA (Domestic/National conversion)."},
+      {"option_key": "C", "hint": "This matches GDP to NDP with subtracting NIT (R) and GDP_MP to GDP_FC with subtracting Depreciation (P). These are swapped. Depreciation converts Gross to Net; NIT converts MP to FC.", "misconception": "Swapping the adjustments for Gross-to-Net and MP-to-FC conversions."},
+      {"option_key": "D", "hint": "This option assigns completely incorrect adjustments. GDP to GNP does not involve depreciation (P), and GNP_FC to NNP_FC does not involve NIT (R).", "misconception": "Fundamental confusion about which adjustment applies to which type of conversion."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-17",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the following national income aggregates (Column I) with their equivalent expressions (Column II):\n\nColumn I:\n(i) National Income\n(ii) Gross National Product at Market Price\n(iii) Net Domestic Product at Factor Cost\n(iv) Gross Domestic Product at Factor Cost\n\nColumn II:\n(P) GDP_MP - NIT\n(Q) GDP_MP + NFIA - Depreciation - NIT\n(R) GDP_MP - Depreciation - NIT\n(S) GDP_MP + NFIA",
+    "explanation": "The correct matching is: (i)-Q, (ii)-S, (iii)-R, (iv)-P. (i) National Income = NNP_FC = GDP_MP + NFIA - Depreciation - NIT (all three adjustments applied), hence Q. (ii) GNP_MP = GDP_MP + NFIA (only Domestic-to-National conversion needed), hence S. (iii) NDP_FC = GDP_MP - Depreciation - NIT (Gross-to-Net and MP-to-FC conversions, but stays Domestic), hence R. (iv) GDP_FC = GDP_MP - NIT (only MP-to-FC conversion, stays Gross and Domestic), hence P. This question tests the ability to decompose the relationship between various aggregates using a common starting point of GDP_MP.",
+    "correct_answer": "B",
+    "concept_tags": ["National Income", "GNP_MP", "NDP_FC", "GDP_FC", "conversion formulas", "comprehensive"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "(i)-S, (ii)-Q, (iii)-P, (iv)-R", "is_correct": false},
+      {"key": "B", "text": "(i)-Q, (ii)-S, (iii)-R, (iv)-P", "is_correct": true},
+      {"key": "C", "text": "(i)-R, (ii)-S, (iii)-Q, (iv)-P", "is_correct": false},
+      {"key": "D", "text": "(i)-Q, (ii)-P, (iii)-S, (iv)-R", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This matches National Income with GDP_MP + NFIA (S), which gives GNP_MP, not NNP_FC. National Income requires all three adjustments (NFIA, depreciation, and NIT), not just NFIA.", "misconception": "Thinking that adding NFIA alone converts GDP_MP to National Income."},
+      {"option_key": "C", "hint": "This matches National Income with GDP_MP - Depreciation - NIT (R), which gives NDP_FC, not NNP_FC. National Income also requires adding NFIA for the Domestic-to-National conversion.", "misconception": "Forgetting the NFIA component when calculating National Income from GDP_MP."},
+      {"option_key": "D", "hint": "This matches GNP_MP with GDP_MP - NIT (P), which actually gives GDP_FC. GNP_MP = GDP_MP + NFIA (S), not GDP_MP - NIT.", "misconception": "Confusing the NIT adjustment with the NFIA adjustment for GNP_MP."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-18",
+    "question_type": "logical-sequence",
+    "difficulty": "medium",
+    "question_text": "Arrange the following steps in the correct logical sequence to convert GDP at Market Price to National Income (NNP at Factor Cost):\n(I) Subtract Net Indirect Taxes (NIT)\n(II) Add Net Factor Income from Abroad (NFIA)\n(III) Subtract Depreciation (Consumption of Fixed Capital)\n(IV) Start with GDP at Market Price",
+    "explanation": "The correct logical sequence is IV, II, III, I (though mathematically the order of steps II, III, and I does not matter, the conventional sequence taught in NCERT is: Start with GDP_MP, then convert Domestic to National by adding NFIA to get GNP_MP, then convert Gross to Net by subtracting Depreciation to get NNP_MP, and finally convert Market Price to Factor Cost by subtracting NIT to get NNP_FC). This sequence follows the standard textbook approach: GDP_MP -> GNP_MP -> NNP_MP -> NNP_FC. The final result NNP_FC is National Income.",
+    "correct_answer": "A",
+    "concept_tags": ["GDP_MP", "GNP_MP", "NNP_MP", "NNP_FC", "conversion sequence", "step-by-step"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "understand",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "IV, II, III, I", "is_correct": true},
+      {"key": "B", "text": "IV, I, II, III", "is_correct": false},
+      {"key": "C", "text": "IV, III, I, II", "is_correct": false},
+      {"key": "D", "text": "II, IV, I, III", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "B", "hint": "This sequence subtracts NIT first (getting GDP_FC), then adds NFIA (getting GNP_FC), then subtracts depreciation (getting NNP_FC). While mathematically valid, the standard NCERT sequence converts Domestic to National first, making this non-standard.", "misconception": "While this gives the correct final answer, it does not follow the conventional NCERT textbook sequence of conversions."},
+      {"option_key": "C", "hint": "This sequence gives GDP_MP -> NDP_MP -> NDP_FC -> NNP_FC. While arriving at the same result, the standard textbook sequence converts Domestic to National (add NFIA) as the first step after identifying GDP_MP.", "misconception": "Not following the standard pedagogical order taught in NCERT."},
+      {"option_key": "D", "hint": "The sequence must begin with Step IV (Start with GDP_MP) since it is the given starting aggregate. Beginning with Step II (Add NFIA) without first establishing the base value is logically incoherent.", "misconception": "Starting the calculation without first identifying the base aggregate."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-19",
+    "question_type": "logical-sequence",
+    "difficulty": "hard",
+    "question_text": "Arrange the following national income aggregates in descending order of their value, assuming NFIA is negative, depreciation is positive, and Net Indirect Taxes are positive:\n(I) NNP at Factor Cost\n(II) GDP at Market Price\n(III) NDP at Market Price\n(IV) GNP at Market Price",
+    "explanation": "With negative NFIA, positive depreciation, and positive NIT, the descending order is: GDP_MP > GNP_MP > NDP_MP > NNP_FC, i.e., II, IV, III, I. Here is the reasoning: GDP_MP is the largest because both NFIA (negative) and depreciation reduce it. GNP_MP = GDP_MP + NFIA; since NFIA is negative, GNP_MP < GDP_MP. NDP_MP = GDP_MP - Depreciation; since depreciation is positive, NDP_MP < GDP_MP. Comparing GNP_MP and NDP_MP: GNP_MP - NDP_MP = NFIA + Depreciation. If |NFIA| < Depreciation (typical for most economies), GNP_MP > NDP_MP. NNP_FC is the smallest as it subtracts all three (NFIA adds negative, depreciation subtracted, NIT subtracted).",
+    "correct_answer": "C",
+    "concept_tags": ["GDP_MP", "GNP_MP", "NDP_MP", "NNP_FC", "ordering", "comparative analysis"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "evaluate",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "I, III, IV, II", "is_correct": false},
+      {"key": "B", "text": "IV, II, III, I", "is_correct": false},
+      {"key": "C", "text": "II, IV, III, I", "is_correct": true},
+      {"key": "D", "text": "II, III, IV, I", "is_correct": false}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "This places NNP_FC as the highest and GDP_MP as the lowest, which is the exact reverse of the correct order. NNP_FC has the most deductions applied, making it the smallest, not the largest.", "misconception": "Completely reversing the relationship between gross/net and domestic/national aggregates."},
+      {"option_key": "B", "hint": "This places GNP_MP above GDP_MP. Since NFIA is negative, GNP_MP = GDP_MP + (negative NFIA) < GDP_MP. Therefore GDP_MP must rank higher than GNP_MP.", "misconception": "Forgetting that negative NFIA makes GNP less than GDP, not more."},
+      {"option_key": "D", "hint": "This places NDP_MP above GNP_MP. Under typical conditions where |NFIA| < Depreciation, the amount subtracted for depreciation exceeds the amount subtracted for NFIA, making NDP_MP < GNP_MP.", "misconception": "Incorrectly comparing the relative magnitudes of NFIA and depreciation deductions."}
+    ]
+  },
+  {
+    "id": "eco-ni-agg-20",
+    "question_type": "diagram-based",
+    "difficulty": "hard",
+    "question_text": "Consider the following flowchart showing relationships between national income aggregates:\n\n[Flowchart Description]\nBox A: GDP_MP\n  |\n  |-- (+ NFIA) --> Box B: ?\n  |                  |\n  |                  |-- (- Depreciation) --> Box D: ?\n  |                                            |\n  |                                            |-- (- NIT) --> Box F: ?\n  |\n  |-- (- Depreciation) --> Box C: ?\n  |                          |\n  |                          |-- (+ NFIA) --> Box E: ?\n\nIdentify the aggregate represented by Box F in the flowchart.",
+    "explanation": "Tracing the path from Box A (GDP_MP): Adding NFIA gives Box B = GNP_MP. Subtracting Depreciation from GNP_MP gives Box D = NNP_MP. Subtracting NIT from NNP_MP gives Box F = NNP_FC, which is National Income. The parallel path: Subtracting Depreciation from GDP_MP gives Box C = NDP_MP. Adding NFIA to NDP_MP gives Box E = NNP_MP (same as Box D, confirming the order of operations does not matter). This flowchart demonstrates that regardless of the sequence of adjustments (NFIA, Depreciation, NIT), the final result remains the same. Box F represents NNP_FC, the most fundamental measure known as National Income.",
+    "correct_answer": "D",
+    "concept_tags": ["NNP_FC", "National Income", "flowchart", "conversion paths", "GDP_MP"],
+    "topic": "National Income Aggregates",
+    "subject": "economics",
+    "chapter": "National Income Accounting",
+    "bloom_level": "analyze",
+    "exam_suitability": ["CUET"],
+    "options": [
+      {"key": "A", "text": "GNP at Market Price", "is_correct": false},
+      {"key": "B", "text": "NDP at Factor Cost", "is_correct": false},
+      {"key": "C", "text": "NNP at Market Price", "is_correct": false},
+      {"key": "D", "text": "NNP at Factor Cost (National Income)", "is_correct": true}
+    ],
+    "elimination_hints": [
+      {"option_key": "A", "hint": "GNP_MP is Box B, obtained after adding NFIA to GDP_MP. Box F is two more steps beyond Box B (subtracting Depreciation and NIT), so it cannot be GNP_MP.", "misconception": "Stopping at the first conversion step and not tracing the full path."},
+      {"option_key": "B", "hint": "NDP_FC = GDP_MP - Depreciation - NIT. Box F follows the path GDP_MP + NFIA - Depreciation - NIT, which includes NFIA. NDP_FC does not include NFIA, making it a Domestic, not National, aggregate.", "misconception": "Confusing the path that includes NFIA (National) with one that excludes it (Domestic)."},
+      {"option_key": "C", "hint": "NNP_MP is Box D in the flowchart (GDP_MP + NFIA - Depreciation). Box F requires one more step: subtracting NIT from NNP_MP to convert from Market Price to Factor Cost.", "misconception": "Stopping one step short and not completing the final MP-to-FC conversion."}
+    ]
+  }
+]
