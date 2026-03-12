@@ -701,6 +701,8 @@
       // CUET subjects
       if (questionId.startsWith('cuet-acc-')) return 'accountancy';
       if (questionId.startsWith('cuet-eg-')) return 'engineering-graphics';
+      if (questionId.startsWith('eco-') || questionId.startsWith('cuet-eco-')) return 'economics';
+      if (questionId.startsWith('cuet-bst-')) return 'business-studies';
       return 'unknown';
     }
 
@@ -744,6 +746,55 @@
         'cuet-acc-ratio':       'cuet-acc-ratio-analysis',
         // B13: Computerized Accounting System
         'cuet-acc-comp':        'cuet-acc-computerized',
+
+        // ── CUET Chemistry (10 chapters) ─────────────────────
+        'cuet-chem-soln':       'cuet-chem-solutions',
+        'cuet-chem-electrochem':'cuet-chem-electrochemistry',
+        'cuet-chem-kinetics':   'cuet-chem-kinetics',
+        'cuet-chem-dfblock':    'cuet-chem-d-f-block',
+        'cuet-chem-coord':      'cuet-chem-coordination',
+        'cuet-chem-haloalkanes':'cuet-chem-haloalkanes',
+        'cuet-chem-alcohols':   'cuet-chem-alcohols-phenols',
+        'cuet-chem-aldehydes':  'cuet-chem-aldehydes-ketones',
+        'cuet-chem-amines':     'cuet-chem-amines',
+        'cuet-chem-biomolecules':'cuet-chem-biomolecules',
+
+        // ── CUET Economics (20 chapters) ─────────────────────
+        'eco-macro-intro':      'cuet-eco-macro-intro',
+        'eco-ni':               'cuet-eco-national-income',
+        'eco-national-income':  'cuet-eco-national-income',
+        'eco-mb':               'cuet-eco-money-banking',
+        'eco-money-banking':    'cuet-eco-money-banking',
+        'eco-ie':               'cuet-eco-income-employment',
+        'eco-income-employment':'cuet-eco-income-employment',
+        'eco-gb':               'cuet-eco-govt-budget',
+        'eco-govt-budget':      'cuet-eco-govt-budget',
+        'eco-bop':              'cuet-eco-bop',
+        'eco-intro-micro':      'cuet-eco-intro-micro',
+        'eco-consumer-demand':  'cuet-eco-consumer-demand',
+        'eco-cd':               'cuet-eco-consumer-demand',
+        'eco-producer-supply':  'cuet-eco-producer-supply',
+        'eco-ps':               'cuet-eco-producer-supply',
+        'eco-market-price':     'cuet-eco-market-price',
+        'eco-mp':               'cuet-eco-market-price',
+        'eco-pre-independence': 'cuet-eco-pre-independence',
+        'eco-pi':               'cuet-eco-pre-independence',
+        'eco-planning-era':     'cuet-eco-planning-era',
+        'eco-pe':               'cuet-eco-planning-era',
+        'eco-lpg':              'cuet-eco-lpg-reforms',
+        'eco-pov':              'cuet-eco-poverty',
+        'eco-hc':               'cuet-eco-human-capital',
+        'eco-human-capital':    'cuet-eco-human-capital',
+        'eco-rd':               'cuet-eco-rural-dev',
+        'eco-rural-dev':        'cuet-eco-rural-dev',
+        'eco-emp':              'cuet-eco-employment',
+        'eco-employment':       'cuet-eco-employment',
+        'eco-inf':              'cuet-eco-infrastructure',
+        'eco-infrastructure':   'cuet-eco-infrastructure',
+        'eco-env':              'cuet-eco-environment',
+        'eco-environment':      'cuet-eco-environment',
+        'eco-de':               'cuet-eco-dev-experience',
+        'eco-dev-experience':   'cuet-eco-dev-experience',
 
         // ── Botany (17 chapters) ──────────────────────────────
         // Topics: bot-cell-theory, bot-cell-prokaryotic, bot-cell-eukaryotic, bot-cell-organelles
