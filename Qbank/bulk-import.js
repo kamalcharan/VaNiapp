@@ -449,6 +449,8 @@ async function main() {
       const chapterId = q.chapter_id || resolveChapterId(q._source, q._subject, q._chapter);
       const topicId = await resolveTopicId(supabase, chapterId, q.topic);
 
+      log(`  DEBUG: id=${q.id} subject_id=${subjectId} chapter_id=${chapterId} topic_id=${topicId} _source=${q._source} _subject=${q._subject} _chapter=${q._chapter}`);
+
       // Insert main question record
       const { data: insertedQ, error: qError } = await supabase
         .from('med_questions')
