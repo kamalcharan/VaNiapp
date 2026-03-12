@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "chem-electrochem-nernst-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The Nernst equation relates the EMF of an electrochemical cell to which of the following?",
+    "explanation": "The Nernst equation, E = E° - (RT/nF)lnQ, relates the EMF (electromotive force) of an electrochemical cell to the standard electrode potential (E°) and the concentrations of reactants and products through the reaction quotient Q. It shows how the cell potential changes when concentrations deviate from standard conditions (1 M for solutions, 1 atm for gases).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "nernst-equation",
+      "emf",
+      "reaction-quotient",
+      "concentration-dependence"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Temperature and pressure only",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Standard electrode potential only",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Standard electrode potential and concentration of reactants and products",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Entropy change of the reaction",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "While temperature appears in the Nernst equation, pressure alone is not the key variable. The equation primarily relates EMF to concentrations through the reaction quotient Q.",
+        "misconception": "Thinking the Nernst equation is only about temperature and pressure effects, ignoring the central role of concentration."
+      },
+      {
+        "option_key": "B",
+        "hint": "Standard electrode potential (E°) is only one component of the Nernst equation. The equation also includes a correction term involving concentrations of reactants and products.",
+        "misconception": "Believing the Nernst equation involves only E° without the concentration-dependent correction term."
+      },
+      {
+        "option_key": "D",
+        "hint": "Entropy change is related to thermodynamic quantities but does not directly appear in the Nernst equation. The Nernst equation connects EMF with E° and the reaction quotient Q.",
+        "misconception": "Confusing the Nernst equation with the Gibbs-Helmholtz equation or other thermodynamic relations."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "At 298 K, the Nernst equation for a cell reaction involving n electrons is written as E = E° - (0.0592/n) log Q. The value 0.0592 V has units of:",
+    "explanation": "In the Nernst equation at 298 K, the factor 0.0592 is obtained by substituting T = 298 K in the expression (2.303RT/F). Here R = 8.314 J mol⁻¹ K⁻¹, T = 298 K, and F = 96485 C mol⁻¹. The calculation gives (2.303 × 8.314 × 298)/96485 ≈ 0.0592 V. Since E and E° are measured in volts, this constant also has units of volts (V).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "nernst-equation",
+      "298K-form",
+      "constants",
+      "units"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Volt (V)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Joule (J)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Coulomb (C)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Ampere (A)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Joule is the unit of energy. While RT has units of J mol⁻¹, dividing by F (C mol⁻¹) gives J/C = V (volts), not joules.",
+        "misconception": "Forgetting that RT/F simplifies to volts when the units are worked out properly."
+      },
+      {
+        "option_key": "C",
+        "hint": "Coulomb is the unit of electric charge. Faraday's constant F has units involving coulombs, but the ratio 2.303RT/F yields volts, not coulombs.",
+        "misconception": "Confusing the unit of charge with the unit of potential difference."
+      },
+      {
+        "option_key": "D",
+        "hint": "Ampere is the unit of electric current. The Nernst equation deals with potential (volts), not current.",
+        "misconception": "Confusing electrical potential with electrical current."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The standard Gibbs free energy change (ΔG°) for a cell reaction is related to the standard EMF (E°cell) by the equation:",
+    "explanation": "The relationship between standard Gibbs free energy change and standard EMF of the cell is given by ΔG° = -nFE°cell, where n is the number of moles of electrons transferred in the balanced cell reaction and F is the Faraday constant (96485 C mol⁻¹). The negative sign indicates that a positive E°cell corresponds to a negative ΔG°, meaning the reaction is spontaneous under standard conditions.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "gibbs-energy",
+      "standard-emf",
+      "nFE-relationship",
+      "spontaneity"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ΔG° = nFE°cell",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ΔG° = -nFE°cell",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "ΔG° = -nRTE°cell",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ΔG° = nRTE°cell",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This equation is missing the negative sign. A positive E°cell must give a negative ΔG° for a spontaneous reaction, so the formula requires a negative sign.",
+        "misconception": "Forgetting the negative sign in the ΔG° = -nFE° relationship, which would incorrectly predict non-spontaneity for a cell with positive EMF."
+      },
+      {
+        "option_key": "C",
+        "hint": "This expression incorrectly uses RT instead of F. The Faraday constant F (96485 C mol⁻¹), not the gas constant R times temperature, links Gibbs energy to cell potential.",
+        "misconception": "Confusing the Faraday constant F with the thermal energy factor RT from the Nernst equation."
+      },
+      {
+        "option_key": "D",
+        "hint": "This expression has two errors: it uses RT instead of F and is missing the negative sign. The correct relationship uses the Faraday constant with a negative sign.",
+        "misconception": "Confusing both the sign and the constant in the Gibbs energy-EMF relationship."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "A concentration cell is one in which:",
+    "explanation": "A concentration cell consists of two half-cells with the same electrodes and the same electrolyte but at different concentrations. Since both electrodes are identical, E°cell = 0. The EMF arises solely from the difference in concentration of the electrolyte in the two half-cells. The cell drives current from the more concentrated solution (cathode) to the less concentrated solution (anode) until the concentrations equalize.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "concentration-cell",
+      "same-electrodes",
+      "different-concentrations",
+      "emf-source"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Two different metals are used as electrodes with the same concentration of electrolyte",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The temperature is different in the two half-cells",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Different electrolytes are used in the two half-cells",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The same electrode and electrolyte are used at different concentrations in the two half-cells",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Using two different metals creates a galvanic cell based on different electrode potentials, not a concentration cell. A concentration cell uses identical electrodes.",
+        "misconception": "Confusing a concentration cell with a standard galvanic cell that uses two different metals."
+      },
+      {
+        "option_key": "B",
+        "hint": "A difference in temperature between half-cells describes a thermocell, not a concentration cell. In a concentration cell, the driving force is the difference in electrolyte concentration.",
+        "misconception": "Confusing a concentration cell with a thermogalvanic cell."
+      },
+      {
+        "option_key": "C",
+        "hint": "Using different electrolytes would create a standard galvanic cell, not a concentration cell. A concentration cell specifically uses the same electrolyte at different concentrations.",
+        "misconception": "Not understanding that a concentration cell requires the same electrode-electrolyte system at different concentrations."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For the cell reaction: Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s), if E°cell = 1.10 V, what is the standard Gibbs free energy change (ΔG°) of the reaction? (F = 96485 C mol⁻¹)",
+    "explanation": "The number of electrons transferred in this reaction is n = 2 (Zn loses 2 electrons, Cu²⁺ gains 2 electrons). Using ΔG° = -nFE°cell: ΔG° = -(2)(96485)(1.10) = -212,267 J mol⁻¹ ≈ -212.3 kJ mol⁻¹. The negative value of ΔG° confirms that the reaction is spontaneous under standard conditions, which is consistent with the positive E°cell.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "gibbs-energy-calculation",
+      "nFE-relationship",
+      "daniell-cell",
+      "numerical"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "-106.1 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "+212.3 kJ mol⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "-212.3 kJ mol⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "-424.6 kJ mol⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This value corresponds to n = 1 instead of n = 2. In the Zn/Cu cell reaction, two electrons are transferred (Zn → Zn²⁺ + 2e⁻), so n = 2.",
+        "misconception": "Using n = 1 instead of n = 2 for the number of electrons transferred in the balanced equation."
+      },
+      {
+        "option_key": "B",
+        "hint": "The sign is positive here, which would indicate a non-spontaneous reaction. Since E°cell is positive (+1.10 V), ΔG° must be negative (ΔG° = -nFE°).",
+        "misconception": "Forgetting the negative sign in the ΔG° = -nFE° equation, leading to an incorrect sign."
+      },
+      {
+        "option_key": "D",
+        "hint": "This value corresponds to n = 4, which is double the actual number of electrons transferred. In the balanced equation, Zn loses only 2 electrons.",
+        "misconception": "Using n = 4 by incorrectly counting electrons or doubling the balanced equation unnecessarily."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For the cell Zn|Zn²⁺(0.01 M)||Cu²⁺(1.0 M)|Cu, if E°cell = 1.10 V, what is the EMF of the cell at 298 K?",
+    "explanation": "Using the Nernst equation at 298 K: E = E° - (0.0592/n) log Q. For this cell, n = 2 and Q = [Zn²⁺]/[Cu²⁺] = 0.01/1.0 = 0.01. Therefore, E = 1.10 - (0.0592/2) log(0.01) = 1.10 - (0.0296)(−2) = 1.10 + 0.0592 = 1.1592 V ≈ 1.16 V. Since Q < 1, the EMF is greater than E°cell.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "nernst-equation-numerical",
+      "emf-calculation",
+      "reaction-quotient",
+      "298K-form"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1.04 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.10 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1.07 V",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1.16 V",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This value is less than E°cell, but with [Zn²⁺] < [Cu²⁺], Q < 1 and log Q < 0, so the correction term adds to E°, making E > E°cell.",
+        "misconception": "Incorrectly taking Q = [Cu²⁺]/[Zn²⁺] instead of [Zn²⁺]/[Cu²⁺], reversing the effect of concentration."
+      },
+      {
+        "option_key": "B",
+        "hint": "This is the standard EMF. Since the concentrations are not at standard conditions (both 1 M), the Nernst equation must be applied to find the actual EMF.",
+        "misconception": "Ignoring the concentration correction and assuming EMF equals the standard EMF regardless of concentration."
+      },
+      {
+        "option_key": "C",
+        "hint": "This value might result from using n = 1 instead of n = 2 or making an arithmetic error in the log calculation. Check that n = 2 and log(0.01) = -2.",
+        "misconception": "Making an arithmetic error in the Nernst equation calculation, possibly using incorrect values of n or log Q."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "If E°cell for a reaction is 0.295 V at 298 K and the number of electrons transferred is 2, what is the equilibrium constant (Kc) of the reaction? (Given: 0.0592/2 = 0.0296)",
+    "explanation": "At equilibrium, E = 0 and Q = Kc. Using the Nernst equation: 0 = E° - (0.0592/n) log Kc. Therefore, log Kc = nE°/0.0592 = (2 × 0.295)/0.0592 = 0.590/0.0592 = 9.97 ≈ 10. So Kc = 10¹⁰. This very large equilibrium constant indicates that the reaction proceeds almost completely to products at equilibrium.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "equilibrium-constant",
+      "nernst-equation",
+      "emf-equilibrium",
+      "numerical"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "10⁵",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "10¹⁰",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "10²⁰",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "10²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This value corresponds to using n = 1 instead of n = 2 in the formula log Kc = nE°/0.0592. The reaction involves transfer of 2 electrons, so n = 2.",
+        "misconception": "Using n = 1 instead of the correct n = 2, giving log Kc = 5 instead of 10."
+      },
+      {
+        "option_key": "C",
+        "hint": "This value corresponds to using n = 4 or squaring the result incorrectly. With n = 2 and E° = 0.295 V, log Kc = (2 × 0.295)/0.0592 = 10, not 20.",
+        "misconception": "Doubling the exponent by either using n = 4 or making an arithmetic error in the calculation."
+      },
+      {
+        "option_key": "D",
+        "hint": "This extremely small equilibrium constant would indicate a reaction that barely proceeds. With E°cell = 0.295 V (positive), the equilibrium must strongly favor products, so Kc must be very large.",
+        "misconception": "Confusing the relationship between E° and Kc, not realizing that positive E° means a very large Kc."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "When a galvanic cell reaches equilibrium, which of the following is true?",
+    "explanation": "At equilibrium, the Gibbs free energy change ΔG = 0 and there is no net driving force for the reaction. From the Nernst equation, when E = 0, the reaction quotient Q equals the equilibrium constant Kc. The cell can no longer do work because the forward and reverse reactions occur at equal rates. E°cell remains non-zero as it is a standard property of the cell.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "equilibrium",
+      "emf-zero",
+      "gibbs-energy-zero",
+      "cell-at-equilibrium"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Ecell = 0 and ΔG = 0",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "E°cell = 0 and ΔG° = 0",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Ecell = E°cell",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Q = 0",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "E°cell is the standard EMF measured under standard conditions and is a fixed property of the cell reaction. It does not become zero at equilibrium. It is the actual EMF (Ecell) that becomes zero.",
+        "misconception": "Confusing standard EMF (E°cell) with actual EMF (Ecell). Only the actual EMF drops to zero at equilibrium."
+      },
+      {
+        "option_key": "C",
+        "hint": "At equilibrium Ecell = 0, not equal to E°cell. The condition Ecell = E°cell applies only when all species are at standard concentrations (Q = 1).",
+        "misconception": "Confusing the equilibrium condition (Q = Kc, Ecell = 0) with the standard condition (Q = 1, Ecell = E°cell)."
+      },
+      {
+        "option_key": "D",
+        "hint": "Q = 0 would mean zero product concentration, which is the initial condition when no reaction has occurred. At equilibrium, Q equals the equilibrium constant Kc.",
+        "misconception": "Confusing the reaction quotient value at equilibrium (Q = Kc) with Q = 0."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a concentration cell: Ag|Ag⁺(0.001 M)||Ag⁺(0.1 M)|Ag, what is the EMF at 298 K?",
+    "explanation": "For a concentration cell, E°cell = 0 (since both electrodes are identical). The cell reaction is: Ag⁺(0.1 M) → Ag⁺(0.001 M) from cathode to anode perspective. The reaction quotient Q = [Ag⁺]anode/[Ag⁺]cathode = 0.001/0.1 = 0.01. With n = 1: E = 0 - (0.0592/1) log(0.01) = -0.0592 × (-2) = 0.1184 V ≈ 0.1184 V. The positive EMF confirms that the cell is spontaneous with current flowing from the higher concentration half-cell to the lower one.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "concentration-cell",
+      "nernst-equation",
+      "silver-electrode",
+      "emf-calculation"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.0592 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.0296 V",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.1184 V",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "0.2368 V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This value results from log(0.01) being taken as -1 instead of -2. Remember that log(0.01) = log(10⁻²) = -2.",
+        "misconception": "Calculating log(0.01) as -1 instead of -2."
+      },
+      {
+        "option_key": "B",
+        "hint": "This value appears if n = 2 is used instead of n = 1. The Ag⁺/Ag half-reaction involves only 1 electron: Ag⁺ + e⁻ → Ag.",
+        "misconception": "Using n = 2 instead of n = 1 for the silver ion/silver electrode reaction."
+      },
+      {
+        "option_key": "D",
+        "hint": "This value is double the correct answer, possibly from using n = 1 but miscalculating log(0.01) as -4, or using n = 2 and mishandling the concentration ratio.",
+        "misconception": "Doubling the EMF due to arithmetic error or incorrect handling of the concentration ratio."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For the half-cell reaction: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O, the EMF of the half-cell will increase if:",
+    "explanation": "According to Le Chatelier's principle and the Nernst equation, increasing the concentration of reactants (MnO₄⁻ or H⁺) or decreasing the concentration of products (Mn²⁺) will shift the equilibrium forward, increasing the reduction potential. The Nernst equation gives E = E° - (0.0592/5) log([Mn²⁺]/([MnO₄⁻][H⁺]⁸)). Increasing [H⁺] decreases the reaction quotient Q, making the log term more negative and hence increasing E.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "nernst-equation",
+      "concentration-effect",
+      "reduction-potential",
+      "le-chatelier"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The concentration of H⁺ ions is increased",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "The concentration of Mn²⁺ ions is increased",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The concentration of MnO₄⁻ ions is decreased",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Water is added to the half-cell",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Mn²⁺ is a product of the reduction. Increasing its concentration increases Q, which decreases the reduction potential according to the Nernst equation.",
+        "misconception": "Thinking that increasing any ion concentration increases EMF, without distinguishing between reactants and products."
+      },
+      {
+        "option_key": "C",
+        "hint": "MnO₄⁻ is a reactant. Decreasing its concentration increases Q (since Q has [MnO₄⁻] in the denominator), which decreases the reduction potential.",
+        "misconception": "Confusing the effect of decreasing a reactant concentration with increasing EMF."
+      },
+      {
+        "option_key": "D",
+        "hint": "Adding water would dilute all ionic species. While water appears as a product, it is a pure liquid and does not appear in Q. Dilution would decrease [H⁺] and [MnO₄⁻] (reactants), which would decrease the EMF.",
+        "misconception": "Thinking that adding water (a product) would shift the equilibrium or that dilution has no effect on EMF."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "The standard EMF of the cell: Fe|Fe²⁺||Cd²⁺|Cd is -0.04 V. If the cell is to be made spontaneous, which of the following conditions is required? (Given: log 2 = 0.301)",
+    "explanation": "Since E°cell = -0.04 V (negative), the cell is non-spontaneous under standard conditions. For the cell to become spontaneous, Ecell must be positive. Using the Nernst equation: E = E° - (0.0592/2) log([Fe²⁺]/[Cd²⁺]). For E > 0: -0.04 - 0.0296 log([Fe²⁺]/[Cd²⁺]) > 0, which gives log([Fe²⁺]/[Cd²⁺]) < -0.04/0.0296 ≈ -1.35. This means [Fe²⁺]/[Cd²⁺] < 10⁻¹·³⁵ ≈ 0.045. So [Fe²⁺] must be much smaller than [Cd²⁺]. Making [Fe²⁺] very low and [Cd²⁺] very high can make the cell spontaneous.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "nernst-equation",
+      "non-standard-conditions",
+      "spontaneity",
+      "concentration-manipulation"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "[Fe²⁺] >> [Cd²⁺]",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "[Fe²⁺] = [Cd²⁺]",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Increasing temperature to very high values",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "[Fe²⁺] << [Cd²⁺]",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "If [Fe²⁺] >> [Cd²⁺], the reaction quotient Q becomes very large, making the log term positive and further decreasing the already negative EMF. This makes the cell even less spontaneous.",
+        "misconception": "Thinking that increasing product concentration helps make a non-spontaneous cell spontaneous."
+      },
+      {
+        "option_key": "B",
+        "hint": "When [Fe²⁺] = [Cd²⁺], Q = 1 and log Q = 0, so Ecell = E°cell = -0.04 V. The cell remains non-spontaneous under these conditions.",
+        "misconception": "Assuming that equal concentrations correspond to standard conditions that will change the sign of EMF."
+      },
+      {
+        "option_key": "C",
+        "hint": "While temperature affects the Nernst equation, simply increasing temperature does not guarantee a sign change in EMF. The concentration adjustment is the direct and controllable method to alter EMF sign.",
+        "misconception": "Believing that temperature increase alone can reliably reverse the spontaneity of a cell reaction."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "For the cell reaction: 2Fe³⁺(aq) + 2I⁻(aq) → 2Fe²⁺(aq) + I₂(s), E°cell = 0.236 V at 298 K. The standard Gibbs energy change and equilibrium constant are respectively:",
+    "explanation": "n = 2 for this reaction (each Fe³⁺ gains 1 electron, and there are 2 Fe³⁺ ions). ΔG° = -nFE° = -(2)(96485)(0.236) = -45,540.9 J ≈ -45.5 kJ mol⁻¹. For the equilibrium constant: log Kc = nE°/0.0592 = (2 × 0.236)/0.0592 = 0.472/0.0592 = 7.97 ≈ 8. Therefore Kc ≈ 10⁸. The large positive Kc and negative ΔG° confirm the reaction is highly spontaneous.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "gibbs-energy",
+      "equilibrium-constant",
+      "emf-calculation",
+      "numerical"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ΔG° = -22.8 kJ mol⁻¹, Kc ≈ 10⁴",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "ΔG° = -45.5 kJ mol⁻¹, Kc ≈ 10⁸",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "ΔG° = -45.5 kJ mol⁻¹, Kc ≈ 10⁴",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ΔG° = -91.0 kJ mol⁻¹, Kc ≈ 10¹⁶",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This uses n = 1 for both calculations. In the reaction 2Fe³⁺ + 2I⁻ → 2Fe²⁺ + I₂, two electrons are transferred overall (each Fe³⁺ gains one electron), so n = 2.",
+        "misconception": "Using n = 1 instead of n = 2 by considering only one Fe³⁺ ion."
+      },
+      {
+        "option_key": "C",
+        "hint": "While ΔG° is correct at -45.5 kJ mol⁻¹, Kc ≈ 10⁴ is wrong. With n = 2, log Kc = (2 × 0.236)/0.0592 ≈ 8, so Kc ≈ 10⁸.",
+        "misconception": "Correctly calculating ΔG° but using n = 1 when computing the equilibrium constant."
+      },
+      {
+        "option_key": "D",
+        "hint": "This uses n = 4, which would be the case if the equation were doubled. For the given balanced equation, n = 2 since only 2 electrons are transferred.",
+        "misconception": "Doubling n by considering the coefficients of Fe³⁺ and I⁻ as separate electron transfers."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The EMF of a galvanic cell is always positive.\n\nReason (R): The Gibbs free energy change (ΔG) for the cell reaction in a galvanic cell is always negative.",
+    "explanation": "A galvanic cell operates spontaneously, which means the cell reaction has a negative ΔG. Since ΔG = -nFEcell, a negative ΔG requires a positive Ecell. Both statements are true. The reason correctly explains why the EMF of a galvanic cell is always positive: because the spontaneous nature of the cell reaction (negative ΔG) necessitates a positive EMF through the relation ΔG = -nFE.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "galvanic-cell",
+      "spontaneity",
+      "gibbs-energy",
+      "positive-emf"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The reason directly explains the assertion through the equation ΔG = -nFE. A negative ΔG mathematically requires positive E, so the reason is the correct explanation.",
+        "misconception": "Not recognizing the direct mathematical link between ΔG and E through the equation ΔG = -nFE."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is true: galvanic cells are spontaneous by definition, so ΔG must be negative. Both statements are factually correct.",
+        "misconception": "Incorrectly thinking that ΔG can be positive for a spontaneous galvanic cell."
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is true: by definition, a galvanic cell produces positive EMF as it operates spontaneously. If EMF were negative, the cell would not function as a galvanic cell.",
+        "misconception": "Confusing galvanic cells (spontaneous, positive EMF) with electrolytic cells (non-spontaneous, require external EMF)."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): In a concentration cell made of two hydrogen electrodes, the electrode dipped in the solution of lower pH acts as the cathode.\n\nReason (R): In a concentration cell, the electrode with higher concentration of H⁺ ions has higher reduction potential.",
+    "explanation": "Lower pH means higher [H⁺]. For the hydrogen electrode: H⁺ + e⁻ → ½H₂. By the Nernst equation, a higher [H⁺] gives a higher (more positive) reduction potential. The electrode with higher reduction potential acts as the cathode (where reduction occurs). Therefore, the electrode in the lower pH (higher [H⁺]) solution is the cathode. Both A and R are true, and R correctly explains A.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "concentration-cell",
+      "hydrogen-electrode",
+      "pH",
+      "cathode-anode"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The reason explains exactly why lower pH means cathode: lower pH → higher [H⁺] → higher reduction potential → cathode. This is a direct causal chain, so R is the correct explanation of A.",
+        "misconception": "Failing to connect the causal chain from pH to H⁺ concentration to reduction potential to cathode assignment."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reason is also true. By the Nernst equation for H⁺/H₂, E = E° - (0.0592/1) log(1/[H⁺]) = 0 + 0.0592 log[H⁺]. Higher [H⁺] gives higher E, confirming R.",
+        "misconception": "Incorrectly thinking that concentration does not affect the reduction potential of the hydrogen electrode."
+      },
+      {
+        "option_key": "D",
+        "hint": "The assertion is true. Lower pH = higher [H⁺] = higher reduction potential = cathode. This is consistent with the Nernst equation and the definition of cathode as the site of reduction.",
+        "misconception": "Confusing lower pH with lower [H⁺], leading to incorrect cathode identification."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the following conditions of a galvanic cell (Column I) with their corresponding consequences (Column II):\n\nColumn I:\n(P) E°cell > 0\n(Q) Ecell = 0\n(R) Q < 1\n(S) ΔG > 0\n\nColumn II:\n(1) Cell is at equilibrium\n(2) Ecell > E°cell\n(3) Reaction is spontaneous under standard conditions\n(4) Reaction is non-spontaneous",
+    "explanation": "(P)→(3): A positive E°cell means ΔG° = -nFE° is negative, so the reaction is spontaneous under standard conditions. (Q)→(1): When Ecell = 0, ΔG = 0, meaning the cell has reached equilibrium and Q = Kc. (R)→(2): When Q < 1, log Q < 0, so in the Nernst equation E = E° - (0.0592/n)log Q, the subtracted term is negative, making E > E°. (S)→(4): A positive ΔG means the reaction is non-spontaneous in the forward direction.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "emf-conditions",
+      "equilibrium",
+      "reaction-quotient",
+      "spontaneity"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→3, Q→2, R→1, S→4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→3, Q→1, R→4, S→2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P→3, Q→1, R→2, S→4",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "P→4, Q→1, R→2, S→3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Q→2 is incorrect. When Ecell = 0, the cell is at equilibrium (Q→1), not at a condition where Ecell > E°cell.",
+        "misconception": "Confusing the condition Ecell = 0 (equilibrium) with Ecell > E°cell."
+      },
+      {
+        "option_key": "B",
+        "hint": "R→4 is incorrect. When Q < 1, log Q is negative, so the Nernst equation gives E > E°, meaning the cell has a higher EMF than standard. Q < 1 does not indicate non-spontaneity.",
+        "misconception": "Mistakenly associating Q < 1 with non-spontaneity rather than with enhanced EMF."
+      },
+      {
+        "option_key": "D",
+        "hint": "P→4 is incorrect. A positive E°cell corresponds to a negative ΔG° (from ΔG° = -nFE°), meaning the reaction IS spontaneous, not non-spontaneous.",
+        "misconception": "Reversing the sign relationship between E°cell and spontaneity."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the electrochemical parameters (Column I) with their correct expressions or values at 298 K (Column II):\n\nColumn I:\n(P) Nernst equation at 298 K\n(Q) Relationship between ΔG° and Kc\n(R) EMF of a concentration cell with 10-fold concentration difference (n = 1)\n(S) log Kc when E°cell = 0.0592 V and n = 2\n\nColumn II:\n(1) ΔG° = -RT ln Kc\n(2) 0.0592 V\n(3) E = E° - (0.0592/n) log Q\n(4) 2",
+    "explanation": "(P)→(3): The Nernst equation at 298 K is E = E° - (0.0592/n) log Q, obtained by substituting T = 298 K in the general Nernst equation. (Q)→(1): The relationship between standard Gibbs energy and equilibrium constant is ΔG° = -RT ln Kc. (R)→(2): For a concentration cell with n = 1 and 10-fold concentration difference, E = 0 - (0.0592/1) log(1/10) = 0.0592 × 1 = 0.0592 V. (S)→(4): log Kc = nE°/0.0592 = (2 × 0.0592)/0.0592 = 2.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "nernst-equation",
+      "gibbs-energy",
+      "concentration-cell",
+      "equilibrium-constant"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→3, Q→1, R→4, S→2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→1, Q→3, R→2, S→4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P→3, Q→4, R→2, S→1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P→3, Q→1, R→2, S→4",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "R→4 and S→2 are swapped. The concentration cell with 10-fold difference gives 0.0592 V (match 2), and log Kc = 2 (match 4), not the other way around.",
+        "misconception": "Swapping the numerical results of the concentration cell EMF and the log Kc calculation."
+      },
+      {
+        "option_key": "B",
+        "hint": "P→1 and Q→3 are swapped. The Nernst equation at 298 K is E = E° - (0.0592/n) log Q (match 3), and the ΔG°-Kc relationship is ΔG° = -RT ln Kc (match 1).",
+        "misconception": "Confusing the Nernst equation with the Gibbs energy-equilibrium constant relationship."
+      },
+      {
+        "option_key": "C",
+        "hint": "Q→4 is incorrect. The relationship between ΔG° and Kc is ΔG° = -RT ln Kc (match 1), not the number 2 (match 4).",
+        "misconception": "Incorrectly matching the ΔG°-Kc thermodynamic relationship with a numerical value."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The EMF of a concentration cell decreases as the concentrations of the two solutions approach each other.",
+    "explanation": "This statement is TRUE. In a concentration cell, the EMF arises solely from the difference in concentrations between the two half-cells (since E°cell = 0). As the concentrations approach each other, the reaction quotient Q approaches 1, log Q approaches 0, and therefore E = -(0.0592/n) log Q approaches 0. When both concentrations become equal, the EMF becomes exactly zero and the cell reaches equilibrium.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "concentration-cell",
+      "emf-decrease",
+      "equilibrium-approach"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Consider what happens to Q as concentrations equalize. The driving force for a concentration cell is the concentration difference. As this difference shrinks, the EMF must decrease, eventually reaching zero at equilibrium.",
+        "misconception": "Thinking the EMF of a concentration cell remains constant or increases as concentrations approach each other."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a placeholder option and is not a valid answer.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a placeholder option and is not a valid answer.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "A cell with a negative E°cell value will always have a positive ΔG° value, indicating the reaction can never be spontaneous under any conditions.",
+    "explanation": "This statement is FALSE. While a negative E°cell does correspond to a positive ΔG° (since ΔG° = -nFE°cell), this only means the reaction is non-spontaneous under standard conditions. Under non-standard conditions, the actual Ecell (given by the Nernst equation) can become positive if the concentrations are adjusted appropriately, making the reaction spontaneous. The word 'never' in the statement makes it incorrect.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "spontaneity",
+      "standard-vs-nonstandard",
+      "gibbs-energy",
+      "nernst-equation"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The first part about negative E°cell giving positive ΔG° is correct, but the claim that the reaction can 'never' be spontaneous is too absolute. The Nernst equation allows EMF to change with concentration.",
+        "misconception": "Confusing standard conditions (E°cell, ΔG°) with all possible conditions. Non-standard concentrations can make a normally non-spontaneous reaction spontaneous."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a placeholder option and is not a valid answer.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a placeholder option and is not a valid answer.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "For a cell reaction at equilibrium, the value of the reaction quotient Q is equal to ______, and the cell potential Ecell equals ______.",
+    "explanation": "At equilibrium, the forward and reverse reaction rates are equal, and there is no net change in concentrations. Under this condition, the reaction quotient Q becomes equal to the equilibrium constant Kc (or K). From the Nernst equation: E = E° - (RT/nF) ln Q. At equilibrium, E = 0 and Q = Kc. Substituting gives: 0 = E° - (RT/nF) ln Kc, which also leads to the relation ΔG° = -nFE° = -RT ln Kc.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "equilibrium",
+      "reaction-quotient",
+      "cell-potential-zero",
+      "nernst-equation"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Q = 0, Ecell = E°cell",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Q = 1, Ecell = E°cell",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Q = Kc, Ecell = 0",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Q = Kc, Ecell = E°cell",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Q = 0 would mean no products have formed, which is the initial state, not equilibrium. At equilibrium, Q equals the equilibrium constant Kc.",
+        "misconception": "Confusing the start of a reaction (no products) with the equilibrium state."
+      },
+      {
+        "option_key": "B",
+        "hint": "Q = 1 is the condition for standard state (all concentrations at 1 M), not equilibrium. At Q = 1, Ecell = E°cell, but this is not the equilibrium condition unless Kc happens to equal 1.",
+        "misconception": "Confusing standard conditions (Q = 1) with equilibrium conditions (Q = Kc)."
+      },
+      {
+        "option_key": "D",
+        "hint": "While Q = Kc is correct for equilibrium, Ecell is not equal to E°cell at equilibrium. At equilibrium, Ecell = 0 because there is no net driving force for the reaction.",
+        "misconception": "Correctly identifying Q but incorrectly thinking the cell retains its standard EMF at equilibrium."
+      }
+    ]
+  },
+  {
+    "id": "chem-electrochem-nernst-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A student sets up a Daniell cell: Zn|Zn²⁺(C₁ M)||Cu²⁺(C₂ M)|Cu. She measures E°cell = 1.10 V. She then changes the concentrations so that C₁ = 1.0 M and C₂ = 0.01 M and measures the new EMF at 298 K. She observes that the EMF has decreased compared to E°cell. By how much has the EMF decreased from the standard value?",
+    "explanation": "Using the Nernst equation: E = E° - (0.0592/n) log Q. Here n = 2, Q = [Zn²⁺]/[Cu²⁺] = 1.0/0.01 = 100. E = 1.10 - (0.0592/2) log(100) = 1.10 - (0.0296)(2) = 1.10 - 0.0592 = 1.0408 V. The decrease in EMF = E° - E = 1.10 - 1.0408 = 0.0592 V. This makes sense because Q > 1 (more product, less reactant than standard), so the EMF decreases. The decrease equals exactly 0.0592 V because log(100) = 2 and (0.0592/2) × 2 = 0.0592.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "nernst-equation",
+      "daniell-cell",
+      "emf-decrease",
+      "concentration-effect",
+      "numerical"
+    ],
+    "topic": "Nernst Equation and EMF",
+    "subject": "chemistry",
+    "chapter": "Electrochemistry",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.0296 V",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.0592 V",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "0.1184 V",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.1480 V",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This would be the decrease if log Q = 1, but Q = 100 and log(100) = 2. The full calculation gives (0.0592/2) × 2 = 0.0592 V, not 0.0296 V.",
+        "misconception": "Using log Q = 1 instead of log Q = 2, possibly by taking Q = 10 instead of Q = 100."
+      },
+      {
+        "option_key": "C",
+        "hint": "This value would result from using n = 1 instead of n = 2. The Daniell cell reaction Zn + Cu²⁺ → Zn²⁺ + Cu involves 2 electrons, so n = 2.",
+        "misconception": "Using n = 1 instead of n = 2, doubling the correction term."
+      },
+      {
+        "option_key": "D",
+        "hint": "This value could arise from using n = 1 and log Q = 2.5, or some other computational error. With the correct values n = 2 and log Q = 2, the decrease is 0.0592 V.",
+        "misconception": "Making multiple errors in the Nernst equation calculation, leading to an overestimate of the EMF decrease."
+      }
+    ]
+  }
+]
