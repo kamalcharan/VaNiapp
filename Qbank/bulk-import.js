@@ -588,6 +588,26 @@ const CUET_CHAPTER_MAP = {
   'business-studies/ch06-staffing': 'cuet-bst-staffing',
   'business-studies/ch07-directing': 'cuet-bst-directing',
   'business-studies/ch09-financial-mgmt': 'cuet-bst-financial-mgmt',
+  // Economics (economics subject)
+  'economics/macro-intro': 'cuet-eco-macro-intro',
+  'economics/national-income': 'cuet-eco-national-income',
+  'economics/money-banking': 'cuet-eco-money-banking',
+  'economics/income-employment': 'cuet-eco-income-employment',
+  'economics/govt-budget': 'cuet-eco-govt-budget',
+  'economics/bop': 'cuet-eco-bop',
+  'economics/intro-micro': 'cuet-eco-intro-micro',
+  'economics/consumer-demand': 'cuet-eco-consumer-demand',
+  'economics/producer-supply': 'cuet-eco-producer-supply',
+  'economics/pre-independence': 'cuet-eco-pre-independence',
+  'economics/planning-era': 'cuet-eco-planning-era',
+  'economics/lpg-reforms': 'cuet-eco-lpg-reforms',
+  'economics/poverty': 'cuet-eco-poverty',
+  'economics/human-capital': 'cuet-eco-human-capital',
+  'economics/rural-dev': 'cuet-eco-rural-dev',
+  'economics/employment': 'cuet-eco-employment',
+  'economics/infrastructure': 'cuet-eco-infrastructure',
+  'economics/environment-dev': 'cuet-eco-environment',
+  'economics/dev-experience': 'cuet-eco-dev-experience',
 };
 
 // NEET/generated physics folder → DB chapter_id (folder names don't match DB IDs)
