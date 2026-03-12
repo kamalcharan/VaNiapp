@@ -1,0 +1,1218 @@
+[
+  {
+    "id": "cuet-chem-kinetics-mixed-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The rate of a chemical reaction is defined as the change in concentration of a reactant or product per unit:",
+    "explanation": "The rate of a chemical reaction is defined as the change in concentration of a reactant or product per unit time. Mathematically, for a reaction A → B, the rate = −d[A]/dt = +d[B]/dt. The negative sign for reactants indicates that their concentration decreases over time, while the positive sign for products indicates their concentration increases. The SI unit of reaction rate is mol L⁻¹ s⁻¹ (moles per litre per second). This definition is fundamental to chemical kinetics and forms the basis for understanding how fast reactions proceed. The rate can be measured experimentally by monitoring concentration changes using methods like spectrophotometry, conductometry, or gas volume measurements over time intervals.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "rate-of-reaction",
+      "definition",
+      "concentration-change",
+      "unit-time"
+    ],
+    "topic": "Rate of Reaction",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Time",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Volume",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Temperature",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Pressure",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Volume is a factor that can affect the concentration of reactants in a gaseous reaction, but the rate of reaction is not defined as change in concentration per unit volume. Rate is always expressed as a function of time, not volume.",
+        "misconception": "Confusing concentration (which involves volume in its denominator) with the rate definition itself."
+      },
+      {
+        "option_key": "C",
+        "hint": "Temperature affects the rate of a reaction (higher temperature generally increases rate), but the rate is not defined per unit temperature. Temperature is a factor influencing rate, not part of the rate definition.",
+        "misconception": "Confusing factors that affect the rate with the definition of rate itself."
+      },
+      {
+        "option_key": "D",
+        "hint": "Pressure can influence the rate of gaseous reactions by changing concentrations, but the fundamental definition of reaction rate involves change in concentration per unit time, not per unit pressure.",
+        "misconception": "Mixing up the conditions affecting reaction rate with the mathematical definition of rate."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The unit of the rate constant for a first-order reaction is:",
+    "explanation": "For a first-order reaction, the rate law is: Rate = k[A]¹. The unit of rate is mol L⁻¹ s⁻¹, and the unit of concentration [A] is mol L⁻¹. Therefore, k = Rate / [A] = (mol L⁻¹ s⁻¹) / (mol L⁻¹) = s⁻¹. This means the rate constant for a first-order reaction has units of reciprocal time (s⁻¹), and it does not depend on the concentration units. This is a distinctive feature of first-order reactions — the rate constant has the same units regardless of whether concentration is expressed in mol/L, molecules/cm³, or any other unit. In contrast, zero-order reactions have k in mol L⁻¹ s⁻¹, and second-order reactions have k in L mol⁻¹ s⁻¹. Remembering the pattern: units of k = (mol L⁻¹)^(1−n) × s⁻¹, where n is the order.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "rate-constant",
+      "first-order",
+      "units",
+      "rate-law"
+    ],
+    "topic": "Rate Law and Rate Constant",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "mol L⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "s⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "L mol⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "L² mol⁻² s⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "mol L⁻¹ s⁻¹ is the unit of the rate constant for a zero-order reaction, where Rate = k (rate is independent of concentration). For a first-order reaction, the concentration term in the rate law cancels out the mol L⁻¹ part, leaving only s⁻¹.",
+        "misconception": "Confusing the unit of rate constant for zero-order with first-order reactions."
+      },
+      {
+        "option_key": "C",
+        "hint": "L mol⁻¹ s⁻¹ is the unit of the rate constant for a second-order reaction. For Rate = k[A]², we get k = Rate/[A]² = (mol L⁻¹ s⁻¹)/(mol L⁻¹)² = L mol⁻¹ s⁻¹. This does not apply to first-order reactions.",
+        "misconception": "Confusing the unit of rate constant for second-order with first-order reactions."
+      },
+      {
+        "option_key": "D",
+        "hint": "L² mol⁻² s⁻¹ is the unit of the rate constant for a third-order reaction. Each increase in order adds one factor of L mol⁻¹ to the units. First-order has s⁻¹, second-order has L mol⁻¹ s⁻¹, and third-order has L² mol⁻² s⁻¹.",
+        "misconception": "Confusing third-order reaction rate constant units with those of first-order."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The molecularity of an elementary reaction can never be:",
+    "explanation": "Molecularity refers to the number of reacting species (atoms, ions, or molecules) that participate simultaneously in an elementary reaction step. It is always a whole number — unimolecular (1), bimolecular (2), or trimolecular (3). Molecularity greater than 3 is virtually impossible because the probability of four or more molecules colliding simultaneously with the correct orientation and sufficient energy is negligibly small. In practice, even trimolecular reactions are rare. Importantly, molecularity is ALWAYS a positive integer and can NEVER be zero, fractional, or negative. This distinguishes it from the order of reaction, which can be zero, fractional, or even negative. Molecularity is a theoretical concept applicable only to elementary reactions, while order is an experimentally determined quantity applicable to both elementary and complex reactions.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "molecularity",
+      "elementary-reaction",
+      "whole-number",
+      "collision"
+    ],
+    "topic": "Molecularity of Reaction",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0 or fractional",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "3",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Unimolecular reactions (molecularity = 1) do exist. Examples include radioactive decay, decomposition of N₂O₅, isomerisation of cyclopropane to propene. A single molecule undergoes rearrangement or decomposition without needing to collide with another molecule.",
+        "misconception": "Thinking that a reaction always requires at least two molecules to collide."
+      },
+      {
+        "option_key": "B",
+        "hint": "Bimolecular reactions (molecularity = 2) are in fact the most common type of elementary reaction. Examples include 2HI → H₂ + I₂ and NO + O₃ → NO₂ + O₂. Two molecules collide and react in a single step.",
+        "misconception": "No specific misconception — bimolecular reactions are well-established and common."
+      },
+      {
+        "option_key": "D",
+        "hint": "Trimolecular reactions (molecularity = 3) are rare but possible. The classic example is 2NO + O₂ → 2NO₂, which proceeds through a simultaneous three-body collision. While uncommon due to low collision probability, they are not impossible.",
+        "misconception": "Thinking that three molecules can never collide simultaneously."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-04",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a first-order reaction, the half-life (t₁/₂) is:",
+    "explanation": "For a first-order reaction, the integrated rate equation is ln[A] = ln[A]₀ − kt, or equivalently [A] = [A]₀ × e^(−kt). The half-life is defined as the time at which [A] = [A]₀/2. Substituting: [A]₀/2 = [A]₀ × e^(−k·t₁/₂), which gives e^(−k·t₁/₂) = 1/2. Taking the natural logarithm: −k·t₁/₂ = −ln 2, therefore t₁/₂ = ln 2 / k = 0.693/k. This result is remarkable because the half-life of a first-order reaction is independent of the initial concentration [A]₀. This means that whether you start with 1 mole or 100 moles, it takes the same time for half the reactant to be consumed. This property is unique to first-order kinetics and is widely used in radioactive decay calculations, pharmacokinetics, and carbon dating.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "half-life",
+      "first-order",
+      "concentration-independent",
+      "ln2-over-k"
+    ],
+    "topic": "Half-life of Reactions",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Independent of initial concentration and equals 0.693/k",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Directly proportional to initial concentration",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Inversely proportional to the square of initial concentration",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Equal to 1/(k[A]₀) where [A]₀ is initial concentration",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The half-life being directly proportional to initial concentration ([A]₀) is a characteristic of zero-order reactions, where t₁/₂ = [A]₀/(2k). For first-order reactions, the half-life does not depend on [A]₀ at all — this is a key distinguishing feature.",
+        "misconception": "Confusing the half-life expression for zero-order reactions with that of first-order reactions."
+      },
+      {
+        "option_key": "C",
+        "hint": "The half-life being inversely proportional to the square of initial concentration would apply to a third-order reaction (with a single reactant). For a second-order reaction, t₁/₂ = 1/(k[A]₀), which is inversely proportional to [A]₀, not [A]₀². First-order half-life has no concentration dependence.",
+        "misconception": "Confusing half-life dependencies across different reaction orders."
+      },
+      {
+        "option_key": "D",
+        "hint": "The expression t₁/₂ = 1/(k[A]₀) is the half-life formula for a second-order reaction (Rate = k[A]²). For first-order reactions, the correct expression is t₁/₂ = 0.693/k with no dependence on [A]₀.",
+        "misconception": "Mixing up the half-life formula for second-order reactions with that of first-order reactions."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The Arrhenius equation is k = Ae^(−Ea/RT). In a plot of ln k versus 1/T, the slope of the straight line is:",
+    "explanation": "The Arrhenius equation k = Ae^(−Ea/RT) can be converted to a linear form by taking the natural logarithm of both sides: ln k = ln A − Ea/(RT), which can be rewritten as ln k = ln A − (Ea/R) × (1/T). This is in the form y = c + mx, where y = ln k, x = 1/T, c = ln A (the y-intercept), and m = −Ea/R (the slope). Therefore, a plot of ln k versus 1/T gives a straight line with a slope of −Ea/R. Since Ea (activation energy) and R (universal gas constant = 8.314 J mol⁻¹ K⁻¹) are both positive quantities, the slope is always negative. This means that as temperature increases (1/T decreases), ln k increases, confirming that higher temperatures give larger rate constants. This graphical method is widely used experimentally to determine the activation energy of reactions.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "arrhenius-equation",
+      "activation-energy",
+      "ln-k-vs-1/T",
+      "slope"
+    ],
+    "topic": "Arrhenius Equation and Activation Energy",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "−Ea",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "−Ea/R",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Ea/R",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Ea × R",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The slope is not simply −Ea. When linearising ln k = ln A − Ea/(RT), the coefficient of 1/T is −Ea/R, not −Ea. Forgetting to divide by R would give an incorrect slope and lead to an error in calculating activation energy from experimental data.",
+        "misconception": "Omitting the gas constant R when identifying the slope from the linearised Arrhenius equation."
+      },
+      {
+        "option_key": "C",
+        "hint": "The sign matters. The Arrhenius equation has a negative sign in the exponent: −Ea/(RT). After linearisation, the slope is −Ea/R, not +Ea/R. A positive slope would imply that the rate constant decreases with increasing temperature, which contradicts physical reality for most reactions.",
+        "misconception": "Dropping the negative sign from the slope of the Arrhenius plot."
+      },
+      {
+        "option_key": "D",
+        "hint": "Ea × R has incorrect dimensions and does not follow from the linearisation. In ln k = ln A − (Ea/R)(1/T), the slope is −Ea/R. Multiplying Ea by R would give units of J² mol⁻² K⁻¹, which is dimensionally inconsistent with the slope of ln k vs 1/T (which must have units of K).",
+        "misconception": "Incorrectly combining Ea and R through multiplication instead of division."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For the reaction 2N₂O₅(g) → 4NO₂(g) + O₂(g), if the rate of formation of NO₂ is 2.8 × 10⁻³ mol L⁻¹ s⁻¹, the rate of disappearance of N₂O₅ is:",
+    "explanation": "For the reaction 2N₂O₅ → 4NO₂ + O₂, the stoichiometric relationship between the rates is: −(1/2)d[N₂O₅]/dt = +(1/4)d[NO₂]/dt = +d[O₂]/dt. This means the rate of disappearance of N₂O₅ is related to the rate of formation of NO₂ by: d[N₂O₅]/dt = (2/4) × d[NO₂]/dt = (1/2) × d[NO₂]/dt. Given d[NO₂]/dt = 2.8 × 10⁻³ mol L⁻¹ s⁻¹, we get d[N₂O₅]/dt = (1/2) × 2.8 × 10⁻³ = 1.4 × 10⁻³ mol L⁻¹ s⁻¹. The factor of 1/2 arises because for every 4 moles of NO₂ formed, only 2 moles of N₂O₅ are consumed — so the rate of disappearance of N₂O₅ is half the rate of appearance of NO₂. This stoichiometric conversion is essential for correctly relating rates of different species in a reaction.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "rate-of-reaction",
+      "stoichiometry",
+      "rate-expression",
+      "N2O5-decomposition"
+    ],
+    "topic": "Rate of Reaction",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "2.8 × 10⁻³ mol L⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "5.6 × 10⁻³ mol L⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1.4 × 10⁻³ mol L⁻¹ s⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "7.0 × 10⁻⁴ mol L⁻¹ s⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This answer assumes the rate of disappearance of N₂O₅ equals the rate of formation of NO₂. However, the stoichiometric coefficients differ (2 for N₂O₅ vs 4 for NO₂), so the rates must be scaled by the ratio of coefficients: 2/4 = 1/2.",
+        "misconception": "Assuming all species in a reaction are consumed and formed at the same rate, ignoring stoichiometric coefficients."
+      },
+      {
+        "option_key": "B",
+        "hint": "This answer multiplies the rate of NO₂ formation by 2 instead of dividing. Since 2 moles of N₂O₅ produce 4 moles of NO₂, the N₂O₅ disappears at half the rate of NO₂ formation, not double.",
+        "misconception": "Inverting the stoichiometric ratio — multiplying by the coefficient of N₂O₅ instead of using the correct ratio 2/4."
+      },
+      {
+        "option_key": "D",
+        "hint": "This answer divides by 4, which would be correct only if relating the rate of O₂ formation to NO₂ formation. The correct conversion from NO₂ to N₂O₅ uses the factor 2/4 = 1/2, giving 1.4 × 10⁻³, not 7.0 × 10⁻⁴.",
+        "misconception": "Using the wrong stoichiometric ratio — dividing by the coefficient of NO₂ rather than using the N₂O₅/NO₂ coefficient ratio."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "Which of the following statements about a catalyst is correct?",
+    "explanation": "A catalyst provides an alternative reaction pathway with a lower activation energy (Ea), thereby increasing the rate of reaction. This is the fundamental principle of catalysis. The catalyst participates in the reaction mechanism — it is consumed in one step and regenerated in a subsequent step — so it is not consumed overall. Critically, a catalyst does NOT change the equilibrium position or the equilibrium constant (Keq) of a reversible reaction. It increases both the forward and reverse reaction rates equally (by lowering the activation energy for both directions by the same amount). Therefore, equilibrium is reached faster, but the equilibrium composition remains unchanged. The enthalpy change (ΔH) of the reaction is also unaffected by the catalyst because ΔH depends only on the energies of reactants and products, not on the pathway. The catalyst only alters the kinetics (rate), not the thermodynamics (equilibrium or enthalpy).",
+    "correct_answer": "D",
+    "concept_tags": [
+      "catalyst",
+      "activation-energy",
+      "equilibrium-unaffected",
+      "alternative-pathway"
+    ],
+    "topic": "Catalyst Effects",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A catalyst shifts the equilibrium of a reversible reaction towards the products",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A catalyst changes the enthalpy change (ΔH) of the reaction",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A catalyst increases the rate of only the forward reaction",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A catalyst lowers the activation energy by providing an alternative reaction pathway",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A catalyst does NOT shift equilibrium. It increases both forward and reverse rates equally, so the equilibrium constant Keq remains unchanged. Equilibrium is reached faster, but the position of equilibrium (ratio of products to reactants) is the same as without the catalyst.",
+        "misconception": "Believing that a catalyst can favour products over reactants, confusing catalytic action with Le Chatelier's principle."
+      },
+      {
+        "option_key": "B",
+        "hint": "ΔH is a state function that depends only on the initial (reactants) and final (products) states, not on the pathway taken. A catalyst changes the pathway (and hence the activation energy) but does not alter the energy levels of reactants or products. Therefore, ΔH remains the same.",
+        "misconception": "Confusing activation energy (Ea, which a catalyst lowers) with enthalpy change (ΔH, which is path-independent)."
+      },
+      {
+        "option_key": "C",
+        "hint": "A catalyst lowers the activation energy for both the forward and reverse reactions by the same absolute amount (since ΔH = Ea(forward) − Ea(reverse) is unchanged). This means both rates increase proportionally. If only the forward rate increased, the equilibrium constant would change, violating thermodynamic principles.",
+        "misconception": "Thinking a catalyst selectively accelerates only the forward reaction."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The hydrolysis of ethyl acetate in the presence of excess water follows pseudo first-order kinetics because:",
+    "explanation": "The hydrolysis of ethyl acetate: CH₃COOC₂H₅ + H₂O → CH₃COOH + C₂H₅OH is actually a second-order reaction (first order with respect to ethyl acetate and first order with respect to water). However, when water is present in large excess (as the solvent), its concentration remains practically constant throughout the reaction. If [H₂O] ≈ constant, then the rate law Rate = k[CH₃COOC₂H₅][H₂O] can be simplified to Rate = k'[CH₃COOC₂H₅], where k' = k[H₂O] is the pseudo first-order rate constant. The term 'pseudo' indicates that the reaction appears to be first-order experimentally, even though the true molecularity involves two reactant species. This technique of using one reactant in excess to simplify kinetics is a standard method in chemical kinetics and is widely used in studying reaction mechanisms.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "pseudo-first-order",
+      "ethyl-acetate-hydrolysis",
+      "excess-reagent",
+      "rate-law-simplification"
+    ],
+    "topic": "Pseudo First-Order Reactions",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Ethyl acetate is present in large excess",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Water is present in such large excess that its concentration remains effectively constant",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "The reaction involves only one reactant molecule",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The acid catalyst converts the reaction to first order",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "It is water, not ethyl acetate, that is present in excess. In a typical hydrolysis experiment, ethyl acetate is the solute dissolved in water (the solvent). The concentration of ethyl acetate changes significantly during the reaction, while water remains approximately constant.",
+        "misconception": "Confusing which reactant is in excess — the solvent (water) is the excess reagent, not the solute."
+      },
+      {
+        "option_key": "C",
+        "hint": "The reaction clearly involves two reactant molecules: ethyl acetate and water. It is not a true unimolecular reaction. The 'pseudo' label specifically means it only appears first-order due to one reactant being in excess, not that it genuinely involves one reactant.",
+        "misconception": "Confusing pseudo first-order (apparent order due to excess reagent) with true first-order (genuinely unimolecular)."
+      },
+      {
+        "option_key": "D",
+        "hint": "The acid catalyst (H⁺) speeds up the reaction but does not change the fundamental order. The pseudo first-order behaviour arises from the large excess of water, not from the presence of the catalyst. Even without acid catalyst, if water is in large excess, the kinetics would still appear pseudo first-order.",
+        "misconception": "Attributing the change in apparent order to the catalyst rather than to the excess concentration of water."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "According to collision theory, the rate of a reaction increases with temperature because:",
+    "explanation": "According to collision theory, for a reaction to occur, reactant molecules must collide with (i) sufficient kinetic energy (≥ activation energy, Ea) and (ii) proper orientation. Not all collisions lead to reaction — only those with energy above the threshold (effective collisions) are successful. When temperature increases, the average kinetic energy of molecules increases according to the Maxwell-Boltzmann distribution. Crucially, the fraction of molecules possessing energy equal to or greater than the activation energy increases exponentially with temperature (given by the Boltzmann factor e^(−Ea/RT)). While the total number of collisions also increases slightly with temperature (proportional to √T), the dominant effect is the dramatic increase in the fraction of effective collisions. For example, a 10°C rise in temperature typically increases the rate by a factor of 2 to 3 (the temperature coefficient).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "collision-theory",
+      "temperature-effect",
+      "activation-energy",
+      "effective-collisions",
+      "maxwell-boltzmann"
+    ],
+    "topic": "Collision Theory",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The activation energy of the reaction decreases with temperature",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The equilibrium constant increases with temperature",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The fraction of molecules with energy equal to or greater than the activation energy increases significantly",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "The molecular mass of reactants decreases at higher temperature",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Activation energy is an intrinsic property of a reaction determined by the potential energy surface. It does not change with temperature (it remains constant unless a catalyst is used). What changes with temperature is the fraction of molecules that have enough energy to overcome this fixed energy barrier.",
+        "misconception": "Confusing the lowering of Ea by a catalyst with a supposed temperature-dependent change in Ea."
+      },
+      {
+        "option_key": "B",
+        "hint": "While the equilibrium constant can change with temperature (according to the Van't Hoff equation), this relates to thermodynamic equilibrium, not to the kinetic reason for rate increase. Collision theory explains rate increase through the fraction of effective collisions, which is a kinetic concept.",
+        "misconception": "Confusing thermodynamic equilibrium concepts with kinetic collision theory."
+      },
+      {
+        "option_key": "D",
+        "hint": "Molecular mass is a fixed property of a substance and does not change with temperature. Temperature affects the kinetic energy and speed of molecules, not their mass. The rate increases because faster-moving molecules have a higher probability of possessing energy above the activation energy threshold.",
+        "misconception": "Conflating molecular velocity (which changes with temperature) with molecular mass (which is constant)."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-10",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "For a reaction with activation energy Ea = 100 kJ mol⁻¹, if the rate constant at 300 K is k₁ and at 310 K is k₂, the value of ln(k₂/k₁) is approximately (R = 8.314 J mol⁻¹ K⁻¹):",
+    "explanation": "Using the two-temperature form of the Arrhenius equation: ln(k₂/k₁) = (Ea/R) × [(1/T₁) − (1/T₂)]. Substituting values: Ea = 100 × 10³ J mol⁻¹ = 100000 J mol⁻¹, R = 8.314 J mol⁻¹ K⁻¹, T₁ = 300 K, T₂ = 310 K. First calculate (1/T₁) − (1/T₂) = (1/300) − (1/310) = (310 − 300)/(300 × 310) = 10/93000 = 1.075 × 10⁻⁴ K⁻¹. Now: ln(k₂/k₁) = (100000/8.314) × 1.075 × 10⁻⁴ = 12027.9 × 1.075 × 10⁻⁴ = 1.293 ≈ 1.29. Therefore k₂/k₁ = e^1.29 ≈ 3.63, meaning the rate constant approximately triples for a 10 K rise. This calculation demonstrates the significant sensitivity of reaction rates to temperature, especially for reactions with high activation energies. The temperature coefficient (k₂/k₁ for a 10 K rise) is typically between 2 and 3 for most reactions.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "arrhenius-equation",
+      "two-temperature-form",
+      "activation-energy",
+      "numerical-calculation",
+      "temperature-coefficient"
+    ],
+    "topic": "Arrhenius Equation and Activation Energy",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1.29",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "3.86",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.13",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "12.93",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The value 3.86 is close to k₂/k₁ = e^1.29 ≈ 3.63, not ln(k₂/k₁). The question asks for the natural logarithm of the ratio, not the ratio itself. Always check whether the question asks for ln(k₂/k₁) or k₂/k₁.",
+        "misconception": "Confusing ln(k₂/k₁) with k₂/k₁ — calculating the ratio instead of its logarithm."
+      },
+      {
+        "option_key": "C",
+        "hint": "The value 0.13 is off by a factor of 10. This error likely comes from forgetting to convert Ea from kJ to J: if you use Ea = 100 (kJ) with R = 8.314 (J), the units are inconsistent. Always ensure Ea and R are in the same energy units (both in J or both in kJ).",
+        "misconception": "Unit mismatch — using Ea in kJ mol⁻¹ directly with R in J mol⁻¹ K⁻¹ without converting."
+      },
+      {
+        "option_key": "D",
+        "hint": "The value 12.93 is 10 times too large, likely from an error in computing (1/T₁ − 1/T₂). The correct difference is 10/(300 × 310) = 1.075 × 10⁻⁴, not 1.075 × 10⁻³. This type of decimal error is common in exam calculations.",
+        "misconception": "Arithmetic error in calculating the reciprocal temperature difference — dropping a power of 10."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "For a zero-order reaction A → Products, if the initial concentration [A]₀ = 0.1 mol L⁻¹ and the rate constant k = 2 × 10⁻³ mol L⁻¹ min⁻¹, the time taken for the concentration to reduce to 0.04 mol L⁻¹ is:",
+    "explanation": "For a zero-order reaction, the integrated rate law is [A] = [A]₀ − kt, where [A] is the concentration at time t, [A]₀ is the initial concentration, and k is the rate constant. This is a linear equation — the concentration decreases linearly with time. Rearranging to find t: t = ([A]₀ − [A])/k. Substituting the given values: t = (0.1 − 0.04)/(2 × 10⁻³) = 0.06/(2 × 10⁻³) = 0.06/0.002 = 30 minutes. Note that for zero-order reactions, the rate of disappearance of the reactant is constant and equals k, regardless of the concentration. The reaction will continue at this constant rate until the reactant is completely consumed. The complete consumption time would be [A]₀/k = 0.1/0.002 = 50 minutes. Also, the half-life for a zero-order reaction is t₁/₂ = [A]₀/(2k) = 0.1/0.004 = 25 minutes, which depends on the initial concentration.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "zero-order",
+      "integrated-rate-law",
+      "concentration-time",
+      "numerical-calculation"
+    ],
+    "topic": "Integrated Rate Equations",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "20 minutes",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "30 minutes",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "50 minutes",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "15 minutes",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "20 minutes would correspond to a concentration change of 0.04 mol L⁻¹ (i.e., [A] = 0.06), not reaching 0.04 mol L⁻¹. The required change is [A]₀ − [A] = 0.1 − 0.04 = 0.06 mol L⁻¹, which takes 0.06/0.002 = 30 min.",
+        "misconception": "Using the final concentration (0.04) as the change in concentration instead of calculating [A]₀ − [A] = 0.06."
+      },
+      {
+        "option_key": "C",
+        "hint": "50 minutes is the time for complete consumption of the reactant: t = [A]₀/k = 0.1/0.002 = 50 min. But the question asks for the time to reach [A] = 0.04, not [A] = 0. The required time is less than 50 minutes.",
+        "misconception": "Calculating the time for complete reaction instead of the time to reach the specified concentration."
+      },
+      {
+        "option_key": "D",
+        "hint": "15 minutes would correspond to a concentration change of only 0.03 mol L⁻¹ (reaching [A] = 0.07). This is half the required time. The error may come from mistakenly dividing by 2k instead of k, or using an incorrect concentration change.",
+        "misconception": "Arithmetic error — possibly confusing the half-life formula t₁/₂ = [A]₀/(2k) with the general time formula."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-12",
+    "question_type": "assertion_reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The rate constant of a reaction increases with increase in temperature.\nReason (R): With increase in temperature, the average kinetic energy of molecules increases, leading to a greater fraction of molecules possessing energy equal to or greater than the activation energy.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The Assertion is CORRECT: according to the Arrhenius equation k = Ae^(−Ea/RT), the rate constant k increases exponentially as temperature T increases. This is because the exponential term e^(−Ea/RT) becomes larger (less negative exponent) as T increases. Experimentally, this has been confirmed for virtually all chemical reactions — higher temperatures always result in larger rate constants. The Reason is also CORRECT and provides the molecular-level explanation for the Assertion. According to the Maxwell-Boltzmann distribution of molecular energies, increasing temperature shifts the distribution to higher energies. The fraction of molecules with kinetic energy ≥ Ea (the activation energy) increases dramatically — this fraction is given by the Boltzmann factor e^(−Ea/RT). Since only those molecules with energy ≥ Ea can undergo successful reactive collisions, this increased fraction directly causes the rate constant to increase. Therefore, R correctly and completely explains A — the increase in rate constant with temperature is because more molecules cross the activation energy barrier.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "arrhenius-equation",
+      "temperature-dependence",
+      "activation-energy",
+      "maxwell-boltzmann-distribution",
+      "rate-constant"
+    ],
+    "topic": "Temperature Coefficient and Arrhenius Equation",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains the Assertion. The increase in rate constant with temperature is precisely because the fraction of molecules with energy ≥ Ea increases (as stated in R). R is not merely a related but unconnected fact — it is the exact mechanistic cause of the observation stated in A. The Boltzmann factor e^(−Ea/RT) appears in the Arrhenius equation and is the direct link.",
+        "misconception": "Failing to recognise the direct causal relationship between the fraction of energetic molecules (R) and the rate constant increase (A)."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct. At higher temperatures, the Maxwell-Boltzmann distribution shifts to higher energies, and the area under the curve beyond Ea increases significantly. This is well-established in statistical thermodynamics and kinetic molecular theory.",
+        "misconception": "Doubting the correctness of the Maxwell-Boltzmann explanation for the temperature dependence of reaction rates."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is absolutely correct. The Arrhenius equation k = Ae^(−Ea/RT) clearly shows that k increases with T. This has been verified experimentally for countless reactions. No known chemical reaction has a rate constant that decreases with increasing temperature under normal conditions.",
+        "misconception": "Incorrectly believing that the rate constant might not always increase with temperature."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-13",
+    "question_type": "assertion_reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): The order of a reaction can be zero, fractional, or negative.\nReason (R): The order of a reaction is always equal to the sum of stoichiometric coefficients of the reactants in the balanced chemical equation.\n\nSelect the correct option:\n(A) Both A and R are correct and R is the correct explanation of A\n(B) Both A and R are correct but R is NOT the correct explanation of A\n(C) A is correct but R is incorrect\n(D) A is incorrect but R is correct",
+    "explanation": "The Assertion is CORRECT: the order of a reaction is an experimentally determined quantity and can indeed be zero (e.g., decomposition of NH₃ on platinum surface), fractional (e.g., decomposition of acetaldehyde CH₃CHO has order 3/2), or even negative (e.g., ozone decomposition 2O₃ → 3O₂ is negative order with respect to O₂, which is a product that inhibits the reaction). Unlike molecularity, order is not restricted to positive integers. The Reason is INCORRECT: the order of a reaction is NOT determined from the stoichiometric coefficients of the balanced equation. Order is determined experimentally (through methods like the initial rate method, integrated rate law method, or half-life method). The stoichiometric coefficients give the molecularity for an elementary reaction, but for complex (multi-step) reactions, the order may differ significantly from the stoichiometric coefficients. For example, the reaction H₂ + Br₂ → 2HBr has a complex rate law: Rate = k[H₂][Br₂]^(1/2), giving an overall order of 1.5, not 2 as stoichiometry might suggest. Since A is true but R is false, the answer is C.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "order-of-reaction",
+      "fractional-order",
+      "stoichiometry-vs-order",
+      "experimental-determination",
+      "molecularity-vs-order"
+    ],
+    "topic": "Order of Reaction",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Even if both statements were true, R would not explain A. The claim in R (that order equals stoichiometric coefficients) would restrict order to positive integers, contradicting the claim in A (that order can be zero, fractional, or negative). These two statements are logically inconsistent, so A-explains-A is impossible.",
+        "misconception": "Not noticing the logical contradiction between A and R — if R were true, A could not be true."
+      },
+      {
+        "option_key": "B",
+        "hint": "This option requires both A and R to be true. However, R is factually incorrect. The order of reaction is NOT always equal to the sum of stoichiometric coefficients. This is a common misconception. Order is experimentally determined and may differ from stoichiometric coefficients for complex reactions.",
+        "misconception": "Accepting the false claim that order always equals the sum of stoichiometric coefficients."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is absolutely correct. Zero-order reactions exist (e.g., enzyme-catalysed reactions at saturation). Fractional-order reactions exist (e.g., CH₃CHO decomposition, order 3/2). Negative orders exist when a species inhibits the reaction. These are well-documented experimental facts.",
+        "misconception": "Thinking that reaction order must always be a positive integer, confusing it with molecularity."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-14",
+    "question_type": "match_the_following",
+    "difficulty": "medium",
+    "question_text": "Match Column I (Reaction Order) with Column II (Integrated Rate Law / Characteristic):\n\nColumn I | Column II\nA. Zero-order | 1. t₁/₂ = 0.693/k\nB. First-order | 2. [A] = [A]₀ − kt (linear decrease)\nC. Second-order | 3. Plot of 1/[A] vs t is a straight line\nD. Pseudo first-order | 4. One reactant in large excess\n\nSelect the correct matching:",
+    "explanation": "A. Zero-order reaction: The integrated rate law is [A] = [A]₀ − kt, which is a linear equation where concentration decreases linearly with time. A plot of [A] vs t gives a straight line with slope = −k. → A-2. B. First-order reaction: The half-life is t₁/₂ = ln 2/k = 0.693/k, which is independent of initial concentration. This is the hallmark of first-order kinetics. → B-1. C. Second-order reaction: The integrated rate law for Rate = k[A]² is 1/[A] = 1/[A]₀ + kt. A plot of 1/[A] versus time gives a straight line with slope = k and intercept = 1/[A]₀. → C-3. D. Pseudo first-order reaction: This occurs when a reaction involves two reactants but one is present in such large excess that its concentration remains approximately constant. The rate law then simplifies to a first-order expression. Classic example: hydrolysis of ethyl acetate in excess water. → D-4. Correct matching: A-2, B-1, C-3, D-4.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "zero-order",
+      "first-order",
+      "second-order",
+      "pseudo-first-order",
+      "integrated-rate-law",
+      "half-life"
+    ],
+    "topic": "Integrated Rate Equations",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-2, B-1, C-3, D-4",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "A-1, B-2, C-4, D-3",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-4, C-1, D-2",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-4, B-3, C-2, D-1",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "A-1 wrongly assigns t₁/₂ = 0.693/k to zero-order. The zero-order half-life is t₁/₂ = [A]₀/(2k), which depends on initial concentration. The expression 0.693/k is unique to first-order reactions. B-2 wrongly assigns the linear [A] vs t plot to first-order, but first-order gives an exponential decay, not linear.",
+        "misconception": "Swapping the characteristic features of zero-order and first-order reactions."
+      },
+      {
+        "option_key": "C",
+        "hint": "A-3 wrongly assigns the 1/[A] vs t plot to zero-order. This straight-line plot is characteristic of second-order reactions. B-4 wrongly suggests first-order requires excess reagent — that applies to pseudo first-order. All four matchings are incorrect.",
+        "misconception": "Confusing the graphical characteristics of different reaction orders."
+      },
+      {
+        "option_key": "D",
+        "hint": "Every matching is wrong. A-4 says zero-order involves excess reagent (that is pseudo first-order). B-3 says first-order gives 1/[A] vs t straight line (that is second-order). C-2 says second-order has linear [A] decrease (that is zero-order). D-1 says pseudo first-order has t₁/₂ = 0.693/k (that is true first-order).",
+        "misconception": "Completely scrambling the features of different reaction orders."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-15",
+    "question_type": "match_the_following",
+    "difficulty": "hard",
+    "question_text": "Match Column I (Kinetic Concept) with Column II (Correct Description):\n\nColumn I | Column II\nA. Activation energy | 1. Number of reacting species in an elementary step\nB. Temperature coefficient | 2. Minimum energy above average energy that reactants must possess to form products\nC. Molecularity | 3. Ratio k(T+10)/k(T), typically 2–3\nD. Rate law | 4. Expression relating rate to concentration of reactants, determined experimentally\n\nSelect the correct matching:",
+    "explanation": "A. Activation energy (Ea): This is the minimum extra energy (above the average energy of reactant molecules) that must be supplied for reactant molecules to undergo a successful reaction. It represents the energy barrier between reactants and the activated complex (transition state). → A-2. B. Temperature coefficient: This is defined as the ratio of rate constants at two temperatures differing by 10°C (or 10 K), i.e., k(T+10)/k(T). For most reactions, this value lies between 2 and 3, meaning the rate roughly doubles or triples for every 10°C rise in temperature. → B-3. C. Molecularity: This refers to the number of reacting species (atoms, molecules, or ions) that come together simultaneously in an elementary reaction step to form the activated complex. It is always a positive integer (1, 2, or 3). → C-1. D. Rate law: This is the mathematical expression that relates the rate of reaction to the molar concentrations of reactants, each raised to some power (the order). It is determined experimentally and cannot be deduced from the balanced equation for complex reactions. → D-4. Correct matching: A-2, B-3, C-1, D-4.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "activation-energy",
+      "temperature-coefficient",
+      "molecularity",
+      "rate-law",
+      "kinetic-definitions"
+    ],
+    "topic": "Fundamental Concepts in Kinetics",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "A-1, B-2, C-3, D-4",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A-2, B-3, C-1, D-4",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A-3, B-4, C-2, D-1",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A-4, B-1, C-3, D-2",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A-1 wrongly assigns 'number of reacting species in an elementary step' to activation energy. That description defines molecularity, not activation energy. Activation energy is the minimum energy barrier, not a count of molecules. B-2 wrongly assigns the energy barrier definition to temperature coefficient.",
+        "misconception": "Swapping the definitions of activation energy and molecularity."
+      },
+      {
+        "option_key": "C",
+        "hint": "A-3 assigns the temperature coefficient ratio to activation energy — these are entirely different concepts. B-4 assigns the rate law definition to temperature coefficient. C-2 assigns the energy barrier concept to molecularity. Every assignment is incorrect.",
+        "misconception": "Completely scrambling the fundamental definitions in chemical kinetics."
+      },
+      {
+        "option_key": "D",
+        "hint": "A-4 assigns the rate law definition to activation energy. B-1 assigns molecularity definition to temperature coefficient. C-3 assigns temperature coefficient to molecularity. D-2 assigns activation energy description to rate law. All matchings are wrong.",
+        "misconception": "Failing to distinguish between the distinct kinetic concepts and their definitions."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-16",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "Statement: The half-life of a first-order reaction is independent of the initial concentration of the reactant.",
+    "explanation": "This statement is TRUE. For a first-order reaction, the integrated rate law gives t₁/₂ = ln 2/k = 0.693/k. The half-life expression contains only the rate constant k and the mathematical constant ln 2. There is no term involving the initial concentration [A]₀. This means that regardless of how much reactant you start with, it always takes the same amount of time for half of it to be consumed. This is a unique and defining property of first-order kinetics. For example, radioactive decay follows first-order kinetics, and each radioactive isotope has a fixed half-life regardless of the amount present. Carbon-14 has a half-life of 5730 years whether you have 1 gram or 1 kilogram. This contrasts with zero-order reactions (where t₁/₂ = [A]₀/2k, proportional to [A]₀) and second-order reactions (where t₁/₂ = 1/k[A]₀, inversely proportional to [A]₀).",
+    "correct_answer": "A",
+    "concept_tags": [
+      "half-life",
+      "first-order",
+      "concentration-independent",
+      "radioactive-decay"
+    ],
+    "topic": "Half-life of Reactions",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The statement is factually correct. The derivation of t₁/₂ for a first-order reaction from ln([A]₀/[A]) = kt yields t₁/₂ = 0.693/k, which clearly has no [A]₀ term. This is one of the most important and frequently tested properties of first-order reactions in CUET and other competitive exams.",
+        "misconception": "Confusing the half-life dependence of first-order reactions with that of other orders (where half-life does depend on initial concentration)."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-17",
+    "question_type": "true_false",
+    "difficulty": "easy",
+    "question_text": "Statement: For a complex (multi-step) reaction, the order of the reaction is always equal to the molecularity of the overall reaction.",
+    "explanation": "This statement is FALSE. Order and molecularity are fundamentally different concepts. Molecularity refers to the number of reacting species that come together in a single elementary step and is always a positive integer (1, 2, or 3). It applies only to elementary reactions. Order is the sum of the powers to which concentration terms are raised in the experimentally determined rate law. For elementary reactions, the order with respect to each reactant happens to equal its stoichiometric coefficient, so order and molecularity coincide. However, for complex (multi-step) reactions, the overall order is determined by the rate-determining step (the slowest step) and can be very different from the sum of stoichiometric coefficients. Furthermore, for complex reactions, the concept of 'overall molecularity' is not even meaningful — molecularity is defined only for individual elementary steps. For example, the reaction H₂ + Br₂ → 2HBr has a complex rate law with order 3/2, even though the stoichiometry might suggest order 2.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "order-vs-molecularity",
+      "complex-reaction",
+      "rate-determining-step",
+      "experimental-determination"
+    ],
+    "topic": "Order of Reaction vs Molecularity",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The statement is incorrect for multiple reasons. First, molecularity is defined only for elementary reactions, not for overall complex reactions. Second, even for elementary reactions where order equals molecularity, this equality breaks down for multi-step reactions where the observed rate law depends on the rate-determining step, not the overall stoichiometry.",
+        "misconception": "Believing that order always equals molecularity, failing to distinguish between elementary and complex reactions."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a true-false question with only two valid options (True or False).",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-18",
+    "question_type": "scenario_based",
+    "difficulty": "medium",
+    "question_text": "Scenario: A chemistry student is studying the decomposition of hydrogen peroxide (2H₂O₂ → 2H₂O + O₂) in the laboratory. She performs three experiments at the same temperature:\n\nExperiment 1: [H₂O₂]₀ = 0.1 M, initial rate = 1.0 × 10⁻³ mol L⁻¹ s⁻¹\nExperiment 2: [H₂O₂]₀ = 0.2 M, initial rate = 2.0 × 10⁻³ mol L⁻¹ s⁻¹\nExperiment 3: [H₂O₂]₀ = 0.4 M, initial rate = 4.0 × 10⁻³ mol L⁻¹ s⁻¹\n\nShe also notes that when she adds MnO₂ powder to Experiment 1, the initial rate increases to 5.0 × 10⁻² mol L⁻¹ s⁻¹ without changing the order of the reaction.\n\nQuestion: Based on this data, which of the following conclusions is correct?",
+    "explanation": "From the experimental data, we can determine the order: when [H₂O₂] doubles from 0.1 to 0.2 M, the rate doubles from 1.0 to 2.0 × 10⁻³. When it doubles again from 0.2 to 0.4 M, the rate doubles from 2.0 to 4.0 × 10⁻³. Since Rate ∝ [H₂O₂]ⁿ, and doubling concentration doubles the rate, n = 1. The reaction is first-order with respect to H₂O₂. The rate constant k = Rate/[H₂O₂] = 1.0 × 10⁻³/0.1 = 1.0 × 10⁻² s⁻¹. The half-life t₁/₂ = 0.693/k = 0.693/0.01 = 69.3 seconds ≈ 69.3 s. When MnO₂ (a catalyst) is added, the rate increases from 1.0 × 10⁻³ to 5.0 × 10⁻² (a 50-fold increase), confirming catalytic action. The new rate constant with catalyst = 5.0 × 10⁻²/0.1 = 0.5 s⁻¹. Importantly, MnO₂ increases the rate by lowering activation energy but does not change the equilibrium constant or the order of the reaction. The correct conclusion combines the first-order nature, the calculated half-life, and the catalytic effect.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "initial-rate-method",
+      "order-determination",
+      "first-order",
+      "catalyst-effect",
+      "MnO2",
+      "H2O2-decomposition"
+    ],
+    "topic": "Rate Law Determination and Catalyst Effects",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The reaction is second-order with respect to H₂O₂, and MnO₂ changes the equilibrium constant",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The reaction is first-order with respect to H₂O₂ (k = 1.0 × 10⁻² s⁻¹), and MnO₂ increases the rate by lowering the activation energy without changing the order",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "The reaction is zero-order with respect to H₂O₂, and MnO₂ is consumed in the reaction",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The reaction is first-order but MnO₂ changes the order from first to second",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "If the reaction were second-order, doubling the concentration would quadruple the rate (Rate ∝ [A]²). But the data shows that doubling [H₂O₂] only doubles the rate, confirming first-order kinetics. Also, a catalyst never changes the equilibrium constant — it only speeds up both forward and reverse reactions equally.",
+        "misconception": "Confusing the rate-concentration relationship for first-order (rate doubles) with second-order (rate quadruples), and thinking catalysts shift equilibrium."
+      },
+      {
+        "option_key": "C",
+        "hint": "If the reaction were zero-order, the rate would be independent of [H₂O₂] concentration. But the data clearly shows rate increasing proportionally with concentration. Also, MnO₂ is a catalyst — it is not consumed but is recovered unchanged after the reaction.",
+        "misconception": "Confusing zero-order (rate independent of concentration) with first-order, and misunderstanding the role of a catalyst."
+      },
+      {
+        "option_key": "D",
+        "hint": "The problem explicitly states that MnO₂ does not change the order of the reaction. A catalyst provides an alternative pathway with lower activation energy but does not alter the fundamental kinetic order. It changes the rate constant value, not the exponent in the rate law.",
+        "misconception": "Believing that a catalyst can change the order of a reaction rather than just the rate constant."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-19",
+    "question_type": "diagram_based",
+    "difficulty": "hard",
+    "question_text": "Study the energy profile diagram below for a chemical reaction, showing two curves — one without a catalyst and one with a catalyst.\n\nBased on the diagram, which of the following statements is INCORRECT?",
+    "image_uri": "diagrams/cuet-chem-kinetics-mixed-19.png",
+    "image_alt": "An energy profile diagram with the x-axis labelled 'Reaction Coordinate (Progress of Reaction)' and the y-axis labelled 'Potential Energy'. The diagram shows a horizontal line at a lower energy for 'Reactants' on the left and a slightly lower horizontal line for 'Products' on the right (exothermic reaction). Two curves connect reactants to products: a taller curve (without catalyst) rises to a peak labelled 'Activated Complex' with the energy difference from reactants to the peak labelled 'Ea (without catalyst)'. A shorter curve (with catalyst) rises to a lower peak labelled 'Ea (with catalyst)'. The energy difference between reactants and products is labelled 'ΔH'. Both curves start and end at the same reactant and product energy levels.",
+    "explanation": "This energy profile diagram shows an exothermic reaction (products at lower energy than reactants, so ΔH is negative). The curve without catalyst reaches a higher peak (higher activation energy Ea₁), while the curve with catalyst reaches a lower peak (lower activation energy Ea₂). Let us evaluate each option: (A) The catalyst lowers the activation energy — this is CORRECT. The diagram clearly shows Ea(with catalyst) < Ea(without catalyst). (B) The reaction is exothermic since products are at lower energy than reactants — this is CORRECT. The diagram shows products below reactants. (C) The catalyst changes the enthalpy change (ΔH) of the reaction — this is INCORRECT. ΔH = Energy of products − Energy of reactants. Since both curves start and end at the same energy levels (reactants and products), ΔH is identical with or without the catalyst. A catalyst only changes the pathway (and hence Ea), not the thermodynamic quantities. (D) The activated complex (transition state) is at the peak of the energy curve — this is CORRECT. The transition state is the highest energy point along the minimum energy path from reactants to products.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "energy-profile",
+      "activation-energy",
+      "catalyst",
+      "enthalpy-change",
+      "transition-state",
+      "exothermic"
+    ],
+    "topic": "Activation Energy and Catalyst Effects",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "evaluate",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The catalyst lowers the activation energy of the reaction",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The reaction is exothermic as the energy of products is lower than that of reactants",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The catalyst changes the enthalpy change (ΔH) of the reaction",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "The activated complex (transition state) exists at the peak of the energy curve",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This statement is correct. The diagram clearly shows that the peak of the energy curve with catalyst is lower than without. This is the primary function of a catalyst — to provide an alternative pathway with lower activation energy, making it easier for reactant molecules to reach the transition state.",
+        "misconception": "Thinking that this correct statement about catalysts might be wrong."
+      },
+      {
+        "option_key": "B",
+        "hint": "This statement is correct. In the diagram, the products are at a lower energy level than the reactants. By definition, when products have lower energy than reactants, the reaction releases energy (ΔH < 0), making it exothermic. The energy difference between reactants and products equals |ΔH|.",
+        "misconception": "Confusing exothermic (products lower) with endothermic (products higher) on an energy profile diagram."
+      },
+      {
+        "option_key": "D",
+        "hint": "This statement is correct. The activated complex (transition state) is the highest energy species along the reaction coordinate. It exists momentarily at the peak of the energy barrier and represents the configuration where old bonds are partially broken and new bonds are partially formed.",
+        "misconception": "Confusing the activated complex (peak of energy curve) with an intermediate (local minimum between two peaks)."
+      }
+    ]
+  },
+  {
+    "id": "cuet-chem-kinetics-mixed-20",
+    "question_type": "diagram_based",
+    "difficulty": "medium",
+    "question_text": "Study the following graph showing a plot of ln[A] versus time (t) for a chemical reaction A → Products, where [A] is the concentration of reactant A at time t.\n\nBased on the graph, which of the following conclusions is correct?",
+    "image_uri": "diagrams/cuet-chem-kinetics-mixed-20.png",
+    "image_alt": "A graph with x-axis labelled 'Time (t)' and y-axis labelled 'ln[A]'. A straight line with negative slope starts from a point on the positive y-axis labelled 'ln[A]₀' (the y-intercept) and decreases linearly as time increases. The slope of the line is annotated as 'Slope = −k'. The line is drawn in blue against a white background with grid lines.",
+    "explanation": "The graph shows a straight-line plot of ln[A] versus time with a negative slope. This is the characteristic graphical representation of a first-order reaction. For a first-order reaction A → Products, the integrated rate law is ln[A] = ln[A]₀ − kt. Comparing with y = mx + c (straight line equation): y = ln[A], x = t, m (slope) = −k, and c (y-intercept) = ln[A]₀. The negative slope confirms that ln[A] decreases linearly with time, and the magnitude of the slope gives the rate constant k. The y-intercept gives ln[A]₀, from which the initial concentration can be calculated. This graphical method is one of the primary ways to confirm first-order kinetics experimentally: if a plot of ln[A] vs t gives a straight line, the reaction is first-order. For comparison, zero-order gives a straight line for [A] vs t, and second-order gives a straight line for 1/[A] vs t. The half-life can be calculated from the slope as t₁/₂ = 0.693/k.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "first-order",
+      "ln-concentration-vs-time",
+      "integrated-rate-law",
+      "graphical-method",
+      "rate-constant-from-slope"
+    ],
+    "topic": "Graphical Methods in Kinetics",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The reaction is first-order; the slope of the line equals −k and the y-intercept equals ln[A]₀",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "The reaction is zero-order; the slope equals −k and [A] decreases linearly",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The reaction is second-order; the negative slope indicates 1/[A] increases with time",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The reaction is first-order but the y-intercept gives the rate constant k directly",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "For a zero-order reaction, the straight-line plot is [A] vs t (not ln[A] vs t). The integrated rate law for zero-order is [A] = [A]₀ − kt, where the actual concentration decreases linearly with time. The graph shown plots ln[A] vs t, which gives a straight line only for first-order reactions.",
+        "misconception": "Confusing the straight-line plot for zero-order ([A] vs t) with that for first-order (ln[A] vs t)."
+      },
+      {
+        "option_key": "C",
+        "hint": "For a second-order reaction, the characteristic straight-line plot is 1/[A] vs t (not ln[A] vs t). The integrated rate law is 1/[A] = 1/[A]₀ + kt. The graph shown is ln[A] vs t, which is diagnostic for first-order, not second-order kinetics.",
+        "misconception": "Confusing the diagnostic plots for second-order (1/[A] vs t) and first-order (ln[A] vs t) reactions."
+      },
+      {
+        "option_key": "D",
+        "hint": "While correctly identifying the reaction as first-order, this option incorrectly states that the y-intercept gives k directly. The y-intercept of the ln[A] vs t plot is ln[A]₀ (the natural logarithm of the initial concentration). The rate constant k is obtained from the slope (k = −slope), not from the intercept.",
+        "misconception": "Confusing the slope (which gives −k) with the y-intercept (which gives ln[A]₀)."
+      }
+    ]
+  }
+]
