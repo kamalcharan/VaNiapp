@@ -1,0 +1,1205 @@
+[
+  {
+    "id": "chem-kinetics-order-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The half-life of a first-order reaction is independent of:",
+    "explanation": "For a first-order reaction, the half-life is given by t₁/₂ = 0.693/k. This expression contains only the rate constant k and no concentration term. Therefore, the half-life of a first-order reaction is independent of the initial concentration of the reactant. This is a unique and distinguishing feature of first-order kinetics.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "half-life",
+      "first-order",
+      "initial-concentration",
+      "rate-constant"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Initial concentration of reactant",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Rate constant",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Temperature",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Nature of the reaction",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The rate constant k directly appears in the denominator of t₁/₂ = 0.693/k, so half-life clearly depends on k.",
+        "misconception": "Confusing independence from concentration with independence from rate constant."
+      },
+      {
+        "option_key": "C",
+        "hint": "Temperature affects the rate constant k through the Arrhenius equation, and since t₁/₂ depends on k, it indirectly depends on temperature.",
+        "misconception": "Forgetting that temperature influences half-life through its effect on the rate constant."
+      },
+      {
+        "option_key": "D",
+        "hint": "Different reactions have different rate constants, so the nature of the reaction affects the half-life through k.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The integrated rate equation for a zero-order reaction is:",
+    "explanation": "For a zero-order reaction, the rate is constant and does not depend on the concentration of reactants: rate = k. Integrating this with initial concentration [A]₀ at t = 0 gives [A] = [A]₀ - kt. This is a linear equation in t, meaning a plot of [A] vs t gives a straight line with slope = -k and intercept = [A]₀.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "zero-order",
+      "integrated-rate-equation",
+      "linear-concentration"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "[A] = [A]₀ e⁻ᵏᵗ",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "[A] = [A]₀ - kt",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1/[A] = 1/[A]₀ + kt",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "ln[A] = ln[A]₀ + kt",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This is the exponential decay form of the first-order integrated rate equation, not the zero-order equation.",
+        "misconception": "Confusing zero-order kinetics with first-order kinetics."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is the integrated rate equation for a second-order reaction (with one reactant), not a zero-order reaction.",
+        "misconception": "Mixing up the integrated rate law forms for different orders of reaction."
+      },
+      {
+        "option_key": "D",
+        "hint": "For first-order reactions, ln[A] = ln[A]₀ - kt (note the minus sign). This option has a plus sign and is neither a correct first-order nor zero-order equation.",
+        "misconception": "Confusing the sign and form of the first-order integrated rate law with the zero-order law."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The unit of rate constant for a first-order reaction is:",
+    "explanation": "For a first-order reaction, the rate law is rate = k[A]. The rate has units of mol L⁻¹ s⁻¹ and [A] has units of mol L⁻¹. Therefore, k = rate/[A] = (mol L⁻¹ s⁻¹)/(mol L⁻¹) = s⁻¹. The rate constant for a first-order reaction has units of reciprocal time (s⁻¹), which is independent of concentration units.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "first-order",
+      "rate-constant",
+      "units",
+      "dimensional-analysis"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "mol L⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "L mol⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "s⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "L² mol⁻² s⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "mol L⁻¹ s⁻¹ is the unit of rate constant for a zero-order reaction, not first-order.",
+        "misconception": "Confusing the units of the zero-order rate constant with the first-order rate constant."
+      },
+      {
+        "option_key": "B",
+        "hint": "L mol⁻¹ s⁻¹ is the unit of rate constant for a second-order reaction.",
+        "misconception": "Confusing second-order rate constant units with first-order."
+      },
+      {
+        "option_key": "D",
+        "hint": "L² mol⁻² s⁻¹ is the unit of rate constant for a third-order reaction.",
+        "misconception": "Confusing third-order rate constant units with first-order."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The half-life of a zero-order reaction with rate constant k and initial concentration [A]₀ is given by:",
+    "explanation": "For a zero-order reaction, [A] = [A]₀ - kt. At half-life, [A] = [A]₀/2. Substituting: [A]₀/2 = [A]₀ - kt₁/₂, which gives kt₁/₂ = [A]₀/2, and therefore t₁/₂ = [A]₀/(2k). Unlike first-order reactions, the half-life of a zero-order reaction depends on the initial concentration.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "zero-order",
+      "half-life",
+      "initial-concentration",
+      "rate-constant"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.693/k",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1/(k[A]₀)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "[A]₀/k",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "[A]₀/(2k)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0.693/k is the half-life expression for a first-order reaction, not a zero-order reaction.",
+        "misconception": "Applying the first-order half-life formula to a zero-order reaction."
+      },
+      {
+        "option_key": "B",
+        "hint": "1/(k[A]₀) is the half-life expression for a second-order reaction, not a zero-order reaction.",
+        "misconception": "Confusing the second-order half-life formula with the zero-order formula."
+      },
+      {
+        "option_key": "C",
+        "hint": "This expression is missing the factor of 2 in the denominator. The correct derivation from [A]₀/2 = [A]₀ - kt₁/₂ gives t₁/₂ = [A]₀/(2k), not [A]₀/k.",
+        "misconception": "Forgetting the factor of 2 when deriving the zero-order half-life expression."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A first-order reaction has a rate constant of 1.386 × 10⁻² min⁻¹. The time required for 75% completion of the reaction is:",
+    "explanation": "For a first-order reaction, t = (2.303/k) log([A]₀/[A]). When 75% is completed, 25% remains, so [A] = [A]₀/4. Thus t = (2.303/k) log(4) = (2.303/1.386 × 10⁻²) × 0.6021 = (166.16) × 0.6021 = 100 min. Alternatively, 75% completion means two half-lives have passed (50% → 75%), and t₁/₂ = 0.693/0.01386 = 50 min, so t = 2 × 50 = 100 min.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "first-order",
+      "percentage-completion",
+      "numerical-problem",
+      "half-life"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "50 min",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "75 min",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "100 min",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "150 min",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "50 min is the half-life (50% completion), not the time for 75% completion. After one half-life, only half the reactant is consumed.",
+        "misconception": "Confusing 50% completion (one half-life) with 75% completion (two half-lives)."
+      },
+      {
+        "option_key": "B",
+        "hint": "75 min does not correspond to any standard calculation. The time for 75% completion of a first-order reaction equals exactly two half-lives.",
+        "misconception": "Incorrectly assuming the time for 75% completion is 1.5 times the half-life."
+      },
+      {
+        "option_key": "D",
+        "hint": "150 min would correspond to three half-lives, giving 87.5% completion, not 75%.",
+        "misconception": "Miscounting the number of half-lives needed for 75% completion."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a first-order reaction, a plot of which of the following gives a straight line?",
+    "explanation": "The integrated rate law for a first-order reaction is ln[A] = ln[A]₀ - kt, or equivalently log[A] = log[A]₀ - (k/2.303)t. This is in the form y = mx + c, where plotting log[A] (or ln[A]) on the y-axis versus time t on the x-axis gives a straight line with slope = -k/2.303 (or -k) and y-intercept = log[A]₀ (or ln[A]₀). A plot of [A] vs t for a first-order reaction gives an exponential curve, not a straight line.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "first-order",
+      "graphical-determination",
+      "straight-line-plot",
+      "log-concentration"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "[A] vs t",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "log[A] vs t",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1/[A] vs t",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "[A]² vs t",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "[A] vs t gives a straight line for a zero-order reaction. For a first-order reaction, [A] decays exponentially, giving a curve.",
+        "misconception": "Confusing the straight-line plot for zero-order with that for first-order."
+      },
+      {
+        "option_key": "C",
+        "hint": "1/[A] vs t gives a straight line for a second-order reaction (rate = k[A]²), not a first-order reaction.",
+        "misconception": "Applying the second-order graphical test to identify first-order kinetics."
+      },
+      {
+        "option_key": "D",
+        "hint": "[A]² vs t does not give a straight line for any standard reaction order. This is not a recognized linear plot in chemical kinetics.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a zero-order reaction A → products, with k = 0.02 mol L⁻¹ s⁻¹ and [A]₀ = 0.5 mol L⁻¹, the time at which the reaction is complete is:",
+    "explanation": "For a zero-order reaction, [A] = [A]₀ - kt. The reaction is complete when [A] = 0. Setting 0 = 0.5 - 0.02 × t gives t = 0.5/0.02 = 25 s. Note that the completion time for a zero-order reaction is exactly twice the half-life: t_complete = [A]₀/k = 2 × [A]₀/(2k) = 2 × t₁/₂.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "zero-order",
+      "completion-time",
+      "numerical-problem",
+      "integrated-rate-equation"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "12.5 s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "50 s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "10 s",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "25 s",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "12.5 s is the half-life of this reaction (t₁/₂ = 0.5/(2 × 0.02) = 12.5 s), not the time for complete reaction.",
+        "misconception": "Confusing half-life with the time for complete reaction in a zero-order process."
+      },
+      {
+        "option_key": "B",
+        "hint": "50 s would be obtained by incorrectly using [A]₀/(k/2) or some other wrong formula. The correct calculation is t = [A]₀/k = 0.5/0.02 = 25 s.",
+        "misconception": "Making an arithmetic error or using an incorrect formula for zero-order completion time."
+      },
+      {
+        "option_key": "C",
+        "hint": "10 s does not follow from the correct calculation. Using [A] = [A]₀ - kt with [A] = 0 gives t = 0.5/0.02 = 25 s, not 10 s.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "A radioactive isotope has a half-life of 10 years. What fraction of the original amount will remain after 30 years?",
+    "explanation": "Radioactive decay follows first-order kinetics. After n half-lives, the fraction remaining is (1/2)ⁿ. Here, 30 years = 3 half-lives (since t₁/₂ = 10 years). Fraction remaining = (1/2)³ = 1/8. So after 30 years, only 1/8 of the original radioactive isotope remains.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "radioactive-decay",
+      "first-order",
+      "half-life",
+      "fraction-remaining"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1/8",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1/4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1/6",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1/16",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "1/4 = (1/2)² corresponds to 2 half-lives (20 years), not 3 half-lives (30 years).",
+        "misconception": "Miscounting the number of half-lives: dividing 30 by 10 should give 3, not 2."
+      },
+      {
+        "option_key": "C",
+        "hint": "1/6 does not correspond to any whole number of half-lives. The fraction remaining must be a power of 1/2.",
+        "misconception": "Incorrectly thinking the fraction remaining is 1/(3 × number of half-lives) instead of (1/2)ⁿ."
+      },
+      {
+        "option_key": "D",
+        "hint": "1/16 = (1/2)⁴ corresponds to 4 half-lives (40 years), not 3 half-lives (30 years).",
+        "misconception": "Miscounting 30 years as 4 half-lives instead of 3."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The rate constant of a first-order reaction is 6.93 × 10⁻³ s⁻¹. The time required for the concentration to reduce from 0.8 M to 0.2 M is approximately:",
+    "explanation": "Using the first-order integrated rate equation: t = (2.303/k) log([A]₀/[A]) = (2.303/6.93 × 10⁻³) × log(0.8/0.2) = (332.37) × log(4) = 332.37 × 0.6021 = 200.1 s ≈ 200 s. Alternatively, t₁/₂ = 0.693/6.93 × 10⁻³ = 100 s. Going from 0.8 M to 0.2 M means the concentration drops to 1/4 of its value, requiring 2 half-lives = 200 s.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "first-order",
+      "integrated-rate-equation",
+      "numerical-problem",
+      "concentration-change"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "100 s",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "150 s",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "200 s",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "300 s",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "100 s is one half-life, which would reduce 0.8 M to 0.4 M, not to 0.2 M. To reach 0.2 M (1/4 of 0.8 M), two half-lives are required.",
+        "misconception": "Thinking one half-life is sufficient to reduce concentration to one-fourth."
+      },
+      {
+        "option_key": "B",
+        "hint": "150 s (1.5 half-lives) does not give a clean fraction. After 150 s, the concentration would be 0.8 × (1/2)^1.5 ≈ 0.283 M, not 0.2 M.",
+        "misconception": "Incorrectly estimating the number of half-lives needed."
+      },
+      {
+        "option_key": "D",
+        "hint": "300 s corresponds to 3 half-lives, which would reduce the concentration to 0.8/8 = 0.1 M, not 0.2 M.",
+        "misconception": "Overestimating the number of half-lives required for a fourfold decrease."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a reaction that follows second-order kinetics with respect to a single reactant A, the half-life is:",
+    "explanation": "For a second-order reaction with rate = k[A]², the integrated rate law is 1/[A] = 1/[A]₀ + kt. At half-life, [A] = [A]₀/2. Substituting: 2/[A]₀ = 1/[A]₀ + kt₁/₂, which gives kt₁/₂ = 1/[A]₀, and therefore t₁/₂ = 1/(k[A]₀). The half-life of a second-order reaction is inversely proportional to the initial concentration.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "second-order",
+      "half-life",
+      "initial-concentration",
+      "integrated-rate-law"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.693/k",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1/(k[A]₀)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "[A]₀/(2k)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "2[A]₀/k",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0.693/k is the half-life formula for a first-order reaction, which is independent of initial concentration. Second-order half-life depends on [A]₀.",
+        "misconception": "Applying the first-order half-life formula to a second-order reaction."
+      },
+      {
+        "option_key": "C",
+        "hint": "[A]₀/(2k) is the half-life formula for a zero-order reaction, where concentration decreases linearly with time.",
+        "misconception": "Confusing the zero-order half-life expression with the second-order expression."
+      },
+      {
+        "option_key": "D",
+        "hint": "2[A]₀/k is not a standard half-life formula for any reaction order. The correct second-order half-life has [A]₀ in the denominator, not the numerator.",
+        "misconception": "Inverting the relationship between half-life and initial concentration for second-order reactions."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A first-order reaction is 87.5% complete in 60 minutes. The half-life of the reaction is:",
+    "explanation": "If 87.5% of the reaction is complete, 12.5% remains. Now 12.5% = 1/8 = (1/2)³, so 3 half-lives have elapsed in 60 minutes. Therefore, t₁/₂ = 60/3 = 20 min. Verification: After 20 min → 50% remains; after 40 min → 25% remains; after 60 min → 12.5% remains, which means 87.5% is complete.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "first-order",
+      "half-life",
+      "percentage-completion",
+      "numerical-problem"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "30 min",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "15 min",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "10 min",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "20 min",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "If t₁/₂ = 30 min, then in 60 min only 2 half-lives elapse, leaving (1/2)² = 25% or 75% completion, not 87.5%.",
+        "misconception": "Assuming only 2 half-lives are needed for 87.5% completion."
+      },
+      {
+        "option_key": "B",
+        "hint": "If t₁/₂ = 15 min, then 60 min = 4 half-lives, leaving (1/2)⁴ = 6.25% or 93.75% completion, not 87.5%.",
+        "misconception": "Miscalculating the number of half-lives in the given time period."
+      },
+      {
+        "option_key": "C",
+        "hint": "If t₁/₂ = 10 min, then 60 min = 6 half-lives, leaving (1/2)⁶ = 1.56% or 98.44% completion, which is much more than 87.5%.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "For a first-order reaction, the time required for 99.9% completion is approximately how many times the half-life?",
+    "explanation": "For 99.9% completion, 0.1% remains, so [A]/[A]₀ = 0.001. Using t = (2.303/k) × log(1/0.001) = (2.303/k) × log(1000) = (2.303/k) × 3 = 6.909/k. Since t₁/₂ = 0.693/k, the ratio t/t₁/₂ = (6.909/k)/(0.693/k) = 6.909/0.693 ≈ 10. So the time for 99.9% completion is approximately 10 half-lives.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "first-order",
+      "half-life",
+      "percentage-completion",
+      "logarithmic-relationship"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "10 times",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "100 times",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "7 times",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1000 times",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "100 half-lives would reduce the remaining amount to (1/2)¹⁰⁰, an astronomically small fraction — far beyond 99.9% completion.",
+        "misconception": "Thinking that 99.9% completion requires 100 half-lives because 99.9% is close to 100%."
+      },
+      {
+        "option_key": "C",
+        "hint": "7 half-lives would leave (1/2)⁷ ≈ 0.78% remaining, corresponding to about 99.2% completion — close but not 99.9%.",
+        "misconception": "Underestimating the number of half-lives needed by confusing 99% with 99.9%."
+      },
+      {
+        "option_key": "D",
+        "hint": "1000 half-lives is an extreme overestimate. First-order decay is exponential, so 10 half-lives reduces [A] by a factor of 2¹⁰ = 1024 ≈ 1000, giving 99.9% completion.",
+        "misconception": "Confusing the percentage completion (99.9%) with the number of half-lives required."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The half-life of a zero-order reaction decreases as the reaction progresses.\nReason (R): For a zero-order reaction, the half-life is directly proportional to the initial concentration of the reactant, and the concentration decreases linearly with time.",
+    "explanation": "In a zero-order reaction, t₁/₂ = [A]₀/(2k). As the reaction proceeds, the remaining concentration [A] decreases linearly. If we consider the 'effective half-life' for each successive halving, the concentration available at the start of each new halving is lower. The first half-life reduces [A]₀ to [A]₀/2 and takes time [A]₀/(2k). The second halving (from [A]₀/2 to [A]₀/4) takes only [A]₀/(4k), which is half the first half-life. Thus successive half-lives become progressively shorter. Both A and R are true, and R correctly explains A because the dependence of half-life on concentration is the reason for the decreasing half-lives.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "zero-order",
+      "half-life",
+      "concentration-dependence",
+      "successive-half-lives"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains why the Assertion is true: it is precisely because t₁/₂ ∝ [A]₀ and [A] decreases that successive half-lives get shorter. The causal link is clear.",
+        "misconception": "Failing to see the direct causal connection between the concentration-dependent half-life and the decreasing trend."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is factually correct: t₁/₂ = [A]₀/(2k) shows direct proportionality to [A]₀, and zero-order reactions do have linear concentration decrease.",
+        "misconception": "Doubting the formula for zero-order half-life or the linear concentration-time relationship."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is true. As a zero-order reaction progresses, the remaining concentration available for the next half-life calculation decreases, making each successive half-life shorter.",
+        "misconception": "Thinking all half-lives are equal regardless of reaction order, confusing zero-order with first-order behavior."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): For a first-order reaction, a plot of log([A]₀/[A]) versus time gives a straight line passing through the origin.\nReason (R): The integrated rate law for a first-order reaction can be written as log([A]₀/[A]) = kt/2.303.",
+    "explanation": "The first-order integrated rate law: k = (2.303/t) log([A]₀/[A]), which rearranges to log([A]₀/[A]) = (k/2.303) × t. This is of the form y = mx where y = log([A]₀/[A]), x = t, and m = k/2.303. At t = 0, log([A]₀/[A]₀) = log(1) = 0, confirming the line passes through the origin. Both A and R are true. R provides the mathematical basis (the integrated rate law) which directly explains why the plot gives a straight line through the origin. Hence R is the correct explanation of A.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "first-order",
+      "graphical-determination",
+      "integrated-rate-equation",
+      "straight-line-plot"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason is the direct mathematical expression that shows log([A]₀/[A]) is linearly proportional to t with zero intercept. It precisely explains the graphical behavior stated in the Assertion.",
+        "misconception": "Not recognizing that the integrated rate law is the mathematical basis for the linear graph."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is a correct rearrangement of the first-order integrated rate equation. Both k = (2.303/t) log([A]₀/[A]) and log([A]₀/[A]) = kt/2.303 are valid forms.",
+        "misconception": "Doubting the algebraic rearrangement of the standard first-order rate equation."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is true. Substituting t = 0 into log([A]₀/[A]) = kt/2.303 gives 0, confirming the straight line passes through the origin.",
+        "misconception": "Incorrectly thinking the plot has a non-zero intercept."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the reaction order in Column I with the corresponding half-life expression in Column II.\n\nColumn I:\n(P) Zero-order reaction\n(Q) First-order reaction\n(R) Second-order reaction\n\nColumn II:\n(i) t₁/₂ = 0.693/k\n(ii) t₁/₂ = [A]₀/(2k)\n(iii) t₁/₂ = 1/(k[A]₀)",
+    "explanation": "For a zero-order reaction, the integrated rate law [A] = [A]₀ - kt gives t₁/₂ = [A]₀/(2k) → P matches (ii). For a first-order reaction, ln[A] = ln[A]₀ - kt gives t₁/₂ = 0.693/k → Q matches (i). For a second-order reaction, 1/[A] = 1/[A]₀ + kt gives t₁/₂ = 1/(k[A]₀) → R matches (iii). The correct matching is P-(ii), Q-(i), R-(iii).",
+    "correct_answer": "B",
+    "concept_tags": [
+      "half-life",
+      "zero-order",
+      "first-order",
+      "second-order",
+      "comparison"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P-(i), Q-(ii), R-(iii)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P-(ii), Q-(i), R-(iii)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "P-(iii), Q-(i), R-(ii)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P-(ii), Q-(iii), R-(i)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This incorrectly assigns t₁/₂ = 0.693/k to zero-order. The expression 0.693/k = ln2/k is specifically derived from the first-order integrated rate law.",
+        "misconception": "Confusing the zero-order and first-order half-life expressions."
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns t₁/₂ = 1/(k[A]₀) to zero-order, which is wrong. For zero-order, t₁/₂ = [A]₀/(2k), where [A]₀ is in the numerator, not the denominator.",
+        "misconception": "Swapping the zero-order and second-order half-life formulas."
+      },
+      {
+        "option_key": "D",
+        "hint": "This matches first-order with 1/(k[A]₀) and second-order with 0.693/k. First-order half-life is concentration-independent (0.693/k), while second-order depends on [A]₀.",
+        "misconception": "Swapping the first-order and second-order half-life expressions."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the straight-line plots in Column I with the corresponding reaction order in Column II.\n\nColumn I:\n(P) [A] vs t is a straight line with negative slope\n(Q) ln[A] vs t is a straight line with negative slope\n(R) 1/[A] vs t is a straight line with positive slope\n(S) t₁/₂ is independent of initial concentration\n\nColumn II:\n(i) Zero-order\n(ii) First-order\n(iii) Second-order",
+    "explanation": "For a zero-order reaction, [A] = [A]₀ - kt, so [A] vs t is a straight line with slope = -k → P matches (i). For a first-order reaction, ln[A] = ln[A]₀ - kt, so ln[A] vs t is a straight line with slope = -k → Q matches (ii). For a second-order reaction, 1/[A] = 1/[A]₀ + kt, so 1/[A] vs t is a straight line with slope = +k → R matches (iii). The half-life t₁/₂ = 0.693/k for first-order is the only one independent of [A]₀ → S matches (ii). Correct matching: P-(i), Q-(ii), R-(iii), S-(ii).",
+    "correct_answer": "C",
+    "concept_tags": [
+      "graphical-determination",
+      "straight-line-plot",
+      "zero-order",
+      "first-order",
+      "second-order",
+      "half-life"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P-(i), Q-(ii), R-(iii), S-(i)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P-(ii), Q-(i), R-(iii), S-(ii)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P-(i), Q-(ii), R-(iii), S-(ii)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "P-(i), Q-(iii), R-(ii), S-(iii)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This option incorrectly states S-(i), meaning t₁/₂ is independent of [A]₀ for zero-order. But t₁/₂ = [A]₀/(2k) for zero-order clearly depends on [A]₀. It is first-order where t₁/₂ = 0.693/k is independent of [A]₀.",
+        "misconception": "Thinking zero-order reactions have concentration-independent half-lives."
+      },
+      {
+        "option_key": "B",
+        "hint": "This matches P with first-order and Q with zero-order, which is backwards. [A] vs t is linear for zero-order, while ln[A] vs t is linear for first-order.",
+        "misconception": "Swapping the characteristic linear plots of zero-order and first-order reactions."
+      },
+      {
+        "option_key": "D",
+        "hint": "This assigns ln[A] vs t to third-order and 1/[A] vs t to first-order, both of which are incorrect. 1/[A] vs t is the standard linear plot for second-order kinetics.",
+        "misconception": "Confusing the graphical signatures of different reaction orders."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "Radioactive decay is an example of a first-order reaction, and its rate constant is independent of the initial amount of the radioactive substance.",
+    "explanation": "This statement is TRUE. Radioactive decay follows first-order kinetics, where the rate of decay is proportional to the number of undecayed atoms present: -dN/dt = λN, where λ is the decay constant. The decay constant λ (analogous to the rate constant k) is a characteristic property of each radioactive isotope and does not depend on how much substance is initially present. The half-life t₁/₂ = 0.693/λ is also independent of the initial amount.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "radioactive-decay",
+      "first-order",
+      "rate-constant",
+      "decay-constant"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Radioactive decay is indeed first-order. The decay constant λ is intrinsic to the isotope and does not change with the initial amount of substance.",
+        "misconception": "Thinking that having more radioactive material changes the decay constant."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a placeholder option and not a valid answer.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a placeholder option and not a valid answer.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "For a zero-order reaction, doubling the initial concentration of the reactant has no effect on the half-life of the reaction.",
+    "explanation": "This statement is FALSE. For a zero-order reaction, t₁/₂ = [A]₀/(2k). The half-life is directly proportional to the initial concentration [A]₀. If [A]₀ is doubled, t₁/₂ also doubles. It is the first-order reaction (t₁/₂ = 0.693/k) where the half-life is independent of initial concentration, not the zero-order reaction.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "zero-order",
+      "half-life",
+      "initial-concentration",
+      "concentration-dependence"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The half-life formula for zero-order is t₁/₂ = [A]₀/(2k), which clearly contains [A]₀. Doubling [A]₀ doubles the half-life. The statement is false.",
+        "misconception": "Confusing zero-order behavior with first-order behavior, where half-life is truly independent of initial concentration."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is a placeholder option and not a valid answer.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is a placeholder option and not a valid answer.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "The rate constant of a first-order reaction whose half-life is 231 s is ________ × 10⁻³ s⁻¹. (Round to one decimal place)",
+    "explanation": "For a first-order reaction, t₁/₂ = 0.693/k. Rearranging: k = 0.693/t₁/₂ = 0.693/231 = 3.0 × 10⁻³ s⁻¹. Therefore the blank should be filled with 3.0. The value 0.693 is ln 2, which appears in the first-order half-life relation derived from the integrated rate law ln([A]₀/[A]) = kt.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "first-order",
+      "half-life",
+      "rate-constant",
+      "numerical-calculation"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "6.9",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "1.5",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.3",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3.0",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "6.9 × 10⁻³ s⁻¹ would correspond to a half-life of 0.693/0.0069 ≈ 100.4 s, not 231 s. This might result from dividing 0.693 by an incorrect value.",
+        "misconception": "Making an arithmetic error such as dividing by 100 instead of 231."
+      },
+      {
+        "option_key": "B",
+        "hint": "1.5 × 10⁻³ s⁻¹ would correspond to a half-life of 0.693/0.0015 = 462 s, which is exactly twice the given half-life.",
+        "misconception": "Accidentally halving the correct answer, possibly by using t₁/₂ = 0.693/(2k) instead of 0.693/k."
+      },
+      {
+        "option_key": "C",
+        "hint": "0.3 × 10⁻³ s⁻¹ is too small by a factor of 10, corresponding to a half-life of 2310 s instead of 231 s.",
+        "misconception": "A decimal place error in the division, possibly misreading the calculation."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-order-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A student performed an experiment to study the decomposition of hydrogen peroxide (H₂O₂) in the presence of a catalyst. She recorded the following data:\n\nTime (min): 0, 10, 20, 30\nVolume of O₂ collected (mL): 0, 10.0, 17.5, 23.2\nTotal volume of O₂ at t = ∞: 46.0 mL\n\nShe used the formula k = (2.303/t) log(V∞/(V∞ - Vₜ)) to calculate the rate constant. If the reaction follows first-order kinetics, the rate constant calculated from the data at t = 20 min is approximately:",
+    "explanation": "Using the given formula: k = (2.303/t) × log(V∞/(V∞ - Vₜ)). At t = 20 min, Vₜ = 17.5 mL and V∞ = 46.0 mL. So k = (2.303/20) × log(46.0/(46.0 - 17.5)) = (2.303/20) × log(46.0/28.5) = 0.11515 × log(1.614) = 0.11515 × 0.2081 = 0.02397 min⁻¹ ≈ 0.024 min⁻¹. The formula works because for this reaction, V∞ is proportional to [A]₀ and (V∞ - Vₜ) is proportional to the remaining concentration [A] at time t.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "first-order",
+      "hydrogen-peroxide-decomposition",
+      "gas-volume-method",
+      "rate-constant-calculation",
+      "experimental-data"
+    ],
+    "topic": "Integrated Rate Equations and Half-Life",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "0.010 min⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "0.046 min⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.024 min⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "0.035 min⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "0.010 min⁻¹ is too low. This would imply log(V∞/(V∞ - Vₜ)) ≈ 0.087, corresponding to a ratio of about 1.22, but V∞/(V∞ - Vₜ) = 46/28.5 = 1.614, which is much larger.",
+        "misconception": "Making errors in logarithm calculation or using natural log instead of common log without correcting the prefactor."
+      },
+      {
+        "option_key": "B",
+        "hint": "0.046 min⁻¹ is approximately twice the correct answer. This might result from using t = 10 min data instead of t = 20 min, or from a calculation error.",
+        "misconception": "Using the wrong time value in the formula or confusing volume data from different time points."
+      },
+      {
+        "option_key": "D",
+        "hint": "0.035 min⁻¹ does not match the correct calculation. Check: (2.303/20) × log(46/28.5) = 0.11515 × 0.2081 ≈ 0.024, not 0.035.",
+        "misconception": "Arithmetic error in evaluating the logarithm or in the division step."
+      }
+    ]
+  }
+]

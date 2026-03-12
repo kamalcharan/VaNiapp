@@ -1,0 +1,1185 @@
+[
+  {
+    "id": "chem-kinetics-rate-01",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The rate of a chemical reaction is defined as the change in concentration of a reactant or product per unit:",
+    "explanation": "The rate of a chemical reaction measures how fast a reactant is consumed or a product is formed. It is defined as the change in concentration of a reactant or product per unit time. Mathematically, rate = -d[Reactant]/dt = +d[Product]/dt. The negative sign for reactants accounts for the decrease in their concentration over time.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "rate-of-reaction",
+      "definition",
+      "concentration-change"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Time",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Volume",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Temperature",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Pressure",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Volume is not the variable against which concentration change is measured. Rate involves how fast a reaction proceeds, which is inherently a time-based measurement.",
+        "misconception": "Confusing the definition of rate with concentration (which itself is amount per volume)."
+      },
+      {
+        "option_key": "C",
+        "hint": "Temperature affects the rate of a reaction but is not the variable used to define rate. Rate is always expressed as change in concentration per unit time.",
+        "misconception": "Confusing factors that affect reaction rate with the definition of rate itself."
+      },
+      {
+        "option_key": "D",
+        "hint": "Pressure can influence the rate of gaseous reactions but is not used to define the rate of a reaction. The rate is always concentration change per unit time.",
+        "misconception": "Mixing up conditions that influence rate with the fundamental definition of reaction rate."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-02",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "For the reaction 2A + 3B → 4C + D, the rate of disappearance of B is related to the rate of appearance of C as:",
+    "explanation": "For the reaction 2A + 3B → 4C + D, the stoichiometric relationship gives: Rate = -(1/3)(d[B]/dt) = +(1/4)(d[C]/dt). Therefore, -d[B]/dt = (3/4)(d[C]/dt). The rate of disappearance of B is 3/4 times the rate of appearance of C, reflecting the stoichiometric ratio of 3:4 between B and C.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "stoichiometric-rate",
+      "rate-expression",
+      "disappearance-rate"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "-d[B]/dt = (4/3)(d[C]/dt)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "-d[B]/dt = d[C]/dt",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "-d[B]/dt = (3/4)(d[C]/dt)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "-d[B]/dt = (2/3)(d[C]/dt)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This inverts the correct ratio. Since 3 moles of B relate to 4 moles of C, the factor should be 3/4, not 4/3.",
+        "misconception": "Inverting the stoichiometric coefficients when relating rates of different species."
+      },
+      {
+        "option_key": "B",
+        "hint": "The rates of disappearance and appearance are equal only when the stoichiometric coefficients are the same. Here B has coefficient 3 and C has coefficient 4.",
+        "misconception": "Ignoring stoichiometric coefficients and assuming all species react or form at the same rate."
+      },
+      {
+        "option_key": "D",
+        "hint": "The ratio 2/3 involves the coefficient of A (not C). The correct relationship between B and C uses their respective coefficients 3 and 4.",
+        "misconception": "Using the stoichiometric coefficient of the wrong species (A instead of C) in the rate relationship."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-03",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "Which of the following factors does NOT affect the rate of a chemical reaction?",
+    "explanation": "The rate of a chemical reaction is affected by concentration of reactants, temperature, presence of a catalyst, surface area (for heterogeneous reactions), and nature of reactants. The change in free energy (ΔG) determines whether a reaction is spontaneous or not (thermodynamic feasibility), but it does not directly determine the rate of the reaction. A reaction can be thermodynamically favorable (negative ΔG) yet kinetically very slow.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "factors-affecting-rate",
+      "thermodynamics-vs-kinetics"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Concentration of reactants",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Temperature",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Presence of a catalyst",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Free energy change (ΔG) of the reaction",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Concentration of reactants directly affects reaction rate. Increasing concentration increases the frequency of molecular collisions, thereby increasing the rate.",
+        "misconception": null
+      },
+      {
+        "option_key": "B",
+        "hint": "Temperature is a major factor affecting reaction rate. Higher temperature increases kinetic energy of molecules, leading to more effective collisions.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "A catalyst provides an alternative pathway with lower activation energy, directly affecting the rate of reaction without being consumed.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-04",
+    "question_type": "mcq",
+    "difficulty": "easy",
+    "question_text": "The unit of rate constant for a first-order reaction is:",
+    "explanation": "For a first-order reaction, the rate law is: Rate = k[A]. The unit of rate is mol L⁻¹ s⁻¹ and the unit of concentration is mol L⁻¹. Therefore, k = Rate/[A] = (mol L⁻¹ s⁻¹)/(mol L⁻¹) = s⁻¹. The rate constant for a first-order reaction has units of reciprocal time (s⁻¹), which is independent of concentration units.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "rate-constant",
+      "first-order",
+      "units-of-k"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "mol L⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "s⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "L mol⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "L² mol⁻² s⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "mol L⁻¹ s⁻¹ is the unit of the rate of reaction, not the rate constant. The rate constant k has different units depending on the order of the reaction.",
+        "misconception": "Confusing the units of rate of reaction with the units of the rate constant."
+      },
+      {
+        "option_key": "C",
+        "hint": "L mol⁻¹ s⁻¹ is the unit of rate constant for a second-order reaction, not a first-order reaction.",
+        "misconception": "Mixing up the units of rate constant for different orders of reaction."
+      },
+      {
+        "option_key": "D",
+        "hint": "L² mol⁻² s⁻¹ is the unit of rate constant for a third-order reaction, not first-order.",
+        "misconception": "Not knowing the general formula for units of k: (mol L⁻¹)^(1-n) s⁻¹ where n is the order."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-05",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a reaction A + B → Products, the rate is found to be Rate = k[A]²[B]. What is the overall order of the reaction?",
+    "explanation": "The overall order of a reaction is the sum of the powers (exponents) of the concentration terms in the rate law expression. In the rate law Rate = k[A]²[B], the order with respect to A is 2 and the order with respect to B is 1. Therefore, the overall order = 2 + 1 = 3. This is a third-order reaction overall, second-order with respect to A and first-order with respect to B.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "order-of-reaction",
+      "rate-law",
+      "overall-order"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "2",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "3",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Order 1 would mean the rate depends on only one concentration term raised to the first power. Here, the rate depends on [A]² and [B], so the total order is higher than 1.",
+        "misconception": "Thinking the order equals the number of distinct reactants rather than the sum of their exponents."
+      },
+      {
+        "option_key": "B",
+        "hint": "Order 2 is the order with respect to A alone. The overall order also includes the contribution from B, which adds 1 more to give a total of 3.",
+        "misconception": "Considering only the highest individual order instead of summing all exponents."
+      },
+      {
+        "option_key": "C",
+        "hint": "A zero-order reaction has a rate independent of concentration. Here, the rate clearly depends on both [A] and [B], so the order cannot be zero.",
+        "misconception": "Confusing the concept of zero-order reactions with the given rate law."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-06",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The molecularity of a reaction can be:",
+    "explanation": "Molecularity refers to the number of reacting species (molecules, atoms, or ions) that collide simultaneously to bring about a chemical reaction in an elementary step. It is always a positive whole number (1, 2, or 3). Unimolecular reactions have molecularity 1, bimolecular have 2, and trimolecular have 3. Molecularity cannot be zero, fractional, or negative. Reactions with molecularity greater than 3 are extremely rare since the probability of simultaneous collision of more than 3 species is negligible.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "molecularity",
+      "elementary-reaction",
+      "collision-theory"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero or a positive integer",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Any positive real number including fractions",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A positive integer only (1, 2, or 3)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Any integer including negative values",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Molecularity cannot be zero. At least one species must participate in an elementary reaction for it to occur. Zero molecularity has no physical meaning.",
+        "misconception": "Confusing order of reaction (which can be zero) with molecularity (which cannot be zero)."
+      },
+      {
+        "option_key": "B",
+        "hint": "Molecularity must be a whole number because you cannot have a fraction of a molecule colliding. Fractional values are possible for order, not molecularity.",
+        "misconception": "Confusing order of reaction (which can be fractional) with molecularity (which is always a whole number)."
+      },
+      {
+        "option_key": "D",
+        "hint": "Negative molecularity has no physical significance. You cannot have a negative number of molecules participating in an elementary reaction step.",
+        "misconception": "Confusing order (which can be negative for inhibitors) with molecularity."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-07",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The rate law for a reaction cannot be determined from:",
+    "explanation": "The rate law for a reaction can only be determined experimentally. It cannot be predicted from the stoichiometric equation of the overall reaction because the overall reaction may proceed through multiple elementary steps (mechanism). The rate law depends on the mechanism, specifically the rate-determining step. Only for elementary reactions do the stoichiometric coefficients equal the orders in the rate law. Experimental methods such as the initial rate method or integrated rate law analysis are used to determine the rate law.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "rate-law",
+      "experimental-determination",
+      "stoichiometry-vs-rate-law"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The balanced chemical equation of the overall reaction",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Experimental measurements of initial rates at different concentrations",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "The rate-determining step of the mechanism",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Analysis of concentration vs time data",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "Measuring initial rates at different concentrations is one of the most common experimental methods to determine the rate law. By systematically varying one reactant's concentration, the order with respect to each reactant can be found.",
+        "misconception": null
+      },
+      {
+        "option_key": "C",
+        "hint": "The rate-determining step (the slowest step in the mechanism) directly determines the rate law. The rate law of the overall reaction reflects the molecularity of this step.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "Plotting concentration versus time data and fitting it to integrated rate equations (zero, first, or second order) is a valid experimental method to determine the rate law.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-08",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a zero-order reaction A → Products, which of the following plots gives a straight line?",
+    "explanation": "For a zero-order reaction, the integrated rate law is [A] = [A]₀ - kt, where [A]₀ is the initial concentration and k is the rate constant. This is of the form y = c - mx, which is a straight line equation. A plot of [A] versus time (t) gives a straight line with slope = -k and y-intercept = [A]₀. For first-order reactions, ln[A] vs t is linear, and for second-order reactions, 1/[A] vs t is linear.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "zero-order",
+      "integrated-rate-law",
+      "graphical-analysis"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "ln[A] versus t",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "[A] versus t",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "1/[A] versus t",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "[A]² versus t",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A plot of ln[A] vs t gives a straight line for a first-order reaction (integrated rate law: ln[A] = ln[A]₀ - kt), not a zero-order reaction.",
+        "misconception": "Confusing the linear plot characteristic of first-order reactions with zero-order reactions."
+      },
+      {
+        "option_key": "C",
+        "hint": "A plot of 1/[A] vs t gives a straight line for a second-order reaction (integrated rate law: 1/[A] = 1/[A]₀ + kt), not a zero-order reaction.",
+        "misconception": "Confusing the linear plot characteristic of second-order reactions with zero-order reactions."
+      },
+      {
+        "option_key": "D",
+        "hint": "[A]² vs t does not give a straight line for any standard order of reaction. This plot has no direct connection to common integrated rate laws.",
+        "misconception": "Guessing without knowledge of the standard integrated rate law for zero-order reactions."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-09",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "The hydrolysis of sucrose in the presence of a large excess of water follows pseudo first-order kinetics because:",
+    "explanation": "The hydrolysis of sucrose: C₁₂H₂₂O₁₁ + H₂O → C₆H₁₂O₆ (glucose) + C₆H₁₂O₆ (fructose) is actually a bimolecular reaction involving both sucrose and water. However, when water is present in large excess (as a solvent), its concentration remains essentially constant throughout the reaction. The rate law becomes Rate = k'[sucrose], where k' = k[H₂O] is the pseudo first-order rate constant. This simplification makes the reaction appear to follow first-order kinetics.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "pseudo-first-order",
+      "sucrose-hydrolysis",
+      "excess-reagent"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "The reaction involves only one reactant",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Water acts as a catalyst and does not participate in the rate law",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Sucrose is present in large excess over water",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Water is in large excess and its concentration remains practically constant",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "The reaction actually involves two reactants: sucrose and water. It is the large excess of water that simplifies the kinetics, not the number of reactants.",
+        "misconception": "Thinking pseudo first-order reactions involve only one reactant molecule."
+      },
+      {
+        "option_key": "B",
+        "hint": "Water is a reactant in the hydrolysis, not a catalyst. It participates in the reaction but its concentration does not change appreciably because it is in vast excess.",
+        "misconception": "Confusing the role of water as a solvent/excess reactant with that of a catalyst."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is the opposite of what actually happens. Water (the solvent) is present in far greater quantity than sucrose. It is the excess of water, not sucrose, that leads to pseudo first-order behavior.",
+        "misconception": "Reversing which reagent is in excess in the pseudo first-order approximation."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-10",
+    "question_type": "mcq",
+    "difficulty": "medium",
+    "question_text": "For a reaction with Rate = k[A]^(1/2)[B]^(3/2), the unit of the rate constant k is:",
+    "explanation": "The overall order of the reaction is 1/2 + 3/2 = 2 (second order). For an nth order reaction, the general formula for the unit of k is: (concentration)^(1-n) × time⁻¹. For n = 2: k has units of (mol L⁻¹)^(1-2) × s⁻¹ = (mol L⁻¹)⁻¹ × s⁻¹ = L mol⁻¹ s⁻¹. We can verify: Rate = k[A]^(1/2)[B]^(3/2), so k = Rate/([A]^(1/2)[B]^(3/2)) = (mol L⁻¹ s⁻¹)/((mol L⁻¹)²) = L mol⁻¹ s⁻¹.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "rate-constant-units",
+      "fractional-order",
+      "dimensional-analysis"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "mol L⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "L mol⁻¹ s⁻¹",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "L^(1/2) mol^(-1/2) s⁻¹",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "s⁻¹ is the unit of k for a first-order reaction. Here the overall order is 1/2 + 3/2 = 2, so the units of k correspond to second-order kinetics.",
+        "misconception": "Not computing the overall order correctly and assuming first-order units."
+      },
+      {
+        "option_key": "B",
+        "hint": "mol L⁻¹ s⁻¹ is the unit of the rate of reaction, not the rate constant. The rate constant must account for the concentration terms in the rate law.",
+        "misconception": "Confusing units of rate with units of rate constant."
+      },
+      {
+        "option_key": "D",
+        "hint": "This unit would apply if the overall order were 3/2, not 2. Adding the individual orders: 1/2 + 3/2 = 2, so the standard second-order unit L mol⁻¹ s⁻¹ applies.",
+        "misconception": "Using only one of the fractional exponents instead of summing them for the total order."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-11",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "For a reaction 2A + B → C + D, the following kinetic data were obtained:\n\nExperiment 1: [A] = 0.1 M, [B] = 0.1 M, Rate = 2 × 10⁻³ mol L⁻¹ s⁻¹\nExperiment 2: [A] = 0.2 M, [B] = 0.1 M, Rate = 8 × 10⁻³ mol L⁻¹ s⁻¹\nExperiment 3: [A] = 0.1 M, [B] = 0.2 M, Rate = 2 × 10⁻³ mol L⁻¹ s⁻¹\n\nThe rate law for this reaction is:",
+    "explanation": "Comparing Experiments 1 and 2: [B] is constant while [A] doubles. Rate increases from 2 × 10⁻³ to 8 × 10⁻³ (4 times). Since (0.2/0.1)^n = 4, we get 2^n = 4, so n = 2 (order w.r.t. A is 2). Comparing Experiments 1 and 3: [A] is constant while [B] doubles. Rate remains 2 × 10⁻³ (unchanged). Since (0.2/0.1)^m = 1, we get 2^m = 1, so m = 0 (order w.r.t. B is 0). Therefore, Rate = k[A]². Note that the order need not match the stoichiometric coefficients.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "rate-law-determination",
+      "initial-rate-method",
+      "experimental-data"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Rate = k[A]²",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Rate = k[A]²[B]",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Rate = k[A][B]",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Rate = k[A]²[B]²",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "If the rate law included [B], doubling [B] (Exp 1 → Exp 3) should change the rate. But the rate stays the same when [B] doubles, showing the reaction is zero-order with respect to B.",
+        "misconception": "Assuming the rate law must include all reactants present in the balanced equation."
+      },
+      {
+        "option_key": "C",
+        "hint": "This would mean the rate doubles when [A] doubles. But data shows the rate quadruples when [A] doubles, indicating second-order dependence on [A].",
+        "misconception": "Incorrectly determining the order with respect to A from the experimental data."
+      },
+      {
+        "option_key": "D",
+        "hint": "This rate law includes both [A]² and [B]². While the order w.r.t. A is indeed 2, the data clearly shows zero-order dependence on B since changing [B] does not affect the rate.",
+        "misconception": "Assuming stoichiometric coefficients directly give the order for all reactants."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-12",
+    "question_type": "mcq",
+    "difficulty": "hard",
+    "question_text": "A reaction A → B follows first-order kinetics with a rate constant k = 0.693 min⁻¹. If the initial concentration of A is 1.0 M, the time required for [A] to reduce to 0.125 M is:",
+    "explanation": "For a first-order reaction, t = (2.303/k) × log([A]₀/[A]). Here, [A]₀ = 1.0 M, [A] = 0.125 M, and k = 0.693 min⁻¹. Since 1.0/0.125 = 8 = 2³, the concentration has halved 3 times. For first-order reactions, t₁/₂ = 0.693/k = 0.693/0.693 = 1 min. After 3 half-lives: [A] = 1.0 × (1/2)³ = 0.125 M. Therefore, time = 3 × t₁/₂ = 3 × 1 = 3 minutes. Alternatively: t = (2.303/0.693) × log(8) = (2.303/0.693) × 0.903 = 3 min.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "first-order-kinetics",
+      "half-life",
+      "concentration-time"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "1 minute",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 minutes",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "8 minutes",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "6 minutes",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "1 minute is the half-life of this reaction (t₁/₂ = 0.693/0.693 = 1 min). After 1 half-life, [A] = 0.5 M, not 0.125 M. You need 3 half-lives to reach 0.125 M.",
+        "misconception": "Confusing one half-life with the total time required for a specific concentration reduction."
+      },
+      {
+        "option_key": "C",
+        "hint": "This answer likely comes from directly dividing 1.0 by 0.125 to get 8 and using that as the time. The correct approach uses the first-order integrated rate law or the half-life method.",
+        "misconception": "Using the ratio [A]₀/[A] directly as time without applying the logarithmic first-order equation."
+      },
+      {
+        "option_key": "D",
+        "hint": "6 minutes would correspond to 6 half-lives, reducing [A] to 1.0/2⁶ = 0.0156 M, which is much less than 0.125 M.",
+        "misconception": "Miscalculating the number of half-lives needed or making an arithmetic error."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-13",
+    "question_type": "assertion-reasoning",
+    "difficulty": "medium",
+    "question_text": "Assertion (A): The order of a reaction can be zero, fractional, or negative.\nReason (R): The order of a reaction is determined experimentally and may not be related to the stoichiometric coefficients of the balanced equation.",
+    "explanation": "Both the Assertion and Reason are true. The order of a reaction is an experimentally determined quantity and can indeed be zero (e.g., decomposition of NH₃ on Pt surface), fractional (e.g., decomposition of acetaldehyde has order 3/2), or even negative (when increasing a reactant's concentration decreases the rate, as seen in some catalytic reactions). This is because the overall rate law depends on the reaction mechanism, not on the balanced stoichiometric equation. The Reason correctly explains why the Assertion is true -- since order is experimental and independent of stoichiometry, it can take any value including zero, fractional, or negative numbers.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "order-of-reaction",
+      "experimental-determination",
+      "fractional-order",
+      "negative-order"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains why the Assertion is true. Because order is experimental and not tied to stoichiometry, it can take any value -- this is a correct explanation, not merely an independent true statement.",
+        "misconception": "Failing to see the causal relationship between the experimental nature of order and its ability to take non-integer values."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is definitely true. It is a well-established fact in chemical kinetics that the rate law must be determined experimentally and cannot be deduced from the balanced equation alone.",
+        "misconception": "Incorrectly believing that the rate law can always be written from the balanced equation."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is clearly true. There are well-known examples of zero-order reactions (NH₃ decomposition on Pt), fractional-order reactions (CH₃CHO decomposition, order 3/2), and negative-order reactions.",
+        "misconception": "Believing that order must always be a positive whole number, confusing order with molecularity."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-14",
+    "question_type": "assertion-reasoning",
+    "difficulty": "hard",
+    "question_text": "Assertion (A): For the elementary reaction 2NO + O₂ → 2NO₂, the molecularity is 3 but such termolecular reactions are rare.\nReason (R): The probability of three molecules colliding simultaneously with proper orientation and sufficient energy is very low.",
+    "explanation": "Both the Assertion and Reason are true. The reaction 2NO + O₂ → 2NO₂ is one of the rare examples of a termolecular (trimolecular) elementary reaction with molecularity 3 (two NO molecules and one O₂ molecule must collide simultaneously). The Reason correctly explains why such reactions are rare: according to collision theory, the probability of a simultaneous three-body collision with proper orientation and sufficient energy is extremely low. This is why most reactions with overall order greater than 2 proceed through a series of bimolecular elementary steps rather than a single termolecular step.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "molecularity",
+      "termolecular",
+      "collision-theory",
+      "elementary-reaction"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Both A and R are true and R is the correct explanation of A",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both A and R are true but R is NOT the correct explanation of A",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "A is true but R is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A is false but R is true",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Reason directly explains the rarity mentioned in the Assertion. Termolecular reactions are rare precisely because three-body collisions with proper orientation and energy are improbable. This is a clear causal relationship.",
+        "misconception": "Not recognizing that the low probability of three-body collisions is the direct cause of the rarity of termolecular reactions."
+      },
+      {
+        "option_key": "C",
+        "hint": "The Reason is a well-established principle of collision theory. The probability of simultaneous three-body collisions with correct orientation and adequate energy is indeed very low.",
+        "misconception": "Doubting the collision theory explanation for why termolecular reactions are rare."
+      },
+      {
+        "option_key": "D",
+        "hint": "The Assertion is true. The reaction 2NO + O₂ → 2NO₂ is a classic textbook example of a termolecular elementary reaction with molecularity 3, and such reactions are indeed rare.",
+        "misconception": "Believing that no elementary reaction can have molecularity 3, or that this particular reaction is not elementary."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-15",
+    "question_type": "match-the-following",
+    "difficulty": "medium",
+    "question_text": "Match the order of reaction (Column I) with the correct unit of rate constant k (Column II):\n\nColumn I:\n(P) Zero order\n(Q) First order\n(R) Second order\n(S) Third order\n\nColumn II:\n(i) L² mol⁻² s⁻¹\n(ii) mol L⁻¹ s⁻¹\n(iii) s⁻¹\n(iv) L mol⁻¹ s⁻¹",
+    "explanation": "The unit of rate constant k for an nth order reaction is given by: (mol L⁻¹)^(1-n) × s⁻¹.\n\n(P) Zero order (n=0): k = (mol L⁻¹)^(1-0) × s⁻¹ = mol L⁻¹ s⁻¹ → (ii)\n(Q) First order (n=1): k = (mol L⁻¹)^(1-1) × s⁻¹ = s⁻¹ → (iii)\n(R) Second order (n=2): k = (mol L⁻¹)^(1-2) × s⁻¹ = L mol⁻¹ s⁻¹ → (iv)\n(S) Third order (n=3): k = (mol L⁻¹)^(1-3) × s⁻¹ = L² mol⁻² s⁻¹ → (i)\n\nTherefore: P→(ii), Q→(iii), R→(iv), S→(i)",
+    "correct_answer": "C",
+    "concept_tags": [
+      "rate-constant-units",
+      "order-of-reaction",
+      "dimensional-analysis"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→(iii), Q→(ii), R→(iv), S→(i)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→(ii), Q→(iii), R→(i), S→(iv)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P→(ii), Q→(iii), R→(iv), S→(i)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "P→(iv), Q→(iii), R→(ii), S→(i)",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This option swaps the units of zero order and first order. Zero-order k has units mol L⁻¹ s⁻¹ (not s⁻¹), and first-order k has units s⁻¹ (not mol L⁻¹ s⁻¹).",
+        "misconception": "Confusing the units of rate constant for zero-order and first-order reactions."
+      },
+      {
+        "option_key": "B",
+        "hint": "This option swaps the units of second order and third order. Second-order k has units L mol⁻¹ s⁻¹, while third-order k has units L² mol⁻² s⁻¹.",
+        "misconception": "Mixing up the units of k for second-order and third-order reactions."
+      },
+      {
+        "option_key": "D",
+        "hint": "This option assigns L mol⁻¹ s⁻¹ to zero order and mol L⁻¹ s⁻¹ to second order, which is the reverse of the correct assignments.",
+        "misconception": "Incorrectly applying the formula for units of k, possibly using n instead of (1-n) in the exponent."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-16",
+    "question_type": "match-the-following",
+    "difficulty": "hard",
+    "question_text": "Match the reaction characteristics (Column I) with the correct description (Column II):\n\nColumn I:\n(P) Order of a reaction\n(Q) Molecularity of a reaction\n(R) Rate constant (k)\n(S) Instantaneous rate\n\nColumn II:\n(i) Can only be a positive integer (1, 2, or 3) and is defined only for elementary reactions\n(ii) Determined experimentally and can be zero, fractional, or negative\n(iii) Depends on temperature but is independent of concentration of reactants\n(iv) The rate of reaction at a particular instant, obtained as -d[Reactant]/dt",
+    "explanation": "(P) Order of a reaction → (ii): Order is an experimentally determined quantity that can be zero (e.g., enzyme-catalyzed reactions at saturation), fractional (e.g., CH₃CHO decomposition, order 3/2), or even negative.\n\n(Q) Molecularity → (i): Molecularity is the number of species involved in an elementary step. It must be a positive integer (1, 2, or 3) and is defined only for elementary (single-step) reactions, not for complex (multi-step) reactions.\n\n(R) Rate constant (k) → (iii): The rate constant depends on temperature (through the Arrhenius equation: k = Ae^(-Ea/RT)) but is independent of the concentrations of reactants.\n\n(S) Instantaneous rate → (iv): The instantaneous rate is the rate at a specific moment in time, mathematically defined as the negative derivative of reactant concentration with respect to time.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "order-vs-molecularity",
+      "rate-constant",
+      "instantaneous-rate",
+      "fundamental-concepts"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "analyze",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "P→(i), Q→(ii), R→(iii), S→(iv)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "P→(ii), Q→(i), R→(iv), S→(iii)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "P→(iii), Q→(i), R→(ii), S→(iv)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "P→(ii), Q→(i), R→(iii), S→(iv)",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This swaps order and molecularity. Order can be zero, fractional, or negative (experimental), while molecularity must be a positive integer for elementary reactions only.",
+        "misconception": "Confusing the properties of order (experimentally determined, any value) with molecularity (theoretical, positive integer only)."
+      },
+      {
+        "option_key": "B",
+        "hint": "This incorrectly assigns R (rate constant) to (iv) and S (instantaneous rate) to (iii). The rate constant is temperature-dependent but concentration-independent, while instantaneous rate is -d[Reactant]/dt.",
+        "misconception": "Swapping the descriptions of rate constant and instantaneous rate."
+      },
+      {
+        "option_key": "C",
+        "hint": "This assigns temperature dependence to order (P) and experimental determination to rate constant (R). In fact, order is experimentally determined, and the rate constant depends on temperature via the Arrhenius equation.",
+        "misconception": "Misattributing temperature dependence to order of reaction instead of rate constant."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-17",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The rate constant of a reaction increases with increase in temperature.",
+    "explanation": "This statement is TRUE. According to the Arrhenius equation, k = Ae^(-Ea/RT), the rate constant k increases exponentially with increasing temperature T. As temperature increases, a larger fraction of molecules possess energy equal to or greater than the activation energy (Ea), leading to more effective collisions and a higher rate constant. As a general rule, for many reactions near room temperature, the rate constant approximately doubles for every 10°C rise in temperature.",
+    "correct_answer": "A",
+    "concept_tags": [
+      "rate-constant",
+      "temperature-dependence",
+      "arrhenius-equation"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "remember",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "B",
+        "hint": "The Arrhenius equation k = Ae^(-Ea/RT) clearly shows that as T increases, the exponent becomes less negative (closer to zero), making e^(-Ea/RT) larger, and hence k increases.",
+        "misconception": "Thinking that temperature does not affect the rate constant, or that it only affects the rate but not k."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-18",
+    "question_type": "true-false",
+    "difficulty": "easy",
+    "question_text": "The molecularity of a complex (multi-step) reaction can be determined by looking at its overall balanced equation.",
+    "explanation": "This statement is FALSE. Molecularity is defined only for elementary (single-step) reactions, not for complex (multi-step) reactions. A complex reaction proceeds through a sequence of elementary steps, each with its own molecularity. It is meaningless to assign a molecularity to the overall balanced equation of a complex reaction. Only individual elementary steps of the mechanism have a defined molecularity. The concept of molecularity applies to each elementary step, not to the overall reaction.",
+    "correct_answer": "B",
+    "concept_tags": [
+      "molecularity",
+      "complex-reaction",
+      "elementary-vs-complex"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "understand",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "---",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "---",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "Molecularity is a property of an elementary step only. For a complex reaction with multiple steps, each step has its own molecularity. The overall balanced equation does not define a molecularity.",
+        "misconception": "Believing that molecularity can be assigned to any reaction by counting molecules in the balanced equation."
+      },
+      {
+        "option_key": "C",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      },
+      {
+        "option_key": "D",
+        "hint": "This is not a valid option for this question.",
+        "misconception": null
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-19",
+    "question_type": "fill-in-blanks",
+    "difficulty": "medium",
+    "question_text": "For the acid-catalyzed hydrolysis of methyl acetate (CH₃COOCH₃) in the presence of a large excess of water, the reaction follows ________ order kinetics.",
+    "explanation": "The hydrolysis of methyl acetate (ester hydrolysis) in aqueous acidic solution is: CH₃COOCH₃ + H₂O → CH₃COOH + CH₃OH. This is a bimolecular reaction involving methyl acetate and water. However, since water is present as the solvent (in large excess), its concentration remains essentially constant throughout the reaction. The rate law simplifies to Rate = k'[CH₃COOCH₃], where k' = k[H₂O] is the pseudo first-order rate constant. This is a classic example of a pseudo first-order reaction.",
+    "correct_answer": "C",
+    "concept_tags": [
+      "pseudo-first-order",
+      "ester-hydrolysis",
+      "methyl-acetate"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "Zero",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Second",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Pseudo first",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "Third",
+        "is_correct": false
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "A zero-order reaction would mean the rate is independent of the concentration of methyl acetate. In reality, the rate depends on [CH₃COOCH₃], so it is not zero order.",
+        "misconception": "Thinking the excess of water makes the reaction zero order rather than pseudo first order."
+      },
+      {
+        "option_key": "B",
+        "hint": "While the true reaction is bimolecular (involving both ester and water), the excess of water simplifies the kinetics. The reaction does not follow true second-order kinetics under these conditions.",
+        "misconception": "Considering the true molecularity rather than the apparent (pseudo) order under experimental conditions."
+      },
+      {
+        "option_key": "D",
+        "hint": "Third-order kinetics would require the rate to depend on three concentration terms. This reaction involves only two species (ester and water), and with water in excess, it simplifies to pseudo first order.",
+        "misconception": "Incorrectly estimating the order by adding acid catalyst as a contributing species."
+      }
+    ]
+  },
+  {
+    "id": "chem-kinetics-rate-20",
+    "question_type": "scenario-based",
+    "difficulty": "medium",
+    "question_text": "A student is studying the reaction X + 2Y → Z in the laboratory. She performs three experiments at the same temperature and records the following data:\n\nExperiment 1: [X] = 0.10 M, [Y] = 0.10 M, Initial rate = 4.0 × 10⁻⁴ mol L⁻¹ s⁻¹\nExperiment 2: [X] = 0.20 M, [Y] = 0.10 M, Initial rate = 4.0 × 10⁻⁴ mol L⁻¹ s⁻¹\nExperiment 3: [X] = 0.10 M, [Y] = 0.20 M, Initial rate = 16.0 × 10⁻⁴ mol L⁻¹ s⁻¹\n\nBased on this data, what is the value of the rate constant k for this reaction?",
+    "explanation": "From the experimental data:\n\nComparing Exp 1 and 2: [Y] is constant, [X] doubles (0.10 → 0.20), but rate is unchanged (4.0 × 10⁻⁴). So the reaction is zero order with respect to X.\n\nComparing Exp 1 and 3: [X] is constant, [Y] doubles (0.10 → 0.20), and rate increases 4 times (4.0 → 16.0 × 10⁻⁴). So 2^m = 4, giving m = 2. The reaction is second order with respect to Y.\n\nRate law: Rate = k[Y]²\n\nUsing Exp 1: 4.0 × 10⁻⁴ = k × (0.10)²\nk = 4.0 × 10⁻⁴ / 0.01 = 4.0 × 10⁻² = 0.04 L mol⁻¹ s⁻¹\n\nThe rate constant k = 0.04 L mol⁻¹ s⁻¹.",
+    "correct_answer": "D",
+    "concept_tags": [
+      "rate-law-determination",
+      "initial-rate-method",
+      "rate-constant-calculation",
+      "experimental-data-analysis"
+    ],
+    "topic": "Rate of Reaction and Rate Law",
+    "subject": "chemistry",
+    "chapter": "Chemical Kinetics",
+    "bloom_level": "apply",
+    "exam_suitability": [
+      "CUET"
+    ],
+    "options": [
+      {
+        "key": "A",
+        "text": "4.0 × 10⁻⁴ L mol⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "4.0 × 10⁻³ L mol⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0.4 L mol⁻¹ s⁻¹",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "0.04 L mol⁻¹ s⁻¹",
+        "is_correct": true
+      }
+    ],
+    "elimination_hints": [
+      {
+        "option_key": "A",
+        "hint": "This is the value of the initial rate from Experiment 1, not the rate constant. The rate constant requires dividing the rate by [Y]² = (0.10)² = 0.01.",
+        "misconception": "Confusing the numerical value of the rate with the rate constant."
+      },
+      {
+        "option_key": "B",
+        "hint": "This would result from dividing the rate by [Y] instead of [Y]². Since the order with respect to Y is 2, you must use k = Rate/[Y]² = 4.0 × 10⁻⁴/0.01.",
+        "misconception": "Using first-order dependence on Y instead of second-order when calculating k."
+      },
+      {
+        "option_key": "C",
+        "hint": "This value is 10 times too large. Check the calculation: k = 4.0 × 10⁻⁴/(0.10)² = 4.0 × 10⁻⁴/1.0 × 10⁻² = 4.0 × 10⁻² = 0.04, not 0.4.",
+        "misconception": "Making an arithmetic error in dividing powers of ten."
+      }
+    ]
+  }
+]
