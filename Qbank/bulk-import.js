@@ -38,14 +38,42 @@ const STORAGE_BUCKET = 'question-images';
 
 // Subject folder → subject_id mapping
 const SUBJECT_MAP = {
-  zoo: 'zoology',
-  botany: 'botany',
-  physics: 'physics',
+  // NEET subjects (folder → DB subject_id)
+  zoo:      'zoology',
+  botany:   'botany',
+  physics:  'physics',
   chemistry: 'chemistry',
-  'cuet-physics': 'cuet-physics',
+  // CUET Science
+  'cuet-physics':   'cuet-physics',
   'cuet-chemistry': 'cuet-chemistry',
-  'cuet-biology': 'biology',
+  'cuet-biology':   'biology',
+  biology:          'biology',
+  mathematics:      'mathematics',
+  // CUET Commerce
+  accountancy:       'accountancy',
   'business-studies': 'business-studies',
+  business:          'business-studies',
+  economics:         'economics',
+  entrepreneurship:  'entrepreneurship',
+  // CUET Arts / Humanities
+  history:           'history',
+  geography:         'geography',
+  'political-science': 'political-science',
+  polsci:            'political-science',
+  sociology:         'sociology',
+  psychology:        'psychology',
+  philosophy:        'philosophy',
+  // CUET Other
+  'computer-science': 'computer-science',
+  cs:                'computer-science',
+  'legal-studies':   'legal-studies',
+  legal:             'legal-studies',
+  'physical-education': 'physical-education',
+  ped:               'physical-education',
+  'home-science':    'home-science',
+  homesci:           'home-science',
+  english:           'english',
+  'mass-media':      'mass-media',
 };
 
 // ============================================================================
@@ -445,7 +473,7 @@ async function main() {
 
   for (const q of newQuestions) {
     try {
-      const subjectId = SUBJECT_MAP[q._subject] || q._subject;
+      const subjectId = SUBJECT_MAP[q._subject] || SUBJECT_MAP[q.subject] || q._subject || q.subject;
       const chapterId = q.chapter_id || resolveChapterId(q._source, q._subject, q._chapter);
       const topicId = await resolveTopicId(supabase, chapterId, q.topic);
 
