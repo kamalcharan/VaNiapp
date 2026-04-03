@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 580" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="720" height="580" fill="#faf8f0" rx="8"/>
+  
+  <!-- Title -->
+  <text x="360" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">Mughal Agrarian Revenue Hierarchy</text>
+  <text x="360" y="48" text-anchor="middle" font-size="12" fill="#666">How did revenue flow upward and information flow in both directions?</text>
+
+  <!-- Defs for arrow markers -->
+  <defs>
+    <marker id="arrDown" markerWidth="10" markerHeight="10" refX="5" refY="10" orient="auto">
+      <polygon points="0,0 5,10 10,0" fill="#555"/>
+    </marker>
+    <marker id="arrDownBlue" markerWidth="10" markerHeight="10" refX="5" refY="10" orient="auto">
+      <polygon points="0,0 5,10 10,0" fill="#3A7AAA"/>
+    </marker>
+  </defs>
+
+  <!-- Level 1: Emperor -->
+  <rect x="250" y="60" width="220" height="42" fill="#5B3A29" stroke="#3A2010" stroke-width="2" rx="8"/>
+  <text x="360" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">EMPEROR</text>
+  <text x="360" y="96" text-anchor="middle" font-size="9" fill="#D8C8A8">Receives fixed revenue</text>
+
+  <!-- Arrow L1 → L2 -->
+  <line x1="360" y1="102" x2="360" y2="125" stroke="#555" stroke-width="2" marker-end="url(#arrDown)"/>
+
+  <!-- Level 2: Diwan -->
+  <rect x="260" y="128" width="200" height="38" fill="#6B4E2B" stroke="#4A3018" stroke-width="2" rx="7"/>
+  <text x="360" y="148" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">DIWAN (Finance Minister)</text>
+  <text x="360" y="162" text-anchor="middle" font-size="9" fill="#D8C8A8">Central revenue administration</text>
+
+  <!-- Arrow L2 → L3 -->
+  <line x1="360" y1="166" x2="360" y2="190" stroke="#555" stroke-width="2" marker-end="url(#arrDown)"/>
+
+  <!-- Level 3: Provincial Governor — SUBA -->
+  <rect x="225" y="193" width="270" height="38" fill="#8B6914" stroke="#6B4E0A" stroke-width="2" rx="7"/>
+  <text x="360" y="213" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">PROVINCIAL GOVERNOR (Subedar)</text>
+  <text x="360" y="227" text-anchor="middle" font-size="9" fill="#F0E0C0">Level: SUBA (Province)</text>
+
+  <!-- Arrow L3 → L4 -->
+  <line x1="360" y1="231" x2="360" y2="255" stroke="#555" stroke-width="2" marker-end="url(#arrDown)"/>
+
+  <!-- Level 4: Faujdar / Amil — SARKAR -->
+  <rect x="240" y="258" width="240" height="38" fill="#A08030" stroke="#806020" stroke-width="2" rx="7"/>
+  <text x="360" y="278" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">FAUJDAR / AMIL</text>
+  <text x="360" y="292" text-anchor="middle" font-size="9" fill="#F0E0C0">Level: SARKAR (District)</text>
+
+  <!-- Split arrows from L4 to Zamindar (left) and Qanungo (right) -->
+  <line x1="310" y1="296" x2="200" y2="340" stroke="#555" stroke-width="2" marker-end="url(#arrDown)"/>
+  <line x1="410" y1="296" x2="520" y2="340" stroke="#3A7AAA" stroke-width="2" marker-end="url(#arrDownBlue)"/>
+
+  <!-- Left branch: Zamindar -->
+  <rect x="100" y="343" width="200" height="55" fill="#C8A050" stroke="#8B6914" stroke-width="2" rx="7"/>
+  <text x="200" y="362" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">ZAMINDAR</text>
+  <text x="200" y="377" text-anchor="middle" font-size="8" fill="#F0E8D0">Intermediary — collects revenue</text>
+  <text x="200" y="389" text-anchor="middle" font-size="8" fill="#F0E8D0">Maintains troops, has nankar lands</text>
+
+  <!-- Right branch: Qanungo -->
+  <rect x="420" y="343" width="200" height="55" fill="#4A8BB0" stroke="#2B6A8B" stroke-width="2" rx="7"/>
+  <text x="520" y="362" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">QANUNGO</text>
+  <text x="520" y="377" text-anchor="middle" font-size="8" fill="#D0E8F8">Record-keeper — land rights,</text>
+  <text x="520" y="389" text-anchor="middle" font-size="8" fill="#D0E8F8">crop data, local customs</text>
+
+  <!-- Both converge to Village -->
+  <line x1="200" y1="398" x2="300" y2="430" stroke="#555" stroke-width="2" marker-end="url(#arrDown)"/>
+  <line x1="520" y1="398" x2="420" y2="430" stroke="#3A7AAA" stroke-width="2" marker-end="url(#arrDownBlue)"/>
+
+  <!-- Level 6: Village -->
+  <rect x="220" y="433" width="280" height="95" fill="#E8DCC0" stroke="#8B7355" stroke-width="2" rx="7"/>
+  <text x="360" y="453" text-anchor="middle" font-size="13" font-weight="bold" fill="#5A4A2A">VILLAGE</text>
+  
+  <!-- Muqaddam and Patwari side by side -->
+  <rect x="235" y="462" width="115" height="28" fill="#D8C8A0" stroke="#8B7355" stroke-width="1" rx="4"/>
+  <text x="292" y="480" text-anchor="middle" font-size="10" font-weight="bold" fill="#5A4A2A">MUQADDAM</text>
+  <text x="292" y="488" text-anchor="middle" font-size="7" fill="#777">(Headman)</text>
+
+  <rect x="370" y="462" width="115" height="28" fill="#C8D8E8" stroke="#5A8AAA" stroke-width="1" rx="4"/>
+  <text x="427" y="480" text-anchor="middle" font-size="10" font-weight="bold" fill="#2B5A7B">PATWARI</text>
+  <text x="427" y="488" text-anchor="middle" font-size="7" fill="#777">(Accountant)</text>
+
+  <!-- Peasants at bottom -->
+  <rect x="260" y="498" width="200" height="24" fill="#F0E8D4" stroke="#A09070" stroke-width="1.5" rx="4"/>
+  <text x="360" y="514" text-anchor="middle" font-size="10" font-weight="bold" fill="#5A4A2A">PEASANTS (Raiyat)</text>
+  
+  <!-- Subdivisions -->
+  <text x="310" y="526" text-anchor="middle" font-size="8" fill="#777">Khud-kashta (resident)</text>
+  <text x="420" y="526" text-anchor="middle" font-size="8" fill="#777">Pahi-kashta (migrant)</text>
+
+  <!-- Flow labels on left side — Revenue flows UP -->
+  <rect x="15" y="200" width="75" height="65" fill="#FFF8E8" stroke="#C8A050" stroke-width="1" rx="4"/>
+  <text x="52" y="218" text-anchor="middle" font-size="9" font-weight="bold" fill="#8B6914">REVENUE</text>
+  <text x="52" y="232" text-anchor="middle" font-size="9" fill="#8B6914">flows</text>
+  <text x="52" y="246" text-anchor="middle" font-size="14" fill="#8B6914">↑ UP</text>
+  <text x="52" y="260" text-anchor="middle" font-size="8" fill="#999">(cash/kind)</text>
+
+  <!-- Flow labels on right side — Information flows BOTH ways -->
+  <rect x="630" y="200" width="75" height="65" fill="#E8F0F8" stroke="#4A8BB0" stroke-width="1" rx="4"/>
+  <text x="667" y="218" text-anchor="middle" font-size="9" font-weight="bold" fill="#2B6A8B">INFO</text>
+  <text x="667" y="232" text-anchor="middle" font-size="9" fill="#2B6A8B">flows</text>
+  <text x="667" y="246" text-anchor="middle" font-size="14" fill="#2B6A8B">↑↓</text>
+  <text x="667" y="260" text-anchor="middle" font-size="8" fill="#999">(both ways)</text>
+
+  <!-- Legend -->
+  <rect x="50" y="540" width="620" height="30" fill="#f0ece0" stroke="#ccc" stroke-width="1" rx="4"/>
+  <rect x="60" y="549" width="14" height="10" fill="#C8A050" stroke="#8B6914" stroke-width="1"/>
+  <text x="80" y="558" font-size="9" fill="#555">Revenue channel</text>
+  <rect x="175" y="549" width="14" height="10" fill="#4A8BB0" stroke="#2B6A8B" stroke-width="1"/>
+  <text x="195" y="558" font-size="9" fill="#555">Information/records channel</text>
+  <text x="360" y="558" font-size="9" fill="#555" font-weight="bold">| Q: How did revenue and information flow through this system?</text>
+</svg>

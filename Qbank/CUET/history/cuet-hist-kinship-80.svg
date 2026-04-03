@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 520" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="650" height="520" fill="#faf8f0" rx="8"/>
+  
+  <!-- Title -->
+  <text x="325" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">Brahmanical Social Hierarchy</text>
+  <text x="325" y="52" text-anchor="middle" font-size="12" fill="#666">Identify Varnas A, B, C, D, and Group E</text>
+
+  <!-- Pyramid structure — 4 layers inside, 1 outside -->
+  
+  <!-- Layer 1 (Top) — Varna A -->
+  <polygon points="325,85 255,155 395,155" fill="#F5E6CC" stroke="#8B6914" stroke-width="2.5"/>
+  <text x="325" y="125" text-anchor="middle" font-size="15" font-weight="bold" fill="#6B4E2B">Varna A</text>
+  <text x="325" y="145" text-anchor="middle" font-size="10" fill="#8B6914">Study &amp; teach Vedas</text>
+
+  <!-- Layer 2 — Varna B -->
+  <polygon points="255,155 185,235 465,235 395,155" fill="#E8D4B0" stroke="#8B6914" stroke-width="2.5"/>
+  <text x="325" y="190" text-anchor="middle" font-size="15" font-weight="bold" fill="#6B4E2B">Varna B</text>
+  <text x="325" y="210" text-anchor="middle" font-size="10" fill="#8B6914">Fight &amp; govern</text>
+
+  <!-- Layer 3 — Varna C -->
+  <polygon points="185,235 115,315 535,315 465,235" fill="#D8C498" stroke="#8B6914" stroke-width="2.5"/>
+  <text x="325" y="270" text-anchor="middle" font-size="15" font-weight="bold" fill="#6B4E2B">Varna C</text>
+  <text x="325" y="290" text-anchor="middle" font-size="10" fill="#8B6914">Trade &amp; agriculture</text>
+
+  <!-- Layer 4 (Base of pyramid) — Varna D -->
+  <polygon points="115,315 55,395 595,395 535,315" fill="#C8B488" stroke="#8B6914" stroke-width="2.5"/>
+  <text x="325" y="350" text-anchor="middle" font-size="15" font-weight="bold" fill="#6B4E2B">Varna D</text>
+  <text x="325" y="370" text-anchor="middle" font-size="10" fill="#8B6914">Serve the upper three varnas</text>
+
+  <!-- Pyramid base line emphasis -->
+  <line x1="55" y1="395" x2="595" y2="395" stroke="#8B6914" stroke-width="3"/>
+
+  <!-- Separation gap -->
+  <!-- Dashed line indicating "outside the varna system" -->
+  <line x1="55" y1="410" x2="595" y2="410" stroke="#CC3333" stroke-width="2" stroke-dasharray="8,5"/>
+  <text x="325" y="407" text-anchor="middle" font-size="9" fill="#CC3333" font-weight="bold">— Outside the Varna System —</text>
+
+  <!-- Layer 5 (Outside pyramid) — Group E -->
+  <rect x="80" y="420" width="490" height="55" fill="#E8D0D0" stroke="#CC3333" stroke-width="2" rx="6"/>
+  <text x="325" y="445" text-anchor="middle" font-size="15" font-weight="bold" fill="#8B2222">Group E</text>
+  <text x="325" y="463" text-anchor="middle" font-size="10" fill="#AA3333">Considered outside the varna; assigned degrading tasks</text>
+
+  <!-- Right-side labels with arrows -->
+  <!-- Varna A arrow -->
+  <line x1="400" y1="120" x2="470" y2="120" stroke="#888" stroke-width="1" marker-end="none"/>
+  <line x1="470" y1="120" x2="470" y2="105" stroke="#888" stroke-width="1"/>
+  <text x="480" y="108" font-size="10" fill="#555" font-style="italic">Highest ritual status</text>
+
+  <!-- Varna D arrow -->
+  <line x1="540" y1="355" x2="590" y2="355" stroke="#888" stroke-width="1"/>
+  <text x="595" y="348" font-size="10" fill="#555" font-style="italic">Lowest within</text>
+  <text x="595" y="362" font-size="10" fill="#555" font-style="italic">the system</text>
+
+  <!-- Group E arrow -->
+  <line x1="575" y1="447" x2="610" y2="447" stroke="#CC3333" stroke-width="1"/>
+  <text x="612" y="442" font-size="10" fill="#AA3333" font-style="italic">Excluded;</text>
+  <text x="612" y="456" font-size="10" fill="#AA3333" font-style="italic">'untouchable'</text>
+
+  <!-- Hierarchy arrow on left -->
+  <line x1="35" y1="100" x2="35" y2="390" stroke="#666" stroke-width="2" marker-end="url(#arrowDown)"/>
+  <defs>
+    <marker id="arrowDown" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto">
+      <polygon points="0,0 4,8 8,0" fill="#666"/>
+    </marker>
+  </defs>
+  <text x="28" y="250" text-anchor="middle" font-size="10" fill="#666" transform="rotate(-90,28,250)">Hierarchy (top to bottom)</text>
+
+  <!-- Legend -->
+  <rect x="50" y="485" width="550" height="25" fill="#f0ece0" stroke="#ccc" stroke-width="1" rx="4"/>
+  <text x="60" y="502" font-size="11" fill="#555" font-weight="bold">Q: Identify Varna A, B, C, D, and Group E based on their described roles.</text>
+</svg>

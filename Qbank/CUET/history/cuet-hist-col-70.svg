@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 600" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="720" height="600" fill="#faf8f0" rx="8"/>
+  
+  <!-- Title -->
+  <text x="360" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">Revenue &amp; Exploitation under the Permanent Settlement</text>
+  <text x="360" y="48" text-anchor="middle" font-size="12" fill="#666">How did the cultivator bear the greatest burden?</text>
+
+  <!-- Defs -->
+  <defs>
+    <marker id="ad" markerWidth="10" markerHeight="10" refX="5" refY="10" orient="auto">
+      <polygon points="0,0 5,10 10,0" fill="#555"/>
+    </marker>
+    <marker id="adRed" markerWidth="10" markerHeight="10" refX="5" refY="10" orient="auto">
+      <polygon points="0,0 5,10 10,0" fill="#B03030"/>
+    </marker>
+    <marker id="adDot" markerWidth="10" markerHeight="10" refX="5" refY="10" orient="auto">
+      <polygon points="0,0 5,10 10,0" fill="#888"/>
+    </marker>
+    <marker id="arRight" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0,0 10,3.5 0,7" fill="#B03030"/>
+    </marker>
+  </defs>
+
+  <!-- LEVEL 1: East India Company -->
+  <rect x="210" y="65" width="300" height="50" fill="#2B4F6E" stroke="#1A3050" stroke-width="2" rx="8"/>
+  <text x="360" y="88" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">EAST INDIA COMPANY (State)</text>
+  <text x="360" y="106" text-anchor="middle" font-size="9" fill="#A0C8E8">Receives fixed permanent revenue</text>
+
+  <!-- Label: Fixed Revenue Demand arrow -->
+  <line x1="360" y1="115" x2="360" y2="155" stroke="#555" stroke-width="2.5" marker-end="url(#ad)"/>
+  <rect x="375" y="122" width="140" height="18" fill="#faf8f0" stroke="none"/>
+  <text x="445" y="135" text-anchor="middle" font-size="9" fill="#555" font-weight="bold">Fixed Revenue Demand ↓</text>
+
+  <!-- LEVEL 2: Zamindar -->
+  <rect x="210" y="158" width="300" height="60" fill="#C8A050" stroke="#8B6914" stroke-width="2" rx="8"/>
+  <text x="360" y="180" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">ZAMINDAR (Proprietor)</text>
+  <text x="360" y="196" text-anchor="middle" font-size="9" fill="#F0E8D0">Can be auctioned if default (Sunset Law)</text>
+  <text x="360" y="208" text-anchor="middle" font-size="9" fill="#F0E8D0">Keeps surplus above fixed demand</text>
+
+  <!-- Label: Rent Extraction arrow -->
+  <line x1="360" y1="218" x2="360" y2="258" stroke="#B03030" stroke-width="2.5" marker-end="url(#adRed)"/>
+  <rect x="375" y="225" width="120" height="18" fill="#faf8f0" stroke="none"/>
+  <text x="435" y="238" text-anchor="middle" font-size="9" fill="#B03030" font-weight="bold">Rent Extraction ↓</text>
+
+  <!-- LEVEL 3: Sub-Tenures / Intermediaries -->
+  <rect x="195" y="261" width="330" height="80" fill="#E0D0B0" stroke="#A09070" stroke-width="2" rx="8"/>
+  <text x="360" y="282" text-anchor="middle" font-size="13" font-weight="bold" fill="#5A4A2A">SUB-TENURES / INTERMEDIARIES</text>
+  
+  <!-- Three nested boxes showing layers -->
+  <rect x="215" y="292" width="90" height="38" fill="#D8C498" stroke="#A09070" stroke-width="1.5" rx="4"/>
+  <text x="260" y="310" text-anchor="middle" font-size="9" fill="#5A4A2A">Layer 1</text>
+  <text x="260" y="322" text-anchor="middle" font-size="7" fill="#888">rent → margin kept</text>
+
+  <rect x="315" y="292" width="90" height="38" fill="#D0BC88" stroke="#A09070" stroke-width="1.5" rx="4"/>
+  <text x="360" y="310" text-anchor="middle" font-size="9" fill="#5A4A2A">Layer 2</text>
+  <text x="360" y="322" text-anchor="middle" font-size="7" fill="#888">rent → margin kept</text>
+
+  <rect x="415" y="292" width="90" height="38" fill="#C8B478" stroke="#A09070" stroke-width="1.5" rx="4"/>
+  <text x="460" y="310" text-anchor="middle" font-size="9" fill="#5A4A2A">Layer 3</text>
+  <text x="460" y="322" text-anchor="middle" font-size="7" fill="#888">rent → margin kept</text>
+
+  <!-- Arrows between layers -->
+  <text x="307" y="315" text-anchor="middle" font-size="12" fill="#B03030">→</text>
+  <text x="407" y="315" text-anchor="middle" font-size="12" fill="#B03030">→</text>
+
+  <!-- Arrow L3 → L4 -->
+  <line x1="360" y1="341" x2="360" y2="378" stroke="#B03030" stroke-width="2.5" marker-end="url(#adRed)"/>
+  <text x="435" y="362" font-size="9" fill="#B03030" font-weight="bold">Rent passed up ↑</text>
+
+  <!-- LEVEL 4: Ryot (Cultivator) -->
+  <rect x="195" y="381" width="330" height="70" fill="#E8C8A0" stroke="#B08030" stroke-width="2" rx="8"/>
+  <text x="360" y="402" text-anchor="middle" font-size="14" font-weight="bold" fill="#5A2A0A">RYOT (Cultivator)</text>
+  <text x="360" y="418" text-anchor="middle" font-size="9" fill="#6B4A2A">Bears highest burden of all layers above</text>
+  <text x="360" y="432" text-anchor="middle" font-size="9" fill="#6B4A2A">No legal protection initially</text>
+  <text x="360" y="444" text-anchor="middle" font-size="9" fill="#6B4A2A">Often borrows from moneylender</text>
+
+  <!-- Side arrow: Ryot → Moneylender -->
+  <line x1="525" y1="415" x2="580" y2="415" stroke="#B03030" stroke-width="2" marker-end="url(#arRight)"/>
+
+  <!-- MONEYLENDER box (right side) -->
+  <rect x="583" y="380" width="120" height="70" fill="#F0D0D0" stroke="#B03030" stroke-width="2" rx="8"/>
+  <text x="643" y="400" text-anchor="middle" font-size="12" font-weight="bold" fill="#8B2222">MONEY-</text>
+  <text x="643" y="414" text-anchor="middle" font-size="12" font-weight="bold" fill="#8B2222">LENDER</text>
+  <text x="643" y="430" text-anchor="middle" font-size="8" fill="#AA3333">Provides credit at</text>
+  <text x="643" y="440" text-anchor="middle" font-size="8" fill="#AA3333">high interest; can seize</text>
+  <text x="643" y="450" text-anchor="middle" font-size="8" fill="#AA3333">land through courts</text>
+
+  <!-- Dotted loop: Moneylender buys auctioned estates → back to Zamindar level -->
+  <line x1="643" y1="380" x2="643" y2="190" stroke="#888" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="643" y1="190" x2="515" y2="190" stroke="#888" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#adDot)"/>
+  <!-- Label for dotted loop -->
+  <rect x="545" y="260" width="115" height="38" fill="#faf8f0" stroke="#888" stroke-width="1" rx="3" stroke-dasharray="4,3"/>
+  <text x="602" y="275" text-anchor="middle" font-size="8" fill="#666" font-weight="bold">Buys auctioned</text>
+  <text x="602" y="288" text-anchor="middle" font-size="8" fill="#666" font-weight="bold">zamindari estates</text>
+
+  <!-- Cumulative burden indicator on left -->
+  <rect x="20" y="110" width="85" height="330" fill="none" stroke="#B03030" stroke-width="1.5" rx="6" stroke-dasharray="6,4"/>
+  <!-- Gradient arrow showing increasing burden downward -->
+  <line x1="62" y1="130" x2="62" y2="420" stroke="#B03030" stroke-width="3"/>
+  <polygon points="62,420 55,405 69,405" fill="#B03030"/>
+  <text x="55" y="270" text-anchor="middle" font-size="9" fill="#B03030" font-weight="bold" transform="rotate(-90,55,270)">Cumulative extraction increases ↓</text>
+
+  <!-- Bottom note -->
+  <rect x="120" y="465" width="480" height="30" fill="#F8F0E0" stroke="#ccc" stroke-width="1" rx="4"/>
+  <text x="360" y="484" text-anchor="middle" font-size="10" fill="#666" font-style="italic">Each layer extracts surplus → the cultivator at the bottom bears the total cumulative burden</text>
+
+  <!-- Legend -->
+  <rect x="50" y="510" width="620" height="75" fill="#f0ece0" stroke="#ccc" stroke-width="1" rx="4"/>
+  <text x="60" y="530" font-size="11" fill="#555" font-weight="bold">Q: How did this system create a cycle where the cultivator bore the greatest burden?</text>
+  <line x1="60" y1="545" x2="85" y2="545" stroke="#555" stroke-width="2.5"/>
+  <text x="92" y="549" font-size="9" fill="#555">Revenue demand (downward)</text>
+  <line x1="210" y1="545" x2="235" y2="545" stroke="#B03030" stroke-width="2.5"/>
+  <text x="242" y="549" font-size="9" fill="#555">Rent extraction (downward)</text>
+  <line x1="380" y1="545" x2="405" y2="545" stroke="#888" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="412" y="549" font-size="9" fill="#555">Moneylender buys estates (loop)</text>
+  <text x="60" y="572" font-size="9" fill="#777" font-style="italic">The Permanent Settlement created layered extraction: Company ← Zamindar ← Intermediaries ← Ryot, with moneylenders completing the cycle of dispossession.</text>
+</svg>
