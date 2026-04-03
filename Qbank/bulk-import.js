@@ -610,6 +610,30 @@ const CUET_CHAPTER_MAP = {
   'economics/infrastructure': 'cuet-eco-infrastructure',
   'economics/environment-dev': 'cuet-eco-environment',
   'economics/dev-experience': 'cuet-eco-dev-experience',
+  // Psychology (psychology subject)
+  'psychology/disorders':        'cuet-psy-ch01',
+  'psychology/therapeutic':      'cuet-psy-ch02',
+  'psychology/life-challenges':  'cuet-psy-ch03',
+  'psychology/self-personality': 'cuet-psy-ch04',
+  'psychology/attitude':         'cuet-psy-ch05',
+  'psychology/social-influence': 'cuet-psy-ch06',
+  'psychology/variations':       'cuet-psy-ch07',
+  'psychology/applied':          'cuet-psy-ch08',
+  'psychology/skills':           'cuet-psy-ch09',
+  // History (history subject)
+  'history/harappan':            'cuet-hist-harappan',
+  'history/kings-farmers':       'cuet-hist-kings-farmers',
+  'history/kinship-caste':       'cuet-hist-kinship-caste',
+  'history/thinkers-beliefs':    'cuet-hist-thinkers-beliefs',
+  'history/travellers':          'cuet-hist-travellers',
+  'history/bhakti-sufi':         'cuet-hist-bhakti-sufi',
+  'history/vijayanagara':        'cuet-hist-vijayanagara',
+  'history/peasants-zamindars':  'cuet-hist-peasants-zamindars',
+  'history/colonialism':         'cuet-hist-colonialism',
+  'history/rebels-raj':          'cuet-hist-rebels-raj',
+  'history/gandhi-nationalism':  'cuet-hist-gandhi-nationalism',
+  'history/partition':           'cuet-hist-partition',
+  'history/constitution':        'cuet-hist-constitution',
 };
 
 // NEET/generated physics folder → DB chapter_id (folder names don't match DB IDs)
