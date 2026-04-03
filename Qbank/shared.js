@@ -26,7 +26,13 @@ const EXAM_CONFIG = {
     fullName: 'Common University Entrance Test',
     icon: '🎓',
     description: 'University Entrance',
-    subjects: ['CUET-PHYSICS', 'CUET-CHEMISTRY', 'CUET-BIOLOGY', 'MATHEMATICS', 'ACCOUNTANCY', 'BUSINESS-STUDIES', 'ECONOMICS']
+    subjects: [
+      'CUET-PHYSICS', 'CUET-CHEMISTRY', 'CUET-BIOLOGY',
+      'MATHEMATICS', 'ACCOUNTANCY', 'BUSINESS-STUDIES', 'ECONOMICS',
+      'HISTORY', 'GEOGRAPHY', 'POLITICAL-SCIENCE', 'SOCIOLOGY', 'PSYCHOLOGY',
+      'COMPUTER-SCIENCE', 'LEGAL-STUDIES', 'PHYSICAL-EDUCATION',
+      'HOME-SCIENCE', 'ENGLISH'
+    ]
   }
 };
 
@@ -43,7 +49,17 @@ const SUBJECT_META = {
   'MATHEMATICS':      { name: 'Mathematics',      emoji: '📐', color: '#ef4444', bg: '#fee2e2' },
   'ACCOUNTANCY':      { name: 'Accountancy',      emoji: '📊', color: '#14b8a6', bg: '#ccfbf1' },
   'BUSINESS-STUDIES': { name: 'Business Studies', emoji: '💼', color: '#6366f1', bg: '#e0e7ff' },
-  'ECONOMICS':        { name: 'Economics',        emoji: '💰', color: '#f97316', bg: '#ffedd5' }
+  'ECONOMICS':        { name: 'Economics',        emoji: '💰', color: '#f97316', bg: '#ffedd5' },
+  'HISTORY':          { name: 'History',          emoji: '🏛️', color: '#92400e', bg: '#fef3c7' },
+  'GEOGRAPHY':        { name: 'Geography',        emoji: '🌍', color: '#0891b2', bg: '#cffafe' },
+  'POLITICAL-SCIENCE':{ name: 'Political Science',emoji: '🏛', color: '#7c3aed', bg: '#ede9fe' },
+  'SOCIOLOGY':        { name: 'Sociology',        emoji: '👥', color: '#db2777', bg: '#fce7f3' },
+  'PSYCHOLOGY':       { name: 'Psychology',       emoji: '🧠', color: '#7c3aed', bg: '#f5f3ff' },
+  'COMPUTER-SCIENCE': { name: 'Computer Science', emoji: '💻', color: '#0f766e', bg: '#ccfbf1' },
+  'LEGAL-STUDIES':    { name: 'Legal Studies',    emoji: '⚖️', color: '#b45309', bg: '#fef3c7' },
+  'PHYSICAL-EDUCATION':{ name: 'Physical Education', emoji: '🏃', color: '#16a34a', bg: '#dcfce7' },
+  'HOME-SCIENCE':     { name: 'Home Science',     emoji: '🏠', color: '#d97706', bg: '#fef9c3' },
+  'ENGLISH':          { name: 'English',          emoji: '📖', color: '#2563eb', bg: '#dbeafe' }
 };
 
 function getExamConfig(examId) {
