@@ -88,9 +88,9 @@ async function main() {
     const colData = mtfMap.get(qid);
     if (!colData) { skipped++; continue; }
 
-    // Already patched?
-    if (row.payload?.column_a) {
-      log(`${qid}: already has column_a — skipping`, 'skip');
+    // Already fully patched?
+    if (row.payload?.column_a && row.payload?.correct_mapping) {
+      log(`${qid}: already has column_a + correct_mapping — skipping`, 'skip');
       skipped++;
       continue;
     }
