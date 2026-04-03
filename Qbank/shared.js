@@ -628,9 +628,37 @@ function _normalizeTopic(name) {
  * Uses a per-chapter cache so repeated calls don't hit the DB.
  * Returns the topic id string, or null if no match found.
  */
+// Explicit overrides for topic names that fuzzy matching cannot resolve.
+// Key: chapterId → Map of exact payload topic name (case-insensitive) → topic_id.
+const _topicOverrides = {
+  'cuet-psy-basics': {
+    'psychology & life': 'cuet-psy-basics-life',
+  },
+  'cuet-psy-individual-diff': {
+    'self and personality': 'cuet-psy-id-self-personality',
+    'variations in psychological attributes': 'cuet-psy-id-variations',
+  },
+  'cuet-psy-mental-health': {
+    'psychological disorders': 'cuet-psy-mh-disorders',
+    'therapeutic approaches': 'cuet-psy-mh-therapeutic',
+    'meeting life challenges': 'cuet-psy-mh-life-challenges',
+  },
+  'cuet-psy-social': {
+    'attitude and social cognition': 'cuet-psy-soc-attitude',
+    'social influence & groups': 'cuet-psy-soc-influence',
+  },
+};
+
 const _topicCache = {}; // chapterId -> [{ id, nameLower, nameNorm, words }]
 async function resolveTopicId(chapterId, topicName) {
   if (!SUPABASE || !chapterId || !topicName) return null;
+
+  // 0. Check explicit overrides first (bypasses DB lookup entirely)
+  const overrideChapter = _topicOverrides[chapterId];
+  if (overrideChapter) {
+    const overrideId = overrideChapter[topicName.toLowerCase().trim()];
+    if (overrideId) return overrideId;
+  }
 
   // Build cache for this chapter if needed
   if (!_topicCache[chapterId]) {
