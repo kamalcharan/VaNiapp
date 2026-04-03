@@ -38,8 +38,21 @@ async function main() {
   const config = loadConfig();
   const supabase = createClient(config.supabase.url, config.supabase.anonKey);
 
+  // Parse "1-P, 2-Q, 3-R" → { "1": "P", "2": "Q", "3": "R" }
+  function parseCorrectMapping(options, correctKey) {
+    const correctOpt = options.find(o => o.key === correctKey);
+    if (!correctOpt) return null;
+    const mapping = {};
+    const pairs = correctOpt.text.split(/,\s*/);
+    for (const pair of pairs) {
+      const m = pair.trim().match(/^(\w+)-(\w+)$/);
+      if (m) mapping[m[1]] = m[2];
+    }
+    return Object.keys(mapping).length > 0 ? mapping : null;
+  }
+
   // Collect all MTF questions with column data from JSON files
-  const mtfMap = new Map(); // question_id -> { column_a, column_b }
+  const mtfMap = new Map(); // question_id -> { column_a, column_b, correct_mapping }
   const files = readdirSync(HISTORY_DIR).filter(f => f.endsWith('.json')).sort();
 
   for (const file of files) {
@@ -48,8 +61,9 @@ async function main() {
       if (q.question_type !== 'match-the-following') continue;
       const col_a = q.payload?.column_a || q.column_a;
       const col_b = q.payload?.column_b || q.column_b;
+      const correct_mapping = parseCorrectMapping(q.options || [], q.correct_answer);
       if (col_a && col_b) {
-        mtfMap.set(q.id, { column_a: col_a, column_b: col_b });
+        mtfMap.set(q.id, { column_a: col_a, column_b: col_b, correct_mapping });
       }
     }
   }
@@ -74,17 +88,25 @@ async function main() {
     const colData = mtfMap.get(qid);
     if (!colData) { skipped++; continue; }
 
-    // Already patched?
-    if (row.payload?.column_a) {
-      log(`${qid}: already has column_a — skipping`, 'skip');
+    // Debug: show what's in the DB payload
+    const hasCA = !!row.payload?.column_a;
+    const hasCM = !!row.payload?.correct_mapping;
+    const cmVal = row.payload?.correct_mapping;
+    log(`${qid}: DB has column_a=${hasCA}, correct_mapping=${hasCM}, cm_value=${JSON.stringify(cmVal)}`);
+
+    // Always update correct_mapping if missing or empty
+    const needsCM = !cmVal || (typeof cmVal === 'object' && Object.keys(cmVal).length === 0);
+    if (!needsCM && hasCA) {
+      log(`${qid}: fully patched — skipping`, 'skip');
       skipped++;
       continue;
     }
 
     const newPayload = { ...row.payload, column_a: colData.column_a, column_b: colData.column_b };
+    if (colData.correct_mapping) newPayload.correct_mapping = colData.correct_mapping;
 
     if (dryRun) {
-      log(`Would patch ${qid}: col_a=${colData.column_a.length}items, col_b=${colData.column_b.length}items`);
+      log(`Would patch ${qid}: col_a=${colData.column_a.length}items, col_b=${colData.column_b.length}items, mapping=${JSON.stringify(colData.correct_mapping)}`);
       updated++;
       continue;
     }
