@@ -23,6 +23,9 @@ const STORAGE_BUCKET = 'question-images';
 const DIAGRAM_SOURCES = [
   { base: join(__dirname, 'CUET/chemistry'), subject: 'chemistry' },
   { base: join(__dirname, 'CUET/economics'), subject: 'economics' },
+  // Flat layout: SVGs/PNGs directly in the subject folder (no chapter subdirs)
+  { base: join(__dirname, 'CUET/history'), subject: 'history', flat: true },
+  { base: join(__dirname, 'CUET/psychology'), subject: 'psychology', flat: true },
 ];
 
 function loadConfig() {
@@ -38,30 +41,50 @@ function log(msg, type = 'info') {
   console.log(`${prefix} ${msg}`);
 }
 
-// Collect all diagram PNGs
+// Collect all diagram images (PNG or SVG)
 function collectDiagrams(subjectFilter) {
   const diagrams = [];
-  for (const { base, subject } of DIAGRAM_SOURCES) {
+  for (const { base, subject, flat } of DIAGRAM_SOURCES) {
     if (subjectFilter && subject !== subjectFilter) continue;
     if (!existsSync(base)) continue;
 
-    const chapters = readdirSync(base).filter(d => statSync(join(base, d)).isDirectory());
-    for (const chapter of chapters) {
-      const diagramDir = join(base, chapter, 'diagrams');
-      if (!existsSync(diagramDir)) continue;
-
-      const pngs = readdirSync(diagramDir).filter(f => f.endsWith('.png'));
-      for (const png of pngs) {
-        // Extract question ID from filename (e.g. cuet-chem-electrochem-mixed-19.png → cuet-chem-electrochem-mixed-19)
-        const questionId = png.replace('.png', '');
+    if (flat) {
+      // Flat layout: images directly in the subject folder
+      const files = readdirSync(base).filter(f => f.endsWith('.png') || f.endsWith('.svg'));
+      for (const file of files) {
+        const questionId = file.replace(/\.(png|svg)$/, '');
+        const ext = file.endsWith('.svg') ? 'svg' : 'png';
+        const contentType = ext === 'svg' ? 'image/svg+xml' : 'image/png';
         diagrams.push({
-          localPath: join(diagramDir, png),
-          storagePath: `${subject}/${chapter}/${png}`,
+          localPath: join(base, file),
+          storagePath: `${subject}/${file}`,
           questionId,
           subject,
-          chapter,
-          filename: png,
+          chapter: subject,
+          filename: file,
+          contentType,
         });
+      }
+    } else {
+      // Nested layout: subject/{chapter}/diagrams/*.png
+      const chapters = readdirSync(base).filter(d => statSync(join(base, d)).isDirectory());
+      for (const chapter of chapters) {
+        const diagramDir = join(base, chapter, 'diagrams');
+        if (!existsSync(diagramDir)) continue;
+
+        const pngs = readdirSync(diagramDir).filter(f => f.endsWith('.png'));
+        for (const png of pngs) {
+          const questionId = png.replace('.png', '');
+          diagrams.push({
+            localPath: join(diagramDir, png),
+            storagePath: `${subject}/${chapter}/${png}`,
+            questionId,
+            subject,
+            chapter,
+            filename: png,
+            contentType: 'image/png',
+          });
+        }
       }
     }
   }
@@ -105,7 +128,7 @@ async function main() {
         const fileBuffer = readFileSync(d.localPath);
         const { error: uploadErr } = await supabase.storage
           .from(STORAGE_BUCKET)
-          .upload(d.storagePath, fileBuffer, { contentType: 'image/png', upsert: true });
+          .upload(d.storagePath, fileBuffer, { contentType: d.contentType, upsert: true });
 
         if (uploadErr) {
           log(`Upload failed for ${d.filename}: ${uploadErr.message}`, 'fail');
