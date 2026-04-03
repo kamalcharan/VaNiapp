@@ -675,11 +675,12 @@
         options: q.options || [],
         elimination_hints: q.elimination_hints || [],
       };
-      // Type-specific fields (scenario-based, assertion-reasoning, etc.)
+      // Type-specific fields — check top-level first, then q.payload (MTF questions store column_a/b there)
       ['image_uri', 'image_alt', 'scenario', 'assertion', 'reason',
        'text_with_blanks', 'column_a', 'column_b', 'correct_mapping',
        'items', 'correct_order'].forEach(f => {
-        if (q[f] != null) p[f] = q[f];
+        const val = q[f] != null ? q[f] : q.payload?.[f];
+        if (val != null) p[f] = val;
       });
       return p;
     }
