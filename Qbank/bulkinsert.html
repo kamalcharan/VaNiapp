@@ -699,10 +699,21 @@
       if (questionId.startsWith('phy-')) return 'physics';
       if (questionId.startsWith('chem-')) return 'chemistry';
       // CUET subjects
-      if (questionId.startsWith('cuet-acc-')) return 'accountancy';
-      if (questionId.startsWith('cuet-eg-')) return 'engineering-graphics';
-      if (questionId.startsWith('eco-') || questionId.startsWith('cuet-eco-')) return 'economics';
-      if (questionId.startsWith('cuet-bst-')) return 'business-studies';
+      if (questionId.startsWith('cuet-acc-'))  return 'accountancy';
+      if (questionId.startsWith('cuet-bst-'))  return 'business-studies';
+      if (questionId.startsWith('cuet-eco-') || questionId.startsWith('eco-')) return 'economics';
+      if (questionId.startsWith('cuet-psy-'))  return 'psychology';
+      if (questionId.startsWith('cuet-hist-')) return 'history';
+      if (questionId.startsWith('cuet-geo-'))  return 'geography';
+      if (questionId.startsWith('cuet-pol-'))  return 'political-science';
+      if (questionId.startsWith('cuet-soc-'))  return 'sociology';
+      if (questionId.startsWith('cuet-cs-'))   return 'computer-science';
+      if (questionId.startsWith('cuet-leg-'))  return 'legal-studies';
+      if (questionId.startsWith('cuet-ped-'))  return 'physical-education';
+      if (questionId.startsWith('cuet-hs-'))   return 'home-science';
+      if (questionId.startsWith('cuet-eng-'))  return 'english';
+      if (questionId.startsWith('cuet-math-')) return 'mathematics';
+      if (questionId.startsWith('cuet-eg-'))   return 'engineering-graphics';
       return 'unknown';
     }
 
