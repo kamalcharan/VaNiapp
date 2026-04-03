@@ -88,9 +88,16 @@ async function main() {
     const colData = mtfMap.get(qid);
     if (!colData) { skipped++; continue; }
 
-    // Already fully patched?
-    if (row.payload?.column_a && row.payload?.correct_mapping) {
-      log(`${qid}: already has column_a + correct_mapping — skipping`, 'skip');
+    // Debug: show what's in the DB payload
+    const hasCA = !!row.payload?.column_a;
+    const hasCM = !!row.payload?.correct_mapping;
+    const cmVal = row.payload?.correct_mapping;
+    log(`${qid}: DB has column_a=${hasCA}, correct_mapping=${hasCM}, cm_value=${JSON.stringify(cmVal)}`);
+
+    // Always update correct_mapping if missing or empty
+    const needsCM = !cmVal || (typeof cmVal === 'object' && Object.keys(cmVal).length === 0);
+    if (!needsCM && hasCA) {
+      log(`${qid}: fully patched — skipping`, 'skip');
       skipped++;
       continue;
     }
