@@ -72,9 +72,11 @@ function collectDiagrams(subjectFilter) {
         const diagramDir = join(base, chapter, 'diagrams');
         if (!existsSync(diagramDir)) continue;
 
-        const pngs = readdirSync(diagramDir).filter(f => f.endsWith('.png'));
+        const pngs = readdirSync(diagramDir).filter(f => f.endsWith('.png') || f.endsWith('.svg'));
         for (const png of pngs) {
-          const questionId = png.replace('.png', '');
+          const ext = png.endsWith('.svg') ? 'svg' : 'png';
+          const contentType = ext === 'svg' ? 'image/svg+xml' : 'image/png';
+          const questionId = png.replace(/\.(png|svg)$/, '');
           diagrams.push({
             localPath: join(diagramDir, png),
             storagePath: `${subject}/${chapter}/${png}`,
@@ -82,7 +84,7 @@ function collectDiagrams(subjectFilter) {
             subject,
             chapter,
             filename: png,
-            contentType: 'image/png',
+            contentType,
           });
         }
       }
