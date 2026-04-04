@@ -1,0 +1,61 @@
+<svg viewBox="0 0 720 500" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect width="720" height="500" fill="#f8f9fa"/>
+  <text x="360" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1a3c5e">Consumer Equilibrium: Indifference Curves + Budget Line</text>
+  <text x="360" y="48" text-anchor="middle" font-size="12" fill="#555">BL tangent to IC₂ at E* — MRS = P_x / P_y</text>
+
+  <!-- Axes -->
+  <line x1="100" y1="70" x2="100" y2="430" stroke="#333" stroke-width="2.5"/>
+  <line x1="100" y1="430" x2="640" y2="430" stroke="#333" stroke-width="2.5"/>
+  <polygon points="100,65 95,78 105,78" fill="#333"/>
+  <polygon points="645,430 632,425 632,435" fill="#333"/>
+
+  <text x="52" y="255" text-anchor="middle" font-size="13" fill="#333" transform="rotate(-90,52,255)">Quantity of Good Y</text>
+  <text x="370" y="462" text-anchor="middle" font-size="13" fill="#333">Quantity of Good X</text>
+
+  <!-- IC₁ (lowest, unattainable if below BL) -->
+  <path d="M 140,380 Q 200,200 450,150" stroke="#90caf9" stroke-width="2" fill="none" stroke-dasharray="8,4"/>
+  <text x="458" y="148" font-size="13" fill="#90caf9">IC₁</text>
+
+  <!-- IC₂ (tangent to BL — equilibrium curve) -->
+  <path d="M 115,340 Q 210,170 510,115" stroke="#1565c0" stroke-width="3" fill="none"/>
+  <text x="518" y="113" font-size="14" fill="#1565c0" font-weight="bold">IC₂</text>
+
+  <!-- IC₃ (highest, unaffordable) -->
+  <path d="M 110,310 Q 220,130 590,80" stroke="#4fc3f7" stroke-width="2" fill="none" stroke-dasharray="8,4"/>
+  <text x="598" y="78" font-size="13" fill="#4fc3f7">IC₃</text>
+
+  <!-- Budget Line -->
+  <line x1="100" y1="165" x2="560" y2="430" stroke="#c62828" stroke-width="3"/>
+
+  <!-- Y intercept of BL -->
+  <circle cx="100" cy="165" r="5" fill="#c62828"/>
+  <text x="115" y="163" font-size="12" fill="#c62828">M/P_y (y-intercept)</text>
+
+  <!-- X intercept of BL -->
+  <circle cx="560" cy="430" r="5" fill="#c62828"/>
+  <text x="575" y="428" font-size="12" fill="#c62828">M/P_x</text>
+
+  <!-- Budget Line label -->
+  <text x="380" y="370" font-size="13" fill="#c62828" font-weight="bold" transform="rotate(-30,380,370)">Budget Line (BL)</text>
+
+  <!-- Equilibrium point E* -->
+  <!-- Tangency at approximately X=280, Y=250 -->
+  <circle cx="295" cy="232" r="9" fill="#ff6f00"/>
+  <text x="313" y="226" font-size="13" fill="#ff6f00" font-weight="bold">E* (Equilibrium)</text>
+
+  <!-- Dashed lines to equilibrium -->
+  <line x1="100" y1="232" x2="295" y2="232" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="295" y1="232" x2="295" y2="430" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="88" y="236" text-anchor="end" font-size="12" fill="#555">y*</text>
+  <text x="295" y="448" text-anchor="middle" font-size="12" fill="#555">x*</text>
+
+  <!-- Condition box -->
+  <rect x="400" y="270" width="270" height="75" rx="8" fill="#fff9c4" stroke="#f9a825" stroke-width="2"/>
+  <text x="535" y="292" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">Equilibrium Condition</text>
+  <text x="535" y="310" text-anchor="middle" font-size="12" fill="#6d4c41">MRS_xy = P_x / P_y</text>
+  <text x="535" y="328" text-anchor="middle" font-size="12" fill="#6d4c41">Slope of IC = Slope of BL</text>
+
+  <!-- Notes IC₃ unaffordable -->
+  <text x="380" y="100" text-anchor="middle" font-size="11" fill="#4fc3f7" font-style="italic">IC₃ = Unaffordable (beyond BL)</text>
+  <text x="180" y="200" text-anchor="middle" font-size="11" fill="#90caf9" font-style="italic">IC₁ = Attainable but suboptimal</text>
+</svg>

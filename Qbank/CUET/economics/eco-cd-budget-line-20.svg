@@ -1,0 +1,56 @@
+<svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect width="700" height="500" fill="#f8f9fa"/>
+  <text x="350" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#1a3c5e">Budget Line: Key Concepts</text>
+  <text x="350" y="50" text-anchor="middle" font-size="12" fill="#555">Income = ₹200, P_x = ₹20, P_y = ₹10 | Equation: 20Q_x + 10Q_y = 200</text>
+
+  <!-- Axes -->
+  <line x1="100" y1="70" x2="100" y2="410" stroke="#333" stroke-width="2.5"/>
+  <line x1="100" y1="410" x2="620" y2="410" stroke="#333" stroke-width="2.5"/>
+
+  <!-- Arrow heads -->
+  <polygon points="100,65 95,78 105,78" fill="#333"/>
+  <polygon points="625,410 612,405 612,415" fill="#333"/>
+
+  <text x="60" y="240" text-anchor="middle" font-size="13" fill="#333" transform="rotate(-90,60,240)">Quantity of Y (units)</text>
+  <text x="360" y="448" text-anchor="middle" font-size="13" fill="#333">Quantity of X (units)</text>
+
+  <!-- Y axis ticks -->
+  <line x1="96" y1="130" x2="104" y2="130" stroke="#555" stroke-width="1.5"/>
+  <text x="88" y="134" text-anchor="end" font-size="12" fill="#333">20</text>
+  <line x1="96" y1="270" x2="104" y2="270" stroke="#555" stroke-width="1.5"/>
+  <text x="88" y="274" text-anchor="end" font-size="12" fill="#333">10</text>
+
+  <!-- X axis ticks -->
+  <line x1="240" y1="406" x2="240" y2="414" stroke="#555" stroke-width="1.5"/>
+  <text x="240" y="428" text-anchor="middle" font-size="12" fill="#333">5</text>
+  <line x1="380" y1="406" x2="380" y2="414" stroke="#555" stroke-width="1.5"/>
+  <text x="380" y="428" text-anchor="middle" font-size="12" fill="#333">10</text>
+  <line x1="520" y1="406" x2="520" y2="414" stroke="#555" stroke-width="1.5"/>
+  <text x="520" y="428" text-anchor="middle" font-size="12" fill="#333">15 (if P_x = ₹10)</text>
+
+  <!-- Budget Line (original) -->
+  <line x1="100" y1="130" x2="380" y2="410" stroke="#1565c0" stroke-width="3"/>
+  <!-- Y-intercept dot -->
+  <circle cx="100" cy="130" r="6" fill="#1565c0"/>
+  <text x="115" y="128" font-size="12" fill="#1565c0" font-weight="bold">Y-intercept = M/P_y = 200/10 = 20</text>
+  <!-- X-intercept dot -->
+  <circle cx="380" cy="410" r="6" fill="#1565c0"/>
+  <text x="390" y="408" font-size="12" fill="#1565c0" font-weight="bold">X-intercept = M/P_x = 200/20 = 10</text>
+
+  <!-- Budget Line label -->
+  <text x="250" y="295" font-size="14" fill="#1565c0" font-weight="bold" transform="rotate(-33,250,295)">Budget Line (BL)</text>
+  <text x="255" y="315" font-size="11" fill="#1565c0" transform="rotate(-33,255,315)">Slope = −P_x/P_y = −20/10 = −2</text>
+
+  <!-- Shifted BL after P_x falls to ₹10 -->
+  <line x1="100" y1="130" x2="520" y2="410" stroke="#e65100" stroke-width="2.5" stroke-dasharray="9,5"/>
+  <circle cx="520" cy="410" r="6" fill="#e65100"/>
+  <text x="538" y="408" font-size="12" fill="#e65100">New X-intercept = 200/10 = 20</text>
+  <text x="420" y="358" font-size="11" fill="#e65100" font-weight="bold">Rotates out when P_x ↓</text>
+
+  <!-- Regions label -->
+  <text x="200" y="320" font-size="11" fill="#555" font-style="italic">Points BELOW line:</text>
+  <text x="200" y="335" font-size="11" fill="#555" font-style="italic">Affordable (income unspent)</text>
+
+  <rect x="108" y="460" width="480" height="28" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="348" y="478" text-anchor="middle" font-size="12" fill="#0d47a1">Key: Slope = Price ratio | Position = Income | Both shift BL parallelly</text>
+</svg>
