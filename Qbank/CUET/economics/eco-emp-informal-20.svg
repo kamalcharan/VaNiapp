@@ -1,0 +1,77 @@
+<svg viewBox="0 0 780 460" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect width="780" height="460" fill="#f8f9fa"/>
+  <text x="390" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1a3c5e">India's Workforce: Formal vs Informal Sector</text>
+  <text x="390" y="48" text-anchor="middle" font-size="12" fill="#555">~93% work in the Informal/Unorganised Sector | ~7% in the Formal/Organised Sector</text>
+
+  <!-- Large circle: total workforce, center 240,240, r=160 -->
+  <!-- Informal: 93% = 334.8 degrees. Start from top (270°), go clockwise -->
+  <!-- Formal: 7% = 25.2 degrees (small top-right slice) -->
+
+  <!-- Informal slice (93%): from 270° clockwise to 264.8° → almost full circle -->
+  <!-- Using large arc: from top (0,-160) sweeping most of circle -->
+  <!-- End point of formal (7%): angle = 270 + 25.2 = 295.2° from positive x = 295.2-90=205.2° standard -->
+  <!-- End x = 240 + 160*cos(205.2°*π/180) ≈ 240 + 160*(-0.906) ≈ 95 -->
+  <!-- End y = 240 + 160*sin(205.2°*π/180) ≈ 240 + 160*(-0.424) ≈ 172 -->
+
+  <!-- Informal 93% — big slice -->
+  <path d="M 240,240 L 240,80 A 160,160 0 1,1 95,172 Z"
+        fill="#ef9a9a" stroke="#b71c1c" stroke-width="2"/>
+
+  <!-- Formal 7% — small slice -->
+  <path d="M 240,240 L 95,172 A 160,160 0 0,1 240,80 Z"
+        fill="#a5d6a7" stroke="#1b5e20" stroke-width="2"/>
+
+  <!-- Labels on slices -->
+  <text x="270" y="260" font-size="28" font-weight="bold" fill="#b71c1c">93%</text>
+  <text x="255" y="282" font-size="13" fill="#c62828">Informal /</text>
+  <text x="255" y="298" font-size="13" fill="#c62828">Unorganised</text>
+  <text x="255" y="314" font-size="11" fill="#c62828">Sector</text>
+
+  <text x="136" y="148" font-size="16" font-weight="bold" fill="#1b5e20">7%</text>
+  <text x="120" y="165" font-size="11" fill="#2e7d32">Formal /</text>
+  <text x="120" y="180" font-size="11" fill="#2e7d32">Organised</text>
+
+  <!-- Within formal: informal-within-formal callout -->
+  <!-- Small inner wedge in the formal slice (shaded) -->
+  <!-- Approx 40% of 7% slice is informal workers in formal sector -->
+  <path d="M 240,240 L 120,162 A 100,100 0 0,1 240,140 Z"
+        fill="#ffe082" stroke="#f9a825" stroke-width="1.5" opacity="0.85"/>
+  <text x="163" y="180" font-size="9" fill="#e65100" font-weight="bold">Informal</text>
+  <text x="163" y="192" font-size="9" fill="#e65100">within</text>
+  <text x="163" y="204" font-size="9" fill="#e65100">Formal</text>
+
+  <!-- Callout line -->
+  <line x1="163" y1="180" x2="100" y2="130" stroke="#e65100" stroke-width="1.5"/>
+  <rect x="30" y="100" width="185" height="55" rx="6" fill="#fff9c4" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="123" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#e65100">Informalisation in</text>
+  <text x="123" y="133" text-anchor="middle" font-size="11" fill="#e65100">the Formal Sector!</text>
+  <text x="123" y="148" text-anchor="middle" font-size="10" fill="#bf360c">Contract workers, no benefits</text>
+
+  <!-- RIGHT SIDE: Key facts -->
+  <rect x="450" y="75" width="300" height="290" rx="10" fill="#fff" stroke="#90a4ae" stroke-width="1.5"/>
+  <rect x="450" y="75" width="300" height="34" rx="10" fill="#37474f"/>
+  <text x="600" y="97" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">Key Facts</text>
+
+  <text x="465" y="125" font-size="12" fill="#333" font-weight="bold">Informal Sector Workers:</text>
+  <text x="465" y="143" font-size="11" fill="#555">• Agricultural labourers</text>
+  <text x="465" y="158" font-size="11" fill="#555">• Construction workers</text>
+  <text x="465" y="173" font-size="11" fill="#555">• Street vendors</text>
+  <text x="465" y="188" font-size="11" fill="#555">• Domestic workers</text>
+  <text x="465" y="203" font-size="11" fill="#555">• Home-based workers</text>
+  <text x="465" y="218" font-size="11" fill="#555">• Small workshop employees</text>
+
+  <line x1="460" y1="232" x2="740" y2="232" stroke="#eceff1" stroke-width="1"/>
+  <text x="465" y="252" font-size="12" fill="#c62828" font-weight="bold">Characteristics:</text>
+  <text x="465" y="268" font-size="11" fill="#555">✗ No written contract</text>
+  <text x="465" y="283" font-size="11" fill="#555">✗ No job security</text>
+  <text x="465" y="298" font-size="11" fill="#555">✗ No PF / health insurance</text>
+  <text x="465" y="313" font-size="11" fill="#555">✗ Hire-and-fire practices</text>
+  <text x="465" y="328" font-size="11" fill="#555">✗ Low, irregular wages</text>
+  <text x="465" y="348" font-size="11" fill="#2e7d32" font-weight="bold">Governed by: Unorganised Workers'</text>
+  <text x="465" y="363" font-size="11" fill="#2e7d32">  Social Security Act, 2008</text>
+
+  <!-- Bottom note -->
+  <rect x="30" y="400" width="720" height="46" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="390" y="419" text-anchor="middle" font-size="12" font-weight="bold" fill="#0d47a1">Conclusion:</text>
+  <text x="390" y="437" text-anchor="middle" font-size="11" fill="#1565c0">93% of India's workforce lacks formal protections → Informalisation is the defining challenge of Indian labour market</text>
+</svg>
