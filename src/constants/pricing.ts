@@ -8,13 +8,19 @@
 
 export type PlanId = 'crunch' | 'monthly' | 'yearly';
 
+// ── Google Play product IDs (must match Play Console exactly) ──
+export const PLAY_PRODUCT_IDS: Record<PlanId, string> = {
+  monthly: 'vani_monthly',
+  yearly:  'vani_yearly',
+  crunch:  'vani_crunch',
+};
+
 export interface PricingPlan {
   id: PlanId;
   name: string;
   description: string;
-  basePrice: number;          // INR
+  basePrice: number;          // INR — display only; actual charge set in Play Console
   period: string;             // display label
-  razorpayPlanId: string;
   badge?: string;
 }
 
