@@ -51,7 +51,7 @@ const LANG_GLYPH: Record<string, string> = {
   te: '\u0C05',   // అ
   hi: '\u0915',   // क
 };
-import { getRazorpayConfig } from '../../src/lib/appConfig';
+import { getPlansConfig } from '../../src/lib/appConfig';
 
 const TARGET_YEAR_OPTIONS = getTargetYearOptions();
 
@@ -106,7 +106,7 @@ export default function ProfileScreen() {
   // Fetch plan display name from DB config
   useEffect(() => {
     if (!subscriptionPlan) return;
-    getRazorpayConfig().then((cfg) => {
+    getPlansConfig().then((cfg) => {
       const name = cfg.plans[subscriptionPlan]?.name;
       if (name) setPlanDisplayName(name);
     });

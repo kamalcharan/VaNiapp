@@ -29,7 +29,7 @@ import {
   getPlansForUser,
 } from '../src/constants/pricing';
 import { saveSubscription } from '../src/lib/payments';
-import { getRazorpayConfig, type RazorpayConfig } from '../src/lib/appConfig';
+import { getPlansConfig, type PlansConfig } from '../src/lib/appConfig';
 import {
   initPlayBilling,
   fetchPlayProducts,
@@ -47,7 +47,7 @@ export default function UpgradeScreen() {
   const targetYear = authUser?.targetYear;
 
   // ── Config & Play products ───────────────────────────────────
-  const [config, setConfig] = useState<RazorpayConfig | null>(null);
+  const [config, setConfig] = useState<PlansConfig | null>(null);
   const [playProducts, setPlayProducts] = useState<PlayProduct[]>([]);
   const [configLoading, setConfigLoading] = useState(true);
 
@@ -58,7 +58,7 @@ export default function UpgradeScreen() {
 
   useEffect(() => {
     async function load() {
-      const cfg = await getRazorpayConfig();
+      const cfg = await getPlansConfig();
       setConfig(cfg);
       // Init Play Billing and fetch real prices from Play Store
       await initPlayBilling();

@@ -1,8 +1,8 @@
 /**
  * Pricing types and pure helper functions.
  *
- * All concrete values (plans, coupons, GST rate, Razorpay key) are fetched
- * from med_app_config at runtime via getRazorpayConfig().
+ * All concrete values (plans, coupons, GST rate) are fetched
+ * from med_app_config at runtime via getPlansConfig().
  * This file only contains types and stateless helpers.
  */
 
