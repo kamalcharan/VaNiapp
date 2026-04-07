@@ -31,7 +31,6 @@ const FALLBACK_CONFIG: RazorpayConfig = {
       description: 'Practice exams only — no stages',
       basePrice: 499,
       period: 'one-time',
-      razorpayPlanId: '',
     },
     monthly: {
       id: 'monthly',
@@ -39,7 +38,6 @@ const FALLBACK_CONFIG: RazorpayConfig = {
       description: 'Full access with stage-wise progression',
       basePrice: 199,
       period: '/month',
-      razorpayPlanId: '',
     },
     yearly: {
       id: 'yearly',
@@ -47,7 +45,6 @@ const FALLBACK_CONFIG: RazorpayConfig = {
       description: 'Full access — best value',
       basePrice: 1399,
       period: '/year',
-      razorpayPlanId: '',
       badge: 'BEST VALUE',
     },
   },

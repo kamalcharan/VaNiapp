@@ -1,6 +1,5 @@
 import { supabase } from './supabase';
-import type { PlanId, PricingPlan } from '../constants/pricing';
-import { calculatePricing } from '../constants/pricing';
+import type { PlanId } from '../constants/pricing';
 
 // ── Save subscription ────────────────────────────────────────
 
@@ -186,59 +185,7 @@ export async function logFailedPayment(params: {
     error_description: params.errorDescription,
     razorpay_order_id: params.razorpayOrderId ?? null,
     amount: params.amountRupees,
-  }).catch(() => {});
-}
-
-// ── Create Razorpay order via Supabase Edge Function ─────────
-
-interface CreateOrderResult {
-  orderId: string;
-  amount: number;     // paise
-  currency: string;
-}
-
-export async function createRazorpayOrder(
-  planType: PlanId,
-  discountPercent: number = 0,
-  plans: Record<PlanId, PricingPlan>,
-  gstRate: number = 0.18,
-): Promise<CreateOrderResult> {
-  if (!supabase) throw new Error('Supabase is not configured.');
-
-  const plan = plans[planType];
-  if (!plan) throw new Error(`Unknown plan: ${planType}`);
-  const pricing = calculatePricing(plan.basePrice, discountPercent, gstRate);
-  const amountPaise = pricing.total * 100;
-
-  // supabase.functions.invoke() automatically:
-  // - includes the current user's JWT (refreshed if expired)
-  // - adds the apikey header
-  const { data, error } = await supabase.functions.invoke('create-order', {
-    body: {
-      amount: amountPaise,
-      currency: 'INR',
-      receipt: `${planType}_${Date.now()}`,
-      notes: { plan_type: planType },
-    },
-  });
-
-  if (error) {
-    // supabase.functions.invoke wraps the real error — extract it
-    let detail = error.message;
-    try {
-      if (error.context instanceof Response) {
-        const body = await error.context.json();
-        detail = body?.error || JSON.stringify(body);
-      }
-    } catch { /* use default message */ }
-    throw new Error(`Failed to create order: ${detail}`);
-  }
-
-  return {
-    orderId: data.id,
-    amount: data.amount,
-    currency: data.currency,
-  };
+  }).then(null, () => {});
 }
 
 // ── Cancel subscription ──────────────────────────────────────

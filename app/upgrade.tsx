@@ -25,22 +25,18 @@ import { store } from '../src/store';
 import { setSubscription } from '../src/store/slices/trialSlice';
 import {
   type PlanId,
-  type PriceBreakdown,
-  calculatePricing,
   validateCoupon,
   getPlansForUser,
 } from '../src/constants/pricing';
-import {
-  saveSubscription,
-  createRazorpayOrder,
-  logFailedPayment,
-} from '../src/lib/payments';
+import { saveSubscription } from '../src/lib/payments';
 import { getRazorpayConfig, type RazorpayConfig } from '../src/lib/appConfig';
-import RazorpayCheckoutModal, {
-  type RazorpayCheckoutParams,
-  type RazorpayPaymentResult,
-  type RazorpayPaymentError,
-} from '../src/components/RazorpayCheckoutModal';
+import {
+  initPlayBilling,
+  fetchPlayProducts,
+  purchaseSubscription,
+  restorePlayPurchases,
+  type PlayProduct,
+} from '../src/lib/playBilling';
 
 export default function UpgradeScreen() {
   const { colors, mode } = useTheme();
@@ -48,27 +44,32 @@ export default function UpgradeScreen() {
   const shadow = mode === 'dark' ? Shadows.puffyDark : Shadows.puffy;
 
   const authUser = useSelector((s: RootState) => s.auth.user);
-  const userName = authUser?.name ?? '';
-  const userEmail = authUser?.email ?? '';
   const targetYear = authUser?.targetYear;
 
-  // ── DB config ────────────────────────────────────────────────
+  // ── Config & Play products ───────────────────────────────────
   const [config, setConfig] = useState<RazorpayConfig | null>(null);
+  const [playProducts, setPlayProducts] = useState<PlayProduct[]>([]);
   const [configLoading, setConfigLoading] = useState(true);
 
-  useEffect(() => {
-    getRazorpayConfig()
-      .then(setConfig)
-      .finally(() => setConfigLoading(false));
-  }, []);
-
-  // Determine which plans to show
   const availablePlanIds = getPlansForUser(targetYear);
   const [selectedPlan, setSelectedPlan] = useState<PlanId>(
     availablePlanIds.includes('yearly') ? 'yearly' : availablePlanIds[0],
   );
 
-  // Coupon state
+  useEffect(() => {
+    async function load() {
+      const cfg = await getRazorpayConfig();
+      setConfig(cfg);
+      // Init Play Billing and fetch real prices from Play Store
+      await initPlayBilling();
+      const products = await fetchPlayProducts(availablePlanIds);
+      setPlayProducts(products);
+      setConfigLoading(false);
+    }
+    load();
+  }, []);
+
+  // ── Coupon state (VaNiValue — 100% free only) ────────────────
   const [couponInput, setCouponInput] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState<{
     code: string;
@@ -77,24 +78,21 @@ export default function UpgradeScreen() {
   } | null>(null);
   const [couponError, setCouponError] = useState('');
 
-  // Loading
+  const isFree = (appliedCoupon?.discountPercent ?? 0) === 100;
+
+  // ── Loading ──────────────────────────────────────────────────
   const [loading, setLoading] = useState(false);
 
-  // Razorpay modal state
-  const [checkoutVisible, setCheckoutVisible] = useState(false);
-  const [checkoutParams, setCheckoutParams] = useState<RazorpayCheckoutParams | null>(null);
+  // ── Helpers ──────────────────────────────────────────────────
 
-  // Price breakdown
-  const plan = config?.plans[selectedPlan];
-  const discountPercent = appliedCoupon?.discountPercent ?? 0;
-  const isFree = discountPercent === 100;
-  const pricing: PriceBreakdown = calculatePricing(
-    plan?.basePrice ?? 0,
-    discountPercent,
-    config?.gst_rate,
-  );
+  function getDisplayPrice(planId: PlanId): string {
+    const playProduct = playProducts.find((p) => p.planId === planId);
+    if (playProduct?.localizedPrice) return playProduct.localizedPrice;
+    const fallback = config?.plans[planId]?.basePrice;
+    return fallback != null ? `\u20B9${fallback}` : '';
+  }
 
-  // ── Coupon ─────────────────────────────────────────────────
+  // ── Coupon ───────────────────────────────────────────────────
 
   const handleApplyCoupon = useCallback(() => {
     if (!config) return;
@@ -105,32 +103,32 @@ export default function UpgradeScreen() {
       setAppliedCoupon(null);
       return;
     }
-    setAppliedCoupon(result);
-
-    // VaNiValue always gives yearly access
-    if (result.discountPercent === 100) {
-      setSelectedPlan('yearly');
+    if (result.discountPercent !== 100) {
+      setCouponError('Discount coupons are redeemed via the Play Store. Only free-access codes can be entered here.');
+      setAppliedCoupon(null);
+      return;
     }
+    setAppliedCoupon(result);
+    setSelectedPlan('yearly');
   }, [couponInput, config]);
 
   const handleRemoveCoupon = useCallback(() => {
     setAppliedCoupon(null);
     setCouponInput('');
     setCouponError('');
-    // Reset plan to user's default
     setSelectedPlan(
       availablePlanIds.includes('yearly') ? 'yearly' : availablePlanIds[0],
     );
   }, [availablePlanIds]);
 
-  // ── Checkout ───────────────────────────────────────────────
+  // ── Checkout ─────────────────────────────────────────────────
 
   const handlePay = useCallback(async () => {
-    if (!config || !plan) return;
+    if (!config) return;
     setLoading(true);
     try {
       if (isFree) {
-        // VaNiValue — skip Razorpay, activate directly
+        // VaNiValue — no payment, activate directly
         await saveSubscription({
           planType: 'yearly',
           paymentStatus: 'coupon_free',
@@ -149,96 +147,56 @@ export default function UpgradeScreen() {
         return;
       }
 
-      // Paid flow — create order via Edge Function, then open checkout modal
-      const order = await createRazorpayOrder(
-        selectedPlan,
-        discountPercent,
-        config.plans,
-        config.gst_rate,
-      );
+      // Paid flow — Google Play Billing
+      const result = await purchaseSubscription(selectedPlan);
 
-      setCheckoutParams({
-        orderId: order.orderId,
-        amount: order.amount,
-        planName: `VaNi ${plan.name}`,
-        userEmail: userEmail || '',
-        userName: userName || '',
-        userPhone: '',
-      });
-      setCheckoutVisible(true);
+      if (result.success) {
+        // Subscription already saved inside purchaseSubscription → verifyAndActivate
+        let expiresAt: string | null = null;
+        if (selectedPlan === 'monthly') {
+          expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+        } else if (selectedPlan === 'yearly') {
+          expiresAt = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
+        } else if (selectedPlan === 'crunch') {
+          const year = targetYear ?? new Date().getFullYear();
+          expiresAt = new Date(year, 5, 15).toISOString();
+        }
+        store.dispatch(setSubscription({ plan: selectedPlan, expiresAt }));
+        router.replace({
+          pathname: '/payment-success',
+          params: { planName: config.plans[selectedPlan]?.name ?? selectedPlan },
+        });
+      } else if (!result.cancelled) {
+        Alert.alert('Payment Failed', result.message || 'Something went wrong. Please try again.');
+      }
+      // cancelled → user closed Play sheet, do nothing
     } catch (err: any) {
       Alert.alert('Error', err?.message || 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
-  }, [isFree, selectedPlan, discountPercent, appliedCoupon, plan, config, pricing, userEmail, userName, router]);
+  }, [isFree, selectedPlan, appliedCoupon, config, targetYear, router]);
 
-  // ── Razorpay modal callbacks ────────────────────────────────
+  // ── Restore purchases ─────────────────────────────────────────
 
-  const handlePaymentSuccess = useCallback(async (result: RazorpayPaymentResult) => {
-    setCheckoutVisible(false);
-    setCheckoutParams(null);
+  const handleRestore = useCallback(async () => {
     setLoading(true);
     try {
-      await saveSubscription({
-        planType: selectedPlan,
-        paymentStatus: 'paid',
-        razorpayPaymentId: result.paymentId,
-        razorpayOrderId: result.orderId,
-        razorpaySignature: result.signature,
-        paymentMethod: result.method,
-        targetYear,
-        couponCode: appliedCoupon?.code,
-        amountPaidRupees: pricing.discountedPrice,
-        gstRupees: pricing.gst,
-      });
-      // Cache full subscription info so isPaid persists across app restarts
-      let expiresAt: string | null = null;
-      if (selectedPlan === 'monthly') {
-        expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
-      } else if (selectedPlan === 'yearly') {
-        expiresAt = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
-      } else if (selectedPlan === 'crunch') {
-        const year = targetYear ?? new Date().getFullYear();
-        expiresAt = new Date(year, 5, 15).toISOString(); // June 15
+      const result = await restorePlayPurchases(selectedPlan);
+      if (result.success) {
+        Alert.alert('Restored', 'Your subscription has been restored.');
+        router.replace({ pathname: '/payment-success', params: { planName: 'Restored' } });
+      } else {
+        Alert.alert('Nothing to restore', result.message);
       }
-      store.dispatch(setSubscription({ plan: selectedPlan, expiresAt }));
-      router.replace({
-        pathname: '/payment-success',
-        params: { planName: plan?.name ?? selectedPlan },
-      });
     } catch (err: any) {
-      Alert.alert('Error', err?.message || 'Failed to save subscription.');
+      Alert.alert('Error', err?.message || 'Restore failed.');
     } finally {
       setLoading(false);
     }
-  }, [selectedPlan, appliedCoupon, pricing, plan, router]);
+  }, [selectedPlan, router]);
 
-  const handlePaymentFailure = useCallback((error: RazorpayPaymentError) => {
-    setCheckoutVisible(false);
-    setCheckoutParams(null);
-    setLoading(false);
-    // Persist failed payment for support debugging
-    logFailedPayment({
-      planType: selectedPlan,
-      errorCode: error.errorCode ?? 'UNKNOWN',
-      errorDescription: error.errorDescription ?? 'Payment failed',
-      razorpayOrderId: checkoutParams?.orderId,
-      amountRupees: pricing.total,
-    });
-    router.push({
-      pathname: '/payment-failure',
-      params: { errorDescription: error.errorDescription },
-    });
-  }, [router, selectedPlan, checkoutParams, pricing]);
-
-  const handlePaymentDismiss = useCallback(() => {
-    setCheckoutVisible(false);
-    setCheckoutParams(null);
-    setLoading(false);
-  }, []);
-
-  // ── Loading state ─────────────────────────────────────────
+  // ── Loading state ─────────────────────────────────────────────
 
   if (configLoading || !config) {
     return (
@@ -250,7 +208,7 @@ export default function UpgradeScreen() {
     );
   }
 
-  // ── Render ─────────────────────────────────────────────────
+  // ── Render ────────────────────────────────────────────────────
 
   return (
     <DotGridBackground>
@@ -275,7 +233,7 @@ export default function UpgradeScreen() {
             const p = config.plans[planId];
             if (!p) return null;
             const isSelected = selectedPlan === planId;
-            const disabled = isFree; // Lock selection when VaNiValue applied
+            const disabled = isFree;
             return (
               <Pressable
                 key={planId}
@@ -301,7 +259,6 @@ export default function UpgradeScreen() {
                 )}
 
                 <View style={styles.planRow}>
-                  {/* Radio indicator — inline, not absolute */}
                   <View style={[
                     styles.radio,
                     {
@@ -320,7 +277,7 @@ export default function UpgradeScreen() {
                   </View>
                   <View style={styles.priceCol}>
                     <Text style={[Typography.h2, { color: colors.text }]}>
-                      {'\u20B9'}{p.basePrice}
+                      {isFree && isSelected ? 'FREE' : getDisplayPrice(planId)}
                     </Text>
                     <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
                       {p.period}
@@ -331,10 +288,10 @@ export default function UpgradeScreen() {
             );
           })}
 
-          {/* Coupon Section */}
+          {/* Coupon — VaNiValue (free access) only */}
           <JournalCard delay={100}>
             <Text style={[Typography.label, { color: colors.textTertiary, marginBottom: Spacing.md }]}>
-              HAVE A COUPON CODE?
+              HAVE A FREE ACCESS CODE?
             </Text>
 
             {appliedCoupon ? (
@@ -384,36 +341,7 @@ export default function UpgradeScreen() {
             )}
           </JournalCard>
 
-          {/* Price Breakdown */}
-          <StickyNote color="teal" rotation={-0.5} delay={150}>
-            <Text style={[Typography.label, { color: colors.text, marginBottom: Spacing.md }]}>
-              PRICE BREAKDOWN
-            </Text>
-
-            <PriceRow label="Base price" value={`\u20B9${pricing.basePrice}`} colors={colors} />
-
-            {pricing.discount > 0 && (
-              <PriceRow
-                label={`Discount (${discountPercent}%)`}
-                value={`-\u20B9${pricing.discount}`}
-                colors={colors}
-                highlight
-              />
-            )}
-
-            <PriceRow label={`GST (${Math.round((config.gst_rate) * 100)}%)`} value={`\u20B9${pricing.gst}`} colors={colors} />
-
-            <View style={[styles.divider, { borderColor: colors.textTertiary }]} />
-
-            <View style={styles.totalRow}>
-              <Text style={[Typography.h3, { color: colors.text }]}>Total</Text>
-              <Text style={[Typography.h2, { color: isFree ? colors.correct : colors.text }]}>
-                {isFree ? 'FREE' : `\u20B9${pricing.total}`}
-              </Text>
-            </View>
-          </StickyNote>
-
-          {/* VaNiValue info note */}
+          {/* Free access note */}
           {isFree && (
             <StickyNote color="pink" rotation={0.5} delay={200}>
               <Text style={[Typography.bodySm, { color: colors.text }]}>
@@ -430,9 +358,9 @@ export default function UpgradeScreen() {
                   ? 'Processing...'
                   : isFree
                     ? 'Activate Free Access'
-                    : `Pay \u20B9${pricing.total}`
+                    : 'Subscribe with Google Play'
               }
-              icon={isFree ? '\u2728' : '\uD83D\uDD12'}
+              icon={isFree ? '\u2728' : undefined}
               onPress={handlePay}
               disabled={loading}
             />
@@ -444,9 +372,17 @@ export default function UpgradeScreen() {
             />
           </View>
 
-          {/* GST note */}
+          {/* Restore purchases */}
+          {!isFree && (
+            <Pressable onPress={handleRestore} disabled={loading} style={styles.restoreBtn}>
+              <Text style={[Typography.bodySm, { color: colors.textTertiary, textDecorationLine: 'underline' }]}>
+                Restore previous purchase
+              </Text>
+            </Pressable>
+          )}
+
           <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center' }]}>
-            All prices include {Math.round(config.gst_rate * 100)}% GST. Payments secured by Razorpay.
+            Payments processed securely by Google Play.
           </Text>
         </ScrollView>
 
@@ -456,47 +392,11 @@ export default function UpgradeScreen() {
           </View>
         )}
       </SafeAreaView>
-      <RazorpayCheckoutModal
-        visible={checkoutVisible}
-        params={checkoutParams}
-        razorpayKeyId={config.razorpay_key_id}
-        onSuccess={handlePaymentSuccess}
-        onFailure={handlePaymentFailure}
-        onDismiss={handlePaymentDismiss}
-      />
     </DotGridBackground>
   );
 }
 
-// ── Sub-components ───────────────────────────────────────────
-
-function PriceRow({
-  label,
-  value,
-  colors,
-  highlight,
-}: {
-  label: string;
-  value: string;
-  colors: any;
-  highlight?: boolean;
-}) {
-  return (
-    <View style={styles.priceRow}>
-      <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>{label}</Text>
-      <Text
-        style={[
-          Typography.body,
-          { color: highlight ? colors.correct : colors.text },
-        ]}
-      >
-        {value}
-      </Text>
-    </View>
-  );
-}
-
-// ── Styles ───────────────────────────────────────────────────
+// ── Styles ────────────────────────────────────────────────────
 
 const styles = StyleSheet.create({
   container: {
@@ -575,27 +475,15 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.sm,
   },
 
-  // Price breakdown
-  priceRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: Spacing.xs,
-  },
-  divider: {
-    borderBottomWidth: 1,
-    borderStyle: 'dashed',
-    marginVertical: Spacing.sm,
-  },
-  totalRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-
   // Actions
   actions: {
     gap: Spacing.md,
     marginTop: Spacing.md,
+  },
+
+  restoreBtn: {
+    alignItems: 'center',
+    paddingVertical: Spacing.sm,
   },
 
   // Loading overlay

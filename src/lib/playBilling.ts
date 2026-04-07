@@ -1,25 +1,26 @@
 /**
  * playBilling.ts
- * Wraps react-native-iap for Google Play Billing.
+ * Wraps react-native-iap v14 for Google Play Billing.
  *
  * Usage flow:
- *   1. Call initPlayBilling() once on app start (or before upgrade screen opens)
+ *   1. Call initPlayBilling() once before the upgrade screen opens
  *   2. Call fetchPlayProducts() to get localised prices from Play Store
- *   3. Call purchaseSubscription(planId) to trigger Play purchase sheet
- *   4. Listen via purchaseUpdateListener — on success, call verifyAndActivate()
+ *   3. Call purchaseSubscription(planId) to trigger the Play purchase sheet
+ *   4. On success, verifyAndActivate() is called automatically
  *   5. Call endPlayBilling() on cleanup
  */
 
 import {
   initConnection,
   endConnection,
-  getSubscriptions,
-  requestSubscription,
+  fetchProducts,
+  requestPurchase,
   purchaseUpdatedListener,
   purchaseErrorListener,
   finishTransaction,
-  type Subscription,
-  type SubscriptionPurchase,
+  getAvailablePurchases,
+  ErrorCode,
+  type Purchase,
   type PurchaseError,
 } from 'react-native-iap';
 import { Platform } from 'react-native';
@@ -32,7 +33,7 @@ import { PLAY_PRODUCT_IDS, type PlanId } from '../constants/pricing';
 export interface PlayProduct {
   planId: PlanId;
   productId: string;
-  localizedPrice: string;   // e.g. "₹199.00" — comes from Play Store
+  localizedPrice: string;
   title: string;
 }
 
@@ -78,29 +79,38 @@ export async function fetchPlayProducts(planIds: PlanId[]): Promise<PlayProduct[
 
   const skus = planIds.map((id) => PLAY_PRODUCT_IDS[id]);
 
-  let subs: Subscription[] = [];
+  let rawProducts: any[] = [];
   try {
-    subs = await getSubscriptions({ skus });
+    const result = await fetchProducts({ skus, type: 'subs' });
+    rawProducts = result ?? [];
   } catch (e) {
-    console.warn('[PlayBilling] getSubscriptions failed:', e);
+    console.warn('[PlayBilling] fetchProducts failed:', e);
     return [];
   }
 
-  return subs.map((sub) => {
+  return rawProducts.map((product: any) => {
+    // v14 uses product.id (not productId) on the Product shape
+    const productId: string = product.id ?? product.productId ?? '';
     const planId = (Object.keys(PLAY_PRODUCT_IDS) as PlanId[]).find(
-      (k) => PLAY_PRODUCT_IDS[k] === sub.productId,
+      (k) => PLAY_PRODUCT_IDS[k] === productId,
     ) ?? ('monthly' as PlanId);
 
-    // Localised price lives on the first subscription offer for Play Billing 5
-    const offerPrice =
-      sub.subscriptionOfferDetails?.[0]?.pricingPhases?.pricingPhaseList?.[0]
-        ?.formattedPrice ?? '';
+    // subscriptionOfferDetailsAndroid may be a JSON string in v14
+    let offerPrice = '';
+    try {
+      const details = typeof product.subscriptionOfferDetailsAndroid === 'string'
+        ? JSON.parse(product.subscriptionOfferDetailsAndroid)
+        : product.subscriptionOfferDetailsAndroid;
+      offerPrice = details?.[0]?.pricingPhases?.pricingPhaseList?.[0]?.formattedPrice ?? '';
+    } catch { /* ignore parse errors */ }
+
+    const price = offerPrice || product.displayPrice || product.localizedPrice || '';
 
     return {
       planId,
-      productId: sub.productId,
-      localizedPrice: offerPrice || (sub as any).localizedPrice || '',
-      title: sub.title ?? sub.productId,
+      productId,
+      localizedPrice: price,
+      title: product.title ?? productId,
     };
   });
 }
@@ -109,8 +119,7 @@ export async function fetchPlayProducts(planIds: PlanId[]): Promise<PlayProduct[
 
 /**
  * Launches the Play Store subscription sheet.
- * Returns a promise that resolves after the purchase is verified & saved,
- * or rejects with a PurchaseResult describing the failure.
+ * Resolves after purchase is verified & saved, or with failure details.
  */
 export function purchaseSubscription(planId: PlanId): Promise<PurchaseResult> {
   return new Promise((resolve) => {
@@ -119,11 +128,10 @@ export function purchaseSubscription(planId: PlanId): Promise<PurchaseResult> {
       return;
     }
 
-    // Clean up any previous listeners before attaching new ones
     _updateListener?.remove();
     _errorListener?.remove();
 
-    _updateListener = purchaseUpdatedListener(async (purchase: SubscriptionPurchase) => {
+    _updateListener = purchaseUpdatedListener(async (purchase: Purchase) => {
       _updateListener?.remove();
       _errorListener?.remove();
       _updateListener = null;
@@ -144,7 +152,7 @@ export function purchaseSubscription(planId: PlanId): Promise<PurchaseResult> {
       _updateListener = null;
       _errorListener  = null;
 
-      const cancelled = error.code === 'E_USER_CANCELLED';
+      const cancelled = error.code === ErrorCode.UserCancelled;
       resolve({
         success: false,
         cancelled,
@@ -153,7 +161,7 @@ export function purchaseSubscription(planId: PlanId): Promise<PurchaseResult> {
     });
 
     const sku = PLAY_PRODUCT_IDS[planId];
-    requestSubscription({ sku }).catch((e: any) => {
+    requestPurchase({ request: { android: { skus: [sku] } }, type: 'subs' }).catch((e: any) => {
       _updateListener?.remove();
       _errorListener?.remove();
       _updateListener = null;
@@ -165,21 +173,17 @@ export function purchaseSubscription(planId: PlanId): Promise<PurchaseResult> {
 
 // ── Verify & activate ─────────────────────────────────────────
 
-/**
- * Sends the Play purchase token to our Supabase edge function for
- * server-side verification, then saves the subscription locally.
- */
-async function verifyAndActivate(
-  purchase: SubscriptionPurchase,
-  planId: PlanId,
-): Promise<void> {
+async function verifyAndActivate(purchase: Purchase, planId: PlanId): Promise<void> {
   if (!supabase) throw new Error('Supabase not configured');
+
+  // v14: purchaseToken is the unified token; purchaseTokenAndroid is Android-specific
+  const token = (purchase as any).purchaseTokenAndroid || purchase.purchaseToken;
 
   const { data, error } = await supabase.functions.invoke('verify-play-purchase', {
     body: {
-      purchaseToken: purchase.purchaseToken,
+      purchaseToken: token,
       productId: purchase.productId,
-      packageName: purchase.packageNameAndroid,
+      packageName: (purchase as any).packageNameAndroid,
     },
   });
 
@@ -197,7 +201,7 @@ async function verifyAndActivate(
   await saveSubscription({
     planType: planId,
     paymentStatus: 'paid',
-    amountPaidRupees: 0,   // actual amount managed by Play Store
+    amountPaidRupees: 0,   // managed by Play Store
     gstRupees: 0,
     paymentMethod: 'google_play',
   });
@@ -205,10 +209,6 @@ async function verifyAndActivate(
 
 // ── Restore purchases ─────────────────────────────────────────
 
-/**
- * Call this on "Restore purchases" tap.
- * Checks Play Store for any existing active subscription and re-activates.
- */
 export async function restorePlayPurchases(planId: PlanId): Promise<PurchaseResult> {
   if (Platform.OS !== 'android') {
     return { success: false, cancelled: false, message: 'Not Android' };
@@ -216,15 +216,14 @@ export async function restorePlayPurchases(planId: PlanId): Promise<PurchaseResu
   if (!_connected) await initPlayBilling();
 
   try {
-    const { getAvailablePurchases } = await import('react-native-iap');
-    const purchases = await getAvailablePurchases();
+    const purchases = await getAvailablePurchases({});
     const match = purchases.find((p) => p.productId === PLAY_PRODUCT_IDS[planId]);
 
     if (!match) {
       return { success: false, cancelled: false, message: 'No active subscription found' };
     }
 
-    await verifyAndActivate(match as SubscriptionPurchase, planId);
+    await verifyAndActivate(match, planId);
     return { success: true };
   } catch (e: any) {
     return { success: false, cancelled: false, message: e?.message ?? 'Restore failed' };
