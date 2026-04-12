@@ -614,7 +614,7 @@
             }));
             const { error: optErr } = await Qbank.supabase
               .from('med_question_options')
-              .upsert(options, { onConflict: 'question_id,option_key' });
+              .insert(options);
             if (optErr) appendLogLine(logEl, `  Options warning for ${q.id}: ${optErr.message}`, 'skip');
           }
 
