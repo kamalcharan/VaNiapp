@@ -8,6 +8,7 @@ import {
   Pressable,
   ActivityIndicator,
   Alert,
+  Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -383,6 +384,24 @@ export default function UpgradeScreen() {
 
           <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center' }]}>
             Payments processed securely by Google Play.
+          </Text>
+
+          <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center', fontSize: 12, lineHeight: 18 }]}>
+            By subscribing you agree to our{' '}
+            <Text
+              style={{ color: colors.primary, textDecorationLine: 'underline' }}
+              onPress={() => Linking.openURL('https://kamalcharan.github.io/vikuna-legal/vani-terms.html')}
+            >
+              Terms of Service
+            </Text>
+            {' '}and{' '}
+            <Text
+              style={{ color: colors.primary, textDecorationLine: 'underline' }}
+              onPress={() => Linking.openURL('https://kamalcharan.github.io/vikuna-legal/vani-privacy.html')}
+            >
+              Privacy Policy
+            </Text>
+            .
           </Text>
         </ScrollView>
 

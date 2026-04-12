@@ -957,6 +957,25 @@ export default function ProfileScreen() {
             />
           </View>
 
+          {/* Legal */}
+          <View style={[styles.legalSection, { borderColor: colors.cardBorder }]}>
+            <Pressable
+              style={styles.legalRow}
+              onPress={() => Linking.openURL('https://kamalcharan.github.io/vikuna-legal/vani-privacy.html')}
+            >
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Privacy Policy</Text>
+              <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>{'\u203A'}</Text>
+            </Pressable>
+            <View style={[styles.legalDivider, { backgroundColor: colors.cardBorder }]} />
+            <Pressable
+              style={styles.legalRow}
+              onPress={() => Linking.openURL('https://kamalcharan.github.io/vikuna-legal/vani-terms.html')}
+            >
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Terms of Service</Text>
+              <Text style={[Typography.bodySm, { color: colors.textTertiary }]}>{'\u203A'}</Text>
+            </Pressable>
+          </View>
+
           {/* About VaNi */}
           <Pressable
             style={[styles.aboutLink, { backgroundColor: colors.primaryLight, borderRadius: BorderRadius.round, paddingHorizontal: Spacing.lg }]}
@@ -1147,6 +1166,24 @@ const styles = StyleSheet.create({
   logoutSection: {
     alignItems: 'center',
     paddingTop: Spacing.md,
+  },
+  legalSection: {
+    alignSelf: 'stretch',
+    borderWidth: 1,
+    borderRadius: BorderRadius.md,
+    overflow: 'hidden',
+    marginTop: Spacing.sm,
+  },
+  legalRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md,
+  },
+  legalDivider: {
+    height: 1,
+    marginHorizontal: Spacing.lg,
   },
   aboutLink: {
     alignItems: 'center',
