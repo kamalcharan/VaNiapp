@@ -612,7 +612,9 @@
               is_correct: opt.is_correct || ((opt.key || opt.id) === q.correct_answer),
               sort_order: idx
             }));
-            const { error: optErr } = await Qbank.supabase.from('med_question_options').insert(options);
+            const { error: optErr } = await Qbank.supabase
+              .from('med_question_options')
+              .upsert(options, { onConflict: 'question_id,option_key' });
             if (optErr) appendLogLine(logEl, `  Options warning for ${q.id}: ${optErr.message}`, 'skip');
           }
 
@@ -634,7 +636,9 @@
               if (eh.hint_2) hints.push({ question_id: insertedQ.id, option_key: 'hint_2', hint_text: eh.hint_2, misconception: eh.misconception_tag || '' });
             }
             if (hints.length > 0) {
-              const { error: hintErr } = await Qbank.supabase.from('med_elimination_hints').insert(hints);
+              const { error: hintErr } = await Qbank.supabase
+                .from('med_elimination_hints')
+                .upsert(hints, { onConflict: 'question_id,option_key' });
               if (hintErr) appendLogLine(logEl, `  Hints warning for ${q.id}: ${hintErr.message}`, 'skip');
             }
           }
