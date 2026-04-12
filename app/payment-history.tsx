@@ -122,7 +122,7 @@ export default function PaymentHistoryScreen() {
           {/* Txn ID */}
           {item.razorpayPaymentId && (
             <View style={localStyles.row}>
-              <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Txn ID</Text>
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>Transaction ID</Text>
               <Text style={[Typography.bodySm, { color: colors.textTertiary, fontSize: 11 }]}>
                 {item.razorpayPaymentId}
               </Text>

@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   TextInput,
   Pressable,
+  Linking,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -433,6 +434,27 @@ export default function SignInScreen() {
                     />
                   )}
 
+                  {/* Legal consent — signup mode only */}
+                  {mode === 'signup' && !loading && (
+                    <Text style={[Typography.bodySm, styles.legalText, { color: colors.textTertiary }]}>
+                      By creating an account you agree to our{' '}
+                      <Text
+                        style={{ color: colors.primary, textDecorationLine: 'underline' }}
+                        onPress={() => Linking.openURL('https://kamalcharan.github.io/vikuna-legal/vani-terms.html')}
+                      >
+                        Terms of Service
+                      </Text>
+                      {' '}and{' '}
+                      <Text
+                        style={{ color: colors.primary, textDecorationLine: 'underline' }}
+                        onPress={() => Linking.openURL('https://kamalcharan.github.io/vikuna-legal/vani-privacy.html')}
+                      >
+                        Privacy Policy
+                      </Text>
+                      .
+                    </Text>
+                  )}
+
                   {/* Forgot Password — sign-in mode only */}
                   {mode === 'signin' && !loading && (
                     <Pressable onPress={handleForgotPassword}>
@@ -524,6 +546,11 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.sm,
     paddingHorizontal: Spacing.lg,
     paddingVertical: Spacing.sm,
+  },
+  legalText: {
+    textAlign: 'center',
+    fontSize: 12,
+    lineHeight: 18,
   },
   mailIcon: {
     width: 80,

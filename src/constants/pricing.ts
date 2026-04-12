@@ -1,20 +1,26 @@
 /**
  * Pricing types and pure helper functions.
  *
- * All concrete values (plans, coupons, GST rate, Razorpay key) are fetched
- * from med_app_config at runtime via getRazorpayConfig().
+ * All concrete values (plans, coupons, GST rate) are fetched
+ * from med_app_config at runtime via getPlansConfig().
  * This file only contains types and stateless helpers.
  */
 
 export type PlanId = 'crunch' | 'monthly' | 'yearly';
 
+// ── Google Play product IDs (must match Play Console exactly) ──
+export const PLAY_PRODUCT_IDS: Record<PlanId, string> = {
+  monthly: 'vani_monthly',
+  yearly:  'vani_yearly',
+  crunch:  'vani_crunch',
+};
+
 export interface PricingPlan {
   id: PlanId;
   name: string;
   description: string;
-  basePrice: number;          // INR
+  basePrice: number;          // INR — display only; actual charge set in Play Console
   period: string;             // display label
-  razorpayPlanId: string;
   badge?: string;
 }
 

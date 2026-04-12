@@ -1,7 +1,7 @@
 /**
- * Fetches Razorpay + pricing configuration from med_app_config.
+ * Fetches plans + pricing configuration from med_app_config.
  *
- * All values (key, plans, coupons, GST) live in the DB so they can be
+ * All values (plans, coupons, GST) live in the DB so they can be
  * changed from the Supabase dashboard without an app update.
  *
  * Uses in-memory caching — one fetch per session.
@@ -12,17 +12,18 @@ import type { PlanId, PricingPlan, CouponConfig } from '../constants/pricing';
 
 // ── Types ──────────────────────────────────────────────────────
 
-export interface RazorpayConfig {
-  razorpay_key_id: string;
+export interface PlansConfig {
   gst_rate: number;
   plans: Record<PlanId, PricingPlan>;
   coupons: CouponConfig[];
 }
 
+// Keep old name as alias so any future references don't hard-break
+export type RazorpayConfig = PlansConfig;
+
 // ── Fallback (used when offline or DB unreachable) ─────────────
 
-const FALLBACK_CONFIG: RazorpayConfig = {
-  razorpay_key_id: '',
+const FALLBACK_CONFIG: PlansConfig = {
   gst_rate: 0.18,
   plans: {
     crunch: {
@@ -31,7 +32,6 @@ const FALLBACK_CONFIG: RazorpayConfig = {
       description: 'Practice exams only — no stages',
       basePrice: 499,
       period: 'one-time',
-      razorpayPlanId: '',
     },
     monthly: {
       id: 'monthly',
@@ -39,7 +39,6 @@ const FALLBACK_CONFIG: RazorpayConfig = {
       description: 'Full access with stage-wise progression',
       basePrice: 199,
       period: '/month',
-      razorpayPlanId: '',
     },
     yearly: {
       id: 'yearly',
@@ -47,7 +46,6 @@ const FALLBACK_CONFIG: RazorpayConfig = {
       description: 'Full access — best value',
       basePrice: 1399,
       period: '/year',
-      razorpayPlanId: '',
       badge: 'BEST VALUE',
     },
   },
@@ -56,13 +54,13 @@ const FALLBACK_CONFIG: RazorpayConfig = {
 
 // ── Cache ──────────────────────────────────────────────────────
 
-let _cached: RazorpayConfig | null = null;
+let _cached: PlansConfig | null = null;
 
 /**
- * Fetch Razorpay config from med_app_config.
- * Cached in-memory for the session — call clearRazorpayConfigCache() to refresh.
+ * Fetch plans config from med_app_config.
+ * Cached in-memory for the session — call clearPlansConfigCache() to refresh.
  */
-export async function getRazorpayConfig(): Promise<RazorpayConfig> {
+export async function getPlansConfig(): Promise<PlansConfig> {
   if (_cached) return _cached;
   if (!supabase) return FALLBACK_CONFIG;
 
@@ -70,15 +68,13 @@ export async function getRazorpayConfig(): Promise<RazorpayConfig> {
     const { data, error } = await supabase
       .from('med_app_config')
       .select('value')
-      .eq('key', 'razorpay_config')
+      .eq('key', 'razorpay_config')   // DB key unchanged — no migration needed
       .single();
 
     if (error || !data?.value) return FALLBACK_CONFIG;
 
-    const val = data.value as RazorpayConfig;
-
-    // Sanity check — must have a key and at least one plan
-    if (!val.razorpay_key_id || !val.plans) return FALLBACK_CONFIG;
+    const val = data.value as PlansConfig;
+    if (!val.plans) return FALLBACK_CONFIG;
 
     _cached = val;
     return _cached;
@@ -87,6 +83,12 @@ export async function getRazorpayConfig(): Promise<RazorpayConfig> {
   }
 }
 
-export function clearRazorpayConfigCache(): void {
+/** @deprecated Use getPlansConfig() */
+export const getRazorpayConfig = getPlansConfig;
+
+export function clearPlansConfigCache(): void {
   _cached = null;
 }
+
+/** @deprecated Use clearPlansConfigCache() */
+export const clearRazorpayConfigCache = clearPlansConfigCache;
