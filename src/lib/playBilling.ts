@@ -10,20 +10,16 @@
  *   5. Call endPlayBilling() on cleanup
  */
 
-import {
-  initConnection,
-  endConnection,
-  fetchProducts,
-  requestPurchase,
-  purchaseUpdatedListener,
-  purchaseErrorListener,
-  finishTransaction,
-  getAvailablePurchases,
-  ErrorCode,
-  type Purchase,
-  type PurchaseError,
-} from 'react-native-iap';
 import { Platform } from 'react-native';
+
+// react-native-iap uses Nitro Modules (native-only). Dynamic require so the
+// module doesn't crash the entire app when native code isn't linked (Expo Go).
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+let iap: typeof import('react-native-iap') | null = null;
+try { iap = require('react-native-iap'); } catch { /* not linked — Expo Go */ }
+
+type Purchase      = import('react-native-iap').Purchase;
+type PurchaseError = import('react-native-iap').PurchaseError;
 import { supabase } from './supabase';
 import { saveSubscription } from './payments';
 import { PLAY_PRODUCT_IDS, type PlanId } from '../constants/pricing';
@@ -44,16 +40,16 @@ export type PurchaseResult =
 // ── Internal state ───────────────────────────────────────────
 
 let _connected = false;
-let _updateListener: ReturnType<typeof purchaseUpdatedListener> | null = null;
-let _errorListener:  ReturnType<typeof purchaseErrorListener>  | null = null;
+let _updateListener: { remove(): void } | null = null;
+let _errorListener:  { remove(): void } | null = null;
 
 // ── Init / teardown ──────────────────────────────────────────
 
 export async function initPlayBilling(): Promise<void> {
-  if (Platform.OS !== 'android') return;
+  if (Platform.OS !== 'android' || !iap) return;
   if (_connected) return;
   try {
-    await initConnection();
+    await iap.initConnection();
     _connected = true;
   } catch (e) {
     console.warn('[PlayBilling] initConnection failed:', e);
@@ -65,8 +61,8 @@ export function endPlayBilling(): void {
   _errorListener?.remove();
   _updateListener = null;
   _errorListener  = null;
-  if (_connected) {
-    endConnection();
+  if (_connected && iap) {
+    iap.endConnection();
     _connected = false;
   }
 }
@@ -74,14 +70,14 @@ export function endPlayBilling(): void {
 // ── Fetch products ───────────────────────────────────────────
 
 export async function fetchPlayProducts(planIds: PlanId[]): Promise<PlayProduct[]> {
-  if (Platform.OS !== 'android') return [];
+  if (Platform.OS !== 'android' || !iap) return [];
   if (!_connected) await initPlayBilling();
 
   const skus = planIds.map((id) => PLAY_PRODUCT_IDS[id]);
 
   let rawProducts: any[] = [];
   try {
-    const result = await fetchProducts({ skus, type: 'subs' });
+    const result = await iap.fetchProducts({ skus, type: 'subs' });
     rawProducts = result ?? [];
   } catch (e) {
     console.warn('[PlayBilling] fetchProducts failed:', e);
@@ -123,7 +119,7 @@ export async function fetchPlayProducts(planIds: PlanId[]): Promise<PlayProduct[
  */
 export function purchaseSubscription(planId: PlanId): Promise<PurchaseResult> {
   return new Promise((resolve) => {
-    if (Platform.OS !== 'android') {
+    if (Platform.OS !== 'android' || !iap) {
       resolve({ success: false, cancelled: false, message: 'Not Android' });
       return;
     }
@@ -131,7 +127,7 @@ export function purchaseSubscription(planId: PlanId): Promise<PurchaseResult> {
     _updateListener?.remove();
     _errorListener?.remove();
 
-    _updateListener = purchaseUpdatedListener(async (purchase: Purchase) => {
+    _updateListener = iap.purchaseUpdatedListener(async (purchase: Purchase) => {
       _updateListener?.remove();
       _errorListener?.remove();
       _updateListener = null;
@@ -139,20 +135,20 @@ export function purchaseSubscription(planId: PlanId): Promise<PurchaseResult> {
 
       try {
         await verifyAndActivate(purchase, planId);
-        await finishTransaction({ purchase, isConsumable: false });
+        await iap!.finishTransaction({ purchase, isConsumable: false });
         resolve({ success: true });
       } catch (e: any) {
         resolve({ success: false, cancelled: false, message: e?.message ?? 'Verification failed' });
       }
     });
 
-    _errorListener = purchaseErrorListener((error: PurchaseError) => {
+    _errorListener = iap.purchaseErrorListener((error: PurchaseError) => {
       _updateListener?.remove();
       _errorListener?.remove();
       _updateListener = null;
       _errorListener  = null;
 
-      const cancelled = error.code === ErrorCode.UserCancelled;
+      const cancelled = error.code === iap!.ErrorCode.UserCancelled;
       resolve({
         success: false,
         cancelled,
@@ -161,7 +157,7 @@ export function purchaseSubscription(planId: PlanId): Promise<PurchaseResult> {
     });
 
     const sku = PLAY_PRODUCT_IDS[planId];
-    requestPurchase({ request: { android: { skus: [sku] } }, type: 'subs' }).catch((e: any) => {
+    iap.requestPurchase({ request: { android: { skus: [sku] } }, type: 'subs' }).catch((e: any) => {
       _updateListener?.remove();
       _errorListener?.remove();
       _updateListener = null;
@@ -210,13 +206,13 @@ async function verifyAndActivate(purchase: Purchase, planId: PlanId): Promise<vo
 // ── Restore purchases ─────────────────────────────────────────
 
 export async function restorePlayPurchases(planId: PlanId): Promise<PurchaseResult> {
-  if (Platform.OS !== 'android') {
+  if (Platform.OS !== 'android' || !iap) {
     return { success: false, cancelled: false, message: 'Not Android' };
   }
   if (!_connected) await initPlayBilling();
 
   try {
-    const purchases = await getAvailablePurchases({});
+    const purchases = await iap.getAvailablePurchases({});
     const match = purchases.find((p) => p.productId === PLAY_PRODUCT_IDS[planId]);
 
     if (!match) {
