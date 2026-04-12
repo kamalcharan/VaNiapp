@@ -720,8 +720,30 @@ async function resolveTopicId(chapterId, topicName) {
   }
   if (bestScore >= 0.5 && bestTopic) return bestTopic.id;
 
-  console.warn(`[resolveTopicId] No topic match for "${topicName}" in chapter ${chapterId}`);
-  return null;
+  console.warn(`[resolveTopicId] No topic match for "${topicName}" in chapter ${chapterId} — auto-creating`);
+
+  // 5. Auto-create topic so questions always get a valid topic_id
+  const { data: newTopic, error: createErr } = await SUPABASE
+    .from('med_topics')
+    .insert({ chapter_id: chapterId, name: topicName, sort_order: 0, is_important: false })
+    .select('id')
+    .single();
+
+  if (createErr || !newTopic) {
+    console.error('[resolveTopicId] Failed to auto-create topic:', createErr?.message);
+    return null;
+  }
+
+  // Add to cache so subsequent questions in same chapter reuse it
+  const norm = _normalizeTopic(topicName);
+  _topicCache[chapterId].push({
+    id: newTopic.id,
+    nameLower: topicName.toLowerCase().trim(),
+    nameNorm: norm,
+    words: new Set(norm.split(' ').filter(Boolean)),
+  });
+
+  return newTopic.id;
 }
 
 async function insertQuestions(questions) {
