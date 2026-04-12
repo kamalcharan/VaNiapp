@@ -18,6 +18,7 @@ import { createClient } from '@supabase/supabase-js';
 import { readFileSync, existsSync, readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { randomUUID } from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -207,7 +208,7 @@ async function main() {
     } else {
       const { data: newTopic, error: createErr } = await supabase
         .from('med_topics')
-        .insert({ chapter_id: chapterId, name: topicName, sort_order: 0, is_important: false })
+        .insert({ id: randomUUID(), chapter_id: chapterId, name: topicName, sort_order: 0, is_important: false })
         .select('id')
         .single();
 
