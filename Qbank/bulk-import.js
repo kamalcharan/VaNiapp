@@ -126,8 +126,28 @@ async function resolveTopicId(supabase, chapterId, topicName) {
     if (score > bestScore && overlap >= 2) { bestScore = score; bestTopic = t; }
   }
   if (bestScore >= 0.5 && bestTopic) return bestTopic.id;
-  log(`No topic match for "${topicName}" in chapter ${chapterId}`, 'warn');
-  return null;
+  log(`No topic match for "${topicName}" in chapter ${chapterId} — auto-creating`, 'warn');
+
+  const { data: newTopic, error: createErr } = await supabase
+    .from('med_topics')
+    .insert({ chapter_id: chapterId, name: topicName, sort_order: 0, is_important: false })
+    .select('id')
+    .single();
+
+  if (createErr || !newTopic) {
+    log(`Failed to auto-create topic "${topicName}" in ${chapterId}: ${createErr?.message}`, 'fail');
+    return null;
+  }
+
+  const norm = _normalizeTopic(topicName);
+  _topicCache[chapterId].push({
+    id: newTopic.id,
+    nameLower: topicName.toLowerCase().trim(),
+    nameNorm: norm,
+    words: new Set(norm.split(' ').filter(Boolean)),
+  });
+
+  return newTopic.id;
 }
 
 // ============================================================================
