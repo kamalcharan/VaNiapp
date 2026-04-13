@@ -5,7 +5,7 @@
  * Google Play Developer API before the client activates the subscription.
  *
  * Required Supabase secrets (set via `supabase secrets set`):
- *   GOOGLE_PLAY_PACKAGE_NAME   — e.g. com.vikuna.vani
+ *   GOOGLE_PLAY_PACKAGE_NAME   — e.g. com.vikuna.vaniapp
  *   GOOGLE_PLAY_SERVICE_ACCOUNT_JSON — full JSON of the service account key
  *
  * Request body:
