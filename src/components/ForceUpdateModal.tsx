@@ -42,7 +42,7 @@ export function ForceUpdateModal({ update, onSkip }: ForceUpdateModalProps) {
     ]).start();
   }, []);
 
-  const platformLabel = Platform.OS === 'ios' ? 'App Store' : 'Download';
+  const platformLabel = Platform.OS === 'ios' ? 'App Store' : 'Play Store';
 
   const handleDownload = () => {
     if (update.downloadUrl) {

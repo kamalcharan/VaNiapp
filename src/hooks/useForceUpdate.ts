@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
+import SpInAppUpdates, { IAUUpdateKind } from 'sp-react-native-in-app-updates';
 import { supabase } from '../lib/supabase';
 
 export interface UpdateInfo {
@@ -11,44 +12,76 @@ export interface UpdateInfo {
 }
 
 /**
- * Checks whether the running app version is behind the active version
- * in `med_app_versions`. Returns platform-appropriate download URL.
+ * iOS: queries `med_app_versions` and returns an UpdateInfo for the modal.
+ * Android fallback: same, used when Play Store is not available (sideloaded APK).
+ */
+async function checkDbForUpdate(): Promise<UpdateInfo | null> {
+  if (!supabase) return null;
+
+  const currentVersion = Constants.expoConfig?.version ?? '0.0.0';
+
+  const { data, error } = await supabase
+    .from('med_app_versions')
+    .select(
+      'version, release_notes, download_url, android_download_url, android_download_tinyurl, ios_download_url, ios_download_tinyurl, is_skippable'
+    )
+    .eq('status', 'active')
+    .limit(1)
+    .single();
+
+  if (error || !data) return null;
+  if (data.version === currentVersion) return null;
+
+  const isIOS = Platform.OS === 'ios';
+  const downloadUrl = isIOS
+    ? (data.ios_download_tinyurl || data.ios_download_url || data.download_url)
+    : (data.android_download_tinyurl || data.android_download_url || data.download_url);
+
+  return {
+    latestVersion: data.version,
+    releaseNotes: data.release_notes,
+    downloadUrl,
+    isSkippable: data.is_skippable ?? false,
+  };
+}
+
+/**
+ * Checks for app updates.
  *
- * Returns `null` while loading or when the app is up to date.
+ * Android: uses Google Play In-App Updates API (IMMEDIATE mode — mandatory).
+ *   Falls back to DB-based modal if the Play Store API is unavailable
+ *   (e.g., sideloaded APK or pre-production testing).
+ *
+ * iOS: queries `med_app_versions` and shows an update modal with the
+ *   App Store URL stored in the DB.
+ *
+ * Returns `null` while loading or when the app is already up to date.
+ * On Android with Play Store, returns `null` because the native UI takes over.
  */
 export function useForceUpdate(): UpdateInfo | null {
   const [update, setUpdate] = useState<UpdateInfo | null>(null);
 
   useEffect(() => {
-    if (!supabase) return;
-
-    const currentVersion = Constants.expoConfig?.version ?? '0.0.0';
-
     (async () => {
-      const { data, error } = await supabase
-        .from('med_app_versions')
-        .select('version, release_notes, download_url, android_download_url, android_download_tinyurl, ios_download_url, ios_download_tinyurl, is_skippable')
-        .eq('status', 'active')
-        .limit(1)
-        .single();
-
-      if (error || !data) return;
-
-      // Already on latest — nothing to show
-      if (data.version === currentVersion) return;
-
-      // Pick the best URL for this platform
-      const isIOS = Platform.OS === 'ios';
-      const downloadUrl = isIOS
-        ? (data.ios_download_tinyurl || data.ios_download_url || data.download_url)
-        : (data.android_download_tinyurl || data.android_download_url || data.download_url);
-
-      setUpdate({
-        latestVersion: data.version,
-        releaseNotes: data.release_notes,
-        downloadUrl,
-        isSkippable: data.is_skippable ?? false,
-      });
+      if (Platform.OS === 'android') {
+        try {
+          const inAppUpdates = new SpInAppUpdates(false);
+          const result = await inAppUpdates.checkNeedsUpdate();
+          if (result.shouldUpdate) {
+            // Native Play Store overlay handles the update — no in-app modal needed
+            await inAppUpdates.startUpdate({ updateType: IAUUpdateKind.IMMEDIATE });
+          }
+          // If shouldUpdate is false, Play Store says app is current — nothing to do
+        } catch {
+          // Play Store not reachable (sideloaded / dev build) — fall back to DB check
+          const info = await checkDbForUpdate();
+          if (info) setUpdate(info);
+        }
+      } else {
+        // iOS: DB check + App Store URL modal
+        const info = await checkDbForUpdate();
+        if (info) setUpdate(info);
+      }
     })();
   }, []);
 
