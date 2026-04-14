@@ -46,7 +46,7 @@ export function initSentry(): void {
     // Send 100% of errors, sample 20% of transactions for performance
     tracesSampleRate: __DEV__ ? 1.0 : 0.2,
     // Attach user info automatically
-    sendDefaultPii: true,
+    sendDefaultPii: false,
     // Don't send in dev by default (noisy) — flip to true when testing Sentry
     enabled: !__DEV__,
   });
