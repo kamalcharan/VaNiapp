@@ -84,12 +84,11 @@ export function isOnboardingActuallyComplete(profile: MedProfile | null): boolea
 
   // Critical fields that must be filled during onboarding
   const hasName = (profile.display_name ?? '').trim().length >= 2;
-  const hasPhone = (profile.phone ?? '').trim().length >= 4;
   const hasCollege = (profile.college ?? '').trim().length >= 2;
   const hasCity = (profile.city ?? '').trim().length >= 2;
   const hasExam = !!profile.exam;
 
-  return hasName && hasPhone && hasCollege && hasCity && hasExam;
+  return hasName && hasCollege && hasCity && hasExam;
 }
 
 // ── Complete onboarding (batch save) ─────────────────────────
