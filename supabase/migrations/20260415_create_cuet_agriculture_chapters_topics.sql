@@ -33,7 +33,7 @@ VALUES
 ('cuet-agri-agm-climate',        'cuet-agri-agrometeorology', 'Agrometeorology and Climate',                                           1, true,  true),
 ('cuet-agri-agm-biochemistry',   'cuet-agri-agrometeorology', 'Biochemistry: Carbohydrates, Proteins, Lipids, Vitamins, Enzymes and Nucleic Acids', 2, true,  true),
 ('cuet-agri-agm-microbiology',   'cuet-agri-agrometeorology', 'Microbiology and Seed Science',                                         3, true,  true),
-('cuet-agri-agm-genetics',       'cuet-agri-agrometeorology', 'Genetics: Cell Division, DNA/RNA and Mendel\'s Laws of Inheritance',    4, true,  true),
+('cuet-agri-agm-genetics',       'cuet-agri-agrometeorology', 'Genetics: Cell Division, DNA/RNA and Mendel''s Laws of Inheritance',    4, true,  true),
 ('cuet-agri-agm-breeding',       'cuet-agri-agrometeorology', 'Plant Breeding and Plant Biotechnology',                                5, true,  true),
 
 -- cuet-agri-livestock (5 topics)
