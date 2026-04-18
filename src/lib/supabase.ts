@@ -158,13 +158,17 @@ export async function signUpWithEmail(
 /**
  * Send a password reset email.
  *
- * The redirectTo deep link points at /reset-password, which handles the
- * code exchange and shows the new-password form.
+ * redirectTo uses Linking.createURL so the scheme matches the runtime:
+ *   - Expo Go dev: exp://<host>:8081/--/reset-password
+ *   - Standalone: vani://reset-password
+ * Both patterns must be added to Supabase's Redirect URL allowlist.
  */
 export async function resetPassword(email: string): Promise<void> {
   if (!supabase) throw new Error('Supabase is not configured.');
+  const Linking = require('expo-linking');
+  const redirectTo = Linking.createURL('reset-password');
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: 'vani://reset-password',
+    redirectTo,
   });
   if (error) throw error;
 }
