@@ -157,10 +157,25 @@ export async function signUpWithEmail(
 
 /**
  * Send a password reset email.
+ *
+ * The redirectTo deep link points at /reset-password, which handles the
+ * code exchange and shows the new-password form.
  */
 export async function resetPassword(email: string): Promise<void> {
   if (!supabase) throw new Error('Supabase is not configured.');
-  const { error } = await supabase.auth.resetPasswordForEmail(email);
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: 'vani://reset-password',
+  });
+  if (error) throw error;
+}
+
+/**
+ * Update the password for the currently signed-in user.
+ * Used by the reset-password screen after the recovery code exchange.
+ */
+export async function updatePassword(newPassword: string): Promise<void> {
+  if (!supabase) throw new Error('Supabase is not configured.');
+  const { error } = await supabase.auth.updateUser({ password: newPassword });
   if (error) throw error;
 }
 
