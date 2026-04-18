@@ -62,15 +62,12 @@ export function useForceUpdate(): UpdateInfo | null {
 
   useEffect(() => {
     (async () => {
-      // Skip Play Store In-App Updates on debug / dev-client builds.
-      // The APK is signed with the debug key, so Play Store's startUpdate()
-      // throws "failed to download remote update" from native code, which
-      // bypasses our JS try/catch and crashes the app at launch.
-      if (__DEV__) {
-        const info = await checkDbForUpdate();
-        if (info) setUpdate(info);
-        return;
-      }
+      // Skip all update checks on debug / dev-client / Expo Go builds.
+      // The DB version is almost always newer than the running dev version,
+      // which would pop the force-update modal and block testing.
+      // Play Store's startUpdate() also crashes on debug-signed APKs with
+      // "failed to download remote update" from native code.
+      if (__DEV__) return;
 
       if (Platform.OS === 'android') {
         try {
