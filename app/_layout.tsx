@@ -281,7 +281,8 @@ export default function RootLayout() {
     onboardingDone === null &&
     segments[0] !== '(auth)' &&
     segments[0] !== 'auth' &&
-    segments[0] !== 'setup';
+    segments[0] !== 'setup' &&
+    segments[0] !== 'reset-password';
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

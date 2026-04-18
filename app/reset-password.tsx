@@ -23,6 +23,7 @@ import {
   exchangeAuthCode,
   updatePassword,
   signOut,
+  supabase,
 } from '../src/lib/supabase';
 import { reportError } from '../src/lib/errorReporting';
 import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
@@ -71,6 +72,15 @@ export default function ResetPasswordScreen() {
       } catch (e: any) {
         exchanged.current = true;
         reportError(e, 'high', 'ResetPassword.exchangeCode');
+        // If a session exists anyway (e.g. this screen remounted after a
+        // prior successful exchange consumed the code), just show the form.
+        const { data } = supabase
+          ? await supabase.auth.getSession()
+          : { data: { session: null } };
+        if (data.session) {
+          setPhase('ready');
+          return;
+        }
         setErrorMsg(
           'This reset link is invalid or has expired. Request a new one from the sign-in screen.'
         );
@@ -79,14 +89,25 @@ export default function ResetPasswordScreen() {
     };
 
     (async () => {
+      // If we already have a session (screen remounted after exchange, or
+      // user landed here already signed in), skip the exchange entirely.
+      if (supabase) {
+        const { data } = await supabase.auth.getSession();
+        if (data.session) {
+          exchanged.current = true;
+          setPhase('ready');
+          return;
+        }
+      }
+
       const url = await Linking.getInitialURL();
       await tryExchange(url);
 
-      // If no code in initial URL but we already have a session (e.g.
-      // the user was mid-recovery and navigated here), go straight to ready.
+      // No code in initial URL and no session — wait briefly for a URL
+      // event (app was already running when link was tapped), then
+      // show the form so the user can at least see an error if they
+      // try to submit without a session.
       if (!exchanged.current) {
-        // Let the user proceed — if updateUser fails because no session,
-        // we'll show an error.
         setPhase('ready');
       }
     })();
