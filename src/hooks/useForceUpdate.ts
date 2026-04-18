@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
-import SpInAppUpdates, { IAUUpdateKind } from 'sp-react-native-in-app-updates';
 import { supabase } from '../lib/supabase';
 
 export interface UpdateInfo {
@@ -75,6 +74,13 @@ export function useForceUpdate(): UpdateInfo | null {
 
       if (Platform.OS === 'android') {
         try {
+          // Lazy-require so Expo Go (which lacks this native module) can
+          // still bundle. Only production/dev-client builds reach this path.
+          const {
+            default: SpInAppUpdates,
+            IAUUpdateKind,
+          } = require('sp-react-native-in-app-updates');
+
           const inAppUpdates = new SpInAppUpdates(false);
           const result = await inAppUpdates.checkNeedsUpdate();
           if (result.shouldUpdate) {
