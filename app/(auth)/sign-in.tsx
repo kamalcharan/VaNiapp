@@ -113,21 +113,35 @@ export default function SignInScreen() {
 
   const handleForgotPassword = async () => {
     const trimmedEmail = email.trim();
+    setSuccessMsg(null);
+
     if (!trimmedEmail) {
       setError('Enter your email above, then tap Forgot Password.');
       return;
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
     setError(null);
     setLoading(true);
     try {
       await resetPassword(trimmedEmail);
       setSuccessMsg(
-        'Password reset link sent to ' +
+        'Reset link sent to ' +
           trimmedEmail +
-          '. Check your inbox (and spam folder).'
+          '. Open the link on this device to set a new password. (Check your spam folder too.)'
       );
     } catch (err: any) {
-      setError(err?.message || 'Failed to send reset email.');
+      const msg = err?.message || '';
+      if (msg.toLowerCase().includes('rate') || msg.toLowerCase().includes('too many')) {
+        setError('Too many reset requests. Please wait a minute before trying again.');
+      } else {
+        setError(msg || 'Failed to send reset email. Please try again.');
+      }
     } finally {
       setLoading(false);
     }

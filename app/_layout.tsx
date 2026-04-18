@@ -202,8 +202,13 @@ export default function RootLayout() {
     const inAuthGroup = segments[0] === '(auth)';
     const inAuthCallback = segments[0] === 'auth';
     const inSetup = segments[0] === 'setup';
+    const inResetPassword = segments[0] === 'reset-password';
 
     if (authState.status === 'authenticated') {
+      // Don't redirect away from the password reset flow — the user has
+      // a temporary recovery session and still needs to set a new password.
+      if (inResetPassword) return;
+
       if (inAuthGroup || inAuthCallback) {
         // Just signed in — go to setup (profile check will determine next step)
         router.replace('/setup/welcome');
@@ -220,7 +225,12 @@ export default function RootLayout() {
         // Not onboarded yet — go to setup
         router.replace('/setup/welcome');
       }
-    } else if (authState.status === 'unauthenticated' && !inAuthGroup && !inAuthCallback) {
+    } else if (
+      authState.status === 'unauthenticated' &&
+      !inAuthGroup &&
+      !inAuthCallback &&
+      !inResetPassword
+    ) {
       router.replace('/(auth)/onboarding');
     }
   }, [authState.status, segments, showSplash, onboardingDone]);
