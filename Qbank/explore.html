@@ -379,7 +379,7 @@
     </div>
   </div>
 
-  <script src="./shared.js"></script>
+  <script src="./shared.js?v=20260424"></script>
   <script>
     let subjects = [];
     let chapters = [];
@@ -1156,6 +1156,16 @@
       }
       if (issue.issue_type === 'MTF_COLUMN_COUNT_MISMATCH') {
         return `Col A: ${issue.details?.colACount || '?'}, Col B: ${issue.details?.colBCount || '?'}`;
+      }
+      if (issue.issue_type === 'ANSWER_DISTRIBUTION_SKEW') {
+        const d = issue.details || {};
+        const pct = d.percentages || {};
+        const spread = ['A','B','C','D'].map(l => `${l}: ${pct[l] ?? 0}%`).join(' · ');
+        const typeLabel = d.questionType || '?';
+        const parts = [`${typeLabel} (${d.totalOfType || '?'} Qs) — ${spread}`];
+        if (d.dominantPct >= 60) parts.push(`dominant ${d.dominantKey}: ${d.dominantPct}%`);
+        if ((d.underusedLetters || []).length) parts.push(`underused: ${d.underusedLetters.join(',')}`);
+        return parts.join(' | ');
       }
       return '';
     }
