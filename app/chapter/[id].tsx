@@ -46,6 +46,7 @@ import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
 import { incrementStreak, resetStreak, recordDailyPractice } from '../../src/store/slices/streakSlice';
 import { fetchQuestionsByChapter } from '../../src/lib/questions';
+import { applyOptionShuffleToBatch } from '../../src/lib/optionShuffle';
 import { getCorrectId, resolveLegacyChapterId } from '../../src/lib/questionAdapter';
 import { syncChapterProgress } from '../../src/lib/progressSync';
 import { reportError } from '../../src/lib/errorReporting';
@@ -76,6 +77,7 @@ export default function ChapterQuizScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<'no-connection' | 'no-questions' | 'not-configured' | null>(null);
   const [sessionStarted, setSessionStarted] = useState(false);
+  const [sessionId, setSessionId] = useState<string>('');
 
   const loadQuestions = () => {
     if (!chapterId) return;
@@ -98,8 +100,12 @@ export default function ChapterQuizScreen() {
           [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
 
-        // Limit to 20 questions per session
-        const batch = shuffled.slice(0, 20);
+        // Limit to 20 questions per session, then shuffle each question's
+        // options deterministically by session id. Same seed is reused by
+        // the answer-review screen via the stored session.id.
+        const newSessionId = `ch-${Date.now()}`;
+        const batch = applyOptionShuffleToBatch(shuffled.slice(0, 20), newSessionId);
+        setSessionId(newSessionId);
         setQuestions(batch);
         setIsLoading(false);
       })
@@ -199,9 +205,9 @@ export default function ChapterQuizScreen() {
 
   // Start session once questions are loaded
   useEffect(() => {
-    if (sessionStarted || questions.length === 0 || !chapterId) return;
+    if (sessionStarted || questions.length === 0 || !chapterId || !sessionId) return;
     const session: ChapterExamSession = {
-      id: `ch-${Date.now()}`,
+      id: sessionId,
       mode: 'chapter',
       chapterId,
       subjectId: subjectId as NeetSubjectId,
@@ -215,7 +221,7 @@ export default function ChapterQuizScreen() {
     dispatch(startChapterExam(session));
     startTimeRef.current = Date.now();
     setSessionStarted(true);
-  }, [questions, chapterId, sessionStarted]);
+  }, [questions, chapterId, sessionStarted, sessionId]);
 
   const question = questions[currentIndex];
   const isBookmarked = question ? bookmarkedIds.includes(question.id) : false;

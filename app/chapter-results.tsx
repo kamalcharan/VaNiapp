@@ -15,6 +15,7 @@ import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
 import { getChapterById } from '../src/data/chapters';
 import { fetchQuestionsByChapter } from '../src/lib/questions';
+import { applyOptionShuffleToBatch } from '../src/lib/optionShuffle';
 import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter';
 import { reportError } from '../src/lib/errorReporting';
 import { RootState } from '../src/store';
@@ -89,13 +90,25 @@ export default function ChapterResultsScreen() {
         color: '#3B82F6',
       })
     : DEFAULT_META;
+  // Find the session for THIS chapter (not just the most recent one)
+  const lastSession = useSelector((state: RootState) => {
+    const h = state.practice.chapterHistory;
+    if (!chapterId) return h.length > 0 ? h[0] : null;
+    return h.find((s) => s.chapterId === chapterId) ?? (h.length > 0 ? h[0] : null);
+  });
+
   // Fetch Supabase questions (quiz uses Supabase IDs for answers) — no fallback
   const [questions, setQuestions] = useState<QuestionV2[]>([]);
   useEffect(() => {
     if (!chapterId || isQuickMode) return;
     fetchQuestionsByChapter(chapterId).then((result) => {
       if (result.ok) {
-        setQuestions(result.questions);
+        // Re-apply the same per-session option shuffle the user saw so
+        // question review on this screen matches their attempt experience.
+        const batch = lastSession
+          ? applyOptionShuffleToBatch(result.questions, lastSession.id)
+          : result.questions;
+        setQuestions(batch);
       } else {
         reportError(
           new Error(`Failed to load questions for results: ${result.error}`),
@@ -105,7 +118,7 @@ export default function ChapterResultsScreen() {
         );
       }
     });
-  }, [chapterId, isQuickMode]);
+  }, [chapterId, isQuickMode, lastSession?.id]);
 
   const correctNum = parseInt(correct ?? '0', 10);
   const totalNum = parseInt(total ?? '0', 10);
@@ -120,13 +133,6 @@ export default function ChapterResultsScreen() {
     const s = totalSec % 60;
     return `${m}m ${s}s`;
   };
-
-  // Find the session for THIS chapter (not just the most recent one)
-  const lastSession = useSelector((state: RootState) => {
-    const h = state.practice.chapterHistory;
-    if (!chapterId) return h.length > 0 ? h[0] : null;
-    return h.find((s) => s.chapterId === chapterId) ?? (h.length > 0 ? h[0] : null);
-  });
 
   // Build a lookup from answer questionId → answer for fast matching
   const answerMap = useMemo(() => {

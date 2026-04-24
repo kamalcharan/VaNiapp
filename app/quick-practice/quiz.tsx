@@ -20,6 +20,7 @@ import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
 import { buildV2QuickPractice } from '../../src/data/questions';
 import { fetchQuestionsBySubject } from '../../src/lib/questions';
+import { applyOptionShuffleToBatch } from '../../src/lib/optionShuffle';
 import { getCorrectId } from '../../src/lib/questionAdapter';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import { ConfettiBurst } from '../../src/components/ui/ConfettiBurst';
@@ -94,7 +95,9 @@ export default function QuickPracticeQuizScreen() {
           ? shuffled.filter((q) => unlockedTypes.includes(q.type))
           : shuffled;
         if (filtered.length > 0) {
-          setQuestions(filtered.slice(0, 20));
+          const batch = filtered.slice(0, 20);
+          const shuffleSessionId = `qp-${Date.now()}`;
+          setQuestions(applyOptionShuffleToBatch(batch, shuffleSessionId));
           setLoadingQuestions(false);
           return;
         }
