@@ -178,6 +178,13 @@ Each file is a **top-level JSON array** (NOT an object wrapper with a `questions
 6. **`topic`** on every question must match the topic name column above **exactly** (punctuation, em-dashes, casing included).
 7. **Top-level JSON** of each file is an ARRAY of 20 question objects — no outer `{ ..., questions: [...] }` wrapper.
 8. **IDs** are kebab-case starting with `cuet-ped-` and strictly sequential (`-01`…`-20` in p1, `-21`…`-40` in p2).
+9. **Correct-answer letter distribution** — MUST be balanced across each 20-question file:
+   - Each of `A`, `B`, `C`, `D` should be the `correct_answer` for 4–6 of the 20 questions (i.e. 20–30% each).
+   - No letter above 6 (30%). No letter below 4 (20%).
+   - Applies to `mcq`, `match-the-following`, `assertion-reasoning`, `logical-sequence`, `diagram-based`. For `true-false` use A (True) vs B (False) roughly 50/50.
+   - For **assertion-reasoning** specifically, also balance the SEMANTIC templates across the 3 A-R questions per file: don't let all 3 land on "Both A and R are correct and R explains A". Mix in at least one case with R not explaining A, or one of the partial-false templates.
+   - Before emitting each file, verify your own correct-answer list meets these counts; if not, swap option assignments to fix.
+   - This is a hard rule — previous generations clustered 85% of A-R on option A and 67% of MCQ on option B, which the app's quality scanner now flags as `ANSWER_DISTRIBUTION_SKEW`.
 
 ## Content quality bar
 
