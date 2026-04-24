@@ -4,7 +4,7 @@
 -- ============================================================================
 
 -- ── 1. Does the 'agriculture' subject exist? ──────────────────────────────
-SELECT 'subject' AS check_type, id, name, exam_ids, is_active
+SELECT 'subject' AS check_type, id, name, exam_id, category, is_active
 FROM med_subjects
 WHERE id = 'agriculture';
 
