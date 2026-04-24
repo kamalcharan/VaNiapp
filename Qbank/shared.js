@@ -31,7 +31,7 @@ const EXAM_CONFIG = {
       'MATHEMATICS', 'ACCOUNTANCY', 'BUSINESS-STUDIES', 'ECONOMICS',
       'HISTORY', 'GEOGRAPHY', 'POLITICAL-SCIENCE', 'SOCIOLOGY', 'PSYCHOLOGY',
       'COMPUTER-SCIENCE', 'LEGAL-STUDIES', 'PHYSICAL-EDUCATION',
-      'HOME-SCIENCE', 'ENGLISH'
+      'HOME-SCIENCE', 'ENGLISH', 'AGRICULTURE'
     ]
   }
 };
@@ -58,6 +58,7 @@ const SUBJECT_META = {
   'COMPUTER-SCIENCE': { name: 'Computer Science', emoji: '💻', color: '#0f766e', bg: '#ccfbf1' },
   'LEGAL-STUDIES':    { name: 'Legal Studies',    emoji: '⚖️', color: '#b45309', bg: '#fef3c7' },
   'PHYSICAL-EDUCATION':{ name: 'Physical Education', emoji: '🏃', color: '#16a34a', bg: '#dcfce7' },
+  'AGRICULTURE':      { name: 'Agriculture',      emoji: '🌾', color: '#65a30d', bg: '#ecfccb' },
   'HOME-SCIENCE':     { name: 'Home Science',     emoji: '🏠', color: '#d97706', bg: '#fef9c3' },
   'ENGLISH':          { name: 'English',          emoji: '📖', color: '#2563eb', bg: '#dbeafe' }
 };
