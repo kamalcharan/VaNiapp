@@ -29,7 +29,7 @@ import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
 import { ReportIssueSheet } from '../../src/components/exam/ReportIssueSheet';
 import { useToast } from '../../src/components/ui/Toast';
-import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession, QuestionV2, t } from '../../src/types';
+import { NeetSubjectId, NEET_SUBJECT_IDS, SubjectId, STRENGTH_LEVELS, ChapterExamSession, QuestionV2, t } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
@@ -49,7 +49,9 @@ export default function QuickPracticeQuizScreen() {
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
   const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
 
-  const subject = subjectId as NeetSubjectId;
+  // subjectId can be any NEET or CUET subject id — string-typed.
+  const subject = (subjectId ?? '') as string;
+  const isNeetSubject = (NEET_SUBJECT_IDS as readonly string[]).includes(subject);
   const subjectMeta = SUBJECT_META[subject] ?? {
     name: subject ? subject.charAt(0).toUpperCase() + subject.slice(1).replace(/-/g, ' ') : 'Practice',
     emoji: '\u26A1',
@@ -104,14 +106,17 @@ export default function QuickPracticeQuizScreen() {
         // All questions filtered out by unlockedTypes — fall through to local fallback
       }
 
-      // Fall back to local hardcoded questions
-      const local = buildV2QuickPractice(subject, unlockedTypes);
-      if (cancelled) return;
+      // Fall back to local hardcoded questions — NEET-only sample set;
+      // CUET subjects only get Supabase, so skip the fallback for them.
+      if (isNeetSubject) {
+        const local = buildV2QuickPractice(subject as NeetSubjectId, unlockedTypes);
+        if (cancelled) return;
 
-      if (local.length > 0) {
-        setQuestions(local);
-        setLoadingQuestions(false);
-        return;
+        if (local.length > 0) {
+          setQuestions(local);
+          setLoadingQuestions(false);
+          return;
+        }
       }
 
       setLoadError('No questions available for this subject yet.');

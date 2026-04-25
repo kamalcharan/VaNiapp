@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useSelector } from 'react-redux';
+import * as Haptics from 'expo-haptics';
 
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
@@ -91,8 +92,9 @@ export default function PracticeExamIntroScreen() {
     router.push('/practice-exam/quiz');
   };
 
-  const handleOpenQuickPractice = () => {
-    router.push('/quick-practice');
+  const handleStartCuet = (subjId: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    router.push({ pathname: '/practice-exam/cuet', params: { subjectId: subjId } });
   };
 
   const handleBack = () => {
@@ -156,15 +158,33 @@ export default function PracticeExamIntroScreen() {
             ))}
           </JournalCard>
 
-          {/* Subjects */}
+          {/* Subjects — chips for NEET (single combined paper), tappable cards for CUET (one paper per subject) */}
           <JournalCard delay={200}>
             <Text style={[Typography.label, { color: colors.textTertiary, marginBottom: Spacing.md }]}>
-              {view === 'CUET' ? 'YOUR CUET SUBJECTS' : 'SUBJECTS'}
+              {view === 'CUET' ? 'PICK A SUBJECT TO START' : 'SUBJECTS'}
             </Text>
             {visibleSubjects.length === 0 ? (
               <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
                 You haven't picked any {view} subjects yet.
               </Text>
+            ) : view === 'CUET' ? (
+              <View style={styles.subjectGrid}>
+                {visibleSubjects.map((s) => (
+                  <Pressable
+                    key={s.id}
+                    onPress={() => handleStartCuet(s.id)}
+                    style={[styles.subjectCard, { backgroundColor: s.color + '15', borderColor: s.color + '40' }]}
+                  >
+                    <Text style={styles.subjectCardEmoji}>{s.emoji}</Text>
+                    <Text style={[Typography.bodySm, { color: colors.text, fontFamily: 'PlusJakartaSans_600SemiBold', textAlign: 'center' }]} numberOfLines={2}>
+                      {s.name}
+                    </Text>
+                    <Text style={[Typography.bodySm, { color: s.color, fontSize: 11, marginTop: 2 }]}>
+                      50 Qs · 60 min
+                    </Text>
+                  </Pressable>
+                ))}
+              </View>
             ) : (
               <View style={styles.subjectRow}>
                 {visibleSubjects.map((s) => (
@@ -177,30 +197,20 @@ export default function PracticeExamIntroScreen() {
             )}
           </JournalCard>
 
-          {/* Instructions / Coming-soon note */}
-          {view === 'NEET' ? (
-            <StickyNote color="pink" rotation={1} delay={300}>
-              <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20 }]}>
-                {'•'} You can navigate between questions freely{'\n'}
-                {'•'} Mark questions for review and come back{'\n'}
-                {'•'} No feedback until you submit the entire exam{'\n'}
-                {'•'} Timer starts as soon as you begin
-              </Text>
-            </StickyNote>
-          ) : (
-            <StickyNote color="yellow" rotation={1} delay={300}>
-              <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20 }]}>
-                Full CUET subject mocks are coming soon. For now, drill any subject in Quick Practice — same questions, instant feedback.
-              </Text>
-            </StickyNote>
-          )}
+          {/* Instructions */}
+          <StickyNote color="pink" rotation={1} delay={300}>
+            <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20 }]}>
+              {'•'} {view === 'CUET' ? 'Each subject is a separate 60-minute paper' : 'You can navigate between questions freely'}{'\n'}
+              {'•'} Mark questions for review and come back{'\n'}
+              {'•'} No feedback until you submit the paper{'\n'}
+              {'•'} Long-press an option to cross it out
+            </Text>
+          </StickyNote>
 
-          {/* Actions */}
+          {/* Actions — NEET has a single Start button; CUET starts via subject cards above */}
           <View style={styles.actions}>
-            {view === 'NEET' ? (
+            {view === 'NEET' && (
               <PuffyButton title="Start Exam" onPress={handleStart} icon={'🚀'} />
-            ) : (
-              <PuffyButton title="Open Quick Practice" onPress={handleOpenQuickPractice} icon={'⚡'} />
             )}
             <PuffyButton title="Go Back" onPress={handleBack} variant="ghost" />
           </View>
@@ -237,6 +247,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: Spacing.sm,
+  },
+  subjectGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: Spacing.sm,
+  },
+  subjectCard: {
+    width: '48%',
+    alignItems: 'center',
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.sm,
+    borderRadius: BorderRadius.md,
+    borderWidth: 1,
+    gap: 4,
+  },
+  subjectCardEmoji: {
+    fontSize: 28,
+    marginBottom: 4,
   },
   subjectChip: {
     flexDirection: 'row',
