@@ -184,6 +184,42 @@ export function clearQuestionsCache(): void {
   cache.clear();
 }
 
+// ── Practice Exam: 50 questions per NEET subject ─────────────
+
+import { NEET_SUBJECT_IDS, NeetSubjectId } from '../types';
+
+const PRACTICE_EXAM_POOL = 200; // pull this many per subject, then shuffle and take 50
+const PRACTICE_EXAM_PER_SUBJECT = 50;
+
+export type FetchPracticeExamResult =
+  | { ok: true; bySubject: Record<NeetSubjectId, QuestionV2[]> }
+  | { ok: false; error: 'no-connection' | 'no-questions' | 'not-configured'; subjectId?: NeetSubjectId };
+
+/**
+ * Build a NEET Practice Exam set (4 subjects × 50 questions) from Supabase.
+ * Pulls a larger pool per subject for variety, shuffles client-side, slices
+ * to 50. Caller is expected to split into Section A (35) + Section B (15).
+ */
+export async function fetchPracticeExamSet(): Promise<FetchPracticeExamResult> {
+  if (!supabase) return { ok: false, error: 'not-configured' };
+
+  const bySubject = {} as Record<NeetSubjectId, QuestionV2[]>;
+
+  for (const subjectId of NEET_SUBJECT_IDS) {
+    const result = await fetchQuestionsBySubject(subjectId, PRACTICE_EXAM_POOL);
+    if (!result.ok) {
+      return { ok: false, error: result.error, subjectId };
+    }
+    if (result.questions.length === 0) {
+      return { ok: false, error: 'no-questions', subjectId };
+    }
+    const shuffled = [...result.questions].sort(() => Math.random() - 0.5);
+    bySubject[subjectId] = shuffled.slice(0, PRACTICE_EXAM_PER_SUBJECT);
+  }
+
+  return { ok: true, bySubject };
+}
+
 // ── Transform DB row → QuestionV2 ────────────────────────────
 
 function dbToV2(row: DbQuestion): QuestionV2 {

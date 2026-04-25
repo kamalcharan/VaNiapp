@@ -25,10 +25,10 @@ import {
   CUET_SCORING,
   UserAnswer,
   QuestionV2,
-  Option,
   t,
 } from '../../src/types';
 import { getCorrectId } from '../../src/lib/questionAdapter';
+import { QuestionRenderer } from '../../src/components/exam/QuestionRenderer';
 import { calculateCuetScore } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { recordDailyPractice } from '../../src/store/slices/streakSlice';
@@ -61,7 +61,6 @@ export default function CuetSubjectQuizScreen() {
 
   const [answers, setAnswers] = useState<Record<string, string | null>>({});
   const [marked, setMarked] = useState<Record<string, boolean>>({});
-  const [eliminated, setEliminated] = useState<Record<string, string[]>>({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timeLeftMs, setTimeLeftMs] = useState(CUET_SCORING.timeLimitMs);
   const [showReportSheet, setShowReportSheet] = useState(false);
@@ -117,10 +116,6 @@ export default function CuetSubjectQuizScreen() {
   }, [loading, questions.length]);
 
   const question = questions[currentIndex];
-  const questionOptions: Option[] =
-    question && 'options' in question.payload
-      ? (question.payload as { options: Option[] }).options
-      : [];
 
   const navigateTo = useCallback(
     (idx: number) => {
@@ -137,30 +132,8 @@ export default function CuetSubjectQuizScreen() {
       if (!question) return;
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
-      // Un-eliminate if user picks an eliminated option
-      setEliminated((prev) => {
-        const cur = prev[question.id] ?? [];
-        if (!cur.includes(optionId)) return prev;
-        return { ...prev, [question.id]: cur.filter((id) => id !== optionId) };
-      });
     },
     [question],
-  );
-
-  const handleToggleEliminate = useCallback(
-    (optionId: string) => {
-      if (!question) return;
-      if (answers[question.id] === optionId) return;
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-      setEliminated((prev) => {
-        const cur = prev[question.id] ?? [];
-        const next = cur.includes(optionId)
-          ? cur.filter((id) => id !== optionId)
-          : [...cur, optionId];
-        return { ...prev, [question.id]: next };
-      });
-    },
-    [question, answers],
   );
 
   const handleClearAnswer = useCallback(() => {
@@ -202,7 +175,7 @@ export default function CuetSubjectQuizScreen() {
       questionId: q.id,
       selectedOptionId: answers[q.id] ?? null,
       isMarked: marked[q.id] ?? false,
-      eliminatedOptionIds: eliminated[q.id] ?? [],
+      eliminatedOptionIds: [],
       timeSpentMs: 0,
     }));
 
@@ -247,7 +220,7 @@ export default function CuetSubjectQuizScreen() {
         focusSwitches: String(focus.switchCount),
       },
     });
-  }, [submitted, questions, answers, marked, eliminated, timeLeftMs, dispatch, router, subject, focus.switchCount]);
+  }, [submitted, questions, answers, marked, timeLeftMs, dispatch, router, subject, focus.switchCount]);
 
   // Auto-submit on timer expiry
   useEffect(() => {
@@ -410,76 +383,15 @@ export default function CuetSubjectQuizScreen() {
             </Text>
           </View>
 
-          {/* Options — long-press to eliminate */}
-          <View style={styles.optionsList}>
-            {questionOptions.map((opt, idx) => {
-              const label = String.fromCharCode(65 + idx);
-              const isSelected = answers[question.id] === opt.id;
-              const isElim = (eliminated[question.id] ?? []).includes(opt.id);
-              return (
-                <Pressable
-                  key={opt.id}
-                  onPress={() => handleSelectOption(opt.id)}
-                  onLongPress={() => handleToggleEliminate(opt.id)}
-                  style={[
-                    styles.optionRow,
-                    {
-                      backgroundColor: isElim
-                        ? colors.surfaceBorder + '30'
-                        : isSelected
-                          ? colors.primary + '12'
-                          : colors.surface,
-                      borderColor: isElim ? colors.surfaceBorder : isSelected ? colors.primary : colors.surfaceBorder,
-                      borderWidth: isSelected && !isElim ? 2 : 1,
-                      opacity: isElim ? 0.5 : 1,
-                    },
-                  ]}
-                >
-                  <View
-                    style={[
-                      styles.optionLabel,
-                      {
-                        backgroundColor: isElim
-                          ? colors.surfaceBorder
-                          : isSelected
-                            ? colors.primary
-                            : colors.surfaceBorder + '80',
-                      },
-                    ]}
-                  >
-                    <Text
-                      style={[
-                        styles.optionLabelText,
-                        {
-                          color: isSelected && !isElim ? '#FFF' : colors.textSecondary,
-                          textDecorationLine: isElim ? 'line-through' : 'none',
-                        },
-                      ]}
-                    >
-                      {label}
-                    </Text>
-                  </View>
-                  <Text
-                    style={[
-                      Typography.body,
-                      {
-                        color: isElim ? colors.textTertiary : colors.text,
-                        flex: 1,
-                        textDecorationLine: isElim ? 'line-through' : 'none',
-                      },
-                    ]}
-                  >
-                    {t(language, opt.text, opt.textTe, opt.textHi)}
-                  </Text>
-                  {isElim && <Text style={[styles.elimBadge, { color: colors.textTertiary }]}>X</Text>}
-                </Pressable>
-              );
-            })}
-          </View>
-
-          <Text style={[styles.elimHint, { color: colors.textTertiary }]}>
-            Long-press an option to cross it out
-          </Text>
+          {/* Type-specific content + Options via QuestionRenderer (all 8 types) */}
+          <QuestionRenderer
+            question={question}
+            language={language}
+            selectedOptionId={answers[question.id] ?? null}
+            showFeedback={false}
+            onSelect={handleSelectOption}
+            colors={colors}
+          />
 
           {/* Action Buttons */}
           <View style={styles.actionRow}>
@@ -601,29 +513,6 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.lg,
     borderWidth: 1,
     marginBottom: Spacing.lg,
-  },
-  optionsList: { gap: Spacing.md },
-  optionRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: Spacing.lg,
-    borderRadius: BorderRadius.lg,
-    gap: Spacing.md,
-  },
-  optionLabel: {
-    width: 30,
-    height: 30,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  optionLabelText: { fontFamily: 'PlusJakartaSans_800ExtraBold', fontSize: 13 },
-  elimBadge: { fontFamily: 'PlusJakartaSans_800ExtraBold', fontSize: 14 },
-  elimHint: {
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 11,
-    textAlign: 'center',
-    marginTop: Spacing.sm,
   },
   actionRow: { flexDirection: 'row', gap: Spacing.md, marginTop: Spacing.lg },
   actionBtn: {

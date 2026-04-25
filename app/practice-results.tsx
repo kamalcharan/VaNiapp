@@ -14,9 +14,9 @@ import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
 import { RootState } from '../src/store';
 import { NeetSubjectId, NEET_SCORING } from '../src/types';
-import { getAllQuestions } from '../src/data/questions';
-import { legacyBatchToV2, getCorrectId } from '../src/lib/questionAdapter';
+import { getCorrectId } from '../src/lib/questionAdapter';
 import { NEET_CHAPTERS } from '../src/data/chapters';
+import { getPracticeExamSnapshot } from '../src/lib/practiceExamSnapshot';
 
 const SUBJECTS: NeetSubjectId[] = ['physics', 'chemistry', 'botany', 'zoology'];
 
@@ -70,7 +70,12 @@ export default function PracticeResultsScreen() {
   const analytics = useMemo(() => {
     if (!lastExam) return null;
 
-    const v2Questions = legacyBatchToV2(getAllQuestions());
+    // Pull the question set the user just submitted from the in-memory snapshot.
+    // (Set by app/practice-exam/quiz.tsx right before navigating here.)
+    const snapshot = getPracticeExamSnapshot();
+    const v2Questions = snapshot?.questions ?? [];
+    if (v2Questions.length === 0) return null;
+
     const answeredMap: Record<string, string | null> = {};
     lastExam.answers.forEach((a) => {
       answeredMap[a.questionId] = a.selectedOptionId;
