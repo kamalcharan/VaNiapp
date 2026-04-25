@@ -26,13 +26,23 @@ Needs at least 10 questions of that type to fire. One issue per chapter-type, an
 
 Use to diagnose which chapters have generation bias before shipping future content.
 
-### Step 3 — Future-generation prevention (SHIPPED, commit pending)
+### Step 3 — Future-generation prevention (SHIPPED)
 
 With runtime shuffle live, existing DB bias is largely masked from students. The remaining risk is **future content** and **review-screen fidelity** (answer-review uses a reproducible per-session seed, so a given reviewed attempt keeps a fixed mapping — if generation is biased, within any one review the bias shows through).
 
 - `docs/QBANK_AGENT.md` §4.3 and §13.5/§13.6 now carry a hard distribution rule for all generators: each of A/B/C/D = 20–30% of correct answers; no letter above 35% or below 10%. Added Mistake #7 documenting the agri/ped bias we caught, and added two lines to the production-readiness checklist.
 - `Qbank/CUET/ped/PROMPT-generate-ncert-ch2-3-5.md` got an explicit rule #9 requiring per-file distribution check before emission.
 - **Existing-data rebalance is NOT executed**. Rationale: runtime shuffle hides the bias for students; rewriting existing option letters would require either (a) re-routing elimination hints on each swap (risky), or (b) editorial rewriting of explanations that reference letter positions. Not worth the blast radius given shuffle is sufficient. Revisit only if a scan shows review-screen UX problems in practice.
+
+### Decision on existing skewed data (2026-04-25)
+
+Path A picked: **accept + acknowledge, defer rebalance**. Trigger to revisit:
+- New batch of generated content fails the validator (means the prompt rule isn't being followed → generation pass needs review).
+- Real-world telemetry shows students gaming letter patterns or A-R semantic templates.
+
+Validator threshold tuned to reduce noise: requires ≥ 25 questions of a type before flagging (was 10), and severity dropped to `low` so the issue list isn't dominated by historical bias. The validator is now strictly an **advisory** signal for fresh content; existing data is treated as resolved-by-design (runtime shuffle).
+
+Two follow-on rebalance paths stay parked under "Parked for later review" below.
 
 ## Parked for later review
 

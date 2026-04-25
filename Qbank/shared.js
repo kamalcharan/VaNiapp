@@ -1984,7 +1984,9 @@ const QUALITY_ISSUE_TYPES = {
   MTF_DUPLICATE_KEYS:     { severity: 'high',   label: 'MTF has duplicate option/column keys (drag broken)' },
 
   // Chapter-level distribution (one issue per chapter per type)
-  ANSWER_DISTRIBUTION_SKEW: { severity: 'medium', label: 'Correct-answer distribution is skewed (generation bias)' },
+  // Advisory only — runtime option-shuffle masks this from students. Surfaced
+  // so we notice if a fresh batch breaks the generation-prompt distribution rule.
+  ANSWER_DISTRIBUTION_SKEW: { severity: 'low', label: 'Correct-answer distribution is skewed (advisory — masked by runtime shuffle)' },
 
   // Translation (parameterized via details.language)
   MISSING_TRANSLATION:    { severity: 'low',    label: 'Missing translation' },
@@ -2407,7 +2409,9 @@ function runQualityValidators(questions, languages, chapterId) {
 
     for (const type in byType) {
       const { total, counts, first } = byType[type];
-      if (total < 10) continue; // too few to draw a conclusion
+      // Need at least 25 questions of the type before flagging — below this
+      // the distribution is too noisy to call a real generation bias.
+      if (total < 25) continue;
 
       const letters = ['A', 'B', 'C', 'D'];
       const normalised = {};
