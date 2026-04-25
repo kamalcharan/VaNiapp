@@ -1,7 +1,8 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { useSelector } from 'react-redux';
 
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
@@ -10,8 +11,21 @@ import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { PuffyButton } from '../../src/components/ui/PuffyButton';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
+import { getProfile, getUserSubjectIds, MedProfile } from '../../src/lib/database';
+import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
+import { ExamType } from '../../src/types';
+import { RootState } from '../../src/store';
 
-const INFO_ROWS = [
+type ExamFocus = 'NEET' | 'CUET';
+
+interface InfoRow {
+  label: string;
+  value: string;
+  detail: string;
+}
+
+// NEET full-paper pattern (4 subjects, single sitting)
+const NEET_INFO: InfoRow[] = [
   { label: 'Total Questions', value: '200', detail: '50 per subject' },
   { label: 'Section A', value: '35 Qs', detail: 'All mandatory, per subject' },
   { label: 'Section B', value: '15 Qs', detail: 'Attempt any 10, per subject' },
@@ -19,20 +33,81 @@ const INFO_ROWS = [
   { label: 'Correct Answer', value: '+4', detail: 'marks' },
   { label: 'Wrong Answer', value: '-1', detail: 'mark (negative)' },
   { label: 'Unanswered', value: '0', detail: 'marks' },
-  { label: 'Maximum Marks', value: '720', detail: '180 scored \u00D7 4' },
+  { label: 'Maximum Marks', value: '720', detail: '180 scored × 4' },
+];
+
+// CUET UG per-subject pattern (each domain paper is its own sitting)
+const CUET_INFO: InfoRow[] = [
+  { label: 'Total Questions', value: '50', detail: 'per subject paper' },
+  { label: 'Attempt', value: 'All 50', detail: 'mandatory (since 2024)' },
+  { label: 'Duration', value: '60 min', detail: 'per subject' },
+  { label: 'Correct Answer', value: '+5', detail: 'marks' },
+  { label: 'Wrong Answer', value: '-1', detail: 'mark (negative)' },
+  { label: 'Unanswered', value: '0', detail: 'marks' },
+  { label: 'Maximum Marks', value: '250', detail: 'per subject' },
 ];
 
 export default function PracticeExamIntroScreen() {
   const { colors } = useTheme();
   const router = useRouter();
+  const savedExamFocus = useSelector((state: RootState) => state.auth.dashboardExamFocus);
+
+  const [profile, setProfile] = useState<MedProfile | null>(null);
+  const [subjects, setSubjects] = useState<CatalogSubject[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      const [prof, subjectIds, allSubjects] = await Promise.all([
+        getProfile(),
+        getUserSubjectIds(),
+        getSubjects(),
+      ]);
+      setProfile(prof);
+      const matched = subjectIds
+        .map((id) => allSubjects.find((s) => s.id === id))
+        .filter(Boolean) as CatalogSubject[];
+      setSubjects(matched);
+      setLoading(false);
+    })();
+  }, []);
+
+  const exam: ExamType = profile?.exam ?? 'NEET';
+  const isBoth = exam === 'BOTH';
+  const examFocus: ExamFocus = (savedExamFocus as ExamFocus) || 'NEET';
+  // Effective view: which exam we're showing format for right now.
+  const view: ExamFocus = isBoth ? examFocus : (exam === 'CUET' ? 'CUET' : 'NEET');
+
+  const visibleSubjects = isBoth
+    ? subjects.filter((s) => s.exam_id === view)
+    : subjects;
+
+  const infoRows = view === 'CUET' ? CUET_INFO : NEET_INFO;
+  const headerSubtitle = view === 'CUET'
+    ? 'CUET subject paper format'
+    : 'Full NEET format mock test';
 
   const handleStart = () => {
     router.push('/practice-exam/quiz');
   };
 
+  const handleOpenQuickPractice = () => {
+    router.push('/quick-practice');
+  };
+
   const handleBack = () => {
     router.back();
   };
+
+  if (loading) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]} edges={['top']}>
+          <ActivityIndicator color={colors.primary} />
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
 
   return (
     <DotGridBackground>
@@ -40,24 +115,29 @@ export default function PracticeExamIntroScreen() {
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
           {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.headerEmoji}>{'\uD83C\uDFAF'}</Text>
+            <Text style={styles.headerEmoji}>{'🎯'}</Text>
             <HandwrittenText variant="hand">Practice Exam</HandwrittenText>
             <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 4 }]}>
-              Full NEET format mock test
+              {headerSubtitle}
             </Text>
+            {isBoth && (
+              <Text style={[Typography.bodySm, { color: colors.textTertiary, marginTop: 2 }]}>
+                Showing {examFocus} format
+              </Text>
+            )}
           </View>
 
           {/* Format Card */}
           <JournalCard delay={100}>
             <Text style={[Typography.label, { color: colors.textTertiary, marginBottom: Spacing.md }]}>
-              EXAM FORMAT
+              {view === 'CUET' ? 'CUET FORMAT' : 'EXAM FORMAT'}
             </Text>
-            {INFO_ROWS.map((row, idx) => (
+            {infoRows.map((row, idx) => (
               <View
                 key={row.label}
                 style={[
                   styles.infoRow,
-                  idx < INFO_ROWS.length - 1 && {
+                  idx < infoRows.length - 1 && {
                     borderBottomWidth: 1,
                     borderBottomColor: colors.surfaceBorder,
                   },
@@ -79,36 +159,49 @@ export default function PracticeExamIntroScreen() {
           {/* Subjects */}
           <JournalCard delay={200}>
             <Text style={[Typography.label, { color: colors.textTertiary, marginBottom: Spacing.md }]}>
-              SUBJECTS
+              {view === 'CUET' ? 'YOUR CUET SUBJECTS' : 'SUBJECTS'}
             </Text>
-            <View style={styles.subjectRow}>
-              {[
-                { emoji: '\u269B\uFE0F', name: 'Physics' },
-                { emoji: '\uD83E\uDDEA', name: 'Chemistry' },
-                { emoji: '\uD83C\uDF3F', name: 'Botany' },
-                { emoji: '\uD83E\uDD8B', name: 'Zoology' },
-              ].map((s) => (
-                <View key={s.name} style={styles.subjectChip}>
-                  <Text style={styles.subjectChipEmoji}>{s.emoji}</Text>
-                  <Text style={[Typography.bodySm, { color: colors.text }]}>{s.name}</Text>
-                </View>
-              ))}
-            </View>
+            {visibleSubjects.length === 0 ? (
+              <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
+                You haven't picked any {view} subjects yet.
+              </Text>
+            ) : (
+              <View style={styles.subjectRow}>
+                {visibleSubjects.map((s) => (
+                  <View key={s.id} style={[styles.subjectChip, { backgroundColor: s.color + '15' }]}>
+                    <Text style={styles.subjectChipEmoji}>{s.emoji}</Text>
+                    <Text style={[Typography.bodySm, { color: colors.text }]}>{s.name}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
           </JournalCard>
 
-          {/* Instructions */}
-          <StickyNote color="pink" rotation={1} delay={300}>
-            <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20 }]}>
-              {'\u2022'} You can navigate between questions freely{'\n'}
-              {'\u2022'} Mark questions for review and come back{'\n'}
-              {'\u2022'} No feedback until you submit the entire exam{'\n'}
-              {'\u2022'} Timer starts as soon as you begin
-            </Text>
-          </StickyNote>
+          {/* Instructions / Coming-soon note */}
+          {view === 'NEET' ? (
+            <StickyNote color="pink" rotation={1} delay={300}>
+              <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20 }]}>
+                {'•'} You can navigate between questions freely{'\n'}
+                {'•'} Mark questions for review and come back{'\n'}
+                {'•'} No feedback until you submit the entire exam{'\n'}
+                {'•'} Timer starts as soon as you begin
+              </Text>
+            </StickyNote>
+          ) : (
+            <StickyNote color="yellow" rotation={1} delay={300}>
+              <Text style={[Typography.bodySm, { color: colors.text, lineHeight: 20 }]}>
+                Full CUET subject mocks are coming soon. For now, drill any subject in Quick Practice — same questions, instant feedback.
+              </Text>
+            </StickyNote>
+          )}
 
           {/* Actions */}
           <View style={styles.actions}>
-            <PuffyButton title="Start Exam" onPress={handleStart} icon={'\uD83D\uDE80'} />
+            {view === 'NEET' ? (
+              <PuffyButton title="Start Exam" onPress={handleStart} icon={'🚀'} />
+            ) : (
+              <PuffyButton title="Open Quick Practice" onPress={handleOpenQuickPractice} icon={'⚡'} />
+            )}
             <PuffyButton title="Go Back" onPress={handleBack} variant="ghost" />
           </View>
         </ScrollView>
@@ -152,7 +245,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: BorderRadius.md,
-    backgroundColor: 'rgba(0,0,0,0.04)',
   },
   subjectChipEmoji: {
     fontSize: 18,
