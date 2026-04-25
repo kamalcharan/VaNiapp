@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { DotGridBackground } from '../src/components/ui/DotGridBackground';
 import { JournalCard } from '../src/components/ui/JournalCard';
 import { PuffyButton } from '../src/components/ui/PuffyButton';
@@ -36,6 +36,12 @@ export default function ResetPasswordScreen() {
   const router = useRouter();
   const toast = useToast();
 
+  // expo-router exposes the deep-link query params as route params, so this
+  // is the primary path. Linking.getInitialURL() is the fallback for cold
+  // starts on Android where the router occasionally lands here without a
+  // routed `code` param.
+  const params = useLocalSearchParams<{ code?: string }>();
+
   const [phase, setPhase] = useState<Phase>('exchanging');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [password, setPassword] = useState('');
@@ -53,50 +59,73 @@ export default function ResetPasswordScreen() {
     }).start();
   }, []);
 
-  // Exchange the recovery code from the deep link.
+  // Exchange the recovery code into a Supabase session. Tries route params
+  // first, then falls back to Linking.getInitialURL() (cold start) and
+  // Linking 'url' events (warm start / app already open when the OS hands
+  // off the deep link).
   useEffect(() => {
     const Linking = require('expo-linking');
+    let cancelled = false;
 
-    const tryExchange = async (url: string | null) => {
-      if (!url || exchanged.current) return;
+    const exchange = async (code: string) => {
+      if (exchanged.current) return;
+      exchanged.current = true;
+      try {
+        await exchangeAuthCode(code);
+        if (!cancelled) setPhase('ready');
+      } catch (e: any) {
+        reportError(e, 'high', 'ResetPassword.exchangeCode');
+        if (!cancelled) {
+          setErrorMsg(
+            'This reset link is invalid or has expired. Request a new one from the sign-in screen.',
+          );
+          setPhase('error');
+        }
+      }
+    };
+
+    const codeFromUrl = (url: string | null): string | null => {
+      if (!url) return null;
       try {
         const parsed = Linking.parse(url);
-        const code =
-          (parsed.queryParams?.code as string | undefined) ?? null;
-        if (!code) return;
-
-        exchanged.current = true;
-        await exchangeAuthCode(code);
-        setPhase('ready');
-      } catch (e: any) {
-        exchanged.current = true;
-        reportError(e, 'high', 'ResetPassword.exchangeCode');
-        setErrorMsg(
-          'This reset link is invalid or has expired. Request a new one from the sign-in screen.'
-        );
-        setPhase('error');
+        return (parsed.queryParams?.code as string | undefined) ?? null;
+      } catch {
+        return null;
       }
     };
 
     (async () => {
-      const url = await Linking.getInitialURL();
-      await tryExchange(url);
-
-      // If no code in initial URL but we already have a session (e.g.
-      // the user was mid-recovery and navigated here), go straight to ready.
-      if (!exchanged.current) {
-        // Let the user proceed — if updateUser fails because no session,
-        // we'll show an error.
-        setPhase('ready');
+      // 1. Route param (preferred — expo-router consumed the URL)
+      if (params.code) {
+        await exchange(params.code);
+        return;
       }
+
+      // 2. Cold-start URL fallback
+      const initialUrl = await Linking.getInitialURL();
+      const codeFromInitial = codeFromUrl(initialUrl);
+      if (codeFromInitial) {
+        await exchange(codeFromInitial);
+        return;
+      }
+
+      // 3. No code anywhere — the user may already have a recovery session
+      // (e.g. they navigated here while one is active). Let the form mount;
+      // updatePassword will fail loudly if the session is missing.
+      if (!cancelled && !exchanged.current) setPhase('ready');
     })();
 
+    // Warm-start: app already running when OS hands off the deep link.
     const sub = Linking.addEventListener('url', (event: { url: string }) => {
-      tryExchange(event.url);
+      const c = codeFromUrl(event.url);
+      if (c) exchange(c);
     });
 
-    return () => sub?.remove?.();
-  }, []);
+    return () => {
+      cancelled = true;
+      sub?.remove?.();
+    };
+  }, [params.code]);
 
   const handleSave = async () => {
     setErrorMsg(null);
