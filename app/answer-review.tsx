@@ -19,12 +19,11 @@ import { useTheme } from '../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
 import { RootState } from '../src/store';
-import { getV2QuestionsByChapter } from '../src/data/questions';
 import { getChapterById } from '../src/data/chapters';
-import { getCorrectId, legacyBatchToV2 } from '../src/lib/questionAdapter';
-import { getAllQuestions } from '../src/data/questions';
-import { fetchQuestionsByChapter } from '../src/lib/questions';
+import { getCorrectId } from '../src/lib/questionAdapter';
+import { fetchQuestionsByChapter, fetchQuestionsByIds } from '../src/lib/questions';
 import { applyOptionShuffleToBatch } from '../src/lib/optionShuffle';
+import { getPracticeExamSnapshot } from '../src/lib/practiceExamSnapshot';
 import { AskVaniSheet } from '../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../src/components/exam/ConceptExplainerSheet';
@@ -58,55 +57,103 @@ export default function AnswerReviewScreen() {
   const [showConceptSheet, setShowConceptSheet] = useState(false);
   const [selectedConceptTag, setSelectedConceptTag] = useState('');
 
-  // Fetch Supabase questions for chapter sessions (has elimination hints + matching IDs)
+  // Load the question set the user just attempted. Both modes pull from
+  // Supabase; practice-exam mode also tries the in-memory snapshot first
+  // (set by /practice-exam/quiz on submit) so we don't re-fetch the same
+  // 200 questions immediately after.
   const [supabaseQuestions, setSupabaseQuestions] = useState<QuestionV2[]>([]);
   const [questionsLoading, setQuestionsLoading] = useState(true);
   const [fetchError, setFetchError] = useState<string | null>(null);
   useEffect(() => {
     if (!session) { setQuestionsLoading(false); return; }
-    if (session.mode !== 'chapter') { setQuestionsLoading(false); return; }
     setQuestionsLoading(true);
     setFetchError(null);
-    fetchQuestionsByChapter(session.chapterId)
-      .then((result) => {
-        if (result.ok) {
-          // Re-apply the same per-session option shuffle the user saw during
-          // the attempt, so option letters and positions match their memory.
-          const shuffled = applyOptionShuffleToBatch(result.questions, session.id);
-          setSupabaseQuestions(shuffled);
 
-          // Report if any answered questions are missing elimination hints
-          const answeredIds = new Set(session.answers.map((a) => a.questionId));
-          const answered = shuffled.filter((q) => answeredIds.has(q.id));
-          const missingHints = answered.filter(
-            (q) => !q.eliminationHints || q.eliminationHints.length === 0,
-          );
-          if (missingHints.length > 0) {
+    let cancelled = false;
+
+    const handleResult = (questions: QuestionV2[]) => {
+      if (cancelled) return;
+      // Re-apply the same per-session option shuffle the user saw during
+      // the attempt, so option letters and positions match their memory.
+      const shuffled = applyOptionShuffleToBatch(questions, session.id);
+      setSupabaseQuestions(shuffled);
+
+      // Report if any answered questions are missing elimination hints
+      const answeredIds = new Set(session.answers.map((a) => a.questionId));
+      const answered = shuffled.filter((q) => answeredIds.has(q.id));
+      const missingHints = answered.filter(
+        (q) => !q.eliminationHints || q.eliminationHints.length === 0,
+      );
+      if (missingHints.length > 0) {
+        reportError(
+          new Error(`Elimination hints not available for ${missingHints.length} question(s)`),
+          'medium',
+          'AnswerReview.missingHints',
+          {
+            sessionId: session.id,
+            questionIds: missingHints.map((q) => q.id).join(', '),
+          },
+        );
+      }
+    };
+
+    if (session.mode === 'chapter') {
+      fetchQuestionsByChapter(session.chapterId)
+        .then((result) => {
+          if (cancelled) return;
+          if (result.ok) {
+            handleResult(result.questions);
+          } else {
+            setFetchError(result.error);
             reportError(
-              new Error(`Elimination hints not available for ${missingHints.length} question(s)`),
-              'medium',
-              'AnswerReview.missingHints',
-              {
-                chapterId: session.chapterId,
-                questionIds: missingHints.map((q) => q.id).join(', '),
-              },
+              new Error(`Failed to fetch questions: ${result.error}`),
+              'high',
+              'AnswerReview.fetchQuestions',
+              { chapterId: session.chapterId, error: result.error },
             );
           }
-        } else {
-          setFetchError(result.error);
-          reportError(
-            new Error(`Failed to fetch questions: ${result.error}`),
-            'high',
-            'AnswerReview.fetchQuestions',
-            { chapterId: session.chapterId, error: result.error },
-          );
-        }
-      })
-      .catch((err) => {
-        setFetchError('no-connection');
-        reportError(err, 'high', 'AnswerReview.fetchQuestions', { chapterId: session.chapterId });
-      })
-      .finally(() => setQuestionsLoading(false));
+        })
+        .catch((err) => {
+          if (cancelled) return;
+          setFetchError('no-connection');
+          reportError(err, 'high', 'AnswerReview.fetchQuestions', { chapterId: session.chapterId });
+        })
+        .finally(() => { if (!cancelled) setQuestionsLoading(false); });
+    } else {
+      // Practice exam: prefer the in-memory snapshot from this session;
+      // fall back to a Supabase id lookup if the snapshot has been replaced
+      // (e.g. user navigated here from history later).
+      const snap = getPracticeExamSnapshot();
+      if (snap && snap.sessionId === session.id && snap.questions.length > 0) {
+        handleResult(snap.questions);
+        setQuestionsLoading(false);
+      } else {
+        const ids = session.answers.map((a) => a.questionId);
+        fetchQuestionsByIds(ids)
+          .then((result) => {
+            if (cancelled) return;
+            if (result.ok) {
+              handleResult(result.questions);
+            } else {
+              setFetchError(result.error);
+              reportError(
+                new Error(`Failed to fetch questions: ${result.error}`),
+                'high',
+                'AnswerReview.fetchByIds',
+                { sessionId: session.id, error: result.error },
+              );
+            }
+          })
+          .catch((err) => {
+            if (cancelled) return;
+            setFetchError('no-connection');
+            reportError(err, 'high', 'AnswerReview.fetchByIds', { sessionId: session.id });
+          })
+          .finally(() => { if (!cancelled) setQuestionsLoading(false); });
+      }
+    }
+
+    return () => { cancelled = true; };
   }, [session]);
 
   // Build question list + answer map
@@ -118,15 +165,10 @@ export default function AnswerReviewScreen() {
       aMap[a.questionId] = a;
     });
 
-    if (session.mode === 'chapter' && supabaseQuestions.length > 0) {
+    if (supabaseQuestions.length > 0) {
       const answeredSet = new Set(session.answers.map((a) => a.questionId));
       const matched = supabaseQuestions.filter((q) => answeredSet.has(q.id));
       return { questions: matched, answerMap: aMap };
-    }
-
-    // Practice exam mode — uses local questions
-    if (session.mode !== 'chapter') {
-      return { questions: legacyBatchToV2(getAllQuestions()), answerMap: aMap };
     }
 
     return { questions: [] as QuestionV2[], answerMap: aMap };
