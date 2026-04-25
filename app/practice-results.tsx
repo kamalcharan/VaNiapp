@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -15,7 +15,7 @@ import { SUBJECT_META } from '../src/constants/subjects';
 import { RootState } from '../src/store';
 import { NeetSubjectId, NEET_SCORING } from '../src/types';
 import { getCorrectId } from '../src/lib/questionAdapter';
-import { NEET_CHAPTERS } from '../src/data/chapters';
+import { getAllChapters, CatalogChapter } from '../src/lib/catalog';
 import { getPracticeExamSnapshot } from '../src/lib/practiceExamSnapshot';
 
 const SUBJECTS: NeetSubjectId[] = ['physics', 'chemistry', 'botany', 'zoology'];
@@ -33,11 +33,24 @@ export default function PracticeResultsScreen() {
   }>();
 
   const [activeTab, setActiveTab] = useState<'summary' | 'analytics'>('summary');
+  const [chapterMap, setChapterMap] = useState<Record<string, CatalogChapter>>({});
 
   const lastExam = useSelector((state: RootState) => {
     const h = state.practice.practiceHistory;
     return h.length > 0 ? h[0] : null;
   });
+
+  // Load chapter catalog so we can show chapter names in analytics
+  useEffect(() => {
+    let cancelled = false;
+    getAllChapters().then((chapters) => {
+      if (cancelled) return;
+      const map: Record<string, CatalogChapter> = {};
+      for (const ch of chapters) map[ch.id] = ch;
+      setChapterMap(map);
+    });
+    return () => { cancelled = true; };
+  }, []);
 
   const scoreNum = parseInt(score ?? '0', 10);
   const correctNum = parseInt(correct ?? '0', 10);
@@ -89,7 +102,7 @@ export default function PracticeResultsScreen() {
     };
 
     // Chapter breakdown
-    const chapterMap: Record<string, { name: string; subjectId: string; correct: number; wrong: number; total: number }> = {};
+    const chapterStats: Record<string, { name: string; subjectId: string; correct: number; wrong: number; total: number }> = {};
 
     for (const q of v2Questions) {
       const selectedOpt = answeredMap[q.id] ?? null;
@@ -100,9 +113,9 @@ export default function PracticeResultsScreen() {
       if (isCorrect) diffStats[q.difficulty].correct++;
       if (isWrong) diffStats[q.difficulty].wrong++;
 
-      if (!chapterMap[q.chapterId]) {
-        const ch = NEET_CHAPTERS.find((c) => c.id === q.chapterId);
-        chapterMap[q.chapterId] = {
+      if (!chapterStats[q.chapterId]) {
+        const ch = chapterMap[q.chapterId];
+        chapterStats[q.chapterId] = {
           name: ch?.name ?? q.chapterId,
           subjectId: q.subjectId,
           correct: 0,
@@ -110,9 +123,9 @@ export default function PracticeResultsScreen() {
           total: 0,
         };
       }
-      chapterMap[q.chapterId].total++;
-      if (isCorrect) chapterMap[q.chapterId].correct++;
-      if (isWrong) chapterMap[q.chapterId].wrong++;
+      chapterStats[q.chapterId].total++;
+      if (isCorrect) chapterStats[q.chapterId].correct++;
+      if (isWrong) chapterStats[q.chapterId].wrong++;
     }
 
     // Question type breakdown
@@ -130,7 +143,7 @@ export default function PracticeResultsScreen() {
     }
     const typeStats = Object.entries(typeMap).filter(([, v]) => v.total > 0);
 
-    const chapters = Object.entries(chapterMap)
+    const chapters = Object.entries(chapterStats)
       .map(([id, stats]) => ({
         id,
         ...stats,
@@ -139,7 +152,7 @@ export default function PracticeResultsScreen() {
       .sort((a, b) => a.accuracy - b.accuracy);
 
     return { diffStats, typeStats, chapters, nextUp: chapters[0], strongest: chapters[chapters.length - 1] };
-  }, [lastExam]);
+  }, [lastExam, chapterMap]);
 
   const handleRetry = () => router.replace('/practice-exam');
   const handleGoHome = () => router.replace('/(main)');

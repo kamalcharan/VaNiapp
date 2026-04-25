@@ -19,7 +19,7 @@ import { useTheme } from '../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
 import { RootState } from '../src/store';
-import { getChapterById } from '../src/data/chapters';
+import { getAllChapters, CatalogChapter } from '../src/lib/catalog';
 import { getCorrectId } from '../src/lib/questionAdapter';
 import { fetchQuestionsByChapter, fetchQuestionsByIds } from '../src/lib/questions';
 import { applyOptionShuffleToBatch } from '../src/lib/optionShuffle';
@@ -49,6 +49,19 @@ export default function AnswerReviewScreen() {
     const ce = state.practice.chapterHistory.find((s) => s.id === sessionId);
     return ce ?? null;
   });
+
+  // Chapter catalog map — for showing chapter names on the review screen
+  const [chapterMap, setChapterMap] = useState<Record<string, CatalogChapter>>({});
+  useEffect(() => {
+    let cancelled = false;
+    getAllChapters().then((chapters) => {
+      if (cancelled) return;
+      const map: Record<string, CatalogChapter> = {};
+      for (const ch of chapters) map[ch.id] = ch;
+      setChapterMap(map);
+    });
+    return () => { cancelled = true; };
+  }, []);
 
   const [activeFilter, setActiveFilter] = useState<Filter>('all');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -292,7 +305,7 @@ export default function AnswerReviewScreen() {
 
   const { question, selected, status } = current;
   const subjectMeta = SUBJECT_META[question.subjectId];
-  const chapter = getChapterById(question.chapterId);
+  const chapter = chapterMap[question.chapterId] ?? null;
 
   const FILTERS: { key: Filter; label: string; count: number }[] = [
     { key: 'all', label: 'All', count: counts.all },
@@ -462,7 +475,7 @@ export default function AnswerReviewScreen() {
 
           {chapter && (
             <Text style={[Typography.bodySm, { color: colors.textTertiary, marginBottom: Spacing.sm }]}>
-              {t(language, chapter.name, chapter.nameTe, chapter.nameHi)}
+              {t(language, chapter.name, chapter.name_te, chapter.name_hi)}
             </Text>
           )}
 

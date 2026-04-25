@@ -260,6 +260,45 @@ export async function getNeetSubjectIds(): Promise<string[]> {
   return neetSubjects.map((s) => s.id);
 }
 
+// ── All-chapters lookup (used by results screens for chapter name display) ──
+
+let cachedAllChapters: CatalogChapter[] | null = null;
+let cachedAllChaptersById: Map<string, CatalogChapter> | null = null;
+
+/** Fetch every chapter from med_chapters in one query, cached. */
+export async function getAllChapters(): Promise<CatalogChapter[]> {
+  if (cachedAllChapters) return cachedAllChapters;
+  if (!supabase) return [];
+
+  try {
+    const { data, error } = await supabase
+      .from('med_chapters')
+      .select('id, subject_id, exam_ids, branch, name, name_te, name_hi, chapter_number, class_level, weightage, avg_questions, important_topics')
+      .eq('is_active', true)
+      .order('chapter_number');
+
+    if (error || !data) {
+      console.warn('[catalog] Failed to fetch all chapters:', error?.message);
+      return [];
+    }
+
+    cachedAllChapters = data as CatalogChapter[];
+    cachedAllChaptersById = new Map(cachedAllChapters.map((c) => [c.id, c]));
+    return cachedAllChapters;
+  } catch (err) {
+    console.warn('[catalog] Exception fetching all chapters:', err);
+    return [];
+  }
+}
+
+/** Look up a chapter by id from the all-chapters cache. */
+export async function getChapterById(chapterId: string): Promise<CatalogChapter | null> {
+  if (!cachedAllChaptersById) {
+    await getAllChapters();
+  }
+  return cachedAllChaptersById?.get(chapterId) ?? null;
+}
+
 // ── Question counts per chapter (batched by subject) ────────
 
 let cachedQuestionCounts: Map<string, Record<string, number>> = new Map();
@@ -307,4 +346,6 @@ export function clearCatalogCache(): void {
   cachedLanguages = null;
   cachedChapters.clear();
   cachedQuestionCounts.clear();
+  cachedAllChapters = null;
+  cachedAllChaptersById = null;
 }
