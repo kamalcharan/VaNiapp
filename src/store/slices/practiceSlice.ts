@@ -6,6 +6,7 @@ import {
   UserAnswer,
   NeetSubjectId,
   NEET_SCORING,
+  CUET_SCORING,
 } from '../../types';
 
 interface ExamState {
@@ -121,6 +122,31 @@ export function calculateNeetScore(
 
   const score =
     correct * NEET_SCORING.correct + wrong * NEET_SCORING.wrong + unanswered * NEET_SCORING.unanswered;
+
+  return { correct, wrong, unanswered, score };
+}
+
+/** Calculate CUET per-subject paper score (+5 / -1 / 0, 50 Qs). */
+export function calculateCuetScore(
+  answers: UserAnswer[],
+  correctAnswerMap: Record<string, string>,
+): { correct: number; wrong: number; unanswered: number; score: number } {
+  let correct = 0;
+  let wrong = 0;
+  let unanswered = 0;
+
+  for (const answer of answers) {
+    if (!answer.selectedOptionId) {
+      unanswered++;
+    } else if (answer.selectedOptionId === correctAnswerMap[answer.questionId]) {
+      correct++;
+    } else {
+      wrong++;
+    }
+  }
+
+  const score =
+    correct * CUET_SCORING.correct + wrong * CUET_SCORING.wrong + unanswered * CUET_SCORING.unanswered;
 
   return { correct, wrong, unanswered, score };
 }

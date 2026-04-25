@@ -60,15 +60,23 @@ export default function RootLayout() {
   const [authState, setAuthState] = useState<AuthState>(initialAuthState);
   const [onboardingDone, setOnboardingDone] = useState<boolean | null>(null);
 
+  const router = useRouter();
+  const segments = useSegments();
+
+  // Skip the 2.6s JS splash if the app launched via the password-recovery
+  // deep link. The user expects to land on the new-password form fast.
+  useEffect(() => {
+    if (showSplash && segments[0] === 'reset-password') {
+      setShowSplash(false);
+    }
+  }, [showSplash, segments]);
+
   // Check for app updates (platform-aware)
   const pendingUpdate = useForceUpdate();
   const [updateSkipped, setUpdateSkipped] = useState(false);
 
   // Track previous user ID to detect user switches
   const prevUserId = useRef<string | null>(null);
-
-  const router = useRouter();
-  const segments = useSegments();
 
   const [fontsLoaded, fontError] = useFonts({
     PlusJakartaSans_300Light,

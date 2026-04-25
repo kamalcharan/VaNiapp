@@ -6,6 +6,7 @@ import {
   ScrollView,
   Pressable,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -17,16 +18,17 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { useFocusTracker } from '../../src/hooks/useFocusTracker';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
-import { buildPracticeExam } from '../../src/data/questions';
-import { applyOptionShuffle } from '../../src/lib/optionShuffle';
+import { fetchPracticeExamSet } from '../../src/lib/questions';
+import { applyOptionShuffleToBatch } from '../../src/lib/optionShuffle';
+import { setPracticeExamSnapshot } from '../../src/lib/practiceExamSnapshot';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import {
   NeetSubjectId,
+  NEET_SUBJECT_IDS,
   NEET_SCORING,
   PracticeExamSession,
   UserAnswer,
   QuestionV2,
-  Option,
   t,
 } from '../../src/types';
 import {
@@ -36,12 +38,13 @@ import {
   clearCurrentSession,
 } from '../../src/store/slices/practiceSlice';
 import { calculateNeetScore, calculateSubjectScores } from '../../src/store/slices/practiceSlice';
-import { legacyBatchToV2, getCorrectId } from '../../src/lib/questionAdapter';
+import { getCorrectId } from '../../src/lib/questionAdapter';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { recordDailyPractice } from '../../src/store/slices/streakSlice';
 import { syncChapterProgress } from '../../src/lib/progressSync';
 import { reportError } from '../../src/lib/errorReporting';
 import { ReportIssueSheet } from '../../src/components/exam/ReportIssueSheet';
+import { QuestionRenderer } from '../../src/components/exam/QuestionRenderer';
 
 const SUBJECTS: { id: NeetSubjectId; emoji: string; short: string }[] = [
   { id: 'physics', emoji: '\u269B\uFE0F', short: 'PHY' },
@@ -64,30 +67,18 @@ export default function PracticeQuestionScreen() {
   const focus = useFocusTracker();
   const scrollRef = useRef<ScrollView>(null);
 
-  // Build exam once
-  const exam = useMemo(() => buildPracticeExam(), []);
-
   // Stable session id for this attempt — also used as the seed for per-question
-  // option shuffling. Redux session (line below) reuses the same id.
+  // option shuffling. Redux session reuses the same id.
   const sessionIdRef = useRef<string>(`pe-${Date.now()}`);
 
-  // Flatten into structured question list
-  const allQuestions = useMemo(() => {
-    const qs: ExamQuestion[] = [];
-    const shuffle = (q: ExamQuestion): ExamQuestion =>
-      ({ ...applyOptionShuffle(q, sessionIdRef.current), section: q.section, indexInSection: q.indexInSection });
-    for (const subjectId of ['physics', 'chemistry', 'botany', 'zoology'] as NeetSubjectId[]) {
-      const { sectionA, sectionB } = exam[subjectId];
-      legacyBatchToV2(sectionA).forEach((q, i) => qs.push(shuffle({ ...q, section: 'A', indexInSection: i })));
-      legacyBatchToV2(sectionB).forEach((q, i) => qs.push(shuffle({ ...q, section: 'B', indexInSection: i })));
-    }
-    return qs;
-  }, [exam]);
+  // Loaded asynchronously from Supabase
+  const [allQuestions, setAllQuestions] = useState<ExamQuestion[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   // Answers map: questionId -> selectedOptionId
   const [answers, setAnswers] = useState<Record<string, string | null>>({});
   const [marked, setMarked] = useState<Record<string, boolean>>({});
-  const [eliminated, setEliminated] = useState<Record<string, string[]>>({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeSubject, setActiveSubject] = useState<NeetSubjectId>('physics');
   const [activeSection, setActiveSection] = useState<'A' | 'B'>('A');
@@ -95,8 +86,45 @@ export default function PracticeQuestionScreen() {
   const [showReportSheet, setShowReportSheet] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Initialize session
+  // Fetch the 200-question exam set from Supabase, split into Section A/B per subject
   useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const result = await fetchPracticeExamSet();
+      if (cancelled) return;
+      if (!result.ok) {
+        setLoadError(
+          result.error === 'no-questions'
+            ? `No questions available${result.subjectId ? ` for ${result.subjectId}` : ''} yet.`
+            : 'Couldn\'t load the exam. Check your connection.',
+        );
+        setLoading(false);
+        return;
+      }
+
+      const qs: ExamQuestion[] = [];
+      for (const subjectId of NEET_SUBJECT_IDS) {
+        const subjectQs = result.bySubject[subjectId] ?? [];
+        const shuffled = applyOptionShuffleToBatch(subjectQs, sessionIdRef.current);
+        const sectionA = shuffled.slice(0, NEET_SCORING.sectionA);
+        const sectionB = shuffled.slice(
+          NEET_SCORING.sectionA,
+          NEET_SCORING.sectionA + NEET_SCORING.sectionB,
+        );
+        sectionA.forEach((q, i) => qs.push({ ...q, section: 'A', indexInSection: i }));
+        sectionB.forEach((q, i) => qs.push({ ...q, section: 'B', indexInSection: i }));
+      }
+      setAllQuestions(qs);
+      setLoading(false);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Initialize Redux session + start timer once questions are loaded
+  useEffect(() => {
+    if (loading || allQuestions.length === 0) return;
     const session: PracticeExamSession = {
       id: sessionIdRef.current,
       mode: 'practice',
@@ -112,11 +140,9 @@ export default function PracticeQuestionScreen() {
     };
     dispatch(startPracticeExam(session));
 
-    // Start timer
     timerRef.current = setInterval(() => {
       setTimeLeftMs((prev) => {
         if (prev <= 1000) {
-          // Time's up — auto-submit
           clearInterval(timerRef.current!);
           return 0;
         }
@@ -127,7 +153,7 @@ export default function PracticeQuestionScreen() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, []);
+  }, [loading, allQuestions.length]);
 
   // Auto-submit when timer reaches 0
   useEffect(() => {
@@ -144,11 +170,6 @@ export default function PracticeQuestionScreen() {
   }, [allQuestions, activeSubject, activeSection]);
 
   const question = allQuestions[currentIndex];
-
-  // Practice exam questions are MCQ (converted from legacy) — extract options from payload
-  const questionOptions: Option[] = question && 'options' in question.payload
-    ? (question.payload as { options: Option[] }).options
-    : [];
 
   // Navigate to a specific question in subject/section
   const navigateToQuestion = useCallback(
@@ -187,67 +208,37 @@ export default function PracticeQuestionScreen() {
     (optionId: string) => {
       if (!question) return;
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      const newAnswers = { ...answers, [question.id]: optionId };
-      setAnswers(newAnswers);
-
-      // Un-eliminate if selecting an eliminated option
-      const currentElim = eliminated[question.id] ?? [];
-      const updatedElim = currentElim.filter((id) => id !== optionId);
-      if (updatedElim.length !== currentElim.length) {
-        setEliminated((prev) => ({ ...prev, [question.id]: updatedElim }));
-      }
+      setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
 
       const answer: UserAnswer = {
         questionId: question.id,
         selectedOptionId: optionId,
         isMarked: marked[question.id] ?? false,
-        eliminatedOptionIds: updatedElim,
+        eliminatedOptionIds: [],
         timeSpentMs: 0,
       };
       dispatch(updateAnswer(answer));
     },
-    [question, answers, marked, eliminated, dispatch]
-  );
-
-  const handleToggleEliminate = useCallback(
-    (optionId: string) => {
-      if (!question) return;
-      // Don't eliminate the selected answer
-      if (answers[question.id] === optionId) return;
-
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-      const current = eliminated[question.id] ?? [];
-      const isEliminated = current.includes(optionId);
-      const updated = isEliminated ? current.filter((id) => id !== optionId) : [...current, optionId];
-      setEliminated((prev) => ({ ...prev, [question.id]: updated }));
-
-      const answer: UserAnswer = {
-        questionId: question.id,
-        selectedOptionId: answers[question.id] ?? null,
-        isMarked: marked[question.id] ?? false,
-        eliminatedOptionIds: updated,
-        timeSpentMs: 0,
-      };
-      dispatch(updateAnswer(answer));
-    },
-    [question, answers, marked, eliminated, dispatch]
+    [question, marked, dispatch],
   );
 
   const handleClearAnswer = useCallback(() => {
     if (!question) return;
-    const newAnswers = { ...answers };
-    delete newAnswers[question.id];
-    setAnswers(newAnswers);
+    setAnswers((prev) => {
+      const next = { ...prev };
+      delete next[question.id];
+      return next;
+    });
 
     const answer: UserAnswer = {
       questionId: question.id,
       selectedOptionId: null,
       isMarked: marked[question.id] ?? false,
-      eliminatedOptionIds: eliminated[question.id] ?? [],
+      eliminatedOptionIds: [],
       timeSpentMs: 0,
     };
     dispatch(updateAnswer(answer));
-  }, [question, answers, marked, eliminated, dispatch]);
+  }, [question, marked, dispatch]);
 
   const handleToggleMark = useCallback(() => {
     if (!question) return;
@@ -298,7 +289,7 @@ export default function PracticeQuestionScreen() {
         // Build UserAnswer array for all questions (scored ones only)
         // Section A: all 35, Section B: first 10 answered
         const scoredAnswers: UserAnswer[] = [];
-        for (const subjectId of ['physics', 'chemistry', 'botany', 'zoology'] as NeetSubjectId[]) {
+        for (const subjectId of NEET_SUBJECT_IDS) {
           // Section A — all mandatory
           const secA = allQuestions.filter((q) => q.subjectId === subjectId && q.section === 'A');
           secA.forEach((q) => {
@@ -306,7 +297,7 @@ export default function PracticeQuestionScreen() {
               questionId: q.id,
               selectedOptionId: answers[q.id] ?? null,
               isMarked: false,
-              eliminatedOptionIds: eliminated[q.id] ?? [],
+              eliminatedOptionIds: [],
               timeSpentMs: 0,
             });
           });
@@ -324,7 +315,7 @@ export default function PracticeQuestionScreen() {
               questionId: q.id,
               selectedOptionId: answers[q.id] ?? null,
               isMarked: false,
-              eliminatedOptionIds: eliminated[q.id] ?? [],
+              eliminatedOptionIds: [],
               timeSpentMs: 0,
             });
           });
@@ -375,6 +366,10 @@ export default function PracticeQuestionScreen() {
           syncChapterProgress(chapId).catch((e) => reportError(e, 'medium', 'PracticeExam.syncProgress'));
         }
 
+        // Snapshot the question set so the results screen can analyze it
+        // (chapter / difficulty / type breakdowns).
+        setPracticeExamSnapshot(sessionIdRef.current, allQuestions);
+
         router.replace({
           pathname: '/practice-results',
           params: {
@@ -418,7 +413,35 @@ export default function PracticeQuestionScreen() {
   const timerColor = timeLeftMs < 600000 ? '#EF4444' : timeLeftMs < 1800000 ? '#F59E0B' : colors.text;
   const answeredCount = Object.keys(answers).length;
 
-  if (!question) return null;
+  if (loading) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={[styles.container, styles.center]} edges={['top']}>
+          <ActivityIndicator color={colors.primary} />
+          <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: Spacing.md }]}>
+            Building your 200-question NEET mock...
+          </Text>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
+
+  if (loadError || !question) {
+    return (
+      <DotGridBackground>
+        <SafeAreaView style={[styles.container, styles.center]} edges={['top']}>
+          <Text style={[Typography.body, { color: colors.text, textAlign: 'center', paddingHorizontal: Spacing.lg }]}>
+            {loadError ?? 'No questions to show.'}
+          </Text>
+          <Pressable onPress={() => router.back()} style={{ marginTop: Spacing.lg }}>
+            <Text style={[Typography.bodySm, { color: colors.primary, fontWeight: '600' }]}>
+              {'‹ Go back'}
+            </Text>
+          </Pressable>
+        </SafeAreaView>
+      </DotGridBackground>
+    );
+  }
 
   const isAnswered = answers[question.id] !== undefined;
   const isMarked = marked[question.id] ?? false;
@@ -577,83 +600,15 @@ export default function PracticeQuestionScreen() {
             </Text>
           </View>
 
-          {/* Options — long-press to eliminate */}
-          <View style={styles.optionsList}>
-            {questionOptions.map((opt, idx) => {
-              const label = String.fromCharCode(65 + idx);
-              const isSelected = answers[question.id] === opt.id;
-              const isEliminated = (eliminated[question.id] ?? []).includes(opt.id);
-              return (
-                <Pressable
-                  key={opt.id}
-                  onPress={() => handleSelectOption(opt.id)}
-                  onLongPress={() => handleToggleEliminate(opt.id)}
-                  style={[
-                    styles.optionRow,
-                    {
-                      backgroundColor: isEliminated
-                        ? colors.surfaceBorder + '30'
-                        : isSelected
-                          ? colors.primary + '12'
-                          : colors.surface,
-                      borderColor: isEliminated
-                        ? colors.surfaceBorder
-                        : isSelected
-                          ? colors.primary
-                          : colors.surfaceBorder,
-                      borderWidth: isSelected && !isEliminated ? 2 : 1,
-                      opacity: isEliminated ? 0.5 : 1,
-                    },
-                  ]}
-                >
-                  <View
-                    style={[
-                      styles.optionLabel,
-                      {
-                        backgroundColor: isEliminated
-                          ? colors.surfaceBorder
-                          : isSelected
-                            ? colors.primary
-                            : colors.surfaceBorder + '80',
-                      },
-                    ]}
-                  >
-                    <Text
-                      style={[
-                        styles.optionLabelText,
-                        {
-                          color: isSelected && !isEliminated ? '#FFF' : colors.textSecondary,
-                          textDecorationLine: isEliminated ? 'line-through' : 'none',
-                        },
-                      ]}
-                    >
-                      {label}
-                    </Text>
-                  </View>
-                  <Text
-                    style={[
-                      Typography.body,
-                      {
-                        color: isEliminated ? colors.textTertiary : colors.text,
-                        flex: 1,
-                        textDecorationLine: isEliminated ? 'line-through' : 'none',
-                      },
-                    ]}
-                  >
-                    {t(language, opt.text, opt.textTe, opt.textHi)}
-                  </Text>
-                  {isEliminated && (
-                    <Text style={[styles.elimBadge, { color: colors.textTertiary }]}>X</Text>
-                  )}
-                </Pressable>
-              );
-            })}
-          </View>
-
-          {/* Elimination hint */}
-          <Text style={[styles.elimHint, { color: colors.textTertiary }]}>
-            Long-press an option to cross it out
-          </Text>
+          {/* Type-specific content + Options via QuestionRenderer (all 8 types) */}
+          <QuestionRenderer
+            question={question}
+            language={language}
+            selectedOptionId={answers[question.id] ?? null}
+            showFeedback={false}
+            onSelect={handleSelectOption}
+            colors={colors}
+          />
 
           {/* Action Buttons */}
           <View style={styles.actionRow}>
@@ -842,37 +797,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: Spacing.lg,
   },
-  optionsList: {
-    gap: Spacing.md,
-  },
-  optionRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: Spacing.lg,
-    borderRadius: BorderRadius.lg,
-    gap: Spacing.md,
-  },
-  optionLabel: {
-    width: 30,
-    height: 30,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  optionLabelText: {
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 13,
-  },
-  elimBadge: {
-    fontFamily: 'PlusJakartaSans_800ExtraBold',
-    fontSize: 14,
-  },
-  elimHint: {
-    fontFamily: 'PlusJakartaSans_400Regular',
-    fontSize: 11,
-    textAlign: 'center',
-    marginTop: Spacing.sm,
-  },
+  center: { justifyContent: 'center', alignItems: 'center' },
   actionRow: {
     flexDirection: 'row',
     gap: Spacing.md,

@@ -1,26 +1,55 @@
-import React from 'react';
-import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Pressable, ScrollView, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { useSelector } from 'react-redux';
 
 import { DotGridBackground } from '../../src/components/ui/DotGridBackground';
 import { JournalCard } from '../../src/components/ui/JournalCard';
 import { HandwrittenText } from '../../src/components/ui/HandwrittenText';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
-import { SUBJECT_META } from '../../src/constants/subjects';
-import { NeetSubjectId } from '../../src/types';
+import { getProfile, getUserSubjectIds, MedProfile } from '../../src/lib/database';
+import { getSubjects, CatalogSubject } from '../../src/lib/catalog';
+import { ExamType } from '../../src/types';
+import { RootState } from '../../src/store';
 
-const SUBJECTS: { id: NeetSubjectId; emoji: string; name: string }[] = [
-  { id: 'physics', emoji: '\u269B\uFE0F', name: 'Physics' },
-  { id: 'chemistry', emoji: '\uD83E\uDDEA', name: 'Chemistry' },
-  { id: 'botany', emoji: '\uD83C\uDF3F', name: 'Botany' },
-  { id: 'zoology', emoji: '\uD83E\uDD8B', name: 'Zoology' },
-];
+type ExamFocus = 'NEET' | 'CUET';
 
 export default function QuickPracticeIntroScreen() {
   const { colors } = useTheme();
   const router = useRouter();
+  const savedExamFocus = useSelector((state: RootState) => state.auth.dashboardExamFocus);
+
+  const [profile, setProfile] = useState<MedProfile | null>(null);
+  const [subjects, setSubjects] = useState<CatalogSubject[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      const [prof, subjectIds, allSubjects] = await Promise.all([
+        getProfile(),
+        getUserSubjectIds(),
+        getSubjects(),
+      ]);
+      setProfile(prof);
+      const matched = subjectIds
+        .map((id) => allSubjects.find((s) => s.id === id))
+        .filter(Boolean) as CatalogSubject[];
+      setSubjects(matched);
+      setLoading(false);
+    })();
+  }, []);
+
+  const exam: ExamType = profile?.exam ?? 'NEET';
+  const isBoth = exam === 'BOTH';
+  const examFocus: ExamFocus = (savedExamFocus as ExamFocus) || 'NEET';
+
+  // For BOTH users, narrow to the focused exam. Otherwise show every subject the
+  // user picked. CUET-only users see only CUET electives, NEET-only see the 4.
+  const visibleSubjects = isBoth
+    ? subjects.filter((s) => s.exam_id === examFocus)
+    : subjects;
 
   return (
     <DotGridBackground>
@@ -40,20 +69,39 @@ export default function QuickPracticeIntroScreen() {
         >
           {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.headerEmoji}>{'\u26A1'}</Text>
+            <Text style={styles.headerEmoji}>{'⚡'}</Text>
             <HandwrittenText variant="hand" rotation={-1}>
               Pick a subject
             </HandwrittenText>
             <Text style={[Typography.body, { color: colors.textSecondary, textAlign: 'center', marginTop: Spacing.sm }]}>
               20 questions. 10 minutes. Let's go!
             </Text>
+            {isBoth && (
+              <Text style={[Typography.bodySm, { color: colors.textTertiary, textAlign: 'center', marginTop: 4 }]}>
+                Showing your {examFocus} subjects
+              </Text>
+            )}
           </View>
 
           {/* Subject Cards */}
-          <View style={styles.grid}>
-            {SUBJECTS.map((subject, idx) => {
-              const meta = SUBJECT_META[subject.id];
-              return (
+          {loading ? (
+            <View style={{ paddingVertical: 40, alignItems: 'center' }}>
+              <ActivityIndicator color={colors.primary} />
+            </View>
+          ) : visibleSubjects.length === 0 ? (
+            <JournalCard delay={100}>
+              <Text style={[Typography.body, { color: colors.text, textAlign: 'center' }]}>
+                You haven't picked any {isBoth ? examFocus : exam} subjects yet.
+              </Text>
+              <Pressable onPress={() => router.push('/edit-subjects')} style={{ marginTop: Spacing.md, alignSelf: 'center' }}>
+                <Text style={[Typography.bodySm, { color: colors.primary, fontWeight: '600' }]}>
+                  Pick subjects {'›'}
+                </Text>
+              </Pressable>
+            </JournalCard>
+          ) : (
+            <View style={styles.grid}>
+              {visibleSubjects.map((subject, idx) => (
                 <Pressable
                   key={subject.id}
                   style={styles.cardWrap}
@@ -65,10 +113,10 @@ export default function QuickPracticeIntroScreen() {
                   }
                 >
                   <JournalCard delay={100 + idx * 80} style={styles.card}>
-                    <View style={[styles.iconBg, { backgroundColor: meta.color + '20' }]}>
+                    <View style={[styles.iconBg, { backgroundColor: subject.color + '20' }]}>
                       <Text style={styles.emoji}>{subject.emoji}</Text>
                     </View>
-                    <Text style={[Typography.h3, { color: colors.text, marginTop: Spacing.sm }]}>
+                    <Text style={[Typography.h3, { color: colors.text, marginTop: Spacing.sm }]} numberOfLines={1}>
                       {subject.name}
                     </Text>
                     <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 4 }]}>
@@ -76,9 +124,9 @@ export default function QuickPracticeIntroScreen() {
                     </Text>
                   </JournalCard>
                 </Pressable>
-              );
-            })}
-          </View>
+              ))}
+            </View>
+          )}
 
           {/* Info */}
           <JournalCard delay={500} rotation={0.5}>
@@ -86,10 +134,10 @@ export default function QuickPracticeIntroScreen() {
               HOW IT WORKS
             </Text>
             <Text style={[Typography.body, { color: colors.textSecondary, lineHeight: 22 }]}>
-              {'\u2022'} 20 random questions from the subject{'\n'}
-              {'\u2022'} 10-minute countdown timer{'\n'}
-              {'\u2022'} Instant feedback after each answer{'\n'}
-              {'\u2022'} See your score at the end
+              {'•'} 20 random questions from the subject{'\n'}
+              {'•'} 10-minute countdown timer{'\n'}
+              {'•'} Instant feedback after each answer{'\n'}
+              {'•'} See your score at the end
             </Text>
           </JournalCard>
         </ScrollView>

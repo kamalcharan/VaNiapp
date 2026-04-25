@@ -157,6 +157,16 @@ export const NEET_SCORING = {
   timeLimitMs: 200 * 60 * 1000, // 3hr 20min
 } as const;
 
+// CUET UG per-subject paper scoring (since 2024: all 50 mandatory)
+export const CUET_SCORING = {
+  correct: 5,
+  wrong: -1,
+  unanswered: 0,
+  maxMarks: 250,            // 50 × 5
+  totalQuestions: 50,
+  timeLimitMs: 60 * 60 * 1000, // 60 min per subject paper
+} as const;
+
 export interface Question {
   id: string;
   chapterId: string;
@@ -194,7 +204,7 @@ export interface ChapterExamSession {
   id: string;
   mode: 'chapter';
   chapterId: string;
-  subjectId: NeetSubjectId;
+  subjectId: string;
   startedAt: string;
   completedAt: string | null;
   answers: UserAnswer[];

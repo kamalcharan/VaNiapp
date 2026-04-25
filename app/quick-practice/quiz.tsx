@@ -18,7 +18,6 @@ import { QuestionRenderer } from '../../src/components/exam/QuestionRenderer';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
-import { buildV2QuickPractice } from '../../src/data/questions';
 import { fetchQuestionsBySubject } from '../../src/lib/questions';
 import { applyOptionShuffleToBatch } from '../../src/lib/optionShuffle';
 import { getCorrectId } from '../../src/lib/questionAdapter';
@@ -49,7 +48,8 @@ export default function QuickPracticeQuizScreen() {
   const language = useSelector((state: RootState) => state.auth.user?.language ?? 'en');
   const bookmarkedIds = useSelector((state: RootState) => state.bookmark.ids);
 
-  const subject = subjectId as NeetSubjectId;
+  // subjectId can be any NEET or CUET subject id — string-typed.
+  const subject = (subjectId ?? '') as string;
   const subjectMeta = SUBJECT_META[subject] ?? {
     name: subject ? subject.charAt(0).toUpperCase() + subject.slice(1).replace(/-/g, ' ') : 'Practice',
     emoji: '\u26A1',
@@ -89,7 +89,6 @@ export default function QuickPracticeQuizScreen() {
       if (cancelled) return;
 
       if (result.ok && result.questions.length > 0) {
-        // Shuffle and pick up to 20
         const shuffled = [...result.questions].sort(() => Math.random() - 0.5);
         const filtered = unlockedTypes
           ? shuffled.filter((q) => unlockedTypes.includes(q.type))
@@ -101,17 +100,6 @@ export default function QuickPracticeQuizScreen() {
           setLoadingQuestions(false);
           return;
         }
-        // All questions filtered out by unlockedTypes — fall through to local fallback
-      }
-
-      // Fall back to local hardcoded questions
-      const local = buildV2QuickPractice(subject, unlockedTypes);
-      if (cancelled) return;
-
-      if (local.length > 0) {
-        setQuestions(local);
-        setLoadingQuestions(false);
-        return;
       }
 
       setLoadError('No questions available for this subject yet.');

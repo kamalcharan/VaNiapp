@@ -132,10 +132,20 @@ export default function DashboardScreen() {
     })();
   }, []);
 
-  // Filter journeys based on exam focus (for BOTH users)
-  const filteredJourneys = profile?.exam === 'BOTH'
-    ? subjectJourneys.filter(j => j.subject.exam_id === examFocus)
-    : subjectJourneys;
+  // Always filter journeys by the current exam scope. Lingering CUET picks
+  // from a previous BOTH/CUET selection now stay in med_user_subjects across
+  // exam switches (so we don't lose them on a NEET round-trip), so the
+  // dashboard has to do its own filtering.
+  const filteredJourneys = (() => {
+    if (profile?.exam === 'BOTH') {
+      return subjectJourneys.filter((j) => j.subject.exam_id === examFocus);
+    }
+    if (profile?.exam === 'CUET') {
+      return subjectJourneys.filter((j) => j.subject.exam_id === 'CUET');
+    }
+    // NEET (or unknown) — only show NEET subjects
+    return subjectJourneys.filter((j) => j.subject.exam_id === 'NEET');
+  })();
 
   const handleExamFocusChange = (focus: ExamFocus) => {
     setExamFocus(focus);

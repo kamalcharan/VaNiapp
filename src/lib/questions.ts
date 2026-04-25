@@ -184,6 +184,100 @@ export function clearQuestionsCache(): void {
   cache.clear();
 }
 
+// ── Fetch questions by id (used by bookmarks, answer review) ─
+
+const QUESTION_SELECT = `id, subject_id, chapter_id, topic_id, question_type, difficulty,
+  question_text, question_text_te, question_text_hi, explanation, explanation_te, explanation_hi,
+  correct_answer, image_url, image_alt, payload,
+  med_question_options (option_key, option_text, option_text_te, option_text_hi, is_correct, sort_order),
+  med_elimination_hints (option_key, hint_text, hint_text_te, hint_text_hi, misconception, misconception_te, misconception_hi),
+  med_topics!topic_id (name, name_te, name_hi)`;
+
+/**
+ * Fetch a list of questions by id from Supabase. The id we store on the client
+ * (QuestionV2.id) is `payload.question_id` when present, else the DB row's
+ * uuid — so we look up via both columns and merge. Results aren't cached
+ * because callsites pass ad-hoc id sets (bookmarks, answer review).
+ */
+export async function fetchQuestionsByIds(ids: string[]): Promise<FetchQuestionsResult> {
+  if (ids.length === 0) return { ok: true, questions: [] };
+  if (!supabase) return { ok: false, error: 'not-configured' };
+
+  try {
+    const [byUuid, byPayloadId] = await Promise.all([
+      supabase
+        .from('med_questions')
+        .select(QUESTION_SELECT)
+        .in('id', ids)
+        .eq('status', 'active'),
+      supabase
+        .from('med_questions')
+        .select(QUESTION_SELECT)
+        .in('payload->>question_id', ids)
+        .eq('status', 'active'),
+    ]);
+
+    if (byUuid.error && byPayloadId.error) {
+      console.warn('[questions] fetchByIds both queries failed:', byUuid.error.message);
+      return { ok: false, error: 'no-connection' };
+    }
+
+    const rows = [...(byUuid.data ?? []), ...(byPayloadId.data ?? [])];
+    if (rows.length === 0) {
+      return { ok: false, error: 'no-questions' };
+    }
+
+    const questions = (rows as unknown as DbQuestion[]).map(dbToV2);
+    // Dedupe by V2 id — a question that matches both queries shouldn't appear twice
+    const seen = new Set<string>();
+    const deduped = questions.filter((q) => {
+      if (seen.has(q.id)) return false;
+      seen.add(q.id);
+      return true;
+    });
+    return { ok: true, questions: deduped };
+  } catch (err) {
+    console.warn('[questions] fetchByIds failed:', err);
+    return { ok: false, error: 'no-connection' };
+  }
+}
+
+// ── Practice Exam: 50 questions per NEET subject ─────────────
+
+import { NEET_SUBJECT_IDS, NeetSubjectId } from '../types';
+
+const PRACTICE_EXAM_POOL = 200; // pull this many per subject, then shuffle and take 50
+const PRACTICE_EXAM_PER_SUBJECT = 50;
+
+export type FetchPracticeExamResult =
+  | { ok: true; bySubject: Record<NeetSubjectId, QuestionV2[]> }
+  | { ok: false; error: 'no-connection' | 'no-questions' | 'not-configured'; subjectId?: NeetSubjectId };
+
+/**
+ * Build a NEET Practice Exam set (4 subjects × 50 questions) from Supabase.
+ * Pulls a larger pool per subject for variety, shuffles client-side, slices
+ * to 50. Caller is expected to split into Section A (35) + Section B (15).
+ */
+export async function fetchPracticeExamSet(): Promise<FetchPracticeExamResult> {
+  if (!supabase) return { ok: false, error: 'not-configured' };
+
+  const bySubject = {} as Record<NeetSubjectId, QuestionV2[]>;
+
+  for (const subjectId of NEET_SUBJECT_IDS) {
+    const result = await fetchQuestionsBySubject(subjectId, PRACTICE_EXAM_POOL);
+    if (!result.ok) {
+      return { ok: false, error: result.error, subjectId };
+    }
+    if (result.questions.length === 0) {
+      return { ok: false, error: 'no-questions', subjectId };
+    }
+    const shuffled = [...result.questions].sort(() => Math.random() - 0.5);
+    bySubject[subjectId] = shuffled.slice(0, PRACTICE_EXAM_PER_SUBJECT);
+  }
+
+  return { ok: true, bySubject };
+}
+
 // ── Transform DB row → QuestionV2 ────────────────────────────
 
 function dbToV2(row: DbQuestion): QuestionV2 {

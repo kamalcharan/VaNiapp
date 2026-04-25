@@ -13,7 +13,7 @@ import { TopicBreakdown, TopicStat } from '../src/components/TopicBreakdown';
 import { useTheme } from '../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../src/constants/theme';
 import { SUBJECT_META } from '../src/constants/subjects';
-import { getChapterById } from '../src/data/chapters';
+import { getAllChapters, CatalogChapter } from '../src/lib/catalog';
 import { fetchQuestionsByChapter } from '../src/lib/questions';
 import { applyOptionShuffleToBatch } from '../src/lib/optionShuffle';
 import { getCorrectId, resolveLegacyChapterId } from '../src/lib/questionAdapter';
@@ -75,12 +75,27 @@ export default function ChapterResultsScreen() {
 
   const isQuickMode = chapterId?.startsWith('quick-') ?? false;
   const quickSubjectId = isQuickMode ? chapterId!.replace('quick-', '') as NeetSubjectId : null;
-  const chapter = chapterId && !isQuickMode ? getChapterById(chapterId) : null;
 
-  // Derive subjectId: try explicit param first, then local chapter lookup, then prefix mapping
+  // Async chapter lookup from the catalog (formerly local NEET_CHAPTERS).
+  const [chapter, setChapter] = useState<CatalogChapter | null>(null);
+  useEffect(() => {
+    if (!chapterId || isQuickMode) {
+      setChapter(null);
+      return;
+    }
+    let cancelled = false;
+    getAllChapters().then((chapters) => {
+      if (cancelled) return;
+      setChapter(chapters.find((c) => c.id === chapterId) ?? null);
+    });
+    return () => { cancelled = true; };
+  }, [chapterId, isQuickMode]);
+
+  // Derive subjectId: explicit param first, then catalog chapter lookup once
+  // it resolves, then chapter-id prefix mapping as a last resort.
   const rawSubjectId = isQuickMode
     ? quickSubjectId
-    : subjectIdParam || chapter?.subjectId || deriveSubjectFromChapterId(chapterId);
+    : subjectIdParam || chapter?.subject_id || deriveSubjectFromChapterId(chapterId);
 
   const DEFAULT_META = { name: 'Practice', emoji: '\u26A1', color: '#3B82F6' };
   const subjectMeta = rawSubjectId
@@ -249,7 +264,7 @@ export default function ChapterResultsScreen() {
             <Text style={styles.gradeEmoji}>{grade.emoji}</Text>
             <HandwrittenText variant="hand">{grade.label}</HandwrittenText>
             <Text style={[Typography.bodySm, { color: colors.textSecondary, marginTop: 4 }]}>
-              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : (chapter ? t(language, chapter.name, chapter.nameTe, chapter.nameHi) : `${subjectMeta.name} — Chapter Practice`)}
+              {subjectMeta.emoji} {isQuickMode ? `Quick Practice — ${subjectMeta.name}` : (chapter ? t(language, chapter.name, chapter.name_te, chapter.name_hi) : `${subjectMeta.name} — Chapter Practice`)}
             </Text>
           </View>
 

@@ -27,12 +27,14 @@ import {
   getProfile,
   getUserSubjectIds,
   updateProfile,
+  updateUserSubjects,
   signOut,
   // generateReferralCode,
   joinWithReferralCode,
   shareInviteMessage,
   MedProfile,
 } from '../../src/lib/database';
+import { getNeetSubjectIds } from '../../src/lib/catalog';
 import { getSubjects, getLanguages, CatalogSubject, CatalogLanguage } from '../../src/lib/catalog';
 import { ExamType, Language } from '../../src/types';
 import { useSelector } from 'react-redux';
@@ -160,7 +162,6 @@ export default function ProfileScreen() {
     setSaving(true);
     try {
       const examChanged = profile?.exam !== editExam;
-      const needsSubjectPicker = examChanged && (editExam === 'CUET' || editExam === 'BOTH');
 
       await updateProfile({
         display_name: editName.trim(),
@@ -171,6 +172,32 @@ export default function ProfileScreen() {
         language: editLanguage,
         target_year: editTargetYear,
       });
+
+      // If the exam type changed, reconcile med_user_subjects without losing
+      // the user's CUET picks across NEET/BOTH/CUET round-trips.
+      let needsCuetPicker = false;
+      if (examChanged) {
+        const [currentSubjectIds, neetIds] = await Promise.all([
+          getUserSubjectIds(),
+          getNeetSubjectIds(),
+        ]);
+        const savedCuet = currentSubjectIds.filter((id) => !neetIds.includes(id));
+
+        if (editExam === 'NEET') {
+          // Auto-set the 4 NEET subjects, KEEP any CUET picks the user had.
+          // They restore automatically if the user switches back.
+          await updateUserSubjects([...neetIds, ...savedCuet]);
+        } else if (editExam === 'BOTH') {
+          // NEET 4 auto-included + restore CUET picks if any. If none, send
+          // the user to the picker so they can choose their electives.
+          await updateUserSubjects([...neetIds, ...savedCuet]);
+          needsCuetPicker = savedCuet.length === 0;
+        } else if (editExam === 'CUET') {
+          // CUET-only: drop NEET ids, restore CUET picks if any. If none, pick.
+          await updateUserSubjects(savedCuet);
+          needsCuetPicker = savedCuet.length === 0;
+        }
+      }
 
       const prof = await getProfile();
       setProfile(prof);
@@ -192,11 +219,10 @@ export default function ProfileScreen() {
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
-      if (needsSubjectPicker) {
+      if (needsCuetPicker) {
+        // Only nag the user to pick electives when there's nothing to restore.
         setPendingExamChange(editExam);
         setSubjectDialog(true);
-      } else if (examChanged && editExam === 'NEET') {
-        router.push(`/edit-subjects?newExam=NEET`);
       } else {
         toast.show('success', 'Profile updated');
       }

@@ -114,17 +114,26 @@ export default function EditSubjectsScreen() {
   const handleSave = async () => {
     setSaving(true);
     try {
+      // Read the current full saved list so we can preserve picks from the
+      // OTHER scope. Switching exam type should never silently wipe what the
+      // user picked for the scope they're not editing right now.
+      const currentSaved = await getUserSubjectIds();
+      const currentCuetSaved = currentSaved.filter((id) => !neetSubjectIds.includes(id));
+      const currentNeetSaved = currentSaved.filter((id) => neetSubjectIds.includes(id));
+
       let finalSubjects: string[];
 
       if (isNeet) {
-        // NEET only - just the 4 NEET subjects
-        finalSubjects = neetSubjectIds;
+        // NEET-only: auto-set the 4 NEET subjects, keep any CUET picks the
+        // user previously had (so switching back to BOTH/CUET restores them).
+        finalSubjects = [...neetSubjectIds, ...currentCuetSaved];
       } else if (isBoth) {
-        // BOTH - NEET subjects + selected CUET subjects
+        // BOTH: 4 NEET subjects auto-included + the CUET picks on this screen.
         finalSubjects = [...neetSubjectIds, ...selected];
       } else {
-        // CUET only - just the selected CUET subjects
-        finalSubjects = selected;
+        // CUET-only: just the CUET picks. Keep any existing NEET ids only if
+        // they were already saved (defensive — normally CUET-only means none).
+        finalSubjects = [...currentNeetSaved, ...selected];
       }
 
       await updateUserSubjects(finalSubjects);
