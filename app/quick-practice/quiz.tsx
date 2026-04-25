@@ -618,6 +618,7 @@ export default function QuickPracticeQuizScreen() {
         explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
         eliminationText={t(language, question.eliminationTechnique, question.eliminationTechniqueTe, question.eliminationTechniqueHi)}
+        optionsForDisplay={'options' in question.payload ? question.payload.options : undefined}
         selectedOptionId={selectedOptionId}
         language={language}
       />

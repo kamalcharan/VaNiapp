@@ -474,6 +474,7 @@ export default function PracticeMistakesScreen() {
         questionType={question.type}
         explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
+        optionsForDisplay={'options' in question.payload ? question.payload.options : undefined}
         selectedOptionId={selectedOptionId}
         language={language}
       />
