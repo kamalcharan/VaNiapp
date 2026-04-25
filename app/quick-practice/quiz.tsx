@@ -18,7 +18,6 @@ import { QuestionRenderer } from '../../src/components/exam/QuestionRenderer';
 import { useTheme } from '../../src/hooks/useTheme';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
-import { buildV2QuickPractice } from '../../src/data/questions';
 import { fetchQuestionsBySubject } from '../../src/lib/questions';
 import { applyOptionShuffleToBatch } from '../../src/lib/optionShuffle';
 import { getCorrectId } from '../../src/lib/questionAdapter';
@@ -29,7 +28,7 @@ import { WrongAnswerCard } from '../../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../../src/components/exam/ConceptExplainerSheet';
 import { ReportIssueSheet } from '../../src/components/exam/ReportIssueSheet';
 import { useToast } from '../../src/components/ui/Toast';
-import { NeetSubjectId, NEET_SUBJECT_IDS, SubjectId, STRENGTH_LEVELS, ChapterExamSession, QuestionV2, t } from '../../src/types';
+import { NeetSubjectId, SubjectId, STRENGTH_LEVELS, ChapterExamSession, QuestionV2, t } from '../../src/types';
 import { startChapterExam, updateAnswer, completeChapterExam } from '../../src/store/slices/practiceSlice';
 import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
@@ -51,7 +50,6 @@ export default function QuickPracticeQuizScreen() {
 
   // subjectId can be any NEET or CUET subject id — string-typed.
   const subject = (subjectId ?? '') as string;
-  const isNeetSubject = (NEET_SUBJECT_IDS as readonly string[]).includes(subject);
   const subjectMeta = SUBJECT_META[subject] ?? {
     name: subject ? subject.charAt(0).toUpperCase() + subject.slice(1).replace(/-/g, ' ') : 'Practice',
     emoji: '\u26A1',
@@ -91,7 +89,6 @@ export default function QuickPracticeQuizScreen() {
       if (cancelled) return;
 
       if (result.ok && result.questions.length > 0) {
-        // Shuffle and pick up to 20
         const shuffled = [...result.questions].sort(() => Math.random() - 0.5);
         const filtered = unlockedTypes
           ? shuffled.filter((q) => unlockedTypes.includes(q.type))
@@ -100,20 +97,6 @@ export default function QuickPracticeQuizScreen() {
           const batch = filtered.slice(0, 20);
           const shuffleSessionId = `qp-${Date.now()}`;
           setQuestions(applyOptionShuffleToBatch(batch, shuffleSessionId));
-          setLoadingQuestions(false);
-          return;
-        }
-        // All questions filtered out by unlockedTypes — fall through to local fallback
-      }
-
-      // Fall back to local hardcoded questions — NEET-only sample set;
-      // CUET subjects only get Supabase, so skip the fallback for them.
-      if (isNeetSubject) {
-        const local = buildV2QuickPractice(subject as NeetSubjectId, unlockedTypes);
-        if (cancelled) return;
-
-        if (local.length > 0) {
-          setQuestions(local);
           setLoadingQuestions(false);
           return;
         }
