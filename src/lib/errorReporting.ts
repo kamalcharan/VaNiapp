@@ -41,7 +41,7 @@ export function initSentry(): void {
 
   Sentry.init({
     dsn,
-    debug: __DEV__,
+    debug: false,
     environment: __DEV__ ? 'development' : 'production',
     // Send 100% of errors, sample 20% of transactions for performance
     tracesSampleRate: __DEV__ ? 1.0 : 0.2,

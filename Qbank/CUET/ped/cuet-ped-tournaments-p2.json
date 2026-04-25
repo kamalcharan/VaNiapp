@@ -1,404 +1,867 @@
 [
   {
     "id": "cuet-ped-tournaments-21",
-    "question_type": "MCQ",
+    "question_type": "mcq",
     "difficulty": "easy",
     "bloom_level": "remember",
     "question_text": "In a knock-out tournament with 16 teams where the number of teams is already a perfect power of 2, how many byes are required in the first round?",
     "options": [
-      "A. 16 byes",
-      "B. 8 byes",
-      "C. 0 byes (no byes are needed)",
-      "D. 4 byes"
+      {
+        "key": "A",
+        "text": "16 byes",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "8 byes",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "0 byes (no byes are needed)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text": "4 byes",
+        "is_correct": false
+      }
     ],
     "correct_answer": "C",
     "explanation": "When the number of teams is already a perfect power of 2 (2, 4, 8, 16, 32, 64...), all teams can be perfectly paired in the first round. No byes are needed. With 16 teams, there are 8 first-round matches producing 8 winners for the quarter-finals.",
     "elimination_hints": "Byes are only needed when teams cannot form complete pairs. 16 is already 2⁴, so all 16 teams pair perfectly into 8 matches — zero byes.",
-    "concept_tags": ["byes not needed", "power of 2", "perfect bracket", "16 teams"],
+    "concept_tags": [
+      "byes not needed",
+      "power of 2",
+      "perfect bracket",
+      "16 teams"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-22",
-    "question_type": "MCQ",
+    "question_type": "mcq",
     "difficulty": "medium",
     "bloom_level": "understand",
     "question_text": "Which of the following correctly explains why a league tournament is considered more time-consuming and resource-intensive compared to a knock-out tournament for the same number of participating teams?",
     "options": [
-      "A. Because the league tournament uses a simpler fixture format that requires fewer officials per match",
-      "B. Because in a league every team plays against every other team, resulting in significantly more total matches, which demands more playing days, venues, officials, equipment and scheduling coordination than a knock-out where each loss eliminates a team",
-      "C. Because the knock-out tournament requires more matches than the league tournament in all cases",
-      "D. Because league tournaments do not require any officials or venues since all matches are played simultaneously"
+      {
+        "key": "A",
+        "text": "Because the league tournament uses a simpler fixture format that requires fewer officials per match",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Because in a league every team plays against every other team, resulting in significantly more total matches, which demands more playing days, venues, officials, equipment and scheduling coordination than a knock-out where each loss eliminates a team",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Because the knock-out tournament requires more matches than the league tournament in all cases",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Because league tournaments do not require any officials or venues since all matches are played simultaneously",
+        "is_correct": false
+      }
     ],
     "correct_answer": "B",
     "explanation": "In a league with N teams, total matches = N(N−1)/2, while in knock-out, total = N−1. For example, with 16 teams: league = 120 matches vs knock-out = 15 matches. This eight-fold difference demands proportionally more playing days, venues, officials, equipment and scheduling — making league far more resource-intensive.",
     "elimination_hints": "C reverses the match-count reality; D is absurd; A contradicts the resource argument. B correctly explains the fundamental match-count disparity.",
-    "concept_tags": ["league resource intensity", "match count comparison", "time consumption", "scheduling"],
+    "concept_tags": [
+      "league resource intensity",
+      "match count comparison",
+      "time consumption",
+      "scheduling"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-23",
-    "question_type": "MCQ",
+    "question_type": "mcq",
     "difficulty": "medium",
     "bloom_level": "analyze",
     "question_text": "A state-level badminton association wants to conduct a tournament for 24 teams using the knock-out format. Calculate the number of byes and total matches required to complete the tournament.",
     "options": [
-      "A. 8 byes and 23 matches",
-      "B. 6 byes and 24 matches",
-      "C. 8 byes and 24 matches",
-      "D. 4 byes and 20 matches"
+      {
+        "key": "A",
+        "text": "8 byes and 23 matches",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "6 byes and 24 matches",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "8 byes and 24 matches",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "4 byes and 20 matches",
+        "is_correct": false
+      }
     ],
     "correct_answer": "A",
     "explanation": "Next power of 2 above 24 is 32 (2⁵). Byes = 32 − 24 = 8. Total matches in a knock-out tournament = N − 1 = 24 − 1 = 23 matches. The 8 byes in round 1 mean 8 teams advance directly; the remaining 16 teams play 8 matches, producing 8 winners. After round 1: 8 + 8 = 16 teams remain.",
     "elimination_hints": "Total matches always = N − 1 = 23 (eliminates B and C). Byes = 32 − 24 = 8 (eliminates D). Only A has both correct.",
-    "concept_tags": ["24 teams", "byes calculation", "total matches", "knock-out numerical"],
+    "concept_tags": [
+      "24 teams",
+      "byes calculation",
+      "total matches",
+      "knock-out numerical"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-24",
-    "question_type": "MCQ",
+    "question_type": "mcq",
     "difficulty": "hard",
     "bloom_level": "evaluate",
     "question_text": "Evaluate the statement: 'In modern international cricket and football tournaments, the combination tournament format is preferred over a pure knock-out or pure league format.' Identify which justification most accurately supports this preference.",
     "options": [
-      "A. The combination format is preferred because it requires fewer total matches than a pure knock-out format",
-      "B. The combination format is preferred because it guarantees each team multiple matches in the group stage for fair assessment and commercial viability, while the knock-out playoffs stage generates high-stakes excitement, media interest and decisive outcomes — satisfying sporting, commercial and broadcasting needs simultaneously",
-      "C. The combination format is preferred because it eliminates the need for officials and referees during the group stage",
-      "D. The combination format is preferred purely because it was the first tournament format ever invented in sports history"
+      {
+        "key": "A",
+        "text": "The combination format is preferred because it requires fewer total matches than a pure knock-out format",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The combination format is preferred because it guarantees each team multiple matches in the group stage for fair assessment and commercial viability, while the knock-out playoffs stage generates high-stakes excitement, media interest and decisive outcomes — satisfying sporting, commercial and broadcasting needs simultaneously",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "The combination format is preferred because it eliminates the need for officials and referees during the group stage",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The combination format is preferred purely because it was the first tournament format ever invented in sports history",
+        "is_correct": false
+      }
     ],
     "correct_answer": "B",
     "explanation": "Modern international tournaments (FIFA World Cup, ICC Cricket World Cup, Champions League) use the combination format because: the group stage guarantees each team multiple matches (fair assessment, sponsor value, TV content), while the knock-out playoffs create high-stakes drama (media interest, decisive outcomes). This satisfies sporting fairness, commercial viability and broadcasting needs simultaneously.",
     "elimination_hints": "A is factually wrong (combination has MORE matches than pure KO); C is absurd; D is historically incorrect. B captures the multi-dimensional rationale.",
-    "concept_tags": ["combination tournament preference", "commercial viability", "broadcasting", "FIFA World Cup", "ICC"],
+    "concept_tags": [
+      "combination tournament preference",
+      "commercial viability",
+      "broadcasting",
+      "FIFA World Cup",
+      "ICC"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-25",
-    "question_type": "MCQ",
+    "question_type": "mcq",
     "difficulty": "medium",
     "bloom_level": "understand",
     "question_text": "Which of the following correctly describes the primary objective of extramural competitions in the context of school Physical Education programmes in India?",
     "options": [
-      "A. Extramural competitions aim to provide recreation for teachers and school staff only",
-      "B. Extramural competitions aim to provide selected school teams with competitive experience against teams from other schools, raise the standard of performance, develop inter-school sporting relationships and represent the school at district and state levels",
-      "C. Extramural competitions are held only to generate financial profit for the host school through entry fees",
-      "D. Extramural competitions have no educational purpose and are conducted solely for entertainment"
+      {
+        "key": "A",
+        "text": "Extramural competitions aim to provide recreation for teachers and school staff only",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Extramural competitions aim to provide selected school teams with competitive experience against teams from other schools, raise the standard of performance, develop inter-school sporting relationships and represent the school at district and state levels",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Extramural competitions are held only to generate financial profit for the host school through entry fees",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Extramural competitions have no educational purpose and are conducted solely for entertainment",
+        "is_correct": false
+      }
     ],
     "correct_answer": "B",
     "explanation": "Extramural competitions serve multiple objectives: providing competitive experience against external opponents, raising performance standards, building inter-school sporting relationships, giving talented students opportunities to represent their school at higher levels (district, state, national), and fostering school pride and identity.",
     "elimination_hints": "A, C and D misidentify the purpose. B comprehensively captures the competitive, developmental and representational objectives of extramural events.",
-    "concept_tags": ["extramural objectives", "inter-school competition", "performance standards", "school representation"],
+    "concept_tags": [
+      "extramural objectives",
+      "inter-school competition",
+      "performance standards",
+      "school representation"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-26",
-    "question_type": "MCQ",
+    "question_type": "mcq",
     "difficulty": "easy",
     "bloom_level": "remember",
     "question_text": "In a knock-out tournament with 8 teams where no byes are needed, how many rounds of matches are required to determine the champion?",
     "options": [
-      "A. 2 rounds",
-      "B. 3 rounds (quarter-finals, semi-finals, final)",
-      "C. 4 rounds",
-      "D. 8 rounds"
+      {
+        "key": "A",
+        "text": "2 rounds",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "3 rounds (quarter-finals, semi-finals, final)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "4 rounds",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "8 rounds",
+        "is_correct": false
+      }
     ],
     "correct_answer": "B",
     "explanation": "With 8 teams (2³), the number of rounds = log₂(8) = 3 rounds. Round 1 (quarter-finals): 8 teams → 4 winners. Round 2 (semi-finals): 4 teams → 2 winners. Round 3 (final): 2 teams → 1 champion. Total = 3 rounds.",
     "elimination_hints": "8 = 2³, so 3 rounds are needed. Each round halves the number of teams: 8 → 4 → 2 → 1.",
-    "concept_tags": ["rounds in knock-out", "8 teams", "quarter-finals", "log base 2"],
+    "concept_tags": [
+      "rounds in knock-out",
+      "8 teams",
+      "quarter-finals",
+      "log base 2"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-27",
-    "question_type": "MCQ",
+    "question_type": "mcq",
     "difficulty": "hard",
     "bloom_level": "analyze",
     "question_text": "Analyze the challenges a school Physical Education teacher would face when organising a league tournament for 12 teams in a sport like football, considering that each match requires a full-size ground, two teams of eleven players, and a minimum of two hours including preparation time.",
     "options": [
-      "A. There are no challenges because a league tournament with 12 teams is very simple to organise",
-      "B. The teacher faces significant challenges: 66 total matches requiring extensive scheduling across many days, high demand for ground availability, managing player fatigue from frequent matches, coordinating officials for all games, and ensuring fair scheduling so no team plays consecutive matches with insufficient recovery",
-      "C. The only challenge is deciding the colour of team jerseys for each match",
-      "D. The teacher can complete all 66 matches in a single afternoon without any logistical problems"
+      {
+        "key": "A",
+        "text": "There are no challenges because a league tournament with 12 teams is very simple to organise",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "The teacher faces significant challenges: 66 total matches requiring extensive scheduling across many days, high demand for ground availability, managing player fatigue from frequent matches, coordinating officials for all games, and ensuring fair scheduling so no team plays consecutive matches with insufficient recovery",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "The only challenge is deciding the colour of team jerseys for each match",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "The teacher can complete all 66 matches in a single afternoon without any logistical problems",
+        "is_correct": false
+      }
     ],
     "correct_answer": "B",
     "explanation": "League with 12 teams = 12 × 11 / 2 = 66 matches. With each match needing ~2 hours and a full ground, this demands many playing days, significant ground availability, careful scheduling to avoid player fatigue, coordinating officials for every match, and ensuring fairness in rest days. These are substantial logistical challenges for a school setting.",
     "elimination_hints": "A trivialises 66 matches; D is physically impossible; C is trivial. B correctly identifies the real logistical challenges of managing 66 football matches.",
-    "concept_tags": ["league logistics", "12 teams", "66 matches", "scheduling challenges", "resource management"],
+    "concept_tags": [
+      "league logistics",
+      "12 teams",
+      "66 matches",
+      "scheduling challenges",
+      "resource management"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-28",
-    "question_type": "MCQ",
+    "question_type": "mcq",
     "difficulty": "medium",
     "bloom_level": "understand",
     "question_text": "Which of the following is a recognised demerit or disadvantage of the knock-out tournament format that limits its suitability for determining the true overall ranking of all participating teams?",
     "options": [
-      "A. It requires too many matches, making it impractical for schools with limited time",
-      "B. A single bad performance or unfavourable draw can eliminate a genuinely strong team early, and teams that lose in the first round get only one match, making it impossible to rank all teams accurately beyond the winner and runner-up",
-      "C. It provides too many playing opportunities for each team, causing player exhaustion",
-      "D. It is the most expensive tournament format due to the large number of matches required"
+      {
+        "key": "A",
+        "text": "It requires too many matches, making it impractical for schools with limited time",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A single bad performance or unfavourable draw can eliminate a genuinely strong team early, and teams that lose in the first round get only one match, making it impossible to rank all teams accurately beyond the winner and runner-up",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "It provides too many playing opportunities for each team, causing player exhaustion",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "It is the most expensive tournament format due to the large number of matches required",
+        "is_correct": false
+      }
     ],
     "correct_answer": "B",
     "explanation": "The major demerit of knock-out: a single loss eliminates a team regardless of their overall ability. A strong team may face another strong team early due to draw luck. Teams eliminated in round 1 get just one match, making accurate ranking of all teams impossible. Only the champion and runner-up can be meaningfully ranked.",
     "elimination_hints": "A and D describe league problems (many matches); C reverses the reality (KO gives the FEWEST matches). B correctly identifies the one-loss-and-out limitation.",
-    "concept_tags": ["knock-out demerits", "early elimination", "ranking limitation", "single loss"],
+    "concept_tags": [
+      "knock-out demerits",
+      "early elimination",
+      "ranking limitation",
+      "single loss"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-29",
-    "question_type": "MCQ",
+    "question_type": "mcq",
     "difficulty": "hard",
     "bloom_level": "evaluate",
     "question_text": "Evaluate which tournament format would be most appropriate for a Physical Education department that wants to organise an inter-house athletics competition in a school with four houses and limited available days, while ensuring every house gets adequate competition and the overall champion is determined fairly.",
     "options": [
-      "A. A knock-out format where two houses are eliminated after one round and the remaining two play the final",
-      "B. A league (round-robin) format where each house competes against every other house, because with only 4 houses the total matches are manageable (6 matches), every house gets 3 matches for fair assessment, and a points-based ranking accurately determines the champion",
-      "C. A single match between the house with the most students and the house with the fewest students",
-      "D. No tournament at all — simply award the championship randomly to one of the four houses"
+      {
+        "key": "A",
+        "text": "A knock-out format where two houses are eliminated after one round and the remaining two play the final",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "A league (round-robin) format where each house competes against every other house, because with only 4 houses the total matches are manageable (6 matches), every house gets 3 matches for fair assessment, and a points-based ranking accurately determines the champion",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "A single match between the house with the most students and the house with the fewest students",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "No tournament at all — simply award the championship randomly to one of the four houses",
+        "is_correct": false
+      }
     ],
     "correct_answer": "B",
     "explanation": "With 4 houses: league requires only 4 × 3 / 2 = 6 matches (manageable in limited days), every house gets 3 matches (fair assessment), and a points table provides accurate final ranking of all 4 houses. The knock-out option (A) would give eliminated houses only 1 match, which is unfair for an inter-house championship meant to engage all students.",
     "elimination_hints": "A eliminates houses after just 1 match (unfair for inter-house spirit); C and D are not genuine tournament formats. B provides fairness with only 6 manageable matches.",
-    "concept_tags": ["inter-house tournament", "4 houses", "league suitable", "6 matches", "fair assessment"],
+    "concept_tags": [
+      "inter-house tournament",
+      "4 houses",
+      "league suitable",
+      "6 matches",
+      "fair assessment"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-30",
-    "question_type": "MCQ",
+    "question_type": "mcq",
     "difficulty": "medium",
     "bloom_level": "analyze",
     "question_text": "In a league tournament, if a team earns 2 points for a win, 1 point for a draw and 0 points for a loss, and two teams finish with equal points, which of the following is a commonly used method to break the tie and determine the higher-ranked team?",
     "options": [
-      "A. The team that registered first for the tournament is automatically ranked higher",
-      "B. Goal difference (goals scored minus goals conceded) is used as the primary tiebreaker, followed by head-to-head result, goals scored, or a playoff match if still tied",
-      "C. The team with the more attractive jersey is ranked higher by the committee",
-      "D. A coin toss is always the first tiebreaker method used before any other criteria are considered"
+      {
+        "key": "A",
+        "text": "The team that registered first for the tournament is automatically ranked higher",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Goal difference (goals scored minus goals conceded) is used as the primary tiebreaker, followed by head-to-head result, goals scored, or a playoff match if still tied",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "The team with the more attractive jersey is ranked higher by the committee",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "A coin toss is always the first tiebreaker method used before any other criteria are considered",
+        "is_correct": false
+      }
     ],
     "correct_answer": "B",
     "explanation": "Common league tiebreakers follow a hierarchy: goal difference (total goals scored minus conceded), head-to-head result between the tied teams, total goals scored (rewards attacking play), and if still tied, a playoff match or drawing of lots as a last resort. Registration order or jersey appearance are never valid tiebreakers.",
     "elimination_hints": "A and C are arbitrary and unfair criteria; D uses a coin toss as the first resort (it should be the last). B correctly describes the standard tiebreaking hierarchy.",
-    "concept_tags": ["league tiebreaker", "goal difference", "head-to-head", "points system"],
+    "concept_tags": [
+      "league tiebreaker",
+      "goal difference",
+      "head-to-head",
+      "points system"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-31",
-    "question_type": "MTF",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "bloom_level": "understand",
     "question_text": "Match the following number of teams in Column A with the correct number of byes required in a knock-out tournament in Column B.",
     "column_a": [
-      "1. 11 teams",
-      "2. 25 teams",
-      "3. 15 teams",
-      "4. 9 teams"
+      {
+        "id": "1",
+        "text": "11 teams"
+      },
+      {
+        "id": "2",
+        "text": "25 teams"
+      },
+      {
+        "id": "3",
+        "text": "15 teams"
+      },
+      {
+        "id": "4",
+        "text": "9 teams"
+      }
     ],
     "column_b": [
-      "P. 7 byes (next power of 2 is 32)",
-      "Q. 5 byes (next power of 2 is 16)",
-      "R. 1 bye (next power of 2 is 16)",
-      "S. 7 byes (next power of 2 is 16)"
+      {
+        "id": "P",
+        "text": "7 byes (next power of 2 is 32)"
+      },
+      {
+        "id": "Q",
+        "text": "5 byes (next power of 2 is 16)"
+      },
+      {
+        "id": "R",
+        "text": "1 bye (next power of 2 is 16)"
+      },
+      {
+        "id": "S",
+        "text": "7 byes (next power of 2 is 16)"
+      }
     ],
-    "correct_mapping": {"1": "Q", "2": "P", "3": "R", "4": "S"},
+    "correct_mapping": {
+      "1": "Q",
+      "2": "P",
+      "3": "R",
+      "4": "S"
+    },
     "options": [
-      "A. 1-Q, 2-P, 3-R, 4-S",
-      "B. 1-R, 2-S, 3-Q, 4-P",
-      "C. 1-P, 2-Q, 3-S, 4-R",
-      "D. 1-S, 2-R, 3-P, 4-Q"
+      {
+        "key": "A",
+        "text": "1-Q, 2-P, 3-R, 4-S",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1-R, 2-S, 3-Q, 4-P",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1-P, 2-Q, 3-S, 4-R",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1-S, 2-R, 3-P, 4-Q",
+        "is_correct": false
+      }
     ],
     "correct_answer": "A",
     "explanation": "11 teams → next power of 2 is 16, byes = 16−11 = 5 (Q). 25 teams → next power of 2 is 32, byes = 32−25 = 7 (P). 15 teams → next power of 2 is 16, byes = 16−15 = 1 (R). 9 teams → next power of 2 is 16, byes = 16−9 = 7 (S).",
     "elimination_hints": "15 teams needs only 1 bye (R) — the smallest number. 25 teams and 9 teams both need 7 byes but from different powers (32 and 16 respectively).",
-    "concept_tags": ["byes calculation", "multiple team scenarios", "power of 2", "numerical practice"],
+    "concept_tags": [
+      "byes calculation",
+      "multiple team scenarios",
+      "power of 2",
+      "numerical practice"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-32",
-    "question_type": "MTF",
+    "question_type": "match-the-following",
     "difficulty": "hard",
     "bloom_level": "analyze",
     "question_text": "Match the following real-world tournament examples in Column A with the tournament format they predominantly use in Column B.",
     "column_a": [
-      "1. FIFA World Cup (final tournament phase)",
-      "2. English Premier League (EPL) season",
-      "3. Wimbledon Tennis Championship (singles draw)",
-      "4. Indian Premier League (IPL) season"
+      {
+        "id": "1",
+        "text": "FIFA World Cup (final tournament phase)"
+      },
+      {
+        "id": "2",
+        "text": "English Premier League (EPL) season"
+      },
+      {
+        "id": "3",
+        "text": "Wimbledon Tennis Championship (singles draw)"
+      },
+      {
+        "id": "4",
+        "text": "Indian Premier League (IPL) season"
+      }
     ],
     "column_b": [
-      "P. Knock-out (single elimination) format throughout",
-      "Q. Double round-robin league (each team plays every other team twice — home and away)",
-      "R. Combination format — group stage (league) followed by knock-out rounds",
-      "S. Combination format — league stage followed by playoffs among top qualifiers"
+      {
+        "id": "P",
+        "text": "Knock-out (single elimination) format throughout"
+      },
+      {
+        "id": "Q",
+        "text": "Double round-robin league (each team plays every other team twice — home and away)"
+      },
+      {
+        "id": "R",
+        "text": "Combination format — group stage (league) followed by knock-out rounds"
+      },
+      {
+        "id": "S",
+        "text": "Combination format — league stage followed by playoffs among top qualifiers"
+      }
     ],
-    "correct_mapping": {"1": "R", "2": "Q", "3": "P", "4": "S"},
+    "correct_mapping": {
+      "1": "R",
+      "2": "Q",
+      "3": "P",
+      "4": "S"
+    },
     "options": [
-      "A. 1-R, 2-Q, 3-P, 4-S",
-      "B. 1-P, 2-R, 3-Q, 4-S",
-      "C. 1-Q, 2-S, 3-R, 4-P",
-      "D. 1-S, 2-P, 3-S, 4-Q"
+      {
+        "key": "A",
+        "text": "1-R, 2-Q, 3-P, 4-S",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1-P, 2-R, 3-Q, 4-S",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1-Q, 2-S, 3-R, 4-P",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1-S, 2-P, 3-S, 4-Q",
+        "is_correct": false
+      }
     ],
     "correct_answer": "A",
     "explanation": "FIFA World Cup → group stage + knock-out (R). EPL → double round-robin league, home and away (Q). Wimbledon singles → pure knock-out draw (P). IPL → league stage + top-4 playoffs (S).",
     "elimination_hints": "Wimbledon (3) is the classic pure knock-out tournament (P); EPL (2) is a full season league with home-and-away matches (Q). Anchor with these two.",
-    "concept_tags": ["real-world tournaments", "FIFA World Cup", "EPL", "Wimbledon", "IPL", "format identification"],
+    "concept_tags": [
+      "real-world tournaments",
+      "FIFA World Cup",
+      "EPL",
+      "Wimbledon",
+      "IPL",
+      "format identification"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-33",
-    "question_type": "MTF",
+    "question_type": "match-the-following",
     "difficulty": "medium",
     "bloom_level": "understand",
     "question_text": "Match the following intramural competition types in Column A with their correct description in Column B.",
     "column_a": [
-      "1. Inter-house competition",
-      "2. Inter-class competition",
-      "3. Sports day events",
-      "4. Inter-section competition"
+      {
+        "id": "1",
+        "text": "Inter-house competition"
+      },
+      {
+        "id": "2",
+        "text": "Inter-class competition"
+      },
+      {
+        "id": "3",
+        "text": "Sports day events"
+      },
+      {
+        "id": "4",
+        "text": "Inter-section competition"
+      }
     ],
     "column_b": [
-      "P. Students from different sections (e.g., XI-A vs XI-B) of the same class compete against each other",
-      "Q. Students grouped into school houses (e.g., Red House, Blue House) compete in various sports across the academic year",
-      "R. An annual school event featuring track and field events, mass drill displays and prize distribution for individual and house performances",
-      "S. Students from different classes (e.g., Class IX vs Class X) compete against each other in various sports"
+      {
+        "id": "P",
+        "text": "Students from different sections (e.g., XI-A vs XI-B) of the same class compete against each other"
+      },
+      {
+        "id": "Q",
+        "text": "Students grouped into school houses (e.g., Red House, Blue House) compete in various sports across the academic year"
+      },
+      {
+        "id": "R",
+        "text": "An annual school event featuring track and field events, mass drill displays and prize distribution for individual and house performances"
+      },
+      {
+        "id": "S",
+        "text": "Students from different classes (e.g., Class IX vs Class X) compete against each other in various sports"
+      }
     ],
-    "correct_mapping": {"1": "Q", "2": "S", "3": "R", "4": "P"},
+    "correct_mapping": {
+      "1": "Q",
+      "2": "S",
+      "3": "R",
+      "4": "P"
+    },
     "options": [
-      "A. 1-Q, 2-S, 3-R, 4-P",
-      "B. 1-S, 2-Q, 3-P, 4-R",
-      "C. 1-R, 2-P, 3-Q, 4-S",
-      "D. 1-P, 2-R, 3-S, 4-Q"
+      {
+        "key": "A",
+        "text": "1-Q, 2-S, 3-R, 4-P",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "1-S, 2-Q, 3-P, 4-R",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "1-R, 2-P, 3-Q, 4-S",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "1-P, 2-R, 3-S, 4-Q",
+        "is_correct": false
+      }
     ],
     "correct_answer": "A",
     "explanation": "Inter-house → houses compete across year (Q). Inter-class → different classes compete (S). Sports day → annual event with track/field (R). Inter-section → sections within same class compete (P).",
     "elimination_hints": "Sports day (3) is clearly the annual event with track and field (R); inter-house (1) involves named houses competing across the year (Q).",
-    "concept_tags": ["intramural types", "inter-house", "inter-class", "sports day", "inter-section"],
+    "concept_tags": [
+      "intramural types",
+      "inter-house",
+      "inter-class",
+      "sports day",
+      "inter-section"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-34",
-    "question_type": "AR",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "bloom_level": "analyze",
     "question_text": "Read the Assertion and Reason below and select the correct option regarding intramural competitions and their role in school Physical Education.",
     "assertion": "Intramural competitions are considered more important than extramural competitions from the perspective of achieving the overall objectives of Physical Education in schools.",
     "reason": "Intramural competitions provide participation opportunities to all students of the school, not just the talented few, thereby fulfilling the PE objective of mass participation and holistic development for every student.",
     "options": [
-      "A. Both Assertion and Reason are true, and Reason is the correct explanation of Assertion",
-      "B. Both Assertion and Reason are true, but Reason is NOT the correct explanation of Assertion",
-      "C. Assertion is true but Reason is false",
-      "D. Assertion is false but Reason is true"
+      {
+        "key": "A",
+        "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both Assertion and Reason are true, but Reason is NOT the correct explanation of Assertion",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Assertion is true but Reason is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Assertion is false but Reason is true",
+        "is_correct": false
+      }
     ],
     "correct_answer": "A",
     "explanation": "The Assertion is true — from a PE philosophy perspective, intramurals are considered more important because PE aims at development of ALL students. The Reason correctly explains why: intramurals provide mass participation for every student (not just selected athletes), which directly fulfils the PE objective of holistic development for all.",
     "elimination_hints": "Both statements are well-supported by PE philosophy. The Reason explains precisely why intramurals are considered more important — they serve ALL students, aligning with PE's inclusive objectives.",
-    "concept_tags": ["intramural importance", "mass participation", "PE objectives", "inclusive development", "AR type"],
+    "concept_tags": [
+      "intramural importance",
+      "mass participation",
+      "PE objectives",
+      "inclusive development",
+      "AR type"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-35",
-    "question_type": "AR",
+    "question_type": "assertion-reasoning",
     "difficulty": "hard",
     "bloom_level": "evaluate",
     "question_text": "Read the Assertion and Reason below and select the correct option regarding the distribution of byes in a knock-out tournament.",
     "assertion": "In a knock-out tournament, byes should be distributed as evenly as possible between the upper half and lower half of the draw to maintain balance in the bracket.",
     "reason": "If all byes are concentrated in one half of the draw, that half will have significantly fewer first-round matches, creating an unbalanced bracket where one half progresses faster and teams in the other half face more competition, leading to an unfair tournament structure.",
     "options": [
-      "A. Both Assertion and Reason are true, and Reason is the correct explanation of Assertion",
-      "B. Both Assertion and Reason are true, but Reason is NOT the correct explanation of Assertion",
-      "C. Assertion is true but Reason is false",
-      "D. Assertion is false but Reason is true"
+      {
+        "key": "A",
+        "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both Assertion and Reason are true, but Reason is NOT the correct explanation of Assertion",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Assertion is true but Reason is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Assertion is false but Reason is true",
+        "is_correct": false
+      }
     ],
     "correct_answer": "A",
     "explanation": "The Assertion is true — byes must be distributed evenly between halves. The Reason correctly explains the consequence of uneven distribution: concentrated byes create bracket imbalance where one half has easy progression while the other is overloaded with matches, producing an unfair structure.",
     "elimination_hints": "Both statements are standard tournament management principles. The Reason explains exactly what goes wrong (bracket imbalance, unfair structure) when the Assertion's rule is violated.",
-    "concept_tags": ["bye distribution", "bracket balance", "fairness", "tournament structure", "AR type"],
+    "concept_tags": [
+      "bye distribution",
+      "bracket balance",
+      "fairness",
+      "tournament structure",
+      "AR type"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-36",
-    "question_type": "AR",
+    "question_type": "assertion-reasoning",
     "difficulty": "medium",
     "bloom_level": "understand",
     "question_text": "Read the Assertion and Reason below and select the correct option regarding the combination tournament format.",
     "assertion": "The combination tournament format is widely used in professional sports because it offers the advantages of both league and knock-out formats in a single tournament.",
     "reason": "In a combination tournament, the group (league) stage ensures that each team gets multiple matches, while the knock-out stage provides decisive, high-stakes elimination rounds that build audience excitement.",
     "options": [
-      "A. Both Assertion and Reason are true, and Reason is the correct explanation of Assertion",
-      "B. Both Assertion and Reason are true, but Reason is NOT the correct explanation of Assertion",
-      "C. Assertion is true but Reason is false",
-      "D. Assertion is false but Reason is true"
+      {
+        "key": "A",
+        "text": "Both Assertion and Reason are true, and Reason is the correct explanation of Assertion",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "Both Assertion and Reason are true, but Reason is NOT the correct explanation of Assertion",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "Assertion is true but Reason is false",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "Assertion is false but Reason is true",
+        "is_correct": false
+      }
     ],
     "correct_answer": "A",
     "explanation": "The Assertion is true — the combination format is widely used in professional sports. The Reason is also true and correctly explains the dual advantage: league-stage fairness (multiple matches per team) combined with knock-out-stage excitement (decisive elimination). This is exactly why it combines the best of both formats.",
     "elimination_hints": "Both statements are factually correct and logically connected. The Reason specifically describes the dual advantages (fairness + excitement) that explain the Assertion's claim.",
-    "concept_tags": ["combination format advantages", "professional sports", "dual benefit", "AR type"],
+    "concept_tags": [
+      "combination format advantages",
+      "professional sports",
+      "dual benefit",
+      "AR type"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-37",
-    "question_type": "LS",
+    "question_type": "logical-sequence",
     "difficulty": "hard",
     "bloom_level": "analyze",
     "question_text": "Arrange the following rounds of a knock-out tournament with 32 teams in the correct order from the first round to the last, identifying the standard names used for each round.",
@@ -408,26 +871,55 @@
       "III. Semi-finals (4 teams → 2 winners)",
       "IV. Quarter-finals (8 teams → 4 winners)"
     ],
-    "correct_order": ["II", "IV", "III", "I"],
+    "correct_order": [
+      "II",
+      "IV",
+      "III",
+      "I"
+    ],
     "options": [
-      "A. II → IV → III → I",
-      "B. I → III → IV → II",
-      "C. IV → II → I → III",
-      "D. III → I → II → IV"
+      {
+        "key": "A",
+        "text": "II → IV → III → I",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "I → III → IV → II",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "IV → II → I → III",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "III → I → II → IV",
+        "is_correct": false
+      }
     ],
     "correct_answer": "A",
     "explanation": "Knock-out with 32 teams: Round of 32 (II, 32→16) → Quarter-finals (IV, 8→4, note: round of 16 occurs between II and IV but is not listed) → Semi-finals (III, 4→2) → Final (I, 2→1). Each round halves the teams until one champion remains.",
     "elimination_hints": "Round of 32 (II) is the first round with the most teams; the Final (I) is always last. Anchor with these endpoints.",
-    "concept_tags": ["knock-out rounds", "32 teams", "quarter-finals", "semi-finals", "final"],
+    "concept_tags": [
+      "knock-out rounds",
+      "32 teams",
+      "quarter-finals",
+      "semi-finals",
+      "final"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-38",
-    "question_type": "LS",
+    "question_type": "logical-sequence",
     "difficulty": "easy",
     "bloom_level": "remember",
     "question_text": "Arrange the following activities in the correct order that a school Physical Education department would typically follow when planning and conducting an annual intramural sports tournament.",
@@ -437,64 +929,131 @@
       "III. Award prizes, trophies and certificates to winners and participants at a closing ceremony",
       "IV. Prepare fixtures, assign officials and arrange venues and equipment for each sport"
     ],
-    "correct_order": ["II", "IV", "I", "III"],
+    "correct_order": [
+      "II",
+      "IV",
+      "I",
+      "III"
+    ],
     "options": [
-      "A. II → IV → I → III",
-      "B. I → III → II → IV",
-      "C. IV → II → III → I",
-      "D. III → I → IV → II"
+      {
+        "key": "A",
+        "text": "II → IV → I → III",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "I → III → II → IV",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text": "IV → II → III → I",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "III → I → IV → II",
+        "is_correct": false
+      }
     ],
     "correct_answer": "A",
     "explanation": "Planning sequence: Form committee and decide sports/dates (II) → Prepare fixtures, assign officials, arrange venues (IV) → Conduct matches and record results (I) → Award prizes at closing ceremony (III). This follows the standard plan-prepare-execute-celebrate sequence.",
     "elimination_hints": "Forming the committee (II) is always the first planning step; prize distribution (III) is always the last activity. Anchor with these.",
-    "concept_tags": ["intramural planning", "sports committee", "fixture preparation", "prize distribution"],
+    "concept_tags": [
+      "intramural planning",
+      "sports committee",
+      "fixture preparation",
+      "prize distribution"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-39",
-    "question_type": "TF",
+    "question_type": "true-false",
     "difficulty": "easy",
     "bloom_level": "remember",
     "question_text": "True or False: The term 'intramural' is derived from Latin words meaning 'within the walls,' referring to competitions held within a single institution such as inter-house or inter-class events in a school.",
     "options": [
-      "A. True",
-      "B. False"
+      {
+        "key": "A",
+        "text": "True",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text": "False",
+        "is_correct": false
+      }
     ],
     "correct_answer": "A",
     "explanation": "This statement is True. 'Intramural' comes from the Latin words 'intra' (within) and 'murus/muralis' (wall), literally meaning 'within the walls.' In Physical Education, it refers to competitions conducted within a single institution — inter-house, inter-class and inter-section events within one school.",
     "elimination_hints": "The Latin etymology (intra = within, mural = wall) is a standard textbook fact. 'Within the walls' perfectly describes competitions held inside one institution.",
-    "concept_tags": ["intramural etymology", "Latin origin", "within the walls", "True/False"],
+    "concept_tags": [
+      "intramural etymology",
+      "Latin origin",
+      "within the walls",
+      "True/False"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   },
   {
     "id": "cuet-ped-tournaments-40",
-    "question_type": "diagram_based",
+    "question_type": "diagram-based",
     "difficulty": "hard",
     "bloom_level": "evaluate",
     "question_text": "Study the diagram below that shows a knock-out tournament bracket for 8 teams with seeding positions marked. Based on the diagram, if Team 1 (Seed 1) and Team 2 (Seed 2) are the two strongest teams, in which round will they first meet each other if both win all their matches?",
     "image_uri": "diagrams/cuet-ped-tournaments-40.png",
     "options": [
-      "A. Quarter-finals (Round 1) — because they are drawn to play each other immediately",
-      "B. Final (Round 3) — because proper seeding places Seed 1 and Seed 2 in opposite halves of the draw, so they can only meet in the final if both win all their matches",
-      "C. Semi-finals (Round 2) — because they are placed in the same half but different quarters",
-      "D. They can never meet because seeded teams are exempt from playing each other in any round"
+      {
+        "key": "A",
+        "text": "Quarter-finals (Round 1) — because they are drawn to play each other immediately",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text": "Final (Round 3) — because proper seeding places Seed 1 and Seed 2 in opposite halves of the draw, so they can only meet in the final if both win all their matches",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text": "Semi-finals (Round 2) — because they are placed in the same half but different quarters",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text": "They can never meet because seeded teams are exempt from playing each other in any round",
+        "is_correct": false
+      }
     ],
     "correct_answer": "B",
     "explanation": "In a properly seeded 8-team knock-out, Seed 1 is placed at the top of the upper half and Seed 2 at the bottom of the lower half (opposite ends of the draw). This ensures they are in different halves and can only meet in the final (Round 3) if both win all preceding matches. This is the entire purpose of seeding — to protect the best matchup for the championship round.",
     "elimination_hints": "The purpose of seeding is to separate top seeds into different halves. Seed 1 (top of upper half) and Seed 2 (bottom of lower half) can only meet in the final. D is wrong — seeded teams do play each other, just in later rounds.",
-    "concept_tags": ["seeding bracket", "8 teams", "seed 1 vs seed 2", "final meeting", "diagram-based"],
+    "concept_tags": [
+      "seeding bracket",
+      "8 teams",
+      "seed 1 vs seed 2",
+      "final meeting",
+      "diagram-based"
+    ],
     "topic": "Tournaments & Competition Management",
-    "chapter_id": "cuet-ped-sociology-training",
+    "chapter_id": "cuet-ped-management",
     "subject": "Physical Education",
     "chapter": "Sociological Aspects, Training & Career in PE",
-    "exam_suitability": ["CUET"]
+    "exam_suitability": [
+      "CUET"
+    ]
   }
 ]

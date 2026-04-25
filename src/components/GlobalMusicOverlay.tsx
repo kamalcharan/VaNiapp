@@ -19,7 +19,17 @@ export function GlobalMusicOverlay() {
   const currentTrackIndex = useSelector((state: RootState) => state.music.currentTrackIndex);
   const audio = useAudioPlayer();
   const segments = useSegments();
-  const isExamScreen = segments.includes('(exam)' as never);
+  // Compact pill mode on every screen where the user is actively answering
+  // questions — full bar at bottom: 110 floats over answer content and the
+  // bottom-bar buttons (Back / Next / Skip), so we shrink it to the top-left
+  // pill there. The original (exam) route group was never created, so the
+  // earlier check was effectively dead.
+  const isExamScreen =
+    segments.includes('(exam)' as never) ||
+    segments.includes('chapter' as never) ||
+    segments.includes('practice-exam' as never) ||
+    segments.includes('quick-practice' as never) ||
+    segments.includes('practice-mistakes' as never);
 
   return (
     <>

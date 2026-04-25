@@ -18,6 +18,7 @@ import { useFocusTracker } from '../../src/hooks/useFocusTracker';
 import { Typography, Spacing, BorderRadius } from '../../src/constants/theme';
 import { RootState } from '../../src/store';
 import { buildPracticeExam } from '../../src/data/questions';
+import { applyOptionShuffle } from '../../src/lib/optionShuffle';
 import { SUBJECT_META } from '../../src/constants/subjects';
 import {
   NeetSubjectId,
@@ -66,13 +67,19 @@ export default function PracticeQuestionScreen() {
   // Build exam once
   const exam = useMemo(() => buildPracticeExam(), []);
 
+  // Stable session id for this attempt — also used as the seed for per-question
+  // option shuffling. Redux session (line below) reuses the same id.
+  const sessionIdRef = useRef<string>(`pe-${Date.now()}`);
+
   // Flatten into structured question list
   const allQuestions = useMemo(() => {
     const qs: ExamQuestion[] = [];
+    const shuffle = (q: ExamQuestion): ExamQuestion =>
+      ({ ...applyOptionShuffle(q, sessionIdRef.current), section: q.section, indexInSection: q.indexInSection });
     for (const subjectId of ['physics', 'chemistry', 'botany', 'zoology'] as NeetSubjectId[]) {
       const { sectionA, sectionB } = exam[subjectId];
-      legacyBatchToV2(sectionA).forEach((q, i) => qs.push({ ...q, section: 'A', indexInSection: i }));
-      legacyBatchToV2(sectionB).forEach((q, i) => qs.push({ ...q, section: 'B', indexInSection: i }));
+      legacyBatchToV2(sectionA).forEach((q, i) => qs.push(shuffle({ ...q, section: 'A', indexInSection: i })));
+      legacyBatchToV2(sectionB).forEach((q, i) => qs.push(shuffle({ ...q, section: 'B', indexInSection: i })));
     }
     return qs;
   }, [exam]);
@@ -91,7 +98,7 @@ export default function PracticeQuestionScreen() {
   // Initialize session
   useEffect(() => {
     const session: PracticeExamSession = {
-      id: `pe-${Date.now()}`,
+      id: sessionIdRef.current,
       mode: 'practice',
       startedAt: new Date().toISOString(),
       completedAt: null,

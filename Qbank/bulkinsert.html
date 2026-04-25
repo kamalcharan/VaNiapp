@@ -297,7 +297,7 @@
     </div>
   </div>
 
-  <script src="./shared.js?v=20260412"></script>
+  <script src="./shared.js?v=20260424b"></script>
   <script>
     console.log('[bulkinsert] Script loaded - version 2025.03.05');
     // ========================================================================
@@ -715,6 +715,7 @@
       if (questionId.startsWith('cuet-cs-'))   return 'computer-science';
       if (questionId.startsWith('cuet-leg-'))  return 'legal-studies';
       if (questionId.startsWith('cuet-ped-'))  return 'physical-education';
+      if (questionId.startsWith('cuet-agri-')) return 'agriculture';
       if (questionId.startsWith('cuet-hs-'))   return 'home-science';
       if (questionId.startsWith('cuet-eng-'))  return 'english';
       if (questionId.startsWith('cuet-math-')) return 'mathematics';

@@ -31,6 +31,7 @@ import { toggleBookmark } from '../src/store/slices/bookmarkSlice';
 import { useToast } from '../src/components/ui/Toast';
 import { getCorrectId } from '../src/lib/questionAdapter';
 import { fetchQuestionsByChapter } from '../src/lib/questions';
+import { applyOptionShuffleToBatch } from '../src/lib/optionShuffle';
 import { reportError } from '../src/lib/errorReporting';
 import { QuestionV2, SubjectId, t } from '../src/types';
 
@@ -80,11 +81,15 @@ export default function PracticeMistakesScreen() {
       .then((result) => {
         if (!result.ok) return;
 
+        // Per-session option-shuffle seed. Practice-mistakes doesn't register
+        // a Redux session, so we mint a local id just for shuffle.
+        const shuffleSessionId = `pm-${Date.now()}`;
+
         if (realWrongIds.size > 0) {
           // We have real wrong question IDs — show only those
           const wrong = result.questions.filter((q) => realWrongIds.has(q.id));
           if (wrong.length > 0) {
-            setWrongQuestions(wrong);
+            setWrongQuestions(applyOptionShuffleToBatch(wrong, shuffleSessionId));
             return;
           }
         }
@@ -98,7 +103,8 @@ export default function PracticeMistakesScreen() {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
           }
-          setWrongQuestions(shuffled.slice(0, Math.min(20, shuffled.length)));
+          const batch = shuffled.slice(0, Math.min(20, shuffled.length));
+          setWrongQuestions(applyOptionShuffleToBatch(batch, shuffleSessionId));
           setIsFallbackMode(true);
         }
       })
@@ -468,6 +474,7 @@ export default function PracticeMistakesScreen() {
         questionType={question.type}
         explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
+        optionsForDisplay={'options' in question.payload ? question.payload.options : undefined}
         selectedOptionId={selectedOptionId}
         language={language}
       />

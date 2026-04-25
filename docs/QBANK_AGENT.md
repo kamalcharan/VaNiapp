@@ -274,10 +274,16 @@ B) Both A and R are correct but R is NOT the correct explanation of A
 C) A is correct but R is incorrect
 D) A is incorrect but R is correct
 
-DISTRIBUTION:
-- Ensure variety: don't make all answers option A
-- Include cases where both are true but unrelated (option B)
-- Include cases with one false statement (options C, D)
+DISTRIBUTION (hard rule — verified empirically, see Mistake 7 in §13.5):
+- Correct_answer letter must be BALANCED across the batch: each of A / B / C / D
+  should be correct 20-30% of the time. No single letter above 35%.
+- Historical bias: generators tended to default to option A on 85% of A-R
+  questions and option B on 60% of MCQ. The runtime now shuffles options per
+  session, but fresh content MUST be balanced to avoid drift during review
+  screens (shuffle is reproducible per session, not uniformly random).
+- Also balance the A-R SEMANTIC templates — don't always land on "Both true
+  and R explains A". Mix in "both true unrelated", "A true R false", and
+  "A false R true" evenly.
 
 OUTPUT SCHEMA:
 {
@@ -1147,6 +1153,17 @@ Every question **MUST** have `elimination_hints`. This is VaNi's key differentia
 **Impact:** Students see the same text displayed twice in the UI.
 **Prevention:** `scenario` = the case study/situation narrative. `question_text` = the actual question being asked about the scenario.
 
+#### Mistake 7: Correct-answer letter distribution bias
+**What happened:** LLM generators defaulted to the same option slot across a batch. Concrete measurements in the first CUET Agri + Ped uploads:
+- Assertion-reasoning: 85% of correct answers = A (102/120 agri, 77/90 ped).
+- MCQ: 56-67% of correct = B. Option D was correct <3% of the time.
+**Impact:** Students could score above chance by just guessing the dominant letter. Runtime option-shuffle (see `src/lib/optionShuffle.ts`) now masks the bias at display time, but the underlying data is still skewed and the bias will reappear whenever options are rendered in canonical order (e.g. the answer-review screen uses a deterministic per-session seed — so within any given review the user sees a fixed mapping).
+**Prevention:**
+1. In the generation prompt, state explicit distribution targets: each of A/B/C/D = 20-30%, no letter > 35%, no letter < 10%.
+2. Ask the LLM to enumerate its final correct-answer letters before emitting JSON, then redistribute if skewed.
+3. Ask the LLM to also balance A-R semantic templates ("R explains A" vs "R doesn't explain" vs "A true R false" vs "A false R true").
+4. Run `explore.html` → the `ANSWER_DISTRIBUTION_SKEW` validator will flag any chapter where the dominant letter ≥ 60% or any letter < 5%. Address flagged chapters before shipping the batch.
+
 ---
 
 ### 13.6 Production-Readiness Checklist (Run Before Saving Each Batch)
@@ -1169,6 +1186,8 @@ Every question **MUST** have `elimination_hints`. This is VaNi's key differentia
 [ ] Elimination hints use `option_key`, `hint`, `misconception`
 [ ] Topic/chapter IDs exist in the DB (verified before generation)
 [ ] JSON is a plain array [...] with NO metadata wrapper
+[ ] correct_answer letter distribution: each of A/B/C/D is 20-30% of the batch (no letter > 35%, none < 10%)
+[ ] Assertion-reasoning semantic templates are also balanced (don't always pick "R explains A")
 ```
 
 ### 13.7 Severity Classification for Quality Issues

@@ -31,6 +31,9 @@ interface AskVaniSheetProps {
   eliminationHints?: EliminationHint[];
   /** Plain-text fallback (used in quick-practice) */
   eliminationText?: string;
+  /** Options in display order — used to label hint badges by content
+   *  rather than by letter (so the badge stays correct after option shuffle). */
+  optionsForDisplay?: { id: string; text: string; textTe?: string; textHi?: string }[];
   selectedOptionId?: string | null;
   language?: string;
 }
@@ -40,6 +43,8 @@ interface ChatMessage {
   type: 'intro' | 'hint' | 'misconception' | 'closing';
   text: string;
   optionKey?: string;
+  /** Resolved badge label — option content snippet (preferred), or fallback text. */
+  optionLabel?: string;
   isUserPick?: boolean;
 }
 
@@ -51,6 +56,30 @@ function buildRecallHint(explanation: string): string {
   return firstSentence;
 }
 
+/** Build the badge label for a hint — prefer the option's content text
+ *  (truncated) over the underlying letter, so re-attempt shuffle doesn't
+ *  surface a stale "Option B" pointing at a now-different option. */
+function resolveOptionLabel(
+  optionKey: string | undefined,
+  options: { id: string; text: string; textTe?: string; textHi?: string }[] | undefined,
+  language: string,
+): string | undefined {
+  if (!optionKey) return undefined;
+  if (options && options.length > 0) {
+    const match = options.find((o) => o.id === optionKey);
+    if (match) {
+      const text = t(language, match.text, match.textTe || '', match.textHi);
+      const trimmed = text.replace(/\s+/g, ' ').trim();
+      return trimmed.length > 50 ? trimmed.slice(0, 47) + '...' : trimmed;
+    }
+  }
+  // Generic hint without a specific option mapping (e.g. "hint_1", "hint_2")
+  const m = optionKey.match(/^hint_(\d+)$/i);
+  if (m) return `Tip ${m[1]}`;
+  // Last resort — keep the letter (rare; means optionKey didn't match any option)
+  return `Option ${optionKey}`;
+}
+
 function buildChatMessages(
   hints: EliminationHint[],
   eliminationText: string | undefined,
@@ -58,6 +87,7 @@ function buildChatMessages(
   language: string,
   questionType?: string,
   explanation?: string,
+  optionsForDisplay?: { id: string; text: string; textTe?: string; textHi?: string }[],
 ): ChatMessage[] {
   const msgs: ChatMessage[] = [];
   const isNonEnglish = language !== 'en';
@@ -91,11 +121,13 @@ function buildChatMessages(
     for (const hint of hints) {
       const hintText = isNonEnglish ? t(language, hint.hint, hint.hintTe, hint.hintHi) : hint.hint;
       const isUserPick = hint.optionKey === selectedOptionId;
+      const optionLabel = resolveOptionLabel(hint.optionKey, optionsForDisplay, language);
 
       msgs.push({
         type: 'hint',
         text: hintText,
         optionKey: hint.optionKey,
+        optionLabel,
         isUserPick,
       });
 
@@ -107,6 +139,7 @@ function buildChatMessages(
           type: 'misconception',
           text: miscText,
           optionKey: hint.optionKey,
+          optionLabel,
         });
       }
     }
@@ -276,7 +309,7 @@ function ChatBubble({
                   { color: message.isUserPick ? '#EF4444' : '#8B5CF6' },
                 ]}
               >
-                Option {message.optionKey}
+                {message.optionLabel ?? `Option ${message.optionKey}`}
               </Text>
             </View>
             {message.isUserPick && (
@@ -310,6 +343,7 @@ export function AskVaniSheet({
   explanation,
   eliminationHints = [],
   eliminationText,
+  optionsForDisplay,
   selectedOptionId,
   language = 'en',
 }: AskVaniSheetProps) {
@@ -322,8 +356,8 @@ export function AskVaniSheet({
 
   const messages = useCallback(
     () =>
-      buildChatMessages(eliminationHints, eliminationText, selectedOptionId, language, questionType, explanation),
-    [eliminationHints, eliminationText, selectedOptionId, language, questionType, explanation],
+      buildChatMessages(eliminationHints, eliminationText, selectedOptionId, language, questionType, explanation, optionsForDisplay),
+    [eliminationHints, eliminationText, selectedOptionId, language, questionType, explanation, optionsForDisplay],
   )();
 
   // ── Slide animation ──

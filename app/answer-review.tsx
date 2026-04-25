@@ -24,6 +24,7 @@ import { getChapterById } from '../src/data/chapters';
 import { getCorrectId, legacyBatchToV2 } from '../src/lib/questionAdapter';
 import { getAllQuestions } from '../src/data/questions';
 import { fetchQuestionsByChapter } from '../src/lib/questions';
+import { applyOptionShuffleToBatch } from '../src/lib/optionShuffle';
 import { AskVaniSheet } from '../src/components/AskVaniSheet';
 import { WrongAnswerCard } from '../src/components/exam/WrongAnswerCard';
 import { ConceptExplainerSheet } from '../src/components/exam/ConceptExplainerSheet';
@@ -69,11 +70,14 @@ export default function AnswerReviewScreen() {
     fetchQuestionsByChapter(session.chapterId)
       .then((result) => {
         if (result.ok) {
-          setSupabaseQuestions(result.questions);
+          // Re-apply the same per-session option shuffle the user saw during
+          // the attempt, so option letters and positions match their memory.
+          const shuffled = applyOptionShuffleToBatch(result.questions, session.id);
+          setSupabaseQuestions(shuffled);
 
           // Report if any answered questions are missing elimination hints
           const answeredIds = new Set(session.answers.map((a) => a.questionId));
-          const answered = result.questions.filter((q) => answeredIds.has(q.id));
+          const answered = shuffled.filter((q) => answeredIds.has(q.id));
           const missingHints = answered.filter(
             (q) => !q.eliminationHints || q.eliminationHints.length === 0,
           );
@@ -522,6 +526,7 @@ export default function AnswerReviewScreen() {
         explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
         eliminationText={t(language, question.eliminationTechnique, question.eliminationTechniqueTe, question.eliminationTechniqueHi)}
+        optionsForDisplay={'options' in question.payload ? question.payload.options : undefined}
         selectedOptionId={selected}
         language={language}
       />

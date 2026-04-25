@@ -1,5 +1,5 @@
 /**
- * Qbank Admin - Shared Utilities (v2025.03.05)
+ * Qbank Admin - Shared Utilities (v2026.04.24-distribution-skew)
  * Config loader, Auth, Supabase client, Gemini client, UI helpers
  */
 
@@ -31,7 +31,7 @@ const EXAM_CONFIG = {
       'MATHEMATICS', 'ACCOUNTANCY', 'BUSINESS-STUDIES', 'ECONOMICS',
       'HISTORY', 'GEOGRAPHY', 'POLITICAL-SCIENCE', 'SOCIOLOGY', 'PSYCHOLOGY',
       'COMPUTER-SCIENCE', 'LEGAL-STUDIES', 'PHYSICAL-EDUCATION',
-      'HOME-SCIENCE', 'ENGLISH'
+      'HOME-SCIENCE', 'ENGLISH', 'AGRICULTURE'
     ]
   }
 };
@@ -58,6 +58,7 @@ const SUBJECT_META = {
   'COMPUTER-SCIENCE': { name: 'Computer Science', emoji: '💻', color: '#0f766e', bg: '#ccfbf1' },
   'LEGAL-STUDIES':    { name: 'Legal Studies',    emoji: '⚖️', color: '#b45309', bg: '#fef3c7' },
   'PHYSICAL-EDUCATION':{ name: 'Physical Education', emoji: '🏃', color: '#16a34a', bg: '#dcfce7' },
+  'AGRICULTURE':      { name: 'Agriculture',      emoji: '🌾', color: '#65a30d', bg: '#ecfccb' },
   'HOME-SCIENCE':     { name: 'Home Science',     emoji: '🏠', color: '#d97706', bg: '#fef9c3' },
   'ENGLISH':          { name: 'English',          emoji: '📖', color: '#2563eb', bg: '#dbeafe' }
 };
@@ -1982,6 +1983,11 @@ const QUALITY_ISSUE_TYPES = {
   SEQ_INCOMPLETE_TEXT:    { severity: 'high',   label: 'Sequence question text has no items to arrange' },
   MTF_DUPLICATE_KEYS:     { severity: 'high',   label: 'MTF has duplicate option/column keys (drag broken)' },
 
+  // Chapter-level distribution (one issue per chapter per type)
+  // Advisory only — runtime option-shuffle masks this from students. Surfaced
+  // so we notice if a fresh batch breaks the generation-prompt distribution rule.
+  ANSWER_DISTRIBUTION_SKEW: { severity: 'low', label: 'Correct-answer distribution is skewed (advisory — masked by runtime shuffle)' },
+
   // Translation (parameterized via details.language)
   MISSING_TRANSLATION:    { severity: 'low',    label: 'Missing translation' },
 
@@ -2375,6 +2381,62 @@ function runQualityValidators(questions, languages, chapterId) {
           language: lang.id,
           languageLabel: lang.label,
           fields: missingFields
+        }));
+      }
+    }
+  }
+
+  // ── Chapter-level correct-answer distribution skew ────────────────────────
+  // For each question_type (except true-false), compute how the correct answer
+  // is spread across A/B/C/D. Generation bias often clusters correct answers
+  // on a single letter (e.g. 85% of A-R answers land on A, 67% of MCQ on B).
+  // We flag a type if the dominant letter holds >= 60% or any letter < 5%.
+  // One issue per (chapter, question_type), anchored on the first question of
+  // that type so the admin can drill in.
+  {
+    const byType = {};
+    for (const q of questions) {
+      const type = q.question_type;
+      if (!type || type === 'true-false') continue;
+      const opts = q.options || q.med_question_options || [];
+      const correct = opts.find(o => o.is_correct);
+      if (!correct || !correct.option_key) continue;
+      if (!byType[type]) byType[type] = { total: 0, counts: {}, first: q };
+      byType[type].total += 1;
+      const k = correct.option_key;
+      byType[type].counts[k] = (byType[type].counts[k] || 0) + 1;
+    }
+
+    for (const type in byType) {
+      const { total, counts, first } = byType[type];
+      // Need at least 25 questions of the type before flagging — below this
+      // the distribution is too noisy to call a real generation bias.
+      if (total < 25) continue;
+
+      const letters = ['A', 'B', 'C', 'D'];
+      const normalised = {};
+      const percentages = {};
+      let maxKey = 'A';
+      let maxCount = 0;
+      for (const letter of letters) {
+        const c = counts[letter] || 0;
+        normalised[letter] = c;
+        percentages[letter] = Math.round((c / total) * 100);
+        if (c > maxCount) { maxCount = c; maxKey = letter; }
+      }
+
+      const dominantPct = Math.round((maxCount / total) * 100);
+      const underusedLetters = letters.filter(l => (normalised[l] / total) < 0.05);
+
+      if (dominantPct >= 60 || underusedLetters.length > 0) {
+        issues.push(makeIssue(first, chapterId, 'ANSWER_DISTRIBUTION_SKEW', {
+          questionType: type,
+          totalOfType: total,
+          counts: normalised,
+          percentages,
+          dominantKey: maxKey,
+          dominantPct,
+          underusedLetters,
         }));
       }
     }

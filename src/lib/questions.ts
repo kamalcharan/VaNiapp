@@ -422,9 +422,11 @@ function buildPayload(
 
     case 'true-false': {
       // Correct answer is derived from whichever option has is_correct=true.
-      // If that option's text is "True", the answer is true; otherwise false.
+      // We tolerate option text like "TRUE — justification text" so generators
+      // that append a justification to the option text are still classified
+      // correctly (DB has ~9 such agri rows).
       const correctOpt = options.find((o) => o.id === correctOptionId);
-      const tfCorrect = correctOpt?.text?.toLowerCase().trim() === 'true';
+      const tfCorrect = /^\s*(true|t)\b/i.test(correctOpt?.text || '');
       return {
         type: 'true-false',
         statement: (raw.statement as string) || text,

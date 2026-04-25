@@ -46,6 +46,7 @@ import { recordChapterAttempt } from '../../src/store/slices/strengthSlice';
 import { toggleBookmark } from '../../src/store/slices/bookmarkSlice';
 import { incrementStreak, resetStreak, recordDailyPractice } from '../../src/store/slices/streakSlice';
 import { fetchQuestionsByChapter } from '../../src/lib/questions';
+import { applyOptionShuffleToBatch } from '../../src/lib/optionShuffle';
 import { getCorrectId, resolveLegacyChapterId } from '../../src/lib/questionAdapter';
 import { syncChapterProgress } from '../../src/lib/progressSync';
 import { reportError } from '../../src/lib/errorReporting';
@@ -76,6 +77,7 @@ export default function ChapterQuizScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<'no-connection' | 'no-questions' | 'not-configured' | null>(null);
   const [sessionStarted, setSessionStarted] = useState(false);
+  const [sessionId, setSessionId] = useState<string>('');
 
   const loadQuestions = () => {
     if (!chapterId) return;
@@ -98,8 +100,12 @@ export default function ChapterQuizScreen() {
           [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
 
-        // Limit to 20 questions per session
-        const batch = shuffled.slice(0, 20);
+        // Limit to 20 questions per session, then shuffle each question's
+        // options deterministically by session id. Same seed is reused by
+        // the answer-review screen via the stored session.id.
+        const newSessionId = `ch-${Date.now()}`;
+        const batch = applyOptionShuffleToBatch(shuffled.slice(0, 20), newSessionId);
+        setSessionId(newSessionId);
         setQuestions(batch);
         setIsLoading(false);
       })
@@ -199,9 +205,9 @@ export default function ChapterQuizScreen() {
 
   // Start session once questions are loaded
   useEffect(() => {
-    if (sessionStarted || questions.length === 0 || !chapterId) return;
+    if (sessionStarted || questions.length === 0 || !chapterId || !sessionId) return;
     const session: ChapterExamSession = {
-      id: `ch-${Date.now()}`,
+      id: sessionId,
       mode: 'chapter',
       chapterId,
       subjectId: subjectId as NeetSubjectId,
@@ -215,7 +221,7 @@ export default function ChapterQuizScreen() {
     dispatch(startChapterExam(session));
     startTimeRef.current = Date.now();
     setSessionStarted(true);
-  }, [questions, chapterId, sessionStarted]);
+  }, [questions, chapterId, sessionStarted, sessionId]);
 
   const question = questions[currentIndex];
   const isBookmarked = question ? bookmarkedIds.includes(question.id) : false;
@@ -275,71 +281,99 @@ export default function ChapterQuizScreen() {
     );
   };
 
-  const handleNext = () => {
-    if (!question) return;
-
-    if (currentIndex >= questions.length - 1) {
-      // Last question — mark as fully completed so cleanup doesn't double-save
-      quizCompletedRef.current = true;
-      setQuizFinished(true);
-      const allAnswers = { ...answers, [question.id]: selectedOptionId! };
-      const finalCorrect = Object.entries(allAnswers).filter(([qId, optId]) => {
-        const q = questions.find((qq) => qq.id === qId);
-        return q ? optId === getCorrectId(q) : false;
-      }).length;
-
-      const timeUsedMs = Date.now() - startTimeRef.current;
-
-      // Navigate FIRST — before Redux dispatches that trigger question recalculation
-      router.replace({
-        pathname: '/chapter-results',
-        params: {
-          chapterId: chapterId!,
-          subjectId,
-          correct: String(finalCorrect),
-          total: String(questions.length),
-          timeUsedMs: String(timeUsedMs),
-        },
-      });
-
-      // Then dispatch Redux state updates (quizFinished guards the UI)
-      dispatch(
-        completeChapterExam({
-          correctCount: finalCorrect,
-          completedAt: new Date().toISOString(),
-          timeUsedMs,
-        }),
-      );
-
-      dispatch(
-        recordChapterAttempt({
-          chapterId: chapterId!,
-          subjectId,
-          totalInBank,
-          answeredQuestions: Object.entries(allAnswers).map(([qId, optId]) => {
-            const q = questions.find((qq) => qq.id === qId);
-            return {
-              questionId: qId,
-              correct: q ? optId === getCorrectId(q) : false,
-            };
-          }),
-        }),
-      );
-
-      // Record daily practice streak
-      dispatch(recordDailyPractice());
-
-      // Sync progress to Supabase in background
-      syncChapterProgress(chapterId!).catch((e) => reportError(e, 'medium', 'ChapterQuiz.syncProgress'));
-      return;
-    }
-
-    setCurrentIndex((prev) => prev + 1);
-    setSelectedOptionId(null);
-    setShowFeedback(false);
+  // Restore selection + feedback state when navigating to a previously visited
+  // question. Used by Next, Skip, and Prev so revisits show what the user did.
+  const restoreStateFor = (idx: number) => {
+    const q = questions[idx];
+    const prevAns = q ? answers[q.id] : undefined;
+    setSelectedOptionId(prevAns ?? null);
+    setShowFeedback(!!prevAns);
     setShowVaniSheet(false);
     setShowConceptSheet(false);
     scrollRef.current?.scrollTo({ y: 0, animated: true });
+  };
+
+  // Shared completion path — used by both Next-on-last and Skip-on-last.
+  // `extraAnswer` is the answer about to be added (if any) for the last
+  // question; for Skip-on-last it's omitted.
+  const completeQuiz = (extraAnswer?: { questionId: string; optionId: string }) => {
+    quizCompletedRef.current = true;
+    setQuizFinished(true);
+
+    const allAnswers = extraAnswer
+      ? { ...answers, [extraAnswer.questionId]: extraAnswer.optionId }
+      : { ...answers };
+    const finalCorrect = Object.entries(allAnswers).filter(([qId, optId]) => {
+      const q = questions.find((qq) => qq.id === qId);
+      return q ? optId === getCorrectId(q) : false;
+    }).length;
+    const skippedCount = questions.length - Object.keys(allAnswers).length;
+    const timeUsedMs = Date.now() - startTimeRef.current;
+
+    // Navigate FIRST — before Redux dispatches that trigger question recalculation
+    router.replace({
+      pathname: '/chapter-results',
+      params: {
+        chapterId: chapterId!,
+        subjectId,
+        correct: String(finalCorrect),
+        total: String(questions.length),
+        skipped: String(skippedCount),
+        timeUsedMs: String(timeUsedMs),
+      },
+    });
+
+    dispatch(
+      completeChapterExam({
+        correctCount: finalCorrect,
+        completedAt: new Date().toISOString(),
+        timeUsedMs,
+      }),
+    );
+
+    dispatch(
+      recordChapterAttempt({
+        chapterId: chapterId!,
+        subjectId,
+        totalInBank,
+        answeredQuestions: Object.entries(allAnswers).map(([qId, optId]) => {
+          const q = questions.find((qq) => qq.id === qId);
+          return {
+            questionId: qId,
+            correct: q ? optId === getCorrectId(q) : false,
+          };
+        }),
+      }),
+    );
+
+    dispatch(recordDailyPractice());
+    syncChapterProgress(chapterId!).catch((e) => reportError(e, 'medium', 'ChapterQuiz.syncProgress'));
+  };
+
+  const handleNext = () => {
+    if (!question) return;
+    if (currentIndex >= questions.length - 1) {
+      completeQuiz({ questionId: question.id, optionId: selectedOptionId! });
+      return;
+    }
+    setCurrentIndex((prev) => prev + 1);
+    restoreStateFor(currentIndex + 1);
+  };
+
+  const handleSkip = () => {
+    if (!question || showFeedback) return; // can't skip after answering
+    if (currentIndex >= questions.length - 1) {
+      completeQuiz();
+      return;
+    }
+    setCurrentIndex((prev) => prev + 1);
+    restoreStateFor(currentIndex + 1);
+  };
+
+  const handlePrev = () => {
+    if (currentIndex <= 0) return;
+    setCurrentIndex((prev) => prev - 1);
+    restoreStateFor(currentIndex - 1);
   };
 
   // ── Loading state ──
@@ -719,10 +753,25 @@ export default function ChapterQuizScreen() {
             },
           ]}
         >
+          {/* Prev — only after first question */}
+          {currentIndex > 0 ? (
+            <Pressable
+              onPress={handlePrev}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+              style={styles.navGhostBtn}
+            >
+              <Text style={[styles.navGhostBtnText, { color: colors.textSecondary }]}>
+                {'<  Back'}
+              </Text>
+            </Pressable>
+          ) : (
+            <View style={styles.navGhostSpacer} />
+          )}
+
           <Text style={[Typography.bodySm, { color: colors.textSecondary }]}>
             {showFeedback
               ? `Score: ${correctCount + (isCorrect ? 1 : 0)}/${currentIndex + 1}`
-              : `Question ${currentIndex + 1} of ${questions.length}`}
+              : `${currentIndex + 1} / ${questions.length}`}
           </Text>
 
           {showFeedback ? (
@@ -743,15 +792,19 @@ export default function ChapterQuizScreen() {
                   { color: mode === 'dark' ? '#0F172A' : '#FFF' },
                 ]}
               >
-                {isLast ? persona.labels.quizComplete : 'Next Question  >'}
+                {isLast ? persona.labels.quizComplete : 'Next  >'}
               </Text>
             </Pressable>
           ) : (
-            <Text
-              style={[Typography.bodySm, { color: colors.textTertiary }]}
+            <Pressable
+              onPress={handleSkip}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+              style={styles.navGhostBtn}
             >
-              {persona.labels.quizStart}
-            </Text>
+              <Text style={[styles.navGhostBtnText, { color: colors.textTertiary }]}>
+                {'Skip  >'}
+              </Text>
+            </Pressable>
           )}
         </View>
       </SafeAreaView>
@@ -766,6 +819,7 @@ export default function ChapterQuizScreen() {
         questionType={question.type}
         explanation={t(language, question.explanation, question.explanationTe, question.explanationHi)}
         eliminationHints={question.eliminationHints}
+        optionsForDisplay={'options' in question.payload ? question.payload.options : undefined}
         selectedOptionId={selectedOptionId}
         language={language}
       />
@@ -921,5 +975,17 @@ const styles = StyleSheet.create({
   nextBtnText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
     fontSize: 15,
+  },
+  navGhostBtn: {
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  navGhostBtnText: {
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 13,
+  },
+  navGhostSpacer: {
+    // Same horizontal padding as navGhostBtn so center text stays centered
+    paddingHorizontal: 12,
   },
 });

@@ -26,6 +26,8 @@ const DIAGRAM_SOURCES = [
   // Flat layout: SVGs/PNGs directly in the subject folder (no chapter subdirs)
   { base: join(__dirname, 'CUET/history'), subject: 'history', flat: true },
   { base: join(__dirname, 'CUET/psychology'), subject: 'psychology', flat: true },
+  { base: join(__dirname, 'CUET/agri'), subject: 'agriculture', flat: true },
+  { base: join(__dirname, 'CUET/ped'), subject: 'physical-education', flat: true },
 ];
 
 function loadConfig() {
