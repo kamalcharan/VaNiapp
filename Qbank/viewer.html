@@ -93,6 +93,237 @@
       opacity: 0.4;
       margin-bottom: 12px;
     }
+
+    /* Question list */
+    .q-row {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--gray-100);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .q-row:hover {
+      background: var(--gray-50);
+    }
+
+    .q-row.selected {
+      background: #eff6ff;
+      border-left: 3px solid #3b82f6;
+      padding-left: 13px;
+    }
+
+    .q-row-meta {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .q-row-index {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      min-width: 28px;
+    }
+
+    .q-row-text {
+      font-size: 0.88rem;
+      color: var(--gray-800);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .pager {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      border-top: 1px solid var(--gray-100);
+      font-size: 0.85rem;
+    }
+
+    .pager button {
+      border: 1px solid var(--gray-300);
+      background: white;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .pager button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Question detail */
+    .q-detail {
+      padding: 22px 26px;
+    }
+
+    .q-detail-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .q-detail-id {
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      background: var(--gray-100);
+      padding: 2px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .q-detail-id:hover {
+      background: var(--gray-200);
+    }
+
+    .q-stem {
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--gray-900);
+      margin-bottom: 18px;
+      white-space: pre-wrap;
+    }
+
+    .q-scenario-card {
+      background: #fef9c3;
+      border-left: 4px solid #f59e0b;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .q-scenario-card .scenario-label {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #b45309;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .q-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .q-option {
+      display: flex;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      background: white;
+    }
+
+    .q-option.correct {
+      border-color: #16a34a;
+      background: #f0fdf4;
+    }
+
+    .q-option-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gray-100);
+      color: var(--gray-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .q-option.correct .q-option-letter {
+      background: #16a34a;
+      color: white;
+    }
+
+    .q-option-body {
+      flex: 1;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .q-option-text {
+      white-space: pre-wrap;
+    }
+
+    .q-option-correct-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      color: #15803d;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+
+    .q-option-hint {
+      margin-top: 8px;
+      padding: 8px 10px;
+      background: var(--gray-50);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: var(--gray-700);
+      line-height: 1.4;
+    }
+
+    .q-option-hint .hint-label {
+      font-weight: 600;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .q-option-misconception {
+      margin-top: 4px;
+      font-style: italic;
+      color: var(--gray-600);
+    }
+
+    .q-section-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gray-500);
+      margin: 0 0 8px;
+    }
+
+    .q-explanation {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--gray-800);
+      white-space: pre-wrap;
+    }
+
+    .q-not-available {
+      color: var(--gray-400);
+      font-style: italic;
+      font-size: 0.88rem;
+    }
   </style>
 </head>
 <body>
@@ -211,6 +442,8 @@
     // ──────────────────────────────────────────────────────────────────────────
     // STATE
     // ──────────────────────────────────────────────────────────────────────────
+    const PAGE_SIZE = 25;
+
     const state = {
       exam: 'NEET',
       subject: '',
@@ -222,7 +455,14 @@
       // caches
       subjects: [],
       chapters: [],
-      topics: []
+      topics: [],
+      // questions for current chapter (full set, then filtered/paged client-side)
+      allQuestions: [],
+      filteredQuestions: [],
+      page: 1,
+      selectedId: null,
+      // detail-side cache: { questionId: { options, hints } }
+      detailsCache: {}
     };
 
     // ──────────────────────────────────────────────────────────────────────────
@@ -343,15 +583,74 @@
     }
 
     // ──────────────────────────────────────────────────────────────────────────
-    // PLACEHOLDER: list + detail rendering (Part 2/3 will fill these in)
+    // LANGUAGE HELPERS
     // ──────────────────────────────────────────────────────────────────────────
-    function renderList() {
+    // Pick the field for the current language. NO English fallback —
+    // if the translation is empty, returns null so caller can render
+    // "— not available —".
+    function pickLang(en, te, hi) {
+      if (state.language === 'te') return (te && te.trim()) ? te : null;
+      if (state.language === 'hi') return (hi && hi.trim()) ? hi : null;
+      return (en && en.trim()) ? en : null;
+    }
+
+    function fieldHtml(en, te, hi, opts = {}) {
+      const v = pickLang(en, te, hi);
+      if (v == null) return `<span class="q-not-available">— not available in ${state.language.toUpperCase()} —</span>`;
+      return Qbank.escapeHtml(v);
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // FETCH QUESTIONS FOR VIEWER
+    // ──────────────────────────────────────────────────────────────────────────
+    // shared.js fetchQuestionsByChapter doesn't include _te/_hi columns or
+    // topic_id, so we run a viewer-specific select that grabs everything we
+    // need for one chapter. Chapters cap at a few hundred questions, well
+    // under Supabase's 1000-row default, so a single fetch is fine.
+    async function fetchChapterQuestions(chapterId) {
+      const sb = Qbank.supabase;
+      if (!sb) return [];
+      const { data, error } = await sb
+        .from('med_questions')
+        .select(
+          'id, subject_id, chapter_id, topic_id, question_type, difficulty, status, ' +
+          'question_text, question_text_te, question_text_hi, ' +
+          'explanation, explanation_te, explanation_hi, ' +
+          'correct_answer, image_url, image_alt, payload, created_at'
+        )
+        .eq('chapter_id', chapterId)
+        .order('created_at', { ascending: true });
+      if (error) {
+        console.error('[viewer] fetch questions failed', error);
+        Qbank.showToast('Failed to load questions: ' + error.message, 'error');
+        return [];
+      }
+      return data || [];
+    }
+
+    function applyClientFilters() {
+      const t = (state.topic || '').trim();
+      const ty = (state.type || '').trim();
+      const st = (state.status || '').trim();
+      state.filteredQuestions = state.allQuestions.filter(q => {
+        if (t && q.topic_id !== t) return false;
+        if (ty && q.question_type !== ty) return false;
+        if (st && q.status !== st) return false;
+        return true;
+      });
+      state.page = 1;
+    }
+
+    async function loadChapterQuestions() {
       const body = document.getElementById('listBody');
       const countLabel = document.getElementById('listCountLabel');
       const pagerLabel = document.getElementById('listPagerLabel');
       pagerLabel.textContent = '';
 
       if (!state.chapter) {
+        state.allQuestions = [];
+        state.filteredQuestions = [];
+        state.selectedId = null;
         countLabel.textContent = 'Questions';
         body.innerHTML = `
           <div class="empty-state">
@@ -360,23 +659,244 @@
           </div>`;
         return;
       }
-      countLabel.textContent = 'Ready to load';
+
+      countLabel.textContent = 'Loading…';
       body.innerHTML = `
         <div class="empty-state">
           <div class="empty-state-icon">⏳</div>
-          <p>Question list will appear here in Part 2.</p>
+          <p>Loading questions…</p>
+        </div>`;
+
+      state.allQuestions = await fetchChapterQuestions(state.chapter);
+      applyClientFilters();
+      renderList();
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // RENDER LIST
+    // ──────────────────────────────────────────────────────────────────────────
+    function renderList() {
+      const body = document.getElementById('listBody');
+      const countLabel = document.getElementById('listCountLabel');
+      const pagerLabel = document.getElementById('listPagerLabel');
+
+      if (!state.chapter) {
+        countLabel.textContent = 'Questions';
+        pagerLabel.textContent = '';
+        body.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">🎯</div>
+            <p>Pick an exam, subject and chapter above to load questions.</p>
+          </div>`;
+        return;
+      }
+
+      const total = state.filteredQuestions.length;
+      countLabel.textContent = `${total} question${total === 1 ? '' : 's'}`;
+
+      if (total === 0) {
+        pagerLabel.textContent = '';
+        body.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">🔍</div>
+            <p>No questions match the current filters.</p>
+          </div>`;
+        return;
+      }
+
+      const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+      if (state.page > totalPages) state.page = totalPages;
+      const start = (state.page - 1) * PAGE_SIZE;
+      const slice = state.filteredQuestions.slice(start, start + PAGE_SIZE);
+
+      pagerLabel.textContent = `Page ${state.page}/${totalPages}`;
+
+      const rowsHtml = slice.map((q, i) => {
+        const idx = start + i + 1;
+        const text = (q.question_text || '').slice(0, 140);
+        const isSel = state.selectedId === q.id;
+        return `
+          <div class="q-row ${isSel ? 'selected' : ''}" data-qid="${Qbank.escapeHtml(q.id)}">
+            <div class="q-row-meta">
+              <span class="q-row-index">#${idx}</span>
+              ${Qbank.getQuestionTypeBadge(q.question_type)}
+              ${Qbank.getDifficultyBadge(q.difficulty)}
+              ${Qbank.getStatusBadge(q.status)}
+            </div>
+            <div class="q-row-text">${Qbank.escapeHtml(text)}</div>
+          </div>`;
+      }).join('');
+
+      body.innerHTML = rowsHtml + `
+        <div class="pager">
+          <button id="pgPrev" ${state.page === 1 ? 'disabled' : ''}>← Prev</button>
+          <span style="color: var(--gray-500);">${start + 1}–${Math.min(start + PAGE_SIZE, total)} of ${total}</span>
+          <button id="pgNext" ${state.page === totalPages ? 'disabled' : ''}>Next →</button>
+        </div>`;
+
+      body.querySelectorAll('.q-row').forEach(el => {
+        el.addEventListener('click', () => {
+          state.selectedId = el.dataset.qid;
+          renderList();
+          renderDetail();
+        });
+      });
+      const prev = document.getElementById('pgPrev');
+      const next = document.getElementById('pgNext');
+      if (prev) prev.addEventListener('click', () => { state.page--; renderList(); });
+      if (next) next.addEventListener('click', () => { state.page++; renderList(); });
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // RENDER DETAIL
+    // ──────────────────────────────────────────────────────────────────────────
+    async function renderDetail() {
+      const body = document.getElementById('detailBody');
+      const langLabel = document.getElementById('detailLangLabel');
+      const headerLabel = document.getElementById('detailHeaderLabel');
+      langLabel.textContent = state.language.toUpperCase();
+
+      if (!state.selectedId) {
+        headerLabel.textContent = 'Question detail';
+        body.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📖</div>
+            <p>Select a question from the list to see the answer and explanation.</p>
+          </div>`;
+        return;
+      }
+
+      const q = state.allQuestions.find(x => x.id === state.selectedId);
+      if (!q) {
+        body.innerHTML = `<div class="empty-state"><p>Question not found.</p></div>`;
+        return;
+      }
+
+      headerLabel.textContent = q.question_type.toUpperCase();
+
+      // Fetch & cache options + hints
+      let details = state.detailsCache[q.id];
+      if (!details) {
+        body.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">⏳</div>
+            <p>Loading question detail…</p>
+          </div>`;
+        details = await Qbank.fetchQuestionDetails(q.id);
+        if (state.selectedId !== q.id) return; // user moved on
+        state.detailsCache[q.id] = details || { options: [], hints: [] };
+      }
+
+      body.innerHTML = renderQuestionDetailHtml(q, state.detailsCache[q.id]);
+      // Wire copy-id button
+      const idEl = body.querySelector('.q-detail-id');
+      if (idEl) idEl.addEventListener('click', () => {
+        navigator.clipboard?.writeText(q.id);
+        Qbank.showToast('Question ID copied', 'success', 1500);
+      });
+    }
+
+    function renderQuestionDetailHtml(q, details) {
+      const opts = (details.options || []).slice().sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+      const hints = details.hints || [];
+      const hintByKey = {};
+      hints.forEach(h => { hintByKey[h.option_key] = h; });
+
+      const stemHtml = renderStemBlock(q);
+      const optionsHtml = renderOptionsBlock(q, opts, hintByKey);
+      const explanationHtml = renderExplanationBlock(q);
+
+      return `
+        <div class="q-detail">
+          <div class="q-detail-meta">
+            ${Qbank.getQuestionTypeBadge(q.question_type)}
+            ${Qbank.getDifficultyBadge(q.difficulty)}
+            ${Qbank.getStatusBadge(q.status)}
+            <span class="q-detail-id" title="Click to copy">${Qbank.escapeHtml(q.id)}</span>
+          </div>
+          ${stemHtml}
+          ${optionsHtml}
+          <h4 class="q-section-title">Explanation</h4>
+          ${explanationHtml}
         </div>`;
     }
 
-    function renderDetail() {
-      const body = document.getElementById('detailBody');
-      const langLabel = document.getElementById('detailLangLabel');
-      langLabel.textContent = state.language.toUpperCase();
-      body.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-state-icon">📖</div>
-          <p>Question detail will render here in Part 2.</p>
-        </div>`;
+    // Renders the question stem. For scenario-based, also renders the scenario
+    // card above the stem. Other type-specific stems (A-R, MTF, etc.) come in Part 3.
+    function renderStemBlock(q) {
+      let html = '';
+      if (q.question_type === 'scenario-based') {
+        const raw = q.payload || {};
+        const sEn = raw.scenario || '';
+        const sTe = raw.scenario_te || '';
+        const sHi = raw.scenario_hi || '';
+        const scenario = pickLang(sEn, sTe, sHi);
+        html += `
+          <div class="q-scenario-card">
+            <span class="scenario-label">Scenario</span>
+            ${scenario != null
+              ? Qbank.escapeHtml(scenario).replace(/\n/g, '<br>')
+              : '<span class="q-not-available">— not available in ' + state.language.toUpperCase() + ' —</span>'}
+          </div>`;
+      }
+      const stem = pickLang(q.question_text, q.question_text_te, q.question_text_hi);
+      html += `<div class="q-stem">${stem != null
+        ? Qbank.escapeHtml(stem)
+        : '<span class="q-not-available">— not available in ' + state.language.toUpperCase() + ' —</span>'
+      }</div>`;
+      return html;
+    }
+
+    function renderOptionsBlock(q, opts, hintByKey) {
+      if (!opts.length) {
+        return '<p class="q-not-available">No options stored for this question.</p>';
+      }
+      // True/false: just render the two options as-is.
+      // MCQ / scenario-based: A/B/C/D letters by sort order.
+      const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+      const isTF = q.question_type === 'true-false';
+
+      const rows = opts.map((o, idx) => {
+        const letter = isTF ? (o.option_text || '').slice(0, 1).toUpperCase() || '·' : (letters[idx] || '·');
+        const text = pickLang(o.option_text, o.option_text_te, o.option_text_hi);
+        const correct = !!o.is_correct;
+        const hint = hintByKey[o.option_key];
+        let hintHtml = '';
+        if (hint) {
+          const hintText = pickLang(hint.hint_text, hint.hint_text_te, hint.hint_text_hi);
+          const misc = pickLang(hint.misconception, hint.misconception_te, hint.misconception_hi);
+          hintHtml = `
+            <div class="q-option-hint">
+              <span class="hint-label">Hint</span>
+              ${hintText != null
+                ? Qbank.escapeHtml(hintText)
+                : '<span class="q-not-available">— hint not available in ' + state.language.toUpperCase() + ' —</span>'}
+              ${misc ? `<div class="q-option-misconception">${Qbank.escapeHtml(misc)}</div>` : ''}
+            </div>`;
+        }
+        return `
+          <div class="q-option ${correct ? 'correct' : ''}">
+            <div class="q-option-letter">${Qbank.escapeHtml(letter)}</div>
+            <div class="q-option-body">
+              <div class="q-option-text">${text != null
+                ? Qbank.escapeHtml(text)
+                : '<span class="q-not-available">— not available in ' + state.language.toUpperCase() + ' —</span>'}
+                ${correct ? '<span class="q-option-correct-tag">✓ Correct</span>' : ''}
+              </div>
+              ${hintHtml}
+            </div>
+          </div>`;
+      }).join('');
+
+      return `<div class="q-options">${rows}</div>`;
+    }
+
+    function renderExplanationBlock(q) {
+      const v = pickLang(q.explanation, q.explanation_te, q.explanation_hi);
+      if (v == null) {
+        return `<div class="q-explanation"><span class="q-not-available">— not available in ${state.language.toUpperCase()} —</span></div>`;
+      }
+      return `<div class="q-explanation">${Qbank.escapeHtml(v)}</div>`;
     }
 
     // ──────────────────────────────────────────────────────────────────────────
@@ -385,10 +905,14 @@
     function wireEvents() {
       document.getElementById('examFilter').addEventListener('change', async (e) => {
         state.exam = e.target.value;
-        // exam change invalidates subject/chapter/topic
+        // exam change invalidates subject/chapter/topic and questions
         state.subject = '';
         state.chapter = '';
         state.topic = '';
+        state.allQuestions = [];
+        state.filteredQuestions = [];
+        state.selectedId = null;
+        state.detailsCache = {};
         populateSubjects();
         await populateChapters();
         writeUrlParams();
@@ -400,6 +924,10 @@
         state.subject = e.target.value;
         state.chapter = '';
         state.topic = '';
+        state.allQuestions = [];
+        state.filteredQuestions = [];
+        state.selectedId = null;
+        state.detailsCache = {};
         await populateChapters();
         writeUrlParams();
         renderList();
@@ -409,28 +937,39 @@
       document.getElementById('chapterFilter').addEventListener('change', async (e) => {
         state.chapter = e.target.value;
         state.topic = '';
+        state.selectedId = null;
+        state.detailsCache = {};
         await populateTopics();
         writeUrlParams();
-        renderList();
+        await loadChapterQuestions();
         renderDetail();
       });
 
       document.getElementById('topicFilter').addEventListener('change', (e) => {
         state.topic = e.target.value;
+        state.selectedId = null;
         writeUrlParams();
+        applyClientFilters();
         renderList();
+        renderDetail();
       });
 
       document.getElementById('typeFilter').addEventListener('change', (e) => {
         state.type = e.target.value;
+        state.selectedId = null;
         writeUrlParams();
+        applyClientFilters();
         renderList();
+        renderDetail();
       });
 
       document.getElementById('statusFilter').addEventListener('change', (e) => {
         state.status = e.target.value;
+        state.selectedId = null;
         writeUrlParams();
+        applyClientFilters();
         renderList();
+        renderDetail();
       });
 
       document.querySelectorAll('#langToggle button').forEach(btn => {
@@ -478,6 +1017,8 @@
           if (state.topic) {
             document.getElementById('topicFilter').value = state.topic;
           }
+          // Eagerly load questions if a chapter was already selected via URL
+          await loadChapterQuestions();
         }
       }
 
