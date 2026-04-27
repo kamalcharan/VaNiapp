@@ -324,6 +324,205 @@
       font-style: italic;
       font-size: 0.88rem;
     }
+
+    /* Type-specific blocks */
+    .q-ar-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .q-ar-card {
+      border: 1px solid var(--gray-200);
+      border-left: 4px solid #6366f1;
+      background: #f5f3ff;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 0.93rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .q-ar-card.reason {
+      border-left-color: #f97316;
+      background: #fff7ed;
+    }
+
+    .q-ar-card .ar-label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #4338ca;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .q-ar-card.reason .ar-label {
+      color: #c2410c;
+    }
+
+    .q-mtf-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+    }
+
+    .q-mtf-table th,
+    .q-mtf-table td {
+      padding: 10px 12px;
+      border: 1px solid var(--gray-200);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .q-mtf-table th {
+      background: var(--gray-50);
+      font-weight: 600;
+      color: var(--gray-700);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .q-mtf-mapping {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .q-mtf-mapping .mapping-label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #15803d;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .q-mtf-mapping code {
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      background: white;
+      padding: 1px 6px;
+      border-radius: 3px;
+      border: 1px solid #bbf7d0;
+    }
+
+    .q-fill-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--gray-900);
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      background: #fef9c3;
+      border-radius: 6px;
+      border-left: 4px solid #f59e0b;
+      white-space: pre-wrap;
+    }
+
+    .q-fill-text .blank {
+      display: inline-block;
+      min-width: 60px;
+      border-bottom: 2px solid var(--gray-700);
+      margin: 0 2px;
+    }
+
+    .q-diagram {
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .q-diagram img {
+      max-width: 100%;
+      max-height: 360px;
+      border-radius: 6px;
+      border: 1px solid var(--gray-200);
+    }
+
+    .q-diagram .img-error {
+      padding: 30px;
+      background: var(--gray-50);
+      color: var(--gray-500);
+      border-radius: 6px;
+      border: 1px dashed var(--gray-300);
+    }
+
+    .q-diagram .img-alt {
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      font-style: italic;
+    }
+
+    .q-seq-list {
+      list-style: none;
+      counter-reset: seq;
+      padding: 0;
+      margin: 0 0 16px;
+    }
+
+    .q-seq-list li {
+      counter-increment: seq;
+      padding: 8px 12px 8px 40px;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      margin-bottom: 6px;
+      position: relative;
+      font-size: 0.92rem;
+    }
+
+    .q-seq-list li::before {
+      content: counter(seq);
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      background: #6366f1;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .q-seq-list li.in-order {
+      border-color: #16a34a;
+      background: #f0fdf4;
+    }
+
+    .q-seq-list li.in-order::before {
+      background: #16a34a;
+    }
+
+    .q-row-topic {
+      font-size: 0.72rem;
+      color: var(--gray-500);
+      margin-top: 4px;
+    }
+
+    .list-search {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .list-search input {
+      width: 100%;
+      padding: 6px 10px;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
   </style>
 </head>
 <body>
@@ -413,6 +612,9 @@
             <span id="listCountLabel">Questions</span>
             <span id="listPagerLabel" style="color: var(--gray-400);"></span>
           </div>
+          <div class="list-search">
+            <input id="listSearch" type="search" placeholder="Search question text…" autocomplete="off">
+          </div>
           <div id="listBody">
             <div class="empty-state">
               <div class="empty-state-icon">🎯</div>
@@ -452,10 +654,12 @@
       type: '',
       status: '',
       language: 'en',
+      search: '',
       // caches
       subjects: [],
       chapters: [],
       topics: [],
+      topicNameById: {},
       // questions for current chapter (full set, then filtered/paged client-side)
       allQuestions: [],
       filteredQuestions: [],
@@ -574,6 +778,10 @@
           `<option value="${Qbank.escapeHtml(t.id)}">${Qbank.escapeHtml(t.name)}</option>`
         ).join('');
 
+      // Build topic id → name map for list-row display
+      state.topicNameById = {};
+      state.topics.forEach(t => { state.topicNameById[t.id] = t.name; });
+
       if (state.topic && state.topics.some(t => t.id === state.topic)) {
         sel.value = state.topic;
       } else {
@@ -632,10 +840,19 @@
       const t = (state.topic || '').trim();
       const ty = (state.type || '').trim();
       const st = (state.status || '').trim();
+      const search = (state.search || '').trim().toLowerCase();
       state.filteredQuestions = state.allQuestions.filter(q => {
         if (t && q.topic_id !== t) return false;
         if (ty && q.question_type !== ty) return false;
         if (st && q.status !== st) return false;
+        if (search) {
+          const haystack = (
+            (q.question_text || '') + ' ' +
+            (q.question_text_te || '') + ' ' +
+            (q.question_text_hi || '')
+          ).toLowerCase();
+          if (!haystack.includes(search)) return false;
+        }
         return true;
       });
       state.page = 1;
@@ -715,6 +932,7 @@
         const idx = start + i + 1;
         const text = (q.question_text || '').slice(0, 140);
         const isSel = state.selectedId === q.id;
+        const topicName = state.topicNameById[q.topic_id];
         return `
           <div class="q-row ${isSel ? 'selected' : ''}" data-qid="${Qbank.escapeHtml(q.id)}">
             <div class="q-row-meta">
@@ -724,6 +942,7 @@
               ${Qbank.getStatusBadge(q.status)}
             </div>
             <div class="q-row-text">${Qbank.escapeHtml(text)}</div>
+            ${topicName ? `<div class="q-row-topic">📍 ${Qbank.escapeHtml(topicName)}</div>` : ''}
           </div>`;
       }).join('');
 
@@ -821,30 +1040,201 @@
         </div>`;
     }
 
-    // Renders the question stem. For scenario-based, also renders the scenario
-    // card above the stem. Other type-specific stems (A-R, MTF, etc.) come in Part 3.
+    // Renders the question stem + any type-specific blocks (scenario card, A-R
+    // assertion/reason cards, MTF columns, fill-blank text, diagram image,
+    // sequence items list).
     function renderStemBlock(q) {
+      const raw = q.payload || {};
+      const stemText = pickLang(q.question_text, q.question_text_te, q.question_text_hi);
+
+      // For fill-in-blanks the stem IS the text-with-blanks rendering (replaces stem)
+      if (q.question_type === 'fill-in-blanks') {
+        return renderFillStem(q, raw);
+      }
+
       let html = '';
+
+      // Pre-stem cards
       if (q.question_type === 'scenario-based') {
-        const raw = q.payload || {};
-        const sEn = raw.scenario || '';
-        const sTe = raw.scenario_te || '';
-        const sHi = raw.scenario_hi || '';
-        const scenario = pickLang(sEn, sTe, sHi);
-        html += `
-          <div class="q-scenario-card">
-            <span class="scenario-label">Scenario</span>
-            ${scenario != null
-              ? Qbank.escapeHtml(scenario).replace(/\n/g, '<br>')
-              : '<span class="q-not-available">— not available in ' + state.language.toUpperCase() + ' —</span>'}
+        html += renderScenarioCard(raw);
+      } else if (q.question_type === 'assertion-reasoning') {
+        html += renderAssertionReasonCards(raw);
+      } else if (q.question_type === 'diagram-based') {
+        html += renderDiagramBlock(q, raw);
+      }
+
+      // Stem text — show for all types except A-R (where assertion+reason replace
+      // the bare stem; the question_text often just says "Choose the correct option")
+      // and except true-false where it's the statement.
+      if (q.question_type !== 'assertion-reasoning' || (stemText && !raw.assertion)) {
+        html += `<div class="q-stem">${stemText != null
+          ? Qbank.escapeHtml(stemText)
+          : '<span class="q-not-available">— not available in ' + state.language.toUpperCase() + ' —</span>'
+        }</div>`;
+      }
+
+      // Post-stem structures
+      if (q.question_type === 'match-the-following') {
+        html += renderMtfBlocks(raw);
+      } else if (q.question_type === 'logical-sequence') {
+        html += renderSequenceBlock(raw);
+      }
+
+      return html;
+    }
+
+    function renderScenarioCard(raw) {
+      const scenario = pickLang(raw.scenario, raw.scenario_te, raw.scenario_hi);
+      return `
+        <div class="q-scenario-card">
+          <span class="scenario-label">Scenario</span>
+          ${scenario != null
+            ? Qbank.escapeHtml(scenario).replace(/\n/g, '<br>')
+            : '<span class="q-not-available">— not available in ' + state.language.toUpperCase() + ' —</span>'}
+        </div>`;
+    }
+
+    function renderAssertionReasonCards(raw) {
+      const assertion = pickLang(raw.assertion, raw.assertion_te, raw.assertion_hi);
+      const reason = pickLang(raw.reason, raw.reason_te, raw.reason_hi);
+      const naMsg = `<span class="q-not-available">— not available in ${state.language.toUpperCase()} —</span>`;
+      return `
+        <div class="q-ar-grid">
+          <div class="q-ar-card">
+            <span class="ar-label">Assertion (A)</span>
+            ${assertion != null ? Qbank.escapeHtml(assertion) : naMsg}
+          </div>
+          <div class="q-ar-card reason">
+            <span class="ar-label">Reason (R)</span>
+            ${reason != null ? Qbank.escapeHtml(reason) : naMsg}
+          </div>
+        </div>`;
+    }
+
+    function renderMtfBlocks(raw) {
+      const colA = parseColumnItems(raw.column_a ?? raw.columnA);
+      const colB = parseColumnItems(raw.column_b ?? raw.columnB);
+      const mapping = (raw.correct_mapping ?? raw.correctMapping) || {};
+
+      if (colA.length === 0 && colB.length === 0) {
+        return `<p class="q-not-available">No column data stored in payload.</p>`;
+      }
+
+      const rowCount = Math.max(colA.length, colB.length);
+      const rows = [];
+      for (let i = 0; i < rowCount; i++) {
+        const a = colA[i];
+        const b = colB[i];
+        rows.push(`
+          <tr>
+            <td>${a ? `<strong>${Qbank.escapeHtml(a.id)}.</strong> ${renderItemText(a)}` : ''}</td>
+            <td>${b ? `<strong>${Qbank.escapeHtml(b.id)}.</strong> ${renderItemText(b)}` : ''}</td>
+          </tr>`);
+      }
+
+      let mappingHtml = '';
+      const mapKeys = Object.keys(mapping);
+      if (mapKeys.length > 0) {
+        const pairs = mapKeys.map(k =>
+          `<code>${Qbank.escapeHtml(k)} → ${Qbank.escapeHtml(String(mapping[k]))}</code>`
+        ).join(' &nbsp; ');
+        mappingHtml = `
+          <div class="q-mtf-mapping">
+            <span class="mapping-label">Correct mapping</span>
+            ${pairs}
           </div>`;
       }
-      const stem = pickLang(q.question_text, q.question_text_te, q.question_text_hi);
-      html += `<div class="q-stem">${stem != null
-        ? Qbank.escapeHtml(stem)
-        : '<span class="q-not-available">— not available in ' + state.language.toUpperCase() + ' —</span>'
-      }</div>`;
-      return html;
+
+      return `
+        <table class="q-mtf-table">
+          <thead><tr><th>Column A</th><th>Column B</th></tr></thead>
+          <tbody>${rows.join('')}</tbody>
+        </table>
+        ${mappingHtml}`;
+    }
+
+    function renderFillStem(q, raw) {
+      const tEn = raw.text_with_blanks || q.question_text || '';
+      const tTe = raw.text_with_blanks_te || q.question_text_te || '';
+      const tHi = raw.text_with_blanks_hi || q.question_text_hi || '';
+      const text = pickLang(tEn, tTe, tHi);
+      if (text == null) {
+        return `<div class="q-fill-text"><span class="q-not-available">— not available in ${state.language.toUpperCase()} —</span></div>`;
+      }
+      // Replace ___ (3+ underscores) and "____" patterns with a styled blank span.
+      const escaped = Qbank.escapeHtml(text)
+        .replace(/_{3,}/g, '<span class="blank">&nbsp;</span>');
+      return `<div class="q-fill-text">${escaped}</div>`;
+    }
+
+    function renderDiagramBlock(q, raw) {
+      const url = q.image_url || raw.image_uri || '';
+      const alt = q.image_alt || raw.image_alt || '';
+      if (!url) {
+        return `<div class="q-diagram"><div class="img-error">No diagram image stored for this question.</div></div>`;
+      }
+      const safeUrl = Qbank.escapeHtml(url);
+      const safeAlt = Qbank.escapeHtml(alt || 'Diagram');
+      return `
+        <div class="q-diagram">
+          <img src="${safeUrl}" alt="${safeAlt}"
+               onerror="this.outerHTML='<div class=&quot;img-error&quot;>Image failed to load: ${safeUrl}</div>'">
+          ${alt ? `<div class="img-alt">${safeAlt}</div>` : ''}
+        </div>`;
+    }
+
+    function renderSequenceBlock(raw) {
+      const items = parseColumnItems(raw.items);
+      const order = Array.isArray(raw.correct_order) ? raw.correct_order : [];
+
+      if (items.length === 0) {
+        return '<p class="q-not-available">No sequence items stored in payload.</p>';
+      }
+
+      // Items as authored
+      const itemsHtml = items.map(it =>
+        `<li><strong>${Qbank.escapeHtml(it.id)}.</strong> ${renderItemText(it)}</li>`
+      ).join('');
+
+      // Correct order
+      let orderHtml = '';
+      if (order.length > 0) {
+        const itemMap = {};
+        items.forEach(it => { itemMap[it.id] = it; });
+        const orderedItems = order.map(id => {
+          const it = itemMap[id];
+          return `<li class="in-order"><strong>${Qbank.escapeHtml(id)}.</strong> ${it ? renderItemText(it) : ''}</li>`;
+        }).join('');
+        orderHtml = `
+          <h4 class="q-section-title">Correct order</h4>
+          <ol class="q-seq-list">${orderedItems}</ol>`;
+      }
+
+      return `
+        <h4 class="q-section-title">Items (as authored)</h4>
+        <ul class="q-seq-list" style="counter-reset: none;">${itemsHtml}</ul>
+        ${orderHtml}`;
+    }
+
+    // Helpers
+    function parseColumnItems(data) {
+      if (typeof data === 'string') {
+        try { data = JSON.parse(data); } catch { return []; }
+      }
+      if (!Array.isArray(data)) return [];
+      return data.map(item => ({
+        id: String((item && item.id) ?? ''),
+        text: String((item && item.text) ?? ''),
+        textTe: String((item && (item.text_te ?? item.textTe)) ?? ''),
+        textHi: String((item && (item.text_hi ?? item.textHi)) ?? '')
+      }));
+    }
+
+    function renderItemText(it) {
+      const v = pickLang(it.text, it.textTe, it.textHi);
+      return v != null
+        ? Qbank.escapeHtml(v)
+        : `<span class="q-not-available">— not available in ${state.language.toUpperCase()} —</span>`;
     }
 
     function renderOptionsBlock(q, opts, hintByKey) {
@@ -981,6 +1371,20 @@
           writeUrlParams();
           renderDetail();
         });
+      });
+
+      // Debounced search
+      let searchTimer = null;
+      document.getElementById('listSearch').addEventListener('input', (e) => {
+        clearTimeout(searchTimer);
+        const v = e.target.value;
+        searchTimer = setTimeout(() => {
+          state.search = v;
+          state.selectedId = null;
+          applyClientFilters();
+          renderList();
+          renderDetail();
+        }, 200);
       });
     }
 
