@@ -1810,7 +1810,8 @@ function renderNavHeader() {
     { id: 'import', label: 'Import', icon: '📥', adminOnly: true },
     { id: 'bulkinsert', label: 'Bulk Insert', icon: '📦', adminOnly: true },
     { id: 'translate', label: 'Translate', icon: '🌐', adminOnly: true },
-    { id: 'explore', label: 'Explore', icon: '🔍', adminOnly: false }
+    { id: 'explore', label: 'Explore', icon: '🔍', adminOnly: false },
+    { id: 'viewer', label: 'Viewer', icon: '👀', adminOnly: false }
   ];
 
   const visibleItems = navItems.filter(item => !item.adminOnly || isAdminUser);

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Viewer - Qbank Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .viewer-filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px 16px;
+      align-items: end;
+    }
+
+    .viewer-filters .form-group {
+      margin: 0;
+    }
+
+    .viewer-filters .form-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--gray-500);
+      margin-bottom: 4px;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      background: var(--gray-100);
+      border-radius: var(--radius);
+    }
+
+    .lang-toggle button {
+      border: none;
+      background: transparent;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
+
+    .lang-toggle button.active {
+      background: white;
+      color: var(--gray-900);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .viewer-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 380px) 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .viewer-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .viewer-list,
+    .viewer-detail {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      min-height: 400px;
+    }
+
+    .viewer-list-header,
+    .viewer-detail-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .empty-state {
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--gray-500);
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      opacity: 0.4;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header id="nav-header"></header>
+
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-icon">👀</span>
+          Question Viewer
+        </h1>
+        <p class="page-subtitle">Browse questions in the database. Read-only — no scoring, no edits.</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="card" style="margin-bottom: 20px;">
+        <div class="card-body" style="padding: 18px 22px;">
+          <div class="viewer-filters">
+            <div class="form-group">
+              <label class="form-label" for="examFilter">Exam</label>
+              <select id="examFilter" class="form-select">
+                <option value="NEET">🩺 NEET</option>
+                <option value="CUET">🎓 CUET</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="subjectFilter">Subject</label>
+              <select id="subjectFilter" class="form-select">
+                <option value="">— select subject —</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="chapterFilter">Chapter</label>
+              <select id="chapterFilter" class="form-select" disabled>
+                <option value="">— select subject first —</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="topicFilter">Topic</label>
+              <select id="topicFilter" class="form-select" disabled>
+                <option value="">All topics</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="typeFilter">Type</label>
+              <select id="typeFilter" class="form-select">
+                <option value="">All types</option>
+                <option value="mcq">MCQ</option>
+                <option value="true-false">True / False</option>
+                <option value="assertion-reasoning">Assertion-Reasoning</option>
+                <option value="match-the-following">Match the Following</option>
+                <option value="fill-in-blanks">Fill in the Blanks</option>
+                <option value="scenario-based">Scenario-Based</option>
+                <option value="diagram-based">Diagram-Based</option>
+                <option value="logical-sequence">Logical Sequence</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="statusFilter">Status</label>
+              <select id="statusFilter" class="form-select">
+                <option value="">All statuses</option>
+                <option value="active">Active</option>
+                <option value="draft">Draft</option>
+                <option value="pending">Pending</option>
+                <option value="reviewed">Reviewed</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Language</label>
+              <div class="lang-toggle" id="langToggle" role="tablist">
+                <button type="button" class="active" data-lang="en">EN</button>
+                <button type="button" data-lang="hi">HI</button>
+                <button type="button" data-lang="te">TE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout: list (left) + detail (right) -->
+      <div class="viewer-layout">
+        <div class="viewer-list">
+          <div class="viewer-list-header">
+            <span id="listCountLabel">Questions</span>
+            <span id="listPagerLabel" style="color: var(--gray-400);"></span>
+          </div>
+          <div id="listBody">
+            <div class="empty-state">
+              <div class="empty-state-icon">🎯</div>
+              <p>Pick an exam, subject and chapter above to load questions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="viewer-detail">
+          <div class="viewer-detail-header">
+            <span id="detailHeaderLabel">Question detail</span>
+            <span id="detailLangLabel" style="color: var(--gray-400);"></span>
+          </div>
+          <div id="detailBody">
+            <div class="empty-state">
+              <div class="empty-state-icon">📖</div>
+              <p>Select a question from the list to see the answer and explanation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./shared.js"></script>
+  <script>
+    // ──────────────────────────────────────────────────────────────────────────
+    // STATE
+    // ──────────────────────────────────────────────────────────────────────────
+    const state = {
+      exam: 'NEET',
+      subject: '',
+      chapter: '',
+      topic: '',
+      type: '',
+      status: '',
+      language: 'en',
+      // caches
+      subjects: [],
+      chapters: [],
+      topics: []
+    };
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // URL PARAM SYNC
+    // ──────────────────────────────────────────────────────────────────────────
+    function readUrlParams() {
+      const p = new URLSearchParams(window.location.search);
+      const exam = (p.get('exam') || 'NEET').toUpperCase();
+      state.exam = (exam === 'CUET') ? 'CUET' : 'NEET';
+      state.subject = p.get('subject') || '';
+      state.chapter = p.get('chapter') || '';
+      state.topic = p.get('topic') || '';
+      state.type = p.get('type') || '';
+      state.status = p.get('status') || '';
+      const lang = (p.get('lang') || 'en').toLowerCase();
+      state.language = ['en', 'hi', 'te'].includes(lang) ? lang : 'en';
+    }
+
+    function writeUrlParams() {
+      const p = new URLSearchParams();
+      p.set('exam', state.exam);
+      if (state.subject) p.set('subject', state.subject);
+      if (state.chapter) p.set('chapter', state.chapter);
+      if (state.topic) p.set('topic', state.topic);
+      if (state.type) p.set('type', state.type);
+      if (state.status) p.set('status', state.status);
+      if (state.language && state.language !== 'en') p.set('lang', state.language);
+      const qs = p.toString();
+      const url = window.location.pathname + (qs ? '?' + qs : '');
+      window.history.replaceState(null, '', url);
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // POPULATE DROPDOWNS
+    // ──────────────────────────────────────────────────────────────────────────
+    function populateSubjects() {
+      const sel = document.getElementById('subjectFilter');
+      const allSubjectIds = Qbank.getExamSubjects(state.exam);
+      const allowed = state.subjects.filter(s =>
+        allSubjectIds.some(id => id.toLowerCase() === s.id.toLowerCase())
+      );
+
+      sel.innerHTML = '<option value="">— select subject —</option>' +
+        allowed.map(s => {
+          const meta = Qbank.getSubjectMeta(s.id);
+          return `<option value="${Qbank.escapeHtml(s.id)}">${meta.emoji} ${Qbank.escapeHtml(s.name)}</option>`;
+        }).join('');
+
+      // restore from state if still valid
+      if (state.subject && allowed.some(s => s.id.toLowerCase() === state.subject.toLowerCase())) {
+        sel.value = allowed.find(s => s.id.toLowerCase() === state.subject.toLowerCase()).id;
+        state.subject = sel.value;
+      } else {
+        state.subject = '';
+        sel.value = '';
+      }
+    }
+
+    async function populateChapters() {
+      const sel = document.getElementById('chapterFilter');
+      if (!state.subject) {
+        sel.disabled = true;
+        sel.innerHTML = '<option value="">— select subject first —</option>';
+        state.chapters = [];
+        state.chapter = '';
+        await populateTopics();
+        return;
+      }
+
+      sel.disabled = true;
+      sel.innerHTML = '<option value="">Loading chapters…</option>';
+      const chapters = await Qbank.fetchChapters(state.subject, state.exam);
+      state.chapters = chapters || [];
+
+      sel.disabled = false;
+      sel.innerHTML = '<option value="">— select chapter —</option>' +
+        state.chapters.map(c => {
+          const num = c.chapter_number ? `${c.chapter_number}. ` : '';
+          return `<option value="${Qbank.escapeHtml(c.id)}">${num}${Qbank.escapeHtml(c.name)}</option>`;
+        }).join('');
+
+      if (state.chapter && state.chapters.some(c => c.id === state.chapter)) {
+        sel.value = state.chapter;
+      } else {
+        state.chapter = '';
+        sel.value = '';
+      }
+      await populateTopics();
+    }
+
+    async function populateTopics() {
+      const sel = document.getElementById('topicFilter');
+      if (!state.chapter) {
+        sel.disabled = true;
+        sel.innerHTML = '<option value="">All topics</option>';
+        state.topics = [];
+        state.topic = '';
+        return;
+      }
+
+      sel.disabled = true;
+      sel.innerHTML = '<option value="">Loading topics…</option>';
+      const topics = await Qbank.fetchTopics(state.chapter);
+      state.topics = topics || [];
+
+      sel.disabled = false;
+      sel.innerHTML = '<option value="">All topics</option>' +
+        state.topics.map(t =>
+          `<option value="${Qbank.escapeHtml(t.id)}">${Qbank.escapeHtml(t.name)}</option>`
+        ).join('');
+
+      if (state.topic && state.topics.some(t => t.id === state.topic)) {
+        sel.value = state.topic;
+      } else {
+        state.topic = '';
+        sel.value = '';
+      }
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // PLACEHOLDER: list + detail rendering (Part 2/3 will fill these in)
+    // ──────────────────────────────────────────────────────────────────────────
+    function renderList() {
+      const body = document.getElementById('listBody');
+      const countLabel = document.getElementById('listCountLabel');
+      const pagerLabel = document.getElementById('listPagerLabel');
+      pagerLabel.textContent = '';
+
+      if (!state.chapter) {
+        countLabel.textContent = 'Questions';
+        body.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">🎯</div>
+            <p>Pick an exam, subject and chapter above to load questions.</p>
+          </div>`;
+        return;
+      }
+      countLabel.textContent = 'Ready to load';
+      body.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon">⏳</div>
+          <p>Question list will appear here in Part 2.</p>
+        </div>`;
+    }
+
+    function renderDetail() {
+      const body = document.getElementById('detailBody');
+      const langLabel = document.getElementById('detailLangLabel');
+      langLabel.textContent = state.language.toUpperCase();
+      body.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon">📖</div>
+          <p>Question detail will render here in Part 2.</p>
+        </div>`;
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // EVENT WIRING
+    // ──────────────────────────────────────────────────────────────────────────
+    function wireEvents() {
+      document.getElementById('examFilter').addEventListener('change', async (e) => {
+        state.exam = e.target.value;
+        // exam change invalidates subject/chapter/topic
+        state.subject = '';
+        state.chapter = '';
+        state.topic = '';
+        populateSubjects();
+        await populateChapters();
+        writeUrlParams();
+        renderList();
+        renderDetail();
+      });
+
+      document.getElementById('subjectFilter').addEventListener('change', async (e) => {
+        state.subject = e.target.value;
+        state.chapter = '';
+        state.topic = '';
+        await populateChapters();
+        writeUrlParams();
+        renderList();
+        renderDetail();
+      });
+
+      document.getElementById('chapterFilter').addEventListener('change', async (e) => {
+        state.chapter = e.target.value;
+        state.topic = '';
+        await populateTopics();
+        writeUrlParams();
+        renderList();
+        renderDetail();
+      });
+
+      document.getElementById('topicFilter').addEventListener('change', (e) => {
+        state.topic = e.target.value;
+        writeUrlParams();
+        renderList();
+      });
+
+      document.getElementById('typeFilter').addEventListener('change', (e) => {
+        state.type = e.target.value;
+        writeUrlParams();
+        renderList();
+      });
+
+      document.getElementById('statusFilter').addEventListener('change', (e) => {
+        state.status = e.target.value;
+        writeUrlParams();
+        renderList();
+      });
+
+      document.querySelectorAll('#langToggle button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.language = btn.dataset.lang;
+          document.querySelectorAll('#langToggle button').forEach(b =>
+            b.classList.toggle('active', b === btn)
+          );
+          writeUrlParams();
+          renderDetail();
+        });
+      });
+    }
+
+    function applyStateToUI() {
+      document.getElementById('examFilter').value = state.exam;
+      document.getElementById('typeFilter').value = state.type || '';
+      document.getElementById('statusFilter').value = state.status || '';
+      document.querySelectorAll('#langToggle button').forEach(b =>
+        b.classList.toggle('active', b.dataset.lang === state.language)
+      );
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // BOOTSTRAP
+    // ──────────────────────────────────────────────────────────────────────────
+    async function init() {
+      const user = await Qbank.requireAuth();
+      if (!user) return;
+
+      Qbank.renderNavHeader();
+      readUrlParams();
+      applyStateToUI();
+
+      // Pre-fetch all subjects (filter applies allowed-list per role)
+      state.subjects = await Qbank.fetchSubjects();
+      populateSubjects();
+
+      if (state.subject) {
+        document.getElementById('subjectFilter').value = state.subject;
+        await populateChapters();
+        if (state.chapter) {
+          document.getElementById('chapterFilter').value = state.chapter;
+          await populateTopics();
+          if (state.topic) {
+            document.getElementById('topicFilter').value = state.topic;
+          }
+        }
+      }
+
+      wireEvents();
+      renderList();
+      renderDetail();
+    }
+
+    init();
+  </script>
+</body>
+</html>
