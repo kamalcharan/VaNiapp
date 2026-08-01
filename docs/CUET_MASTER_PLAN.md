@@ -13,7 +13,7 @@
 | 1 | Physics | `cuet-physics` | 10 | 2,560 | 27% (700) |
 | 2 | Chemistry | `cuet-chemistry` | 10 | TBD | 0% |
 | 3 | Biology | `cuet-biology` | 13 | TBD | 0% |
-| 4 | Mathematics | `cuet-mathematics` | 13 | TBD | 0% |
+| 4 | Mathematics | `mathematics` | 13 | 2,600 | 0% — scaffolded, see plan |
 | 5 | Accountancy | `cuet-accountancy` | 11 | TBD | 0% |
 | 6 | Business Studies | `cuet-business` | 12 | TBD | 0% |
 | 7 | Economics | `cuet-economics` | 16 | TBD | 0% |
@@ -86,7 +86,12 @@
 
 ---
 
-## 4. Mathematics (`cuet-mathematics`) — 13 Chapters
+## 4. Mathematics (`mathematics`) — 13 Chapters
+
+> **Detailed plan:** `docs/CUET_MATHEMATICS_GENERATION_PLAN.md`
+> **Migration:** `supabase/migrations/20260801_create_cuet_mathematics_chapters_topics.sql`
+> The DB `subject_id` is `mathematics`, not `cuet-mathematics` — see the seeded
+> `med_subjects` row in `00000000000000_consolidated_schema.sql`.
 
 | # | Chapter | DB chapter_id | Folder |
 |---|---------|---------------|--------|
