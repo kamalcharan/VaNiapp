@@ -19,6 +19,19 @@ The Expo dev server runs on the **user's machine**, not in this environment. Don
 
 There is **no test runner**. `npm run lint` (which is just `tsc --noEmit`) is the only automated correctness gate.
 
+### Release / versioning
+
+`eas.json` sets `appVersionSource: "local"` — version numbers are **not** auto-incremented by EAS, they live in `app.json` and must be bumped by hand:
+
+- `expo.version` (user-visible, e.g. `2.1.0`) and `expo.android.versionCode` (integer, monotonic).
+- Three build profiles: `development` (dev client), `preview` (internal APK), `production` (store AAB). Each carries its own `EXPO_PUBLIC_*` env block inline.
+- After shipping, a row in `med_app_versions` (`status = 'active'`) drives the in-app update prompt — see the force-update flow below. Bumping `app.json` without updating that row means users are never told to upgrade.
+- Release history is logged in `docs/RELEASE_PLAN.md`.
+
+### Directories that are not live code
+
+`_screens_backup/`, `sample/`, `documents/`, and the stray zero-byte `com.facebook.react.fabric.*` files at the repo root are dead weight. Don't read them for reference or edit them — `app/` and `src/` are the real client.
+
 ## Supabase access — important caveat
 
 The assistant does **not** have access to the correct Supabase project. The owner runs all SQL manually:
@@ -91,6 +104,49 @@ Generation prompts and methodology live in `docs/QBANK_AGENT.md` and `Qbank/CUET
 - `errorReporting.ts` — Sentry init, global handler, screen breadcrumbs
 - `qualityAutoDetect.ts` — runtime image-load failure reporting back to `med_quality_issues`
 - `aiClient.ts` — Gemini for the Ask VaNi doubt solver
+- `appConfig.ts` — see "DB-driven config" below
+- `conceptLookup.ts` / `explanationLookup.ts` — see "Local content" below
+
+### DB-driven config (change behaviour without shipping a build)
+
+Three things are read from Supabase at runtime rather than hardcoded, so the owner can change them from the dashboard:
+
+- **Pricing** — `appConfig.ts` fetches plans / coupons / GST rate from `med_app_config`, cached in memory for the session, with a `FALLBACK_CONFIG` used when offline. `src/constants/pricing.ts` holds only the *types* and plan ids. Never hardcode a price in a screen.
+- **Question mix** — per-exam question-type distribution comes from `database.ts`, not from a constant.
+- **Update prompts** — `med_app_versions` (see force-update below).
+
+If you add a knob the owner will plausibly want to tune post-release, follow this pattern instead of adding a constant.
+
+### Force-update flow
+
+`useForceUpdate()` → `ForceUpdateModal`, both mounted in `app/_layout.tsx`. Android goes through Google Play In-App Updates (IMMEDIATE / mandatory) via `sp-react-native-in-app-updates`; iOS and sideloaded Android APKs fall back to querying `med_app_versions` and rendering the modal with a download link. `is_skippable` on that row decides whether the modal can be dismissed. `Constants.expoConfig.version` is the client-side version compared against — which is why the `app.json` bump matters.
+
+### Monetization path
+
+`trialSlice` + `useTrial` (3 days **or** 50 questions, whichever first) → `paywall.tsx` gate → `upgrade.tsx`. Two payment rails: Razorpay (`payments.ts`, web checkout in a WebView) and Google Play Billing (`playBilling.ts` + `react-native-iap`). Only Play purchases are server-verified — that's what the lone `verify-play-purchase` edge function does. `trialMiddleware` in the store increments the counter on `practice/updateAnswer` and debounces a Supabase sync.
+
+### Persona / pacing
+
+`src/constants/persona.ts` + `usePersona()` derive a mode from months remaining until the user's target exam year (exam window = May):
+
+- `≤ 6 months` → **crunch**: all chapters unlocked, countdown/urgency UI
+- `> 6 months` → **levels**: progressive unlock, gamified levels
+
+The mode drives lock icons, home-screen copy, and quiz start/complete strings — all of which live in the `PersonaConfig.labels` block, not inline in screens. Changing user-facing copy for one of these states means editing `persona.ts`.
+
+### Design system
+
+Hand-drawn journal aesthetic. `src/constants/theme.ts` exports `Colors.light` / `Colors.dark` (including a highlighter palette, per-subject accent colors, and correct/incorrect/skipped state pairs); `useTheme()` + `ThemeContext` resolve which. Fonts are Google Fonts loaded via `@expo-google-fonts/*` — Caveat / Indie Flower for handwritten accents, Plus Jakarta Sans for body, Noto Sans Devanagari for Hindi.
+
+`src/components/ui/` holds the aesthetic primitives — `StickyNote`, `WashiTape`, `PuffyButton`, `HandwrittenText`, `JournalCard`, `DotGridBackground`, `ConfettiBurst`, `StreakBadge`, `ThemedDialog`, `Toast`, `AnimatedPressable`. Compose these rather than styling raw `View`/`Text`, and pull colors from `Colors[scheme]` rather than writing hex literals.
+
+### Music & focus mode
+
+`music` and `focus` slices, `useAudioPlayer` (expo-av), `useFocusTracker`. `GlobalMusicOverlay` is mounted app-wide in `app/_layout.tsx` but **only when authenticated** — it previously leaked onto auth screens. Track list is `src/constants/tracks.ts`, streamed from raw.githubusercontent.com.
+
+### Local content (not a fallback)
+
+Question and chapter data are Supabase-only — the local fallbacks were deliberately deleted (see commits `3c5d940`, `6df55b6`, `bf11d40`, `e9b24f7`). But `src/data/concepts/` and `src/data/explanations/` are still live: they're bundled reference content backing `conceptLookup.ts` / `explanationLookup.ts`, which feed `ConceptExplainerSheet`. Don't delete them as "leftover fallbacks", and don't reintroduce local question data alongside them.
 
 ### TypeScript paths
 
@@ -99,6 +155,8 @@ Generation prompts and methodology live in `docs/QBANK_AGENT.md` and `Qbank/CUET
 ### Env vars
 
 See `.env.example`. `EXPO_PUBLIC_*` vars are inlined into the client bundle. Server-only secrets (Razorpay, Play Billing) belong in edge-function env, never `EXPO_PUBLIC_*`.
+
+Local dev reads `.env` (gitignored); EAS builds read the per-profile `env` blocks in `eas.json`, which **is** committed. Adding a new `EXPO_PUBLIC_*` var means updating `.env.example`, `.env`, and all three `eas.json` profiles.
 
 ## Conventions worth knowing
 
